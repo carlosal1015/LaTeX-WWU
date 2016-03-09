@@ -1,0 +1,80 @@
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
+%		PhistMath.tex											%
+%		Weitere Mathe-Befehle									%
+%																%
+%		Author: Phil Steinhorst									%
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
+
+% % % Buchstaben und Zahlen
+\newcommand{\aff}{\mathbb{A}}
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\EE}{\mathbb{E}}
+\newcommand{\FF}{\mathbb{F}}
+\newcommand{\HH}{\mathcal{H}}
+\newcommand{\KK}{\mathbb{K}}
+\newcommand{\LL}{\mathbb{L}}
+\newcommand{\MM}{\mathcal{M}}
+\newcommand{\NN}{\mathbb{N}}
+\newcommand{\OO}{\mathbb{O}}
+\newcommand{\QQ}{\mathbb{Q}}
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\Ss}{\mathbb{S}}
+\newcommand{\UU}{\mathcal{U}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\oh}{\mathcal{O}}					% Landau-O
+\newcommand{\ind}{1\hspace{-0,8ex}1} 			% Indikatorfunktion (Doppeleins)
+
+% % % Abkürzungen
+\newcommand{\bewrueck}{"$\Leftarrow$":} 	% Beweis Rückrichtung
+\newcommand{\bewhin}{"$\Rightarrow$":}		% Beweis Hinrichtung
+\newcommand{\setone}{\{1\}}							% Einsmenge
+\newcommand{\NT}{\trianglelefteq}					% Normalteiler
+\newcommand{\setzero}{\{0\}}						% Nullmenge
+
+% % % Operatoren
+\DeclareMathOperator{\Abb}{Abb}						% Menge der Abbildungen
+\DeclareMathOperator{\Aut}{Aut} 					% Automorphismen
+\DeclareMathOperator{\Bild}{Bild}					% Kern
+\DeclareMathOperator{\Char}{char} 					% Charakteristik
+\DeclareMathOperator{\Det}{\det\,\!}				% Determinante
+\DeclareMathOperator{\End}{End}
+\DeclareMathOperator{\ev}{ev}						% Auswertungsabb.
+\DeclareMathOperator{\GL}{GL}						% allgemeine lineare Gruppe
+\DeclareMathOperator{\grad}{grad}					% Grad
+\DeclareMathOperator{\Hom}{Hom} 					% Homomorphismen
+\DeclareMathOperator{\id}{id} 						% Identität
+\DeclareMathOperator{\im}{im} 						% image
+\renewcommand{\Im}{\operatorname{Im}}				% Imaginärteil
+\DeclareMathOperator{\Isom}{Isom}					% Isometrien
+\DeclareMathOperator{\Kern}{Kern}					% Kern
+\DeclareMathOperator{\LH}{LH}						% Lineare Hülle
+\DeclareMathOperator{\ord}{ord} 					% Ordnung
+\DeclareMathOperator{\pot}{\mathcal{P}}				% Potenzmenge
+\DeclareMathOperator{\Rang}{Rang}					% Rang
+\renewcommand{\Re}{\operatorname{Re}}				% Realteil
+\DeclareMathOperator{\SAut}{SAut}
+\DeclareMathOperator{\sgn}{sgn} 					% Signum
+\DeclareMathOperator{\sign}{sign} 					% Signum
+\DeclareMathOperator{\SL}{SL} 						% Spezielle lineare Gruppe
+\DeclareMathOperator{\SO}{SO} 						% Spezielle orthogonale Gruppe
+\DeclareMathOperator{\SU}{SU} 						% Spezielle unitäre Gruppe
+\DeclareMathOperator{\Sym}{Sym} 					% Symmetrische Gruppe
+
+% % % Klammerungen
+\DeclarePairedDelimiter{\abs}{\lvert}{\rvert}			% Betrag
+\DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}			% aufrunden
+\DeclarePairedDelimiter{\floor}{\lfloor}{\rfloor}		% aufrunden
+\DeclarePairedDelimiter{\Norm}{\lVert}{\rVert}			% Norm
+\DeclarePairedDelimiter{\sprod}{\langle}{\rangle}		% spitze Klammern
+\DeclarePairedDelimiter{\enbrace}{(}{)}					% runde Klammern
+\DeclarePairedDelimiter{\benbrace}{\lbrack}{\rbrack}	% eckige Klammern
+\DeclarePairedDelimiter{\penbrace}{\{}{\}}				% geschweifte Klammern
+\newcommand{\Underbrace}[2]{{\underbrace{#1}_{#2}}} % Underbrace als Befehl in LaTeX-Syntax (und ohne Spacing-Probleme mit nachfolgenden Operatoren...)
+
+\newcommand{\enb}[1]{\enbrace*{#1}}
+\newcommand{\penb}[1]{\penbrace*{#1}}
+\newcommand{\benb}[1]{\benbrace*{#1}}
+
+\newcommand{\stack}[2]{\makebox[1cm][c]{$\stackrel{#1}{#2}$}}
+\newcommand{\ol}[1]{\overline{#1}}
+\newcommand{\mat}[4]{\tensor*[^{#2}_{}]{#1}{^{#3}_{#4}}}
