@@ -1,0 +1,3494 @@
+%!TEX TS-program = xelatex
+%!TEX TS-options = -shell-escape
+\input{../!config/mitschrift3.tex}
+\newcommand{\fach}{Topologie \RM{2}.}
+\newcommand{\semester}{WiSe 2015}
+\newcommand{\homepage}{https://wwwmath.uni-muenster.de/reine/u/topos/lehre/WS2015-2016/Topologie2/}
+
+\newcommand{\prof}{Prof.\ Dr.\ Arthur Bartels}
+\publishers{\scalebox{11}{\Huge$H^*$}}
+\input{../!config/mitschrift_headings.tex}
+
+\begin{document}
+\pagenumbering{Roman}
+\maketitle
+\begin{abstract}
+\input{../!config/vorwort.tex}
+\end{abstract}
+
+\tableofcontents
+\cleardoubleoddemptypage
+
+\pagenumbering{arabic}
+\setcounter{page}{1}
+\setcounter{footnote}{0}
+
+\section{Kohomologie} % (fold)
+\label{sec:1}
+
+\begin{definition}[{name=[Kokettenkomplex und Kohomologie]}]
+	Sei $R$ ein Ring. Ein \bet{$R$-Kokettenkomplex}\index{Kokettenkomplex} $(C^*,d^*)$ ist eine Folge von $R$-Moduln $(C^n)_{n}$ zusammen mit $R$-linearen Abbildungen 
+	$d^n \colon C^n \to C^{n+1}$, sodass $d^{n+1} \circ d^n =0$ gilt. Der \bet{$n$-te Kohomologiemodul}\index{Kohomologiemodul} von $(C^*,d^*)$ ist definiert als 
+	\[
+		H^n(C^*,d^*) = \frac{\ker d^n \colon C^n \to C^{n+1}}{\im d^{n-1} \colon C^{n-1} \to C^n} 
+	\]
+	Sei $(D^*,d^{*})$ ein weiterer Kokettenkomplex.
+	Eine \Index{Kokettenabbildung} ist eine Folge von $R$-linearen Abbildungen $f^n\colon C^n\to D^n$, sodass $ d^n_D \circ f^n = f^{n+1}\circ d^n_C$ für alle $n$ gilt. Ist 
+	auch $g^n \colon C^n \to D^n$ eine Kokettenabbildung, so nennen wir eine $R$-lineare Abbildung $h^n \colon C^n \to D^{n-1}$ mit
+	\[
+		f^n - g^n  = h^{n+1} \circ d_C^n + d_D^{n-1} \circ h^n 
+	\]
+	eine \Index{Kokettenhomotopie} zwischen $f$ und $g$. Zu jeder Kokettenabbildung $f^n\colon C^n\to D^n$ gibt es eine 
+	\bet{induzierte Abbildung}\index{induzierte Abbildung!Kohomologie} auf Kohomologie genau wie bei Homologie.
+	
+\end{definition}
+
+\begin{bemerkung}[{name=[Dualer Kokettenkomplex und Umwandlung von Kettenkomplexe in Kokettenkomplexe]}] \leavevmode
+	\begin{enumerate}[i)]
+		\item Sei $(C_*,d_*)$ ein $R$-Kettenkomplex und $V$ ein $R$-Modul. Dann erhalten wir einen $R$"=Kokettenkomplex $(C^*,d^*)$ durch 
+		\[
+			C^n \coloneqq \Hom_R(C_n,V) 
+		\]
+		und $d^n \colon C^n \to C^{n+1}$ definiert durch $\alpha \mapsto \alpha \circ d_{n+1}$. Dieser Kokettenkomplex $(C^*,d^*)$ heißt der 
+		\bet{$V$-duale}\index{Kokettenkomplex!$V$-dualer Kokettenkomplex} $R$-Kokettenkomplex zu $(C_*,d_*)$. Ist $V=R$, so nennen wir ihn auch kürzer 
+		\Index{dualer Kokettenkomplex} 
+		\item Benutzen wir $\mathbb{Z}$ statt $\mathbb{N}$ als Indexmenge, so können wir durch $(C^n,d^n) \leadsto (C_n \coloneqq C^{-n}, d_n \coloneqq d^{-n})$ jeden 
+		Kokettenkomplex einem Kettenkomplex zuordnen. Dieser Prozess ist offensichtlich umkehrbar.
+	\end{enumerate}
+\end{bemerkung}
+
+\begin{beispiel}[{name=[Kohomologie ist nicht Dualisieren von Homologie]}]
+	Es sei $(C_*,d_*)= \big(\begin{tikzcd}[cramped] \mathbb{Z} & \mathbb{Z} \lar["\cdot 2","d_1"'] & 0 \lar & \ldots \lar \end{tikzcd}\big)$ ein Kettenkomplex. 
+	Dann ist
+	\[
+		H_k(C_*,d_*) = \begin{cases}
+			\nicefrac{\mathbb{Z}}{2 \mathbb{Z}}, &\text{ falls } k =0\\
+			0 , & \text{ sonst} 
+		\end{cases}
+	\]
+	Der $\mathbb{Z}$-duale Kokettenkomplex hat dann folgende Gestalt
+	\[
+		\mbox{ }\hspace{1.5cm}\begin{tikzcd}
+			 \Hom_{\mathbb{Z}}(\mathbb{Z},\mathbb{Z}) \rar["d^0"] \dar["\cong" description] & \Hom_{\mathbb{Z}}(\mathbb{Z},\mathbb{Z}) \rar \dar["\cong" description] 
+			& 0 \rar & \ldots \\
+			\mathbb{Z} \rar["\cdot 2"] & \mathbb{Z}
+		\end{tikzcd}
+	\]
+	Damit ist die Kohomologie $H^k(C^*,d^*)=0$ für $k \neq 1$ und isomorph zu $\sfrac{\mathbb{Z}}{2 \mathbb{Z}}$ für $k=1$.
+	Es gilt also nicht immer $H^*(\Hom(C_*;R),d^*) =  \Hom \enbrace{H_*(C_*,d_*),R}$. 
+\end{beispiel}
+
+\begin{definition}[{name=[singulärer Kokettenkomplex]}]
+	Sei $(X,A)$ ein Paar von topologischen Räumen und $V$ eine abelsche Gruppe. Der \Index{singuläre Kokettenkomplex} von $(X,A)$ mit Koeffizienten in $V$ ist definiert durch
+	\[
+		C_\sing^*(X,A;V) \coloneqq \Hom_\mathbb{Z} \enbrace[\big]{C_*^\sing(X,A),V}
+	\]
+	und $d^*_\sing(\alpha) \coloneqq - (-1)^{\abs{\alpha}} \cdot \alpha \circ d_{*+1}^\sing$. Dabei ist $\abs{\alpha}=n$ für $\alpha \in C^n_\sing(X,A;V)$. Die 
+	Kohomologie von $\enbrace[\big]{C^*_\sing(X,A;V), d^*_\sing}$ heißt die \Index{singuläre Kohomologie} von $(X,A)$ mit Koeffizienten in $V$.
+\end{definition}
+
+\begin{bemerkung}[{name=[Isomorphie des singulären Kettenkomplexes]}]
+	Sei $R$ ein kommutativer Ring und $V$ ein $R$-Modul. Dann ist der singuläre Kokettenkomplex
+	\(
+		\enbrace*{C^*_\sing(X,A;V), d^*_\sing}
+	\)
+	isomorph zum $V$-dualen $R$-Kokettenkomplex des $R$-Kettenkomplexes $\enbrace*{C^\sing_*(X,A;R), d^\sing_*}$, da $C^\sing_*(X,A;R) \cong R \otimes C^\sing_*(X,A)$ und
+	$\hom_\mathbb{Z}(W,V) \cong \hom_R(R \otimes W,V)$ für jeden $\mathbb{Z}$-Modul $W$.
+\end{bemerkung}
+
+
+\begin{definition}[{name=[induzierte Abbildung auf Kokettenkomplexen]}]
+	Sei $f \colon (X,A) \to (Y,B)$ eine stetige Abbildung von Paaren. Dann erhalten wir eine Kokettenabbildung $f^* \colon C^*_\sing(Y,B;V) \to C^*_\sing(X,A;V)$ durch
+	\index{induzierte Abbildung!singuläre Kokettenkomplexe}
+	\[
+		f^*(\alpha) \coloneqq \alpha \circ f_*
+	\]
+\end{definition}
+
+\begin{bemerkung}[{name=[Induzierte Abbildung einer Komposition]}]
+	Ist $g \colon (Y,B) \to (Z,C)$ eine weitere Abbildung von Paaren, so gilt $(g \circ f)^* = f^* \circ g^*$.
+\end{bemerkung}
+
+\begin{definition}[{name=[kontravarianter Funktor]}]
+	Seien $\mathcal{C}$ und $\mathcal{D}$ Kategorien. Ein \Index{kontravarianter Funktor}  $F \colon \mathcal{C} \to \mathcal{D}$ ordnet jedem Objekt $C$ in $\mathcal{C}$ ein Objekt
+	$D$ in $\mathcal{D}$ zu und jedem Morphismus $f \colon C \to C'$ einem Morphismus $F(f) \colon F(C') \to F(C)$ in $\mathcal{D}$ zu. Dabei muss gelten:
+	\begin{enumerate}[i),noitemsep]
+		\item $F(\id_C)= \id_{F(C)}$
+		\item Für $\begin{tikzcd}[cramped] C \rar["f"] & C' \rar["f'"] & C'' \end{tikzcd}$ gilt $F(f' \circ f) = F(f) \circ F(f')$. 
+	\end{enumerate}
+	Kürzer ist ein \emph{kontravarianter} Funktor $F \colon \mathcal{C} \to \mathcal{D}$ das selbe wie ein \emph{kovarianter} Funktor $\mathcal{C}^\op \to \mathcal{D}$.
+\end{definition}
+
+\begin{beispiel}[{name=[kontravariante Funktoren]}] Es gibt zahlreiche Beispiele für kontravariante Funktoren:
+	\begin{enumerate}[i),itemsep=0pt]
+		\item Die Identität $\id \colon \mathcal{C} \to \mathcal{C}^\op$ ist kontravariant.
+		\item Sei $V$ eine abelsche Gruppe. Wir erhalten einen kontravarianten Funktor
+		\[
+			\Hom(-,V) \colon \mathbb{Z}\text{-}\MOD  \longrightarrow \mathbb{Z}\text{-}\MOD
+		\]
+		\item Sei $V$ eine abelsche Gruppe. Dann sind 
+		\begin{align}
+			C_\sing^*(-,V) &\colon \TOP^2 \longrightarrow \mathbb{Z}\text{-}\textsc{Kokettenkomplexe}  \\
+			H^*_\sing \enbrace[\big]{C_\sing^*(-,V),d_\sing^*} &\colon \TOP^2 \longrightarrow \textsc{Gr}\text{-}\mathbb{Z}\text{-}\MOD   
+		\end{align}
+		kontravariante Funktoren.
+	\end{enumerate}
+\end{beispiel}
+
+\begin{satz}[{name=[Eigenschaften singulärer Kohomologie]},label=satz:110]
+	Singuläre Kohomologie hat die folgenden Eigenschaften:
+	\begin{enumerate}[i),itemsep=1.5pt]
+		\item \textbf{Dimensionsaxiom:} Es gilt $H^n_\sing(\set{\pt};V) = V$, falls $n=0$ ist und sonst $0$.\index{Dimensionsaxiom}\marginnote{Aufgabe 4, Blatt 1} 
+		\item \textbf{Paarfolge:} Es gibt eine natürliche Transformation\marginnote{Aufgabe 3, Blatt 2} $\partial^*\colon H^*(A;V) \to H^{*+1}(X,A;V)$ sodass für jedes Paar\index{Paarfolge} 
+		\[
+			\begin{tikzcd}
+				0 \rar & H^0(X,A;V) \rar & H^0(X;V) \rar & H^0(A;V) \rar["\partial"] & H^1(X,A;V) \rar & \ldots 
+			\end{tikzcd}
+		\]
+		eine lange exakte Folge ist. $\partial$ bezeichnet man auch als \Index{verbindende Abbildung}.
+		\item \textbf{Ausschneidung:} Sei $L \subseteq A$ mit $\overline{L} \subseteq \mathring{A}$.\marginnote{siehe \autoref{korr:ausschneidung_sing_koho}}
+		Dann induziert die Inklusion\index{Ausschneidung} $i \colon (X \setminus L, A \setminus L) \hookrightarrow (X,A)$ einen Isomorphismus $i^* \colon H^*(X,A;V) \to H^*(X \setminus L, A \setminus L;V)$.
+		\item \textbf{Homotopieinvarianz:} Sind $f,g \colon (X,A) \to (Y,B)$ homotope Abbildungen von Paaren, so gilt $f^* = g^*$ für die induzierten Abbildungen in singulärer 
+		Kohomologie.\index{Homotopieinvarianz}
+	\end{enumerate}
+\end{satz}
+\begin{beweis}
+	Für singuläre Homologie haben wir die entsprechenden Aussagen schon bewiesen. 
+	In allen vier Fällen folgt die Aussage für Kohomologie aus schon bewiesenen Aussagen über den singulären Kettenkomplex.
+	
+	Wir führen dies an dieser Stelle nur für iv) aus, die anderen Punkte wurden teilweise in den Übungen bewiesen.\marginnote{siehe \cref{sub:sing_kohomo}} 
+	Seien $f, g \colon X \to Y$ homotop. 
+	Dann gibt es eine Kettenhomotopie $H \colon C^\sing_*(X) \to C^\sing_{*+1}(Y)$ zwischen den auf dem singulären Kettenkomplex induzierten Abbildungen $f_*$ und $g_*$. Es gilt also
+	\[
+		d_{n+1} \circ H + H \circ d_n = f_* - g_*
+	\]
+	$H$ induziert $H^\# \colon C^*_\sing(Y;V) \to C_\sing^{*-1}(X;V)$ mit $H^\#(\alpha) \coloneqq (-1)^{\abs{\alpha}} \cdot \alpha \circ H$. 
+	Es gilt nun für $\alpha \in C_\sing^n(Y;V)$
+	\begin{align}
+		\enbrace*{d^{n-1} \circ H^\# + H^\# \circ d^n}(\alpha) &= d^{n-1} \circ H^\#(\alpha) + H^\# \circ d^n (\alpha)\\
+		&= d^{n-1} \enbrace[\big]{(-1)^n \cdot (\alpha \circ H)} - (-1)^n \cdot H^\# \enbrace*{\alpha \circ d_{n+1}} \\
+		&= (-1)^n \cdot \enbrace*{(-1)^{n} \alpha \circ H  \circ d_n - (-1)^{n+1} \alpha \circ d_{n+1} \circ H} \\
+		&= \alpha \circ H \circ d_n + \alpha \circ d_{n+1} \circ H \\
+		&= \alpha \enbrace*{f_* - g_*} = f^*(\alpha) - g^*(\alpha) 
+	\end{align}
+	Damit ist $f^* - g^* =0$ in Kohomologie, da die linke Seite für $\alpha \in \ker d^n$ im Bild von $d^{n-1}$ liegt.
+\end{beweis}
+
+\begin{bemerkung}[{name=[Angabe des Verbindungshomomorphismus]},label=bem:verbindungshomo]
+	Sei $(X,A)$ ein Paar von topologischen Räumen. Der Verbindungshomomorphismus $\partial \colon H^n(A;V) \to H^{n+1}(X,A;V)$ kann wie folgt beschrieben werden: Sei 
+	$\alpha \colon C_n(A) \to V$ ein Kozykel. Setze $\alpha$  durch $\hat{\alpha}(\sigma)=0$ für $\sigma \colon \abs{\Delta^n} \to X$, $\im \sigma \nsubseteq A$ zu 
+	$\hat{\alpha} \colon C_n(X) \to V$ fort. Dann ist 
+	\[
+		\partial \benbrace{\alpha} = \benbrace*{d^n \hat{\alpha}} = \benbrace*{\hat{\alpha} \circ d_{n+1}} \in H^{n+1}(X,A;V)
+	\]
+\end{bemerkung}
+
+\begin{beispiel}[{name=[$0$-te Kohomologie]},label=0teKoho]
+	Die Gruppe $H^0(X;V)$ ist die Gruppe aller Abbildungen $\xi \colon X \to V$, die konstant auf Wegzusammenhangskomponenten sind, wie man sich leicht anhand der Definition überlegt. 
+	Die Gruppe $H^0(X,A;V)$ besteht aus allen solchen Abbildungen, die zusätzlich auf $A$ trivial sind.
+\end{beispiel}
+
+\begin{definition}[{name=[Produkt von $R$-Moduln]}]
+	Seien $(V_i)_{i \in I}$ $R$-Moduln. Mit $V \coloneqq \prod_{i \in I} V_i$ bezeichnen wir das \Index{Produkt} der $V_i$. Element in $V$ sind $I$-Folgen $(v_i)_{i \in I}$ mit 
+	$v_i \in V_i$. Die $R$-Modulstruktur ist erklärt durch
+	\begin{align}
+		(v_i)_{i \in I}+ (w_i)_{i \in I} &\coloneqq (v_i + w_i)_{i \in I} \\
+		r \cdot (v_i)_{i \in I} & \coloneqq (r \cdot v_i)_{i \in I}
+	\end{align}
+	Für jedes $i_0 \in I$ erhalten wir eine $R$-lineare Abbildung $\pi_{i_0} \colon V \to V_{i_0}$, $(v_i)_{i \in I} \mapsto v_{i_0}$
+\end{definition}
+
+\begin{bemerkung}[name={Universelle Eigenschaft des Produktes}]
+	Seien $V_i$ für $i \in I$ $R$-Moduln. Sei $W$ ein weiterer $R$-Modul. Dann gibt es zu jeder Folge $(f_i\colon W \to V_i)_{i \in I}$ von $R$-linearen Abbildungen eine eindeutige 
+	$R$-lineare Abbildung $f \colon W \to \prod_{i \in I}V_i$ mit $f_i= \pi_i \circ f$. Diese ist gegeben durch
+	$f(w) \coloneqq \enbrace*{f_i(w)}_{i \in I}$.
+\end{bemerkung}
+
+\begin{bemerkung}[{name=[endliche Produkte]}]
+	Ist $I$ endlich, so gilt
+	\(
+		\bigoplus_{i \in I} V_i = \prod_{i \in I} V_i.
+	\)
+\end{bemerkung}
+
+\begin{bemerkung}[{name=[{Eigenschaften von $\Hom(-,W)$ mit Produkten}]},label=hom_funk_koprod]
+	Es seien $V_i$ für $i \in I$ $R$-Moduln und $W$ ein weiterer $R$-Modul. 
+	Seien $j_{i_0} \colon V_{i_0} \to\bigoplus_{i \in I}V_i$ die Inklusionen $v_{i_0}\mapsto (v_i)_{i \in I}$ mit $v_i =v_{i_0}$ für $i=i_0$ und $0$ sonst.\marginnote{Beweis: Umkehrabbildung hinschreiben} 
+	Dann erhalten wir einen Isomorphismus 
+	\mapdef{\Hom_R \enbrace[\big]{\bigoplus_i V_i,W}}{\prod_{i \in I} \Hom_R(V_i,W)}{f}{(f \circ j_i)_{i \in I}}{\cong}
+\end{bemerkung}
+
+\begin{satz}[{name=[Kohomologie und Summe von topologischen Räumen]}]
+	Sei $X= \coprod_{i \in I} X_i$ die Summe von topologischen Räumen $X_i$. Dann induzieren die Inklusionen $j_i \colon X_i \to X$ einen Isomorphismus\marginnote{Für Homologie erhält man hier das Koprodukt anstatt dem Produkt} 
+	\mapdef{H^* \enbrace*{X,V}}{\prod_{i \in I} H^*(X_i,V)}{\xi}{\enbrace[\big]{(j_i)^*(\xi)}_{i \in I}}{\cong}
+\end{satz}
+\begin{beweis}
+	Die $(j_i)_{i \in I}$ induzieren einen Isomorphismus von Kettenkomplexen $\varphi \colon \bigoplus_{i \in I}C_*(X_i) \to C_*(X)$ mittels $(a_i)_{i \in I} \mapsto \sum_{i \in I} (j_i)_* (a_i)$.
+	Nach \autoref{hom_funk_koprod} gilt 
+	\[
+		\Hom \enbrace*{\bigoplus\nolimits_{i \in I} C_*(X_i),V} \cong \prod_{i \in I} \Hom \enbrace*{C_*(X_i),V}
+	\]
+	erhalten wir einen Isomorphismus von Kokettenkomplexen
+	\mapdef{C^* (X;V)}{\prod_{i \in I} C^*(X_i;V)}{\alpha}{\enbrace[\big]{j_i^*(\alpha)}_{i \in I}}{\cong}
+	Dieser induziert den behaupteten Isomorphismus in Kohomologie.  
+\end{beweis}
+
+\begin{definition}[{name=[reduzierte Kohomologie]}]
+	Die reduzierte Kohomologie von $X$, $\tilde{H}^*(X;V)$ ist definiert\marginnote{alternativ: Dualisieren des augmentierten Kettenkomplexes} als der Kokern von $p^* \colon H^* \enbrace*{\set{\pt};V} \to H^*(X;V)$, also als der Quotient $\sfrac{H^*(X;V)}{\im p^*}$.
+\end{definition}
+
+\begin{bemerkung}[{name=[Zusammenhang zwischen reduzierter und regulärer Homologie]}]
+	Für reduzierte Kohomologie gilt analog zu reduzierter Homologie
+	\[
+		H^n(X;V) \cong \begin{cases}
+			\tilde{H}^n(X;V), &\text{ falls } n \not= 0\\
+			\tilde{H}^0(X;V) \oplus V , &\text{ falls } n=0 
+		\end{cases}
+	\]
+\end{bemerkung}
+
+\begin{beispiel}[{name=[Kohomologie der Sphäre]}]
+	Viele Berechnungen für Homologiegruppen lassen sich problemlos auf Kohomologie übertragen. Zum Beispiel ist die reduzierte Kohomologie der Sphäre gegeben durch
+	\[
+		\tilde{H}^l (S^n;V) \cong H^l \enbrace*{D^n,S^{n-1};V} \cong \begin{cases}
+			V, &\text{ falls } l=n\\
+			0, &\text{ sonst}  
+		\end{cases}
+	\]
+\end{beispiel}
+% section 1 (end)
+\newpage
+
+\section{Die Paarung zwischen Kohomologie und Homologie} % (fold)
+\label{sec:2}
+
+\begin{definition}[{name=[Paarung]}]
+	Sei $V$ ein $\mathbb{Z}$-Modul, $(X,A)$ ein Paar von topologischen Räumen. Wir definieren die \Index{Paarung} zwischen Kohomologie und Homologie 
+	\[
+		H^n(X,A;V) \times H_n(X,A) \longrightarrow V \quad , \qquad (\xi,x) \longmapsto \xi(x)
+	\]
+	wie folgt: Wähle Repräsentanten $\alpha \in C^n_\sing(X,A;V)$ mit $\benbrace*{\alpha}=\xi$ und $a \in C^\sing_n(X,A)$ mit $\benbrace*{a}=x$. Dann setze $\xi(x) \coloneqq \alpha(a)$.
+\end{definition}
+
+\begin{bemerkung}[{name=[Grundlegende Eigenschaften der Paarung]}]
+	\leavevmode
+	\begin{itemize}[itemsep=0pt]
+		\item Sei $\beta \in C^{n-1}_\sing(X,A;V)$ und $b \in C^\sing_{n+1}(X,A)$. Für $\alpha \in \ker d^n$, $a \in\ker d_n$ folgt 
+		\[
+			\enbrace*{\alpha + d^{n-1}(\beta)}\enbrace[\big]{a + d_{n+1}(b)} = \alpha(a) + \Underbrace{\alpha \enbrace[\big]{d_{n+1}(b)}}{=0 } 
+			+ \Underbrace{d^{n-1}(\beta) \enbrace[\big]{a + d_{n+1}(b)}}{=0}
+		\]
+		Damit folgt, dass die Paarung wohldefiniert ist.
+		\item Für $r \in \mathbb{Z}$, $x,x' \in H_n(X,A)$, $\xi,\xi' \in H^n(X,A;V)$ gelten folgende Regeln
+		\[
+			(r \cdot \xi)(x) = r \cdot \xi(x) = \xi(r \cdot x) \qquad (\xi +\xi')(x) = \xi(x) + \xi'(x) \qquad \xi(x+x')= \xi(x) + \xi(x')
+		\]
+		\item Wir können die Paarung $(\xi,x)\mapsto \xi(x)$ auch als interpretieren als Homomorphismus
+		\mapdef{f \colon H^n(X,A;V)}{\Hom_\mathbb{Z} \enbrace[\big]{H_n(X,A),V}}{\xi}{\enbrace[\big]{x \mapsto \xi(x)}}{}
+		\end{itemize}
+\end{bemerkung}
+
+
+\begin{satz}[label=eig_kohomo_to_hom_homo,{name=[Paarung von Kohomologie in Homomorphismen über Homologie ist surjektiv]}]
+	Für die eben definierte Abbildung $f \colon H^n(X,A;V) \to \Hom_\mathbb{Z} \enbrace[\big]{H_n(X,A),V}$ gilt
+	\begin{enumerate}[(i),itemsep=0pt]
+		\item $f$ ist surjektiv
+		\item Ist $V$ ein $\mathbb{Q}$-Vektorraum, so ist $f$ auch injektiv.
+	\end{enumerate}
+\end{satz}
+
+\noindent Um den Satz beweisen zu können, benötigen wir zunächst zwei technische Aussagen:
+
+\begin{lemma}[label=lem:untergrp_frei,{name=[Untergruppen freier abelscher Gruppen sind frei]}]
+	Untergruppen freier abelscher Gruppen sind frei.
+	% Sei $C$ eine Untergruppe der freien abelschen Gruppe $\mathbb{Z}[S]$. Dann gibt es $T \subseteq S$ und eine $T$-Folge $(n_t)_{t \in T}$ von positiven Zahlen $n_t$, so dass $C$
+	% das Bild der injektiven Abbildung $M \colon \mathbb{Z}[T] \to \mathbb{Z}[S]$, $\sum z_t t \mapsto \sum z_t m_t \cdot t$ ist. Insbesondere ist $C$ frei.
+\end{lemma}
+\begin{beweis}
+	Sei $C$ eine Untergruppe von $\mathbb{Z}[S]$. Sei $\mathcal{M}$ die Menge der Tripel $(T,R,\varphi)$ mit
+	\begin{itemize}[itemsep=0pt,topsep=1ex]
+		\item $T \subseteq R \subseteq S$ und
+		\item $\varphi \colon \mathbb{Z}[T] \to \mathbb{Z}[R] \cap C$ ist ein Isomorphismus.
+	\end{itemize}
+	Wir definieren eine partielle Ordnung auf $\mathcal{M}$ durch
+	\[
+		(T,R,\varphi) \le (T',R',\varphi') :\iff T \subseteq T', R \subseteq R', \varphi'|_{T}=\varphi
+	\]
+	$\mathcal{M}$ ist nicht leer ($T=R=\emptyset$) und jede aufsteigende Kette besitzt eine obere Schranke (Vereinigung der Kette) in $\mathcal{M}$.
+	Das Lemma von Zorn liefert uns nun die Existenz eines maximalen Elements $(T,R,\varphi) \in \mathcal{M}$. Zu zeigen bleibt $R=S$. 
+	
+	Angenommen es existiert ein $s \in S \setminus R$.
+	Ist $C \cap \mathbb{Z} \benbrace[\big]{R \cup \set{s}} = C \cap \mathbb{Z}[R]$, so ist $(T,R,\varphi) \lneqq (T,R \cup \set{s},\varphi) \in \mathcal{M}$ im Widerspruch zur Maximalität von $(T,R,\varphi)$. 
+	Sei also $\mathbb{Z}[R] \cap C \subsetneq \mathbb{Z}\benbrace[\big]{R \cup \set{s}} \cap C$. 
+	Betrachte nun das Diagramm in \cref{diag:frei_untergrp}.
+	\begin{figure}[t]
+		\centering{
+		\begin{tikzcd}[row sep=large]
+			\mathbb{Z}[T] \dar["\varphi","\cong"'] \rar[hook] & \mathbb{Z} \benbrace[\big]{T \cup \set*{s}} \dar["\varphi^+"] \rar[two heads] 
+			& \mathbb{Z}\benbrace[\big]{\set*{s}} {\color{dark_gray} \ni s} \dar["\cong"] 
+			\ar[dd,dark_gray,controls={+(-17:1.5) and +(20:1.5)},mapsto,start anchor=east, end anchor=east] \\
+			\mathbb{Z}[R] \cap C \rar[hook,"j"] \dar[hook,"i_0"]& \mathbb{Z}\benbrace[\big]{R \cup \set{s}} \cap C \rar[two heads,"p"] \dar[hook,"i_1"] 
+			& \faktor{\mathbb{Z}\benbrace[\big]{R \cup \set{s}} \cap C}{\mathbb{Z}[R] \cap C} \dar["i_2"] \\
+			\mathbb{Z}[R] \rar[hook,"j'"] & \mathbb{Z}\benbrace[\big]{R \cup\set{s}} \rar[two heads,"p'"] & \mathbb{Z}\benbrace[\big]{\set{s}}{\color{dark_gray} \ni m \cdot s} 
+		\end{tikzcd}
+		\caption{Diagramm zum Beweis von \autoref{lem:untergrp_frei} \label{diag:frei_untergrp}}
+		}
+	\end{figure}
+	Es ist $\mathbb{Z}[R] \cap C  = \mathbb{Z}[R] \cap \enbrace[\big]{\mathbb{Z}[R \cup \set{s}] \cap C}$ und damit muss auch der von $i_0$ und $i_1$ induzierte Homomorphismus $i_2 \colon \sfrac{\mathbb{Z}[R \cup \set{s}] \cap C}{\mathbb{Z}[R] \cap C} \to \mathbb{Z}[\set{s}]$ injektiv sein. 
+	Es folgt, dass $\im i_2 = m \cdot \mathbb{Z}\benbrace*{\set{s}}$ ist für ein $m >0$. 
+	Sei $c \in \mathbb{Z}[R \cup \set{s}] \cap C$ ein Urbild von $m \cdot s$ unter $p' \circ i_1$. 
+	Nun können wir $\varphi$ durch $s \mapsto c$ zu $\varphi^+ \colon \mathbb{Z}\benbrace*{T \cup\set{s}} \to \mathbb{Z}\benbrace*{R \cup \set{s}}\cap C$ fortsetzen. 
+	Es folgt, dass $\varphi^+$ ein Isomorphismus ist im Widerspruch zur Maximalität von $(T,R,\varphi)$.
+\end{beweis}
+
+\begin{lemma}[label=lem:abel_qvek,{name=[{Fortsetzungen für rationale Vektorräume}]}]
+	Sei $A_0$ eine Untergruppe der abelschen Gruppe\marginnote{$\mathbb{Q}$-Vektorräume sind also \href{https://de.wikipedia.org/wiki/Injektives_Objekt}{injektive} $\mathbb{Z}$-Moduln} $A$, $V$ ein $\mathbb{Q}$-Vektorraum und $\beta_0 \colon A_0 \to V$ ein Gruppenhomomorphismus. Dann gibt es eine Fortsetzung 
+	$\beta \colon A \to V$ von $\beta_0$ zu einem Gruppenhomomorphismus.  
+\end{lemma}
+\begin{beweis}
+	Die Inklusion $i \colon A_0 \hookrightarrow A$ induziert nach Aufgabe 1 vom ersten Übungsblatt einen Monomorphismus von $\mathbb{Q}$-Vektorräumen(!)
+	\[
+		\mathbb{Q}\otimes i \colon \mathbb{Q} \otimes A_0 \longrightarrow \mathbb{Q} \otimes A , \qquad q \otimes a_0 \longmapsto q \otimes i(a_0)
+	\]
+	Nun können wir die $\mathbb{Q}$-lineare Abbildung $q \otimes a_0 \mapsto q \cdot \beta_0(a_0) \in V$ von $\mathbb{Q} \otimes A_0$ zu 
+	$\overline{\beta} \colon \mathbb{Q} \otimes A \to V$ fortsetzen. 
+	Dann ist $a \mapsto \overline{\beta}(1 \otimes a)$ \emph{eine} Fortsetzung von $\beta_0$.
+\end{beweis}
+
+\begin{beweis}[name={von \autoref{eig_kohomo_to_hom_homo}}] \leavevmode
+	\begin{enumerate}[(i)]
+		\item Sei ein Homomorphismus $\varphi \colon H_n(X,A) \to V$ gegeben und $p \colon\ker d_n \twoheadrightarrow H_n(X,A)$ die Projektion. 
+		Betrachte die kurze exakte Folge 
+		\[
+			\begin{tikzcd}
+				\ker  d_n \rar[hook,"i"] & C_n^\sing(X,A) \rar["d_n",two heads] & \im d_n
+			\end{tikzcd}
+		\]
+		Als Untermodul des freien Moduls $C_{n-1}^\sing(X,A)$ ist $\im d_n$ nach \autoref{lem:untergrp_frei} frei, insbesondere spaltet die kurze exakte Sequenz und es gilt $C^\sing_n(X,A) \cong \ker d_n \oplus \im d_n$. 
+		Daher können wir $\varphi \circ p \colon \ker d_n \to V$ zu $\alpha \colon C_n^\sing(X,A) \to V$ fortsetzen. 
+		Genauer: Sei $s \colon \im d_n \to C_n^\sing(X,A)$ ein Spalt. 
+		Dann können wir $\alpha \colon C_n^\sing(X,A) \to V$ definieren durch 
+		\(
+			\alpha(a) \coloneqq \varphi \circ p \enbrace*{a - s \enbrace[\big]{d_n(a)}}
+		\).
+		Es folgt
+		\[
+			d^n (\alpha)(a)= \alpha \circ d_{n+1}(a)= \varphi \circ p \enbrace*{d_{n+1}(a) -  s \enbrace[\big]{d_n (d_{n+1}a)}} =0
+		\] 
+		und damit $[\alpha] \in H^n(X,A;V)$ sowie $f \enbrace*{[\alpha]}=\varphi$, womit die Surjektivität gezeigt ist.
+		\item Sei $\alpha \in C^n_\sing(X,A;V)$ mit $d^n(\alpha)=0$. Sei $\benbrace*{\alpha}\in\ker f$, also $\alpha(a)=0$ für alle $a \in \ker d_n$. Dann faktorisiert $\alpha$ über
+		$\im d_n \subseteq C_{n-1}(X,A)$, denn $\alpha$ liegt im Kern von $d^n$ und induziert $\beta_0 \colon \im d_n \to V$ mit $\alpha = \beta_0 \circ d_n$ durch Einschränkung 
+		auf den Summanden $\im d_n$. 
+	
+		Ist $V$ ein $\mathbb{Q}$-Vektorraum, so können wir $\beta_0$ nach \autoref{lem:abel_qvek} zu $\beta \colon C_{n-1}(X,A) \to V$ fortsetzen. Es folgt 
+		$\alpha= \beta \circ d_n = \pm \enbrace*{d^{n-1} \beta}$ und damit $\benbrace*{\alpha}=0$ in $H^n(X,A;V)$. \qedhere
+	\end{enumerate}
+\end{beweis}
+
+\begin{korollarB}[{name=[{Kohomologie mit rationalen Vektorräumen}]},label=kor:26]
+	Es gilt $H^n(X,A;\mathbb{Q}) \cong \Hom_{\mathbb{Z}}\enbrace[\big]{H_n(X,A);\mathbb{Q}}$.
+\end{korollarB}
+
+\begin{bemerkung}[{name=[{Verschärfung von \autoref{kor:26} mit Q-Homomorphismen}]}]
+	Es gilt sogar $H^n \enbrace*{X,A;\mathbb{Q}} \cong \Hom_\mathbb{Q} \enbrace[\big]{H_n(X,A;\mathbb{Q}),\mathbb{Q}}$.
+\end{bemerkung}
+\newpage
+% section 2 (end)
+
+\section{Produkte auf Kohomologie} % (fold)
+\label{sec:3}
+
+\begin{definition}[{name=[Einschränkung von singulären Simplizes]}]
+	Sei $\sigma \colon \abs{\Delta^n}  \to X$ ein singulärer Simplex in $X$. Für $0 \le p \le n$ definieren wir 
+	\[
+		\sigma|_{\benbrace*{0,\ldots ,p}} \colon \abs{\Delta^p} \longrightarrow X \quad , \qquad \sigma|_{\benbrace{p,\ldots ,n}} \colon \abs{\Delta^{n-p}} \longrightarrow X  
+	\]
+	durch $\sigma|_{\benbrace*{0,\ldots ,p}}(t_0, \ldots ,t_p) = \sigma \enbrace*{t_0, \ldots , t_p, 0, \ldots ,0}$ und $\sigma|_{p,\ldots ,n}(t_{p}, \ldots ,t_n)= \sigma(0,\ldots ,0,t_{p}, \ldots , t_n)$.
+\end{definition}
+
+\begin{figure}[ht]
+	\centering{
+	\begin{tikzpicture}[scale=1.6]
+		\draw[fill=DodgerBlue3,fill opacity=0.4] (0,0) -- ++(1,0) -- ++ (120:1) -- cycle;
+		\draw[thick] (0,0) node[below left]{$0$} -- ++(1,0) node[below right]{$2$} -- ++ (120:1) node[above]{$1$} -- cycle;
+		\draw[thick] (3,0) node[below left]{$0$} -- ++(1,0) node[below right]{$2$} -- ++ (120:1) node[above]{$1$} -- cycle;
+		\draw[fill=Firebrick3,fill opacity=0.4] (6,0) -- ++(1,0) -- ++ (120:1) -- cycle;
+		\draw[thick] (6,0) node[below left]{$0$} -- ++(1,0) node[below right]{$2$} -- ++ (120:1) node[above]{$1$} -- cycle;
+		
+		% linker Simplex
+		\draw[DodgerBlue3,dashed,ultra thick] (0,0) -- ++(1,0) -- ++ (120:1) node[midway,right]{$\sigma|_{\benbrace*{0,1,2}}$} -- cycle;
+		\draw[fill,Firebrick3] (0,0) circle[radius=0.05] node[above left]{$\sigma|_{\benbrace*{0}}$};
+		
+		% mittlerer  Simplex
+		\draw[DodgerBlue3,dashed,ultra thick] (4,0) -- ++ (120:1) node[midway,right]{$\sigma|_{\benbrace*{1,2}}$};
+		\draw[fill,Firebrick3, dashed,ultra thick] (3,0) -- ++ (60:1) node[midway, left]{$\sigma|_{\benbrace*{0,1}}$};
+		
+		% rechter Simplex
+		\draw[Firebrick3,dashed,ultra thick] (6,0) -- ++(1,0) -- ++ (120:1) -- (6,0) node[midway,left]{$\sigma|_{\benbrace*{0,1,2}}$};
+		\draw[fill,DodgerBlue3] (7,0) circle[radius=0.05] node[above right]{$\sigma|_{\benbrace*{2}}$};
+	\end{tikzpicture}
+	\caption{Einschränkung von singulären Simplizes am Beispiel des $2$-Simplex.}
+	}
+\end{figure}
+
+\begin{bemerkung}[{name=[Schreibweise für Einschränkung auf eine Seite]}]
+	Wir schreiben auch $\sigma|_{\benbrace*{0,\ldots , \slashedi, \ldots ,n}}$ für die $i$-te Seite von $\sigma$.
+\end{bemerkung}
+
+\begin{definition}[label=sec3:def_cup,{name=[Cup-Produkt]}]
+	Sei $R$ ein Ring und $X$ ein topologischer Raum. 
+	Wir definieren das \bet{Cup-Produkt} ($\cupp$"~Produkt)\index{Cup-Produkt, $\cupp$-Produkt} auf dem singulären Kokettenkomplex von $X$
+	\[
+		\cupp \colon C^p_\sing \enbrace*{X;R} \otimes C^q_\sing(X;R) \longrightarrow C^{p+q}_\sing \enbrace*{X;R}
+	\]
+	durch $(\alpha \cupp \beta)(\sigma) \coloneqq  (-1)^{p \cdot q} \cdot \alpha\enbrace*{\sigma|_{\benbrace{0,\ldots ,p}}} \cdot \beta \enbrace*{\sigma|_{\benbrace*{p, \ldots , p+q}}}$ für $\sigma \colon \abs{\Delta^{p+q}} \to X$.
+\end{definition}
+
+\begin{lemma}[{name=[Eigenschaften des Cup-Produktes]},label=lem:eig_cup]
+	Das $\cupp$-Produkt hat folgende Eigenschaften:
+	\begin{enumerate}[1)]
+		\item $d^{p+q}(\alpha \cupp \beta) = d^p(\alpha) \cupp \beta + (-1)^p \cdot \alpha \cupp d^q(\beta)$
+		\item Das $\cupp$-Produkt ist assoziativ.
+		\item Für $f \colon X \to X'$ gilt $f^*(\alpha \cupp \beta)= f^*(\alpha) \cupp f^*(\beta)$ für $\alpha \in C^p_\sing(X';R)$, $\beta \in C^q_\sing(X';R)$.
+		\item Sei $1_X \in C_\sing^0(X;R)$ mit $1_X(\sigma)=1_R$ für alle $\sigma \colon \abs{\Delta^0} \to X$. Dann gilt $1_X \cupp \alpha = \alpha = \alpha\cupp 1_X$.
+	\end{enumerate}
+\end{lemma}
+\begin{beweis}
+	Wir zeigen nur die erste Aussage, die anderen sind alle klar.
+	Sei dazu $\sigma \colon \abs*{\Delta^{p+q+1}}\to X$ ein singulärer Simplex.
+	Es gilt für den ersten Summanden der rechten Seite
+	\begin{align}
+		\enbrace*{d^p(\alpha) \cupp \beta}(\sigma) &= (-1)^{q(p+1)}\cdot  (d^p \alpha) \enbrace*{\sigma|_{\benbrace*{0,\ldots ,p+1}}} \beta \enbrace*{\sigma|_{\benbrace*{p+1,\ldots ,p+q+1}}} \\
+		&= \Underbracket{(-1)^{qp+q+p+1} \cdot \sum_{i=0}^{p} (-1)^i \cdot \alpha \enbrace*{\sigma|_{\benbrace*{0, \ldots ,\slashedi,\ldots ,p+1}}} \beta \enbrace*{\sigma|_{\benbrace*{p+1,\ldots ,p+q+1}}}}{=: A} \\
+		&\mathbin{\hphantom{=}} + \,\Underbracket{(-1)^{pq+q+p+1+p+1} \cdot \alpha \enbrace*{\sigma|_{\benbrace*{0,\ldots ,p}}} \beta \enbrace*{\sigma|_{\benbrace*{p+1,\ldots ,p+q+1}}}}{=: E}
+	\end{align}
+	Für den zweiten Summanden erhalten wir
+	\begin{align}
+		(-1)^p \cdot \enbrace*{\alpha \cupp d^q \beta}(\sigma) &= (-1)^{p+p(q+1)} \cdot \alpha \enbrace*{\sigma|_{\benbrace*{0,\ldots ,p}}} (d^q \beta) \enbrace*{\sigma|_{\benbrace*{p,\ldots ,p+q+1}}} \\
+		&= \Underbracket{(-1)^{p+pq+p+q+1} \cdot \alpha \enbrace*{\sigma|_{\benbrace*{0,\ldots ,p}}} \beta \enbrace*{\sigma|_{\benbrace*{p+1,\ldots ,p+q+1}}}}{= -E}\\
+		&\mathrel{\hphantom{=}} + \,\Underbracket{(-1)^{pq+q+1} \sum_{j=1}^{q+1} (-1)^j \cdot \alpha \enbrace*{\sigma|_{\benbrace*{0,\ldots ,p}}} \beta \enbrace*{\sigma|_{\benbrace{p,\ldots , \bcancel{p+j}, \ldots , p+q+1}}}}{=: B}
+	\end{align}
+	Wir berechnen nun die linke Seite der Gleichung
+	\begin{align}
+		\enbrace*{d^{p+q}(\alpha \cupp \beta)} (\sigma) &= (-1)^{p+q+1} (\alpha \cupp \beta) \enbrace*{\sum_{i=0}^{p+q+1} (-1)^i \cdot \sigma|_{\benbrace*{0, \ldots ,\slashedi, \ldots , p+q+1}} } \\
+		&= (-1)^{p+q+1+pq} \Big( \sum_{i=0}^{p} (-1)^i \cdot \alpha \enbrace*{\sigma|_{\benbrace{0, \ldots , \slashedi, \ldots ,p+1}}} \beta \enbrace*{\sigma|_{\benbrace{p+1,\ldots , p+q+1}}} \\
+		&\mathrel{\hphantom{=}} + \sum_{j=1}^{q+1} (-1)^{p+j} \cdot \alpha \enbrace*{\sigma|_{\benbrace{0,\ldots ,p}}} \beta \enbrace*{\sigma_{\benbrace*{p,\ldots , \bcancel{p+j}, \ldots ,p+q+1}}} \Big)\\
+		&= A+ B \qedhere
+	\end{align}
+\end{beweis}
+
+\begin{definition}[{name=[Cup-Produkt in Kohomologie]}]
+	Die vom $\cupp$-Produkt auf dem singulären Kokettenkomplex induzierte Abbildung in Kohomologie
+	\[
+		\cupp \colon H^p(X;R) \otimes H^q(X;R) \longrightarrow H^{p+q}(X;R)
+	\]
+	ist das $\cupp$-Produkt in Kohomologie $\benbrace*{\alpha} \cupp \benbrace*{\beta} := \benbrace*{\alpha \cupp \beta}$. 
+	\begin{itemize}
+		\item Mit 1) folgt, dass das Cup-Produkt in Kohomologie wohldefiniert ist. 
+		\item Nach 2) ist es assoziativ und somit ist $H^*(X) := \bigoplus_{p=0}^\infty H^p(X)$ ein Ring. 
+		\item Nach 3) sind induzierte Abbildungen in Kohomologie multiplikativ und somit Ringhomomorphismen. 
+		\item Nach 4) ist $\benbrace*{1_X} \in H^0(X;R)$ ein Einselement bezüglich $\cupp$ in $H^*$.
+	\end{itemize}
+\end{definition}
+
+\begin{definition}[{name=[Kreuz-Produkt]}]
+	Seien $X$ und $Y$ zwei topologische Räume und $p_X \colon X \times Y \to X$, sowie $p_Y$ die Projektionen. 
+	Das \bet{Kreuz-Produkt} ($\times$"~Produkt)\index{Kreuz-Produkt, $\times$-Produkt}
+	\[
+		\times \colon H^p(X;R) \otimes H^q(Y;R) \longrightarrow H^{p+q}(X \times Y;R)
+	\]
+	ist definiert durch $\xi \times \zeta := p_X^*(\xi) \cupp p_Y^*(\zeta)$. 
+\end{definition}
+
+\begin{bemerkung}[{name=[Zusammenhang von Kreuz- und Cup-Produkt]}]
+	Das $\cupp$-Produkt kann wie folgt aus dem $\times$-Produkt zurückgewonnen werden: 
+	Sei $\Delta \colon X \to X \times X$ die Diagonalabbildung $\Delta(x) := (x,x)$, dann gilt für $\xi \in H^p(X;R)$, $\zeta \in H^q(X;R)$
+	\[
+		\xi \cupp \zeta = \Delta^*(\xi \times \zeta)
+	\]
+	Dies folgt durch Einsetzen der Definitionen und $p_X \circ \Delta = \id_X$.
+\end{bemerkung}
+
+\begin{bemerkung}[{name=[relative Versionen des Cup- und Kreuz-Produktes]},label=bem:rel_cup]
+	Es gibt auch relative Versionen des $\cupp$-Produkts und des $\times$-Produkts:
+	\begin{enumerate}[(i)]
+		\item Sei $A \subseteq X$ ein Unterraum. 
+		Für $\alpha \in C^p(X,A;R)$ und $\beta \in C^q(X;R)$ sind dann $\alpha \cupp \beta, \beta \cupp \alpha \in C^{p+q}(X,A;R)$. 
+		Wir erhalten relative $\cupp$-Produkte
+		\[
+			\begin{tikzcd}[row sep=0em]
+				H^p(X,A;R) \otimes_R H^q(X;R) \rar & \minwidthbox{H^{p+q}(X,A;R)}{2cm} \\
+				H^p(X;R) \otimes_R H^q(X,A;R) \rar & \minwidthbox{H^{p+q}(X,A;R)}{2cm} 
+			\end{tikzcd}
+		\]
+		\item Seien $A \subseteq X$ und $B \subseteq Y$ Unterräume.
+		Dann erhalten wir relative $\times$-Produkte
+		\[
+			\begin{tikzcd}[row sep=0em]
+				H^p(X,A;R) \otimes_R H^q(Y;R) \rar & H^{p+q}(X \times Y, A \times Y;R) \\
+				H^p(X;R) \otimes_R H^q(Y,B;R) \rar & H^{p+q}(X \times Y,X \times B;R) 
+			\end{tikzcd}
+		\]
+		\item Sind $A,B \subseteq X$ offen, so kann man mit dem Satz über kleine Simplizes ein relatives $\cupp$-Produkt
+		\[
+			\begin{tikzcd}
+				H^p(X,A;R) \otimes_R H^q(X,B;R) \rar & H^{p+q}(X,A \cup B;R)
+			\end{tikzcd}
+		\]
+		konstruieren. \emph{Siehe Aufgabe 3 von Blatt 4, bzw. \cref{sub:relative_cup_produkte}}
+		\item Sind $A \subseteq X$ und $B \subseteq Y$ offen, so erhält man außerdem ein relatives $\times$-Produkt
+		\[
+			\begin{tikzcd}
+				H^p(X,A;R) \otimes_R H^q(Y,B;R) \rar & H^{p+q}(X \times Y,X \times B \cup A \times Y;R)
+			\end{tikzcd}
+		\]
+	\end{enumerate}
+\end{bemerkung}
+
+\begin{beispiel}[{name=[Cup-Produkt in der $0$-ten Kohomologie]}]
+	Wir betrachten das $\cupp$-Produkt auf in der $0$-ten Kohomologie $\cupp \colon H^0(X;R) \otimes H^0(X;R) \to H^0(X;R)$. 
+	Seien $A,B \subseteq X$ beides Vereinigungen von Wegzusammenhangskomponenten von $X$. 
+	Seien $1_A, 1_B \in C^0(X;R)$ definiert durch 
+	\[
+		1_A(\sigma) = \begin{cases}
+			1, &\text{ falls } \im \sigma \subseteq A\\
+			0 , & \text{ sonst} 
+		\end{cases}
+	\]
+	und $1_B$ analog. Dann ist $\benbrace*{1_A} \cupp \benbrace*{1_B} = \benbrace*{1_{A \cap B}}$.
+\end{beispiel}
+
+\begin{lemma}[label=sec3:lem1,{name=[Randabbildungen und Kreuz-Produkt]}]
+	Sei $(X,A)$ ein Paar von topologischen Räumen und $Y$ ein weiterer topologischer Raum. Seien $\partial \colon H^p(A;R) \to H^{p+1}(X,A;R)$ und 
+	$\partial^{\times} \colon H^{p+q}(A \times Y;R) \to H^{p+q+1}(X\times Y,A \times Y;R)$ die Verbindungshomomorphismen in den Paarfolgen. Dann gilt für $\xi \in H^p(A;R)$
+	und $\zeta \in H^q(Y;R)$
+	\[
+		\partial^\times (\xi \times \zeta) = \enbrace*{\partial \xi} \times \zeta
+	\]
+\end{lemma}
+\begin{beweis}
+	Sei $\xi= \benbrace*{\alpha}$ und $\zeta= \benbrace*{\beta}$. Setze $\alpha \colon C_p(A) \to R$ durch $\hat{\alpha}(\sigma)=0$ für $\sigma \colon \abs{\Delta^p} \to X$
+	mit Bild nicht in $A$ zu $\hat{\alpha} \colon C_p(X) \to R$ fort. Dann ist
+	\(
+		\benbrace[\big]{d^p \hat{\alpha}}= \partial \benbrace*{\alpha}
+	\)
+	nach \autoref{bem:verbindungshomo}.
+	Weiter ist 
+	\begin{align}
+		\partial^\times(\xi \times \zeta)= \partial^\times \enbrace*{p_A^* \xi \cupp p_Y^* \zeta} = \partial^\times \benbrace[\big]{p_A^* \alpha \cupp p_Y^* \beta} &= 
+		\benbrace[\big]{d^{p+q} \enbrace[\big]{p^*_X (\hat{\alpha}) \cupp p^*_Y(\beta)}} \\
+		\shortintertext{da $p^*_X(\hat{\alpha}) \cupp p_Y^*(\beta)$ eine Fortsetzung von $p_A^* (\alpha) \cupp p_Y^*(\beta)$ ist. Weiter gilt}
+		&= \benbrace[\big]{p_X^* \enbrace*{d^p\hat{\alpha}} \cupp p_Y^*(\beta) \pm p_X^*(\hat{\alpha}) \cupp p_Y^* \enbrace*{d^q \beta}} \\
+		&= p_X^* \benbrace[\big]{d^p(\hat{\alpha})} \cupp p_Y^* \benbrace*{\beta} = \benbrace[\big]{d^p(\hat{\alpha})} \times \benbrace*{\beta} \\ 
+		&= \partial \xi \times \zeta \qedhere
+	\end{align}
+\end{beweis}
+
+\begin{lemma}[label=sec3:lem2,{name=[Isomorphismus für das Produkt mit $D^1$]}]
+	Sei $\xi \in H^1 \enbrace*{D^1,\partial D^1;R}$ ein Erzeuger. Dann ist für jeden Raum $X$ die Abbildung 
+	\mapdef{H^p(X;R)}{H^{p+1} \enbrace*{D^1 \times X, \partial D^1 \times X;R}}{\eta}{\xi \times \eta}{}
+	ein Isomorphismus.
+\end{lemma}
+\begin{beweis} Wir betrachten folgendes Diagramm
+	\[
+		\begin{tikzcd}
+			H^0(D^1;R) \otimes H^p(X;R) \dar \rar["\times"] & H^p(D^1 \times X;R) \dar\\
+			H^0(\partial D^1;R)  \otimes H^p(X;R) \rar["\times"] \dar & H^p(\partial D^1 \times X;R) \dar["\partial"] \\
+			H^1(D^1,\partial D^1;R) \otimes H^p(X;R) \rar["\times"] & H^{p+1} (D^1 \times X,\partial D^1 \times X;R)
+		\end{tikzcd}
+	\]
+	Behauptung: Beide Spalten sind kurz exakt.
+	Betrachte dazu den folgenden Ausschnitt aus der Paarsequenz des Paares $(D^1, \partial D^1)$:
+	\[
+		\begin{tikzcd}[cramped]
+			\Underbracket{H^0(D^1,\partial D^1;R)}{\StackText{\ref{0teKoho}}{=}0} \rar & H^0(D^1;R) \rar["j^*"] & H^0(\partial D^1;R) \rar & H^1(D^1,\partial D^1;R) \rar & 0
+		\end{tikzcd}
+	\]
+	Seien $j \colon \partial D^1 \hookrightarrow D^1$ und $i_\pm \colon \set*{\pm 1} \hookrightarrow \partial D^1$ die Inklusionen. 
+	Sei weiter $p \colon D^1 \to \set*{-1}$ die Projektion. 
+	Dann gilt ${p^*} \circ {i_-^*} \circ {j^*} = \id_{H^0(D^1;R)}$. 
+	Insbesondere spaltet die Sequenz und bleibt somit exakt nach Anwenden des Funktors ${-}\otimes H^p(X;R)$.
+	Genauso überlegt man sich, dass die Paarfolge
+	\[
+		\begin{tikzcd}
+			\ldots \rar & H^p \enbrace*{D^1\times X, \partial D^1\times X; R}\rar["j^*"] & H^p \enbrace*{D^1 \times X;R}\rar["i^*"] & H^p \enbrace*{\partial D^1 \times X;R}\rar & \ldots 
+		\end{tikzcd}
+	\]
+	in eine kurze exakte Folge 
+	\[
+		\begin{tikzcd}
+			0 \rar & H^p \enbrace*{D^1\times X;R} \rar["i^*"] & H^p \enbrace*{\partial D^1 \times X;R} \rar["\partial"] \lar[bend left,"s^*"'] & H^{p+1} \enbrace*{D^1 \times X,\partial D^1 \times X;R} \rar & 0
+		\end{tikzcd}
+	\]
+	zerfällt: Sei dazu $s \colon D^1 \times X \to \partial D^1 \times X$ gegeben durch $(t,x) \mapsto (1,x)$ und $i \colon \partial D^1 \times X \hookrightarrow D^1 \times X$ die Inklusion.
+	Dann ist $i \circ s$ homotop zu $\id_{D^1 \times X}$, also $s^* \circ i^*=\id$ in Kohomologie und mit der Exaktheit folgt $j^*=0$. Die gesuchte Spaltung ist $s^*$.
+	
+	Die ersten zwei $\times$-Produkte sind Isomorphismen. 
+	Dies folgt für das erste aus $H^0(D^1;R)\cong R$ und der Betrachtung des Erzeugers $1_R \in R$, denn für diesen gilt $p_{D^1}^*(1_R)=1_{D^1\times X}$ und somit
+	\[
+		p_{D^1}^*(1_R) \cupp p_{X}^*(\eta) = p_{X}^*(\eta)
+	\]
+	Für das zweite $\times$-Produkt betrachte folgendes Diagramm
+	\[
+		\begin{tikzcd}[row sep=large]
+			H^0(\set*{-1}) \otimes H^p(X) \dar["{(p_{-1})^*} \otimes \id"] \rar["\times","\cong"']& H^p(\set*{-1} \times X)  \dar["(p_{-1} \times \id_X)^*"] \\
+			H^0(\partial D^1) \otimes H^p(X) \rar["\times"] \dar["{(i_{+1})^*} \otimes \id"] & H^p(\partial D^1 \times X) \dar["(i_{+1} \times \id_X)^*"] \\
+			H^0(\set*{+1}) \otimes H^p(X) \rar["\times","\cong"'] & H^p \enbrace*{\set*{+1} \times X}
+		\end{tikzcd}\marginnote{\enquote{$R$} aus Platzgründen weggelassen}
+	\]
+	Nach \autoref{sec3:lem1} kommutiert das erste Diagramm und damit ist auch das dritte $\times$-Produkt darin ein Isomorphismus, wie wir es zeigen wollten.
+	
+	\emph{\textcite[Ex. 3.11]{Hatcher} formuliert den Beweis dieser Aussage noch etwas anders, vielleicht hilft der Vergleich dem einen oder anderen.}
+\end{beweis}
+
+\begin{proposition}[label=sec3:prop_Hp-1,{name=[{Kohomologie des Produkts mit $S^1$}]}]
+	Sei $X$ ein topologischer Raum. Dann ist $H^p(S^1 \times X;R) \cong H^p(X;R) \oplus H^{p-1}(X;R)$.
+\end{proposition}
+\begin{beweis}
+	Die Paarfolge zu $(S^1 \times X, \set*{\pt} \times X)$ zerfällt in kurze exakte Folgen:
+	\[
+		\begin{tikzcd}
+			H^p(S^1 \times X, \set*{\pt} \times X;R) \rar[hook] & H^p(S^1 \times X;R) \rar[two heads,"i^*"] & H^p \enbrace*{\set*{\pt} \times X;R} \lar[bend left,"\pi^*"]
+		\end{tikzcd}
+	\]
+	$i^*$ ist surjektiv, da $\pi(\lambda,x) = (\pt,x)$ einen Spalt induziert. Damit folgt $H^p(S^1 \times X;R) \cong H^p(X;R) \oplus H^p(S^1 \times X, \set*{\pt} \times X;R)$.
+	Die Behauptung folgt nun mittels Ausschneidung und Homotopieinvarianz:
+	\[
+		H^p \enbrace*{S^1 \times X, \set*{\pt} \times X;R} \cong H^p \enbrace*{D^1 \times X, \partial D^1 \times X;R} \StackText{\ref{sec3:lem2}}{\cong} H^{p-1}(X;R) \qedhere
+	\]
+\end{beweis}
+
+\begin{bemerkung}[{name=[{Angabe der Abbildung in \ref{sec3:prop_Hp-1}}]},label=angabe_iso_s1]
+	Sei $\xi \in H^1(S^1;R)$ ein Erzeuger und $p_X \colon S^1 \times X \to X$ die Projektion. Dann ist der Isomorphismus aus \autoref{sec3:prop_Hp-1} gegeben durch
+	\[
+		H^p \enbrace*{X;R} \oplus H^{p-1}(X;R) \longrightarrow H^p(S^1 \times X;R) \quad , \quad (\eta_1,\eta_2) \longmapsto \enbrace[\big]{p_X^*(\eta_1) + \xi\times \eta_2}
+	\]
+\end{bemerkung}
+% section 3 (end)
+\newpage
+
+\section{Kommutativität des Cup-Produktes} % (fold)
+\label{sec:4}
+
+\begin{definition}[{name=[graduierte Algebra]}]
+	Eine \Index{graduierte Algebra} ist ein graduierter Modul $A^* = \bigoplus_p A^p$ zusammen mit einer $R$-Algebrastruktur, für die das Produkt mit der Graduierung verträglich ist: Für $a \in A^p$ und $b \in A^q$ ist $a \cdot b \in A^{p+q}$. Sie heißt \Index{graduiert-kommutativ}, falls 
+	\[
+		a \cdot b =  (-1)^{p \cdot q} \cdot b \cdot a
+	\]
+	für alle $a \in A^p$ und $b \in A^q$ gilt.
+\end{definition}
+
+\begin{bemerkung}[{name=[Cup-Produkt auf $C^*$ nicht graduiert kommutativ]}]
+	Das $\cupp$-Produkt auf $C^*_\sing(X;R)$ ist \emph{nicht} graduiert kommutativ, was man direkt aus der \autoref{sec3:def_cup} ablesen kann. 
+\end{bemerkung}
+
+\begin{lemma}[{name=[Spiegelung von singulären Simplizes]},label=spiegelung_simplex]
+	Für $\sigma \colon \abs{\Delta^p} \to X$ sei die Spiegelung $\overline{\sigma} \colon \abs{\Delta^n} \to X$ definiert durch 
+	\[
+		\overline{\sigma}(t_0, \ldots , t_p ) :=  \sigma(t_p, \ldots ,t_0)
+	\]
+	Sei $\Sp \colon C_p(X,A;R) \to C_p(X,A;R)$ definiert durch $\Sp(\sigma) := (-1)^{\sfrac{p(p+1)}{2}} \cdot \overline{\sigma}$. 
+	Dann erhalten wir eine induzierte Abbildung $\Sp^* \colon C^p(X,A;R) \to C^p(X,A;R)$ definiert durch $\Sp^*(\alpha) := \alpha \circ \Sp$. Es gilt
+	\begin{enumerate}[a)]
+		\item $\Sp$ ist eine Kettenabbildung und $\Sp^*$ ist eine Kokettenabbildung
+		\item Ist $R$ kommutativ, so gilt $\beta \cupp \alpha = (-1)^{\abs*{\alpha} \cdot \abs*{\beta} }\cdot \Sp^*\enbrace[\big]{\Sp^*(\alpha) \cupp \Sp^*(\beta)}$
+	\end{enumerate}
+\end{lemma}
+\begin{beweis}
+	\begin{enumerate}[a)]
+		\item Sei $\sigma \colon \abs{\Delta^p} \to X$ ein singulärer Simplex. Dann gilt
+		\begin{align}
+			\Sp(d_p \sigma) = \Sp\enbrace*{\sum_{i=0}^{p} (-1)^i \cdot \sigma|_{\benbrace*{0, \ldots , \slashedi, \ldots ,p}}} 
+			&= \sum_{i=0}^{p} (-1)^i \cdot \Sp \enbrace*{\sigma|_{\benbrace*{0, \ldots , \slashedi, \ldots , p}}} \\
+			&= \sum_{i=0}^{p} (-1)^i \cdot (-1)^{\frac{p(p-1)}{2}} \,\sigma|_{\benbrace*{p, \ldots , \slashedi, \ldots , 0}}
+		\end{align}
+		wobei $\slashedi$ an der $p-i$-ten Stelle von vorn steht. Weiter ist
+		\begin{align}
+			d_p \enbrace[\big]{\Sp(\sigma)} = d_p \enbrace*{(-1)^{\frac{p(p+1)}{2}} \,\sigma|_{\benbrace*{p, \ldots ,0}}} &= (-1)^{\frac{p(p+1)}{2}} \sum_{i=0}^{p} (-1)^i\, 
+			\sigma\big|_{\benbrace*{p, \ldots , \cancel{p-i}, \ldots ,0}} \\ 
+			&= (-1)^{\frac{p(p+1)}{2}} \sum_{i=0}^{p} (-1)^{p-i} \,\sigma\big|_{\benbrace*{p, \ldots ,\slashedi, \ldots ,0}}
+		\end{align}
+		Nun ist $\frac{p(p-1)}{2} \equiv \frac{p(p+1)}{2} + p$ und $x +i \equiv x-i$ und es folgt die Gleichheit.
+		\item Es sei $p=\abs*{\alpha}$, $q=\abs*{\beta}$ und $n=p+q$.
+		Für einen singulären Simplex $\sigma \colon \abs{\Delta^n} \to X$ gilt dann
+		\begin{align}
+			\enbrace*{\Sp^* \enbrace[\big]{\Sp^*(\alpha) \cupp \Sp^*(\beta)}}(\sigma) &= (-1)^{\frac{n(n+1)}{2}} \cdot \enbrace[\big]{\Sp^*(\alpha) \cupp \Sp^*(\beta)} 
+			\enbrace*{\sigma|_{\benbrace*{n, \ldots ,0}}} \\
+			&= (-1)^{\frac{n(n+1)}{2}} \cdot (-1)^{p \cdot q}\cdot \Sp^*(\alpha) \enbrace*{\sigma_{\benbrace*{n, \ldots , q}}} \cdot \Sp^*(\beta) 
+			\enbrace*{\sigma|_{\benbrace*{q, \ldots ,0}}} \\
+			&= (-1)^{\frac{n(n+1)}{2}} (-1)^{p \cdot q} (-1)^{\frac{p(p+1)}{2}} (-1)^{\frac{q(q+1)}{2}} \alpha \enbrace*{\sigma|_{\benbrace*{q, \ldots ,n}}}
+			\beta \enbrace*{\sigma|_{\benbrace{0, \ldots ,q}}} \\
+			&= (-1)^{\frac{n(n+1)}{2}} (-1)^{p \cdot q} (-1)^{\frac{p(p+1)}{2}} (-1)^{\frac{q(q+1)}{2}} \beta \enbrace*{\sigma|_{\benbrace{0, \ldots ,q}}} 
+			\alpha \enbrace*{\sigma|_{\benbrace*{q, \ldots ,n}}} \\
+			&\stackrel{!}{=} (-1)^{p \cdot q} \enbrace*{\beta \cupp \alpha}(\sigma) = \cancel{(-1)^{p \cdot q}} \cdot \cancel{(-1)^{p \cdot q}} \,\beta \enbrace*{\sigma|_{\benbrace{0, \ldots ,q}}} 
+			\alpha \enbrace*{\sigma|_{\benbrace*{q, \ldots ,n}}}
+		\end{align}
+		Weiter gilt nun
+		\begin{align}
+			\sfrac{n(n+1)}{2} + \sfrac{p(p+1)}{2} + \sfrac{q(q+1)}{2} &= (1+ \ldots + n) + (1+ \ldots + p) + (1+ \ldots + q)\\ 
+			&\equiv \enbrace[\big]{(p+1) + \ldots + n} + (1+ \ldots + q)\\
+			&= (n+1) q = (p+q+1) q = pq + q^2 + q \equiv p \cdot q
+		\end{align}
+		da $q^2 \equiv q$ und es folgt die Behauptung.\qedhere
+	\end{enumerate}
+\end{beweis}
+
+\begin{lemma}[{name=[Spiegelung ist kettenhomotop zur Identität]},label=lemma:Sp_kettenhomotop]
+	$\Sp \colon C_*(X,A) \to C_*(X,A)$ ist kettenhomotop zur Identität. 
+\end{lemma}
+\begin{beweis}
+	$\Sp$ ist eine natürliche Transformation mit $\Sp_0 =\id \colon C_0(X) \to C_0(X)$.
+	Nach \autoref{prop:H0_kettenhomotop} bzw. \autoref{korr:H0_kettenhomotop} ist $\Sp$ damit kettenhomotop zur Identität.
+\end{beweis}
+
+\begin{satz}[{name=[Das $\cupp$-Produkt in Kohomologie ist graduiert kommutativ]}]
+	Das $\cupp$-Produkt in Kohomologie ist graduiert kommutativ. 
+\end{satz}
+\begin{beweis}
+	Seien $\xi \in H^p(X,A;R)$ und $\eta \in H^q(X,B;R)$. 
+	Wähle $\alpha \in C^p(X,A;R)$, $\beta \in C^q(X,B;R)$ mit $\xi= [\alpha]$ und $\eta= [\beta]$. 
+	Dann gilt -- da nach \autoref{lemma:Sp_kettenhomotop} auch $\Sp^*$ kokettenhomotop zur Identität ist --
+	\begin{align}
+		\xi \cupp \eta = \benbrace*{\alpha \cupp \beta} \StackText{\ref{spiegelung_simplex}}{=} (-1)^{pq} \cdot \benbrace*{\Sp^* \enbrace[\big]{\Sp^*(\beta) \cupp \Sp^*(\alpha)}} &= (-1)^{pq} \cdot 
+		\benbrace[\big]{\Sp^*(\beta) \cupp \Sp^*(\alpha)} \\
+		&= (-1)^{pq} \cdot \benbrace[\big]{\Sp^*(\beta)} \cupp \benbrace[\big]{\Sp^*(\alpha)}\\ 
+		&= (-1)^{pq} \cdot [\beta] \cupp [\alpha] = (-1)^{pq} \cdot \eta \cupp \xi \qedhere
+	\end{align}
+\end{beweis}
+
+\begin{proposition}[label=prop:H0_kettenhomotop,{name=[Nullkettenhomotopie von natürlichen Transformationen]}]
+	Sei $\tau_* \colon C_*^\sing \to C_*^\sing$ eine natürliche Transformation durch Kettenabbildungen. 
+	Induziert $\tau$ die triviale Abbildung auf $H_0(\set*{\pt})$, so ist $\tau_*$ kettenhomotop zur Nullabbildung, das heißt es gibt eine natürliche Transformation $\eta_* \colon C_*^\sing \to C_{*+1}^\sing$ mit 
+	\[
+		d^\sing_{*+1} \circ \eta_* + \eta_{*-1} \circ d_*^\sing = \tau_* 
+	\]
+\end{proposition}
+\begin{beweis}
+	Da $\tau$ auf $H_0(\set{\pt})$ trivial ist, ist $\tau \enbrace*{\id_{\abs*{\Delta^0}}}=0$. Es folgt für $\sigma \colon \abs{\Delta^0} \to X$
+	\[
+		\tau(\sigma) = \tau \enbrace*{\sigma_* \enbrace*{\id_{\abs*{\Delta^0}}}} = \sigma_* \enbrace*{\tau \enbrace*{\id_{\abs*{\Delta^0}}}} = 0
+	\]
+	Es folgt, dass $\tau_0 \colon C_0(X) \to C_0(X)$ trivial ist. 
+	Wir setzen also $\eta_0 = 0$ und und definieren $\eta_1, \eta_2, \ldots $ induktiv: 
+	Seien $\eta_1, \ldots,\eta_{k-1}$ schon konstruiert mit $d^\sing_{l+1} \circ \eta_l + \eta_{l-1} \circ d^\sing_{l}=\tau_l$ für $l=0, \ldots , k-1$. Es folgt
+	\begin{align}
+		d_k^\sing \enbrace*{\tau_k -  \eta_{k-1} \circ d_k^\sing } &= d^\sing_k \circ \tau_k - d^\sing_k \circ \eta_{k-1} \circ d^\sing_k \\
+		&= \tau_{k-1} \circ d_k^\sing -  \enbrace*{\tau_{k-1} - \eta_{k-2} \circ d_{k-1}^\sing} \circ d_k^\sing =0
+	\end{align}
+	Setze nun $\id_{\abs*{\Delta^k}} \in C_k^\sing( \abs{\Delta^k})$ in die Formel ein. 
+	Da $\abs*{\Delta^k}$ kontrahierbar ist, gilt $H_k \enbrace*{\abs{\Delta^k}} =0$. Außerdem gilt
+	\[
+		d_k^\sing \enbrace[\Big]{\tau_k \enbrace*{\id_{\abs*{\Delta^k} }} - \eta_{k-1} \enbrace*{d_k^\sing \enbrace*{\id_{\abs*{\Delta^k} }}}} =0
+	\]
+	und somit gibt es ein $a_k \in C_{k+1} \enbrace*{\abs{\Delta^k} }$, sodass $d_{k+1}^\sing(a_k)$ das Innere der Klammer ist. 
+	Für einen singulären Simplex $\sigma \colon \abs{\Delta^k} \to X$ setzen wir nun $\eta_k(\sigma) := \sigma_*(a_k)$.
+	Dann gilt 
+	\[
+		\enbrace*{d_{k+1}^\sing \circ \eta_k + \eta_{k-1} \circ d_k^\sing - \tau_k}(\sigma) = \sigma_* \enbrace[\big]{d_{k+1}^\sing \circ \eta_k + \eta_{k-1} \circ d_k^\sing - \tau_k} (\id_{\abs*{\Delta^k}}) =0 
+	\]
+	nach Konstruktion.
+	Damit ist $d_{k+1}^\sing \circ \eta_k + \eta_{k-1} \circ d_k^\sing = \tau_k$ wie gewünscht und $\eta_*$ ist die gesuchte Kettenhomotopie.
+\end{beweis}
+
+\begin{korollar}[label=korr:H0_kettenhomotop,{name=[Kettenhomotopie von natürlichen Transformationen]}]
+	Seien $\tau, \tau'$ zwei natürliche Transformationen $C_*^\sing \to C_*^\sing$ durch Kettenabbildungen, sodass $H_0(\tau) = H_0(\tau')$ für $X= \set*{\pt}$ gilt. 
+	Dann sind $\tau$ und $\tau'$ kettenhomotop.
+\end{korollar}
+\begin{beweis}
+	Betrachte $\tau-\tau'$ und wende \autoref{prop:H0_kettenhomotop} an.
+\end{beweis}
+
+\begin{definition}[{name=[Äußere Algebra]}]
+	Sei $R$ ein kommutativer Ring. Die \Index{freie graduiert kommutative Algebra}\footnote{$a^2=0$ falls $a$ ungerade} in Erzeugern $a_1, \ldots, a_k$ von Grad $\abs*{a_1}, \ldots , \abs*{a_k}$ über $R$ ist die 
+	graduiert kommutative Algebra $\Lambda_R \benbrace*{a_1,\ldots,a_k}$, deren Elemente von Grad $N$ formale Linearkombinationen der Form 
+	\[
+		\smashoperator[r]{\sum_{\substack{i_1, \ldots ,i_n \ge 0 \\ i_1 \abs*{a_1} + \ldots + i_n \abs*{a_n} = N , i_j \in \set*{0,1} \text{ für } \abs*{a_j} \text{ ungerade}}}} 
+		\enspace r_{i_1, \ldots ,i_n} \cdot a_1^{i_1} \cdot a_2^{i_2} \cdots a_n^{i_n}
+	\]
+	sind.
+	Das Produkt ist das eindeutige $R$-lineare assoziative graduiert kommutative Produkt mit $a_\lambda^j \cdot a_{\lambda'}^{j'} = a_\lambda^j a_{\lambda'}^{j'}$ für 
+	$\lambda< \lambda'$ und $a_\lambda^j \cdot a_\lambda^{j'} = a_\lambda^{j+j'}$ für $\abs*{a_\lambda}$ ungerade.
+\end{definition}
+
+\begin{beispiel}[{name=[Polynomring und äußere Algebra]}]
+	Sind alle $\abs*{a_i}$ gerade, so ist $\Lambda_R \benbrace*{a_1,\ldots,a_n}$ der Polynomring über $R$ in den Variablen $a_1, \ldots ,a_n$.
+	Sind alle $\abs*{a_i}$ ungerade, so ist $\Lambda_R \benbrace*{a_1, \ldots a_n}$ die \Index{äußere Algebra} in den Variablen $a_1, \ldots , a_n$.
+	
+	\emph{Definition der äußeren Algebra aus \cite[Ex. 3.15]{Hatcher}:}
+	Die \Index{äußere Algebra} $\Lambda_R \benbrace*{a_1,a_2,\ldots }$ über einem kommutativen Ring $R$ ist der freie $R$-Modul, dessen Basis aus endlichen Produkten $a_{i_1} \cdots a_{i_k}$ mit $i_1 < \ldots < i_k$ besteht, versehen mit der Multiplikation, die durch die Forderungen 
+	\[
+		a_i a_j= -a_j a_i \quad \text{ und } \quad  a_i^2=0
+	\]
+	eindeutig bestimmt ist. 
+	Das leere Produkt der $a_i$ liefert ein Einselement.
+\end{beispiel}
+
+\begin{satz}[{name=[Kohomologie des Torus]}]
+	Sei $R$ ein kommutativer Ring und $\xi \in H^1 \enbrace*{S^1;R}$ ein Erzeuger. 
+	Sei weiter $p_i \colon T^n = (S^1)^n \to S^1$ die Projektion auf die $i$-te Koordinate. 
+	Wir setzen $\xi_i := (p_i)^*(\xi) \in H^1(T^n;R)$. Dann ist 
+	\[
+		H^*(T^n;R) \cong \Lambda_R \benbrace*{\xi_1, \ldots ,\xi_n}
+	\]
+	als graduiert kommutative Ringe.
+\end{satz}
+\begin{beweis}
+	Per Induktion nach $n$. Für $n=0,1$ ist nichts zu zeigen. 
+	Nach \autoref{angabe_iso_s1} liefert $(\eta_1,\eta_2) \mapsto \enbrace[\big]{\pi^*(\eta_1) + \xi\times \eta_2}$ einen Isomorphismus $H^p(T^n;R) \oplus H^{p-1}(T^n;R) \cong H^{p}(T^{n+1};R)$, wobei $\pi \colon T^{n+1} \to T^n$ die Projektion auf die hinteren $n$ Koordinaten ist.
+	Es gilt dann $\pi^*(\xi_i) = \xi_{i+1}$.
+	Nach Induktionsvorraussetzung können wir $\eta_1 = \xi_{i_1} \cdots \xi_{i_p}$ und $\eta_2 = \xi_{j_1} \cdots \xi_{j_{p-1}}$ annehmen.
+	Offensichtlich hat $\pi^*(\eta_1)$ dann die gewünschte Form, da $\pi^*$ mit $\cupp$ vertauscht. Mit 
+	\[
+		\xi \times \eta_2 = p_1^*(\xi) \cupp \pi^*(\eta_2)
+	\]
+	folgt dies auch für den zweiten Summanden.
+	Insgesamt sieht man, dass $H^*(T^n)$ die behauptete Struktur hat.
+	% Für den Induktionsschritt erinnern wir uns daran, dass $\xi \times {-} \colon H^p(T^{n-1};R) \to H^p(T^n;R)$ ein 
+	% Isomorphismus ist. Damit folgt die Behauptung.
+\end{beweis}
+
+\begin{beispiel}[{name=[Kohomologieklassen des Torus]}]
+	$\xi_1 \cdots \xi_n$ ist ein Erzeuger von $H^n(T^n;R)$. Jedes $\eta \in H^k(T^n;R)$ für $k>0$ lässt sich schreiben als
+	\[
+		\eta= \!\smashoperator[r]{\sum_{i_1<\ldots <i_k}}\,\, r_{i_1,\ldots ,i_k} \xi_{i_1} \cupp \ldots \cupp \xi_{i_k}
+	\]
+\end{beispiel}
+% section 4 (end)
+\newpage
+
+\section{Azyklische Kettenkomplexe} % (fold)
+\label{sec:5}
+
+\begin{frage}
+	Sei $f  \colon C_* \to D_*$ eine Kettenabbildung, die einen Isomorphismus in Homologie induziert. Ist dann $f$ schon eine Kettenhomotopieäquivalenz?
+\end{frage}
+% Frage: Sei $f  \colon C_* \to D_*$ eine Kettenabbildung, die einen Isomorphismus in Homologie induziert. Ist dann $f$ schon eine Kettenhomotopieäquivalenz?
+
+\begin{frage}
+	Sei $\mathcal{U}$ eine offene Überdeckung von $X$. 
+	Dann haben wir schon gesehen, dass die Inklusion $i \colon C_*^\mathcal{U}(X;R) \hookrightarrow C_*^\sing(X;R)$ einen Isomorphismus in Homologie induziert. 
+	Ist $i$ eine Kettenhomotopieäquivalenz?
+\end{frage}
+
+\begin{definition}[{name=[azyklischer Kettenkomplex]}]
+	Ein $R$-Kettenkomplex heißt \bet{azyklisch}\index{azyklischer Kettenkomplex}, falls seine Homologiegruppen trivial sind, also falls der Kettenkomplex eine lange exakte Folge ist.
+\end{definition}
+
+\begin{beispiel}[{name=[Beispiel eines azyklischen Kettenkomplex]}]
+	Unser altbekanntes Beispiel
+	\[
+		\begin{tikzcd}
+			0 \rar & \mathbb{Z} \rar["\cdot 2",hook] & \mathbb{Z} \rar[two heads] & \sfrac{\mathbb{Z}}{2 \mathbb{Z}} \rar & 0
+		\end{tikzcd}
+	\]
+	ist ein azyklischer Kettenkomplex, der nicht kettenkontraktibel ist, da es keine nicht trivialen Abbildungen $\sfrac{\mathbb{Z}}{2 \mathbb{Z}} \to \mathbb{Z}$ gibt, eine solche zur Konstruktion einer Kettenhomotopie aber nötig wäre.
+	Damit ist die Antwort auf die erste Frage \enquote{Nein}.
+\end{beispiel}
+
+\begin{definition}[{name=[projektiver Modul]},label=def_projektiv]
+	Ein $R$-Modul $P$ heißt \bet{projektiv}\index{projektiver Modul}, falls es zu jeder surjektiven, $R$-linearen Abbildung $f \colon M \to N$ und jeder $R$-linearen Abbildung
+	$\varphi \colon P \to N$ eine $R$-lineare Abbildung $\hat{\varphi} \colon P \to M$ gibt mit $\varphi= f \circ \hat{\varphi}$. Anders ausgedrückt kommutiert folgendes Diagramm:
+	\[
+		\begin{tikzcd}
+			\mbox{ } & M \dar[two heads,"f"] \\
+			P \rar["\varphi"] \urar["\hat{\varphi}",dashed] & N
+		\end{tikzcd}
+	\]
+\end{definition}
+
+\begin{beispiel}[{name=[Freie Moduln sind projektiv]}]
+	Freie Moduln sind projektiv, wie man durch Anwendung\marginnote{Urbilder der Bilder der Basiselemente wählen} der universellen Eigenschaft eines freien Moduls sehr einfach sieht (wurde auch in Topologie \RM{1} bewiesen).
+\end{beispiel}
+
+\begin{satz}[{name=[Projektive Moduln als direkte Summanden in freien Moduln]}]
+	Für einen $R$-Modul $P$ sind äquivalent:
+	\begin{enumerate}[i),itemsep=0pt]
+		\item $P$ ist projektiv
+		\item $P$ ist ein direkter Summand in einem freien $R$-Modul.
+	\end{enumerate}
+\end{satz}
+\begin{beweis}
+	Zur ersten Implikation:
+	\[
+		\begin{tikzcd}
+			\mbox{}&  R[P] \dar[two heads,"p"] \\
+			P \rar["\id"] \urar[dashed,"i"]& P
+		\end{tikzcd}
+	\]
+	Mit $R[P] \cong P \oplus \ker p$ folgt nun die gewünschte Aussage.
+	Die zweite Implikation ergibt sich wie folgt: Nach Vorraussetzung gibt es $i \colon P \hookrightarrow F$ und $p \colon F \twoheadrightarrow p$, wobei $F$ frei ist und $p \circ i = \id_P$ gilt.
+	Seien nun $M$, $N$, $f$ und $\varphi$ wie in \autoref{def_projektiv}.
+	Wir erhalten folgendes Diagramm
+	\[
+		\begin{tikzcd}[sep=huge]
+			F \rar["\hat{\psi}"] \dar[two heads,"p"',xshift=-3pt]  \drar["\psi=\varphi \circ p",sloped,pos=0.16] & M \dar[two heads,"f"] \\
+			P \rar["\varphi"] \uar[hook,"i"',xshift=3pt] & N
+		\end{tikzcd}
+	\]
+	Da $F$ frei und insbesondere projektiv ist, existiert ein Homomorphismus $\hat{\psi}$ mit $f \circ \hat{\psi}=\psi$.
+	Wir setzen nun $\hat{\varphi} := \hat{\psi} \circ i$. 
+	Dann gilt $f \circ \hat{\varphi} = f \circ \hat{\psi} \circ i = \varphi \circ p \circ i = \varphi$ und $P$ ist projektiv.
+\end{beweis}
+
+\begin{satz}[{name=[{azyklische, projektive Kettenkomplexe sind kettenkontrahierbar}]},label=satz:projektiv_azyklisch_kettenkontrahierbar]
+	Sei $C_*$ ein azyklischer $R$-Kettenkomplex. Sind alle Kettenmoduln $C_n$ projektiv, so ist $C_*$ kettenkontrahierbar.
+\end{satz}
+\begin{beweis}
+	Wir konstruieren induktiv $s_n \colon C_n \to C_{n+1}$, sodass $d_{n+1} \circ s_n + s_{n-1} \circ d_n = \id_{C_n}$ gilt. 	
+	Für $n=0$ gehen wir wie folgt vor: Da $C_*$ azyklisch ist, ist $d_1 \colon C_1 \to C_0$ surjektiv und es gibt $s_0 \colon C_0 \to C_1$ mit $d_1 \circ s_0 = \id_{C_0}$, weil $C_0$ projektiv ist.
+	
+	Zum Induktionsschritt $(n-1) \mapsto n$: Da $C_*$ azyklisch ist, ist $d_{n+1} \colon C_{n+1} \to \im d_{n+1}=\ker d_n$ surjektiv. Wegen
+	\begin{align}
+		d_n \enbrace*{{\id_{C_n}} - s_{n-1} \circ d_n} &= d_n - \hspace{-1ex}\Underbracket{d_n \circ s_{n-1}}{={\id_{C_{n-1}}} - s_{n-2} \circ d_{n-1}}\hspace{-1ex} \circ d_n \\
+		&= d_n - \enbrace*{- s_{n-2} \circ d_{n-1} + {\id_{C_{n-1}}}} \circ d_n =0
+	\end{align}
+	liegt das Bild von ${\id_{C_n}} - s_{n-1} \circ d_n$ im Kern von $d_n$.
+	\[
+		\begin{tikzcd}[column sep=2.5cm,row sep=large]
+			\mbox{ } & C_{n+1} \dar["d_{n+1}",two heads] \\
+			C_n \urar["s_n", dashed] \rar["{\id_{C_n}} - s_{n-1} \circ d_n"'] & \im d_{n+1} = \ker d_n
+		\end{tikzcd}
+	\]
+	Da $C_n$ projektiv ist, gibt es $s_n \colon C_n \to C_{n+1}$ mit $d_{n+1} \circ s_n = {\id_{C_n}} - {s_{n-1} \circ d_n}$.
+\end{beweis}
+
+\begin{satz}[label=satz:5:kettenhomotopie,{name=[{Bei projektiven Kettenmoduln werden Isomorphismen in Homologie immer von Kettenhomotopieäquivalenzen induziert}]}]
+	Sei $f \colon C_* \to D_*$ eine Kettenabbildung. Seien alle Kettenmoduln von $C_*$ und $D_*$ projektiv. Dann sind äquivalent: 
+	\begin{enumerate}[(i),itemsep=0pt]
+		\item $f$ ist eine Kettenhomotopieäquivalenz
+		\item $f$ induziert einen Isomorphismus in Homologie.
+	\end{enumerate}
+\end{satz}
+\begin{beweis}
+	Die Implikation (i) $\Rightarrow$ (ii) ist klar (siehe Topologie \RM{1}.) 
+	Die zweite Implikation beweisen wir im restlichen Verlauf dieses Abschnitts.
+\end{beweis}
+
+\begin{definition}[{name=[Kegel und Einhängung]}]
+	Sei $f \colon C_* \to D_*$ eine Kettenabbildung. 
+	Der \bet{Kegel}\index{Kegel!Kettenkomplex} $\Keg(f)_*$ von $f$ ist der Kettenkomplex, dessen $n$-ter Kettenmodul $D_n \oplus C_{n-1}$ ist und dessen $n$-te Randabbildung gegeben ist durch
+	\[
+		d^{\Keg(f)}_n := \begin{pmatrix}
+			d^D_n & f\\
+			0 & -{d^C_{n-1}}
+		\end{pmatrix}
+	\]
+	Die \bet{Einhängung}\index{Einhängung!Kettenkomplex} $\Sigma C_*$ von $C_*$ ist der Kettenkomplex, dessen $n$-ter Kettenmodul $C_{n-1}$ ist und dessen $n$-te Randabbildung $-{d_{n-1}^C}$ ist.
+\end{definition}
+
+\begin{lemma}[{name=[{Isomorphismus induziert genau dann, wenn der Kegel azyklisch ist}]},label=lem:iso_homo_keg_azyklisch]
+	Eine Kettenabbildung $f\colon C_* \to D_*$ induziert genau dann einen Isomorphismus in Homologie, wenn $\Keg(f_*)$ azyklisch ist.
+\end{lemma}
+\begin{beweis}
+	Betrachte die lange exakte Folge zur kurzen exakten Folge von Kettenkomplexen
+	\[
+		\begin{tikzcd}[cramped]
+			0 \rar & D_* \rar["i",hook] & \Keg(f)_* \rar["p",two heads] & \Sigma C_* \rar & 0
+		\end{tikzcd}
+	\]
+	Der Verbindungshomomorphismus $\partial \colon H_{n+1}(\Sigma C_*) \to H_n(D_*)$ entspricht unter der offensichtlichen Identifikation $H_{n+1}(\Sigma C_*) \cong H_n(C_*)$ genau der von $f$ induzierten Abbildung.
+\end{beweis}
+
+\begin{lemma}[{name=[{Kettenhomotopieäquivalenz genau dann, wenn der Kegel kettenkontraktibel ist}]},label=lem:kettenhomotopieaeq_keg_kettenkontraktibel]
+	Eine Kettenabbildung $f\colon C_* \to D_*$ ist genau dann eine Kettenhomotopieäquivalenz, wenn $\Keg(f)_*$ kettenkontraktibel ist.
+\end{lemma}
+\begin{beweis}
+	Sei $\begin{psmallmatrix} \alpha_n & \beta_{n-1} \\ \gamma_n & \delta_{n-1} \end{psmallmatrix}$ eine Kettenkontraktion für $\Keg(f)$. Es folgt 
+	\begin{align}
+		f_n \circ \gamma_n + d^D_{n+1} \circ \alpha_n + \alpha_{n-1} \circ d_n^D &= {\id_{D_n}} \tag*{(1)} \\
+		d^D_{n+1} \circ \beta_{n-1} + f_n \circ \delta_{n-1} + \alpha_{n-1} \circ f_{n-1} - \beta_{n-2} \circ d_{n-1}^C &= 0 \tag*{(2)}\\
+		- d^C_n \circ \gamma_n + \gamma_{n-1} \circ d_n^D &= 0 \tag*{(3)} \\
+		- d_n^C \circ \delta_{n-1} + \gamma_{n-1} \circ f_{n-1} - \delta_{n-2} \circ d^C_{n-1} &= {\id_{C_{n-1}}} \tag*{(4)}
+	\end{align}
+	Daraus folgt
+	\begin{align}
+		& {\id_D} \simeq f \circ \gamma \text{ via } \alpha \tag*{(1')} \label{sec5:1-} \\
+		& \gamma \text{ ist eine Kettenabbildung} \tag*{(3')} \label{sec5:3-}\\
+		& \gamma \circ f \simeq {\id_C} \text{ via }  \delta \tag*{(4')} \label{sec5:4-}
+	\end{align}
+	Damit ist $f$ eine Kettenhomotopieäquivalenz mit Kettenhomotopieinversem $\gamma$. 
+	Gelten umgekehrt die Aussagen \ref{sec5:1-}, \ref{sec5:3-} und \ref{sec5:4-}, so setzt man $\hat{\delta} := \delta + \gamma \alpha f - \delta \gamma f$ und 
+	$\beta := \alpha f \delta + \alpha^2 f + f \delta^2$. Dann ist\todo{nachrechnen\ldots} 
+	\[
+		S := \begin{pmatrix}
+			\alpha & \beta \\
+			\gamma & \hat{\delta}
+		\end{pmatrix}
+	\]
+	eine Kettenkontraktion für $\Keg(f)$.
+\end{beweis}
+
+\begin{beweis}[name={von \autoref{satz:5:kettenhomotopie} zweite Implikation},label=bew:satz5]
+	Ist $H_n(f)$ ein Isomorphismus, so ist $\Keg(f)$ azyklisch nach \autoref{lem:iso_homo_keg_azyklisch}. 
+	Da direkte Summen von projektiven Moduln wieder projektiv sind, ist $\Keg(f)$ kettenkontraktibel nach \autoref{satz:projektiv_azyklisch_kettenkontrahierbar}.
+	Mit dem eben gezeigten \autoref{lem:kettenhomotopieaeq_keg_kettenkontraktibel} folgt dann, dass $f$ eine Kettenhomotopieäquivalenz ist.
+\end{beweis}
+
+\begin{korollarB}[{name=[{Inklusion der kleinen Simplizes ist eine Kettenhomotopieäquivalenz}]}]
+	Sei $\mathcal{U}$ eine offene Überdeckung von $X$. Dann ist die Inklusion $C^{\mathcal{U}}_*(X,A) \to C_*(X,A)$ eine Kettenhomotopieäquivalenz.
+\end{korollarB}
+
+\begin{korollar}[label=korr:ausschneidung_sing_koho,{name=[{Ausschneidung für Kohomologie}]}]
+	Singuläre Kohomologie erfüllt das Ausschneidungsaxiom.
+\end{korollar}
+\begin{beweis}
+	Für eine offene Überdeckung $\mathcal{U}$ von $X$ sei $C^*_{\mathcal{U}}(X,A;V) := \Hom \enbrace*{C_*^{\mathcal{U}}(X,A),V}$. Da die Inklusion $i \colon C^{\mathcal{U}}_*(X,A) \to C_*(X;A)$ 
+	eine Kettenhomotopieäquivalenz ist, ist auch $i^* \colon C^*(X,A;V) \to C^*_{\mathcal{U}}(X,A;V)$ eine Kokettenhomotopieäquivalenz. Nun genauso wie für Homologie.
+\end{beweis}
+% section 5 (end)
+\newpage
+
+\section{Das Cap-Produkt und die Poincaré-Dualitätsabbildung} % (fold)
+\label{sec:6}
+
+\begin{definition}[{name=[Cap-Produkt]}]
+	Sei $X$ ein topologischer Raum und $R$ ein kommutativer Ring. Wir definieren das \bet{Cap-Produkt} ($\capp$-Produkt)\index{Cap-Produkt, $\capp$-Produkt}
+	\[
+		\capp \colon C^p(X;R) \otimes_R C_{p+q}(X;R) \longrightarrow C_q(X;R)
+	\]
+	durch $\alpha \capp \sigma := (-1)^{pq} \cdot \alpha \enbrace*{\sigma|_{\benbrace*{q,\ldots ,p+q}}} \cdot \sigma|_{\benbrace*{0,\ldots ,q}}$ für $\alpha \in C^p(X;R)$ und 
+	$\sigma \colon \abs{\Delta^{p+q}}\to X$.
+\end{definition}
+
+\begin{lemma}[{name=[Produktregel für das Cap-Produkt]}]
+	Es gilt die Produktregel $d_q(\alpha \capp \sigma) = d^p \alpha \capp \sigma + (-1)^p \cdot \alpha \capp d_{p+q} \sigma$.\marginnote{vgl. \autoref{lem:eig_cup} (i)}
+\end{lemma}
+\begin{beweis}
+	Sei $n := p+q$. Dann gilt
+	\[
+		d_q(\alpha \capp \sigma) = (-1)^{pq} \cdot \alpha \enbrace*{\sigma|_{\benbrace*{q,\ldots ,n}}} \cdot d_q \sigma|_{\benbrace*{0,\ldots ,q}} 
+		= \sum_{i=0}^{q} (-1)^{pq+i} \cdot \mathul{Coral3}{\alpha \enbrace*{\sigma|_{\benbrace*{q,\ldots ,n}}}\cdot \sigma|_{\benbrace*{0, \ldots ,\slashedi,\ldots ,q}}}
+	\]
+	Weiter ist 
+	\begin{align}
+		d^p(\alpha) \capp \sigma &= (-1)^{(p+1)(q-1)} \cdot (d^p \alpha) \enbrace*{\sigma|_{\benbrace*{q-1,\ldots ,n}}} \cdot \sigma|_{\benbrace*{0,\ldots ,q-1}} \\
+		&= \Underbrace{(-1)^{pq-p+q-1+p+1}}{=(-1)^{pq+q}} \cdot \alpha \enbrace*{ d_{p+1} \enbrace*{\sigma|_{\benbrace*{q-1,\ldots ,n}}}} \cdot \sigma|_{\benbrace*{0, \ldots ,q-1}} \\
+		&= \sum_{i=q-1}^{n} (-1)^{pq+q+i-q+1} \cdot \mathul{DeepSkyBlue2}{\alpha \enbrace*{\sigma|_{\benbrace*{q-1,\ldots,\slashedi,\ldots ,n}}} \cdot \sigma|_{\benbrace*{0, \ldots ,q-1}}}
+	\end{align}
+	und
+	\begin{align}
+		(-1)^p \cdot \alpha \capp d_{p+q}(\sigma) &= (-1)^p \cdot \sum_{i=0}^{n} (-1)^i \cdot \alpha \capp \sigma |_{\benbrace*{0, \ldots , \slashedi,\ldots ,n}} \\
+		&= \sum_{i=0}^{q} (-1)^{i+pq} \cdot \mathul{Coral3}{\alpha \enbrace*{\sigma|_{\benbrace*{q,\ldots ,n}}} \cdot \sigma|_{\benbrace*{0,\ldots , \slashedi,\ldots ,q}}}\\
+		&\hspace{1em}+ \sum_{i=q-1}^{n} (-1)^{i+pq} \cdot \mathul{DeepSkyBlue2}{\alpha \enbrace*{\sigma|_{\benbrace*{q-1,\ldots,\slashedi,\ldots,n}}} \cdot \sigma|_{\benbrace*{0, \ldots ,q-1}}}
+	\end{align}
+	Insgesamt folgt die Behauptung.
+\end{beweis}
+
+\begin{lemma}[{name=[relative Cap-Produkte]}]
+	Sei $A \subseteq X$. Das $\capp$-Produkt auf $C^*$ induziert folgende $\capp$-Produkte in $H^*$
+	\[
+		\begin{tikzcd}[row sep=0em]
+			\minwidthbox{H^p(X;R) \otimes_R H_{p+q}(X;R)}{4.6cm} \rar & \minwidthbox{H_q(X;R)}{2cm} \\
+			\minwidthbox{H^p(X,A;R) \otimes_R H_{p+q}(X,A;R)}{4.6cm} \rar & \minwidthbox{H_q(X;R)}{2cm} \\
+			\minwidthbox{\hfill H^p(X;R) \otimes_R H_{p+q}(X,A;R)}{4.6cm} \rar & \minwidthbox{H_q(X,A;R)}{2cm}
+		\end{tikzcd}
+	\]
+\end{lemma}
+\begin{beweis}
+	Genauso wie beim $\cupp$-Produkt.
+\end{beweis}
+
+\begin{bemerkung}[label=bem_augmentation_cap,{name=[{Augmentation und Cap-Produkt}]}] \leavevmode
+	\begin{itemize}
+		\item Sind $A,B \subseteq X$ offen, so erhalten wir auch ein $\capp$-Produkt
+		\[
+			H^p(X,A;R) \otimes_R H_{p+q}(X,A\cup B;R) \longrightarrow H_q(X,B;R)
+		\]
+		\item Sei $\epsilon \colon H_0(X;R) \to R$ die \Index{Augmentation}, induziert von $\epsilon \enbrace*{\sum_{i}r_i \sigma_i} = \sum_i r_i$. Dann ist 
+		\[
+			\epsilon \enbrace*{\xi \capp x} = \xi(x)
+		\]
+		für $\xi \in H^p(X;R)$ und $x \in H_p(X;R)$, was man auf Ebene der Kettenkomplexe direkt aus den Definitionen erhält.
+	\end{itemize}
+\end{bemerkung}
+
+\begin{lemma}[{name=[Cap-Produkt und induzierte Abbildungen]}]
+	Für $f \colon X \to Y$ stetig, $\xi \in H^p(Y;R)$ und $x \in H_{p+q}(X;R)$ gilt
+	\[
+		\xi \capp f_*(x) = f_* \enbrace*{f^* \xi \capp x}
+	\]
+\end{lemma}
+\begin{beweis}
+	Sei $n := p+q$.
+	Sei $\alpha \in C^p(Y;R)$ mit $\xi=[\alpha]$ und $\sigma \colon \abs*{\Delta^{n}}\to X$ 
+	Dann gilt
+	\begin{align}
+		\alpha \capp f_*(\sigma) = (-1)^{pq} \cdot \alpha \enbrace*{f \circ \sigma|_{\benbrace*{q,\ldots ,n}}} \cdot (f \circ \sigma)|_{\benbrace*{0,\ldots ,q}}
+		&= (-1)^{pq} \cdot (f^* \alpha) \enbrace*{\sigma|_{\benbrace*{q,\ldots ,n}}} \cdot (f_* \sigma)|_{\benbrace*{0,\ldots ,q}} \\
+		&= f_* \enbrace*{f^* \alpha \capp \sigma} \qedhere
+	\end{align}
+\end{beweis}
+
+\begin{lemma}[{name=[{Zusammenhang von Cup- und Cap-Produkt}]},label=lem:cup_n_cap]
+	Für $\xi \in H^p(X;R)$ und $\eta \in H^q(X;R)$, $x \in H_{p+q+r}(X;R)$ gilt 
+	\[
+		\enbrace*{\xi \cupp \eta} \capp x = \xi \capp \enbrace*{\eta \capp x}
+	\]
+\end{lemma}
+\begin{beweis}
+	Sei $\alpha \in C^p(X;R)$, $\beta \in C^q(X;R)$ und $\sigma \colon \abs{\Delta^{p+q+r}}\to X$. Mit $n=p+q+r$ gilt
+	\begin{align}
+		\enbrace*{\alpha \cupp \beta} \capp \sigma &= (-1)^{(p+q)r} \cdot (\alpha \cupp \beta)\enbrace*{\sigma|_{\benbrace*{r,\ldots ,n}}} \cdot \sigma|_{\benbrace*{0,\ldots ,r}} \\
+		&= (-1)^{pr+qr+pq} \cdot \alpha \enbrace*{\sigma|_{\benbrace*{r,\ldots ,r+p}}} \beta \enbrace*{\sigma|_{\benbrace*{r+p,\ldots ,n}}} \cdot \sigma|_{\benbrace*{0,\ldots ,r}}
+	\end{align}
+	Für die andere Seite der Formel gilt
+	\begin{align}
+		\alpha \capp (\beta \capp \sigma) &= (-1)^{q(r+p)} \cdot \alpha \capp \enbrace[\Big]{\beta \enbrace*{\sigma|_{\benbrace*{r+p,\ldots ,n}}} \cdot \sigma|_{\benbrace{0,\ldots ,r+p}}} \\
+		&= (-1)^{qr+qp+rp} \cdot \alpha \enbrace*{\sigma|_{\benbrace*{r,\ldots,r+p}}} \cdot \beta \enbrace*{\sigma|_{\benbrace*{r+p,\ldots ,n}}} \cdot \sigma|_{\benbrace*{0,\ldots ,r}}
+	\end{align}
+	Damit folgt die Gleichheit.
+\end{beweis}
+
+Ab jetzt ist $R$ immer kommutativ! 
+Wir wenden uns nun einmal mehr der Topologie von Mannigfaltigkeiten zu und erinnern uns dazu an das letzte Kapitel aus Topologie \RM{1} über die \emph{Fundamentalklasse}:
+
+\begin{erinnerungA}[{name=[Fundamentalklasse]}]
+	Sei $M$ eine $R$-orientierbare zusammenhängende geschlossene $n$-Mannigfaltigkeit. 
+	Dann ist $H_n(M;R) \cong R$.
+	Ein Erzeuger von $H_n(M;R)$ heißt \Index{Fundamentalklasse}.
+	Jeder solcher hat die Eigenschaft, dass $\mu|_x \in H_n(M,M \setminus \set*{x};R) \cong R$ ein Erzeuger ist (Topologie \RM{1}, Satz 16.7). 
+	Die Wahl einer solchen Fundamentalklasse entspricht genau der Wahl einer $R$-Orientierung für $M$.
+	Für $R=\mathbb{F}_2$ ist jede $n$-Mannigfaltigkeit $\mathbb{F}_2$-orientierbar. 
+	$M$ ist genau dann nicht $R$-orientierbar, wenn $H_n(M;R)=0$.
+\end{erinnerungA}
+
+\begin{satz}[{name={Dualitätssatz von Poincaré für geschlossene Mannigfaltigkeiten}},label=poincare]
+	Sei $M$ eine geschlossene zusammenhängende $n$-Mannigfaltigkeit und $\mu \in H_n(M;R)$ eine Fundamentalklasse. 
+	Dann ist $\capp \mu \colon H^p(M;R) \to H_{n-p}(M;R)$ ein Isomorphismus.
+\end{satz}
+
+\begin{bemerkung}[{name=[Vorgehen zum Beweis des Dualitätssatzes]}]
+	Zum Beweis des Satzes werden wir eine Überdeckung von $M$ durch offene Mengen, die homöomorph zu $\mathbb{R}^n$ sind, und ein Mayer-Vietoris-Argument benutzen.
+	Dazu werden wir die Aussage zunächst so verallgemeinern, dass sie auch für offene Teilmengen des $\mathbb{R}^n$ richtig ist.
+\end{bemerkung}
+
+\begin{bemerkung}[{name=[{Paarung ist ein Isomorphismus, wenn ein Körper betrachtet wird}]}]
+	Ist $K$ ein Körper, so induziert die Paarung
+	\mapdef{C^*(X;K) \otimes C_*(X;K)}{K}{\alpha \otimes a}{\alpha(a)}{}
+	einen Isomorphismus $H^n(X;K) \cong \Hom_K \enbrace*{H_n(X;K),K}$. 
+	Dies folgt entweder aus dem universellen Koeffizienten-Theorem (\autoref{univ_koeff_space}), denn über einem Körper verschwindet der $\Ext$-Term nach \autoref{bem:tor_ext_koerper_hir}, oder mit Aufgabe $3$ von Blatt $3$.\todo{in den Anhang}
+\end{bemerkung}
+
+\begin{beispiel}[{name=[Kohomologie des reell projektiven Raumes]}]
+	Es gilt \marginnote{vgl. Topologie \RM{1}, Beispiel 12.12} 
+	\[
+		H^* \enbrace*{\mathbb{R}P^n;\mathbb{F}_2} = \begin{cases}
+			\mathbb{F}_2 &\text{ falls }*=0,\ldots ,n\\
+			0 &\text{ sonst }
+		\end{cases}
+	\]
+\end{beispiel}
+
+\begin{bemerkung}[{name=[{Paarung ist ein Isomorphismus, wenn $n-1$-te Homologie verschwindet}]}]
+	Ist $H_{n-1}(X)=0$, so induziert die Paarung $C^n(X) \otimes C_n(X) \to \mathbb{Z}$, $\alpha \otimes a \mapsto \alpha(a)$ einen Isomorphismus $H^n(X) \cong \Hom_\mathbb{Z} \enbrace*{H_n (X),\mathbb{Z}}$.
+	Dies folgt auch wieder entweder aus universellen Koeffizienten-Theorem oder aus Aufgabe $3$ von Blatt $3$.
+\end{bemerkung}
+
+\begin{beispiel}[{name=[Kohomologie des komplex projektiven Raumes]}]
+	Es gilt
+	\[
+		H^* \enbrace*{\mathbb{C}P^n;\mathbb{Z}} = \begin{cases}
+			\mathbb{Z} &\text{ falls }*=0,2,\ldots ,2n\\
+			0 &\text{ sonst}
+		\end{cases}
+	\]
+\end{beispiel}
+
+\begin{satz}[{name=[Ringstruktur der Kohomologie für die projektiven Räume]}]
+	Es gibt Isomorphismen von graduierten Ringen: 
+	\begin{enumerate}[(i)]
+		\item $H^* \enbrace*{\mathbb{R}P^n,\mathbb{F}_2} \cong \Faktor{\mathbb{F}_2[\xi]}{\xi^{n+1}=0}$ mit $\abs*{\xi}=1$.
+		\item $H^* \enbrace*{\mathbb{C}P^n,\mathbb{Z}} \cong \Faktor{\mathbb{Z}[\eta]}{\eta^{n+1}=0}$ mit $\abs{\eta}=2$.
+	\end{enumerate}
+\end{satz}
+\begin{beweis}
+	Wir wissen schon, dass es solche Isomorphismen von graduierten Moduln gibt. 
+	Es bleibt das $\cupp$-Produkt zu verstehen. Für $n=0,1$ ist nichts zu zeigen. 
+	Per Induktion nehmen wir an, dass $H^*(\mathbb{R}P^{n-1};\mathbb{F}_2) \cong \sfrac{\mathbb{F}_2[\xi']}{(\xi')^n=0}$, wobei $\xi' := i^*(\xi)$ für $i \colon \mathbb{R}P^{n-1} \to \mathbb{R}P^n$ die Inklusion ist und $\xi \in H^1 \enbrace*{\mathbb{R}P^n;\mathbb{F}_2}$ ein Erzeuger ist.
+	Da $i^*$ mit dem $\cupp$-Produkt verträglich ist und für $0 \le * \le {n-1}$ ein Isomorphismus ist, müssen wir nur noch zeigen, dass $\xi^n\in H^n(\mathbb{R}P^n,\mathbb{F}_2) \cong \mathbb{F}_2$ ein Erzeuger ist.
+	Sei $\mu \in H_n \enbrace*{\mathbb{R}P^n,\mathbb{F}_2}$ eine Fundamentalklasse. Wir müssen zeigen $\xi^n(\mu)=  \pm 1$.
+	Nach Induktionsannahme ist $\xi^{n-1}$ ein Erzeuger von $H^{n-1}(\mathbb{R}P^n;\mathbb{F}_2)$, also ist nach Poincaré-Dualität $\xi^{n-1} \capp \mu$ ein Erzeuger von $H_1(\mathbb{R}P^n,\mathbb{F}_2)$. 
+	Da $\xi$ ein Erzeuger von $H^1(\mathbb{R}P^n,\mathbb{F}_2)$ ist, ist also $\xi \enbrace*{\xi^{n-1} \capp \mu} = \pm 1$. 
+	Daher ist 
+	\[
+		\xi^n(\mu) \StackText{\ref{bem_augmentation_cap}}{=} \epsilon \enbrace*{\xi^n \capp \mu} \StackText{\ref{lem:cup_n_cap}}{=} \epsilon \enbrace*{ \xi \capp \enbrace*{\xi^{n-1} \capp \mu}} \StackText{\ref{bem_augmentation_cap}}{=} \xi \enbrace*{\xi^{n-1} \capp \mu} = \pm 1
+	\]
+	Für $\mathbb{C}P^n$ geht man genauso vor.
+\end{beweis}
+
+\begin{satz}[{name=[{Eulercharakteristik von Mannigfaltigkeiten ungerader Dimension}]}]
+	Sei $M$ eine geschlossene Mannigfaltigkeit, $\dim M = n = 2d +1$ ungerade. 
+	Sei $M$ weiter homotopieäquivalent zu einen endlichen CW-Komplex.\footnote{Dies ist keine Einschränkung, siehe zB. \cite[Cor. A.12]{Hatcher}; die Umkehrung ist aber nicht richtig, wie Aufgabe 4 von Blatt 5 zeigt} 
+	Dann ist $\chi_M =0$.
+\end{satz}
+\begin{beweis}
+	Ohne Einschränkungen können wir annehmen, dass $M$ zusammenhängend ist, da die Euler-Charakteristik additiv ist. Es ist nach Poincaré-Dualität 
+	\begin{align}
+		\chi_M = \sum_{k=0}^{n} (-1)^k \dim_{\mathbb{F}_2} H_k(M;\mathbb{F}_2) &= \sum_{k=0}^{n} (-1)^k \dim_{\mathbb{F}_2} H^{n-k}(M;\mathbb{F}_2) \\
+		\intertext{Da $M$ homotopieäquivalent zu einem CW-Komplex ist, ist $\dim_{\mathbb{F}_2} H_k(M; \mathbb{F}_2)<\infty $ und insbesondere $\dim_{\mathbb{F}_2} H_k(M;\mathbb{F}_2) = \dim_{\mathbb{F}_2} \Hom_{\mathbb{F}_2} \enbrace*{H_k(M; \mathbb{F}_2),\mathbb{F}_2} = \dim_{\mathbb{F}_2} H^k(M; \mathbb{F}_2)$ ist, folgt}
+		&= \sum_{k=0}^{n} (-1)^k \dim_{\mathbb{F}_2} H_{n-k}(M; \mathbb{F}_2) \\
+		&= \sum_{k=0}^{n} (-1)^{n-k} \dim_{\mathbb{F}_2} H_k(M; \mathbb{F}_2) \\
+		&= - \sum_{k=0}^{n} (-1)^k \dim_{\mathbb{F}_2} H_k(M;\mathbb{F}_2) \\
+		&= - \chi_M
+	\end{align}
+	Damit muss $\chi_M = 0$ gelten.
+\end{beweis}
+% section 6 (end)
+\newpage
+
+\section{Kohomologie mit kompaktem Träger} % (fold)
+\label{sec:7}
+
+\begin{bemerkung}[{name=[Probleme beim Beweis der Poincaré-Dualität]}]
+	Am Beweis der Poincaré-Dualtität hindern uns momentan noch folgende Probleme, die wir in diesem Kapitel durch eine Abwandlung von Kohomologie \enquote{umschiffen} wollen: 
+	\begin{itemize}[itemsep=0pt]
+		\item Für $n>0$ ist  $H^{n-*}(\mathbb{R}^n) \ncong H_*(\mathbb{R}^n)$
+		\item Es gibt keine Fundamentalklasse in $H_n(\mathbb{R}^n)$.
+	\end{itemize}
+\end{bemerkung}
+
+\begin{erinnerungA}[{name=[Orientierungsklassen für kompakte Teilmengen]}]
+	Sei $M$ eine (nicht notwendig kompakte) $n$-Mannigfaltigkeit und $K \subseteq M$ eine kompakte Teilmenge. Dann gilt nach Lemma 16.13 aus Topologie \RM{1}.:
+	\begin{enumerate}[(i)]
+		\item Ist $(\mu_x)_{x \in M}$ eine $R$-Orientierung von $M$, so gibt es eine eindeutige Orientierungsklasse $\mu_K \in H_n(M,M \setminus K;R)$ mit 
+		\[
+			\mu_K\big|_x = \mu_x \in H_n(M,M \setminus \set*{x};R)
+		\]
+		für alle $x \in K$.
+		\item $H_l(M, M \setminus K;R)=0$ für $l>n$.
+	\end{enumerate}
+\end{erinnerungA}
+
+\begin{beispiel}[{name=[Fundamentalklasse eines kompakten Balls]}]
+	Sei $B=B_r(x_0)$ ein kompakter Ball im $\mathbb{R}^n$. 
+	Dann ist $H_n(\mathbb{R}^n,\mathbb{R}^n \setminus B;R) \cong R$ und jeder Erzeuger $\mu_B \in H_n(\mathbb{R}^n,\mathbb{R}^n \setminus B;R)$ ist eine Fundamentalklasse über $B$, also ist jede Einschränkung $\mu_B|_x \in H_n(\mathbb{R}^n,\mathbb{R}^n \setminus \set*{x};R)$ ein Erzeuger für $x \in B$.
+\end{beispiel}
+
+\begin{lemma}[{name=[Isomorphismus von Kohomologie und Homologie für kompakte Bälle]},label=Rn_kompakteBaelle]
+	Sei $B \subseteq \mathbb{R}^n$ ein kompakter Ball und $\mu_B \in H_n(\mathbb{R}^n,\mathbb{R}^n \setminus B;R)$ ein Erzeuger. Dann ist 
+	\[
+		\capp \mu_B \colon H^k \enbrace*{\mathbb{R}^n,\mathbb{R}^n \setminus B;R} \longrightarrow H_{n-k}(\mathbb{R}^n;R)
+	\]
+	ein Isomorphismus.
+\end{lemma}
+\begin{beweis}
+	Es genügt $k=n$ zu betrachten, denn andernfalls sind beide Moduln trivial. Da die Auswertungsabbildung 
+	\[
+		H^n(\mathbb{R}^n,\mathbb{R}^n \setminus B;R) \longrightarrow \Hom_R \enbrace[\big]{H_n(\mathbb{R}^n,\mathbb{R}^n \setminus B;R),R}
+	\]
+	immer surjektiv ist nach \autoref{eig_kohomo_to_hom_homo}, gibt es $\xi \in H^n \enbrace*{\mathbb{R}^n,\mathbb{R}^n \setminus B;R}$ mit $\xi(\mu_B)=1$. 
+	Also ist $\epsilon(\xi \capp \mu_B)=1$ (siehe \ref{bem_augmentation_cap}). 
+	Folglich ist $\xi \capp \mu_B$ ein Erzeuger von $H^0(\mathbb{R}^n;R)$ und $\capp \mu_B$ ein Isomorphismus.
+\end{beweis}
+
+\begin{definition}[{name=[gerichtete Menge]}]
+	Eine \Index{gerichtete Menge} ist eine Menge $\Lambda$ zusammen mit einer partiellen Ordnung \enquote{$\le$}, sodass es für alle $\lambda,\lambda' \in \Lambda$ ein $\mu \in \Lambda$ existiert mit $\lambda \le \mu $ und $\lambda' \le \mu$.
+\end{definition}
+
+\begin{beispiel}[{name=[für gerichtete Mengen]}]
+	Es gibt zahlreiche Beispiele für gerichtete Mengen
+	\begin{itemize}[itemsep=0pt] 
+		\item $(N,\le)$, $(\mathbb{Z},\le)$, $(\mathbb{Q},\le)$ und $(\mathbb{R},\le)$ mit der üblichen Ordnung.
+		\item Sei $X$ ein topologischer Raum. Dann ist $\mathcal{K}(X)= \set*{K \subseteq X \given K \text{ kompakt}}$ gerichtet durch \enquote{$\subseteq$}.
+	\end{itemize}
+\end{beispiel}
+
+\begin{bemerkung}[{name=[Gerichtete Mengen als kleine Kategorie]}]
+	Wir können jede gerichtete Menge $(\Lambda,\le)$ als eine kleine Kategorie auffassen: 
+	Die Menge der Objekte ist $\Lambda$ und es gibt genau dann einen Morphismus $i_\lambda^{\lambda'} \colon \lambda \to \lambda'$, falls $\lambda \le \lambda'$ ist. 
+	Andernfalls gibt es keine Morphismen.
+\end{bemerkung}
+
+\begin{definition}[{name=[gerichteter Kolimes]}]
+	Sei $(\Lambda,\le)$ eine gerichtete Menge und $F \colon (\Lambda,\le) \to R\text{-}\MOD$ ein Funktor. Der \bet{gerichtete Kolimes}\index{gerichteter Kolimes} von $F$ ist dann definiert als 
+	\[
+		\colim_\Lambda F \coloneqq \faktor{\coprod_{\lambda \in \Lambda}F(\lambda)}{ \begin{array}{l}  \scriptstyle v \sim F \enbrace{i_\lambda^{\lambda'}}(v), \\[-3pt]  \scriptstyle\text{für } v \in F(\lambda), \lambda \le \lambda' \end{array}}
+	\]
+	Für $\lambda_0 \in \Lambda$ sei $s_{\lambda_0} \colon F(\lambda) \to \colim_\Lambda F$ die Komposition von der Inklusion $F(\lambda_0) \hookrightarrow \coprod_{\lambda \in \Lambda}F(\lambda)$ mit der Projektion $\coprod_{\lambda \in \Lambda}F(\lambda) \twoheadrightarrow \colim_\Lambda F$. Durch
+	\begin{align}
+		r \cdot s_\lambda(v) &\coloneqq s_\lambda(r \cdot v) \quad \text{ und} \\
+		s_\lambda(v) + s_{\lambda'}(v') &\coloneqq s_\mu \enbrace*{F(i_\lambda^{\mu})(v) + F(i_{\lambda'}^\mu)(v')} 
+	\end{align}
+	für $\lambda,\lambda' \le \mu$ erhalten wir eine $R$-Modulstruktur auf $\colim_\Lambda F$. Die Abbildungen sind dann $R$-linear.
+\end{definition}
+
+\begin{bemerkung}
+	\leavevmode
+	\begin{itemize}
+		\item Nicht jede kleine Kategorie gehört zu einer gerichteten Menge:
+		\begin{enumerate}[(i)]
+			\item Die von der Gruppe $\sfrac{\mathbb{Z}}{2}$ erzeugte Kategorie mit einem Objekt und den Gruppenelementen als Morphismen.
+			\item Die Kategorie bestehend aus zwei Objekten und keinem Morphismus, der nicht eine Identität ist.
+		\end{enumerate}
+		\item Der Kolimes über gerichtete Mengen ist eine Spezialfall des Kolimes über kleine Kategorien aus den Übungen. 
+		Insbesondere hat der Kolimes über gerichtete Mengen einen universelle Eigenschaft, die ihn charakterisiert.
+		\item Sei $v_\lambda \in F(\lambda)$. Dann gilt
+		\(
+			s_\lambda(v_\lambda) =0 \in \colim_\Lambda F \iff \exists \lambda' : \lambda \le \lambda', F(i_\lambda^{\lambda'})(v_\lambda)=0 \in F(\lambda')
+		\).
+	\end{itemize}
+\end{bemerkung}
+
+\begin{definition}[{name=[kofinal]}]
+	Sei $(\Lambda,\le)$ eine gerichtete Menge. $\Lambda_0 \subseteq \Lambda$ heißt \Index{kofinal}, falls es zu jedem $\lambda \in \Lambda$ ein $\lambda_0 \in \Lambda_0$ gibt mit $\lambda\le \lambda_0$.
+\end{definition}
+
+\begin{lemma}[{name=[Isomorphismus zum Kolimes einer kofinalen Teilmenge]}]
+	Sei $\Lambda_0 \subseteq \Lambda$ kofinal. Dann ist die kanonische Abbildung (induziert von der Inklusion $\coprod_{\lambda_0} F(\lambda_0) \hookrightarrow \coprod_{\lambda} F(\lambda)$)
+	\[
+		c \colon \colim_{\lambda_0 \in \Lambda_0} F(\lambda_0) \longrightarrow \colim_{\lambda \in \Lambda} F(\lambda)
+	\]
+	ein Isomorphismus.
+\end{lemma}
+\begin{beweis}
+	Surjektivität: Sei $v \in \colim_\Lambda F(\lambda)$. Wähle $\lambda \in \Lambda$, $v_\lambda \in F(\lambda)$ mit $s_\lambda(v_\lambda)=v$. 
+	Da $\Lambda_0 \subseteq \Lambda$ kofinal ist, gibt es $\lambda_0 \in \Lambda_0$ mit $\lambda \le \lambda_0$. 
+	Dann ist
+	\[
+		v = s_{\lambda_0} \enbrace*{F(i_\lambda^{\lambda_0})(v_\lambda)} \in \im c
+	\]
+	Injektivität: Sei $v \in \ker c$. Dann existieren $\lambda_0 \in \Lambda_0$, $v_{\lambda_0} \in F(\lambda_0)$ mit $v=s_{\lambda_0}(v_{\lambda_0})$. 
+	Da $v \in \ker c$ ist, gibt es $\lambda \in \Lambda$ mit $\lambda_0 \le \lambda$ und $F(i_{\lambda_0}^{\lambda})(v_{\lambda_0}) =0$. 
+	Da $\Lambda_0 \subseteq \Lambda$ kofinal ist, gibt es $\lambda_0' \in \Lambda_0$ mit $\lambda \le \lambda_0$. 
+	Es folgt 
+	\begin{align}
+		F(i_{\lambda_0}^{\lambda_0'})(v_{\lambda_0}) = F (i_\lambda^{\lambda_0'} \circ i_{\lambda_0}^\lambda)(v_{\lambda_0}) = F(i_{\lambda}^{\lambda_0'}) \enbrace[\Big]{\Underbrace{F(i_{\lambda_0}^\lambda)(v_{\lambda_0})}{=0}} = 0
+	\end{align}
+	Es folgt $v=0$ und damit die Behauptung.
+\end{beweis}
+
+\begin{korollarB}
+	Gibt es $\lambda_\infty \in \Lambda$ mit $\lambda \le \lambda_\infty$ für alle $\lambda \in \Lambda$, so ist $\colim_\Lambda F = F(\lambda_\infty)$.
+\end{korollarB}
+
+\begin{beispiel}[{name=[Kolimiten]}]\leavevmode
+	\begin{itemize}
+		\item Sei $\mathcal{P}\mkern-2.5mu_{\mathrm{endl}}$ die Menge aller endlichen Teilmengen der Menge $S$. 
+		Bezüglich $\subseteq$ ist $\mathcal{P}\mkern-2.5mu_{\mathrm{endl}}$ gerichtet.
+		Sei $F \colon \enbrace*{\mathcal{P}\mkern-2.5mu_{\mathrm{endl}},\subseteq} \to R\text{-}\MOD$ definiert durch $F(S_0)=R[S_0]$ für $S_0 \subseteq S$ endlich. 
+		Dann ist $\colim_{\mathcal{P}\mkern-2.5mu_{\mathrm{endl}}} F \cong R[S]$ und $s_{S_0} \colon R[S_0]\to R(S)$ ist die von $S_0 \subseteq S$ induzierte Abbildung.
+		\item Sei $F \colon \mathbb{N} \to \mathbb{Z}\text{-}\MOD$ definiert durch $F(n)=\mathbb{Z}$ für alle $n$ und $F(i_n^{n'}) \colon \mathbb{Z} \to \mathbb{Z}$ ist Multiplikation mit $2^{n'-n}$. 
+		Es ergibt sich also folgendes Bild:
+		\[
+			\begin{tikzcd}
+				\mathbb{Z} \rar["2"] & \mathbb{Z} \rar["2"] & \mathbb{Z} \rar["2"] &\mathbb{Z} \rar["2"] & \mathbb{Z} \rar["2"] & \ldots 
+			\end{tikzcd}
+		\]
+		Dann liefert $(n,z) \mapsto \frac{z}{2^n}$ eine Abbildung
+		\[
+			\colim F = \Faktor{\coprod_{\mathbb{N}} \mathbb{Z}}{\sim} = \Faktor{\mathbb{N}\times \mathbb{Z}}{\scriptstyle(n,z) \sim (n',2^{n'-n} z), n < n'} \grenzw{} \mathbb{Z}\benbrace*{\sfrac{1}{2}} = \set*{\sfrac{a}{2^n}\given a \in \mathbb{Z}, n \in \mathbb{N} }
+		\]
+		\item Ist $F$ konstant -- also $F(i_\lambda^{\lambda'})=\id_{F(\lambda)}$ für alle $\lambda \le \lambda'$ -- so ist 
+		\(
+			\colim_\Lambda F \cong F(\lambda)
+		\)
+		für jedes $\lambda \in \Lambda$.
+		\item Sei $F(n) := R \benbrace[\big]{\set*{n,n+1,n+2,\ldots }}$ und $F(i_n^{n'}) \colon R \benbrace[\big]{\set*{n,n+1,\ldots }} \to R \benbrace[\big]{\set*{n',n'+1,\ldots }}$ definiert durch 
+		\[
+			\sum_{k=n}^{\infty} r_k \cdot k \longmapsto \sum_{k=n'}^{\infty} r_k \cdot k
+		\]
+		Dann ist $\colim_\mathbb{N} F = 0$, denn für jedes $v \in F(n)$ gibt es $n'> n$ mit $F(i_n^{n'})(v)=0$.
+	\end{itemize}
+\end{beispiel}
+
+\begin{bemerkung}[{name=[gerichteter Limes als Funktor]}]
+	Sei $\FUN\enbrace*{(\Lambda,\le), R\text{-}\MOD}$ die Kategorie, deren Objekte Funktoren $F \colon (\Lambda,\le) \to R \text{-}\MOD$ sind und deren Morphismen natürliche Transformationen $\tau \colon F \to G$ sind. Dann ist
+	\[
+		\colim_\Lambda \colon \FUN\enbrace*{(\Lambda,\le), R\text{-}\MOD} \longrightarrow R\text{-}\MOD
+	\]
+	ein Funktor: Ist $\tau \colon F \to G$ eine natürliche Transformation, so induziert $\coprod_{\lambda \in \Lambda}\tau_\lambda \colon \coprod_{\lambda \in \Lambda} F(\lambda) \to \coprod_{\lambda \in \Lambda} G(\lambda)$ eine $R$-lineare Abbildung $\tau_* =\colim_\Lambda \tau \colon \colim_\Lambda F \to \colim_\Lambda G$
+\end{bemerkung}
+
+\begin{definition}[{name=[Exaktheit in der Funktorkategorie]}]
+	Eine Folge 
+	\( \begin{tikzcd}[cramped]
+		F \rar["\tau"] & F' \rar["\tau'"] & F''
+	\end{tikzcd} \) 
+	in der Funktorkategorie $\FUN$ heißt \Index{exakt}, wenn 
+	\( \begin{tikzcd}[cramped]
+		F(\lambda)\rar["\tau_\lambda"] & F'(\lambda) \rar["\tau_\lambda'"] & F''(\lambda)
+	\end{tikzcd} \) 
+	exakt ist.
+\end{definition}
+
+
+\begin{satz}[name={Exaktheit gerichteter Kolimiten}]
+	Sei $(\Lambda,\le)$ eine gerichtete Menge. Ist 
+	\[
+		\begin{tikzcd}
+			0 \rar & F \rar["\tau"] & F' \rar["\tau'"] & F'' \rar & 0
+		\end{tikzcd}
+	\]
+	exakt in $\FUN \enbrace*{(\Lambda,\le), R\text{-}\MOD}$ so ist auch folgende Sequenz exakt
+	\[
+		\begin{tikzcd}[sep=large]
+			0 \rar & \colim_\Lambda F \rar["\colim_\Lambda \tau"] & \colim_\Lambda F' \rar["\colim_\Lambda \tau'"] & \colim_\Lambda F'' \rar & 0
+		\end{tikzcd}
+	\]
+\end{satz}
+\begin{beweis}
+	Seien $s_\lambda, s'_\lambda, s''_\lambda$ die Strukturabbildungen. 
+	Wir zeigen nur, dass $\tau_* =\colim_\Lambda \tau$ injektiv ist. 
+	Für $v \in \ker (\tau_*)$ wähle $v_\lambda \in F(\lambda)$ mit $s_\lambda(v_\lambda)=v$.
+	Dann ist $\tau_*(v)=s_\lambda'\enbrace[\big]{\tau_\lambda \enbrace*{v_\lambda}}$.
+	Da $\tau_*(v)=0$ ist, gibt es $\mu \ge \lambda$ mit 
+	\[
+		F'(i_\lambda^\mu) \enbrace[\Big]{s_\lambda'\enbrace[\big]{\tau_\lambda \enbrace*{v_\lambda}}}=0
+	\]
+	Da $\tau$ eine natürliche Transformation ist, ist 
+	\begin{align}
+		0=F'(i_\lambda^\mu) \enbrace[\big]{ \tau_\lambda(v_\lambda)} = \tau_\mu \enbrace*{F(i_\lambda^\mu)(v_\lambda)}
+	\end{align}
+	Da $\tau_\mu$ injektiv ist, folgt also $F(i_\lambda^\mu)(v_\lambda)=0$ und damit ist $v=s_\lambda(v_\lambda)=0$.
+\end{beweis}
+
+\begin{bemerkung}[{name=[gerichteter Kolimes von Kern und Kokern]}]
+	Für eine natürliche Transformation $\tau \colon F \to F'$ in $\FUN \enbrace*{(\Lambda,\le),R \text{-}\MOD}$ können wir $\ker \tau$ und $\coker \tau \in \FUN \enbrace*{(\Lambda,\le), R \text{-}\MOD}$ erklären durch $\ker \tau (\lambda) = \ker \tau_\lambda$ und $\coker \tau(\lambda) = \coker \tau_\lambda$.
+	Mit der Exaktheit vom $\colim_\Lambda$ folgt insbesondere\todo{Revision 7}
+	\[
+		\colim_\Lambda \ker \tau = \ker \colim_\Lambda \tau \qquad \text{und} \qquad \colim_\Lambda \coker \tau = \coker \colim_\Lambda \tau
+	\]
+\end{bemerkung}
+
+\begin{korollar}[{name=[Homologie vertauscht mit Kolimiten]}]
+	Sei $(\Lambda,\le)$ gerichtet und $C_*$ ein Funktor von $(\Lambda,\le)$ in die Kategorie der Kettenkomplexe und Kettenabbildungen. 
+	Dann ist $H_*(\colim_\Lambda C_*) = \colim_\Lambda H_*(C_*)$. 
+	Die gleiche Aussage gilt für Kokettenkomplexe.
+\end{korollar}
+\begin{beweis}
+	Sei $d^{\lambda}_n \colon C_n(\lambda) \to C_{n-1}(\lambda)$ die Randabbildung von $C_*(\lambda)$.
+	Wir fassen $d_n$ als natürliche Transformation $C_n \to C_{n-1}$ in $\FUN \enbrace*{(\Lambda,\le),R\text{-}\MOD}$ auf. 
+	Da $(\Lambda,\le)$ gerichtet ist und daher $\colim_\Lambda$ exakt ist, folgen
+	\[
+		\ker \enbrace*{d_* \colon \colim_{\Lambda} C_n \to \colim_\Lambda C_{n-1}} \cong \colim_\Lambda \enbrace*{\ker d_n \colon C_n \to C_{n-1} }
+	\]
+	und 
+	\[
+		\Underbrace{\coker \enbrace*{ d_{*} \colon \colim_\Lambda C_{n+1} \to \colim_\Lambda \ker d_n}}{ \cong H_n(\colim C_*)}
+		\cong \colim_\Lambda \enbrace[\Big]{ \Underbrace{\coker d_{n+1} \colon C_{n+1} \to \ker d_n}{\cong H_n(C_*)}} \qedhere
+	\]
+\end{beweis}
+
+\begin{definition}[{name=[singuläre Kohomologie mit kompaktem Träger]}]
+	Sei $X$ ein topologischer Raum. Dann definieren wir die \bet{singuläre Kohomologie von $X$ mit kompaktem Träger}\index{Kohomologie mit kompaktem Träger} durch
+	\[
+		H^*_c(X;R) := \colim_{K \in \mathcal{K}(X)} H^*(X,X \setminus K;R)
+	\]
+\end{definition}
+
+\begin{beispiel}[{name=[Kohomologie mit kompaktem Träger des des euklidischen Raumes]}]
+	Es gilt $H^k_c(\mathbb{R}^n;R) \cong \mathbb{R}$ für $k=0$ und $H^k_c(\mathbb{R}^n;R)=0$ sonst. 
+\end{beispiel}
+\begin{beweis}
+	Die Menge $\mathcal{B}$ der kompakten Bälle $B_r(0) \subset \mathbb{R}^n$ ist kofinal in der gerichteten Menge aller kompakten Unterräume von $\mathbb{R}^n$.
+	Daher ist nach \autoref{Rn_kompakteBaelle}
+	\[
+		H^*_c(\mathbb{R}^n;R) = \colim_{K \in \mathcal{K}(\mathbb{R}^n)} H^* \enbrace*{\mathbb{R}^n , \mathbb{R}^n \setminus K;R} 
+		\cong \colim_{B \in \mathcal{B}} H^* \enbrace*{\mathbb{R}^n,\mathbb{R}^n \setminus B;R} \cong \begin{cases}
+			R &\text{ falls }*=n\\
+			0 &\text{ sonst }
+		\end{cases} \qedhere
+	\]
+\end{beweis}
+
+\begin{beispiel}
+	Ist $X$ kompakt, so ist $H^*_c(X)= H^*(X)$, denn für $X$ kompakt ist $X \in \mathcal{K}(X)$ ein maximal, also $\colim_{K \in \mathcal{K}(X)} H^*(X,X \setminus K) = H^*(X,X\setminus X) = H^*(X)$.
+\end{beispiel}
+
+\begin{definition}
+	Setze $C_c^*(X) := \colim_{\mathcal{K}(X)} C^*(X,X\setminus K)$
+\end{definition}
+
+\begin{korollarB}
+	Es gilt $H^*_c(X) = H^*( C^*_c(X))$, da $\colim$ mit $H^*$ vertauscht.
+\end{korollarB}
+
+\begin{lemma}
+	$C^*_c(X)$ lässt sich mit dem Unterkomplex von $C^*(X)$ identifizieren, der aus allen $\alpha \colon C*(X) \to R$ besteht, für die es $K \subseteq X$ kompakt gibt mit $\alpha(\sigma)=0$ für $\sigma \colon \abs*{\Delta^n} \to X\setminus K$.
+\end{lemma}
+\begin{beweis}
+	Für $K \subseteq L$ ist $C^*(X,X\setminus K)\to C^*(X,X\setminus L)$ injektiv.
+	Nachdem wir jedes $C^*(X,X\setminus K)$ mit einem Unterraum von $C^*(X)$ identifizieren, wird der Kolimes über $\mathcal{K}(X)$ einfach zur Vereinigung dieser Unterräume.
+\end{beweis}
+
+\begin{bemerkung}
+	Sei $M $ eine $n$-dimensionale Mannigfaltigkeit mit einer $R$-Orientierung. Für $K \subseteq M$ kompakt sei $\mu_K \in H_n(M,M \setminus K;R)$ die durch die $R$-Orientierung bestimmte (Orientierungs)-Klasse.
+	Für $K \subseteq L$, $L$ auch kompakt ist dann $\mu_L|_K = \mu_K$.
+	Daher kommutiert
+	\[
+		\begin{tikzcd}
+			H^k(M,M \setminus K;R)\dar \rar["\capp\mu_K"] &  H_{n-k}(M;R) \dar[equal] \\
+			H^k(M,M \setminus L;R) \rar["\capp\mu_L"] & H_{n-k}(M;R)
+		\end{tikzcd}
+	\]
+	Daher induzieren die $\capp$-Produkte mit den $\mu_K$ eine Abbildung 
+	\[
+		\PD_M \colon H^k_c(M;R) \longrightarrow H_{n-k}(M;R)
+	\]
+\end{bemerkung}
+
+\begin{definition}
+	$\PD_M$ heißt die \Index{Poincaré-Dualitäts-Abbildung} für $M$. 
+\end{definition}
+
+\begin{bemerkung}
+	Ist $M$ kompakt, so ist $\PD_M= {\capp \mu}$, wobei $\mu$ die durch die Orientierung bestimmte Fundamentalklasse von $M$ ist.
+\end{bemerkung}
+
+\begin{lemma}
+	Für $M=\mathbb{R}^n$ ist die Poincaré-Dualitäts-Abbildung ein Isomorphismus. 
+\end{lemma}
+\begin{beweis}
+	Ist $B \subset \mathbb{R}^n$ ein kompakter Ball, so ist ${\capp\mu_B} \colon H^k(\mathbb{R}^n,\mathbb{R}^n \setminus B,R) \to H_{n-k}(\mathbb{R}^n)$ ein Isomorphismus.
+	Da die Menge der kompakten Bälle $\mathcal{B}$ kofinal in allen kompakten Teilmengen ist, ist auch
+	\(
+		\PD_M = \colim_{\mathcal{B}} {\capp \mu_B}
+	\)
+	ein Isomorphismus.
+\end{beweis}
+
+\begin{bemerkung}
+	Für nicht kompakte orientierte Mannigfaltigkeiten lässt sich die Fundamentalklasse in lokal endlicher Homologie definieren: 
+	\[
+		C^\lf_{n}(M) = \set*{\sum_{\sigma\in S_n(M)} r_\sigma \cdot \sigma \given \begin{array}{l}
+			\text{für jedes $K \subseteq M$ kompakt gibt es nur endlich viele $\sigma \colon \abs*{\Delta^n} \to M$} \\
+			\text{mit $r_\sigma\neq 0$ und $\sigma(\abs*{\Delta^n}) \cap K \neq \emptyset$} 
+		\end{array}
+		  }
+	\]
+\end{bemerkung}
+% section 7 (end)
+\newpage
+
+\section{Poincaré-Dualität} % (fold)
+\label{sec:8}
+
+\begin{lemma}
+	Seien $U,V \subseteq X$ offen. ei $C^*(X,U+V)$ der Unterkomplex von $C^*(X)$, der aus allen $\varphi \colon C_*(X)\to R$ besteht mit $\varphi(\sigma)=0$ für $\sigma \colon \abs*{\Delta^n}\to X$ mit $\im (\sigma) \subseteq U$ \emph{oder} $\im (\sigma) \subseteq V$. 
+	Dann induziert die Inklusion $C^*(X, U\cup V) \to C^*(X,U+V)$ einen Isomorphismus in Kohomologie.
+\end{lemma}
+\begin{beweis}
+	Sei $C^*(U+V) := C_*^{\set*{U,V}}(U \cup V)$. 
+	Die Inklusion $C_*(U +V)\to C_*(U \cup V)$ ist nach dem Satz über kleine Simplizes eine Kettenhomotopieäquivalenz.
+	Sei $C^*(U+V)= \Hom \enbrace*{C_*(U+V),R}$ der zu $C_*(U+V)$ duale Kokettenkomplex. 
+	Dann ist auch $C^*(U \cup V) \to C^*(U+V)$ eine Kokettenhomotopieäquivalenz.
+	Betrachte nun
+	\[
+		\begin{tikzcd}
+			0 \rar & C^*(X,U\cup V) \dar  \rar & C^*(X)\dar[equal] \rar & C^*(U \cup V) \dar \rar & 0 \\
+			0 \rar & C^*(X,U+V) \rar & C^*(X) \rar & C^*(U+V) \rar & 0
+		\end{tikzcd}
+	\]
+	Die zweite und dritte Abbildung induzieren jeweils Isomorphismen in Kohomologie. 
+	Da das Diagramm kommutiert erhalten wir eine lange exakte Leiter mit den langen exakten Folgen in Kohomologie.
+	Das 5er-Lemma impliziert nun, dass auch die erste Abbildungen einen Isomorphismus in Kohomologie induziert.
+\end{beweis}
+
+\begin{satz}
+	Seien $U,V \subseteq X$ offen. Dann gibt es eine lange exakte Mayer-Vietoris-Folge 
+	\[
+		\begin{tikzcd}[sep=1.55em]
+			\ldots \rar & H^n(X,U+V) \rar & H^n(X,U) \oplus H^n(X,V) \rar & H^n(X,U\cap V) \rar["\partial"] & H^{n+1}(X,U\cup V) \rar & \ldots 
+		\end{tikzcd}
+	\]
+	Der Verbindungshomomorphismus $\partial$ kann wie folgt beschrieben werden: Sei $\alpha \in C^n(X,U \cap V)$ mit $d^n(\alpha)=0$.
+	Dann lässt sich $\alpha$ schreiben als $\alpha= \alpha_U + \alpha_V$ mit $\alpha_U \in C^*(X,U)$ und $\alpha_V \in C^n(X,V)$ und es ist $\partial [\alpha] = \benbrace*{d^n \alpha_U}= \benbrace*{d^n \alpha_V}$
+\end{satz}
+\begin{beweis}
+	Benutze die kurze exakte Folge von Kokettenkomplexen: 
+	\[
+		\begin{tikzcd}
+			0 \rar & C^*(X,U + V) \rar & C^*(X,U) \oplus C^*(X,V) \rar & C^*(X, U \cup V) \rar & 0
+		\end{tikzcd}
+	\]
+	wobei die erste Abbildung $\alpha \mapsto (\alpha,\alpha)$ und die zweite $(\alpha,\beta) \mapsto \alpha-\beta$ ist. 
+	
+	
+	Es ist $\alpha+\beta=0$ in $C^*(X,U \cap V) \subseteq C^*(X)$ für $\alpha \in C^*(X;U) \subseteq C^*(X)$, $\beta \in C^*(X,V) \subseteq C^*(X)$. Also ist
+	$\alpha(\sigma)= - \beta(\sigma)$ für alle $\sigma \subseteq X$.
+	
+	Die zugehörigen lange exakte Folge ist die gesuchte Mayer-Vietoris-Folge. 
+\end{beweis}
+
+\begin{satz}
+	Seien $U,V \subseteq X$ offen. Sei $X$ lokalkompakt und Hausdorffsch. 
+	Dann gibt e seine lange exakte Mayer-Vietoris-Folge 
+	\[
+		\begin{tikzcd}
+			\ldots \rar & H^n_c(U\cap V) \rar & H^n_c(U) \oplus H^n_c(V) \rar & H^n_c(U \cup V) \rar["\partial"] & H^{n+1}_c(U\cap V) \rar & \ldots 
+		\end{tikzcd}
+	\]
+\end{satz}
+\begin{beweis}
+	Seien $K \subseteq U$, $L \subseteq V$ kompakt. Es ist 
+	\begin{align}
+		(X\setminus K) \cup (X\setminus L) &= X \setminus (K \cap L) \\
+		(X \setminus K) \cap (X \setminus L) &= X \setminus (K \cup L)
+	\end{align}
+	Wir erhalten eine lange exakte Folge 
+	\[
+		\begin{tikzcd}[sep=1.9em]
+			\ldots \rar & H^n \enbrace*{X,X \setminus (K \cap L)} \rar & H^n \enbrace*{X,X \setminus K} \oplus H^n(X,X \setminus L) \rar & H^n \enbrace*{X,X \setminus (K \cup L)} \rar & \ldots 
+		\end{tikzcd}
+	\]
+	Mit Ausschneidung ergibt sich eine lange exakte Folge 
+	\[
+		\begin{tikzcd}[sep=small,font=\small]
+			\ldots  \rar & H^n \enbrace*{U \cap V, U  \cap V  \setminus K \cap L} \rar & H^k(U,U \setminus K) \oplus H^k(C,V \setminus L) \rar & H^k(U \cup V, U \cup V \setminus K \cup L) \rar & \ldots 
+		\end{tikzcd}
+	\]
+	Sei $\mathcal{K}$ die gerichtete Menge der kompakten Unterräume von $U$, $\mathcal{L}$ die von $V$.
+	Sei $\Lambda = \mathcal{K} \times \mathcal{L}$ das Produkt der gerichteten Mengen $\mathcal{K}$ und $\mathcal{L}$.
+	Da $\colim_\Lambda$ exakt ist, erhalten wir auch im Kolimes eine lange exakte Folge. Dies ist die gesuchte lange exakte Folge. 
+	(Da $X$ lokalkompakt und Hausdorffsch ist, ist jeder kompakter Teilraum $M$ von $U \cup V$ die Vereinigung von $M=K \cup L$ mit $(K,L) \in \Lambda$.)
+\end{beweis}
+
+\begin{erinnerung}
+	Seien $U,V \subseteq X$ offen. Dann ist $H_*(U \cup V) = H_* \enbrace*{C_*(U+V)}$ und es gibt eine lange exakte Folge 
+	\[
+		\begin{tikzcd}
+			\ldots  \rar & H_n(U \cap V) \rar & H_n(U) \oplus H_n(C) \rar & H_n(U \cup V) \rar["\partial"]& \ldots 
+		\end{tikzcd}
+	\]
+	Der Verbindungshomomorphismus kann wie folgt beschrieben werden: Sei $x \in C_n(U + V)$ mit $d_n x =0$.
+	Dann ist $x=x_U - x_V$ mit $x_U \in C_n(U)$, $x_V \in C_n(V)$ und es ist $\partial[x] = \benbrace*{d_n x_U} = \benbrace*{d_n x_V}$.
+\end{erinnerung}
+\begin{beweis}
+	Benutze 
+	\[
+		\begin{tikzcd}
+			0 \rar & C_*(U \cap V) \rar & C_*(U) \oplus C_*(V) \rar & C_*(U+V) \rar & 0
+		\end{tikzcd} \qedhere
+	\]
+\end{beweis}
+
+\begin{proposition}
+	Seien $U,V$ offene Teilmengen einer $R$-orientierten $n$-Mannigfaltigkeit $M$. 
+	Dann bilden die Poincaré-Dualitätsabbildungen zusammen mit der Mayer-Vietorisfolge ein kommutatives Diagramm
+	\[
+		\begin{tikzcd}
+			\ldots \rar & H^k_c(U \cap V) \rar \dar["\PD_{U \cap V}"] & H^k_c(U) \oplus H^k_c(V) \dar["\PD_{U} \oplus \PD_{V}"] \rar & H^k_c(U \cup V) \rar["\partial"] \dar["\PD_{U \cup V}"]& \ldots \dar \\
+			\ldots \rar & H_{n-k}(U \cap V) \rar & H_{n-kk}(U) \oplus H_{n-kk}(V) \rar & H_{n-k}(U \cup V) \rar & \ldots 
+		\end{tikzcd}
+	\]
+\end{proposition}
+\begin{beweis}
+	Ohne Einschränkungen sei $M=U \cup V$. 
+	Die Kommutativität der ersten beiden folgt aus der Natürlichkeit des $\capp$-Produktes.
+	Da $\partial \colon H^k_c(M) \to H_c^{k+1}(U \cap V)$ der Kolimes der 
+	\[
+		H^k(M,M \setminus (K \cup L)) \grenzw{\partial} H^{k+1}(M,M \setminus (K \cap L)) 
+	\]
+	für $K \subseteq U, L \subseteq V$ kompakt ist, genügt es für die Kommutativität des dritten Quadrats die Kommutativität von folgendem Diagramm nachzurechnen.
+	\[
+		\begin{tikzcd}[row sep=large,column sep=1.6em]
+			H^k \enbrace[\big]{M , (M \setminus K) \cap (M \setminus L)} \rar["\partial"] \dar[equal] & H^{k+1} \enbrace[\big]{M,(M \setminus K) \cup (M \setminus L)} \dar[equal]\\
+			H^k \enbrace[\big]{M , M \setminus (K \cup L)} \dar["\capp \mu_{K \cup L}"] \rar["\partial"] & H^{k+1} \enbrace[\big]{M, M \setminus (K \cap L)} \rar["\cong"] & H^{k+1} \enbrace[\big]{U \cap V, U \cap V \setminus (K \cap L)} \dar["\capp \mu_{K \cap L}"] \\
+			H_{n-k}(M) \ar[rr,"\partial"] & & H_{n-k-1}(U \cap V)
+		\end{tikzcd}
+	\]
+	Sei $\alpha \in C^{k} \enbrace*{M,M \setminus (K \cup L)}$ mit $d^k\alpha=0$, $\alpha=\alpha_K-\alpha_L$ mit $\alpha_K \in C^k \enbrace*{M,M \setminus K}$ und $\alpha_L \in C^k(M,M \setminus L)$.
+	Dann ist $\partial [\alpha]= \benbrace*{d^k \alpha_K} = \benbrace*{d^k \alpha_L}$.\marginnote{$U \cup V = U \setminus L  \cup V \setminus K \cup U \cap V$}
+	Wegen Ausschneidung finden wir $x_K \in C_n(V\setminus K)$, $x_L \in C_n(U \setminus L)$ und $x_\cap C_n(U \cap V)$ mit $\mu_{K \cup L} = \benbrace*{x_\cap +x_K+x_L}$.
+	Es ist dann auch $\mu_{K \cap L} = \benbrace*{x_\cap}$ und daher ist das Bild von $\partial[\alpha]$ in $H_{n-k-1}(U \cap V)$ gegeben durch $\benbrace*{d^k \alpha_K \capp x_\cap}$.
+	Es ist andererseits 
+	\begin{align}
+		[\alpha] \cap \mu_{K \cup L} &= \benbrace[\big]{(\alpha_K -\alpha_L) \capp (x_\cap + x_K+x_L)} \\
+		&= \benbrace[\Big]{\alpha_K \capp x_\cap  + \Underbracket{\alpha_K \capp x_K}{=0} + \alpha_K \capp x_L - \alpha_L \capp x_\cap - \alpha_L \capp x_K - \Underbracket{\alpha_L \capp x_L}{=0}} \\
+		&= \benbrace[\Big]{\Underbracket{\alpha_K \capp x_L}{\in C_k(U)} + \enbrace[\big]{\Underbracket{\alpha_K \capp x_\cap - \alpha_L \capp x_\cap}{\in C_K(U \cap V)}} - \Underbracket{\alpha_L \capp x_K}{\in C_k(V)}} 
+	\end{align}
+	Damit haben wir 
+	\(
+		\partial \enbrace*{[\alpha] \capp \mu_{K \cup L}} = \benbrace[\big]{d_{n-k} \enbrace*{\alpha_K \capp x_L}} = \benbrace[\Big]{\Underbracket{d^k \alpha_K \capp x_L}{=+d^k \alpha_L \capp x_L=0} + (-1)^k \alpha_K \capp d_n x_L}
+	\).
+	Mit $d_n x_L = - d_n x_K - d_n x_\cap$ folgt 
+	\begin{align}
+		\partial \enbrace*{[\alpha]\capp \mu_{K \cup L}} &= (-1)^{k+1} \benbrace[\Big]{\Underbracket{\alpha_K \capp d_n x_K}{=0} + \alpha_K \capp d_n x_\cap} \\
+		&= (-1)^{k+1} \benbrace[\big]{\alpha_K \capp d_n x_\cap}
+	\end{align}
+	Wegen $d_{n-k}(\alpha_K \capp x_\cap)= d^k \alpha_K \capp x_\cap + (-1)^k \alpha_K \capp d_n x_\cap$ folgt $\benbrace*{\alpha_K \capp d_n x_\cap} = (-1)^{k+1} \benbrace*{d^k \alpha_K  \cap x_{\cap}}$.
+	Also ist $\partial \enbrace*{[\alpha] \capp \mu_{K \cup L}} = \benbrace*{d^k  \alpha_K \capp x_\cap}$.
+\end{beweis}
+
+\begin{satz}
+	Sei $M$ eine $R$-orientierbare $n$-Mannigfaltigkeit. 
+	Dann ist $\PD_M \colon H^k_c(M) \to H_{n-k}(M)$ ein Isomorphismus.
+	Insbesondere ist, falls $M$ sogar geschlossen ist, $\capp \mu_M \colon H^k(M) \to H_{n-k}(M)$ ein Isomorphismus.
+\end{satz}
+\begin{beweis}
+	Für $U \cong \mathbb{R}^n$ haben wir die Behauptung schon bewiesen.\todo{Referenz}
+	Da offene konvexe Unterräume im $\mathbb{R}^n$ homöomorph zum $\mathbb{R}^n$ sind, ist die Behauptung auch für solche richtig.
+	Schnitte offener konvexer Teilräume des $\mathbb{R}^n$ wieder offen und konvex sind, folgt mit den Mayer-Vietoris-Folgen die Behauptung für endliche Vereinigungen offener und konvexer Unterräume des $\mathbb{R}^n$.
+	Mit \autoref{lem:abzUeber} folgt die Behauptung auch für abzählbare Vereinigungen von offenen konvexen Unterräumen im $\mathbb{R}^n$.
+	Da jeder offene Unterraum des $\mathbb{R}^n$ die abzählbare Vereinigung offener konvexer Unterräume ist, folgt die Behauptung für beliebige Kartengebiete\footnote{$U \subseteq M$ mit $\varphi \colon U \grenzw{\cong} V \subseteq \mathbb{R}^n$ und $V \subseteq \mathbb{R}^n$ offen} in Mannigfaltigkeiten.
+	Mit der Mayer-Vietoris-Folge folgt die Behauptung für endliche Vereinigungen von Kartengebieten in Mannigfaltigkeiten und mit \autoref{lem:abzUeber} für abzählbare Vereinigungen von Kartengebieten.
+	Da jede Mannigfaltigkeit die abzählbare Vereinigung von Kartengebieten ist, folgt die Behauptung.
+\end{beweis}
+
+\begin{lemma}[label=lem:abzUeber]
+	Sei $M$ eine $R$-orientierte $n$-Mannigfaltigkeit. 
+	Seien $U_1 \subseteq U_2 \subseteq \ldots \subseteq M$ offen mit $M= \bigcup_{i=1}^\infty U_i$.
+	Sind alle $\PD_{U_i}$ Isomorphismen, so ist auch $\PD_M$ ein Isomorphismus.
+\end{lemma}
+\begin{beweis}
+	Jeder singuläre Simplex in $M$ liegt schon in einem $U_i$. 
+	Das heißt $C_*(M)=\colim_{\mathbb{N}} C_*(U_i)$ und $H_*(M)= \colim_{i \in \mathbb{N}} H_*(U_i)$.
+	Ebenso liegt jede kompakte Teilmenge von $M$ schon in einem $U_i$.
+	Daher ist $H^*_c(M) = \colim_{i \in \mathbb{N}} H^*_c(U_i)$. 
+	Nun ist $\PD_M = \colim_{i \in \mathbb{N}} \PD_{U_i}$ ein Isomorphismus.
+\end{beweis}
+% section 8 (end)
+\newpage
+
+\section{Mannigfaltigkeiten mit Rand} % (fold)
+\label{sec:9}
+\todo[inline]{Revision 9}
+\begin{definition}[{name=[Mannigfaltigkeit mit Rand]}]
+	Eine \bet{$n$-Mannigfaltigkeit mit Rand}\index{Mannigfaltigkeit mit Rand} $M$ ist ein topologischer Hausdorffraum, der das zweite Abzählbarkeitsaxiom erfüllt und folgende lokale Eigenschaft hat: 
+	Zu jedem Punkt $x \in M$ gibt es eine Umgebung $U \subseteq M$, die homöomorph ist zu einer offenen Teilmenge in $\mathbb{R}^{n-1} \times [0,\infty)$ ist.
+	Die Punkte $x$, für die $U$ homöomorph zu einer offenen Teilmenge des $\mathbb{R}^n$ gewählt werden kann, heißen \Index{innere Punkte}; alle anderen \Index{Randpunkte}.
+	Wir schreiben $\mathring{M} \subseteq M$ für die inneren Punkte und $\partial M := M \setminus \mathring{M}$.  
+\end{definition}
+
+\begin{bemerkung}[{name=[Der Rand ist eine $(n-1)$-Mannigfaltigkeit]}]
+	$\mathring{M}$ ist eine $n$-Mannigfaltigkeit und $\partial M$ ist eine $(n-1)$-Mannigfaltigkeit.
+\end{bemerkung}
+
+\begin{beispiel}[{name=[Mannigfaltigkeit mit Rand]}]
+	Sei $D^n = \set*{x \in \mathbb{R}^n \given \norm*{x}\le 1}$. Dann ist $\partial D^n = S^{n-1}$.
+	Für $M \times D^n$ ist $\partial (M \times D^n) = M \times S^{n-1}$, wenn $M$ eine Mannigfaltigkeit ohne Rand ist.
+\end{beispiel}
+
+\begin{frage}
+	Welche geschlossenen $n$-Mannigfaltigkeiten sind Rand einer kompakten $(n+1)$"=Mannigfaltigkeit?
+\end{frage}
+
+\begin{satz}[name={Kragensatz},label=kragensatz]
+	Sei $M$ eine kompakte Mannigfaltigkeit mit Rand $\partial M$. 
+	Dann gibt es eine offene Umgebung $U \subseteq M$ von $\partial M$ und einem Homöomorphismus $\varphi \colon \partial M \times [0,1) \to U$ mit ${\varphi(x,0)=x}$.
+\end{satz}
+\begin{beweis}[name={Skizze}]
+	Sei $M' := M \cup_{\partial M} (\partial M \times [0,1])$.
+	Es genügt einen Homöomorphismus $M \cong M'$ mit $x \mapsto (x,0)$ für $x \in \partial M$ zu finden. 
+	Da $M$ kompakt ist, gibt es $\varphi_1, \ldots , \varphi_l \colon \partial M \to [0,1]$, sodass die $\varphi_i^{-1}\enbrace*{(0,1]}$ eine offene Überdeckung von $\partial M$ bilden und jedes $V_i$ in einer zu $\mathbb{R}^{n-1} \times [0,\infty)$ homöomorphen offenen Menge in $M$ liegt. 
+	Nach Normalisierung können wir annehmen, dass $\varphi_1 + \ldots + \varphi_l =1$ ist.
+	Für $0 \le k \le l$ sei $\psi_k := \varphi_1 + \ldots \varphi_k$ und 
+	\[
+		M_k := M \cup \set[\big]{(x,t) \given x \in \partial M, t \le \psi_k(x)}
+	\]
+	Nun zeigt man $M_{k-1} \cong M_k$ für $k=1,\ldots ,l$.
+\end{beweis}
+
+\begin{bemerkung}[{name=[Orientierung einer Mannigfaltigkeit mit Rand]}]
+	Sei $M$ eine Mannigfaltigkeit mit Rand. 
+	Eine $R$-Orientierung von $M$ ist eine $R$-Orientierung von $\mathring{M}$.
+	Zu einer $R$-Orientierung $\set*{\mu_x}_{x \in \mathring{M}}$ gibt es, falls $M$ kompakt ist, eine eindeutige Orientierungsklasse $\mu \in H_n(M, \partial M)$ mit $\mu|_x = \mu_x$ für alle $x \in \mathring{M}$.
+\end{bemerkung}
+
+\begin{lemma}[{name=[Orientierbarkeit des Randes]}]
+	Sei $M$ eine $R$-orientierbare kompakte Mannigfaltigkeit mit Rand.
+	Dann ist auch $\partial M$ $R$-orientierbar.
+\end{lemma}
+\begin{beweis}
+	Sei $N$ eine Zusammenhangskomponente von $\partial M$.
+	Mit $M$ ist nach dem \hyperref[kragensatz]{Kragensatz} auch $N \times [0,1]$ orientierbar.
+	Nun betrachte einen Teil der Paarfolge zu $\enbrace*{N \times [0,1], \partial (N \times [0,1])}$
+	\[
+		\begin{tikzcd}[sep=1.8em]
+			\underset{=H_n(N)=0}{H_n(N \times [0,1])} \rar & \underset{\neq 0}{H_n \enbrace[\big]{N \times [0,1], N \times \set*{0,1}}} \rar & \underset{= H_{n-1}(N) \oplus H_{n-1}(N) \neq 0}{H_{n-1} \enbrace[\big]{N \times \set*{0,1}}} \rar & H_{n-1} \enbrace*{N \times [0,1]}
+		\end{tikzcd}
+	\]
+	Damit ist $H_n(N)\neq 0$ und $N$ ist $R$-orientierbar.
+\end{beweis}
+\begin{satz}[{name={Poincaré-Dualität für Mannigfaltigkeiten mit Rand}}]
+	Sei $M$ eine kompakte $R$"=orientierbare $n$-Mannigfaltigkeit, deren Rand $\partial M$ die Vereinigung von zwei $(n-1)$-Mannigfaltigkeiten $\partial_0 M$ und $\partial_1 M$ entlang ihres gemeinsamen Randes 
+	\[
+		\partial \enbrace*{\partial_0 M } = \partial \enbrace*{\partial_1 M} = \partial_0 M \cap \partial_1 M
+	\]
+	ist.
+	Sei $\mu \in H_n(M, \partial M)$ eine Orientierungsklasse für $M$. 
+	Dann erhalten wir einen Isomorphismus 
+	\[
+		\capp \mu \colon H^k \enbrace*{M, \partial_0 M} \grenzw{\cong} H_{n-k} \enbrace*{M, \partial_1 M}
+	\]
+\end{satz}
+\begin{beweis}
+	Sei zunächst $\partial_1 M = \emptyset$, also $\partial _0 M = \partial M$.
+	Betrachte 
+	\[
+		\begin{tikzcd}[column sep=3em, row sep=2.8em]
+			\displaystyle H_c^k \enbrace*{M \setminus\partial M} = \smashoperator[r]{\colim_{K \subseteq M \setminus \partial M,\text{ kpt.} }}\,\, H^k(M, M \setminus K) \dar["\PD_{M \setminus \partial M}","\cong"']  \rar["\cong","(\star)"'] & H^k(M, \partial M) \dar["\capp \mu"] \\
+			H_{n-k}\enbrace*{M\setminus \partial M}\rar["\cong","\text{Kragensatz}"'] & H_{n-k}(M)
+		\end{tikzcd}
+	\]
+	zu $(\star)$: Wähle einen Kragen $\partial M \subseteq U \overset{\varphi}{\cong} \partial M \times [0,1)$ und setze $K_\varepsilon := M \setminus \varphi \enbrace*{\partial M \times [0,\varepsilon)}$.
+	Dann sind die $K_\varepsilon$ in der gerichteten Menge aller kompakten Teilmengen von $M \setminus \partial M$ kofinal, also 
+	\[
+		\colim_{K \subseteq M \setminus \partial M,\text{ kpt.} } H^k(M, M \setminus K) = \colim_{\varepsilon\to 0} H^k(M,M \setminus K_\varepsilon) \cong H^k(M, \partial M) 
+	\]
+	Für $\partial_1 M \neq \emptyset$ benutzen wir die Paar- sowie die Tripelfolge:
+	\[
+		\begin{tikzcd}
+			\ldots \rar & H^k(M, \partial M) \rar \ar[dd,"\capp \mu","\cong"'] & H^k(M,\partial_0 M) \rar \ar[dd,"\capp \mu","\cong"']& H^k(\partial M,\partial_0 M) \rar  \dar[phantom,sloped,"\cong"]& \ldots  \\
+			& & & H^k \enbrace*{\partial_1 M, \partial \partial_1 M} \dar["\PD_{\partial_1 M}","\cong"'] \\
+			\ldots \rar & H_{n-k}(M) \rar & H_{n-k}(M,\partial_1 M) \rar & H_{n-k-1}(\partial_1 M) \rar & \ldots 
+		\end{tikzcd}
+	\]
+	wobei der Isomorphismus oben rechts durch Ausschneidung und Kragensatz zustande kommt.
+\end{beweis}
+\newpage
+% section 9 (end)
+
+\section{Die Signatur} % (fold)
+\label{sec:10}
+
+\todo[inline]{Revision 10}
+\begin{definition}[{name=[Schnittform]}]
+	Sei $M$ eine $R$-orientierte geschlossene $n$-Mannigfaltigkeit mit Fundamentalklasse $\mu_M \in H_n(M;R)$.
+	Die Abbildung
+	\mapdef{\sprod*{\enspace}{\enspace}_R \colon H^k(M) \otimes H^{n-k}(M)}{R}{\xi \otimes \eta}{(\xi \cupp \eta)(\mu_M)}{}
+	heißt die \Index{Schnittform} von $M$. 
+\end{definition}
+
+\begin{bemerkung}[{name=[Begründung des Namens \enquote{Schnittform}]}]
+	Eine kurze Begründung des Namens \enquote{Schnittform}:
+	
+	Seien für $i=0,1$ $N_i$ geschlossene $K$-orientierte $k_i$-Mannigfaltigkeiten mit Fundamentalklasse $\mu_i \in H_{k_i}(N_i;K)$.
+	Seien $f_i \colon N_i \to M$ stetige Abbildungen in eine geschlossene $K$-orientierte $(n=k_0+k_1)$-Mannigfaltigkeit.
+	Seien $\xi_i \in H^{n-{k_i}}$ die zu $(f_i)_*(\mu_i)$ Poincaré-dualen Kohomologieklassen. Dann \enquote{gilt}
+	\[
+		\sprod*{\xi_1}{\xi_2} = \# f_1(N_1) \cap f_2(N_2)
+	\]
+	nachdem $f_1(N_1)$ und $f_2(N_2)$ in $M$ in \enquote{allgemeiner Lage} sind und $\#$ zählt die Schnittpunkte mit Vorzeichen.
+\end{bemerkung}
+
+\begin{lemma}[{name=[Schnittform ist bilinear und graduiert kommutativ]}]
+	Es gilt:
+	\begin{enumerate}[(i),itemsep=2pt]
+		\item Die Schnittform ist bilinear.
+		\item $\sprod*{\xi}{\eta}_R = (-1)^{\abs*{\xi}\cdot \abs*{\eta}} \sprod*{\eta}{\xi}_R$
+	\end{enumerate}
+\end{lemma}
+\begin{beweis}
+	Folgt aus den entsprechenden Eigenschaften des $\cupp$-Produktes.
+\end{beweis}
+
+\begin{satz}[{name=[Für einen Körper sind Schnittformen regulär]}]
+	Ist $R=K$ ein Körper, so ist die Schnittform \Index{regulär}, das heißt $\xi \mapsto \enbrace*{\eta \mapsto \sprod*{\xi}{\eta}_K}$ definiert einen Isomorphismus $H^k(M;K) \to \Hom_K \enbrace*{H^{n-k}(M;K),K}$.
+\end{satz}
+\begin{beweis}
+	Wir haben einen Isomorphismen
+	\begin{align}
+		H^k(M;K) &\cong \Hom_K \enbrace*{H_k(M;K),K}  & \xi &\longmapsto  \enbrace[\big]{x \mapsto \xi(x)} \\
+		\Hom_K \enbrace*{H_k(M;K),K} &\cong \Hom_K \enbrace*{H^{n-k}(M;K),K}   &  \varphi &\longmapsto  \enbrace[\big]{\eta \mapsto \varphi \enbrace*{\eta \capp \mu}}
+	\end{align}
+	Ihre Komposition bildet $\xi \in H^k(M;K)$ auf die Abbildung
+	\[
+		\eta \longmapsto \xi \enbrace*{\eta \capp \mu} \StackText{\ref{bem_augmentation_cap}}{=} \epsilon \enbrace[\big]{\xi \capp (\eta \capp \mu)} = \epsilon \enbrace[\big]{(\xi \cupp \eta) \capp \mu} = (\xi \cupp \eta)(\mu) = \sprod*{\xi}{\eta}_K
+	\]
+	ab und es folgt die Behauptung.
+\end{beweis}
+
+\begin{korollar}[{name=[Kohomologiemoduln über $K$ sind endlichdimensional]}]
+	Für $K$-orientierbare geschlossene Mannigfaltigkeiten sind die Kohomologiemoduln $H^*(M;K)$ (und auch die Homologiemoduln $H_*(M;K)$) endlich dimensional.
+\end{korollar}
+\begin{beweis}
+	Wir benutzen, dass Vektorräume genau dann endlich dimensional sind, wenn sie isomorph sind zu ihrem Bidualraum sind.
+	Wegen 
+	\[
+		H^k(M;K) \cong \Hom_K \enbrace*{H^{n-k}(M;K),K} \cong \Hom_K \enbrace*{\Hom_K \enbrace*{H^k(M;K),K}} 
+	\]
+	folgt $\dim_K H^k(M;K) < \infty$.
+\end{beweis}
+
+\begin{lemma}
+	Sei $\varphi \colon V \times V \to \mathbb{R}$ eine symmetrische reguläre Bilinearform auf einem endlich dimensionalen $\mathbb{R}$-Vektorraum $V$.
+	Dann gibt es Unterräume $V_+$ und $V_-$ mit $\varphi|_{V_\mp \times V_\mp}$ negativ/positiv definit und $\varphi|_{V_- \times V_+}=0$ und $V= V_- \oplus V_+$.
+	Die Zahlen $n_- := \dim_\mathbb{R} V_-$ und $n_+ := \dim_\mathbb{R} V_+$ hängen nur von $\varphi$ ab.
+\end{lemma}
+\begin{beweis}
+	Sei $B$ eine Basis von $V$ und $f \colon V \to V$ bestimmt durch $f(b)= \sum_{b' \in B} \varphi(b,b') \cdot b'$.
+	Dann ist die zugehörige Matrix $A= \enbrace*{\varphi(b,b')}_{b,b' \in B}$ symmetrisch und $V$ hat eine Basis aus Eigenvektoren von $f$.
+	Sei $V_- \le V$ von Eigenvektoren zu negativen Eigenwerten erzeugt und $V_+ \le V$ von Eigenvektoren zu positiven Eigenwerten erzeugt.
+	Da $\varphi$ regulär ist, ist $0$ kein Eigenwert von $f$ und daher ist $V= V_+ \oplus V_-$.
+	Seien $v,v'$ Eigenvektoren mit Eigenwerten $\lambda,\lambda' \in \mathbb{R}$.
+	Dann ist
+	\begin{align}
+		(\lambda')^{-1} \sum \varphi(v,b) \varphi(v',b)&= \varphi \enbrace*{v, (\lambda')^{-1} \sum \varphi(v',b) b} \\ &= \varphi(v,v')\\
+		&= \varphi \enbrace*{\lambda^{-1} \sum \varphi(v,b)b , v'} = \lambda^{-1} \sum \varphi(v,b) \varphi(b,v')
+	\end{align}
+	Also ist $\lambda=\lambda'$ oder $\varphi(v,v')=0$. 
+	Für die Eindeutigkeit der Dimensionen sei $V=W_- \oplus W_+$ eine zweite solche Zerlegung, so gilt $V_ \cap W_+ =0$ also $\dim V_- + \dim W_+ \le n$, bzw. $V_+ \cap W_- =0$ also $\dim V_+ + \dim W_- \le n$.
+	Mit $\dim V_- + \dim V_+ = \dim W_- + \dim W_+ = n$ folgt $\dim V_{\mp} = \dim W_{\mp}$.
+\end{beweis}
+
+\begin{definition}[{name=[Signatur]}]
+	Die \bet{Signatur}\index{Signatur!symmetrische reguläre Bilinearform} von $\varphi$ ist definiert als $\sig(\varphi) := n_+ - n_-$. 
+\end{definition}
+
+\begin{korollar}
+	Es gibt eine Basis $v_1, \ldots , v_{n_-}, w_1 , \ldots , w_{n_+}$ von $V$ mit 
+	\[
+		\varphi(v_i,v_j) = - \delta_{ij} \quad , \quad \varphi(w_i,w_j) =\delta_{ij} \quad , \quad \varphi(v_i,w_j)=0
+	\]
+\end{korollar}
+\begin{beweis}
+	Wähle eine Orthonormalbasis von $V_-$ bezüglich $-\varphi$ und eine Orthonormalbasis bezüglich $\varphi$.
+\end{beweis}
+
+\begin{lemma}[label=sig_null]
+	Die Signatur von $\varphi$ ist genau dann $0$, wenn es $L \le V$ gibt mit $\varphi|_{L \times L}=0$ und $\dim L = \frac{1}{2} \dim V$.
+\end{lemma}
+\begin{beweis}
+	Sei $\sig(\varphi)=0$. Dann wählen wir eine Basis $v_1,\ldots ,v_l,w_1,\ldots ,w_l$ wie im Korollar\todo{oder doch Lemma?}.
+	Dann hat $L := \langle v_1+ w_1, \ldots ,v_l+w_l$ die gesuchte Eigenschaft.
+	
+	Sei umgekehrt $L \le V$ mit $\varphi|_{L \times L}=0$ und $\dim L = \frac{1}{2} \dim V$.
+	Dann ist $L \cap V_- =0$, also $\dim L + \dim V_- \le \dim V$ und genauso $L \cap V_+ =0$, also $\dim L + \dim V_+ \le \dim V$.
+	Damit folgt $\dim L = \dim V_- = \dim V_+ = \frac{1}{2} \dim V$.
+\end{beweis}
+
+\begin{definition}[{name=[Signatur]}]
+	Sei $M$ eine $4k$-dimensionale geschlossene orientierte Mannigfaltigkeit.
+	Dann ist $\sprod*{\enspace}{\enspace}_\mathbb{R} \colon H^{2k}(M;\mathbb{R}) \otimes H^{2k}(M;\mathbb{R}) \to \mathbb{R}$ eine reguläre symmetrische Bilinearform.
+	Wir definieren die \bet{Signatur}\index{Signatur!Mannigfaltigkeit} $\sig(M)$ von $M$ als die Signatur dieser Bilinearform.
+\end{definition}
+
+\begin{bemerkung}
+	\leavevmode
+	\begin{itemize}
+		\item Es ist $H_n(M;\mathbb{R}) \cong H_n(M;\mathbb{Z})\otimes \mathbb{R}$.
+	Insbesondere bestimmt jede $\mathbb{Z}$-Orientierung von $M$ eine $\mathbb{R}$-Orientierung von $M$.
+	\item Für eine orientierte Mannigfaltigkeit $M$ bezeichnen wir mit $-M$ die Mannigfaltigkeit $M$ mit der umgekehrten Orientierung (also $\mu_{-M}=-\mu_M$).
+	Ist $M$ geschlossen mit $\dim M = 4k$, so gilt $\sig(M)=- \sig(-M)$.
+	\end{itemize}
+\end{bemerkung}
+
+\begin{beispiel}
+	Sei $\alpha \in H^2(\mathbb{CP}^{2k})$ ein Erzeuger.
+	Wir wählen die Orientierung $\mu \in H_{4k} \enbrace{\mathbb{CP}^{2k}}$ für die $\alpha^{2k} (\mu)=1$.
+	Mit dieser Orientierung ist $\sig \enbrace{\mathbb{CP}^{2k}}=1$.
+\end{beispiel}
+
+\begin{satz}
+	Sei $W$ eine kompakte orientierte Mannigfaltigkeit mit Rand.
+	Falls $\dim W = 4k+1$ ist, so gilt $\sig(\partial W)=0$.
+\end{satz}
+\begin{beweis}
+	Sei $L :=  \im \enbrace[\big]{i^* \colon H^{2k}(W;\mathbb{R}) \hookrightarrow H^{2k}(\partial W;\mathbb{R})}$. Es gilt
+	\begin{enumerate}[a)]
+		\item $(i^* \xi \cupp i^* \eta) (\mu_{\partial W}) = \enbrace*{i^*(\xi \cupp \eta)}(\mu_{\partial W})= (\xi \cupp \eta) \enbrace*{i_* \mu_{\partial W}} =0$, da $\mu_{\partial W}=\partial (\mu_{W,\partial W})$, wobei $\mu_{W,\partial W} \in H^{4k+1}(W,\partial W)$ die Orientierungsklasse von $W$ relativ zu $\partial W$ ist.
+		\item Zu zeigen: $\dim L = \frac{1}{2} \dim H^{2k}(\partial W;\mathbb{R})$.
+		
+		Betrachte 
+		\[
+			\begin{tikzcd}[sep=large]
+				\ldots  \rar & H^{2k}(W) \dar["\capp \mu_{W,\partial W}","\cong"'] \rar["i^*"] & H^{2k}(\partial W)  \dar["\capp \mu_{\partial W}","\cong"']\rar["\partial"] & H^{2k+1}(W,\partial W) \rar \dar["\capp \mu_{W,\partial W}","\cong"']& \ldots \\
+				\ldots \rar & H_{2k+1} \rar["\partial"] & H_{2k}(\partial W) \rar & H_{2k}(W) \rar & \ldots 
+			\end{tikzcd}
+		\]
+		Die Kommutativität benutzt wieder $\partial (\mu_{W,\partial W})=\mu_{\partial W}$.
+		Es gilt
+		\[
+			\dim \im i^* = \dim \ker i_* = \dim \ker \enbrace[\big]{\Hom(i_*,\mathbb{R})} = \dim \ker i^*
+		\]
+		Da $\dim H^{2k}(\partial W) = \dim \ker i^* + \dim \im i^*$, folgt $\dim \im i^* = \frac{1}{2} \dim H^{2k}(\partial W)$. 
+	\end{enumerate}
+	Mit dem \autoref{sig_null} folgt die Behauptung.
+\end{beweis}
+
+\begin{korollarB}
+	$\mathbb{CP}^{2k}$ ist nicht Rand einer orientierten kompakten Mannigfaltigkeit.
+\end{korollarB}
+
+\begin{ausblick}
+	Nach dem Satz von \textsc{Freedman}\footnote{\url{https://de.wikipedia.org/wiki/Michael_Freedman}} werden einfach zusammenhängende geschlossene orientierte $4$-Mannigfaltigkeiten bis auf Homöomorphismus durch die ganzzahlige Schnittform auf $H^2(M;\mathbb{Z})$ und eine $\sfrac{\mathbb{Z}}{2 \mathbb{Z}}$-wertige Invariante klassifiziert.
+	Jede ganzzahlige reguläre Schnittform wird realisiert.
+\end{ausblick}
+% section 10 (end)
+\newpage
+
+\section{Projektive Auflösungen} % (fold)
+\label{sec:11}
+
+\todo[inline]{Revision 11}
+\begin{definition}[{name=[projektive Auflösung]}]
+	Sei $M$ ein $R$-Modul.
+	Eine \Index{projektive Auflösung} von $M$ ist eine lange exakte Folge 
+	\[
+		\begin{tikzcd}
+			0 & M \lar & P_0 \lar["\epsilon"'] & P_1 \lar["d_0"'] & P_2 \lar["d_1"'] & \ldots \lar
+		\end{tikzcd}
+	\]
+	wobei die $P_i$ projektive $R$-Moduln sind.
+	Wir schreiben oft $(P_*,\epsilon)$ für eine solche Auflösung, wobei $P_*$ ein Kettenkomplex projektiver Moduln ist, $H_k(P_*)=0$ für $k>0$ und $H_0(P_*)\cong M$ via $\epsilon$ ist.
+\end{definition}
+
+\begin{satz}[{name=[Existenz projektiver Auflösungen]}]
+	Sei $M$ ein $R$-Modul. Dann gilt
+	\begin{enumerate}[a),itemsep=0pt]
+		\item $M$ besitzt eine projektive Auflösung.
+		\item Sind $(P_*,\epsilon)$ und $(P_*',\epsilon')$ zwei projektive Auflösungen, so gibt es eine Kettenhomotopieäquivalenz $f \colon P_* \to P_*'$ mit $H_0(f)= (\epsilon') ^{-1} \circ \epsilon$.
+	\end{enumerate}
+\end{satz}
+\begin{beweis}
+	\begin{enumerate}[a),itemsep=0pt]
+		\item Die $P_n$ werden induktiv definiert. 
+		Sei 
+		$\begin{tikzcd}[cramped,sep=1.5em]
+			0 & M \lar & P_0 \lar["\epsilon"'] & P_1 \lar["d_0"'] & P_2 \lar["d_1"'] & \ldots \lar & P_n \lar["d_n"']
+		\end{tikzcd}$
+		bereits definiert und $S$ ein Erzeugendensystem von $\ker d_n$.
+		Wir setzen $P_{n+1} := R[S]$ und definieren $d_{n+1} \colon P_{n+1} \to P_n$ als die Fortsetzung der Inklusion $S \subseteq P_n$ zu einer $R$-linearen Abbildung $R[S]\to P_n$.
+		\item Folgt aus der folgenden \autoref{prop:113}.\qedhere
+	\end{enumerate}
+\end{beweis}
+
+\begin{proposition}[label=prop:113]
+	Seien $A_*$ und $P_*$ zwei Kettenkomplexe mit 
+	\begin{itemize}[itemsep=0pt]
+		\item Die Kettenmoduln von $P_*$ sind projektiv.
+		\item $H_*(A_*)=0$ für $*\ge 1$.
+	\end{itemize}
+	Dann definiert $f \mapsto H_0(f)$ einen Isomorphismus zwischen Kettenhomotopieklassen von Kettenabbildungen $f \colon P_* \to A_*$ und $R$-linearen Abbildungen $\varphi \colon H_0(P_*) \to H_0(A_*)$.
+\end{proposition}
+\begin{beweis}
+	Sei $\varphi \colon H_0(P_*) \to H_0(A_*)$ gegeben. 
+	Wir konstruieren $f_n \colon P_n \to A_n$ induktiv: 
+	Seien entsprechende Abbildungen $f_0,\ldots ,f_n$ bereits konstruiert, sodass folgendes Diagramm kommutiert
+	\[
+		\begin{tikzcd}[sep=large]
+			H_0(P_*) \dar["\varphi"] & P_0 \lar[two heads]  \dar["f_0"]& P_1 \lar  \dar["f_1"]& \ldots \lar & P_n \lar["d_n"']\dar["f_n"] & P_{n+1} \lar["d_{n+1}"'] \dar[dashed,"f_{n+1}"] \\
+			H_0(A_*) & A_0 \lar[two heads] & A_1 \lar["d_1'"'] & \ldots \lar & A_n \lar["d_n'"'] & A_{n+1} \lar["d_{n+1}'"']
+		\end{tikzcd}
+	\]
+	Wir erhalten 
+	\[
+		\begin{tikzcd}[row sep=large, column sep=huge]
+			\mbox{ } & A_{n+1} \dar[two heads,"d_{n+1}'"]\\
+			P_{n+1} \ar[ur,dashed] \rar["f_n \circ d_{n+1}"] & \ker d_{n}'
+		\end{tikzcd}
+	\]
+	Da $P_{n+1}$ projektiv ist, gibt es $f_{n+1} \colon P_{n+1} \to A_{n+1}$ mit $d_{n+1}' \circ f_{n+1} = f_n \circ d_{n+1}$.
+	
+	Für die Injektivität seien $f,g \colon P_* \to A_*$ Kettenabbildung mit $H_0(f) = H_0(g)$. 
+	Wir konstruieren eine Kettenhomotopie $s_n \colon P_n \to A_{n+1}$ induktiv. Seien $s_0, \ldots ,s_{n-1}$ schon konstruiert mit $f_i -g_i= s_{i-1} d_i + d_{i+1} s_i$ für $i=0, \ldots , n$.
+	\[
+		\begin{tikzcd}[row sep=large, column sep=3.15em]
+			H_0(P_*) \dar["0"] & P_0 \lar \dar["f_0-g_0"'] \drar[sloped,pos=.4,"s_0"] & P_1 \lar \dar[pos=.7,"f_1-g_1"] \drar[sloped,pos=.4,"s_1"] & P_2 \lar \dar["f_2 - g_2"] & \ldots \lar & P_{n-1} \lar\dar["f_{n-1}- g_{n-1}"'] \drar[sloped,pos=.3,"s_{n-1}"] & P_n \lar \dar[pos=.7,"f_n - g_n"]  \drar[dashed,sloped,pos=.4,"s_n"] & P_{n+1} \lar \\
+			H_0(A_*) & A_0 \lar & A_1 \lar & A_2 \lar & \ldots \lar & A_{n-1} \lar & A_n \lar & A_{n+1} \lar 
+		\end{tikzcd}
+	\]
+	Wir erhalten
+	\[
+		\begin{tikzcd}[row sep=large, column sep=7.5em]
+			\mbox{} &  A_{n+1} \dar["d_{n+1}"] \\
+			P_n \rar["(f_n-g_n)- s_{n-1} d_n"'] \urar[dashed] &\ker d_n
+		\end{tikzcd}
+	\]
+	Da $P_n$ projektiv ist, gibt es $s_n \colon P_n \to A_{n+1}$ mit $d'_{n+1} \circ s_n = (f_n -g_n) - s_{n-1} \circ d_n$.
+\end{beweis}
+
+\begin{definition}[{name=[projektive Dimension]}]
+	Sei $R$ ein Ring.
+	Die \Index{projektive Dimension} von $R$ ist das kleinste $n$, sodass jeder $R$-Modul eine projektive Auflösung der Länge $n$ hat, also eine Auflösung der Form
+	\[
+		\begin{tikzcd}
+			M & P_0 \lar & P_1 \lar & P_2 \lar & \ldots \lar & P_n \lar & 0 \lar
+		\end{tikzcd}
+	\] 
+	Gibt es kein solches $n \in \mathbb{N}$, so sagen wir die projektive Dimension von $R$ ist $\infty$.
+\end{definition}
+
+\begin{beispiel}[{name=[Körper haben projektive Dimension $0$]}]
+	Ist $R=K$ ein Körper, so ist jeder $K$-Modul, also jeder $K$-Vektorraum, frei.
+	Daher ist die projektive Dimension $0$.
+\end{beispiel}
+
+\begin{satz}[{name=[projektive Dimension von Hauptidealringen]}]
+	Für Hauptidealringe ist die projektive Dimension immer $\le 1$.
+\end{satz}
+\begin{beweis}
+	Ist $M$ ein $R$-Modul, so gibt es einen freien $R$-Modul $P_0$ mit einer surjektiven Abbildung $\epsilon \colon P_0 \to M$.
+	Ist $R$ ein Hauptidealring, so ist $P_1 := \ker \epsilon$ als Untermodul eines freien Moduls wieder frei\todo{Referenz} und wir erhalten wir eine projektive Auflösung
+	\(
+		\begin{tikzcd}[cramped,sep=small]
+			M & P_0 \lar & P_1 \lar
+		\end{tikzcd}
+	\)
+	der Länge $1$.
+\end{beweis}
+
+\begin{lemma}
+	Sei 
+	\[
+		\begin{tikzcd}
+			0 \rar & M \rar["f"] & M' \rar["f'"] & M'' \rar & 0
+		\end{tikzcd}
+	\]
+	eine kurze exakte Sequenz von $R$-Moduln. Dan gilt
+	\begin{enumerate}[a)]
+		\item Sind $\epsilon \colon P \to M$, $\epsilon'' \colon P'' \to M''$ surjektiv, wobei $P''$ projektiv, so gibt es $\epsilon' \colon P \oplus P'' \to M'$ surjektiv, sodass folgendes Diagramm kommutiert:
+		\[
+			\begin{tikzcd}
+				0 \rar & P \rar[hook] \dar["\epsilon"] & P \oplus P'' \rar[two heads] \dar["\epsilon'"] & P'' \rar  \dar["\epsilon''"] & 0 \\
+				0 \rar & M \rar["f"] & M' \rar["f'"] & M'' \rar & 0
+			\end{tikzcd}
+		\]
+		\item Es gibt projektive Auflösungen $(P_*,\epsilon)$, $(P_*',\epsilon')$ und $(P_*'',\epsilon'')$ von $M$, $M'$ und $M''$ und eine kurze exakte Folge von Kettenkomplexen
+		\[
+			\begin{tikzcd}
+				0 \rar & P_* \rar["F"] & P_*' \rar["F'"] & P_*'' \rar & 0
+			\end{tikzcd}
+		\]
+		sodass folgendes Diagramm kommutiert:
+		\[
+			\begin{tikzcd}[sep=large]
+				H_0(P_*) \rar["H_0(F)"] \dar["\epsilon","\cong"'] & H_0(P_*') \dar["\epsilon'","\cong"'] \rar["H_0(F')"] & H_0(P_*'') \dar["\epsilon''","\cong"'] \\
+				M \rar & M' \rar & M''
+			\end{tikzcd}
+		\]
+	\end{enumerate}
+\end{lemma}
+\begin{beweis}
+	\begin{enumerate}[a)]
+		\item Da $f' \colon M' \to M''$ surjektiv und $P''$ projektiv ist, gibt es $\hat{\epsilon}'' \colon P'' \to M'$ mit $\epsilon'' = f' \circ \hat{\epsilon}''$.
+		Nun können wir $\epsilon' \colon P \oplus P'' \to M'$ durch $\epsilon' (p,p'') := f \enbrace*{\epsilon(p)} + \hat{\epsilon}''(p'')$ definieren.
+		Noch zu zeigen: $\epsilon'$ ist surjektiv. 
+		Sei $v' \in M'$. Da $\epsilon''$ surjektiv ist, gibt es $x'' \in P''$ mit $\epsilon''(x'')=f'(v')$. Dann gilt
+		\[
+			f'\enbrace*{v' - \hat{\epsilon}''(x'')} = f'(v') - \Underbracket{f' \enbrace*{\hat{\epsilon}''(x'')}}{=\epsilon''(x'')} = 0
+		\]
+		Daher gibt es $v \in M$ mit $f(v)=v' - \hat{\epsilon}''(x'')$.
+		Sei nun $x \in P$ nut $\epsilon(x)=v$.
+		Dann ist $\epsilon'(x,x'')=v'$.
+		\item Wähle projektive Auflösungen $(P_*,\epsilon)$ von $M$ und $(P_*'',\epsilon'')$ von $M''$.
+		Sei $P_n' := P_n \oplus P_n''$.
+		Durch induktive Anwendung von a) erhalten wir Abbildungen $\epsilon' \colon P_0' \to M'$, $d_i' \colon P_i' \to P_{i-1}'$, sodass $\begin{tikzcd}[cramped,sep=small]
+			P_* \rar & P_*' \rar & P_*''
+		\end{tikzcd}$ eine kurze exakte Sequenz von Kettenkomplexen ist und das Diagramm aus der Behauptung kommutiert.\qedhere
+	\end{enumerate}
+\end{beweis}
+\newpage
+% section 11 (end)
+
+\section[Tor und Ext]{$\Tor$ und $\Ext$} % (fold)
+\label{sec:12}
+
+\todo[inline]{Revision 12}
+\begin{frage}
+	Sei $V$ ein $\mathbb{Z}$-Modul und $V''$ ein $R$-Modul. Ist $H_*(X;V) \cong H_*(X) \otimes V$? 
+	\[
+		H_* \enbrace*{V' \otimes_R C_*(X;R)}= H_*(X;V') \cong V' \otimes_R H_*(X;R)
+	\]
+	Sei $W$ ein $R$-Modul. Gilt dann
+	\[
+		H^*(X;V) \cong \Hom_\mathbb{Z}(H_*(X),V) \qquad H^*(X;W) \cong \Hom_R \enbrace*{H_*(X;R),W}
+	\]
+	Genauso für Kettenkomplexe: Sei $C_*$ ein $\mathbb{Z}$-Kettenkomplex ud $C_*'$ ein $R$-Kettenkomplex. Gilt dann
+	\[
+		H_* \enbrace*{V \otimes_\mathbb{Z} C_*} \cong V \otimes _\mathbb{Z} H_*(C_*) \qquad H_* \enbrace*{V' \otimes_R C_*'} \cong V' \otimes_R H_*(C_*)
+	\]
+	und wie sieht es hiermit aus:
+	\[
+		H^* \enbrace[\big]{\Hom_\mathbb{Z}(C_*,V)} \cong \Hom_\mathbb{Z} \enbrace[\big]{H_*(C_*),V} \qquad H^*\enbrace[\big]{\Hom_R(C_*',W)} \cong \Hom_R \enbrace[\big]{H_*(C_*'),W}
+	\]
+\end{frage}
+
+\begin{konvention}[{name=[Links- und Rechtsmoduln]}]
+	Moduln sind -- wie gewohnt -- immer Linksmoduln, außer wir sprechen explizit von Rechtsmoduln
+\end{konvention}
+
+\begin{definition}[{name=[{lineare und exakte Funktoren}]}]
+	Seien $R$ und $S$ Ringe.
+	Ein Funktor $F\colon \Mod{R} \to \Mod{S}$ heißt \bet{$\mathbb{Z}$-linear}\index{Funktor!$\mathbb{Z}$-linearer}, wenn für $f,g \colon M \to M'$ gilt $F(f + g)= F(f) + F(g)$.
+	
+	Ein solcher Funktor heißt \bet{exakt}\index{Funktor!exakter}, wenn er kurze exakte Folgen von $R$-Moduln auf kurze exakte Folgen von $S$-Moduln abbildet.
+\end{definition}
+
+\begin{bemerkung}[{name=[exakte Funktoren und (Ko-)Homologie]}]
+	Sei $C_*$ ein $R$-Kettenkomplex.
+	Ist $F \colon \Mod{R} \to \Mod{S}$ exakt, so gilt
+	\[
+		\begin{array}{ll}
+			H_* \enbrace[\big]{F(C_*)} = F_* \enbrace[\big]{H_*(C_*)} & \text{ falls $F$ kovariant ist} \\
+			H^* \enbrace[\big]{F(C_*)} = F \enbrace[\big]{H_*(C_*)} & \text{ falls $F$ kontravariant ist} 
+		\end{array}
+	\]
+\end{bemerkung}
+
+\begin{beispiel}
+	\begin{enumerate}[(i)]
+		\item Sei $V$ ein $R$-Rechtsmodul.
+		Dann erhalten wir einen $\mathbb{Z}$-linearen Funktor 
+		\[
+			V \otimes_R \colon \Mod{R} \to \Mod{\mathbb{Z}}
+		\]
+		\item Sei $W$ ein $R$-Modul. 
+		Dann erhalten wir einen $\mathbb{Z}$-linearen Funktor 
+		\[
+			\Hom_R(-,W) \colon \Mod{R} \to \Mod{\mathbb{Z}}
+		\]
+		\item Für $R=\mathbb{Z}$ und $V= \sfrac{\mathbb{Z}}{2 \mathbb{Z}}$ sind weder $\sfrac{\mathbb{Z}}{2 \mathbb{Z}} \otimes $ noch $\Hom_\mathbb{Z} \enbrace*{-, \sfrac{\mathbb{Z}}{2 \mathbb{Z}}}$ exakt:
+		\[
+			\begin{tikzcd}
+				0 \rar & \mathbb{Z} \rar["\cdot 2"] & \mathbb{Z} \rar & \sfrac{\mathbb{Z}}{2 \mathbb{Z}} \rar & 0
+			\end{tikzcd}
+		\]
+		wird nach Tensorieren zu 
+		\[
+			\begin{tikzcd}
+				\sfrac{\mathbb{Z}}{2 \mathbb{Z}} \rar["0"] & \sfrac{\mathbb{Z}}{2 \mathbb{Z}} \rar["\cong"] & \sfrac{\mathbb{Z}}{2 \mathbb{Z}} \rar & 0
+			\end{tikzcd}
+		\]
+		und nach Anwenden von $\Hom(-,\sfrac{\mathbb{Z}}{2 \mathbb{Z}})$ zu
+		\[
+			\begin{tikzcd}
+				\sfrac{\mathbb{Z}}{2 \mathbb{Z}}  & \sfrac{\mathbb{Z}}{2 \mathbb{Z}} \lar["0"']  & \sfrac{\mathbb{Z}}{2 \mathbb{Z}}\lar["\cong"']  & 0 \lar
+			\end{tikzcd}
+		\]
+	\end{enumerate}
+\end{beispiel}
+
+\begin{lemma}
+	Sei $V$ ein $R$-Rechtsmodul und $W$ ein $R$-Modul.
+	Sei $\begin{tikzcd}[cramped,sep=small]
+		0 \rar& M \rar &M' \rar & M'' \rar & 0
+	\end{tikzcd}$ 
+	eine kurze exakte Folge von $R$-Moduln.
+	Dann sind folgende Sequenzen exakt:
+	\begin{enumerate}[(i)]
+		\item \( \begin{tikzcd}[cramped,sep=2.3em]
+					V \otimes_R M \rar & V \otimes_R M' \rar & V \otimes_R M'' \rar & 0
+				\end{tikzcd} \)
+		\item $\begin{tikzcd}[cramped,sep=1.8em]
+			\Hom_R(M,W)  & \Hom_R(M',W) \lar & \Hom_R(M'',W) \lar & 0 \lar
+		\end{tikzcd}$
+	\end{enumerate}
+\end{lemma}
+\begin{beweis}
+	\emph{Übungsaufgabe 2 von Blatt 5.}
+\end{beweis}
+
+\begin{lemma}
+	Sei $V$ ein $R$-Rechtsmodul, $W$ und $M$  $R$-Moduln.
+	Sei $\epsilon \colon P_* \to M$ eine projektive Auflösung.
+	Dann sind die (Ko)"=Kettenkomplexe $V \otimes_R P_*$ und $\Hom_R(P_*,W)$ bis auf (Ko)"=Kettenhomotopieäquivalenz unabhängig von der Wahl der Auflösung $P_*$ und es gilt
+	\[
+		H_0(V \otimes_R P_*) = V \otimes_R M \qquad \text{ und } \qquad H^0 \enbrace[\big]{\Hom_R(P_*,W)} = \Hom_R(M,W)
+	\]
+\end{lemma}
+
+\noindent\todo[inline]{Hier fehlt noch was \ldots insbesondere kann sich die Nummerierung noch ändern}
+
+\begin{definition}[{name=[Tor und Ext]}]
+	Wir setzen
+	\[
+		\Tor_n^R(V,M) := H_n(V \otimes_R P_*) \qquad \text{ und } \qquad \Ext_R^n(M,W) := H^n \enbrace*{\Hom_R(P_*,W)} 
+	\]
+\end{definition}
+
+\begin{bemerkung}[label=bem:tor_ext_koerper_hir]
+	Es gilt $\Tor_0^R(V,M) = V \otimes_R M$ und $\Ext_R^0(M,W)=\Hom_R(M,W)$.
+	Unter einigen zusätzlichen Annahmen, haben wir folgende einfache Schlussfolgerungen für $\Tor$ und $\Ext$:
+	\begin{enumerate}[(i)]
+		\item Ist $M$ projektiv, so ist $\Tor_n^R(V,M)=0$ und $\Ext_R^n(M,W)=0$ für $n>0$.
+		\item Ist $K$ ein Körper, so ist $\Tor_n^K(V,M)=0$ und $\Ext_K^n(M,W)=0$ für $n>0$.
+		\item Ist $R$ ein Hauptidealring, so ist $\Tor_n^R(V,M)=0$ und $\Ext_R^n(M,W)=0$ für $n>1$.
+	\end{enumerate}
+	$\Tor^R_n$ und $\Ext_R^n$ sind Funktoren in $V,M$ für $\Tor$ (kovariant) und $M$ (kontravariant), $W$ (kovariant) für $\Ext$.
+\end{bemerkung}
+
+\todo[inline]{Verbindungsho\-momorphismen hinzufügen}
+\begin{satz}
+	Sei 
+	\(
+		\begin{tikzcd}[cramped,sep=small]
+			0 \rar & M \rar & M' \rar & M'' \rar & 0
+		\end{tikzcd}
+	\)
+	eine kurze exakte Folge von $R$-Moduln.
+	Dann gibt es lange exakte Folgen 
+	\begin{enumerate}[(i)]
+		\item \[
+			\begin{tikzcd}
+				\ldots \rar & \Tor^R_n(V,M) \rar & \Tor^R_n(V,M') \rar & \Tor_n^R(V,M'') & \\
+				&\Tor^R_{n-1}(V,M) \rar & \ldots \rar & \Tor_1^R(V,M'') \\
+				&V \otimes_R M \rar & V \otimes_R M' \rar & V \otimes_R M'' \rar & 0 
+			\end{tikzcd}
+		\]
+		\item \[
+			\begin{tikzcd}
+				\ldots & \Ext_R^n(M,W) \lar & \Ext^n_R(M',W) \lar & \Ext_R^n(M'',W) \lar \\
+				&\Ext_R^{n-1}(M,W) & \lar \ldots \\
+				&\Hom_R(M,W) & \Hom_R(M',W) \lar & \Hom_R(M'',W) \lar & 0 \lar
+			\end{tikzcd}
+		\]
+	\end{enumerate}
+\end{satz}
+\begin{beweis}
+	Wir können Auflösungen $(P_*,\epsilon)$, $(P_*',\epsilon')$ und $(P_*'',\epsilon'')$ von $M$, $M'$ und $M''$ wählen, sodass wir eine kurze exakte Folge
+	\(
+		\begin{tikzcd}[cramped,sep=small]
+			0 \rar & P_* \rar & P_*' \rar & P_*'' \rar & 0
+		\end{tikzcd}
+	\)
+	erhalten, für die folgendes Diagramm kommutiert: 
+	\[
+		\begin{tikzcd}
+			P_* \rar \dar["\epsilon"] & P_*' \dar["\epsilon'"] \rar & P_*'' \dar["\epsilon''"] \\
+			M \rar & M' \rar & M''
+		\end{tikzcd}
+	\]
+	Da $P_n''$ projektiv ist, spaltet 
+	\(
+		\begin{tikzcd}[cramped,sep=small]
+			0 \rar & P_n \rar & P_n' \rar & P_n'' \rar & 0
+		\end{tikzcd}
+	\)
+	für jedes $n$ und
+	\[
+		\begin{tikzcd}
+			0 \rar & V \otimes_R P_* \rar & V \otimes_R P_*' \rar & V \otimes_R P_*'' \rar &0
+		\end{tikzcd}
+	\]
+	sowie
+	\[
+		\begin{tikzcd}
+			0 & \Hom_R(P_*,W) \lar & \Hom_R(P_*',W) \lar & \Hom_R(P_*'',W) \lar & 0 \lar
+		\end{tikzcd}
+	\]
+	sind immer noch kurz exakt. 
+	Die lange exakte Folge in (i) und (ii) sind die zugehörigen langen exakten Folgen in Homologie bzw. Kohomologie.
+\end{beweis}
+
+\begin{bemerkung}
+	Es gibt natürliche Isomorphismen für $\Tor$:
+	\[
+		\bigoplus_{i \in I} \Tor_n^R(V_i,M) \cong \Tor_n^R \enbrace*{\bigoplus_{i \in I} V_i, M} \qquad \text{ und } \qquad 
+		\bigoplus_{i \in I} \Tor_n^R(V,M_i) \cong \Tor_n^R \enbrace*{V, \bigoplus_{i \in I} M} 
+	\]
+	und für $\Ext$:
+	\[
+		\Ext_R^n \enbrace*{\bigoplus_{i \in I} M,W} \cong \prod_{i \in I} \Ext_R^n(M_i,W) \qquad \text{ und } \qquad \Ext_R^n \enbrace*{M, \prod_{i \in I} W_i} \cong \prod_{i \in I} \Ext_R^n(M,W_i) 
+	\]
+\end{bemerkung}
+
+\begin{bemerkung}
+	Sei $R$ ein Hauptidealring. 
+	Seien $a,b \in R\setminus \set*{0}$ und $d$ ein größter gemeinsamer Teiler von $a$ und $b$.
+	Sei $M$ ein $R$-Modul.
+	Dann gilt 
+	\begin{multicols}{2}
+		\begin{enumerate}[(i)]
+			\item $\sfrac{R}{(a)} \otimes_R \sfrac{R}{(b)} \cong \sfrac{R}{(d)}$
+			\item $\Hom_R \enbrace*{\sfrac{R}{(a)},\sfrac{R}{(b)}} \cong \sfrac{R}{(d)}$
+			\item $\Tor_1^R \enbrace*{\sfrac{R}{(a)}, \sfrac{R}{(b)}} \cong \sfrac{R}{(d)}$
+			\item $\Ext^1_R \enbrace*{\sfrac{R}{(a)}, \sfrac{R}{(b)}} \cong \sfrac{R}{(d)}$
+			\item $M \otimes_R R \cong R \otimes_R M \cong M$
+			\item $\Hom_R(R,M) \cong M$
+			\item $\Tor^R_1(R,M) \cong \Tor_1^R(M,R)=0$
+			\item $\Ext^1_R(R,M) =0$
+			\item $\Hom_R \enbrace*{\sfrac{R}{(a)},R}=0$
+			\item $\Ext_R^1 \enbrace*{\sfrac{R}{(a)},R}=0$
+		\end{enumerate}
+	\end{multicols}
+\end{bemerkung}
+
+\begin{bemerkung}
+	Sei $(P_*,\epsilon)$ ein projektive Auflösung von $V$ durch projektive $R$-Rechtsmoduln.
+	Dann gilt 
+	\[
+		\Tor_n^R(V,M) \cong H_n(P_* \otimes M)
+	\]
+	Beweis kommt später noch.\todo{Referenz wenn soweit}
+\end{bemerkung}
+
+\begin{korollarB}
+	Für $R$ kommutativ gilt: $\Tor_n^R(V,M) \cong \Tor_n^R(M,V)$.
+\end{korollarB}
+
+\begin{definition}
+	Ein $R$-Modul $I$ heißt \bet{injektiv}\index{injektiver Modul}, falls es zu jedem $j \colon M \hookrightarrow N$ und $f \colon M \to I$ ein $\hat{f} \colon N \to I$ gibt mit $f = \hat{f} \circ j$, also
+	\[
+		\begin{tikzcd}
+			\mbox{ } & N \dlar[dashed,"\hat{f}"'] \\
+			I & M \lar["f"'] \uar["j"',hook]
+		\end{tikzcd}
+	\]
+\end{definition}
+
+\begin{bemerkung}
+	Jede kurze exakte Folge \(
+		\begin{tikzcd}[cramped,sep=small]
+			0 \rar & M \rar & M' \rar & M'' \rar & 0
+		\end{tikzcd}
+	\)
+	mit $M$ injektiv spaltet.
+\end{bemerkung}
+
+\begin{satz}[{name=[Existenz von injektiven Moduln]}]
+	Sei $M$ ein $R$-Modul.
+	Dann gibt es einen injektiven $R$-Modul $I$ mit einer injektiven Abbildung $M \hookrightarrow I$.
+\end{satz}
+
+\begin{definition}
+	Eine injektive Auflösung einer $R$-Moduls $M$ ist eine lange exakte Folge 
+	\[
+		\begin{tikzcd}
+			0 \rar & M \rar[hook] & I_0 \rar["\partial_0"] & I_1 \rar["\partial_1"] & \ldots 
+		\end{tikzcd}
+	\]
+	mit $I_i$ injektiv.
+\end{definition}
+
+\begin{korollarB}
+	Zu jedem $M$ gibt es eine injektive Auflösung.
+\end{korollarB}
+
+\begin{bemerkung}
+	Sei $(I_*,j)$ eine injektive Auflösung von $W$. 
+	Dann gilt
+	\[
+		\Ext_R^n(M,W) \cong H^n \enbrace*{\Hom_R(M,I_*)}
+	\]
+\end{bemerkung}
+\newpage
+% section 12 (end)
+
+\section{Das Tensorprodukt und $\Hom$ als Kettenkomplexe} % (fold)
+\label{sec:das_tensorprodukt_und_hom_als_kettenkomplexe}
+
+\todo[inline]{Revision 13}
+\begin{definition}
+	Sei $R$ ein Ring, $C_*$ ein Kettenkomplex von $R$-Rechtsmoduln und $D_*$ ein Kettenkomplex von $R$-Linksmoduln.
+	Dann definieren wir den $\mathbb{Z}$-Kettenkomplex $(C \otimes_R D)_*$ durch 
+	\[
+		(C \otimes_R D)_n := \bigoplus_{p+q=n} C_p \otimes_R D_q
+	\]
+	mit Randabbildung definiert durch
+	\(
+		\partial^{C \otimes D} (c \otimes d) := \partial^C(c) \otimes d + (-1)^{\abs*{c}} c \otimes \partial^D(d)
+	\).
+\end{definition}
+
+\begin{bemerkung}
+	\leavevmode
+	\begin{itemize}[itemsep=0pt]
+		\item Sind $C$ und $D$ $\mathbb{N}$-graduiert, so ist $C \otimes_R D$ auch $\mathbb{N}$-graduiert. 
+		\item Ist $R$ kommutativ, so ist $C \otimes_R D$ ein $R$-Kettenkomplex.
+	\end{itemize}
+\end{bemerkung}
+
+\begin{definition}
+	Sei $C_*$ ein $R$-Kettenkomplex und $\tilde{D}^*$ ein $R$-Kokettenkomplex.
+	Wir definieren den $\mathbb{Z}$-Kokettenkomplex $\Hom_R(C,\tilde{D})^*$ durch 
+	\[
+		\enbrace*{\Hom_R(C,\tilde{D})}^n := \bigoplus_{p+q=n} \Hom_R \enbrace*{C_p, \tilde{D}^q}
+	\]
+	und die Randabbildung durch
+	\(
+		\partial f = \partial^{\tilde{D}} \circ f - (-1)^{\abs*{f}} f \circ \partial^C
+	\).
+\end{definition}
+
+\begin{bemerkung}
+	\leavevmode
+	\begin{itemize}[itemsep=0pt]
+		\item Sind $C$ und $\tilde{D}$ $\mathbb{N}$-graduiert, so ist  $\Hom_R(C,\tilde{D})$ auch $\mathbb{N}$-graduiert.
+		\item Ist $R$ kommutativ, so ist $\Hom_R(C,\tilde{D})$ ein $R$-Kokettenkomplex.
+	\end{itemize}
+\end{bemerkung}
+
+\begin{lemma}[label=projaufl:iso:hom]
+	Sei $C_*$ ein $R$-Kettenkomplex ($\mathbb{N}$-graduiert), dessen Kettenmodule projektiv sind.
+	Sei $V$ ein $R$-Rechtsmodul und $(P_*,\epsilon)$ eine projektive Auflösung von $V$ durch $R$-Rechtsmoduln.
+	Dann induziert $\epsilon \otimes \id \colon P_* \otimes_R C_* \to V \otimes_R C_*$ einen Isomorphismus in Homologie.
+\end{lemma}
+\begin{beweis}
+	Sei $v \in (P \otimes C)_n$.
+	Dann schreiben wir $v=\sum_{i=0}^{n} v_i$ mit $v_i \in P_i \otimes C_{n-i}$
+	Die $v_i$ sind durch $v$ eindeutig bestimmt.
+	Es ist
+	\[
+		\partial^{P \otimes C}(v)= \sum_{i=0}^{n-1} \Underbracket{(-1)^i \id \otimes \partial^C(v_i) + (\partial^P \otimes \id)(v_{i+1})}{\in P_i \otimes C_{n-1-i}}
+	\]
+	die eindeutige Darstellung von $\partial^{P \otimes C}(v)$.
+	\begin{figure}[bt]
+		\centering{
+		\begin{tikzcd}[row sep=2.5em]
+			\vdots \dar & \vdots \dar & \vdots \dar & \vdots \dar \\
+			V \otimes C_2 \dar["\id \otimes \partial^C"'] & P_0 \otimes C_2 \lar["\epsilon \otimes \id"']\dar & P_1 \otimes C_2\lar\dar & P_2 \otimes C_2 \lar \dar & \cdots \lar\\
+			V \otimes C_1 \dar["\id \otimes \partial^C"'] & P_0 \otimes C_1 \lar["\epsilon \otimes \id"']\dar & P_1 \otimes C_1\lar\dar & P_2 \otimes C_1 \lar\dar & \cdots \lar\\
+			V \otimes C_0 & P_0 \otimes C_0 \lar["\epsilon \otimes \id"']& P_1 \otimes C_0\lar & P_2 \otimes C_0 \lar & \cdots \lar
+		\end{tikzcd}
+		\caption{Diagramm zum Beweis von \cref{projaufl:iso:hom}}\label{fig:tensor:ketten}
+		}
+	\end{figure}%
+	Insbesondere gilt: 
+	\begin{equation}
+		\partial^{P \otimes C}v =0 \iff (-1)^{i+1} (\id \otimes \partial^C)(v_i)= (\partial^P \otimes \id)(v_{i+1}) \label{eq:13:1}\tag{\#}
+	\end{equation}
+	Da die $C_i$ projektiv sind, ist $\otimes_R C_i$ exakt und für jedes $i$ ist 
+	\begin{equation}
+		\begin{tikzcd}[sep=large]
+			V \otimes_R C_i & P_0 \otimes_R C_i \lar["\epsilon \otimes \id"'] & P_1 \otimes C_i \lar["\partial^P \otimes \id"'] & \ldots \lar["\partial^P \otimes \id"']
+		\end{tikzcd}
+		\label{eq:13:2}\tag{\S}
+	\end{equation}
+	exakt.
+	Sei $x \in H_n(V \otimes C_*)$.
+	Sei $a \in V \otimes C_n$ mit $\id \otimes \partial^C(a)=0$ und $x=[a]$.
+	Wähle $v_0 \in P_0 \otimes C_n$ mit $\epsilon \otimes \id(v_0)=a$.
+	Behauptung: Es gibt $v_i \in P_i \otimes C_{n-i}$ mit 
+	\(
+		\partial^{P \otimes C} \enbrace[\big]{\sum_{i=0}^{n} v_i } = 0
+	\).
+	Wir beweisen dies per Induktion: Seien $v_0, \ldots ,v_j$ bereits konstruiert mit \eqref{eq:13:1} für $i<j$.
+	Dann ist $(\partial^P \otimes \id)(\id \otimes \partial^C)(v_j) = \pm \enbrace*{\partial^P \otimes \id} \enbrace*{\partial^P \otimes \id}(v_{j-1})=0$.
+	Wegen \eqref{eq:13:2} gibt es $v_{j+1} \in P_{j+1} \otimes C_{n-j-1}$ mit 
+	\[
+		\enbrace*{\partial^P \otimes \id}(v_{j+1}) = \enbrace*{\id \otimes \partial^C}(v_j)
+	\]
+	Damit ist die Behauptung bewiesen.
+	Es folgt $(\epsilon \otimes \id)_* \enbrace*{\benbrace*{\sum_{i=0} v_i}} = [a]$.
+	Daher ist $\enbrace*{\epsilon \otimes \id}_*$ surjektiv. 
+	Die Injektivität erhält man genauso.
+\end{beweis}
+
+\begin{lemma}
+	Sei $C_*$ ein $R$-Kettenkomplex ($\mathbb{N}$-graduiert), dessen Kettenmodule projektiv sind.
+	Sei $(I^*,j)$ eine injektive Auflösung des $R$-Moduls $W$.
+	Dann induziert $j$ einen Isomorphismus 
+	\[
+		H^*\enbrace*{\Hom_R(C_*,W)} \to H^* \enbrace*{\Hom_R(C_*,I^*)}
+	\]
+\end{lemma}
+
+\begin{bemerkung}
+	Für den Isomorphismus $H_*(P \otimes_R C_*) \to H_*(V \otimes_R C_*)$ war es wichtig, dass die Homologie von $\enbrace*{P_* \otimes C_i,\partial^P \otimes \id}$ in Grad $0$ konzentriert ist und damit genau $V \otimes C_i$ ist (dies entspricht den Spalten in \cref{fig:tensor:ketten}).
+	Umgekehrt ist die Homologie von $\enbrace*{P_p \otimes C_*, \id \otimes \partial^C}$ isomorph zu $P_p \otimes H_*(C_*)$.
+	Wir erhalten also Komplexe $\enbrace*{P_* \otimes H_n(C_*), \partial^P \otimes \id}$ deren Homologie genau $\Tor^R_* \enbrace*{V, H_n(C_*)}$ ist.
+	Dies stellt einen Zusammenhang zwischen $H_*(V \otimes C_*)$ und $\Tor_*^R \enbrace*{V, H_*(C_*)}$ her.
+\end{bemerkung}
+
+\begin{definition}[{name=[Doppelkomplex und Totalkomplex]}]
+	Ein \bet{$R$-Doppelkomplex}\index{Doppelkomplex} $C_{**}$ ist eine Folge von $R$-Moduln $C_{p,q}$ zusammen mit $R$-linearen Abbildungen $\partial^h \colon C_{p,q} \to C_{p-1,q}$ und $\partial^v \colon C_{p,q} \to C_{p,q-1}$, für die gelten:\marginnote{\emph{v}ertikal, \emph{h}orizontal}
+	\[
+		\partial^h \circ \partial^h =0 \qquad \partial^v \circ \partial^v=0 \qquad \partial^v \circ \partial^h + \partial^h \circ \partial^v =0
+	\]
+	Der \Index{Totalkomplex} von $\enbrace*{C_{*,*}, \partial^v,\partial^h}$ ist der Kettenkomplex $T(C_{**})$ mit $T(C_{**})_n := \bigoplus_{p+q=n} C_{p,q}$ und $\partial^T := \partial^v + \partial^h$.
+\end{definition}
+
+\begin{beispiel}[{name=[Tensorprodukt als Totalkomplex]}]
+	Das Tensorprodukt von Kettenkomplexen $C_*$ und $D_*$ ist der Totalkomplex eines Doppelkomplexes, dessen $(p,q)$-ter Modul $C_p \otimes_R D_q$ ist mit $\partial^v = \partial^C \otimes \id$, $\partial^h = \pm \id \otimes \partial^D$.
+\end{beispiel}
+
+\begin{definition}[{name=[Filtrierung]}]
+	Sei $C_*$ ein Kettenkomplex. Eine \Index{Filtrierung} auf $C_*$ ist eine Folge 
+	\[
+		0 = F_0 C_* \subseteq F_1 C_*  \subseteq F_2 C_* \subseteq \ldots \subseteq F_n C_* \subseteq \ldots \subseteq C_*
+	\] 
+	von  Unterkettenkomplexen mit $\bigcup_{p} F_p C_* = C_*$.
+\end{definition}
+
+\begin{beispiel}[{name=[Filtrierungen]}]
+	\leavevmode
+	\begin{itemize}
+		\item Ist $X$ ein CW-Komplex, so erhalten wir eine Filtrierung auf dem singulären Kettenkomplex mit $F_p \enbrace*{C^\sing_*(X;R)} := C_*^\sing \enbrace*{X^\ssbrace{p};R}$.
+		\item Sei $C_{**}$ ein Doppelkomplex. 
+		Dann erhalten wir zwei Filtrierungen $F^v$ und $F^h$ auf $T(C_{**})$ mit 
+		\[
+			F^v_p \enbrace[\big]{T(C_{**})} = T \enbrace[\big]{C_{*\le p,*}} \qquad F^h_p \enbrace[\big]{T(C_{**})} := T \enbrace[\big]{C_{*,*\le p}}
+		\]
+	\end{itemize}
+\end{beispiel}
+
+\begin{bemerkung}
+	Sei $(C_{**},\partial^v,\partial^h)$ ein Doppelkomplex.
+	Sei $E^0_{**}= C_{**}$.
+	$\partial^v$ ist eine Randabbildung auf jedem $C_{p*}$.
+	Wir setzen $E^1_{p*} := H_*\enbrace*{E^0_{p*},\partial^v}$.
+	$\partial^h$ induziert eine Randabbildung $\overline{\partial^h}$ auf jedem $E^1_{*q}$. Wir setzen also
+	\[
+		E^2_{*,q} := H_* \enbrace*{E^1_{*,q},\overline{\partial^h}}
+	\]
+	Wir erhalten weitere Randabbildungen $d^2_{p,q} \colon E^2_{p,q} \to E^2_{p-2,q+1}$ wie folgt: Sei $z \in E^2_{p,q}$, also $z=[x]$ mit $x \in E^0_{p,q}$ und 
+	\begin{enumerate}[(i),itemsep=0pt]
+		\item $\partial^v x =0$
+		\item Es existiert ein $x' \in E^0_{p-1,q+1}$ mit $\partial^v x' = \partial^h x$
+	\end{enumerate}
+	Setze nun $d^2_{p,q}(z) := \benbrace*{\partial^h x'} \in E^2_{p-2,q+1}$.
+\end{bemerkung}
+\newpage
+% section das_tensorprodukt_und_hom_als_kettenkomplexe (end)
+
+\section{Spektralfolgen} % (fold)
+\label{sec:14}
+\todo[inline]{Revision 14}
+\begin{definition}[{name=[homologische Spektralfolge]}]
+	Eine \Index{homologische Spektralfolge} (im 1ten Quadranten) von $R$-Moduln besteht aus folgenden Daten:
+	\begin{enumerate}[1.]
+		\item Eine Folge von $R$-Moduln $E^r_{p,q}$ für $r,p,q\ge 0$
+		\item $R$-lineare Abbildungen $d^r_{p,q} \colon E_{p,q}^r \to E^r_{p-r,q+r-1}$ mit $d^r_{p-r,q+r-1} \circ d^r_{p,q}=0$
+		\item Isomorphismen zwischen $E^{r+1}_{p,q}$ und der Homologie von $E^r_{*,*}$ bezüglich $d^r_{*,*}$, genauer:
+		\[
+			E^{r+1}_{p,q} \cong \frac{\ker d^r_{p,q} \colon E^r_{p,q} \to E^r_{p-r,q+r-1}}{\im d^r_{p+r,q-r+1} \colon E^r_{p+r,q-r+1} \to E^r_{p,q}}
+		\]
+		$E^r_{*,*}$ heißt die \bet{$r$-Seite}\index{Spektralfolge!Seite} der Spektralfolge.
+	\end{enumerate}
+\end{definition}
+
+\begin{bemerkung}
+	\leavevmode
+	\begin{itemize}
+		\item Spektralfolgen bilden eine Kategorie, in der ein Morphismen 
+		\[
+			f = \enbrace*{f^r_{p,q}} \colon \enbrace*{E^r_{p,q},d^r_{p,q}} \longrightarrow \enbrace*{{E'}^r_{p,q},{d'}^r_{p,q}}
+		\]
+		aus einer Folge von $R$-linearen Abbildungen $f^r_{p,q} \colon E^r_{p,q} \to {E'}^r_{p,q}$ besteht, sodass $d^r_{p,q} \circ f^r_{p,q} = f^r_{p-r,q+r-1} \circ d^r_{p,q}$ und $f^{r+1}_{p,q} = H_* \enbrace*{f^r_{p,q}}$ für alle $r,p,q\ge 0$.
+		\item Für $r > \max{p,q+1}$ sind $d^r_{p,q}$ und $d^r_{p+r,q-r+1}$ trivial und daher gilt 
+		\[
+			E^r_{p,q} \cong E^{r+1}_{p,q} \cong E^{r+2}_{p,q} \cong \ldots
+		\]
+		Wir schreiben oft $E^\infty_{p,q}$ für diesen stabilen Wert von $E^r_{p,q}$.
+	\end{itemize}
+\end{bemerkung}
+
+\begin{definition}[{name=[konvergente Spektralfolge]}]
+	Wir sagen eine Spektralfolge $\enbrace*{R^r_{p,q},d^r_{p,q}}$ \bet{konvergiert}\index{Spektralfolge!konvergente} gegen den graduierten $R$-Modul $A_*$, falls es eine Filtrierung $F_s A_*$ von $A_*$ gibt mit
+	\[
+		0 = F_{-1}A_n \subseteq F_0 A_n \subseteq \ldots \subseteq F_n A_n = A_n
+	\]
+	und $E^\infty_{p,q} \cong \sfrac{F_p A_{p+q}}{F_{p-1}A_{p+q}}$.
+	Kurz schreiben wir $E_{p,q}^r \Rightarrow A_{p+q}$ (oder $E^2_{p,q}\Rightarrow A_{p+q}$).
+\end{definition}
+
+\begin{satz}[{name={Abbildungslemma}},label=abb.lemma]
+	Sei $f \colon E^r_{p,q} \to {E'}^r_{p,q}$ eine Abbildung von Spektralfolgen. 
+	Gibt es $r_0$, sodass $f^{r_0}_{p,q}$ für alle $p,q \ge 0$ ein Isomorphismus ist, so ist $f^r_{p,q}$ für alle $r\ge r_0$ ein Isomorphismus.
+	Insbesondere ist $f^\infty_{p,q} \colon E^\infty_{p,q} \to {E'}^\infty_{p,q}$ ein Isomorphismus.
+\end{satz}
+\begin{beweis}
+	Folgt direkt aus der Definition.
+\end{beweis}
+
+\begin{bemerkung}[{name=[kollabierende Spektralfolge]}]
+	Eine Spektralfolge \bet{kollabiert}\index{Spektralfolge!kollabierende} bei $E^r$, falls es auf der $r$-Seite $E^r_{p,q}$ genau eine Spalte $E^r_{p_0,*}$ oder eine Zeile $E^r_{*,q_0}$ gibt, sodass alle Moduln $E^r_{p,q}$ außerhalb dieser Spalte bzw. Zeile trivial sind.
+	Gilt $E^r_{p,q}\Rightarrow A_{p+q}$, so folgt 
+	\[
+		A_n \cong E^r_{p_0,n-p_0} \quad \text{ bzw. } \quad A_n \cong E^r_{n-q_0,q_0}
+	\]
+\end{bemerkung}
+
+\begin{lemma}
+	Sei $E^r_{p,q}$ eine Spektralfolge, die gegen $A_n$ konvergiert. 
+	\begin{enumerate}[(i)]
+		\item Angenommen $E^2_{p,q}=0$ für $p\ge 2$ (Zwei Spalten).
+		Dann gibt es eine kurze exakte Folge 
+		\[
+			\begin{tikzcd}
+				0 \rar & E^2_{0,n} \rar & A_n \rar & E^2_{1,n-1} \rar & 0
+			\end{tikzcd}
+		\]
+		\item Angenommen $E^2_{p,q}=0$ für $g \ge 2$ (Zwei Zeilen). Dann gibt es eine lange exakte Folge
+		\[
+			\begin{tikzcd}
+				\ldots \rar & A_{p+1} \rar & E^2_{p+1,0} \rar["d^2_{p+1,0}"] & E^2_{p-1,1} \rar & A_p \rar & E^2_{p,0} \rar & \ldots 
+			\end{tikzcd}
+		\] 
+	\end{enumerate}
+\end{lemma}
+\begin{beweis}
+	Sei $F_s A_n \subseteq A_n$ die zur Konvergenz gehörige Filtrierung. 
+	Dann ist $\sfrac{F_n A_n}{F_{n-1 A_n}} \cong E^\infty_{n,0} \cong E^2_{n,0}$, $\sfrac{F_{n-1} A_n}{F_{n-2} A_n} \cong E^\infty_{n-1,1} \cong E^2_{n-1,1}$ und 
+	$\sfrac{F_{n-2 A_n}}{F_{n-3}A_n} \cong  \sfrac{F_{n-3} A_n}{F_{n-4} A_n} \cong \ldots \cong 0$.
+	Insbesondere ist $0 = F_{-1} A_n = \ldots = F_{n-2}A-n \subseteq F_{n-1} A_n \subseteq A_n$.
+	Damit ergibt sich
+	\[
+		\begin{tikzcd}[row sep=5pt]
+			0 \rar & F_{n-1} A_n \rar \dar[phantom,"\cong", sloped] & F_n A_n \rar\dar[phantom,"\cong", sloped] & \sfrac{F_n A_n}{F_{n-1} A_n} \rar\dar[phantom,"\cong", sloped] &0  \\
+			& E^2_{n-1,1} & A_n & E_{n,0}^2
+		\end{tikzcd}
+	\]
+	(ii) verbleibt als Übung.
+\end{beweis}
+
+\begin{satz}[name={Vergleichssatz}]
+	Sei $f \colon E^r_{p,q} \to {E'}^r_{p,q}$ eine Abbildung von Spektralfolgen.
+	Seien $E^2_{p,q} \Rightarrow A_{p+q}$ und ${E'}^2_{p,q} \Rightarrow A'_{p,q}$ mit zugehörigen Filtrierungen $F_s A_n \subseteq A_n$ und $F_s' A'_n \subseteq A'_n$.
+	Sei $H \colon A_n \to A_n'$ mit $h \enbrace*{F_s A_n} \subseteq F_s' A'_n$.
+	Angenommen $f \colon E^\infty_{p,q} \to {E'}^\infty_{p,q}$ stimmt mit der von $h$ induzierten Abbildung 
+	\[
+		\begin{tikzcd}[row sep=small]
+			\sfrac{F_p A_{p+q}}{F_{p-1} A_p+q} \rar["h"] \dar[phantom,"\cong", sloped] &\sfrac{F'_p A'_{p+q}}{F'_{p-1} A'_{p+q}} \dar[phantom,"\cong", sloped] \\
+			E^\infty_{p,q} \rar["f"] & {E'}^\infty_{p,q}
+		\end{tikzcd}
+	\]
+	überein. Gibt es ein $r_0$ mit $f^{r_0}_{p,q} \colon E^{r_0}_{p,q} \to {E'}^{r_0}_{p,q}$ ist ein Isomorphismus für alle $p,q$, so ist auch $h \colon A_n \to A'_n$ ein Isomorphismus.
+\end{satz}
+\begin{beweis}
+	Das \hyperref[abb.lemma]{Abbildungslemma} impliziert, dass auch $f \colon E^\infty_{p,q} \to {E'}^\infty_{p,q}$ ein Isomorphismus ist.
+	Folglich induziert $h$ Isomorphismen $\sfrac{F_p A_{p+q}}{F_{p-1}A_{p+q}} \to \sfrac{F'_p A'_{p+q}}{F'_{p-1} A'_{p+q}}$.
+	Nun benutzen wir
+	\[
+		\begin{tikzcd}
+			0 \rar & F_s A_n \rar \dar & F_{s+1} A_n \rar \dar & \sfrac{F_{s+1} A_n}{F_s A_n} \rar \dar & 0 \\
+			0 \rar & F'_s A'_n \rar  & F'_{s+1} A'_n \rar & \sfrac{F'_{s+1} A'_n}{F'_s A'_n} \rar  & 0 
+		\end{tikzcd}
+	\]
+	um per Induktion über $s=-1,0,1,2, \ldots ,n$ zu zeigen, dass $h\big|_{F_s A_n} \colon F_s A_n \to F'_s A'_n$ ein Isomorphismus ist.
+\end{beweis}
+
+\begin{definition}[{name=[kohomologische Spektralfolge]}]
+	Eine \Index{kohomologische Spektralfolge} (im 1. Quadranten) von $R$-Moduln besteht aus folgenden Daten:
+	\begin{enumerate}[1.]
+		\item Einer Folge von $R$-Moduln $E^{p,q}_r$ für $r,p,q\ge0$, 
+		\item $R$-linearen Abbildungen $d^{p,q}_r \colon E^{p,q}_r \to E_r^{p+r,q-r+1}$ mit $d^{p+r,q-r+1}_r \circ d^{p,q}_r =0$ und
+		\item Isomorphismen zwischen $E^{p,q}_r$ und der Kohomologie von $E_r^{*,*}$ bezüglich $d_r^{*,*}$, also 
+		\[
+			E^{p,q}_r \cong \frac{\ker d_r^{p,q}}{\im d^{p-r,q+r-1}_r} 
+		\]
+	\end{enumerate}
+\end{definition}
+\newpage
+% section 14 (end)
+
+\section{Die Spektralfolge zu einem filtrierten Kettenkomplex} % (fold)
+\label{sec:15}
+
+\todo[inline]{Revision 15}
+\begin{satz}
+	Sei $C_*$ ein Kettenkomplex mit einer Filtrierung von Kettenkomplexen $F_s C_* \subseteq C_*$, sodass
+	\[
+		0 = F_{-1}C_n \subseteq F_0 C_n \subseteq \ldots \subseteq F_n C_n = C_n
+	\]
+	Dann bestimmt die Filtrierung eine Spektralfolge $\enbrace*{E^r_{p,q},d^r_{p,q}}$ mit $E_{p,q}^0 = \sfrac{F_p C_{p+q}}{F_{p-1} C_{p+q}}$ und $E^2_{p,q} \Rightarrow H_{p+q}(C_*)$.
+\end{satz}
+
+Wir erhalten folgende Kette von $R$-Moduln zwischen $F_{p-q} C_n \subseteq F_p C_n$:\todo{eventuell könnte man die $C$s weglassen, um das ganze übersichtlicher zu machen}
+\begin{align}
+	F_{p-1} C_n \subseteq d \enbrace*{F_0 C_{n+1}} \cap F_p C_n + F_{p-1} C_n &\subseteq d \enbrace*{F_1 C_{n+1}}\cap F_p C_n + F_{p-1} C_n \\
+	&\subseteq \ldots \\
+	&\subseteq \Underbracket{d \enbrace*{F_{n+1} C_{n+1}}}{=\im d} \cap F_p C_n + F_{p-1} C_n \\
+	&\subseteq \Underbracket{d^{-1} \enbrace*{F_{-1} C_{n-1}}}{=\ker d} \cap F_p C_n + F_{p-1} C_n \\
+	&\subseteq d^{-1}\enbrace*{F_0 C_{n-1}}\cap F_p C_n + F_{p-1} C_n \\
+	&\subseteq \ldots  \\
+	&\subseteq d^{-1} \enbrace*{F_{n-2}C_{n-1}} \cap F_p C_n + F_{p-1} C_n \subseteq F_p C_n
+\end{align}
+Wir setzen 
+\[
+	E^r_{p,q} := \frac{d^{-1}\enbrace*{F_{p-r} C_{p+q-1}} \cap F_p C_{p+q} + F_{p-1}C_{p+q}}{d \enbrace*{F_{p+r-1} C_{p+q+1}} \cap F_p C_{p+q} + F_{p-1} C_{p+q}}
+	%\subseteq \sfrac{F_p C_{p+q}}{F_{p-1} C_{p+q}} 
+\]
+Die Filtrierung $F_s C_*$ auf $C_*$ induziert eine Filtrierung auf $H_n(C_*)$ mit 
+\[
+	F_s H_n(C_*) := \im \enbrace*{H_n(F_s C_*) \to H_n(C_*)}
+\]
+
+\begin{lemma}
+	Für $r>p,q+1$ ist $E^r_{p,q} \cong E^{r+1}_{p,q} \cong \ldots \cong \sfrac{F_p H_{p+q}(C_*)}{F_{p-1} H_{p+q}(C_*)}$.
+\end{lemma}
+\begin{beweis}
+	Für $r>p,q+1$ ist $E^r_{p,q} = \frac{\ker d \cap F_p C_{p+q} + F_{p-1}C_{p+q}}{\im d \cap F_p C_{p+q} + F_{p-1} C_{p+q}}$.
+	Es ist $F_p H_{p+q}(C_*) = \frac{\ker d \cap F_p C_{p+q}}{\im d  \cap F_p C_{p+q}}$ und es folgt
+	\[
+		\frac{F_p H_{p+q}(C_*)}{F_{p-1} H_{p+q}(C_*)} \cong \frac{\ker d \cap F_p C_{p+q}}{ \im d \cap F_p C_{p+q} + \ker d \cap F_{p-1}C_{p+q}} 
+	\]
+	Es ist weiter $\ker d \cap F_p C_{p+q} \subseteq \ker d \cap F_p C_{p+q} + F_{p-1} C_{p+q}$ und somit erhalten wir 
+	\[
+		\ker d \cap F_p C_{p+q} \longrightarrow \frac{\ker d \cap F_p C_{p+q} + F_{p-1}C_{p+q}}{\im d \cap F_p C_{p+q} + F_{p-1} C_{p+q}}
+	\]
+	Diese Abbildung ist surjektiv und ihr Kern ist $\enbrace*{\ker d \cap F_p C_{p+q}} \cap \enbrace*{\im d \cap F_p C_{p+q} + F_{p-1} C_{p+q}}$.
+	Wir müssen jetzt nur noch zeigen, dass 
+	\[
+		\im d \cap F_p C_{p+q} + \ker d \cap F_{p-1}C_{p+q}=\enbrace*{\ker d \cap F_p C_{p+q}} \cap \enbrace*{\im d \cap F_p C_{p+q} + F_{p-1} C_{p+q}}
+	\]
+	% dies dasselbe ist wie $\im d \cap F_p C_{p+q} + \ker d \cap F_{p-1}C_{p+q}$.
+	% Dies ist dasselbe wie $\im d \cap F_p C_{p+q} + \ker d \cap F_{p-1}C_{p+q}$ und es folgt.
+	Die Inklusion \enquote{$\subset$} ist dabei sofort klar. Für die umgekehrte sei $x$ in der rechten Menge.
+	Dann ist $x=x' + x''$ mit $x' \in \im d \cap F_p C_{p+q}$, $x'' \in F_{p-1} C_{p+q}$ und $x \in \ker d \cap F_p C_{p+q}$.
+	Es folgt $x''=x-x' \in \ker d \cap F_{p-1} C_{p+q}$ und somit ist $x$ auch in der linken Menge enthalten.
+\end{beweis}
+
+Wir definieren nun die Randabbildung 
+\[
+	\begin{tikzcd}[row sep=7pt]
+		E^r_{p,q} \rar["d^r"] \dar[equal]& E^r_{p-r,q+r-1} \dar[equal] \\
+		\frac{d^{-1} \enbrace*{F_{p-r}C_{p+q-1}} \cap F_p C_{p+q}+ F_{p-1}C_{p+q}}{d \enbrace*{F_{p+r-1}C_{p+q+1} }\cap F_p C_{p+q} + F_{p-1 C_{p+q}}} & 
+		\frac{d^{-1} \enbrace*{F_{p-2r}C_{p+q-2}} \cap F_{p-r} C_{p+q-1} + F_{p-r-1}C_{p+q-1}}{d \enbrace*{F_{p-1} C_{p+q}} \cap F_{p-r} C_{p+q-1} + F_{p-r-1} C_{p+q-1} }
+	\end{tikzcd}
+\]
+% \[
+% 	d^r \colon E^r_{p,q} =\frac{d^{-1} \enbrace*{F_{p-r}C_{p+q-1}} \cap F_p C_{p+q}+ F_{p-1}C_{p+q}}{d \enbrace*{F_{p+r-1}C_{p+q+1} }\cap F_p C_{p+q} + F_{p-1 C_{p+q}}}
+% 	\longrightarrow E^r_{p-r,q+r-1} = \frac{d^{-1} \enbrace*{F_{p-2r}C_{p+q-2}} \cap F_{p-r} C_{p+q-1} + F_{p-r-1}C_{p+q-1}}{d \enbrace*{F_{p-1} C_{p+q}} \cap F_{p-r} C_{p+q-1} + F_{p-r-1} C_{p+q-1} }
+% \]
+wie folgt: Sie $x \in E^r_{p,q}$. 
+Wähle $a \in d^{-1} \enbrace*{F_{p-r}C_{p+q-1}} \cap F_p C_{p+q}$ mit $\benbrace*{a}= x$.
+Dann gilt
+\[
+	d(a) \in F_{p-r} C_{p+q-1} \cap \ker d \subseteq d^{-1} \enbrace*{F_{p-2r}C_{p+q-2}} \cap F_{p-r} C_{p+q-1}
+\]
+Wir setzen $d^r x := \benbrace*{d a} \in E^r_{p-r,q+r-1}$. 
+Wir müssen zeigen, dass dies unabhängig von der Wahl von $a$ ist.
+Sei $b \in d^{-1} \enbrace*{F_{p-r}C_{p+q-1}} \cap F_p C_{p+q}$ mit $[a]=[b] \in E^r_{p,q}$, also $a-b \in d \enbrace*{F_{p+r-1} C_{p+q+1}} \cap F_p C_{p+q} + F_{p-1} C_{p+q}$.
+Das heißt $a-b = dc + c'$ mit $c \in F_{p+r-1} C_{p+q+1}$, $c' \in F_{p-1} C_{p+q}$ und $d c \in F_p C_{p+q}$.
+Dann $d(a-b) = d c' \in d(F_{p-1} C_{p+q})$, da $da -db \in F_{p-r} C_{p+q-1}$.
+Es folgt $d(a-b) = dc' \in d \enbrace*{F_{p-1} C_{p+q}} \cap F_{p-r} C_{p+q-1}$.
+
+\begin{lemma}
+	Es gilt
+	\[
+		E^{r+1}_{p,q} \cong \frac{\ker d^r_{p,q} \colon E^r_{p,q} \to E^r_{p-r,w+r-1}}{\im d^r_{p+r,q-r+1} \colon E^r_{p+r,q-r+1} \to E^r_{p,q}} 
+	\]
+\end{lemma}
+\begin{beweis}
+	Sei $x \in \ker d^r_{p,q}$, also $x=[a]$ mit $a \in d^{-1} \enbrace*{F_{p-r} C_{p+q-1}} \cap F_p C_{p+q}$ und $d a \in d \enbrace*{F_{p-1} C_{p+q}}\cap F_{p-r}C_{p+q-1} + F_{p-r-1} C_{p+q-1}$.
+	Sei $da = dx + c'$ mit $c \in F_{p-1}C_{p+q}$, $d c \in  F_{p-r} C_{p+q-1}$ und $c' \in F_{p-r-1} C_{p+q-1}$.
+	Dann $\tilde{a} := a-c \in d^{-1} \enbrace*{F_{p-r} C_{p+q-1}} \cap F_p C_{p+q}$ und $a-\tilde{a}=c \in F_{p-1} C_{p+q}$, insbesondere $[a]=\benbrace*{\tilde{a}} \in E^r_{p,q}$ mit $\tilde{a} \in d^{-1}(F_{p-r} C_{p+q-1}) \cap F_p C_{p+q}$ und $d \tilde{a} = da - dx = c' \in F_{p-r-1} C_{p+q-1}$.
+	Wir erhalten $y := \benbrace*{\tilde{a}} \in E^{r+1}_{p,q}$.
+
+	Behauptung: $x \mapsto y$ ist wohldefiniert und liefert den gesuchten Isomorphismus.
+	Sei also $\tilde{b} \in d^{-1}\enbrace*{F_{p-r-1}C_{p+q-1}}\cap F_pC_{p+q}$ mit $x=\benbrace*{\tilde{a}}=\benbrace*{\tilde{b}}$\todo{darauf soll $x$ doch abgebildet werden \ldots }
+	Also 
+	\[
+		\tilde{a}- \tilde{b} \in d \enbrace*{F_{p+r-1} C_{p+q+1}}\cap F_p C_{p+q} + F_{p-1} C_{p+q} \subseteq d \enbrace*{F_{p+r} C_{p+q-1}}\cap F_p C_{p+q} + F_{p-1} C_{p+q}
+	\]
+	Damit ist $\benbrace*{\tilde{a}} = \benbrace*{\tilde{b}} \in E^{r+1}_{p,q}$.
+	Damit ist die Abbildung -- ohne den Quotienten -- wohldefiniert.
+	
+	Sei nun $x \in \im d^r_{p+r,q-r+1}$, also $x= d^r z$ mit $z \in E^r{p+r,q-r+1}$.
+	Sei $z=\benbrace*{b}$ mit $b \in d^{-1} \enbrace*{F_p C_{p+q}} \cap F_{p+r} C_{p+q+1}$.
+	Dann ist $x = d^r z = \benbrace*{d b} \in E^r_{p,q}$.
+	Es ist $d^2(d b) =0$ und $d b \in F_p C_{p+q}$, da $b \in d^{-1}(F_p C_{p+q})$, also $db \in d^{-1} \enbrace*{F_{p-r-1} C_{p+q-1}} \cap F_p C_{p+q}$.
+	Also $x \mapsto \benbrace*{db} \in E^{r+1}_{p,q}$ unter der eben definierten Abbildung.
+	Zu zeigen: $db \in D \enbrace*{F_{p+r} C_{p+q+1}}\cap F_p C_{p+q} + F_{p-1} C_{p+q}$.
+	Da $b \in F_{p+r} C_{p+q+1}$ folgt $db \in d \enbrace*{F_{p+r} C_{p+q+1}}$ und da $b \in d^{-1}(F_p C_{p+q})$ folgt $db \in F_p C_{p+q}$.
+	Damit ist die Abbildung insgesamt wohldefiniert.
+	
+	Zur Injektivität: Sei $x= \benbrace*{\tilde{a}} \in \ker d^r$, also $\tilde{a} \in d^{-1} \enbrace*{F_{p-r-1} C_{p+q-1}} \cap F_p C_{p+q}$ mit $\benbrace*{\tilde{a}}=0 \in E^{r+1}_{p,q}$, also $\tilde{a} \in d \enbrace*{F_{p+r} C_{p+q+1}} \cap F_p C_{p+q} + F_{p-1} C_{p+q}$.
+	Seien $c \in F_{p+r}C_{p+q+1}$, $c' \in F_{p-1}C_{p+q}$ mit $d c \in F_{p} C_{p+q}$ und $\tilde{a} = d c + c'$.
+	Also $x= \benbrace*{\tilde{a}}= \benbrace*{d c}$.
+	Da $x \in d^{-1} \enbrace*{F_p C_{p+q}} \cap F_{p+r} C_{p+q+1}$, ist dann $\benbrace*{d c}=d^r([c])$. 
+	Also ist $x \in \im d^r_{p+r,q-r+1}$.
+	
+	Zur Surjektivität: Sei $y \in E^{r+1}_{p,q}$ und $\tilde{a} \in d^{-1} \enbrace*{F_{p-r-1} C_{p+q-1}}\cap F_p C_{p+q}$ mit $y = \benbrace*{\tilde{a}} \in E^{r+1}_{p,q}$.
+	Dann ist auch $\tilde{a} \in d^{-1} \enbrace*{F_{p-r} C_{p+q-1}} \cap F_p C_{p+q}$ und $x := \benbrace*{\tilde{a}} \in E^r_{p,q}$ ist ein Urbild für $y$ unter der Abbildung.
+	Es bleibt zu zeigen, dass $x =\benbrace*{\tilde{a}} \in E^r_{p,q}$ im Kern von $d^r_{p,q}$ liegt:
+	\[
+		d^r_{p,q} x = \benbrace*{d \tilde{a}} \in E^r_{p-r,q+r-1}
+	\]
+	Zu zeigen: $\benbrace*{d \tilde{a}} =0 \in E^r_{p-r,q+r-1}$, also $d \tilde{a} \in d \enbrace*{F_{p-r} C_{p+q}} \cap F_{p-r} C_{p+q-1} + F_{p-r-1} C_{p+q-1}$.
+	Da $\tilde{a} \in d^{-1} \enbrace*{F_{p-r-1} C_{p+q-1}}\cap F_p C_{p+q} \subseteq d^{-1} F_{p-r-1} C_{p+q-1}$ ist $d\tilde{a} \in F_{p-r-1} C_{p+q-1}$. 
+\end{beweis}
+
+\begin{proposition}
+	Sei $(C_{*,*},d^v,d^h)$ ein Doppelkomplex.
+	Seien nun $F^v_s T(C_{*,*}) := T \enbrace*{C_{*\le s,*}}$ und $F^h_s T(C_{*,*}) := T \enbrace*{C_{*,*\le s}}$ die vertikale und die horizontale Filtrierung des Totalkomplexes von $C_{*,*}$.
+	Dann gilt für die zugehörige Spektralfolgen $^v E^r_{p,q}$ und $^h E^r_{p,q}$ folgendes:
+	\begin{enumerate}[a)]
+		\item $^v E^1_{p,q} = H_q \enbrace*{C_{p,*},d^v}$, $^v d^1$ wird von $d^h$ induziert.
+		\item $^h E^1_{p,q} = H_p \enbrace*{C_{*,q},d^h}$, $^h d^1$ wird von $d^v$ induziert.
+	\end{enumerate}
+\end{proposition}
+\begin{beweis}
+	\ldots 
+\end{beweis}
+
+\begin{korollar}
+	Sei $\enbrace*{C_{*,*},d^v,d^h}$ ein Doppelkomplex, dessen Zeilen (oder Spalten) exakt sind.
+	Dann ist $H_* \enbrace*{T(C_{*,*})}=0$
+\end{korollar}
+\begin{beweis}
+	Sind die Zeilen exakt, so ist $^vE^1_{p,q}=0$\todo{hier muss vlt $h$ statt $v$ stehen, unten genauso} für alle $p,q$ und damit $E^\infty_{p,q}=0$.
+	Da die $^v E^r_{p,q} \Rightarrow H_{p+q} \enbrace*{T(C_{*,*})}$ folgt $H_{p,+q} \enbrace*{T(C_{*,*})}=0$.
+	Für Spalten folgt die Aussage genauso mittels der horizontalen Spektralfolge.
+\end{beweis}
+\newpage
+% section 15 (end)
+
+\section{Die Künnethformeln} % (fold)
+\label{sec:16}
+\todo[inline]{Wer ist diese/r Künneth?}
+\todo[inline]{Revision 16}
+\begin{proposition}
+	Sei $R$ ein Ring, $C_*$ ein Kettenkomplex von $R$-Rechtsmoduln und $D_*$ ein Kettenkomplex von $R$-Linksmoduln.
+	\begin{enumerate}[a)]
+		\item Sind die Kettenmoduln von $C_*$ projektiv, so gibt es eine Spektralfolge mit 
+		\[
+			E^2_{p,q} = H_p \enbrace[\big]{C_* \otimes_R H_q(D_*)} 
+		\]
+		die gegen $H_* \enbrace*{C_* \otimes_R D_{*}}$ konvergiert.
+		\item Sind die Kettenmoduln von $D_*$ projektiv, so gibt es eine Spektralfolge mit 
+		\[
+			E^2_{p,q} = H_p \enbrace[\big]{H_q(C_*) \otimes_R D_*} 
+		\]
+		die gegen $H_* \enbrace*{C_* \otimes_R D_*}$ konvergiert.
+	\end{enumerate}
+\end{proposition}
+\begin{beweis}
+	\leavevmode
+	\begin{enumerate}[a)]
+		\item Wir benutzen die vertikale Spektralfolge des Doppelkomplexes $C_* \otimes_R D_*$.
+		Dann ist $E^1_{p,q}= H_q \enbrace*{C_p \otimes D_*, \id \otimes \partial^D}$ und $d^1$ wird von $\partial^C \otimes \id$ induziert.
+		Da $C_p$ projektiv ist und daher $C_p \otimes_R -$ ein exakter Funktor ist, ist die kanonische Abbildung 
+		\[
+			C_p \otimes_R H_q \enbrace*{D_*,\partial^D} \longrightarrow H_q \enbrace*{C_p \otimes_R D_*, \id \otimes \partial^D} 
+		\]
+		ein Isomorphismus. Also 
+		\[
+			E^2_{p,q} \cong H_p \enbrace*{C_* \otimes_R H_q(D_*), \partial^C \otimes \id} \cong H_p \enbrace*{C_* \otimes_R H_q(D_*)}
+		\]
+		\item analog. \qedhere
+	\end{enumerate}
+\end{beweis}
+
+\begin{satz}[{name={Zerlegungssatz}},label=zerlegungssatz]
+	Sei $C_*$ ein Kettenkomplex über einem Hauptidealring.
+	Seien die Kettenmodule von $C_*$ frei.
+	Dann gibt es Kettenkomplexe $C_*^\ssbbrace{i}$,$i \in \mathbb{N}$ mit 
+	\begin{enumerate}[(i)]
+		\item \label{enum:zerlegungssatz:1}$C_*^\ssbbrace{i}=0$ für $* \notin \set*{i,i+1}$
+		\item \label{enum:zerlegungssatz:2}$H_i \enbrace*{C_*^\ssbbrace{i}} = H_i(C_*)$
+		\item \label{enum:zerlegungssatz:3}$H_{i+1} \enbrace*{C_*^\ssbbrace{i}}=0$ (insbesondere ist $\partial_{i+1}^\ssbbrace{i} \colon C^\ssbbrace{i}_{i+1} \to C_i^\ssbbrace{i}$ injektiv)
+	\end{enumerate}
+	und einen Isomorphismus von Kettenkomplexen $C_* \cong \bigoplus_{i \in \mathbb{N}} C_*^\ssbbrace{i}$.
+\end{satz}
+\begin{beweis}
+	Wir setzen 
+	\[
+		C_*^\ssbbrace{0} = \begin{cases}
+			C_0 &\text{ falls }*=0\\
+			\partial(C_1) &\text{ falls }*=1 \\
+			0 &\text{ sonst} 
+		\end{cases}
+	\]
+	und definieren die Randabbildung $\partial^\ssbbrace{0} \colon \partial(C_1) \to C_0$ also die Inklusionsabbildung.
+	Es gelten offenbar \cref{enum:zerlegungssatz:1,enum:zerlegungssatz:2,enum:zerlegungssatz:3} für $C_*^\ssbbrace{0}$ und da $R$ ein Hauptidealring ist, ist auch $\partial(C_1)= C_1^\ssbbrace{0}$ ein freier $R$-Modul.
+	Es folgt auch, dass $\partial \colon C_1 \twoheadrightarrow \partial(C_1)$ spaltet.
+	Wir erhalten einen Isomorphismus $C_1 \cong \im \partial \oplus \ker \partial_1$.
+	Sei 
+	\[
+		\tilde{C}_* = \begin{cases}
+			C_* &\text{ falls }*\ge 2\\
+			\ker \partial_1 &\text{ falls } *=1 \\
+			0 &\text{ falls } *=0 
+		\end{cases}
+		\qquad \text{ und } \qquad 
+		\begin{cases}
+			\partial_* &\text{ falls }*\ge 3\\
+			\partial_2 \colon C_2 \to \ker \partial_1 &\text{ falls } *=2 \\
+			0 &\text{ sonst} 
+		\end{cases} 
+	\]
+	Wir erhalten einen Isomorphismus von Kettenkomplexen $C_* \cong C_*^\ssbbrace{0} \oplus \tilde{C}_*$.
+	Da $\tilde{C}_0=0$ können wir nun induktiv die $C_*^\ssbbrace{i}$ für $i >0$ konstruieren.
+\end{beweis}
+
+\begin{satz}[label=satz:hom_tensor]
+	Seien $C_*$ und $D_*$ Kettenkomplexe über einem Hauptidealring $R$, deren Kettenmodule frei sind.
+	Dann gibt es Isomorphismen
+	\[
+		H_n \enbrace*{C_* \otimes D_*} \cong \smashoperator[r]{\bigoplus_{p+q=n}}\enspace H_p(C_*) \otimes H_q(D_*) \oplus \smashoperator[r]{\bigoplus_{p+q=n-1}}\enspace \Tor_1^2 \enbrace*{H_p(C_*),H_q(D_*)}
+	\]
+\end{satz}
+\begin{beweis}
+	Nach dem \hyperref[zerlegungssatz]{Zerlegungssatz (\ref*{zerlegungssatz})} können wir annehmen, dass es $p$ und $q$ gibt mit $C_*=0$ für $*\neq p,p+1$ und $D_*=0$ für $* \neq q,q+1$ und dass die Randabbildungen $\partial^C_{p+1} \colon C_{p+1} \to C_p$ und $\partial^D_{q+1} \colon D_{q+1} \to D_q$ injektiv sind.
+	Wir benutzen die Spektralfolge bezüglich der vertikalen Filtrierung $F_s \enbrace*{C_* \otimes D_*} = C_{*\le s} \otimes D_*$.
+	\[
+		E^0,d^0
+		\begin{tikzcd}[row sep=large]
+			C_{p} \otimes D_{q+1} \dar["\id \otimes \partial^D"] & C_{p+q} \otimes D_{q+1} \dar["\id \otimes \partial^D"] \\
+			C_p \otimes D_q & C_{p+1} \otimes D_q
+		\end{tikzcd}
+		\qquad 
+		E^1,d^1
+		\begin{tikzcd}[row sep=large]
+			0 & 0 \\
+			C_p \otimes H_q(D_*) & C_{p+1} \otimes H_q(D_*) \lar["\partial^C \otimes \id_{H_q(D_*)}"',"=d^1"]
+		\end{tikzcd}
+	\]
+	\todo[inline]{vlt als figure}
+	Nun ist $\begin{tikzcd}[cramped,sep=small] H_p(C_*) & C_p \lar[two heads] & C_{p+1} \lar[hook] \end{tikzcd}$ eine freie Auflösung von $H_p(C_*)$, also gilt
+	\[
+		E^2_{p,q} = \sfrac{C_p \otimes H_p(D_*)}{\im d^1} = H_p \enbrace*{C_*} \otimes H_q(D_*) \quad \text{und} \quad 
+		E_2(p+1,q) = \ker d^1 = \Tor_1^R \enbrace*{H_p(C_*), H_q(D_*)}
+	\]
+	Es folgt $E^\infty=E^2$.
+	Bild für $E^\infty=E^2$:
+	\[
+		\begin{tikzcd}
+			0 & 0 \\
+			H_p(C_*) \otimes H_q(D_*) & \Tor_1^R \enbrace*{H_p(C_*) \otimes H_q(D_*)}
+		\end{tikzcd}
+	\]
+	Da auf der $E^\infty$-Seite auf jeder Antidiagonalen höchstens ein nichttrivialer Eintrag ist, folgt mit der Konvergenz der Spektralfolge 
+	\begin{align}
+		H_{p+q}(C_* \otimes D_*) &\cong H_p(C_*) \otimes H_q(D_*) \\
+		H_{p+q+1}(C_* \otimes D_*) &= \Tor_1^R \enbrace[\big]{H_p(C_*) \otimes H_q(D_*)} \\
+		H_n(C_* \otimes D_*)&= 0 \qquad \text{ für } n \notin \set*{p+q,p+q+1} \qedhere
+	\end{align}
+\end{beweis}
+
+\begin{bemerkung}
+	Der Isomorphismus in \autoref{satz:hom_tensor} ist nicht natürlich in $C_*$ und $D_*$.
+	Es gibt aber eine natürliche kurze exakte Folge 
+	\[
+		\begin{tikzcd}
+			\bigoplus_{p+q=n} H_p (C_*) \otimes H_q (D_*) \rar["\alpha"] & H_n(C_* \otimes D_*) \rar & \bigoplus_{p+q=n-1} \Tor_1^R \enbrace[\big]{H_p(C_*), H_q(D_*)}
+		\end{tikzcd}
+	\]
+	Diese Folge spaltet, aber es gibt keinen natürlichen Spalt.
+	Die Abbildung $\alpha$ ist gegeben durch $\alpha \enbrace*{[a] \otimes [b]} = \benbrace*{a \otimes b}$.
+\end{bemerkung}
+
+\begin{satz}[{name={Eilenberg-Zilber}},label=eilenbergzilber]
+	Sei $R$ ein kommutativer Ring, $X,Y$ topologische Räume.
+	Dann induziert 
+	\[
+		\enbrace[\big]{\sigma \colon \abs*{\Delta^n} \to X \times Y } \longmapsto \sum_{p=0}^{n} (\pr_X \circ \sigma)\big|_{\benbrace*{0,\ldots ,p}} \otimes (\pr_Y \circ \sigma)\big|_{p,\ldots ,n}
+	\]
+	eine Kettenhomotopieäquivalenz, die \Index{Alexander-Whitney-Abbildung} 
+	\[
+		\AW_* \colon C^\sing_*(X \times Y;R) \longrightarrow C_*^\sing(X;R) \otimes_R C_*^\sing(Y;R)
+	\]
+\end{satz}
+
+\begin{korollar}
+	Sei $R$ ein Hauptidealring, $X,Y$ topologische Räume.
+	Dann gilt
+	\[
+		H_n(X \times Y;R) \cong \bigoplus_{p+q=n} H_p(X;R) \otimes_R H_q(Y;R) \oplus \bigoplus_{p+q=n-1} \Tor_1^R \enbrace*{H_p(X;R),H_q(Y;R)}
+	\]
+\end{korollar}
+
+\begin{proposition}[{name={Existenz}}]
+	Sei $R$ ein kommutativer Ring.
+	Dann gibt es eine in $X$ und $Y$ natürliche Kettenabbildung 
+	\(
+		m \colon C^\sing_*(X;R) \otimes_R C^\sing_*(Y;R) \longrightarrow C^\sing_*(X \times Y;R)
+	\)
+	mit 
+	\[
+		m \enbrace*{ \enbrace*{\sigma \colon \abs{\Delta^0} \to X } \otimes \enbrace*{\tau \colon \abs{\Delta^0} \to Y}}= \enbrace[\big]{\sigma \times \tau \colon \abs{\Delta^0} \to X \times Y}
+	\]
+\end{proposition}
+\begin{beweis}
+	Wir benutzen die \emph{Methode der azyklischen Modelle} und konstruieren 
+	\[
+		m_n \colon \bigoplus_{p+q=n} C^\sing_p(X;R) \otimes_R C^\sing_q(Y;R) \longrightarrow C^\sing_n(X \times Y;R) 
+	\]
+	induktiv für $n=0,1,\ldots $.
+	Für $n=0$ ist $m_0$ schon durch die Behauptung festgelegt.
+	Sei also $m_k$ für $k<n$ bereits konstruiert mit $\partial_k \circ m_k = m_{k-1} \circ \partial_k$ für $k<n$.
+	Für $p+q=n$ betrachte $\id_{\abs*{\Delta^p}} \otimes \id_{\abs*{\Delta^q}} \in C^\sing_p(\abs*{\Delta^p};R) \otimes_R C_q \enbrace*{\abs*{\Delta^q};R}$.
+	Dann liegt $m_{n-1} \enbrace*{\partial \enbrace*{\id_{\abs*{\Delta^p}} \otimes \id_{\abs*{\Delta^q}}}}$ im Kern von $\partial$ auf $C^\sing_{n-1} \enbrace*{\abs*{\Delta^p} \times \abs*{\Delta^q};R}$.
+	Wegen $H_*(\abs*{\Delta^p} \times \abs*{\Delta^q})=0$ gibt es $v_{p,q} \in C^\sing_n \enbrace*{\abs*{\Delta^p} \times \abs*{\Delta^q}}$ mit 
+	\[
+		\partial_k(v_{p,q}) = m_{n-1} \enbrace*{\partial \enbrace*{\id_{\abs*{\Delta^p} } \otimes \id_{\abs*{\Delta^q}}}}. 
+	\]
+	Nun definieren wir $m_n$ durch 
+	\[
+		m_n \enbrace*{ \enbrace*{\sigma \colon \abs{\Delta^0} \to X } \otimes \enbrace*{\tau \colon \abs{\Delta^0} \to Y}} := (\sigma\times \tau)_* \enbrace*{v_{p,q}} \qedhere
+	\]
+\end{beweis}
+
+\begin{proposition}[name={Eindeutigkeit},label=prop:16:eind]
+	Zwei natürliche Kettenabbildungen 
+	\[
+		m,m' \colon C^\sing_* (X;R) \otimes_R C^\sing_* \enbrace*{Y;R} \longrightarrow C_*^\sing \enbrace*{X \times Y;R}
+	\]
+	sind genau dann kettenhomotop, wenn sie die gleiche Abbildung
+	\begin{equation}
+		H_0 \enbrace*{\abs{\Delta^0};R } \otimes_R H_0 \enbrace*{\abs{\Delta^0};R} \longrightarrow H_0 \enbrace*{\abs{\Delta^0} \times \abs{\Delta^0};R} \label{eq:16:H0}\tag{\dag}
+	\end{equation} 
+	induzieren.
+	Die gleiche Aussage gilt für in $X$ und $Y$ natürliche Kettenabbildungen 
+	\begin{align}
+		C_*(X;R) \otimes_R C_*(Y;R) &\longrightarrow  C_*(X;R) \otimes_R C_*(Y;R) \\
+		C_*(X \times Y;R) &\longrightarrow C_* (X \times Y;R) \\
+		C_*(X \times Y;R) &\longrightarrow C_*(X;R) \otimes_R C_*(Y;R)
+	\end{align}
+\end{proposition}
+\begin{beweis}
+	Wir benutzten wieder die Methode der azyklischen Modelle und konstruieren 
+	\[
+		h_n \colon \bigoplus_{p+q=n} C^\sing_p(X;R) \otimes_R C^\sing_q(Y;R) \longrightarrow C_{n+1}^\sing(X \times Y;R)
+	\]
+	mit 
+	\begin{equation}
+		\partial \circ h_n + h_{n+1} \circ \partial=m_n -m_n' \label{eq:16:rand} \tag{\#}
+	\end{equation}
+	induktiv. Für $n=0$ ist 
+	\begin{equation}
+		m_n \enbrace*{\sigma \colon \abs*{\Delta^0} \to X \otimes \tau \colon \abs*{\Delta^0} \to Y  } = m_n' \enbrace*{\sigma \colon \abs*{\Delta^0} \to X \otimes \tau \colon \abs*{\Delta^0} \to Y  } \label{eq:16:mn}\tag{\ddag}
+	\end{equation}
+	denn \eqref{eq:16:H0} impliziert dies für $X=\abs*{\Delta^0}, Y=\abs*{\Delta^0}$ wegen
+	\begin{align}
+		m_n \enbrace*{\sigma \colon \abs*{\Delta^0} \to X \otimes \tau \colon \abs*{\Delta^0} \to Y} &= (\sigma,\tau)_* \enbrace*{m_n \enbrace*{\id_{\abs*{\Delta^0} } \otimes \id_{\abs*{\Delta^0} }}}\\
+		m_n' \enbrace*{\sigma \colon \abs*{\Delta^0} \to X \otimes \tau \colon \abs*{\Delta^0} \to Y} &= (\sigma,\tau)_* \enbrace*{m_n' \enbrace*{\id_{\abs*{\Delta^0} } \otimes \id_{\abs*{\Delta^0} }}}
+	\end{align}
+	folgt dann \eqref{eq:16:mn} für beliebige $X$ und $Y$.
+	Wir können also $h_0 \equiv 0$ setzen.
+	Sei $h_k$ für $k < n$ mit \eqref{eq:16:rand} schon konstruiert.
+	Für $p+q=n$ betrachten wir wieder $\id_{\abs*{\Delta^0}} \otimes \id_{\abs*{\Delta^0}} \in C_p \enbrace*{\abs*{\Delta^p};R} \otimes_R C_P \enbrace*{\abs*{\Delta^q};R }$.
+	Es ist 
+	\begin{align}
+		\partial \enbrace*{m_n -m'_n - h_{n-1} \circ \partial} &= m_{n-1} \circ \partial -m_{n-1}' \circ \partial - \Underbracket{\partial \circ h_{n-1}}{= - h_{n-2} \partial + m_{n-1} - m_{n-1}'} \circ \partial \\
+		&= m_{n-1} \circ \partial - m_{n-1}' \circ \partial + h_{n-2} \circ \partial^2 - m_{n-1} \circ \partial + m_{n-1}' \circ \partial =0
+	\end{align}
+	Insbesondere ist $\enbrace*{m_n -m_n' - h_{n-1} \circ \partial} \enbrace*{\id_{\abs*{\Delta^p}} \otimes \id_{\abs*{\Delta^q} }} \in \ker \partial$.
+	Da $H_n \enbrace*{C_* \enbrace*{\abs*{\Delta^p} \times \abs*{\Delta^q};R} }$ trivial ist, finden wir $v_{n+1} \in C_{n+1} \enbrace*{\abs*{\Delta^p} \times \abs*{\Delta^q};R}$ mit 
+	\[
+		\partial v_{n+1} = \enbrace*{m_n -m_n' - h_{n-1} \circ \partial} \enbrace*{\id_{\abs*{\Delta^p}} \otimes \id_{\abs*{\Delta^q} }}
+	\]
+	Nun definieren wir $h_n$ durch
+	\[
+		h_n \enbrace*{\enbrace*{\tau \colon \abs*{\Delta^p} \to X } \otimes  \enbrace*{\sigma \colon \abs*{\Delta^q} \to Y}} := (\tau \times \sigma)_* \enbrace*{v_{n+1}}
+	\]
+	Dann ist
+	\begin{align}
+		\partial \circ h_n(\tau \otimes \sigma) = \partial \enbrace[\big]{(\tau \times \sigma)_*(v_{n+1})} &= \enbrace*{\tau \times \sigma}_* \enbrace*{\partial v_{n+1}}\\
+		&=(\tau \times \sigma)_* \enbrace*{m_n -m'_n - h_{n-1} \circ \partial}\enbrace*{\id_{\abs*{\Delta^p}} \otimes \id_{\abs*{\Delta^q} }} \\
+		&= \enbrace*{m_n - m'_n - h_{n-1} \circ \partial} \enbrace*{\tau \otimes \sigma}
+	\end{align}
+	Also gilt \eqref{eq:16:rand} wie gewünscht.
+\end{beweis}
+\begin{beweis}[{name={von Eilenberg-Zilber, \ref{eilenbergzilber}}}]
+	Sei $m$ wie oben.
+	Dann sind nach \autoref{prop:16:eind} $\AW \circ m$ und $m \circ \AW$ kettenhomotop zur Identität.
+\end{beweis}
+% section 16 (end)
+\newpage
+
+\section{Universelle Koeffizienten-Theoreme} % (fold)
+\label{sec:17}
+\todo[inline]{Revision 17}
+\begin{satz}
+	Sei $R$ ein Ring, $V$ ein $R$-Rechtsmodul und $C_*$ ein Kettenkomplex von projektiven $R$-Linksmoduln.
+	Dann gibt es eine Spektralfolge $E^2_{p,q}= \Tor_p^R\enbrace[\big]{V, H_q(C_*)} \Rightarrow H_{p+q}(V \otimes C_*)$.
+\end{satz}
+\begin{beweis}
+	Sei $(P_*, \epsilon)$ eine projektive Auflösung von $V$.
+	Wir betrachten den Doppelkomplex $P_* \otimes_R C_*$.
+	Wir benutzen zunächst die horizontale Spektralfolge um -- nochmal -- zu zeigen, dass $\epsilon \otimes \id \colon P_* \otimes_R C_* \to V \otimes_R C_*$ einen Isomorphismus in Homologie induziert.
+	Es ist 
+	\[
+		^h E^1_{p,q} =H_p \enbrace*{P_* \otimes C_q} \StackText{projektiv}{=\joinrel=\joinrel=}H_p(P_*) \otimes C_q = \begin{cases}
+			V \otimes_R C_q  &\text{ falls }p=0\\
+			0 &\text{ sonst}
+		\end{cases}
+	\]
+	Die horizontale Spektralfolge kollabiert also bei $E^2$ und es folgt 
+	\[
+		H_n \enbrace*{P_* \otimes_R C_*} \cong E_{0,n}^2 \cong H_n \enbrace*{V \otimes_E C_*}
+	\]
+	(Indem man die durch $\epsilon \otimes \id$ induzierte Abbildung auf Spektralfolgen betrachtet, sieht man, dass $\epsilon \otimes \id$ den Isomorphismus induziert.)
+	Für die vertikale Spektralfolge folgt nun $^v E^2_{p,q} \Rightarrow H_{p+q}(P_* \otimes_R C_*) \cong H_{p+q}(V \otimes C_*)$.
+	Weiter ist wegen der Projektivität von $P_p$
+	\[
+		^v E^1_{p,q} = H_q \enbrace*{P_p \otimes C_*} \cong P_p \otimes H_q(C_*)
+	\]
+	und daher $^v E^2_{p,q}=H_p \enbrace*{P_* \otimes_R H_q(C_*)}= \Tor_p^R \enbrace*{V, H_q(C_*)}$.
+\end{beweis}
+
+\begin{satz}[label=satz:hir_tensorprod_homologie]
+	Sei $R$ ein Hauptidealring, $V$ ein $R$-Modul und $C_*$ ein $R$-Kettenkomplex von freien $R$-Moduln.
+	Dann gibt es eine eine kurze exakte Folge
+	\[
+		\begin{tikzcd}
+			0 \rar & V \otimes_R H_n(C_*) \rar & H_n(V \otimes_R C_*) \rar & \Tor_1^R \enbrace*{V, H_{n-1}(C_*)} \rar & 0
+		\end{tikzcd}
+	\]
+	Diese Folge ist natürlich in $V$ und $C_*$.
+	Sie spaltet, aber der Spalt ist nur natürlich in $V$.
+\end{satz}
+\begin{beweis}
+	Da $R$ ein Hauptidealring ist, ist $\Tor^R_p \enbrace*{V, H_q(C_*)}=0$ für $p \ge 2$.
+	Die Spektralsequenz hat also nur zwei Spalten und wir erhalten die gesuchte exakte Folge.
+	Um einen Spalt zu konstruieren benutzen wir den Zerlegungssatz und schreiben 
+	\[
+		C_* \cong \bigoplus C_*^\ssbbrace{i}
+	\]
+	wobei jedes $C_*^\ssbbrace{i}$ nur eine nicht-triviale Homologiegruppe hat.
+	Dann spaltet die obige Sequenz für jedes $C_*^\ssbbrace{i}$ (auf triviale Weise!) und damit auch für $C_*$.
+\end{beweis}
+
+\begin{satz}
+	Sei $R$ ein Hauptidealring, $V$ ein $R$-Modul und $X$ ein topologischer Raum.
+	Dann gibt es eine kurze exakte Folge 
+	\[
+		\begin{tikzcd}
+			0 \rar & H_n(X;R) \otimes_R V \rar & H_n(X;V) \rar & \Tor_1^R \enbrace*{H_{n-1}(X),V} \rar & 0
+		\end{tikzcd}
+	\] 
+	Diese Folge ist natürlich in $X$ und $V$ und spaltet, aber der Spalt kann nur in $V$ natürlich gewählt werden.
+\end{satz}
+\begin{beweis}
+	Wende \autoref{satz:hir_tensorprod_homologie} auf $C_* := C_*^\sing(X;R)$ an und benutze 
+	\[
+		C_*^\sing(X;V) = C^\sing_*(X;\mathbb{Z}) \otimes_\mathbb{Z} V \cong \enbrace*{C_*^\sing(X;R) \otimes_\mathbb{Z} R} \otimes_R V \cong C_*^\sing(X;R) \otimes_R V \qedhere
+	\]
+\end{beweis}
+
+\begin{satz}[{name={Kohomologische Spektralfolge einer Filtrierung}}]
+	Sei $C^*$ ein Kokettenkomplex.
+	Sei $F^s C^*$ eine (absteigende) Filtrierung auf $C^*$ mit
+	\[
+		C^n =F^0 C^n \supset F^1C^n \supset \ldots \supset F^nC^n \supset F^{n+1} C^n=0
+	\]
+	Dann gibt es eine kohomologische Spektralfolge
+	\(
+		E^{p,q}_r \Rightarrow H^{p+q}(C_*)
+	\)
+	mit 
+	\[
+		E_0^{p,q}= \frac{F^pC^{p+q}}{F^{p-q}C^{p+q}} \qquad E^{p,q}_1 = H^{p+q}\enbrace*{E_0^{p,*}}
+	\]
+\end{satz}
+\begin{beweis}
+	Wie im homologischen Fall.
+	Es ist 
+	\[
+		E^{p,q}_r := \frac{d^{-1} \enbrace*{F^{p+r}C^{p+q+1}} \cap F^pC^{p+q} + F^{p+1}C^{p+q}}{d \enbrace*{F^{p-r+1} C^{p+q-1}} \cap F^p C^{p+q} + F^{p+1}C^{p+q}} 
+	\]
+	und $d^{p+1}_r[a]=[d a]$ für $a \in d^{-1} \enbrace*{F^{p+r}C^{p+q+1}} \cap F^pC^{p+q}$.
+\end{beweis}
+
+\begin{satz}
+	Sei $R$ ein Ring, $C_*$ Kettenkomplex von projektiven $R$-Moduln und $W$ ein $R$-Modul.
+	Dann gibt es eine kohomologische Spektralfolge $\Ext_R^p \enbrace*{H_q(C_*),W} \Rightarrow H^{p+q} \enbrace*{\Hom(C_*,W)}$
+\end{satz}
+\begin{beweis}
+	Sei $I^* \to W$ eine injektive Auflösung von $W$.
+	Betrachte auf $\Hom(C_*,I^*)$ die Filtrierungen 
+	\begin{align}
+		^h F^s \enbrace[\big]{\Hom(C_*,I^*)} &:= \Hom \enbrace*{C_*, I^{*\ge s}} \qquad \text{ und } \\
+		^v F^s \enbrace[\big]{\Hom(C_*,I^*)} &:= \Hom \enbrace*{C_{*\ge s}, I^*}
+	\end{align}
+	sowie die zugehörigen Spektralfolgen $^h E^{p,q}_r$ und $^v E^{p,q}_r$.
+	Es ist $^v E^{p,q}_0 = \Hom \enbrace*{C_p,I^q}$ und $^v d_0^{p,q}$ wird von $\partial^I$ induziert.
+	Also gilt 
+	\[
+		^v E^{p,q}_1 = H^q \enbrace*{\Hom(C_P, I^*)} \StackText{projektiv}{\cong}\Hom \enbrace*{C_p, H^q(I^*)} \cong \begin{cases}
+			\Hom_R(C_p,W) &\text{ falls }q=0\\
+			0 &\text{ sonst}
+		\end{cases}
+	\]
+	und $d_2^{p,q}$ wird von $d_C$ induziert.
+	Daher ist 
+	\[
+		^v E^{p,q}_2 = \begin{cases}
+			H^p \enbrace*{C_*,W} &\text{ falls }q=0\\
+			0 &\text{ sonst}
+		\end{cases}
+	\]
+	und die Spektralfolge kollabiert bei $E^2$.
+	Es folgt 
+	\[
+		H^* \enbrace*{\Hom(C_*,I^*)} \cong H^* \enbrace*{\Hom(C_*,W)}
+	\]
+	Insbesondere folgt $^h E^{p,q}_2 \Rightarrow H^* \enbrace*{\Hom(C_*,W)}$.
+	Es ist $^h E^{p,q}_0 = \Hom \enbrace*{C_p,I^q}$ und $^h d^{p,q}_0$ wird von $d^C$ induziert.
+	Daher ist 
+	\[
+		^h E^{p,q}_1 = H^p \enbrace*{\Hom(C_*,I^q)} \StackText{injektiv}{=\joinrel=} \Hom \enbrace*{H_p(C_*),I^q}
+	\]
+	und $^h d_1^{p,q}$ wird von $\partial^I$ induziert.
+	Also ist $^h E^{p,q}_2 = H^q \enbrace*{\Hom_R \enbrace*{H_p(C_*),I^*}} = \Ext_R^q \enbrace*{H_p(C_*),W}$.
+\end{beweis}
+
+\begin{satz}[label=satz:ext_kettenkompl_kef]
+	Sei $R$ ein Hauptidealring, $C_*$ ein Kettenkomplex von projektiven $R$-Moduln und $W$ ein $R$-Modul.
+	Dann gibt es eine kurze exakte Folge
+	\[
+		\begin{tikzcd}
+			0 \rar & \Ext_R^1 \enbrace[\big]{H_{n-1}(C_*),W} \rar & H^n \enbrace[\big]{\Hom_R(C_*,W)} \rar & \Hom_R \enbrace[\big]{H_n(C_*),W} \rar & 0
+		\end{tikzcd}
+	\]
+	Diese Folge ist natürlich in $C_*$ und $W$, sie spaltet, aber der Spalt kann nicht natürlich in $C_*$ gewählt werden.
+\end{satz}
+\begin{beweis}
+	Da $R$ ein Hauptidealring ist, hat jeder $R$-Modul eine projektive Auflösung der Länge $\le 1$.
+	Da $\Ext_R^p \enbrace*{H_q(C_*),W}$ auch durch eine projektive Auflösung von $H_q(C_*)$ berechnet weden kann, folgt $\Ext_R^p \enbrace*{H_q(C_*),W}=0$ für $p \ge 2$.
+	Daher hat die Spektralfolge nur zwei Spalten und wir erhalten eine kurze exakte Folge.
+	Um einen Spalt zu erhalten wenden wir wieder den Zerlegungssatz auf $C_*$ an.
+\end{beweis}
+
+\begin{satz}[label=univ_koeff_space]
+	Sei $R$ ein Hauptidealring, $W$ ein $R$-Modul und $X$ ein topologischer Raum.
+	Dann gibt es eine kurze exakte Folge
+	\[
+		\begin{tikzcd}[sep=2.2em]
+			0 \rar & \Ext_R^1 \enbrace[\big]{H_{n-1}(X;R),W} \rar & H^n(X;W) \rar & \Hom_R \enbrace[\big]{H_n(X;R),W} \rar & 0
+		\end{tikzcd}
+	\]
+	Diese Folge ist natürlich in $X$ und $W$; sie spaltet, aber der Spalt kann nicht natürlich in $X$ gewählt werden.
+\end{satz}
+\begin{beweis}
+	Wir wenden den \autoref{satz:ext_kettenkompl_kef} auf $C_*^\sing(X;R)$ an und benutzen
+	\[
+		C_\sing^*(X;W) = \Hom_\mathbb{Z} \enbrace*{C_*^\sing(X),W} \cong \Hom_R \enbrace*{C_*^\sing(X;R),W} \qedhere
+	\]
+\end{beweis}
+% section 17 (end)
+\newpage
+
+\section{Symmetrie von $\Tor$ und $\Ext$} % (fold)
+\label{sec:18}
+
+\begin{satz}
+	Sei $R$ ein Ring, $V$ ein $R$-Rechtsmodul und $W$ ein $R$-Linksmodul.
+	Sei $(P_*,\epsilon)$ eine projektive Auflösung von $V$ und $(Q_*,\delta)$ eine projektive Auflösung von $W$.
+	Dann gibt es einen natürlichen Isomorphismus $H_* \enbrace*{P_* \otimes_R W} \cong H_* \enbrace*{V \otimes_R Q_*}$.
+\end{satz}
+\begin{beweis}
+	Wir zeigen, dass $\id \otimes \delta \colon P_* \otimes_R Q_* \to P_* \otimes_R W$ und $\epsilon \otimes \id \colon P_* \otimes_R Q_* \to V \otimes_R Q_*$ Isomorphismen auf Homologie induzieren.
+	Dazu benutzen wir die vertikale und die horizontale Spektralfolge des Doppelkomplexes $P_* \otimes_R Q_*$.
+	Es ist 
+	\[
+		^v E^1_{p,q} = H_q \enbrace*{P_p \otimes Q_*} \cong P_p \otimes H_q(Q_*) \cong \begin{cases}
+			P_p \otimes W &\text{ falls }q=0\\
+			0 &\text{ sonst }
+		\end{cases}
+	\]
+	Daher ist $^v E^2_{p,q}\cong \begin{cases}
+		H_p(P_*\otimes W) &\text{ falls }q=0\\
+		0 &\text{ sonst }
+	\end{cases}$
+	Die natürliche Spektralfolge kollabiert bei $E^2$ und $H_n \enbrace*{P_* \otimes_R Q_*} \cong {^v E^2_{n,0}} \cong H_p (P_* \otimes W)$.
+	Genauer induziert $\id \otimes \delta \colon P_* \otimes Q_* \to P_* \otimes W$ auf den $E^1$-Seiten der zwei Spektralfolgen (bezüglichen der vertikalen Filtrierung auf $P_* \otimes Q_*$ und der vertikalen (=trivialen) Filtrierung auf $P_* \otimes W$) einen Isomorphismus und daher auch einen Isomorphismus in Homologie.
+	Genauso zeigt man, dass $\epsilon \otimes \id \colon P_* \otimes_R Q_* \to V \otimes_R Q_*$ einen Isomorphismus der $E^1$-Seiten der horizontalen Spektralfolge induziert und daher auch einen Isomorphismus in Homologie induziert.
+\end{beweis}
+
+\begin{bemerkung}
+	\leavevmode
+	\begin{enumerate}[(i)]
+		\item Es folgt, dass sich $\Tor_*^R(V,W)$ sowohl durch eine projektive Auflösung von $V$ als auch durch eine projektive Auflösung von $W$ berechnen lässt.
+		\item Ist $R$ kommutativ, so gilt $V \otimes_R W \cong W \otimes_R V$ via $v \otimes w \mapsto w \otimes v$ und es folgt 
+		\[
+			\Tor_*^R(V,W) \cong H_*\enbrace*{V \otimes_R Q_*} \cong H_* \enbrace*{Q_* \otimes_R V} \cong \Tor_*^R(W,V)
+		\]
+	\end{enumerate}
+\end{bemerkung}
+
+\begin{satz}
+	Sei $R$ ein Ring.
+	Seien $V,W$ zwei $R$-Moduln.
+	Sei $(P_*,\epsilon)$ eine projektive Auflösung von $V$ und $(I^*,j)$ eine injektive Auflösung von $W$.
+	Dann gibt es einen natürlichen Isomorphismus 
+	\[
+		H^* \enbrace*{\Hom(P_*,W)} \to H^* \enbrace*{\Hom(V,I^*)}
+	\]
+\end{satz}
+\begin{beweis}
+	Wir betrachten $\Hom(P_*,I^*)$ und zeigen wie vorher mit der kohomologischen Spektralfolge, dass $j_* \colon \Hom \enbrace*{P_*,W} \to \Hom(P_*,I^*)$ und $\epsilon^* \colon \Hom(V,I^*) \to \Hom(P_*,I^*)$ Isomorphismen in Kohomologie induzieren.
+\end{beweis}
+
+\begin{bemerkung}
+	Es folgt, dass sich $\Ext_R^*(V,W)$ sowohl durch eine projektive Auflösung von $V$ als auch eine injektive Auflösung von $W$ definieren lässt.
+\end{bemerkung}
+% section 18 (end)
+\newpage
+
+\section{Orientierungen und Karten} % (fold)
+\label{sec:19}
+
+\emph{And now for something completely different.}
+
+\begin{satz}
+	Sei $M$ eine topologischer $n$-Mannigfaltigkeit und $\mu^{\mathbb{R}^n} = \enbrace*{\mu_\lambda^{\mathbb{R}^n} \in H_n(\mathbb{R}^n, \mathbb{R}^n \setminus \set*{\lambda})}_{\lambda \in \mathbb{R}^n}$ eine Orientierung des $\mathbb{R}^n$.
+	Dann sind äquivalent
+	\begin{enumerate}[(i)]
+		\item $M$ ist orientierbar.
+		\item Es gibt einen Atlas $\set*{h \colon M\supseteq U_h \to V_h \subseteq \mathbb{R}^n}$ für $M$, sodass alle Kartenwechsel 
+		\[
+			h_1 \circ h_0^1 \big|_{h_0(U_0 \cap U_1)} \colon h_0 (U_0 \cap U_1) \longrightarrow h_1(U_0 \cap U_1)
+		\]
+		bezüglich $\mu^{\mathbb{R}^n}$ orientierungserhaltend sind.
+	\end{enumerate}
+\end{satz}
+\begin{beweis}
+	Sei $\mu^M$ eine Orientierung für $M$.
+	Wähle für jedes $x \in M$ eine Karte $h_x \colon U_x \to V_x$ mit $x \in U_x$.
+	Indem wir $h_x$, falls nötig, durch $\Sp \circ h_x$ ersetzen, wobei $\Sp \colon \mathbb{R}^n \to \mathbb{R}^n$ eine orientierungsumkehrender Isomorphismus ist, können wir erreichen, dass alle $h_x$ orientierungserhaltend sind.
+	Dann sind auch die Kartenwechsel zwischen den $h_x$ orientierungserhaltend.
+	
+	Sei nun umgekehrt $\set*{h \colon U_h \to V_h}$ ein Atlas wie in (ii).
+	Für $x \in M$ definieren wir $\mu_x^M \in H_n(M,M \setminus \set*{x})$ wie folgt: 
+	Sei $h  \colon U_h \to V_h$ eine Karte aus dem Atlas mit $x \in U_h$.
+	Wir definieren $\mu_x^M$ als das Bild von $\mu_{h(x)}^{\mathbb{R}^n}$ unter der Komposition der folgenden Isomorphismen:
+	\[
+		\begin{tikzcd}[sep=2.1em]
+			\mu^{\mathbb{R}^n}_{h(x)} \in H_n \enbrace[\big]{\mathbb{R}^n,\mathbb{R}^n \setminus \set*{h(x)}} & H_n(V,V\setminus \set*{h(x)}) \lar["\cong"'] &
+			H_n(U,U \setminus \set*{x}) \lar["\cong","h_*"'] \rar["\cong"] & H_n \enbrace[\big]{M,M \setminus \set*{x}}
+		\end{tikzcd}
+	\]
+	Da die Kartenwechsel orientierungserhaltend sind, hängt $\mu_x^M$ nicht von der Wahl von $h$ ab.
+	Da $\mu^{\mathbb{R}^n}$ eine Orientierung ist, ist auch $\mu^M$ eine Orientierung.
+\end{beweis}
+
+\begin{bemerkung}
+	\leavevmode
+	\begin{enumerate}[i)]
+		\item Genauer haben wir gezeigt, dass jede Orientierung von $M$ einen Atlas wie in (ii) mittels $\mu^{\mathbb{R}^n}$ bestimmt und dass jeder Atlas wie in (ii) eine Orientierung von $M$ bestimmt.
+		\item Ob ein Homöomorphismus $f \colon V \to V'$ zwischen offenen Teilmengen des $\mathbb{R}^n$ eine Orientierung $\mu^{\mathbb{R}^n}$ des $\mathbb{R}^n$ erhält oder nicht, ist unabhängig von der Wahl der Orientierung $\mu^{\mathbb{R}^n}$.
+		Erhält $f$ die Orientierung $\mu^{\mathbb{R}^n}$, so erhält $f$ auch die Orientierung $-\mu^{\mathbb{R}^n}$.
+		Es macht also unabhängig von der Wahl einer Orientierung des $\mathbb{R}^n$ Sinn von orientierungserhaltenden Kartenwechseln zu sprechen.
+	\end{enumerate}
+\end{bemerkung}
+
+\begin{lemma}
+	Sei $f \colon U \to V$ ein Diffeomorphismus zwischen offenen Teilmengen des $\mathbb{R}^n$.
+	Dann ist $f$ genau dann orientierungserhaltend, wenn für alle $x \in U$ die Determinante des Differentials $\D f_x \colon \mathbb{R}^n \to \mathbb{R}^n$ positiv ist.
+\end{lemma}
+\begin{beweis}
+	Wir müssen zeigen: Für $x \in U$ ist $f_* \colon H_n \enbrace*{U,U\setminus \set*{x}} \to H_n \enbrace*{V,V \setminus \set*{f(x)}}$ gegeben durch Multiplikation mit $\sgn \enbrace*{\det \D f_x}$ bezüglich der durch (eine) Orientierung des $\mathbb{R}^n$ festgelegten Isomorphismen $H_n \enbrace*{U,U \setminus \set*{x}} \cong \mathbb{Z} \cong H_n \enbrace*{V,V\setminus \set*{f(x)}}$.
+	Ohne Beschränkung der Allgemeinheit nehmen wir $x=0=f(x)$ an.
+	Sind $f$ und $g$ homotop im Raum aller stetigen Abbildungen $\varphi \colon U \to \mathbb{R}^n$ mit $\varphi^{-1}(0)=\set*{0}$, so gilt wegen Homotopieinvarianz 
+	$f_*=g_* \colon H_n \enbrace*{U,U \setminus \set*{0}} \to H_n \enbrace*{\mathbb{R}^n,\mathbb{R}^n\setminus \set*{0}} \cong H_n \enbrace*{V,V \setminus \set*{0}}$.
+	
+	Ist $f \in \GL_n(\mathbb{R})$, so ist $f$ in $\GL_n(\mathbb{R})$ homotop zu 
+	\[
+		\begin{cases}
+			\id &\text{ falls }\det f >0\\
+			(x_1,\ldots ,x_n) \xmapsto{\Sp} (-x_1,x_2,\ldots ,x_n) &\text{ falls } \det f < 0
+		\end{cases}
+	\]
+	Aus Topologie \RM{1}. wissen wir, dass $(\Sp)_* = - \id \colon H_{n-1}(S^{n-1}) \to H_{n-1}(S^{n-1})$.
+	Da wir einen natürlichen Isomorphismus $H_n(\mathbb{R}^n,\mathbb{R}^n \setminus \set*{0}) \to H_{n-1}(S^{n-1})$ haben, ist die Spiegelung daher orientierungserhaltend.
+	Ist nun $f \colon U \to V$ ein Diffeomorphismus mit $f(0)=0$, so ist 
+	\[
+		(\D f)_0 (v) = \lim_{t \to 0} \frac{f(t \cdot v)}{t} 
+	\]
+	Wir erhalten eine Homotopie $H$ von $\D f_0$ nach $f$ durch 
+	\[
+		H(v,t) := \begin{cases}
+			\D f_0(v) &\text{ falls }t=0\\
+			f(t \cdot v) /t &\text{ falls } t \in (0,1]
+		\end{cases}
+	\]
+	und die Behauptung folgt für beliebige $f$.
+\end{beweis}
+
+\begin{korollarB}
+	Eine $C^\infty$-Mannigfaltigkeit $M$ ist genau dann orientierbar, wenn es einen $C^\infty$-Atlas $\set*{h \colon U \to V}$ für $M$ gibt, sodass die Differentiale der Kartenwechsel in jedem Punkt positive Determinante besitzen.
+\end{korollarB}
+% section 19 (end)
+
+
+\cleardoubleoddemptypage
+\pagenumbering{Alph}
+\setcounter{page}{1}
+\cleardoubleoddemptypage
+\appendix
+
+\section{Anhang} % (fold)
+\label{sec:anhang}
+\input{anhang.tex}
+\printindex
+\printbibliography
+\listoffigures
+\todototoc
+\listoftodos[To-do's und andere Baustellen]
+\end{document}
