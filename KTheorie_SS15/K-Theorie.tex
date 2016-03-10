@@ -1,0 +1,2336 @@
+%!TEX TS-program = xelatex
+%!TEX TS-options = -shell-escape
+\input{../!config/mitschrift2.tex}
+\newcommand{\fach}{$K$-Theorie und die Hopf-Invariante}
+\newcommand{\semester}{SoSe 2015}
+\newcommand{\homepage}{https://wwwmath.uni-muenster.de/reine/u/topos/lehre/SS2015/KTheorie-Hopf/Hopf.html}
+
+\newcommand{\prof}{Dr.\ Ulrich Penning}
+\publishers{\scalebox{14}{$K$}}
+\input{../!config/mitschrift_headings.tex}
+
+\begin{document}
+\hyphenation{Di-vi-sions-al-ge-bra}
+\pagenumbering{Roman}
+\maketitle
+\begin{abstract}
+\input{../!config/vorwort.tex}
+\end{abstract}
+
+\tableofcontents
+\cleardoubleoddemptypage
+
+\pagenumbering{arabic}
+\setcounter{page}{1}
+
+% \setcounter{section}{-1}
+\section*{Einführung} % (fold)
+\label{sec:0}
+
+\begin{definition*}[{name=[Definition: Reelle Divisionsalgebra]},label=sub:01,numbered=no]
+Eine $\mathds{R}$-Algebra $\mathcal{A}$ mit $1$, die nicht notwendigerweise assoziativ ist, heißt \Index{reelle Divisionsalgebra}, falls jedes Element $a\not= 0$ invertierbar 
+ist.	
+\end{definition*}
+
+\begin{beispiel}
+Die reellen Zahlen $\mathds{R}$, die komplexen Zahlen $\mathds{C}$, die Quaternionen\footnote{siehe auch \url{https://de.wikipedia.org/wiki/Quaternion}} $\mathds{H}$ und die sogenannten Cayley-Zahlen\footnote{auch Oktonionen oder reelle Okataven; siehe  \url{http://de.wikipedia.org/wiki/Oktave_(Mathematik)}} $\mathds{O}$. Dabei ist
+$\mathds{O} \cong \mathds{H} \oplus \mathds{H}$, wobei die Multiplikation wie folgt definiert ist:
+\[
+	(a,b) \cdot (d,c) = (ac - d^* b, da + bc^*) 
+\]
+Dabei ist $d= x + iy + jz + kw$ und $d^* = x -iy -jz - kw$.
+\end{beispiel}
+
+\noindent Wir wollen in dieser Vorlesung das folgende Theorem über Divisionsalgebren beweisen:
+\begin{theorem*}[name={Adams},restate=Adams]
+Folgende Aussagen sind äquivalent:
+\begin{enumerate}[(i)]
+	\item $\mathds{R}^n$ besitzt die Struktur einer reellen Divisionsalgebra.
+	\item Entweder ist $n=1$ oder $n \ge 2$ ist gerade und es gibt eine stetige Abbildung $f \colon S^{2n-1} \to S^n$ mit \Index{Hopf-Invariante} $1$.
+	\item Es gilt $n \in \set{1,2,4,8}$.
+\end{enumerate}
+\end{theorem*}
+
+% subsection 11 (end)
+
+\subsection*{Geplanter Verlauf der Vorlesung} % (fold)
+Wir werden diesen Satz mit Hilfe der sogenannten $K$-Theorie beweisen. Dazu müssen wir aber einiges an Vorarbeit leisten. Der geplante Verlauf ist deswegen wie folgt:
+\begin{enumerate}[1.]
+	\item Verallgemeinerte Kohomologietheorien
+	\item Vektorbündel
+	\item $K$-Theorie
+	\begin{enumerate}[label*=\arabic*.]
+		\item Produkte in $K$-Theorie
+		\item Bott-Periodizität
+		\item Thom-Isomorphismus
+	\end{enumerate}
+	\item Hopf-Invariante und der Beweis des Satzes
+\end{enumerate}
+% subsection inhalt (end)
+% section 0 (end)
+\newpage
+
+\section{Kohomologietheorien} % (fold)
+\label{sec:1}
+
+\begin{definition}[{name=[Kontravarianter Funktor]}]
+Seien $\mathcal{C}$ und $\mathcal{D}$ Kategorien. Ein \Index{kontravarianter Funktor} $F \colon \mathcal{C} \to \mathcal{D}$ 
+\begin{itemize}
+	\item ordnet jedem Objekt $c \in \mathrm{Obj}(\mathcal{C})$ ein Objekt $F(c) \in \mathrm{Obj}(\mathcal{D})$ zu,
+	\item ordnet jedem Morphismus $f \colon c \to c'$ in $\mathrm{Mor}_{\mathcal{C}}(c,c')$ einen Morphismus $F(f) \colon F(c') \to F(c)$ zu,
+\end{itemize}
+sodass folgende Eigenschaften gelten:
+\begin{itemize}
+	\item Für $f \colon c \to c'$ und $g \colon c' \to c''$ gilt $F(g \circ f) = F(f) \circ F(g)$
+	\item $F(\id_c) = \id_{F(c)}$
+\end{itemize}
+\end{definition}
+
+\begin{beispiel}[name=Dualraumfunktor]
+Sei $K$ ein Körper. Sei $\VEKT_K$ die Kategorie der endlich dimensionalen $K$-Vektorräume und linearen Abbildungen. Sei 
+${ }^* \colon \VEKT_K \to \VEKT_K$ gegeben durch $V \mapsto \Hom_K(V,K)=V^*$. Für $f \colon V \to W$ sei $f^* \colon W^* \to V^*$, 
+$\varphi \mapsto \varphi \circ f$. Dies ist ein kontravarianter Funktor. Insbesondere ist $(f \circ g)^* = g^* \circ f^*$.	
+\end{beispiel}
+
+
+\begin{definition}[{name=[Verallgemeinerte Kohomologietheorie]}]
+Sei $\TOP^2$ die Kategorie der Raumpaare $(X,A)$. Sei $V \colon \TOP^2 \to \TOP^2$ der Funktor $(X,A) \mapsto(A,\emptyset)$. Sei $R$ ein kommutativer Ring mit $1$. Eine 
+\Index{verallgemeinerte Kohomologietheorie} $h^* = (h^n, \partial^n)_{n \in \mathds{Z}}$ mit Werten in $R$-Moduln ist ein kontravarianter Funktor 
+$h^* \colon \TOP^2 \to \textsc{Gr}\text{-}R\text{-}\MOD$ zusammen mit einer natürlichen Transformation 
+\[
+	\partial^* \colon h^* \circ V \to h^{*+1},
+\]
+so dass die folgenden Eigenschaften gelten:
+\begin{enumerate}[a)]
+	\item \Index{Homotopieinvarianz}: Es seien $f,g \colon (X,A) \to (Y,B)$ homotope Abbildungen von Raumpaaren. Dann gilt für alle $n \in \mathds{Z}$: 
+	\[
+		h^n(f)= h^n(g)
+	\]
+	\item \Index{Lange exakte Paarsequenz}: Sei $(X,A)$ ein Raumpaar. Seien $i \colon (A,\emptyset) \hookrightarrow (X,\emptyset)$ und 
+	$j \colon (X,\emptyset) \hookrightarrow (X,A)$ die kanonischen Inklusionen. Dann ist die Folge 
+	\[
+		\begin{tikzcd}
+			\cdots \rar["\partial^{n-1}"] & h^n(X,A;R) \rar["h^{n}(j)"] & h^n (X,\emptyset;R) \rar["h^n(i)"] & h^n(A, \emptyset;R) \rar["\partial^n"] & h^{n+1}(X,A;R) \rar & 
+			\cdots
+		\end{tikzcd}
+	\]
+	exakt.
+	\item \Index{Ausschneidung}: Sei $(X,A)$ ein Raumpaar, $U \subset A$, sodass $\overline{U} \subseteq \mathring{A}$. Dann ist die von der Inklusion 
+	$\iota \colon (X \setminus U, A \setminus U) \hookrightarrow (X,A)$ induzierte Abbildung $h^n(\iota) \colon h^n(X,A;R) \to h^n(X \setminus U, A \setminus U;R)$ ein 
+	Isomorphismus.
+\end{enumerate}	
+\end{definition}
+
+\begin{bemerkung}
+\mbox{ }
+\begin{enumerate}[(i)]
+	\item Wir schreiben kurz $h^n(X,A)$ für $h^n(X,A;\mathds{Z})$ und $f^*$ für $h^n(f)$, falls sich der Grad aus dem Kontext ergibt. 
+	\item $h^n(\set{\mathrm{pt}}) =: h^n$ heißen \Index{Koeffizienten der Kohomologietheorie}.
+	\item Einige Kohomologietheorien besitzen ein \Index{externes Produkt}, das heißt eine natürliche Transformation
+	\[
+		h^n(X,A;R) \times h^m(Y,B;R) \longrightarrow h^{n+m} \enbrace[\big]{(X,A) \times (Y,B);R} 
+	\]
+	die bilinear und assoziativ ist. 
+	Dabei ist $(X,A) \times (Y,B) = \enbrace[\big]{X \times Y, (A \times Y) \cup (X \times B)}$.
+	
+	Sei $\Delta \colon (X,A) \to (X,A) \times (X,A)$ die Diagonalabbildung.
+	Falls ein externes Produkt für $h^*$ existiert, dann ist $h^*(X,A;R) = \bigoplus_{n \in \mathds{Z}} h^n(X,A;R)$ ein \Index{graduierter Ring} mit der Multiplikation 
+	\[
+		\begin{tikzcd}[row sep=large, column sep=small]
+			h^n(X,A;R) \times h^m(X,A;R) \arrow[dashed]{rr} \arrow["\times"']{dr} & & h^{n+m}(X,A;R) \\
+			& h^{n+m} \enbrace[\big]{(X,A) \times (X,A);R} \arrow["h^{n+m}(\Delta)"']{ur} &
+		\end{tikzcd}
+	\]
+\end{enumerate}
+\end{bemerkung}
+
+\noindent Wir betrachten im Folgenden Kohomologietheorien, die auf einer Unterkategorie $\TOP^2_{\mathrm{Kof}}$ von $\TOP^2$ definiert sind:
+
+
+\begin{definition}[{name=[Ko-Raumpaar und Kofaserung]},label=def_koraumpaar]
+Ein Raumpaar $(X,A)$ heißt \Index{Ko-Raumpaar}, falls
+\begin{itemize}
+	\item $X$ ein kompakter Hausdorffraum ist,
+	\item $A \subset X$ abgeschlossen ist,
+	\item die Inklusion $A \hookrightarrow X$ eine \Index{Kofaserung} ist, das heißt für jede stetige Abbildung\marginnote{Homotopieerweiterungseigenschaft} 
+	$f \colon A \times I \cup X \times \set{0} \to Y$ existiert 
+	$H \colon X \times I \to Y$, sodass das folgende Diagramm kommutiert:
+	\[
+		\begin{tikzcd}[sep=large]
+			A \times I \cup X \times \set{0} \rar["f"] \dar[hook]& Y \\
+			X \times I \urar["H"'] & 
+		\end{tikzcd}
+	\] 
+\end{itemize}
+Mit $\TOP^2_{\mathrm{Kof}} \subseteq \TOP^2$ bezeichnen wir die Kategorie der Ko-Raumpaare und stetigen Abbildungen.	
+\end{definition}
+
+\begin{beispiel}
+\leavevmode
+\begin{itemize}
+	\item Sei $X$ ein kompakter \CW-Komplex, $A \subset X$ ein Unterkomplex. Dann ist $\iota \colon A \hookrightarrow X$ eine Kofaserung.
+	\item $X$ eine kompakte Mannigfaltigkeit, $A$ eine abgeschlossene Untermannigfaltigkeit.
+	\item Falls $(X, \set{x_0})$ ein Objekt in $\TOP^2_{\mathrm{Kof}}$ ist, dann heißt $X$ \Index{wohlpunktiert}.
+\end{itemize}	
+\end{beispiel}
+
+\noindent Zur Veranschaulichung des Begriffes \enquote{Kofaserung} betrachten wir den Raum
+$X= [-1,1] \times [-1,1]$, den Punkt $x_0=(0,0)$ und setzen $Y=X$. Sei $\gamma \colon I \to X$ ein Pfad mit $\gamma(0)= (0,0)=x_0$. Wir erhalten mit $\gamma$ und $\id$ eine 
+Abbildung $f \colon \set{x_0} \times I \cup  X \times \set{0} \to X$.
+\[
+	\begin{tikzpicture}[scale=1.5]
+		\draw[DodgerBlue4,thick] (1,0,1) -- (1,0,-1) -- (-1,0,-1) -- (-1,0,1) -- cycle;
+		\draw[very thick,fill] (0,0,0) circle[radius=0.04] node[below]{$x_0$} -- (0,0.6,0);
+		
+		\draw[-to,thick] (2,0) -- (4,0) node[midway,above]{$f$};
+		
+		\draw[DodgerBlue4,thick] (7,0,1) -- (7,0,-1) -- (5,0,-1) -- (5,0,1) -- cycle;
+		\draw[very thick] (6,0,0) node[below]{$x_0$} .. controls +(-15:0.4) and +(185:0.2) .. (6.7,0,-0.8) node[midway,above,xshift=0.2]{$\gamma$};
+		\filldraw[very thick] (6,0,0) circle[radius=0.04];
+	\end{tikzpicture}
+\]
+Kofaserung heißt in diesem Fall, dass der Raum $X$ entlang des Pfades \enquote{mitgezogen} werden kann. Allgemeiner: $A \hookrightarrow X$ ist eine Kofaserung, falls sich 
+jedes Paar aus einer Homotopie $h \colon A \times I \to Y$ und einer \enquote{Startabbildung} $X \times \set{0} \to Y$, die $h_0$ fortsetzt, zu einer Homotopie 
+$H \colon X \times I \to Y$ erweitern lässt.
+% section 1 (end)
+\newpage
+
+\section{Vektorbündel} % (fold)
+\label{sec:2}
+Wir betrachten nur reelle und komplexe Vektorbündel, es sei also $K \in \set{\mathds{R},\mathds{C}}$.
+
+\begin{definition}[{name=[$K$-Vektorbündel]},label=def_vektbuendel]
+Sei $X$ ein topologischer Raum. Eine stetige surjektive Abbildung $p \colon E \to X$ heißt $K$-\Index{Vektorbündel}, falls gilt: 
+\begin{enumerate}[a)]
+	\item $ E_x := p^{-1}(\set{x})$ ist ein $K$-Vektorraum für alle $x \in X$. $E_x$ heißt die \Index{Faser} von $E$ über $x$. 
+	\item Für alle Punkte $x \in X$ gibt es eine Umgebung $U$, ein $n \in \mathds{N}$ und einen Homöomorphismus $\varphi_U \colon p^{-1}(U) \to U \times K^n$, sodass das 
+	folgende 
+	Diagramm kommutiert
+	\[
+		\begin{tikzcd}
+			p^{-1}(U) \arrow["\varphi_U"]{rr} \drar["p"'] & & U \times K^n  \dlar["\mathrm{pr}_U"] \\
+			& U 
+		\end{tikzcd}
+	\]
+	und die Einschränkung $\varphi_U |_{E_x} \colon E_x \to K^n$ für alle $x \in U$ ein Isomorphismus von $K$"=Vektorräumen ist. Diese Eigenschaft wird oft als 
+	\Index{lokale Trivialität} bezeichnet.
+\end{enumerate}
+\end{definition}
+
+\begin{beispiel}
+\leavevmode
+\begin{itemize}
+	\item Sei $X$ ein beliebiger topologischer Raum. Dann ist $X \times K^n \xrightarrow{\mathrm{pr}_X} X$ das \Index{triviale Vektorbündel} über $X$.
+	Für jeden topologischen Raum existiert also ein Vektorbündel.
+	\item Betrachte $S^n \subset \mathds{R}^{n+1}$. Sei $\Tmap S^n = \set[(x,v) \in S^n \times \mathds{R}^{n+1}]{\skal*{x}{v}=0}$. Definiere $p \colon \Tmap S^n \to S^n$ 
+	durch $(x,v) \mapsto x$. Damit erhalten wir ein $\mathds{R}$-Vektorbündel über $S^n$, das \Index{Tangentialbündel}. 
+	
+	\emph{Übung: Zeige lokale Trivialität. Siehe Anhang \ref{sub:lokal_trivial_Sn}}
+\end{itemize}	
+\end{beispiel}
+
+\begin{bemerkung}
+Die Abbildung $x \mapsto \dim_K (E_x)$ ist stetig, also lokal konstant, das heißt über einem zusammenhängenden Raum hat ein Vektorbündel konstante Faserdimension. 	
+\end{bemerkung}
+
+
+\begin{definition}[{name=[Vektorraumbündelmorphismus]}]
+Seien $p \colon E \to X$ und $p' \colon E' \to X'$ zwei $K$-Vektorbündel. Ein \bet{Morphismus von Vektorbündeln}\index{Morphismus!von Vektorbündeln} oder 
+\Index{Vektorraumbündelmorphismus} von $E$ nach $E'$ ist ein Paar $(f, \overline{f})$ von stetigen Abbildungen $\overline{f} \colon E \to E'$ und $f \colon X \to X'$, sodass 
+das folgende Diagramm kommutiert
+\[
+	\begin{tikzcd}[sep=large]
+		E \rar["\overline{f}"] \dar["p"'] & E' \dar["p'"] \\
+		X \rar["f"] & X'
+	\end{tikzcd}
+\]
+und sodass die Einschränkung $\overline{f}|_{E_x} \colon E_x \to E'_{f(x)}$ für jedes $x \in X$ ein $K$-Vektorraumhomomorphismus ist. Wir bezeichnen die Kategorie der 
+endlich dimensionalen $K$-Vektorraumbündel über einem topologischen Raum $X$ zusammen mit den Morphismen $(\id_X, \overline{f})$ mit $\VEKT_K(X)$.	
+\end{definition}
+
+
+\section*{Operationen mit Vektorbündeln}
+
+\begin{definition}[{name=[Pullback eines Vektorbündels]}]
+Seien $X$ und $Y$ topologische Räume. Sei $f \colon Y \to X$ eine stetige Abbildung und sei $p \colon E \to X$ ein Vektorbündel. Dann heißt
+\[
+	f^* E := \set[(y,v) \in Y \times E]{f(y)=p(v)\rule{0cm}{0.9em}} 
+\]
+zusammen mit der Abbildung $q \colon f^* E \to Y$, $(y,v) \mapsto y$ der \Index{Pullback}\marginnote{Der Pullback lässt sich auch allgemein auf kategorieller Ebene 
+definieren} von $p \colon E \to X$ entlang von $f$. Mit $\overline{f}(y,v)=v$ kommutiert das 
+folgende Diagramm:
+\[
+	\begin{tikzcd}[sep=large]
+		f^* E \rar["\overline{f}"] \dar["q"'] & E \dar["p"] \\
+		Y \rar["f"] & X
+	\end{tikzcd}
+\]	
+\end{definition}
+% subsection 23 (end)
+
+
+\begin{lemma}[{name=[Universelle Eigenschaft des Pullbacks]}]
+\leavevmode
+\begin{enumerate}[a)]
+	\item $q \colon f^* E \to Y$ ist ein Vektorbündel und $(\overline{f},f)$ ist ein Morphismus von Vektorbündeln. 
+	\item $q \colon f^* E \to Y$ ist durch die folgende universelle Eigenschaft eindeutig (bis auf Isomorphie) charakterisiert:
+	
+	Sei $r \colon F \to Z$ ein Vektorbündel, $(\overline{g},g)$ ein Morphismus zwischen $r \colon F \to Z$ und $p \colon E \to X$. Sei weiter $g' \colon Z \to Y$ eine 
+	stetige Abbildung mit $f \circ g' = g$. Dann existiert genau ein $G \colon F \to f^* E$, so dass $(G,g')$ ein Morphismus von Vektorbündeln ist und weiter 
+	$(\overline{f},f) \circ (G,g')= (\overline{g},g)$ gilt.
+	\[
+		\begin{tikzcd}[sep=large]
+			F \drar["\exists!\, G", dashed] \dar["r"'] \arrow[bend left,"\overline{g}"]{drr} & & \\
+			Z \drar["g'"'] \arrow["g" near end]{drr} & f^* E \rar["\overline{f}"] \dar["q" pos=0.3,crossing over] & E \dar["p"]\\
+			& Y \rar["f"'] & X
+		\end{tikzcd}
+	\]
+\end{enumerate}	
+\end{lemma}
+\begin{beweis}
+Sei $y\in Y$. Sei $U \subset X$ eine Umgebung von $f(y)$ in $X$, sodass eine lokale Trivialisierung $\varphi_U \colon p ^{-1}(U) \to U \times K^n$ existiert. Dann ist 
+$V:= f^{-1}(U)$ eine Umgebung von $y$ und es gilt
+\[
+	q ^{-1}(V) = \set[(y,v) \in V \times p ^{-1}(U)]{f(y)=p(v)} 
+\]
+Wir definieren nun 
+\begin{align*}
+	\psi_V \colon \,\,q ^{-1}(V) &\longrightarrow V \times K^n &  (y,v)&\longmapsto \enbrace[\big]{y, \pr_{K^n} \circ \varphi_U(v)} \\
+	\kappa_V \colon V \times K^n &\longrightarrow q ^{-1}(V) &  (y,w) &\longmapsto \enbrace*{y, \varphi_U^{-1} \enbrace*{f(y),w} } 
+\end{align*}
+Dann gilt $\psi_V \circ \kappa_V=\id_{V \times K^n}$ und $\kappa_V \circ \psi_V = \id_{q^{-1}(V)}$. Außerdem kommutiert das Diagramm aus \autoref{def_vektbuendel}. Also ist 
+$\psi_V$ eine lokale Trivialisierung von $f^*E \to Y$ über $V$. \\
+\emph{Der Beweis von b) ist eine (relativ einfache) Übungsaufgabe}\todo{eventuell hinzufügen}.
+\end{beweis}
+
+\noindent Sei $\mathcal{C}$ eine (topologische) Kategorie. Hieraus lässt sich eine neue Kategorie $\mathcal{C}^\op$ definieren:
+\[
+	\obj(\mathcal{C}^\op) := \obj(\mathcal{C}) \quad , \quad \Mor_{\mathcal{C}^\op}(c,d) := \Mor_{\mathcal{C}}(d,c)
+\]
+mit der neuen Komposition
+\[
+	\begin{tikzcd}[row sep=0.1em]
+		\bullet \mbox{ :}\hspace{-4em} & \Mor_{\mathcal{C}^\op}(c',c'') \times \Mor_{\mathcal{C}^\op}(c,c') \rar & \Mor_{\mathcal{C}^\op}(c,c'') \\
+		& (f,g) \rar[mapsto] & f \bullet g = g \circ f
+	\end{tikzcd}
+\]
+(Kovariante) Funktoren $\mathcal{C}^\op \to \mathcal{D}$ entsprechen dann kontravarianten Funktoren $\mathcal{C}\to \mathcal{D}$. 
+
+Sei $\VEKT_K = \VEKT_K(\pt)$ die Kategorie der endlichdimensionalen $K$-Vektorräume und linearen Abbildungen. Ein Funktor
+\begin{equation}
+	F \colon \Underbrace{\VEKT_K \times \ldots \times \VEKT_K}{r} \times \Underbrace{\VEKT_K^\op \times \ldots \times \VEKT_K^\op}{s} \longrightarrow \VEKT_K \label{eq:24}\tag{\#}
+\end{equation}
+heißt \bet{stetig}\index{stetiger Funktor}, falls die induzierte Abbildung
+\begin{gather*}
+	\Mor_{\VEKT_K}(V_1,V'_1) \times \ldots \times \Mor_{\VEKT_K}(V_r,V'_r) \times \Mor_{\VEKT_K^\op}(V_{r+1},V'_{r+1}) \times \ldots \times \Mor_{\VEKT_K^\op}(V_{r+s},V'_{r+s}) \\
+	\longrightarrow \enspace\Mor_{\VEKT_K} \enbrace*{F(V_1, \ldots,V_r,V_{r+1}, \ldots , V_{r+s}), F (V'_1, \ldots , V'_r, V'_{r+1}, \ldots , V'_{r+s})} 
+\end{gather*}
+stetig ist. Dies klappt nur für Kategorien, für die eine Topologie auf den Morphismen existiert, was auf lineare Abbildungen zwischen endlichdimensionalen Vektorräumen aber 
+natürlich zutrifft.
+% subsection 24 (end)
+
+
+\begin{lemma}[{name=[Induzierter Funktor eines stetigen Funktors]},label=ind_funk_vektorbuendel]
+Sei $F$ ein stetiger Funktor wie in \eqref{eq:24} und sei $X$ ein topologischer Raum. Dann induziert $F$ einen Funktor
+\[
+	F_X \colon \Underbrace{\VEKT_K(X) \times \ldots \times \VEKT_K(X)}{r} \times \Underbrace{\VEKT_K(X)^\op \times \ldots \times \VEKT_K(X)^\op}{s} \longrightarrow \VEKT_K(X)
+\]
+der verträglich ist mit Pullbacks und $F_\pt=F$ erfüllt.
+\end{lemma}
+\begin{beweis}
+Sei $m=r+s$. Definiere 
+\(
+	F_X \enbrace*{E^\ssbrace{1}, \ldots , E^\ssbrace{m}} = \coprod_{x \in X} F \enbrace*{E_x^\ssbrace{1}, \ldots , E_x^\ssbrace{m}}   
+\)
+als Menge. Sei $\set{U_i}_i$ eine offene Überdeckung von $X$, so dass lokale Trivialisierungen 
+\[
+	\varphi_i^\ssbrace{k} \colon (p^\ssbrace{k})^{-1}(U_i) \longrightarrow U_i \times K^{\ell_k}
+\]
+existieren. $F$ induziert nun -- da die $\varphi_i^\ssbrace{k}$ Homöomorphismen sind -- Bijektionen
+\[
+	F_{U_i} \enbrace*{\varphi_i^\ssbrace{1}, \ldots , \varphi_i^\ssbrace{m}} \colon F_{U_i} \enbrace*{(p^\ssbrace{1})^{-1}(U_i), \ldots , (p^\ssbrace{m})^{-1}(U_i)}
+	\longrightarrow U_i \times F \enbrace*{K^{\ell_1}, \ldots , K^{\ell_m}}   
+\]
+Jetzt gibt es eine eindeutige Topologie auf $F_X \enbrace*{E^\ssbrace{1}, \ldots , E^\ssbrace{m}}$, so dass die eben definierten Abbildungen 
+$\psi_i = F_{U_i} \enbrace*{\varphi_i^\ssbrace{1}, \ldots , \varphi_i^\ssbrace{m}}$ Homöomorphismen werden, wobei $U_i \times F \enbrace*{K^{\ell_1}, \ldots , K^{\ell_m}}$ 
+die Produkttopologie trägt: Eine Menge $V \subset F_X \enbrace*{E^\ssbrace{1}, \ldots , E^\ssbrace{m}}$ ist offen, falls sie die Vereinigung von Mengen der Form 
+$\psi_i^{-1}(V_i)$ mit $V_i \subset U_i \times F \enbrace*{K^{\ell_1}, \ldots , K^{\ell_m}}$ offen ist.
+
+Damit diese Definition konsistent ist, müssen wir folgendes überprüfen: Sei $V \subset (U_i \cap U_j) \times F(K^{\ell_1}, \ldots , K^{\ell_m})$ offen. Wir haben zu zeigen, dass 
+dann auch $\psi_j \circ \psi_i^{-1}(V)$ offen ist. Aber es gilt $\psi_j \circ \psi_i ^{-1}(x,v)= \enbrace[\big]{x, \psi_{ij}(x)(v)}$ für eine Abbildung
+\[
+	\psi_{ij} \colon U_i  \cap U_j \longrightarrow \End_K \enbrace*{F(K^{\ell_1}, \ldots , K^{\ell_m})} 
+\]
+Es gilt $\psi_{ij} = F \enbrace[\big]{\psi_{ij}^\ssbrace{1}, \ldots , \psi_{ij}^\ssbrace{m}}$ für \emph{stetige} Abbildungen 
+$\psi_{ij}^\ssbrace{k} \colon U_i \cap U_j \to \End_K(K^{\ell_k})$. Da $F$ stetig ist, folgt, dass alle $\psi_{ij}$ stetig sind und folglich auch $\psi_j \circ \psi_i ^{-1}$. 
+Somit ist $\psi_j \circ \psi_i ^{-1}(V)$ offen. Es ist damit klar, dass $F_X \enbrace*{E^\ssbrace{1}, \ldots , E^\ssbrace{m}} \to X$ ein Vektorbündel ist, denn wir haben lokale Trivialisierungen konstruiert. Ferner gilt per Definition für eine stetige Abbildung $f \colon Y \to X$
+\[
+	f^* F_X \enbrace*{E^\ssbrace{1}, \ldots , E^\ssbrace{m}} \cong F_Y \enbrace*{f^*E^\ssbrace{1}, \ldots , f^* E^\ssbrace{m}} \qedhere
+\]	
+\end{beweis}
+
+\begin{beispiel}
+\autoref{ind_funk_vektorbuendel} liefert uns viele bekannte Konstruktionen für Vektorbündel:
+\begin{itemize}
+	\item $\oplus \colon \VEKT_K \times \VEKT_K \to \VEKT_K$ ist stetig $\Rightarrow $ direkte Summe von Vektorbündeln\index{Vektorbündel!direkte Summe}. 
+	\item $\otimes \colon \VEKT_K \times \VEKT_K \to \VEKT_K$ ist stetig $\Rightarrow $ Tensorprodukt von Vektorbündeln\index{Vektorbündel!Tensorprodukt}. 
+	\item Dualisieren von Vektorräumen ${ }^* \colon \VEKT_K^\op \to \VEKT_K$ ist stetig $\Rightarrow $ duales Vektorbündel
+	\item Der Funktor $\Hom \colon \VEKT_K \times \VEKT_K^\op \to \VEKT_K$, $(V,W) \mapsto \Hom_K(W,V)$ ist stetig $\Rightarrow$ 
+	Homomorphismenbündel\index{Homomorphismenbündel}.
+\end{itemize}	
+\end{beispiel}
+
+\noindent Seien $p \colon E \to X$ und $q \colon F \to X$ zwei $K$-Vektorbündel. Dann ist $E \times F \xrightarrow{(p,q)} X \times X$ auch ein Vektorbündel, wenn 
+$E_x\times F_x$ die Vektorraumstruktur der äußeren direkten Summe trägt.
+
+\begin{uebung}
+Sei $\Delta  \colon X \to X \times X$ die Diagonalabbildung. Zeige, dass $\Delta^*(E \times F) \cong E \oplus F$ als Vektorbündel über $X$.	
+\end{uebung}
+
+
+
+\section*{Homotopieinvarianz von Pullbacks}
+\begin{erinnerung}
+Ein topologischer Raum heißt \bet{normal}\index{normaler topologischer Raum}, falls sich zwei disjunkte abgeschlossene Mengen durch offene Mengen trennen lassen. 	
+Ein wichtiger Satz über normale Räume ist der folgende:
+\end{erinnerung}
+
+\begin{satz}[{name={Fortsetzungssatz von Tietze}},label=fort_tietze]
+Sei $X$ ein normaler Raum, $A \subset X$ abgeschlossen und $V$ ein endlich dimensionaler $K$-Vektorraum. Zu jeder stetigen Abbildung $f \colon A \to V$ existiert eine 
+stetige Abbildung $F \colon X \to V$ mit $F|_A=f$.
+\end{satz}
+
+
+\begin{bemerkung}
+Jeder kompakte Hausdorffraum ist normal \emph{(Übungsaufgabe)}. 
+\end{bemerkung}
+
+\begin{definition*}[{name=[Schnitt]}]
+Sei $p \colon E \to X$ ein $K$-Vektorbündel über einem topologischen Raum $X$. Ein \Index{Schnitt} von $E$ ist eine stetige Abbildung $s \colon X \to E$ mit 
+$p \circ s = \id_X$, das heißt $s(x) \in E_x$. Jedes Vektorbündel hat einen Schnitt, nämlich den trivialen Schnitt $s(x)=0 \in E_x$.	
+\end{definition*}
+
+\begin{lemma}[{name=[Fortsetzungen von Schnitten auf abgeschlossenen Teilmengen]},label=schnitte_Hd_Raum]
+Sei $X$ ein kompakter Hausdorffraum, $A \subset X$ abgeschlossen. Seien $p \colon E \to X$ und $p' \colon E' \to X$ zwei $K$-Vektorbündel über $X$. Dann gilt:
+\begin{enumerate}[a)]
+	\item Jeder Schnitt $s \colon A \to E|_A$ lässt sich zu einem Schnitt $\overline{s} \colon X \to E$ fortsetzen.
+	\item Sei $\iota \colon A \hookrightarrow X$ die Inklusion und $E|_A := \iota^* E$, sowie $E'|_A := \iota^* E'$. Sei weiter $f \colon E|_A \to E'|_A$ ein Morphismus von 
+	Vektorbündeln. Dann existiert ein Morphismus $\hat{f} \colon E \to E'$, der $f$ fortsetzt. Ist $f$ ein Isomorphismus, dann existiert eine offene Menge $U \supset A$, 
+	sodass $\hat{f}|_U \colon E|_U \to E'|_U$ ein Isomorphismus von Vektorbündeln ist.
+\end{enumerate}	
+\end{lemma}
+
+\begin{beweis}
+\leavevmode
+\begin{enumerate}[a)]
+	\item Wir wählen eine endliche Überdeckung $(U_i)_{i=1,\ldots ,N}$ von $X$, sodass lokale Trivialisierungen $\varphi_i\colon E|_{U_i}\to U_i\times K^n$ existieren. Nach 
+	dem Fortsetzungssatz \ref{fort_tietze} lässt sich 
+	\[
+		\pr_{K^n} \circ \varphi_i \circ s\big|_{U_i \cap A} \colon U_i \cap A \longrightarrow K^n 
+	\]
+	zu einer stetigen Abbildung auf $U_i$ fortsetzen, also auch $s|_{U_i \cap A}$ selbst. Sei $\overline{s}_i$ eine solche Fortsetzung. Sei $\psi_i \colon X \to [0,1]$ eine 
+	Partition der Eins\footnote{siehe \url{https://de.wikipedia.org/wiki/Zerlegung_der_Eins}}\index{Partition der Eins}, die der Überdeckung $(U_i)_{i=1,\ldots ,N}$ 
+	untergeordnet ist. Sei
+	\[
+		\overline{s} = \sum_{i=1}^{N} \psi_i \cdot \overline{s}_i \colon X \longrightarrow E 
+	\]
+	Dann gilt $\overline{s}|_A = \enbrace*{\sum_{i=1}^{N} \psi_i} \cdot s|_A= s|_A$.
+	\item Die Morphismen $f \colon E \to E'$ entsprechen den Schnitten des Vektorbündels $\Hom(E,E') \to X$ wie folgt: Jedem $f$ lässt sich ein Schnitt
+	\[
+		s_f(x)(v) := f(v)
+	\]
+	für $x \in X$ und $v \in E_x$ zuordnen. Jedem Schnitt $s \colon X \to \Hom(E,E')$ entspricht ein Morphismus $f_s(v)=s \enbrace[\big]{p(v)}(v) \in E'_{p(v)}$. Somit 
+	folgt der erste Teil der Aussage aus a).
+	
+	Sei nun $\pi \colon \Hom(E,E') \to X$ die Bündelabbildung. Sei weiter
+	\[
+		\Iso(E,E') = \mengenB[\big]{g \in \Hom(E,E')}{g \colon E_{\pi(g)} \to E'_{\pi(g)} \text{ ist ein Isomorphismus}} \subset \Hom(E,E')
+	\]
+	Dann ist $\Iso(E,E') \to X$ ein lokal triviales Bündel, allerdings \emph{kein} Vektorbündel. Sind $E$ und $E'$ $n$-dimensional, ist die Faser von $\Iso(E,E')$ an jedem 
+	Punkt homöomorph zu $\GL_n(K)$. Da $\GL_n(K) \subset M_n(K)$ offen ist und $\Iso(E,E')$ lokal trivial ist, folgt, dass $\Iso(E,E') \subset \Hom(E,E')$ offen 
+	ist.\footnote{da lokal homöomorph zu $U \times \GL_n(K) \hookrightarrow U \times M_n(K)$} Sei $\hat{f}$ eine Fortsetzung von $f$. Setze 
+	$U = {s_{\hat{f}}}\mkern-0.5mu^{-1} \enbrace[\big]{\Iso(E,E')}$ für $s_{\hat{f}} \colon X \to \Hom(E,E')$. Dann ist $U$ offen und $s_{\hat{f}}|_U$ entspricht einem 
+	Isomorphismus $\hat{f} \colon E|_U \to E'|_U$. \qedhere
+\end{enumerate}	
+\end{beweis}
+
+
+\begin{lemma}[{name=[{Trivialisierbarkeit von $E \to X \times [a,b]$, wenn $E|_{X \times [a,c]}$, $E|_{X \times [c,b]}$ % 
+trivialisierbar}]},label=trivialisierbarkeit_verkleben]
+Seien $a,b \in \mathds{R}$ mit $a <b$ und $X$ ein topologischer Raum. Sei weiter $p \colon E \to X \times [a,b]$ ein $K$-Vektorbündel. Es gebe außerdem ein $c \in (a,b)$, 
+so dass $E|_{X \times [a,c]}$ und $E|_{X \times [c,b]}$ trivialisierbar sind. Dann ist auch $E$ trivialisierbar.	
+\end{lemma}
+
+\begin{beweis}
+Wir können den Beweis für jede Komponente von $X$ einzeln führen und daher ohne Beschränkung der Allgemeinheit annehmen, dass $X$ zusammenhängend ist. Seien 
+\begin{align*}
+	\varphi_a \colon X \times [a,c] \times K^n &\xrightarrow{\minwidthbox{\cong}{2em}} E\big|_{X \times [a,c]} \\ 
+	\varphi_b \colon X \times [c,b] \times K^n &\xrightarrow{\minwidthbox{\cong}{2em}} E\big|_{X \times [c,b]}
+\end{align*}
+entsprechende Trivialisierungen. Sei außerdem
+\[
+	h := \enbrace*{\varphi_b\big|_{X \times \set{c} \times K^n }} ^{-1} \circ  \enbrace*{\varphi_a\big|_{X \times \set{c} \times K^n}} \colon X \times \set{c} \times K^n 
+	\longrightarrow X \times \set{c} \times K^n    
+\]
+Dann ist $h$ ein Isomorphismus eines trivialen $K$-Vektorbündels über $X$.
+Dieser hat die Form $h(x,v)= \enbrace[\big]{x , g(x) \cdot v}$ für eine stetige Abbildung $g \colon X \to \GL_n(K)$. Sei jetzt 
+\[
+	w \colon X \times [c,b] \times K^n \longrightarrow X \times [c,b] \times K^n \quad , \qquad (x,t,v') \longmapsto \enbrace[\big]{x,t,g(x)\cdot v'}
+\]
+Dann gilt $\varphi_a|_{X \times \set{c} \times K^n} = \varphi_b \circ w |_{X \times \set{c} \times K^n }$ und $w$ ist ein Isomorphismus. Daher können wir diese beiden 
+Abbildungen zu einem Isomorphismus von Vektorbündeln $X \times [a,b] \times K^n \to E$ zusammensetzen.
+\end{beweis}
+
+\begin{lemma}[{name=[{Endliche Überdeckung $\set{U_i}_{i=1}^N$, sodass Trivialisierbarkeit auf $U_i$ gilt}]},label=trivialisierbarkeit_ueberdeckung]
+Sei $X$ ein kompakter Raum. Sei $p \colon E \to X \times I$ ein $K$-Vektorbündel. Dann gibt es eine endliche offene Überdeckung $\set{U_i}_{i=1}^N$ von $X$, so dass 
+$E|_{U_i \times I}$ trivialisierbar ist.	
+\end{lemma}
+
+\begin{beweis}
+Sei $x \in X$ und $t \in I$. Dann existieren offene Umgebungen $x \in U(t) \subset X$ und $I(t) \subset I$, sodass $E|_{U(t) \times I(t)}$ trivialisierbar ist. Da $I$ 
+kompakt ist, existiert eine endliche Folge $0=t_0 < t_1 < \ldots < t_n =1$ zusammen mit offenen Umgebungen $U_i$ von $x$, so dass $E|_{U_i \times [t_{i-1}, t_i]}$ 
+trivialisierbar ist. Sei nun $U := \bigcap_{i=1}^n U_i$. Nach \autoref{trivialisierbarkeit_verkleben} ist $E|_{U \times I}$ trivialisierbar. Da $X \times I$ kompakt ist, 
+wird es von endlichen vielen solcher Mengen überdeckt. 	
+\end{beweis}
+
+
+\begin{theorem}[{name=[{Isomorphismus von Vektorbündeln $E$ und $E|_{X \times \set{1}} \times I$ für $X$ kompakt}]},label=iso_vektb_intervall]
+Sei $X$ ein kompakter Raum und sei $p \colon E\to X \times I$ ein $K$-Vektorbündel. Sei weiter $E_1 = E|_{X \times \set{1}}$.
+\begin{enumerate}[a)]
+	\item Es gibt einen Isomorphismus von Vektorbündeln über $X \times I$
+	\[
+		\begin{tikzcd}
+			\varphi \colon E \rar["\cong"]  & E_1 \times I 
+		\end{tikzcd}
+	\]
+	mit $\varphi|_{p ^{-1}(X \times \set{1})} =\id_{E_1}$
+	\item Sei $(X,A)$ ein \hyperref[def_koraumpaar]{Ko-Raumpaar}, $h \colon X \times I \to Y$ eine stetige Abbildung und $p' \colon E' \to Y$ ein $K$-Vektorbündel mit $E \cong h^* E'$. Falls jetzt
+	$h_t(a)=h_0(a)$ für alle $a \in A$ und $t \in I$, dann lässt sich der Isomorphismus aus a) so wählen, dass er den durch $h$ induzierten Isomorphismus 
+	$E|_{A \times I} \to E_1|_{A} \times I$ fortsetzt.
+\end{enumerate}	
+\end{theorem}
+
+\begin{beweis}
+Nach \autoref{trivialisierbarkeit_ueberdeckung} können wir eine Überdeckung von $X \times I$ durch offene Mengen der Form $U_i \times I$ mit $i \in \set{1,\ldots ,N}$ 
+finden, so dass $E|_{U_i \times I}$ trivialisierbar ist. Seien $h_i \colon U_i \times I \times K^n \to E|_{U_i \times I}$ die entsprechenden Trivialisierungen und seien 
+$\eta_i \colon X \to [0,1]$ stetige Funktionen mit folgenden Eigenschaften:
+\[
+	\supp(\eta_i) \subset U_i \qquad \text{ und } \qquad \max_{i=1,\ldots ,N} \eta_i(x)=1 \text{ für alle } x \in X
+\]
+Sei $r_i \colon X \times I \to X \times I$ gegeben durch $r_i(x,t)= \enbrace[\big]{x, \max(\eta_i(x),t)}$. Ein Punkt $(x,t)$ wird durch $r_i$ entlang der $I$-Achse nach $1$ verschoben. Der 
+Wert der Verschiebung wird durch $\eta_i$ festgelegt.
+\[
+	\begin{tikzpicture}[my brace/.style={decorate, decoration={brace, amplitude=5pt, mirror, raise=5pt}}]
+		\draw[thick] (0,0) node[below]{$0$} rectangle (2,2);
+		\draw[|-|] (0,1.6) -- (0,0.5);
+		\draw[my brace,] (0,1.6) -- (0,0.5) node[midway, left=8pt]{$U_i$};
+		\foreach \x in {0.3,0.65,...,1.8}{
+			\draw[gray] (\x,0.2) -- (\x,1.8);
+		}
+		\node[below] at (2,0) {$1$};
+		
+		\draw[thick,-to] (2.5,1) -- (4,1) node[midway,above]{$r_i$};
+		
+		
+		\node[below] at (7,0) {$1$};
+		\draw[|-|] (5,1.6) -- (5,0.5);
+		\draw[my brace,] (5,1.6) -- (5,0.5) node[midway, left=8pt]{$U_i$};
+		\foreach \x in {5.3,5.65,...,6.8}{
+			\draw[gray] (\x,0.2) -- (\x,0.5) .. controls +(90:0.2) and +(270:0.2) .. (7,1.05) .. controls +(90:0.2) and +(270:0.2) .. (\x,1.6) -- (\x,1.8);
+		}
+		\draw[gray,->] (5.5,1.05) -- ++(0.7,0);
+		\draw[thick] (5.,0) node[below]{$0$} rectangle (7,2);
+	\end{tikzpicture}
+\]
+Nun konstruieren wir einen Morphismus von $K$-Vektorbündeln $(u_i,r_i)$ über $r_i$ wie folgt: 
+\[
+	u_i \enbrace[\big]{h_i(x,t,v)} := h_i \enbrace[\big]{r_i(x,t),v}  
+\]
+für $(x,t,v) \in U_i \times I \times K^n$. Wir setzen $u_i=\id$ außerhalb des Bildes von $h_i$. Wegen 
+$r_i|_{X \times I\setminus{U_i} \times I} =\id_{X \times I \setminus U_i \times I}$ ist dies stetig. Außerdem kommutiert
+\[
+	\begin{tikzcd}
+		E \rar["u_i"] \dar["p"]& E \dar["p"]\\
+		X\times I \rar["r_i"] & X \times I
+	\end{tikzcd}
+\]
+und $u_i$ ist auf den Fasern linear. Sei $r :=r_N \circ r_{N-1} \circ \ldots \circ r_1$. Nach Konstruktion gilt $r(x,t)=(x,1)$ für alle $x \in X$. 
+Sei $u := u_N \circ \ldots \circ u_2 \circ u_1$.Dann ist $(u,r)$ ein Morphismus von Vektorbündeln und es gilt $(u,r)|_{X \times \set{1}}=\id_{E_1}$. Außerdem haben wir 
+\[
+	\begin{tikzcd}
+		E \rar["\enbrace*{u,r} "] \drar & E \\
+		& E_1 \uar[hook]
+	\end{tikzcd}
+	\qquad \text{ und }\qquad 
+	\begin{tikzcd}
+		E \rar["u"] \dar["p"'] & E_1 \dar["p_1"] \\
+		X \times I \rar["r"] & X \times \set{1} 
+	\end{tikzcd}
+\]
+Setze jetzt $\varphi \colon E \to E_1 \times I$, $v \mapsto \enbrace[\big]{u(v), \pr_I \circ p(v)} $. Dann ist $(\varphi, \id_{X \times I})$ ein Isomorphismus von 
+Vektorbündeln mit $\varphi|_{E \times \set{1}} =\id$. Damit ist a) gezeigt.
+
+Für b) sei $V_j \subset Y$ eine offene Überdeckung von $Y$, sodass $E'|_{\overline{V}_j}$ trivialisierbar ist. Sei nun $B_j = h ^{-1}(\overline{V}_j) \subset X \times I$. 
+Es gilt dann
+\[
+	B_j \cap (A \times I) = \enbrace[\big]{\Underbrace{h_1 ^{-1}(\overline{V}_j) \cap A}{=A_j}} \times I
+\]
+da $h$ auf $A$ unabhängig ist von $t \in I$. Nach Konstruktion ist $E|_{A_j \times I}$ trivialisierbar. Nach \autoref{schnitte_Hd_Raum} b) finden wir eine offene Umgebung 
+$U_j \times I$ mit $X \supset U_j \supset A_j$, so dass $E|_{U_j \times I}$ trivialisierbar ist. Wir ergänzen die Mengen $U_j \times I$ um trivialisierende offene Umgebungen 
+$U_i \times I$ mit $U_i \cap A = \emptyset$, so dass $\bigcup_{i} U_i \times I = X \times I$. Jetzt verwenden wir die Konstruktion aus a) für diese Überdeckung. Der 
+entsprechende Isomorphismus $\varphi \colon E \to E_1 \times I$ stimmt auf $A_j \times I$ mit dem von $h$ induzierten Isomorphismus überein. 	
+\end{beweis}
+% subsection 210 (end)
+
+Das folgende Korollar ist von entscheidender Bedeutung für die Definition von topologischer $K$-Theorie, die wir im nächsten Abschnitt erarbeiten wollen.
+
+\begin{korollarB}[{name=[Homotopieinvarianz von Pullbacks]}]
+Sei $X$ ein kompakter Raum und $h \colon X \times I \to Y$ eine Homotopie. Sei $p \colon E \to Y$ ein $K$-Vektorbündel. Dann gilt
+\begin{enumerate}[a)]
+	\item $h_0^* E \cong h_1^* E$ als Vektorbündel über $X$, das heißt Pullbacks sind homotopieinvariant bis auf Isomorphie.
+	\item Falls $(X,A)$ ein Ko-Raumpaar ist und $h$ stationär auf $A$ ist, dann kann der Isomorphismus so gewählt werden, dass er über $A$ die Identität ist.\qedhere
+\end{enumerate}	
+\end{korollarB}
+
+% section 2 (end)
+\newpage
+
+\section{Topologische $K$-Theorie} % (fold)
+\label{sec:3}
+Wir haben im letzten Kapitel folgenden kontravarianten, homotopieinvarianten Funktor kennengelernt
+\[
+	\begin{tikzcd}[row sep=0.1em, column sep=large,cramped]
+		\TOP \rar & \MONOIDE \\
+		X \rar[mapsto] & \nicefrac{\VEKT_K(X)}{\sim_{\mathrm{Iso}}} \\
+		(f \colon X \to Y) \rar[mapsto] & \enbrace[\big]{f^* \colon \nicefrac{\VEKT_K(Y)}{\sim_{\mathrm{Iso}}} \to \nicefrac{\VEKT_K(X)}{\sim_{\mathrm{Iso}}}} 
+	\end{tikzcd}
+\]
+mit der Monoid-Operation $[E]_{\Iso} + [F]_{\Iso} = [E \oplus F]_{\Iso}$ und dem Nullvektorbündel als neutralem Element. Daraus wollen wir eine Gruppe konstruieren. Ein kanonischer Ansatz dazu ist die folgende Konstruktion: 
+
+\subsection*{Grothendieck-Konstruktion}
+Sei $(M,+)$ ein kommutativer Monoid. Betrachte $\Gr(M)= \nicefrac{M \times M}{\sim}$ mit der Äquivalenzrelation
+\[
+	(x,y) \sim (x',y') :\iff \exists c \in M \text{ mit } x+y' +c = x' +y +c
+\]
+Die Idee dahinter: $[x,y]$\enquote{$=$}$x-y$, also die erste Koordinate ist der \enquote{positive} und die zweite der \enquote{negative} Teil. Dann ist 
+\[
+	\begin{tikzcd}[row sep=tiny]
+		+ \colon \Gr(M) \times \Gr(M) \rar & \Gr(M) \\
+		\quad \enbrace[\big]{[x,y] , [x',y']} \rar[mapsto] & \benbrace*{x+x',y+y'}  
+	\end{tikzcd}
+\]
+wohldefiniert. Mit dieser Operation ist $\Gr(M)$ eine abelsche Gruppe (das Inverse zu $[x,y]$ ist $[y,x]$, denn $[x+y,x+y]=[0,0]$) und $M \to \Gr(M)$, $x  \mapsto [x,0]$ ist
+ein Monoidhomomorphismus.
+\begin{beispiel}
+$\Gr(\mathds{N}_0,+)= (\mathds{Z},+)$.
+\end{beispiel}
+\minisec{Universelle Eigenschaft}
+Zu jedem Monoidhomomorphismus $\varphi \colon M \to A$ in eine abelsche Gruppe $A$ existiert genau ein Gruppenhomomorphismus $\psi \colon \Gr(M) \to A$, sodass das Diagramm
+\[
+	\begin{tikzcd}
+		M \dar[hook] \rar["\varphi"] & A \\
+		\Gr(M) \urar["\exists ! \psi"', dashed]
+	\end{tikzcd}
+\]
+kommutiert. \emph{Der Beweis ist eine Übungsaufgabe. Für die Existenz betrachte $\psi \enbrace*{[x,y]} = \varphi(x) - \varphi(y)$. Die Eindeutigkeit folgt dann ganz 
+einfach.} \bigskip \\
+Wir bekommen jetzt eine abelsche Gruppe $K^0(X) := \Gr \enbrace*{\nicefrac{\VEKT_{\mathds{C}}(X)}{\sim_{\Iso}}}$, aber es stellen sich weiterhin die Fragen auf dem Weg zu 
+einer Kohomologie-Theorie: Was ist $K^n(X)$ für $n\not=0$? Was ist $K^n(X,A)$, also was machen wir mit (Ko-)Raumpaaren?
+
+\begin{definition}[{name=[Tripel, Morphismus von Tripeln und stabile Isomorphie]}, label=sub:31]
+Sei $(X,A)$ ein \hyperref[def_koraumpaar]{Ko-Raumpaar}.
+\begin{enumerate}[(i)]
+	\item Ein \Index{Tripel} $(E_1,f,E_0)$ über $(X,A)$ besteht aus endlichdimensionalen $\mathds{C}$-Vektorbündeln $p_i \colon E_i \to X$ und einem Isomorphismus
+	$f \colon E_1|_A \to E_0|_A$.
+	\item Ein \Index{Morphismus von Tripeln} $(E_1,f,E_0)$ und $(E_1',f',E_0')$ besteht aus einem Paar $(g_1,g_0)$ von Vektorbündelmorphismen $g_i \colon E_i \to E_i'$,
+	sodass das folgende Diagramm kommutiert
+	\[
+		\begin{tikzcd}[column sep=large]
+			E_1|_A \rar["g_1|_A"] \dar["f"]& E_1'|_A \dar["f'"]\\
+			E_0|_A \rar["g_0|_A"] & E_0'|_A
+		\end{tikzcd}
+	\] 
+	\item Tripel der Form $(E,\id_E,E)$ heißen \bet{elementar}\index{Tripel!elementares}.
+	\item $(E_1,f,E_0)$ und $(E_1',f',E_0')$ heißen \Index{stabil isomorph}, falls Vektorbündel $E \to X$ und $E' \to X$ existieren, so dass
+	\[
+		\enbrace*{E_1 \oplus E, f \oplus \id_E, E_0 \oplus E} \cong \enbrace*{E_1' \oplus E', f' \oplus \id_{E'}, E_0' \oplus E' } 
+	\]
+	also falls sie isomorph werden nach Addition elementarer Tripel.
+\end{enumerate}
+\end{definition}
+\begin{bemerkung}
+\begin{itemize}
+	\item Stabile Isomorphie ist eine Äquivalenzrelation.\hfill \emph{(einfache Übung)}
+	\item Stabile Isomorphieklassen von Tripeln lassen sich addieren, das heißt
+	\[
+		\benbrace[\big]{E_1,f,E_0}_\st + \benbrace[\big]{E_1',f',E_0'}_\st := \benbrace[\big]{E_1 \oplus E_1', f \oplus f', E_0 \oplus E_0'}_\st  
+	\]
+	ist wohldefiniert. Das Tripel $\benbrace*{0,\id,0}_\st$ ist ein neutrales Element hierfür.
+	\item Es gilt $\benbrace*{E_1,f,E_0}_\st=\benbrace*{0,\id,0}_\st$ genau dann, wenn ein Vektorbündel $E \to X$ existiert, so dass sich 
+	der Isomorphismus $f \oplus \id \colon E_1  \oplus E|_A \to E_0 \oplus E|_A $ zu einem Isomorphismus über ganz $X$ ausdehnen lässt.
+\end{itemize}
+\end{bemerkung}
+\begin{beweis}
+Für die erste Implikation folgt aus der Definition $(E_1 \oplus E, f \oplus \id, e_0 \oplus E) \cong \enbrace*{E', \id_{E'},E'}$. Sei $\varphi=(\varphi_1,\varphi_0)$ dieser 
+Isomorphismus. Dann kommutiert das folgende Diagramm
+\[
+	\begin{tikzcd}[column sep=large]
+		(E_1 \oplus E)|_A \rar["\varphi_1|_A","\cong"'] \dar["f \oplus \id"']& E'|_A \dar["\id_{E^\prime}\!|_A","\cong"'] \\
+		(E_0 \oplus E)|_A \rar["\cong","\varphi_0|_A"'] & E'|_A
+	\end{tikzcd}
+\]
+Der Isomorphismus $\varphi_0 ^{-1} \circ \varphi_1 \colon E_1 \oplus E \to E_0 \oplus E$ ist auf ganz $X$ definiert und erfüllt 
+$\varphi_0 ^{-1} \circ \varphi_1 |_A = f \oplus \id$, ist also eine Fortsetzung wie gewünscht.
+% $\id_{E'}$ ist ein Isomorphismus auf ganz $X$, also lässt sich $f \oplus \id$ zu einem Isomorphismus auf ganz $X$ ausdehnen.
+
+Für die Rückrichtung betrachten wir $\psi \colon E_1 \oplus E \xrightarrow{\minwidthbox{\raisebox{0pt}[0pt][0pt]{$\cong$}}{2em}} E_0 \oplus E$ mit $\psi|_A = f \oplus \id$. Dann kommutiert
+\[
+	\begin{tikzcd}[column sep=large]
+		(E_1 \oplus E)|_A  \dar["f \oplus \id"] \rar["\psi|_A","\cong"']& (E_0 \oplus E)|_A \dar["\id"] \\
+		(E_0 \oplus E)|_A \rar["\id","\cong"']& (E_0 \oplus E)|_A
+	\end{tikzcd} 
+\]	
+also ist $(\psi,\id) \colon \enbrace*{E_1 \oplus E, f \oplus \id, E_0 \oplus E} \to \enbrace*{E_0 \oplus E, \id ,E_0 \oplus E}$ die gesuchte stabile Isomorphie.
+\end{beweis}
+% subsection 31 (end)
+
+
+\begin{definition}[{name=[$K^{-n}(X,A)$]},label=sub:32]
+Sei $(X,A)$ ein \hyperref[def_koraumpaar]{Ko-Raumpaar}. Wir definieren $K^0(X,A)$ als die Menge der stabilen Isomorphieklassen von Tripeln über $(X,A)$. 
+$K^0(X,A)$ heißt auch \emph{$0$-te $K$-Gruppe} von $(X,A)$. Für $n>0$ definieren wir \index{K-Gruppe@$K$-Gruppe}
+\begin{align*}
+	K^{-n}(X,A) &:= K^0 \enbrace[\big]{(X,A) \times (I,\partial I)^n} \\
+	\text{und } \quad K^{-n}(X)\hphantom{,A} &:= K^{-n}(X,\emptyset)
+\end{align*}
+\end{definition}
+\noindent \emph{Übung: $K^0(X,\emptyset)$ ist isomorph zu $\Gr \enbrace*{\nicefrac{\VEKT_\mathds{C}(X)}{\sim_{\Iso}}}$.} 
+
+Wir wissen bisher nur, dass $K^0(X,A)$ ein Monoid ist bezüglich der Addition von Tripeln. Um zu sehen, dass dies tatsächlich eine Gruppenstruktur liefert, brauchen wir zwei 
+Lemmata: 
+% subsection 32 (end)
+
+
+\begin{lemma}[label=sub:33,{name=[Existenz eines Bündelisomorphismus und einer Homotopie]}]
+Sei $(X,A)$ ein Ko-Raumpaar.\marginnote{Morphismen entsprechen Schnitten von Morphismenbündeln, siehe Beweis von \autoref{schnitte_Hd_Raum}}
+Seien $p \colon E \to X$ und $p' \colon E' \to X$ zwei $K$-Vektorbündel und $f \colon E'|_A \to E|_A$ ein Isomorphismus, $(E',f,E)$ also ein Tripel. 
+Sei weiter $f' \colon E' \to E$ ein Isomorphismus von $K$-Vektorbündeln und $h \colon A \times I \to \Iso(E'\times I|_{A\times I},E\times I|_{A\times I})$ eine stetige 
+Abbildung, so dass $h_t$ ein Schnitt ist für alle $t \in I$ und $h_0=f'|_A$, sowie $h_1=f$ gilt.\todo[inline]{Ich sehe nicht ein, wie bei dieser Definition von $h$, $h_1=f$ bzw. $h_0=f'|_A$ gelten kann, da in deren Definitionen das Einheitsintervall doch gar nicht vorkommt \ldots}
+
+Dann existiert ein Isomorphismus $F \colon E' \to E$ mit $F|_A=f$ und eine Homotopie $H \colon X \times I \to \Iso(E' \times I,E\times I)$ mit $H_0=f'$, $H_1=F$ und $H|_{A\times I}=h$.	
+\end{lemma}
+\begin{beweis}
+Unser Ziel ist es $h$ zu einer Homotopie $H$ auf ganz $X \times I$ zu erweitern und dann $F = H_1$ zu setzen.
+Die Abbildungen $h$ und $f'$ liefern eine stetige Abbildung 
+\[
+	\begin{tikzcd}
+		\tilde{h} \colon A \times I \cup X \times \set{0} \rar & \Iso \enbrace*{\enbrace*{\pr_X^* E'}|_{A \times I \cup X \times \set{0} },\enbrace*{\pr_X^* E}|_{A \times I \times X \times 
+		\set{0}}} 
+	\end{tikzcd}
+\]
+Wir müssen $\tilde{h}$ zu einem Schnitt $X \times I \to \Iso(E'\times I, E \times I)$ ausdehnen, dass wir einen Schnitt bekommen. Betrachte \marginnote{$r$ aus Kofaserungseigenschaft}
+\[
+	\begin{tikzcd}
+		A \times I \cup X \times \set{0} \rar["\id"] \dar[hook]& A \times I \cup X \times \set{0} \rar["\iota",hook] & X \times I\\  
+		X \times I \urar[dashed,"r"]
+	\end{tikzcd}
+\]
+Sei $r_X = \pr_X \circ \iota \circ r$ und $r_I = \pr_I \circ \iota \circ r$. Sei weiter 
+\[
+	\begin{tikzcd}[row sep=tiny]
+		K \colon (X \times I) \times I \rar &  X \times I \\
+		(x,t,s) \rar[mapsto] & \enbrace*{r_X(x,st), s r_I(x,t) + (1-s)t} 
+	\end{tikzcd}
+\]
+Dann gilt $K_0(x,t)=(x,t)$ und $K_1(x,t)= \iota \circ r(x,t)$, also ist $\iota \circ r$ homotop zu $\id_{X \times I}$. Folglich ist
+\[
+	\begin{tikzcd}
+		E \times I \rar["\cong"] &(\iota \circ r)^*(E \times I) \cong r^* \enbrace*{\iota^*(E \times I)} \rar["\overline{r}"] & \iota^*(E \times I) \cong E|_A \times I \cup E 
+		\times \set{0} 
+	\end{tikzcd}
+\]
+Ebenso $\overline{r}' \colon E' \times I E'|_A \times I \cup E' \times \set{0}$. $(\overline{r},r)$ und $(\overline{r}',r)$ sind Morphismen von Vektorbündeln.
+Wir erhalten nun das folgende Diagramm, wobei die diagonale Abbildung rechts oben von $\tilde{h}$ induziert ist und somit ein Isomorphismus ist
+\[
+	\begin{tikzcd}[] % row sep=2.3em, column sep=2.8em
+		E' \times I \ar[dd] \ar[rr,"\overline{r}'"] \ar[dr,"\overline{H}",dashed]& & E'|_A \times I \cup E' \times \set{0} \ar[dd] \drar["\cong"'] \\
+		& E \times I \ar[rr,"\overline{r}", crossing over,pos=0.3] & & E|_A \times I \cup E \times \set{0} \ar[dd] \\
+		X \times I \ar[rr,"r",pos=0.3] \ar[dr,"\id"] & & A \times I \cup X \times \set{0} \ar[dr,"\id"] \\
+		& X \times I \ar[from=uu,crossing over] \ar[rr,"r"']& & A \times I \cup X \times \set{0} 
+	\end{tikzcd}
+\]
+Die Existenz von $\overline{H}$ folgt aus der universellen Eigenschaft des Pullbacks. Es gilt nun $H=\pr_E \circ \overline{H} \colon E' \times I \to E$ und wir erhalten
+eine Abbildung $X \times I \to \Iso(E' \times I, E \times I)$. $F := H|_{E' \times \set{1}} \colon E' \to E$ ist nun die gesuchte Abbildung.
+\end{beweis}
+% subsection 3.3 (end)
+
+Wir können nur klären, was inverse Elemente in $K^0(X,A)$ sind. Kandidat für das inverse Element in $K^0(X,A)$ zu $(E_0,f,E_1)$ ist $(E_1, f ^{-1},E_0)$. Wir müssen
+prüfen, dass $(E_0,f,E_1) \oplus (E_1,f ^{-1}, E_0)= (E_0 \oplus E_1, f \oplus  f ^{-1},E_1 \oplus E_0)$ ist. Dazu folgendes Lemma:
+
+\begin{lemma}[label=sub:34,{name=[Stabile Isomorphien gewisser Tripel]}]
+Sei $(X,A)$ ein Ko-Raumpaar.
+\begin{enumerate}[(i)]
+	\item Seien $(E_0,f,E_1)$ und $(E_1,g,E_2)$ Tripel über $(X,A)$. Dann sind die beiden Tripel 
+	\[
+		(E_0,g \circ f, E_2) \quad  \text{ und } \quad \enbrace*{E_0 \oplus E_1, f \oplus g, E_1 \oplus E_2} 
+	\]
+	stabil isomorph.
+	\item Seien $(E_0,f,E_1)$ und $(E_0,g,E_1)$ Tripel über $(X,A)$. Sei $h \colon A \times I \to \Iso \enbrace*{E_0|_A,E_1|_A} $ eine Homotopie zwischen $f$ und $g$, sodass 
+	$h_t \colon A \to \Iso \enbrace*{E_0|_A,E_1|_A}$ ein Schnitt ist für alle $t \in I$. Dann sind die beiden Tripel stabil isomorph.
+\end{enumerate}
+\end{lemma}
+\begin{beweis}
+\mbox{ }
+\begin{enumerate}[(i)]
+	\item Wir haben das folgende kommutative Diagramm von Vektorbündeln:
+	\[
+		\begin{tikzcd}[ampersand replacement=\&,row sep=4.8em,column sep=5.2em]
+			E_1 \oplus E_0\big|_A \ar[rrr,"{\begin{pmatrix} \id & f \\ 0 & \id \end{pmatrix}}","\text{(1)}"'] \ar[d,"{\begin{pmatrix} \id & 0 \\ 0 & g \circ f \end{pmatrix}}"'] 
+			\& \& \& E_1 \oplus E_0\big|_A \ar[d,"{\begin{pmatrix} g & 0 \\ 0 & f \end{pmatrix}}"] \\
+			E_1 \oplus E_2\big|_A \& E_2 \oplus E_1\big|_A \lar["{\begin{pmatrix} 0 & -\id \\ \id & 0 \end{pmatrix}}"',"\text{(2)}"]
+			\& E_2 \oplus E_1\big|_A \lar["{\begin{pmatrix} \id & g \\ 0 & \id \end{pmatrix}}"',"\text{(3)}"]
+			\& E_2 \oplus E_1\big|_A \lar["{\begin{pmatrix} \id & 0 \\ - g^{-1} & \id \end{pmatrix}}"',"\text{(4)}"]
+		\end{tikzcd}
+	\]
+	Die Kommutativität ergibt sich dabei wie folgt
+	\begin{align*}
+		&\begin{pmatrix} 0 & -\id \\ \id & 0 \end{pmatrix} \cdot 
+		\begin{pmatrix} \id & g \\ 0 & \id \end{pmatrix} \cdot 
+		\begin{pmatrix} \id & 0 \\ - g^{-1} & \id \end{pmatrix} \cdot 
+		\begin{pmatrix} g & 0 \\ 0 & f \end{pmatrix} \cdot 
+		\begin{pmatrix} \id & f \\ 0 & \id \end{pmatrix} \\
+		&= \begin{pmatrix} 0 & -\id \\ \id & 0 \end{pmatrix} \cdot 
+		\begin{pmatrix}	0 & g \\ - g^{-1} & \id \end{pmatrix} \cdot 
+		\begin{pmatrix} g & g \circ f \\ 0 & f \end{pmatrix} = 
+		\begin{pmatrix}	g ^{-1} & -\id \\ 0 & g \end{pmatrix} \cdot 
+		\begin{pmatrix} g & g \circ f \\ 0 & f \end{pmatrix} = 
+		\begin{pmatrix}\id & 0 \\ 0 & g \circ f \end{pmatrix}
+	\end{align*}
+	Wir können $f$,$g$ und $g^{-1}$ zu Morphismen über $X$ fortsetzen (nach \autoref{schnitte_Hd_Raum}). Die Fortsetzungen sind im Allgemeinen aber keine Isomorphismen.
+	Dennoch sind die auf $X$ erweiterten Versionen der Morphismen (1) -- (4) Isomorphismen über $X$. Dabei ist zum Beispiel das Inverse zu $\begin{psmallmatrix}
+		\id & f \\ 0 &\id
+	\end{psmallmatrix}$ gegeben durch $\begin{psmallmatrix}
+		\id & -f \\ 0 & \id
+	\end{psmallmatrix}$. Dass die beiden Tripel stabil isomorph sind, ergibt sich nun wie folgt:
+	\begin{align*}
+		\benbrace[\big]{E_0 , g \circ f, E_2}_\st =
+		\benbrace[\big]{E_1 \oplus  E_0, \id \oplus g \circ f, E_1 \oplus E_2}_{\st} &= \benbrace*{E_1 \oplus E_0, \begin{psmallmatrix}
+			g & 0 \\ 0 &f
+		\end{psmallmatrix}, E_2 \oplus E_1}_{\st}  \\ 
+		&= \benbrace*{E_0 \oplus E_1, \begin{psmallmatrix}
+			f & 0 \\ 0 &g
+		\end{psmallmatrix}, E_1 \oplus E_2}_{\st} 
+	\end{align*}
+	\item Betrachte das Tripel $(E_0, \oplus E_1, f \oplus g ^{-1}, E_1 \oplus E_0)$. Nach (i) ist es stabil isomorph zu $(E_0, g ^{-1}\circ f,E_0)$. Nach Voraussetzung ist
+	$g ^{-1} \circ f$ homotop zu $\id_{E_0}$ durch Isomorphismen. Also folgt aus \autoref{sub:33}, dass sich $g ^{-1} \circ f$ zu einem Isomorphismus über $X$ fortsetzen 
+	lässt. Aus der Bemerkung folgt 
+	\begin{align*}
+		\benbrace*{E_0, g ^{-1} \circ f,E_0}_\st = \benbrace*{0,\id,0}_\st 
+	\end{align*}
+	Außerdem gilt nach (i) auch $\benbrace*{E_1 \oplus E_0, g ^{-1} \oplus g, E_0 \oplus E_1}_\st = \benbrace*{0,\id,0}_\st$. Weiter ist
+	\begin{align*}
+		\benbrace[\big]{E_0,f,E_1}_\st &= \benbrace*{E_0 \oplus E_1 \oplus E_0, f \oplus g ^{-1} \oplus g, E_1 \oplus E_0 \oplus E_1}_\st \\  
+		&= \Underbrace{\benbrace*{E_0 \oplus E_1, f \oplus g ^{-1}, E_1 \oplus E_0}_\st }{=\benbrace{0,\id,0}} + \benbrace[\big]{E_0,g,E_1}_\st \qedhere
+	\end{align*}
+\end{enumerate}
+\end{beweis}
+% subsection 34 (end)
+
+
+\begin{korollar}[label=sub:35,{name=[$K^{-n}(X,A)$ ist eine abelsche Gruppe]}]
+Sei $(X,A)$ ein Ko-Raumpaar. Dann ist $K^{-n}(X,A)$ für $n \ge 0$ eine abelsche Gruppe.
+\end{korollar}
+\begin{beweis}
+Es genügt zu zeigen, dass $K^0(X,A)$ eine abelsche Gruppe ist (siehe \autoref{sub:32}). Sei $\benbrace*{E_0, f,E_1}_\st\in K^0(X,A)$. Dann gilt nach \autoref{sub:34}
+\begin{align*}
+	\benbrace*{E_0,f,E_1}_\st + \benbrace*{E_1,f ^{-1},E_0}_\st = \benbrace*{E_0 \oplus E_1, f \oplus f ^{-1}, E_1 \oplus E_0}_\st = \benbrace*{E_0, f ^{-1} \circ f,E_0}_\st
+	= \benbrace*{0,\id,0}_\st 
+\end{align*}
+Damit ist die Existenz von Inversen bewiesen. Diese Gruppe ist nach Definition abelsch.
+\end{beweis}
+Die Zuordnung $(X,A) \mapsto K^{-n}(X,A)$ ist ein kontravarianter Funktor: Sei $g \colon (X,A) \to (Y,B)$ eine stetige Abbildung von Ko-Raumpaaren, dann ist
+\[
+	g^* \colon K^{-n}(Y,B) \to K^{-n}(X,A)
+\]
+definiert durch $g^* \benbrace*{E_0,f,E_1}_\st = \benbrace*{g^* E_0, g^* f, g^* E_1}_\st$. Hierbei ist $g^* f$ der von der universellen Eigenschaft des Pullbacks induzierte 
+Morphismus:
+\[
+	\begin{tikzcd}[thick]
+		g^* E_0\big|_A \ar[rr] \ar[dd] \ar[dr,dashed,"g^* f","\cong"',Firebrick3] & & E_0\big|_B \drar["f","\cong"'] \ar[dd]\\
+		& g^* E_1\big|_A \ar[rr,crossing over] & & E_1\big|_B \ar[dd]\\
+		A \ar[rr,"g|_A",pos=0.3] \ar[dr,"\id"']& & B \ar[dr,"\id"]\\
+		& A \ar[from=uu,crossing over] \ar[rr,"g|_A"]& & B
+	\end{tikzcd}
+\]	
+
+\begin{lemma}[label=sub:36,{name=[Homotopieinvarinaz]}]
+Der Funktor $(X,A) \mapsto K^{-n}(X,A)$ ist homotopieinvariant.
+\end{lemma}
+\begin{beweis}
+Es genügt wieder, den Fall $n=0$ zu betrachten. Seien $g_0,g_1 \colon (X,A) \to (Y,B)$ stetige Abbildungen und $h \colon (X \times I,A \times I) \to (Y,B)$ eine Homotopie 
+zwischen $g_0$ und $g_1$. Sei $(E_0,f,E_1)$ ein Tripel über $(Y,B)$. Nach \autoref{iso_vektb_intervall} a) existieren Isomorphismen
+\[
+	\begin{tikzcd}[column sep=4em, row sep=0.5em]
+		h^* E_0 \rar["\psi^\ssbrace{0}","\cong"'] & g_1^*(E_0) \times I \\
+		h^* E_1 \rar["\psi^\ssbrace{1}","\cong"'] & g_1^*(E_1) \times I
+	\end{tikzcd}
+\]
+die über $X \times \set{1}$ die Identität sind. Betrachte nun die Abbildung
+\[
+	\enbrace*{\psi^\ssbrace{1}|_{A \times I}} \circ \enbrace*{h^* f} \circ \enbrace*{\psi^\ssbrace{0}|_{A \times I}} ^{-1} \colon g^*_1 E_0|_A \times I  
+	\xrightarrow{\minwidthbox{\cong}{3em}} g_1^*E_1\big|_A \times I   
+\]
+Dies entspricht einer Homotopie $\tilde{h} \colon A \times I \to \Iso \enbrace[\big]{g_1^*E_0|_A \times I, g_1^* E_1|_A \times I}$. 
+Sei nun
+\[
+	\tilde{f} = \enbrace*{\psi^\ssbrace{1}|_{A \times \set{0}}} \circ \enbrace*{h^*_0 f} \circ \enbrace*{\psi^\ssbrace{0}|_{A \times \set{0}}} ^{-1}
+\]  
+Dann erhalten wir das kommutative Diagramm
+\[
+	\begin{tikzcd}[sep=large]
+		g_0^* E_0|_A \rar["g_0^*f","\cong"'] \dar["\psi^\ssbrace{0}|_{A \times \set{0}}"',"\cong"] & g_0^*E_1|_A \dar["\psi^\ssbrace{1}|_{A \times \set{0} }","\cong"'] \\
+		g^*_1 E_0|_A \rar["\cong"',"\tilde{f}"] & g_1^* E_1|_A
+	\end{tikzcd}
+\]
+Es folgt damit
+\[
+	\benbrace[\big]{g_0^* E_0, g^*_0 f , g^*_0 E_1}_\st = \benbrace[\big]{g_1^* E_0, \tilde{f}, g_1^* E_1}_\st \stackrel{\mbox{\scriptsize \ref{sub:34} ii)}}{=}
+	\benbrace[\big]{g_1^* E_0, g_1^* f, g_1^* E_1}_\st \qedhere
+\]	
+\end{beweis}
+% subsection 36 (end)
+
+\section*{Ausschneidung}
+Wir erinnern uns an das Ausschneide-Axiom:
+\begin{quote}
+Sei $(X,A)$ ein Ko-Raumpaar und $U \subset A$ eine Teilmenge mit $\overline{U} \subset \mathring{A}$. Dann ist die induzierte Abbildung 
+$K^{-n}(X,A) \to K^{-n}(X \setminus U, A \setminus U)$ ein Isomorphismus.	
+\end{quote}
+Wir wollen das Ausschneide-Axiom nun für die $K$-Theorie beweisen.
+
+\begin{lemma}[label=sub:37,{name=[Vektorbündel über einem Pushout]}]
+Sei folgendes Diagramm ein Pushout-Diagramm von kompakten Hausdorffräumen
+\[
+	\begin{tikzcd}[sep=large]
+		X_0 \rar[hook,"\iota_1"] \dar["\iota_2"]& X_1 \dar["j_1"] \\
+		X_2 \rar[hook,"j_2"] & X
+	\end{tikzcd}
+\]
+Seien $p_i \colon E_i \to X_i$ für $i \in \set{1,2}$ $K$-Vektorbündel und $f \colon \iota_1^* E_1 \xrightarrow{\cong} \iota_2^* E_2 $ ein Isomorphismus von $K$-Vektorbündeln 
+über $X_0$. Dann ist
+\[
+	E = \Faktor{E_1 \coprod E_2}{\sim} \xrightarrow{\minwidthbox{p}{3em}} \Faktor{X_1 \coprod X_2 }{\sim}=X
+\]
+mit $v_1 \sim f(v_1)$ für alle $v_1 \in E_1$ mit $p_1(v_1) \in X_0$ ein $K$-Vektorbündel über $X$.	
+\end{lemma}
+\begin{beweis}
+Sei $p \colon E \to X$ die Abbildung, die von $p_1$ und $p_2$ induziert wird. Wir zeigen, dass $E$ zusammen mit $p$ ein $K$-Vektorbündel ist. Die Abbildung $f$ ist ein
+Isomorphismus von $K$-Vektorbündeln, also erhält die Äquivalenzrelation die Vektorraumstruktur auf den Fasern. Es bleibt daher nur zu zeigen, dass $E$ lokal trivial ist.
+Aufgrund der lokalen Trivialität von $E_1$ und $E_2$ existieren lokale Trivialisierungen für die Punkte $j_1(X_1 \setminus \iota_1(X_0))$ und 
+$j_2(X_2 \setminus \iota_2(X_0))$. Sei also $x= j_2 \circ \iota_2(x_0)$ für ein $x_0 \in X_0$. Da $X_2$ ein kompakter Hausdorffraum ist, ist er insbesondere lokal kompakt. Jede offene Umgebung von $\iota_2(x_0)$
+enthält damit eine abgeschlossene Umgebung von $\iota_2(x_0)$. Also existiert eine abgeschlossene Umgebung $V_2$ von $\iota_2(x_0)$ mit einer Trivialisierung 
+$\varphi_2 \colon E_2|_{V_2} \to V_2 \times K^n$. Sei jetzt $W_1 = \iota_2^{-1}(V_2)$ und
+\[
+	\varphi_1 = \iota_2^* \varphi_2\big|_{W_1} \circ f \colon \iota_1^* E_1\big|_{W_1} \longrightarrow \iota_2^*E_2\big|_{W_1} \longrightarrow W_1 \times K^n
+\]
+Dann ist $\varphi_1$ ein Isomorphismus von $K$-Vektorbündeln. Da $W_1$ kompakt ist, also insbesondere abgeschlossen, existiert eine Umgebung $V_1 \supset W_1$ und ein 
+Isomorphismus $\psi_1 \colon E_1|_{V_1} \to V_1 \times K^n$, der $\varphi_1$ fortsetzt. Somit ist
+\[
+	\psi_1 \cup_f \varphi_2 \colon E\big|_{j_1(V_1) \cup j_2(V_2)} \longrightarrow \enbrace[\big]{j_1(V_1) \cup j_2(V_2)} \times K^n 
+\]
+eine lokale Trivialisierung um $x$.
+\end{beweis}
+% subsection 37 (end)
+
+\begin{lemma}[label=sub:38,{name=[Isomorphie eines Pullbackbündels für Ko-Raumpaare]}]
+Sei $(X,A)$ ein Ko-Raumpaar. Sei $p \colon E \to A$ ein $K$-Vektorbündel und $\iota \colon A \hookrightarrow X$ die Inklusion. Dann existieren Vektorbündel $q \colon F \to X$
+und $q' \colon F' \to A$, so dass $\iota^* F \cong E \oplus F'$.	
+\end{lemma}
+\begin{beweis}
+Es genügt ein Vektorbündel $q' \colon F' \to A $ zu finden, sodass $E \oplus F'$ trivialisierbar ist. 
+Denn dann können wir $F = X \times K^n$ für ein geeignetes $n \in \mathds{N}$ setzen.
+% \[
+% 	\begin{tikzcd}[row sep=0.1em]
+% 		E\big|_{U_i} \rar & U_i \times K^n \\
+% 		E \rar & X \times \Underbrace{K^n \oplus \ldots \oplus K^n}{\text{$k$ Kopien}}
+% 	\end{tikzcd}
+% \]
+
+Dazu können wir ohne Beschränkung der Allgemeinheit annehmen, dass $X$ zusammenhängend ist, da wir den Beweis sonst komponentenweise durchführen können. Sei 
+$\set{U_i}_{i=I}$, $I=\set{1,\ldots,N}$ eine endliche offene Überdeckung von $X$, sodass lokale Trivialisierungen $\varphi_i \colon E|_{U_i} \to U_i \times K^n$ existieren. 
+Wähle außerdem eine der Überdeckung untergeordnete Partition der Eins $\rho_i \colon X \to [0,1]$. Sei nun $\psi_i \colon E \to K^n$ für $i \in I$ definiert durch
+\[
+	\psi_i(v) = \begin{cases}
+		\rho_i \enbrace[\big]{p(v)} \cdot \enbrace*{\pr_{K^n}^\ssbrace{i} \circ \varphi_i}(v) &\text{ falls }p(v) \in U_i\\
+		0 &\text{ sonst}
+	\end{cases}
+\]
+Dies ist eine stetige Abbildung, da $\rho_i$ außerhalb von $U_i$ verschwindet. Jetzt betrachte
+\[
+	\psi \colon E \longrightarrow X \times \Underbrace{K^n \oplus \ldots \oplus K^n}{N \text{ Summanden}} \quad , \qquad v \longmapsto 
+	\enbrace[\big]{p(v), \enbrace[\big]{\psi_1(v), \ldots , \psi_N(v)} } 
+\]
+Dies ist ein Morphismus von $K$-Vektorbündeln, der die Fasern von $E$ injektiv nach $K^{nN}$ abbildet, da für jedes $v$ mindestens ein $\rho_i \enbrace*{p(v)}$ ungleich $0$
+ist. Sei $\skal*{\cdot}{\cdot}$ das Standardskalarprodukt auf $K^{nN}$ und $\varphi \colon E \to K^{nN}$ gegeben durch $\varphi= \pr_{K^{nN}} \circ \psi$. Sei weiter
+\[
+	F = \set[(x,w) \in X \times K^{nN}]{\skal*{w}{\varphi(v)}=0 \text{ für alle } v \in E_x} 
+\]
+und $q \colon F \to X$ gegeben durch $q(x,w)=x$. Dann ist $F_x = q ^{-1}(x)$ das orthogonale Komplement der Faser $E_x$ von $E$ über $x$. Insbesondere ist 
+$x \mapsto \dim(F_x)$ konstant, da dies auch für $x \mapsto \dim(E_x)$ gilt. Wir wollen sehen, dass $F$ ein $K$-Vektorbündel über $X$ ist. Es bleibt dazu die lokale 
+Trivialität von $F$ zu zeigen.
+
+Sei $p \colon X \to \mathrm{Mat}_{nN}(K)$ dadurch definiert, dass $p(x)$ die (eindeutige) orthogonale Projektion auf $F_x$ ist. Dann ist $p$ stetig. Dies lässt sich wie 
+folgt sehen: Sei $x' \in U_i \subset X$ beliebig. Dann liefern $f_k(x)=(\varphi \circ \varphi_i ^{-1})(x,e_k)$ für $k \in \set{1, \ldots ,n}$ stetige Abbildungen 
+$U_i \to K^{nN}$, sodass $\set{f_1(x), \ldots , f_n(x)}$ für alle $x \in U_i$ eine Basis von $\varphi(E_x)$ ist (wegen der Injektivität von $\varphi|_{E_x}$). Wenden wir das
+Gram-Schmidtsche Orthonormalisierungsverfahren auf die $f_i$ an, erhalten wir neue stetige Abbildungen $\hat{f}_i \colon U_i \to K^{nN}$, sodass 
+$\mengenA[\big]{\hat{f}_1(x), \ldots , \hat{f}_n(x)}$ eine Orthonormalbasis von $\varphi(E_x)$ ist. Es gilt dann
+\[
+	p\big|_{U_i}(x) = 1 - \sum_{k=1}^{n} \skal*{\hat{f}_k(x)}{\cdot } \hat{f}_k(x)
+\]
+Somit ist $p$ stetig in $x'$. Sei jetzt $x_0 \in X$ und $p_0=p(x_0)$. Betrachte die stetige Abbildung
+\[
+	\tilde{\varphi}_0 \colon F \longrightarrow X \times F_{x_0} \quad , \qquad (x,w) \longmapsto (x,p_0 w)
+\]
+sowie
+\[
+	\tilde{\psi}_0 \colon X \times F_{x_0} \longrightarrow F \quad ,\qquad (x,w') \longmapsto \enbrace[\big]{x,p(x) w'}
+\] 
+Die Komposition $\tilde{\varphi_0} \circ \tilde{\psi}_0$ erfüllt $\tilde{\varphi_0} \circ \tilde{\psi}_0(x,w) = \enbrace*{x,\tilde{p}(x) w}$ für eine stetige Abbildung 
+$\tilde{p} \colon X \to \Hom_K(F_{x_0}, F_{x_0})$ mit $\tilde{p}(x_0)=\id_{F_{x_0}}$. Da die invertierbaren Elemente offen in $\Hom_K(F_{x_0},F_{x_0})$ sind, muss es eine 
+offene Umgebung $x_0 \in U \subset X$ geben, sodass $\tilde{p}|_U$ invertierbar an jedem Punkt ist. Somit ist $\enbrace{\tilde{\varphi}_0 \circ \tilde{\psi}_0}|_U$ ein 
+Isomorphismus des trivialen Vektorbündels $U \times F_{x_0}$ und $\tilde{\varphi}_0|_U \colon F|_U \to U \times F_{x_0}$ bildet jede Faser $F_x$ surjektiv und damit aus 
+Dimensionsgründen auch injektiv auf $F_{x_0}$ ab. Dann ist $\tilde{\varphi}_0|_U$ aber eine lokale Trivialisierung von $F$ über $U$ ($\tilde{\varphi}_0$ ist nicht 
+notwendigerweise ein Isomorphismus über ganz $X$).
+
+Es bleibt noch zu zeigen, dass $E \oplus F \cong X \times K^{nN}$ ist. Dieser Isomorphismus ist gegeben durch 
+\[
+	E \oplus F \longrightarrow X \times K^{nN} \quad , \qquad (v,w) \longmapsto \psi(v) + w
+\]
+Das Inverse hierzu bildet $(x,w') \in X \times K^{nN}$ auf $\enbrace*{\psi ^{-1} \enbrace*{ (1- p(x)) w'}, p(x)w'}$ ab.
+\end{beweis}
+% subsection 38 (end)
+
+\begin{theorem}[label=sub:39,{name=[Isomorphismus in $K$-Theorie bei Pushout-Diagrammen]}]
+\[
+	\begin{tikzcd}[sep=large]
+		X_0 \rar[hook,"i_1"] \dar["i_2"]& X_1 \dar["j_1"] \\
+		X_2 \rar[hook,"j_2"] & X
+	\end{tikzcd}
+\]
+Für das obige Pushout-Diagramm von kompakten Hausdorffräumen gilt
+\begin{enumerate}[a)]
+	\item Ist $i_1$ eine \hyperref[def_koraumpaar]{Kofaserung}, dann auch $j_2$.
+	\item Der induzierte Homomorphismus $j_1^* \colon K^{-n}(X,X_2) \to K^{-n}(X_1,X_0)$ ist für $n \ge 0$ ein Isomorphismus.
+\end{enumerate}	
+\end{theorem}
+
+\begin{beweis}
+\mbox{ }
+\begin{enumerate}[a)]
+\item Da $i_1$ eine Kofaserung ist, gibt es die folgende Homotopieerweiterungseigenschaft
+\[
+	\begin{tikzcd}[row sep=large]
+		X_1 \times \set{0} \cup X_0 \times I \rar \dar[hook] & Z \\
+		X_1 \times I \urar[dashed,"\exists"'] 
+	\end{tikzcd}
+\]
+Sei jetzt $f \colon X \times \set{0} \cup X_2 \times I \to Z$ gegeben, wobei $f$ stetig ist. Dann kommutiert das folgende Diagramm
+\[
+	\begin{tikzcd}[column sep=huge,row sep=large]
+		X_1 \times \set{0} \cup X_0 \times I \rar["{j_1 \cup (i_2 \times \id)}"] \dar[hook] & X \times \set{0} \cup X_2 \times I \rar["f"] & Z \\
+		X_1 \times I \ar[urr, dashed,"h_1"',end anchor=south west] & & 
+	\end{tikzcd}
+\]
+Betrachte nun das Pushout-Diagramm
+\[
+	\begin{tikzcd}[row sep=3.5em,column sep=large]
+		X_0 \times I \rar[hook,"i_1 \times \id"] \dar["i_2 \times \id"] & X_1 \times I \dar["j_1 \times \id",hook] \ar[ddr, bend left,"h_1"] \\
+		X_2 \times I \rar[hook,"j_2 \times \id"] \ar[drr, bend right,"f|_{X_2 \times I}"] & X \times I \drar[dashed,"h"] \\
+		& & Z
+	\end{tikzcd}
+\]
+Aufgrund der universellen Eigenschaft des Pushouts existiert die Abbildung $h$, sodass das Diagramm kommutiert. Nach Definition von $h_1$ und $h$ kommutiert dann auch 
+das Diagramm
+\[
+	\begin{tikzcd}
+		X \times \set{0} \cup X_2 \times I \rar["f"] \dar[hook]& Z \\
+		X \times I \urar["h"'] 
+	\end{tikzcd}
+\]
+Damit ist Teil a) gezeigt.
+\item Wir zeigen die Behauptung zunächst für $n=0$:
+\begin{description}[wide=0cm]
+	\item[Injektivität:] Sei $(E_0, f,E_1)$ ein Tripel über $(X,X_2)$ mit $j_1^* \benbrace*{E_0,f,E_1}_\st =0$. Also existiert ein Vektorbündel $q \colon F \to X_1$, sodass
+	sich der Isomorphismus
+	\[
+		(j_1^* E_0 \oplus F)\big|_{X_0} \xrightarrow{j_1^* f \oplus \id} (j_1^* E_1 \oplus F) \big|_{X_0}
+	\]
+	zu einem Isomorphismus über $X_1$ fortsetzen lässt (siehe Bemerkung nach \ref{sub:31}). 
+	Nach \autoref{sub:38} existieren Vektorbündel $q' \colon F' \to X$ und $\tilde{F} \to X_1$, sodass 
+	$j_1^* F' \cong F \oplus \tilde{F}$ gilt. Nach Definition von stabiler Isomorphie gilt
+	\[
+		\benbrace[\big]{j_1^* E_0, j_1^* f , j_1^*E_1}_\st = \benbrace[\big]{j_1^* (E_0 \oplus F'),
+		\Underbrace{j_1^*(f \oplus \id_{F'})}{\mathclap{\text{lässt sich zu Iso über $X_1$ ausdehnen}}}, j_1^*(E_1 \oplus F')}_\st
+	\]
+	Wir können daher ohne Beschränkung der Allgemeinheit annehmen, dass sich $j_1^* f$ zu einem Isomorphismus über $X_1$ fortsetzen lässt. Das Vektorbündel $E_0$ ist 
+	isomorph zur Verklebung von $j_1^* E_0 \to X_1$ und $j_2^* E_0 \to X_2$ mittels der Identität $i_2^* j_2^* E_0 \cong i_1^* j_1^* E_0$ wie in 
+	\autoref{sub:37} beschrieben. Ähnliches gilt für $E_1 \to X$. Wir haben also Isomorphismen 
+	\[
+		j_1^* E_0 \xrightarrow[\cong]{\minwidthbox{j_1^* f }{2em}} j_1^* E_1 \quad \text{ und } \quad j_2^* E_0 = E_0\big|_{X_2} \xrightarrow[\cong]{\minwidthbox{f}{2em}}  
+		E_1\big|_{X_2} = j_2^* E_1
+	\]
+	die kompatibel mit der Äquivalenzrelation in der Verklebung sind. Sie induzieren daher einen Isomorphismus $E_0 \cong E_1$ über $X$, der $f$ fortsetzt.
+	Es folgt $\benbrace*{E_0,f,E_1}_\st=0$.
+	\item[Surjektivität:] Sei $(E_0,f,E_1)$ ein Tripel über $(X_1,X_0)$. Nach \autoref{sub:38} existieren Vektorbündel $q \colon F \to X_1$ und $p_1' \colon E_1' \to X$
+	mit einem Isomorphismus $\psi \colon E_1 \oplus  F \to j_1^* E_1'$. Sei $\alpha \colon (E_0 \oplus  F)|_{X_0} \to j_1^*E_1'|_{X_0}$ gegeben 
+	durch
+	\[
+		(E_0 \oplus F) \big|_{X_0} \xrightarrow[\cong]{\minwidthbox{f \oplus  \id}{2em}} (E_1 \oplus F) \big|_{X_0} \xrightarrow[\cong]{\minwidthbox{\psi}{2em}} 
+		j_1^*E_1'\big|_{X_0}
+	\]
+	Definiere nun $p_0' \colon E_0' \to X$ durch Verkleben von $E_0 \oplus F \to X_1$ und $E_1'|_{X_2} \to X_2$ entlang $\alpha$ wie in \autoref{sub:37}. Sei 
+	$f' \colon E_0'|_{X_2} \to E_1'|_{X_2}$ gegeben durch die Identität. Jetzt gilt
+	\begin{align*}
+		j_1^* \benbrace[\big]{E_0',f',E_1'}_\st = \benbrace[\big]{E_0 \oplus F, \psi \circ (f \oplus \id), j_1^* E_1'}_\st 
+		&= \benbrace[\big]{E_0 \oplus F, f \oplus  \id, E_1 \oplus F}_\st \\
+		&= \benbrace[\big]{E_0,f,E_1}_\st + \Underbrace{\benbrace[\big]{F,\id,F}_\st }{=0}
+	\end{align*}
+\end{description} 
+Für den Fall $n>0$ lässt sich der Beweis auf den Fall $n=0$ zurückführen, denn es ist
+\[
+	(X_1,X_0) \times (I^n,\partial I^n) = \enbrace*{X_1 \times I^n, X_1 \times \partial I^n \cup X_0 \times I^n},
+\]
+und $X_0 \times I^n \cup X_1 \times \partial I^n \hookrightarrow X_1 \times I^n$ ist eine Kofaserung. Weiter ist das folgende Diagramm ein Pushout-Diagramm
+\[
+	\begin{tikzcd}
+		X_0 \times I^n \cup X_1 \times \partial I^n \rar[hook] \dar & X_1 \times I^n \dar \\
+		X_2 \times I^n \cup X \times \partial I^n \rar[hook] & X \times I^n
+	\end{tikzcd}
+\]
+\end{enumerate}
+Damit ist das Theorem bewiesen.
+\end{beweis}
+% subsection 39 (end)
+
+
+\begin{korollar}[label=sub:310, {name=[Ausschneidung für $K$-Theorie]}]
+Sei $(X,A)$ ein Ko-Raumpaar und $U \subseteq A$, sodass $\overline{U} \subset \mathring{A}$, dann ist $K^{-n}(X,A) \to K^{-n}(X \setminus U, A \setminus U)$ ein 
+Isomorphismus.	
+\end{korollar}
+\begin{beweis}
+Setze $X_0 = A \setminus U$, $X_1 = X \setminus U$ und $X_2=A$ in \autoref{sub:39}. Dann ist der Pushout gleich $X$ und die Aussage folgt direkt aus dem Theorem. 
+\end{beweis}
+% subsection 310 (end)
+\newpage
+\section*{Exakte Tripelsequenz in $K$-Theorie}
+\begin{definition}[{name=[Ko-Raumtripel]}]
+Ein Tripel $(X,B,A)$ von kompakten Hausdorff-Räumen heißt \Index{Ko-Raumtripel}, falls $A \subset B$ und $B \subset X$ Kofaserungen sind. 
+\end{definition}
+Wir wollen nun eine exakte Tripelsequenz in $K$-Theorie konstruieren:
+\[
+	\begin{tikzcd}[row sep=0.5em]
+		\ldots \rar & K^{-n}(X,B) \rar["i^*"] & K^{-n}(X,A) \rar["j^*"] & K^{-n}(B,A) \rar["\delta^{-n}",Firebrick3] & K^{-n+1}(X,B) \rar & \ldots \\
+		\ldots \rar & K^0(X,B) \rar["i^*"] & K^0(X,A) \rar["j^*"] & K^0(B,A)
+	\end{tikzcd}
+\]
+Als Randabbildung brauchen wir also einen natürlichen Homomorphismus abelsche Gruppen $\delta^{-n} \colon K^{-n}(B,A) \to K^{-n+1}(X,B)$. Wir definieren zunächst
+$\delta^{-1} \colon K^{-1}(B,A) \to K^0(X,B)$ wie folgt
+\[
+	\begin{tikzcd}
+		K^{-1}(B,A) = K^0 \enbrace[\big]{B \times I, B \times \set{0} \cup A \times I \cup B \times \set{1}} \rar["\delta^{-1}",dashed] & K^0(X,B) 
+		\dar["\textbf{(2)}","\pr^*_X"'] \\
+		K^0 \enbrace[\big]{X \times \set{0} \cup B \times I, X \times \set{0} \cup A \times I \cup B \times \set{1}} \uar["\textbf{(1)}"] \rar  &
+		K^0 \enbrace[\big]{X \times \set{0} \cup B  \times I, A \times I \cup B \times \set{1}}   
+	\end{tikzcd}
+\]
+Die untere Abbildung ist dabei durch die Inklusion induziert. Weiter ist $\pr_X \colon X \times \set{0} \cup B \times I \to X$ die Einschränkung der entsprechenden 
+Projektion. Wir wollen nun sehen, dass $(1)$ und $(2)$ Isomorphismen sind:
+\begin{enumerate}[(1)]
+	\item ist Ausschneidung mit $U = (X \setminus B) \times \set{0}$ und damit ein Isomorphismus.
+	\item Wir zeigen, dass $\pr_X \colon \enbrace*{X \times \set{0} \cup B \times I, A \times I \cup B \times \set{1}} \to (X,B)$ eine Homotopieäquivalenz von Raumpaaren ist:
+\end{enumerate}
+\begin{beweis}
+Da $B \hookrightarrow X$ eine Kofaserung ist, erhalten wir eine Abbildung $h$, sodass folgendes Diagramm kommutiert.
+\[
+	\begin{tikzcd}
+		X \times \set{0} \cup B \times I \dar[hook] \rar["\id"] & X \times \set{0} \cup B \times I \\
+		X \times I \urar["h"',dashed] 
+	\end{tikzcd}
+\]
+Setze nun $h_i := h|_{X \times	\set{i}}$. Dann ist $h_0 \colon X \cong X \times \set{0} \to X \times \set{0} \cup B \times I$ die Inklusion und 
+$h_1 \colon X \to X \times \set{0} \cup B \times I$ bildet $B \subset X$ auf $B  \times \set{1}$ ab. Außerdem ist $h(A \times I) \subset A \times I$.
+Somit liefert $h_1$ eine stetige Abbildung $h_1 \colon (X,B) \to \enbrace*{X \times \set{0} \cup B \times I, A \times I  \cup B \times \set{1}}$. Damit ist dann 
+$\pr_X \circ h_1 \colon (X,B) \to (X,B)$ homotop durch Abbildungen von Raumpaaren zu $\pr_X \circ h_0= \id$.
+
+Sei nun $H \colon \enbrace*{X \times \set{0} \cup B \times I} \times I \to X \times \set{0} \cup B \times I$ gegeben durch
+\[
+	\begin{tikzcd}[row sep=0.2em]
+		\enbrace[\big]{(x,0),s} \rar[mapsto] & h(x,s) & \text{ auf } X \times \set{0} \times I \\
+		\enbrace[\big]{(b,t),s} \rar[mapsto] & h \enbrace[\big]{b, (1-s)t +s} & \text{auf } B \times I \times I 
+	\end{tikzcd}
+\]
+Dies ist stetig und es gilt $H \enbrace*{ \enbrace*{A \times I \cup B \times \set{1}} \times I } \subset A \times I \cup B \times \set{1}$. Außerdem ist
+\begin{align*}
+	H \enbrace[\big]{(x,t),0} &= h(x,t) = \id_{X \times \set{0} \cup B \times I } \\
+	\text{und } \quad H \enbrace[\big]{(x,t),1} &= h(x,1) = h_1 \enbrace[\big]{\pr_X(x,t)}  
+\end{align*}
+Also ist $H$ eine Homotopie zwischen $h_1 \circ \pr_X$ und der Identität als Abbildung von Raumpaaren.
+\end{beweis}
+$\delta^{-n}$ für $n>1$ ist folgendermaßen definiert: Wir betrachten das Tripel
+\[
+	\enbrace[\big]{X \times I^{n-1}, B \times I^{n-1} \cup X \times \partial I^{n-1}, A \times I^{n-1} \cup X \times \partial I^{n-1}} 
+\]
+Ausschneidung liefert nun einen Isomorphismus
+\[
+	K^{-1} \enbrace[\big]{B \times I^{n-1} \cup X \times \partial I^{n-1}, A \times I^{n-1} \cup X \times \partial I^{n-1}} 
+	\cong K^{-1} \enbrace*{B \times I^{n-1}, A \times I^{n-1} \cup B \times \partial I^{n-1}} = K^{-n}(B,A) 
+\]
+Damit können wir $\delta^{-n}$ nun definieren:
+\[
+	\begin{tikzcd}[column sep=2.9em]
+		K^{-n}(B,A) \rar[dashed,"\delta^{-n}",Firebrick3] & K^{-n+1}(X,B) \dar[equal]\\
+		K^{-1} \enbrace*{B \times I^{n-1} \cup X \times \partial I^{n-1}, A \times I^{n-1} \cup X \times \partial I^{n-1}} \rar["\delta^{-1}"] \uar["\cong"] &
+		K^0 \enbrace*{X \times I^{n-1}, B \times I^{n-1} \cup X \times \partial I^{n-1}}  
+	\end{tikzcd}
+\]
+\begin{theorem}[{name=[Exakte Tripelsequenz]}]
+Sei $(X,B,A)$ ein Ko-Raumtripel. Dann ist die Folge
+\[
+	\begin{tikzcd}
+		\ldots \rar & K^{-n}(X,B) \rar["i^*"] & K^{-n}(X,A) \rar["j^*"] & K^{-n}(B,A) \rar["\delta^{-n}"] & K^{-n+1}(X,B) \rar & \ldots 
+	\end{tikzcd}
+\]
+exakt, wobei $i \colon (X,A) \to (X,B)$ und $j \colon (B,A) \to (X,A)$ die Inklusionen sind.
+\end{theorem}
+\begin{beweis}
+Wir zeigen zunächst die Exaktheit bei $K^0(X,A)$ und folgern die Exaktheit von allen anderen Stellen hieraus.
+\begin{itemize}
+	\item Zu zeigen: $\ker j^* = \im i^*$. Sei $\benbrace*{E_0,f,E_1}_\st \in K^0(X,B)$. Dann ist 
+	\[
+		j^* \circ i^* \benbrace[\big]{E_0,f,E_1}_\st = \benbrace[\big]{E_0|_B,f|_A,E_1|_B}_\st
+	\]
+	$f|_B$ setzt sich zu einem Isomorphismus $f$ über $B$ fort und somit folgt $j^* \circ i^* =0$. Damit ist $\im i^* \subset \ker j^*$ gezeigt.
+	
+	Sei jetzt $\benbrace*{E_0,f,E_1}_\st \in \ker j^*$. Dann existiert ein Vektorbündel $F \to B$, sodass sich 
+	$f \oplus \id_F \colon (j^* E_0 \oplus F)|_A \to (j^* E_1 \oplus F)|_A$ zu einem Isomorphismus über $B$ fortsetzen lässt. Sei $g$ dieser Isomorphismus. Nach 
+	\autoref{sub:38} können wir annehmen, dass $F =j^* F'$ für ein Vektorbündel $F' \to X$ ist. Dann gilt aber
+	\[
+		\benbrace[\big]{E_0,f,E_1}_\st = \benbrace[\big]{E_0 \oplus F',f \oplus \id_{F'}}_\st = i^* \benbrace[\big]{E_0 \oplus F', g, E_1 \oplus F'}_\st 
+	\]
+	Damit ist auch $\ker j^* \subset \im i^*$.
+	\item Für die Exaktheit bei $K^0(X,B)$ betrachte das folgende Diagramm
+	\[
+		\begin{tikzcd}[column sep=large,row sep=huge]
+			K^0 \enbrace[\big]{X \times \set{0} \cup B \times I, X \times \set{0} \cup A \times I \cup B \times \set{1}} \rar["i_1^*","\cong"'] \dar["i_2^*"] 
+			\drar[phantom,"\circled{\text{1}}"]
+			& K^{-1}(B,A) \dar["\delta ^{-1}"] \\
+			K^0 \enbrace[\big]{X \times \set{0} \cup B \times I, A \times I \cup B \times \set{1}} \dar["i_3^*"] \drar[phantom,"\circled{\text{2}}"]
+			& K^0(X,B) \lar["\pr_X^*"',"\cong"] \dar["i^*"] \\
+			K^0 \enbrace[\big]{X \times \set{0} \cup A \times I \cup B \times \set{1}, A \times I \cup B \times \set{1}} \rar["i_4^*","\cong"'] & K^0(X,A)
+		\end{tikzcd}
+	\]
+	Dabei kommutiert \circled{1} nach Definition von $\delta ^{-1}$ und \circled{2}, da $\pr_x \circ i_3 \circ i_4 = i$ ist. $i_4^*$ ist ein Isomorphismus wegen 
+	Ausschneidung und Homotopieinvarianz:
+	\[
+		(X,A)\simeq \enbrace[\big]{X \times \set{0}  \cup A \times [0,1/2], A \times [0,1/2]} \xhookrightarrow{\minwidthbox{ }{1em}} 
+		\enbrace[\big]{X \times \set{0} \cup A \times I \cup B \times \set{1}, A \times I \cup B \times \set{1}}
+	\]
+	$i_1^*$ und $\pr_X^*$ sind Isomorphismen wie oben erklärt. Die Exaktheit der rechten Seite bei $K^0(X,B)$ folgt nur aus der Exaktheit der linken Seiten an der 
+	entsprechenden Stelle. Aber hier steht der Ausschnitt aus der exakten Folge des Tripels 
+	\[
+		\enbrace[\big]{X \times \set{0} \cup B \times I, X \times \set{0} \cup A \times I \cup B \times \set{1}, A \times I \cup B \times \set{1}} 
+	\]
+	an der Stelle, an der keine Randabbildung auftritt. Somit folgt die Exaktheit aus dem, was wir bereits gezeigt haben.
+	\item Die Exaktheit bei $K ^{-1}(B,A)$ lässt sich ebenfalls durch Verschieben der exakten Sequenz zeigen:
+	\[
+		\begin{tikzcd}[column sep=large,row sep=large]
+			K^{-1} \enbrace[\big]{X \times \set{0} \cup A \times I \cup B \times \set{1}, A \times I \cup B \times \set{1}} \rar["\cong"] \dar["\delta^{-1}"] 
+			\drar[phantom,"\circled{\text{3}}"]
+			&  K ^{-1}(X,A) \dar["j^*"] \\
+			K^0 \enbrace[\big]{X \times \set{0} \cup B \times I, X \times \set{0} \cup A \times I \cup B \times \set{1}} \rar["i_1^*"] \dar["i_1^*"] 
+			\drar[phantom,"\circled{\text{4}}"]
+			& K ^{-1}(B,A) \dar["\delta^{-1}"]\\
+			K^0 \enbrace[\big]{X \times \set{0} \cup B \times I, A \times I \cup B \times \set{1}} & K^0 (X,B) \lar["\cong","\pr_X^*"']  
+		\end{tikzcd}
+	\]
+	\circled{4} kommutiert wieder nach Definition von $\delta ^{-1}$. Dass das Diagramm bei \circled{3} kommutiert, ist eine (mühsame!) Übungsaufgabe.
+	\item Die Exaktheit für $n\ge 1$ folgt aus folgenden Überlegungen: Betrachte das Ko-Raumtripel
+	\[
+		\enbrace[\big]{X \times I^n, B \times I^n \cup X \times \partial I^n, A \times I^n \cup X \times \partial I^n} 
+	\]
+	und das kommutative Diagramm
+	\[
+		\begin{tikzcd}[row sep=large]
+			K^0 \enbrace[\big]{(X,A) \times (I,\partial I)^{n+1}} \rar[equal] \dar["j^*"] & K^{-(n+1)}(X,A) \dar["j^*"] \\
+			K^0 \enbrace[\big]{ \enbrace*{B \times I^n \cup X \times \partial I^n, A \times I^n \cup X \times \partial I^n} \times (I,\partial I)} 
+			\dar["\delta^{-1}"] \rar["\cong"] \drar[phantom,"\circled{\text{5}}"] & K^{-(n+1)}(B,A) \dar["\delta^{-(n+1)}"] \\
+			K^0 \enbrace[\big]{(X,B) \times (I,\partial I)^n} \rar[equal] \dar["i^*"] & K^{-n}(X,B) \dar["i^*"]\\
+			K^0 \enbrace[\big]{ (X,A) \times (I,\partial I)^n} \rar[equal] \dar["j^*"] & K^{-n}(X,A) \dar["j^*"] \\
+			K^0 \enbrace[\big]{B \times I^n \cup X \times \partial I^n, A \times I^n \cup X \times \partial I^n} \rar["\cong"] & K^{-n}(B,A)
+		\end{tikzcd}
+	\]
+	\circled{5} kommutiert nach Definition von $\delta^{-(n+1)}$. Die linke Spalte des Diagramms ist exakt, also auch die rechte Spalte. \qedhere
+\end{itemize}
+\end{beweis}
+\newpage
+\section*{Produkte in $K$-Theorie und Kettenkomplexe von Vektorbündeln}
+Klassen in $K^0(X)$ sind $[E_1,E_0]$ \enquote{$=$} $E_1 -E_0$, die Produkte könnten wir wie folgt definieren: 
+\[
+	\benbrace[\big]{E_1,E_0} \cdot \benbrace[\big]{E_1',E_0'} = \benbrace[\big]{(E_1\otimes E_1') \oplus (E_0 \otimes E_0'), (E_1 \otimes E_0')\oplus (E_0 \otimes E_1')} 
+\]
+Damit kann man aber nur schwer rechnen. Stattdessen wollen wir ein Produkt über Kettenkomplexe definieren.
+\[
+	\benbrace[\big]{E_1,f,E_0}  \leadsto \begin{tikzcd}
+		\cdots \rar & 0 \rar & E_1 \rar["\tilde{f}"] & E_0 \rar & 0 
+	\end{tikzcd}
+\]
+wobei $\tilde{f}$ die Fortsetzung von $f$ über $X$ ist
+
+\begin{definition}
+\mbox{ }\marginnote{Ab hier weicht die Nummerierung aus Konsistenzgründen von den Vorlesungsnotizen ab}
+\begin{itemize}
+	\item Ein \Index{Kettenkomplex von $K$-Vektorbündeln} über einem Ko-Raumpaar $(X,A)$ ist gegeben durch ein Paar $(C_n,c_n)_{n \in \mathds{N}}$, wobei die $C_i$ 
+	endlichdimensionale Vektorbündel sind und die $c_i \colon C_n \to C_{n-1}$ Morphismen von $K$-Vektorbündeln mit den folgenden Eigenschaften sind:
+	\begin{enumerate}[a)]
+		\item $\exists N \ge 0$ mit $C_n=0$ für alle $n >N$,
+		\item $c_{n-1} \circ c_n =0$ für alle $n$,
+		\item für alle $x \in A$ ist der Kettenkomplex von Vektorräumen
+		\[
+			\begin{tikzcd}
+				0 \rar & C_n|_{x} \rar["c_n|_x"] & C_{n-1}|_x \rar & \cdots \rar & C_1|_x \rar["c_1|_x"] & C_0|_x \rar & 0
+			\end{tikzcd}
+		\]
+		exakt.
+	\end{enumerate}
+	\item Eine \Index{Kettenabbildung} zwischen $(C_*,c_*)$ und $(D_*,d_*)$ über $(X,A)$ ist eine Folge von Morphismen $f_k \colon C_k \to D_k$, so dass folgendes Diagramm 
+	kommutiert
+	\[
+		\begin{tikzcd}[row sep=large]
+			\cdots \rar & C_k \rar["c_k"] \dar["f_k"] & C_{k-1} \rar \dar["f_{k-1}"]& \cdots \\
+			\cdots \rar & D_k \rar["d_k"] & D_{k-1} \rar & \cdots
+		\end{tikzcd}
+	\]
+	\item Zwei Kettenkomplexe $(C_*^i, c_*^i)$ über $(X,A)$ für $i \in \set{0,1}$ heißen \Index{homotop}, falls es einen Kettenkomplex $(C_*,c_*)$ über 
+	$(X\times I, A \times I)$ gibt, sodass $(C_*,c_*)\big|_{X \times \set{i} } \cong (C_*^i,c_*^i)$. Wir schreiben hierfür auch $(C_*^0,c_*^0) \simeq (C_*^1, c_*^1)$.
+	\item Sei $K(X,A)^c$ der Quotient der freien abelschen Gruppe erzeugt von den Isomorphie-Klassen von Kettenkomplexen von $\mathds{C}$-Vektorbündeln über $(X,A)$ 
+	bezüglich der folgenden Relationen (wir lassen die Differentiale in der Notation weg):
+	\begin{enumerate}[a)]
+		\item Wenn $C_* \simeq D_*$ gilt, dann folgt $[C_*] = [D_*]$
+		\item Wenn $\begin{tikzcd}[cramped,sep=small]
+			0 \rar & C_* \rar & D_* \rar & E_* \rar & 0
+		\end{tikzcd}$ eine kurze exakte Folge von Kettenkomplexen ist (faserweise exakt), dann gilt
+		\[
+			[C_*] - [D_*] + [E_*] = 0
+		\]
+		\item \(
+			\big[ \begin{tikzcd}[cramped,sep=small]
+				\cdots \rar & 0 \rar & E \rar["\id"] & E \rar & 0 \rar & \cdots
+			\end{tikzcd}\big] =0
+		\) 
+	\end{enumerate}
+\end{itemize}
+\end{definition}
+
+\begin{bemerkung}
+Aus b) folgt $[C_*] = [D_*]$ für isomorphe Kettenkomplexe und 
+\[
+	\benbrace[\big]{C_* \oplus  D_*, c_* \oplus d_*} = \benbrace[\big]{C_*,c_*} + \benbrace[\big]{D_*,d_*}
+\]	
+\end{bemerkung}
+
+Wir haben einen Gruppenhomomorphismus $a \colon K^0(X,A) \to K(X,A)^c$, 
+\[
+	[E_1,f,E_0]_\st \mapsto\big[\begin{tikzcd}[cramped,sep=small] \cdots \rar & 0 \rar & E_1 \rar["\tilde{f}"] & E_0 \rar & 0 \end{tikzcd}\big]
+\]
+wobei $\tilde{f}$ eine Fortsetzung von $f$ auf $X$ ist. Dies ist unabhängig von der Wahl der Fortsetzung: Seien $\tilde{f}_0, \tilde{f}_1$ zwei solche Fortsetzungen. Definiere 
+$h_t = t \cdot \tilde{f}_1 + (1-t) \cdot \tilde{f}_0$. Es gilt dann $h_t|_A =f$ und 
+\[
+	\begin{tikzcd}[sep=5.5em]
+		\cdots \rar & 0  \rar & E_1 \times I \rar["{(v,t) \mapsto (h_t(v),t)}"] & E_0 \times I \rar & 0
+	\end{tikzcd}
+\]
+ist ein Kettenkomplex über $(X \times I, A \times I)$ und somit eine Homotopie zwischen 
+$\begin{tikzcd}[cramped,sep=small]0 \rar & E_1 \rar["\tilde{f}_0"] & E_0 \rar & 0\end{tikzcd}$ und 
+$\begin{tikzcd}[cramped,sep=small]0 \rar & E_1 \rar["\tilde{f}_1"] & E_0 \rar & 0\end{tikzcd}$. \todo{Revision}
+
+
+\begin{definition}[label=sub:def_312]
+Sei $(C_*,c_*)$ ein Kettenkomplex über $(X,A)$.
+Eine \Index{Kettenkontraktion} über $A$ ist eine Familie von Bündelabbildungen $\gamma_n \colon C_n|_A \to C_{n+1}|_{A}$, sodass 
+$\gamma_{n-1} \circ (c_n|_A) + (c_{n+1}|_A) \circ \gamma_n = \id_{C_n|_A}$ 
+% \[
+% 	\begin{tikzcd}
+% 		\cdots \rar & C_{n+1}\big|_{A} \rar["c_{n+1}"] & C_n\big|_A  \dar[dashed,"\id"] \dlar[$\gamma_n$] \rar["c_n"] & C_{n-1}\big|_A \rar \dlar["\gamma_{n-1}"] \cdots \\
+% 		\cdots \rar & C_{n+1}\big|_A \rar[c_{n+1}] & C_n\big|_A \rar & C_{n-1}\big|_A \rar \cdots
+% 	\end{tikzcd}
+% \]
+\end{definition}
+
+
+\begin{lemma}[label=sub:lemma_3_1_3]
+Sei $(C_*,c_*)$ ein Kettenkomplex über dem Ko-Raumpaar $(X,A)$. Dann existiert eine Kettenkontraktion über $A$.	
+\end{lemma}
+\begin{beweis}
+Übung.
+\end{beweis}
+
+
+\begin{lemma}[label=sub:lemma_3_1_4]
+Die Abbildung $b \colon K(X,A)^c \to K^0(X,A)$ mit $b([C_+,c_*]) = \enbrace*{C_{\mathrm{odd}}, c_n|_A + \gamma_*, C_{\mathrm{even}}}$ mit 
+$C_{\mathrm{odd}} = \bigoplus_{k \in \mathds{N}_0} C_{2k+1}$ und $C_{\mathrm{even}} = \bigoplus_{k \in \mathds{N}_0} C_{2k}$, wobei $\gamma_*$ eine Kettenkontraktion über 
+$A$ ist, ist wohldefiniert.	
+\end{lemma}
+\begin{beweis}
+Sei $\gamma_n' \colon C_n|_A \to C_{n+1}|_A$ eine weitere Kettenkontraktion über $A$. Betrachte 
+$\delta_n = (\gamma_{n+1}' - \gamma_{n+1}) \circ \gamma_n \colon C_n|_A \to C_{n+2}|_A$ und
+\begin{align*}
+	&f \colon C_{\mathrm{even}}\big|_A \xrightarrow{\id + \delta_*} C_{\mathrm{even}}\big|_A \qquad  \text{ und} \\
+	& g  \colon C_{\mathrm{odd}}\big|_A \xrightarrow{c_*|_A + \gamma_*} C_{\mathrm{even}}\big|_A \xrightarrow{\minwidthbox{f}{2em}} C_{\mathrm{even}}\big|_A \xrightarrow{c_*|_A + \gamma_*'}
+	C_{\mathrm{odd}}\big|_A    
+\end{align*}
+Behauptung: $g$ ist ein Isomorphismus.
+\missingfigure{Diagramm mit Vektorschreibweise}
+Der Teil von $g$, der $C_{2n+1}|_A \to C_{2n-1}|_A$ abbildet, ist gegeben durch $c_{2n+1}|_A \circ c_{2n}|_A=0$. Der Teil von $g$, der $C_{2n+1}|_A \to C_{2n+1}|_A$ abbildet 
+ist gegeben durch die Identität, also ist $g$ eine \enquote{Dreiecksmatrix mit Identitäten auf der Diagonalen} und somit ein Isomorphismus. Insgesamt folgt, dass
+$c_*|_A + \gamma_*$ injektiv ist und $c_*|_A + \gamma_*'$ surjektiv. Aus Symmetriegründen sind beide Isomorphismen.
+
+Betrachte jetzt $h_t = (\id + t \cdot \delta) \circ (c_+|_A + \gamma_*) \colon C_{\mathrm{odd}}|_A \to C_{\mathrm{even}}|_A$. Dies ist eine Homotopie durch Isomorphismen. 
+Aufgrund der Homotopieinvarianz von $K^0(X,A)$ gilt:
+\[
+	\benbrace*{C_{\mathrm{odd}}, (c_*|_A + \gamma_*), C_\mathrm{even}}_\st  = \benbrace*{C_{\mathrm{odd}}, f \circ (c_*|_A + \gamma_*), C_\mathrm{even}}_\st
+\] 
+Auch die Kettenabbildung $g$ ist von der Form $g = \id + \varepsilon$, wobei $\varepsilon$ der Teil oberhalb der Diagonalen ist. Mit dem gleichen Trick wie eben erhalten wir
+mit $\tilde{h}_t= (c_*|_A + \gamma_*') ^{-1} \circ (\id + t \varepsilon)$
+\[
+	\benbrace[\big]{C_\mathrm{odd}, \Underbrace{(c_*|_A + \gamma_*') ^{-1}\circ g}{=f \circ (c_*|_A + \gamma_*)}, C_\mathrm{even}}_\st = \benbrace*{C_\mathrm{odd}, (c_*|_A + \gamma_*') ^{-1}, C_\mathrm{even}}_\st  
+\]
+Also insbesondere für $\gamma_*' = \gamma_*$:
+\[
+	\benbrace*{C_\mathrm{odd}, (c_*|_A + \gamma_*), C_\mathrm{even}}_\st = \benbrace*{C_\mathrm{odd}, (c_*|_A + \gamma_*) ^{-1}, C_\mathrm{even}}  
+\]
+Aus den letzten drei Formeln\todo{sternchen oder sowas einfügen} folgt 
+\[
+	\benbrace*{C_\mathrm{odd}, (c_*|_A + \gamma_*), C_\mathrm{even}} = \benbrace*{C_\mathrm{odd}, (c_*|_A + \gamma_*')^{-1}, C_\mathrm{even}}  
+	= \benbrace*{C_\mathrm{odd}, (c_*|_A + \gamma_*'), C_\mathrm{even}} 
+\]
+Kompatibilität mit den Relationen:
+\begin{itemize}
+	\item $C_* \simeq D_* \Rightarrow b([C_*]) = b([D_*])$ aus der Homotopieinvarianz von $K^0(X,A)$.
+	\item $b \enbrace*{\benbrace*{\cdot \to 0 \to E \xrightarrow{\id} E \to 0 \to \cdots } } = \benbrace*{E,\id,E}_\st = 0$
+	\item Sei $0 \to C_* \xrightarrow{i_*} D_* \xrightarrow{p_*} E_0 \to 0$ eine kurze exakte Sequenz von Kettenkomplexen. Jede kurze exakte Sequenz von Vektorbündeln 
+	spaltet (Übung!).
+	Also existieren Morphismen $t_n \colon E_n \to D_n$ mit $p_n \circ t_n = \id_{E_n}$. Problem: $t_n$ ist keine Kettenabbildung! Wähle eine Kettenkontraktion $\varepsilon$
+	über $A$ für $E_*$. Setze
+	\[
+		s_n = d_{n+1}|_A \circ t_{n+1}|_A \circ \varepsilon_n + e_n|_A \circ \varepsilon_{n-1} \circ e_n |_A
+	\]
+	Dies ist ein Spalt von $p_n$ über $A$. $i_n +s_n \colon C_n|_A \oplus E_n|_A \to D_n|_A$ ist homotop durch Isomorphismen zu $i_n + t_n$ via
+	\[
+		h_r = r \enbrace*{d_{n+1}\big|_A \circ t_{n+1}\big|_A - t_n\big|_A \circ e_{n+1}\big|_A} \circ \varepsilon_n + (t_n - i_n) \big|_A
+	\]
+	Da $i_n,t_n$ auf ganz $X$ definiert sind, lässt sich $i_n+ s_n$ zu einem Isomorphismus $\varphi_n$ über $X$ fortsetzen. Setze 
+	$\delta_n = (i_n +s_n) \circ (\gamma_n \oplus \varepsilon_n) \circ (i_n +s_n)^{-1}$. Dies ist eine Kettenkontraktion von $D_*$ über $A$. Es folgt
+	\begin{align*}
+		\benbrace[\big]{C_\mathrm{odd}\oplus E_\mathrm{odd}, (c_*|_A + \gamma_*) \oplus (e_*|_A + \varepsilon_*), C_\mathrm{even} \oplus E_{\mathrm{even}}}_\st
+		= \benbrace[\big]{D_\mathrm{odd}, d_*|_A + \delta_*, D_\mathrm{even}}_\st \qedhere  
+	\end{align*}
+\end{itemize}	
+\end{beweis}
+
+
+\begin{lemma}[label=sub:lemma_3_1_5]
+Seien $(E_*,e_*)$ und $(E_*,e_*')$ Kettenkomplexe über $(X,A)$ mit $e_i|_A = e_i'|_A$. Dann gilt $\benbrace*{E_*,e_*} = \benbrace*{E_*,e_*'} \in K(X,A)^c$.	
+\end{lemma}
+
+
+\begin{lemma}[label=sub:lemma_3_1_6]
+Die Abbildungen $a$ und $b$ sind invers zueinander.	
+\end{lemma}
+\begin{beweis}
+$b \circ a= \id_{K^0(X,A)}$ ist klar. Es bleibt zu zeigen, dass $a$ surjektiv ist $\iff$ Jeder Kettenkomplex der Länge $l \ge 2$ ist äquivalent zu einem Kettenkomplex der
+Länge $l=1$. Es gilt
+\begin{align*}
+	&\benbrace*{0 \to C_n \xrightarrow{c_n} C_{n-1} \to C_{n-2} \to \ldots \to C_0 \to 0 } \\
+	= &\benbrace*{0 \to C_n \xrightarrow{c_n \oplus 0} C_{n-1} \oplus C_n \xrightarrow{c_{n-1} \oplus \id} C_{n-2} \oplus C_n \to C_{n-3} \to \ldots \to C_0 \to 0 } 
+\end{align*}
+\begin{itemize}
+	\item $(c_n \oplus 0)|_A$ ist ein Monomorphismus und homotop zu $(0 \oplus \id)|_A$ durch Monomorphismen. Jetzt lässt sich $(0 \oplus \id)|_A$ zu einem Monomorphismus 
+	über $X$ ausdehnen. Eine Variante von Lemma \ref{sub:33} zeigt, dass sich dann auch $(c_n \oplus 0)|_A$ zu einem Monomorphismus $\tau \colon c_N \to C_{n-1} \oplus C_n$
+	auf $X$ ausdehnen lässt.
+	\[
+		\Rightarrow C_{n-1} \oplus C_n \cong \tau (C_n) \oplus  Q
+	\]
+	Der Kettenkomplex 
+	\[
+		0 \to C_n \xrightarrow{\tau} \tau(C_n) \oplus Q \xrightarrow{(c_{n-1} \oplus \id)|_Q \circ \pr_Q} C_{n-2} \oplus C_n \to \ldots \to C_0 \to 0  
+	\]
+	stimmt über $A$ mit dem obigen überein, liefert also dieselbe Klasse. Aber
+	\begin{align*}
+		\Underbrace{\benbrace*{0\to C_n \xrightarrow{\tau} \tau(C_n) \to 0  \to \cdots }}{= \benbrace*{0 \to C_n \xrightarrow{\id} C_n \to 0 \to \ldots \to 0 }=0 } + 
+		\Underbrace{\benbrace*{0 \to Q \xrightarrow{C_{n-1}'} C_{n-2} \oplus C_n \to \ldots \to C_0 \to 0 } }{\text{Länge um 1 verringert}} \qedhere
+	\end{align*}
+\end{itemize}	
+\end{beweis}
+
+
+Sei $(C_.,c_.)$ ein Kettenkomplex über dem Ko-Raumpaar $(X,A)$ und $(C_.',c_.')$ ein weiterer über $(X',A')$. Das \Index{äußere Tensorprodukt} von zwei Vektorbündeln $E \to X$,
+$F \to X'$ ist definiert durch 
+\[
+	E \boxtimes F := \pi_X^* E \otimes \pi_{X'}^* F
+\]
+wobei $\pi_X \colon X \times X' \to X$, $\pi_{X'} \colon X \times X' \to X'$ die Projektionen sind. Es gilt also $(E \boxtimes F)_{x,x'} = E_x \times F_{x'}$.
+Das \Index{Tensorprodukt} von $(C_.,c_.)$ und $(C_.',c_.')$ ist definiert durch 
+\[
+	(C \boxtimes C')_n := \bigoplus_{i+j=n} C_i \boxtimes C_j'
+\]
+mit dem Differential $c_n''$, das auf $C_i \boxtimes C_j'$ gegeben ist durch 
+\[
+	c_n'' \big|_{C_i \boxtimes C_j'} = c_i \boxtimes \id + (-1)^i \id{} \boxtimes c_j'
+\]
+Damit ist $\enbrace*{(C \boxtimes C')_., c_.''} $ ein Kettenkomplex über $(X,A) \times (X',A')$. Somit erhalten wir 
+\[	  
+	\begin{tikzcd}
+		K^{-n}(X,A) \times K^{-m}(X',A') \dar["a \times a","\cong"'] \rar["*"] & K^{-(n+m) \enbrace*{(X,A) \times (X',A')} } \dar["a","\cong"'] \\
+		K \enbrace*{(X,A) \times (I, \partial I)^n}^c \times K \enbrace*{(X',A') \times (I, \partial I)^m}^c \rar &
+		K^{-(n+m)} \enbrace*{(X,A) \times (X',A') \times (I,\partial I)^{n+m}}    
+	\end{tikzcd}
+\]
+Für $X=X'$ und $A \subset X, B \subset X$ sei 
+$\Delta \colon (X,A \cup B) \to (X,A) \times (X,B)= (X\times X, X \times B \cup A \times X) \supset (A \cup B) \times (A \cup B)$. Dies induziert 
+$K^{-n(n+m)} \enbrace*{(X,A) \times (X,B)} \to K^{-(n+m)}(X, A \cup B) $. Wir definieren
+\[
+	\cdot := \Delta^* \circ * \colon K^{-n}(X,A) \times K^{-m}(X,B) \xrightarrow{*} K^{-(n+m)} \enbrace*{(X,A) \times (X,B)}\xrightarrow{\Delta^*} K^{-(n+m)}(X,A \cup B)   
+\]
+\begin{itemize}
+	\item Insbesondere ist $K^*(X) = \bigoplus_{n=0}^\infty K^{-n}(X)$ ein graduiert kommutativer Ring mit $1$, das heißt es gilt für $x \in K^i(X)$ und $y \in K^j(X)$
+	\[
+		x \cdot y = (-1)^{i \cdot j} y \cdot x
+	\]
+	\item Für $f \colon X \to Y$ erhalten wir einen Ringhomomorphismus $f^* \colon K^*(Y) \to K^*(X)$.
+	\item Für $A \subset B \subset X$ ist $K^*(B,A)$ ein Modul über $K^*(X)$.
+\end{itemize}
+
+
+\begin{lemma}
+Für $a,a' \in K^0(X)$, $b,b' \in K^0(Y)$ ist 
+\[
+	(a \cdot a') * (b \cdot b') = (a * b) \cdot (a' * b')
+\]	
+\end{lemma}
+\begin{beweis}
+\emph{Richtiges Diagramm hinschreiben.}	
+\end{beweis}
+
+
+\newpage
+\section*{3.2 Bott-Periodizität -- eine Beweisskizze}
+Welche $K$-Gruppen können wir berechnen? 
+\begin{itemize}
+	\item $K^0(\pt) = \Gr(\mathds{N}) \cong \mathds{Z} $
+	\item $K^{-1}(\pt) = K^0(I,\partial I) = 0$
+	\item Tripel $(E_1,f,E_0)$ über $(I,\partial I)$ mit $f \colon E_1|_{\partial I} \xrightarrow{\cong} E_0|_{\partial I}$. Ohne Beschränkung der Allgemeinheit sei 
+	$E_i \cong \mathds{C}^n \times I$. Da $\GL_n(\mathds{C})$ wegzusammenhängend ist, gibt es eine Erweiterung von $f$ zu einem Isomorphismus über $I$. 
+	\[
+		f_0 \colon \mathds{C}^n \times \set{0} \xrightarrow{\cong} \mathds{C}^n \times \set{0} \\
+		f_1 \colon \mathds{C}^n \times \set{1} \xrightarrow{\cong} \mathds{C}^n \times \set{1}     
+	\]
+	$f$ entspricht also zwei Elementen von $\GL_n(\mathds{C})$. $g \colon \mathds{C}^n \times I \xrightarrow{\cong}  \mathds{C}^n \times I \leadsto I \to \GL_n(\mathds{C})$ 
+\end{itemize}
+Übung $KO ^{-1}(\pt)$ ?
+
+Was ist $K^0(S^1)$? 
+\[
+	\begin{tikzcd}[row sep=0.4em] 
+		& \benbrace*{S^1 \times \mathds{C},0}_\st \rar[mapsto] & \benbrace*{\mathds{C},0}_\st = 1  \\
+		0=K^0(I,\partial I) \cong K^0(S^1,\pt) \rar & K^0(S^1) \rar & K^0(\pt) \cong \mathds{Z}
+	\end{tikzcd}
+\]
+Aus der unteren Zeile folgt $ K^0(S^1)$ ist Untergruppe von $\mathds{Z}$. Aus der oberen folgt dann weiter $K^0(S^1)\cong \mathds{Z}$.
+
+Gibt es eine nichttriviale Klasse in $K^0(S^2)$? Wir haben einen Homöomorphismus 
+\[
+	S^2 \cong \mathds{C}P^1 = \set[V \subset \mathds{C}^2]{V \text{ ist eindimensionaler Untervektorraum}} 
+\]
+Betrachte $H= \set[(v,V) \in \mathds{C}^2 \times \mathds{C}P^1]{v \in V} $. Dies ist ein eindimensionales Vektorbündel über $\mathds{C}P^1$. Was ist 
+$[H,0]_\st \in K^0(\mathds{C}P^1)$? Welche Gestalt haben Vektorbündel über $X \times S^2$? Sei $S^2= D_+ \cup D_-$ die Zerlegung in die \enquote{obere} und die 
+\enquote{untere} Halbsphäre. Sei $E \to X \times S^2$ ein Vektorbündel. Sei $z_0 \in S^1= D_+ \cap D_- \subset S^2$ ein Basispunkt von $S^2$. Sei 
+$F= \iota^* E$ mit $\iota \colon X \to X \times S^2$ gegeben durch $x \mapsto(x,z_0)$. Wegen $D_+ \cong D_- \simeq \set{\pt}$ ist $\pr_X^\pm \colon X \times D_{\pm} \to X$
+eine Homotopieäquivalenz mit Homotopieinversem $\iota_{\pm} \colon X \to X \times D_\pm$, $x \mapsto (x,z_0)$. Daher ist $E|_{X \times D_\pm} \cong \iota_\pm^*F$.
+
+Dann ist $E$ isomorph zur Verklebung von $\iota_+^*F$ und $\iota_-^* F$ entlang eines Isomorphismus, der gegeben ist durch eine stetige Abbildung $S^1 \to \textsc{Iso}(F)$, 
+wobei $\textsc{Iso}(F)$ der Raum aller Vektorbündelisomorphismen $F \to F$ ist. Wir schreiben $E \cong \set{F,f}$. Die Isomorphieklasse von $\set{F,f}$ hängt nur noch der 
+Homotopieklasse von $f$ ab.
+\missingfigure{Diagramm}
+
+\minisec{Beispiel}
+Übergangsabbildung von $H$: Identifiziere $\mathds{C}P^1$ mit $\mathds{C} \cup \set{\infty} \cong S^2 $ mit Hilfe der Abbildung 
+$\mathds{C} \cup \set{\infty} \to \mathds{C}P^1 $, definiert duch $z \mapsto \benbrace*{z:1}, \infty \mapsto \benbrace*{1:0}$. Die Umkehrabbildung ist gegeben durch
+\[
+	\benbrace*{z_1,z_2} \mapsto \begin{cases}
+		z_1/z_2, &\text{ falls }z_2 \not=0\\
+		\infty , & \text{ sonst}
+	\end{cases}
+\]
+Nun ist
+\begin{align*}
+	H &= \set[(z,v) \in (\mathds{C} \cup \set{\infty}) \times \mathds{C}^2]{v= \lambda(z,1), \text{ falls } z \not= \infty \text{ oder } v=(\lambda,0) \text{ falls } 
+	z=\infty} \\
+	D_+ &= \set[z \in (\mathds{C} \cup \set{\infty})]{\abs*{z} \le 1 } \\
+	D_- &= \set[z \in (\mathds{C} \cup \set{\infty})]{ \abs*{z} \ge 1 \text{ oder } z= \infty }  
+\end{align*}
+Trivialisierungen:
+\[
+	\begin{tikzcd}
+		H\big|_{D_+} \rar["\cong"] & D_+ \times \mathds{C} \\
+		(z, (v_1,v_2)) \rar[mapsto] & (z,v_2) \\
+		(z,(wz,w)) & (z,w) \lar[mapsto]
+	\end{tikzcd}
+	, 
+	\begin{tikzcd}
+		H\big|_{D_-} \rar["\cong"] & D_- \times \mathds{C} \\
+		(z, (v_1,v_2)) \rar[mapsto] & (z,v_1) \\
+		(z,(w,w/z)) & (z,w) \lar[mapsto]
+	\end{tikzcd}
+\]
+Wir setzen $F=S^1  \times \mathds{C}$ und $f \colon S^1 \to \textsc{Iso}(S^2 \times \mathds{C})$, $z \mapsto \enbrace*{w \mapsto wz}$, in jeder Faser Multiplikation 
+mit $z$. Es ist nun $H= \set{\mathds{C}, w \mapsto w \cdot z} = \set{\mathds{C},z} $ und $H^* \cong \set{\mathds{C},z ^{-1}}$.
+
+Weitere Beispiele
+\[
+	H^{\otimes K} = \set{\mathds{C}, w \mapsto w \cdot z^k} \quad , \quad H \oplus H = \set{\mathds{C} \oplus \mathds{C}, z \mapsto \begin{pmatrix}
+		z & 0 \\ 0 & z \end{pmatrix}} 
+\]
+Da $\GL_2(\mathds{C})$ wegzusammenhängend ist, gibt es einen Pfad zwischen $\begin{psmallmatrix}1 & 0 \\ 0 & 1 \end{psmallmatrix}$ und
+$\begin{psmallmatrix} 0& 1 \\ -1 & 0 \end{psmallmatrix}$. Betrachte 
+\todo[inline]{hier fehlt noch was}
+% \[
+% 	\begin{tikzcd}
+% 		S^1 \times I \rar & \GL_n(\mathds{C})
+% 		(z,t) \rar[mapsto] &\begin{pmatrix} z & 0 \\ 0 & 1 \end{pmatrix} \gamma_t \cdot
+% 	\end{tikzcd}
+% \]
+Hieraus erhalten wir
+\[
+	H^{\otimes 2} \oplus \Underbrace{(\mathds{C} \times S^2)}{\cong \set{C \oplus \mathds{C}, \begin{pmatrix}
+		z^2 & 0 \\ 0 & 1
+	\end{pmatrix}}} \cong \Underbrace{H \oplus  H}{ \cong \set{\mathds{C} \oplus  \mathds{C}, \begin{pmatrix}
+		z & 0 \\
+		0 & z
+	\end{pmatrix}}  }
+\]
+In $K$-Theorie
+\[
+	\benbrace*{H,0} \cdot \benbrace*{H,0} + \benbrace*{\mathds{C},0}    = \benbrace*{H^{\otimes 2} \oplus \mathds{C},0}_\st 
+	= \benbrace*{H \oplus H,0}_\st = 2 \cdot \benbrace*{H,0} 
+\]
+in $K^0(S^2)$ gilt die Relation $\benbrace*{H,0}^2 - 2 \benbrace*{H,0} + \benbrace*{\mathds{C},0}= 0 $
+\[
+	(x-1)^2 = X^2 - 2x +1 = 0
+\]
+
+\subsection*{Theorem Bott '58}
+\[
+	\begin{tikzcd}
+		\mu \colon K^1(X) \otimes \nicefrac{\mathds{Z}[H]}{(H-1)^2} \rar & K^0(X) \otimes  K^0(S^2) \rar & K^0(X \times S^2) \\
+		\benbrace{E,0}_\st \otimes H^m \ar[rr,mapsto] & & \benbrace[\big]{\Underbrace{\pr_X E \otimes (\pr_{S^2}^* H)^{\otimes m}}{\set{E,z^m} },0}_\st
+	\end{tikzcd}
+\]
+ist ein Ringisomorphismus . Insbesondere $K^0(S^2) \cong \nicefrac{\mathds{Z}[H]}{(H-1)^2}$
+\minisec{Beweis}
+\begin{enumerate}[1.]
+	\item Satz: Jedes Vektorbündel $\set{F,f}$ über $X \times S^2$ ist isomorph zu $\set{F,l}$, wobei $l= \sum_{i=-N}^{N} a_i \cdot z^i$ und $a_i \colon F \to F$ ein 
+	Morphismus von Vektorbündeln ist, das heißt die Übergangsfunktion ist gegeben durch ein Laurent-Polynom. Sind $l_0$ und $l_1$ homotope Übergangsfunktionen, dann sind sie 
+	auch homotop durch Laurent-polynomiale Übergangsfunktionen.
+	
+	Idee hierzu: Wir können stetige Funktionen $g \colon X \times S^1 \to \mathds{C}$ durch Laurent-Polynome approximieren. 
+	\(
+		g(x,z) = \sum_{n \in \mathds{Z}} a_n(x) z^n
+	\)
+	für 
+	\[
+		a_n(x) = \frac{1}{2 \pi } \int_0^{2 \pi} g(x, e^{i \theta}) e^{- i \theta n} \mathd \theta 
+	\]
+	Genauso können wir Funktionen $\tilde{g} \colon X \times S^1 \to M_n \mathds{C}$ approximieren. Wähle ein Skalarprodukt in den Fasern von $F$ (hermitesche Metrik).
+	Der Raum der Vektorbündelendomorphismen $\END(F \times S^1)$ ist normiert via
+	\[
+		\norm{\alpha} = \sup_{\substack{\norm{v}=1 \\ v \in F \times S^1 }} \norm{\alpha(v)} 
+	\]
+	$\Iso(F \times S^1) \subset \END(F \times S^1)$ ist offen. Fasse $f$ als Schnitt $f \colon X \times S^1 \to \Iso(F \times S^1) \subset \End(F \times S^1)$. Wähle 
+	trivialisierende Überdeckung $U_i$ mit Partition der Eins $\set{\varphi_i}_i$
+	\[
+		f \big|_{U_i} \colon U_i \times S^1 \longrightarrow \End \enbrace*{F\big|_{U_i} \times S^1} \cong M_n \mathds{C} \times U_i \times S^1 
+	\]
+	Approximiere durch $l_i$ und setze $l= \sum_{i} \varphi_i l_i$. $l$ liegt beliebig nahe bei $f$ in Norm. Da $\Iso$ offen ist, folgt dass $f$ und $l$ homotop durch
+	Isos. \bewende
+	\item (Linearisierungstrick): Schreibe $\set{F,l}= \set{F, z^{-m} \cdot q}$ für ein \enquote{Polynom} $q$ und ein $m \in \mathds{N}$.
+	
+	Satz: Sei $q$ eine polynomiale Übergangsfunktion vom Grad $\le n$, dann gilt 
+	\[
+		\mengenA{\Underbrace{n \cdot F}{F \oplus \ldots \oplus F},1} \oplus \set{F,q} \cong \set{(n+1) \cdot F, L^n q} 
+	\]
+	wobei $L^n q$ eine Übergangsfunktion ist, die nur noch $z^0$ und $z^1$ enthält, das heißt $L^n q(x,z) = a(x) + b(x) \cdot z$.
+	
+	Idee hierzu: $q= \sum_{i=1}^{n} a_i z^i$. Übergansfunktion der linken Seite ist gegeben durch eine Matrix
+	\[
+		\begin{pmatrix}
+			1 & & & 0 \\
+			 & 1 & &  \\
+			 & & \ddots &  \\
+			 0 & & & q
+		\end{pmatrix}
+	\]
+	Zeilen- und Spaltenoperationen bringen dies auf die Form
+	\[
+		\begin{pmatrix}
+			1 & -z  & & &\\
+			& 1 & -z & &  \\
+			& & \ddots & \ddots & \\
+			& & & 1 & -z \\
+			a_n & a_{n-1} & \cdots & a_1 & a_0
+		\end{pmatrix} = A
+	\]
+	Zeilen- und Spaltenoperationen erhalten die Determinante, also ist $A$ invertierbar für alle $(x,z) \in X \times S^1$. Damit ist $A$ eine gültige Übergangsfunktion.
+	Es ist $A = a + b \cdot z= L^n q$. Jede Zeilen- und Spaltenoperation ist homotop zur Identität, daher ist $L^n q$ homotop zu $1 \oplus q$
+	\[
+		\Rightarrow \set{(n+1) \cdot F,1 \oplus q} \cong \set{(n+1)\cdot F, L^n q} \bewende  
+	\]
+	\item (Aufspaltung von $F$): Wir haben bereits: $\set{(n+1) \cdot F, q} \cong \set{(n+1) \cdot F, a+ b \cdot z}$. Betrachte nun die Homotopie 
+	\[
+		q_t(x,z)=  (1 + tz) \enbrace*{b(x) \frac{z+t}{1+ tz} + a(x)} = \enbrace*{b(x) + t a(x)} z + t b(x) + a(x) 
+	\]
+	Der mittlere Teil ist gleich $L^n q$ für $t=0$, invertierbar für $0 \le t <1$. Weiter ist $z \mapsto \frac{z+t}{1+ tz}$ ein Homöomorphismus $S^1 \to S^1$.
+	Wähle nun $t_0 <1$, sodass $b(x) + t_0 a(x)$ invertierbar ist. Dies funktioniert, denn $b(x) + a(x)$ ist invertierbar. Damit erhalten wir 
+	\[
+		\set{(n+1) \cdot F, L^n q} \cong \set{(n+1) \cdot f, z+c}  
+	\]
+	mit $c(x)= \enbrace*{t_0 b(x) + a(x)}\enbrace*{b(x) + t_0 a(x)}^{-1}$, $b+ t_0 \cdot a \colon F \xrightarrow{\cong} F$. Insbesondere ist 
+	$z+ c(x) \colon F_x \times \set{z}  \xrightarrow{\cong} F_x \times \set{z}$ ein Isomorphismus, also hat $z + c(x)$ niemals Eigenwert $0$, woraus folg, dass $c(x)$ keine
+	Eigenwerte auf $S^1$ hat.
+	
+	Lemma: Sei $c \colon F \to F$ ein Morphismus von Vektorbündeln, so dass $c(x) \colon F_x \to F_x$ keine Eigenwerte auf $S^1$ hat. Dann existieren eindeutige 
+	Untervektorbündel $F_+$ und $F_-$, sodass 
+	\begin{enumerate}[a)]
+		\item $F \cong F_+ \oplus F_-$
+		\item $c(F_\pm) \subset F_\pm$
+		\item Die Eigenwerte von $c|_{F_+}$ liegen außerhalb von $S^1$, von $c|_{F_-}$ innerhalb von $S^1$
+	\end{enumerate}
+	
+	Korollar: $\set{F,  z+c} \cong \set{F_+,1} \oplus \set{F_-,z}$. Beweis: 
+	\[
+		\set{F, z+c} \cong \set{F_+, z+ c_+} \oplus \set{F_-, z+ c_-} 
+	\]
+	mit $c_\pm = c|_{F_\pm}$. Die Eigenwerte von $z+ c_+$ liegen außerhalb von $S^1$, $tz + c_+$ liefert eine Homotopie zu $\set{F_+, c_+} \cong \set{F_+,1}$.
+	Die Eigenwerte von $c_-$ liegen innerhalb von $S^1$. Dann liefert $z + t c_-$ eine Homotopie durch Isomorphismen zu $z$, das heißt $\set{F_-, z + c_-} \cong\set{F_-,z}$.
+	\bewende
+\end{enumerate}
+Setze alles zusammen für die Surjektivität von $\mu$. $\mu$ ist ein Gruppenhomomorphismus, also müssen wir nur zeigen, dass 
+$K^0(X \times S^2)\ni \benbrace*{\set{F,f},0 }_\st $ im Bild liegt. Es gilt nun
+\begin{align*}
+	\benbrace*{\set{F,f},0 }_\st \stackrel{1}{=} \benbrace*{\set{F, z^{-m} q},0 }_\st &= \benbrace*{\set{F,q} \oplus H^{-m},0 }_\st \\
+	&\stackrel{2}{=} \benbrace*{\set{(n+1) F, L^n q} \oplus H^{-m},0 }_\st -  \benbrace*{\set{n F,1} \otimes H^{-m}, 0 }_\st \\
+	&\stackrel{3}{=} \benbrace*{ \set{\enbrace*{(n+1)F}_+,1} \otimes H{-m},0 }_\st + \benbrace*{ \set{\enbrace*{(n+1)F}_-,z }\otimes H{-m},0 }_\st \\
+	&\quad - \benbrace*{\set{n F,1} \otimes H^{-m},0 }_\st   \\
+	&=  \benbrace*{\pr_X^* \enbrace*{(n+1)F}_+ \otimes H^{-m},0 }_\st + \benbrace*{\pr_X^* \enbrace*{(n+1)F}_- \otimes H^{1-m},0 }_\st  \\
+	&\quad - \benbrace*{\pr_x^*(n F) \otimes H^{-m},0}_\st 
+\end{align*}
+liegt im Bild von $\mu$.
+Für Injektivität betrachte die Abbildung 
+\[
+	\begin{tikzcd}[row sep=0.0em]
+		\nu \colon K^0(X \times S^2) \rar & K^0(X)\otimes \nicefrac{\mathds{Z}[H]}{(H-1)^2} \\
+		\benbrace*{\set{F,f},0 }_\st \rar[mapsto] & \benbrace*{ \enbrace*{(n+1)F}_- ,0 }_\st \otimes (H-1) + \benbrace*{F ,0}_\st \otimes H^{-m} 
+	\end{tikzcd}
+\]
+Prüfe, dass dies wohldefiniert ist! $\nicefrac{\mathds{Z}[H]}{(H-1)^2}$ wird erzeugt von $1, H ^{-1}$. Dann gilt
+\begin{align*}
+	\nu \circ \mu \enbrace*{ \benbrace*{F,0}_\st \otimes H^{-m}} = \nu \enbrace*{ \benbrace*{\set{F,z^{-m}},0 }_\st } = \Underbrace{\benbrace*{F_-,0}_\st}{=0}  \otimes (H-1)
+	+ \benbrace*{F,0}_\st \otimes H^{-m} 
+\end{align*}
+
+\section*{Konsequenzen aus der Bott-Periodizität}
+
+\subsection*{Definition} % (fold)
+\label{sub:definition}
+Sei $X$ ein kompakter Hausdorffraum mit Basispunkt $x_0$. Setze
+\[
+	\tilde{K}^{-n} (X) = K^{-n}(X,\pt)
+\]
+$\tilde{}$ heißt reduzierte $K$-Theorie von $(X,x_0)$. Theorem 3.21 impliziert
+\begin{itemize}
+	\item $\tilde{K}^0(S^2) \cong \mathds{Z} =  \langle \beta_2 := 1 - [H,0]_\st\rangle$ mit $\beta_2^2=0$
+	\item allgemeiner $\tilde{K}^0(S^{2n}) = \langle \beta_{2m}\rangle$ mit $\beta_{2m}^2=0$, wobei $\beta_{2m}$ aus $\beta_{2m-2}$ durch äußere Multiplikation mit $\beta_2$
+	entsteht:
+	\[ 
+		\begin{tikzcd}[]
+			\tilde{K}^0(S^{2m-2}) \otimes \tilde{K}(S^2) \rar["\cong"] & K^0(D^{2m}, S^{2m-1}) \otimes K^0(D^2,S^1) \dar \\
+			& K^0 \enbrace*{(D^{2m-2, S^{2m-3}}) \times (D^2,S^1)} \dar["\cong"] \\
+			& K^0 \enbrace*{D^{2m}, S^{2m-1}} \cong \tilde{K}^0(S^{2m}) 
+		\end{tikzcd} 
+	\]
+	Sei $j \colon K^0(S^2,\pt) \cong K^0(D^2,S^1) \cong K^0(I^2, \partial I^2) \cong K^{-2}(\pt)$, $\beta_2 \mapsto \hat{\beta}_2= j(\beta_2)$
+\end{itemize}
+% subsection definition (end)
+
+
+\subsection*{Theorem} % (fold)
+\label{sub:theorem}
+Sei $(X,A)$ ein Ko-Raumpaar. Dann ist 
+\[
+	\begin{tikzcd}
+		K^{-n}(X,A) \rar["\hat{\beta}_2"] & K^{-n-2}(X,A)
+	\end{tikzcd}
+\]
+ein Isomorphismus.
+\minisec{Beweis}
+Es genügt $n=0$ zu betrachten. Sei $A=\emptyset$. Die exakte Sequenz
+\[
+	\begin{tikzcd}
+		0 \rar & K(S^2,\pt) \rar & K^0(S^2) \rar & K^0(\pt) \rar & 0
+	\end{tikzcd}
+\]
+spaltet, also spaltet auch
+\[
+	\begin{tikzcd}
+		0 \rar & K^0(X) \otimes K^0(S^2,\pt) \rar & K^0(X) \otimes K^0(S^2) \rar & K^0(X) \otimes K^0(\pt) \rar & 0
+	\end{tikzcd}
+\]
+Betrachte
+\[
+	\begin{tikzcd}
+		0 \rar & K^0(X) \otimes K^0(S^2,\pt) \dar["\cong"] \rar & K^0(X) \otimes K^0(S^2) \rar \dar["\cong\text{ 3.21}",] & K^0(X) \otimes K^0(\pt) \rar \dar & 0 \\
+		0 \rar & K^0(X \times (S^2,\pt)) \rar & K^0(X \times S^2) \rar & K^0(X) \rar & 0
+	\end{tikzcd}
+\]
+Für $A \not= \emptyset$ gilt $K^{-n}$ gilt $K^{-n}(X,A) \cong \tilde{K}^{-n}(\nicefrac{X}{A})$ nach Theorem 3.9 b). Angewandt auf den Pushout
+\[
+	\begin{tikzcd}
+		A \rar[hook] \dar & X \dar \\
+		* \rar & \nicefrac{X}{A}
+	\end{tikzcd}
+\]
+Daher genügt es den Fall $A=*$ zu betrachten. Dieser folgt analog zu dem unreduzierten Fall.
+
+\subsection*{Definition}
+Für $n>0$ und ein Ko-Raumpaar $(X,A)$ definieren wir
+\[
+	K^n(X,A) := K^{-n}(X,A)
+\]
+und die Randabbildung in der exakten Paarfolge über das nachfolgende Diagramm
+\[
+	\begin{tikzcd}
+		K^0(A) \dar["\cong"] \rar["\partial'"] & K^1(X,A) \dar["="]\\
+		K^{-2}(A) \rar["\partial"] &K^{-1}(X,A)
+	\end{tikzcd}
+\]
+Die Paarsequenzfolge reduziert dann auf die .....-Folge
+\[
+	\begin{tikzcd}
+		K^0(X,A) \rar & K^0(X) \rar & K^0(A) \dar\\
+		K^1(A) \uar & K^1(X) \lar & K^1(X,A) \lar 
+	\end{tikzcd}
+\]
+% subsection theorem (end)
+
+\section*{Die $K$-Theorie von $\mathds{C}P^n$}
+
+\subsection*{Theorem 3.2.5} % (fold)
+\label{sub:theorem325}
+Sei $X$ ein endlicher \CW-Komplex mit $n$ Zellen. Dann ist $K^*(X) = K^0(X) \oplus K^1(X)$ eine endlich erzeugte Gruppe mit höchstens $n$ Erzeugern. Haben alle Zellen gerade
+Dimension, dann ist $K^1(X)=0$ und $K^0(X)$ ist frei abelsch mit genau einem Erzeuger für jede Zelle.
+\minisec{Beweis}
+Per Induktion über die Anzahl der Zellen. Für $X=\pt$ ist die Aussage richtig. Es entstehe $X$ aus $A$ durch Anheften einer $k$-Zelle für ein $k \in \mathds{N}_0$. Nach dem
+Theorem 3.9 b) angewandt auf das Pushout
+\[
+	\begin{tikzcd}
+		A \rar[hook] \dar & X \dar\\
+		\pt \rar & \nicefrac{X}{A}
+	\end{tikzcd}
+\]
+gilt $K^*(X,A) \cong K^*(\nicefrac{X}{A})$. Folglich ist $\tilde{K}^n(\nicefrac{X}{A}) \to \tilde{K}^n(X) \to \tilde{K}^n(A)$ exakt. Wir haben 
+\[
+	\tilde{K}^n(\nicefrac{X}{A}) \cong \tilde{K}^n(S^k) \cong K(S^k,\pt) \cong K(I^k,\partial I^k) = K^{n+k}(\pt) = \begin{cases}
+		\mathds{Z}, &\text{ falls }n+k \text{ gerade}\\
+		0 ,&\text{ sonst}
+	\end{cases}
+\]
+Also ist $\tilde{K}^n(\nicefrac{X}{A})$ entweder $0$ oder $\mathds{Z}$, also erhalten wir aus der Exaktheit, dass man maximal einen Erzeuger mehr braucht, um $\tilde{K}(X)$
+zu erzeugen, als man braucht um $\tilde{K}^n(A)$ zu erzeugen.
+
+Zur zweiten Aussage: Beweis durch Induktion nach Anzahl der Zellen (wie oben). Aussage ist korrekt für $X=\pt$. Sei $A$ ein \CW-Komplex, der nur aus geraden dimensionalen 
+Zellen besteht und $X$ entstehe aus $A$ durch das Anheften einer $2k$-Zelle. Wir betrachten $K^1(\nicefrac{X}{A}) \to \tilde{K}^1(X) \to \tilde{K}^1(A)$. Mit 
+Induktionsannahme folgt $\tilde{K}^1(A)=0$. Weiterhin gilt $\tilde{K}^1(\nicefrac{X}{A}) \cong \tilde{K}^1(S^{2k})=0$, also folgt $\tilde{K}^1(X)=0$ und auch $K^1(X)=0$.
+Damit reduziert sich die 6-Term folge auf eine kurze exakte Sequenz
+\[
+	\begin{tikzcd}
+		0 \rar & \tilde{K}^0(\nicefrac{X}{A}) \rar & K^0(X) \rar & K^0(A) \rar & 0
+	\end{tikzcd}
+\]
+Es gilt $\tilde{K}^0(\nicefrac{X}{A}) \cong \tilde{K}(S^{2k}) \cong \mathds{Z}$ und mit Induktionsannahme ist $k^0(A)$ eine freie abelsche Gruppe vom Rang 
+$\# \text{Zellen von $A$}$. Also folgt $\tilde{K}^0(X) = \tilde{K}^0(A) \oplus \mathds{Z}$ und damit $K^0(X)\cong K^0(A) \oplus \mathds{Z}$. Also ist 
+\[
+	K^0(X) \cong K^0(A) \oplus \mathds{Z} \cong \mathds{Z}^{\#\text{ Zellen in $A$}} \oplus \mathds{Z} = \mathds{Z}^{\#\text{Zellen von $X$}}
+\]
+% subsection theorem (end)
+
+\subsection*{Korollar} % (fold)
+\label{sub:korollar}
+$K^0(\mathds{C}P^n) = \mathds{Z}^{n+1}$, $K^1(\mathds{C}P^n)=0$.
+
+\bigskip
+
+Zur RIngstruktur auf $K^*(\mathds{C}P^n)$. Sei
+\[
+	L_n = \set[(v,V) \in \mathds{C}^{n+1} \otimes \mathds{C}P^n]{v \in V} 
+\]
+das kanonische .....Bündel über $\mathds{C}P^n$. Für $n=1$ gilt $L_1=H$ mit $H$ wie oben. Sei $\mathds{C}P^{n-1} \xhookrightarrow{p}\mathds{C}P^n$ die Inklusion. Dann gilt
+$L_{n-1} \cong p^* L_n$.
+% subsection korollar (end)
+
+\subsection*{Satz} % (fold)
+\label{sub:satz}
+\[
+	K^0(\mathds{C}P^n) \cong \nicefrac{\mathds{Z}[L]}{(L-1)^{n+1}}
+\]
+als Ring, induziert durch $[L_n,0]_\st \mapsfrom L$
+\minisec{Beweis}
+Für $n=1$ ist die Aussage richtig (siehe Satz 3.2.1). Wir betrachten $(\mathds{C}P^n, \mathds{C}P^{n-1})$ und die zugehörigen Sequenz aus der 6-Term Sequenz
+\[
+	\begin{tikzcd}
+		0 \rar & K^0(\mathds{C}P^n, \mathds{C}P^{n-1}) \rar & K^0(\mathds{C}P^n) \rar["\rho^*"] & K^0(\mathds{C}P^{n-1}) \rar & 0
+	\end{tikzcd}
+\]
+Wir zeigen: $(a_n)\cdot (L_n-1)^n$ erzeugt den Kern von $\rho^*$. Anmerkung: Hieraus folgt der Satz , wenn wir annehmen, dass 
+$K^0(\mathds{C}P^{n-1}) \cong \nicefrac{\mathds{Z}[L]}{(L-1)^n}$, denn dann ist
+\[
+	\set{1, (L_n-1), (L_n-1)^2, \ldots , (L_n-1)^n} 
+\]
+eine additive Basis von $K^0(\mathds{C}P^n)$.
+
+$\mathds{C}P^n \cong$ Quotient von $\nicefrac{S^{2n+1}}{S^1}$, wobei $S^1$ durch Multiplikation wirkt. Statt $S^{2n+1} \subseteq \mathds{C}^{n+1}$ können wir auch den Rand
+von $D_0^2 \times D_1^2 \times \ldots \times D_n^2 \subseteq C^{n+1}$ betrachten, wobei $D_i \subseteq \mathds{C}$ die Einheitssphäre ist.
+\[
+	\partial \enbrace*{D_0^2 \times D_1^2 \times \ldots \times D_n^2} = \bigcup_i D_0^2 \times \ldots \times \partial D_i^2 \times D_{i+1}^2 \times \ldots \times D_n^2 
+\]
+Den Quotient von $D_0^2 \times \ldots \times \partial D_i^2 \times D_{i+1}^2 \times \ldots \times D_n^2 $ bezüglich der $S^1$-Operation bezeichnen wir mit 
+$C_i \subseteq \mathds{C}P^n$. $C_i$ ist homöomorph zu $D_0^2 \times \ldots \times \hat{D}_i^2 \times D_{i+1}^2 \times \ldots \times D_n^2 $ und es gilt
+\[
+	C_i \cap C_j = \partial C_i \cap \partial C_j
+\]
+Betrachte $C_0 = D_1^2 \times \ldots \times D_n^2$ und $\partial C_0 = \bigcup_i \partial_i C_0$ mit 
+\[
+	\partial_i C_0 = D_1^1 \times \ldots \times \partial D_i^2 \times \ldots \times D_n^2 \subseteq C_i
+\]
+Die Inklusionen $(D_i^2,\partial D_i^2) \hookrightarrow (C_0,\partial_i C_0) \subseteq (\mathds{C}P^n,C_i)$ Wir erhalten 
+\[
+	\begin{tikzcd}
+			K^0(D^2_0,\partial D_0^2) \otimes  \ldots \otimes K^0(D_n^2,\partial D_n^2) \rar 
+			& K^0 \enbrace*{ (D_1^2,\partial D_1^2) \times \ldots \times (D_n^2, \partial D_n^2)} \\
+			K^0(C_0,\partial_1 C_0) \otimes \ldots \otimes K^0(C_0,\partial_n C_0) \rar \uar["\cong"] & K^0(C_0,\partial C_0) \uar["\cong"] \\
+			K^0(\mathds{C}P^n,C_1) \otimes \ldots \otimes K^0(\mathds{C}P^n,C_n) \rar \dar & K^0(\mathds{C}P^n, C_1 \cup \ldots \cup C_n) \cong 
+			K^0(\mathds{C}P^n,\mathds{C}P^{n-1}) \dar \uar\\
+			K(\mathds{C}P^n) \otimes \ldots \otimes K(\mathds{C}P^n) \rar & K^0(\mathds{C}P^n)
+	\end{tikzcd}
+\]
+\todo[inline]{das brauche ich aus den Notizen…}
+% subsection satz (end)
+% section 3 (end)
+\newpage
+
+\section{Die Hopf-Invariante} % (fold)
+\label{sec:die_hopf_invariante}
+Zur Erinnerung: Wir wollen den folgenden Satz beweisen:
+
+\Adams*
+\noindent Ziel für heute: Definition der Hopf-Invariante sowie (i)$\Rightarrow $(ii).
+
+
+\begin{definition}[label=sub:41]
+Ein $H$-Raum ist ein punktierter topologischer Raum $(X,e)$ mit Basispunkt $e \in X$ zusammen mit einer stetigen Abbildung $\mu \colon X \times X \to X$, so dass 
+\begin{enumerate}[(i)]
+	\item $\mu(e,e)=e$
+	\item Die Abbildung $X \to X$, $x \mapsto \mu(x,e)$ und $X \to X$, $x \mapsto \mu(e,x)$ sind beide homotop zur Identität auf $X$.
+\end{enumerate}	
+\end{definition}
+
+
+\begin{satz}[label=sub:42]
+Falls $\mathds{R}^n$ die Struktur einer reellen Divisionsalgebra hat, dann existiert eine stetige Abbildung $\mu \colon S^{n-1} \times S^{n-1} \to S^{n-1}$, sodass 
+$(S^{n-1},e,\mu)$ ein $H$-Raum ist.	
+\end{satz}
+\begin{beweis}
+Sei $e \in \mathds{R}^n$ die Eins der Divisionsalgebra. Dann gilt $\norm{e}\not=0$. Wir können ohne Beschränkung der Allgemeinheit $\norm{e}=1 $ annehmen. Wenn dies nicht 
+gilt, dann definieren wir eine neue Divisionsalgebrastruktur auf $\mathds{R}^n$ durch 
+\[
+	x * y := x \bullet y \cdot \norm{e} 
+\]
+mit Einselement $\frac{e}{\norm{e}} =: e'$. Ohne Beschränkung der Allgemeinheit ist also $e \in S^{n-1} \subset \mathds{R}^n$. Sei 
+$\mu \colon S^{n-1} \times S^{n-1} \to S^{n-1}$ gegeben durch 
+\[
+	\mu(x,y) = \frac{x * y}{\norm{x * y} } 
+\]
+Dies ist wohldefiniert, da $x * y\not=0$ für $x,y \not=0$. Außerdem gilt $\mu(x,e)=x$, $\mu(e,x)=x$.	
+\end{beweis}
+
+
+\begin{lemma}[label=sub:43]
+Seien $k,l >0$. Dann gilt
+\[
+	K^0 \enbrace*{S^{2l} \times S^{2k}} \cong K^0(S^{2l}) \otimes K^0(S^{2k}) \cong \nicefrac{\mathds{Z}[\alpha,\beta]}{(\alpha^2,\beta^2)}
+\]
+\end{lemma}
+\begin{beweis}
+Wir haben $\tilde{K}^0(S^{2l}) \cong \mathds{Z} = \langle \alpha \rangle$ mit $\alpha^2=0$. Die kurze exakte Sequenz 
+\[
+	\begin{tikzcd}
+		0 \rar & K^0(S^{2l},\pt) \rar & K^0(S^{2l}) \rar & K^0(\pt)\cong \mathds{Z} \rar & 0
+	\end{tikzcd}
+\]
+spaltet durch einen Ringhomomorphismus $\mathds{Z} \cong K^0(\pt) \to K^0(S^{2l})$. Hieraus lesen wir die Ringstruktur von $K^0(S^{2l})$ ab: 
+$K^0(S^{2l})\cong \mathds{Z} + \mathds{Z} \cdot \alpha $ mit $\alpha^2=0$. Das heißt 
+\[
+	K^0(S^{2l}) \cong \nicefrac{\mathds{Z}[\alpha]}{(\alpha^2)}
+\]
+und somit $K^0{S^{2l}} \otimes K^0(S^{2k}) \cong \nicefrac{\mathds{Z}[\alpha,\beta]}{(\alpha^2,\beta^2)}$. Aus Bott-Periodizität folgt 
+\begin{align*}
+	K^0(S^{2k},\pt) = \tilde{K}^0(S^{2k}) \cong \tilde{K}^0(S^{2k-2}) \otimes \tilde{K}^0(S^2) \\
+	K^0(X) \otimes K^0(S^2,\pt) \cong K^0(X \times (S^2,\pt))
+\end{align*}
+Zusammen folgt durch Induktion, dass 
+\[
+	K^0(X) \otimes  K^0(S^{2k},\pt ) \cong K^0 \enbrace*{X \times (S^{2k},\pt)} 
+\]
+Jetzt betrachten wir
+\[
+	\begin{tikzcd}
+		0 \rar & K^0(X) \otimes  K^0(S^{2k},\pt)\dar["\cong"] \rar & K^0(X) \otimes K^0(S{2k}) \dar["(1)"] \rar & K^0(X) \otimes K^0(\pt) \dar["\cong"] \rar & 0 \\
+		0 \rar & K^0 \enbrace*{X \times (S^{2k},\pt)} \rar & K^0(X \times S^{2k}) \rar & K^0(X \times \pt) \rar & 0 
+	\end{tikzcd}
+\]
+$(1)$ ist auch ein Isomorphismus. Die Aussage folgt für $X=S^{2l}$.	
+\end{beweis}
+
+
+\begin{satz}[label=sub:44]
+Falls $S^{n-1}$ ein $H$-Raum ist, dann ist entweder $n=1$ oder $n\ge 2$ gerade.	
+\end{satz}
+\begin{beweis}
+Wir zeigen: Für $k>0$ kann $S^{2k}$ kein $H$-Raum sein. Angenommen wir haben $H$-Raum-Struktur $\mu \colon S^{2k} \times S^{2k} \to S^{2k}$ mit Eins $e$. 
+\[
+	\begin{tikzcd}
+		\mu^* \colon \nicefrac{\mathds{Z}[\gamma]}{(\gamma^2)} \rar & \nicefrac{\mathds{Z}[\alpha,\beta]}{(\alpha^2,\beta^2)} \\
+		K^0(S^{2k}) \rar & K^0(S^{2k} \times S^{2k})
+	\end{tikzcd}
+\]
+\todo{$\cong$ ins Diagramm einfügen}
+Jetzt betrachte
+\[
+	\begin{tikzcd}[row sep=0cm]
+		S^{2k} \rar["i"] & S^{2k} \times S^{2k} \rar["\mu"] & S^{2k} \\
+		x \rar[mapsto] & (x,e)
+	\end{tikzcd}
+\]
+Dies ist homotop zur Identität, das heißt $i^* \circ \mu^* = \id_{K^0(S^{2k})}$. Betrachte
+\[
+	\begin{tikzcd}
+		K^0(S^{2k} \times S^{2k}) \rar["i^*"] & K^0(S^{2k}\times \pt) \\
+		K^0(S^{2k}) \otimes K^0(S^{2k}) \uar["*"] \rar & K^0(S^{2k}) \otimes K^0(\pt) \uar \\
+		\nicefrac{\mathds{Z}[\alpha,\beta]}{(\alpha^2,\beta^2)} \rar["i^*"] & \nicefrac{\mathds{Z}[\gamma]}{(\gamma^2)} \\
+		\alpha \rar[mapsto] & \gamma \\
+		\beta \rar[mapsto] & 0
+	\end{tikzcd}
+\]
+Seien $r,s,t \in \mathds{Z}$, so dass $\mu^*(\gamma)= r \alpha + s \beta+ t \alpha \beta$. Dann gilt $r \gamma = i^* \circ \mu^*(\gamma)=\gamma$. Also ist $r=1$. Analog folgt
+$s=1$.
+\[
+	\Rightarrow 0 = \mu^*(\gamma^2) = \enbrace*{\mu^*(\gamma)}^2 = 2 \alpha \beta \not=0  
+\]
+Widerspruch!	
+\end{beweis}
+
+Eine $H$-Raum-Struktur $\mu \colon S^{n-1} \times S^{n-1} \to S^{n-1}$ liefert eine stetige Abbildung $f \colon S^{2n-1} \to S^n$ definiert wir folgt: Wir haben 
+$S^{2n-1} \cong \partial (D^n \times D^n) = \partial D^n \times D^n \cup D^n \times \partial D^n$ und  $S^n \cong D^n_+ \coprod D^n_n /\sim$ durch Verklebung
+entlang von $S^{n-1} = \partial D^n_+ = \partial D^n_-$. $f$ ist definiert durch
+\[
+	\begin{tikzcd}[ampersand replacement=\&,row sep=0cm]
+		f \colon \partial D^n \times D^n \cup D^n \times \partial D^n \rar \& \nicefrac{D^n_+ \coprod D^n_-}{\sim} \\
+		(x,y) \rar[mapsto] \&  {\begin{cases}
+			\norm{y} \cdot \mu \enbrace*{x, \frac{y}{\norm{y} } }  , &\text{ falls } (x,x) \in \partial D^n  \times D^n\\
+			\norm{x} \cdot \mu \enbrace*{\frac{x}{\norm{x} },y }  , &\text{ falls } (x,y) \in D^n \times \partial D^n
+		\end{cases}}
+	\end{tikzcd}
+\]
+$f$ ist wohldefiniert und stetig. Ab jetzt nehmen wir $n=2k$ an. Sei $f \colon S^{4k-1} \to S^{2k}$ eine stetige Abbildung. $f$ ist die Anklebeabbildung einer $4k$-Zelle
+$D^{4k}$ an $S^{2k}$. Sei $C_f$ durch das Pushout-Diagramm
+\[
+	\begin{tikzcd}
+		S^{4k-1} \rar[hook] \dar["f"] & D^{4k} \dar\\
+		S^{2k} \rar[hook] &C_f
+	\end{tikzcd}
+\]
+Es gilt $\nicefrac{C_f}{S^{2k}} \cong S^{4k}$. Damit folgt
+\[
+	K^0(C_f,S^{2k}) \cong K^0(D^{4k}, S^{4k-1}) \cong \tilde{K}^0(S^{4k})
+\]
+Wegen $\tilde{K}^1(S^{4k}) \cong \tilde{K}^1(S^{2k}) =0$ erhalten wir aus der exakten Tripelsequenz für $C_f \supset S^{2k} \supset \pt$ die kurze exakte Sequenz
+\[
+	\begin{tikzcd}
+		0 \rar & \tilde{K}^0(S^{4k}) \rar & \tilde{K}^0(C_f) \rar & \tilde{K}^0(S^{2k}) \rar & 0
+	\end{tikzcd}
+\]
+Sei $\alpha \in \tilde{K}^0(C_f)$ das Bild des Generator von $\tilde{K}^0(S^{4k})$ in $\tilde{K}^0(C_f)$. Sei $\beta \in \tilde{K}^0(C_f)$ ein Element, welches auf den
+Generator von $\tilde{K}^0(S^{2k})$ abbildet. Dann ist das Bild von $\beta^2$ in $\tilde{K}^0(S^{2k})$ gleich $0$. Also ist $\beta^2= h_f \cdot \alpha$ für ein 
+$h_f \in \mathds{Z}$.
+% subsection 44 (end)
+
+
+\begin{lemma}[label=sub:45]
+$h_f$ ist unabhängig von der Wahl von $\beta$.	
+\end{lemma}
+\begin{beweis}
+Sei $\beta'$ ein weiteres Element. Dann gilt $\beta' = \beta + m \cdot \alpha$ für ein $m \in \mathds{Z}$. Es gilt dann
+\[
+	(\beta')^2 = \beta^2 + 2m \beta \alpha
+\]
+Das Bild von $\alpha \beta$ in $\tilde{K}^0(S^{2k})$ ist $0$. Damit ist $\alpha \beta= r \cdot \alpha$ für ein $r \in \mathds{Z}$. Es folgt
+\[
+	r \alpha \beta = \alpha \beta^2 = h_f \cdot \alpha^2=0
+\]
+da $\alpha^2=0$ ist.  Damit ist $\alpha \beta=0$, da $\alpha \beta \in \im (\mathds{Z}= \tilde{K}^0(S^{4k}) \hookrightarrow \tilde{K}^0(C_f))$. Also gilt 
+$(\beta')^2=\beta^2$.	
+\end{beweis}
+
+
+\begin{definition}[label=sub:46,{name=[Hopf-Invariante]}]
+Das Element $h_f \in \mathds{Z}$ heißt die \Index{Hopf-Invariante} von $f$.
+\end{definition}
+
+
+\begin{satz}[label=sub:47]
+	Sei $f\colon S^{4k} \to S^{2k}$ die stetige Abbildung assoziiert zu einer $H$-Raum-Struktur auf $S^{2k-1}$. Dann gilt $h_f \in \set{\pm 1}$.
+\end{satz}
+\begin{beweis}
+\todo[inline]{Hier fehlt noch ganz viel}	
+\end{beweis}
+
+
+\subsection*{Die äußere Algebra}
+Sei $V$ ein $n$-dimensionaler $\mathds{C}$-Vektorraum.
+\[
+	T(V) = \bigoplus_{n=0}^\infty V^{\otimes n}
+\]
+mit $V^{\otimes 0}=\mathds{C}$ ist die \Index{Tensoralgebra} von $V$ mit Multiplikation induziert vom Tensorprodukt und Einselement 
+$1\in \mathds{C}=V^{\otimes 0} \subset T(V)$. $T(V)$ ist $\mathds{N}$-graduiert. Sei $I \subset T(V)$ das (graduierte) zweiseitige Ideal erzeugt von 
+$v \times v \in V^{\otimes 2} \subset T(V)$ für alle $v \in V$. Das heißt in $\nicefrac{T(V)}{I}$ gilt
+\begin{equation*}
+	\benbrace*{v_1 \otimes \ldots \otimes v_r} = \benbrace*{v_1 \otimes  \ldots \otimes v_r + w_1 \otimes  \ldots \otimes w_k \otimes a \otimes a \otimes w_{k+3} \otimes 
+	\ldots \otimes w_r} \label{eq_auss_al} \tag{\#}
+\end{equation*}
+Dann heißt $\Lambda^* V:= \nicefrac{T(V)}{I}$ die \Index{äußere Algebra} von $V$. Elemente in $\Lambda^*V$ schreibt man auch 
+$v_1 \wedge \ldots \wedge v_r = \benbrace*{v_1 \otimes \ldots \otimes v_r}$. Aus \eqref{eq_auss_al} folgt: 
+\[
+	v_1 \wedge \ldots \wedge v_i \wedge v_{i+1} \wedge \ldots \wedge v_r = - v_1 \wedge \ldots \wedge v_{i+1} \wedge v_i \wedge \ldots \wedge v_r
+\]
+$\Lambda^* V = \bigoplus_{n=0}^\infty \Lambda^n V$ ist graduiert über die Länge der Tensoren.
+\begin{beispiel}
+\leavevmode
+\begin{itemize}
+	\item Ist $V=\mathds{C}$, so ist $T(V) = \bigoplus_{n=0}^\infty \mathds{C}$ und $\Lambda^*(V) \cong \mathds{C} \oplus \mathds{C}$.
+	\item Ist $V=\mathds{C}^2$, so erhalten wir $\Lambda^* V \cong \mathds{C} \oplus \mathds{C}^2 \oplus \mathds{C}$, wobei das letze 
+	$\mathds{C} = \Span \set{e_1 \wedge e_2} $ ist.
+	\item Allgemeiner gilt für $V=\mathds{C}^r$
+	\[
+		\Lambda^* V \cong \mathds{C} \otimes C^r \oplus \ldots \oplus C^{\binom{r}{i}} \oplus \ldots \oplus \underset{\Lambda^r V}{\mathds{C}} \oplus 0 \ldots 
+	\]
+\end{itemize}
+\end{beispiel}
+
+Der Dualraum $(\Lambda^n V)^*$ ist kanonisch isomorph zum Vektorraum der antisymmetrischen $n$-Formen auf $V$, also Abbildungen $\varphi \colon V \times \ldots \times V \to C$, die multilinear und antisymmetrisch sind.
+
+Die Zuordnungen $V \mapsto \Lambda^n V$ und $V \mapsto\Lambda^* V$ lassen sich zu stetigen Funktoren $\VEKT_\mathds{C} \to \VEKT_\mathds{C}$ beziehungsweise
+$\VEKT_\mathds{C} \to \mathrm{Gr-}\VEKT_\mathds{C}$ erweitern. Nach \autoref{ind_funk_vektorbuendel} existieren Funktoren
+\[
+	\Lambda^n \colon \VEKT_\mathds{C}(X) \longrightarrow \VEKT_\mathds{C}(X) \qquad \Lambda^* \colon \VEKT_\mathds{C}(X) \longrightarrow \mathrm{Gr-}\VEKT_\mathds{C}(X)
+\]
+Eigenschaften dieser Funktoren: 
+\begin{enumerate}[a)]
+	\item $\Lambda^n(E_1 \oplus E_2) \cong \bigoplus_{i+j=n} \Lambda^i(E_1) \otimes \Lambda^j(E_2)$
+	\item $\Lambda^0(E) \cong X \times \mathds{C}$, $\Lambda^1(E) \cong E$
+	\item $\Lambda^n(E)=0$ für $n > \dim E$.
+\end{enumerate}
+\[
+	\Lambda^n(E_1 \oplus E_2) = \benbrace*{\Lambda^*(E_1 \oplus E_2)}_n = \enbrace*{\Lambda^*(E_1) \otimes \Lambda^*(E_2)}_n= (*,*)  
+\]
+
+\subsection*{Elementarsymmetrische Polynome}
+Sei $p \in \mathds{Z} \benbrace*{x_1, \ldots ,x_n}$ ein Polynom in Variablen $x_1, \ldots ,x_n$. Die Permutationsgruppe $\Sigma_n$ von $\set{1,\ldots ,n}$ wirkt auf $\mathds{Z}[x_1,\ldots ,x_n]$ durch
+\[
+	(\tau \cdot p)(x_1,\ldots ,x_n)=p \enbrace*{x_{\tau ^{-1}(1)}, \ldots , x_{\tau ^{-1}(n)}}  \quad , \quad \tau_1 \cdot (\tau_2 \cdot p) = (\tau_1 \cdot \tau_2) \cdot p
+\]
+Ein Polynom $p$ heißt $\Sigma_n$-invariant, falls $\tau \cdot p=p$ für alle $\tau \in \Sigma$ gilt.
+\begin{beispiel}
+\leavevmode
+\begin{itemize}
+	\item $\sigma_1(x_1,\ldots ,x_n)=x_1 +x_2 + \ldots + x_n$ ist $\Sigma_n$-invariant.
+	\item $\sigma_2(x_1,x_2,x_3) = x_1 x_2 + x_1 x_3+ x_2 x_3$ ist $\Sigma_3$-invariant.
+	\item $\sigma_r(x_1, \ldots ,x_n) = \sum_{1 \le i_1< \ldots < i_r \le n} x_{i_1} x_{i_2} \cdots x_{i_k}$ ist $\Sigma_n$-invariant. Diese Polynome heißen 
+	\emph{elementarsymmetrische Polynome}
+\end{itemize}
+\end{beispiel}
+
+Sei $q(x_1,\ldots ,x_n;t) = \prod_{i=1}^n (1+ t x_i)$. Es ist $(1+t x_1)(1+ t x_2)= 1+ t(x_1 + x_2) + t^2 x_1 x_2$. Dann ist $\sigma_r(x_1,\ldots ,x_n)$ der Koeffizient
+von $q(x_1, \ldots ,x_n;t)$ vor $t^r$.
+\begin{satz}
+Ein Polynom $p \in \mathds{Z} \benbrace*{x_1,\ldots ,x_n}$ ist $\Sigma_n$-invariant genau dann, wenn es von der Form 
+\[
+	p(x_1, \ldots ,x_n) = s \enbrace*{ \sigma_1(x_1, \ldots ,x_n), \sigma_2(x_1, \ldots ,x_n) , \ldots ,  \sigma_n(x_1,\ldots ,x_n)} 
+\]
+für ein $s \in \mathds{Z} \benbrace*{x_1, \ldots ,x_n} $ ist.
+\end{satz}
+
+Sei $E \to X$ ein $\mathds{C}$-Vektorbündel. Betrachte 
+\[
+	\Lambda_t(E) := \sum_{i=0}^{n} \benbrace*{\Lambda^i(E),0}_\st  \cdot t^i = \sum_{i=0}^{n} \Lambda^i(E) t^i \in K^0(X)[t]
+\]
+Dann gilt $\Lambda_t(E_1 \oplus E_2) = \Lambda_t(E_1) \cdot \Lambda_t(E_2)$ wegen Eigenschaft a) von $\Lambda^n(E)$. Falls $E \cong L_1 \oplus L_2 \oplus \ldots \oplus L_n$ 
+für eindimensionale $\mathds{C}$-Vektorbündel $L_i \to X$. Dann gilt
+\[
+	\Lambda_t(E) = \prod_{i=1}^n \Lambda_t(L_i) = \prod_{i=1}^n (1+ L_i t)
+\]
+Durch Koeffizientenvergleich bekommen wir 
+\[
+	\Lambda^i(E) \cong \sigma_i \enbrace*{L_1, \ldots , L_n} 
+\]
+für dieses $E$. Wir wollen $\psi^m \enbrace*{L_1 \oplus  \ldots  \oplus  L_n} = L_1^m + \ldots + L_n^m $. Das Polynom $p_m(x_1,\ldots,x_n)= x_1^m + \ldots + x_n^m$ ist 
+$\Sigma_n$-invariant, das heißt es gibt $s_m(x_1,\ldots ,x_n)$ sodass $p_m= s_m(\sigma_1, \ldots ,\sigma_n)$. Jetzt definieren wir 
+\[
+	\psi^m(E) = s_m \enbrace*{\Lambda^1(E), \ldots, \Lambda^n(E)} 
+\]
+\begin{satz}[name=Spaltungsprinzip]
+Sei $X$ ein kompakter Hausdorffraum. Sei $E \to X$ ein endlichdimensionales $\mathds{C}$-Vektorbündel. Dann gibt es einen kompakten Hausdorffraum $F(E)$ zusammen mit einer
+stetigen Abbildung $p \colon F(E) \to X$, sodass $p^* \colon K^0(X) \to K^0 \enbrace*{F(E)}$ injektiv ist und $p^*E$ in eine SUmme von eindimensionalen 
+$\mathds{C}$-Vektorbündeln zerfällt.
+\end{satz}
+
+\begin{beweis}[name=Existenz Adams Operation, 4.8]
+\leavevmode
+\begin{itemize}
+	\item  Natürlichkeit folgt aus Funktorialität von $\Lambda^n$.
+\end{itemize}
+Seien $E_1, E_2$ $\mathds{C}$-Vektorraumbündel über $X$. Zu zeigen: $\psi^m(E_1 \oplus 	E_2) = \psi^m(E_1) + \psi^m(E_2)$. Sei $p_1 \colon F(E_1) \to X$ aus dem 
+Spaltungsprinzip. Betrachte $p_2 \colon F(p_1^*E_2) \to F(E_1)$. Dann gilt $p_1^* E_1 \cong L^m_1 \oplus  \ldots \oplus L^m_r$ und
+\[
+	p_2^* p_1^* E_2 \cong L_1^{(2)} \oplus  \ldots \oplus L_s^{(2)}
+\]
+Es folgt \todo{hier ist noch ein Fehler im Code, deswegen auskommentiert}
+% \begin{align*}
+% 	p_2^* p_^* \psi^m \enbrace*{E_1 \oplus E_2} = \psi^m \enbrace*{p_2^* p_1^* \enbrace*{E_1 \oplus E_2}}
+% 	&= \psi^m \enbrace*{p_2^* L_1^{(1)} \oplus \oplus p_2^* L_r^{(1)} \oplus L_1^{(2)} \oplus \ldots   \oplus L_s^{(2)}} \\
+% 	&= \psi^m \enbrace*{p_2^* L_1^{(1)} \oplus  \ldots \oplus p_2^* L_r^{(1)}} + \psi^m \enbrace*{L_1^{2} \oplus  \ldots \oplus L_s^{(2)}} \\
+% 	&= \psi^m \enbrace*{p_2^* p_1^* E_1} + \psi^m (p_2^* p_1^* E_2) \\
+% 	&=  p_2^* p_1^* \enbrace*{\psi^m \enbrace*{E_1} + \psi^m(E_2) }
+% \end{align*}
+Also gilt $\psi^m \enbrace*{E_1 \oplus E_2} = \psi^m(E_1) + \psi^m(E_2)$. Jetzt definiere $\psi^m(E_1 - E_2) = \psi^m(E_1) - \psi^m(E_2)$. Die Multiplikativität geht analog.
+Außerdem gilt
+\begin{align*}
+	\psi^m \enbrace*{\psi^l \enbrace*{L_1 \oplus L_r} } = L_1^{ml} \oplus \ldots \oplus L_r^{ml} = \psi^{ml} \enbrace*{L_1 \oplus \ldots \ldots L_r}  
+\end{align*}
+und
+\[
+	\psi^p \enbrace*{L_1 \oplus \ldots \oplus L_r} = L_1^p \oplus \ldots \oplus L_r^p = \enbrace*{L_1 \oplus \ldots \oplus L_r}^p \mod p \qedhere 
+\]
+\end{beweis}
+
+\minisec{Idee des Beweises vom Spaltungsprinzip}
+Betrachte das zu $E$ assoziierte projektive Bündel. Sei $s_0 \colon X \to E $ der Nullschnitt von $q \colon E \to X$.
+\[
+	P(E) := \nicefrac{E \setminus s_0(X)}{\sim} \qquad v \sim w \text{ falls } q(v)=q(w), v=\lambda w \text{ für ein } \lambda \in \mathds{C}^*
+\]
+$q' \colon P(E) \to X$, $q(w)= q'([w])$.
+Sei $L= \set[{(v,[w] \in E \times P(E))}]{v=\lambda w \text{ für ein }\lambda \in \mathds{C}^*}$. Dann ist $L \to P(E)$ ein eindimensionales Vektorbündel über $P(E)$ und wir
+haben eine kurze exakte Sequenz von Vektorbündeln
+\[
+	\begin{tikzcd}
+		0 \rar & L \rar & (q')^* E \rar & Q \rar & 0
+	\end{tikzcd}
+\]
+Es folgt nun $(q')^* E \cong L \oplus Q$. Es bleibt zu zeigen: $(q')^* \colon K^0(X) \to K^0(P(E))$ ist injektiv. Dies braucht den Thom-Isomorphismus oder das
+Leray-Hirsch-Theorem.
+
+$E=X \times \mathds{C}^{n+1}$ $\Rightarrow $ $P(E)=X \times \mathds{C}P^n$ und 
+\[
+	K^0(X) \otimes K^0(\mathds{C}P^n) \xrightarrow{\cong} K^0(X \times \mathds{C}P^n) 
+\]
+
+% section die_hopf_invariante (end)
+
+
+
+
+
+\cleardoubleoddemptypage
+\appendix
+\section{Anhang}
+
+
+
+
+
+
+
+
+\subsection{Lokale Trivialität des Tangentialbündels auf $S^n$} % (fold)
+\label{sub:lokal_trivial_Sn}
+Sei $S^n \subset \mathds{R}^{n+1}$ die $n$-Sphäre und sei 
+\[
+	\Tmap S^n = \set[(x,v) \in S^n \times \mathds{R}^{n+1}]{\skal*{x}{v}=0} 
+\]
+Wir definieren $p \colon \Tmap S^n \to S^n$ durch $p(x,v)=x$. Wir zeigen, dass $p \colon \Tmap S^n \to S^n$ lokal trivial ist.
+\minisec{Beweis}
+Sei $x_0 \in S^n$ gegeben. Sei $U := \set[x \in S^n]{\skal*{x}{x_0}>0}$. Da $\skal*{x_0}{x_0}=1$ ist, ist $x_0 \in U$. Weiter ist $U$ offen in $S^n$, also eine offene 
+Umgebung von $x_0$. Sei $H \subset \mathds{R}^{n+1}$ die Hyperebene gegeben durch $H = \set[v \in \mathds{R}^{n+1}]{\skal*{x}{v}=0}$. Da dies ein $n$-dimensionaler 
+Vektorraum ist, finden wir einen Isomorphismus $\kappa \colon H \to \mathds{R}^n$. Sei $\Tmap S^n \big|_U=p^{-1}(U)$. Wegen $\skal*{x_0}{x_0}=1$ liegt $v- \skal*{x_0}{v} x_0$
+in $H$ für alle $v \in \mathds{R}^{n+1}$. Also können wir definieren:
+\[
+	\varphi \colon \Tmap S^n\big|_{U} \to U \times \mathds{R}^n \quad , \quad (x,v) \mapsto \enbrace[\big]{x, \kappa(v - \skal*{x_0}{v} x_0)} 
+\]
+Außerdem definieren wir $\psi \colon U \times \mathds{R}^n \to \Tmap S^n \big|_U$ durch
+\[
+	\psi(x,w) = \enbrace*{x , \kappa^{-1}(w) - \frac{\skal*{x}{\kappa^{-1}(w)}}{\skal*{x}{x_0}} x_0 } 
+\]
+Dies ist wohldefiniert, da für $x \in U$ der Nenner stets ungleich $0$ ist und weiter
+\[
+	\skal*{x}{\kappa^{-1}(w) - \frac{\skal*{x}{\kappa ^{-1}(w)}}{\skal*{x}{x_0}} x_0} = \skal*{x}{\kappa^{-1}(w)} - \frac{\skal*{x}{\kappa ^{-1}(w)}}{\skal*{x}{x_0}} 
+	\skal*{x}{x_0} = 0
+\]
+gilt. Weiter sind beide Abbildungen offensichtlich stetig. Für die Komposition gilt
+\begin{align*}
+	(\psi \circ \varphi)(x,v) = \enbrace*{x, v - \skal*{x_0}{v} x_0 - \frac{\skal*{x}{v- \skal*{x_0}{v} x_0}}{\skal*{x}{x_0}}x_0 }
+	= \enbrace*{x, v - \skal*{x_0}{v} x_0 + \skal*{x_0}{v}x_0} = (x,v)  
+\end{align*}
+Dabei haben wir benutzt, dass $\skal*{x}{v}=0$ gilt. Umgekehrt gilt
+\begin{align*}
+	(\varphi \circ \psi)(x,w) &= \enbrace*{x , \kappa \enbrace*{\kappa^{-1}(w) - \frac{\skal*{x}{\kappa^{-1}(w)}}{\skal*{x}{x_0}}x_0 - \skal*{x_0}{\kappa^{-1}(w) - 
+	\frac{\skal*{x}{\kappa^{-1}(w)}}{\skal*{x}{x_0}}x_0} x_0 } } \\
+	&= \enbrace*{x , \kappa \enbrace*{\kappa^{-1}(w) - \frac{\skal*{x}{\kappa^{-1}(w)}}{\skal*{x}{x_0}}x_0 - 
+	\skal*{x_0}{\kappa^{-1}(w)} x_0 + \frac{\skal*{x}{\kappa^{-1}(w)}}{\skal*{x}{x_0}} x_0 }}\\
+	&= \enbrace[\Big]{x , \kappa \enbrace*{\kappa^{-1}(w) - \skal*{x_0}{\kappa^{-1}(w)} x_0} } = (x,w)
+\end{align*}
+da wieder $\skal*{x_0}{\kappa ^{-1}(w)}=0$, weil $\kappa ^{-1}(w) \in H$ ist. Damit ist $\varphi$ ein Homöomorphismus. Es ist außerdem klar, dass $\varphi$ eingeschränkt auf 
+die Fasern eine lineare Abbildung ist. Damit ist das Tangentialbündel $\Tmap S^n$ lokal trivial. \bewende
+% subsection lokal_trivial_Sn (end)
+
+
+
+
+
+
+
+
+\cleardoubleoddemptypage
+\pagenumbering{Alph}
+\setcounter{page}{1}
+
+\printindex
+\listoffigures
+\todototoc
+\listoftodos[To-do's und andere Baustellen]
+\end{document}
