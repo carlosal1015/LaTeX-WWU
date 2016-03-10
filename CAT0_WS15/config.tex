@@ -1,0 +1,138 @@
+%!TEX root = CAT0.tex
+% -- Author: Phil Steinhorst, p.st@wwu.de
+\documentclass[a4paper,twoside,index=totoc,toc=bibliography,fontsize=10,DIV=12,headinclude,BCOR=12mm,cleardoublepage=empty]{scrreprt}
+
+\usepackage[usenames,x11names]{xcolor} 
+\usepackage[final]{graphicx}
+\usepackage{lmodern}
+\usepackage{mathtools,amssymb,amsthm}
+\mathtoolsset{showonlyrefs}	
+\usepackage[libertine,cmintegrals,bigdelims,varbb]{newtxmath}
+\usepackage[no-math]{fontspec}
+\usepackage{polyglossia}
+\setmainlanguage[spelling=new,babelshorthands=true,latesthyphen]{german}
+\shorthandoff{"}
+\defaultfontfeatures{Mapping=tex-text, Ligatures={Required,Common,Contextual}}
+\setmainfont{LinLibertine}[Extension=.otf,UprightFont=*_R,BoldFont=*_RZ,ItalicFont=*_RI,BoldItalicFont=*_RZI]
+\setsansfont{LinBiolinum}[Scale=MatchUppercase, Extension=.otf, UprightFont=*_R, BoldFont=*_RB, ItalicFont=*_RI,BoldItalicFont=*_RBO]
+\setmonofont{Inconsolatazi4}[Scale=MatchUppercase,Extension=.otf,UprightFont=*-Regular,BoldFont=*-Bold,StylisticSet=1]
+\usepackage[final]{microtype}
+\mathtoolsset{centercolon}
+\usepackage{mathdots}
+\usepackage{tikz-cd}
+\tikzset{
+  every picture/.append style={
+    execute at begin picture={\shorthandoff{"}},
+    execute at end picture={\shorthandon{"}}
+  }
+}
+\usetikzlibrary{quotes,babel,angles}
+\usetikzlibrary{patterns}
+\usetikzlibrary{arrows.meta}
+\tikzset{
+	schraffiert/.style={pattern=north west lines,pattern color=#1},
+	schraffiert/.default=black
+}
+\tikzset{
+	schraffiert2/.style={pattern=north east lines,pattern color=#1},
+	schraffiert2/.default=black
+}
+\tikzset{
+	schraffiert3/.style={pattern=horizontal lines,pattern color=#1},
+	schraffiert3/.default=black
+}
+\usepackage[%
+	backend=bibtex,
+	sortlocale=auto,
+	natbib,
+	hyperref,
+	backref,
+	backrefstyle=three+,
+	style=alphabetic 
+	]{biblatex}
+\setlength{\bibitemsep}{1em}     
+\setlength{\bibhang}{2em}        
+\addbibresource{literature.bib}
+\usepackage[hidelinks, pdfpagelabels, bookmarksopen=true, bookmarksnumbered=true, linkcolor=black, urlcolor=SkyBlue2, plainpages=false,pagebackref, citecolor=black, hypertexnames=true, pdfauthor={Phil Steinhorst}, pdfborderstyle={/S/U}, linkbordercolor=SkyBlue2, colorlinks=false,backref=false]{hyperref}
+\hypersetup{final}
+\usepackage[shortlabels]{enumitem}
+\setlist[enumerate,description]{font=\sffamily\bfseries}
+\usepackage[german=quotes]{csquotes}
+\usepackage[textsize=small]{todonotes}
+\usepackage{marginnote}
+\renewcommand*{\marginfont}{\color{gray} \footnotesize }
+\setlength{\parindent}{0em} 
+\usepackage{scrpage2}
+\pagestyle{scrheadings}
+\clearscrheadfoot 
+\setheadsepline{1pt} 
+\automark[chapter]{chapter}
+\rohead{\rightmark} 
+\lehead{\rightmark} 
+\ofoot[\pagemark]{\pagemark} 
+\usepackage{makeidx}
+\newcommand{\Index}[1]{\textbf{#1}\index{#1}}
+\makeindex
+\renewcommand{\indexpagestyle}{scrheadings}
+\usepackage{thmtools}
+\declaretheoremstyle[
+	headfont=\sffamily\bfseries,
+	notefont=\normalfont\sffamily,
+	bodyfont=\normalfont,
+	headformat=\NUMBER \ \NAME \NOTE,
+	headpunct={\\},
+	postheadspace=1ex,
+	spaceabove=15pt,spacebelow=10pt]{mainstyle}
+\declaretheoremstyle[
+	headfont=\sffamily\bfseries,
+	notefont=\normalfont\sffamily,
+	bodyfont=\normalfont,
+	headformat=\NAME \NOTE,
+	headpunct={\\},
+	postheadspace=1ex,
+	spaceabove=15pt,spacebelow=10pt]{nonumber}
+\declaretheoremstyle[%
+	headfont=\sffamily\bfseries,
+	notefont=\normalfont\sffamily,
+	bodyfont=\normalfont,
+	headformat=\NAME \ \NOTE,
+	headpunct={\\},
+	postheadspace=1ex,
+	spaceabove=15pt,spacebelow=10pt]{miscstyle}
+\declaretheoremstyle[
+	headfont=\bfseries\scshape,
+	bodyfont=\normalfont,
+	headpunct=:,
+	postheadspace=1ex,
+	spacebelow=12pt,spaceabove=2pt,
+	qed=\qedsymbol]{beweise}
+
+\declaretheorem[name=Definition,parent=chapter,style=mainstyle]{definition}
+\declaretheorem[name=Satz,sharenumber=definition,style=mainstyle]{satz}
+\declaretheorem[name=Korollar,sharenumber=definition,style=mainstyle]{korollar}
+\declaretheorem[name=Lemma,sharenumber=definition,style=mainstyle]{lemma}
+\declaretheorem[name=Proposition,sharenumber=definition,style=mainstyle]{proposition}
+\declaretheorem[name=Bemerkung,sharenumber=definition,style=mainstyle]{bemerkung}
+\declaretheorem[name=Beispiel,sharenumber=definition,style=mainstyle]{beispiel}
+\declaretheorem[name=Erinnerung,sharenumber=definition,style=mainstyle]{erinnerung}
+\declaretheorem[name=Beobachtung,sharenumber=definition,style=mainstyle]{beobachtung}
+\declaretheorem[name=Theorem,sharenumber=definition,style=mainstyle]{theorem}
+\declaretheorem[name=Aufgabe,parent=chapter,style=mainstyle]{aufgabe}
+\declaretheorem[name=Beweis,numbered=no,style=beweise]{beweis}
+
+\declaretheorem[name=Erinnerung,numbered=no,style=nonumber]{no-erinnerung}
+\declaretheorem[name=Definition,numbered=no,style=nonumber]{no-def}
+\declaretheorem[name=Satz,numbered=no,style=nonumber]{no-satz}
+\declaretheorem[name=Bemerkung,numbered=no,style=nonumber]{no-bem}
+\declaretheorem[name=Beispiel,numbered=no,style=nonumber]{no-bsp}
+
+\input{MathCmds.tex}
+\usepackage{setspace}
+\usepackage{hyphenat}
+\usepackage{bm}
+\allowdisplaybreaks
+\raggedbottom
+\renewcommand{\phi}{\varphi}
+\usepackage{chngcntr}
+\counterwithout{equation}{chapter}
+\usepackage{faktor}
