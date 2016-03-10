@@ -113,15 +113,25 @@
 	% \newcommand\glqq{"}
 	% \newcommand\grqq{"}
 	\defaultfontfeatures{Mapping=tex-text, WordSpace={1.4}} %
-    \setmainfont[Ligatures=Common, BoldFont={* Bold}, ItalicFont={* Light Italic},SmallCapsFont={Linux Libertine O}, SmallCapsFeatures={Letters=SmallCaps}]{Source Sans Pro}
-	\setsansfont[Scale=MatchLowercase,Ligatures=Common, BoldFont={* Medium}]{Ubuntu}
+	\setmainfont{SourceSansPro}[%
+		Extension=.otf,
+		UprightFont=*-Regular,
+		BoldFont=*-Semibold,
+		ItalicFont=*-LightIt,
+		BoldItalicFont=*-SemiboldIt,
+		SmallCapsFont={LinLibertine_R.otf},
+		SmallCapsFeatures={Letters=SmallCaps}]
+	\setsansfont{SourceSansPro}[%
+		Extension=.otf,
+		UprightFont=*-Regular,
+		BoldFont=*-Semibold,
+		ItalicFont=*-LightIt,
+		BoldItalicFont=*-SemiboldIt,
+		SmallCapsFont={LinLibertine_R.otf},
+		SmallCapsFeatures={Letters=SmallCaps}]
 	% \newfontface\fancy{texgyreadventor-italic.otf}
 	% \setkomafont{title}{\fancy\Huge}
-	\ifxetex
-		\setallmonofonts[Scale=MatchLowercase, ItalicFont={*}]{Consolas} 
-	\else
-		\setmonofont[Scale=MatchLowercase, ItalicFont={*}]{Consolas}
-	\fi
+	\setmonofont{Inconsolatazi4}[Scale=MatchUppercase,Extension=.otf,UprightFont=*-Regular,BoldFont=*-Bold,StylisticSet=1]
 	\usepackage{xltxtra}
 	\usepackage{fontawesome}
 	\usepackage{microtype}
