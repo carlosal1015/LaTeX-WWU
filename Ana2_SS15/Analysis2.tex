@@ -1,0 +1,3315 @@
+%!TEX TS-program = xelatex
+\input{../!config/VorlagenTim/mitschrift.tex}
+
+\newcommand{\Semester}{SoSe 2015}
+\newcommand{\fach}{Analysis 2}
+\newcommand{\prof}{Prof.\ Ebert}
+
+\input{../!config/VorlagenTim/mitschrift_headings.tex}
+
+
+\begin{document}
+\maketitle
+\cleardoubleoddemptypage
+
+\pagenumbering{Alph}
+\input{../!config/VorlagenTim/vorwort.tex}
+
+\newpage
+
+\tableofcontents
+\cleardoubleoddemptypage
+\pagenumbering{arabic}
+\setcounter{page}{1}
+
+
+\section{Normierte und metrische Räume} % (fold)
+\label{sec:Normierte und metrische Raeume}
+
+\subsection{Der $\mathbb{R}^n$} % (fold)
+\label{sub:der_mathbb_r_n}
+
+\[
+	\mathbb{R}^n = \left\{ \left. \begin{pmatrix} x_1 \\ \vdots \\ x_n \\ \end{pmatrix}  \right| x_i \in \mathbb{R} \right\}
+\]
+
+Der $\mathbb{R}^n$ ist ein $\mathbb{R}$-Vektorraum und $\dim_{\mathbb{R}}(\mathbb{R}^n)=n$.
+
+Sei
+\[
+	e_i = \begin{pmatrix} 0 \\ \vdots \\ 0 \\ 1 \\ 0 \\ \vdots \\ 0 \end{pmatrix} \leftarrow \text{$i$-ter Eintrag}
+\]
+
+\((e_1,\dots,e_n)\) ist eine Basis von $\mathbb{R}^n$ und heißt \Index{ Standardbasis}. 
+
+Ist \(x = \begin{pmatrix} x_1 \\ \vdots \\ x_n \end{pmatrix}\), so gilt \(x=\sum\limits^{n}_{i=1}x_ie_i\)
+
+\subsubsection[Das Skalarprodukt]{Definition} % (fold)
+\label{ssub:definition}
+
+Das \Index{ Skalarprodukt} auf $\mathbb{R}^n$ ist die Abbildung \[ \langle\, .\,,\,.\,\rangle : \mathbb{R}^n \times \, \mathbb{R}^n \to \mathbb{R}\] mit 
+
+\[
+ x = \left< \begin{pmatrix} x_1 \\ \vdots \\ x_n \end{pmatrix} , \begin{pmatrix} y_1 \\ \vdots \\ y_n \end{pmatrix} \right> := \sum_{i=1}^{n}x_iy_i \in \mathbb{R} 
+ \]
+ 
+es gilt:
+\begin{description}
+	\item[(S1)] (Bilinearität) $\forall \, x_0,x_1,y_0,y_1, \in \mathbb{R}^n \hspace{4pt} \forall \, a,b \in \mathbb{R}$
+	 \begin{eqnarray}
+	 \langle x_0+x_1\,,\, y_0+y_1\rangle & =& \langle x_0\,,\, y_0\rangle + \langle x_1\,,\,y_1\rangle + \langle x_1\,,\, y_0\rangle + \langle x_1\,,\, y_1\rangle \\
+	 \langle ax_0\,,\, by_0\rangle &=& ab \langle x_0\,,\, y_0\rangle 
+	 \end{eqnarray}
+	 \item[(S2)](Symmetrie) $\forall \, x,y \in \mathbb{R}^n$ gilt $\skal{x}{y} = \skal{y}{x}$
+	
+	\item[(S3)](positive Definitheit) $\forall \, x \in \mathbb{R}$ gilt $\skal{x}{x} \geq 0$ und $\skal{x}{x}=0$ nur dann, wenn $x=0$
+\end{description}
+Desweiteren gilt $\skal{e_i}{e_j}=\delta_y := \begin{cases} 1 & i=j \\ 0 &i\neq j \end{cases}$ \hspace{1cm} (Kronecker-Symbol)
+
+Ist \[
+	x=\sum_{i=1}^{n}x_ie_i \in \mathbb{R}^n \qquad (x_i \in \mathbb{R})
+	\]
+so ist \begin{gather*}
+	\skal{x}{e_j} = \skal{\sum_{i=1}^{n}x_ie_i}{e_j} \stackrel{(S1)}{=} \sum_{i=1}^{n}x_i \skal{e_i}{e_j} = \sum^{n}_{i=1}x_i \delta_{ij} = x_j \\
+	\Rightarrow x = \sum^{n}_{j=1} \skal{x}{e_j}e_j
+\end{gather*}
+
+\subsubsection[Die $l^2$-Norm]{Definition} % (fold)
+\label{ssub:definition}
+Sei $x \in \mathbb{R}^n$. Die $l^2$-Norm von $x$ ist die Zahl
+\[
+	\norm{x}_2:= \sqrt{\skal{x}{x}} 
+\]
+Schreibweise manchmal auch: $\norm{x}_2 = \norm{x}$
+% subsubsection definition (end)
+
+\subsection{Euklidsche und normierte Vektorräume} % (fold)
+\label{sub:euklidsche_und_normierte_vektorraume}
+
+\subsubsection[Euklidscher Vektorraum]{Definition} % (fold)
+\label{ssub:definition}
+Sei $ V$  ein $\mathbb{R}$-Vektorraum. Ein \Index{ Skalarprodukt} auf $ V$  ist eine Abbildung $\skal{.}{.}:V \times V \to \mathbb{R}$, welche die Axiome S1,S2,S3 erfüllt. \\
+Ein \Index{ euklidscher Vektorraum} ist ein Paar $(V,\skal{}{})$. $ V$  ist ein $\mathbb{R}$-Vektorraum und $\skal{}{}$ ist Skalarprodukt auf $ V$. \\
+Ist $(V,\skal{}{})$ ein eukdlischer Vektorraum, so ist die durch $\skal{}{}$ induzierte Norm definiert als \[
+	\norm{v}=\sqrt{\skal{v}{v}} \hspace{1cm}  v \in V 
+	\]
+
+\subsubsection[Beispiel euklidscher Vektorraum]{Beispiele} % (fold)
+\label{ssub:beispiele}
+
+\begin{itemize}
+	\item $\mathbb{R}^n$ mit Standardskalarprodukt
+	\item Die Abbildung \begin{align*}
+		 \mathbb{C} \times \mathbb{C} &\to \mathbb{R} \\
+		 (z,w) &\mapsto Re(\bar z \cdot w)
+		 \end{align*}
+		 ist ein Skalarprodukt. Die induzierte Norm ist der Absolutbetrag.      
+\end{itemize}
+% subsubsection beispiele (end)
+
+\subsubsection[Norm]{Definition} % (fold)
+\label{ssub:definition}
+Sei $ V$ ein $\mathbb{R} $-Vektorraum. Eine \Index{ Norm} auf $ V$ ist eine Abbildung $\norm{.}:V \to \mathbb{R} , v \mapsto \norm{v}$ mit
+\begin{description}
+	\item[(N1)]$\norm{v} \geq 0 \hspace{1cm} \forall \, v \in V$ 
+	\item[(N2)] $\norm{v}=0 \Leftrightarrow v=0$
+	\item[(N3)] $\norm{av}=|a|\cdot \norm{v} \hspace{1cm}  \forall\,v \in V, a \in \mathbb{R}$
+	\item[(N4)] $\norm{v+w} \leq \norm{v}+\norm{w} \hspace{1cm} \forall\, v,w \in V$ \hspace{1cm} (Dreiecksungleichung) 
+\end{description} 
+Ein normierter Vektorraum ist ein Paar $(V,\norm{.})$ bestehend aus einem $\mathbb{R}$-VR $ V$ und einer Norm auf $ V$.
+
+\subsubsection[Cauchy-Schwarz-Ungleichung]{Satz} % (fold)
+\label{ssub:satz}
+Sei $(V,\skal{}{})$ ein euklidscher Vektorraum. Für $v \in V$ setzte $\norm{v}=\sqrt{\skal{v}{v}}$ \\ Dann gilt:
+\begin{enumerate}
+	\item $\norm{.}$ ist eine Norm auf $ V$ 
+	\item $\forall\, v,w \in V$ gilt die \Index{ Cauchy-Schwarz-Ungleichung}:
+	\[
+		|\skal{v}{w}| \leq \norm{v} \cdot \norm{w}
+	\]  
+\end{enumerate}
+\minisec{Beweis:}
+\begin{enumerate}
+	\item \begin{enumerate}[N1:]
+		\item $\norm{v}=\sqrt{\underset{\geq 0}{\underbrace{\skal{v}{v}}}} \geq  0$
+		\item $\norm{v}=\sqrt{\skal{v}{v}}=0 \Rightarrow \skal{v}{v}=0 \stackrel{\text{S3}}{\Rightarrow} v=0$ 
+		\item $a \in \mathbb{R} , v \in V$ \[
+			\norm{av}=\sqrt{\skal{av}{av}} \stackrel{\text{S1}}{=} \sqrt{a^2 \skal{v}{v}} = \sqrt{a^2} \sqrt{\skal{v}{v}} = \abs{a} \norm{v}
+		\] 
+	\end{enumerate}
+	\item CS-Ungleichung ist trivial, wenn $w=0$ \\
+	Ann.: $w \neq 0$: Sei $f:\mathbb{R} \to \mathbb{R} $ mit
+	\begin{align*}
+		f(t) &=\skal{v+tw}{v+tw} \\
+		& = \skal{v}{v} +2t \skal{v}{w} + t^2 \skal{w}{w} \\
+		& = \norm{v}^2+ 2t \underbrace{\skal{v}{w}}_{\in \mathbb{R}} + t^2 \norm{w}^2 
+	\end{align*} 
+	aus S3 folgt $f(t)\geq 0$. f ist Polynom
+	\begin{align*}
+		&f'(t)=0 \Leftrightarrow t_0 = - \frac{\skal{v}{w}}{\norm{w}^2} \\
+		&f''(t)=2 \norm{w}^2 > 0
+	\end{align*}
+ $\Rightarrow$ $f$ nimmt bei $t_0$ globales Minimum an
+ \begin{gather*}
+ 	0 \leq f(t_0)=\norm{v}^2 - \frac{2 \skal{v}{w}^2}{\norm{w}^2} + \frac{\skal{v}{w}^2}{\norm{w}^4} \norm{w}^2 = \norm{v}^2 - \frac{\skal{v}{w}^2}{\norm{w}^2} \\
+	\Rightarrow \frac{\skal{v}{w}^2}{\norm{w}^2} \leq \norm{v}^2 \\ \Rightarrow \skal{v}{w}^2 \leq \norm{v}^2 \norm{w}^2 \\
+	\Rightarrow \abs{\skal{v}{w}} = \sqrt{\skal{v}{w}^2} \leq \sqrt{\norm{v}^2 \norm{w}^2} = \norm{v} \cdot \norm{w}
+ \end{gather*}
+ \bewende
+\end{enumerate}
+Schließlich könnnen wir N4 zeigen:
+\begin{enumerate}
+	\item[N4:]\begin{align*}
+		\norm{v+w}^2 &= \skal{v+w}{v+w} \\ 
+		&\stackrel{\text{S1}}{=} \norm{v}^2+ 2 \skal{v}{w}+ \norm{w}^2 \\
+		&\leq \norm{v} + 2 \abs{\skal{v}{w}}+ \norm{w}^2 \\
+		&\stackrel{\text{CS}}{\leq} \norm{v}^2+2 \norm{v}\norm{w}+ \norm{w}^2 \\
+		&=(\norm{v}+\norm{w})^2
+	\end{align*} 
+Wurzel ziehen zeigt N4
+\bewende
+\end{enumerate}
+% subsubsection satz (end)
+
+\subsubsection[Besipiele für Normen auf $\mathbb{R}$]{Weitere Beispiele für Normen auf $\mathbb{R}$} % (fold)
+\label{ssub:weitere_beispiele_fur_normen_auf_mathbb_r}
+
+\begin{gather*}
+	 x = \sum^{n}_{i=1}x_ie_i \hspace{1cm}  x_i \in  \mathbb{R}
+	 \end{gather*}
+\begin{itemize}
+	\item \text{$l^1$-Norm} $\hspace{1cm}  \norm{x}_1 = \sum^{n}_{i=1}\abs{x_i}$ 
+	\item $l^{\infty}$-Norm $\hspace{1cm} \norm{x}_{\infty}=\max{\{\abs{x_i}\,|\,i=1,\dots,n}\}$
+	\item Ist $p \in [1,\infty)$, so ist die $l^p$-Norm
+	\[
+		\norm{x}_p = \left( \sum^{n}_{i=1}\abs{x_i}^p \right)^{\frac{1}{p}} \hspace{1cm} \text{(Beweis Schwer)}
+	\] 
+\end{itemize}
+% subsubsection weitere_beispiele_fur_normen_auf_mathbb_r (end)
+
+\subsubsection[Äquivalenz von Normen]{Definition} % (fold)
+\label{ssub:definition}
+$ V$ $\mathbb{R}$-VR , $\norm{.}_0 , \norm{.}_1$ Normen auf $ V$. Die Normen $\norm{.}_0 , \norm{.}_1$ heißen \Index{ äquivalent}, falls $C,c>0$ existieren, so dass für alle $v \in  V$ gilt:
+\[
+	c \norm{v}_0 \leq \norm{v}_1 \leq C \norm{v}_0 
+\] 
+\minisec{Bemerkung:} Das ist eine Äquivalenzrelation
+\begin{itemize}
+	\item { \bfseries Reflexiv}: klar
+	\item { \bfseries Symmetrie}: \begin{gather*}
+		c \norm{v}_0 \leq \norm{v}_1 \leq C \norm{v}_0 \\
+		\Rightarrow \frac{1}{c} \norm{v}_1 \leq \norm{v}_0 \leq \frac{1}{C} \norm{v}_1
+	\end{gather*}
+	\item {\bfseries Transitiv}: \begin{gather*}
+		c \norm{v}_0 \leq \norm{v}_1 \leq C \norm{v}_0 \hspace{0.5cm} \text{und}\hspace{0.5cm} d \norm{v}_1 \leq \norm{v}_2 \leq D \norm{v}_1  \hspace{1cm} (C,c,D,d > 0)	\end{gather*}
+		\[
+		\Rightarrow cd \norm{v}_0 \leq CD \norm{v}_0
+		\]
+\end{itemize}
+
+\subsubsection[Beispiel Äquivalente Normen]{Beispiel} % (fold)
+\label{ssub:beispiel}
+Die $l^1, l^2 \, \text{und} \, l^{\infty}$-Norm auf $\mathbb{R}^n $ sind äquivalent und zwar gilt:
+\[
+	\norm{v}_{\infty} \leq \norm{v}_2 \leq \norm{v}_1 \leq n \norm{v}_{\infty} \hspace{1cm} \text{(Beweis Übung)}
+\]
+% subsubsection beispiel (end)
+
+\subsection{Metrische Räume} % (fold)
+\label{sub:metrische_raume}
+
+\subsubsection[Abstand]{Definition} % (fold)
+\label{ssub:definition}
+$(V,\norm{.})$ normierter Vektorraum, $v,w \in  V$ \\
+Der \Index{ Abstand} von $v$ und $w$ ist \[
+d(v,w):= \norm{v-w}	
+\] 
+% subsubsection definition (end)
+ \subsubsection[Metrik]{Definition} % (fold)
+ \label{ssub:definition}
+Sei $X$ eine Menge \\
+Eine \Index{ Metrik} (oder Abstandsfunktion) ist eine Abbildung $d: X \times X \to \mathbb{R} , (x,y) \mapsto d(x,y)$, sodass gilt:
+\begin{description}
+	\item[(M1)] $\forall\, x,y \in X: \hspace{1cm}  d(x,y) \geq  0$
+	\item[(M2)] $\forall\, x,y \in X: \hspace{1cm}  d(x,x)=0   \hspace{1cm} \text{und} \hspace{1cm} 
+		 		d(x,y)=0 \Rightarrow x=y$
+	\item[(M3)] $\forall\, x,y \in X: \hspace{1cm} d(x,y)=d(y,x)$
+	\item[(M4)] $\forall\, x,y,z \in X: \hspace{1cm}  d(x,z) \leq d(x,y)+d(y,z) \hspace{1cm}$ (\Index{ Dreiecksungleichung}) 
+\end{description}
+Ein \Index{ Metrischer Raum} ist ein Paar $(X,d)$, $X$ Menge, $d$ Metrik auf $X$
+\minisec{Beispiele:}
+\begin{itemize}
+	\item Ist $(V,\norm{.})$ normierter Vektorraum, so ist durch $d(v,w):= \norm{v-w}$ eine Metrik auf $ V$ gegeben.
+
+\begin{align*}
+	v,w,u \in V \hspace{1cm} d(v,u) &\stackrel{\hphantom{\text{$\triangle$-Ungl.}}}{=}  \norm{v-u} = \norm{v-w+w-u} \\
+	&\stackrel{\text{$\triangle$-Ungl.}}{\leq} \norm{v-w} + \norm{w-u} \\ 
+	&\stackrel{\hphantom{\text{$\triangle$-Ungl.}}}{=} d(v,w)+d(w,u)
+\end{align*}
+ 
+\minisec{Unterbeispiel:}
+$V=\mathbb{R}$. Dann ist $x \mapsto \abs{x} $ eine Norm auf $\mathbb{R}$ und die induzierte Metrik auf $\mathbb{R}$ ist $d(x,y)=\norm{x-y}$
+ % subsubsection definition (end)
+ \item $(X,d_X)$ metrischer Raum $Y\subseteq X$ Teilmenge. Dann ist $(Y,d_y)$ ein metrischer Raum, wobei für $y_0,y_1 \in Y \text{gilt, dass} \, d_y(y_0,y_1):=d_x(y_0,y_1)$ \\
+ \underline{Vereinbarung:} Ist $X \subseteq \mathbb{R}^n$ eine Teilmenge, so ist $X$ immer mit der durch das Standardskalarprodukt induzierte Metrik versehen. (es sei denn, etwas anderes ist gesagt) 
+\end{itemize}
+
+\minisec{Konvergenz}
+Erinnerung (Ana I): $(x_n)_n$ Folge in $\mathbb{R}$, $x \in  \mathbb{R}$. Dann 
+\[
+\lim_{n \to \infty}x_n=x \, :\Leftrightarrow \, \forall\, \varepsilon > 0 \,\exists \,n_0 \, \forall\, n \geq n_0: \, \abs{x-x_1}< \varepsilon
+ \] 
+% subsection metrische_raume (end)
+\subsubsection[Konvergenz im metrischen Raum]{Definition} % (fold)
+\label{ssub:definition}
+$(X,d)$ metrischer Raum, $(x_n)_n$ Folge in $X$ (d.h eine Abbildung $x: \mathbb{N} \to X$) $y \in X$. Dann Konvergiert die Folge $(x_n)_n$ gegen $y :\Leftrightarrow 
+ \forall\, \varepsilon >0 \, \exists \, n_0: \forall \ n \geq n_0 \, d(x_n,y)< \varepsilon $ \\
+\underline{Äquivalent}: Die Folge (in $\mathbb{R}$) $d(x_n,y)$ ist eine Nullfolge.
+% subsubsection definition (end)
+
+\subsubsection[Beispiel Metrik]{Beispiel} % (fold)
+\label{ssub:3.4}
+$X=\mathbb{R}^n$ mit Metrik, die durch $l^1$-$ l^2$-$ \text{ oder } l^{\infty}$- Norm induziert wird. Folge $k \mapsto x(k) \in \mathbb{R}^n$.
+\[
+	x(k)= \sum_{i=1}^{n}x_i(k)e_i \qquad e_i \text{ Standard-Basisvektor} \qquad x_i(k) \in  \mathbb{R} \qquad x=\sum^{n}_{i=1}x_ie_i
+\]
+Dann sind äquivalent
+\begin{enumerate}
+	\item für alle $i=1,\dots,n$ gilt $\lim\limits_{k \to \infty}x_i(k)=x_i$
+	\item $\lim\limits_{k \to \infty}\norm{x(k)-x}_1=0$
+	\item $\lim\limits_{k \to \infty}\norm{x(k)-x}_2=0$
+	\item $\lim\limits_{k \to \infty}\norm{x(k)-x}_{\infty}=0$ 
+\end{enumerate}
+\minisec{Beweis:}
+\underline{$1 \to 2$:} 
+\[
+	\norm{x(k)-x}_1:=\sum^{n}_{i=1}\underset{\stackrel{\text{(wg 1)}}{\to}0}{\underbrace{\abs{x_i(k)-x_i}}} \longrightarrow 0
+\]
+\\
+\underline{$2 \to 3 \to 4$:} Benutze Ungleichungen $(y \in \mathbb{R}^n)$
+\[
+	\norm{y}_{\infty} \leq \norm{y}_2 \leq \norm{y}_1 \leq n \cdot \norm{y}_{\infty}
+\]
+also 
+\begin{align*}
+	&\lim_{k \to \infty}\norm{x(k)-x}_1=0 \\
+	&\Rightarrow \lim_{k \to \infty}\norm{x(k)-x}_2=0 \\
+	&\Rightarrow \lim_{k \to \infty}\norm{x(k)-x}_{\infty}=0
+\end{align*}
+\\
+\underline{$4 \to 1$:} \begin{gather*}
+	\norm{x(k)-x}_{\infty} = \max\{ \abs{x_i(k)-x} \,| i=1,\dots,n \}
+	\Rightarrow \text{für alle $i$: } \abs{x_i(k)-x_i} \leq \norm{x(k)-x}_{\infty}
+\end{gather*}
+Also
+\[
+	\left[ \norm{x(k)-x}_{\infty} \stackrel{k \to \infty}{\longrightarrow}0 \right] \qquad \Rightarrow \qquad \left[ \forall\, i=1,\dots,n \quad \abs{x_i(k)-x_i} \longrightarrow 0 \right]
+\]
+$\Rightarrow 1)$ \bewende
+
+\minisec{Bemerkung:} $X$ metrischer Raum $(x_n)_n , (y_n)_n$ Folgen in $X \quad \lim_{n \to \infty}x_n=x \quad \text{und} \quad \lim_{n \to \infty}y_n=y$
+\[
+	\Rightarrow d(x,y)=\lim_{n \to \infty}d(x_n,y_n) \qquad \text{(Blatt 2, Aufgabe 2)}
+\]
+Daraus folgt: \\ Ist $(x_n)_n $ Folge in $X$ und gilt $\lim_{n \to \infty}x_n=x$ sowie $\lim_{n \to \infty}x_n=x'$ dann ist $x=x'$ \\
+Denn \[
+	d(x,x')=\lim_{n \to \infty}\underset{=0}{\underbrace{d(x_n,x_n)}}=0
+\]
+\[
+	\stackrel{\text{(M2)}}{\Rightarrow} x=x'
+\] \bewende
+% subsubsection beispiel (end)
+
+\subsubsection[Cauchyfolge im metrischen Raum]{Definition} % (fold)
+\label{ssub:definition}
+Sei $(X,d)$ metrischer Raum und $(x_n)_n $ Folge in $X$. Dann heißt $(x_n)_n$ \Index{ Cauchyfolge}, falls gilt:
+\[
+	\forall\, \varepsilon >0 \, \exists \, n_0 \, \forall\, n,m \geq n_0: \,\, d(x_n,x_m)<\varepsilon 
+\]
+
+\minisec{Bemerkung:} $(X,d)$ metrischer Raum $(x_n)_n $ Folgen in $X$, $\lim_{n \to \infty}x_n=x \in X$. \\
+Dann ist $(x_n)_n$ Cauchyfolge, denn \\
+Sei $\varepsilon >0$. Wähle $n_0$, sodass \[  \forall\, n \geq n_0 \, d(x,x_n)< \frac{\varepsilon}{2} \]
+Falls $n,m \geq n_0$
+\[
+	d(x_n,y_n) \leq \underset{<\frac{\varepsilon}{2}}{\underbrace{d(x_n,x)}} + \underset{<\frac{\varepsilon}{2}}{\underbrace{d(x,y_n)}} < \varepsilon 
+\]
+% subsubsection definition (end)
+
+\subsubsection[Vollständigkeit]{Definition} % (fold)
+\label{ssub:definition}
+$(X,d)$ metrischer Raum. Dann heißt $X$ \Index{ vollständig}, falls jede Cauchy-Folge $(x_n)_n $ in $X$ gegen ein $x \in X$ konvergiert (Ana I)
+
+\minisec{Bsp:} 
+
+	$(0,1) \subseteq \mathbb{R}$.
+	$x_n = \frac{1}{n}$ Folge in $X$ ist Cauchyfolge. \\
+	$(x_n)_n$ konvergiert \underline{nicht} in $X$, denn der einzig möglicher Grenzwert (0) liegt nicht in $X$.
+
+% subsubsection definition (end)
+
+\subsubsection{Satz} % (fold)
+\label{ssub:satz}
+$\mathbb{R}^n$, mit der durch die Norm $\norm{.}_p \qquad p=1,2,\infty$ induzierten Metrik ist vollständig
+
+\minisec{Beweis:}
+\underline{$p=\infty$:} Sei $x(k)$ $l^{\infty}$-Cauchyfolge in $\mathbb{R}^n$. Dann gilt für $i=1,\dots,n$:
+\[
+	\abs{x_i(k)-x_i(l)} \leq \norm{x(k)-x(l)}_{\infty}
+\]
+Da $(x(k))_k$ $l^{\infty}$-Cauchyfolge, ist $(x_i(k))_k$ eine Cauchyfolge in $\mathbb{R}$ für alle $1\leq i \leq n$ \\
+Nach dem Cauchy-Kriterium aus Analysis I sind die Folgen $(x_i(k))_k$ Konvergent. $x_i=\lim_{k \to \infty}x_i(k) \in \mathbb{R}$
+\[
+	x := \sum_{i=1}^{n}x_ie_i \in \mathbb{R}^n
+\] 
+Dann gilt 
+\[
+	\norm{x(k)-x}_{\infty} = \max\{ \underset{\to 0}{\underbrace{\abs{x_i(k)-x_i}}} | i=1,\dots,n \} \longrightarrow 0
+\]
+also
+\[
+	\lim_{k \to \infty}\norm{x(k)-x}_{\infty} = 0
+\]
+\\
+\underline{$p=2$:}
+$x(k)$ $l^2$-Cauchyfolge, weil $\norm{x(k)-x(l)}_{\infty} \leq \norm{x(k)-x(l)}_2$ \\
+Ist $(x_k)_k$ eine $l^{\infty}$-Cauchfolge, so gibt es ein $x \in \mathbb{R}^n$ mit 
+\[
+	\lim_{k \to \infty}\norm{x(k)-x}_{\infty}=0
+\]
+\[
+	\Rightarrow \norm{x(k)-x}_2 \leq n \cdot \underset{\to 0}{\underbrace{\norm{x(k)-x}_{\infty}}} \longrightarrow 0
+\] 
+\\
+\underline{$p=1$:} Analog zum Fall $p=1$, benutze $\norm{y}_{\infty} \leq \norm{y}_1 \leq n \cdot \norm{y}_{\infty}$ 
+\bewende	
+% subsubsection satz (end)
+\subsubsection[Stetigkeit]{Definition} % (fold)
+\label{ssub:definition}
+Seien $(X,d_X)$ und $(Y,d_Y)$ metrische Räume und $f:X \to Y$ eine Abbildung sowie $x \in X$.
+\begin{enumerate}[(i)]
+	\item $f$ heißt \Index{ $\varepsilon$-$\delta$-stetig} (oder \Index{ stetig}) bei $x$, wenn gilt
+	\[
+		\forall\, \varepsilon >0 \, \exists \, \delta>0 \, \forall\, x' \in X \text{ mit } d_X(x,x')< \delta \text{ gilt: } d_Y(f(x),f(x'))<\varepsilon 
+	\]
+	\item $f$ heißt \Index{ folgenstetig} in $x$ $:\Leftrightarrow$ Ist $(x_n)_n $ eine Folge in $X$ mit $\lim_{n \to \infty}x_n=x$, so gilt
+	\[
+		\lim_{n \to \infty}f(x_n)=f(x)
+	\]
+\end{enumerate}
+$f$ ist stetig (folgenstetig) auf $X$, wenn $f$ stetig (folgenstetig) bei $x$ ist für alle $x \in X$.
+% subsubsection definition (end)
+
+\subsubsection{Satz} % (fold)
+\label{ssub:satz}
+$f$ stetig in x $\Leftrightarrow$ $f$ folgenstetig in $x$
+\minisec{Beweis} wie in Analysis I, wird bald nachgeliefert
+
+% subsubsection satz (end)
+\subsubsection{Satz} % (fold)
+\label{ssub:satz}
+$(X,d_X)$ , $(Y,d_Y)$, $(Z,d_Z)$ metrische Räume. 
+\[ f:X \to Y \qquad g:Y \to Z \qquad x \in X \]
+Falls $f$ stetig bei $x$ und stetig bei $f(x)$ so ist $g \circ f$ stetig bei $x$.
+\minisec{Beweis:} Siehe Analysis I 
+% subsubsection satz (end)
+% subsection euklidsche_und_normierte_vektorraume (end)
+\subsubsection{Beispiele} % (fold)
+\label{ssub:beispiele}
+\begin{align*}
+&\mu: \mathbb{R}^2 \to \mathbb{R} \qquad \mu(x,y):= \, xy \qquad \text{(Multiplikation)} \\
+&\alpha: \mathbb{R}^2 \to \mathbb{R} \qquad \alpha(x,y):=x+y \qquad \text{(Addition)}  \\
+&q:\mathbb{R} \times \mathbb{R} \setminus {0} \to \mathbb{R} \qquad q(x,y):= \frac{x}{y} \qquad \text{(Division)}
+\end{align*}
+sind auf ihrem gesamten Definitionsbereich stetig.
+
+\minisec{Beweis:}
+\underline{z.\,B $q$:}
+$q$ ist folgenstetig, denn: \\
+Sei $(x,y) \in \mathbb{R} \times \mathbb{R} \setminus \{0\}$ (d.h $y \neq 0$) und $(x_n,y_n)$ Folge in $\mathbb{R} \times \mathbb{R} \setminus \{0\}$ mit 
+\[
+	\lim_{n \to \infty}(x_n,y_n)=(x,y)
+\]
+Dann gilt: 
+\[
+	\lim_{n \to \infty}x_n=x \text{ und } \lim_{n \to \infty}y_n=y \neq 0
+\]
+\[
+	\Rightarrow q(x_n,y_n)= \frac{x_n}{y_n} \stackrel{\text{Grenzwertsätze}}{\longrightarrow } \frac{x}{y} = q(x,y)
+\]
+\[
+	\Rightarrow q \text{ ist folgenstetig}
+\]
+$\alpha, \mu$ analog.
+\bewende
+
+ \minisec{\underline{Bsp:}}
+ Sei $X$ metrischer Raum, $f,g:X \to \mathbb{R}$ stetig \\
+ $\Rightarrow $ 
+ Die Funktion 
+ \[
+ \begin{array}{rccl}
+ 	(f,g): &X &\to &\mathbb{R}^2 \\
+	&x &\mapsto &(f(x),g(x))\in \mathbb{R}^2
+ \end{array}
+ \]
+ ist stetig. \\
+ Denn, $(x_n)_n $ Folge in $X$, $x_n \to x \in X$ \\ 
+ \[
+ 	\Rightarrow f(x_n) \to f(x) \text{ und } g(x_n) \to g(x) \qquad (f,g \text{ stetig})
+ \]
+ \[
+ 	\stackrel{\text{Tatsache}}{\Rightarrow } (f,g)(x_n)=(f(x_n),g(x_n)) \to (f(x),g(x)) \in \mathbb{R}^2 \\
+ \]
+ \[
+	\Rightarrow (f,g) \text{ stetig}
+ \]
+ Betrachte Kompositionen 
+ \[
+ \begin{array}{rcccl}
+ 	X &\stackrel{(f,g)}{\to }  &\mathbb{R}^2 &\stackrel{\mu}{\to } &\mathbb{R} \\
+	x &\stackrel{\hphantom{(f,g)}}{\mapsto } &(f(x),g(x)) &\mapsto &f(x)g(x) \\
+ \end{array}
+ \]
+ \[
+ 	\Rightarrow \underset{\text{$\Rightarrow$ stetig}}{\underbrace{ \underset{\text{stetig}}{\underbrace{\mu}} \circ \underset{\text{stetig}}{\underbrace{(f,g)}} }}
+	= fg
+ \] 
+ \[
+ 	\Rightarrow \text{Produkte stetiger Funktionen sind wieder stetig}
+ \]
+ \minisec{Analog} Summen Quotienten stetiger Funktionen sind stetig
+% subsubsection beispiele (end)
+\subsubsection[Lipschitz-stetig]{Definition} % (fold)
+\label{ssub:definition}
+$(X,d_X),(Y,d_y)$ metrische Räume $f:X \to Y$ heißt \Index{ Lipschitz-stetig} 
+$:\Leftrightarrow \exists \, L \leq 0, \text{ so dass gilt: }$
+\begin{align*}
+	 \forall\, x,x' \in X : \qquad 
+	 d_Y(f(x),f(x')) \leq Ld_X(x,x')
+\end{align*}
+\minisec{Bem:} ist $f$ Lipschitz-stetig, so ist $f$ stetig: \\
+sei $\varepsilon > 0$ Wähle $\delta$, so dass $\delta\,L \leq \varepsilon$ \\
+Dann:
+\[
+	\text{Ist } d_X(x,x')<\delta \Rightarrow d_Y(f(x),f(x')) \leq L \cdot d_X(x,x') < \delta L \leq \varepsilon \qquad \Rightarrow f \text{ stetig.} 
+\]
+% subsubsection definition (end)
+
+\subsubsection[Beispiel Lipschitz-stetig]{Beispiel} % (fold)
+\label{ssub:beispiel}
+Betrachte $\mathbb{R}^n$ mit der durch die $l^p$-Normen induzierten Metrik $p \in \{1,2,\infty\}$ \\
+Dann gilt: Sind $p,q \in \{1,2,\infty\}$, so ist 
+\[
+	\text{id:}(\mathbb{R}^n,\norm{.}_p) \to (\mathbb{R}^n,\norm{.}_q) 
+\] 
+Lipschitz-stetig.
+\minisec{Grund:} $\forall\, x \in \mathbb{R}^n$
+\[
+	\norm{x}_{\infty} \leq \norm{x}_2 \leq \norm{x}_1 \leq n \cdot \norm{x}_{\infty}
+\]
+% subsubsection beispiel (end)
+\subsubsection{Satz} % (fold)
+\label{ssub:satz}
+Jede lineare Abbildung $f:\mathbb{R}^n \to \mathbb{R}^m$ ist Lipschitz-stetig.
+
+\minisec{Beweis:} Aus LA I ist bekannt: \\
+Es gibt genau ein $A \in \ \text{Mat}_{m,n}(\mathbb{R})$, so dass $f(x)=Ax \qquad (\forall\, x \in \mathbb{R}^n)$ 
+\[
+	\text{M}_{m,n}(\mathbb{R}) = \text{Mat}_{m,n}(\mathbb{R})
+\]
+% subsubsection satz (end)
+\minisec{Beh:}
+$\exists \, L=L_A$, so dass für alle $x \in \mathbb{R}^n$ gilt 
+\[
+	\norm{Ax}_2 \leq L \norm{x}_2
+\]
+Es gilt 
+\[
+	\norm{Ax}_2 \leq \norm{Ax}_1 = \sum^{m}_{i=1} \abs{(Ax)_i} = \sum^{m}_{i=1} \left|\sum^{n}_{j=1} a_{ij}x_j \right| 
+\]
+nach Cauchy-Schwarz gilt:
+\[
+	\left| \sum^{n}_{j=1}y_jz_j \right | =\abs{\skal{y}{z}} \stackrel{\text{CS}}{\leq } \norm{y}_2 \cdot \norm{z}_2 = \left( \sum^{m}_{j=1}y_j^2 \right)^{\frac{1}{2}}
+	 \left( \sum^{m}_{j=1}z_j^2 \right)^{\frac{1}{2}}
+\]
+Also 
+\[
+	\Rightarrow \left| \sum^{m}_{j=1}a_{ij}x_j \right| \leq \left( \sum^{n}_{j=1}a_{ij}^2 \right)^{\frac{1}{2}} \underset{\norm{x}_2}{\underbrace{
+	\left ( \sum^{n}_{j=1}x_{j}^2 \right ) }}^{\frac{1}{2}}
+\]
+\[
+	\Rightarrow \norm{Ax}_2 \leq \sum^{n}_{i=1} \left( \left( \sum^{n}_{j=1}a_{ij}^2y \right)^{\frac{1}{2}}\norm{x}^2 \right) = \underset{=L}{\underbrace{\sum^{n}_{i=1} \left( \sum^{n}_{j=1}a_{ij}^2 \right)^{\frac{1}{2}}}} \norm{x}_2
+\] 
+\bewende
+\subsubsection{Korollar:} % (fold)
+\label{ssub:korollar}
+$A \in \text{Mat}_{m,n}(\mathbb{R})$ \\
+Dann ist 
+\[
+	\norm{A}:= \sup\limits_{\norm{x}_2 \leq 1} \norm{Ax}_2 < \infty
+\]
+\minisec{Beweis:}
+Ist $L \geq 0$ mit $\norm{Ax}_2 \leq L \cdot \norm{x}_2 \qquad \forall\, x \in \mathbb{R}^n$ \\ 
+so gilt für $\norm{x}\leq 1$: \, $\norm{Ax}_2 \leq L$
+\[
+	\Rightarrow \sup\limits_{\norm{x}\leq 1}\norm{Ax}_2 \leq L < \infty
+\]
+ \bewende
+% subsubsection korollar (end)
+\subsubsection[Operatornorm]{Definition} % (fold)
+\label{ssub:definition}
+Die Zahl $\norm{A}$ heißt \Index{ Operatornorm} von $A$ \\
+Es gilt: Die Operatornorm ist eine Norm auf dem $\mathbb{R}$-VR \, $\text{Mat}_{m,n}(\mathbb{R})$ \qquad (Übung) \\
+Es gibt keine einfache Formel für $\norm{A}$
+% subsubsection definition (end)
+
+\subsection{Topologische Grundbegriffe} % (fold)
+\label{sub:topologische_grundbegriffe}
+\subsubsection[$\varepsilon$-Ball]{Definition} % (fold)
+\label{ssub:definition}
+ $(X,d)$ sei metrischer Raum, $\varepsilon >0$ und $x \in X$. Der \Index{ $\varepsilon $-Ball} in $X$ um $x$ ist
+ \[
+ 	B_{\varepsilon }(x) = \{ y \in X | d(x,y)< \varepsilon \}
+ \]
+ in $\mathbb{R}$: \[
+ 	B_{\varepsilon}(x)=(x-\varepsilon ,x+ \varepsilon)
+ \]
+% subsubsection definition (end)
+\subsubsection[Innerer Punkt, Umgebung]{Definition} % (fold)
+\label{ssub:definition}
+$(X,D)$ metrischer Raum $Y \subseteq X, x \in X$
+\begin{enumerate}
+	\item $x$ heißt \Index{ innerer Punkt} von $Y$  \[
+		\exists\, \delta>0 \text{ mit } B_{\delta }(x) \subseteq Y
+	\]
+	In diesem Fall heißt eine \Index{ Umgebung} von $x$ in $X$
+	\item $x \in X$ heißt \Index{ Berührpunkt} von $Y$
+	\[
+		\forall\, \varepsilon >0 \, \exists\, y \in Y \text{ mit } d(x,y)<\varepsilon 
+	\]
+	(Äquivalent: $\forall\, \varepsilon > 0 \qquad B_{\varepsilon }(x)\cap \neq \emptyset$ )
+	\begin{align*}
+		\mathring{Y}&= \{ x \in X \,|\, x \text{ innerer Punkt von } Y \} \\
+		\overline{Y} &= \{ x \in X \,|\, x \text{ ist Berührpunkt von } Y \} 
+	\end{align*}
+\end{enumerate}
+% subsubsection definition (end)
+\subsubsection[Offen, Abgeschlossen]{Definition} % (fold)
+\label{ssub:definition}
+\begin{enumerate}
+	\item $(X,d)$ metrischer Raum, $Y \subseteq X$. Dann heißt $Y$ \Index{ offen} in $X$ $\Leftrightarrow $ jedes $x \in Y$ ist innerer Punkt von $Y$ \\
+	( $\Leftrightarrow \forall\, x \in Y \, \exists \, \delta >0: \, B_{\delta } \subseteq Y$)
+	\item $Y$ heißt \Index{ abgeschlossen} in $X$ $:\Leftrightarrow $ Das Komplement $X-Y$ ist offen in $X$
+\end{enumerate}
+ \minisec{Bsp:}
+ $X = \mathbb{R}$
+ \begin{enumerate}
+ 	\item Offene Intervalle $(a,b) \subseteq \mathbb{R}$ sind offen in $\mathbb{R}$,denn
+  \begin{align*}
+  	&x \in (a,b) \,,\, \delta = \min \{ x-a.b-x \} >0 \\
+	&\Rightarrow (x-\delta ,x+\delta ) \subseteq (a,b)
+  \end{align*}  
+  
+ \item Abgeschlossene Intervalle $[a,b] \subseteq \mathbb{R}$ sind abgeschlossen: 
+ \begin{align*}
+ 	&\mathbb{R} \setminus [a,b] = (-\infty,a) \cup (b, +\infty) \\
+ 	&\Rightarrow (x-\delta ,x+\delta ) \subseteq \mathbb{R} \setminus [a,b] \\
+	&\Rightarrow x>b \text{ innerer Punkt von } \mathbb{R} \setminus[a,b] \\
+	&\quad \text{ analog } x<a \text{ ist innerer Punkt von } \mathbb{R}\setminus[a,b] \\
+	&\Rightarrow \mathbb{R}\setminus[a,b] \text{ offen in } \mathbb{R} \Rightarrow  [a,b] \text{ abgeschlossen in } \mathbb{R} 
+\end{align*}
+\end{enumerate}
+% subsubsection definition (end)
+
+\minisec{Warnung:}
+Offenheit ist eine Eigenschaft von \underline{Teilmengen} metrischer Räum, nicht der Mengen selber. '$Y$ offen' sinnlos ! '$Y$ offen in $X$' sinnvoll! Analog für Abgeschlossen 
+ \\
+$X = \mathbb{R}^2$ \\
+\begin{align*}
+	&Z = \{ (x,y) \in \mathbb{R}^2\, |\, y=0 \} \\
+	&Y = \{ (x,y) \in \mathbb{R}^2 \, | \, y=0,0<x<1 \} \\
+	&Y \text{ offen in } Z \\
+	&Y \text{ nicht offen in } X \\
+	\end{align*}
+% subsection topologische_grundbegriffe (end)
+\subsubsection{Beispiel} % (fold)
+\label{ssub:beispiel}
+$X$ metrischer Raum, $ x \in X$,$\varepsilon>0$. Dann ist $B_{\varepsilon}^X(x)$ offen in $X$
+
+\minisec{Beweis:}
+zu zeigen: für jedes $y \in B_{\varepsilon}(x) \exists\, \delta >0: \, B_{\delta }(y) \subseteq B_{\varepsilon}(x)$
+\[
+	d(x,y)<\varepsilon \Rightarrow  \exists\, \delta>0: \, d(x,y)+\delta <\varepsilon
+\] \\
+Beh: $B_{\delta }(y) \subseteq B_{\varepsilon}(x)$ \\
+Das ist wahr, denn
+\[
+	z \in B_{\delta}(y) \Rightarrow d(y,z)<\delta 
+\] \\
+Ferner: 
+\[
+	d(z,x) \leq d(z,y)+d(y,x)<\delta + d(y,x)<\varepsilon, \text{d.h.} z \in B_{\varepsilon}(x)
+\]
+% subsubsection beispiel (end)
+\subsubsection{Satz} % (fold)
+\label{ssub:satz}
+Es sei $(X,d)$ metrischer Raum. \\
+Dann gilt:
+\begin{enumerate}
+	\item $\emptyset$ und $X$ sind offen in $X$
+	\item Falls $U_0,U_1$ offen in $X$ sind, so auch $U_0 \cap U_1$
+	\item Falls $(U_i)_{i \in I}$ eine durch $I$ induzierte Familie von Teilmengen von $X$ ist, so ist $\bigcup\limits_{i \in I}U_i$ offen in $X$ \\
+		'beliebige Vereinigungen offener Mengen sind offen'
+	\item $\emptyset,X$ sind abgeschlossen in $X$
+	\item $A_0,A_1$ abgeschlossen in $X$, dann ist $A_0 \cup A_1$ abgeschlossen in $X$
+	\item $(A_i)_{i \in I}$, $A_i$ abgeschlossen in $X$, so ist $\bigcap\limits_{i \in I}A_i$ abgeschlossen in $X$
+\end{enumerate}
+\minisec{Beweis:}
+\begin{enumerate}
+	\item $\emptyset \subseteq X$ offen trivial \\
+		$X \subseteq  X$ offen trivial
+	\item Sei $x \in U_0 \cap U_1$ Dann existieren Bälle
+	\begin{align*}
+		B_{\varepsilon_1}^X(x) \subseteq U_1 \qquad B_{\varepsilon_0}^X(x) \subseteq U_0
+	\end{align*}
+Wähle nun $\varepsilon= \min \{ \varepsilon_0, \varepsilon_1 \} > 0$
+\begin{align*}
+	& \Rightarrow B_{\varepsilon}(x) \subseteq U_0 \cap U_1 \\
+	& \Rightarrow x \text{ innerer Punkt von } U_0 \cap U_1
+\end{align*}
+	\item Sei $x \in \bigcup\limits_{i \in I}U_i \subseteq X$
+	\[
+		\Rightarrow \exists\,i \in I:\, x \in U_i, \text{ weil } U_i \subseteq X \text{ offen, gibt es } \varepsilon>0: \, B_{\varepsilon}(x) \in U_i.
+	\]
+Aber \[
+	U_i \subseteq \bigcup\limits_{i \in I}U_i, \text{ daher: } B_{\varepsilon}(x) \subseteq \bigcup\limits_{i \in I}U_i
+	\]
+	\item \begin{align*}
+		&\emptyset = X \setminus \underset{\text{offen nach 1)}}{\underbrace{X}} \qquad \Rightarrow \emptyset \text{ abgeschlossen in } X \\
+		&X = X \setminus \underset{\text{offen}}{\underbrace{\emptyset}} \qquad \Rightarrow X \subseteq X \text{ abgeschlossen}
+	\end{align*}
+	\item \[
+		X \setminus(A_0 \cup A_1)= \underset{\text{offen in $X$}}{\underbrace{\underset{\text{offen in $X$}}{\underbrace{(X \setminus A_0)}}\cap \underset{\text{offen in $X$}}{\underbrace{(X \setminus A_1)}}}}
+	\]
+	\[
+		\Rightarrow A_0 \cup A_1 \subseteq X \text{ abgeschlossen}
+	\]
+	\item \[
+		X \setminus \bigcap\limits_{i \in I}A_i = \underset{\text{offen nach 3)}}{\underbrace{\bigcup\limits_{i \in I}\underset{\text{offen in $X$}}{\underbrace{X \setminus A_i}}}}
+	\]
+	\[
+		\Rightarrow \bigcap\limits_{i \in I}A_i \text{ abgeschlossen in } X
+	\]
+\end{enumerate}
+% subsubsection satz (end)
+\minisec{Bemerkung:}
+Beliebige Durchschnitte offener Mengen sind i.A. nicht offen 
+\minisec{\underline{Beispiel}:}
+\[
+	U_n = (-\frac{1}{n},\frac{1}{n}) \text{ ist offen in } \mathbb{R}
+\]
+\[
+	\bigcap\limits_{n \in \mathbb{N}}U_n = \{0\} \text{ ist nicht offen in } \mathbb{R}
+\]
+
+\subsubsection{Satz} % (fold)
+\label{sub:Satz}
+$X$ metrischer Raum, $Y \subseteq X$. Dann sind Äquivalent:
+\begin{enumerate}
+	\item $Y \subseteq X$ abgeschlossen in $X$
+	\item Für jede Folge $(y_n)$ mit $y_n \subseteq Y$, welche in $X$ konvergiert, gilt
+	\[
+		\lim_{n \to \infty}y_n \in Y
+	\]
+	\end{enumerate}
+\minisec{Beweis:}
+\minisec{Vorbemerkung:} $y \in X$ ist genau dann ein Berührpunkt von $Y \subseteq X$, wenn es eine Folge $(y_n)_n$ gibt mit $(y_n) \in Y$ und $\lim_{n \to \infty}y_n = y$
+\minisec{Beweis der Vorbemerkung:}
+"$\Leftarrow$": Ist $\lim_{n \to \infty}y_n=y \qquad y_n \in Y$
+\begin{align*}
+	& \Rightarrow \forall\, \varepsilon>0 \,\exists\,n: \, d(y,y_n)<\varepsilon \\
+	&\Rightarrow \forall\, \varepsilon>0 \, y_n \in B_{\varepsilon}(y) \cap Y \neq \emptyset \\
+	&\Rightarrow y \text{ ist Berührpunkt von } Y
+\end{align*}
+"$\Rightarrow$":
+\begin{align*}
+	&y \text{ Berührpunkt von } Y \\
+	&\Rightarrow  \forall\, \varepsilon > 0 \, \exists\, y' \in Y: \, d(y,y')<\varepsilon
+\end{align*}
+Wähle für $n \in \mathbb{N}$ ein $y_n \in Y$ mit $d(y,y_n)<\frac{1}{n}$
+\[
+	\Rightarrow \lim_{n \to \infty}\underset{\in y}{\underbrace{y_n}}=y
+\] \bewende
+\minisec{Beweis des Satzes:}
+Sei 1) nicht erfüllt. Dann:
+\begin{align*}
+	& \stackrel{\hphantom{\text{Vorbem.}}}{\Leftrightarrow}  Y \subseteq X \text{ nicht abgeschlossen in } X \\
+	& \stackrel{\hphantom{\text{Vorbem.}}}{\Leftrightarrow} X \setminus Y \text{ nicht offen in } X \\
+	& \stackrel{\hphantom{\text{Vorbem.}}}{\Leftrightarrow} \exists\,y \in X \setminus Y, \, y \text{ kein innerer Punkt von } X \setminus Y \\
+	& \stackrel{\hphantom{\text{Vorbem.}}}{\Leftrightarrow} \exists\,y \in X \setminus Y, \, \forall\, \varepsilon>0 \qquad B_{\varepsilon}(y) \not\subseteq X
+	 \setminus Y
+	 \\
+	& \stackrel{\hphantom{\text{Vorbem.}}}{\Leftrightarrow} \exists\,y \in X \setminus Y, \, \forall\, \varepsilon>0 \qquad B_{\varepsilon}(y) \cap Y \neq \emptyset
+	 \\
+	& \stackrel{\hphantom{\text{Vorbem.}}}{\Leftrightarrow} \exists\,y \in X \setminus Y, \, y \text{ ist Berührpunkt von } Y \\
+	& \stackrel{\text{Vorbem.}}{\Leftrightarrow} \exists\, \text{ Folge } y_n \text{ in } Y, y_n \to y \notin  Y
+\end{align*}
+und dazu ist Äquvivalent, dass 2) nicht erfüllt ist.
+\bewende
+% subsection Satz (end)
+\subsubsection{Satz} % (fold)
+\label{ssub:satz}
+$(X,d_X)$,$(Y,d_Y)$ metrischer Räume, $f: X \to Y$ Abbildung. Dann sind Äquivalent:
+\begin{enumerate}
+	\item $f$ ist folgenstetig.
+	\item Für jede abgeschlossene Teilmenge $A \subseteq Y$ ist $f^{-1}(A) \subseteq X$ abgeschlossen.
+	\item Für jede offene Teilmenge $U \in Y$ ist $f^{-1}(U)$ offen in $X$
+	\item $f$ ist $\varepsilon$-$\delta$-stetig
+\end{enumerate}
+\minisec{Beweis:}
+$\underline{1 \Rightarrow 2}$: Sei $f$ folgenstetig, $A \subseteq Y$ abgeschlossen. \\
+zu zeigen: (wegen I.4.7) ist $x_n \in f^{-1}(A)$ und $x_n \to x$, so gilt $x \in f^{-1}(A)$ \\
+\begin{align*}
+	&x_n \to x \Rightarrow \underset{\in A}{\underbrace{f(x_n)}} \to \underset{\in y}{\underbrace{f(x)}} \qquad \text{($f$ ist folgenstetig)} \\
+	&A \subseteq Y \text{ abgeschlossen } \Rightarrow  f(x) \in A \\
+ 	&\Rightarrow x \in f^{-1}(A) 
+\end{align*}
+$\underline{2 \Rightarrow 3}$:
+\begin{align*}
+	&U \subseteq Y \text{ offen } \Rightarrow Y \setminus U \subseteq Y \text{ abgeschlossen} \\
+	&\stackrel{2)}{\Rightarrow} f^{-1}(Y \setminus U) \subseteq  X \text{ abgeschlossen.} \\
+	&f^{-1}(Y \setminus U) = X \setminus f^{-1}(U) \Rightarrow f^{-1}(U) \subseteq  X \text{ offen}
+\end{align*}
+$\underline{3 \Rightarrow 4}$:
+Sei $x \in X$, $\varepsilon>0$ 
+\begin{align*}
+	&\Rightarrow B_{\varepsilon}^Y(f(x)) \subseteq Y \text{ offen in } Y \\
+	&\stackrel{3)}{\Rightarrow} f^{-1}(B_{\varepsilon}^Y(f(x))) \subseteq X \text{ offen} \\
+	&\stackrel{\text{def. offen}}{\Rightarrow} \exists\, \delta >0 \, B_{\delta}^X(x) \subseteq f^{-1}(B_{\varepsilon}^Y(f(x)))
+\end{align*}
+Das heißt: ist $x' \in X$ mit $d(x,x')<\delta$
+\[
+	\Rightarrow d(f(x),f(x'))<\varepsilon
+\]
+$\underline{4 \Rightarrow 1}$:
+Sei $f$ $\varepsilon$-$\delta$-stetig und $(x_n)_n$ Folge in $x$. $x_n \to x \in X$. Dann gilt $f(x_n) \to f(x)$, denn: \\
+Sei $\varepsilon>0$
+\begin{align*}
+	&\Rightarrow \exists\,\delta >0: x' \in X \, d(x,x')< \delta \\
+	&\Rightarrow d(f(x),f(x'))<\varepsilon \Rightarrow \text{weil } x_n \to x: \, \exists\,n_0: \, \forall\, n \geq n_0: \, d(x,x_n)<\delta \\
+	&\Rightarrow \exists\,n_0: \, \forall\, n \geq n_0: \, d(f(x),f(x_n))<\varepsilon \text{ d.h. } f(x_n) \to f(x)
+\end{align*}
+% subsubsection satz (end)
+\subsubsection{Beispiel} % (fold)
+\label{ssub:beispiel}
+$(V,\norm{.})$ normierter Vektorraum
+\[
+	\norm{.}: V \to \mathbb{R} \text{ stetig, denn } \norm{x}-\norm{y} \leq \norm{x-y}
+\]
+Also sind die Mengen (für $x \in V$, $r \geq 0$)
+\[
+	\{y \in V \, | \, \norm{x-y}\leq r \} \subseteq V \text{ und } \{y \in V \,|\, \norm{x-y}=r \} \subseteq V
+\] abgeschlossen.
+% subsubsection beispiel (end)
+\subsection{Kompaktheit} % (fold)
+\label{sub:kompaktheit}
+
+\minisec{Erinnerung: Satz von Bolzano-Weierstraß}
+'Jede beschränkte Folge in $\mathbb{R}$ besitzt eine konvergente Teilfolge'
+\begin{itemize}
+	\item $\rightarrow $ Cauchy-Konvergenzkriterium
+	\item $\rightarrow $ Satz vom Minimum und Maximum (Wenn $f:A \to B$ stetig, dann gilt: $f$ nimmt Minimum und Maximum an)
+	\item $\to$ Mittelwertsatz der Differentialrechnung
+	\item $\to$ \underline{Satz:} $f:[a,b] \to \mathbb{R}$ stetig $\Rightarrow$ f ist gleichmäßig stetig. \\
+		  $\Rightarrow$ stetige Funktionen sind Riemann-integrierbar
+\end{itemize}
+\subsubsection{Satz von Bolzano-Weierstraß im $\mathbb{R}^n$} % (fold)
+\label{ssub:satz_von_bolzano_weierstrass_im_mathbb_r_n}
+Jede beschränkte Folge in $\mathbb{R}^n$ besitzt eine konvergente Teilfolge.
+ 
+\minisec{Beweis:}
+Sei $(x(k))_k$ Folge in $\mathbb{R}^n$, $\norm{x(k)}_2 \leq C \quad  \forall\, k$. \\
+$x_i(k) \quad  i=1,\dots,n$ Komponenten
+\[
+	\Rightarrow \underset{\text{Folge in } \mathbb{R}}{\underbrace{\abs{x_i(k)}}} \leq \norm{x(k)}^2 \leq C
+\]
+Nach Bolzano-Weierstraß gibt es eine Teilfolge $(x(k_l))_l$ von $x(k)$, so dass $x_1(k_l)$ (in $\mathbb{R}$) Konvergiert
+Nenne \[
+	x(1,l)=x(k_l)
+\]
+\[
+\begin{matrix}
+	\text{1. Komponente} & \text{2. Komponente} & \text{$n$-te Komponente} \\
+	x(k_1=x(1,1) & x(2,1) & x(n,1) \\
+	x(k_2)=x(1,2) & x(2,2) & x(n,2) \\
+	\vdots & \vdots & \vdots 
+\end{matrix}
+\]
+\[
+	\begin{matrix}
+		\text{Teilfolge} & (x(1,k))_k & (x_1(1,k)_k) \text{ Konvergiert} \\
+		\text{Teilfolge} & (x(2,k))_k & (x_2(2,k)_k) \text{ Konvergiert} \\
+		\vdots & \vdots & \vdots \\
+		\text{Teilfolge} & (x(n,k))_k & (x_n(n,k)_k) \text{ Konvergiert}
+	\end{matrix}
+\]
+\begin{align*}
+	&\Rightarrow \text{Alle Komponentenfolgen von } (x(n,k))_k \text{ konvergieren} \\
+	&\Rightarrow (x(n,k))_k \text{ ist Konvergent}
+\end{align*}
+\bewende
+% subsubsection satz_von_bolzano_weierstrass_im_mathbb_r_n (end)
+\subsubsection{Definition} % (fold)
+\label{ssub:definition}
+Ein metrischer Raum $X$ heißt \Index{ folgenkompakt}, falls für jede Folge $(x_n)_n$ in $X$ eine konvergente Teilfolge hat. \\
+Eine Teilmenge $Y \subseteq Y$ eines metrischen Raumes heißt folgenkompakt, falls jede Folge in $(y_n)_n$ in $Y$ eine (in $Y$!) konvergente Teilfolge besitzt.
+\[
+	( \Leftrightarrow Y \text{ mit der von $X$ eingeschränkten Metrik, ist folgenkompakt} )
+\]
+% subsubsection definition (end)
+\subsubsection{Beispiel:} % (fold)
+\label{ssub:beispiel}
+\begin{enumerate}
+	\item $[a,b]$ folgenkompakt
+	\item $X= \{ x \in \mathbb{R}^n \,|\, \norm{x}_2 \leq C \}$ ist folgenkompakt: $(x_k)_k$ Folge in $X$
+	\[
+		\stackrel{I.5.1}{\Rightarrow } \exists\, \text{ TF } x_k \to x \in \mathbb{R}^n
+	\]
+	aber $X \subseteq \mathbb{R}^n$ ist abgeschlossen, also $x \in X$
+	\item $(0,1)$,$(0,1]$ nicht folgenkompakt (betrachte Folge ($\frac{1}{n})_n$)
+	\item $\mathbb{R}$ nicht folgenkompakt (Die Folge $(n)_n$ hat keine Konvergente TF)
+	\item $\mathbb{Q} \cap [0,1] \subseteq \mathbb{R}$ nicht folgenkompakt.
+	\[
+		\text{Ist } x \in [0,1], \text{ so gibt es eine Folge } x_n \in [0,1] \cap \mathbb{Q} \text{ mit } x_n \to x
+	\]
+	Dann hat $x_n$ keine in $[0,1] \cap \mathbb{Q}$ konvergente Teilfolge (falls $x$ irrational)
+\end{enumerate}
+% subsubsection beispiel (end)
+
+\subsubsection{Satz} % (fold)
+\label{ssub:satz}
+$X$ metrischer Raum
+\begin{enumerate}
+	\item Ist $X$ folgenkompakt, so ist $X$ vollständig
+	\item $X$ folgenkompakt, $Y \subseteq X$ abgeschlossen $\Rightarrow$ $Y$ folgenkompakt
+	\item $Y \subseteq X$, $Y$ folgenkompakt $\Rightarrow$ $Y \subseteq X$ abgeschlossen
+\end{enumerate}
+
+\minisec{Beweis:}
+\begin{enumerate}
+	\item Sei $(x_n)_n$ Cauchyfolge in $X$
+	\[
+		X \text{ folgenkompakt } \Rightarrow \text{ es gibt konvergente Teilfolge } x_{n_k} \to x \in X 
+	\]
+	\minisec{Beh.} $x_n \to x$ \\
+	Denn \[
+		d(x,x_n) \leq d(x,x_{n_k})+d(x_{n_k},x_n)
+	\] Sei $\varepsilon>0$ Wähle $n_0 \quad \forall\, n,m \geq n_0: \, d(x_n,x_m)< \frac{\varepsilon}{2}$ \\
+	Wähle $k: \quad n_k \geq n_0 $
+	\[
+		\text{für } n \geq n_k \quad d(x,x_n) \leq \underset{< \frac{\varepsilon}{2}}{\underbrace{d(x,x_{n_k})}} + 
+		\underset{< \frac{\varepsilon}{2}}{\underbrace{d(x_{n_k},x)}} y \varepsilon
+	\]
+	\item Sei $(y_n)_n$ Folge in $Y \subseteq X$
+	\[
+		X \text{ folgenkompakt } \Rightarrow \exists\, \text{ TF } y_{n_k} \text{, welche gegen ein $x \in X$ konvergiert}
+	\]
+	Weil $Y \subseteq X$ abgeschlossen, gilt
+	\[
+		x = \lim_{k \to \infty}y_{n_k} \in Y \qquad \Rightarrow \qquad (y_{n_k})_k \text{ ist in $Y$ konvergent}
+	\]
+	$\Rightarrow Y$ folgenkompakt
+	\item \underline{zu zeigen:} Ist $(y_n)_k$ Folge in $Y$. $y_n \to x \in X \Rightarrow x \in Y$ \\
+	$(y_n)$ ist Cauchyfolge. \\
+	 Nach 1) ist $Y$ vollständig, dh $\exists\, z \in y: \quad y_n \in z $
+	\[
+		\Rightarrow x=z \text{, daher } x \in Y
+	\]
+\end{enumerate}
+% subsubsection satz (end)
+\subsubsection{Satz von Heine-Borel} % (fold)
+\label{ssub:satz}
+Eine Teilmenge $X \subseteq \mathbb{R}^n$ ist folgenkompakt $\Leftrightarrow$ $X$ ist beschränkt und abgeschlossen in $\mathbb{R}^n$
+
+\minisec{Beweis:}
+\underline{'$\Rightarrow$'}: Sei $X$ folgenkompakt. Dann folgt aus I.5.4 3): $X \subseteq \mathbb{R}^n$ abgeschlossen \\
+Wäre $X$ nicht beschränkt, dann gäbe es zu jedem $n \in \mathbb{N}$ ein $x_n \in X$ mit $\norm{x}_2 \geq n$ \\
+Die Folge $(x_n)$ kann dann keine konvergente Teilfolge enthalten, also kann $X$ nicht folgenkompakt sein! \\
+\\
+\underline{'$\Leftarrow$'}: Sei $X \subseteq \mathbb{R}^n$ beschränkt und abgeschlossen \\
+Sei $(x_n)_n$  Folge in $X$. \\
+Die Folge $(x_n)_n$ ist beschränkt. 
+\[
+	\stackrel{I.5.1}{\Rightarrow} \text{ es gibt konvergente Teilfolge } x_{n_k} \to x \in \mathbb{R}^n
+\]
+Weil $X$ abgeschlossen in $\mathbb{R}^n$, ist $x \in X$
+\[
+	\Rightarrow X \text{ folgenkompakt}
+\]
+\bewende
+
+\minisec{Beispiele:}
+\begin{itemize}
+	\item $D^n = \{ x \in \mathbb{R}^n \, | \, \norm{x} \leq 1 \} \subseteq \mathbb{R}^n$ \qquad \underline{abgeschlossene Einheitskugel}
+	\item $S^{n-1}= \{ x \in \mathbb{R}^n \, | \, \norm{x}_2=1 \} \subseteq \mathbb{R}^n$ \qquad \underline{Einheitssphäre}
+\end{itemize}
+$\Rightarrow$ $D^n$,$S^{n-1}$ folgenkompakt, denn $D^n$,$S^{n-1}$ beschränkt und:
+\[
+	f: \mathbb{R}^n \to \mathbb{R} \qquad f(x)=\norm{x}_2 \qquad f \text{ stetig}
+\]
+\[
+	D^n = f^{-1}(\underset{\text{abg. in $\mathbb{R}$}}{\underbrace{[0,1]}}) \qquad S^{n-1}=f^{-1}(\underset{\text{abg. in $\mathbb{R}$}}{\underbrace{\{1\}}})
+\]
+$\Rightarrow$ $D^n$,$S^{n-1}$ abgeschlossen
+% subsubsection satz (end)
+
+\subsubsection{Satz} % (fold)
+\label{ssub:satz}
+$X$,$Y$ metrische Räume, $f: X \to Y$ stetig. Sei $X$ folgenkompakt 
+\[
+	\Rightarrow f(X) \subseteq Y \text{ ist folgenkompakt}
+\]
+\minisec{Beweis:}
+Sei $y_n$ Folge in $f(X)$ \\
+\[ \forall\, n \, \exists\, x_n \in X \text{ mit } f(x_n)=y_n \] 
+$(x_n)_n$ Folge in $X$
+\[
+	X \text{ folgenkompakt } \Rightarrow  \exists\, \text{ konvergente Teilfolge } x_{n_k} \to x \in X
+\]
+\[
+	f \text{ stetig } \Rightarrow y_{n_k} = f(x_{n_k}) \to f(x) \in f(X)
+\]
+Damit folgt die Behauptung
+\bewende
+
+% subsubsection satz (end)
+\subsubsection{Satz vom Minimum und Maximum} % (fold)
+\label{ssub:satz_vom_minimum_und_maximum}
+$X$ folgenkompakt, $f: X \to \mathbb{R}$ stetig. \\ Dann existieren $x_{\min},x_{\max} \in X$, so dass für alle $x \in X$ gilt:
+\[
+	f(x_{\min}) \leq f(x) \leq x_{\max}
+\]
+\minisec{Beweis:}
+$f(X) \subseteq \mathbb{R}$ ist folgenkompakt (Satz I.5.6) \\
+Nach I.5.5 ist $f(X) \subseteq \mathbb{R}$ abgeschlossen und beschränkt. \\
+Seien $c,C \in \mathbb{R}$ definiert durch
+\begin{align*}
+	c &:= \inf f(x) \\
+	C &:= \sup f(x)
+\end{align*}
+Dann sind nach Ana I $c,C$ Berührpunkte um $f(x)$
+\[
+	f(x) \text{ abgeschlossen } \Rightarrow c,C \in f(x)
+\]
+Wähle nun $x_{\min},x_{\max} \in X$ mit
+\[
+	f(x_{\min})=c \,,\,f(x_{\max})=C
+\] \bewende
+% subsubsection satz_vom_minimum_und_maximum (end)
+
+\subsubsection{Satz} % (fold)
+\label{ssub:satz}
+Je zwei Normen auf $\mathbb{R}^n$ sind äquivalent
+
+\minisec{Beweis:}
+Da die Äquivalenz von Normen die Äquivalenzrelation ist, genügt es zu zeigen, dass jede Norm auf $\mathbb{R}^n$ zur $l^2$-Norm äquivalent ist. \\
+Sei $\norm{.}:\mathbb{R}^n \to  \mathbb{R}$ diese Norm. \\
+zu zeigen: $\exists\, c,C>0 \forall\, x \in \mathbb{R}^n: \qquad c \norm{x}_2 \leq \norm{x} \leq C \norm{x}_2$ \\
+Sei \[
+	x = \sum^{n}_{i=1}x_ie_i \qquad , x_i \in \mathbb{R}
+\]
+Dann gilt:
+\[
+	\norm{x}= \norm{\sum^{n}_{i=1}x_ie_i} \leq \sum^{n}_{i=1}\norm{x_ie_i} = \sum^{n}_{i=1}\abs{x_i} \, \norm{e_i} 
+	\leq \underset{\norm{x}_2}{\underbrace{\left(\sum^{n}_{i=1}\abs{x_i}^2  \right)^{\frac{1}{2}}}} \cdot
+	 \underset{=:C >0}{\underbrace{\left(\sum^{n}_{i=1}\norm{e_i}^2  \right)^{\frac{1}{2}}}} = C \norm{x}_2
+\]
+Weiter ist 
+\begin{align*}
+	\norm{.}:\mathbb{R}^n &\to  \mathbb{R} \\
+	x &\mapsto \norm{x}
+\end{align*}
+ist stetig, denn $(\norm{x}-\norm{y}) \leq \norm{x-y} \leq C \norm{x-y}_2$ \\
+Nach dem Satz vom Minimum und Maximum gibt es $x_{\min} \in S^{n-1}$ mit: 
+\[
+	\forall\, x \in S^{n-1}: \norm{x} \geq \norm{x_{\min}} =: c>0 \text{ (da $x_{\min}\neq 0$)}
+\]
+Sei $y \in \mathbb{R}^n$ beliebig aber $y \neq 0$. Dann folgt:
+\[
+	\norm{y}= \bigg\vert\bigg\vert \underset{\in \mathbb{R}}{\underbrace{\norm{y}_2}} \underset{\in S^{n-1}}{\underbrace{\frac{y}{\norm{y}_2}}} \bigg\vert\bigg\vert  = \norm{y}_2 \cdot
+	 \norm{\frac{y}{\norm{y}_2}} \geq \norm{y}_2 \cdot \norm{x_{\min}} = c \cdot \norm{y}_2
+	\]
+	\bewende
+% subsubsection satz (end)
+
+
+\subsubsection{Erinnerung/Definition} % (fold)
+\label{ssub:erinnerung_definition}
+
+% subsubsection erinnerung_definition (end)
+$X$ metrischer Raum, $f:X \to \mathbb{R}$ heißt \Index{ gleichmäßig stetig}, wenn gilt:
+\[
+	\forall\, \varepsilon>0 \exists\, \delta >0 \,: \forall\, x,x' \in X: \, \norm{x-x'}<\delta \Rightarrow \norm{f(x)-f(x')}<\varepsilon
+\]
+\minisec{Behauptung:}
+$X$ folgenkompakt, $f:X \to \mathbb{R}$ stetig $\Rightarrow $ $f$ ist gleichmäßig stetig
+\begin{gather*}
+	X \stackrel{f}{\to} \mathbb{R} \text{ stetig, } \varepsilon>0 \\
+	x \in X: \qquad U_x = \{x' \in X \,|\,\abs{f(x')-f(x)}< \frac{\varepsilon}{2} \} = f^{-1}((f(x)-\frac{\varepsilon}{2},f(x)+\frac{\varepsilon}{2})) 
+	\stackrel{\text{offen, $f$ stetig}}{\subseteq } X
+\end{gather*}
+\underline{Beispiel:} $f(x)=\frac{1}{x}$ \\
+Um zu beweisen, dass $f$ glm stetig ist, brauchen wir:
+\[
+	\exists\, \delta >0 \,\forall\, y \in X \text{ gibt es } x \in X: \qquad B_{\delta}(y)\subseteq U_x 
+\]
+Denn 
+\begin{align*}
+	d(y,y')<\delta &\Rightarrow y' \in B_{\delta}(y) \subseteq U_x \\
+					& \Rightarrow  \abs{f(y')-f(y)} \leq \underset{<\frac{\varepsilon}{2}}{\underbrace{\abs{f(y')-f(x)}}} +
+					 \underset{<\frac{\varepsilon}{2}}{\underbrace{\abs{f(x)-f(y)}}} < \varepsilon
+\end{align*}
+ \subsubsection{Definition} % (fold)
+ \label{ssub:definition}
+ $X$ metrischer Raum, Eine \Index{ offene Überdeckung} von $X$ ist eine Familie $U=(U_i)_{i \in I}$, $U_i \subseteq X$ offen für alle $i \in I$ und es gilt:
+ \[
+ 	\bigcup\limits_{i \in I}U_i = X
+ \]
+ \minisec{Beispiel:}
+ \begin{align*}
+ 	&f:X \to \mathbb{R} \text{ stetig, } x \in X, \,\varepsilon>0 \\
+	&U_x = \{ x' \in X \,|\,\abs{f(x)-f(x')}< \frac{\varepsilon}{2} \} \subseteq X \\
+	&(U_x)_{x \in X} = U \text{ offene Überdeckung von }X
+ \end{align*}
+ % subsubsection definition (end)
+ \subsubsection{Satz Lebesgue-Lemma} % (fold)
+ \label{ssub:satz_lebesgue_lemma}
+ Sei $X$ ein folgenkompakter, metrischer Raum und $U=(U_i)_{i \in I}$ offene Überdeckung von $X$. Dann existiert $\delta >0$, so dass gilt:
+ \[
+ 	\forall\, x \in X \, \exists\,i \in I: \qquad B_{\delta}(x)\subseteq U_i
+ \]
+ Ein solches $\delta$ heißt \Index{ Lebesgue Zahl} der Überdeckung von $U$
+ % subsubsection satz_lebesgue_lemma (end)
+ 
+ 
+ \minisec{Beweis:}
+ Durch Wiederspruch: \\
+ \underline{Annahme:} $X$ folgenkompakt, $U=(U_i)_{i \in I}$ offene Überdeckung, welche keine Lebesgue-Zahl hat \\
+ $\Rightarrow \forall\, \delta >0 \exists\, x \in X:$ $B_{\delta}(x)$ ist in keiner der Mengen $U_i$ enthalten \\
+ $\forall\, n \in \mathbb{N} \, \exists\, x_n \in X:$ $B_{\frac{1}{n}}(x_n)$ ist in keinem $U_i, i \in I$ enthalten. \\
+ Da $X$ folgenkompakt ist, gibt es eine konvergente Teilfolge $(x_{n_k})_k$ so dass $B_{\frac{1}{n_k}}(x_{n_k})$ in keinem $U_i$ enthalten ist.
+ \begin{align*}
+ 	x = \lim_{k \to \infty}x_{n_k} \in X & \Rightarrow \exists\,i_0 \in I \qquad ,x \in U_{i_0} \subseteq X \text{ offen}
+	& \exists\,\varepsilon>0 \qquad B_{\varepsilon}(x) \subseteq U_{i_0}
+ \end{align*}  
+ Das ist ein Widerspruch, denn \\
+ Wähle h so, dass $\frac{1}{n_k}< \varepsilon$ und $d(x,x_{n_k}) < \frac{\varepsilon}{2}$ \\
+ $\Rightarrow B_{\frac{1}{n_k}}(x_{n_k}) \subseteq B_{\varepsilon}(x)=U_{i_0}$
+ \[
+ 	d(y,x_{n_k})<\frac{1}{n_k} \Rightarrow d(y,x) \leq d(y,x_{n_k})+d(x_{n_k},x) < \frac{1}{n_k}+\frac{\varepsilon}{2} < \frac{\varepsilon}{2}+ \frac{\varepsilon}{2} = \varepsilon \,  \lightning
+ \] 
+ \bewende
+ 
+ \subsubsection{Korollar} % (fold)
+ \label{ssub:korollar}
+ $X$ folgenkompakt
+ \[
+ 	f:X \to \mathbb{R} \text{ stetig } \Rightarrow f \text{ gleichmäßig stetig} 
+ \]
+ \minisec{Beweis:} s.o
+ % subsubsection korollar (end)
+ 
+\subsubsection{Definition} % (fold)
+\label{ssub:definition}
+$X$ metrischer Raum, $U=(U_i)_{i \in I}$ eine offene Überdeckung. Eine \Index{ Teilüberdeckung von U} ist eine offene Überdeckung $V=(V_j)_{j \in J}$ von $X$, so dass gilt: 
+\[
+	\forall\, j \in J \,\exists\,i \in I: V_j = U_i
+\]
+% subsubsection definition (end)
+\subsubsection{Definition} % (fold)
+\label{ssub:definition}
+Ein metrischer Raum heißt \Index{ überdeckungskompakt} (oder \Index{ Kompakt}) falls { \bfseries jede} offene Überdeckung $U=(U_i)_{i \in I}$ eine endliche Teilüberdeckung $V=(V_j)_{j \in J}$ besitzt. (d.h die Indexmenge J ist endlich)
+% subsubsection definition (end)
+\subsubsection{Satz von Heine-Borel} % (fold)
+\label{ssub:satz_von_heine_borel}
+$X$ metrischer Raum. Dann sind äquivalent:
+\begin{enumerate}
+	\item $X$ folgenkompakt
+	\item $X$ ist überdeckungskompakt
+\end{enumerate}
+\minisec{Beweis:} 
+\underline{$2 \Rightarrow 1$}:
+Wir zeigen nun:
+\[
+	\text{überdeckungskompakt } \Rightarrow \text{ folgenkompakt}
+\]
+Durch Widerspruch: Sei $X$ überdeckungskompakt, und $(x_n)_n$ Folge in $X$, welche keine konvergente Teilfolge hat. \\
+\underline{Beobachte:}
+$(x_n)_n$ hat keine Konvergente Teilfolge
+\[
+	\Rightarrow \forall\, x \in X \,\exists\, \varepsilon>0 \text{, so dass }x_n \in B_{\varepsilon}(x) \text{ nur für endlich viele $n$ gilt}
+\]
+\[
+	\Rightarrow \forall\, x \in X \,\exists\, \varepsilon_x>0 \text{ ,so dass }x_n \in B_{\varepsilon}(x) \text{ nur für unendliche viele $n \in \mathbb{N}$ golt.}
+\]
+Dann ist:
+\[
+	U = (B_{\varepsilon_x}(x))_{x \in X} 
+\]
+eine offene Überdeckung von $X$ \\
+Weil $X$ Überdeckungskompakt ist, gibt es endliche Teilüberdeckung
+\[
+	\Rightarrow  \exists\,y_1,\dots,y_r \in X \text{ mit:}
+\]
+\[
+	X = B_{\varepsilon_{y_1}}(y_1) \cup \dots \cup B_{\varepsilon_{y_r}}(y_r)
+\]
+\bewende
+\minisec{Bemerkung:}
+$X$ metrischer Raum. Man kann zeigen, dass folgendes äquvivalent ist:
+\begin{enumerate}
+	\item $X$ kompakt
+	\item $X$ ist vollständig und total beschränkt
+	\item $X$ hat folgende Eigenschaft:
+	\[
+		\text{Sind }   A_1  \supseteq A_2 \supseteq A_3 \supseteq \dots \text{ abgeschlossene Teilmengen von $X$ und }A_n \neq 0 \, \forall\, n
+		\]
+		\[
+			\bigcap\limits_{n=1}^{\infty}A_n \neq \emptyset
+		\]
+\end{enumerate}
+ohne Beweis \\
+\\
+\underline{$1 \Rightarrow 2$}: Wir setzen hierfür Lemma I.5.16 voraus.
+$X$ folgenkompakt, $U=(U_i)_{i \in I}$ offene Überdeckung von $X$ \\
+\underline{zu zeigen:} Es gibt endliche Teilüberdeckung $V=(V_j)_{j \in J}$ \\
+Sei $\delta>0$ eine Lebesgue-Zahl von $U$ (existiert nach I.5.11)
+\[
+	5.16 \Rightarrow \exists\, x_1, \dots, x_r \in X \qquad \bigcup\limits_{j=1}^r B_{\delta}(x_j)=X
+\]
+\[
+	\Rightarrow \forall\, j=1,\dots,n \, \exists\, i,j \in I: \qquad B_{\delta}(x_j) \subseteq U_{ij}
+\]
+\[
+	\Rightarrow X = U_{i_1} \cup \cdots \cup U_{i_1}
+\]
+\bewende
+
+\subsubsection{Lemma} % (fold)
+\label{ssub:lemma}
+$X$ folgenkompakter metrischer Raum. \\
+Dann ist $X$ \Index{ total beschränkt}, d.h. $\forall\, \varepsilon>0$ gibt es endlich viele $x_1,\dots,x_r \in X$, so dass:
+\[
+	\bigcup\limits_{i=1}^r B_{\varepsilon}(x_i)=X
+\]
+\minisec{Beweis:} Wir zeigen: 
+\[
+	X \text{ nicht total beschränkt } \Rightarrow X \text{ nicht folgenkompakt}
+\]
+Sei $X$ also nicht total beschränkt. $\Rightarrow \exists\,>0 \text{, so dass gilt:}$
+\begin{align*}
+		&\text{Sind } x_1,\dots,x_r \in X \text{ beliebig} \\
+		&\Rightarrow \bigcup\limits_{i=1}^rB_{\varepsilon}(x_i) \neq X \\
+		&\Rightarrow X \setminus \bigcup\limits_{i=1}^rB_{\varepsilon}(x_i) \neq \emptyset
+\end{align*}
+Wähle $x_1 \in X \Rightarrow X \setminus B_{\varepsilon}(x_1) \neq \emptyset$ \\
+Wähle $x_2 \in X \setminus B_{\varepsilon(x_1)} \Rightarrow X \setminus (B_{\varepsilon}(x_1)\cup(B_{\varepsilon}(x_2))) \neq \emptyset$ \\
+Wähle $x_3$ \dots \\
+Wähle $x_r \in X \setminus \bigcup\limits_{i=1}^{r-1}B_{\varepsilon}(x_i)$
+\begin{align*}
+	&\Rightarrow (X_r)_r \text{ Folge in }X 
+\end{align*}	
+	Für $n \neq m$ gilt: 
+	\[
+		d(x_n,x_m) \geq \varepsilon
+	\]
+	Dann ist $n>m$ \,,so ist nach Konstruktion  $x_n \notin B_{\varepsilon}(x_m)$ und 
+	dann kann keine Teilfolge von $(x_r)_r$ eine Cauchyfolge sein.
+ \[
+ 	\Rightarrow  (x_r)_r \text{ hat keine Konvergente Teilfolge} \]
+	\[
+		X \text{ nicht folgenkompakt}
+	\]
+\bewende
+
+
+\newpage
+\section{Differentialrechnung im $\mathbb{R}^n$} % (fold)
+\label{sec:differentialrechnung_im_mathbb_r_n}
+
+\subsection{Die Definition} % (fold)
+\label{sub:die_definition}
+\underline{Ziel}: $U \subseteq  \mathbb{R}^n$ offen, $f: U \to \mathbb{R}^m$ \\
+Wann heißt $f$ differenzierbar? \\
+Was ist die Ableitung von $f$? 
+\subsubsection{Notation} % (fold)
+\label{ssub:notation}
+$U \subseteq \mathbb{R}^n, \, x \in \mathbb{R}^n$.
+\[
+	x+U = \set[x+y]{y \in U} \subseteq \mathbb{R}^n
+\]
+Analysis I: $n=m=1$, $U \subseteq \mathbb{R}$ offen, $f: U \to \mathbb{R} \,, x \in U$. $f$ diffbar $:\Leftrightarrow$ der Grenzwert
+\[
+	f'(x)= \lim_{h \to \infty} \frac{1}{h}(f(x+h)-f(x)) \in \mathbb{R}
+\]
+existiert. \\
+\underline{Verallgemeinerung}: $\mathbb{R} \supseteq U \stackrel{f}{\to} \mathbb{R}^m$ ohne Problem. \\
+n>1 problematisch, denn man kann nicht durch Elemente $h \in \mathbb{R}^n$ dividieren. \\
+\underline{Umformulierung}:(aus Analysis I) \\
+$U \subseteq \mathbb{R}$ offen, $x \in U$, $f: U \to \mathbb{R}$ 
+\[
+	A: -x+U \to \mathbb{R}  \qquad ( -x+U=\{h \in \mathbb{R}\,|\,h+x \in U \} )
+\]
+definiert durch:
+\[
+	A(h):= \begin{cases}
+		\frac{1}{n}f(x+h)-f(x), &\text{ falls }h \neq 0\\
+		f(x), &\text{ falls }h=0
+		\end{cases}
+\]
+$\Rightarrow A \text{ stetig bei }0$
+\[
+	\forall\, h \in -x+U \qquad f(x+h)=f(x)+A(h)h
+\]
+Umgekehrt: Nimm an, es gibt Funktion $A:-x+U \to \mathbb{R}$ ,so dass 
+\begin{enumerate}
+	\item $A$ stetig bei $0$
+	\item $f(x+h)=f(x)+A(h)h$
+\end{enumerate}
+$\Rightarrow f$ differenzierbar bei $x$, und $f'(x)=A(0)$
+\minisec{Beweis:}
+\[
+	\frac{1}{h}(f(x+h)-f(x))=\frac{1}{h}(f(x)+A(h)h-f(x))= \frac{1}{h}A(h)h = A(h) \stackrel{h \to 0}{\longrightarrow} A(0)
+\]
+\subsubsection{Bemerkung} % (fold)
+\label{ssub:bemerkung}
+\begin{enumerate}
+	\item für $n=m=1$ erhält man den bekannten Begriff aus Ana I 
+	\item hier ist $\text{Mat}_{m,n}(\mathbb{R})$ isomorph zu $\mathbb{R}^{m \times n}$ mit irgendeiner Norm ausgestattet (welche, ist gleichgültig, weil alle Normen
+	Äquivalent sind)
+	\item $f= \begin{pmatrix}
+		f_1 \\ \vdots \\ f_m
+	\end{pmatrix}$ $f: U \to \mathbb{R}$ \\
+	$f$ diffbar bei $x$ $\Leftrightarrow$ $f$ diffbar bei $x$ ($\forall\, i \in \{1,\dots,m\}$) \\
+	und
+	\[
+		Df(x)= \begin{pmatrix}
+			Df_1(x) \\
+			\vdots \\
+			Df_n(x)
+		\end{pmatrix} \qquad Df(x) \in \Mat_{m,n}(\mathbb{R})
+	\]
+	\item Wir identifizieren Matrizen und lineare Abbildungen mittels Isomorphismen
+	\begin{align*}
+		\Mat_{m,n}(\mathbb{R}) &\rightarrow \Hom(\mathbb{R}^n;\mathbb{R}^m) \\
+		 A &\mapsto (x \mapsto A \cdot x)
+	\end{align*}
+\end{enumerate}
+% subsubsection bemerkung (end)
+% subsubsection notation (end)
+\subsubsection{Definition} % (fold)
+\label{ssub:definition}
+$U \subseteq \mathbb{R}^n$ offen, $f:U \to \mathbb{R}^m$ $x \in U$. f heißt \Index{ differenzierbar} bei $x$, falls eine Funktion $A: -x+U \to \Mat_{m,n}(\mathbb{R})$ existiert, so dass gilt:
+\begin{enumerate}
+	\item $A$ stetig bei 0
+	\item $\forall\, h \in -x+U:$
+	\[
+		\underset{\in \mathbb{R}^m}{\underbrace{f(x+h)}} = \underset{\in \mathbb{R}^m}{\underbrace{f(x)}} + \underset{\in \mathbb{R}^m}{\underbrace{\underset{
+		\in \Mat_m,n(\mathbb{R})}{\underbrace{A(h)}}
+		\underset{\in \mathbb{R}^n}{\underbrace{h}}}}
+	\]
+\end{enumerate}
+Die Matrix $A(0) \in \Mat_{m,n}(\mathbb{R})$ heißt \Index{ Ableitung} von $f$ in $x$ und wird mit
+\[
+	Df(x) \in \Mat_{m,n}(\mathbb{R})
+\]
+bezeichnet \\
+\underline{Alternative Bezeichnung}:
+'total differenzierbar' \\
+\[
+	Df(x)=\text{'Totales Diferential'}
+\]
+\subsubsection{Satz} % (fold)
+\label{ssub:satz}
+$U \subseteq \mathbb{R}^n$ offen, $x \in U$,$f: U \to \mathbb{R}^m$ sei differenzierbar. Sei $v \in \mathbb{R}^n$ \\
+setze $g_v(t)=f(x+tv)$ mit 
+\[
+	g_v:\{t \in \mathbb{R} \,|\,x+tv \in U \} \to \mathbb{R}^m
+\]
+Dann gilt:
+\[
+	Df(x)v = \lim_{t \to 0} \frac{1}{t}(g_v(t)-g_v(0))
+\]
+\minisec{Beweis:}
+Schreibe $f(x+h)=f(x)+A(h)h$. $A$ stetig bei $0$ und $A(0)=Df(x)$
+\begin{align*}
+	\Rightarrow \frac{1}{t}(g_v(t)-g_v(0))&= \frac{1}{t}(f(x+tv)-f(x))  \\
+	&= \frac{1}{t}(f(x)+A(tv)tv-f(x)) \\
+	&= \frac{1}{t}A(tv)tv \\
+	&= \frac{1}{t}tA(tv)v = A(tv)v \longrightarrow A(0)v = Df(x)v \\
+\end{align*}
+\[
+	t \mapsto A(tv)v \text{ ist stetig bei $0$}
+\] \bewende
+\minisec{Bemerkung:}
+In Def II1.2 ist $A(h)$ { \bfseries nicht} eindeutig durch $f$ bestimmt. Aber $A(0)$ ist eindeutig bestimmt, nach II.1.3
+% subsubsection satz (end)
+\subsubsection{Definition} % (fold)
+\label{ssub:definition}
+$U,x,f,v$ wie in Satz II.1.3. Dann heißt $Df(x)v$ die \Index{ Richtungsableitung} von $f$ in Richtung $v$.
+\[
+	D_vf(x)=Df(x)v
+\] 
+\minisec{Bemerkung:}
+Ist $f$ diffbar bei $x$, so ist $v \mapsto g'_v(0)=D_vf(x)$ linear.
+\minisec{Beispiel:}
+\[
+	f(x)=\skal{x}{x}=\norm{x}_2^2
+\]
+\[
+	f(x+h)=\skal{x}{x}+\skal{h}{h}+2\skal{x}{h}=f(x)+\skal{h}{h}+2\skal{x}{h}
+\]
+$A(h) \in \text{Mat}_{n,m}(\mathbb{R})$
+\[
+	A(h)h= \skal{h}{h}+2 \skal{x}{h}   
+\]
+% subsubsection definition (end)
+% subsubsection definition (end)
+% subsection die_definition (end)
+\subsubsection{Satz} % (fold)
+\label{ssub:satz}\marginnote{die Numerierung ist hier nicht richtig}
+$U \subseteq \mathbb{R}^n$ offen, $x \in U$, $f:U \to \mathbb{R}^m$. $C \in \Mat_{m,n}(\mathbb{R})$.\\ Es sind Äquivalent:
+\begin{enumerate}
+	\item $f$ ist differenzierbar bei $x$, und $Df(x)=C$
+	\item Es gilt:
+	\[
+		\lim_{h \to 0} \frac{\norm{f(x+h)-f(x)-C \cdot h}}{\norm{h}} = 0
+	\]
+\end{enumerate}
+2 besagt, dass $h \mapsto f(x)+C \cdot h$ eine gute Approximation an $h \mapsto f(x+h)$ ist) \\
+Außerdem liefern Satz II.1.8 und II.1.5 ein 'Kochrezept' um die differenzierbarkeit von $f$ nachzuprüfen:
+ \begin{enumerate}
+ 	\item Berechne $D_{v}f(x)$ für alle $v \in \mathbb{R}^n$
+	\item Finde Matrix $C \in \Mat_{m,n}(\mathbb{R})$ mit ($v=D_vf(x),\forall\, v \in \mathbb{R}^n$)
+	\item Prüfe \[
+		\lim_{h \to 0} \frac{1}{\norm{h}}\norm{f(x+h)-f(x)-C \cdot h}=0
+	\]
+	\[
+		\Rightarrow Df(x)=C
+	\]
+ \end{enumerate}
+ 
+ \minisec{Beweis:} 
+ \underline{$1 \Rightarrow 2$}: Sei $A: \,-x+U \to \Mat_{m,n}(\mathbb{R})$ mit
+ \[
+ 	f(x+h)=f(x)+A(h)h \qquad (\forall\, h)
+ \]
+ $A$ stetig bei $0$ und $A(0)=C$
+ \[
+ 	\Rightarrow \frac{\norm{f(x+h)-f(x)-C \cdot h}}{\norm{h}}= \frac{A(h)h-C \cdot h}{\norm{h}} \leq \underset{\substack{\to 0 \\ \text{für }h \to 0 \\ \text{($A$ stetig bei }0)}}{\underbrace{\norm{A(h)-C}}} \frac{\norm{h}}{\norm{h}}
+ \]
+% subsubsection satz (end)
+\underline{$2 \Rightarrow 1$}: \\
+\underline{Vorbemerkung}: $h \in \mathbb{R}^n$,$v \in \mathbb{R}^n$,$h \neq 0$. Dann ist durch 
+\[
+	y \mapsto \frac{\skal{h}{y}}{\norm{h}^2}v , \mathbb{R}^n \to \mathbb{R}^m 
+\]
+eine lineare Abbildung gegeben, welche mit $h \mapsto v$ \\
+Setze $\varphi (h) = f(x+h)-f(x)-C \cdot h , \varphi: -x+U \to \mathbb{R}^m$ \\
+Nach Voraussetzung 2) gilt:
+\[
+	\frac{\norm{\varphi(h)}}{\norm{h}} \stackrel{h \to 0}{\longrightarrow} 0 
+\]
+Definiere Funktion $A: -x+U \to \Mat_{m,n}(\mathbb{R})$, $A(0)=C \qquad h \neq 0$\\
+Sei $A(h)$ die Matrix, welche die lineare Abbildung \[
+	y \mapsto C \cdot y + \frac{\skal{h}{y}}{\norm{h}^2}\varphi(h)
+\]
+darstellt. wobei $\varphi(h)=A(h)y$
+\begin{align*}
+	\Rightarrow f(x)+A(h)h &= f(x)+C \cdot h + \frac{\skal{h}{h}}{\norm{h}^2}\varphi(h) \\
+	&=f(x)+C \cdot h + \varphi(h) \\
+	&=f(x+h)	\\
+\end{align*}
+
+Ferner ist $A$ stetig bei $0$ ,denn
+
+\begin{align*}
+	\norm{A(h)-A(0)} &= \sup\limits_{\norm{y}\leq 1} \norm{A(h)y- A(0)y} \\
+			&= \sup\limits_{\norm{y}\leq 1} \norm{Cy + \frac{\skal{h}{y}}{\norm{h}^2} \varphi(h) - Cy } \\
+			&= \sup\limits_{\norm{y}\leq 1} \frac{\abs{\skal{h}{y}}}{\norm{h}^2} \norm{\varphi(h)} \\
+			&\leq \sup\limits_{\norm{y}\leq 1} \frac{\norm{h}\norm{y}}{\norm{h}^2} \norm{\varphi(h)} \\
+			&=\frac{\norm{\varphi(h)}}{\norm{h}} \stackrel{h \to 0}{\longrightarrow} 0
+\end{align*}
+\[
+	\Rightarrow f \text{ differenzierbar bei }x
+\]
+\[
+	Df(x)=C
+\]
+\subsubsection{Definition} % (fold)
+\label{ssub:definition}
+$U \subseteq \mathbb{R}^n$ offen, $x \in U$, $f:  \to \mathbb{R}^m$. Die \Index{ $i$-te partielle Ableitung von $f$} bei $x$ ist
+\[
+	D_if(x):= D_{e_i}f(x) \qquad (i=1,\dots,n)
+\]
+Man schreibt oft auch \[
+	\diff{}{x_i}f(x):= D_if(x)
+\]
+Es gilt folgendes: \\
+Wenn $f$ differenzierbar bei $x$ ist, so gilt: \\
+Der $(i,j)$te Eintrag von $Df(x)$ ist \[
+	(Df(x))_{i,j}=D_jf_i(x) \qquad i=1,\dots,m , j=1,\dots,n
+\]
+\[
+	Df(x)= \begin{pmatrix}
+		D_1f_1(x) & \dots & D_nf_1(x) \\
+		\vdots & & \vdots \\
+		D_1f_m(x) & \dots & D_nf_m(x)
+	\end{pmatrix} \text{ (Jacobi-Matrix)}
+\]
+Wie berechnet man $D_jf_i(x)$?
+\[
+	D_jf_i(x):=  \diffd{}{t} \Big|_{t=0}f_i(x+te_j)= \diffd{}{t} \Big|_{t=0}f_i(x_1,\dots,x_{j-1},x_j+t,x_{j+1},\dots,x_n)
+\]
+\minisec{Beispiel:} $U= \set[(x_1,x_2) \in \mathbb{R}^2]{x_2 \not= 0}$ offen in $\mathbb{R}^2$ 
+\[
+	q(x_1,x_2)= \frac{x_1}{x_2}
+\]
+Berechnung der partiellen Ableitungen:
+\[
+	D_1q(x_1,x_2)= \diffd{}{t} \Big|_{t=0} q(x_1+t,x_2)= \diffd{}{t} \Big|_{t=0} \frac{x_1+t}{x_2} = \frac{1}{x_2} \left(= \diffd{}{x_2} \frac{x_1}{x_2} \right)
+\]
+\[
+	D_2q(x_1,x_2)= \diffd{}{t}  \Big|_{t=0} q(x_1,x_2+t)= \diffd{}{t}  \Big|_{t=0} \frac{x_1}{x_2+t} = \frac{-x_1}{(x_2+t)^2}  \Big|_{t=0}^{} = - \frac{x_1}{x_2} 
+	\left( = \diffd{}{x_2} \frac{x_1}{x_2}  \right)
+\]
+$\Rightarrow$ falls $q$ diffbar ist, so muss
+\[
+	Dq(x_1,x_2)= \left( \frac{1}{x_2}, -\frac{x_1}{x_2} \right)
+\]
+Ist $q$ diffbar? \\
+$x=(x_1,x_2) \in U$ fest, $h=(h_1,h_2) \in -x+U$. Setze
+\[
+	A_x(h):= \left( \frac{1}{x_2+h_2} , \frac{-x_1}{x_2(x_2+h_2)}  \right)
+\]
+Dann gilt $q(x+h)=q(x)+A_x(h)h$, denn
+\begin{align*}
+	q(x)+A_x(h)h &= \frac{x_1}{x_2}+ \left( \frac{h_1}{x_2+h_2}-\frac{x_1h_1}{x_2(x_2+h_2)}  \right) \\
+	&= \frac{x_1(x_2+h_2)+x_2h_1-x_1h_2}{x_2(x_2+h_2)} \\
+	&= \frac{x_1x_2 + x_2h_1}{x_2(x_2+h_2)} \\
+	&= \frac{x_1+h_1}{x_2+h_2} \\
+	&= q(x+h)
+\end{align*}
+$h \mapsto A_x(h)$ stetig bei 0, denn
+
+\[
+	A_x(h)= \enbrace[\bigg]{ \underset{\to \frac{1}{x_2}}{\underbrace{\frac{1}{x_2+h_2}}} , \underset{\to \frac{-x_1}{x_2^2}}{\underbrace{-\frac{x_1}{x_2(x_2+h_2)}}}  }
+\]
+\minisec{Beispiel:}
+$f: \mathbb{R}^n \to \mathbb{R}$ mit $f(x)=\skal{x}{x}$. \\
+Wir haben gesehen, dass $f$ differenzierbar ist mit 
+\[
+	D_vf(x)= 2 \skal{x}{v} \qquad \forall\, x,v \in \mathbb{R}^n
+\] 
+\begin{align*}
+	D_vf(x) &= \diff{}{t}  \Big|_{t=0}\skal{x+tv}{x+tv} \\
+			&= \diff{}{t}  \Big|_{t=0} \left( \skal{x}{x}^2 + 2 \skal{x}{v} + t^2 \skal{v}{v} \right) \\
+			&= 2 \skal{x}{v}
+\end{align*}
+Somit folgt, dass gilt: \[
+	D_if(x)=2 \skal{x}{e_i} = 2 x_i
+\]
+\[
+	Df(x)=(2x_1, \dots, 2x_n)
+\]
+Dieses hätte man auch sehen können, wenn man 
+\[
+	f(x)= \sum^{n}_{i=1}x_i^2
+\]
+betrachtet mit 
+\[
+	\diff{}{x_i}f(x)=2x_i
+\]
+% subsubsection definition (end)
+
+\subsubsection{Satz} % (fold)
+\label{ssub:satz}
+$U \subseteq \mathbb{R}^n$ offen, $x \in U$ und $f:U \to \mathbb{R}^n$. Falls die partiellen Ableitungen $D_1f, \dots , D_nf$ auf ganz $U$ existieren, und stetig 
+sind (also Funktionen $D_if: U \to \mathbb{R}^m$) dann ist $f$ differenzierbar in $x$
+
+\minisec{Beweis:}
+Weil $f$ genau dann differenzierbar ist, wenn alle $f_1 , \dots , f_n: U \to \mathbb{R} $ differenzierbar sind, genügt es den Fall $m=1$ zu betrachten.
+\begin{align*}
+	f(x+h) - f(x) &= f(x_1+h_1, \dots ,x_n+h_n) - f(x_1, \dots, x_n) \\
+	&= \sum^{n}_{i=1} \left( f(x_1+h_1, \dots,x_i+h_i,x_{i+1} ,\dots,x_n) - f(x_1+h_1, \dots,x_{i-1}+h_{i-1},x_{i} ,\dots,x_n) \right)
+\end{align*}
+Nach dem Mittelwertsatz gibt es $\theta_1, \dots , \theta_n \in (0,1)$, so dass
+\begin{gather*}
+	f(x_1+h_1, \dots,x_{i-1}+h_{i-1},x_i+h_i,x_{i+1} ,\dots,x_n) - f(x_1+h_1, \dots,x_{i-1}+h_{i-1},x_i,x_{i+1} ,\dots,x_n) \\
+	= D_if(x_1+h_1, \dots,x_{i-1}+h_{i-1},x_{i}+\theta_ih_i,x_{i+1} ,\dots,x_n)h_i 
+\end{gather*}
+% subsubsection satz (end)
+\[
+	\Rightarrow f(x+h)-f(x)= \sum^{n}_{i=1}D_if(x_1+h_1, \dots,x_{i-1}+h_{i-1},x_{i}+\theta_ih_i,x_{i+1} ,\dots,x_n)h_i 
+\]
+Setze $A(h) \in \Mat_{n,m}(\mathbb{R})$ mit
+\[
+	A(h):= D_if(x_1+h_1, \dots,x_{i-1}+h_{i-1},x_{i}+\theta_ih_i,x_{i+1} ,\dots,x_n)
+\]
+\[
+	\Rightarrow f(x+h)=f(x)-A(h)h
+\]
+Weil $D_if$ stetig bei $x$ ist, gilt
+\[
+	A(h) \stackrel{h \to 0}{\longrightarrow} A(0)
+\]
+\bewende \\
+Wir haben gesehen: 
+\[
+	f \text{ diffbar } \Rightarrow f \text{ partiell diffbar}
+\]
+\[
+	f \text{ stetig partiell diffbar } \Rightarrow f \text{ diffbar}
+\]
+% section differentialrechnung_im_mathbb_r_n (end)
+\subsubsection{Definition} % (fold)
+\label{ssub:definition}
+$f: U \to \mathbb{R}^m$ heißt \Index{ stetig differenzierbar}, falls $f$ differenzierbar ist und falls $Df: U \to \text{Mat}_{n,m}(\mathbb{R})$ stetig ist.
+% subsubsection definition (end)
+
+\subsubsection{Kettenregel} % (fold)
+\label{ssub:kettenregel}
+$U \subseteq \mathbb{R}^n$ offen, $V \subseteq \mathbb{R}^m$ offen, $f:U \to V \mathbb{R}^m$, $g: V \to \mathbb{R}^p$, $x \in U$, $y=f(x) \in V$. Falls $f$ 
+differenzierbar ist, dann ist $g \circ f: U \to \mathbb{R}^p$ differenzierbar, und es gilt:
+\[
+	D(g \circ f)(x) = Dg(f(x))Df(x)
+\]
+
+\minisec{Beweis:} Sei $A:\, -x+U \to \text{Mat}_{n,m}(\mathbb{R})$ und $f(x+h)=f(x)+A(h)\cdot h $ für alle $h$. $A$ stetig in $0$ \\
+$B:\, -y+V \to \text{Mat}_{p,m}(\mathbb{R})$ und $g(y+k)=g(y)+B(k)\cdot k$ für alle $k \in -y+V$. $B$ stetig in $0$
+\[
+	\Rightarrow g \circ f(x+h)= g( \underset{=y}{\underbrace{f(x)}}+ \underset{=k}{\underbrace{A(h)h}}) = g(f(x))+B(A(h)h)A(h)h =: g(f(x))+C(h)h
+\]
+wobei 
+\[
+	C(h):= \underset{\text{Mat}_{p,n}(\mathbb{R})}{\underbrace{ \underset{\in \text{Mat}_{p,m}(\mathbb{R})}{\underbrace{B(A(h)h)}} \underset{ \, \, \in
+	 \text{Mat}_{n,m}(\mathbb{R})}{\underbrace{A(h)}} }}
+\]
+\begin{align*}
+	C(0)&=B(A(0)0)A(0)\\
+	&= B(0)A(0) \\
+	&= Dg(y)Df(x) \\
+	&= Dg(f(x))Df(x)
+\end{align*}
+Außerden ist die Funktion 
+\begin{align*}
+	C: \,-x+U &\to \text{Mat}_{p,n}(\mathbb{R}) \\
+	h &\mapsto C(h)
+\end{align*}	
+stetig. \bewende
+% subsubsection kettenregel (end)
+
+\minisec{Formulierung der Kettenregel mit partiellen Ableitungen:}
+$f,g$ wie in II.1.14 
+\[
+	f= \begin{pmatrix}
+		f_1 \\
+		\vdots \\
+		f_m
+	\end{pmatrix} \qquad g= \begin{pmatrix}
+		g_1 \\
+		\vdots \\
+		g_p
+	\end{pmatrix}
+\]
+Dann gilt:
+\[
+	Dg(f(x))= \begin{pmatrix}
+		D_1g_1(f(x)) & \dots & D_mg_1(f(x)) \\
+		\vdots & & \vdots \\
+		D_1g_p(f(x)) & \dots & D_mg_p(f(x))
+	\end{pmatrix}
+\]
+\[
+	Df(x)= \begin{pmatrix}
+		D_1f_1(x) & \dots & D_nf_1(x) \\
+		\vdots & & \vdots \\
+		D_1f_m(x) & \dots & D_nf_m(x)
+	\end{pmatrix}
+\]
+\[
+	\Rightarrow D(g \circ f)(x)= 
+	\begin{pmatrix}
+			D_1g_1 & \dots & D_mg_1 \\
+			\vdots & & \vdots \\
+			D_1g_p & \dots & D_mg_p
+		\end{pmatrix} \cdot \begin{pmatrix}
+		D_1f_1(x) & \dots & D_nf_1(x) \\
+		\vdots & & \vdots \\
+		D_1f_m(x) & \dots & D_nf_m(x)
+	\end{pmatrix}
+\]
+Der $(k,l)$-te Eintrag von $D(g \circ f)(x)$ ist 
+\[
+	\sum^{m}_{j=1}D_jg_k(f(x))D_lf_g(x)=D_lg_k(f(x)) = \sum^{m}_{j=1}\diff{g_k}{y_g}(f(x))\diff{f_g}{x_l}(x)
+\]
+
+\minisec{Beispiele für Kettenregel:}
+$U \subseteq \mathbb{R}^n$ offen, $f: U \to \mathbb{R}$, $g: U \to \mathbb{R} \setminus \set{0}$ seien differenzierbar.
+\begin{align*}
+	\begin{pmatrix}
+		f \\ g 
+	\end{pmatrix} : U &\to  \mathbb{R} \times ( \mathbb{R} \setminus \set{0})  \\
+	x &\mapsto \begin{pmatrix}
+		f(x) \\ g(x)
+	\end{pmatrix}
+\end{align*}
+ist differenzierbar, und
+\[
+	D(\begin{pmatrix}
+		f \\ g
+	\end{pmatrix}) = \begin{pmatrix}
+		D_1f(x) & \dots & D_nf(x) \\
+		D_1g(x) & \dots & D_ng(x)
+	\end{pmatrix}
+\]
+Die Funktion 
+\begin{align*}
+	q: \mathbb{R} \times ( \mathbb{R} \setminus \set{0}) &\to  \mathbb{R} \\
+	(y,z) &\mapsto \frac{y}{z} 
+\end{align*}
+ist differenzierbar mit
+\[
+	Dq(y,z)= \begin{pmatrix}
+		\frac{1}{z} & -\frac{y}{z^2}
+	\end{pmatrix}
+\]
+\begin{align*}
+	\Rightarrow q \circ \begin{pmatrix}
+		f \\ g
+	\end{pmatrix} : U &\to \mathbb{R} \\
+	x &\mapsto \frac{f(x)}{g(x)}
+\end{align*} ist differenzierbar.
+\begin{align*}
+	D\left(q \circ \begin{pmatrix}
+		f \\ g
+	\end{pmatrix}\right)&= Dq\left(\begin{pmatrix}
+		f(x) \\ g(x)
+	\end{pmatrix}\right) D \left(\begin{pmatrix}
+		f \\ g
+	\end{pmatrix}\right)(x) \\ &= \begin{pmatrix}
+		\frac{1}{g(x)} & -\frac{f(x)}{g(x)^2}
+	\end{pmatrix} \cdot \begin{pmatrix}
+		D_1f(x) & \dots & D_nf(x) \\
+		D_1g(x) & \dots & D_ng(x)
+	\end{pmatrix} \\
+	&= \left( \frac{D_1f(x)}{g(x)} - \frac{f(x)D_1g(x)}{g(x)^2}, \dots, \frac{D_nf(x)}{g(x)} - \frac{f(x)D_nf(x)}{g(x)^2}  \right)\\
+	&= \left( \frac{D_1f(x)g(x)-f(x)D_1g(x)}{g(x)^2}, \dots , \frac{D_nf(x)g(x)-f(x)D_ng(x)}{g(x)^2}  \right)
+\end{align*}
+Analog erhält man durch Betrachtung der Funktion $\mu : \mathbb{R}^2 \to  \mathbb{R}$ mit $\mu(y,z)=yz$, die \Index{ Produktregel}
+
+\minisec{Beispiel:}
+$A \in \Mat_{m,n}(\mathbb{R})$, $F: \mathbb{R}^n \to \mathbb{R}^m$, $F(x)=A \cdot x$
+\[
+	\Rightarrow F \text{ ist differenzierbar und es gilt } DF(x)=A
+\]
+\minisec{Beweis:} 
+\[
+	F(x+h)=A(x+h)=Ax+Ah=F(x)+Ah
+\] \bewende \\
+$U \subseteq \mathbb{R}^p$ offen, $f: U \to \mathbb{R}^n$ differenzierbar. \\
+$\stackrel{\text{Kettenregel}}{\Rightarrow}$ $F \circ f: U \to \mathbb{R}^m$ ist differenzierbar, und 
+\[
+	D(f \circ f)(x)= DF(f(x))Df(x) = A \cdot Df(x)
+\]
+wobei
+\[
+	F \circ f(x)=A \cdot f(x)
+\]
+Das heißt Differenzieren vertauscht mit linearen Abbildungen.
+
+\minisec{Beispiel:}
+$A= \begin{pmatrix}
+	a_1 & a_2
+\end{pmatrix} \in \Mat_{1,2}(\mathbb{R})$
+\[
+	f: U \to \mathbb{R}^2 \qquad f(x)= \begin{pmatrix}
+		f_1(x) \\ f_2(x)
+	\end{pmatrix}
+\]
+\[
+	Af=a_1f_1(x)+a_2f_2(x)
+\]
+\[
+	\Rightarrow D(Af)(x)= A Df(x) = (a_1D_1f_1(x) + a_2D_1f_2(x), \dots, a_1D_nf_1 + a_2D_nf_2(x)) = a_1Df_1 + a_2Df_2(x) 
+\]
+Dieses ist die Summenregel
+\minisec{Bemerkung:}
+$X,Y$ endliche-dimensionale $\mathbb{R}$-VR. Dann gibt es Normen auf $X$ und $Y$. \\
+(z.B $(v_1, \dots , v_n)$ Basis von $X$ und $x = \sum^{n}_{i=1}x_iv_i \in X \,\,,x_i \in \mathbb{R}$ wobei $\norm{x}:= \sum^{n}_{i=1}\abs{x_i}$) \\
+Je zwei Normen auf $X$ sind äquivalent (weil $\dim X < \infty$). \\
+Also gibt es die Begriffe 'Konvergente Folge','Stetigkeit','offene Mengen', etc, unabhängig von der Wahl der Norm.
+
+\subsubsection{Definition} % (fold)
+\label{ssub:definition}
+$X,Y$ endlich-dimensionale $\mathbb{R}$-VR, $U \subseteq X$ offen, $x \in U$,$f: U \to Y$ heißt \Index{ differenzierbar} bei $x$, falls gilt: \\
+es gibt eine Abbildung $A: \,-x+U \to \Hom(X,Y)$, so dass gilt:
+\begin{enumerate}
+	\item $f(x+h)=f(x)+\underset{\in \Hom(X,Y)}{\underbrace{A(h)}}(h) \in Y$ für alle $h \in -x+U$
+	\item $A$ stetig bei $0$ (Diese Aussage ist wohldefiniert, weil $\Hom(X,Y)$ ein endlich-dimensionaler $\mathbb{R}$-VR ist)
+	\[
+		A(0)=Df(x)
+	\]
+\end{enumerate}
+\subsection{Differentiation unter dem Integral} % (fold)
+\label{sub:differentiation_unter_dem_integral}
+Betrachte $f:[a,b] \times U \to \mathbb{R}$, $a,b \in \mathbb{R}$, $U \subseteq \mathbb{R}^n$ offen, $f$ stetig.
+\begin{align*}
+	F: U &\to \mathbb{R} \\
+	F(x) &= \int\limits_{a}^{b}f(t,x) \,\mathrm{d}t
+\end{align*}
+\minisec{Frage:}
+\begin{enumerate}
+	\item ist $F$ stetig?
+	\item falls $D_if$ existiert ($i=1,\dots,n$), existiert dann $D_iF$, und gilt
+	\[
+		D_iF(x) = \int\limits_{a}^{b}D_if(t,x) \,\mathrm{d}t ? 
+	\]
+\end{enumerate}
+\subsubsection{Satz} % (fold)
+\label{ssub:satz}
+Seien $a,b \in \mathbb{R}$ und $U \subseteq \mathbb{R}^n$ offen. Sei $f:[a,b] \times U: \to \mathbb{R}$ stetig und setze $F(x):= \int\limits_{a}^{b}f(t,x) \,\mathrm{d}t$. Dann ist $F: U \to \mathbb{R}$ stetig.
+
+\minisec{Beweis:} Sei $x \in U$ und sei $\varepsilon >0$. $U$ ist offen, es gibt also $r>0$ mit:
+\[
+	\bar B_r(x)= \set[y \in U]{\norm{x-y}\leq r} \subseteq U 
+\]
+$[a,b] \times \bar B_r(x)$ ist Kompakt (denn es ist abgeschlossen und beschränkte Teilmenge des $\mathbb{R}^{n+1}$)
+\[
+	f  \Big|_{[a,b] \times \bar B_r(x)}^{} : [a,b] \times \bar B_r(x) \to \mathbb{R}
+\] ist gleichmäßig stetig!! \\
+$\Rightarrow$ es gibt ein $\delta >0$, so dass gilt falls $y \in U$, $t \in [a,b]$ und $\norm{y-x}\leq \delta $ und $\norm{y-x}\leq r$
+\[
+	\Rightarrow \abs{f(t,y)-f(t,x)}<\varepsilon \qquad (\delta \leq r)
+\] 
+Falls $\norm{y-x}<\delta \leq r$, so gilt also:
+\[
+	\abs{F(x)-F(y)} = \abs{ \int\limits_{a}^{b}f(t,x)-f(t,y) \,\mathrm{d}t} \leq \int\limits_{a}^{b} \abs{f(t,x)-f(t,y)} \,\mathrm{d}t < \int\limits_{a}^{b} \varepsilon \,\mathrm{d}t = \varepsilon \abs{b-a}
+\] \bewende
+% subsubsection satz (end)
+\subsubsection{Satz} % (fold)
+\label{ssub:satz}
+Seien $a,b \in \mathbb{R}$, $U \subseteq \mathbb{R}$ offen. Sei $f: [a,b]\times U \to \mathbb{R}$ stetig. Angenommen, es existert $D_2f(t,x)= \diff{}{x}f(t,x)$, und $D_2f:[a,b] \times U \to \mathbb{R}$ sei stetig. \\
+Dann ist $F:U \to \mathbb{R}$ mit $F(x):= \int\limits_{a}^{b}f(t,x)\,\mathrm{d}t$ differenzierbar und es gilt:
+\[
+	F'(x)= \int\limits_{a}^{b}\diff{}{x}f(t,x) \,\mathrm{d}t
+\]
+\minisec{Beweis:} Seien $x,x+h \in U$
+Dann gilt nach dem Hauptsatz der Differential- und Integralrechnung und weil $D_ef$ stetig:
+\begin{align*}
+	\frac{1}{h}(F(x+h)-F(x))- \int\limits_{a}^{b}D_2f(t,x) \,\mathrm{d}t &= \frac{1}{h}\int\limits_{a}^{b}( f(t,x+h)-f(t,x)-D_2f(t,x)h) \,\mathrm{d}t \\
+	&\stackrel{*}{=} \frac{1}{h}\int\limits_{a}^{b}( \int\limits_{x}^{x+h}D_2f(t,x) \,\mathrm{d}y) - D_2f(t,y)h \,\mathrm{d}t \\
+	&= \frac{1}{h}\int\limits_{a}^{b}(\int\limits_{x}^{x+h}(D_2f(t,x)-D_2f(t,y)) \,\mathrm{d}y) \,\mathrm{d}t \\
+\end{align*} 
+Nun sei $\varepsilon>0$. Wie im Beweis von II.2.1 gibt es ein $r>0$, $0 < \delta \leq r$, so dass gilt:
+\[
+	\abs{x-y}< \delta \,, t \in [a,b] \Rightarrow  \abs{D_2f(t,x)-D_2f(t,y)} < \varepsilon \qquad (D_2 \text{ stetig})
+\]
+Ist also $\abs{h}< \delta $,so folgt:
+\begin{align*}
+	\abs{\frac{1}{h}(F(x+h)-F(x))- \int\limits_{a}^{b}D_2f(t,x) \,\mathrm{d}t} &= \abs{\frac{1}{h}} \cdot
+	\abs{\int\limits_{a}^{b}\left(\int\limits_{x}^{x+h}(D_2f(t,x)-D_2f(t,y)) \,\mathrm{d}y\right) \,\mathrm{d}t} \\
+	& \leq \frac{1}{\abs{h}} \int\limits_{a}^{b}
+	\bigg(\underset{<\abs{h}\varepsilon}{\underbrace{\int\limits_{x}^{x+h}\underset{<\varepsilon}{\underbrace{\abs{D_2f(t,x)-D_2f(t,y)}}}\,\mathrm{d}y}}\bigg)  \,\mathrm{d}t \\
+	&< \frac{1}{\abs{h}}\abs{b-a}\cdot\abs{h} \\
+	&= \varepsilon \abs{b-a} 
+	\end{align*}
+	\bewende
+
+\subsubsection{Korollar} % (fold)
+\label{ssub:korollar}
+$U \subseteq \mathbb{R}^n$ offen. $f:[a,b] \times U \to \mathbb{R}$. $f$ sei stetig und $\diff{}{x_i}f(t,x), i=1,\dots,n$ existiere und sei stetig. Dann ist $F:U \to \mathbb{R}$ mit $F(x):=\int\limits_{a}^{b}f(t,x) \,\mathrm{d}t$ stetig differenzierbar, und es gilt:
+\[
+	\diff{}{x_i}F(x)= \int\limits_{a}^{b}\diff{}{x_i}f(t,x) \,\mathrm{d}t
+\]
+\minisec{Beweis:} Sei $x \in U$, und $I = \set[s \in \mathbb{R}]{x+se_i \in U} \subseteq \mathbb{R}^n$ offen \\
+Sei $g:[a,b] \times I \to \mathbb{R}$ mit $f(t,s)=f(t,x+se_i)$. Dann ist $g$ stetig und $\diff{}{s}g$ existiert und ist stetig, weil $\diff{}{s}g(t,s)= \diff{}{x_i}f(t,x+se_i)$
+\[
+	\stackrel{II.2.3}{\Rightarrow} G(s)= \int\limits_{a}^{b}g(t,s) \,\mathrm{d}t \text{ ist differenzierbar, und} 
+\]
+\[
+	G'(x)= \int\limits_{a}^{b}\diff{}{x_i}f(t,x+se_i) \,\mathrm{d}
+\]
+aber $G(s)= F(x+se_i)$, also $G'(0)= \diff{}{x_i}F(x)$. \\
+$\Rightarrow$ alle partiellen Ableitungen von $F$ existieren, und es gilt:
+\[
+	\diff{}{x_i}F(t,x)= \int\limits_{a}^{b} \underset{\text{stetig!}}{\underbrace{\diff{}{x_i}f(t,x)}} \,\mathrm{d}t
+\]
+Damit folgt, dass $\diff{}{x_i}F(t,x)$ stetig ist. \\
+$ \stackrel{II.1.12}{\Rightarrow}$ $F(t,x)$ ist differenzierbar, und $DF$ ist stetig.
+\bewende
+% subsubsection korollar (end)
+% subsubsection satz (end)
+
+\subsubsection{Satz von Schwarz} % (fold)
+\label{ssub:satz_von_schwarz}
+Sei $U \subseteq \mathbb{R}^n$ offen, $f: U \to \mathbb{R}$. $v,w \in \mathbb{R}^n$.\\
+Annahmen: \begin{itemize}
+	\item $f$ stetig
+	\item $D_vf$,$D_wf$ existieren und seien stetig
+	\item $D_vD_wf$ existiere und sei stetig
+\end{itemize}
+Dann gilt:
+\[
+	D_wD_vf \text{ existiert und es gilt } D_wD_vf= D_vD_wf
+\]
+\minisec{Beweis:} 
+\underline{1.Spezialfall}: $n=2$, $U=B_r(0)$ mit $r>0$. $v=e_1$, $w=e_2$ \\
+Nach dem Hauptsatz und weil $D_2f$ stetig ist gilt:
+\[
+	f(x,y)= f(x,0)+\int\limits_{0}^{y}D_2f(x,t) \,\mathrm{d}t
+\]
+\begin{align*}
+	\Rightarrow D_1f(x,y)=D_1f(x,0)+D_1 \int\limits_{0}^{y}D_2f(x,t) \,\mathrm{d}t \\
+	&=D_1f(x,0)+ \int\limits_{0}^{y}D_1D_2f(x,t) \,\mathrm{d}t
+\end{align*}
+Weil $D_1D_2$ stetig.
+\[
+	D_1f(x,y)=\underset{\substack{\text{hängt nicht} \\\text{ von $y$ ab} \\ \Rightarrow D_2D_1f(x,0)=0}}{\underbrace{D_1f(x,0)}}+ \underset{\substack{D_2 \left( \int\limits_{0}^{y}D_1D_2f(x,t) \,\mathrm{d}t \right) \\ \stackrel{HS}{=}D_1D_2f(x,y) }}{\underbrace{\int\limits_{0}^{y}D_1D_2f(x,t) \,\mathrm{d}t}}
+\]
+$\Rightarrow$ $D_2D_1f(x,y)$ existiert, und es gilt:
+\[
+	D_2D_1f(x,y)= D_1D_2f(x,y)
+\]
+\underline{2.Allgemeiner Fall}: Sei $x \in U$, $v,w \in \mathbb{R}^n$. \\
+$0 \in \tilde U= \set[(s,t)\in \mathbb{R}^2]{x+st+tw \in U} \subseteq \mathbb{R}^2$ offen. \\
+Sei $g:\tilde U \to \mathbb{R}$ mit $g(s,t)=f(x+sv+tw)$. Dann ist $g$ stetig und
+\begin{align*}
+	D_1g(s,t) &= D_vf(x+sv+tw) \\
+	D_2g(s,t) &= D_wf(x+sv+tw) \\
+	D_1D_2g(s,t) &= D_vD_wf(x+sv+tw)
+\end{align*}
+existieren und sind stetig. \\
+Nach Schritt 1 existiert $D_2D_1g$ in $0$, und \[
+	D_wD_vg(x)= D_2D_1g(0,0)=D_1D_2g(0,0)=D_vD_wf(x)
+\]
+\bewende
+% subsubsection satz_von_schwarz (end)
+\subsubsection{Definition} % (fold)
+\label{ssub:definition}
+$U \subseteq \mathbb{R}^n$ offen, $f: U \to \mathbb{R}^m$. Dann heißt $f$ \Index{ r-mal stetig differenzierbar} (oder $C^r$-Funktion), falls gilt: \\
+ für alle $s=0,\dots,r$ und alle $v_1,\dots,v_s \in \mathbb{R}^m$ existiert die \Index{ iterierte Richtungsableitung}
+ \[
+ 	D_{v_1}D_{v_2} \cdot \dots \cdot D_{v_s}f = D_{v_1}(D_{v_2} \cdot \dots \cdot D_{v_s}) 
+ \]
+ auf ganz $U$, und ist stetig auf $U$.
+ 
+ \minisec{Definition:} 
+ $U \subseteq \mathbb{R}^n$ offen, $f: U \to \mathbb{R}$ eine $C^2-Funktion$. Die \Index{ Hessematrix} von $f$ bei $x$ ist
+ \[
+ 	Hf(x):= \begin{pmatrix}
+ 		D_1D_1f(x) & \dots & D_nD_1f(x) \\
+		\vdots & & \vdots \\
+		D_1D_nf(x) & \dots & D_nD_nf(x)
+ 	\end{pmatrix}
+ \]
+ $\Rightarrow$ $Hf(x)$ ist symmetrisch, denn
+ \[
+ 	Hf(x)^T \stackrel{\text{Satz von Schwarz}}{=} Hf(x)
+ \] 
+ Ferner gilt: sind $v,w \in \mathbb{R}^n$, so ist
+ \[
+ 	D_vD_wf(x)= \skal{Hf(x)v}{w}=\skal{v}{Hf(x)w}
+ \]
+ \minisec{Beweis:} \[
+ 	v= \sum^{n}_{i=1}V_ie_i \qquad w=\sum^{n}_{i=1}w_ie_i \qquad v_i,w_i \in \mathbb{R}
+ \]
+\begin{align*}
+	\Rightarrow D_vD_wf(x)&= \sum^{n}_{i=1}v_iD_iD_wf(x) \\ &= \sum^{n}_{i=1}\sum^{n}_{j=1}v_iw_jD_iD_j(x) \\ &= \sum^{n}_{i=1}\sum^{n}_{j=1}v_iw_j(Hf(x))_{ji} \\
+	&= \sum^{n}_{i=1}w_j(Hf(x)v)_j = \skal{Hf(x)v}{w}= \skal{v}{Hf(x)w}
+\end{align*}
+Die Identität
+\[
+	\skal{Hf(x)v}{w}=\skal{v}{Hf(x)w} 
+\] folgt daraus, dass $Hf(x)$ symmetrisch ist, denn
+\[
+	\skal{Av}{w}=\skal{v}{A^Tw} \qquad A \in \Mat_{n,n}(\mathbb{R})
+\]
+\subsection{Taylorentwicklung} % (fold)
+\label{sub:taylorentwicklung}
+Der eindimensionale Fall \\
+$(a,b) \subseteq \mathbb{R} \qquad f:(a,b) \to \mathbb{R}$
+$f$ sei $m$-mal stetig differenzierbar, $p \in (a,b), h \in \mathbb{R}$ mit $p+h \in (a,b)$
+
+\subsubsection{Lemma/Definition} % (fold)
+\label{ssub:lemma_definition}
+Sei $f:(a,b) \to \mathbb{R}$ $m$-mal stetig differenzierbar, $p \in (a,b)$. Dann gibt es genau ein Polynom $T_p^mf(h)$, so dass gilt
+\begin{enumerate}[(i)]
+	\item Der Graph von $T^m_pf$ ist $m$-mal stetig differenzierbar
+	\item Es gilt
+	\[
+		\left( \diffd{}{h} \right)^k T_p^mf(0)= f^{(k)}(p) \qquad \forall\, k=0,\dots,m
+	\]
+\end{enumerate}
+Dieses Polynom heißt $m$-tes \Index{ Taylorpolynom} von $f$ bei $p$.
+\minisec{Beweis:} Setze
+\[
+	T_p^mf(h)=\sum_{k=0}^{m}\frac{1}{k!}f^{(k)}(p)h^k
+\]
+Dann gilt $(i)$ und $(ii)$ $\Rightarrow$ Existenz
+\underline{Eindeutigkeit}: Sei $q(h)$ ein Polynom mit $(i)$ und $(ii)$
+\[
+	q(h)= \sum_{k=0}^{m}c_kh^k \qquad c_k \in \mathbb{R}
+\]
+\[
+	\begin{array}{ccc}
+	q(0)=c_0 & \Rightarrow & c_0=f^{(0)}(p) \\
+	q'(0)=c_1 & \Rightarrow & c_1=f^{(1)}(p) \\
+	q''(0)=2c_2 & \Rightarrow & c_2=\frac{1}{2}f^{(2)}(p) \\
+	\vdots & & \vdots \\
+	q^{(l)}(0)=c_l & \Rightarrow & c_l=\frac{1}{l!}f^{(l)}(p) \\
+	\end{array}
+\] 
+mit
+\[
+	q^(l)(h)= \sum_{k=l}^{m}c_kk(k-1) \cdot \dots \cdot (k-l)h^{k-l}
+\]
+\[
+	\Rightarrow q(h)=\sum_{k=0}^{m}\frac{1}{k!}f^{(k)}(p)h^k
+\] \bewende
+\subsubsection{Taylorscher Satz} % (fold)
+\label{taylor}
+Sei $f:(a,b) \to \mathbb{R}$ $(m+1)$-mal stetig differenzierbar, $p,p+h \in (a,b)$. \\
+Dann gilt
+\[
+	f(p+h)= \underset{= T^m_pf(h)}{\underbrace{\sum_{k=0}^{m}\frac{1}{k!}f^{(k)}(p)h^k}} 
+	+ \underset{\text{Restglied}}{\underbrace{\frac{1}{m!}h^{m+1}\int_{0}^{1}(1-t)^mf^{(m+1)}(p+th) \,\mathrm{d}t}}
+\]
+\minisec{Beweis:} Induktion über $m$:
+\begin{description}
+	\item[$m=0$:] Hauptsatz
+	\item[$m \mapsto m+1$:] siehe Übung A3B1. partielle Integration
+	\[
+	 (1-t)^m= - \frac{1}{m+1}\diffd{}{t}(1-t)^{m+1}
+	\] 
+\end{description}\bewende \\
+Schreibe Restglied in einfacher Form
+\subsubsection{Mittelwertsatz der Integralrechnung} % (fold)
+\label{ssub:mittelwertsatz_der_integralrechnung}
+Sei $[a,b] \subseteq \mathbb{R}$ und $f,g:[a,b] \to \mathbb{R}$ stetig. $g(x)\geq 0 \forall\, x \in [a,b]$. \\
+Dann gilt
+\[
+	\exists\, \xi \in [a,b] \text{ mit } \int_{a}^{b}f(t)g(t) \,\mathrm{d}t = f(\xi)\int_{a}^{b}g(t) \,\mathrm{d}t
+\]
+\minisec{Beweis:}Aus dem Satz vom Minimum und Maximum folgt: $\exists\, x_{\min}.x_{\max} \in [a,b] \,\, \forall\, x \in [a,b]$ mit
+\[
+	f(x_{\min}):=c \leq f(x) \leq C =: f(x_{\max}) 
+\]
+\[
+	cg(x) \leq f(x)g(x)\leq C g(x), \qquad g(x) \leq 0
+\]
+Dann folgt
+\[
+	c \int_{a}^{b}g(t) \,\mathrm{d}t \leq \int_{a}^{b}f(t)g(t) \,\mathrm{d}t \leq C \int_{a}^{b}g(t) \,\mathrm{d}t
+\]
+Wir definieren uns eine Hilfsfunktion 
+\[
+	F(x):=f(x)\int_{a}^{b}g(t) \,\mathrm{d}t
+\] Dann ist $F$ stetig und es gilt
+\[
+	F(x_{\min})=c \int_{a}^{b}g(t) \,\mathrm{d}t \qquad, \qquad F(x_{\max})= C \int_{a}^{b}g(t) \,\mathrm{d}t 
+\]
+\[
+	\Rightarrow F(x_{\min}) \leq \int_{a}^{b}f(t)g(t) \,\mathrm{d}t \leq F(x_{\max})
+\]
+Benutze nun den Zwischenwertsatz und erhalte
+\[
+	\exists\, \xi \in [x_{\min},x_{\max}] \text{ mit } F(\xi)= \int_{a}^{b}f(t)g(t) \,\mathrm{d}t
+\]
+\bewende
+
+\subsubsection{Lagrange-Darstellung des Restgliedes} % (fold)
+\label{ssub:lagrange_darstellung_des_restgliedes}
+Seien $a,b,p,p+h \in \mathbb{R}$ und $f:[a,b]  \to \mathbb{R}$ wie in \ref{taylor}. 
+Dann gilt
+\[
+	\exists\,\xi \in [0,1] \text{ mit } f(p+h)=T^m_pf(h)+ \frac{h^{(m+1)}}{(m+1)!}f^{(m+1)}(p+\xi h)
+\]
+\minisec{Beweis:} zu Zeigen ist:
+\[
+	\exists\,\xi \in [0,1] \text{ mit } \frac{1}{m!}h^{m+1} \int_{0}^{1}(1-t)^mf^{(m+1)(p+th)} \,\mathrm{d}t = \frac{1}{(m+1)!}f^{(m+1)}(p+th)
+\]
+Aus \ref{ssub:mittelwertsatz_der_integralrechnung} folgt
+\begin{align*}
+	\exists\,\xi \in [0,1] \text{ mit } \int_{0}^{1}(1-t)^m f^{(m+1)}(p+th) \,\mathrm{d}t 
+	&= f^{(m+1)}(p+\xi h) \underset{\frac{1}{m+1}}{\underbrace{\int_{0}^{1}(1-t)^m \,\mathrm{d}t}} \\
+	&= \frac{1}{m+1}f^{(m+1)}(p+\xi h)
+\end{align*}
+$\Rightarrow$ Vorfaktoren einsetzen
+\bewende
+
+Taylorpolynom
+\[
+	f(p+h)=\sum_{k=0}^{m}\frac{1}{k!}f^{(k)}(p)h^k + \frac{1}{(m+1)!}f^{(m+1)}(p+ \xi h)h^{(m+1)}
+\]
+\subsubsection{Bemerkung} % (fold)
+\label{ssub:bemerkung}
+Ist $f$ beliebig oft stetig differenzierbar, so heißt die Reihe
+\[
+	\sum^{\infty}_{k=0}\frac{1}{k!}f^{(k)}(p)h^k
+\]
+\Index{ Taylorreihe} von $f$ bei p und ist eine Potenzreihe.
+\begin{itemize}
+	\item Die Taylorreihe von $f$ muss nicht konvergieren, und selbst wenn sie konvergiert braucht die Grenzfunktion nicht gleich $f$ zu sein.
+	\minisec{Gegenbeispiel:}
+	\[
+		f:\mathbb{R}\to \mathbb{R}, \qquad f(x) = \begin{cases}
+			e^{-\frac{1}{x^2}}, &\text{ falls }x \neq 0\\ 0, &\text{ falls }x=0 \end{cases}
+	\] 
+	$\Rightarrow $ $f$ beliebig oft stetig differenzierbar $f^{(k)}(0)=0 \forall\, k$
+	$\Rightarrow $ Taylorreihe ist $0 \neq f$
+	\item Ist $\sum_{k=0}^{\infty}a_kx^k$ eine Potenzreihe mit Konvergenzradius $R>0$, und $f(x)= \sum_{k=0}^{\infty}a_kx^k$. Dann gilt
+	\[
+		T_0^mf(h)=\sum_{k=0}^{m}a_kh^k \qquad \text{(Übungsaufgabe)}
+	\]
+\end{itemize}
+Der mehrdimensionale Fall: \\
+$ U \subseteq \mathbb{R}^n$ offen, $f:U \subseteq \mathbb{R}$ $(m+1)$-mal stetig differenzierbar, $x \in U$
+% subsubsection bemerkung (end)
+% subsubsection lagrange_darstellung_des_restgliedes (end)
+\subsubsection{Definition} % (fold)
+\label{ssub:definition}
+$U \subseteq \mathbb{R}^n$, $x \in U$. Dann heißt $U$ \Index{ sternförmig }bezüglich $x$, falls gilt:
+\[
+	y \in U,\,t \in [0,1] \Rightarrow (1-t)x+ty \in U
+\]
+Nun sei $p \in U \subseteq \mathbb{R}^n$ offen, $U$ steinförmig bzgl. $p$. Sei $f: U \to \mathbb{R}$ $(m+1)$-mal stetig differenzierbar. $v \in \mathbb{R}^n$ mit $p+v \in U$. Setze $g(t):=f(p+tv)$ mit
+\[
+	g: \set[t \in \mathbb{R}]{p+tv \in U} \to \mathbb{R}
+\]
+Dann gilt
+\[
+	g(1)= \sum_{k=0}^{m}\frac{1}{k!}g^{(k)}(0)+ \frac{1}{(m+1)!}g^{(m+1)}(\xi)
+\]
+\[
+	\Rightarrow g^{(k)}(0)=\underset{k \text{-mal}}{\underbrace{D_v \dots D_vf(p)}}
+\]
+\minisec{Beweis:} 
+mit Indutkion:
+\begin{description}
+	\item[$k=0$:] klar
+	\item[$k-1 \mapsto k$] 
+	\[
+		g^{(k)}(t)=\diffd{}{t}g^{(k-1)}(t)= \diffd{}{t}(\underset{(k-1) \text{-mal}}{\underbrace{D_v \dots D_v}} f(x+tv))
+		= \underset{k \text{-mal}}{\underbrace{D_v \dots D_v}} f(x+tv)
+	\] 
+\end{description}
+\subsubsection{Taylorentwicklung in $\mathbb{R}^n$} % (fold)
+\label{ssub:taylorentwicklung_in_rn}
+Sei $U \subseteq \mathbb{R}^n$ sternförmig bzgl. $x \in U$, $ U \subseteq \mathbb{R}^n$ offen. $ f: U \to \mathbb{R} $ $(m+1)$-mal stetig differenzierbar und $v \in \mathbb{R}^n$,$x+v \in U$. \\
+Dann gilt
+\[
+	\exists\,\xi \in [0,1] \text{ mit } f(x+v)
+	=\sum_{k=0}^{m}\frac{1}{k!} \underset{k \text{-mal}}{\underbrace{D_v \dots D_vf(x)}}+ \frac{1}{(m+1)!}\underset{(m+1)
+	 \text{-mal}}{\underbrace{D_v \dots D_v}}f(x+ \xi v)
+\]
+Interessanter Spezialfall $m=1$:
+\begin{align*}
+	f(x+v)&=f(x)+ D_vf(x)+ \frac{1}{2}D_vD_vf(x+\xi v) \\
+	&= f(x) + Df(x) \cdot v + \frac{1}{2} \skal{Hf(x+ \xi v)v}{v}
+\end{align*}
+Dies ist die Taylorformel für $m=1$
+% subsubsection taylorentwicklung_in_rn (end)
+% subsubsection definition (end)
+\subsection{Extremwertprobleme} % (fold)
+\label{sub:extremwertprobleme}
+$ U \subseteq \mathbb{R}^n$ offen , $ f: U \to \mathbb{R} $ differenzierbar
+\subsubsection{Satz} % (fold)
+\label{ssub:satz}
+Falls $f$ bei $x \in U$ ein lokales Minimum oder Maximum hat, so gilt $Df(x)=0$. \\
+Lokales Minimum bei $x$ bedeutet:
+\[
+	\exists\, \text{Umgebung }x \in V \subseteq U \text{, so dass} \forall\, y \in V: f(y) \geq f(x)
+\]
+(lokales Maximum analog mit $f(y)\leq f(x)$)
+\minisec{Beweis:} 
+Betrachte Funktion $g_v(t)=f(x+tv)$ ($x$ lokales Mininum/Maximum, $v \in \mathbb{R}^n$). \\
+$g_v$ ist definiert auf einer offenen Umgebung $I \subseteq \mathbb{R}$ von $0$. $g_v$ ist differenzierbar (Kettenregel).
+\\ $g_v$ hat lokales Minimum oder Maximum bei $0$
+\[
+	g_v(0)=0 \text{ (Analysis I)}
+\]
+aber $g_v(0)=D_vf(x)=Df(x)\cdot v$
+\[
+	\Rightarrow Df(x)=0
+\] \bewende
+
+% subsubsection satz (end)
+\subsubsection{Definition} % (fold)
+\label{ssub:definition}
+$ f: U \to \mathbb{R} $  differenzierbar und $x \in U$. $x$ heißt \Index{ kritischer Punkt} von $f$ genau dann, wenn \[
+	Df(x)=0
+\] 
+Sei $f$ von nun an $2$-mal stetig differenzierbar. Sei $x \in U$ kritischer Punkt von $f$. \\
+Wähle $r > 0$ mit 
+\[
+	\underset{\text{sternförmig}}{\underbrace{B_r(x)}}\subseteq U
+\]
+Dann gilt für alle $v \in U$ mit $\norm{v}<r$
+\[
+	f(x+v)=f(x)+\frac{1}{2}\skal{Hf(x+\xi v)v}{v} \text{ mit }\xi \in [0,1])
+\]
+\minisec{Bespiele für $\mathbb{R}^2 \to \mathbb{R}$:}
+\begin{enumerate}
+	\item $f_0(x,y)=x^2+y^2$
+	\item $f_1(x,y)=x^2-y^2$
+	\item $f_2(x,y)=-x^2-y^2$
+\end{enumerate}
+Alle drei haben den kritischen Punkt $(0,0)$ und es gilt
+\[
+	Hf_0= \begin{pmatrix}
+		2 & 0 \\ 0 & 2 
+	\end{pmatrix} ,\qquad Hf_1=\begin{pmatrix}
+		2 & 0 \\ 0 & -2
+	\end{pmatrix} ,\qquad Hf_2=\begin{pmatrix}
+		-2 & 0 \\ 0 & -2
+	\end{pmatrix}
+\] $f_0$ hat lokales Maximum in $0$. \\
+Graph von $f_0$ ist Parabolloid. Niveaulinien sind Kreise. $f_2$ analog und $f_2 = -f_0$. \\
+$f_1$ hat kein lokales Minimum/Maximum
+\minisec{Exkurs über symmetrische Matrizen:}
+\subsubsection{Definition} % (fold)
+\label{ssub:definition}
+$A \in \Mat_{n,n}(\mathbb{R})$, $\lambda \in \mathbb{R}$ heißt \Index{ Eigenwert} von $A$ genau dann, wenn
+\[
+	\exists\,x \in \mathbb{R}^n, x \neq 0 \text{ und } Ax=\lambda x
+\]
+Die \Index{ Eigenvektoren} zum Eigenwert $\lambda$ sind die $x \in \mathbb{R}^n$ mit $Ax=\lambda x$
+\[
+	\Eig(A,\lambda)= \set[x \in \mathbb{R}^n]{Ax=\lambda x}
+\]
+Das \Index{ Charakteristische Polynom} ist definiert durch
+\[
+	\chi_A(t)=\det(A-t \cdot I_n)
+\]
+und ist ein Polynom vom Grad $n$. \\
+Die Eigenwerte von $A$ sind die Nullstellen des charakteristischen Polynoms. Das heißt es gibt höchstens $n$ verschiedene Eigenwerte.
+% subsubsection definition (end)
+% subsubsection definition (end)
+\subsubsection{Spektralsatz für symmetrische Matrizen} % (fold)
+\label{ssub:spektralsatz_fur_symmetrische_matrizen}
+Sei $A \in \Mat_{n,n}(\mathbb{R})$ symmetrisch. Dann gibt es eine Orthogonalbasis von $\mathbb{R}^n$, welche nur aus Eigenvektoren von $A$  besteht. \\
+Mit anderen Worten: \\
+Es gibt $\lambda_1 \leq \dots \lambda_n \in \mathbb{R}$ und $v_1,\dots,v_n \in \mathbb{R}^n$ mit
+\[
+	\skal{v_i}{v_j}= \delta_{ij}, \qquad Av_i=\lambda_iv_i
+\]
+\minisec{Bemerkung:}
+$B= (v_1, \dots, v_n)$ Basis
+\[
+	M_B^B(A)= \begin{pmatrix}
+	\lambda & \dots & 0 \\ \vdots & & \vdots \\ 0 &\dots& \lambda_n
+	\end{pmatrix}
+\] Für den Beweis siehe Lineare Algebra
+% subsubsection spektralsatz_fur_symmetrische_matrizen (end)
+\subsubsection{Satz} % (fold)
+\label{satz5.5}
+Sei $A \in S(n)$, $\lambda_1 \leq \dots \leq \lambda_n$ seien Eigenwerte von $A$. \\
+Dann gilt
+\begin{enumerate}
+	\item $\forall\, x \in \mathbb{R}^n:\, \lambda_1 \norm{x}^2 \leq \skal{Ax}{x} \leq \lambda_n \norm{x}^2$
+	\item $\set[\skal{Ax}{x}]{\norm{x}=1}=[\lambda_1,\lambda_n]$
+\end{enumerate}
+\minisec{Beweis:} 
+\begin{enumerate}
+	\item $(v_1,\dots,v_n)$ Orthogonalbasis aus Eigenvektoren mit $Av_i=\lambda_iv_i$. $x \in \mathbb{R}^n$ mit $x = \sum^{n}_{i=1}x_iv_i$. \\
+	Dann gilt
+	\begin{align*}
+		\skal{Ax}{x}&= \sum^{n}_{i,j=1} \skal{Ax_iv_i}{x_jv_j} \\
+		&= \sum^{n}_{i,j=1} x_ix_j \skal{Av_i}{v_j} \\
+		&= \sum^{n}_{i,j=1} x_ix_j\lambda_i \skal{v_i}{v_j} \\
+		&= \sum^{n}_{i,j=1} \lambda_ix_i^2 \leq \lambda_n \sum^{n}_{i=1}x_i^2 = \lambda_n \norm{x}^2 \\
+		&\geq \lambda_1 \sum^{n}_{i=1}x_i^2 = \lambda_1 \norm{x}^2
+	\end{align*}
+	\item Betrachte
+	\[
+		f(t)=(A(\cos(t)v_n+\sin(t)v_1),(\cos(t)v_1+\sin(t)v_n))
+	\] Dann ist $f$ stetig und $\norm{\cos(t)v_n+\sin(t)v_1}=1$
+	\[
+		f(0)=\skal{Av_1}{v_n}= \lambda_n \skal{v_n}{v_n}= \lambda_n
+	\]
+	\[
+		f(\frac{\pi}{2})= \skal{Av_1}{v_1}=\lambda_1
+	\]
+	Mit Zwischenwertsatz gilt
+	\[
+		[\lambda_1,\lambda_n] \subseteq f\left(\left[0,\frac{\pi}{2}\right]\right)  
+	\]
+\end{enumerate}
+\bewende
+\subsubsection{Satz} % (fold)
+\label{ssub:satz}
+Seien $ U \subseteq \mathbb{R}^n$ offen , $ x \in U $, $ f: U \to \mathbb{R} $ zweimal stetig differenzierbar. Sei $x$ ein kritischer Punkt von $f$.
+\begin{enumerate}
+	\item Falls alle Eigenwerte von $Hf(x)$ positiv sind, so hat $f$ ein lokales Minimum bei $x$ (positiv definit)
+	\item Falls $Hf(x)$ negativ definit, so hat $f$ ein lokales Maximum bei $x$
+	\item Falls $f$ einen positiven Eigenwert hat, so hat $f$ bei $x$ kein lokales Maximum	
+	\item Falls $f$ einen negativen Eigenwert hat, so hat $f$ bei $x$ kein lokales Minimum
+	\item In allen anderen Fällen kann durch Betrachtung von $Hf(x)$ keine Entscheidung getroffen werden.
+\end{enumerate}
+\minisec{Beweis:} 
+$1) \Rightarrow 2$, $3 \Rightarrow 4$ gehe zu $-f$ über
+\begin{description}
+	\item[3)] Sei $\norm{v}=1$, $Hf(x)v=\lambda v, \, \lambda >0$, $t \in [-1,1]$. \\ 
+		$\Rightarrow \exists\,\xi \in [0,1]$ mit  
+	\begin{align*}
+		f(x+tv)&=f(x)+ \frac{1}{2} \skal{Hf(x+t \xi)tv}{tv} \\
+		&= f(x) + \underset{= \frac{t^2}{2}\lambda}{\underbrace{\frac{t^2}{2} \skal{Hf(x)v}{v}}} 
+		+ \frac{t^2}{2} \underset{\text{klein, falls $\abs{t}$ klein}}{\underbrace{\skal{(Hf(x+\xi t)- t f(x))v}{v}}} \\
+		&> f(x) \text{ für kleine $t$}	
+	\end{align*}
+	\item[1)] selbe Idee: \\
+	Taylorentwicklung, $v \in \mathbb{R}^n$, so dass $x+tv \in U \,\, \forall\, t \in [-1,1]$. \\
+	Dann existiert ein $\theta \in [0,1]$ mit
+	\begin{align*}
+		f(x+v) &=f(x)+ \underset{=0}{\underbrace{Df(x)v}} + \frac{1}{2} \skal{Hf(x+\theta v)}{v} \\
+		&= f(x)+ \frac{1}{2}\skal{Hf(x)v}{v}+ \frac{1}{2}\skal{(Hf(x+\theta v)-Hf(x))v}{v} 
+	\end{align*}
+Seien $0 < \lambda_1 \leq \dots \leq \lambda_n$ die Eigenwerte von $Hf(x)$
+\[
+	\stackrel{\ref{satz5.5}}{\Rightarrow} \skal{Hf(x)v}{v} \geq \lambda_1 \cdot \norm{v}^2
+\]
+Da $f \in C^2$ ist, ist $x \mapsto Hf(x)$ stetig und damit folgt
+\[
+	\exists\,\delta >0, \text{ so dass } \norm{Hf(x+ \theta v)-Hf(x)} < \frac{\lambda_1}{2} \text{ für } \norm{v}<\delta \text{ und } \norm{\theta}\leq 1
+\] 
+$\Rightarrow $ für $\norm{v}< \delta $ gilt also:
+\begin{align*}
+	f(x+v)&= f(x)+ \frac{1}{2} \skal{Hf(x)v}{v}+ \frac{1}{2} \skal{Hf(x+ \theta v)}{v} \\
+	&\geq f(x)+ \frac{1}{2} \lambda_1 \norm{v}^2 - \frac{1}{2} \underset{\leq \frac{\lambda_1}{2}}{\underbrace{\norm{Hf(x+ \theta v)-Hf(x)}}} \norm{v}^2 \\
+	&\geq f(x)+ \frac{1}{4} \lambda_1 \norm{v}^2 \\
+	&> f(x)
+\end{align*}
+\[
+	\Rightarrow f(x+v)>f(x), \text{ falls } \norm{v} < \delta \text{ und } v \neq 0
+\]
+$\Rightarrow $ $f$ hat lokales Minimum. \bewende
+\end{description}
+\subsubsection{Definition} % (fold)
+\label{ssub:definition}
+Definiere 
+\[
+	S(n):= \set[A \in \Mat_{n,n}(\mathbb{R})]{A^T=A}
+\]
+\begin{itemize}
+	\item $A \in S(n)$ heißt \Index{ positiv definit}, falls für alle $v \in \mathbb{R}^n$,$v \neq 0$ gilt:
+	\[
+		\skal{Av}{v}>0
+	\]
+	\item $A \in S(n)$ heißt \Index{ negativ definit}, falls für alle $v \in \mathbb{R}^n$,$v \neq 0$ gilt:
+	\[
+		\skal{Av}{v}<0
+	\]
+\end{itemize}
+\minisec{Bemerkung:} Es gilt
+\begin{itemize}
+	\item $A$ positiv definit $\Leftrightarrow$ alle Eigenwerte sind positiv
+	\item $A$ negativ definit $\Leftrightarrow$ alle Eigenwerte sind negativ
+\end{itemize}
+\underline{Denn}: Sind $\lambda_1 \leq \dots \leq \lambda_n$ die Eigenwerte von $A$, so gilt:
+\[
+	\lambda_1 \norm{v}^2 \leq  \skal{Av}{v} \leq \lambda_n \norm{v}^2
+\]
+und falls $Av_1  \lambda_1 v_1$ und $Av_n=\lambda_n v_n$, gilt $\norm{v_1}=\norm{v_n}=1$
+% subsubsection definition (end)
+\newpage
+% subsubsection satz (end)
+% subsubsection satz (end)
+% subsection extremwertprobleme (end)
+\section{Der Umkehrsatz und seine geometrischen Konsequenzen} % (fold)
+\label{sec:der_umk}
+\subsection{Umkehrbare differenzierbare Abbildungen} % (fold)
+\label{sub:umkehrbare_differenzierbare_abbildungen}
+\underline{Analysis I}:
+Ist $I \subseteq \mathbb{R}$ ein offenes Intervall, $f: I \to \mathbb{R}$ stetig differenzierbar und $f'(x)\neq 0$ für alle $x \in I$. \\
+Dann folgt, dass $f(I) \subseteq \mathbb{R}$ ein offenes Intervall ist. \\
+Ist $f : I \to f(I)$ bijektiv, so ist die Umkehrfunktion $g: f(I) \to I$ stetig differenzierbar, und es gilt $g'(f(x))= \frac{1}{f'(x)}$
+
+\subsubsection{Definition} % (fold)
+\label{ssub:definition}
+$ U \subseteq \mathbb{R}^n$,$V \subseteq \mathbb{R}^m$ offen. Ein Diffeomorphismus $f: U \to V$ ist eine $C^1$-Abbildung, für die gilt, dass $f:U \to V$ bijektiv ist und die Umkehrabbilung $g:V \to U$ auch eine $C^1$-Abbildung ist.
+% subsubsection definition (end)
+\subsubsection{Lemma} % (fold)
+\label{ssub:lemma}
+$ U \subseteq \mathbb{R}^n$,$V \subseteq \mathbb{R}^m$ offen. $f: U \to V$ Diffeomorphismus mit Umkehrabbildung $g: V \to U$. \\
+Dann gilt:
+\begin{enumerate}
+	\item $m=n$
+	\item $\forall\, x \in U$ ist $Df(x) \in \Mat_{n,n}(\mathbb{R})$ invertierbar
+	\item $Dg(f(x))=(D(f(x)))^{-1} \in \Mat_{n,n}(\mathbb{R})$
+\end{enumerate}
+\minisec{Beweis:} Es gilt
+\[
+	\forall\, x \in U: \,g(f(x))=x \qquad \Rightarrow \qquad g \circ f = \id_U
+\]
+\[
+	\forall\, y \in V: \,f(g(y))=y \qquad \Rightarrow \qquad f \circ g = \id_V
+\]
+Dann folgt aus der Kettenregel
+\begin{align*}
+	Dg(f(x))Df(x)=D \id(x) &= \ind_n \\
+	\text{und }Df(g(y))Dg(y)= D \id(y) &= 1_m
+\end{align*}
+Setze nun $y:=f(x)$ ($\Leftrightarrow g(y)=x$) \\
+\[
+\Rightarrow Df(x)Dg(f(x))= 1_m \qquad \stackrel{\text{LA.I}}{\Rightarrow} \qquad m=n
+\]
+Außerdem ist dann $Df(x)$ invertierbar und $(Df(x))^{-1}=Dg(f(x))$
+\bewende
+% subsubsection lemma (end)
+\subsubsection{Lemma} % (fold)
+\label{ssub:lemma}
+Definiere
+\[
+	\GL_n(\mathbb{R}):= \set[A \in \Mat_{n,n}(\mathbb{R})]{A \text{ invertierbar}}
+\]
+Dann gilt
+\begin{enumerate}
+	\item $\GL_n(\mathbb{R}) \subseteq \Mat_{n,n}(\mathbb{R})$ ist offen
+	\item Die Funktion \begin{align*}
+		F: \GL_n(\mathbb{R}) &\to \Mat_{n,n}(\mathbb{R}) \\
+		A &\to A^{-1} 
+	\end{align*}
+ist beliebig oft stetig differenzierbar
+\end{enumerate}
+\minisec{Beweis:} \begin{enumerate}
+	\item B3A5
+	\item B6A4
+\end{enumerate}
+% subsubsection lemma (end)
+\subsubsection{Satz} % (fold)
+\label{satz14}
+$ U \subseteq \mathbb{R}^n$ offen. $ f: U \to \mathbb{R}^n $ stetig differenzierbar. \\
+Es gelte
+\begin{enumerate}
+	\item $Df(x)$ ist invertierbar für alle $x \in U$
+	\item $f(U) \subseteq \mathbb{R}^n$ ist offen
+	\item $f:U \to f(U)$ bijektiv
+	\item Die Umkehrfunktion $g:f(U) \to U$ ist stetig
+\end{enumerate}
+Dann ist $g$ stetig differenzierbar (also ist $f$  Differomorphismus)
+\minisec{Beweis:} $x \in U$,$y=f(x)$. Sei $A: \,-x+U \to \Mat_{n,n}(\mathbb{R})$ stetig bei $0$ und $f(x+h)=f(x)+A(h)h$ für alle $h$ (Dies existert, da $f$ differenzierbar bei $x$). \\
+Sei $k$ mit $y+k \in f(U)$. Setze $h:= -x+g(y+k)$ ($\Leftrightarrow x+h=g(y+k)$) und $h \neq g(y+k)-g(y)$. \\
+Da $A(0)=Df(x)$ invertierbar und $h \mapsto A(h)$ stetig bei $0$ ist und $\GL_n(\mathbb{R}) \subseteq \Mat_{n,n}(\mathbb{R})$ offen, ist $A(h)$ invertierbar für kleine $h$. \\
+Setze nun $B(h):=(A(h))^{-1}$. Dann ist $B$ stetig bei $0$ (,weil $A \mapsto A^{-1}$ stetig ist)
+\begin{align*}
+	\Rightarrow g(y+k)&= g(y)+h \\
+	&= g(y)+ \underset{\ind_n}{\underbrace{B(h)A(h)}}h \\
+	&= g(y) + B(h)(\underset{=k}{\underbrace{f(x+h)-f(x)}}) \\
+	&= g(y) + B(h)k \\
+	&= g(y) + \underset{\substack{B(0) \\ \text{($B$ stetig bei $0$)}}}{\underbrace{B(\underset{\stackrel{k \to 0}{\longrightarrow}-x+g(y)}{\underbrace{-x+g(y+k)}})}}k
+\end{align*} 
+\bewende
+\minisec{Bemerkung:}
+\begin{enumerate}
+	\item Wir werden zeigen, dass $1 \& 2$ $\Rightarrow$ $3 \& 4$
+	\item Man kann zeigen, dass in der Situation von $(1.4)$ gilt: \\
+	Ist $f$ sogar eine $C^k$-Abbildung. $(k \geq 2)$, dann ist auch $g$ eine $C^k$-Abbildung. (ohne Beweis)
+\end{enumerate}
+\subsubsection{Beispiel} % (fold)
+\label{ssub:beispiel}
+
+% subsubsection beispiel (end)
+Sei $f: \mathbb{R}^2 \to \mathbb{R}^2$ mit
+\[
+	f \begin{pmatrix}
+x \\ y		
+	\end{pmatrix} = e^x \begin{pmatrix}
+		\cos(y) \\ \sin(y)
+	\end{pmatrix}
+\] Dies entspricht der komplexen Exponentialfunktion
+\[
+	x,y \in \mathbb{R} \qquad e^{x+iy}= e^x(\cos(y)+i \sin(y))
+\]
+$f$ ist differenzierbar mit
+	\[
+		Df \begin{pmatrix}
+			x \\ y
+		\end{pmatrix} = e^x \begin{pmatrix}
+			\cos(y) & -\sin(y) \\ \sin(y) & \cos(y)
+		\end{pmatrix}
+	\]
+	\[
+		\det Df \begin{pmatrix}
+			x \\ y
+		\end{pmatrix} = e^{2x} \neq 0
+	\]
+	\[
+		f( \mathbb{R}^2) = \mathbb{R}^2 \setminus \{0\}
+	\]
+	\[
+		\norm{f \begin{pmatrix}
+			x \\ y
+		\end{pmatrix}}_2 = e^x ,\qquad f \begin{pmatrix}
+			x \\ y + 2 \pi
+		\end{pmatrix} = f \begin{pmatrix}
+			x \\ y
+		\end{pmatrix}
+	\]
+$f$ ist nicht injektiv
+Sei \[
+	U = \set[ \begin{pmatrix}
+		x \\ y
+	\end{pmatrix} \in \mathbb{R}^2]{0 < y < 2 \pi}
+\]
+\[
+	f: U \to f(U) \text{ ist bijektiv}
+\]
+\[
+	f(U) = \mathbb{R}^2 \setminus \set[\begin{pmatrix}
+		x \\ 0 
+	\end{pmatrix}]{x > 0}
+\] $f$ ist nicht injektiv, aber es gilt jeder Punkt in $\mathbb{R}^2$ hat offene Umgebung $V \subseteq \mathbb{R}^2$ 
+\[
+	f : V \to f(V) \text{ ist bijektiv}
+\]
+
+\subsubsection{Der Umkehrsatz} % (fold)
+\label{ssub:der_umkehrsatz}
+Sei $ U \subseteq \mathbb{R}^n$ offen , $ f: U \to \mathbb{R}^n $ eine $C^1$-Abbildung. \\
+\underline{Annahme}: Für alle $x \in U$ ist $Df(x) \in \Mat_{n,n}(\mathbb{R})$ invertierbar. \\
+Dann gilt:
+\begin{enumerate}[(i)]
+	\item Für alle $V \subseteq U$ offen ist $f(V) \subseteq \mathbb{R}^n$ offen.
+	\item Zu jedem $x \in U$ existiert eine offene Umgebung $V \subseteq U$ von $x$, so dass
+	\[
+		f  \Big|_{V}^{}: V \to f(V)
+	\]
+	bijektiv ist, und die Umkehrabbildung $g:f(V) \to V$ ist stetig differenzierbar.
+\end{enumerate}
+\subsubsection{Definition} % (fold)
+\label{ssub:definition}
+Eine Abbildung $f$, welche die Voraussetzungen von \ref{ssub:der_umkehrsatz} erfüllt, heißt \Index{lokaler Diffeomorphismus}
+
+\subsubsection{Korollar} % (fold)
+\label{ssub:korollar}
+$ U \subseteq \mathbb{R}^n$ offen , $ f: U \to \mathbb{R} $ in $C^1$, $Df(x)$ invertierbar für alle $x \in U$, $f$ injektiv.
+Dann gilt: \\
+$f(U)$ ist offen in $\mathbb{R}^n$ und $f$ ist ein Diffeomorphismus. \\
+(Verschärfung von \ref{satz14})
+\minisec{Beweis:} $f(U)$ ist offen (folgt aus \ref{ssub:der_umkehrsatz}) \\
+Nach \ref{ssub:der_umkehrsatz} bleibt zu zeigen, dass die Umkehrabbildung $g: f(U) \to U$ stetig ist. Zunächst eine Bemerkung:
+\minisec{Allgemeine Bemerkung:} $X$ metrischer Raum, $U \subseteq X$ offen, $V \subseteq U$. Dann gilt: 
+\[
+	V \text{ ist offen in $X$} \,\, \Leftrightarrow \,\, V \text{ ist offen in $U$}
+\] \\
+\\
+\underline{zu Zeigen}: $g$ stetig
+$g:f(U) \to U$. Sei $V \subseteq U$ offen. $g^{-1}(V)=f(V)$, weil $g=f^{-1}$
+\begin{align*}
+	& \stackrel{\text{(Bem)}}{\Rightarrow } V \subseteq \mathbb{R}^n \text{ offen in } \mathbb{R}^n \\
+	& \stackrel{\ref{ssub:der_umkehrsatz}}{\Rightarrow} f(V) \text{ offen in } \mathbb{R}^n \\
+	& \stackrel{\text{(Bem)}}{\Rightarrow }f(V)=g^{-1}(V) \text{ offen in }f(U) \\
+\end{align*}
+Damit folgt, dass das Urbild jeder offenen Teilmenge in $U$ unter $g$ ist offen in $f(U)$ und damit ist $g:f(U) \to U$ stetig
+\bewende
+\subsection{Beweis des Umkehrsatzes} % (fold)
+\label{sub:beweis_des_umkehrsatzes}
+\minisec{Vorbereitungen:}
+\subsubsection{Schrankensatz} % (fold)
+\label{ssub:schrankensatz}
+Sei $ U \subseteq \mathbb{R}^n$ offen und \Index{Konvex},(d.h $x,y \in U$,$t \in [0,1]$, dann ist $(1-t)x+ty \in U$). \\
+Sei $ f: U \to \mathbb{R}^m $ eine $C^1$-Abbildung, und es gebe $L \geq 0$, so dass gilt:
+\[
+	\norm{Df(x)}\leq L \qquad \text{für alle }x \in U
+\] 
+$\Rightarrow$ $f$ ist $L$-Lipschitzstetig, d.h $\norm{f(x)-f(y)}\leq L \norm{x-y}, \,\, \forall\, x,y \in U$
+\minisec{Beweis:} Seien $x,y \in U$. Nach dem Hauptsatz der Differentialrechnung und Integralrechnung gilt dann
+\[
+	f(y) = f(x)+ \int_{0}^{1} Df(\underset{=(1-t)x+ty \in U}{\underbrace{x+t(y-x)}})(y-x) \,\mathrm{d}t
+\]
+Dann folgt
+\begin{align*}
+	\norm{f(y)-f(x)}&= \norm{\int_{0}^{1}Df(x+t(y-x))(y-x) \,\mathrm{d}t} \\
+	&\leq \int_{0}^{1}\norm{Df(x+t(y-x))(y-x)} \,\mathrm{d}dt \\
+	&\leq \int_{0}^{1} \underset{\leq L}{\underbrace{\norm{Df(x+t(y-x))}}}\norm{y-x} \,\mathrm{d}t \\
+	& \leq L \norm{y-x}
+\end{align*} \bewende
+% subsubsection schrankensatz (end)
+\subsubsection{Banach'scher Fixpunktsatz} % (fold)
+\label{ssub:banach_scher_fixpunktsatz}
+Sei $X \neq \emptyset$ ein vollständiger metrischer Raum und $f: X \to X$ eine Abbildung. Sei $f$ $q$-Lipschitzstetig mit $q<1$ (,d.h \,$d(f(x),f(y))\leq q d(x,y),\,q <1$). \\
+Dann besitzt $f$ genau einen \Index{Fixpunkt} $x \in X$, dh $f(x)=x$ 
+\minisec{Beweis:} \underline{Eindeutigkeit}: Seien $x,y \in X$ mit $f(x)=x$ und $f(y)=y$. Dann gilt
+\[
+	d(x,y)=d(f(x),f(y))\leq q d(x,y)
+\]
+Also gilt \[
+	\underset{>0}{\underbrace{(1-q)}} \underset{\geq 0}{\underbrace{d(x,y)}} \leq 0
+\]
+Dann muss aber $d(x,y)=0$ gelten und damit $x=y$, weil $d(.,.)$ eine Metrik ist. \\
+\underline{Existenz}: Setze $f^n:X \to X$ mit $n \in \mathbb{N}_0$ und
+\[
+	f^0 := \id \,,\, f^1 := f \,,\,f^n:= f \circ f^{n-1}
+\]
+Sei $x_0 \in X$ beliebig, $x_n := f^n(x)$.\\
+\underline{Behauptung}: $(x_n)_n$ konvergiert gegen ein $x_{\infty}$ mit $f(x_{\infty})=x_{\infty}$. \\
+Wir zeigen, dass $(x_n)_n$ eine Cauchyfolge ist: \\
+\begin{align*}
+	d(x_n,x_{n+1}) &= d(f(x_{n-1})-f(x_n)) \\
+	&\leq q d(x_{n-1},x_n) \\
+	&\leq \dots \leq q^nd(x_0,x_1) 
+\end{align*} 
+Dann folgt mit der Dreiecksungleichung
+\begin{align*}
+	d(x_n,x_{n+m}) &\leq d(x_n,x_{n+1})+d(x_{n+1},x_{n+2})+ \dots + d(x_{n-1+m},x_{n+m}) \\
+	&= \sum_{k=0}^{m-1}d(x_{n+k},x_{n+k+1}) \\
+	& \leq \sum_{k=0}^{m-1}q^kd(x_n,x_{n+1}) \\
+	&\leq \sum_{k=0}^{m-1}q^kq^nd(x_0,x_1) \\
+	&\leq q^n d(x_0,x_1)\sum_{k=0}^{\infty}q^k \\
+	&= q^n d(x_0,x_1) \frac{1}{1-q} \stackrel{n \to \infty}{\longrightarrow} 0 
+\end{align*}
+Damit ist $(x_n)_n$ eine Cauchy-Folge. Weil $X$ vollständig ist, konvergiert dann $x_n \to x_{\infty} \in X$. \\
+Nun gilt: \begin{align*}
+	d(x_{\infty},f(x_{\infty})) &\stackrel{\hphantom{f \text{ stetig}}}{=} d (\lim_{n \to \infty}x_n, f( \lim_{n \to \infty}x_n)) \\
+	&\stackrel{f \text{ stetig}}{=} d(\lim_{n \to \infty}x_n, \lim_{n \to \infty}f(x_n)) \\
+	&\stackrel{d \text{ stetig}}{=} \lim_{n \to \infty}\underset{\leq q^n d(x_0,x_1)}{\underbrace{d(x_n,f(x_n))}}=0
+\end{align*}
+Darauf folgt dann insgesamt $f(x_{\infty})=x_{\infty}$ \bewende
+% subsubsection banach_scher_fixpunktsatz (end)
+\subsubsection{Lemma} % (fold)
+\label{ssub:lemma}
+Wenn $T \in \Mat_{n,n}(\mathbb{R})$ mit $\norm{T}\leq 1$ Dann ist $1-T$ ist invertierbar.
+\minisec{Beweis:} 
+Wir zeigen: $\forall\, y \in \mathbb{R}^n \exists\,! \,x \in \mathbb{R}^n$, so dass $(1-T)x=y \Leftrightarrow  x=y+Tx$ \\
+\begin{align*}
+	F_y: \mathbb{R}^n &\to \mathbb{R}^n \\
+	x &\mapsto y+Tx 
+\end{align*}
+Dann gilt
+\[
+	\norm{F_y(x_0)-F_y(x_1)} = \norm{T(x_0-x_1)} \leq \norm{T} \norm{x_0-x_1}
+\]
+Dann folgt mit dem Banachschen Fixpunktsatz genau einen Fixpunkt. \bewende
+\subsubsection{Beweis des Umkehrsatzes, Teil $1$ (Spezialfall und Hauptarbeit)} % (fold)
+\label{ssub:beweis_des_umkehrsatzes_teil_1_spezialfall_und_hauptarbeit}
+Sei $ U \subseteq \mathbb{R}^n$ offen, $0 \in U$. Sei $f: U \to \mathbb{R}^n$ eine $C^1$-Funktion. $Df(x)$ invertierbar für alle $x \in U$ und $f(0)=0$, $Df(0)=\ind_n$
+$\Rightarrow $ $\exists\, V \subseteq U$ offen, $0 \in V$ und $f(V) \subseteq \mathbb{R}^n$ offen, $f:V \to f(V)$ bijektiv und die Umkehrabbildung $g: f(V) \to V$ ist stetig differenzierbar
+\minisec{Beweis:} Wir müssen die Gleichung $f(x)=y$ für kleine $y$ lösen.
+$\Leftrightarrow$ $x = y + x - f(x)$ \\
+Setze $h_y(x):= y + x - f(x)$ \\
+Fixpunkte von $h_y(x)$ sind Lösungen von $f(x)=y$. Suche einen abgeschlossenen Ball $\overline{B}_r(0) \subseteq U$, sodass für genügend kleine $y$
+\begin{enumerate}
+	\item $h_y: \overline{B}_r(0) \to \overline{B}_r(0)$
+	\item $h_y$ ist $\frac{1}{2}$-Lipschitz-stetig.
+\end{enumerate}
+Wähle $r>0$ so, dass $\overline{B}_r(0) \subseteq U$ und für alle $x$ mit $\norm{x}\leq r$ gelte $\norm{\ind_n - Df(x)} \leq \frac{1}{2}$
+(das geht, weil $Df(0)=\ind_n$ und $x \mapsto Df(x)$ stetig) \\
+Sei nun $\norm{y} \leq \frac{1}{2}r$ und $\norm{x} \leq r$. Dann gilt
+\begin{align*}
+	\norm{h_y(x)} = \norm{y + x - f(x)} &\leq \norm{y} + \norm{x-f(x)} \\
+	&\leq \norm{y}+ \norm{(x-f(x))-(0-f(0))} \\
+	&\stackrel{*}{\leq} \norm{y} + \frac{1}{2} \norm{x-0} \\
+	&= \norm{y}+ \frac{1}{2} \norm{x} \\
+	\leq r,
+\end{align*}
+wobei sich $(*)$ mit dem Schrankensatz ($D(x-f(x))\leq \frac{1}{2}$, $\norm{x}\leq r$) \\
+$\Rightarrow$ für $\norm{y} \leq \frac{1}{2}r$ gilt $h_y(\overline{B}_r(0))\subseteq \overline{B}_r(0)$. \\
+Es gilt sogar für $\norm{y}\leq \frac{r}{2}$, dass $h_y(\overline{B}_r(0)) \subseteq B_r(0)$ (offener Ball). \\
+Sei nun $\norm{y}\leq \frac{r}{2}$, $x,z \in \overline{B}_r(0)$
+\begin{align*}
+	\norm{h_y(x)-h_y(z)} &= \norm{y+x-f(x)-y-z+f(z)} \\
+	&= \norm{(x-f(x))-(z-f(z))} \\
+	&\leq \frac{1}{2}\norm{x-z}
+\end{align*}   
+$\Rightarrow$ Für $\norm{y}\leq \frac{r}{2}$ ist $h_y: \overline{B}_r(0) \to \overline{B}_r(0)$ Lipschitzstetig mit $L=\frac{1}{2}$. \\
+Aus dem Banachschen Fixpunktsatz folgt:
+\[
+	\text{Es gibt genau ein } x \in \underset{\text{vollständig}}{\underbrace{\overline{B}_r(0)}} \text{ mit } h_y(x)=x \qquad \Leftrightarrow \qquad f(x)=y \qquad (\norm{y} \leq \frac{r}{2})
+\]
+Wir haben jetzt gezeigt:
+\[
+	\text{Falls }\norm{y}\leq \frac{r}{2}\text{, so gibt es genau ein }x \in B_r(0) \text{ mit } f(x)=y
+\]
+Setze $V:= \set[x \in U]{\norm{x}<r,\norm{f(x)}<\frac{r}{2}} \subseteq U$ offen, $0 \in V$. \\
+(und $V \stackrel{f}{\longrightarrow} B_{\frac{1}{2}}(0)$ ist bijektiv). 
+\[
+	h_0(x)+f(x)=x-f(x)+f(x) = x
+\]
+Sei nun $x,z \in B_r(0)$ 
+\begin{align*}
+	\norm{x-z} &= \norm{h_0(x)+f(x)- h_0(z)-f(z)} \\
+	&\leq \norm{h_0(x)-h_0(z)}+ \norm{f(x)-f(z)} \\
+	&\leq \frac{1}{2} \norm{x-z} + \norm{f(x)-f(z)}
+\end{align*}
+\[
+\Rightarrow \norm{x-z} \leq 2 \norm{f(x)-f(z)}.	
+\]
+Daraus folgt nun:
+\[
+	u,v \in B_{\frac{1}{2}}(0) \qquad g(u),g(v) \in V 
+\]
+und
+\[
+	\norm{g(u)-g(v)} \leq 2 \norm{f(g(u))-f(g(v))} = 2 \norm{u-v}
+\]
+$\Rightarrow$ $g: B_{\frac{1}{2}} \to V$ ist $2$-Lipschitz stetig, also \underline{stetig}! \\
+Dann ist nach \ref{satz14} $g$ differenzierbar und
+\[
+	Dg(u)= \underset{\text{stetig}}{\underbrace{( \underset{\text{stetig}}{\underbrace{ Df( \underset{\text{stetig}}{\underbrace{g(u)}} )}} )^{-1}}}
+\]
+Damit ist $g$ in $C^1$. \bewende
+% subsubsection beweis_des_umkehrsatzes_teil_1_spezialfall_und_hauptarbeit (end)
+\subsubsection{Beweis des Umkehrsatzes, Teil $2$} % (fold)
+\label{ssub:beweis_des_umkehrsatzes_teil_2}
+$U,f$ wie im Umkehrsatz, $x_0 \in U$. Betrachte Komposition
+\[
+	f:= -x_0+U \, \xrightarrow{a_1}\, U \, \xrightarrow{f} \, \mathbb{R}^n \, \xrightarrow{a_2} \, \mathbb{R}^n \, \xrightarrow{a_3} \, \mathbb{R}^n
+\]
+\begin{align*}
+	\left. \begin{array}{rcl}
+		a_1(x) & = & x+x_0 \\
+		a_2(y) & = & y - f(x_0) \\
+		a_3(y) & = & Df(x_0)^{-1}y
+	\end{array} \right\} \text{Diffeomorphismen}
+\end{align*}
+\begin{align*}
+	\tilde f(0)=0, \qquad D \tilde f(0) &= D_{a_3}(0)D_{a_2}(f(x_0))Df(x_0)D_{a_1}(0) \\
+	&= (Df(x_0))^{-1} \ind_n Df(x_0) \ind_n  \\
+	&= \ind_n
+\end{align*}
+$\Rightarrow$ aus der Behauptung folgt: $\exists\,V \subseteq -x_0+U$, sodass $ \tilde f: V \to \tilde f(V)$ ein Diffeomorphismus ist. \\
+\[
+	\Rightarrow a_1(V) \subseteq U \text{ offen}
+\]
+\[
+	a_1(V) \xrightarrow{a_1^{-1}} V \xrightarrow{\tilde f} \tilde f(V) \xrightarrow{(a_3 \circ a_2)^{-1}} (a_3 \circ a_2)^{-1}( \tilde f(V)) \subseteq \mathbb{R}^n \text{ offen}
+\]
+$\Rightarrow$ Teil $2$ des Umkehrsatzes. \\
+Aus Teil $2$ folgt: Ist $x_0 \subseteq U$, so ist $f(x_0) \in f(U) \subseteq \mathbb{R}^n$ ein innerer Punkt von $f(U)$. \\
+$\Rightarrow$ jeder Punkt von $f(U)$ ist ein innerer Punkt von $f(U)$. \\
+$\Rightarrow$ $f(U) \subseteq \mathbb{R}^n$ offen. \\
+$V \subseteq U$ offen $\Rightarrow$ $V \subseteq \mathbb{R}^n$ offen $\Rightarrow$ $f  \big|_{V}^{}(V) \subseteq \mathbb{R}^n$ offen, d.h $f(V) \subseteq \mathbb{R}^n$ offen. \bewende
+\hphantom{k}
+\minisec{Satz über implizite Funktionen:}
+\hphantom{k}
+\begin{description}
+	\item[Situation:] $f: \mathbb{R}^n \times \mathbb{R}^k \to \mathbb{R}^k$ 
+	\item[Frage:] Kann man die Gleichung $f(x,y)=z_0$ nach $x$ auflösen, bzw. gibt es eine Funktion $h:\mathbb{R}^n \to \mathbb{R}^k$ mit $f(x,h(x))=z_0$?
+	\item[Notation:] \begin{itemize}
+		\item $ U \subseteq \mathbb{R}^n$, $V \subseteq \mathbb{R}^k$ offen. 
+		\item $ f: U \times V \to \mathbb{R}^m $ stetig differenzierbar.
+		\item Schreibe 
+		\begin{align*}
+			D_1f(x,y)= \begin{pmatrix}
+				\diff{f_1}{x_1}& \dots & \diff{f_1}{x_n} \\
+				\vdots & & \vdots \\
+				\diff{f_m}{x_1} & \dots & \diff{f_m}{x_n} 
+			\end{pmatrix} , 
+			D_2f(x,y)= \begin{pmatrix}
+				\diff{f_1}{y_1}& \dots & \diff{f_1}{y_n} \\
+				\vdots & & \vdots \\
+				\diff{f_m}{y_1} & \dots & \diff{f_m}{y_n} 
+			\end{pmatrix}
+		\end{align*}  
+		\end{itemize}
+\end{description}
+\subsubsection{Satz über implizite Funktionen} % (fold)
+\label{implfunkt}
+ Seien $U \subseteq R^n$, $V \subseteq R^k$ offen, $f:U \times V \to \mathbb{R}^k$ eine $C^1$-Funktion, $(x_0,y_0) \in U \times V$ und $z_0 = f(x_0,y_0)$. \\
+ \underline{Annahme}: $D_2f(x_0,y_0) \in \Mat_{k,k}(\mathbb{R})$ sei invertierbar. \\
+ Dann gibt es $x_0 \in U_0 \subseteq U$ offen, $y_0 \in V_0 \subseteq V$ offen und eine $C^1$-Funktion $h: U_0 \to V_0$, sodass gilt:
+ \begin{itemize}
+ 	\item $h(x_0)=y_0$
+	\item $f(x,h(x))=z_0 \qquad \forall\, x \in U_0$.
+ \end{itemize}
+ Wenn $f(x,y)=z_0$ für $x \in U_0$, $y \in V_0$ gilt, dann ist $y=h(x)$.
+\minisec{Bemerkung:}Die Gleichung $f(x,y)=z_0$ lässt sich lokal nach $x$ auflösen. \\
+\\
+Warum die Voraussetzung, dass $D_2f$ invertierbar ist? \\
+Differenzieren der Identität $f(x,h(x))=z_0$ nach $x$ ergibt
+\[
+	\underset{\in \Mat_{k,n}(\mathbb{R})}{\underbrace{D_1f(x,h(x))}}+ \underset{\in \Mat_{k,k}(\mathbb{R})}{\underbrace{D_2f(x,h(x))}}\underset{\in \Mat_{k,n}(\mathbb{R})}{\underbrace{Dh(x)}} = 0 
+\]
+\[
+	\Leftrightarrow Dh(x) = - (D_2f(x,h(x)))^{-1}D_1f(x,h(x))
+\]
+Insbesondere 
+\[
+	Dh(x_0)= -(D_2f(x_0,y_0))^{-1} D_1f(x_0,y_0)
+\]
+Wenn die lineare Gleichung
+\[
+	D_1f(x_0,y_0)+D_2f(x_0,y_0)Dh(x_0)=0
+\]
+nach $Dh(x_0)$ aufgelöst werden kann, dann auch lokal $f(x,h(x))=z_0$
+\minisec{Beweis von \ref{implfunkt}:} 
+Da $D_2f$ stetig, $D_2f(x_0,y_0)$ invertierbar ist $D_2f(x,y)$ invertierbar falls $(x,y)$ nahe bei $(x_0,y_0)$. O.B.d.A gilt $D_2f(x,y)$ invertierbar, für alle $x \in U$, $y \in V$. (Verkleinerung von $U$ und $V$). \\
+Definiere Hilfsfunktion $g: U \times V \to \mathbb{R}^n \times \mathbb{R}^k$ mit $g(x,y)=(x,f(x,y))$ und wobei
+\[
+	Dg(x,y)= \begin{pmatrix}
+	 \ind_n & 0  \\
+	 D_1f(x,y) & D_2f(x,y) \\
+	 	\end{pmatrix}
+\] 
+\[
+	\det Dg(x,y) = \det D_2f(x,y) \neq 0
+\]
+\[
+	\Rightarrow Dg(x,y) \text{ ist invertierbar}
+\]
+Dann folgt mit dem Umkehrsatz:
+\[
+	\exists\, \text{offene Umgebung }x_0 \in U_1 \subseteq U, y_0 \in V_1 \subseteq V \text{, sodass} g: U_1 \times V_1 \to g(U_1 \times V_1) \text{ Diffeomorphismus}
+\]
+Wähle $U_0$ mit $x_0 \in U_0 \subseteq U_1$ so, dass $U_0 \times \set{z_0} \subseteq g(U_1 \times V_1)$ (geht, da $g(x_0,y_0)=(x_0,z_0)$).
+Sei \begin{align*}
+	\pr_{\mathbb{R}^k}: \mathbb{R}^k \times \mathbb{R}^k &\to \mathbb{R}^k \\
+	(x,y) \mapsto y \\
+	\text{und } \pr_{\mathbb{R}^n}: \mathbb{R}^n \times \mathbb{R}^k &\to \mathbb{R}^n \\
+	(x,y) \mapsto x
+\end{align*}  
+Setze nun $h:U_0 \to V_1$ mit $h(x):= \pr_{\mathbb{R}^k}(g^{-1}(x,z_0)) \in V_1$. Dann ist $h$ in $C^1$, da $g^{-1}$ in $C^k$ ist und $\pr_{\mathbb{R}^k}$ in $C^{\infty}$. \\
+\[
+	h(x_0)= \pr_{\mathbb{R}^k}(g^{-1}(x_0,z_0)) = \pr_{\mathbb{R}^k}(x_0,y_0)=y_0
+\]
+\begin{align*}
+	f(x,h(x)) &= f(x, \pr_{\mathbb{R}^k}(g^{-1}(x,z_0))) \\
+	&= f(\pr_{\mathbb{R}^n}(g^{-1}(x,z_0)),\pr_{\mathbb{R}^k}(g^{-1}(x,z_0))) \\
+	&= f(g^{-1}(x,z_0)) \\
+	&= (\pr_{\mathbb{R}^k} \circ g)(g^{-1}(x,z_0)) \\
+	&= \pr_{\mathbb{R}^k}(x,z_0) \\
+	&= z_0
+\end{align*}
+\underline{Eindeutigkeitsaussage}:
+Setze $V_0=V_1$. \\
+Falls $x \in U_0$, $y \in V_0$, $f(x,y)=z_0$
+\[
+	\Rightarrow g(x,y)= (x,z_0) \in U_0 \times \set{z_0} \subseteq g(U_1 \times V_0)
+\]
+\[
+	\Rightarrow (x,y)= g^{-1}(x,z_0)
+\]
+\[
+	\Rightarrow y = \pr_{\mathbb{R}^k}(g^{-1}(x,z_0))=h(x)
+\] \bewende
+\subsubsection{Beispiel} % (fold)
+\label{ssub:beispiel}
+\minisec{Nullstellen von Polynomen:}
+$f: \mathbb{R}^k \times \mathbb{R} \to \mathbb{R}$ mit $f(x,y):= y^n + \sum_{l=0}^{n-1}x_{n-1}y^l$ für festes $x$ ist dann $f_x(y)=f(x,y)$ ein Polynom. \\
+Sei $(x_0,y_0)$ so, dass $f(x_0,y_0)=0$ ($f_{x_0}(y_0)=0$) \\
+Wenn $h$ wie in \ref{implfunkt}, so ist $h(x)$ eine Nullstelle von $f_x$.
+\[
+	D_2f(x,y)=ny^{n-1}+ \sum_{l=1}^{n-1}x_{n-l}ly^{l-1}=f'_x(y)
+\]
+$\Rightarrow$ Falls $f_{x_0}(y_0)=0$ und $f'_{x_0}(y_0) \neq 0$, so gibt es eine Funktion $h:U \to \mathbb{R}$
+\begin{align*}
+	f(x,h(x))=0 = f_x(h(x)), \qquad h(x_0)=y_0
+\end{align*}
+$\Rightarrow$ Falls $f'_{x_0}(y_0)\neq 0$ ($*$), so hängen die Nullstellen von $f_x$ differenzierbar von x ab. \\
+\[
+	(*) \Leftrightarrow y_0 \text{ einfacher Nullstelle von }f_{x_0}
+\]
+\minisec{$n=2$:} \[
+	f(x_1,x_2,y)=y^2 + x_1y + x_2
+\]
+\[
+	y = - \frac{x_1}{2} \pm \sqrt{\frac{x_1^2}{4}-x_2} \text{ ist differenzierbar, falls } \frac{x_1^2}{4}-x_2 > 0
+\]
+% subsubsection beispiel (end)
+\hphantom{p}
+\minisec{Geometrische Version des Satzes über implizite Funktionen}
+\hphantom{p}
+\subsubsection{Definition} % (fold)
+\label{ssub:definition}
+$ U \subseteq \mathbb{R}^m$ offen, $f: U \to \mathbb{R}^k$ in $C^1$. \\
+\begin{itemize}
+	\item $x \in U$ heißt \Index{regulärer Punkt}, von f, falls $Df(x) \in \Mat_{k,m}(\mathbb{R})$ den Rang $k$ hat (d.h $Df(x)$ stellt eine surjektive lineare Abbildung von $\mathbb{R}^m \to \mathbb{R}^k$ dar.)
+	\item $x \in U$ heißt \Index{singulärer} (oder \Index{kritischer Punkt}) von $f$, falls $x$ kein regulärer Punkt von $f$ ist. (d.h Rang $Df(x) < k$)
+	\item $y \in \mathbb{R}^k$ heißt \Index{regulärer Wert} von $f$, falls jedes $x \in U$ mit $f(x)=y$ ein regulärer Punkt ist.
+\end{itemize} 
+\minisec{Bemerkung:}
+\begin{enumerate}
+	\item Falls $k=1$, so ist $x \in U$ ein kritischer Punkt von $f$ genau dann, wenn $Df(x)=0 \in \Mat_{1,m}(\mathbb{R})$. \\
+	(Setze Definition von 'kritischer Punkt' wie zuvor)
+	\item Falls $f^{-1}(y)=\emptyset$ ($\Leftrightarrow y \not\in f(U)$), so ist $y$ ein regulärer Wert von $f$.
+	\item Falls $k > m$, so ist $y \in \mathbb{R}^k$ ein regulärer Wert von $f$ genau dann, wenn $y \not \in f(U)$.
+	\item Falls $k=m$, so ist $x \in U$ ein regulärer Punkt von $f$ genau dann, wenn $Df(x) \in \Mat_{m,m}(\mathbb{R})$ und $T$ invertierbar ist.
+\end{enumerate}
+% subsubsection definition (end)
+\subsubsection{Satz} % (fold)
+\label{satz210}
+Sei $ U \subseteq \mathbb{R}^m$ offen, $ f: U \to \mathbb{R}^k $ eine $C^1$-Abbildung und $y_0 \in \mathbb{R}^k$ sei ein regulärer Wert von $f$.
+\[
+	M:=f^{-1}(y) \subseteq U
+\]  
+Dann existiert zu jedem $x_0 \in M$ eine offene Umgebung $x_0 \in U_0 \in U$ und ein Diffeomorphismus $h: U_0 \to h(U_0)\in \mathbb{R}^m$ offen, sodass 
+\[
+	h(M \cap U_0)= \set{0} \times \mathbb{R}^{m-k} \subseteq \mathbb{R}^m
+\]
+\minisec{Beispiel:}
+\begin{align*}
+	f: \mathbb{R}^n &\to \mathbb{R} \\
+	x &\mapsto \skal{x}{x} = \norm{x}_2^2 
+\end{align*}
+Dann gilt
+\[
+	Df(x)v = 2 \skal{x}{v}
+\]
+$\Rightarrow$ Jedes $x \in \mathbb{R}^n$, $x \neq 0$ ist regulärer Punkt von $f$. \\
+$\Rightarrow $ Jedes $y \in \mathbb{R}$, $y \neq 0$ ist regulärer Wert.
+\[
+	f^{-1}(1)= \set[x \in \mathbb{R}^n]{\norm{y}_2=1} = S^{n-1}
+\]
+\minisec{Beweis von \ref{satz210}:}
+Sei $x_0 \in M$ (d.h $f(x_0)=y_0$). $Df(x_0): \mathbb{R}^m \to \mathbb{R}^k$ surjektiv. \\
+Wähle Basis $(v_1, \dots, v_m)$ von $\mathbb{R}^m$ so, dass $Df(x_0)v_i=e_i$ für $i<k$ und $Df(x_0)v_j=0$ für $j>k$. \\
+Erklärung : $\dim(\ker Df(x_0))=m-k$ (Dimensionsformel) \\
+\begin{itemize}
+	\item Sei $(v_{k+1}, \dots, v_m)$ Basis von $\ker Df(x_0)$
+	\item Weil $Df(x_0)$ surjektiv ist, gibt es $v_1, \dots, v_k$ mit $Df(x_0)v_i=e_i$ für $i=1,\dots,k$
+	\item Dann ist $(v_1, \dots, v_m)$ eine Basis von $\mathbb{R}^m$ (weil linear unabhängig)
+\end{itemize}
+Sei $p: \mathbb{R}^m \to \set{0} \times \mathbb{R}^{m-k} \subseteq \mathbb{R}^m$ mit $p(x)=\spn\{ e_{k+1}, \dots, e_m \}$ die lineare Abbildung. \\
+Dann gilt
+\[
+	p(v_i)= \begin{cases}
+		0, &\text{ falls }i \leq k\\
+		e_i, &\text{ falls }i >k
+	\end{cases}
+\]
+Setze nun $h: U \to \mathbb{R}^k \times \mathbb{R}^{m-k}$ mit $h(x):=(f(x)-y_0,p(x))$. Dann ist $h$ in $C^1$. \\
+\underline{Behauptung}: $Dh(x_0) \in \Mat_{m,m}(\mathbb{R})$ ist invertierbar. \\
+Dies gilt denn 
+\[
+	Dh(x_0)v_i= (Df(x_0)v_i,p(v_i)) = \begin{cases}
+		(e_i,0), &\text{ falls } i \leq k\\
+		(0,e_i), &\text{ falls } i > k\\
+	\end{cases}
+\]
+Also ist $Dh(x_0)$ invertierbar. \\
+Weil $x \mapsto Dh(x)$ stetig ist, gibt es Umgebung $x_0 \in U_1 \subseteq U$, sodass $Dh(x)$ invertierbar ist $\forall\, x \in U_1$.
+Mit dem Umkehrsatz folgt dann
+\[
+	\exists\,x_0 \in U_0 \off U_1 \subseteq U: \qquad h:U_0 \to h(U_0) \text{ ist Diffeomorphismus} 
+\]
+Es gilt 
+\[
+	h(U_0 \cap M)= h(U_0) \cap \set{0} \times \mathbb{R}^{m-k}
+\]
+\[
+	x \in U_0 \cap M \qquad \Rightarrow \qquad f(x)=y_0 \qquad \Rightarrow \qquad h(x)=(f(x)-y_0,p(x))=(0,p(x)) \in \set{0} \times \mathbb{R}^{m-k}
+\]
+\[
+	h(x) \in \set{0} \times \mathbb{R}^{m-k} \qquad \Rightarrow \qquad h(x)-y_0=0 \qquad \Rightarrow \qquad x \in U_0 \cap M
+\] \bewende
+\hphantom{k} \\
+Man kann zeigen:
+\[
+	\text{Ist } A \subseteq \mathbb{R}^n \text{ abgeschlossen, so gibt es eine $C^{\infty}$-Funktion } f:\mathbb{R}^n \to \mathbb{R} \text{ mit } f^{-1}(0)=A
+\]
+\subsubsection{Definition} % (fold)
+\label{ssub:definition}
+Eine Teilmenge $M \subseteq \mathbb{R}^{n+k}$ heißt \Index{$n$-dimensionale Untermannigfaltigkeit} von $\mathbb{R}^{n+1}$, falls gilt: \\
+zu jedem $x_0 \in M$ existiert eine offene Umgebung $x_0 \in U \subseteq R^{n+k}$ und ein Diffeomorphismus $h U \to h(U) \subseteq \mathbb{R}{n+k}$ mit $h(U \cap M)= \set{0} \times \mathbb{R}^n \subseteq \mathbb{R}^{n+k}$. \\
+Ein solches Paar $(U,h)$ heißt \Index{Karte} von M. \\
+Eine Familie $(U_i,h_i)_{i \in I}$ von Karten heißt \Index{Atlas} von M, falls $\bigcup\limits_{i \in I}U_i \cap M=M$
+% subsubsection definition (end)
+\subsubsection{Beispiele} % (fold)
+\label{ssub:beispiele}
+\begin{enumerate}
+	\item $U \subseteq \mathbb{R}^m$, $f: U \to \mathbb{R}^k $ eine $C^1$-Abbildung. \\
+	$y_0 \in \mathbb{R}^k$ regulärer Wert, dann ist $f^{-1}(y_0) \subseteq \mathbb{R}^m$ ist eine Untermannigfaltigkeit der Dimension $m-k$. \\
+	\underline{z.B}: $S^{n-1}= \set[x \in \mathbb{R}^n]{\norm{x}_2=1}$ ist eine $(n-1)-dimensionale$ Untermannigfaltigkeit. \\
+	\[
+		\text{Eine offene Teilmenge $U \subseteq \mathbb{R}^n$ ist eine $n$-dimensionale Untermannigfaltigkeit von $\mathbb{R}^n$ (!!)}
+	\]
+\end{enumerate}
+
+\section{Anfangsgründe der Theorie gewöhnlicher Differentialgleichungen} % (fold)
+\label{sec:anfangsgrunde_der_theorie_gewohnlicher_differentialgleichungen}
+
+\subsection{Einleitung} % (fold)
+\label{sub:einleitung}
+$x: \mathbb{R} \to \mathbb{R}^2$ Massepunkt. \\
+\underline{Newton}: $\ddot x(t)=F(x(t))$ (zweite Ableitung). \\
+$F: \mathbb{R}^3 \to \mathbb{R}^3$ 'Kraft' \\
+\subsubsection{Definition} % (fold)
+\label{ssub:definition}
+
+% subsubsection definition (end)
+Eine \Index{gewöhnliche Differentialgleichung} $m$-ter Ordnung ist eine Gleichung der Form
+\[
+	x^{(m)}=F(x(t),\dots,x^{(m-1)},t) 
+\] für eine Funktion $x: \mathbb{R} \to \mathbb{R}^n$ und $F: \underset{m \text{-mal}}{\underbrace{\mathbb{R}^n \times \dots \times \mathbb{R}^n}} \times \mathbb{R} \to \mathbb{R}^n$. \\
+Eine \Index{Lösung} der Gleichung ist eine Funktion $x$, welche die Gleichung erfüllt. \\
+Wir schreiben immer $'t'$ für die unabhängige Variable und
+\[
+	\dot x(t) = \diffd{}{t}x(t), \qquad \ddot x(t) = \diffd{^2}{t^2}x(t)
+\]
+% subsection einleitung (end)
+\subsubsection{Beispiel} % (fold)
+\label{ssub:beispiele}
+ $a \in \mathbb{R}$, $x: \mathbb{R} \to \mathbb{R}$. Differentialgleichung
+	\[
+		\dot x(t)= ax(t)
+	\]($n=m=1$ und $F(x,t)=ax$) \\
+	Die Lösungen sind genau die Funktionen $t \mapsto ce^{at}$ mit $c \in \mathbb{R}$, \\
+	denn falls $ \dot x = ax$, so gilt 
+	\begin{align*}
+		\diffd{}{t}(\underset{\text{konstant}}{\underbrace{e^{-at}x(t)}})&= -ae^{-at}x(t)+e^{-at}ax(t) \\
+		&= 0
+	\end{align*}
+Dann folgt
+\[
+	x(t)= e^{at}\underset{=:c}{\underbrace{x(0)}}
+\]
+Es gilt: zu jedem $c \in \mathbb{R}$ gibt es genau eine Lösung von $ \dot x(t)=ax(t)$ mit $x(0)=c$, nämlich $x=ce^{at}$
+% subsubsection beispiele (end)
+\subsubsection{Beispiel} % (fold)
+\label{ssub:beispiel}
+$n=1$, $x:\mathbb{R} \to \mathbb{R}$. Differentialgleichung
+\[
+	x^{(m)}(t)=0
+\]
+Die Lösungen von dieser Differentialgleichung sind genau die Funktionen
+\[
+	x(t)= \sum_{k=0}^{m-1}c_kt^k
+\]
+Es gilt
+\[
+	x^{(k)}(0)=c_k k! \qquad c_k = \frac{1}{k!}x^{(k)}(0)
+\]
+$\Rightarrow $ zu gegebenen $x_0, \dots, x_{m-1} \in \mathbb{R}$ gibt es genau eine Lösung der Gleichung
+\[
+	x^{(m)}(t)=0
+\]
+mit \[
+	x^{(k)}(0)=x_k \qquad k= 0, \dots, m-1
+\]
+\[
+	x(t)= \sum_{k=0}^{m-1}\frac{x_k}{k!}t^k
+\]
+\subsubsection{Beispiel} % (fold)
+\label{ssub:beispiel}
+$x: \mathbb{R} \to \mathbb{R}^2$. Differentialgleichung
+\[
+	\begin{pmatrix}
+		\dot x_1(t) \\ \dot x_2(t)
+	\end{pmatrix} = \begin{pmatrix}
+		x_2(t) \\ x_1(t)
+	\end{pmatrix}
+\]
+Die Lösungen sind dann gegeben durch
+\[
+	\begin{pmatrix}
+		x_1(t) \\ x_2(t)
+	\end{pmatrix} = \begin{pmatrix}
+		\cos(t) & \sin(t) \\ -\sin(t) & \cos(t)
+	\end{pmatrix}\begin{pmatrix}
+		x_1(0) \\ x_2(0)
+	\end{pmatrix}
+\]
+\[
+	F:\mathbb{R}^2 \to \mathbb{R}^2 \text{ mit } F \left( \begin{pmatrix}
+		x_1 \\ x_2
+	\end{pmatrix} \right) = \begin{pmatrix}
+		x_2 \\ -x_1
+	\end{pmatrix} = \begin{pmatrix}
+		0 & 1 \\ -1 & 0
+	\end{pmatrix}\begin{pmatrix}
+		x_1 \\ x_2
+	\end{pmatrix}
+\]
+% subsubsection beispiel (end)
+% subsubsection beispiel (end)
+\subsubsection{Beispiel} % (fold)
+\label{ssub:beispiel}
+\[
+	\dot x(t)= (x(t))^2
+\]
+Die Lösungen sind genau die Funktionen
+\[
+	x(t)= \frac{1}{c-t} \qquad x= \frac{1}{x(0)}  
+\] sowie $x(t)=0$ \\
+Hier ist die Lösung nur für $t \in (-\infty,c)$ (falls $c>0$) definiert.
+% subsubsection beispiel (end)
+% section anfangsgrunde_der_theorie_gewohnlicher_differentialgleichungen (end)
+\subsubsection{Beispiel} % (fold)
+\label{ssub:beispiel}
+\[
+	\dot x(t)= \sqrt{\abs{x(t)}}
+\]
+hat z.B die Lösungen:
+\[
+	x(t)= \begin{cases}
+		0, &\text{ falls }t \leq a \in \mathbb{R}\\
+		\frac{1}{4}(t-a)^2 &\text{ falls }t \geq a
+	\end{cases}
+\]
+$\Rightarrow$ Lösungen nicht eindeutig. \\
+\\
+% subsubsection beispiel (end)
+\underline{Erwartung}: Das \Index{Anfangswertproblem} $x^{(m)}(t)= F(x(t), \dots , x^{m-1}(t),t)$ hat zu gegebenen $x_0,\dots, x_{m-1} \in \mathbb{R}^n$ genau eine Lösung $x:(t_0 - \delta , t_0 + \delta ) \to \mathbb{R}^n$ mit $\delta >0$ und Anfangsdaten $x^{(k)}(t_0)=x_k$ für $k = 0, \dots, m-1$ unter 'vernünftigen' Voraussetzungen an $F$.
+\subsection{Lineare Differentialgleichungen mit Konstanten Koeffizienten} % (fold)
+\label{sub:lineare_differentialgleichungen_mit_konstanten_koeffizienten}
+Sei $A \in \Mat_{n,m}(\mathbb{C})$ und sei ein Anfangswertproblem mit Lösungen $x: \mathbb{R} \to \mathbb{C}^n$ gegeben durch
+\[
+	\dot x(t)= A x(t), \qquad x(0)=x_0 \in \mathbb{C}^n
+\]
+\subsubsection{Definition} % (fold)
+\label{ssub:definition}
+Sei $A \in \Mat_{n,n}(\mathbb{C})$. Dann 
+\[
+	\exp(A)= e^{A}:= \sum_{k=0}^{\infty} \frac{1}{k!}A^k \in \Mat_{n,n}(\mathbb{C}) \qquad \text{(Matrix-Exponentialfunktion)}
+\] 
+\subsubsection{Lemma} % (fold)
+\label{ssub:lemma}
+Die Reihe $ \sum_{k=0}^{\infty}\frac{1}{k!}A^k$ konvergiert für jedes $A \in \Mat_{n,n}(\mathbb{C})$.
+\minisec{Beweis:} \begin{align*}
+	\norm{ \frac{1}{k!}A^k} \leq \frac{1}{k!} \norm{A}^k
+\end{align*}
+Wobei die linke Norm die Operatornorm bezeichnet.
+\begin{align*}
+	\Rightarrow \norm{ \sum_{k=p}^{q}\frac{1}{k!}A^k} \leq \sum_{k=p}^{q}\frac{1}{k!} \norm{A}^k \xrightarrow{p \to \infty} 0,
+\end{align*}
+weil $\sum_{k=0}^{\infty}\frac{1}{k!}x^k$ konvergiert.\\
+$\Rightarrow $ Die Folge $(F_m(A))_m$ mit $F_m(A)= \sum_{k=0}^{\infty}\frac{1}{k!}A^k$ ist eine Cauchy-Folge in $\Mat_{n,n}(\mathbb{C})$. \\
+Weil $\Mat_{n,n}(\mathbb{C})$ vollständig ist, konvergiert $F_m(A) \to \exp(A)$
+% subsubsection lemma (end)
+\subsubsection{Satz} % (fold)
+\label{ssub:satz}
+Seien $A,B \in \Mat_{n,n}(\mathbb{C})$. \\
+Dann gilt
+\begin{enumerate}[(i)]
+	\item Die Funktion 
+	\begin{align*}
+		\mathbb{R} &\to \Mat_{n,n}(\mathbb{C}) \\
+		t &\mapsto \exp(tA)
+	\end{align*}
+	ist differenzierbar und es gilt
+	\[
+		\diffd{}{t}(\exp(tA)) = A \exp(tA)
+	\]
+	\item Falls $AB=BA$, so gilt\[
+		B \exp(A) = \exp(A)B
+	\]
+	\item Es gilt \[
+		\exp(A)\exp(-A)= \ind_n
+	\]
+	\item Falls $X: \mathbb{R} \to \Mat_{n,n}(\mathbb{C})$ differenzierbar, und $\dot X(t)= AX(t)$
+	so gilt
+	\[
+		X(t)=\exp(tA)X(0)
+	\]
+	\item Falls $AB=BA$, so gilt 
+	\[
+		\exp(A+B)=\exp(A)\exp(B)
+	\]
+	\item Falls $B \in \GL_n(\mathbb{C})$, so gilt
+	\[
+		B \exp(A)B^{-1}= \exp(BAB^{-1})
+	\]
+\end{enumerate}
+\minisec{Bemerkung:}Man kann zeigen, dass die Funktion $\exp: \Mat_{n,n}(\mathbb{C}) \to \Mat_{n,n}(\mathbb{C})$ eine $C^{\infty}$-Funktion ist. Die naheliegende Formel
+\[
+	D_H \exp(A) = \exp(A) H
+\] ist \underline{Falsch!}
+% subsubsection satz (end)
+\minisec{Beweis:} \begin{enumerate}[(i)]
+	\item $F_m: \mathbb{R} \to \Mat_{n,n}(\mathbb{C})$ mit $F_m(t)= \sum_{k=0}^{m}\frac{1}{k!}A^kt^k$. Dann konvergiert $F_m(t)$ punktweise gegen $exp(tA)$. \\
+	Es gilt
+	\begin{align*}
+		F'_m(t)&= \sum_{k=1}^{m}\frac{1}{(k-1)!}A^kt^{k-1} \\ &= A \sum_{k=1}^{m}\frac{1}{(k-1)!}A^{(k-1)}t^{(k-1)} \\ &= A F_{m-1}(t)
+	\end{align*}
+	\underline{zu zeigen bleibt}: Die Folge $F_m$ konvergiert gleichmäßig auf $[-R,R]$, für jedes $R \in \mathbb{R}$.
+	\underline{Aber}: $\abs{t}\leq R$
+	\begin{align*}
+		\Rightarrow \,	 \norm{ \exp(tA)-F_m(A)} &\leq \sum_{k=m+1}^{\infty}\frac{1}{k!} \abs{t}^k \norm{A}^k \\ &\leq \sum_{k=m+1}^{\infty}\frac{1}{k!}(R \norm{A})^k \xrightarrow{m \to \infty}0  
+	\end{align*}
+	\item \begin{align*}
+		B \exp(A) &= B \lim_{m \to \infty}F_m(A) \\
+		&= \lim_{m \to \infty} (BF_m(A)) \\
+		& \stackrel{!}{=} \lim_{m \to \infty}(F_m(A)B) \\
+		&= (\lim_{m \to \infty}F_m(A))B \\
+		&=\exp(A)B
+	\end{align*}
+	\begin{align*}
+		F_m(A)B & \stackrel{\hphantom{AB=BA}}{=} \left( \sum_{k=0}^{m}\frac{1}{k!}A^k \right)B \\
+		& \stackrel{\hphantom{AB=BA}}{=} \sum_{k=0}^{m}\frac{1}{k!}A^kB \\ &\stackrel{AB=BA}{=} \sum_{k=0}^{m}B \frac{1}{k!}A^k \\
+		 &\stackrel{\hphantom{AB=BA}}{=} B F_m(A)
+	\end{align*}
+	\item Betrachte $G: \mathbb{R} \to \Mat_{n,n}(\mathbb{C})$ mit
+	\begin{align*}
+		G(t)&=\exp(tA)\exp(-tA) \\
+		G(0)&=\exp(0) \exp(0)= \ind_n
+	\end{align*}
+	Dann gilt
+	\begin{align*}
+		\diffd{}{t}G(t) &= \diffd{}{t}(\exp(tA))\exp(-tA)+ \exp(tA)\diffd{}{t}(\exp(-tA)) \\
+		&= A\exp(tA)\exp(-tA)+ \exp(tA)(-A)\exp(-tA) \\
+		&= AG(t)-A\exp(tA)\exp(-tA) \\
+		&= AG(t)-AG(t) \\
+		&= 0
+	\end{align*}
+	Und dann folgt
+	\[
+		G(t)=G(0)
+	\]
+	\item Setze $y(t)= \exp ( -tA)X(t)$ mit $y(0)= \exp(0)X(0)= x_0$. \\
+	Dann gilt
+	\begin{align*}
+		\dot y(t) &\stackrel{1)}{=}-A\exp(-tA)X(t)+\exp(-tA)AX(t) \\
+		&\stackrel{2)}{=}-A \exp(-tA)X(t)+ A \exp(-tA)X(t) \\
+		&\stackrel{\hphantom{3)}}{=}0 
+	\end{align*}
+	Dann folgt
+	\[
+		y(t)= x_0 \qquad \forall\, t
+	\]
+	\[
+		\stackrel{3)}{\Rightarrow} X(t)=\exp(tA)x_0 \qquad \forall\, t
+	\]
+	\item \begin{align*}
+		\diffd{}{t}(\exp(tA)\exp(tB)) &\stackrel{1)}{=} A \exp(tA)\exp(tB)+ \exp(tA)B\exp(tB) \\
+		& \stackrel{2)}{=}(A+B) \exp(tA)\exp(tB)
+	\end{align*}
+	$\Rightarrow$ Die Funktion $X:\mathbb{R} \to \Mat_{n,n}(\mathbb{C})$ mit $X(t)=\exp(tA)\exp(tB)$ erfüllt die Differentialgleichung
+	\[
+		\dot X(t)=(A+B)X(t) \qquad und \qquad X(0)=\ind_n
+	\]
+	\[
+		\stackrel{4)}{\Rightarrow} X(t)=\exp(t(A+B)) \qquad t=1
+	\]\bewende
+	\item Setze $X(t)=B \exp(tA)B^{-1}$ und $X(0)=B \ind_n B^{-1}= \ind_n$. \\
+	Dann gilt
+	\begin{align*}
+		BA \exp(tA)B^{-1} &= BAB^{-1} \underset{X(t)}{\underbrace{B \exp(tA)B^{-1}}} \\
+		&= (BAB^{-1})X(t)
+	\end{align*}
+	\[
+		\Rightarrow X(t)=\exp(tBAB^{-1})
+	\] \bewende
+\end{enumerate}
+Betrachte das Anfangswertproblem
+\begin{align*}
+	\dot x(t)&=A x(t) \\
+	\dot x(0)&=x_0
+\end{align*}
+$x$ ist eine Funktion $\mathbb{R} \xrightarrow{x} \mathbb{C}^n$ und $A \in \Mat_{n,n}(\mathbb{C})$
+
+\subsubsection{Korollar} % (fold)
+\label{ssub:korollar}
+Zu jedem $x_0 \in \mathbb{C}^n$ gibt es genau eine Lösung von obigen Anfangswertproblem, nämlich
+\[
+	X(t)=\exp(tA)x_0
+\]
+\minisec{Beweis:} \[
+	\diffd{}{t}(\exp(tA)x_0)= A\exp(tA)x_0
+\]
+\[
+	\exp(0A)x_0 = \ind_n x_0 = x_0
+\]
+	$\Rightarrow$ $x(t):= \exp(tA)x_0$ löst das Anfangswertproblem. \\
+\underline{Eindeutigkeit}: Sei $x \mathbb{R} \to \mathbb{C}^n$ eine Lösung des AWP. Dann gilt
+\begin{align*}
+	\diffd{}{t}\exp(-tA)x(t) &= -A \exp(-tA)x(t)+ \exp(-tA) \dot x(t) \\
+	&= -A \exp(-tA)x(t)+ \exp(-tA)Ax(t) \\
+	&= 0
+\end{align*}
+\[
+	\Rightarrow \exp(-tA)x(t)= \underset{=\ind_n}{\underbrace{\exp(0A)}}\underset{x_0}{\underbrace{x(0)}}=x_0
+\]
+\[
+	\Rightarrow x(t)= \exp(tA)x_0
+	\]
+\minisec{Bemerkung:}Sei $A \in \Mat_{n,n}(\mathbb{C})$ fest. Dann gilt
+
+	 $x,y: \mathbb{R} \to \mathbb{C}^n$ \qquad $\dot x(t)=Ax(t)$, $\dot y(t)=Ay(t)$. Wenn $a \in \mathbb{C}$, dann gilt
+	\[
+		\diffd{}{t}(x(t)+ay(t))=A(x(t)+ay(t))
+	\]
+	$\Rightarrow$ Jede Linearkombination von Lösungen von $Ax(t)= \dot x(t)$ ist wieder eine Lösung. \\
+	\[
+		\set[x: \mathbb{R} \to \mathbb{C}^n]{\dot x(t)=Ax(t)}
+	\] ist Vektorraum der Dimension $n$.
+	\begin{align*}
+		\set[x: \mathbb{R} \to \mathbb{C}]{\dot x(t)=Ax(t)} &\to \mathbb{C}^n \\
+		x &\mapsto x(0)
+	\end{align*}
+	ist linear und bijektiv. \\
+	Die Funktion
+	\[
+		x_i(t):= \exp(tA)e_i \qquad i=1,\dots,n
+	\]
+	bilden eine Basis des Lösungsraumes.
+$\Rightarrow$ Die $i$-te Spalte von $\exp(tA)$ ist die Lösung des Anfangswertproblems
+\[
+	\dot = Ax, \qquad x(0)=e_i
+\]
+\subsubsection{Inhomogene Differentialgleichung} % (fold)
+\label{ssub:inhomogene_differentialgleichung}
+
+% subsubsection inhomogene_differentialgleichung (end)
+$A \in \Mat_{n,n}(\mathbb{C})$, $x_0 \in \mathbb{C}^n$, $b: \mathbb{R} \to \mathbb{C}^n$ stetig. Dann heißt
+\begin{align*}
+	\dot x(t)&= Ax(t)+b(t) \\
+	x(0)&=x_0
+\end{align*}
+\Index{inhomogene Differentialgleichung}
+\underline{Ansatz}: Suche $x$ in der Form 
+\[
+	x(t)=\exp(tA)c(t)
+\] mit $c: \mathbb{R} \to \Mat_{n,n}(\mathbb{C})$ in $C^1$.
+\[
+	\exp(0)c(0)=c(0)\stackrel{!}{=}x_0
+\]
+Dann gilt
+\begin{align*}
+	\diffd{}{t}(\exp(tA)c(t)) &= A(\exp(tA)c(t))+\underset{\stackrel{!}{=}b(t)}{\underbrace{\exp(tA)\dot c(t)}}
+\end{align*}
+\[
+	\Rightarrow \dot c(t)= \exp(-tA)b(t)
+\]
+\[
+	c(t)=x_0+ \int_{0}^{t}\exp(-sA)b(s) \,\mathrm{d}s
+\]
+Dann folgt
+\[
+	\Rightarrow x(t)= \exp(tA)\left( x_0 + \int_{0}^{t}\exp(-sA)b(s) \,\mathrm{d}s \right)
+\]
+ist eine Lösung von
+	\begin{align*}
+		\dot x(t)&= Ax(t)+b(t) \\
+		x(0)&=x_0
+	\end{align*}
+\[
+	x(t)= \underset{\substack{\text{löst die} \\ \text{inhomogene} \\ \text{Gleichung}}}{\underbrace{\exp(tA)x_0}} 
+	+ \underset{\substack{\text{Variation} \\ \text{ der Konstanten}}}{\underbrace{\int_{0}^{t}\exp((t-s)A)b(s) \,\mathrm{d}s}}
+\]
+Wie berechnet man $\exp(tA)$?
+\subsubsection{Beispiele} % (fold)
+\label{ssub:beispiele}
+% subsubsection beispiele (end)
+\begin{enumerate}
+	\item \[
+		A = \begin{pmatrix}
+			hier fehlt was
+		\end{pmatrix}
+	\]
+\end{enumerate}
+
+
+% subsubsection korollar (end)
+% subsection lineare_differentialgleichungen_mit_konstanten_koeffizienten (end)
+\cleardoubleoddemptypage
+\pagenumbering{Alph}
+\setcounter{page}{1}
+\printindex
+% subsubsection beispiele (end)
+ % subsubsection satz_uber_implizite_funktionen (end)
+% subsubsection beweis_des_umkehrsatzes_teil_2 (end)
+
+% subsection beweis_des_umkehrsatzes (end)
+\end{document}	
