@@ -1,0 +1,2822 @@
+%!TEX TS-program = xelatex
+\input{../!config/mitschrift.tex}
+\newcommand{\fach}{Höhere Algebra \RM{1}.}
+%\newcommand{\shortFach}{Analysis, Topologie, Geometrie}
+\newcommand{\semester}{SoSe 2014}
+\newcommand{\homepage}{http://wwwmath.uni-muenster.de/u/franziska.jahnke/ha/}
+
+\newcommand{\prof}{Prof.\ Dr.\ Dr.\ Katrin Tent}
+\input{../!config/mitschrift_headings.tex}
+
+\begin{document}
+\pagenumbering{Roman}
+\maketitle
+\begin{abstract}
+\input{../!config/vorwort.tex}
+\section*{Literatur}
+\begin{itemize}
+	\item P.M. Cohn: Basic Algebra, (Further Algebra) Springer
+	\item N. Jacobsen: Basic Algebra \RM{1} + \RM{2}
+	\item S. Lang : Algebra, Wiley
+	\item F. Lorenz: Algebra \RM{3}, Springer
+\end{itemize}
+\end{abstract}
+\tableofcontents
+\cleardoubleoddemptypage
+\newpage
+\pagenumbering{arabic}
+\setcounter{page}{1}
+\setcounter{footnote}{0}
+
+\section{Gruppentheorie: Wiederholung, Sylow-Sätze, Kompositionsreihen} % (fold)
+\label{sec:1}
+
+\subsection{Definition: Gruppenwirkung} % (fold)
+\label{sub:11}
+\begin{itemize}
+	\item Sei $G$ eine Gruppe, $X \not= \emptyset$ Menge. Eine \Index{Gruppenwirkung} von $G$ auf $X$ ist (gegeben durch) einen Gruppenhomomorphismus 
+	$\varphi : G \to \Sym(X)$. $\ker \varphi$ heißt \Index{Kern der Wirkung}. Wir schreiben auch kurz $g(x)$ für $\varphi(g)(x)$.
+	\item Für $x \in X$ heißt $G_x = \set[g \in G]{g(x) = x} \le G $ der \Index{Stabilisator} von $x$.
+	\item Die \Index{Bahn} von $x \in X$ unter $G$ ist $G(x) = \set[g(x)]{g \in G} \subseteq X$. 
+	\item Eine Gruppenwirkung heißt \bet{transitiv}\index{Gruppenwirkung!transitive}, wenn $G(x)=X$ für ein $x \in X$.
+	\item Eine Gruppenwirkung heißt \bet{treu}\index{Gruppenwirkung!treue}, falls $\ker \varphi = \set{1_G}$. 
+\end{itemize}
+Für eine alternative Definition siehe Anhang \ref{sub:anh_1} auf Seite \pageref{sub:anh_1}.
+% subsection 11 (end)
+
+\subsection[Bemerkung über eine Abbildung $\nicefrac{G}{G_x} \to G(x)$]{Bemerkung} % (fold)
+\label{sub:12}
+Für jedes $x \in X$ ist die Abbildung $\nicefrac{G}{G_x} \to G(x)$, $g G_x \mapsto g(x)$ eine Bijektion.
+\minisec{Beweis}
+Es ist $g(x) = h(x) \iff (h ^{-1} g)(x)=(h^{-1}h)(x)=x \iff h ^{-1} g \in G_x \iff g G_x = h G_x$. Daher ist die Abbildung wohldefiniert und injektiv. Surjektiv ist klar. \bewende
+% subsection 12 (end)
+
+\subsection*{Wiederholung Isomorphiesätze\footnote{siehe auch \url{http://de.wikipedia.org/wiki/Isomorphiesatz}}} % (fold)
+\label{sub:wiederholung_iso}
+\begin{description}
+	\item[1. Isomorphiesatz:] Ist $\varphi : G \to H$ surjektiv, dann ist $H \simeq \nicefrac{G}{\ker \varphi}$. Allgemein ist für jeden Homomorphismus $\varphi : G \to H$
+	dann $\im \varphi \simeq \nicefrac{G}{\ker \varphi}$.\hfill {\color{lightgray}(Homomorphiesatz)}
+	\item[2. Isomorphiesatz:] Ist $H \le G, N \unlhd G$, dann ist $\nicefrac{H}{(H \cap N)} \simeq \nicefrac{H N}{N}$.\marginnote{{\footnotesize $H N = \set[h n]{h \in H, n \in N}$} ist
+	Untergruppe, da $H N = N H$ für $N$ normal}\hfill {\color{lightgray} ("{}Erweitern mit $N$")}
+	\item[3. Isomorphiesatz:] Sind $N,K \unlhd G, N \le K$, dann ist $\nicefrac{\nicefrac{G}{N}}{\nicefrac{K}{N}} \simeq \nicefrac{G}{K}$. \hfill
+	{\color{lightgray} ("{}Kürzen mit $N$")}
+\end{description}
+Die letzten beiden Sätze lassen sich mit dem ersten beweisen!
+% subsection wiederholung_isomorphiesätze (end)
+
+\subsection[Beispiele für Gruppenwirkungen]{Beispiel} % (fold)
+\label{sub:13}
+\begin{enumerate}[(i)]
+	\item\begin{enumerate}[(a)]
+		\item $G$ wirkt durch Rechtsmultiplikation auf sich selbst ($X = G$). Dann ist $G_x = \set{1}$ für alle $x \in X$, d.h. die Wirkung ist treu und transitiv. Solche 
+		Wirkungen heißen \bet{regulär}\index{Gruppenwirkung!reguläre}.
+		\[
+			\varphi : G \to \Sym(G) , \quad g \mapsto\rho_g \enspace \text{ mit } \enspace\rho_g(x) = x \cdot g
+		\]
+		Gruppenhomomorphismus\footnote{Beachte: Die Addition in $\Sym(X)$ ist die \emph{linksseitige} 
+		Komposition von Abbildungen! Wir wollen also, dass $g \cdot h$ folgendermaßen wirkt: Zuerst $g$ wirken lassen und dann $h$.}: 
+		$\rho_{g h} (x) = x \cdot g \cdot h = \rho_h \circ \rho_g (x)$.
+		\item $G$ wirkt durch Linksmultiplikation auf sich selbst (regulär) $\lambda_g (x) = g ^{-1} \cdot x$.
+	\end{enumerate}
+	\item $G$ operiert durch Konjugation auf sich selbst, d.h. $\kappa : G  \to \Aut(G) \le \Sym(G)$, $g \mapsto \kappa_g$, wobei $\kappa_g(x) = g ^{-1} \cdot x \cdot  g$
+	\[
+		g \cdot  h \mapsto \kappa_{g \cdot h} \quad \kappa_{g \cdot h} (x) = h ^{-1} \cdot g ^{-1}\cdot x \cdot g \cdot h = \kappa_h \circ \kappa_g (x)
+	\]
+	Dann ist $G_x = \set[g \in G]{g ^{-1} \cdot x \cdot g = x} = Z_G(x) $ der \Index{Zentralisator} von $x$ in $G$. Der Kern der Wirkung ist das \Index{Zentrum}  von $G$ 
+	$Z(G) = \set[g \in G]{x \cdot g = g \cdot x \text{ für alle } x \in G}$.
+	
+	\bet{Bemerkung:} $\ker \varphi = \bigcap_{x \in X} G_x$ gilt für alle Gruppenwirkungen $\varphi : G \to \Sym(X)$.
+	\item $G = \mathrm{Gl}_n(K)$, $K$ Körper, operiert auf $K^n$ durch lineare Abbildungen.
+\end{enumerate}
+% subsection 13 (end)
+
+\subsection{Bahnengleichung} % (fold)
+\label{sub:14}
+Es gilt: $X = \dot{\bigcup} \set[G(x)]{x \in X} $, denn für jedes $x\in X$ ist $x\in G(x)$. Falls $X$ endlich ist gilt also
+\[
+	\abs*{X} = \sum \abs*{G(x)} = \sum \abs*{\nicefrac{G}{G_x}} = \sum [G : G_x]. \tag{nach \ref{sub:12}}  
+\]
+Insbesondere ist $\abs*{G(x)} = \abs*{\nicefrac{G}{G_x}} = [G : G_x] = \frac{\abs*{G} }{\abs*{G_x} }  $ falls $G$ endlich ist. (Bijektion aus \ref{sub:12}) \\
+\bet{Spezialfall:} Wirkung von $G$ durch Konjugation auf sich selbst. $\kappa_g(x) = g ^{-1}  \cdot  x \cdot g$.
+% subsection 14 (end)
+
+\subsection{Klassengleichung} % (fold)
+\label{sub:15}
+Sei $K_G = \set[G(x)]{x \in G}$ die Menge der Konjugationsklassen. Sei $K_G^* = \set[G(x)]{x \in G\backslash Z(G)} = \set[G(x)]{ \abs*{G(x)} \ge 2 }  $. Für jede endliche 
+Gruppe $G$ gilt dann nach \ref{sub:14}
+\[
+	\abs*{G} = \sum_{K_G} [G : Z_G(x)] = \abs*{Z(G)} + \sum_{K_G^*} [G : Z_G(x)]. \bewende  
+\]
+% subsection 15 (end)
+
+\subsection[Korollar: $p$-Gruppen haben eine nichttriviales Zentrum]{Korollar} % (fold)
+\label{sub:16}
+$G$ endlich, $\abs*{G} = p^m $, $p$ prim, $m \ge 1 \Rightarrow Z(G) \not= 1$. Also haben $p$-Gruppen ein nicht-triviales Zentrum.
+\minisec{Beweis}
+Nach Lagrange\footnote{Ordnung einer Untergruppe teilt die Gruppenordnung. Die Umkehrung gilt nicht!} gilt für jedes $x \in G$, dass $\abs*{Z_G(x)} = p^k $ für ein 
+$k \le m$, also ist $[G : Z_G(x)] = p^{m-k}$. Für $x \notin Z(G)$ gilt dabei insbesondere $k < m$, denn aus $k=m$ würde $x \in Z(G)$ folgen.  Wegen $p \mid \abs*{G} $ und $\abs*{Z(G)} \ge 1 $ folgt $p \mid \abs*{Z(G)} $. \bewende
+% subsection 16 (end)
+
+\subsection[Definition: $p$-Sylowgruppe]{Definition} % (fold)
+\label{sub:17}
+Sei $G$ eine endliche Gruppe, $\abs*{G} = p^a \cdot m $ mit $(m,p) = 1$ und $p$ prim. Dann heißt eine Untergruppe $H \le G$ mit $\abs*{H} = p^a$ eine \bet{$p$-Sylowgruppe}\index{p-Sylowgruppe@$p$-Sylowgruppe} von $G$.
+% subsection 17 (end)
+
+\subsection{Satz (Sylow)} % (fold)
+\label{sub:18}
+Sei $G$ eine endliche Gruppe, $p$ prim, $\abs*{G} = p^a \cdot m $ mit $(p,m) = 1$. Dann gilt
+\begin{enumerate}[(i)]
+	\item Jede $p$-Untergruppe von $G$ ist in einer $p$-Sylowgruppe enthalten. Insbesondere existieren $p$-Sylowgruppen immer.
+	\item Ist $n_p = \#$ $p$-Sylowgruppen von $G$, dann gilt: $n_p \mid m$ und $n_p \equiv 1 \mod p$.
+	\item Alle $p$-Sylowgruppen sind konjugiert.
+\end{enumerate}
+\minisec{Beweis}
+Sei $S := \set[X \subset G]{ \abs*{X} = p^a } $. $G$ operiert auf $S$ durch Rechtsmultiplikation. Es ist
+\[
+	\abs*{S} = \binom{p^a \cdot m}{p^a} = \frac{\cancel{p^a} \cdot m \cdot  (p^a \cdot m -1) \cdot \ldots \cdot \big(p^a \cdot m - (p^a -1)\big)}{1 \cdot 2 \cdot \ldots 
+	\cdot (p^a -1) \cdot \cancel{p^a}}.  
+\]
+Behauptung: $p \nmid \abs*{S} $. Betrachte dazu $k_i := \frac{p^a \cdot m -i}{i}$, für $1 \le i < p^a$. Wenn $p^j \mid p^a \cdot m -i$, dann ist $j < a$ und $p^j \mid i$.
+Daher sind $p^a \cdot m -i$ und $i$ durch dieselbe Potenz von $p$ teilbar, d.h. nach vollständigem Kürzen von $k_i$ ist dessen Zähler nicht durch $p$ teilbar. Damit ist $p \nmid m \cdot k_1 \cdots k_{p^a-1} = \abs*{S}$.\\
+Daher existiert eine $G$-Bahn $S_1 \subseteq S$ mit $p \nmid \abs*{S_1} $. Wähle $X \in S_1$, d.h. $\abs*{X}= p^a$. Setze $P := G_X$. Dann ist \marginnote{siehe Bahnengleichung \ref{sub:14}}
+\[
+	\abs*{S_1} = [G: G_X] = [G: P] 
+\]
+Daher gilt $p \nmid \abs*{\nicefrac{G}{P}}$, also $p^a \mid \abs*{P}$. Andererseits ist $\abs*{P} \le p^a$, denn für $x \in X, g \in P$ ist $x \cdot g \in X$ und die 
+$x \cdot g$ für $g \in P$ sind paarweise verschieden. Daher ist $\abs*{P} = p^a $ und $P$ eine $p$-Sylowgruppe. 
+
+Sei nun $T \subseteq S$ die Menge aller Konjugierten von $P$ unter der Konjugationswirkung. Dann operiert auch $P$ durch Konjugation auf $T$. Nach der Bahnengleichung
+(\ref{sub:14}) hat 
+jede Bahn die Länge $p^i$ für ein $i \le a$. Offensichtlich ist $P$ ein Fixpunkt dieser Wirkung. Ist $P_1 \in T$ ein weiterer Fixpunkt, dann ist 
+$P \subseteq N_G(P_1)$, daher ist $P \cdot  P_1 \le G$. Wegen\footnote{$P \cdot P_1$ ist Untergruppe, da $P$ $P_1$ normalisiert} 
+$\abs*{P \cdot P_1} = \frac{\abs*{P} \cdot \abs*{P_1}}{\abs*{P \cap P_1} }$ ist $P \cdot P_1$ eine $p$-Untergruppe von $G$. Wegen $P \le P \cdot P_1$ und $p \nmid m$ folgt
+$P= P \cdot P_1 = P_1$. Daher ist $\abs*{T} = 1 \mod p $. 
+
+Noch zu zeigen: $T$ enthält alle Sylowgruppen und jede $p$-Gruppe ist in einer $p$-Sylowgruppe enthalten. Sei $P_2 \le G$ eine $p$-Sylowgruppe mit $P_2 \not\in T$.
+Dann operiert auch $P_2$ durch Konjugation auf $T$. Wenn $P_2$ auf $T$ einen Fixpunkt $P' \in T$ hat, dann ist wie eben $P_2 \cdot P'$ eine $p$-Untergruppe und dann 
+$P_2 = P_2 \cdot P' = P' \in T$ \light. Daher hat $P_2$  auf $T$ keinen Fixpunkt. Dann folgt aber $p \mid \abs*{T} $ \light
+Damit sind alle $p$-Sylowgruppen in $T$ enthalten, d.h. $\abs*{T} = n_p = 1 \mod p $. 
+
+Ist $H \le G$ eine $p$-Untergruppe, dann operiert auch $H$ durch Konjugation auf $T$. Wegen $p \nmid \abs*{T} $ muss $H$ einen Fixpunkt $P' \in T$ besitzen, dann folgt
+$H \cdot P' = P'$, d.h. $H \le P'$.
+
+Weil $G$ durch Konjugation transitiv auf $T$ operiert, folgt 
+\[
+	n_p = \abs*{T} = [G : N_G(P)] \mid [G:P] = m. \bewende 
+\]
+\minisec{Bemerkung}
+Wenn $G$ nur eine $p$-Sylowgruppe $P \le G$ besitzt, dann ist $P \unlhd G$. 
+% subsection 18 (end)
+
+\subsection{Satz (Frattini-Argument)} % (fold)
+\label{sub:19}
+Ist $G$ eine beliebige Gruppe, $H \unlhd G$ endlich und $P \le H$ eine $p$-Sylowgruppe von $H$. Dann ist $G =  N_G(P) \cdot H = H \cdot N_G(P)$, wobei
+$N_G(P) = \set[g \in G]{P^g = g ^{-1} \cdot P \cdot g = P} $.
+\minisec{Beweis}
+Sei $g \in G$. Dann ist $P^g \le H^g = H$ eine $p$-Sylowgruppe von $H$. Daher existiert ein $h \in H$ mit $P^g = P^h$. Dann ist $P = P^{g \cdot h^{-1}}$, d.h. 
+$g \cdot h^{-1} \in N_G(P)$. Damit ist 
+\[
+	g = \underbrace{g \cdot h ^{-1}}_{\in N_G(P)} \cdot \underbrace{h}_{\in H} \bewende
+\]
+\minisec{Bemerkung}
+Sind $H_1, H_2 \le G$, $H_2 \le N_G(H_1)$, dann ist $H_1 \cdot H_2 = H_2 \cdot  H_1 \le G$.
+
+Beweis:
+Für alle $h_1\in H_1$ und $h_2\in H_2$ gilt:
+\[
+	h_1 \cdot h_2 =h_2 \cdot \underbrace{h_2^{-1} \cdot h_1 \cdot h_2}_{\in H_1} \quad\text{und}\quad h_2 \cdot h_1=\underbrace{h_2 \cdot h_1 \cdot h_2^{-1}}_{\in H_1}\cdot h_2. \bewende
+\]
+% subsection 19 (end)
+
+\subsection[Bemerkung zu $p$-Sylowgruppen in Normalteilern und Faktorgruppen]{Bemerkung} % (fold)
+\label{sub:110}
+Offensichtlich gilt für eine endliche Gruppe $G$, $P \le G$ $p$-Sylowgruppe, $N \unlhd G$
+\begin{multicols}{2}
+	\begin{enumerate}[(i)]
+		\item $P \cap N$ ist $p$-Sylowgruppe von $N$
+		\item $\nicefrac{P \cdot N}{N}$ ist $p$-Sylowgruppe von $\nicefrac{G}{N}$.
+	\end{enumerate}
+\end{multicols}
+\minisec{Beweis}
+Es ist $[N : P \cap N] \stackrel{\text{2. Iso}}{=} [PN : P] $ teilerfremd zu $p$, und $P \cap N$ ist $p$-Untergruppe von $N$. Es ist 
+$\nicefrac{\enbrace*{\nicefrac{G}{N}}}{\enbrace*{\nicefrac{P N}{N}}} \stackrel{\text{3. Iso}}{\simeq} \nicefrac{G}{PN}$, und $[G : PN] \mid [G :P] $ teilerfremd zu $p$. 
+Wegen $[PN : N] = [P : (P \cap N)]  $ ist $\nicefrac{PN}{N}$ eine $p$-Gruppe. \bewende
+% subsection 110 (end)
+
+\subsection[Definition: Normalreihe und Kompositionsreihe]{Definition} % (fold)
+\label{sub:111}
+Eine Folge von Untergruppen $(H_i)_{0 \le i \le n}$ mit $H_0 = G$, $H_n = \set{1_G} $, $H_{i+1} \unlhd H_i$ heißt \Index{Normalreihe} in $G$. Ist $\nicefrac{H_i}{H_{i+1}}$
+einfach\footnote{ Eine Gruppe $G$ heißt einfach, wenn sie $G$ und $\set{1_G}$ als einzige Normalteiler hat.} für alle $i < n$, 
+dann heißt die Folge \Index{Kompositionsreihe}. Zwei Normalreihen $(H_i)_{i \le n}$, $(K_j)_{j \le m}$ heißen \Index{äquivalent}, falls $n=m$
+und die auftretenden Quotienten $\enbrace*{\nicefrac{H_i}{H_{i+1}}}_{i \le n-1} $  nach geeigneter Permutation isomorph sind zu den Quotienten 
+$\enbrace*{\nicefrac{K_j}{K_{j+1}}}_{j \le n-1} $.
+% subsection 111 (end)
+
+\subsection[Beispiel zu Normalreihen]{Beispiel} % (fold)
+\label{sub:112}
+\begin{align*}
+	\mathds{Z}_6 \simeq \mathds{Z}_3 \times \mathds{Z}_2 &\vartriangleright \mathds{Z}_3 \vartriangleright \set{1} \\
+	&\vartriangleright \mathds{Z}_2 \vartriangleright \set{1}  
+\end{align*}
+\minisec{Bemerkung}
+\begin{enumerate}[(i)]
+	\item Nicht jede Gruppe besitzt eine Kompositionsreihe, zB. hat $\mathds{Z}$ \emph{keine} Kompositionsreihe.
+	\item Eine Normalreihe ist genau dann eine Kompositionsreihe, wenn es keine echte Verfeinerung gibt. Insbesondere hat also jede endliche Gruppe eine Kompositionsreihe.
+\end{enumerate}
+% subsection 112 (end)
+
+\subsection{Ziel: Satz von Jordan-Hölder} % (fold)
+\label{sub:113}
+Sei $G$ eine Gruppe mit Kompositionsreihen $(H_i)_{i \le n}$ und $(K_j)_{j \le m}$. Dann sind die Reihen äquivalent.
+\bigskip\\
+Für den Beweis brauchen wir
+% subsection 113 (end)
+
+\subsection{Schmetterlings-Lemma (Zassenhaus)} % (fold)
+\label{sub:114}
+Sei $G$ eine Gruppe, $H,K \le G$ und $H' \unlhd H, K' \unlhd K$. Dann ist 
+\[
+	H'( H \cap K') \unlhd H'(H \cap K) \enspace\text{ und } \enspace K'( K \cap H') \unlhd K'(K \cap H)
+\]
+und die Quotienten sind isomorph.
+\tikzexternaldisable
+\[	
+	\begin{tikzpicture}[baseline= (a).base]
+		\node[scale=0.7] (a) at (0,0){
+		\begin{tikzcd}
+			& H \dar[dash]& & K \dar[dash]& \\
+			& H'(H \cap K)\arrow[dd, dash] \drar[dash]& & K'(H \cap K)\arrow[dd, dash] \dlar[dash] \\
+			& & H \cap K  \arrow[dd, dash]& & \\
+			& H'(H \cap K') \drar[dash] \dlar[dash]& & K'(H' \cap K)\dlar[dash]  \drar[dash]\\
+			H' \drar[dash]& & (H \cap K') ( H' \cap K) \drar[dash] \dlar[dash] & & K' \dlar[dash]\\
+			& H' \cap K & & H \cap K' &
+		\end{tikzcd}
+		};
+	\end{tikzpicture}
+\]
+\tikzexternalenable
+\minisec{Beweis}
+Setze $N := H \cap K$ und $M := H'(H \cap K')$. Dann gilt $N \le N_G(M)$ wegen $H'  \unlhd H, K' \unlhd K$ und daher $M \unlhd N \cdot M = H'(H \cap K)$.\\
+\uline{Behauptung:} Es ist $N \cap M = (H \cap K) \cap \big( H' (H \cap K')\big) = (H' \cap K) ( H \cap K')$.
+\begin{description}
+	\item["$\subseteq $":] Sei $h'\cdot k \in H \cap K$ mit $h' \in H'$ und $k \in H \cap K'$ $\Rightarrow h'\cdot  k \in (H' \cap K) (H \cap K')$
+	\item["$\supseteq $":] $h' \cdot k$ mit $h' \in H' \cap K$ und $k \in H \cap K'$, dann ist $h'\cdot  k \in H \cap K$.
+\end{description}
+Daher ist 
+\[
+	\nicefrac{NM}{M} = \nicefrac{H' (H  \cap K') (H \cap K)}{H'(H \cap K)} \cong \nicefrac{N}{N \cap M} \cong \nicefrac{(H \cap K)}{(H' \cap K) (H \cap K')}
+\]
+(so steht es in den Notizen). Besser finde ich:
+\[
+	\nicefrac{N M}{M} \stackrel{\text{2. Iso}}{\simeq} \nicefrac{N}{N \cap M} = \nicefrac{(H \cap K)}{(H' \cap K) (H \cap K')}
+\]
+Die rechte Seite ist symmetrisch in $H$ und $K$. Daher sind beide Quotienten im Lemma isomorph zu $\nicefrac{N}{N \cap M}$ und das Lemma ist bewiesen. 
+\marginnote{Damit zeigen wir nun folgenden Satz:} \bewende
+ 
+% subsection schmetterlings_lemma_zassenhaus_ (end)
+
+\subsection{Satz von Schreier} % (fold)
+\label{sub:115}
+Sind $(H_i)_{i \le n}$, $(K_j)_{j \le m}$ Normalreihen in $G$, dann existieren äquivalente Verfeinerungen.
+\minisec{Beweis}
+Für $j= 1, \ldots , m-1$, $i=0, \ldots , n-1$ setze 
+\[
+	H'_{i m + j} := H_{i+1}( H_i \cap K_j)
+\]
+und  für
+$i=0, \ldots ,n$ sei
+\[
+	H'_{i m} := H_i \qquad {\color{light_gray} =H_{i+1} (H_i \cap K_0) = H_i (H_{i-1} \cap K_m).}
+\]
+Für $i=1, \ldots , n-1$, $j=0, \ldots , m-1$ setze dementsprechend $K'_{j n +i} := K_{j+1}(K_j \cap H_i)$ und $K'_{j n} := K_j (= K_{j+1}(K_j \cap H_0) = K_j(K_{j-1} \cap H_n))$ für $j=0, \ldots , m$.
+
+Nach dem Zassenhaus-Lemma (\ref{sub:114}) sind dann
+\[
+	\nicefrac{H'_{im +j}}{H'_{im+j+1}} \simeq \nicefrac{K'_{jn+i}}{K'_{jn + i +1}}
+\]
+und damit sind diese Verfeinerungen äquivalent. Damit folgt der Satz von Jordan-Hölder: Kompositionsreihen haben keine echten Verfeinerungen, müssen also bereits äquivalent 
+sein! \marginnote{reviewed 22.4.14} \bewende
+% subsection 115 (end)
+
+\subsection[Definition: Auflösbare und nilpotente Gruppen]{Definition} % (fold)
+\label{sub:116}
+Eine Gruppe heißt \Index{auflösbar}, wenn sie eine abelsche Normalreihe besitzt, d.h. eine Normalreihe mit abelschen Quotienten. Eine Gruppe heißt \Index{nilpotent}, wenn 
+es eine Normalreihe $(H_i)_{i \le n}$ gibt mit $H_i \unlhd G$ und $\nicefrac{H_i}{H_{i+1}} \le Z \enbrace*{\nicefrac{G}{H_{i+1}}}$.
+% subsection 116 (end)
+
+\subsection[Bemerkung: Nilpotente Gruppen sind auflösbar, Umkehrung gilt nicht]{Bemerkung} % (fold)
+\label{sub:117}
+Jede nilpotente Gruppe ist auflösbar, aber nicht umgekehrt: $S_3$ ist auflösbar $1 \unlhd \langle (1 2 3)\rangle \unlhd S_3$, aber $Z(S_3) = 1$, d.h. $S_3$ ist \emph{nicht}
+nilpotent.
+% subsection 117 (end)
+
+\subsection[Satz: Auflösbarkeit von Untergruppen, Quotienten und Produkten auflösbarer Gruppen]{Satz} % (fold)
+\label{sub:118}
+Untergruppen und Quotienten auflösbarer Gruppen sind auflösbar, direkte Produkte auflösbarer Gruppen sind ebenfalls auflösbar.
+\minisec{Beweis}
+Ist $1 = G_0 \unlhd G_1 \unlhd \ldots \unlhd G_n  = G$ abelsche Normalreihe, $H \le G$, dann ist $1 = G_0 \cap H \unlhd G_1 \cap H \unlhd \ldots  \unlhd G_n \cap H = H$
+abelsche Normalreihe in $H$, denn 
+\[
+	\nicefrac{(G_{i+1} \cap H)}{G_i \cap H} \simeq \nicefrac{G_i (G_{i+1} \cap H)}{G_i} \le \nicefrac{G_{i+1}}{G_i} \text{ ist abelsch.}
+\]
+Ist $N \unlhd G$, dann ist $(\nicefrac{G_i N}{N})$ abelsche Normalreihe für $\nicefrac{G}{N}$, denn es ist 
+\[
+	\nicefrac{(\nicefrac{G_{i+1}N}{N})}{(\nicefrac{G_i N}{N})} \simeq \nicefrac{G_{i+1}N}{G_i N} \simeq \nicefrac{G_{i+1}}{G_{i+1} \cap (G_i N)}
+\]
+ein Quotient von $\nicefrac{G_{i+1}}{G_i}$ und daher abelsch. (Da $G_i \le G_{i+1} \cap (G_i N)$, ist $\nicefrac{G_{i+1}}{G_i} \to \nicefrac{G_i+1}{ G_{i+1} \cap G_i N}$
+ein Epimorphismus und daher ist die rechte Seite abelsch.) \bewende
+% subsection 118 (end)
+
+\subsection[Korollar: Auflösbarkeit ist äquivalent zur Auflösbarkeit von Normalteilern und Quotienten]{Korollar} % (fold)
+\label{sub:119}
+Sei $N  \unlhd G$. Dann ist $G$ auflösbar genau dann, wenn $N$ und $\nicefrac{G}{N}$ auflösbar sind. 
+\minisec{Beweis}
+\begin{description}
+	\item["$\Rightarrow $":] \ref{sub:118}
+	\item["$\Leftarrow$":] klar: Wir können die abelschen Normalreihen für $N$ und $\nicefrac{G}{N}$ zusammensetzen:
+	\[
+		1 = H_0 \unlhd H_1 \unlhd \ldots \unlhd H_k = N, \qquad \nicefrac{K_0}{N} = N \unlhd \nicefrac{K_1}{N} \unlhd \ldots \unlhd \nicefrac{K_m}{N} = \nicefrac{G}{N}
+	\]
+	Setze $1= H_0 \unlhd \ldots \unlhd H_k = K_0 \unlhd K_1 \unlhd \ldots \unlhd K_m = G$. Wegen $\nicefrac{(\nicefrac{K_{i+1}}{N})}{(\nicefrac{K_i}{N})} \simeq \nicefrac{K_{i+1}}{K_i}$. \bewende
+\end{description}
+% subsection 119 (end)
+
+\subsection[Korollar: Das Produkt auflösbarer Normalteiler ist auflösbar]{Korollar} % (fold)
+\label{sub:120}
+Sind $M,N \unlhd G$ auflösbar, dann auch $M N$ auflösbar.
+\minisec{Beweis}
+$\nicefrac{M N}{N} \simeq \nicefrac{M}{M \cap N}$ ist auflösbar. Nach \ref{sub:119} ist $M N$ auflösbar. \bewende
+% subsection 120 (end)
+
+\subsection*{Einschub: Direktes Produkt} % (fold)
+\label{sub:einschub_direktes_produkt}
+Sind $G, H$ Gruppen, dann ist das direkte Produkt $G \times H$ die Gruppe mit Multiplikation
+\[
+	(g,h) \cdot (g', h') = (g \cdot g, h \cdot h')
+\] 
+% subsection einschub_direktes_produkt (end)
+
+\subsection[Satz: Untergruppen und Quotienten nilpotenter Gruppen]{Satz} % (fold)
+\label{sub:121}
+Untergruppen und Quotienten nilpotenter Gruppen sind wieder nilpotent, die Produkte nilpotenter Gruppen sind nilpotent.
+\minisec{Beweis}
+Wie Satz \ref{sub:118}: 
+
+Ist $1 = G_0 \unlhd G_1 \unlhd \ldots \unlhd G_n  = G$ Zentralreihe, $H \le G$, dann ist $1 = G_0 \cap H \unlhd G_1 \cap H \unlhd \ldots  \unlhd G_n \cap H = H$
+Zentralreihe in $H$, denn 
+\[
+	\nicefrac{(G_{i+1} \cap H)}{G_i \cap H} \stackrel{\text{2. Iso}}{\simeq} \nicefrac{G_i (G_{i+1} \cap H)}{G_i} \le \nicefrac{G_{i+1}}{G_i} \text{ ist abelsch.}
+\]
+Ist $N \unlhd G$, dann ist $(\nicefrac{G_i N}{N})$ Zentralreihe für $\nicefrac{G}{N}$, denn es ist 
+\[
+	\nicefrac{(\nicefrac{G_{i+1}N}{N})}{(\nicefrac{G_i N}{N})} \simeq \nicefrac{G_{i+1 }N}{G_i N} \simeq \nicefrac{G_{i+1}}{G_{i+1} \cap (G_i N)}
+\]
+ein Quotient von $\nicefrac{G_{i+1}}{G_i}$ und daher abelsch. (Da $G_i \le G_{i+1} \cap (G_i N)$, ist $\nicefrac{G_{i+1}}{G_i} \to \nicefrac{G_i+1}{ G_{i+1} \cap G_i N}$
+ein Epimorphismus und daher ist die rechte Seite abelsch.) \bewende
+% subsection 121 (end)
+
+\subsection[Satz: Endliche $p$-Gruppen sind nilpotent]{Satz} % (fold)
+\label{sub:122}
+Endliche $p$-Gruppen sind nilpotent.
+\minisec{Beweis}
+Nach Satz \ref{sub:16} ist $H_1 := Z(G) \not= 1$. Da $\nicefrac{G}{Z(G)}$ wieder $p$-Gruppe ist, ist $Z(\nicefrac{G}{Z(G)}) \not= 1$. Setze 
+\[
+	H_2 := \pi_{Z(G)} ^{-1} \enbrace[\big]{Z (\nicefrac{G}{Z(G)})}  \enspace \text{ usw.}
+\]
+Nach endlich vielen Schritten ist $H_k=G$. Es gilt dann 
+\[
+	\nicefrac{H_{i+1}}{H_i} = Z(\nicefrac{G}{H_i})
+\]
+d.h. die $H_i$ bilden die \Index{obere Zentralreihe}. 
+% subsection 122 (end)
+
+\subsection[Definition: Kommutator]{Definition} % (fold)
+\label{sub:123}
+Für $a,b \in G$ heißt $[a,b] = a ^{-1} \cdot b ^{-1} \cdot a \cdot b$ der \Index{Kommutator} von $a$ und $b$.
+\begin{enumerate}[(i)]
+	\item\label{123:1} Es ist $a \cdot b = b \cdot a \cdot [a,b]$ und $[a,b]= 1$, genau dann wenn $a \cdot b=b \cdot a$.
+	\item\label{123:2} Ist $\varphi : G \to H$, dann ist $\varphi([a,b])= [\varphi(a), \varphi(b)]$.
+	\item\label{123:3} Produkte von Kommutatoren sind nicht unbedingt selber wieder ein Kommutator!
+\end{enumerate} 
+Für Untergruppen $H, K \le G$ setze $[K,H] := \big\langle [k,h] \vert k \in K, h \in H \big\rangle$. Ist $K \le N_G(H)$, dann ist $[K,H] \le H$, denn 
+$k ^{-1} \cdot h ^{-1} \cdot k \cdot h  = \enbrace*{h ^{-1}}^k \cdot h\in H$. Die Gruppe $G' = [G,G] = \big\langle [g,h] \vert g,h \in G \big\rangle$
+heißt \Index{Kommutatorgruppe} von $G$.
+% subsection 123 (end)
+
+\subsection[Satz: Eigenschaften der Kommutatorgruppe]{Satz} % (fold)
+\label{sub:124}
+\begin{enumerate}[(i)]
+	\item $G' \unlhd G$
+	\item $\nicefrac{G}{G'}$ ist abelsch.
+	\item Ist $\varphi : G \to A$ ein Gruppenhomomorphismus und $A$ abelsch, dann ist $G' \le \ker \varphi$.
+\end{enumerate}
+\minisec{Beweis}
+\begin{enumerate}[(i)]
+	\item Es ist $g ^{-1} [a,b] g = [a^g, b^g]$ nach \ref{sub:123} (\ref{123:2}).
+	\item Klar nach \ref{sub:123} (\ref{123:1}).
+	\item Es ist $\varphi([a,b]) = [\varphi(a), \varphi(b)] = 1$, d.h. $G' \le \ker \varphi$. \bewende
+\end{enumerate}
+\minisec{Bemerkung}
+Mit anderen Worten: $G'$ ist der kleinste Normalteiler von $G$ mit $\nicefrac{G}{G'}$ abelsch, denn ist $\nicefrac{G}{N}$ abelsch, dann ist nach (iii) mit 
+$\varphi : G \to \nicefrac{G}{N}$, $G' \le \ker \varphi = N$
+% subsection 124 (end)
+
+\subsection[Definition: Konstruktion weiterer Kommutatorgruppen]{Definition} % (fold)
+\label{sub:125}
+Wir setzen $G^{(0)} = G$, $G^{(i+1)} = \left[G^{(i)}, G^{(i)}\right]$. Dann ist $G^{(1)}= G'$ und $G^{(i+1)} \unlhd G^{(i)}$, $\nicefrac{G^{(i)}}{G^{(i+1)}}$ abelsch.
+% subsection 125 (end)
+
+\subsection[Satz: Auflösbarkeit einer Gruppe $G$]{Satz} % (fold)
+\label{sub:126}
+$G$ ist auflösbar genau dann, wenn $G^{(k)}= 1_G$ für ein $k \ge 0$.
+\minisec{Beweis}
+\begin{description}
+	\item["$\Leftarrow$":] Die $G^{(i)}$ bilden eine abelsche Normalreihe.
+	\item["$\Rightarrow $":] Ist $(N_i)_{i \le n}$, $N_0 = G$, $N_n = \set{1}$, dann ist mit Induktion $G^{(i)} \le N_i$ nach voriger Bemerkung, also 
+	$G^{(n)} \le \set{1} = N_n$ 
+\end{description}
+\minisec{Bemerkung}
+Damit ist $(G^{(i)})_{i \le k}$ die am schnellsten absteigende untere Normalreihe für $G$. $k$ heißt \Index{auflösbare Länge} von $G$.
+% subsection 126 (end)
+
+\subsection[Definition: Untere Zentralreihe]{Definition} % (fold)
+\label{sub:127}
+Die \Index{untere Zentralreihe} einer nilpotenten Gruppe $G$ ist definiert durch $G^{[0]} = G, \, G^{[i]} = \left[ G^{[i-1]}, G\right]$.
+Es ist $\nicefrac{G^{[i]}}{G^{[i+1]}} \le Z(\nicefrac{G}{G^{[i+1]}})$ nach Definition.
+% subsection 127 (end)
+
+\subsection[Satz: Charakterisierung von Nilpotenz über die untere Zentralreihe]{Satz} % (fold)
+\label{sub:128}
+Eine Gruppe $G$ ist nilpotent genau dann, wenn $G^{[k]} = 1_G$ für ein $k \ge 0$.
+\minisec{Beweis}
+\begin{description}
+	\item["$\Leftarrow $":] Klar nach voriger Bemerkung: $(G^{[i]})_{i \le k}$ bilden Zentralreihe. 
+	\item["$\Rightarrow$":] Ist $1 = N_0 \le N_1 \ldots  \le N_n  = G$ eine Zentralreihe, dann ist  $G^{[1]} \le N_{n-1}$, denn $\nicefrac{G}{N_{n-1}}$ ist abelsch. Zeige
+	$G^{[i]} \le N_{n-i}$ für $i=1, \ldots ,n$, denn dann folgt $G^{[n]}=1$. Weil $\nicefrac{N_{n-i}}{N_{n-(i+1)}} \le Z \enbrace*{\nicefrac{G}{N_{n-(i+1)}}}$ folgt 
+	$[N_{n-i},G] \le N_{n-(i+1)}$. Nach Induktion ist wegen $G^{[i]} \le N_{n-i}$ dann 
+	\[
+		G^{[i+1]} = [G^{[i]}, G] \le [N_{n-i}, G] \le N_{n-(i+1)}
+	\]
+\end{description}
+% subsection 128 (end)
+
+\subsection{Einschub über direkte und semidirekte Produkte} % (fold)
+\label{sub:129}
+\begin{enumerate}[a)]
+	\item Sei $G$ eine Gruppe, $H \le G$, $N \unlhd G$ ein Normalteiler mit $H \cap N = \set{1}$ und $N \cdot H = G$. Dann ist die Abbildung $\varphi : N \times H \to G$,
+	$(n,h) \mapsto n \cdot h$ bijektiv, d.h. für jedes $g \in G$ existiert ein eindeutig bestimmtes $n \in N, h \in H$ mit $n \cdot h = g$.
+	Denn ist 
+	\[
+		n_1 \cdot h_1 = n_2 \cdot h_2 \iff \underbrace{n_2 ^{-1} n_1}_{\in N} = \underbrace{h_2 \cdot h_1 ^{-1}}_{\in H} \in N \cap H = 1
+	\]
+	Aber: Im Allgemeinen ist $\varphi$ \emph{kein} Gruppenhomomorphismus, denn es ist 
+	\[
+		(n_1, h_1) (n_2 h_2) = \enbrace{n_1 \underbrace{h_1 n_2 h_1 ^{-1}}_{\in N}} \underbrace{(h_1 h_2)}_{\in H} = (n_1 n_2) (n_2 ^{-1} h_1 n_2 h_2)
+	\]
+	Daher ist $\varphi$ ein Gruppenhomomorphismus genau dann, wenn $H$ die Elemente aus $N$ zentralisiert ($n \cdot h = h \cdot n$),
+	 d.h. wenn $H\unlhd G$. In dem Fall ist dann $G\simeq N \times H$. 
+	
+	Ist $H \unlhd G$, dann gilt $\varphi(n_1, h_1) \cdot (n_2, h_2) = (n_1 \cdot n_2, h_1 \cdot h_2)$
+	\item Sind $H,N, G$, $\varphi : H \to \Aut(N)$ ein Homomorphismus, dann definiere eine Verknüpfung auf der Menge $G = N \times H$ durch
+	\[
+		(n_1, h_1) \cdot (h_2, h_2) = (n_1 \cdot \varphi(h_1) (n_2), h_1 \cdot h_2)
+	\]
+	Mit dieser Verknüpfung wird $G$ zu einer Gruppe mit Untergruppen $\set{1} \times H \simeq H $, $N \times \set{1} \simeq N $. Man schreibt 
+	$G = N \rtimes H = N \rtimes_\varphi H$ für das \bet{semidirekte Produkt}\index{semidirektes Produkt}. Mit $\set{1} \times H $ und $N \times \set{1} $ können wir $G$ 
+	wie in a) beschreiben. Dabei ist $\varphi : H \to \Aut(N)$, $h \mapsto \kappa_h$ (Konjugation mit $h$).
+\end{enumerate}
+% subsection 129 (end)
+% section 1 (end)
+\newpage
+
+\section{Moduln: Halbeinfache Moduln, freie Moduln} % (fold)
+\label{sec:2}
+
+\minisec{Erinnerung}
+In Algebra \RM{1} wurden hauptsächlich kommutative Ringe betrachtet:
+\begin{enumerate}[a)]
+	\item Körper, Polynomringe, $\mathds{Z}$
+	\item nicht kommutative Ringe: $R$ Ring, Matrizenring $M_n(R)= R^{n \times n}$. 
+	
+	Sei $A$ eine abelsche Gruppe, dann ist $\End(A) = \Hom(A,A)$ ein Ring 
+	\begin{align*}
+		(\varphi + \psi)(x) &= \varphi(x) + \psi(x) \\
+		(\varphi \cdot \psi)(x) &= \varphi(\psi(x))
+	\end{align*}
+	$\End(A)$ heißt der \Index{Endomorphismenring} von $A$. Dies ist das allgemeinste Beispiel, denn es gilt:
+\end{enumerate}
+
+\subsection[Satz: Jeder Ring ist isomorph zu einem Endomorphismenring]{Satz} % (fold)
+\label{sub:21}
+Jeder Ring $R$ ist isomorph zu einem Ring von Endomorphismen einer abelschen Gruppe.
+\minisec{Beweis}
+Ist $(R,+, \cdot )$ gegeben, dann ist $A=(R,+)$ eine abelsche Gruppe. Die Abbildung $R \to \End(A), a \mapsto \lambda_a $ mit 
+$\lambda_a : A \to A, x \mapsto a \cdot x$ ist ein injektiver Ringhomomorphismus, eingeschränkt auf das Bild also ein Isomorphismus. \bewende
+% subsection 21 (end)
+
+\subsection[Definition: Modul]{Definition} % (fold)
+\label{sub:22}
+Sei $R$ ein Ring, $(M,+)$ eine abelsche Gruppe. Eine $R$-(Links-)\Index{Modulstruktur} auf $M$ ist eine Verknüpfung $R \times M \to M, (r,m) \mapsto r \cdot m$ mit
+\begin{enumerate}[(i)]
+	\item $r(x+y)= r \cdot x + r \cdot y$
+	\item $(r+s) \cdot x = r \cdot x + s \cdot x$
+	\item $(r \cdot s) x = r \cdot (s \cdot x)$
+	\item $1_R \cdot x = x$
+\end{enumerate}
+für alle $r,s \in R, \,x,y \in M$. Ist $R$ ein Körper, dann sind die $R$-Moduln genau die $R$-Vektorräume. Mit anderen Worten: Eine $R$-Modulstruktur auf $M$ ist 
+(gegeben durch) einen Ringhomomorphismus $\varphi : R \to \End(M,+)$ mit $r \cdot x = \varphi(r) (x)$.
+% subsection 22 (end)
+
+\subsection[Beispiele für Moduln]{Beispiele} % (fold)
+\label{sub:23}
+\begin{enumerate}[(i)]
+	\item Ist $R$ ein Körper, dann ist ein $R$-Modul ein $R$-Vektorraum.
+	\item $(R,+)$ ist $R$-Modul durch Produktwirkung, d.h. $\varphi : R \to \End(R),\, r \mapsto \lambda_r$.
+	\item Ist $I \unlhd R$ ein \Index{Ideal} (d.h. für alle $i,j \in I$, $r \in R$ ist $i + j, i \cdot r, r \cdot i \in I$), dann ist auch $(I,+)$ ein
+	$R$-Modul, ein $R$-Untermodul von $(R,+)$.
+	\item Jede abelsche Gruppe ist ein $\mathds{Z}$-Modul. \hfill {\color{light_gray}(mittels $\varphi(z)(x) = x^z$, für $z \in \mathds{Z}$)}
+\end{enumerate}
+% subsection 23 (end)
+
+\subsection[Definition: Untermodul, einfache Moduln und Ringe]{Definition} % (fold)
+\label{sub:24}
+Ist $M$ ein $R$-Modul, $N \le M$ Untergruppe mit $r \cdot x \in N$ für alle $x \in N$, $r \in R$, dann heißt $N$ ein $R$-\Index{Untermodul} von $M$.
+\marginnote{$\set{0}$, $M$ sind immer Untermoduln} \smallskip \\
+Ein Modul $M \not= \set{0}$ heißt \bet{einfach}\index{Modul!einfach} (oder \bet{irreduzibel}\index{Modul!irreduzibel}), wenn $\set{0},M$ die einzigen Untermoduln sind. 
+Ein Ring $R$ heißt (links-)\bet{einfach}\index{Ring!einfach}, wenn er als (Links-)$R$-Modul einfach ist.  
+\minisec{Bemerkung}
+Einfache kommutative Ringe sind genau die Körper. Jedes Ideal in $R$ ist Untermodul, aber nicht jedes Untermodul ist ein Ideal.
+% subsection 24 (end)
+
+\subsection[Definition: erzeugte Untermoduln]{Definition} % (fold)
+\label{sub:25}
+\begin{itemize}
+	\item Ist $\set{N_\alpha}_{\alpha \in I} $ Menge von Untermoduln von $M$, dann ist $\bigcap_{\alpha \in J} N_\alpha$ ein Untermodul.
+	\item Ist $\emptyset \not= S \subseteq M$, dann ist $\langle S \rangle = \bigcap_{N \supseteq S} N$ der von $S$ \Index{erzeugte Untermodul}. Der von einer Summe 
+	erzeugte Modul ist gegeben durch
+	\[
+		\sum_{\alpha \in I} N_\alpha = \langle n_{\alpha_1} + \ldots + n_{\alpha_k} : \alpha_i \in I, n_{\alpha_i} \in N_{\alpha_i}\rangle
+	\] 
+	Ist $S$ endlich, dann heißt $\langle S \rangle$ \Index{endlich erzeugt}. Ist $\abs*{S}=1 $, dann heißt $\langle S \rangle = M$ \Index{zyklisch}.
+	\item Ein einfacher Modul ist zyklisch, aber nicht umgekehrt (zB. $\mathds{Z}$).   
+\end{itemize}
+% subsection 25 (end)
+
+\subsection[Bemerkung zu Modulstrukturen auf Quotienten]{Bemerkung} % (fold)
+\label{sub:26}
+\begin{enumerate}[(i)]
+	\item Ist $M$ ein zyklischer $R$-Modul, dann ist $M \simeq \nicefrac{R}{I}$ für ein Ideal $I \unlhd R$. \hfill(siehe Blatt 3 oder \ref{sub:anh_2})
+	\item Ist $N \le M$ ein $R$-Untermodul, dann ist auch $\nicefrac{M}{N}$ ein $R$-Modul durch 
+	\[
+		r(m + N) = r \cdot m + N
+	\]
+\end{enumerate}
+% subsection 26 (end)
+
+\subsection[Definition: Klasse der $R$-Moduln, $R$-Modul-Homomorphismen]{Definition} % (fold)
+\label{sub:27}
+Die Klasse aller $R$-Links-Moduln bezeichnen wir mit $_R \Mod$. Sind $M,N \in {_R \Mod}$ und $\varphi : (M,+)\to (N,+)$ ein Homomorphismus (der additiven Gruppen), 
+dann ist\marginnote{$\varphi$ ist $R$-linear}
+$\varphi$ ein \Index{$R$-Modul-Homomorphismus}, falls
+\[
+	\varphi(r \cdot m) = r \cdot \varphi(m)\qquad  {\color{light_gray} \varphi \enbrace[\big]{\lambda_r(m)}= \lambda_r \enbrace[\big]{\varphi(m)}  .}
+\]
+% subsection 27 (end)
+
+\subsection[Bemerkung zu $\Hom_R(M,N)$]{Bemerkung} % (fold)
+\label{sub:28}
+Kerne und Bilder von $R$-Modul-Homomorphismen sind $R$-Untermoduln. Die Menge $\Hom_R(M,N) := \set[\varphi: M \to N]{\varphi \text{ ist $R$-Modul-Homomorphismus}} $ ist 
+eine abelsche Gruppe mit 
+\[
+	(\psi+ \varphi)(m) = \psi(m)+ \varphi(m)
+\]
+und $\End_R(M) := \Hom_R(M,M)$ ist mit $(\varphi \cdot \psi)(m) = \varphi\big(\psi(m)\big)$ der Endomorphismenring von $M$.
+Die Homomorphie- und Isomorphiesätze für Gruppen gelten auch für Moduln:
+% subsection 28 (end)
+
+\subsection[Satz: Homomorphie- und Isomorphiesätze für Moduln]{Satz (Isomorphiesätze)} % (fold)
+\label{sub:29}
+\begin{enumerate}[(i)]
+	\item Ist $f : M \to N$ ein $R$-Modul-Homomorphismus, $M' \subseteq M$ Untermodul mit $M'  \subseteq \ker f$, dann existiert ein eindeutiger $R$-Modul-Homomorphismus 
+	$f'  : \nicefrac{M}{M'} \to N$ mit 
+	\[
+		\begin{tikzcd}
+			M \rar{f} \dar{\pi }& N \\
+			\nicefrac{M}{M'} \urar[dashed, swap]{f'}& 
+		\end{tikzcd}
+	\]
+	und $f'$ ist injektiv genau dann, wenn $M' = \ker f$.
+	\item Sind $A,B \subseteq M$ Untermoduln, dann gilt \marginnote{Vgl. Kapitel 1 \hyperref[sub:wiederholung_iso]{Seite \pageref{sub:wiederholung_iso}}}
+	\[
+		\nicefrac{(A+B)}{B} \simeq \nicefrac{A}{A \cap B}
+	\]
+	\item Ist $M' \subseteq M$ ein Untermodul, dann existiert ein \Index{Verbandsisomorphismus} zwischen den Untermoduln von $M$, die $M'$ enthalten, und den Untermoduln
+	von $\nicefrac{M}{M'}$, nämlich $N \mapsto \nicefrac{N}{M'}$ und es gilt\hfill(vgl. \ref{sub:12})
+	\[
+		\nicefrac{\enbrace*{\nicefrac{M}{M'}} }{\enbrace*{\nicefrac{N}{M'}} } \simeq \nicefrac{M}{N}
+	\] 
+\end{enumerate}
+\minisec{Beweis für (i)}
+Es ist nur nachzurechnen, dass der (einzige mögliche) Gruppenhomomorphismus $f' : \nicefrac{M}{M'} \to N$, $m + M' \mapsto f(m)$ $R$-linear ist. Das folgt sofort:
+\begin{align*}
+	f' \enbrace[\big]{r(m + M')} = f' (r \cdot m + M')= f(r \cdot m) = r \cdot f(m) = r \cdot f'(m+ M')
+\end{align*} 
+Die Wohldefiniertheit sowie (ii) und (iii) sind einfache Übungsaufgaben. \bewende
+% subsection 29 (end)
+
+\subsection[Definition: Exakte Sequenz]{Definition (Sprechweise)} % (fold)
+\label{sub:210}
+Eine Folge von $R$-Moduln $(M_i)_i$ und Homomorphismen $f_i : M_{i-1} \to M_{i}$ heißt \bet{exakt in $M_i$}\index{exakte Folge}, falls $\im f_{i} = \ker{f_{i+1}}$.
+Eine \Index{exakte Sequenz} ist eine Folge, die überall exakt ist. Eine exakte Sequenz von der Form 
+\[
+	0 \to M_1 \xrightarrow{f_1} M_2  \xrightarrow{f_2} M_3 \to 0  
+\]
+heißt \Index{kurze exakte Sequenz}. Dieses bedeutet $f_1$ injektiv, $f_2$ surjektiv und daher ist dann $M_3 \simeq \nicefrac{M_2}{M_1}$.
+% subsection 210 (end)
+
+\subsection[Definition: noethersch und artinsch]{Definition} % (fold)
+\label{sub:211}
+Ein (Links)$R$-Modul $M$ heißt (links-)\Index{noethersch}\footnote{nach Emmy Noether, 1882-1935, siehe \url{http://de.wikipedia.org/wiki/Emmy_Noether}}, 
+wenn es keine unendliche echt aufsteigende Kette von Untermoduln gibt.
+$M$ heißt (links-)\Index{artinsch}\footnote{nach Emil Artin, 1898-1962, siehe \url{http://de.wikipedia.org/wiki/Emil_Artin}}, 
+wenn es keine unendliche echt absteigende Kette von Untermoduln gibt.\\
+Ein Ring $R$ heißt \bet{noethersch}\index{Ring!noethersch} (bzw. \bet{artinsch}\index{Ring!artinsch}), wenn er als $R$-Modul noethersch (bzw. artinsch) ist.
+\minisec{Beispiel}
+$\mathds{Z}$ ist noethersch aber nicht artinsch. Allgemein gilt: HIR sind noethersch. Körper sind artinsch und noethersch.
+% subsection 211 (end)
+
+\subsection[Proposition: noethersch $\iff$ alle Untermoduln endlich erzeugt]{Proposition} % (fold)
+\label{sub:212}
+Ein $R$-Modul $M$ ist noethersch genau dann, wenn alle Untermoduln endlich erzeugt sind.
+\minisec{Beweis}
+\begin{description}
+	\item["$\Rightarrow $":] Sei $N \subseteq M$, wähle induktiv $x_1, x_2, \ldots \in N$ mit $x_i \not\in \langle x_1, \ldots , x_{i-1} \rangle =: N_{i-1}$. Dann ist
+	$(N_i)$ eine echt aufsteigende Kette und muss --- da $M$ noethersch ist --- nach endlich vielen Schritten mit $\langle x_1, \ldots , x_k \rangle =N$ enden. 
+	Das heißt $N$ ist endlich erzeugt.
+	\item["$\Leftarrow$":] Sei $N_0 \subseteq N_1 \subseteq \ldots $ eine echt aufsteigende Kette von Untermoduln in $M$ und $N :=\sum N_i$. 
+	Da $N$ endlich erzeugt ist, existieren $x_1,\ldots ,x_r\in N$ mit $N=\langle x_1, \ldots , x_r\rangle$. Dann existiert ein $k$ mit $x_1,\ldots , x_r\in N_k$; 
+	d.h. $N=N_k$ und die Kette ist endlich.\bewende
+\end{description}
+\minisec{Bemerkung}
+Offensichtlich gilt: Ist ein $R$-Modul $M$ noethersch (bzw. artinsch) und $N \subseteq M$ ein Untermodul. Dann sind auch $N$ und $\nicefrac{M}{N}$ noethersch 
+(bzw. artinsch). Dies gilt nach den Isomorphiesätzen. 
+% subsection 212 (end)
+
+\subsection[Satz: noethersch (artinsch) innerhalb einer kurzen exakten Sequenz]{Satz} % (fold)
+\label{sub:213}
+Ist $0 \to M' \xrightarrow{f} M \xrightarrow{g} M'' \to 0  $ eine kurze exakte Sequenz von $R$-Moduln, dann gilt: $M$ noethersch (bzw. artinsch) genau dann, wenn
+$M'$ und $M''$ noethersch (bzw. artinsch).
+\minisec{Beweis}
+\begin{description}
+	\item["$\Rightarrow$":] klar nach voriger Bemerkung. \hfill {\color{light_gray}($f$ injektiv, $M'' \simeq \nicefrac{M}{M'}$)}
+	\item["$\Leftarrow$":] (artinsch) Sei $P_0 \supseteq P_1 \supseteq P_2 \supseteq \ldots $ eine echt absteigende Kette in $M$. Dann betrachte 
+	\[
+		P_0 \cap M' \supseteq P_1 \cap M' \supseteq \ldots 
+	\]
+	in $M'$ und 
+	\[
+		\nicefrac{\enbrace*{P_0 +  M'} }{M'} \supseteq \nicefrac{\enbrace*{P_1 + M'} }{M'} \supseteq \ldots 
+	\]
+	in $\nicefrac{M}{M'}$. Nach Vorraussetzung existiert $k \in \mathds{N}$ mit $P_k \cap M' = P_l \cap M'$ für $l \ge k$ und 
+	$\nicefrac{\enbrace*{P_k +M'} }{M'} = \nicefrac{\enbrace*{P_l + M'} }{M'}$ für $l \ge k$. Wegen
+	\[
+		\nicefrac{\enbrace*{P_l + M'} }{M'} \simeq \nicefrac{P_l}{\enbrace*{P_l \cap M'} }\marginnote{Isomorphiesätze}
+	\]
+	folgt $P_l = P_k$ für $l \ge k$. Entsprechend für aufsteigende Ketten. \bewende
+\end{description}
+% subsection 213 (end)
+
+\subsection[Korollar: Endliche Summen noetherscher Moduln sind noethersch (artinsch)]{Korollar} % (fold)
+\label{sub:214}
+Endliche Summen von noetherschen (bzw. artinschen) Moduln sind wieder noethersch (bzw. artinsch).
+\minisec{Beweis}
+Ist $M = N + P$ und $N,P$ noethersch, dann betrachte $0 \to N \hookrightarrow M \twoheadrightarrow \nicefrac{M}{N} \to 0$. Wegen 
+$\nicefrac{M}{N} = \nicefrac{(N+P)}{N} \simeq \nicefrac{P}{(N \cap P)}$ ist $\nicefrac{M}{N}$ noethersch, also ist nach Satz \ref{sub:213} auch $M$ noethersch. 
+Entsprechend für artinsch. \bewende
+% subsection 214 (end)
+
+\subsection[Korollar: Moduln über einen noetherschen Ring sind noethersch]{Korollar} % (fold)
+\label{sub:215}
+Ist $R$ ein noetherscher (bzw. artinschen) Ring, dann ist jeder endlich erzeugte $R$-Modul noethersch (bzw. artinsch).
+\minisec{Beweis}
+Durch Induktion über die Anzahl der Erzeuger. Ist $M$ zyklisch, dann ist $M \simeq \nicefrac{R}{J}$ (siehe \ref{sub:26})
+und $\nicefrac{R}{J}$ noethersch (bzw. artinsch) nach Satz \ref{sub:213}. Sei nun 
+\[
+	M = \langle x_1, \ldots , x_n \rangle \enspace, \enspace M' =  \langle x_1, \ldots , x_{n-1}\rangle
+\]
+Nach Induktionsvorraussetzung ist $M'$ noethersch (artinsch) und $\nicefrac{M}{M'}$ ist zyklisch, daher auch noethersch (artinsch), nach \ref{sub:213} ist $M$ noethersch 
+(artinsch). \bewende
+% subsection 215 (end)
+
+\subsection[Korollar: Endlich erzeugte Moduln über einem Hauptidealring sind noethersch]{Korollar} % (fold)
+\label{sub:216}
+Ist $R$ ein Hauptidealring, dann ist jeder endlich erzeugte $R$-Modul noethersch.
+% subsection 216 (end)
+
+\subsection[Definition: Halbeinfacher Modul]{Definition} % (fold)
+\label{sub:217}
+Ein $R$-Modul $M$ heißt \bet{halbeinfach}\index{Modul!halbeinfach} (oder vollständig zerlegbar), wenn jeder Untermodul $N$ ein Komplement hat, d.h. wenn $N' \subseteq M$ existiert mit $M = N \oplus N'$, d.h. $N \cap N' = \set{0}, N+ N' = M $.
+% subsection 217 (end)
+
+\subsection[Beispiele zu halbeinfachen Moduln]{Beispiele} % (fold)
+\label{sub:218}
+\begin{enumerate}[(i)]
+	\item $\mathds{Z}$ (als $\mathds{Z}$-Modul) ist \emph{nicht} halbeinfach. $m \mathds{Z} \subseteq \mathds{Z}, m \not= 0$ hat kein Komplement, denn für 
+	$k \cdot \mathds{Z}$ gilt immer $k \cdot \mathds{Z} \cap m \cdot \mathds{Z} \ni k \cdot m \not= 0$.
+	\item Ist $R$ ein Körper, dann sind alle $R$-Vektorräume halbeinfach nach dem Basisergänzungssatz.
+	\item Untermoduln und Quotienten halbeinfacher Moduln sind halbeinfach.
+	\item Einfache Moduln sind halbeinfach.
+	\item $\mathds{Z}_6 \simeq \mathds{Z}_2 \times \mathds{Z}_3$ ist halbeinfach, weil $\mathds{Z}_2, \mathds{Z}_3$ die einzigen nicht-trivialen Untermoduln sind.
+\end{enumerate}
+Ein Ring $R$ heißt (links-)halbeinfach, wenn er als $R$-Modul halbeinfach ist.
+% subsection 218 (end)
+
+\subsection[Satz: Äquivalenzen zu halbeinfach durch Summen aus einfachen Untermoduln]{Satz} % (fold)
+\label{sub:219}
+Für einen $R$-Modul $M$ sind äquivalent:
+\begin{enumerate}[(i)]
+	\item $M$ ist halbeinfach.
+	\item $M$ ist Summe von einfachen Moduln, d.h. es existiert Familie $(N_\alpha)_{\alpha \in I}$ von einfachen Untermoduln, die $M$ erzeugen, also 
+	$M = \sum_{\alpha \in I} N_\alpha$.
+	\item $M$ ist direkte Summe von einfachen Untermoduln, d.h. es existiert eine Familie $(N'_\alpha)_{\alpha \in I'}$ von einfachen Untermoduln mit 
+	\[
+		M = \bigoplus_{\alpha \in I'} N'_\alpha
+	\]
+	d.h. $N'_\alpha \cap \sum_{\beta \not= \alpha} N'_\beta = 0$
+\end{enumerate}
+\minisec{Beweis (mit Lemma \ref{sub:220})}
+\begin{description}
+	\item["(i)$\Rightarrow$(ii)":] Sei $\set{N_\alpha}_{\alpha\in I}$ die Menge \emph{aller} einfachen Untermoduln von $M$. Diese ist nach Lemma \ref{sub:220} nicht leer. 
+	Setze $M_1 := \sum N_\alpha$.
+	
+	\uline{Behauptung:} $M_1 = M$. Sonst existiert ein Komplement $P \subseteq M$ mit $P \not= 0$, $P \oplus M_1 = M$. Dann ist $P$ halbeinfach und enthält daher einen 
+	einfachen Untermodul $N \subseteq P$ \light zu $N \in \set{N_\alpha}_{\alpha \in I}$.
+	\item["(iii)$\Rightarrow $(ii)":] Klar.
+	\item["(ii)$\Rightarrow $(i)":] Sei $P \subseteq M$ Untermodul. Betrachte die Menge aller $J \subseteq I$ mit 
+	\begin{enumerate}[(a)]
+		\item $N_i \cap \sum_{j \not= i, j \in J} N_j = 0$ für alle $i \in J$
+		\item $P \cap \sum_j N_j = 0$
+	\end{enumerate}
+	Weil $J = \emptyset$ die Bedingungen (a) und (b) erfüllt, können wir Zorns Lemma anwenden und finden eine maximale Teilmenge $J \subseteq I$ mit (a) und (b).
+	
+	\uline{Behauptung:} 
+	\[
+		M_1 := P \oplus \sum_{j \in J} N_j = P \oplus \bigoplus_{j \in J} N_j = M
+	\]
+	Für $\alpha \in I$ ist $N_\alpha \cap M_1 \in\set{0, N_\alpha}$, da $N_\alpha$ einfach ist. Ist $N_\alpha \cap M_1 = 0$, dann erfüllt $J \cup \set{\alpha}$ die Bedingungen
+	(a) und (b). \light Maximalität von $J$. Daher ist $N_\alpha \subseteq M_1$, also $M_1 = M$.
+	\item["(ii)$\Rightarrow $(iii)":] folgt aus dem Beweis "(ii) $\Rightarrow$ (i)"{} mit $P=0$. \bewende
+\end{description}
+% subsection 219 (end)
+
+\subsection[Lemma: Jeder halbeinfache Modul hat einen einfachen Untermodul]{Lemma} % (fold)
+\label{sub:220}
+Ist $M \not= 0$ halbeinfach, dann hat $M$ einen einfachen Untermodul.
+\minisec{Beweis}
+Sei $m \in M, m \not= 0$. Betrachte $N := \langle m \rangle \subseteq M$. Nach Zorns Lemma existiert ein maximaler Untermodul $P \le N$ mit $m \not\in P$ (denn $0$ 
+ist ein solcher Untermodul). Sei $Q$ ein Komplement von $P$ in $N$, also $P \oplus Q = N$, $Q \not= 0$, da $m \not\in P$. \\
+Behauptung: $Q$ ist einfach.  Beweis: $Q \subseteq N \subseteq M$. Ist $0 \not= Q' \subseteq Q$ ein Untermodul, dann ist $Q' \oplus P  \supsetneq P$, also gilt wegen der
+Maximalität von $P$: $m \in Q' \oplus P$,
+also $Q' \oplus P = N$ und daher $Q=Q'$. \bewende
+% subsection 220 (end)
+
+\subsection[Satz: Alle $R$-Moduln halbeinfach $\Leftrightarrow$ $(R,+)$ halbeinfach]{Satz} % (fold)
+\label{sub:221}
+Für einen Ring $R$ sind äquivalent:
+\begin{enumerate}[(i)]
+	\item Alle $R$-Moduln sind halbeinfach.
+	\item Alle endlich erzeugten $R$-Moduln sind halbeinfach.
+	\item Alle zyklischen $R$-Moduln sind halbeinfach.
+	\item $(R,+)$ ist als $R$-Modul halbeinfach.
+\end{enumerate}
+\minisec{Beweis}\leavevmode
+\begin{description}
+	\item[\enquote{(i)$\Rightarrow$(ii)$\Rightarrow$(iii)$\Rightarrow$(iv)}:] Klar.
+	\item[\enquote{(iv)$\Rightarrow $(iii)}:] Jeder zyklische $R$-Modul ist von der Form $\nicefrac{R}{I}$ und Quotienten halbeinfacher Moduln sind halbeinfach. \hfill 
+	{\color{light_gray} siehe \ref{sub:26} bzw. Blatt 3}
+	\item[\enquote{(iii)$\Rightarrow$(i)}:] Sei $M \in {_R \Mod}$, dann ist $M = \sum_{m \in M} R m$ Summe zyklischer Moduln. Da jeder zyklische $R$-Modul halbeinfach ist
+	und Summen halbeinfacher Moduln wieder halbeinfach sind, folgt die Behauptung. \bewende
+\end{description}
+% subsection 221 (end)
+
+\subsection[Korollar: $M$ direkte Summe einfacher Untermoduln $\Rightarrow P \le M$ isomorph zu Teilsumme]{Korollar} % (fold)
+\label{sub:222}
+Sei $M = \bigoplus_{\alpha \in I} N_\alpha$ mit $N_\alpha$ einfach. Ist $P \subseteq M$ Untermodul, dann existiert $J \subseteq I$ mit 
+\[
+	P \simeq \bigoplus_{\alpha \in J} N_\alpha.
+\]
+Ist $P$ einfach, dann ist $P \simeq N_\alpha$ für ein $\alpha \in I$, aber nicht unbedingt gleich $N_\alpha$.
+\minisec{Beweis}
+Nach Satz \ref{sub:219} existiert $J' \subseteq J$ mit $P \oplus \bigoplus_{j \in J'} N_j = M$ (Beweis "(ii)$\Rightarrow$(i)"). Daher ist 
+\[
+	P \simeq \nicefrac{M}{\bigoplus_{j \in J'} N_j} \simeq \bigoplus_{j \in J \setminus J'} N_j \bewende
+\]
+% subsection 222 (end)
+
+\subsection{Korollar (Krull-Remak-Schmidt)} % (fold)
+\label{sub:223}
+Ist 
+\[
+	M= \bigoplus_{i \in I} N_i = \bigoplus_{k \in K} L_k,
+\]
+mit $N_i, L_k$ einfach und $I$ endlich. Dann ist $\abs*{I} = \abs*{K}$ und es existiert ein $\pi  \in \Sym(K)$ mit 
+$L_k \simeq N_{\pi(k)}$.
+\minisec{Beweis}
+Durch Induktion über $n = \abs*{I}$. Für $n=1$ folgt $k = 1$, weil $M$ einfach. Im Allgemeinen existiert ein $j \in I$ mit $L_i \simeq N_j$ (nach Korollar \ref{sub:222}). Dann ist
+\[
+	\bigoplus_{j \not= i} L_j \simeq \nicefrac{M}{L_i} \simeq \nicefrac{M}{N_j} \simeq \bigoplus_{i \not= j} N_i
+\]
+Nach Induktionsvorraussetzung folgt die Behauptung. \bewende
+% subsection 223 (end)
+
+\subsection[Bemerkung: $M$ endlich erzeugt $\Leftrightarrow M$ endliche direkte Summe einfacher Untermoduln]{Bemerkung} % (fold)
+\label{sub:224}
+Sei $M = \bigoplus_{i \in I} S_i$ mit $S_i$ einfach. Dann ist $M$ endlich erzeugt genau dann, wenn $\abs*{I}$ endlich ist.
+\minisec{Beweis}
+\begin{description}
+	\item["$\Leftarrow$":] klar, weil $S_i$ zyklisch.
+	\item["$\Rightarrow $":] Ist $M = \langle x_1, \ldots , x_r \rangle$, dann existiert für jedes $j=1, \ldots ,r $ endlich viele $S_{j1}, \ldots , S_{jk}$ mit 
+	$x_j \in \bigoplus_{i=1}^k S_{j i}$, also ist $M$ die Summe von endlich vielen $S_i$, d.h. $\abs*{I}$ endlich. \bewende
+\end{description}
+Das heißt wenn $R$ halbeinfach als $R$-Modul ist, dann ist $R$ noethersch und artinsch (nach \ref{sub:214}).
+% subsection 224 (end)
+
+\subsection[Satz über die Ideale eines Ringes $R$ und die Ideale in $M_k(R)$]{Satz} % (fold)
+\label{sub:225}
+Sei $R$ ein Ring. Die Ideale in $M_k(R)$ sind genau von der Form $M_k(I)$ für ein Ideal $I \unlhd R$. Insbesondere ist $M_k(R)$ einfach genau dann, wenn $R$ einfach ist.
+\minisec{Beweis}
+Klar ist: Wenn $I \unlhd R$, dann $M_k(I) \unlhd M_k(R)$. Sei nun $I \unlhd M_k(R)$ ein Ideal und $\overline{I} := \set[x_{11}]{(x_{ij}) \in I}$ die Menge aller 
+$(1,1)$-Koeffizienten in $X \in I$. Man rechnet leicht nach, dass $\overline{I} \unlhd R $ ein beidseitiges Ideal ist:
+\[
+	\underbrace{\begin{pmatrix}
+		j & * \\
+		* & *
+	\end{pmatrix}}_{\in I} \cdot \underbrace{\begin{pmatrix}
+		r & \\
+		 & 0
+	\end{pmatrix}}_{\in M_k(R)} = \underbrace{\begin{pmatrix}
+		j \cdot r & \\
+		& 0
+	\end{pmatrix}}_{\in I}
+\]
+Sei $E(s,t) \in M_k(R)$ mit 
+\[
+	E(s,t)_{\mu, \nu} = \begin{cases}
+		1, &\text{ falls }s= \mu, t= \nu \\
+		0, &\text{ sonst }
+	\end{cases}
+\]
+eine Elementarmatrix. Dann ist $E(s,t) X E(u,v) = x_{t,u} E(s,v)$. Für $X \in I$ folgt aufgrund der Tatsache  $E(1,s) X E(t,1) = x_{s,t} E(1,1)$, also $x_{s,t} \in \overline{I}$. Daher ist
+$I \subseteq M_k(\overline{I})$.
+
+Noch zu zeigen: $M_k(\overline{I}) \subseteq I$. Sei also $Y \in M_k(\overline{I})$. Dann existiert für $s,t$ ein $X \in I$ mit $y_{s,t} = x_{1,1}$. Das heißt 
+$y_{s,t} E(s,t) = x_{1,1} E(s,t) = E(s,1) X E(1,t) \in I$. Daher ist 
+\[
+	Y = \sum y_{s,t} E(s,t) \in I
+\]
+d.h. $I= M_k(\overline{I} )$. \bewende \smallskip \\
+\fbox{$\Longrightarrow$ Matrizenringe über Körpern und Schiefkörpern sind einfache Ringe.}
+% subsection 225 (end)
+
+\subsection{Satz (Schurs Lemma)} % (fold)
+\label{sub:226}
+Ist $M \in {_R \Mod}$ einfach, dann ist $\End_R(M)$ ein Schiefkörper.
+\minisec{Beweis}
+Wegen $M \not= 0$ ist $\End_R(M) \not= 0$. Ist $\varphi \in \End_R(M) \setminus \set{0}$, dann ist $\varphi(M) \not= 0$, also $\varphi(M)=M$, da $M$ einfach. Ebenso
+$\ker \varphi \not= M$, daher $\ker \varphi = 0$. Daher ist $\varphi$ ein Isomorphismus und hat ein Inverses in $\End_R(M)$. \bewende 
+% subsection 226 (end)
+
+\subsection[Lemma: Darstellung von $\varphi \in \End_R(M)$ als Matrix]{Lemma} % (fold)
+\label{sub:227}
+Ist $M = \bigoplus_{i \le k} M_i$, $\varphi \in \End_R(M)$, dann existieren $\varphi_{i,j} \in \Hom(M_i, M_j)$ für $1 \le i,j \le k$, so dass für alle 
+$x = (x_1, \ldots , x_k) \in M_1 \oplus \ldots \oplus M_k$ gilt
+\[
+	\varphi(x) = \begin{pmatrix}
+		\varphi_{1,1} & \cdots & \varphi_{i,k} \\
+		\vdots & &\vdots \\
+		\varphi_{k,1} & \cdots & \varphi_{k,k}
+	\end{pmatrix}\cdot 
+	\begin{pmatrix}
+		x_1 \\ \vdots \\ x_k
+	\end{pmatrix}
+\]
+Insbesondere ist 
+\[
+	\End_R(M^k) \simeq M_k \enbrace[\big]{\End_R(M)}
+\]
+\minisec{Beweis}
+Seien $e_j : M_j \to M$ die Einbettungen, $\pi_i : M \to M_i$ die Projektionen. Dann ist für jeden Endomorphismus $\varphi \in \End_R(M)$
+\[
+	\varphi = \sum e_i \circ \varphi_{i,j} \circ \pi_j
+\]
+wobei $\varphi_{i,j} := \pi_i \circ \varphi \circ e_j \in \Hom(M_j, M_i)$.
+Es ist leicht nachzurechnen, dass die Verknüpfung von Endomorphismen der Multiplikation von Matrizen entspricht, d.h. $\varphi \psi = \sum \varphi_{i,j} \psi_{j,k}$. Damit
+folgt die Behauptung. \bewende
+% subsection 227 (end)
+
+\subsection[Definition: Entgegengesetzter Ring $R^{\op} \simeq \End_R(R,+)$]{Definition + Lemma} % (fold)
+\label{sub:228}
+Ist $(R,+,\cdot ,1)$ ein Ring, dann ist $R^{\op} := R(+, *, 1)$ ein Ring mit $r * s = s \cdot r$, der \Index{entgegengesetzte Ring}. \\
+\uline{Klar:} Ist $R$ kommutativ, dann ist $R^{\op} \simeq R$. Jeder Links-$R$-Modul lässt sich als Rechts-$R^\op$-Modul auffassen.
+Es gilt
+\[
+	\End_R(R,+) \simeq R^\op
+\]
+\minisec{Beweis}
+Setze $\rho : R^\op \to \End_R(R,+)$, $\rho(r)= \rho_r : x \mapsto x \cdot r$. Homomorphie: $\rho_{r * s} : x \mapsto x \cdot s \cdot r$. Dann ist $\rho$ ein
+Ringhomomorphismus mit $\ker \rho = 0$, also injektiv. Ist $\varphi \in \End_R(R,+)$, so betrachte $\varphi(1)= r \in R$. Dann ist 
+\[
+	\rho(r)(x) = x \cdot r = x \cdot \varphi(1) = \varphi(x \cdot 1) = \varphi(x)
+\]
+d.h. $\varphi = \rho_r$. Daher ist $\rho$ ein Isomorphismus. \bewende
+% subsection 228 (end)
+
+\subsection{Satz (Wedderburn, 1. Struktursatz)} % (fold)
+\label{sub:229}
+Sei $R \not= 0$ ein Ring. Dann sind äquivalent:
+\begin{enumerate}[(i)]
+	\item $R$ ist einfach als Ring und links-artinsch als $R$-Modul.
+	\item Alle einfachen $R$-Moduln sind isomorph und $R$ ist halbeinfach als Modul. 
+	\item $R \simeq M_k(D)$ für einen Schiefkörper $D$ und ein $k\ge 1$. 
+\end{enumerate}
+Darüber hinaus sind $k$ und $D$ eindeutig bestimmt und der einfache $R$-Modul ist isomorph zu $D^k$.
+\minisec{Beweis}
+\begin{description}
+	\item["(i)$\Rightarrow $(ii)":] Sei $0  \not= I \subseteq R$ ein minimales Linksideal (existiert, da $R$ links-artinsch als Modul). Das heißt $I = R c \not= 0$ für ein
+	$c \in R$ (zyklisch!). Dann ist 
+	\[
+		\sum_{r \in R} R c \cdot r = J
+	\] 
+	ein beidseitiges Ideal im Ring $R$, also $R= \sum_{r\in R} Rc\cdot r$, da $R$ einfach. Ist $Rc r \not= 0$, dann ist $R c \to R c r$, $s\cdot c\mapsto s \cdot c\cdot r$
+	ein Epimorphismus, also $R c r = R c$ wegen der Minimalität von $R c$. Daher ist $(R,+)$ Summe von einfachen Untermoduln, also halbeinfach nach Satz \ref{sub:219}.
+	
+	Noch zu zeigen: Alle einfachen $R$-Moduln sind isomorph. \\
+	Ist $M$ ein einfacher $R$-Modul, dann ist $M = R \cdot m$ zyklisch und also $M \simeq \nicefrac{R}{I}$ für ein \marginnote{siehe \ref{sub:26}}maximales Linksideal
+	$I$ in $(R,+)$. Weil $R$ halbeinfach
+	ist, ist $M$ isomorph zu einem minimalen Linksideal in $(R,+)$ und wegen $R = \bigoplus_{i=1}^k R c_i$ nach Satz \ref{sub:219} ist dann $M \simeq R c_i \simeq Rc$. Die 
+	direkte Summe ist endlich, da $R$ artinsch ist nach Bemerkung \ref{sub:224}.
+	\item["(ii)$\Rightarrow $(iii)":]  $(R,+)$ ist als Links-$R$-Modul endlich erzeugt (sogar zyklisch, $R= R \cdot 1$). Daher ist nach Vorraussetzung 
+	\[
+		(R,+) \simeq \bigoplus_{i=1}^k L_i
+	\]
+	mit $L_i$ minimale Linksideale in $R$, $L_1 \simeq \ldots  \simeq L_k$ und nach Schurs Lemma (\ref{sub:226}) ist $\End_R(L_i) \simeq D'$ ein Schiefkörper. Daher ist
+	\[
+		R^\op \simeq \End_R(R,+) \simeq M_k(D')
+	\]
+	nach \ref{sub:227} und damit $R \simeq M_k(D)$ mit $D= (D')^\op$, da $M_k(R)^\op = M_k(R^\op)$.
+	\item["(iii)$\Rightarrow$(i)":] $M_k(D)$ ist ein $k^2$-dimensionaler $D$-Vektorraum. Linksideale sind $D$-Untervektorräume, also ist $M_k(D)$ noethersch und artinsch
+	\marginnote{artinsch, noethersch, da Dimension endlich}% 
+	und nach Satz \ref{sub:225} einfach, da $D$ ein Schiefkörper ist. 
+	Die Eindeutigkeit von $k$ und $D$ folgt aus Korollar \ref{sub:223} (Krull-Remak-Schmidt) und Schurs Lemma (\ref{sub:226}). 
+	\bewende
+	\minisec{Bemerkung}
+	$(R,+)$ ist also auch noethersch (rechts und links). Achtung: Es gibt Ringe, die links-noethersch aber nicht rechts-noethersch sind!
+\end{description}
+% subsection 229 (end)
+
+\subsection[Bemerkung: Homomorphismen zwischen einfachen, nicht-isomorphen Moduln sind trivial]{Bemerkung} % (fold)
+\label{sub:230}
+Sind $M,N$ einfache, nicht-isomorphe $R$-Moduln, dann ist $\Hom_R(M,N) = 0$. (Klar!)
+% subsection 230 (end)
+
+\subsection{Satz (2. Struktursatz von Wedderburn)} % (fold)
+\label{sub:231}
+Sei $R \not= 0$ ein Ring, halbeinfach als $R$-Modul. Dann existieren Schiefkörper $D_1, \ldots , D_l$, die paarweise nicht isomorph sind und 
+$k_1, \ldots , k_l \in \mathds{N}$, so dass 
+\[
+	R \simeq M_{k_1}(D_1) \oplus \ldots \oplus M_{k_l}(D_l).
+\]
+als Ringisomorphismus.
+\minisec{Beweis}
+$(R,+) \simeq L_1^{k_1} \oplus \ldots \oplus L_l^{k_l}$ mit $L_i \subseteq R$ minimale Linksideale, $L_i$ paarweise nicht isomorph. Dann ist
+\[
+	R^\op \simeq \End_R(R,+) \stackrel{\text{\ref{sub:230}}}{\simeq} \End_R(L_1^{k_1}) \oplus \ldots \oplus \End_R(L_l^{k_l})  
+	\simeq M_{k_1}(\tilde D_1) \oplus \ldots \oplus M_{k_l}(\tilde D_l)
+\]
+mit $\tilde D_i = \End_R(L_i)$. Setze $D_i := \tilde D_i^\op$. Damit ist dann 
+\[
+	R \simeq M_{k_1} \oplus \ldots \oplus M_{k_l}(D_l) \bewende
+\]
+% subsection 231 (end)
+\addcontentsline{toc}{section}{Freie Moduln}
+\section*{Freie Moduln}
+\subsection[Definition: linear unabhängig und Basen]{Definition} % (fold)
+\label{sub:232}
+Sei $M$ ein Links-$R$-Modul. Elemente $x_1, \ldots , x_n \in M$ heißen \bet{$R$-linear unabhängig}\index{linear unabhängig in Moduln}, wenn gilt: 
+\[
+	\alpha_1, \ldots , \alpha_n \in R \enspace : \enspace\sum \alpha_i \cdot x_i = 0 \quad \Longrightarrow \quad \forall i : \alpha_i = 0
+\]
+\marginnote{äquivalent dazu: minimale erzeugende Menge}%
+Sonst heißen $x_1, \ldots , x_n$ linear abhängig. Eine Menge $X \subseteq M$ heißt linear unabhängig, wenn jede endliche Teilmenge linear abhängig ist. Eine 
+linear unabhängige Erzeuger-Menge heißt \bet{Basis}\index{Basis (Modul)} für $M$.
+% subsection 232 (end)
+
+\subsection[Definition: Freier Modul]{Definition} % (fold)
+\label{sub:233}
+Sei $R$ ein Ring. Ein $R$-Modul heißt \Index{frei}, wenn er eine Basis hat. \\
+\uline{Achtung:} Die Mächtigkeit einer Basis ist \emph{nicht} notwendig eindeutig bestimmt!
+\minisec{Beispiele}
+\begin{enumerate}[(i)]
+	\item Wenn $R=K$ für einen Körper $K$, dann sind alle $R$-Moduln frei.
+	\item $R$ als $R$-Modul ist frei mit der Basis $\set{1_R}$.
+	\item $R^n$ für beliebiges $n \in \mathds{N}$ ist frei.
+\end{enumerate}
+% subsection 233 (end)
+
+\subsection[Definition: Freier $R$-Modul mit Basis der Mächtigkeit $\abs*{I}$]{Definition} % (fold)
+\label{sub:234}
+Für eine beliebige Menge $I$ heißt der (Links-)$R$-Modul $\mathcal{F}_I = \bigoplus_{I} R$ \emph{der} freie $R$-Modul mit Basis der Mächtigkeit $\abs*{I}$. \smallskip \\
+Elemente von $\mathcal{F}_I$ sind von der Form $(a_i)_{i \in I}$ mit $a_i=0$ für fast alle $i \in I$, d.h. $a_i = 0$ für alle bis auf endlich viele $i \in I$. Jeder andere
+freie $R$-Modul mit Basis der Mächtigkeit $\abs*{I}$ ist isomorph zu $\mathcal{F}_I$ via Bijektion der Basen: $(u_i)_{i \in I}$ und $(v_i)_{i \in I}$ induzieren einen 
+Isomorphismus durch
+\[
+	\sum_{i \in I} \alpha_i \cdot u_i \mapsto \sum_{i \in I} \alpha_i \cdot v_i
+\]
+\uline{Achtung:} Die Umkehrung gilt nicht! (siehe \ref{sub:233}) \smallskip\\
+Freie Moduln können durch ihre \bet{universelle Eigenschaft}\index{universelle Eigenschaft!freier Modul} charakterisiert werden:
+% subsection 234 (end)
+
+\subsection[Satz: Universelle Eigenschaft der freien $R$-Moduln]{Satz} % (fold)
+\label{sub:235}
+Sei $R$ ein Ring. Dann existiert für jede Menge $I$ ein $R$-Modul $\mathcal{F}_I $ und eine Abbildung $\varphi : I \to \mathcal{F}_I $, die universell ist für 
+$R$-Moduln. D.h. für jede Abbildung $f : I \to M$ in einen $R$-Modul $M$ existiert ein eindeutiger Homomorphismus $f' : \mathcal{F}_i  \to M $ mit $f = f' \circ  \varphi$.
+Also
+\[
+	\begin{tikzcd}
+		I \rar{\varphi} \drar[swap]{f}& \mathcal{F}_I \dar[dashed]{f'} \\
+		& M 
+	\end{tikzcd}
+\]
+\minisec{Beweis}
+Sei $\mathcal{F}_I = \bigoplus_I R$ mit Basis $(u_i)_{i \in I}$ und $\varphi(i)=u_i$. Ist $f : I \to M$ eine Abbildung, dann gilt für $f' : \mathcal{F}_I \to M$ mit 
+$f=  f' \circ \varphi$ offensichtlich $f'(u_i)= f(i)$. Also muss gelten 
+\[
+	f'\enbrace*{\sum \alpha_i u_i} = \sum \alpha_i f(i) \tag*{($\star$)}
+\]
+Daher folgt die Existenz von $f'$ und die Eindeutigkeit ebenfalls. \bewende
+
+\minisec{Bemerkung}
+Aus der universellen Eigenschaft folgt, dass der freie $R$-Modul mit Basis der Mächtigkeit $\abs{I}$ bis auf Isomorphie eindeutig bestimmt ist.
+% subsection 235 (end)
+
+\subsection[Korollar: Freie Moduln sind projektiv]{Korollar} % (fold)
+\label{sub:236}
+Ist 
+\[
+	\begin{tikzcd}
+		0 \rar& M' \rar["\alpha"]& M \rar["\beta"]& M'' \rar \lar["\sigma", bend left, dashed]& 0
+	\end{tikzcd}
+\]
+eine kurze exakte Sequenz und $M''$ ein freier $R$-Modul, dann \Index{spaltet} die Sequenz, d.h. es 
+existiert ein $R$-Modulhomomorphismus $\sigma : M''  \to M$ mit $\beta \circ \sigma = \id_{M''}$. Dann ist $M \cong M' \oplus M''$. $\sigma$ heißt dann ein \Index{Schnitt}. 
+\minisec{Bemerkung}
+$M''$ heißt \Index{projektiv} genau dann, wenn jede kurze Sequenz mit $M''$ an dritter Stelle spaltet. Also bedeutet dieses Korollar: Freie $R$-Moduln sind projektiv. 
+\minisec{Beweis}
+Sei $I$ Basis für $M''$. Da $\beta$ surjektiv ist, existiert für jedes $i \in I$ ein $u_i \in M$ mit $\beta(u_i)= i$. Die Abbildung $f : I \to M$, $i \mapsto u_i$ lässt 
+sich fortsetzen zu $\sigma : M'' \to M$ (nach \ref{sub:235}) und dann gilt $\beta \circ \sigma = \id_{M''}$. Damit ist 
+$M = \im \alpha \oplus \im \sigma \simeq M' \oplus M''$. \bewende
+% subsection 236 (end)
+
+\subsection[Satz: Jeder $R$-Modul ist Quotient eines freien $R$-Moduls]{Satz} % (fold)
+\label{sub:237}
+Jeder $R$-Modul ist Quotient eines freien $R$-Moduls, also $M \simeq \nicefrac{\mathcal{F}}{G}$ für einen Untermodul $G \le \mathcal{F}$.
+\minisec{Beweis}
+Ist $M \in {_R \Mod}$, setze $\mathcal{F}_M = \bigoplus_{m \in M} R$. Dann lässt sich die Abbildung
+$f : M \to M$ fortsetzen zu einem Epimorphismus $f' : \mathcal{F}_M \to M$, d.h. $M \simeq \nicefrac{\mathcal{F}_M}{\ker f'}$. \bewende\smallskip\\
+Daher sind Quotienten von freien Moduln im Allgemeinen \emph{nicht} frei! \\
+Nur über Körpern sind alle Moduln frei!
+% subsection 237 (end)
+
+\subsection[Satz: Alle $R$-Moduln sind frei $\iff$ $R$ ist Schiefkörper]{Satz} % (fold)
+\label{sub:238}
+Sei $R$ ein nicht-trivialer Ring. Dann sind äquivalent:
+\begin{enumerate}[(i)]
+	\item Jeder (Links-)$R$-Modul ist frei.
+	\item Jeder zyklischer (Links-)$R$-Modul ist frei.
+	\item $R$ ist einfach als Links-$R$-Modul.
+	\item Jedes $x \in R \setminus \set{0}$ hat ein Linksinverses.
+	\item $R$ ist ein Schiefkörper.
+\end{enumerate}
+(i) - (v) sind auch äquivalent zu $\text{(i)}_R$ - $\text{(iv)}_R$ für Rechts-$R$-Moduln.
+\minisec{Beweis}
+\begin{description}
+	\item["(i)$\Rightarrow$(ii)":] Klar. 
+	\item["(ii)$\Rightarrow $(iii)":] Sei $I$ ein maximales Links-Ideal in $(R,+)$. Dann ist 
+	\[
+		0 \longrightarrow I  \longrightarrow R \longrightarrow \mathcal{F} \longrightarrow 0
+	\]
+	mit $\mathcal{F} \simeq \nicefrac{R}{I}$ eine exakte Sequenz mit $\mathcal{F}$ zyklisch und daher frei nach Vorraussetzung. Da $I$ ein maximales Ideal war, ist 
+	$\mathcal{F}$ einfach. $R$ ist auch zyklisch und daher frei, d.h. $R \simeq \mathcal{F}$ und daher auch $R$ einfach als $R$-Modul.
+	\item["(iii)$\Rightarrow $(iv)":] Sei $c \in R \setminus \set{0} $. Dann ist $Rc=R$, also existiert $b \in R$ mit $b c = 1$, d.h. $c$ hat ein Linksinverses.
+	\item["(iv)$\Rightarrow$(v)":] Sei $c \in R \setminus \set{0}$ mit Linksinversem $b$ und $a$ Linksinverses von $b$, also
+	\[
+		b c = 1 = a b.
+	\]
+	Dann ist also $a = a (b c) = (a b) c = c$. Dann folgt $a=c$ und $b c= c b = 1$. Damit ist $R$ ein Schiefkörper.
+	\item["(v)$\Rightarrow$(i)":] Lineare Algebra I. (Vektorräume haben eine Basis)
+\end{description}
+Die Äquivalenz von $\text{(i)}_R$ - $\text{(v)}_R$ folgt entsprechend. Wegen (v)=$\text{(v)}_R$ (weil (v) symmetrisch ist), sind also (i)- (v) auch äquivalent zu
+$\text{(i)}_R$ - $\text{(iv)}_R$. \bewende
+
+\minisec{Achtung}
+Auch freie Moduln haben nicht notwendig eine Dimension! \\
+\uline{Beispiel:} Sei $V$ ein unendlich dimensionaler $K$-Vektorraum, dann ist $V \simeq V \oplus V$, also ist 
+\[
+	R = \End_K(V) \simeq \End_K(V^2) \simeq M_2(R) \simeq R^4
+\]
+Das heißt $R$ als freier $R$-Modul hat eine Basis der Mächtigkeit 1, aber auch Basen jeder anderen Mächtigkeit. Genaueres in Aufgabe 1.b) von Blatt 5.
+% subsection 238 (end)
+
+\subsection[Definition: Invariante Basislänge (IBL)]{Definition} % (fold)
+\label{sub:239}
+Ein Ring hat \Index{invariante Basislänge} (IBL), wenn aus $R^m \simeq R^n$ (als Links-Moduln) schon $m=n$ folgt.
+\minisec{Bemerkung}
+\begin{itemize}
+	\item Körper haben IBL, $\End_R(V)$ nicht immer, $0$ nie!
+	\item Man kann zeigen: $R$ hat IBL genau dann, wenn jeder freie $R$-Modul eindeutige Basislänge hat.
+\end{itemize}
+% subsection 239 (end)
+
+\subsection[Lemma: Charakterisierung von IBL in Matrizenformulierung]{Lemma} % (fold)
+\label{sub:240}
+Ein Ring $R$ hat in IBL, wenn für alle $m,n \in \mathds{N}$ gilt: Ist $A \in R^{m \times n}$, $B \in R^{n \times m}$ mit 
+\[
+	AB = \ind_{m \times m}\quad , 	\quad  BA= \ind_{n \times n} 
+\]
+dann ist $n=m$.
+\minisec{Beweis}
+Dies ist die Matrizenformulierung mit $R^m \simeq R^n$ mit Lemma \ref{sub:227}. \bewende
+\minisec{Folgerung}
+$R$ hat IBL für Links-$R$-Moduln genau dann, wenn $R$ IBL für Rechts-$R$-Moduln hat.
+% subsection 240 (end)
+
+\subsection[Satz: Kommutative, noethersche Ringe und Urbilder von Ringhomom. haben IBL]{Satz} % (fold)
+\label{sub:241}
+Sei $R \not= 0$ ein Ring.
+\begin{enumerate}[(i)]
+	\item Ist $R$ kommutativ, dann hat $R$ IBL.
+	\item Ist $R$ noethersch (bzw. artinsch), dann hat $R$ IBL. Insbesondere haben halbeinfache Ringe IBL.
+	\item Ist $\varphi : S \to R$ ein Ringhomomorphismus ($\varphi(1_S)=1_R$) und $R$ hat IBL, dann auch $S$. Insbesondere vererbt sich IBL auf Unterringe mittels Inklusion.
+\end{enumerate}
+\minisec{Beweis}
+\begin{enumerate}[(i)]
+	\item Angenommen $A \in R^{m \times n}$, $B \in R^{n \times m}$ mit 
+	\(
+		AB = \ind_{m \times m}, BA= \ind_{n \times n} 
+	\)
+	und o.B.d.A. $m < n$. Dann ist
+	\[
+		\underset{\tilde{B}}{\begin{BMAT}(e,2pt,3pt){|ccc|c|}{|ccc|}
+			& & & 0 \\
+			& B & &   \\
+			& & & 0
+		\end{BMAT}} \cdot 
+		\underset{\tilde{A}}{\begin{BMAT}(e,2pt,4pt){|ccc|}{|ccc|c|}
+			& &  \\
+			& A&  \\
+			&  &  \\
+			0 & & 0
+		\end{BMAT}} = \ind
+	\]
+	Es gilt $\det( \tilde{B}\tilde{A})= \det \ind = 1 $ und $\det(\tilde{A}\tilde{B}) = \det(\tilde{B}\tilde{A})$, aber 
+	\[
+		\tilde{A} \cdot \tilde{B} = 
+		\begin{BMAT}(e,2pt,4pt){|ccc|}{|ccc|c|}
+			& &  \\
+			& A&  \\
+			&  &  \\
+			0 & & 0
+		\end{BMAT} \cdot 
+		\begin{BMAT}(e,2pt,3pt){|ccc|c|}{|ccc|}
+			& & & 0 \\
+			& B & &   \\
+			& & & 0
+		\end{BMAT} =
+		\begin{BMAT}(e){|cccc|}{|cccc|}
+			& & & 0\\
+			& 1 & & \\
+			& & & \\
+			0 & & & 0
+			\addpath{(0,1,|)rrruuu}
+		\end{BMAT}
+	\]
+	Also $\det(\tilde{A} \cdot \tilde{B}) = 0$ \light
+	\item Ist $R^m \simeq R^{m+k}$ mit $k \ge 1$, dann ist $R^m \simeq R^{m+k} \simeq R^{m+2k}$ und man erhält eine unendliche, echt aufsteigende (absteigende) Kette in
+	$R^m$. Mit $R$ ist auch $R^m$ noethersch (bzw. artinsch). \light
+	
+	Halbeinfacher Ring $\Rightarrow $ noethersch und artinsch.
+	\item Seien $A \in S^{m \times n}$, $B \in S^{n \times m}$ mit $AB = \ind$, $BA = \ind$. Dann gilt 
+	\[
+		\varphi(A) \varphi(B)= 1 \quad , \quad \varphi(B) \varphi(A) = 1
+	\]
+	das heißt es gilt $n=m$. \bewende
+\end{enumerate}
+% subsection 241 (end)
+
+\subsection*{Erinnerung} % (fold)
+\label{sub:erinnerung_hir}
+$R$ ist ein \Index{Hauptidealring} (HIR)\footnote{englisch: PID, prime ideal domain} , falls $R$ kommutativ und nullteilerfrei ist und jedes Ideal ein Hauptideal ist, das 
+heißt von einem Element erzeugt ist. In Hauptidealringen hat man eine eindeutige Primfaktorzerlegung (bis auf Einheiten).
+% subsection erinnerung (end)
+
+\subsection[Satz: Für $R$ HIR sind Untermoduln freier $R$-Moduln frei]{Satz} % (fold)
+\label{sub:242}
+Sei $D$ ein Hauptidealring, $L \subseteq D^m$ ein Untermodul, dann ist $L \simeq D^n$ für ein $n \le m$, d.h. Untermoduln freier Moduln sind frei.
+\minisec{Beweis}
+Durch Induktion über $m \ge 0$. Für $m=0$ ist die Aussage klar. Für $m=1$ ist $L \subseteq D$ ein Linksideal und da $D$ kommutativ ist, ist $L \unlhd D$. Weil $D$
+Hauptidealring ist, folgt $L=D a$ für ein $a \in D$, d.h. $L$ ist frei. Weiter ist $D \simeq D a$ via $\varphi : D \to D a$, $s \mapsto s \cdot a$ (Isomorphismus, da D
+nullteilerfrei). \\
+\uline{Induktionsschritt:} Sei $L \subseteq D^{m+1} = D \oplus D^m$, $\pi  : D \oplus D^m \to D$ die Projektion auf die erste Komponente. Betrachte die exakte Sequenz
+\[
+	0 \longrightarrow \ker \pi\big|_L \longrightarrow L \xrightarrow{\enspace \pi \enspace} \pi(L) \longrightarrow 0 
+\]
+\begin{description}
+	\item[Fall 1:] $\pi (L)=0$, dann ist $L \subseteq \ker \pi = 0 \oplus D^m \simeq D^m$ und nach Induktionsvorraussetzung ist $L$ frei, $L \simeq D^n$, $n \le m$.
+	\item[Fall 2:] $\pi (L) \not= 0$, dann ist $\pi(L) \subseteq D$ ein freier $D$-Modul. Nach Korollar \ref{sub:236} ist 
+	\[
+		L \simeq \ker \pi\big|_L \oplus \pi(L)
+	\]
+	Nach Induktionsvorraussetzung ist $\ker \pi\big|_L \subseteq D^m$ ein freier Modul, also $\ker \pi\big|_L \simeq D^n$, $n \le m$, und $\pi (L) \simeq D$, daher ist 
+	$L \simeq D \oplus D^n$. \bewende
+\end{description}
+	Ist $D$ ein Hauptidealring, $M$ endlich erzeugt über $D$, also $M = D m_1 + \ldots + D m_s$. Betrachte $\varphi : D^s \to M$ mit $(d_1, \ldots , d_s) \mapsto \sum d_i m_i$.
+	Nach Satz \ref{sub:242} ist $\ker \varphi \simeq D^t$ für $t \le s$ und $M \simeq \nicefrac{D^s}{\ker \varphi}$. Um $M$ zu beschreiben, müssen wir untersuchen, 
+	\emph{wie} $\ker \varphi$ in $D^s$ liegt.
+% subsection 242 (end)
+
+\subsection[Satz: (Smith-Normalform) Invariante Faktoren einer Matrix über einem Hauptidealring]{Satz} % (fold)
+\label{sub:243}
+Sei $A= (a_{ij}) \in D^{m \times n}$, $D$ ein Hauptidealring. Dann gibt es invertierbare Matrizen $P  \in D^{m \times m}, Q \in D^{n \times n}$ mit 
+\[
+	P \cdot A \cdot Q = \begin{pmatrix}
+		d_1 & & & 0 & & \\
+		& \ddots & & & & \\
+		& & d_k & & & \\
+		0 & & & 0 & & \\
+		& & & & \ddots & \\
+		& & & & & 0
+	\end{pmatrix}
+	\qquad d_1, \ldots , d_k \not= 0, d_i \mid d_{i+1}
+\]
+Falls $D$ ein Körper ist, folgt dies aus dem Gauß-Verfahren und es gilt $d_i =1$ für alle $i$.
+\minisec{Beweis}
+Für $a \in D \setminus \set{0}$ sei $l(a)=s$, falls $a= p_1 \cdot \ldots \cdot p_s$ mit $p_i$ prim (eindeutig, da $D$ HIR). Ist $a \in D^\times$ Einheit, setze $l(a)=0$
+und $l(0)= \infty$. Für $A=0$ ist nichts zu zeigen. \\
+\uline{Erinnerung:} Durch Links- und Rechtsmultiplikation mit geeigneten invertierbaren Matrizen können wir:
+\begin{itemize}
+	\item Zeilen von $A$ vertauschen
+	\item Spalten von $A$ vertauschen
+	\item Zeilen/Spalten mit Einheiten multiplizieren
+	\item zu einer Zeile/Spalte beliebige Vielfache einer anderen Zeile/Spalte aufaddieren \marginnote{siehe LA I.}
+\end{itemize}
+Wähle $a_{ij} $ in $A$ mit $l(a_{ij})$ minimal. Durch Zeilen- und Spaltenvertauschungen können wir erreichen, dass $a_{ij}$ links oben steht (vertausche $i$-te und 1.
+Zeile, dann $j$-te und 1. Spalte). 
+
+Wenn $a_{11} \nmid a_{1k}$ für $k \ge 2$, vertausche 2-te und $k$-te Spalte. Dann gilt $a_{11} \nmid a_{12}$. Sei $d \in \ggT(a_{11}, a_{12})$,
+dann $l(d) < l(a_{11})$. Schreibe $d = a_{11} \cdot x + a_{12} \cdot y$\marginnote{$x,y \in D$} und $d \cdot e = a_{12}$ sowie $ d \cdot f = - a_{11}$. Dann ist 
+\[
+	\begin{pmatrix}
+		-f & e \\
+		y & -x
+	\end{pmatrix} \cdot \begin{pmatrix}
+		x  & e \\
+		y & f
+	\end{pmatrix} = \begin{pmatrix}
+		- f \cdot x + y \cdot e & 0 \\
+		0 & e \cdot y - f \cdot x
+	\end{pmatrix}
+	= \begin{pmatrix}
+		1 & 0 \\
+		0 & 1
+	\end{pmatrix}
+\]
+denn $d \cdot e \cdot y - d \cdot f \cdot x = a_{12} \cdot y + a_{11} \cdot x = d$, daher $e \cdot y- f x \cdot = 1$. Ebenso 
+\[
+	\begin{pmatrix}
+		x & e \\
+		y & f
+	\end{pmatrix} \cdot \begin{pmatrix}
+		- f & e \\
+		y & -x
+	\end{pmatrix} = \begin{pmatrix}
+		1 & 0\\
+		0 & 1
+	\end{pmatrix}
+\]
+das heißt $\begin{psmallmatrix}
+	x & e \\
+	y & f
+\end{psmallmatrix}$ ist invertierbar. Es gilt \marginnote{$a_{11} \cdot e +a_{12}\cdot f  = - d \cdot f \cdot e + d \cdot e \cdot f = 0$}
+\[
+	\begin{pmatrix}
+		\begin{BMAT}(c){:cc:}{:cc:}
+			a_{11} & a_{12} \\
+			a_{21} & a_{22}
+		\end{BMAT} & * \\
+		* & *
+	\end{pmatrix} \cdot \begin{pmatrix}
+		\begin{BMAT}(c){:cc:}{:cc:}
+			x & e \\
+			y & f
+		\end{BMAT} & 0 \\
+		0 & \begin{matrix}
+			1  & & \\
+			& \fixedddots & \\
+			& & 1
+		\end{matrix}
+	\end{pmatrix} = 
+	\begin{pmatrix}
+		d & a_{11}e +a_{12}f & a_{13} \cdots  \\
+		* & * & * \\
+		* & * & * 
+	\end{pmatrix} =
+	\begin{pmatrix}
+		d & 0 & a_{13} \cdots  \\
+		* & * & * \\
+		* & * & * 
+	\end{pmatrix}
+\]
+Damit transformieren wir nach und nach die Matrix $A$ auf die Gestalt
+\[
+	\tilde{A} = \begin{pmatrix}
+		\tilde{a_{11}} & \tilde{a_{12}} & \ldots \\
+		* & * & *
+	\end{pmatrix}
+\]
+mit $\tilde{a}_{11} \mid \tilde{a}_{ik}$ und $\tilde{a}_{11} \mid \tilde{a}_{k1}$. Durch Addieren von geeigneten Vielfachen der $1$-ten Zeile/Spalte erhalten wir eine 
+Matrix der Form
+\[
+	\left( \begin{BMAT}(@,1pt,1.7em){cc}{cc}
+		\tilde{a}_{11} & \, 0  \enspace\cdots  \enspace 0 \, \\
+		\begin{matrix} % (c){c}{ttt}
+			0\\ \vdots \\ 0
+		\end{matrix} & B 
+		\addpath{(1,0,:)ur}
+	\end{BMAT} \right)
+\]
+und $l(\tilde{a}_{11}) \le l (b_{ij})$ für $B= (b_{ij})$. Induktiv erhalten wir eine Matrix der Form
+\[
+	\begin{pmatrix}
+		d_1 &  & \\
+		 & \ddots  & &\\
+		  & & d_n & \\
+		  & & & 0
+	\end{pmatrix}
+\]
+mit $l(d_i) \le l(d_{i+1})$. Ist $d_i \nmid d_{i+1}$. Dann transformieren wir weiter:
+\[
+	\begin{pmatrix}
+		d_1 &  \\
+		& d_{i+1}
+	\end{pmatrix} \leadsto \begin{pmatrix}
+		d_i & d_{i+1} \\
+		& d_{i+1}
+	\end{pmatrix} \leadsto \begin{pmatrix}
+		d_i & d_{i+1} \\
+		& d_{i+1}
+	\end{pmatrix} \cdot \begin{pmatrix}
+		x & e \\
+		y & f
+	\end{pmatrix} = \begin{pmatrix}
+		d_i' & 0 \\
+		d_{i+1}y & d_{i+1} f
+	\end{pmatrix}
+\]
+mit $d_i x + d_{i+1} y = d_i' \in \ggT(d_i, d_{i+1})$. Wie eben erhalten wir $\begin{psmallmatrix}
+	d_i' & 0 \\
+	0 & d_{i+1} f
+\end{psmallmatrix} \leadsto \ldots $ fertig. \bewende \medskip\\
+Die $d_i, \ldots , d_k$ heißen die \Index{invarianten Faktoren} von $A$. Diese sind eindeutig (bis auf Einheiten). 
+% subsection 243 (end)
+
+\subsection[Definition: $i$-Minoren und Rang einer Matrix]{Definition} % (fold)
+\label{sub:244}
+Ist $A \in D^{m \times n}$ und $i \le m,n$, dann ist die Determinante einer Matrix $A' \in D^{i \times i}$ ein $i$-\Index{Minor} von $A$, wenn $A'$ aus $A$ hervorgeht
+durch Streichen von $m-i$ Zeilen und $n-i$ Spalten. Der \Index{Rang} von $A$ ist das größte $i$, für das $A$ einen $i$-Minor $\not= 0$ besitzt.
+% subsection 244 (end)
+
+\subsection{Satz (Elementarteilersatz)} % (fold)
+\label{sub:245}
+Sei $D$ ein Hauptidealring, $A \in D^{m\times n}$ und $k$ der Rang von $A$. Für $j \ne k$ sei $\delta_j = \delta_j(A)$ ein $\ggT$ aller $j$-Minoren von $A$. Dann sind die
+invarianten Faktoren eindeutig bestimmt (bis auf Einheiten) und von der Form $d_1 = \delta_1$, $d_i = \prod_{j \le i} \delta_j$.
+\minisec{Beweis}
+Ist $k$ der Rang von $A$, dann existiert für alle $i \le k$ ein $i$-Minor $\not= 0$ in $A$ (Laplace-Entwicklung der Determinante). Insbesondere ist 
+$\delta_1, \ldots , \delta _k \not= 0$, also $d_i \not= 0$ für $i=1, \ldots ,k$. 
+
+Für $P \in D^{m \times m}$ sind die Zeilen von $P \cdot A$ Linearkombinationen der 
+Zeilen von $A$, also sind die $j$-Minoren von $P \cdot A$ Linearkombinationen der $j$-Minoren von $A$. Entsprechendes gilt für die Spalten von $Q \in D^{n \times n}$ und 
+$A \cdot Q$. Wenn also $P \in D^{m \times m}, Q \in D^{n \times n}$ invertierbare Matrizen sind, dann folgt $\delta_j (P \cdot A \cdot Q) \mid \delta_j (A)$ und 
+$\delta_j(A) \mid \delta_j (P \cdot A \cdot Q)$ ist. Das heißt $\delta_j (P \cdot A \cdot Q) = u \cdot \delta_j(A)$ für eine Einheit $u \in D^\times$. Ist nach Satz 
+\ref{sub:243}
+\[
+	P \cdot A \cdot Q = \begin{pmatrix}
+		d_1 & & & 0 & \cdots & 0\\
+		& \ddots & & \vdots  & & \vdots \\
+		& & d_k & \vdots& & \vdots \\
+		0 & \cdots & \cdots & 0 & \cdots & 0 \\
+		\vdots & & & \vdots & \ddots & \vdots \\
+		0 & \cdots & \cdots & 0 & \cdots & 0
+	\end{pmatrix}
+\] 
+mit $d_i \mid d_{i+1}$, dann ist $\delta_j(P \cdot A \cdot Q) = d_i \cdot \ldots \cdot d_j$. Dies zeigt, dass die invarianten Faktoren bis auf Einheiten eindeutig sind.
+\bewende\\
+Die Matrix heißt die \Index{Smith-Normalform} von A. 
+% subsection 245 (end)
+
+\subsection[Beispiel: Anwendung des Elementarteilersatzes]{Beispiel} % (fold)
+\label{sub:246}
+Sei $D= \mathds{Z}$ und $A = \begin{psmallmatrix}
+	3 & 1 \\
+	0 & 4
+\end{psmallmatrix}$. Die $1$-Minoren sind $1,3,4$, also ist $\delta_1 = 1 = d_1$. Der $2$-Minor ist $12$, also gilt $\delta_2=12= d_2$. Damit ist 
+$A \sim_\mathds{Z} \begin{psmallmatrix}
+	1 & 0 \\
+	0 & 12
+\end{psmallmatrix}$.
+% subsection 246 (end)
+
+\subsection[Definition: Annulatorideal und Torsionselement]{Definition} % (fold)
+\label{sub:247}
+Ist $M \in {_R\Mod}$, $m \in M$, dann heißt 
+\[
+	\ann(m) = \set[r \in R]{r \cdot m = 0} 
+\]
+das \Index{Annulatorideal} von $m$ in $R$. $m \in M$ heißt \Index{Torsionselement}, falls $\ann(m) \not= 0$  
+% subsection 247 (end)
+
+\subsection{Satz: Struktursatz für endlich erzeugte Moduln über HIR} % (fold)
+\label{sub:248}
+Sei $D$ ein Hauptidealring, $M$ ein endlich erzeugter $D$-Modul. Dann ist $M$ die Summe von zyklischen Moduln $M= D {m_1} \oplus \ldots \oplus D {m_k}$ mit 
+\[
+	D \supsetneq \ann(m_1) \supsetneq \ann(m_2) \supsetneq \ldots \supsetneq \ann(m_k)
+\]
+\minisec{Beweis}
+Schreibe $M \simeq \nicefrac{D^s}{L}$ mit $L \simeq D^t$, $t \le s$ (siehe \ref{sub:242}). Dann ist $L= Dl_1 \oplus \ldots \oplus D l_t$ mit 
+$l_j = (a_{1j}, \ldots , a_{sj}) \in D^s$. Dann erhalten wir eine Matrix $A= (a_{ij}) \in D^{s \times t}$. Die Smith-Normalform
+\[
+	P \cdot A \cdot Q = \begin{pmatrix}
+		a_1 & & & & & 0 \\
+		& \ddots & & & & \\
+		& & a_k & & & \\
+		& & & 0 & & \\
+		& & && \ddots & \\
+		0 & & & & & 0
+	\end{pmatrix}
+\]
+liefert ein neues Erzeugendensystem für $D^s$, $L$ nämlich $e_1, \ldots , e_s, f_1, \ldots , f_t$ mit 
+\[
+	D^s = \bigoplus_{i=1}^s D{e_i} \quad , \quad L= \bigoplus_{j=1}^t D f_j
+\]
+sowie $f_i = d_i \cdot e_i$ und 
+\[
+	\nicefrac{D^s}{L} \simeq \nicefrac{D}{(d_1)} \oplus \ldots \oplus \nicefrac{D}{(d_k)} \oplus D \oplus \ldots \oplus D
+\]
+Für $d_i \in D^\times$ Einheit ist $\nicefrac{D}{(d_i)} = 0$, also einfach weglassen.\bewende
+% subsection 248 (end)
+
+\subsection{Korollar: Struktursatz für endlich erzeugte abelsche Gruppen} % (fold)
+\label{sub:249}
+Ist $A$ eine endlich erzeugte abelsche Gruppe, dann ist $A$ die direkte Summe von endlich vielen zyklischen Gruppen.
+\minisec{Beweis}
+Dies folgt unmittelbar aus der Tatsache, dass jede abelsche Gruppe ein $\mathds{Z}$-Modul ist, vergleiche Bemerkung \ref{sub:23} (iv). \bewende
+% subsection 249 (end)
+
+\subsection[Definition und Satz: Torsionsmodul]{Definition und Satz} % (fold)
+\label{sub:250}
+Setze $\tor_D(M) := \set[m \in M]{\ann(m)\not= 0}$. Ist $D$ kommutativ und nullteilerfrei, dann ist $\tor_D(M)$ ein Untermodul, der \Index{Torsionsmodul} von $M$.
+\minisec{Beweis}
+Ist $a \cdot m = 0$, dann ist $d \cdot a \cdot m= a \cdot d \cdot m$ also $d \cdot m \in \tor(M)$ für alle $d \in D$. Sind $m_1, m_2 \in \tor(M)$, also
+$a m_1 = b m_2 = 0$, dann ist $a b( m_1 + m_2)=0$. \bewende
+% subsection 250 (end)
+
+\subsection[Satz: Zerlegung eines endlich erzeugten Moduls in Torsionsmodul und freien Modul]{Satz} % (fold)
+\label{sub:251}
+Ist $M$ ein endlich erzeugter Modul über einem Hauptidealring $D$, dann ist 
+\[
+	M \simeq \tor_D(M) \oplus D^k
+\]
+und $\tor_D(M)$, $k$ sind eindeutig bestimmt.
+\minisec{Beweis}
+Nach Satz \ref{sub:248} ist 
+\[
+	M \simeq D m_1 \oplus \ldots \oplus D m_s \oplus D m_{s+1} \oplus \ldots \oplus D m_{s+k}
+\]
+mit 
+\begin{align*}
+	\ann(m_i) &\not= 0 \text{ für }i=1, \ldots ,s \\
+	\ann(m_i) &= 0 \text{ für } i=s+1, \ldots , s+k
+\end{align*}
+Ein Element $d_1 m_1 + \ldots  + d_{s+k} m_{s+k} \in M$ ist ein Torsionselement
+genau dann, wenn $d_{s+1} = \ldots = d_{s+k}=0$, also wenn es in $Dm_1\oplus \ldots \oplus D m_s$ liegt. Damit ist $\tor(M)= D m_1 \oplus \ldots \oplus D m_s$.
+Es ist $\nicefrac{M}{\tor(M)} \simeq D^k$ und $k$ ist nach Satz \ref{sub:241} eindeutig bestimmt ($M$ ist halbeinfach).\bewende
+% subsection 251 (end)
+
+\subsection[Beispiele für Zerlegungen mit dem Torsionsmodul]{Beispiel} % (fold)
+\label{sub:252}
+\begin{enumerate}[(i)]
+	\item Sei $D=Z$ und $M= \nicefrac{\mathds{R}}{\mathds{Z}}$. Dann ist 
+	\(
+		\tor_\mathds{Z}(\nicefrac{\mathds{R}}{\mathds{Z}}) = \nicefrac{\mathds{Q}}{\mathds{Z}}
+	\), da $d \cdot r \in \mathds{Z} \Rightarrow r \in \mathds{Q}$. Also gilt
+	\[
+		\nicefrac{\mathds{R}}{\mathds{Z}} \simeq \nicefrac{\mathds{Q}}{\mathds{Z}} \oplus \bigoplus \mathds{Q}.
+	\]
+	Anmerkung\footnote{$\nicefrac{\mathds{R}}{\mathds{Z}}\simeq S^1 = \set[z \in \mathds{C}]{\abs*{z}=1}$ indem man $S^1$ in Polardarstellung, also nur als Menge der Winkel 
+	betrachtet.}.
+	\item Sei $D=\mathds{Z}$ und $M=\mathds{Q}$. Dann ist $\tor_\mathds{Z}(\mathds{Q})= 0$, aber $(\mathds{Q},+)$ ist \emph{kein} freier $\mathds{Z}$-Modul: Seien 
+	$\frac{r}{s}, \frac{p}{q} \in \mathds{Q}$. Dann ist 
+	\[
+		r \cdot p \in \mathds{Z} \frac{r}{s} \cap \mathds{Z} \frac{p}{q} \not= 0 
+	\]
+	$\mathds{Q}$ ist nicht endlich erzeugt als $\mathds{Z}$-Modul.
+\end{enumerate}
+Ist $A$ eine endlich erzeugte abelsche Gruppe, dann existiert $k \in \mathds{Z}$ und eine endliche Gruppe $A_0$ mit $A \simeq A_0 \oplus \mathds{Z}^k$. Dabei heißt $k$ der
+Rang von $A$. Zusammengefasst ergibt sich:
+% subsection 252 (end)
+
+\subsection[Satz: Umformulierung des Struktursatzes für endl. erzeugte abelsche Gruppen]{Satz} % (fold)
+\label{sub:253}
+Eine endlich erzeugte abelsche Gruppe ist direkte Summe einer endlichen Gruppe, der Torsionsgruppe, und einer freien abelschen Gruppe isomorph zu $\mathds{Z}^k$. Dabei ist 
+der Rang $k$ invariant. Jede endliche abelsche Gruppe ist direkte Summe von zyklischen Gruppen.
+
+Jede endliche abelsche Gruppe ist die Summe von zyklischen Gruppen von Primzahlordnung. Diese Ordnung und ihre Vielfachheiten sind eindeutig bestimmt. Zwei endlich erzeugte
+abelsche Gruppen sind genau dann isomorph, wenn der Rang und diese Ordnungen übereinstimmten.
+\minisec{Bemerkung}
+Die Zerlegung ist hier anders als in Satz \ref{sub:248}. Die Zerlegung von $\tor(A)$ folgt aus den Sylow-Sätzen.
+% subsection 253 (end)
+% section 2 (end)
+\newpage
+
+\section{Tensorprodukte und Algebren} % (fold)
+\label{sec:3}
+Zuerst betrachten wir Tensorprodukte für Moduln über kommutativen Ringen $R$. Sind $U,V, W \in {_R \Mod}$, $f : U \times V \to W$ bilinear, dann suchen wir ein 
+universelles Objekt $T$ und eine bilineare Abbildung $\varphi$, sodass es für jedes bilineare $f$ und jedes $W$ einen eindeutigen $\mathds{R}$"=Modulhomomorphismus $f'$ 
+gibt, sodass das folgende Diagramm kommutiert.\index{Tensorprodukt}
+\[
+	\begin{tikzcd}
+		U \times V \rar{\varphi} \drar{f} & T \dar[dashed]{f'}\\
+		& W
+	\end{tikzcd}
+\]
+\subsection[Satz: Universelle Eigenschaft des Tensorproduktes]{Satz} % (fold)
+\label{sub:31}
+Sei $R$ ein kommutativer Ring und $U,V \in {_R \Mod}$. Dann existiert ein bis auf Isomorphie eindeutiger $R$-Modul $U \otimes V$ und eine bilineare Abbildung 
+$\varphi : U \times V \to U \otimes V$, die universell für alle bilinearen Abbildungen $f : U \times V \to W$ ist.
+\minisec{Beweis}
+Eindeutigkeit ist klar: Seien $T_1, \varphi_1$ und $T_2, \varphi_2$ zwei universelle Objekte. Dann betrachte
+\[
+	\begin{tikzcd}
+		U \times V \rar{\varphi_1} \drar{\varphi_2} \arrow{ddr}{\varphi_1} \arrow{dddr}{\varphi_2}& T_1  \dar[dashed]{\varphi_2'} \arrow[bend left = 60]{dd}{\id}	\\
+		& T_2 \dar[dashed]{\varphi_1'}  \arrow[bend left = 60, crossing over]{dd}{\id}\\
+		& T_1 \dar[dashed]{\varphi_2'} \\
+		& T_2
+	\end{tikzcd}
+\]
+also $\varphi_2' \circ \varphi_1' = \id_{T_2}$, $\varphi_1' \circ \varphi_2' = \id_{T_1}$ $\Rightarrow T_1 \simeq T_2$.
+
+Für die Existenz sei $\mathcal{F}_{U \times V}$ der freie $R$-Modul mit Basis (indiziert durch) $U \times V$ und sei $B \subseteq \mathcal{F}_{U \times V}$ der Untermodul,
+der von allen Elementen der folgenden Form erzeugt wird
+\begin{align*}
+	&(u+u', v) - (u,v) - (u', v) \\
+	&(u,v+v') - (u,v) - (u,v') \\
+	&(\alpha \cdot u, v) - \alpha(u,v) \\
+	&(u, \alpha \cdot v) - \alpha(u,v)
+\end{align*}
+für alle $u,u' \in U$, $v,v' \in V, \alpha \in R$. Sei $\varphi$ die Hintereinanderausführung
+\[
+	0 \longrightarrow U \times V \xhookrightarrow{\quad} \mathcal{F}_{U \times V} \longrightarrow \nicefrac{\mathcal{F}_{U \times V}}{B} \longrightarrow 0
+\]
+Offensichtlich ist $\varphi$ bilinear: Es ist $\varphi((u,v+ v')) = (u, v+ v')+ B $. Wegen $(u, v+v')= (u,v)+ (u, v')$ usw. in $\nicefrac{\mathcal{F}_{U\times V}}{B}$ ist
+$\varphi$ bilinear. Setze $U \otimes V := \nicefrac{\mathcal{F}_{U \times V}}{B}$. Noch zu zeigen: $U \otimes V$, $\varphi$ erfüllen die universelle Eigenschaft:
+Sei also $f : U \times V \to W$ bilinear. Dann lässt sich wegen der universellen Eigenschaft des freien Moduls $\mathcal{F}_{U \times V}$ $f$ fortsetzen zu 
+$f_1 : \mathcal{F}_{U \times V} \to W$ (Satz \ref{sub:235})
+\[
+	\begin{tikzcd}
+		U \times V \rar[hook]{\varphi'} \drar{f}& \mathcal{F}_{U \times V} \dar[dashed]{f_1}\\
+		& W
+	\end{tikzcd}
+\]
+Nach Definition von $B$ folgt $B \subseteq \ker f_1$, denn es ist zB.
+\[
+	f_1 \benbrace[\big]{(u+ u', v) - (u,v)- (u',v)} = f(u+u',v) - f(u,v) - f(u',v) = 0 
+\]
+da $f$ bilinear ist. Ebenso ist
+\[
+	f_1 \benbrace[\big]{(\alpha u, v) - \alpha(u,v)} = f(\alpha u,v) - \alpha f(u,v)  = 0 
+\]
+Daher erhalten wir $f' : U \otimes V = \nicefrac{\mathcal{F}_{U \times V}}{B} \to W$ und dieses $f'$ ist eindeutig bestimmt, da die Bilder von $(u,v)$ den Modul 
+$U \otimes V$ erzeugen. \bewende
+% subsection 31 (end)
+
+\subsection[Bemerkung: Elemente und Erzeuger des Tensorprodukts, Modulstruktur des Tensorprodukts]{Bemerkung} % (fold)
+\label{sub:32}
+Das Bild von $(u,v)$ in $U \otimes V$ unter $\varphi$ wird mit $u \otimes v$ bezeichnet. D.h. $U \otimes V$ ist $R$-Modul mit Erzeugermenge 
+$\set[u \otimes v]{u \in U, v \in V} $ und definiert Relationen
+\begin{align*}
+	(u+ u') \otimes v &= u \otimes v + u' \otimes v \\
+	u \otimes (v+v') &= u \otimes v + u \otimes v' \\
+	\alpha u \otimes v &=  \alpha \enbrace*{u \otimes v} = u \otimes \alpha v 
+\end{align*}
+für alle $u,u' \in U, v,v' \in V, \alpha \in R$. 
+\minisec{Achtung}
+Nicht jedes Element in $U \otimes V$ ist von der Form $u \otimes v$, $u \in U, v \in V$! Ein allgemeines Element ist von der Form $\sum_{i=1}^{k} u_i \otimes v_i $ für
+$u_i \in U$, $v_i \in V$, $k \in \mathds{N}$.
+\todo[noline]{RevChap3}
+% subsection 32 (end)
+
+\subsection[Proposition: Das Tensorprodukt als Operation auf $_R\Mod$]{Proposition} % (fold)
+\label{sub:33}
+Sei $R$ ein kommutativer Ring, $U,V,W$ seien $R$-Moduln. Dann gilt 
+\begin{enumerate}[(i)]
+	\item $U \otimes V \simeq V \otimes U$
+	\item $U \otimes ( V \otimes W) \simeq (U \otimes V) \otimes W$
+	\item $U \otimes( V \oplus W) \simeq (U \otimes V) \oplus (U \otimes W)$
+\end{enumerate}
+\minisec{Beweis}
+\begin{enumerate}[(i)]
+	\item $f : U \times V \to V \times U$, $(u,v) \mapsto (v,u)$ ist bilinear. Daher existiert ein Homomorphismus $\alpha : U \otimes V \to V \otimes U$, 
+	$u \otimes v \mapsto v \otimes u$, d.h. 
+	\[
+		\alpha \enbrace*{ \sum u_i \otimes v_i} = \sum v_i \otimes u_i
+	\]
+	Ebenso ist $\beta : V \otimes U \to U \otimes V$, $v \otimes u \mapsto u \otimes v$ ein $R$-Modulhomomorphismus. Dann ist $\beta \circ  \alpha = \id_{U \otimes V}$ und
+	$\alpha \circ  \beta = \id_{V \otimes U}$, d.h. $\alpha$ und $ \beta$ sind Isomorphismen.
+	\item Betrachte $f : U \times V \times W  \to U \otimes (V \otimes W)$, $(u,v,w) \mapsto u \otimes (v \otimes w)$. Für festes $w \in W$ ist $f$ bilinear in $u, v$
+	und wir erhalten $f_w' : (U \otimes  V) \to U \otimes (V \otimes W)$, $(u \otimes v)  \mapsto u \otimes (v \otimes w)$. Dann ist $f_w'$ $R$-linear und wir 
+	erhalten eine bilineare Abbildung
+	\[
+		\tilde{f} : (U \otimes V) \times W \to U \otimes (V \otimes W) \quad , \quad \enbrace[\big]{(u \otimes v), w} \mapsto f_w(u \otimes v) =  u \otimes ( v \otimes w) 
+	\]
+	Daraus erhalten wir $f' : (U \otimes V) \otimes W \to U \otimes (V \otimes W)$. Entsprechend erhalten wir Inverses 
+	$g' : U \otimes (V \otimes W) \to (U \otimes V) \otimes W $.
+	\item Sei $\varphi: U \times (V \oplus W) \to (U \otimes V) \oplus (U \otimes W)$, $(u,v,w) \mapsto (u \otimes v, u \otimes w)$. Ist $f : U \times (V \oplus  W) \to Z$
+	eine bilineare Abbildung in einen $R$-Modul $Z$, dann ist $f(u,v,w) = f(u,v)+ f(u,w)$ und dies kann auch als Abbildung von $(U \otimes V) \oplus (U \otimes W)$
+	aufgefasst werden. Daher erfüllt $(U \otimes V) \oplus (U \otimes W)$ die erforderliche universelle Eigenschaft, d.h.
+	\[
+		U \otimes (V \oplus W) \simeq (U \otimes V) \oplus (U \otimes W) \bewende
+	\]
+\end{enumerate}
+% subsection 33 (end)
+
+\subsection[Beispiele zu Tensorprodukten]{Beispiel} % (fold)
+\label{sub:34}
+\begin{enumerate}[(i)]
+	\item $\mathds{Q} \otimes_\mathds{Z} \mathds{R} \simeq \mathds{R}$ via $q \otimes r \mapsto q \cdot r$.\marginnote{Ich bin mir noch unsicher, ob die Rechnung stimmt … bzw verstehe nicht ganz, was sie zeigen soll…}
+	\begin{align*}
+		\sum_{i=1}^{k} \frac{m_i}{n_i} \otimes r_i = \sum \frac{\prod_{i=1}^k m_i}{n_i \prod_{j \not= i} m_j} \otimes r_i  = \sum \frac{1}{\prod n_i} \otimes
+		\enbrace*{r_i m_i \prod_{j\not= i} n_j} = \frac{1}{\prod n_i} \otimes \enspace(\sum \ldots )   
+	\end{align*}
+	\item Seien $r,s \in \mathds{N}$, $(r,s)=1$ und $m r + n s =1$. Dann ist 
+	\[
+		\nicefrac{\mathds{Z}}{(r)} \otimes_\mathds{Z} \nicefrac{\mathds{Z}}{(s)} = 0,
+	\]
+	denn für jeden Erzeuger $a \otimes b$ gilt 
+	\begin{align*}
+		a \otimes b = (m r + n s) (a \otimes b) = m r (a \otimes b) + n s (a \otimes b) &= m( r a \otimes b) + n(a \otimes  s b) \\&= m(0 \otimes b) + n( a \otimes 0) = 0
+	\end{align*}
+	\item Ist $A$ eine abelsche Torsionsgruppe, dann ist $A \otimes_\mathds{Z} \mathds{Q} = 0$. Denn ist $a \in A$ mit $m a = 0$, dann ist 
+	\[
+		a \otimes  \frac{p}{q} = a \otimes \frac{p \cdot m}{q \cdot m} = a \cdot m \otimes \frac{p}{q \cdot m} = 0  
+	\]
+\end{enumerate}
+% subsection 34 (end)
+
+\subsection[Satz: Tensorprodukt eines $R$-Moduls und $R^n$]{Satz} % (fold)
+\label{sub:35}
+Sei $R$ ein kommutativer Ring, $U \in {_R \Mod}$. Dann ist $U \otimes R^n \simeq U^n= U \oplus \ldots \oplus U$. 
+\minisec{Beweis}
+Durch Induktion nach $n$: Wegen Proposition \ref{sub:33} (iii) genügt es, die Behauptung für $n=1$ zu zeigen, also $U \otimes_R R \simeq U \simeq R \otimes_R U$.
+
+Sei $\theta : R \times U \to U$, $(r,u) \mapsto r \cdot u$. Dann ist $\theta$ bilinear. Ist $W \in {_R  \Mod}$ und $f : R \times U  \to W$ bilinear, dann ist 
+$f(r,u)= f(1, r \cdot u)$, also ist mit $f' : u \mapsto f(1,u)$ gerade $f = \theta \circ f'$. Offensichtlich ist $f'$ eindeutig bestimmt, d.h. $U, \theta$ erfüllen
+die universelle Eigenschaft aus Satz \ref{sub:31}, also ist $R \otimes U \simeq U$ wegen der Eindeutigkeit. \bewende
+% subsection 35 (end)
+
+\subsection[Korollar: Tensorprodukt von freien Moduln]{Korollar} % (fold)
+\label{sub:36}
+Sind $U,V$ freie $R$-Moduln, $R$ kommutativ, $U \simeq R^m, V \simeq R^n$. Dann ist $U \otimes V \simeq R^{n \cdot m}$.
+\minisec{Bemerkung}
+Für Vektorräume über Körpern gilt daher $\dim_K(U \otimes V)= \dim_K U \cdot \dim_K V$. Daher gilt $\set{e_1, \ldots , e_m}$, $ \set{f_1, \ldots , f_n}$ Basen für $U$ bzw. 
+V, dann ist $\set[e_i \otimes f_j]{i=1,\ldots ,m , j=1,\ldots ,n} $ eine Basis für $U \otimes V$.
+% subsection 36 (end)
+
+\subsection[Korollar: Darstellung der Elemente eines Tensorprodukts mit freiem Modul]{Korollar} % (fold)
+\label{sub:37}
+Ist $U \in {_R \Mod}$, $V$ ein freier $R$-Modul, $R$ kommutativ. Dann hat jedes Element von $U \otimes V$ eine eindeutige Darstellung der Form $\sum u_i \otimes e_i$ mit
+$u_i \in U$, $\set{e_i}_{i \in I}$ Basis für $V$.
+\minisec{Vorsicht}
+Ist $\sum u_i \otimes v_i = 0$ in $U \otimes V$ und die $v_i$ sind in $V$ linear unabhängig über $R$. Dann folgt \emph{nicht}, dass $u_i =0$ gilt. 
+\marginnote{Siehe Beispiel \ref{sub:34} (iii)}
+
+Sei $V' = \langle v_1, \ldots , v_k \rangle \subseteq V$. Ist $\sum u_i \otimes v_i = 0$ in $U \otimes V'$, dann folgt $u_i=0$. Die Einbettung $V' \hookrightarrow V$
+induziert einen Homomorphismus 
+\[
+	U \otimes V' \to U \otimes V \tag*{$\star$}
+\]
+\uline{Achtung}: Dieser Homomorphismus muss nicht injektiv sein!
+\minisec{Beispiel}
+$2 \mathds{Z} \hookrightarrow \mathds{Z}$ ist injektiv, aber bleibt \emph{nicht} injektiv in
+\[
+	2 \mathds{Z} \otimes \nicefrac{\mathds{Z}}{2} \to \mathds{Z} \otimes \nicefrac{\mathds{Z}}{(2)} \simeq \nicefrac{\mathds{Z}}{(2)}
+\]
+Seien $e, f, f'$ Erzeuger der zyklischen Moduln $\nicefrac{\mathds{Z}}{(2)}, \mathds{Z}, 2 \mathds{Z}$. $2 \mathds{Z} \hookrightarrow \mathds{Z}$, $f' \mapsto 2 f$ und dann
+\[
+	f' \otimes  e \mapsto 2 f \otimes e = f \otimes 2 e  = 0
+\]
+Bemerkung: Ist $V'$ direkter Summand in $V$, dann bleibt nach Proposition \ref{sub:33} (iii) die induzierte Abbildung ($\star$) aber doch eine Einbettung. Über Körpern ist 
+das immer der Fall.
+% subsection 37 (end)
+
+\subsection[Definition: Algebra]{Definition} % (fold)
+\label{sub:38}
+Sei $R$ ein kommutativer Ring. Eine $R$-Algebra ist ein Ring $A$, der gleichzeitig ein $R$-Modul ist, sodass die Multiplikation in $A$ $R$-bilinear ist, d.h. so dass gilt:
+\[
+	\alpha (x \cdot y) = x \cdot \alpha y = (\alpha x) \cdot y \quad \forall x,y \in A, r \in R
+\]
+Eine \Index{Unteralgebra} einer $R$-Algebra $A$ ist ein Unterring, der gleichzeitig ein $R$-Untermodul ist.
+% subsection 38 (end)
+
+\subsection[Beispiele für Algebren, Zentrum einer Algebra]{Beispiel} % (fold)
+\label{sub:39}
+\begin{enumerate}[(i)]
+	\item Ist $A$ eine $R$-Algebra, dann ist das \Index{Zentrum} $C(A) = \set[z \in A]{x \cdot z = z \cdot x \enspace \forall x \in A} $ eine Unteralgebra. 
+	$C(A)$ ist $R$-Untermodul: $z \in C(A)$, dann ist für $\alpha \in R, x \in A$
+		\[
+			x \cdot (\alpha z) = (\alpha x) \cdot z = z \cdot (\alpha x) = (\alpha z) \cdot x
+		\]
+	\item Jeder Ring $R$ ist auch $R$-Algebra: 
+	\item Jeder Ring wird zu einer $\mathds{Z}$-Algebra durch $n x = x + \ldots + x$, $(-n) x = - (n x)$
+\end{enumerate}
+Ein Homomorphismus von $R$-Algebren ist ein Ringhomomorphismus, der gleichzeitig $R$-linear ist.
+\minisec{Bemerkung}
+Für $y=1$ in Definition \ref{sub:38} ergibt sich $x \cdot  \alpha 1 = \alpha x$ und für $x=1$ ergibt sich $\alpha 1 \cdot y = \alpha \cdot y$. Also gilt 
+$\alpha 1  \cdot x = x \cdot  \alpha 1 = \alpha x$ für alle $x \in A, \alpha \in \mathds{R}$. Für $\alpha = \beta \cdot 1$ erhalten wir 
+\[
+	\alpha 1 \cdot \beta \cdot 1 = \alpha (\beta 1) = \alpha \beta \cdot 1,
+\]
+d.h. die Abbildung $R \to A$, $\alpha \mapsto \alpha \cdot 1$ ist ein Algebrahomomorphismus in das Zentrum von $A$, d.h. $R \cdot 1 \subseteq C(A)$.
+
+Umgekehrt gilt: Ist $R$ ein Ring, $f : R \to C(A)$ ein Ringhomomorphismus. Dann wir $A$ zu einer $R$-Algebra durch $\alpha \cdot x = f(x) \cdot x$ für $x\in A,\alpha\in R$.
+Mit anderen Worten: Eine $R$-Algebra ist ein Ring $A$ zusammen mit einem Homomorphismus $f : R \to C(A)$. Manchmal werden Algebren allgemeiner definiert: Eine $R$-Algebra 
+ist ein $R$-Modul $A$ mit einer bilinearen Multiplikation (nicht notwendig assoziativ oder mit Eins). Bei uns sind alle Algebren assoziativ und \Index{unital}, d.h. mit 1. 
+% subsection 39 (end)
+
+\subsection[Weitere Beispiele für Algebren]{Beispiel} % (fold)
+\label{sub:310}
+Sei $R$ ein kommutativer Ring.
+\begin{enumerate}[(i)]
+	\item $U \in {_R \Mod}$, $A = \End_R(U)$. Dann ist $A$ ein $R$-Modul: Für $f \in A, \alpha \in R$, $x \in U$ ist
+	\[
+		(\alpha f) (x) = f (\alpha x)
+	\]
+	Damit wir $A$ zu einer $R$-Algebra. Ist $V \simeq R^n$, dann ist $A \simeq M_n(R)$ und $C(A) \simeq R$, nämlich $\alpha \cdot \ind$, $\alpha \in R$.
+	\item $B_n(R)=$ Menge der oberen Dreiecksmatrizen ist Unteralgebra von $M_n(R)$.
+	\item Sei $M= \set[u_i]{i \in I}$ ein Monoid (= Halbgruppe mit 1) und sei $A= \mathcal{F}_M$ der freie Modul über $M$ mit Multiplikation $u_i \cdot u_j = u_k$ wie in 
+	$M$. Durch lineares Fortsetzen erhalten wir eine Multiplikation auf $A$, die $A$ zu einer $R$-Algebra macht. Dann ist $A$ assoziativ und unital, weil $M$ diese 
+	Eigenschaften hat. Diese Algebra wird mit $RM$ bezeichnet.
+	
+	Häufig: $M=G$ eine Gruppe, $R=K$ ein Körper: Dann heißt $K G$ die \Index{Gruppenalgebra} von $G$ über $K$. \uline{Spezialfälle:}
+	\begin{enumerate}[(a)]
+		\item $M= \set{1, X, X^2, X^3, \ldots }$, $RM= R[X]$.
+		\item $G=Z = \langle X \rangle$. Dann ist $KG= K[X, X ^{-1}]$ der Ring der Laurent-Polynome in $X$.
+	\end{enumerate}
+	\item Endlich dimensionale Algebra über einem Körper $K$: Ist $A$ $K$-Algebra mit $\set{u_1, \ldots , u_n}$, dann ist die Struktur von $A$ eindeutig bestimmt durch die
+	$n^3$ Strukturkonstanten $c_{ijk}$, $i,j,k = 1, \ldots ,n$ mit $u_i \cdot u_j = \sum_{k=1}^{n} c_{i,j,k} \cdot u_k$.
+	
+	Ist $u_1 = 1_A$, dann ist $c_{1ir} = c_{i1r} = \delta_{ir}$ und die Assoziativität von $A$ ist äquivalent zu
+	\[
+		\sum_{i} c_{i,j,k} = \sum_{i,l,m} c_{lik} \cdot c_{mji}
+	\]
+	Die Sätze über einfache Artinsche Ringe(Schur, Wedderburn, \ldots) gelten insbesondere für endlich dimensionale einfache $K$-Algebren.
+	\item Ist $U \in {_R \Mod}$, dann sei $T(U) = \bigoplus_{n \in \mathds{N}} U^{\otimes n}$, mit $U^{\otimes n} = U \otimes  \ldots \otimes  U$, $U^{\otimes  0} = R$.
+	Dann heißt $T(U)$ die \Index{Tensoralgebra} von $U$. 
+	
+	Ist $U=R$, dann ist $T(U) \simeq R[X]$.
+\end{enumerate}
+% subsection 310 (end)
+
+\subsection[Definition: Darstellung einer $R$-Algebra]{Definition} % (fold)
+\label{sub:311}
+Eine \Index{Darstellung} der $R$-Algebra $A$ ist (gegeben durch) einen $R$"=Algebrenhomomorphismus $A \to \End_R(U)$ für einen $R$-Modul $U$.
+\marginnote{vgl. $G \to \Sym(X)$ in Def. \ref{sub:11}} 
+Für jede Algebra $A$ bezeichnet man mit $\rho$ die rechts-reguläre Darstellung $A$ auf sich selbst, d.h. 
+\begin{align*}
+	\rho : A \to \End_R(A), \quad a \mapsto \rho_a : x \mapsto x \cdot a 
+\end{align*}
+Diese Darstellung ist treu, d.h. $\ker \rho = 0$. Ist $A$ endlich dimensionale Algebra über einem Körper $K$ mit Basis $\set{u_1, \ldots , u_n}$, dann ist 
+$\End_K(A) \simeq M_n(K)$. Für $a = \sum \alpha_i u_i \in A$ wird dann $\rho_a$ beschrieben durch die Matrix $(\rho_a)_{ij}$ mit 
+\[
+	(\rho_a)_{ij} = \sum_{k=1}^{n} \alpha_k \cdot c_{ijk}
+\]
+mit $c_{ijk}$ wie in \ref{sub:310} (iv).
+% subsection 311 (end)
+
+\subsection[Korollar: Jede $n$-dimensionale $K$-Algebra ist isomorph zu Unteralgebra von $M_n(K)$]{Korollar} % (fold)
+\label{sub:312}
+Jede $n$-dimensionale $K$-Algebra ist isomorph zu einer Unteralgebra von $M_n(K)$.
+\minisec{Beweis}
+$A \simeq \im \rho \subseteq \End_K(A) \simeq M_n(K)$. \bewende
+% subsection 312 (end)
+
+\subsection[Satz: Tensorprodukt von Algebren ist eine Algebra]{Satz} % (fold)
+\label{sub:313}
+Ist $R$ ein kommutativer Ring, dann ist für $R$-Algebren $A,B$ auch $A \otimes B$ eine $R$-Algebra mit $\mu (A \otimes B) \times (A \otimes B) \to A \otimes B$,
+$(a \otimes b)(a' \otimes b') = a a' \otimes  b b'$ und linearer Fortsetzung. Die Tensoralgebra  $A \otimes B$ ist genau dann kommutativ, assoziativ bzw. unital, wenn $A$
+und $B$ kommutativ, assoziativ und unital sind.
+\minisec{Beweis}
+Es genügt nachzurechnen, dass diese Multiplikation bilinear ist und die Eigenschaften  von $A,B$ sich übertragen. \bewende
+% subsection 313 (end)
+
+\subsection[Beispiel: Erweiterung der Skalare]{Beispiel} % (fold)
+\label{sub:314}
+\begin{enumerate}[(i)]
+	\item Sei $K$ ein Körper, $E \supseteq K$ eine Körpererweiterung und eine $K$-Algebra $A$ gegeben. Dann ist $A \otimes E$ eine $E$-Algebra mit 
+	$\dim_E(A \otimes E)= \dim_K(A)$ nach Beispiel \ref{sub:39}, denn $1 \otimes E \subseteq C(A \otimes_K E)$ und für eine $K$-Basis $\set{u_1, \ldots , u_n}$ von $A$ ist 
+	$\set{u_1 \otimes 1, \ldots , u_n \otimes 1} $ eine $E$-Basis für $E =: A_E$. Man sagt: $A_E$ entsteht aus $A$ durch Erweiterung der Skalare.
+	\item Sei $A= M_n(R)$. Dann hat $A$ eine $R$-Basis $\set[e_{ij}]{i,j \le n}$ mit Multiplikation $e_{ij} \cdot e_{kl}= \delta_{jk} e_{il}$ und $\sum e_{ii} = 1$.
+	Ist $B$ eine $R$-Algebra, dann ist $A \otimes B$ ein freier $B$-(Rechts-)Modul mit derselben Basis als $B$-Modul. d.h. $M_n(R) \otimes B \simeq M_n(B)$. Für $B=M_k(R)$
+	ist also $M_n(R) \otimes M_k(R) \simeq M_{n \cdot k}(R)$.
+\end{enumerate}
+Im Folgenden untersuchen wir endlich dimensionale Algebren über einem kommutativen Körper $K$.
+% subsection 314 (end)
+
+\subsection[Definition: Zentrale Algebra]{Definition} % (fold)
+\label{sub:315}
+Eine $K$-Algebra $A$ heißt \bet{zentral}\index{Algebra!zentral}, wenn $C(A)= K \cdot 1_A$. Ist $A$ eine endlich dimensionale einfache $K$-Algebra, dann ist nach Wedderburn (\ref{sub:229}) $A \simeq M_n(D)$ für einen Schiefkörper $D$, der endliche Dimension über $K$ hat. Weiter ist 
+\[
+	C(A) \simeq C(D) =: E \supseteq K.
+\]
+Dann ist $E$ ein kommutativer Körper und wir können $A$ als $E$-Algebra auffassen. Also solche ist $A$ dann eine zentral einfache endlich dimensionale $E$-Algebra.
+\minisec{Bemerkung}
+Sind $A,B$ $K$-Algebren, dann enthält $A \otimes B$ Unteralgebren $1 \otimes B \simeq B$ und $A \otimes 1 \simeq A$. Wir geben eine interne Charakterisierung von
+Tensorprodukten an (vgl. \ref{sub:129}). 
+% subsection 315 (end)
+
+\subsection[Definition: Linear disjunkt]{Definition} % (fold)
+\label{sub:316}
+Sei $C$ eine $K$-Algebra, $U,V \subseteq C$ $K$-Untervektorräume. Dann heißen $U$ und $V$ \Index{linear disjunkt} über $K$, wenn für linear unabhängige $u_i \in U$, 
+$v_j \in V$ die Elemente $u_i v_j \in C$ linear unabhängig sind. Mit anderen Worten ist die natürliche Abbildung $U  \otimes V \to C$, $u \otimes v \mapsto u v$ injektiv.
+% subsection 316 (end)
+
+\subsection[Proposition: Isomorphie einer $K$-Algebra zum Tensorprodukt von Unteralgebren]{Proposition} % (fold)
+\label{sub:317}
+Sei $C$ eine $K$-Algebra, $A,B \subseteq C$ Unteralgebren, dann ist $C \simeq A \otimes B$, falls gilt
+\begin{enumerate}[(i)]
+	\item $A$ und $B$ sind linear disjunkt über $K$
+	\item $A B = C$
+	\item $a b = b a$ für alle $a \in A, b \in B$. {\small \color{light_gray} $(a \otimes 1)(1 \otimes b)= (1 \otimes b)(a	\otimes 1)= a \otimes b$}
+\end{enumerate}
+\minisec{Beweis}
+Die Abbildung $A \times B \to C$, $(x,y) \mapsto xy$ ist bilinear und induziert daher eine Abbildung $A \otimes B \to C$. Diese Abbildung ist injektiv nach (i), surjektiv
+nach (ii) und ein Homomorphismus nach (iii). \bewende
+% subsection 317 (end)
+
+\subsection[Definition: Einhüllende Algebra]{Definition} % (fold)
+\label{sub:318}
+Für eine $K$-Algebra $A$ heißt $A^e = A \otimes_K A^\op$ die \Index{einhüllende Algebra} von $A$. Sei $A \subseteq B$ eine Unteralgebra. Dann wird $B$ in 
+natürlicher Weise zu einem $A^e$-Modul, nämlich durch 
+\[
+	\enbrace*{\sum a_i \otimes b_i} y = \sum a_i \cdot y \cdot b_i
+\]
+für $a_i \in A, b_i \in A^\op, y \in B$. Aus der universellen Eigenschaft des Tensorprodukts folgt, dass dies eine wohldefinierte Modulwirkung beschreibt. 
+Insbesondere wird $A$ selber zum $A^e$-Modul. Die $A^e$-Untermoduln von $A$ sind genau die beidseitigen Ideale von $A$. Nach Lemma \ref{sub:225} ist 
+$\End_R(R,+) \simeq R^\op$, d.h. $R$-lineare Endomorphismen von $R \in \,{_R\Mod}$ sind genau die Rechtsmultiplikationen $\rho_r$ für $r \in R$. Daher ist 
+$\End_{A^e}(A)$ die Menge der Abbildungen, die sowohl Rechts- als auch Links-Multiplikation sind, d.h. Abbildungen $x \mapsto c \cdot x = x \cdot d$. Für $x=1$ erhält
+man $c=d$, d.h. $c \in C(A)$. Damit folgt $\End_{A^e}(A) \simeq C(A)$.
+% subsection 318 (end)
+
+\subsection{Satz (Dichtheitssatz für halbeinfache Moduln)} % (fold)
+\label{sub:319}
+Sei $R$ ein Ring, $M \in {_R\Mod}$ halbeinfach, $R' = \End_R (M) = C_{\End (M,+)} (\Lambda_R)$ mit $\Lambda_R = \set[\lambda_r]{r \in R} $, $R'' = \End_{R'} (M)$ \marginnote{vertauschen} 
+(für $M$ aufgefasst als $R'$-Modul). Sei $\set{x_1, \ldots , x_n} \subseteq M$,
+$a'' \in R''$, dann existiert $a \in R$ mit $a x_i = a'' x_i$ für $i=1, \ldots ,n$.
+\minisec{Beweis}
+Zuerst überlegen wir, dass jeder $R$-Untermodul $N \subseteq M$ auch ein $R''$-Untermodul ist. Schreibe $M= N \oplus P$ und $\pi : M = P \oplus N \to N$. Dann ist
+$\pi \in R'$ und $N = \pi(M)$. Daher ist für $\varphi \in R''$ also 
+\[
+	\varphi(N)= \varphi \pi (M) = \pi  \varphi(M) \subseteq N.
+\]
+D.h. $N$ ist $R''$-Untermodul von $M$. Ist nun $n=1$, dann ist $N= R x_i$ ein $R$-Untermoduln und daher auch $R''$-Untermodul. Wegen $x_1 \in N$ ist für $a'' \in R''$
+auch $a'' x_1 \in N= R x_1$. Also existiert $a \in R$ mit $a'' x_1 = a x_1$. Für $n\ge 1$ benutzen wir folgenden Trick:
+% subsection 319 (end)
+
+\subsection{Lemma} % (fold)
+\label{sub:320}
+Sei $M \in {_R\Mod}$, $R' = \End_R(M)$, $R'' = \End_{R'}(M)$. Dann ist für $\alpha \in R''$ die Abbildung $\varphi_\alpha : M^n  \to M^n$, 
+$(u_1, \ldots ,u_n)  \mapsto \enbrace*{\alpha(u_1), \ldots , \alpha(n_n)} $ ein Endomorphismus von $M^n$, ist also $\End_R(M^n)$-Modul.
+\minisec{Beweis}
+Nach Lemma \ref{sub:227} ist $\End_R(M^n) \simeq M_n(R')$. Offensichtlich ist $M^n$ auch $\End_R(M^n)$-Modul. Für die Behauptung ist also nur zu zeigen, dass für jedes 
+$\alpha \in R''$ die Abbildung $\varphi_\alpha$ mit jedem $R$-Endomorphismus von $M^n$ vertauscht. Dies ist der Fall, da $\alpha$ gerade mit jedem $R$-Endomorphismus von 
+$M$ vertauscht. \bewende
+\minisec{Beweis von \ref{sub:319}}
+Mit $M$ ist auch $M^n$ halbeinfach. Nach Lemma \ref{sub:320} ist für $\alpha'' \in R''$ und $\varphi_{a''}$ wie eben auch $\varphi_{\alpha''} \in \End_{\End_R(M^n)} (M^n)$.
+Nun wenden wir den Fall $n=1$ auf den $R$-Modul $M^n$ und $\varphi_{\alpha''}$. Damit finden wir für $(x_1, \ldots , x_n) \in M^n$ ein $\alpha \in R$ mit 
+\[
+	\varphi_{\alpha''}(x_1, \ldots , x_n)= \enbrace[\big]{\alpha''(x_1), \ldots , \alpha''(x_n)} = \alpha (x_1, \ldots , x_n) = (\alpha x_1, \ldots , \alpha x_n).
+\]
+% subsection 320 (end)
+
+\subsection[Satz: Modulisomorphie der einhüllenden Algebra zum Matrizenmodul]{Satz} % (fold)
+\label{sub:321}
+Ist $A$ eine endlich dimensionale zentral einfache $K$-Algebra, dann ist $A^e = A \otimes A^\op \simeq M_n(K)$ mit $n= \dim A$.
+\minisec{Beweis}
+Betrachte $A$ als $A^e$-Modul. Dann ist $A$ einfach und $\End_{A^e} (A) \simeq K$. Da $A$ endlich dimensional über $K$ ist, folgt aus dem Dichtheitssatz (\ref{sub:319}),
+dass $A^e \to \End_K(A)$ surjektiv ist. Da 
+\[
+	\dim_K A^e = \dim_K \End_K(A) = n^2
+\]
+folgt $A^e \simeq \End_K(A)$ und wegen $\End_K(A) \simeq M_n(K)$ folgt die Behauptung. \bewende
+% subsection 321 (end)
+
+\subsection{Satz} % (fold)
+\label{sub:322}
+Sei $B$ eine $K$-Algebra. $A$ eine endlich dimensionale zentral einfache Unteralgebra. Dann gilt $B \simeq A \otimes_K C$, wobei $C= C_B(A)$ der Zentralisator von $A$ in 
+$B$ ist, d.h. $C= \set[x \in B]{x a = a x \enspace \forall a \in A}$. 
+
+Die Abbildung $I \mapsto A \otimes I$ ist Verbandsisomorphismus zwischen den Idealen von $B$ und 
+den Idealen von $C$ und es ist $C(B)= C(C)$
+\minisec{Beweis}
+Betrachte $B$ als $A^e$-Modul. Da $A^e$ nach Satz \ref{sub:321} einfach ist, $A^e = M_n(K)$, ist nach Wedderburn (\ref{sub:231}) 
+\(
+	B = \bigoplus A^e x_i
+\)
+direkte Summe von einfachen $A^e$-Moduln, die alle isomorph zu $A$ sind. Als $A^e$-Modul wird $A$ von $1_A$ erzeugt und es ist 
+\[
+	(a \otimes 1)1 = a \cdot 1 = 1 \cdot a = (1 \otimes a) 1
+\]
+und falls $(a \otimes 1)1 = 0$, dann ist $a=0$. Da alle $A^e x_i \simeq A$ als $A^e$-Moduln, existiert ein $c_i \in A^e x_i$ mit $(a \otimes 1)c_i = (1 \otimes a)c_i$
+und $(a \otimes 1)c_i =0$ $\Rightarrow a=0$. Daher ist $B= \bigoplus Ac_i$ mit $a c_i = c_i a$ für alle $a \in A$ und $a c_i = 0 \Rightarrow a=0$. Daher sind alle 
+$c_i \in C= C_B(A)$ und jedes Element in $B$ hat \emph{eindeutige} Darstellung der Form $\sum a_i c_i$ mit $a_i \in A$.
+
+Ist $c \in C$, $c = \sum a_i c_i$, dann folgt wegen $a c = c a$ für alle $a \in A$ auch $a a_i = a_i a$ für alle $a \in A$, d.h. $a_i \in C(A) \simeq K$. Daher ist
+$C = \sum K c_i$, d.h. $\set[c_i]{i \in I}$ ist Basis für $C$. Nach Proposition \ref{sub:317} ist $B = A \otimes_K C$. 
+
+Für den zweiten Teil sei $I \unlhd C$ ein Ideal. Dann ist $A \otimes I$ ein Ideal in $B = A \otimes C$ und es ist $(A \otimes I) \cap (1 \otimes C) = I$. Ist 
+$(x_1=1, x_2, \ldots , x_n)$ Basis für $A$, dann hat jedes $b \in B$ eine \emph{eindeutige} Darstellung der Form $b= \sum c_i \otimes x_i = \sum c_i x_i$ mit
+$c_i \in C$. Die Elemente von $A \otimes I$ sind von der Form $\sum d_i x_i$ mit $d_i \in I$. Daher folgt aus $b= \sum d_i x_i \in C$ schon $b= c_1 x_1$ mit $c_1 \in C$,
+d.h. $C \cap A I = \set{d_1 x_1 = d_1 \in I} = I$. Daher ist $I \mapsto A \otimes I$ injektiv.
+Ist $I'$ ein Ideal in $B$, dann ist $I'$ ein $A^e$-Untermodul von $B$, d.h. für $I = I' \cap C$ ist dann $I' = \sum A d_j$ mit $d_j \in I$. Daher ist $I' = A \cdot I_i$, 
+d.h. die Abbildung $I \mapsto A \otimes I$ ist surjektiv.
+
+Noch zu zeigen: $C(B) = C(C)$. "$\subseteq$"{} ist klar. Ist $c \in C(C)$, dann vertauscht $c$ mit allen $a \in A$ und mit allen $d \in C$, also $c \in C(B)$. \bewende
+% subsection 322 (end)
+
+\subsection{Korollar} % (fold)
+\label{sub:323}
+Ist $A$ eine endlich dimensionale zentral einfache $K$-Algebra, $C$ eine beliebige $K$-Algebra, dann ist die Abbildung $I \mapsto A \otimes I$ ein Verbandsisomorphismus 
+zwischen Idealen von $B = A \otimes C$ und den Idealen von $C$ und es ist $C(B) = C(C)$.
+\minisec{Beweis}
+Identifiziere $A,C$ mit $A \otimes I$ bzw. $1 \otimes C$ in $B= A \otimes C$. Behauptung: $C = C_B(A)$. Klar "$\subseteq $"{}. "$\supseteq$"{} wie eben. Daher folgt die
+Behauptung aus \ref{sub:322}. \bewende
+% subsection 323 (end)
+
+\subsection{Korollar} % (fold)
+\label{sub:324}
+Ist $A$ eine endlich dimensionale zentral einfache $K$-Algebra, $C$ eine beliebige $K$-Algebra, dann ist $A \otimes C$ einfach genau dann, wenn $C$ einfach ist und 
+$A \otimes C$ ist zentral genau dann, wenn $C$ zentral ist.
+Insbesondere gilt: Ist $A$ endlich dimensionale zentral einfache $K$-Algebra, $E \supseteq K$ eine Körpererweiterung, dann ist $A_E = A \otimes E$ endlich dimensionale
+zentral einfache $E$-Algebra.
+% subsection 324 (end)
+
+\subsection{Korollar} % (fold)
+\label{sub:325}
+Sind $A_1, \ldots , A_n$ endlich dimensionale zentral einfache $K$-Algebren, dann ist auch $A_1 \otimes \ldots \otimes A_n$ zentral einfach und endlich dimensional.
+% subsection 325 (end)
+
+\subsection[Definition: Zerfällungskörper über zerfallende zentral einfache $K$-Algebra]{Definition} % (fold)
+\label{sub:326}
+$M_n(K)$ heißt zerfallende zentral einfache $K$-Algebra. Ist $A$ endlich dimensionale zentral einfache $K$-Algebra, dann heißt eine Körpererweiterung $E \supseteq K$
+ein \Index{Zerfällungskörper} für $A$, falls $A_E = A \otimes_K E \simeq M_n(E)$ für ein $n \in \mathds{N}$. Man sagt $A$ zerfällt über $E$. 
+% subsection 326 (end)
+
+\subsection{Bemerkung} % (fold)
+\label{sub:327}
+\begin{enumerate}[(i)]
+	\item Ist $E$ Zerfällungskörper für $A$, dann auch jedes $E' \supseteq E $. Insbesondere ist jedes $E \supseteq K$ Zerfällungskörper für $M_n(K)$. 
+	\item Sind $A,B$ zentral einfach und $E$ Zerfällungskörper für $A,B$, dann auch für $A \otimes B$: Es ist 
+	\[
+		(A \otimes B)_E = (A \otimes B) \otimes E \simeq (A \otimes_k B) \otimes_K E \simeq (A \otimes E) \otimes (B \otimes E).
+	\]
+	$M_{n k}(E) \simeq M_n(E) \otimes M_k(E)$.
+	\item Ist $E$ Zerfällungskörper für $A$ ,dann auch für $A^\op$: 
+	\[
+		A \otimes E \otimes E \otimes A^\op = M_n(E) = M_r(E) \otimes (E \otimes A^\op) = M_r(E \otimes A^\op)
+	\]
+	Daher ist $E \otimes A^\op \simeq M_s(E)$ mit $r \cdot s = n$.
+	\item Ist $A \simeq M_r(B)$, $B$ zentral einfach über $K$, dann ist $E \supseteq K$ Zerfällungskörper von $A$ genau dann, wenn $E$ Zerfällungskörper von $B$ ist. Es ist
+	\[
+		A \otimes E \simeq M_r(B) \otimes E \simeq M_r(K) \otimes B \otimes E \simeq M_r(B_E).
+	\]
+\end{enumerate}
+% subsection 327 (end)
+
+\subsection{Proposition} % (fold)
+\label{sub:328}
+Sei $K$ algebraisch abgeschlossen, $A$ eine endlich dimensionale $K$-Algebra. Ist $A$ nullteilerfrei, dann ist $A=K$. Insbesondere existieren keine echten endlich 
+dimensionalen Schiefkörper über einem algebraisch abgeschlossenen Körper $K$.
+\minisec{Beweis}
+Sei $a \in A$. Da $A$ endliche $K$-Dimension hat, sind die Potenzen von $a$ linear abhängig über $K$. Sei etwa $f(a) = a^n c_1  + a^{n-1} c_2 + \ldots + c_n = 0$ mit
+$c_i \in K$ und $n$ minimal. Da $K$ algebraisch abgeschlossen ist, hat $f(X) \in K[X]$ eine Nullstelle $\lambda  \in K$. Daher ist $f(X)= (X- \lambda )\cdot g(X)$ mit 
+$\deg(g) = n-1$. Nach Vorraussetzung ist aber $g(a) \not= 0$, wegen $n$ minimal. Weil $A$ nullteilerfrei ist, folgt $a= \lambda  \in K$. \bewende
+% subsection 328 (end)
+
+\subsection{Korollar} % (fold)
+\label{sub:329}
+Sei $K$ algebraisch abgeschlossen, $A$ zentral einfache, endlich dimensionale Algebra über $K$. Dann ist $A \simeq M_n(K)$ für ein $n \in \mathds{N}$.
+\minisec{Beweis}
+$A \simeq M_n(D)$ für einen endlich dimensionalen Schiefkörper über $K$. Dann ist $D=K$ nach \ref{sub:328}. \bewende
+\minisec{Bemerkung}
+Insbesondere zerfällt jede zentral einfache, endlich dimensionale $K$-Algebra über dem algebraischen Abschluss von $K$. Ziel: Zeige Existenz endlicher Körpererweiterungen
+als Zerfällungskörper. Zeige: Jeder maximale kommutative Teilkörper von $D$ ist Zerfällungskörper für $A \simeq M_N(D)$.
+% subsection 319 (end)
+
+\subsection{Satz} % (fold)
+\label{sub:330}
+Ist $D$ ein Schiefkörper endlicher Dimension über $K$. Dann ist eine endliche Körpererweiterung $\nicefrac{E}{K}$ ein Zerfällungskörper für $D$ genau dann, wenn $E$ 
+Teilkörper einer Algebra $A= M_r(D)$ mit $C_A(E)=E$ ist.
+\minisec{Beweis}
+\begin{description}
+	\item["$\Leftarrow$":] Sei $E \subseteq M_r(D) = A$ mit $C_A(E)=E$. Dann ist $A = \End(V)$, wobei $V$ ein $r$-dimensionaler $D^\op$-Vektorraum ist. Dann ist
+	$V$ auch $D^\op \otimes _K E$-Modul, da 
+	\[
+		(d \otimes e)x = d \cdot e \cdot x = e \cdot d \cdot x 
+	\]
+	für $d \in D^\op$, $ e \in E \subseteq A$, $x \in V$. Da $D^\op \otimes E$ einfach ist, ist die Darstellung von $D^\op \otimes E$ auf $V$ treu,
+	\marginnote{treu, da Kern sonst Unteralgebra} d.h. wir können $D^\op \otimes E$ mit dem entsprechenden Endomorphismenring identifizieren. Da 
+	$D^\op \otimes E$ endlich dimensional und einfach über $K$ ist, ist nach den Sätzen von Wedderburn $V$ als $D^\op \otimes E$ als Modul halbeinfach und
+	daher ist der Dichtheitssatz anwendbar:
+	
+	Es ist $A = \End_{D^\op}(V)$, also ist $\End_{D^\op \otimes E} (V) = C_A(E) = E$ \marginnote{zusätzlich auch mit $E$ vertauschen}. 
+	Also können wir $V$ auch als endlich dimensionalen $E$-Vektorraum 
+	betrachten. Nach dem Dichtheitssatz ist $D^\op \otimes E = \End_E(V) \simeq M_n(E)$ für $n = \dim_E V$. Daher ist $E$ Zerfällungskörper von $D^\op$ und
+	damit von $D$.
+	\item["$\Rightarrow$":] Ist umgekehrt $D \otimes E \simeq M_n(E)$, dann auch $D^\op \otimes E \simeq M_n(E)$. Ist $V$ ein irreduzibler 
+	$D^\op \otimes E$-Modul, dann auch ein $M_n(E)$-Modul, d.h. $V$ ist $n$-dimensionaler $E$-Vektorraum und $\End_E(V) = D^\op \otimes E$. Aber $V$ ist 
+	auch ein endlich dimensionaler $D^\op$-Vektorraum also etwa $r = \dim_{D^\op}V$. Dann ist $E \subseteq \End_{D^\op}(V)$. Daher ist 
+	\[
+		E \subseteq C_{\End_{D^\op}(V)}(E) \subseteq C_{\End_E(V)} \enbrace*{D^\op \otimes E} = E.
+	\]
+	Daher ist $E=C_{M_r(D)}(E)$. \bewende
+\end{description}
+% subsection 330 (end)
+
+\subsection{Korollar} % (fold)
+\label{sub:331}
+Ist $A$ eine zentral einfache $K$-Algebra mit $A \simeq M_r(D)$, $D$ Schiefkörper. Dann ist jeder maximale kommutative Teilkörper $E$ von $D$ Zerfällungskörper für $A$.
+\minisec{Beweis}
+Klar: Es existiert ein maximaler kommutativer Teilkörper $E$, denn $\dim_K D$ ist endlich. Es reicht zu zeigen: $E$ ist Zerfällungskörper für $D$. (Wende Satz 
+\ref{sub:330} an mit $A=D$). Sei $E' = C_D(E) \supseteq E$. Ist $E \subsetneq E'$, wähle $c \in E' \setminus E$. Dann ist der von $E$ und $c$ erzeugte Unterkörper von $D$
+auch kommutativ. \light Maximalität von $E$. Also gilt $C_D(E)=E$ und die Behauptung folgt aus \ref{sub:330}. \bewende
+\minisec{Beispiel}
+$\mathbb{H}$ reelle Quaternionen. 
+% subsection 331 (end)
+
+\subsection{Korollar} % (fold)
+\label{sub:332}
+Ist $A$ zentral einfache $K$-Algebra endlicher Dimension, dann ist $\dim_K A = n^2$ für ein $n \in \mathds{N}$ der \Index{Grad} von $A$.
+\minisec{Beweis}
+Es ist $A \otimes E \simeq M_n(E)$ für einen Zerfällungskörper $E$ und $\dim_K A = \dim_E \enbrace[\big]{M_n(E)} = n^2 $. \bewende
+% subsection 332 (end)
+
+\subsection{Satz (Skolem-Noether)} % (fold)
+\label{sub:333}
+Ist $B$ eine endlich dimensionale, zentral einfache $K$-Algebra, $A \subseteq B$ einfache Unteralgebra, dann lässt sich jeder Monomorphismus $f : A \to B$ zu einem inneren
+Automorphismus\footnote{Automormphismus durch Konjugation} fortsetzen, d.h. es existiert ein $b \in B$ mit $f(a) = b ^{-1} \cdot a \cdot b$.
+\minisec{Beweis}
+$E= A \otimes_K B^\op$ ist einfach und endlich dimensional. Nach Wedderburn ist jeder $E$-Modul halbeinfach und alle einfachen $E$-Moduln sind isomorph. Daher sind
+auch endlich dimensionale $E$-Moduln derselben Dimension isomorph. Betrachte $B$ als $E$-Modul auf zwei Weisen:
+\[
+	\enbrace*{\sum a_i \otimes b_i} x = \sum a_i \cdot x \cdot b_i \qquad \qquad \enbrace*{\sum a_i \otimes b_i} x = \sum f(a_i) \cdot x \cdot b_i  
+\]
+Dies definiert eine $E$-Modulstruktur auf $B$, weil $f$ ein Homomorphismus ist. Nach Vorüberlegung sind diese beiden $E$-Moduln isomorph, d.h. es existiert ein $E$-linearer
+Isomorphismus $\varphi : B \to B$ mit 
+\[
+	\varphi \enbrace*{\sum f(a_i) \otimes b_i} = \sum a_i \varphi(x) b_i 
+\]
+für $a_i \in A$, $b_i, x \in B$. Insbesondere ist dann $\varphi(x b) = \varphi(x) b$ für alle $x,b \in B$. Daher ist $\varphi(x) = \varphi(1) x = d x$ für ein 
+invertierbares $d \in B$, denn $\varphi$ ist invertierbar. Wegen $\varphi \enbrace*{f(a) x} = a \cdot \varphi(x) $ für alle $a \in A, x \in B$ folgt 
+$A d x = d f(a) x$ und für $x=1$ folgt $f(a) = d ^{-1} a d$, d.h. $f$ lässt sich zum inneren Automorphismus $\kappa_d : x \mapsto d ^{-1} x d$ fortsetzen. \bewende
+% subsection 333 (end)
+
+\subsection{Korollar} % (fold)
+\label{sub:334}
+Jeder Automorphismus einer endlich dimensionalen, zentral einfachen Algebra ist ein innerer.
+\minisec{Beweis}
+Setze $A=C(B) = K$ in Satz \ref{sub:333}. \bewende
+% subsection 334 (end)
+
+\subsection{Korollar} % (fold)
+\label{sub:335}
+\todo{Dieses Korollar verlangt noch nach etwas Erläuterung}
+In einer endlich dimensionalen, zentral einfachen Algebra sind einfache Unteralgebren derselben Dimension konjugiert (und ebenso ihre Zentralisatoren).
+% subsection 335 (end)
+
+\subsection{Satz (Brauer)} % (fold)
+\label{sub:336}
+Sei $A$ endlich dimensional, zentral einfache $K$-Algebra, $B \subseteq A$ eine einfache Unteralgebra mit $C(B)= E \supseteq K$. Dann gilt: $B' = C_A(B)$ ist einfach mit
+Zentrum $E$ und $B'' = C_A(B') = C_A\enbrace[\big]{C_A(B)} = B$. Weiter ist $C_A(E) = B \otimes B'$ und $[A : B'] = [B :K]$. Für $r := [B:K]$ ist 
+\[
+	A \otimes B^\op \simeq B' \otimes  M_r(K) \simeq M_r(B')
+\]
+\minisec{Beweis}
+Sei $r= \dim_K B$ und betrachte $B$ als $M_r(K)$-Modul. Dann enthält $M_r(K)$ die Unteralgebra $\rho_B = B^\op$ und $\lambda_B  \simeq B$ als Bilder der rechts- bzw. 
+linksreguläre Darstellung. Dann ist $A \otimes_K M_r(K)$ zentral einfach über $K$ und enthält Unteralgebren
+\[
+	B \otimes_K 1  \simeq 1 \otimes \lambda_B \simeq 1 \otimes B \simeq B.
+\]
+Diese Unteralgebren sind einfach und daher nach Skolem-Noether (\ref{sub:333}) in $A \otimes M_r(K)$ konjugiert mit isomorphen Zentralisatoren. Also gilt:  
+\marginnote{Rechtswirkung und Linkswirkung zentralisieren sich}
+\[
+	B' \otimes M_r(K) \simeq A \otimes \rho_B \simeq A \otimes B^\op \simeq M_r(B')
+\]
+Damit folgt die letzte Behauptung. Die Dimension über $B'$ ergeben
+\[
+	r^2 = \dim_{B'} M_r(B') = [A:B'] \cdot [B:K],
+\]
+also $[A:B']=r$. Nun ist nach \ref{sub:324} $A \otimes B^\op$ einfach\marginnote{beide Teile einfach} und wieder nach \ref{sub:324} ist dann auch $B'$ einfach.
+Es ist $B \subseteq B''$, $B''' = C_A(B'') = B'$ und wie eben (mit $B$ ersetzt durch $B'$) folgt $[B'' : K]=r$, d.h. $B''=B$. Sei nun $F= C(B')$, dann ist $F \supseteq E$
+und wegen $B''=B$ folgt $E \supseteq F$, d.h. $E=F$. Daher sind $B$ und $B'$ zentral einfache $E$-Algebren. $B,B' \subseteq C_A(E)$ und aus Satz \ref{sub:322} folgt
+$C_A(E)= B \otimes B'$. \bewende
+\minisec{Bemerkung}
+Falls $C(B) \supsetneq K$, dann ist $C_A(E) \subsetneq A$, denn $A$ ist zentral einfach.
+% subsection 336 (end)
+
+\subsection{Korollar} % (fold)
+\label{sub:337}
+Ist $A$ zentral einfach mit endlicher Dimension über $K$, $E \subseteq A$ ein Teilkörper mit $K \subseteq E$ und $B \subseteq C_A(E)$. Dann ist
+\[
+	A \otimes E \simeq B \otimes M_r(K)
+\]
+mit $r = \dim_K E$. Ist $n= \dim_K A$, dann ist $r^2 \mid n$ und $A \otimes B^\op \simeq M_{n/r}(E)$.
+\minisec{Beweis}
+Setze $B = E$ im Satz \ref{sub:336}, dann ist $[C_A(E) :A] = \frac{n}{r^2}  = [B :K]$. Mit $n = [A : K]= r^2 \cdot [B:K]$ gilt $C_A(E) \simeq E \otimes B$. Folglich ist
+$[C_A(E) :E] = [B:K]$. \bewende
+% subsection 337 (end)
+
+\subsection{Korollar} % (fold)
+\label{sub:338}
+$A$ endlich dimensionale, zentral einfache $K$-Algebra, $E \subseteq A$ Teilkörper mit $K \subseteq E$. Dann sind äquivalent:
+\begin{enumerate}[(i)]
+	\item $E' = C_A(E) = E$
+	\item $E$ ist ein maximaler kommutativer Unterring von $A$.
+	\item $[A:K] = [E:K]^2$
+	\item $[A:K] = [A:E]^2$
+\end{enumerate}
+Insbesondere gilt für maximale Unterkörper in einem Schiefkörper $D$ also 
+\(
+	[D:K] = [E:K]^2 = [D:E]^2
+\)
+\minisec{Beweis}
+\begin{description}
+	\item[(i)$\Leftrightarrow $(ii):] Klar.
+	\item[(iii)+(iv)$\Leftrightarrow$(i)] Es ist $E' \supseteq E$ und 
+	\[
+		[A:K] = [A:E] \cdot [E:K]= [E:K] = [E:K] \cdot [E':K].
+	\]
+	Also ist $[A:E]^2 \ge [A:K] \ge [E:K]^2$ und Gleichheit gilt genau dann, wenn $E=E'$, d.h. (iii)+(iv) sind äquivalent zu (i).
+\end{description}
+\minisec{Bemerkung}
+Unterkörper $E \subseteq A$ mit $\dim_K A  = \enbrace*{\dim_E A}^2 $ muss es nicht geben. Z.B. $M_r(K)$, $K$ algebraisch abgeschlossen, $r \ge 2$.
+% subsection 338 (end)
+Zum Satz von Wedderburn über Nicht-Existenz von endlichen Schiefkörpern:
+\subsection{Lemma} % (fold)
+\label{sub:339}
+Sei $G$ eine endliche Gruppe, $H \lneq G$. Dann ist $G$ \emph{nicht} die Vereinigung der Konjugierten von $H$.
+\minisec{Beweis}
+Sei $\abs*{G} = \abs*{H} \cdot n$, also wenn $h= \abs*{H}$, dann ist $\nicefrac{G}{H} = \set{a_1 H , \ldots , a_n H}$. Dann ist für $b \in G$
+\[
+	b H b ^{-1} = \underbrace{b H}_{a_i H} \underbrace{H ^{-1} b ^{-1}}_{H ^{-1} a_i ^{-1}} = a_i \underbrace{H H ^{-1}}_{=H} a_i ^{-1} = a_i H a_i ^{-1}
+\]
+Daher existieren höchstens $n$ viele Konjugierte von $H$, die alle $1_G$ enthalten. Damit ist 
+\[
+	\abs*{\bigcup_{i=1}^n a_i H a_i ^{-1}}  \le n \cdot (h-1) + 1 < n \cdot h = \abs*{G} \bewende
+\]
+% subsection 339 (end)
+
+\subsection[Satz (Wedderburn): Endliche Schiefkörper sind kommutativ]{Satz (Wedderburn)} % (fold)
+\label{sub:340}
+Jeder endliche Schiefkörper ist kommutativ.
+\minisec{Beweis}
+Sei $D$ ein endlicher Schiefkörper, $K= C(D)$, d.h. $D$ ist zentral einfach, endlich dimensional über $K$. Sei $E \subseteq D$ ein maximaler kommutativer Teilkörper.
+Nach Korollar \ref{sub:338} (ii) haben alle maximalen Unterkörper denselben Grad $r$ über $K$, die maximalen Teilkörper sind nach Korollar \ref{sub:335} alle konjugiert.
+Da jedes Element von $a \in D$ über $K$ einen kommutativen Teilkörper erzeugt, liegt jedes $a \in D$ in einem Konjugierten von $E$. nach Lemma \ref{sub:339} (angewandt auf 
+die multiplikative Gruppe von $D$) folgt also $E=D=K$. \bewende
+% subsection 340 (end)
+
+\subsection[Definition und Satz: Die Brauergruppe]{Definition und Satz} % (fold)
+\label{sub:341}
+Zwei zentral einfache, endlich dimensionale $K$-Algebren $A$ und $B$ heißen \Index{ähnlich} (oder Brauer-äquivalent, $A \sim B$), falls $A\simeq M_n(D)$, $B\simeq M_k(D)$ 
+für einen Schiefkörper $D$ über $K$, $n,k \in \mathds{N}$. Dabei sind $D,n,k$ nach Satz \ref{sub:229} eindeutig bestimmt. Insbesondere gibt es zu jeder zentral einfachen 
+Algebra $A$ einen Schiefkörper $D$ über $K$ mit $A \sim D$. Offensichtlich ist $\sim$ eine Äquivalenzrelation. 
+
+Für jeden Körper $K$ bildet die Menge der Äquivalenzklassen bezüglich des
+Tensorprodukts eine Gruppe, die \Index{Brauergruppe} $\Br(K)$ von $K$. Dabei ist $[K]$ das Neutralelement (denn $K \sim M_n(K)$) und $A \otimes K \simeq A$ und für
+$[A] \in \Br(K)$ ist $A \otimes A^\op \simeq M_n(K)$, d.h. $[A^\op] = [A]^{-1}$.
+\minisec{Beweis}
+Wir hatten bereits gesehen, dass das Tensorprodukt kommutativ und assoziativ ist, daher ist nur zu zeigen, dass
+\(
+	[A] [B] = [A \otimes B]
+\)
+wohldefiniert ist, d.h. sind 
+\[
+	M_n(D) \otimes M_k(D') \sim M_m(D) \otimes M_l(D') \sim D \otimes D'
+\]
+\minisec{Beispiel}
+\begin{enumerate}[(i)]
+	\item Ist $K$ algebraisch abgeschlossen oder endlich, dann ist $\Br(K)=1$.
+	\item Ist $K=\mathds{R}$, dann folgt aus $[\mathds{C} : \mathds{R}]=2$ und $\mathds{C}$ algebraisch abgeschlossen nach Korollar \ref{sub:340} \todo{Nummerierung prüfen},
+	dass ein Schiefkörper über $\mathds{R}$ Grad 2 (also Dimension 4) hat. Das heißt ist $D$ endlicher Schiefkörper über $\mathds{R}$, dann ist $\dim_\mathds{R}D=\set{1,4}$.
+	Jeder echte Schiefkörper über $\mathds{R}$ ist isomorph zu den Quaternionen.
+\end{enumerate}
+% subsection 341 (end)
+% section 3 (end)
+\newpage
+
+\section{Darstellungstheorie endlicher Gruppen} % (fold)
+\label{sec:4}
+
+\subsection[Definition: Darstellung einer Gruppe]{Definition} % (fold)
+\label{sub:41}
+Eine \Index{Darstellung} einer Gruppe ist (gegeben durch) einen Homomorphismus $\rho : G \to GL(V)$ für einen (endlich dimensionalen) $K$-Vektorraum. Der \Index{Grad} der 
+Darstellung ist $\dim V$. Ist $B = \set{u_1, \ldots , u_n}$ eine $K$-Basis für $V$, dann ergibt jede Darstellung $\rho : G \to \GL(V)$ eine Matrix-Darstellung von $G$,
+indem $\rho(g) \in \GL(V)$ durch die zugehörigen Matrix bezüglich $B$ beschrieben wird. \\
+Ist $h : G \to \Sym(n)$ ein Homomorphismus, dann erhält man die zugehörige
+\Index{Permutationsdarstellung} durch $\rho(g) u_i = u_{h(g)(i)}$. Dies hat man insbesondere für $\abs*{G}=n$ und 
+\[
+	h : G \to \Sym(G) \quad , \quad  g \mapsto \lambda_g = [x \mapsto g x].
+\]
+% subsection 41 (end)
+
+\subsection{Beispiel} % (fold)
+\label{sub:42}
+\begin{enumerate}[(i)]
+	\item Ist $G= \langle g \rangle$ zyklisch, $\abs*{G}=n$, dann erhält man für $g=(1, \ldots ,n) \in \Sym(n)$ also $\rho(g)u_i = u_{i+1}$, $\rho(g)u_n= u_1$ mit
+	zugehöriger Matrixdarstellung 
+	\[
+		\rho : g \longmapsto \begin{pmatrix}
+			0 & & & 1 \\
+			1 & \ddots & 0 & \\
+			 & \ddots & \ddots &\\
+			 0 & & 1 & 0
+		\end{pmatrix}
+	\]
+	Ziel ist es, die Struktur aller Darstellungen zu verstehen. Jede Darstellung $\rho : G \to \GL(V)$ hat eine eindeutige Fortsetzung auf die Gruppenalgebra:
+	\[
+		\tilde{\rho} : K[G] \to \End(V) \simeq M_n(K)
+	\]
+	Erinnerung: $K[G]$ ist die $K$-Algebra mit Basis $G = \set{g_1, \ldots, g_n}$ mit Multiplikation 
+	\[
+		\enbrace*{\sum_{g \in G} \alpha_g g} \enbrace*{\sum_{h \in G} \beta_h h} = \sum_{g,h} \alpha_g \beta_h (g \cdot h) \qquad, \quad \alpha_g, \beta_h \in K
+	\]
+	Umgekehrt induziert jede Darstellung der Gruppenalgebra $K[G] \to \End(V)$ eine Darstellung der Gruppe $G \to \GL(V)$. Durch eine
+	Darstellung $\rho : K[G] \to \End_K(V)$ wird $V$ zu einem $K[G]$-Modul durch 
+	\[
+		\enbrace*{\sum_{g \in G} \alpha_g g} \cdot v= \rho \enbrace*{\sum_g \alpha_g g}(v).
+	\]
+	Das heißt endlich dimensionale Darstellungen einer Gruppe $G$ sind \enquote{das gleiche} wie $K[G]$-Moduln, die als $K$-Vektorräume endlich dimensional sind.
+	
+	
+	\textbf{Übersetzung der Begriffe:} Ist $\rho : G \to \GL{V}$ eine Darstellung, dann ist $U \le V$ ein $K[G]$-Modul von $V$ genau dann, wenn $U$ ein $\rho(G)$-invarianter
+	Untervektorraum von $V$ ist, d.h. wenn $\rho(g)U \subseteq U$ für alle $g \in G$. Ist $U$ ein $K[G]$-Untermodul, dann erhalten wir induzierte Darstellungen, nämlich 
+	$\rho\big|_{U} : G \to \GL(U)$ und die Quotientendarstellung 
+	\[
+		\rho_{\nicefrac{V}{U}} : G \to \GL{\nicefrac{V}{U}} \quad ,\quad p_{\nicefrac{V}{U}} (g) = \benbrace*{x+ U \mapsto \rho(g)(x)+U}
+	\]
+	Eine Darstellung $\rho : G \to \GL(V)$ heißt irreduzibel (bzw. vollständig reduzibel oder halbeinfach), falls $V$ als $K[G]$-Modul irreduzibel (oder einfach) bzw.
+	vollständig reduzibel (oder auch halbeinfach) ist. \footnote{$p \in \End_k(V)$ zentral $G$, d.h. $\forall v \in V, g \in G : \varphi(g v)= g (\varphi(v)) \iff \varphi 
+	\in \End_{K[G]}(V)$}
+	
+	\textbf{Erinnerung:} $M$ ist halbeinfacher $R$-Modul $\iff M= \bigoplus M_i$, $M_i$ einfacher $R$-Modul $\iff$ jeder $R$-Untermodul $U \subseteq M$ hat Komplement
+	$U^\bot$ in $M$, d.h. $M= U \oplus U^\bot$.
+\end{enumerate}
+% subsection 42 (end)
+
+\subsection[Definition: Äquivalenz von Darstellungen]{Definition} % (fold)
+\label{sub:43}
+Zwei Darstellungen $\rho_i : G \to \GL(V_i)$, $i=1,2$ heißen \Index{äquivalent}, falls ein Vektorraumisomorphismus $\varphi : V_1 \to V_2$ existiert mit 
+$\rho_2 = \varphi \rho_1 \varphi ^{-1}$. Dann sind offensichtlich $V_1$ und $V_2$ als $K[G]$-Moduln isomorph. 
+% subsection 43 (end)
+
+\subsection[Definition: Spurabbildung]{Definition} % (fold)
+\label{sub:44}
+Sei $G$ eine endliche Gruppe, $V$ ein $K[G]$-Modul (oder $G$-Modul). Die \Index{Spurabbildung} ist definiert durch 
+\[
+	\Tr_G : V \to V^G = \set[v \in V]{g v = v \enspace\forall g \in G}  \quad , \qquad  x \mapsto \sum_{g \in G} g x.
+\]
+Ist $f \colon V \to W$ ein $K$-Homomorphismus von $K[G]$-Moduln, dann setze $\Tr_G(f) \colon x \mapsto \sum_{g \in G} g f g ^{-1} x$. Dann ist $\Tr_G(f): V \to W$ ein Homomorphismus
+von $K[G]$-Moduln\footnote{$\varphi : V \to W$ ist $K[G]$-Homomorphismus: $\varphi(g \cdot v) = g \cdot \varphi(v)$}.
+% subsection 44 (end)
+
+\subsection{Bemerkung} % (fold)
+\label{sub:45}
+Ist $f : V \to W$ bereits ein Homomorphismus von $G$-Moduln, dann ist $\Tr_G(f)= \abs*{G} \cdot f$.
+% subsection 45 (end)
+
+\subsection{Satz (Maschke)} % (fold)
+\label{sub:46}
+Sei $G$ eine endliche Gruppe, $K$ ein Körper. Dann ist $K[G]$ genau dann halbeinfach, wenn 
+\[
+	\Char(K) \nmid \abs*{G}.
+\]
+\minisec{Beweis}
+\begin{description}
+	\item["$\Leftarrow$":] Sie $n= \abs*{G}$, $\Char(K) \nmid \abs*{G}$. Dann existiert $\frac{1}{n} \in K$. Sei $V$ ein $K[G]$-Modul, $U \subseteq V$ ein $K[G]$-Untermodul.
+	Wir müssen zeigen, dass $U$ ein $G$-invariantes Komplement hat. Sei $U'$ ein beliebiges Vektorraum-Komplement von $U$ in $V$, d.h. $V= U \oplus U'$ als Vektorraum (aber
+	$U'$ ist vielleicht nicht $G$-invariant). Betrachte nun die Vektorraum-Projektion $\pi_U : V \to U$ auf $U$. Definiere $\varphi : V \to U$ durch
+	\[
+		\varphi = \frac{1}{n} \Tr_G(\pi) .
+	\]
+	Wegen $\pi\big|_U = \id_U$, gilt $\varphi\big|_{U} = \frac{1}{n} \Tr(\id_U) = \id_U$ nach Lemma \ref{sub:45}. Nun ist $\varphi$ ein $K[G]$-Modulhomomorphismus, d.h.
+	$\ker \varphi = U^\bot$ ist ein $K[G]$-Untermodul von $V$ und daher gilt
+	\[
+		V = U \oplus  U^\bot
+	\]
+	als $K[G]$-Modul.
+	\item["$\Rightarrow$":] Sei nun $\Char K \mid \abs*{G}$, $\abs*{G} = n$. Betrachte die reguläre Darstellung von $G$ auf $K[G]=V$. Dann ist $v = \sum_{g \in G} g \in V^G$
+	und $V^G \le V$ ist ein $G$-invarianter Untervektorraum von $V$, also $K[G]$-Untermodul von $V$, $0 \lneq V^G \lneq V$. Ist nun $\pi : V \to V^G$ ein beliebiger 
+	$K[G]$-Homomorphismus, betrachte $v= \sum g \in V^G$
+	\[
+		\pi(v) = \sum_g  \pi(g) = \sum_g g  \pi(1) = n \pi(1) = 0
+	\]
+	Daher kann es keine $K[G]$-lineare Projektion von $V$ auf $V^G$ geben und daher hat $V^G$ kein Komplement in $V$ als $K[G]$-Modul. \bewende 
+\end{description}
+Ist nun $G$ eine Gruppe, $\rho : G \to \GL(V)$ halbeinfache Darstellung von $G$ auf einem $K$-Vektorraum $V$ (d.h. $V$ ist als $K[G]$-Modul halbeinfach), dann zerfällt $
+V$ in die direkte Summe von einfachen $K[G]$-Moduln als 
+\[
+	V = V_1^{(1)} \oplus \ldots \oplus V_1^{(m_1)} \oplus V_2^{(1)} \oplus \ldots \oplus V_2^{(m_2)} \oplus  \ldots  \oplus V_r^{(1)} \oplus \ldots \oplus V_r^{(m_r)}
+\]
+mit $V_i^{k} \simeq V_j^{l}$ als $K[G]$-Moduln genau dann, wenn $i=j$. Mit $\rho_i = \rho \big|_{V_i}$ schreibt man auch
+\[
+	\rho \sim m_1 \rho_1 \oplus m_2 \rho_2 \oplus \ldots \oplus m_r \rho_r.
+\]
+Dabei heißen die $m_i$ die Vielfachheiten der irreduziblen Komponenten $\rho_i$.
+\[
+	W_i = \bigoplus_{j=1}^{m_i} V_i^{(r)}
+\]
+heißt homogenene Komponente von $V$. Ist $G$ eine Gruppe, $H \unlhd G$ ein Normalteiler, $\sigma : H \to \GL(V)$ eine Darstellung, dann ist für $g \in G$ die 
+Abbildung $\sigma^g : H \to \GL(V)$, $h \mapsto [v \mapsto \sigma(g h g ^{-1}) v]$ wieder eine Darstellung von $H$ auf $V$ ($g h g ^{-1} \in H$), die zu $\sigma$ 
+konjugiert ist. Es ist $\sigma$ irreduzibel genau dann wenn $\sigma^g$ irreduzibel ist.
+% subsection 46 (end)
+
+\subsection{Satz (Clifford)} % (fold)
+\label{sub:47}
+Sei $G$ eine endliche Gruppe, $H \unlhd G$ ein Normalteiler, $\rho : G \to \GL(V)$ eine irreduzible Darstellung von $G$ auf $V$. Dann ist $\rho_H : H \to\GL(V)$ halbeinfach 
+und alle homogenen irreduziblen Komponenten von $V$ als $K[H]$-Modul sind konjugiert und haben die gleiche Multiplizität.
+\minisec{Beweis}
+Sei $U$ ein irreduzibler $K[H]$-Untermodul von $V$ und betrachte $\sum_{g \in G} \rho(g) U$. Dieser Raum ist $G$-invariant, weil $V$ als $K[G]$-Modul irreduzibel ist, also 
+$= V$. Seien nun $g \in G$, $h \in H$, $y \in U$. Dann folgt 
+\[
+	\rho(h) \underbrace{\enbrace[\big]{\rho(g)y}}_{\in \rho(g) U} = \rho(h g) y = \rho(g h^g) y = \rho(g) \underbrace{\rho(h^g)y}_{\in U} \in \rho(g) U
+\]
+Daher ist $\rho(g) U$ ebenfalls $K[H]$-Untermodul. Behauptung: Für alle $g \in G$ ist $\rho(g)U$ irreduzibel $K[H]$-Modul. $U$ ist als $H$-Modul irreduzibel und die Wirkung
+von $H$ auf $\rho(g)U$ ist gegeben durch die Konjugationswirkung von $H$ auf einem zu $U$ isomorphen Vektorraum. Nach der Vorbemerkung sind also alle $\rho(g) U$ 
+irreduzible  $H$-Moduln, d.h. ist als $H$-Modul halbeinfach. Da die irreduziblen Komponenten von der Form $\rho(g) U$ für ein $g \in G$ sind, haben alle dieselbe Dimension
+und sind konjugiert.
+Die $G$-Wirkung bildet isomorphe $H$-Untermoduln wieder auf solche ab. Daher permutiert $G$ die $H$-homogenen Komponenten transitiv und alle homogenen Komponenten haben 
+dieselbe Multiplizität. \bewende
+% subsection 47 (end)
+
+\subsection{Korollar} % (fold)
+\label{sub:48}
+Ist $G$ eine endliche Gruppe, $H \unlhd G$, $\rho : G \to \GL(V)$ halbeinfach, dann ist auch $\rho \big|_H$ halbeinfach.
+\minisec{Beweis}
+Wende \ref{sub:47} auf die irreduziblen Komponenten an. \bewende
+% subsection 48 (end)
+
+\subsection[Definition: Doppelzentralisatoreigenschaft]{Definition} % (fold)
+\label{sub:49}
+Eine $K$-Algebra $A$ hat die \Index{Doppelzentralisatoreigenschaft}, falls für einen $A$-Modul $V$ und $A' = \End_A V$, $A'' = \End_{A'} V$ gilt $A= A''$.
+% subsection 49 (end)
+
+\subsection{Satz} % (fold)
+\label{sub:410}
+Ist $\rho : G \to \GL(V)$ eine halbeinfache Darstellung, dann hat $A =K[G]$ die Doppelzentralisatoreigenschaft.
+\minisec{Beweis}
+Dichtheitssatz von Jacobson \ref{sub:310}. \bewende \medskip \\
+% subsection 410 (end)
+Sei nun $G$ eine endliche Gruppe, $K$ ein Körper, $\Char K \nmid \abs*{G}$, $A = K[G]$. Es gibt eine Zerlegung $A = \bigoplus_{i=1}^s A_i$ in einfache Algebren. Nach
+Wedderburn ist $A_i \simeq M_{n_i}(D_i)$ für einen Schiefkörper $D_i$ über $K$, $i=1, \ldots , s$, $d_i = \dim_K (D_i)$.
+\subsection{Satz} % (fold)
+\label{sub:411}
+Sein $G$, $K$, $A_i$ wie eben, dann entsprechen die minimalen Linksideale $J_i \subseteq A_i$ genau den irreduziblen Darstellungen von $G$.  Der Grad der zu $J_i$ gehörigen 
+Darstellung ist $n_i \cdot d_i$. $J_i = M_{n_i}(D_i)e_{kk}$, $A_i = \bigoplus_{k=1}^{n_i} M_{n_i}(D_i)e_{kk}$
+\minisec{Beweis}
+Für eine halbeinfache Algebra $A$ entsprechen die irreduziblen $A$-Moduln genau den minimalen Linksidealen der $A_i$. Ein minimales Linksideal in $M_n(D)$ ist von der 
+Form $M_n(D)e_{ii}$ mit $K$-Dimension $n \cdot \dim_K D$. 
+
+Ist $\rho_i$ die zu $J_i = A_i$ gehörige irreduzible Darstellung, dann ist für eine beliebige Darstellung 
+$\rho : G \to \GL(V)$ (für $\Char K \nmid \abs*{G}$) also $V$ ein halbeinfacher $A(=K[G])$-Modul und zerfällt in einfache Komponenten 
+$V= \bigoplus V_j$, $V_j$ $G$-invariant. Für jedes $j$ existiert ein $i$ mit $\rho \big|_{V_j} = \rho_i$ und wir können schreiben 
+\[
+	\rho \sim m_1 \rho_1 \oplus \ldots \oplus m_s \rho_s \bewende
+\]
+% subsection 411 (end)
+
+\subsection{Satz} % (fold)
+\label{sub:412}
+Ist $\rho : G \to K[G]$ die reguläre Darstellung, dann ist die Vielfachheit von $\rho_i$ in $\rho$ genau $n_i$ in der Notation von vorher, also
+\[
+	\rho \sim n_1 \rho_1 \oplus \ldots \oplus n_s \rho_s
+\]
+\minisec{Beweis}
+Die reguläre Darstellung ist die Linkswirkung von $G$ auf $A=K[G]$, d.h. $K[G]$ betrachtet als $K[G]$-Modul. Es ist $A= \bigoplus_{i=1}^s A_i$, 
+\[
+	A_i = M_{n_i}(D_i) = \bigoplus_{k=1}^{n_i} M_{n_i}(D_i) e_{kk}
+\]
+Daraus folgt die Behauptung. \bewende
+% subsection 412 (end)
+
+\subsection{Satz} % (fold)
+\label{sub:413}
+Sei $G$ eine endliche Gruppe, $G= C_1 \cup \ldots \cup C_r$ die Zerlegung in die Konjugiertenklassen.\marginnote{$Z(A)= \bigoplus_{i=1}^s Z(A_i)$}
+Wir setzen $c_i = \sum_{h \in C_i}h \in A$, $i \le r$. Dann bilden 
+$c_1, \ldots , c_r$ eine Basis für $Z(A)$.
+\begin{description}
+	\item[1. Behauptung: $c_i \in Z(A)$:] Für $g \in G$ gilt 
+	\[
+		g ^{-1} c_i g = \sum_{h \in c_i} g ^{-1} h g = \sum h = c_i \in Z(A)
+	\]
+	\item[2. Behauptung: $\set{c_1,\ldots ,r_r} $ linear unabhängig:] Klar.
+	\item[3. Behauptung: $\langle \set{c_1, \ldots ,c_r}\rangle=Z(A)$:] Sei nun $c \in Z(A)$ beliebig, etwa $c = \sum_{g \in G} \gamma_g g$, $\gamma_g \in K$, $g \in G$.
+	Sei $h \in G$, also 
+	\begin{align*}
+		h ^{-1}c h = \sum_g \gamma_g h ^{-1} g h = \sum_g \gamma_{h g h ^{-1}} g = \sum_g \gamma_g g =c
+	\end{align*}
+	Ein Koeffizientenvergleich ergibt $\gamma_g = \gamma_{h g h ^{-1}}$ für alle $g,h \in G$, d.h. es existiert $\gamma_i \in K$, so dass
+	für alle $g \in C_i$ gilt $\gamma_g= \gamma_i$. Daraus folgt die Behauptung. \bewende
+\end{description}
+% subsection 413 (end)
+
+\subsection{Bemerkung} % (fold)
+\label{sub:414}
+Daher gilt $s \le \dim Z(A)=r$. Es gilt also $\dim Z(A) = \sum_{i=1}^s [K_i :K]=r$ und daher $r=s$ genau dann, wenn $A_i$ zentral einfach für alle $i=1, \ldots ,s$.
+Ist $K$ algebraisch abgeschlossen, dann ist immer $r=s$.
+% subsection 414 (end)
+
+\subsection{Satz} % (fold)
+\label{sub:415}
+Sei $G$ eine endliche Gruppe, $K$ algebraisch abgeschlossen, $\Char K \nmid \abs*{G}$, $s = \#$Konjugiertenklassen von $G$. Dann ist die Anzahl der irreduziblen 
+Darstellungen von $G$ (bis auf Äquivalenz) genau $s$ und falls die $\rho_1, \ldots \rho_s$ wie eben sind mit $\deg \rho_i = n_i$, dann folgt 
+\[
+	\abs*{G} = \sum_{i=1}^s  n_i^2.
+\]
+\minisec{Beweis}
+Die erste Aussage ist genau die Vorbemerkung \ref{sub:414}. Ist $K$ algebraisch abgeschlossen, dann ist $A= K[G] = \bigoplus_{i=1}^s M_{n_i}(K)$, daher gilt 
+$\abs*{G} =\dim A = \sum_{i=1}^s n_i^2$. \bewende
+% subsection 415 (end)
+
+\subsection{Korollar} % (fold)
+\label{sub:416}
+Ist $G$ abelsch, dann ist über algebraisch abgeschlossenen Körpern $K$ mit $\Char K \nmid \abs*{G}$ jede irreduzible Darstellung $1$-dimensional, d.h. jede Darstellung
+$G \to \GL(V)$, für $V$ $K$-Vektorraum, ist diagonalisierbar.
+\minisec{Beweis}
+Es ist $s= \abs*{G}$, also $n_i=1$ für $i=1,\ldots ,s$. \bewende
+% subsection 416 (end)
+
+\subsection{Beispiel} % (fold)
+\label{sub:417}
+Sei $n \in \mathds{N}$, $G=C_n$ zyklisch der Ordnung $n$, $A=\mathds{C}[G]$. Da $G$ abelsch ist, gibt es genau $n$ irreduzible Darstellungen, jeweils von Grad $1$. Die
+entsprechenden Darstellungen sind:
+\[
+	g \mapsto \enbrace*{e^{\frac{2 \pi i r}{n}}} \qquad , \qquad r=1, \ldots ,n, \enspace\langle g \rangle = C_n
+\]
+\minisec{Erinnerung}
+Ist $V$ ein $K$-Vektorraum, $L \supseteq K$ eine Körpererweiterung, dann ist $V_L = V \otimes_K L$ ein $L$-Vektorraum mit $\dim_L V_L = \dim_K V$. Jede $K$-lineare Abbildung
+von $V$ lässt sich kanonisch zu einer $L$-linearen Abbildung von $V_L$ fortsetzen. Ds gilt insbesondere für Darstellungen $\rho : G \to \GL(V)$ und entsprechend
+$\rho_L : G \to \GL(V_L)$.
+% subsection 417 (end)
+
+\subsection{Satz} % (fold)
+\label{sub:418}
+Sei $G$ eine Gruppe, $K$ ein Körper, $L \supseteq K$ eine Körpererweiterung, $V$ ein $K$-Vektorraum. Dann gilt 
+\[
+	\End_{L[G]} V_L = L \cdot \End_K[G] V \simeq \enbrace*{\End_{K[G]} V}_L 
+\]
+\minisec{Beweis}
+Es ist 
+\begin{align*}
+	\End_{L[G]} V_L = \End_{L[G]} \enbrace*{V \otimes_K L} = \End_{K[G]} V \otimes_K L = \enbrace*{\End_{K[G]} V}_L  
+\end{align*}
+Klar ist auch $L \cdot \End_{K[G]} V \subseteq \End_{L[G]} V_L$. Für die andere Inklusion wähle eine Basis $\set[\lambda_i]{i \in I}$ für $L$ über $K$. Jedes 
+$\alpha \in \End_L V_L$ lässt sich eindeutig schreiben als $\alpha = \sum_{i \in I} \lambda_i l_i$ mit $l_i \in \End_K V$. Es ist $\alpha \in \End_{L[G]} V_L$ genau dann,
+wenn $\alpha$ mit der $G$-Wirkung vertauscht, genau dann wenn jedes $l_i$ mit der $G$-Wirkung vertauscht, d.h. wenn $l_i \in \End_{K[G]} V$. \bewende\smallskip\\
+Ist $U \subseteq V$ ein $G$-invariante Unterraum, dann ist auch $U \otimes L \subseteq V_L$ $G$-invariant. Daher ist falls $\rho_L$ irreduzibel ist, ach $\rho$ irreduzibel.
+Aber die Umkehrung gilt \emph{nicht}: 
+\minisec{Beispiel}
+Sie $G = C_4 = \langle g \rangle$, $K=\mathds{R}$, $V=\mathds{R}^2$, $\rho : G \to \GL_2(\mathds{R})$, $\rho(g) = \begin{psmallmatrix}
+	0 & 1 \\
+	-1 & 0
+\end{psmallmatrix}$, Drehung um 90°. In $V$ gibt es keine $G$-invarianten Unterräume, d.h. $\rho$ ist irreduzibel. Aber über $\mathds{C}$ hat eine abelsche Gruppe keine
+irreduzible Darstellung in Dimension $ >1$. Bei geeigneter Wahl einer Basis für $V_\mathds{C}$ wird $\rho_\mathds{C}(G)$ als Diagonalmatrix dargestellt.
+\minisec{Bemerkung}
+$\rho :G \to \GL_n(K)$ irreduzibel, $L \supseteq K$ $\not\Rightarrow$ $\rho_L : G \to \GL_n(L)$ irreduzibel. $\Leftrightarrow$ gilt aber!
+% subsection 418 (end)
+
+\subsection[Definition: Absolut irreduzible Darstellung]{Definition} % (fold)
+\label{sub:420}
+\todo[noline]{Hier stimmt die Nummerierung noch nicht!}%
+Eine Darstellung $\rho : G \to \GL(V)$ für einen $K$-Vektorraum $V$ heißt \Index{absolut irreduzibel}, falls $\rho_L$ irreduzibel ist für jeden Körper $L \supseteq K$. 
+% subsection 420 (end)
+
+\subsection{Satz} % (fold)
+\label{sub:421}
+Sei $G$ eine endliche Gruppe, $\rho :G  \to \GL(V)$ eine Darstellung über $K$ mit $\Char K \nmid \abs*{G}$. Setze $A := K[G]$ und $A' = \End_A(V)= C_{\End_K(V)}(A)$. Dann
+ist $\rho$ irreduzibel genau dann, wenn $A'$ ein Schiefkörper ist und absolut irreduzibel, wenn $A'=K$ gilt.
+\minisec{Beweis}
+Der erste Teil der Behauptung ist Schurs Lemma (\ref{sub:226}): Wenn $\rho$ irreduzibel ist, dann ist $A'$ ein Schiefkörper. Ist umgekehrt $\rho$ nicht irreduzibel, dann ist
+$V= B \oplus C$ für $K[G]$-Untermoduln $B$ und $C$. Die Projektion $\pi_B :V \to B$ ist $K[G]$-linear, d.h. $\pi_B \in A'$, aber $\pi_B \not= 0$ und $\pi_B$ ist nicht 
+invertierbar, d.h. $A'$ ist kein Schiefkörper.
+
+Ist nun $\rho$ absolut irreduzibel und $K \subsetneq A'$, dann sei $c \in A' \setminus K$. $f $ sei das Minimalpolynom von $c$ über $K$, d.h. $\deg f > 1$ und $f$ ist
+irreduzibel, weil $A'$ ein Schiefkörper ist. Setze
+\[
+	L= \nicefrac{K[X]}{(f)}
+\]
+und betrachte $A'_L$. Dann hat $f$ eine Nullstelle in $L$, d.h. $A'_L$ ist kein Schiefkörper, weil $A'_L$ Nullteiler enthält \light $\rho$ absolut irreduzibel. Ist umgekehrt
+$A'=K$, dann ist für jeden Körper $L \supseteq K$ natürlich $A'_L = K \otimes L = L$ ein Körper, also $\rho$ absolut irreduzibel. \bewende
+% subsection 421 (end)
+
+\subsection[Definition: Zerfällungskörper einer Gruppe]{Definition} % (fold)
+\label{sub:422}
+Sei $G$ eine endliche Gruppe, $K$ ein Körper. Dann heißt $K$ \Index{Zerfällungskörper} für $G$, wenn jede Darstellung von $G$ über $K$ absolut irreduzibel ist. 
+% subsection 422 (end)
+
+\subsection{Satz} % (fold)
+\label{sub:423}
+Sei $G$ eine endliche Gruppe, $K$ ein Körper mit $\Char K \nmid \abs*{G}$. Dann ist $K$ Zerfällungskörper für $G$ genau dann, wenn $K[G]$ die direkte Summe von 
+Matrizengruppen $M_n(K)$ ist.
+\minisec{Beweis}
+Zerlege $A=K[G]= \bigoplus A_i$, wobei $A_i$ einfach ist. Sei $J_i \subseteq A_i$ ein minimales Linksideal in $A_i$. Die irreduziblen Darstellungen von $G$ über $K$
+entsprechen genau den Darstellungen $\rho_i$ von $G$ auf $J_i$. Also ist $K$ genau dann Zerfällungskörper, wenn alle $\rho_i$ absolut irreduzibel sind. Nach Satz 
+\ref{sub:422} ist dies genau dann der Fall, wenn 
+\[
+	D_i' = \End_A J_i = K \quad \text{ für alle }i.
+\]
+Wegen der Irreduzibilität von $J_i$ ist $D_i'$ ein Schiefkörper und wegen der Doppelzentralisatoreigenschaft (Satz \ref{sub:410}) gilt
+\[
+	\End_{D_i'} J_i = \rho_i(A) \simeq M_{n_i}(D_i)
+\]
+für $D_i = (D_i')^\op$ und $n_i = \dim_{D_i'} J_i$. Da die $A_i$ einfach sind, ist $\rho_i(A)=A_i$, d.h. $A_i \simeq M_{n_i}(D_i)$. Wenn $K$ ein Zerfällungskörper ist, dann
+sind die $\rho_i$ absolut irreduzibel, d.h. $D_i' = K$ und $A_i \simeq M_{n_i}(K)$.
+
+Ist $A_i \simeq M_{n_i}(K)= M_{n_i}(D_i)$, dann folgt $K=D_i$, insbesondere $D_i'=K$ und nach Satz \ref{sub:421} sind die $\rho_i$ absolut irreduzibel, d.h.
+$K$ ist Zerfällungskörper. \bewende
+% subsection 423 (end)
+
+\subsection[Definition: Charakter]{Definition} % (fold)
+\label{sub:424}
+Eine $1$-dimensionale Darstellung $G \to \GL_1(K)=K^*$ heißt \Index{linearer Charakter}. Ist $\rho : G \to \GL(V)$  eine Darstellung, dann heißt $\chi_\rho : G \to K$,
+$\chi_\rho(g)= \Tr \enbrace[\big]{\rho(g)}$ der zu $\rho$ gehörige \Index{Charakter}, d.h. ist$p(x)= \enbrace*{\rho_{ij}(x)} $ so ist
+\[
+	\Tr \enbrace[\big]{ p(x)} = \sum_{i=1}^{\dim V} \rho_{ii} (x)
+\]
+\minisec{Bemerkung}
+$\chi_\rho$ ist wohldefiniert, weil $\Tr$ nicht von der Basiswahl abhängt. Jede $1$-dimensionale Darstellung ist ihre eigener Charakter. Für abelsche Gruppen über
+algebraisch abgeschlossenen Körpern sind die Charaktere genau die irreduziblen Darstellungen.
+% subsection 424 (end)
+
+\subsection{Proposition} % (fold)
+\label{sub:425}
+\begin{enumerate}[(i)]
+	\item Äquivalente Darstellungen haben denselben Charakter.
+	\item Jeder Charakter ist eine Klassenfunktion, d.h. konstant auf Konjugationsklassen von $G$.
+	\item Ist $\Char K =0$, dann $\chi_\rho(1)= \dim V$.
+	\item Sind $\rho_1, \rho_2$ Darstellungen mit Charakteren $\chi_i$ und $\chi_2$, dann sind $\rho_1 \oplus \rho_2$, $\rho_1 \otimes \rho_2$ Darstellungen  mit Charakter
+	$\chi_1 + \chi_2$ bzw. $\chi_1 \cdot \chi_2$
+	\item Ist $K= \mathds{C}$, $x \in G$ mit $x^n= 1_G$, dann ist $\chi(x)$ Summe von $n$-ten Einheitswurzeln in $\mathds{C}$.
+\end{enumerate}
+\minisec{Beweis}
+\begin{enumerate}[(i)]
+	\item Klar: Sind $\rho_1, \rho_2$ äquivalent via dem Vektorraumisomorphismus $\varphi$, dann ist auch $\rho_2(g)= \varphi \rho_1(g) \varphi ^{-1}$, also 
+	$\Tr \rho_2(g) = \Tr \rho_1(g)$.
+	\item Für $g,h \in G$ ist 
+	\[
+		\Tr \enbrace*{ \rho \enbrace*{h g h ^{-1}} } = \Tr \enbrace*{\rho(h) \rho(g) \rho(h) ^{-1}} = \Tr \enbrace[\big]{\rho(g)}   
+	\]
+	\item Es ist $\rho(1_G)= \id_V$
+	\item Es ist $\Tr(A \oplus B)= \Tr(A) + \Tr(B)$ und $\Tr(A \otimes B)= \Tr(A) \cdot \Tr(B)$
+	\item Ist $x^n = 1_G$ für $x \in G$, dann gilt für $A= \rho(x)$ ebenfalls $A^n= \id_V$, d.h. das Minimalpolynom von $A$ teilt das Polynom $X^n-1$, mit Wurzeln
+	$\omega_1, \ldots , \omega_n \in \mathds{C}$. Daher ist $A$ eine Diagonalmatrix mit Einträgen aus $\set{\omega_1, \ldots , \omega_n}$. \bewende
+\end{enumerate}
+% subsection 425 (end)
+
+\subsection{Beispiel} % (fold)
+\label{sub:426}
+\begin{enumerate}[(i)]
+	\item Sei $\rho : G \to \GL_1(V)$ die triviale Darstellung mit $\rho(g)=1$, dann heißt $\chi_\rho : G \to K^*$, $g  \mapsto 1$  \Index{trivialer Charakter}.
+	\item Sei $G$ endlich, $\abs*{G}=n$, $\rho : G \to \GL_n(K)$ die reguläre Darstellung durch Permutationsmatrizen. Dann ist 
+	\[
+		\chi_\rho(g) = \begin{cases}
+			n, &\text{ falls }g= 1_G\\
+			0 , &\text{ sonst}
+		\end{cases}
+	\]
+\end{enumerate}
+% subsection 426 (end)
+
+\subsection{Satz (Orthogonalitätsrelationen für irreduzible Darstellungen)} % (fold)
+\label{sub:427}
+Sei $G$ eine endliche Gruppe, $K$ der Zerfällungskörper für $G$, $\Char K = 0$\marginnote{in der \enquote{Praxis}: $K= \mathds{C}$}. Sind $\rho, \sigma$ irreduzible 
+Darstellungen der Dimension $c$ bzw. $d$, dann gilt für alle $i,j \le c$ und $p,q \le d$
+\[
+	\sum_{g \in G} \rho_{ij}(g) \cdot \sigma_{pq}(g ^{-1}) = \begin{cases}
+		0, &\text{ falls }\rho, \sigma \text{ nicht äquivalent}\\
+		\frac{\abs*{G} }{d} \cdot \delta_{jp} \cdot \delta_{iq} , &\text{ falls } \rho = \sigma 
+	\end{cases}
+\]
+wobei $\rho(g)= \enbrace[\big]{\rho_{ij }(g)}_{i,j \le c} $, $\sigma(g)= \enbrace[\big]{\sigma_{pq}(g)}_{p,q \le d}$.
+\minisec{Beweis}
+Seien $\rho : G \to \GL(U)$, $\sigma : G \to \GL(V)$, $(u_1, \ldots , u_c)$ bzw. $(v_1, \ldots , v_d)$ Basen von $U$ bzw. $V$. Sei weiter 
+\[
+	\alpha_{jp} : U \to V \quad , \quad u_i \mapsto\delta_{ij} \cdot v_p = \begin{cases}
+		u_j \mapsto v_p, &\text{ für } i=j\\
+		u_i \mapsto 0 & \text{ für } i \not= j
+	\end{cases}
+\]
+$\alpha_{jp}$ ist $K$-linear und $\Tr(\alpha_{jp}): U \to V$ ist $K[G]$-linear. Sind $\rho$ und $\sigma$ nicht äquivalent, dann folgt $\Tr(\alpha_{jp})=0$ für alle $j\le c$,
+$p \le d$. (siehe 2. Satz von Wedderburn, \ref{sub:231}). Sind $\rho \sim \sigma$, also $U \simeq V$ $K[G]$-Moduln, dann ist $\Tr(\alpha_{jp})= \lambda_{jp} \in K$, denn
+$U$ ist einfach und $\End_{K[G]} U = K$.
+
+Es ist $(\alpha_{jp})_{iq} = \delta_{ij} \cdot \delta_{pq}$, also 
+\[
+	\enbrace[\big]{\Tr(\alpha_{jp})}_{iq} = \sum_{\substack{h \le c, r \le d \\ g \in G}} \rho_{ij}(g) \cdot \delta_{hj} \cdot \delta_{pr} \cdot \sigma_{rq}(g) ^{-1}
+	= \sum_{g \in G} \rho_{ij}(g) \cdot \sigma_{pq}(g) ^{-1}
+\]
+Falls $\rho \not\sim \sigma$, folgt die Behauptung. Sei nun $\rho = \sigma$. Dann ist
+\begin{align*}
+	\sum_g \rho_{ij}(g) \cdot \rho_{pq}(g) ^{-1} = \lambda_{jp} \cdot \delta_{iq} 
+\end{align*}
+Für $i=q$ ergibt sich als Summe $i=1, \ldots ,d =c$
+\begin{align*}
+	d \lambda_{jp} = \sum_i \sum_g \rho_{pi}(g) ^{-1} \cdot \rho_{ij}(g) = \sum_g \rho_{pj}(1) = \abs*{G} \cdot \delta_{jp} 
+\end{align*}
+Daher gilt $\lambda_{jp}= \frac{\abs*{G} }{d} \delta_{jp}$ und damit 
+\[
+	\sum_{g} \rho_{ij}(g) \cdot \sigma_{pq}(g) ^{-1} = \frac{\abs*{G} }{d} \cdot \delta_{jp} \cdot \delta_{iq}. \bewende
+\]
+% subsection 427 (end)
+
+\subsection{Korollar} % (fold)
+\label{sub:428}
+Sei $G$ eine endliche Gruppe, $K$ ein Zerfällungskörper, $\Char K  \nmid \abs*{G}$, $\set{\rho_1, \ldots , \rho_s}$ Repräsentanten für die Äquivalenzklassen der 
+irreduziblen Darstellung über $K$. Für jedes $i=1, \ldots , s$ sei $\rho^{(i)}$ eine Matrixdarstellung für $\rho_i$. Dann gilt 
+\[
+	\sum_g \rho_{ij}^{(k)}(g) \cdot \rho_{pq}^{(l)}(g) ^{-1} = \begin{cases}
+		0, &\text{ falls }k \not= l\\
+		\frac{\abs*{G} }{\deg \rho_k} \cdot \delta_{jp} \cdot \delta_{iq} , &\text{ falls } k=l 
+	\end{cases}
+\]
+% subsection 428 (end)
+
+\subsection{Korollar} % (fold)
+\label{sub:429}
+Sind $\chi_i$, $i=1, \ldots ,s$ die zu $\rho_i$ gehörigen Charaktere, dann gilt
+\[
+	\sum_g \chi_i(g) \cdot \chi_j(g) ^{-1} = \begin{cases}
+		0, &\text{ falls }i \not= j\\
+		\abs*{G}, &\text{ falls } i=j 
+	\end{cases}
+\]
+Ist speziell $K=\mathds{C}$, dann folgt wegen Proposition \ref{sub:425}(v)
+\[
+	\sum_g \chi_i(g) \cdot \chi_j(g) ^{-1} = \sum_g \chi_i(g) \cdot \overline{\chi_j(g)} = \begin{cases}
+		0, &\text{ falls }i \not= j\\
+		\sum_g \chi_i(g) \cdot \overline{\chi_i(g)} = \sum_g \abs*{\chi_i(g)^2} = \abs*{G} , &\text{ falls } i=j   
+	\end{cases}
+\]
+Betrachte $K[G]= K^G$ als $K$-Vektorraum aller $K$-wertigen Funktionen auf $G$. Definiere inneres Produkt auf $K[G]$ durch 
+\[
+	\enbrace*{\sum_{x \in G} \alpha_x x, \sum_{y \in G} \beta_y y} = \frac{1}{\abs*{G}} \sum_{x \in G} \alpha_{x ^{-1}} \beta_x \in K ,
+\]
+falls $\Char K \nmid \abs*{G}$. Für $K=\mathds{C}$ erhalten wir eine hermitesche Form durch
+\[
+	(\varphi, \psi) = \frac{1}{\abs*{G}}  \sum_g \overline{\varphi(g)} \psi(g) .
+\]
+Dann ist 
+\begin{align*}
+	(\varphi, \varphi) = \frac{1}{\abs*{G}} \sum_g \overline{\varphi(g)} \varphi(g) = \frac{1}{\abs*{G}} \sum_g \abs*{\varphi(g)}^2 \ge 0   
+\end{align*}
+und $(\varphi, \varphi)=0 \iff \varphi=0$, d.h. $(\_, \_)$ ist positiv definit und regulär. Nach Korollar \ref{sub:429} gilt $(\chi_i, \chi_j)= \delta_{ij}$, d.h. die
+Charaktere der irreduziblen Darstellung $\chi_i , \ldots \chi_s$ bilden eine Orthonormalbasis des $\mathds{C}$-Vektorraumes der Klassenfunktionen.
+
+Ist nun $\rho : G \to \GL(\mathds{C})$ eine beliebige Darstellung mit Charakter $\chi$, dann ist $\rho \sim m_1 \rho_i \oplus \ldots \oplus m_s \rho_s$ und daher
+\[
+	\chi = m_i \cdot \chi_i \ldots + m_s \cdot \chi_s.
+\]
+Daher ist $(\chi_i, \chi_i)= m_i$, $i=1, \ldots ,s$.
+% subsection 429 (end)
+
+\subsection{Korollar} % (fold)
+\label{sub:430}
+Komplexe Darstellungen einer endlichen Gruppe sind genau dann äquivalent, wenn sie denselben Charakter haben.
+% subsection 410 (end)
+
+\subsection{Beispiel} % (fold)
+\label{sub:431}
+Bestimme alle irreduziblen Charaktere (bzw. Darstellungen) von $S_3$. Es gilt $\abs*{S_3}=6$. $S_3$ hat drei Konjugationsklassen mit Vertretern 
+\[
+	\id, \begin{matrix}
+		(1  \enspace 2) \\
+		(1 \enspace 3) \\
+		(2 \enspace 3)
+	\end{matrix} ,
+	\begin{matrix}
+		(1 \enspace 2 \enspace 3) \\
+		(2 \enspace 3 \enspace 1)
+	\end{matrix}
+\]
+Es gibt zwei $1$-dimensionale Darstellung von $S_3$ mit Charakter $\chi_i(g)=1$ und $\chi_2(g)= \sgn(g)$. Wegen $6= 1^2 + 1^2 + 2^2$ existiert noch eine $2$-dimensionale
+Darstellung, d.h. es gilt $\chi_3(1)=2$. Nun muss $\chi_3$ auf $\chi_1$ und $\chi_2$ senkrecht sein, d.h. 
+\begin{align*}
+	(\chi_1, \chi_3) &= \frac{1}{6} \enbrace[\big]{2+3 \chi_3( (1 \enspace2)) + 2 \chi_3((1 \enspace 2 \enspace 3))} = 0 \\
+	(\chi_2, \chi3) &= \frac{1}{6} \enbrace[\big]{2 - 3 \chi_3((1 \enspace 2)) + 2 \chi_3((1 \enspace 2 \enspace 3))} =0  
+\end{align*}
+$\Rightarrow \chi_3(1 \enspace 2) = 0$ und $\chi_3(1 \enspace 2 \enspace 3)= -1$. Damit ergibt sich die Charaktertafel
+\begin{table}[H]
+	
+\end{table}
+Und für größere $n$ die Young-Tableaus.
+\section*{Dualität für endliche abelsche Gruppen} % (fold)
+\label{sec:dualitaet}
+
+\subsection{Definition} % (fold)
+\label{sub:432}
+Sei $G$ eine abelsche Gruppe, dann heißt $G^* = \Hom(G,\mathds{C}^*)$ die \Index{Charaktergruppe} (oder duale Gruppe)  von $G$
+unter der Multiplikation: $\varphi, \psi \in G^*$, 
+\[
+	\varphi \cdot \psi : G \to \mathds{C}^* , g \mapsto \varphi(g) \cdot \psi(g)
+\]
+\minisec{Bemerkung}
+Ist $G= \nicefrac{\mathds{Z}}{n \mathds{Z}}= C_n$ zyklisch mit $G= \langle s \rangle$, $\chi : G \to \mathds{C}^*$, dann ist $\chi(s)$ eine $n$-te Einheitswurzel.
+Ist $\omega^* \in \mu_n$ eine $n$-te Einheitswurzel, dann ist $\chi(s^i) = \omega^i$ ein Charakter. Daher ist hier $C_n^* = \mu_n \simeq C_n$ Gruppe der $n$-ten 
+Einheitswurzeln.
+% subsection 432 (end)
+
+\subsection{Satz} % (fold)
+\label{sub:433}
+Jede endliche abelsche Gruppe $A$ ist isomorph zur dualen Gruppe $A^*$.
+\minisec{Beweis}
+Nach dem Hauptsatz über endlich erzeugte Moduln über Hauptidealringen ist $A \simeq A_1 \oplus  \ldots \oplus A_r$ mit $A_i$ zyklisch. 
+Offensichtlich gilt
+\[
+	\hom(B \times C, \mathds{C}^*) \cong \hom(B, \mathds{C}^*) \times \hom(C,\mathds{C}^*).
+\]
+Daher ist $(B \times C)^* \cong B^* \times C^*$. Also 
+\[
+	A^* \simeq A_1^* \times \ldots \times A_r^* \simeq A_1 \times \ldots \times A_r = A. \bewende
+\]
+% subsection 433 (end)
+% section dualitaet (end)
+% subsection 431 (end)
+% section 4 (end)
+
+
+
+
+
+
+
+
+
+
+\cleardoubleoddemptypage
+\appendix
+\section{Anhang} % (fold)
+\label{sec:anhang}
+\subsection{Alternative Definition von Gruppenwirkungen} % (fold)
+\label{sub:anh_1}
+Eine \Index{Gruppenwirkung} von $G$ auf $X$ ist (gegeben durch) eine Abbildung $G\times X \to X$, $(g,x)\mapsto g\cdot x$, mit folgenden Eigenschaften:
+\begin{itemize}
+	\item $e_G \cdot x= x$, und
+	\item $g\cdot(h\cdot x)=(gh)\cdot x$,
+\end{itemize}
+für alle $x \in X$ und alle $g,h\in G$.
+\minisec{Rechts-Gruppenwirkung}
+Die oben angegebenen Definitionen beschreiben eine \bet{linksseitige Gruppenwirkung}\index{Gruppenwirkung!linksseitige}.\\
+Eine \bet{rechtsseitige Gruppenwirkung}\index{Gruppenwirkung!rechtsseitige} ist (gegeben durch) eine Abbildung $X\times G \to X$, $(x,g)\mapsto x\cdot g$, 
+wobei für alle $x\in X$ und alle $g,h\in G$ die Bedingungen $x\cdot e=x$ und $(x\cdot g) \cdot h =x \cdot (gh)$ erfüllt sind.\\
+Alternativ kann eine rechtsseitige Gruppenwirkung durch einen Gruppenhomomorphismus $\varphi : G \to \Sym(X)^\op$ beschrieben werden, 
+wobei $\Sym(X)^\op:=(\Sym(X),*)$ mit $f*g:=g\circ f$ ist. (vgl. Definition \ref{sub:228}).
+% subsection anh_1 (end)
+
+\subsection{Beweis für \ref{sub:26}(a) von Blatt 3} % (fold)
+\label{sub:anh_2}
+Sei $M$ ein zyklischer $R$-Modul. Sei $0 \not= x \in M$. Dann gilt $\langle x \rangle = M$. Betrachte den Homomorphismus $\varphi : R \to M$, $r \mapsto r \cdot x$.
+$\varphi$ ist surjektiv, da $\langle x \rangle= M$. Dann gilt
+\[
+	\nicefrac{R}{\ker \varphi} \simeq M
+\]
+Dann ist $J := \ker \varphi$ ein Ideal in $R$. Zu zeigen: $J$ ist maximal. Annahme: Es existiert ein echtes Ideal $I \subset R$ mit $J \subsetneq I$. Dann ist 
+$\nicefrac{I}{J}$ ein Ideal in $\nicefrac{R}{J} \simeq M$. Dann ist $\nicefrac{I}{J}$ ein Untermodul von $M$. Da $M$ zyklisch ist und $\nicefrac{I}{J}$ ein nichtriviales 
+Element enthält, gilt $\nicefrac{I}{J}=M$. Dann folgt aber $I=R$ und wir erhalten einen Widerspruch. \bewende
+% subsection anh_2 (end)
+% section anhang (end)
+\newpage
+\pagenumbering{Alph}
+\setcounter{page}{1}
+
+\printindex
+\listoffigures
+\todototoc
+\listoftodos[Todo's und andere Baustellen]
+\end{document}
