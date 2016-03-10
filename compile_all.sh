@@ -5,7 +5,7 @@ do
 	latexmk -pdflatex="xelatex --shell-escape %O %S" -pdf -dvi- -ps- -cd -silent -f -interaction=nonstopmode "$i.tex";
 done
 
-declare -a arr2=("Fima_WS14/Fima_WS14") # "ModRed_WS15/Modellreduktion"
+declare -a arr2=("Fima_WS14/Fima_WS14" "EinfAlg_WS14/Einf_Algebra") # "ModRed_WS15/Modellreduktion"
 for i in "${arr2[@]}"
 do
 	latexmk -pdflatex="pdflatex --shell-escape %O %S" -pdf -dvi- -ps- -cd -silent -f -interaction=nonstopmode "$i.tex";

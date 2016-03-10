@@ -1,0 +1,4797 @@
+%!TEX TS-program = pdflatex
+\input{../!config/Tazdr/Praeambel.tex}
+
+\newcommand{\vorlesung}{Einführung in die Algebra}
+\newcommand{\Prof}{Prof. Dr. Kramer}
+\newcommand{\subt}{Aufarbeitung der Vorlesungsnotizen}
+
+\input{../!config/Tazdr/headings.tex}
+
+
+\begin{document}
+\maketitle
+\thispagestyle{empty}
+\cleardoubleoddemptypage
+
+\thispagestyle{empty}
+\vspace*{\fill}
+\begin{center}
+	Hierbei handelt es sich um eine \subt von \textbf{\Prof}, WWU Münster, aus der Vorlesung \textbf{\vorlesung} im Wintersemester 2014/15. 
+	Dies ist kein Skript der Vorlesung und keine eigene Arbeit des Autors.\\
+	\vspace{2cm}
+	Für Fehler in der Aufarbeitung wird keine Haftung übernommen. 
+	Hinweise auf Fehler sind gerne gesehen, hierfür kann man mich in der Uni ansprechen oder alternativ eine e-Mail an: \textit{tobias.wedemeier@gmx.de}\\
+	Auch ist eine Mitarbeit über Github möglich.\\
+	\vspace{2cm}
+	Wenn Teile aus der Vorlesung selber fehlen, können diese gerne an meine e-Mail versandt werden. 
+	Ich werde diese dann einarbeiten.\\
+\end{center}
+\vspace*{\fill}
+\newpage
+
+\pagenumbering{Roman}
+
+\tableofcontents
+\cleardoubleoddemptypage %sorgt dafür, dass alles folgende erst auf der nächsten freien "rechten" Seite steht
+
+
+\thispagestyle{empty}
+\section*{Prolog}  % (fold)
+\addcontentsline{toc}{section}{Prolog}
+\label{sec:prolog_alg}
+\subsection*{Geplante Inhalte}
+\begin{itemize}
+	\item Gruppentheorie, Untergruppen, Normalteiler, Quotienten, Permutationsgruppen
+	\item Kommutative Ringe, Ideale, Faktorisierbarkeit
+	\item Körper, Galoistheorie, Konstruierbarkeit mit Zirkel und Lineal
+\end{itemize}
+%sub end
+
+\subsection*{Algebra: historisch}
+Algebra ist historisch gesehen das Auflösen von Gleichungen.
+Moderne Algebra untersucht sogenannte algebraische Strukturen wie Gruppe, Ringe, Körper, Varitäten,...
+
+\begin{itemize}
+	\item[Literatur:]
+	\item Cohn Basic Algebra
+	\item Jacobson Basic Algebra I
+	\item Herstein Topics in Algebra
+	\item Laug Algebra
+	\item Bosch Algebra
+	\item Lorenz Einführung in die Algebra
+\end{itemize}
+
+\subsection*{Zur Vorlesung}
+Regelmäßige Teilnahme + \uline{Mitschreiben}.
+Meine eigenen Notizen gibt es dann immer im www eingescannt (\uline{kein} Skript).\\
+\uline{Übungen:} Regelmäßige Teilnahme, vorrechnen.
+Zwei Namen auf Hausaufgaben, wenn \uline{beide} alles vorrechnen können.\\
+Regelmäßige Abgabe + mindestens eine Aufgabe erfolgreich vorrechnen + 50+x \% richtig $\Rightarrow$ Klausurzulassung.
+
+
+\cleardoubleoddemptypage
+
+\pagenumbering{arabic}
+\setcounter{page}{1}
+
+\section{Elementare Gruppentheorie}
+\label{sec:elementare_gruppentheorie}
+
+\bet{Erinnerung:} eine \Index{Verknüpfung} auf einer nicht leeren Menge $X$ ist eine Abbildung
+\begin{equation*}
+X\times X \to X , (x,y) \mapsto m(x,y).
+\end{equation*}
+Häufig schreibt man $m(x,y)= x\cdot y$ oder $ m(x,y) = x + y$, je nach Kontext. 
+Die Schreibweise $m(x,y)=x+y$ wird eigentlich nur für kommutative Verknüpfungen benutzt, d.h. wenn $\forall x,y\in X$ gilt $m(x,y)=m(y,x)$.
+
+\subsection{Definition Gruppe}
+\label{sub:def_gruppe}
+Eine \Index{Gruppe} $(G,\cdot )$ besteht aus einer Verknüpfung $\cdot $ auf einer nicht leeren Menge $G$, mit folgenden Eigenschaften:
+\begin{enumerate}[(G1)]
+	\item Die Verknüpfung ist \uline{assoziativ}, d.h. $(x\cdot y)\cdot z = x \cdot (y \cdot z)$ gilt $\forall x,y,z \in G$.\\ 
+	(Folglich darf man Klammern weglassen.)
+	\item Es gibt ein \uline{neutrales Element} $e \in G$, d.h. es gilt $e\cdot x= x\cdot e= x \enspace \forall x\in G$
+	\item Zu jedem $x\in G$ gibt es ein \uline{Inverses} $y \in G$, d.h. $xy=e=yx$.\\
+	Man schreibt dann auch $y=x^{-1}$ für das Inverse zu $x$.
+\end{enumerate}
+Fordert man von der Verknüpfung nur (G1) und (G2), so spricht man von einer Halbgruppe mit Eins oder einem \Index{Monoid}. 
+Fordert man nur (G1), so spricht man von einer \Index{Halbgruppe}.
+% sub end
+
+\subsection{Beispiel 1}
+\label{sub:beispiel_1}
+\begin{itemize}
+	\item $(\mathds{Z}, +), (\mathds{Q}, +)$ sind kommutative Gruppen.
+	\item $(\mathds{Z},\cdot), (\mathds{N},\cdot), (\mathds{N}, +)$ sind Monoide.
+\end{itemize}
+%sub end
+
+\subsection{Beobachtungen}
+\label{sub:beobachtungen}
+\begin{enumerate}[a)]
+	\item Das Neutralelement (einer Verknüpfung) ist eindeutig bestimmt: sind $e,e'$ beides Neutralelemente, so folgt: 
+	\[
+	e=e e'=e'
+	\]
+	\item Das Inverse zu $x$ ist eindeutig bestimmt:
+	\[
+	xy=e=xy'=y'x \Rightarrow y'=y'e=y'xy=ey=y
+	\]
+\end{enumerate}
+%sub end
+
+\subsection{Lemma 1 (Sparsame Definition von Gruppen)}
+\label{sub:lemma_1}
+Sei $G \times G \to G$ eine assoziative Verknüpfung. 
+Dann ist $G$ schon eine Gruppe, wenn gilt:
+\begin{enumerate}[(i)]
+	\item es gibt $e \in G$ so, dass $ex=x$ $\forall x \in G$ gilt.
+	\item zu jedem $x\in G$ gibt es ein $y \in G$ mit $ yx=e$
+\end{enumerate}
+\bet{Beweis}\\
+Sei $yx=e$, es folgt $yxy=y$. 
+Wähle $z$ mit $zy=e$, es folgt 
+\[
+z\underbracket{yx}_{=e}y=zy=e \Rightarrow xy=e
+\]
+Weiter gilt 
+\[
+xe=xyx=ex=x.
+\]
+\hfill $\square$
+%sub end
+
+\subsection{Beispiel 2}
+\label{sub: beispiel_2}
+Sei $X$ eine nicht leere Menge, sei $X^X=\{f : X \to X\}$ die Menge aller Abbildungen von $X$ nach $X$. 
+Als Verknüpfung auf $X$ nehmen wir die Komposition von Abbildungen. 
+Dann gilt wegen 
+\[
+f=\id_X \circ f= f \circ \id_X,
+\] 
+dass $\id_X$ ein Neutralelement ist.\\
+Damit haben wir ein Monoid $(X_X, \circ )$.\\
+Sei $\sym(X)=\{f:X\to X~|~f$ bijektiv$\}$. 
+Zu jedem $f\in \sym(X)$ gibt es also eine Umkehrabbildung $g:X\to X$ mit
+\[
+f \circ g=g\circ f=\id_X.
+\]
+Folglich ist $(\sym(X), \circ)$ eine Gruppe, die \bet{Symmetrische Gruppe}\index{Gruppe!symmetrische !}. 
+Wenn $X$ endlich ist mit $n$ Elementen, so gibt es genau $n!=n(n-1)(n-2)\dots \cdot 2\cdot 1$ Permutationen, also hat $\sym(X)$ dann genau $n!$ Elemente.\\
+Für $X=\{1,2,3,\dots,n\}$ schreibt man auch $\sym(X)=\sym(n)\big( =S_n \big)$.
+%sub end
+
+\subsection{Definition zentralisieren}
+\label{sub:def_zentralisieren}
+Sei $G \times G \to G$ eine Verknüpfung. 
+Wir sagen, $x,y \in G$ vertauschen oder kommutieren oder $x$ \Index{zentralisiert} $y$, wenn gilt 
+\[
+xy=yx.
+\]
+Eine Gruppe, in der alle Elemente vertauschen heißt kommutativ oder \Index{abelsch}. 
+%sub end
+
+\subsection{Beispiel 3}
+\label{sub:beispiel_3}
+\begin{enumerate}[(a)]
+	\item $(\mathds{Z}, +), (\mathds{Q}, +), (\mathds{Q}^*,\cdot)$ sind abelsche Gruppen.
+	\item $K$ Körper, $G=Gl_2(K)=\{X \in K^{2\times 2}~ |~ \det(X)\not= 0 \}$ Gruppe der invertierbaren $2 \times 2$ Matrizen.\\
+\[
+	\begin{pmatrix}	1 & 1\\ 0 & 1 \end{pmatrix}
+	\begin{pmatrix} 0 & 1\\	1 & 0 \end{pmatrix}
+	=
+	\begin{pmatrix}	1 & 1\\	1 & 0 \end{pmatrix}
+\]
+\[
+	\begin{pmatrix} 0 & 1\\	1 & 0 \end{pmatrix}
+	\begin{pmatrix} 1 & 1\\ 0 & 1 \end{pmatrix}
+	=
+	\begin{pmatrix} 0 & 1\\ 1 & 1 \end{pmatrix}
+\]
+	$\Rightarrow$ nicht abelsch, genauso $Gl_n(K)$ für $n\ge 2$.
+	\item $\sym(2)$ ist abelsch, aber $\sym(3)$ nicht. Allgemein ist $\sym(X)$ nicht abelsch, falls $\#X \ge 3$ gilt.
+\end{enumerate}
+%sub end
+
+\subsection{Definition Untergruppe}
+\label{sub: def_untergruppe}
+Sei $G$ eine Gruppe, sei $H\subseteq G$. 
+Wir nennen $H$ \bet{Untergruppe} \index{Gruppe! Unter-!} von $G$, wenn gilt:
+\begin{enumerate}[(UG1)]
+	\item $e\in H$
+	\item $x,y\in H \Rightarrow xy\in H$
+	\item $x\in H \Rightarrow x^{-1} \in H$
+\end{enumerate}
+Offensichtlich ist eine Untergruppe dann wieder eine Gruppe, mit der von $G$ vererbten Verknüpfung.
+
+\subsubsection*{Beispiel}
+\begin{enumerate}[(a)]
+	\item $(\mathds{Q}, +)$. $\mathds{Z}$  ist Untergruppe, denn $0 \in \mathds{Z};~ m,n \in \mathds{Z} \Rightarrow m+n\in \mathds{Z}$ und $n\in \mathds{Z} \Rightarrow -n\in \mathds{Z}$
+	\item $(\mathds{Q}^*,\cdot)$. $\mathds{Z}^*$ ist keine Untergruppe, kein Inverses.
+\end{enumerate}
+%sub end
+
+\subsection{Lemma 2}
+\label{sub:lemma_2}
+Sei $G$ eine Gruppe und sei $U$ eine nicht leere Menge von Untergruppen von $G$. 
+Dann ist auch
+\[
+\bigcap U = \{g\in G~|~\forall H\in U \text{ gilt } g\in H\}
+\]
+eine Untergruppe von $G$.\\
+
+\bet{Beweis:}\\
+Für alle $H\in U$ gilt $e\in H$, also $e\in \bigcap U$. 
+Angenommen $x,y\in \bigcap U$. 
+Dann gilt für alle $H\in U$, dass $xy\in H$ sowie $x^{-1}\in H$. 
+Es folgt $xy\in \bigcap U$ sowie $x^{-1}\in \bigcap U$.
+\hfill $\square$
+%sub end
+
+\subsection{Definition $\lh{X}$}
+\label{sub:def_lhX}
+Sei $G$ eine Gruppe und $X \subseteq G$ eine Teilmenge. 
+Wir setzen:
+\[
+\lh{X}=\bigcap\{H\subseteq G~|~H \text{ Untergruppe und } X \subseteq H\}
+\]
+Ist nicht leer, da mindestens $G$ enthalten ist.
+\begin{itemize}
+	\item Es gilt z.B. $\lh{\emptyset}=\{e\}$, denn $\{e\}$ ist Untergruppe.
+	\item Ist $H \subseteq G$ Untergruppe mit $X \subseteq H$, so folgt $X\subseteq \lh{X} \subseteq H$, insb. also $\lh{H}=H$.
+\end{itemize}
+
+\subsubsection*{Satz}
+Sei $X \subseteq G$ und sei 
+\[
+W=\{x_1\cdot x_2,\cdots x_s~|~s\ge 1, x_i\in X \text{ oder } x_i^{-1}\in X ~\forall i=1,\dots,s\}.
+\]
+Dann gilt:
+\[
+\lh{X}=\{e\}\cup W.
+\]
+
+\bet{Beweis:}\\
+Wegen $X\subseteq \lh{X}$ und $e\in \lh{X}$ folgt $\{e\}\cup W\subseteq \lh{X}$. 
+Ist $f,g\in W$, so folgt $fg\in W$ sowie $f^{-1}\in W$, also ist $H=\{e\}\cup W$ eine Untergruppe von $G$, mit $X\subseteq H$. 
+Es folgt 
+\[
+\lh{X}\subseteq H=\{e\}\cup W.
+\]
+\hfill $\square$
+%sub end
+
+\subsection{Definition zyklische Gruppe}
+\label{sub:def_zyklische_gruppen}
+Sei $G$ eine Gruppe und sei $g\in G$. 
+Für $n\ge 1$ setze $g^n=\underbrace{g\cdots g}_{n-mal}$ sowie $g^{-n}=\underbrace{g^{-1}\cdots g^{-1}}_{n-mal}$ und $g^0=e$.\\
+Dann gilt $\forall k,l\in \mathds{Z}$, dass $g^k\cdot g^l = g^{k+l}$.\\
+Sei $\lh{g}=\lh{\{g\}}\stackrel{1.10}{=}\{g^n | n\in \mathds{Z}\}$. 
+Man nennt $\lh{g}$ die von $g$ erzeugte \bet{zyklische Gruppe}\index{Gruppe!zyklische !}. 
+Wenn für ein $n\ge 1$ gilt $g^n=e$, so heißt $n$ ein \Index{Exponent} von $g$. 
+Die \Index{Ordnung} von g ist der kleinste Exponent von g,
+\[
+o(g)=\min\enbrace{\{n\ge 1 | g^n=1\}\cup \{\infty\}}
+\]
+$o(g)=\infty$ bedeutet: $g^n\not= e~\forall n\ge 1$\\
+$o(g)=1$ bedeutet: $g^n=g=e$
+%sub end
+
+\subsection{Zyklische Gruppen}
+\label{sub:zyklische_gruppen}
+Eine Gruppe $G$ heißt \Index{zyklisch}, wenn es ein $g\in G$ gibt mit $G=\lh{g}$. 
+Wegen $g^kg^l=g^{k+l}=g^{l+k}=g^lg^k$ gilt: zyklische Gruppen sind abelsch.
+
+\subsubsection*{Satz}
+Sei $G=\lh{g}$ zyklisch mit $o(g)=n<\infty$. 
+Dann gilt $\#G=n$ und $G=\{g,g^2,g^3,\dots,g^n\}$.\\
+
+\bet{Beweis:}\\
+Jedes $m\in \mathds{Z}$ lässt sich schreiben als $m=kn+l$ mit $0\le l<n$ (Teilen mit Rest), also $g^m= \underbrace{g^{kn}}_{=e}.g^l=g^l$. 
+Es folgt $G\subseteq \{g,g^2,\dots,g^n\}, g^n=g^0$.
+Ist $g^k=g^l$ für $0\le k\le l<n$, so gilt $e=g^0=g^{l-k}$, also $l-k=0$ (wegen $l<n$), also $\#\{g,g^2,\dots,g^n=g^0\}=n$.
+\hfill $\square$
+
+\subsubsection*{Folgerung}
+Ist $G$ endlich mit $\#G=n$ und ist $h\in G$ mit $o(h)=n$, so folgt $\lh{h}=G$. 
+Insbesondere ist dann $G$ eine zyklische Gruppe.
+%sub end
+
+\subsection{Nebenklassen}
+\label{sub:nebenklassen}
+\index{Nebenklassen!Links-} \index{Nebenklassen!Rechts-}
+
+Sei $G$ eine Gruppe und sei $H$ eine Untergruppe. 
+Sei $a\in G$. Wir definieren:
+\[
+aH=\{ah | h\in H\}\subseteq G
+\]
+\[
+Ha=\{ha | h\in H\}\subseteq G
+\]
+Man nennt $aH$ die \bet{Linksnebenklassen} von $a$ bzgl. $H$ (und $Ha$ die \bet{Rechtsnebenklassen}). 
+In nicht abelschen Gruppen gilt im allgemeinen $aH\not=Ha$.
+
+\subsubsection*{Lemma}
+Sei $H\subseteq G$ Untergruppe der Gruppe $G$ und $a,b\in G$.\\
+Dann sind äquivalent:
+\begin{enumerate}[(i)]
+	\item $b\in aH$
+	\item $bH=aH$
+	\item $bH \cap aH \not= \emptyset$
+\end{enumerate}
+\bet{Beweis:}\\
+\begin{itemize}
+	\item$(i)\Rightarrow (ii):~b\in aH \Rightarrow b=ah$ für ein $h\in H \Rightarrow bH=\{ahh' | h' \in H\}\\
+	\stackrel{H\text{ Untergruppe}}{=}\{ah'' | h''\in H\}=aH$
+	\item$(ii) \Rightarrow (iii):$ klar
+	\item$(iii) \Rightarrow (i):$ Sei $g \in bH \cap aH,~g=bh=ah' \Rightarrow b=ah'h^{-1} \in aH$, da $H$ Untergruppe
+\end{itemize}
+\hfill $\square$
+
+\subsubsection*{Folgerung}
+Jedes $g\in G$ liegt in genau einer Linksnebenklasse bzgl. $H$, nämlich $g \in gH$.
+Entsprechendes gilt natürlich für Rechtsnebenklassen. Man setzt:\\
+$\nicefrac{G}{H}=\{gH~|~g \in G \}$ Menge der Linksnebenklasse, Rechtsnebenklassen analog.
+
+\subsubsection*{Lemma}
+Sei $H\subseteq G$ Untergruppe der Gruppe $G$, sei $g \in G$.\\
+Dann ist die Abbildung $H \to gH, h \mapsto gH$ bijektiv.\\
+
+\bet{Beweis:}\\
+'Surjektiv' ist klar nach Definition von $gH$. 
+Angenommen, $gh=gh' \Rightarrow h=g^{-1}gh'=h'$
+\hfill $\square$
+%sub end
+
+\subsection{Satz 1, Satz von Lagrange}
+\label{sub:satz_von_lagrange}
+\index{Satz von Lagrange}
+Sei $G$ eine Gruppe und $H\subseteq G$ eine Untergruppe. 
+Wenn zwei der drei Mengen $G,H,\nicefrac{G}{H}$ endlich sind, dann ist die dritte ebenfalls endlich und es gilt:\\
+\[
+\#G=\#H \cdot \#\nicefrac{G}{H} 
+\]
+Insbesondere ist dann $\#H$ eine \Index{Teiler} von $\#G$.\\
+\vfill
+\bet{Beweis:}\\
+Wenn $G$ endlich ist, dann sind auch $H$ und $\nicefrac{G}{H}$ endlich.\\
+Angenommen, $\nicefrac{G}{H}$ und $H$ sind endlich. Dann ist auch $G= \bigcup \nicefrac{G}{H}=\bigcup\{gH~|~gH\in \nicefrac{G}{H} \}$ endlich, da $\#gH=\#H$ nach \hyperref[sub:nebenklassen]{1.13}.\\
+Jetzt zählen wir genauer: sei $\#\nicefrac{G}{H}=m; \#H=n$ etwa $\nicefrac{G}{H}=\{g_1H,g_2H\dt{,} g_mH \}$.\\
+$\#g_iH\stackrel{\hyperref[sub:nebenklassen]{1.13}}{=}n~~~~~g_iH\cap g_jH=\emptyset$ für $i\not=j$ nach \hyperref[sub:nebenklassen]{1.13}.\\
+\[
+G=g_1H\cap g_2H\cap \dots \cap g_mH \Rightarrow \#G=m\cdot n
+\]
+\hfill $\square$
+
+\subsubsection*{Bemerkung}
+\begin{enumerate}[(1)]
+	\item Eine entsprechende Aussage gilt für Rechtsnebenklassen.
+	\item Die Abbildung $G \to G,~~g\mapsto g^{-1}$ bildet die Linksnebenklassen bijektiv auf die Rechtsnebenklassen ab:
+	\[
+	(gH)^{-1}=\{(gh)^{-1}~|~h \in H \} \stackrel{\text{Achtung!}}{=}\{h^{-1}g^{-1}~|~h \in H \}=\{hg^{-1}~|~h\in H \}=Hg^{-1}~~~~~~~~\text{(ÜA)}
+	\]
+\end{enumerate}
+
+\subsubsection*{Korollar A (Lagrange)}
+Sei $G$ eine endliche Gruppe und sei $g\in G$. Dann teilt $o(g)$ die Zahl $\#G$.\\
+
+\bet{Beweis:}\\
+Da $G$ endlich ist, folgt $o(g)<\infty$. Nach dem \hyperref[sub:satz_von_lagrange]{Satz von Lagrange} ist $\#\lh{g}=o(g)$ ein Teiler von $\#G$.
+\hfill $\square$
+
+\subsubsection*{Korollar B}
+Sei $G$ eine endliche Gruppe, sei $p$ eine \Index{Primzahl}  (d.h. die einzigen Teiler von $p$ sind 1 und $p$) und $p>1$. 
+Wenn gilt $\#G=p$, dann ist $G$ zyklisch. 
+Für jedes $g\in G \backslash\{e\}$ gilt $\lh{g}=G$.\\
+
+\bet{Beweis:}\\
+Sei $g \in G\backslash\{e\}$.
+ Dann ist $o(g)>1$ und $o(g)$ teilt $p$. 
+ Es folgt $o(g)=p$, also $G=\lh{g}$ vgl. \hyperref[sub:zyklische_gruppen]{1.12}.
+\hfill $\square$\\
+
+Für endliche Gruppen sind Teilbarkeitseigenschaften wichtig, wie wir sehen werden.\\
+Die Zahl $\#\nicefrac{G}{H}:=[G:H]$ nennt man auch den \Index{Index von H in G}.
+
+\subsubsection*{Wichtige Rechenregeln in Gruppen}
+\begin{enumerate}[(a)]
+	\item Man darf \uline{kürzen}
+	\begin{equation*}
+	\begin{aligned}
+		ax &= ay \Rightarrow x=y\\
+		xa &= ya \Rightarrow x=y
+	\end{aligned}
+	\end{equation*}
+	(multipliziere beide Seiten von links/rechts mit $a^{-1}$)
+	\item Es gilt $(x^{-1})^{-1}=x$   ($x^{-1}x=e=xx^{-1} \Rightarrow (x^{-1})^{-1}=x$)
+	\item Beim Invertieren muss die Reihenfolge umgedreht werden:\\
+	\[
+	(ab)^{-1}=b^{-1}a^{-1}
+	\]
+	\[
+	\enbrace{ab(b^{-1}a^{-1})=e=(b^{-1}a^{-1})ab \Rightarrow (ab)^{-1}=b^{-1}a^{-1}}
+	\]
+	(in abelschen Gruppen gilt natürlich damit $(ab)^{-1}=a^{-1}b^{-1}$ )
+\end{enumerate}
+% sub end
+\subsection{Homomorphismen}
+\label{sub:homomorphismen}
+Seien $G,K$ Gruppen. 
+Eine Abbildung $\varphi: G \to K$ heißt \bet{(Gruppen-)Homomorphismus}\index{Homomorphismus!Gruppen-}, wenn $\forall x,y \in G$ gilt
+\[
+\varphi\underbracket{(x\cdot y)}_{\text{Verküpfung in G} } =\underbracket{\varphi(x)\varphi(y)}_{\text{Verknüpfung in K}} 
+\]
+
+\subsubsection*{Beispiel}
+\begin{enumerate}[(a)]
+	\item $\id_G: G \to G$ ist Homomorphismus
+	\item $H \subseteq G$ Untergruppe   $i:H \hookrightarrow G,~~~h \mapsto h$ Inklusion, ist Homomorphismus.
+	\item $(G,\cdot)=(\mathds{Z},+),~ m\in \mathds{Z},~ \varphi:\mathds{Z} \to \mathds{Z},~ x\mapsto mx$ ist Homomorphismus, denn $\phi(x+y)=m(x+y)=mx+my=\varphi(x)+\varphi(y)$
+	\item $G$ Gruppe, $a \in G,~ a\not= e,~ \lambda_a(x)=ax$.\\
+	$\lambda: G \to G$ ist kein Homomorphismus, denn $\lambda_a(e)=a,~ \lambda(ee)=a$, aber $\lambda_a(e)\lambda_a(e)=aa\not=a$.
+\end{enumerate}
+
+\subsubsection*{Lemma}
+Sei $\varphi:G \to K$ ein Homomorphismus von Gruppen. 
+Dann gilt $\varphi(e_G)=e_K$ und $\varphi(x^{-1})=\varphi(x)^{-1}~\forall x \in G$. 
+($e_G$ Neutralelement in $G$ und $e_K$ Neutralelement in $K$)\\
+\bet{Beweis:}\\
+\[	
+\varphi(e_G)=\varphi(e_G \cdot e_G)=\varphi(e_G) \cdot \varphi(e_G) \stackrel{\text{kürzen}}{\Rightarrow} e_K=\varphi(e_G)
+\]
+\[
+e_K=\varphi(e_G)=\varphi(x^{-1}x)=\varphi(x^{-1})\varphi(x) \Rightarrow \varphi(x)^{-1}=\varphi(x^{-1})
+\]
+\hfill $\square$
+
+\uline{Achtung:} $\varphi(x)^{-1}$ ist das Inverse in $K$ von $\varphi(x)$ \uline{nicht} die Umkehrabbildung!\\
+
+Das \Index{Bild} eines Homomorphismus $\varphi:G \to K$ ist $\varphi(G)\subseteq K$,\\
+der \Index{Kern} ist $\ker(\varphi)=\{x \in G~|~\varphi(x)=e_K \}\subseteq G$
+%sub end
+
+\subsection{Satz 2, Gruppenhomomorphismen}
+\label{sub:satz_ghm}
+Bild und Kern von Gruppenhomomorphismen sind Untergruppen.\\
+
+\bet{Beweis:}\\
+Setze $H=\varphi(G)\subseteq K$. Es folgt $e_K \in H$. Für $\varphi(x),\varphi(y)\in H$ gilt $\varphi(x)\varphi(y)=\varphi(xy)\in H$ sowie $\varphi(x)^{-1}=\varphi(x^{-1}) \in H$, also ist $H$ Untergruppe. 
+Betrachte jetzt $\ker(\varphi)\subseteq G$. 
+Es gilt $\varphi(e_G)=e_K$, also $e_G \in \ker(\varphi)$. 
+Ist $x,y \in \ker(\varphi)$, so folgt 
+\[
+\varphi(xy)=\varphi(x)\varphi(y)=e_K \cdot e_K=e_K \text{ , also } xy \in \ker(\varphi)
+\]
+\[
+\varphi(x^{-1})=\varphi(x)^{-1}=e_K^{-1}=e_K \text{ , also } x^{-1} \in \ker(\varphi) 
+\]
+\hfill $\square$
+
+\subsubsection*{Bemerkung}
+\uline{Jede} Untergruppe von $H\subseteq G$ ist Bild eine geeigneten Homomorphismus (nämlich der Inklusion $H \hookrightarrow G$).
+Wir werden sehen, dass im allgemeinen \uline{nicht} jede Untergruppe $H\subseteq G$ Kern eines Homomorphismus ist.
+% sub end
+
+\subsection{Normalteiler}
+\label{sub:normalteiler}
+Sei $G$ eine Gruppe und $N\subseteq G$ eine Untergruppe. 
+Wir nennen $N$ \Index{normal} in $G$ oder \Index{Normalteiler} in $G$, wenn eine der folgenden äquivalenten Bedingungen erfüllt ist:
+\begin{enumerate}[(i)]
+	\item für alle $a\in G$ gilt $aN=Na$ (Rechtsnebenklassen sind Linksnebenklassen)
+	\item für alle $a\in G$ gilt $aNa^{-1}=N,~ (aNa^{-1}=\{ana^{-1}~|~n\in N \})$
+	\item für alle $a\in G$ gilt $aN\subseteq Na$
+	\item für alle $a\in G$ gilt $aNa^{-1}\subseteq N$
+\end{enumerate}
+
+\bet{Beweis:}\\
+(i) und (ii) sind äquivalent: multipliziere von rechts mit $a^{-1}$ bzw. $a$. Genauso sind (iii) und (iv) äquivalent.\\
+Klar: (ii) $\Rightarrow$ (iv) $(\checkmark)$\\
+Zeige (iv) $\Rightarrow$ (ii): Setze $b=a^{-1}$, es folgt aus (iv), dass $bNb^{-1}\subseteq N \rightsquigarrow N\subseteq b^{-1}Nb=aNa^{-1}$. 
+Also gilt für alle $a\in G$, dass $N\subseteq aNa^{-1}$ und $aNa^{-1}\subseteq N$, damit gilt (ii).
+\hfill $\square$
+
+\subsubsection*{Lemma}
+Ist $\varphi: G \to K$ ein Homomorphismus von Gruppen, dann ist $\ker(\varphi)$ ein Normalteiler in $G$.\\
+
+\bet{Beweis:}\\
+Sei $N=\ker(\varphi)=\{n\in G~|~\varphi(n)=e\}$, sei $a\in G$. Dann gilt 
+\[
+\varphi(ana^{-1})=\varphi(a)\underbrace{\varphi(n)}_{=e}\varphi(a^{-1})=\varphi(a)\varphi(a^{-1})=e
+\]
+also gilt $aNa^{-1}\subseteq N~~\forall a\in G$.
+\hfill $\square$
+
+\minisec{Achtung:}
+\uline{Bilder} von Homomorphismen sind \uline{nicht} immer Normalteiler, nach Beispiel \hyperref[sub:homomorphismen]{1.15 (b)} ist \uline{jede} Untergruppe Bild eines Homomorphismus, aber nicht jede Untergruppe ist normal.
+
+\subsubsection*{Beispiel}
+$G=\sym(3)$, $g=(1,2)$ Transposition, die 1 und 2 vertauscht. 
+$g^2=id$, $\lh{g}=\{g,id\}\subseteq \sym(3)$ ist Untergruppe, aber für $h=(2,3)$ gilt 
+\[
+h\lh{g}h^{-1}=\{hgh^{-1}, h\id h^{-1} \} = \{\underbrace{(2,3)(1,2)(2,3)}_{=(3,1)}, id \} \not\subseteq \lh{g}
+\]
+also ist $\lh{g}$ kein Normalteiler in $\sym(3)$.\\
+
+\bet{Schreibweise:} Ist $N\subseteq G$ ein Normalteiler, schreibt man kurz $N\nt G$\\
+
+\bet{Beachte:} Ist $G$ \uline{abelsch}, dann sind alle Untergruppen $H\subseteq G$ automatisch normal.
+%sub end
+
+\subsection{Definition Teilmengen assoziativ}
+\label{sub:teilmengen}
+Für Teilmengen $X,Y,Z \subseteq G$ in einer Gruppe schreibe kurz:\\
+\[XY=\{xy~|~x\in X,~y\in Y\}\subseteq G \]
+\[X^{-1}=\{x^{-1}~|~x\in X \}\subseteq G \]
+Es gilt dann $(XY)Z=X(YZ)$, (weil die Verknüpfung assoziativ ist).
+
+\subsubsection*{Satz}
+Sei $N\nt G$ Normalteiler in der Gruppe $G$. 
+Dann ist $\nicefrac{G}{N}=\{gN~|~g\in G \}$ eine Gruppe mit der Verknüpfung $(gN)\cdot (hN)=ghN$\\
+Das Neutralelement ist $eN=N$, das Inverse zu $gN$ ist $g^{-1}N$.\\
+
+\bet{Beweis:}\\
+Da $N$ Normalteiler ist, gilt für $g,h \in G$
+\[
+gNhN=g(Nh)N\stackrel{\hyperref[sub:normalteiler]{1.17}}{=}g(hN)N=ghNN\stackrel{N\text{ Gruppe}}{=}ghN 
+\]
+Die Verknüpfung ist also einfach gegeben durch
+\[
+gN\cdot hN=gNhN=ghN 
+\]
+und damit assoziativ nach obiger Bemerkung. Es gilt $NgN=gNN=gN=gNN$, also ist $N$ ein Neutralelement. 
+Weiter gilt:
+\[
+gNg^{-1}N=gg^{-1}N=N=g^{-1}gN=g^{-1}NgN 
+\]
+\hfill $\square$
+%sub end
+
+\subsection{Definition $\pi_H$}
+\label{def_pi_H}
+Ist $G$ eine Gruppe und $H$ eine Untergruppe, so definieren wir $\pi_H: G \to \nicefrac{G}{H}$ durch $\pi_H(g)=gH$.
+
+\subsubsection*{Satz}
+Ist $N \nt G$ ein Normalteiler, dann ist $\pi_N: G \to \nicefrac{G}{N}$ ein surjektiver Homomorphismus mit Kern 
+\[
+N=\ker(\pi_N)
+\]
+
+\bet{Beweis:}\\
+$\pi_N$ ist nach Definition surjektiv und 
+\[
+\pi_N(gh)=ghN=gNhN=\pi_N(g)\pi_N(h)
+\]
+Weiter gilt \[\pi_N(g)=N \Longleftrightarrow gN=N \stackrel{\hyperref[sub:nebenklassen]{1.13}}{\Longleftrightarrow} g\in N\]
+\hfill $\square$
+
+\uline{Folgerung:} 
+Jeder Normalteiler ist auch ein Kern eines Homomorphismus.
+%sub end
+
+\subsection{Der Homomorphiesatz}
+\label{sub:der_homomorphiesatz}
+Sei $G \stackrel{\varphi}{\to} K$ ein Homomorphismus von Gruppen, sei $N \nt G$ ein Normalteiler. 
+Wenn gilt $N\subseteq \ker(\varphi)$, dann gibt es \uline{genau einen} Homomorphismus $\overline{\varphi}: \nicefrac{G}{H} \to K$ mit $\overline{\varphi} \circ \pi_H=\varphi$.
+
+\begin{center}
+	\begin{tikzcd}[column sep=small]
+		G \ar{rr}{\varphi} \ar{rd}[below,left]{\pi_N} & & K\\
+		& \nicefrac{G}{N} \ar{ru}[below,right]{\overline{\varphi}} &
+	\end{tikzcd}
+	\captionof{figure}{Homomorphiesatz}
+\end{center}
+
+\bet{Beweis:}\\
+\uline{Existenz von $\overline{\varphi}$:}\\
+Für $g \in G$ setze $\overline{\varphi}(gN)=\varphi(g)$. Das ist eine wohldefinierte Abbildung, denn angenommen, 
+\[
+gN=g'N \Rightarrow g^{-1}g' \in N \subseteq \ker(\varphi) \Rightarrow \varphi(g^{-1}g')=e \Rightarrow \varphi(g)=\varphi(g')
+\]
+Es gilt damit
+\[
+\overline{\varphi}(gNhN)=\overline{\varphi}(ghN)=\varphi(gh)=\varphi(g)\varphi(h)=\overline{\varphi}(gN)\overline{\varphi}(hN) 
+\]
+also ist $\overline{\varphi}$ ein Homomorphismus.\\
+
+\uline{Eindeutigkeit von $\overline{\varphi}$:}\\ Sei $\psi: \nicefrac{G}{N} \to K$ ein Homomorphismus mit $\psi \circ \pi_N = \varphi$.\\
+Es folgt 
+\[
+\psi(gN)=\psi(\pi_N(g))=\varphi(g)=\overline{\varphi}(gN) ~~~\forall g \in G
+\]
+
+\subsubsection*{Bemerkung}
+In der Situation vom Homomorphiesatz gilt:
+\begin{enumerate}[(i)]
+	\item $\ker(\varphi)=\pi_N^{-1}~\ker(\overline{\varphi})$
+	\item $\ker(\overline{\varphi})=\pi_N~\ker(\varphi)$
+	\item $\varphi(G)=\overline{\varphi}(\nicefrac{G}{N})$
+\end{enumerate}
+\bet{Beweis:}\\
+(iii) ist klar nach Konstruktion, $\overline{\varphi}(gN)=\varphi(g)$\\
+(ii) $\overline{\varphi}(gN)=e=\varphi(g) \Leftrightarrow g \in\ker(\varphi)$, also $\ker(\overline{\varphi})=\pi_N(\ker(\varphi))$\\
+(i) $\varphi(g)=e \Rightarrow g \in \ker(\varphi) \Rightarrow\pi_N(g) \in \ker(\overline{\varphi}) \Rightarrow \varphi(g)=e$
+\hfill $\square$
+
+%sub end
+
+\subsection{Definition Isomorphismus}
+\label{sub:def_isomorph}
+Ein Gruppenhomomorphismus $\varphi:G \to K$ heißt \bet{Mono/Epi/Isomorphismus}\index{Homomorphismen!Mono/Epi/Iso}, wenn $\varphi$ \uline{injektiv/surjektiv/bijektiv} ist.\\
+(Klar: $\varphi$ Epimorphismus $\Leftrightarrow \varphi(G)=K$)\\
+Für einen Mono / Epi / Isomorphismus schreibt man auch: \\
+$\stackrel{\varphi}{\rightarrowtail}$  $\stackrel{\varphi}{\twoheadrightarrow}$  und  $\stackrel{\cong}{\to}$.
+
+\subsubsection*{Lemma}
+Ein Gruppenhomomorphismus $G \stackrel{\varphi}{\to}K$ ist genau dann injektiv, wenn gilt $\ker(\varphi)=\{e_G\}$.\\
+
+\bet{Beweis:}\\
+Wenn $\varphi$ injektiv ist, dann ist $\ker(\varphi)=\{e_G\}$ (klar). 
+Angenommen, $\ker(\varphi)=\{e_G\}$ und $a,b\in G$ mit $\varphi(a)=\varphi(b) \rightsquigarrow \varphi(a)\varphi(b)^{-1}=\varphi(ab^{-1})=e_K \Rightarrow ab^{-1}=e_G \Rightarrow a=b$
+\hfill $\square$
+
+%sub end
+
+\subsection{Satz 3, Eigenschaften von Gruppenhomomorphismen}
+\label{sub:satz_eigenschaften}
+Sei $G\stackrel{\varphi}{\to}K $ ein Gruppenhomomorphismus. Dann gilt folgendes:
+\begin{enumerate}[(i)]
+	\item Ist $H\subseteq G$ Untergruppe, so ist $\varphi(H) \subseteq K$ Untergruppe. 
+	Wenn $H\nt G$, so gilt $\varphi(H)\nt\varphi(G)$
+	\item Ist $L\subseteq K$ Untergruppe, so ist $\varphi^{-1}(L) \subseteq G$ Untergruppe. 
+	Ist $L\nt K$, so gilt $\varphi^{-1}(L) \nt G$.
+	\marginnote{$L$ Urbild unter $\varphi$}
+\end{enumerate}
+
+\bet{Beweis:}\\
+\begin{enumerate}[(i)]
+	\item Sei $a,b\in H$ und $g\in G$. 
+	Es gilt $\varphi(a)\varphi(b)=\varphi(ab)\in H,~~\varphi(a)^{-1}=\varphi(a^{-1})\in \varphi(H) $. $\varphi(e_G)=e_K \in \varphi(H) \Rightarrow \varphi(H)$ Untergruppe.\\
+	Ist $H\nt G$, so folgt $\varphi(g)\varphi(H)\varphi(g)^{-1}=\varphi(gHg^{-1})\stackrel{H\nt G}{=}\varphi(H)$
+	\hfill $\square$
+	\item Sei $a,b \in \varphi^{-1}(L),~~g \in G$ (also $\varphi(a),\varphi(b) \in L$). 
+	Es folgt $\varphi(ab)\in L,~~\varphi(a^{-1})=\varphi(a)^{-1}\in L$ und $\varphi(e_G)=e_K \Rightarrow ab, a^{-1},e_G \in \varphi^{-1}(L) \rightsquigarrow$ Untergruppe.\\
+	Angenommen, $L\nt K$.\\ 
+	Es folgt $\varphi(gag^{-1})=\varphi(g)\varphi(a)\varphi(g^{-1}) \in L$, also $g\varphi^{-1}(L)g^{-1} \subseteq \varphi^{-1}(L)$.
+	\hfill $\square$
+\end{enumerate}
+
+\subsubsection*{Beispiele}
+Gruppe $(\mathds{Z},+)$, $\varphi: \mathds{Z} \to \mathds{Z} \text{ Homomorphismus, }\varphi(z)=m\cdot z$, $m \in \mathds{Z}$ fest.\\
+$\varphi(\mathds{Z})=m\mathds{Z}=\{mz~|~z\in \mathds{Z}\}=(-m)\mathds{Z}$\\
+z.B. $m=2~\rightsquigarrow 2\mathds{Z}=\{0,\pm 2,\pm 4,\pm 6,\dots\}$ gerade Zahlen\\
+$\ker(\varphi)=\left\{\begin{array}{cl} \{0\}, & \text{wenn }m\not=0\\ \mathds{Z}, & \text{wenn } m=0. \end{array}\right.$
+$\varphi$ surjektiv $\Leftrightarrow~~m=\pm 1$\\
+$\varphi$ injektiv $\Leftrightarrow~~m\not=0$\\
+
+Angenommen, $m>0$, $a,b \in \mathds{Z}$\\
+$a+m\mathds{Z}=b+m\mathds{Z} \text{ Nebenklassen }\stackrel{\hyperref[sub:nebenklassen]{1.13}}{\Leftrightarrow} a\in b+m\mathds{Z} \Leftrightarrow a-b \in m\mathds{Z}$\\
+Folglich $\nicefrac{\mathds{Z}}{m\mathds{Z}}=\{m\mathds{Z},1+m\mathds{Z},2+m\mathds{Z},\dots,(m-1)+m\mathds{Z} \}$ insbesondere $\#\nicefrac{\mathds{Z}}{m\mathds{Z}}=m$.\\
+Schreibe $\overline{k}=k+m\mathds{Z}$ \Index{Kongruenzklasse} von $k$ \Index{modulo} $m$.\\
+$\nicefrac{\mathds{Z}}{m\mathds{Z}}=\{\overline{0},\overline{1},\dots,\overline{m-1} \}$ wird erzeugt von $\overline{1} \rightsquigarrow \nicefrac{\mathds{Z}}{m\mathds{Z}}=\lh{\overline{1}}$ \uline{zyklische Gruppe der Ordnung m}. 
+$o(\overline{1})=m$. 
+Später mehr dazu.
+%sub end
+
+\subsection{Die Isomorphiesätze}
+\label{sub:isomorphiesaetze}
+\subsubsection*{Lemma}
+Sei $G$ eine Gruppe, seien $H,N \subseteq G$ Untergruppen. 
+Wenn $N\nt G$ gilt, dann ist $ HN=NH \subseteq G$ eine Untergruppe.\\
+
+\bet{Beweis:}\\
+Es gilt $e=e\cdot e\in N\cdot H$. 
+Weiter gilt für $h_1,h_2 \in H,~n_1,n_2 \in N$, dass
+\[
+h_1n_1h_2n_2=\underbracket[1pt][4pt]{h_1h_2}_{\in H} \underbracket[1pt]{h_2^{-1}n_1h_2}_{\in N}n_2 \in HN 
+\]
+\[
+(h_1n_1)^{-1}=n_1^{-1}h_1^{-1}=h_1^{-1}\underbracket[.7pt]{h_1n_1^{-1}h_1^{-1}}_{\in N} \in HN 
+\]
+\[
+(HN)^{-1}=N^{-1}H^{-1}=NH \subseteq HN \text{ genauso } HN \subseteq NH 
+\]
+\hfill $\square$
+
+\subsubsection*{Satz}
+Sei $G\stackrel{\varphi}{\to}K$ ein Epimorphismus von Gruppen. Sei $N=\ker(\varphi)$. 
+Dann ist die Abbildung $\overline{\varphi}:\nicefrac{G}{N}\to K$ aus dem \hyperref[sub:der_homomorphiesatz]{Homomorphisatz 1.20} ein Isomorphismus.\\
+
+\bet{Beweis:}\\
+$\overline{\varphi}(\nicefrac{G}{N})=\varphi(G)$ und $\ker(\overline{\varphi})=\{N\}$ nach dem Beweis von \hyperref[sub:der_homomorphiesatz]{1.20}.
+Den Isomorphismus $\overline{\varphi}:\nicefrac{G}{\ker(\varphi)}  \xrightarrow{\cong} K$ nennt man \Index{kanonisch} oder \Index{natürlich}.
+\hfill $\square$
+
+\subsubsection*{Theorem: 1. Isomorphiesatz}
+Sei $G$ eine Gruppe, seien $H,N\subseteq G$ Untergruppen mit $N\nt G$. 
+Dann gilt $H\cap N\nt H$, $N \nt NH$ und die Abbildung
+\begin{equation*}
+\begin{aligned}
+	\nicefrac{H}{H\cap N} &\to \nicefrac{NH}{N}\\
+	aH &\mapsto aNH
+\end{aligned}
+\end{equation*}
+ist ein Isomorphismus. \qquad ("Kürzungsregel")\\
+
+\bet{Beweis:}\\
+Für alle $h\in H$ gilt $h(H\cap N)h^{-1}\subseteq N\cap H$, weil $N\nt G$ und $hHh^{-1}=H$. 
+$\Rightarrow N\cap H \nt H$. 
+Für alle $g\in NH$ gilt $gNg^{-1}\subseteq N \Rightarrow N\nt NH$
+\hfill $\square$
+
+\subsubsection*{Lemma}
+Sei $G\stackrel{\varphi}{\to}K$ ein Gruppenhomomorphismus. 
+Dann sind äquivalent:
+\begin{enumerate}[(i)]
+	\item $\varphi$ ist bijektiv
+	\item es gibt ein Homomorphismus $\psi:K\to G$ mit $\varphi \circ \psi=\id_K$ und $\psi\circ\varphi=\id_G$.
+\end{enumerate}
+\bet{Beweis:}\\
+\uline{(ii)$\Rightarrow$(i):} klar, aus $\varphi\circ\psi=\id_K$ folgt, dass $\varphi$ surjektiv ist und aus $\varphi\circ\psi=\id_G$ folgt, dass $\varphi$ injektiv ist.\\
+
+\uline{(i)$\Rightarrow$(ii):} Sei $\psi:K\to G$ die eindeutig bestimmte Umkehrabbildung, also $\varphi \circ \psi=\id_K$ und $\psi\circ\varphi=\id_G$. 
+Für $a,b\in K$ folgt 
+\[
+\psi(ab)=\psi(\varphi\psi(a)\varphi\psi(b)) \stackrel{\varphi \text{ Homo.}}{=}\underbracket{\psi(\varphi}_{\id}(\psi(a)\psi(b)))= \psi(a)\psi(b)
+\]
+\hfill $\square$
+
+Betrachte die Abbildung $\varphi:H\to \nicefrac{HN}{N}\subseteq \nicefrac{G}{N},~h\mapsto hN$ das ist ein Homomorphismus, weil $H\stackrel{i}{\to}G\stackrel{\pi_N}{\to}\nicefrac{G}{N}$ ein Homomorphismus ist. 
+Für $hn\in HN$ gilt 
+\[
+\varphi(h)=hN=hnN
+\]
+also ist $\varphi$ ein Epimorphismus. 
+Der Kern ist $\ker(\varphi)=\{h\in H~|~hN=N \}=H\cap N$. 
+Also gilt nach dem vorigem Satz 
+\[
+\nicefrac{H}{n\cap H}\xrightarrow[\cong]{\overline{\varphi}}\nicefrac{HN}{N}
+\]
+\hfill $\square$
+
+\subsubsection*{Theorem: 2. Isomorphiesatz}
+Sei $G$ Gruppe, seien $M,N\nt G$ Normalteiler mit $M\subseteq N\subseteq G$. 
+Dann gilt $\nicefrac{N}{M}\nt \nicefrac{G}{M}$ und 
+\[
+\nicefrac{\nicefrac{G}{M}}{\nicefrac{N}{M}}\cong \nicefrac{G}{N} \qquad\qquad \text{'Kürzungsregel'} 
+\]
+
+\bet{Beweis:}\\
+Es gilt $\nicefrac{N}{M}=\{nM~|~n\in N\}=\pi_M(N)\subseteq \nicefrac{G}{M}$\\
+Nach \hyperref[sub:satz_eigenschaften]{1.22(i)} gilt $\nicefrac{N}{M}\nt \nicefrac{G}{M}$.\\
+Jetzt Homomorphiesatz \hyperref[sub:der_homomorphiesatz]{1.20}
+\begin{center}
+	\begin{tikzcd}[column sep=small]
+		G \ar{rr}{\pi_N} \ar{rd}[below,left]{\pi_M} & & K\\
+		& \nicefrac{G}{N} \ar{ru}[below,right]{\overline{\pi_N}\leftarrow \text{surjektiv}} &
+	\end{tikzcd}
+	\captionof{figure}{2. Isomorphiesatz}
+\end{center}
+Nach dem vorigen Satz gilt:\\
+\[
+\nicefrac{\nicefrac{G}{M}}{\ker(\overline{\pi_N})}\stackrel{\cong}{\to} \nicefrac{G}{N}
+\]
+\[
+\ker(\overline{\pi_N})\stackrel{\hyperref[sub:der_homomorphiesatz]{1.20}}{=}\pi_M(N)=\nicefrac{N}{M} 
+\]
+\hfill $\square$
+%sub end
+
+\subsection{Produkte von Gruppen}
+\label{sub:produkte}
+Seien $G,K$ zwei Gruppen. 
+Dann ist das Produkt $G\times K$ wieder eine Gruppe, das \Index{direkte Produkt}, mit Verknüpfung 
+\[
+(g_1,k_1)\cdot(g_2,k_2)=(g_1g_2,k_1k_2) 
+\]
+\[
+\text{Neutralelement } e=(e_G,e_K) 
+\]
+\[
+\text{Das Inverse zu }(g,k)\in G\times K \text{ ist }(g,k)^{-1}=(g^{-1},k^{-1})
+\]
+Den Beweis lassen wir weg, die Gruppenaxiome (G1)-(G3) sind leicht zu prüfen.\\
+Wir haben kanonische Homomorphismen:\\
+\begin{minipage}[c]{8cm}
+	\begin{equation*}
+	\begin{aligned}
+		i_G: G &\to G\times K\\
+		g &\mapsto (g,e_K)
+	\end{aligned}
+	\end{equation*}
+\end{minipage}
+\begin{minipage}[c]{8cm}
+	\begin{equation*}
+	\begin{aligned}
+	i_K: K &\to G\times K\\
+	k &\mapsto (e_G,k)
+	\end{aligned}
+	\end{equation*}
+\end{minipage}
+sowie 
+\[
+pr_G:G\times K \to G,\quad (g,k)\mapsto g 
+\]
+\[
+pr_K:G\times K \to K,\quad (g,k)\mapsto k 
+\]
+mit 
+\[
+pr_G\circ i_G=\id_G \qquad\qquad pr_K\circ i_K=\id_K 
+\]
+\[
+\ker(pr_G)=\{e_G\}\times K\cong K \qquad\qquad \ker(pr_K)=G\times \{e_K\}\cong G 
+\]
+
+Das geht auch mit Familien von (endliche vielen) Gruppen: 
+ist $(G_i)_{i\in I}$ eine Familie von Gruppen, so ist $\prod\limits_{i\in I}G_i$ wieder eine Gruppe, das \bet{direkte Produkt} der $G_i$. 
+Die Elemente sind Folgen $(g_i)_{i\in I},~g_i\in G_i$ mit Verknüpfung $(g_i)_{i\in I}\cdot (g_i')_{i\in I}=(g_ig_i')_{i\in I}$ usw.\\
+
+\subsubsection*{Satz}
+Sei $G$ eine Gruppe mit Untergruppen $H,K\subseteq G$.
+Angenommen, es gilt folgendes
+\begin{enumerate}[(i)]
+	\item $G=HK$
+	\item $H\cap K=\{e\}$
+	\item $hk=kh\quad \forall h\in H,~k\in K$
+\end{enumerate}
+Dann ist die Abbildung $H\times K \stackrel{\varphi}{\to} G$, $(h,k)\mapsto hk$ ein Isomorphismus, d.h. $G$ 'ist' das direkte Produkt aus $H$ und $K$.\\
+
+\bet{Beweis:}\\
+Wegen (iii) gilt
+\begin{equation*}
+\begin{aligned}
+	\varphi((h_1,k_1)(h_2,k_2)) &= \varphi(h_1h_2,k_1k_2)=h_1h_2k_1k_2\\
+	\varphi(h_1,k_1)\varphi(h_2,k_2) &= h_1k_1h_2k_2=h_1h_2k_1k_2
+\end{aligned}
+\end{equation*}
+also ist $\varphi$ ein Homomorphismus. 
+Wegen (i) ist $\varphi$ surjektiv.
+\[
+(h,k)\in \ker(\varphi) \Leftrightarrow hk=e \Leftrightarrow \underbracket[.7pt]{h}_{\in H}=\underbracket[.7pt]{k^{-1}}_{\in K} \Leftrightarrow h=k=e \text{ wegen (ii)}
+\]
+\hfill $\square$
+
+\subsubsection*{Beispiel}
+$G=\nicefrac{\mathds{Z}}{6\mathds{Z}}=\{\overline{0},\dots,\overline{5}\}$ vgl. \hyperref[sub:satz_eigenschaften]{1.22}.
+Dann sind $H=\{\overline{0},\overline{3}\}$ sowie $K=\{\overline{0},\overline{2},\overline{4}\}$ Untergruppen (nachrechnen!), $H\cong \nicefrac{\mathds{Z}}{2\mathds{Z}},~K\cong \nicefrac{\mathds{Z}}{3\mathds{Z}}$ und (i),(ii),(iii) aus dem vorigen Satz sind erfüllt. 
+Es folgt
+\[
+\nicefrac{\mathds{Z}}{6\mathds{Z}}\cong \nicefrac{\mathds{Z}}{3\mathds{Z}}\times \nicefrac{\mathds{Z}}{2\mathds{Z}} 
+\]
+
+%sec end
+\newpage
+
+\section{Gruppenwirkungen und Sylow-Sätze}
+\label{sec:gruppen_sylow}
+
+\subsection{Gruppenwirkungen}
+\label{sub:gruppenwirkungen}
+Sei $G$ eine Gruppe und $X$ eine nicht leere Menge. 
+Eine \Index{Wirkung} von G auf $X$ (auch: \bet{$G$-Wirkung}, \bet{'$G$-Aktion'}) ist ein Homomorphismus $\alpha:G\to \sym(X)$. 
+Für $g\in G$ und $x\in X$ schreibe kurz 
+\[
+g(x)=\alpha(g)(x) 
+\] 
+(wenn klar ist welches $\alpha$ gemeint ist). 
+Die Abbildung $G\times X\to X,~ (g,x)\mapsto g(x)$ erfüllt folgende Eigenschaften:
+\begin{enumerate}[(W1)]
+	\item $e(x)=x,~\forall x\in X$ ($e\in G$ Neutralelement)
+	\item $(a\circ b)(x)=a(b(x)),~\forall a,b\in G,~x\in X$
+\end{enumerate}
+Ist umgekehrt eine Abbildung $G\times X\to X$ gegeben die (W1) und (W2) erfüllt, so erhalten wir eine Wirkung $\alpha: G\to \sym(X)$ durch
+\[
+\alpha(g)=[x\mapsto g(x)] 
+\]
+denn aus (W2) folgt: 
+$\alpha(g^{-1})$ ist Inverse zu $\alpha(g)$, also ist die Abbildung $\alpha(g):X\to X$ bijektiv und $\alpha:G\to \sym(X)$ ist ein Homomorphismus nach (W2).
+%sub end
+
+\subsection{Mehrere Definitionen}
+\label{sub:mehrere_def}
+Gegeben sei eine $G$-Wirkung $G\times X\to X$. 
+Für $x\in X$ ist der \Index{Stabilisator} (die \Index{Standgruppe})
+\[
+G_x=\{g\in G~|~g(x)=x \}\subseteq G 
+\]
+Die \Index{Bahn} (der \Index{Orbit}) von $x$ ist 
+\[
+G(x)=\{g(x)~|~g\in G \}\subseteq X 
+\]
+Der \uline{Kern} der Wirkung ist $\bigcap\limits_{x\in X}G_x\subseteq G$.
+
+\subsubsection*{Satz}
+Der Stabilisator $G_x$ ist eine Untergruppe und der Kern ist ein Normalteiler.\\
+
+\bet{Beweis:}\\
+Es gilt $e(x)=x \rightsquigarrow e\in G_x$. 
+Für $a,b\in G_x$ gilt 
+\[
+(ab)(x)=a(\underbracket{b(x)}_{=x})=a(x)=x \rightsquigarrow ab\in G_x
+\]
+\[
+a^{-1}(x)=a^{-1}(\underbracket{a(x)}_{=x})=(a^{-1}a)(x)=e(x)=x \rightsquigarrow a^{-1}\in G_x 
+\]
+Also ist $G_x\subseteq G$ Untergruppe.\\
+Es gilt: 
+\[
+\bigcap\limits_{x\in X}G_x=\{g(x)=x~|~\forall x\in X \} 
+\]
+Das ist genau der Kern der zugehörigen Homomorphie $\alpha:G\to \sym(X)$, also ein Normalteiler.
+\hfill $\square$
+%sub end
+
+\subsection{Beispiel 4, Wirkungen}
+\label{sub:bsp_wirkungen}
+\begin{enumerate}[(a)]
+	\item Sei $G$ eine Gruppe. 
+	Für $g\in G$ definiere eine Abbildung $\lambda_g:G\to G$ durch $\lambda_g(x)=gx$. 
+	Es folgt
+	\[
+	\lambda_g\circ\lambda_h=\lambda_{gh} \quad \lambda_e=\id_G \rightsquigarrow \lambda_g\lambda_{g^{-1}}=\id_G=\lambda_{g^{-1}}\lambda_g 
+	\]
+	also $\lambda_g\in \sym(G)$. 
+	Die Gruppe $G$ wirkt also auf der Menge $G=X$. 
+	Es gilt für die Wirkung:
+	\[
+	G_x=\{g\in G~|~\lambda_g(x)=x \}=\{g\in G~|~gx=x \}=\{e\} 
+	\]
+	Zu $x,y\in G$ gibt es genau ein $g\in G$ mit $\lambda_g(x)=y$, nämlich $g=yx^{-1}$.\\
+	Man nennt das die \bet{Linksreguläre Wirkung}\index{Wirkung!Linksregulär} von $G$ auf sich.
+	\item Sei $G$ eine Gruppe und $H\subseteq G$ Untergruppe. 
+	Sei $X=\nicefrac{G}{H}=\{aH~|~a\in G \}$. 
+	Die Gruppe $G$ wirkt auf $X$ durch 
+	\[
+	\lambda_g:\nicefrac{G}{H}\to \nicefrac{G}{H},~aH\mapsto gaH 
+	\]
+	Es gilt wieder $\lambda_g\lambda_h=\lambda_{gh},~\lambda_e=\id_{\nicefrac{G}{H}}$.\\
+	Der Stabilisator von $x=H\in X$ ist 
+	\[
+	G_x=\{g\in G~|~gH=H \}=H 
+	\]
+	Zu $x=aH,y=bH\in X$ gibt es wieder $g\in G$ mit $g(x)=y$, nämlich $g=ba^{-1}$. 
+	Anders als im Bsp(a) ist $g$ nicht eindeutig, falls $H\not= \{e\}$ gilt (für $H=\{e\}$ erhalten wir wieder Bsp(a)). 
+\end{enumerate}
+%sub end
+
+\subsection{Satz 4, Satz von Cayley}
+\label{sub:satz_von_cayley}
+Zu jeder Gruppe $G$ gibt es eine Menge $X$ und einen injektiven Homomorphismus $\alpha:G\to \sym(X)$.\\
+
+\bet{Beweis:}\\
+Setze $G=X$ und $\lambda:G\to \sym(X)$ wie in \hyperref[sub:bsp_wirkungen]{Beispiel 2.3(a)}.
+\hfill $\square$
+
+Eine Untergruppe von $\sym(X)$ nennt man auch eine \Index{Permutationsgruppe}. 
+Der Satz von Cayley wird auch so formuliert:\\
+\uline{Jede} Gruppe 'ist' (bis auf Isomorphie) eine Permutationsgruppe.
+%sub end
+
+\subsection{Definition transitiv}
+\label{sub:def_transitiv}
+Eine $G$-Wirkung $G\times X\to X$ heißt \Index{transitiv}, wenn es für alle $x,y\in X$ ein $g\in G$ gibt mit $g(x)=y$.\\
+Die in \hyperref[sub:bsp_wirkungen]{Bsp. 2.3(a)(b)} betrachteten Wirkungen sind also transitiv.
+
+\subsubsection*{Satz}
+Gegeben sei ein transitive $G$-Wirkung $G\times X\to X$. Sei $x\in X$ und $H=G_x$. 
+Dann ist die Abbildung $\nicefrac{G}{H}\to X,~gH\mapsto g(x)$ wohldefiniert und bijektiv. 
+Für jedes $y\in X$ mit $y=g(x)$ gilt $G_y=gG_xg^{-1}$.\\
+
+\bet{Beweis:}\\
+Betrachte die Abbildung $\epsilon:G\to X,\epsilon(g)=g(x)$. 
+Es gilt 
+\[
+\epsilon(g)=\epsilon(g') \Leftrightarrow g(x)=g'(x) \Leftrightarrow g^{-1}g'(x)=x \Leftrightarrow g^{-1}g'\in G_x=H \stackrel{\hyperref[sub:nebenklassen]{1.13}}{\Leftrightarrow} g'H=gH
+\]
+Damit ist die erste Behauptung gezeigt.\\
+Für $y=g(x)$ gilt 
+\[
+a(y)=y \Leftrightarrow ag(x)=g(x) \Leftrightarrow g^{-1}ag(x)=x \Leftrightarrow g^{-1}ag\in G_x \Leftrightarrow a\in gG_xg^{-1}
+\]
+\hfill $\square$
+%sub end
+
+\subsection{Bahnen}
+\label{sub:bahnen}
+Gegeben sei eine $G$-Wirkung $G\times X\to X$.
+
+\subsubsection*{Lemma}
+Für \Index{Bahnen} $G(x),~G(y)\subseteq X$ gilt stets:
+\[
+\text{Ist } G(x)\cap G(y)\not=\emptyset, \text{ so gilt } G(x)=G(y)
+\]
+Bahnen sind entweder disjunkt oder gleich.\\
+
+\bet{Beweis:}\\
+Angenommen, $z\in G(x)\cap G(y)$, also $z=a(x)=b(y)$ für $a,b\in G$.
+Es folgt $b^{-1}a(x)=y$, also $y\in G(x)$, also $G(y)\subseteq G(x)$.
+Genauso folgt auch $G(y)\supseteq G(x)$, also $G(x)=G(y)$.
+\hfill $\square$
+
+\subsubsection*{Bemerkung}
+Für jedes $x\in X$ wirkt $G$ transitiv auf der Bahn $G(x)\subseteq X$.
+Denn für $y,z\in G(x),~y=a(x)$ und $z=b(x)$ folgt
+\[
+x=a^{-1}(y) \rightsquigarrow z=ba^{-1}(y)
+\]
+Weiter gilt $g(y)=ga(x)\in G(x)$.
+
+\subsubsection*{Definition Bahnenraum}
+Die Menge der Bahnen bezeichnen wir mit $\xfrac{G}{X}=\{G(x)~|~x\in X \}$ 'Bahnenraum'.
+
+\subsubsection*{Bemerkung}
+Das passt zur Notation für Nebenklassen: 
+Gegeben sei eine Untergruppe $H\subseteq G$. 
+Setze $X=G$, dann wirkt $H$ auf $G=X$ durch $H\times X\to X,~(h,x)\mapsto hx$\\
+Die \bet{Länge}\index{Bahnen!Länge} einer Bahn $G(x)$ ist $\#G(x)$. 
+Ist $\{x\}=\{G\}$ (Bahn der Länge 1), so sagt man, dass $x\in X$ ein \Index{Fixpunkt} der $G$-Wirkung auf $X$ ist. 
+Für alle $g\in G$ gilt dann $g(x)=x$.\\
+Die Bahnen der Wirkung von $H$ auf $G$ sind dann genau die Rechtsnebenklassen, $H(x)=Hx$ für $x\in X=G$, die Bahnenmenge ist also 
+\[
+\xfrac{H}{G}=\{Hx~|~x\in G\}
+\]
+
+%sub end
+\newpage
+\subsection{Satz 5, Die Bahnengleichung}
+\label{sub:bahnengleichung}
+Gegeben sei eine $G$-Wirkung $G\times X\to X$. 
+Ein \Index{Schnitt} (ein \Index{Transversale}) ist eine Teilmenge $S\subseteq X$ mit folgender Eigenschaft: 
+für jedes $x\in X$ gilt $\#(S\cap G(x))=1$, jede Bahn trifft $S$ genau einmal. 
+Es folgt $\#S=\#\enbrace{\xfrac{G}{X}}$. 
+Mit Hilfe des Auswahlaxioms sieht man, dass Schnitte stets existieren.
+\begin{center}
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1cm,y=1cm]
+	\draw(0.02,0.2) -- (3.88,0.18) -- (3.8,-3.56) -- (0.02,-3.54) -- cycle;
+	\draw (0.02,0.2)-- (3.88,0.18);
+	\draw (3.88,0.18)-- (3.8,-3.56);
+	\draw (3.8,-3.56)-- (0.02,-3.54);
+	\draw (0.02,-3.54)-- (0.02,0.2);
+	\draw (0.5,-0.42)-- (3.48,-0.14);
+	\draw (3.46,-0.76)-- (0.44,-0.9);
+	\draw (0.44,-1.36)-- (3.42,-1.26);
+	\draw (3.38,-1.8)-- (0.48,-2.36);
+	\draw (0.6,-2.74)-- (3.36,-2.2);
+	\draw (3.32,-2.74)-- (0.36,-3.32);
+	\draw [rotate around={-89.301305617:(1.08,-1.72)},color=green] (1.08,-1.72) ellipse (1.65838338606cm and 0.245429124511cm);
+	\draw (4,-3.5) node[anchor=north west] {X};
+	\draw [color=green](0.4,0.1) node[anchor=north west] {S};
+	\draw [->] (1.8,-3.7) -- (1.8,-3.1);
+	\draw (1.4,-4) node[anchor=north west] {Bahnen};
+	\draw [color=green] (1.07864981917,-0.365630218333) circle (2.5pt);
+	\draw [color=green] (1.08140306346,-0.870266083151) circle (2.5pt);
+	\draw [color=green] (1.06131377666,-1.33915054441) circle (2.5pt);
+	\draw [color=green] (1.10005135495,-2.24026594525) circle (2.5pt);
+	\draw [color=green] (1.10836595357,-2.64053709604) circle (2.5pt);
+	\draw [color=green] (1.08687330088,-3.17757212348) circle (2.5pt);
+\end{tikzpicture}
+\captionof{figure}{Die Bahnengleichung}
+\end{center}
+\subsubsection*{Satz}
+Sei $S\subseteq X$ ein Schnitt der $G$-Wirkung $G\times X\to X$. Wenn $X$ endlich ist, dann gilt 
+\[
+\#X=\sum_{s\in S}[G:G_s] 
+\]
+\bet{Beweis:}\\
+Sei $\#S=m$, $S=\{s_1,\dots,s_m\} \rightsquigarrow X=G(s_1)\stackrel{.}{\cup} G(s_2)\stackrel{.}{\cup} \dots \stackrel{.}{\cup} G(s_m)$
+\[
+\#G(s_i)\stackrel{\hyperref[sub:def_transitiv]{2.5}}{=}\#\nicefrac{G}{G_{s_i}}\stackrel{\hyperref[sub:satz_von_lagrange]{1.14}}{=}[G:G_{s_i}] 
+\]
+
+%sub end
+
+\subsection{Automorphismen und Konjugationswirkungen}
+\label{sub:automor}
+Sei $G$ eine Gruppe. 
+Ein bijektiver Homomorphismus $\alpha:G\to G$ heißt \Index{Automorphismus} von $G$. 
+Die Menge 
+\[
+\aut(G)=\{\alpha:G\to G~|~\alpha \text{ Automorphismus}\} 
+\]
+ist eine Gruppe, mit der Komposition von Automorphismus als Verknüpfung und $\id_G$ als Neutralelement.
+
+\subsubsection*{Beispiel}
+Sei $a\in G$. 
+Dann ist die Abbildung $\gamma_a:G\to G,~g\mapsto aga^{-1}$ ein Automorphismus. 
+Denn:
+\begin{equation*}
+\begin{aligned}
+	&\gamma_a(gh)=agha^{-1}=aga^{-1}aha^{-1}=\gamma_a(g)\gamma_a(h)\\
+	&\rightsquigarrow \gamma_a \text{ Homomorphismus}\\
+	&\gamma_a(g)=e \Leftrightarrow aga^{-1}=e \Leftrightarrow g=a^{-1}ea=e\\
+	\marginnote{oder: $\gamma_a\circ\gamma_a=\id_G=\gamma_{a^{-1}}\circ\gamma_a$}
+	&\rightsquigarrow \gamma_a \text{ Monomorphismus},~ \ker(\gamma_a)=\{e\}\\
+	&\text{Gegeben } g\in G \text{ folgt } \gamma_a(a^{-1}ga)=g\\
+	&\rightsquigarrow \gamma_a \text{ Epimorphismus}\\
+	&\Rightarrow \gamma_a \text{ Automorphismus}
+\end{aligned}
+\end{equation*}
+
+\subsubsection*{Satz}
+Die Abbildung $G\stackrel{\gamma}{\to} \aut(G),~a\mapsto \gamma_a$ ist ein Homomorphismus.\\
+
+\bet{Beweis:}\\
+Es gilt 
+\[
+\gamma_a\circ\gamma_b(g)=abgb^{-1}a^{-1}=abg(ab)^{-1}=\gamma_{ab}(g) 
+\]
+also $\gamma_a\circ\gamma_b=\gamma_{ab}$.
+\hfill $\square$\\
+
+Weil $\aut(G)\subseteq \sym(G)$ eine Untergruppe ist, ist $\gamma:G\to \aut(G)$ eine Wirkung von $G$ auf $G$, die \Index{Konjugationswirkung}.\\
+Beachte den Unterschied zu \hyperref[sub:bsp_wirkungen]{2.3(a)}:
+\[
+\lambda_a(g)=ag\qquad\qquad \gamma_a(g)=aga^{-1}
+\]
+$\lambda_a$ ist \uline{kein} Homomorphismus (für $a\not=e $) 
+\[\lambda_a(gh)=agh\not= \lambda_a(g)\lambda_a(h)=agah 
+\]
+Der \uline{Kern} von $\gamma:G\to\aut(G)$ ist
+\begin{equation*}
+\begin{aligned}
+	Z(G) &= \{a\in G~|~\forall g\in G\text{ gilt }aga^{-1}=g\}\\
+	&= \{a\in G~|~\forall g\in G\text{ gilt }ag=ga \}
+\end{aligned}
+\end{equation*}
+Man nennt diesen Normalteiler das \Index{Zentrum} von $G$. 
+Das Zentrum von $G$ ist also abelsch (und $G$ ist genau dann abelsch, wenn $Z(G)=G$ gilt).
+
+
+\subsubsection*{Bemerkung}
+Im Allgemeinen ist die Abbildung $\gamma:G\to\aut(G)$ weder injektiv und surjektiv. 
+Das Bild $\gamma(G)\subseteq\aut(G)$ ist die Gruppe der \Index{inneren Automorphismen} 
+\[
+\gamma(G)=\inn(G)\subseteq \aut(G)
+\]
+Mit dem \hyperref[sub:der_homomorphiesatz]{Homomorphiesatz} also: 
+\[
+\nicefrac{G}{Z(G)}\cong\inn(G)
+\]
+Wie sehen die Stabilisatoren in der Konjugationswirkung aus? 
+Der Stabilisator von $g\in G$ ist der \Index{Zentralisator} von $g$ (vgl. \hyperref[sub:def_zentralisieren]{1.6})
+\begin{equation*}
+\begin{aligned}
+	Z_G(g) &= \{a\in G~|~aga^{-1}=g \}\\
+	&= \{a\in G~|~ag=ga \}
+\end{aligned}
+\end{equation*}
+Beachte: 
+es gilt stets $\lh{g}\subseteq Z_G(g)$, denn 
+\[
+ggg^{-1}=g \rightsquigarrow g\in Z_G(g) \rightsquigarrow \lh{g}\subseteq Z_G(g) 
+\]
+Die Bahnen $G(g)=\{aga^{-1}~|~a\in G\}$ nennt man \Index{Klassen} oder \Index{Konjugiertenklassen} in $G$.
+
+%sub end
+
+\subsection{Satz 6, Die Klassengleichung}
+\label{sub:klassengleichung}
+Sei $G$ eine endliche Gruppe, sei $S\subseteq G$ ein Schnitt der Konjugationswirkung $\gamma$.
+Sei $\mathcal{K}=S\backslash Z(G)$. 
+Dann gilt 
+\[
+\#G=\#Z(G)+\sum_{s\in \mathcal{K}}[G:Z_G(s)] 
+\]
+
+\bet{Beweis:}\\
+Nach der Bahnengleichung gilt \[\#G=\sum_{s\in S}[G:Z_G(s)] \]
+Für jedes $z\in Z(G)$ gilt $G(z)=\{aza^{-1}~|~a\in G \}=\{z\}$, also $Z(G)\subseteq S$ und $\#G(z)=1~\forall z\in Z$.
+\hfill $\square$
+
+%sub end
+
+\subsection{Korollar über das Zentrum}
+\label{sub:kor_zentrum}
+Sei $p$ eine Primzahl und $G$ eine endliche Gruppe mit $\#G=p^m,~m\ge 1$.\\
+Dann gilt $Z(G)\not= \{e\}$.\\
+
+\bet{Beweis:}\\
+Für $g\in G\backslash Z(G)$ ist $Z_G(g)\not= G$. 
+Nach dem Satz von \hyperref[sub:satz_von_lagrange]{Lagrange 1.14} folgt $\#Z_G(g)=p^l,~l<m$. 
+Insbesondere ist dann $p$ ein Teiler von $[G:Z_G(g)]=p^{m-l}\not=1$. 
+Folglich ist $p$ ein Teiler von $\#Z(G)$, also $\#Z(G)\ge p$.
+\hfill $\square$\\
+
+Wenn $G$ eine endliche Gruppe ist, dann nennt man ihre Kardinalität $\#G$ die \Index{Ordnung} von $G$. 
+Das passt zu \hyperref[sub:def_zyklische_gruppen]{1.11}: 
+die Ordnung eines Elements $g\in G$ ist die Ordnung der von $g$ erzeugten zyklischen Gruppe, $o(g)=\#\lh{g}$, vgl. \hyperref[sub:zyklische_gruppen]{1.12}.
+
+\subsubsection*{Definition p-Gruppe}
+Eine endliche Gruppe $G$ heißt \Index{p-Gruppe}, für eine Primzahl $p$, wenn gilt $\#G=p^m$ für ein $m\ge 1$. 
+Das vorige Korollar besagt also: jede p-Gruppe hat ein nicht-triviales Zentrum.
+
+\subsubsection*{Beispiel}
+$G=\penbrace{\begin{pmatrix}
+1&x&z\\ 0&1&y\\ 0&0&1 \end{pmatrix} \in K^{3\times 3}}$ mit $K=\mathds{F}_p$ (Körper mit p Elementen).\\
+$\#G=p^3 \rightsquigarrow G$ ist p-Gruppe. 
+Das Zentrum ist $\penbrace{\begin{pmatrix}1&0&z\\&1&0\\&&1\end{pmatrix} \in K^{3\times 3}}$.\\
+Unser nächstes Ziel ist der Beweis der Sylow-Sätze. 
+Das braucht etwas Vorbereitung.
+%sub end
+
+\subsection{Definition Normalisator}
+\label{sub:def_normalisator}
+Sei $G$ eine Gruppe und $H\subseteq G$ eine Untergruppe. 
+Der \Index{Normalisator} von $H$ in $G$ ist 
+\[
+N_G(H)=\{n\in G ~|~nHn^{-1}=H\} 
+\]
+
+\subsubsection*{Satz}
+Der Normalisator $N_G(H)$ ist eine Untergruppe von $G$ und es gilt 
+\[
+H\nt N_G(H) 
+\] 
+Insbesondere gilt $H\subseteq N_G(H)$.\\
+
+\bet{Beweis:}\\
+Setze $X=\{aHa^{-1}~|~a\in G \}$. Dann wirkt $G$ auf der Menge $X$ durch Konjugation,
+\begin{equation*}
+\begin{aligned}
+	G\times X &\to X\\
+	(g,aHa^{-1}) &\mapsto gaHa^{-1}g^{-1}=(ga)H(ga)^{-1}
+\end{aligned}
+\end{equation*}
+Der Stabilisator von $H\in G$ ist genau $N_G(H)$, also eine Untergruppe.\\
+Weiter gilt $H\subseteq N_G(H)$ (klar) und nach Definition gilt für alle $n\in N_G(H)$, dass $nHn^{-1}=H$, also $H\nt N_G(H)$.
+\hfill $\square$
+
+Die Menge $X=\{aHa^{-1}~|~a\in G \}$ nennt man auch die \Index{Konjugationsklasse} der Untergruppe $H$ in $G$.\\
+Folgerung aus dem Satz: 
+Ist $K\subseteq N_G(H)$ eine Untergruppe, dann ist $KH\subseteq N_G(H)$ eine Untergruppe, denn $H\nt N_G(H)$, das folgt aus \hyperref[sub:isomorphiesaetze]{1.23 Lemma}.
+%sub end
+
+\subsection{Satz 7, Cauchys Satz}
+\label{sub:cauchys_satz}
+Sei $G$ eine endliche Gruppe und sei p eine Primzahl. 
+Wenn p ein Teiler von $\#G$ ist , dann enthält $G$ (mindestens) ein Element der Ordnung p.\\
+
+\bet{Beweis:}\\
+Setze $X=\{ (g_1,\dots,g_p)\in G^p~|~g_1\cdots g_p=e \}$. 
+Da $g_1,\dots,g_{p-1}\in G$ frei gewählt werden können und $g_p=(g_1,\cdots,g_{p-1})^{-1}$, gilt, $\#X=(\#G)^{p-1}$ und p teilt $\#X$. 
+Gesucht ist ein Element $g\in G$ mit $g\not= e$ und $(g,\dots,g)\in X$ (d.h. $g^p=e\not=g$).\\
+Setze $K=\nicefrac{\Z}{p\Z}$. 
+Diese Gruppe $K$ wirkt auf $X$ wie folgt: 
+sei $\overline{k}\in K$, setze $\overline{k}(g_{\overline{1}},\dots,g_{\overline{p}})=(g_{\overline{1+k}},\dots,g_{\overline{p+k}})$.\\
+Das ist wirklich eine $K$-Wirkung: 
+$0<k\le p$ wirkt durch 
+\[
+\overline{k}:(g_{\overline{1}},\dots,g_{\overline{p}}) \mapsto (g_{\overline{1+k}},\dots,g_{\overline{p}},g_{\overline{1}},\dots,g_{\overline{k}})
+\] 
+$g_{\overline{1}}\cdots g_{\overline{k}}=a,\quad g_{\overline{k+1}}\cdots g_{\overline{p}}=b\qquad ab=e$ nach Voraussetzung $\Rightarrow b=a^{-1}$
+\[
+g_{\overline{1+k}}\cdots g_{\overline{p}}\cdot g_{\overline{1}}\cdots g_{\overline{k}} =ba=e \Rightarrow (g_{\overline{1+k}},\dots,g_{\overline{p}})\in X 
+\]
+Die Fixpunkte dieser $K$-Wirkung sind genau die Tupel $(g,\dots,g)\in X$. 
+Also ist $(e,\dots,e)$ ein Fixpunkt. 
+Da $\#K=p$ hat jede $K$-Bahn $K(x)$ Länge $\#K(x)=[K:K_x]\in \{1,p\}$ und die der Länge 1 sind die Fixpunkte. 
+Nach der Bahnengleichung gilt (für ein Schnitt $S\subseteq X$) 
+\[
+\#X=\#G^{p-1}=\sum_{s\in S}[K:K_s] 
+\]
+Die Primzahl p teilt beide Seiten, es gilt $[K:K_s]\in \{1,p\}$ und für $s=(e,\dots,e)$ gilt $[K:K_s]=1$. 
+Also gibt es ein $s\not=(e,\dots,e)$ mit $[K:K_s]=1$.
+\hfill $\square$
+\\
+
+Wir brauchen noch das folgende technische Hilfsmittel.
+%sub end
+
+\subsection{Lemma 3}
+\label{sub:lemma_3}
+Sei $G\times X\to X$ eine Wirkung einer endlichen Gruppe $G$ auf einer endlichen Menge $X$. 
+Sei $p$ eine Primzahl. 
+Angenommen, es gilt folgendes:\\
+(i) zu jedem $x\in X$ gibt es eine $p$-Gruppe $P\subseteq G$ mit $P(x)=\{x\}$.\\
+Dann gilt $\#X=kp+1$ für ein $k\ge0$ und $G$ wirkt transitiv auf $X$.\\
+
+\bet{Beweis:}\\
+Sei $S\subseteq X$ ein Schnitt. 
+Für jedes $s\in S$ wirkt $G$ also transitiv auf $G(s)$. 
+Sei $s\in S$. Sei $P\subseteq G$ p-Gruppe mit $P(s)=\{s\}$. 
+Für jedes $x\in X\backslash\{s\}$ teilt p die Länge der Bahn $P(x)$ \big(weil $P$ p-Gruppe ist und $P(x)\not=\{x\}$ nach (i)\big). 
+Es folgt $\#G(s)=kp+1$.\\
+Angenommen, $S\not=\{s\}$. 
+Für $t\in S\backslash\{s\}$ folgt $\#G(t)=lp$, weil $P$ in $G(t)$ kein Fixpunkt hat. 
+Anderseits zeigt das gleiche Argument, dass $G(t)=mp+1\lightning$\\
+Es folgt $S=\{s\}$ und $X=G(s)$
+\hfill $\square$
+\\
+
+%sub end
+Jetzt beweisen wir Sylows Sätze. 
+Peter Sylow war ein norwegischer Mathematiker und Lehrer. 
+Seine Sätze sind in der endlichen Gruppentheorie ganz wesentlich.
+
+\subsection{Definition Sylow-Gruppe}
+\label{sub:def_sylow_gruppe}
+Sei $G$ eine endliche Gruppe, sei $p$ eine Primzahl mit $\#G=p^m\cdot r$, wobei $m\ge 1$ sei und $p$ kein Teiler von $r$ ist. Eine Untergruppe $U\subseteq G$ heißt \Index{Sylow-p-Gruppe} in $G$, wenn gilt $\#U=p^m$.\\
+Die Menge aller Sylow-p-Gruppen in $G$ wird mit $\syl_p(G)$ bezeichnet.\\
+(Im Moment ist nicht klar, dass $\syl_p(G)\not=\emptyset$, aber das beweisen wir gleich.)
+
+\subsubsection*{Sylows Sätze}
+\label{ssub:sylows_sätze}
+Sei $G$ eine endliche Gruppe, sei $p$ eine Primzahl mit $\#G=p^m\cdot r,~m\ge 1$, $p$ kein Teiler von $r$. 
+Dann gilt folgendes:\\
+\begin{enumerate}[(1)]
+	\item $\syl_p(G)\not=\emptyset$
+	\item $G$ wirkt transitiv auf $\syl_p(G)$: 
+	zu $U,V\in \syl_p(G)$ gibt es stets $g\in G$ mit $gUg^{-1}=V$
+	\item $\#\syl_p(G)=kp+1$ für ein $k\ge 0$
+	\item Ist $P\subseteq G$ ein $p$-Gruppe, so gibt es $U\in \syl_p(G)$ mit $P\subseteq U$.
+\end{enumerate}
+
+\bet{Beweis:}\\
+Sei $\Gamma$ die Menge aller $p$-Gruppen in $G$. 
+Nach Cauchys Satz ist $\Gamma\not=\emptyset$. 
+Sei $\Omega\subseteq \Gamma$ die Menge aller maximalen $p$-Gruppen in $\Gamma$ (weil $G$ endlich ist, ist jede $p$-Gruppe $P\subseteq G$ ein einer maximalen $p$-Gruppe enthalten).\\
+Die Gruppe $G$ wirkt durch Konjugation auf der Menge $\Gamma$ und $\Omega$. 
+Nach Definition gilt $\syl_p(G)\subseteq \Omega$.\\
+
+\uline{1. Schritt:} $G$ wirkt transitiv auf $\Omega$ und es gilt $\#\Omega=kp+1$ für ein $k\ge0$.\\
+\uline{Beweis 1. Schritt:} Wir benutzen das Lemma \hyperref[sub:lemma_3]{2.13}. 
+Für $U\in \Omega$ ist $U$ der einzige Fixpunkt der Wirkung von $U$ auf der Menge $\Omega$. 
+Denn: 
+wenn $U$ das Element $V\in \Omega$ fixiert, so folgt $U\subseteq N_G(V)\stackrel{\hyperref[sub:def_normalisator]{2.11}}{=} UV\subseteq G$ Untergruppe, $V\nt UV$. 
+Es gilt 
+\[
+\#UV\stackrel{\hyperref[sub:satz_von_lagrange]{1.14}}{=}\#V\cdot[UV:V]=\#V\cdot\#\nicefrac{UV}{V}
+\]
+sowie 
+\[ 
+\nicefrac{UV}{V} \stackrel{\hyperref[sub:isomorphiesaetze]{1.23}}{\cong} \nicefrac{U}{U\cap V}= \frac{\#U}{\#(U\cap V)}\text{ also ist }\#\nicefrac{UV}{V} \text{ eine $p$-Potenz} 
+\]
+denn $\#U$ und $\#U\cap V$ sind $p$-Potenzen. 
+Folglich ist $UV\subseteq G$ eine $p$-Gruppe. 
+Da $U$ und $V$ maximale $p$-Gruppen sind und $U,V\subseteq UV$ folgt 
+\[
+U=UV=V 
+\]
+Mit Lemma \hyperref[sub:lemma_3]{2.13} folgt nun: 
+$G$ wirkt transitiv auf $\Omega$ und $\#\Omega=kp+1$.
+\hfill $\square$
+
+\uline{2. Schritt:} Es gilt $\Omega=\syl_p(G)$.\\
+\uline{Beweis 2. Schritt:} Sei $U\in \Omega,~\#U=p^l$. 
+Wir müssen zeigen, dass $p^l=p^m$ gilt.\\
+Wegen Schritt 1 gilt jedenfalls 
+\[
+\#G=p^m\cdot r= \#N_G(U)\cdot \#\Omega= \#N_G(U)(kp+1) \tag*{$(\ast)$} 
+\]
+und folglich 
+\[
+\#N_G(U)=p^m\cdot s \quad \text{ für ein } s\ge 1 \tag*{$(\ast\ast)$} 
+\]
+Angenommen, es gilt $l<m$. 
+Betrachte 
+\[
+N_G(U)\stackrel{\pi_U}{\to}\nicefrac{N_G(U)}{U}=K 
+\]
+Es folgt $\#N_G(U)=p^m\cdot s=\underbracket{\#U}_{=p^e}$, also ist p ein Teiler von $\#K$. 
+Nach Cauchys Satz \hyperref[sub:cauchys_satz]{2.12} gibt es eine $p$-Gruppe $P\subseteq K$. 
+Setze $V=\pi_U^{-1}(P)\subseteq N_G(U)$. 
+Es folgt mit $P=\nicefrac{V}{U}$, dass 
+\[
+\#V=\#U\cdot \#P 
+\]
+also ist $V$ eine $p$-Gruppe.\\
+Da $p$ ein Teiler von $\#P$ ist, folgt $V\nsupseteq U$, ein Widerspruch zur Maximalität von $U$.\\
+Folglich gilt $\#U=p^m$ für alle $U\in \Omega$ und damit $\Omega=\syl_p(G)$.
+\hfill $\square$
+\\
+Damit sind (1),(2) und (3) bewiesen. 
+Wegen $\syl_p(G)=\Omega$ folgt (4).
+\hfill $\square$
+
+\subsubsection*{Addendum zu Sylows Theorem}
+Es gilt (mit den Bezeichnungen von oben) 
+\[
+r=s\cdot(kp+1) 
+\]
+Das folgt aus $(\ast)$ und $(\ast\ast)$.
+%sub end
+
+\subsection{Beispiel 5, Anwendung}
+\label{sub:bsp_anwendung}
+\subsubsection*{Lemma}
+Seien $p,q$ Primzahlen mit $p<q$. 
+Wenn $G$ eine Gruppe ist mit $\#G=p\cdot q$ und wenn $p$ kein Teiler von $q-1$ ist, dann ist $G$ abelsch.\\
+
+\bet{Beweis:}\\
+Setze $\#\syl_p(G)=kp+1$ und $\#\syl_q(G)=lq+1$, dann folgt $q=s(kp+1)$.\\
+1.Fall: $s=1 \rightsquigarrow q=kp+1$ Widerspruch zur Annahme, dass $p$ kein Teiler von $q-1$ ist.\\
+2.Fall: $kp+1=1 \rightsquigarrow$ es gibt genau eine Sylow-$p$-Gruppe $U\subseteq G \rightsquigarrow G=N_G(U)$, d.h. $U\nt G$.\\
+Jetzt $p=s'\cdot(lq+1)$ wegen $q>p$ folgt $s'=p$ und $lq+1=1 \rightsquigarrow$ es gibt genau eine Sylow-$q$-Gruppe $Q\subseteq G \rightsquigarrow Q\nt G$.\\
+Weiter gilt: 
+\[
+\#P=p \text{ und } \#Q=q
+\]
+Außerdem teilt $\#(P\cap Q)$ nach Lagrange $p$ und $q$ $\Rightarrow P\cap Q=\{e\}$. 
+Weil $P\nt G$ und $Q\nt G$ gilt für $a\in P$ und $b\in Q$, dass
+\[ 
+\underbracket{\underbracket{aba^{-1}}_{\in Q}\underbracket{b^{-1}}_{\in Q}}_{\in P}\in Q\cap P \text{ d.h. }ab=ba 
+\]
+Nach \hyperref[sub:isomorphiesaetze]{1.23} haben wir ein Monomorphismus $P\times Q\stackrel{\varphi}{\to} G,~(a,b)\mapsto ab$. 
+Wegen $\#(P\times Q)=p\cdot q=\#G$ ist $\varphi$ surjektiv, also ein Isomorphismus.\\
+Wegen $\#P=p$ und $\#Q=q$ sind $P$ und $Q$ abelsch: 
+ist $a\in P,~a\not=e$, so gilt $o(a)>1$ und $o(a)$ teilt $p$ 
+\[
+\Rightarrow o(a)=p \Rightarrow \lh{a}=P \Rightarrow P \text{ zyklisch } \Rightarrow P \text{ abelsch, vgl. \hyperref[sub:zyklische_gruppen]{1.12}.} 
+\]
+Gleiches gilt für $Q$ (mit ÜA %\hyperref[sub:a_4_3]{4.3 einfügen} 
+folgt jetzt sogar: $G$ ist \uline{zyklisch}) 
+\hfill $\square$
+
+\subsubsection*{Beispiel}
+Die Gruppe $\sym(3)$ ist nicht abelsch, vgl \hyperref[sub:beispiel_3]{1.7}. 
+Es gilt $\#\sym(3)=2\cdot 3$ (aber 2 teilt 3-1 !). 
+Was sind die Sylowgruppen in $\sym(3)$? (ÜA)\\
+
+\subsubsection*{Bemerkung}
+Im Beweis vom obigen Lemma haben wir einige \uline{nützliche Fakten} bewiesen, die auch sonst hilfreich sein können:
+\begin{enumerate}[(1)]
+	\item Jede endliche Gruppe, deren Ordnung eine Primzahl ist, ist ablesch.
+	\item Wenn $\varphi:K\to G$ ein Monomorphismus von endlichen Gruppen ist und wenn gilt $\#K=\#G$, dann ist $\varphi$ ein Isomorphismus.
+	\item Wenn $N,M\subseteq G$ Normalteiler sind und wenn gilt $N\cap M=\{e\}$, dann ist die Abbildung $N\times M\to G,~(n,m)\mapsto n\cdot m$ ein Monomorphismus.
+	\item Wenn $G$ endlich ist und $p$ eine Primzahl und wenn $p$ ein Teiler von $\#G$ ist mit $\#\syl_p(G)=1$, dann ist die (eindeutige) Sylow-$p$-Gruppe $U\in \syl_p(G)$ ein Normalteiler in $G$, $U\nt G$.
+\end{enumerate}
+
+%sub end
+
+\subsection{Satz 8}
+\label{sub:satz_8}
+Sei $G$ eine endliche Gruppe mit $\#G=pq,~p\not=q$ Primzahlen.
+Dann gilt es gibt einen Normalteiler $N\nt G,~\{e\}\not=N\not=G$.\\
+
+\bet{Beweis:}\\
+\OE $p<q,~\#\syl_q(G)=lq+1$
+\begin{equation*}
+\begin{aligned}
+	&\stackrel{\hyperref[sub:def_sylow_gruppe]{2.14}}{\Rightarrow} p=s(lq+1) \Rightarrow lq+1=1 \text{ wegen } p<q\\
+	&\Rightarrow \text{ es gibt genau eine Sylow-$q$-Gruppe } U\subseteq G\\
+	&\Rightarrow U\nt G\text{ und } \#U=p
+\end{aligned}
+\end{equation*}
+\hfill $\square$
+%sub end
+
+Wir betrachten als nächstes $p$-Gruppen genauer.\\
+
+\subsection{Lemma 4}
+\label{sub:lemma_4}
+Sei $G$ eine Gruppe. 
+Dann ist jede Untergruppe $H\subseteq Z(G)$ Normalteiler in $G$.\\
+
+\bet{Beweis:}\\
+Sei $g\in G$ und $h\in H\subseteq Z(G)$. 
+Es folgt $ghg^{-1}=h$, also $gHg^{-1}=H$.
+\hfill $\square$
+
+\subsubsection*{Satz}
+Sei $p$ Primzahl und $G$ eine $p$-Gruppe, $\#G=p^m$, $m\ge 1$. 
+Dann gibt es Normalteiler $G_k\nt G$ mit $\#G_k=p^k$ für $0\le k\le m$ und mit 
+\[
+G_m\nt G_{m-1}\nt \dots \nt G_1\nt G_0=\{e\} 
+\]
+
+\bet{Beweis:}\\
+Induktion nach $m$. 
+Für $m=1$ ist nichts zu zeigen. 
+Sei jetzt $\#G=p^m$, $m\ge 1$.\\
+Nach \hyperref[sub:kor_zentrum]{2.10} ist $Z(G)\not=\{e\}$, also $Z(G)=p^s$ für ein $s>1$ (Lagrange). 
+Nach Cauchys Satz \hyperref[sub:cauchys_satz]{2.12} gibt es $g\in Z(G)$ mit $o(g)=p$. 
+Setze $G_1=\lh{g}$ und $G\stackrel{\pi}{\to}\tilde{G}=\nicefrac{G}{G_1}$ (nach dem Lemma gilt $G_1\nt G$).\\
+Es folgt $\#\tilde{G}=p^{m-1}$ nach Induktionannahme gibt es $\tilde{G}_k\nt \tilde{G}$ mit $\#\tilde{G}_k=p^k,~\tilde{G}\supseteq \tilde{G}_{m-2}\supseteq \dots \supseteq \tilde{G}_0$. 
+Setze $G_{k+1}=\pi^{-1}(G_k)$, es folgt nach \hyperref[sub:satz_eigenschaften]{1.22}, dass $G_{k+1}\nt G$, sowie $G_m\supseteq G_{m-1}\supseteq \dots \supseteq G_0=\{e\}$. 
+Wegen $G_1\subseteq G_{k+1}$ folgt $\tilde{G}_k\cong \nicefrac{G_{k+1}}{G_1}$, also 
+\[
+\#G_{k+1}=p\cdot \#\tilde{G}_k=p^{k+1} 
+\]
+\hfill $\square$
+
+\subsubsection*{Folgerung}
+Ist $G$ eine endliche Gruppe, $p$ eine Primzahl und ist $p^k$ ein Teiler von $\#G$, dann hat $G$ eine Untergruppe der Ordnung $p^k$.\\
+
+\bet{Beweis:}\\
+Sei $U\in \syl_p(G),~\#U=p^m$.\\
+Dann gilt $k\le m$ und nach dem vorigen Satz gibt es eine Untergruppe $H\subseteq U$ mit $\#H=p^k$
+\hfill $\square$
+%sub end
+
+\subsection{Definition Normalreihe}
+\label{sub:def_normalreihe}
+Sei $G$ eine Gruppe, sei $G=G_m\supseteq G_{m-1}\supseteq \dots\supseteq G_0=\{e\}$ Untergruppen. 
+Wenn gilt 
+\[
+G_{k-1}\nt \G_k, 
+\]
+dann heißt $G_m\supseteq \dots\supseteq G_0$ \Index{Normalreihe} in $G$. 
+Die Quotienten $\nicefrac{G_k}{G_{k+1}}$ heißen \Index{Faktoren} der Normalreihe.\\
+Eine Gruppe, die eine Normalreihe mit ableschen Faktoren hat, heißt \Index{auflösbare Gruppe}.
+
+\subsubsection*{Beispiele}
+\begin{enumerate}[(a)]
+	\item $G$ abelsch $\Rightarrow G$ auflösbar, setze $G_1=G\supseteq G_0=\{e\}$
+	\item $G=\sym(3),~\#G=6$, $\tau:\{1,2,3\}\to \{1,2,3\}~\tau:\begin{array}{c} 1\mapsto 2\\ 2\mapsto 3\\ 3\mapsto 1 \end{array}$\\
+	$o(\tau)=3,~G_1=\lh{\tau}\nt G$ (weil $[G:G_1]=2$, ÜA 3.2 oder \hyperref[sub:satz_8]{2.16})\\
+	$\#\nicefrac{G}{G_1}=2\rightsquigarrow$ abelsch, also ist $\sym(3)$ auflösbar.
+	\item Nach Satz \hyperref[sub:lemma_4]{2.17} ist jede $p$-Gruppe auflösbar.
+\end{enumerate}
+
+Wir betrachten jetzt \uline{abelsche} $p$-Gruppen.
+
+\subsection{Lemmata 5,6,7}
+\label{sub:lemmata}
+\subsubsection*{Lemma A}
+Sei $G$ abelsche $p$-Gruppe. Wenn $G$ genau eine Untergruppe $H\subseteq G$ der Ordnung $p$ hat, dann ist $G$ zyklisch.\\
+
+\bet{Beweis:}\\
+Setze $\#G=p^m,~m\ge 1$. Induktion nach $m$. 
+Für $m=1$ ist nichts zu zeigen. Sei jetzt $m>1$. 
+Betrachte den Homomorphismus $\varphi: G\to G,~g\mapsto g^p$ (das ist ein Homomorphismus, weil $G$ abelsch ist: $(gh)^p=g^ph^p$).\\
+Es gilt $\ker(\varphi)=\big\{g\in G~|~g^p=e \big\}=\big\{g\in G~|~o(g)\in \{1,p\} \big\}$. 
+Ist $o(g)=p$, so folgt aus der Annahme $g\in H$, also $H=\ker(\varphi)$, denn $h\in H\rightsquigarrow o(h)\in \{1,p\}$.\\
+Setze $K=\varphi(G)$. Nach dem Homomorphiesatz \hyperref[sub:der_homomorphiesatz]{1.20} gilt $K\cong \nicefrac{G}{H}$, also $\#K=p^{m-1}$. 
+Wegen $m>1$ folgt aus Cauchys Satz \hyperref[sub:cauchys_satz]{2.12}, dass $K$ ein Element der Ordnung $p$ enthält. 
+Folglich gilt $H\subseteq K$. 
+Also hat $K$ genau eine Untergruppe der Ordnung $p$ und ist deswegen nach Induktionsannahme zyklisch, $K=\lh{k}$ für ein $k\in K=\varphi(G)$. Wähle $g\in G$ mit $\varphi(g)=g^p=k$. 
+Wegen $o(g)=p\cdot r$ folgt $o(g^r)=p\rightsquigarrow H\subseteq \lh{g}$ (wegen der Eindeutigkeit von $H$), also 
+\[
+\nicefrac{\lh{g}}{H}\cong K\Rightarrow\#\lh{g}=\#K\cdot\#H=\#G\Rightarrow G=\lh{g}
+\]
+\hfill $\square$
+
+\subsubsection*{Lemma B}
+Sei $G$ zyklisch mit $\#G=k\cdot l$. 
+Dann hat $G$ genau eine Untergruppe $H\subseteq G$ mit $\#H=k$ (ÜA 4.1).\\
+\newpage
+\bet{Beweis:}\\
+Betrachte $\varphi:G\to G,~g\mapsto g^k$, das ist ein Homomorphismus. 
+Der Kern ist $K=\{g\in G~|~g^k=e \}$. Ist $H\subseteq G$ Untergruppe mit $\#H=k$, so folgt $H\subseteq K$. 
+Sei $u\in G$ Erzeuger, $G=\lh{u}$. 
+Das Bild von $\varphi$ ist dann $\varphi(G)=\lh{u^k}$ und $o(u^k)=l$. 
+Also folgt 
+\[
+l=\#\varphi(G)= \frac{\#G}{\#K} \Rightarrow \#K=k \Rightarrow H=K. 
+\]
+\hfill $\square$
+
+\subsubsection*{Lemma C}
+Sei $G$ eine abelsche $p$-Gruppe, sei $u\in G$ eine Element maximaler Ordnung in $G$ und sei $U=\lh{u}$. 
+Dann gibt es eine Untergruppe $H\subseteq G$ mit
+\[ 
+H\cap U=\{e\} \text{ und } G=HU, \text{ d.h. } H\times U\cong G. 
+\]
+
+\bet{Beweis:}\\
+Setze $\#G=p^m$. 
+Für $m=1$
+ist $G$ zyklisch, setze $U=G$ und $H=\{e\} \rightsquigarrow$ fertig.\\
+Sei jetzt $m>1$, Induktion nach $m$.\\
+1. Fall: $G$ zyklisch, $G=U,~H=\{e\}\rightsquigarrow$ fertig.\\
+2. Fall: $G$ nicht zyklisch. Da $U$ genau eine Untergruppe der Ordnung $p$ hat (Lemma B) gibt es nach Lemma A und Cauchys Satz \hyperref[sub:cauchys_satz]{2.12} ein Element $w\in G\backslash U$ mit $o(w)=p$. 
+Setze $W=\lh{w}$.\\
+Es folgt $U\cap W=\{e\}$, weil $w\notin U$ ($\#U\cap W$ ist $p$-Potenz). 
+Betrachte $\pi:G\to \nicefrac{G}{W}$. 
+Wegen $\ker(\pi)=W$ ist die Einschränkung von $\pi$ auf $U$ injektiv, d.h. $o(\pi(u))=o(u)$. 
+Folglich ist $\pi(u)$ ein Element maximaler Ordnung in $L=\nicefrac{G}{H}$, und $\#\nicefrac{G}{W}=p^{m-1}$.\\
+
+Nach Induktionsannahme gibt es eine Untergruppe $H'\subseteq L$ mit $H'\cap \pi(U)=\{e_L\}$ und $L=\pi(U)H'\cong \pi(U)\times H'$.\\
+Setze $H=\pi^{-1}(H')$. 
+Es folgt $H\cap U=\{e\}$, denn:
+\[
+h\in H,~\pi(h)\in \pi(U)\rightsquigarrow \pi(h)=e_L \rightsquigarrow h\in W. 
+\]
+Weiter gilt für $g\in G$, dass 
+\begin{equation*}
+\begin{aligned}
+	&\pi(g)=\pi(u^k)\pi(h)\qquad \text{für ein } k\ge 0,~h\in H\\
+	&\rightsquigarrow g=u^k(h\cdot w^l)\qquad\text{für ein } l\ge 0,\text{ aber } w\in H\\
+	&\Rightarrow G=UH
+\end{aligned}
+\end{equation*}
+\hfill $\square$
+
+\subsubsection*{Korollar}
+Sei $G$ eine abelsche $p$-Gruppe, $\#G=p^m$ mit $m\ge 1$. 
+Dann gibt es Zahlen $n_1\ge \dots \ge n_r\ge 1$ mit $m=n_1+\dots+n_r$ und 
+\[ 
+G\cong \nicefrac{\Z}{p^{n_1}\Z} \times \nicefrac{\Z}{p^{n_2}\Z} \times \dots \times \nicefrac{\Z}{p^{n_r}\Z} 
+\]
+
+\bet{Beweis:}\\
+Wähle $u_1\in G$ mit maximaler Ordnung $o(u_1)=p^{n_1}$, $U_1=\lh{u_1}\cong \nicefrac{\Z}{p^{n_1}\Z}$ und eine Untergruppe $G_1\subseteq G$ wie in Lemma C mit $U_1\cap G_1=\{e\},~G=U_1G_1\cong U_1\times G_1$. 
+Wähle $u_2\in G_1$ mit maximaler Ordung $o(u_2)=p^{n_2}, ~U_2=\lh{u_2}\cong \nicefrac{\Z}{p^{n_2}\Z},~ G_1=U_2G_2$ usw. 
+Nach endlich vielen Schritten 
+\[
+G=U_1U_2\cdots U_r\cong U_1\times \dots \times U_r 
+\]
+Zur \uline{Eindeutigkeit} der Zahlen $n_1,\dots,n_r$:\\
+Für $l\ge 1$ sei $\varphi_l:G\to G,~g\mapsto g^{p^l}$.\\
+Da $G$ abelsch ist, ist $\varphi_l$ ein Homomorphismus mit 
+\[
+\ker(\varphi_l)=\{g\in G~|~o(g)\text{ teilt }p^l\}, 
+\]
+insbesondere
+\[
+\left.\begin{array}{cl} \varphi_l(u_i)=e & \text{für } l\ge n_i\\ \varphi_l(u_i)\not= & \text{sonst}    \end{array}\right\}\Rightarrow \#\varphi_l(U_i)=\left\{\begin{array}{cl} \{1\} & l\ge n_i\\ \nicefrac{\Z}{p^{n_i-l}\Z} & l<n_i    \end{array}\right. 
+\]
+$\Rightarrow \#\varphi_l(G)=\prod_{n_i>l}p^{n_i-l}=p^{N_l}$, aus den Zahlen $N_1,N_2,\dots$ lassen sich die $n_i$ berechnen, $N_l=\sum_{n_i>l}(n_i-l)$.
+\hfill $\square$
+% sub end
+
+\subsection{Satz 9}
+\label{sub:satz_9}
+Sei $G$ eine endliche abelsche Gruppe, $\#G=p_1^{l_1}\cdots p_s^{l_s},~ 2\le p_1<p_2<\dots<p_s$ Primzahlen, $l_1,\dots,l_s\ge 1$. 
+Dann gilt 
+\[
+G\cong P_1\times \dots\times P_s 
+\]
+wobei $P_j$ eine abelsche $p_j$-Gruppe der Ordnung $p_j^{l_j}$ ist wie im vorigen Korollar.\\
+Insbesondere ist jede endliche abelsche Gruppe ein Produkt von zyklischen Gruppen.\\
+
+
+\bet{Beweis:}\\
+Da $G$ abelsch ist,ist jede Sylow-$p_j$-gruppe in $G$ normal, also gibt es (wegen \hyperref[sub:def_sylow_gruppe]{2.14(2)}) genau eine Sylow-$p_j$-Gruppe $P_j\subseteq G$, und $P_j$ enthält alle Elemente $g\in G$, deren Ordnung eine $p_j$-Potenz ist.\\
+Betrachte
+\begin{equation*}
+\begin{aligned}
+	\varphi:P_1\times\dots\times P_s&\to G\\
+	(g_1,\dots,g_s)&\mapsto g_1g_2\cdots g_s
+\end{aligned}
+\end{equation*}
+Weil $G$ abelsch ist, ist $\varphi$ ein Homomorphismus (oder: weil für alle $i<j$ gilt $P_i\cap P_j=\{e\}\rightsquigarrow$ B6 A($\ast$)). Es genügt zu zeigen, dass $\varphi$ injektiv ist, dann folgt aus Kardinalitätsgründen, dass $\varphi$ bijektiv ist.\\
+\zz~$\ker(\varphi)=\{e\}$.\\
+Angenommen, $g_1\cdots g_s=e,~ g_i\in P_i$.\\
+Setze $r_i=\frac{\#G}{p_i^{l_i}}$.
+Für $i\neq j$ folgt $g_j^{r_i}=e$, weil $\#P_j$ ein Teiler von $r_i$ ist. 
+Also gilt 
+\[ 
+(g_1\cdot g_s)^{r_i}=g_1^{r_i}\cdot g_s^{r_i}=g_i^{r_i}=e^{r_i}=e 
+\]
+Also ist $o(g_i)$ ein Teiler von $r_i$. 
+Weil $o(g_i)$ eine $p_i$-Potenz ist, folgt $o(g_i)=1$, d.h. $g_i=1$.\\
+Es folgt $\ker(\varphi)=\{(e,\dots,e)\}$.
+\hfill $\square$
+%sub end
+
+\subsection{Satz 10}
+\label{sub:satz_10}
+Sei $G$ eine endliche auflösbare Gruppe mit einer Normalreihe $G=G_m\nt\dots\nt G_0$ mit abelschen Faktoren. 
+Dann gibt es für jedes $1\le k\le m$ Untergruppe $H_j$ mit
+\[
+G_k\nt H_l\nt\dots\nt H_0=\G_{k-1}
+\]
+mit $\nicefrac{H_j}{H_{j-1}}\cong \nicefrac{\Z}{p_j\Z},\quad p_j$ Primzahl.\\
+Insbesondere hat jede endliche auflösbare Gruppe eine Normalreihe, in der alle Faktoren zyklisch von Primzahlordnung sind.\\
+
+\bet{Beweis:}\\
+Betrachte die abelsche Gruppe $A=\nicefrac{G_k}{G_{k-1}}$.\\
+Nach Satz \hyperref[sub:satz_9]{2.20} und \hyperref[sub:lemma_4]{2.17}, angewandt auf die Sylowgruppen von $A$, gibt es Untergruppen
+\[
+A=A_l\supseteq \dots\supseteq A_0=\{e\}\text{ mit } \nicefrac{A_j}{A_{j-1}}\cong\nicefrac{\Z}{p_j\Z},~p_j\text{ Primzahl}
+\] 
+Setze $\pi:\G_k\to\nicefrac{G_k}{G_{k-1}}=A$ kanonischee Epimorphismus und $H_j=\pi^{-1}(A_j)\rightsquigarrow H_j\nt G_k$ und
+\[
+G_k\nt H_l\nt \dots H_0=G_{k-1}
+\]
+\[
+\nicefrac{H_j}{H_{j-1}}\stackrel{\text{2.Iso-Satz}}{\cong} \nicefrac{A_j}{A_{j-1}} \cong \nicefrac{\Z}{p_j\Z}
+\]
+\hfill $\square$
+%sub end
+
+\subsection{Komutatoren}
+\label{sub:komutatoren}
+Sei $G$ eine Gruppe, $a,b\in G$. 
+Der \Index{Komutator} von $a$ und $b$ ist 
+\[ 
+[a,b]=aba^{-1}b^{-1}=ab(ba)^{-1}\rightsquigarrow ab=[a,b]ba
+\]
+Offensichtlich gilt $[a,b]^{-1}=[b,a]$ und 
+\[
+[a,b]=e\Leftrightarrow a\text{ zentralisiert }b\Leftrightarrow b\text{ zentralisiert }a\Leftrightarrow a\text{ und }b\text{ vertauschen}
+\]
+Die \Index{Kommutatorengruppe} von $G$ ist
+\[
+\D G=\sprod{[a,b]}{a,b\in G},
+\]
+die von allen Komutatoren erzeugte Gruppe.
+
+\subsubsection*{Satz}
+Sei $G$ eine Gruppe. 
+Dann gilt
+\begin{enumerate}[(i)]
+	\item $\D G\nt G$
+	\item $\nicefrac{G}{\D G}$ ist abelsch
+	\item Ist $A$ abelsche Gruppe und $\varphi:G\to A$ ein Homomorphismus, so gilt $\D G\subseteq \ker(\varphi)$.
+\end{enumerate}
+
+\bet{Beweis:}\\
+\begin{enumerate}[(i)]
+	\item Für $g,a,b \in G$ gilt $g[a,b]g^{-1}=[gag^{-1},gbg^{-1}]$ (nachrechnen), also gilt für alle $g\in G,~a_1,\dots,a_s,b_1,\dots,b_s\in G$, dass
+	\[
+	g[a_1,b_1]\cdots[a_s,b_s]g^{-1}\in \D G
+	\]
+	also $g\D G g^{-1}\subseteq \D G$ für alle $g\in G\Rightarrow \D G\nt G$.
+	\item Sei $g,h\in G$. 
+	Es folgt wegen $gh=[g,h]hg$, dass
+	\[
+	gh\D G=\underbracket{[g,h]}_{\in \D G}hg \D G=hg\D G
+	\]
+	und damit, dass $\nicefrac{G}{\D G}$ abelsch ist.
+	\item Für alle $g,h\in G$ gilt
+	\[
+	\varphi([g,h])=[\varphi(g),\varphi(h)]=e_A, \text{ weil $A$ abelsch ist,}
+	\]
+	also 
+	\[
+	\{[g,h]~|~g,h\in G \}\subseteq \ker(\varphi)\Rightarrow\D G\subseteq \ker(\varphi)
+	\]
+	\hfill $\square$
+\end{enumerate}
+Man definiert rekursiv
+\[
+\D^0 G=G,~\D^1 G=G,~\D^{k+1}G=\D(\D^kG)
+\]
+Es folgt $D^{k+1}G\nt G$.\\
+Genauer: $D^{k+1}G\nt G$ mit Induktion
+\[
+a,b\in \D^kG\Rightarrow g[a,b]g^{-1}=[\underbracket{gag^{-1}}_{\in \D^kG},\underbracket{gbg^{-1}}_{\in \D^kG}]\in D^{k+1}G
+\]
+also $g(D^{k}G)g^{-1}\subseteq D^{k+1}G$.
+%sub end
+
+\subsection{Satz 11}
+\label{sub:satz_11}
+Eine Gruppe $G$ ist auflösbar genau dann, wenn gilt $D^mG=\{e\}$ für ein $m\ge 0$.\\
+
+\bet{Beweis:}\\
+Angenommmen, $D^mG=\{e\}$ für ein $m\ge 0$. 
+Dann ist $\D^0G\supseteq \D^1G\supseteq \dots\supseteq \D^mG=\{e\}$ eine Normalreihe und $\nicefrac{\D^kG}{\D^{k+1}G}=\nicefrac{\D^kG}{\D(\D^kG)}$ ist abelsch nach \hyperref[sub:komutatoren]{2.22(ii)}, also ist $G$ auflösbar.\\
+Ist umgekehrt $G$ auflösbar und $G=G_m\nt\dots\nt G_0=\{e\}$ eine Normalreihe mit abelschen Faktoren, so folgt aus \hyperref[sub:komutatoren]{2.22(iii)}, dass $\D G_k\subseteq G_{k-1}$, also iteriert auch
+\[
+D^{l+1}G_k\subseteq D^lG_{k-1}
+\]
+\[
+\Rightarrow \D^mG=\D^mG_m\subseteq \D^{m-1}G_{m-1}\subseteq\dots\subseteq \D^0G_0=\{e\}
+\]
+\hfill $\square$
+
+\subsubsection*{Korollar}
+Bilder und Untergruppen von auflösbaren Gruppen sind wieder auflösbar.\\
+
+\bet{Beweis:}\\
+Sei $\varphi:G\to K$ Homomorphismus und $G$ auflösbar, $D^mG=\{e\}$. Wegen
+\[
+\varphi([a,b])=\varphi(aba^{-1}b^{-1})=[\varphi(a),\varphi(b)]
+\]
+folgt
+\[
+\D^m(\varphi(G))= \varphi(\D^mG)=\varphi(e_G)=\{e_K\} \marginnote{Bilder von Komutatoren sind Komutatoren}
+\]
+Ist $H\subseteq G$, so folgt $\D^kH\subseteq \D^kG$ für alle $k\ge 0$, also 
+\[
+\D^mG=\{e_g\}\Rightarrow D^mH=\{e_G\}
+\]
+Also folgt mit dem Satz von oben, dass $H$ auflösbar ist.
+\hfill $\square$
+%sub end
+
+\subsection{Definition perfekt}
+\label{sub:def_perfekt}
+Eine Gruppe $G$ heißt \Index{perfekt}, wenn gilt $\D G=G$.\\
+Eine Gruppe, die gleichzeitig perfekt und auflösbar ist, ist trivial.
+%sub end
+
+\subsection{Die symmetrischen und alternierenden Gruppen}
+\label{sub:sym_alt_gruppen}
+Sei $\sym(n)$ die Gruppe aller Permutationen der Menge $\{1,\dots,n\}$. 
+Es gilt $\#\sym(n)=n!=n(n-1)(n-2)\cdots 2 \cdot 1$, denn $\sym(n)$ wirkt transitiv auf der $n$-elementigen Menge $\{1,\dots,n\}$.\\
+Der Stabilisator von $n$ ist isomorph zu $\sym(n-1)$.
+\[
+\stackrel{\text{Bahnengl.}}{\Rightarrow} \#\sym(n)=n\cdot \sym(n-1)\text{ und }\#\sym(1)=1
+\]
+Erinnerung an LA II, Kapitel über Determinanten, 4.6.\\
+Für $\pi\in \sym(n)$ setze 
+\[
+\sign(\pi)=\prod\limits_{i<j}\frac{\pi(i)-\pi(j)}{i-j}\in \{\pm 1\}=C_2.\marginnote{abelsche Gruppe der Ordnung 2 bzgl. Multiplikation}
+\] 
+$\sign:\sym(n)\to C_2$ ist ein Homomorphismus.\\
+Der Kern von $\sign$ ist die alternierende Gruppe 
+\[
+\alt(n)=\{\pi\in\sym(n)~|~\sign(\pi)=1\}
+\]
+Aus \hyperref[sub:komutatoren]{2.22} folgt $\D\sym(n)\subseteq \alt(n)$, weil $C_2$ abelsch ist.
+
+\subsubsection*{Satz}
+Es gilt $\D\sym(n)=\alt(n)$. Für $n\ge 5$ ist $\alt(n)$ perfekt.\\
+
+\bet{Beweis:}\\
+Seien $i_1,\dots,i_k$ $k$ paarweise verschiedene Zahlen in $\{1,\dots,n\}$.
+Die Permutation $i_1\stackrel{\pi}{\to} i_2\stackrel{\pi}{\to} i_3\stackrel{\pi}{\to}\dots\stackrel{\pi}{\to} i_k\stackrel{\pi}{\to} i_1$, also $\pi(i_l)=i_{l+1}$ für $l=1,\dots,k$, $\pi(i_k)=i_1$ und $\pi(j)=j$ sonst. 
+Diese Permutation nennt man ein \Index{$k$-Zykel} und schreibt sich kurz mit $\pi=(i_1,\dots,i_k)$.\\
+Die 2-Zykel vertauschen zwei Zahlen $i_1,i_2$, man nennt sie \Index{Transpositionen}. 
+Nach LA II Übungsaufgabe 4.3 ist jede Permutation ein Produkt von 2-Zykeln. 
+Weiter gilt $\sign((i_1,i_2))=-1$. 
+Also besteht $\alt(n)$ aus allen Permutationen, die sich schreiben lassen als Produkt einer \uline{geraden} Anzahl von 2-Zykeln.\\
+
+\uline{Behauptung:} $\alt(n)$ wird von den 3-Zykeln erzeugt.\\
+\uline{Beweis:} Seien $a,b,c,d\in \{1,\dots,n\}$ paarweise verschieden. 
+Es gilt
+\[
+(a,c)\circ(a,b)=(a,b,c) \text{ sowie } (a,b)\circ (c,d)=(a,d,c)\circ (a,b,c)
+\] 
+\hfill $\square$
+
+\uline{Zum Satz:} 
+\[
+[(a,b,c),(b,c)]=(b,a,c)\in \D \sym(n)\Rightarrow \D\sym(n)=\alt(n)
+\]
+Seien $a,b,c,d,e$ paarweise verschieden
+\[
+[(a,b,c),(c,d,e)]=(d,c,a)\Rightarrow \D \alt(n)=\alt(n)\text{ für }n\ge 5
+\]
+\hfill $\square$
+
+\subsubsection*{Folgerung}
+Für $n\ge 5$ ist $\sym(n)$ \uline{nicht} auflösbar.\\
+Für $n=1,2,3,4$ ist $\sym(n)$ auflösbar. (ÜA)
+
+\subsubsection*{Ausblick}
+\begin{enumerate}[(1)]
+	\item Jede endliche Gruppe $G$ mit ungerader Ordnung ist auflösbar. 
+	(Feit-Thompson-Theorem, viele hundert Seiten langer Beweis)
+	\item Eine Gruppe $G$ heißt \Index{einfach}, wenn $G\neq \{e\}$ und wenn $G,\{e\}$ die einzigen Normalteiler in $G$ sind.
+\end{enumerate}
+
+\subsubsection*{Theorem (Klassifikation der endlichen einfachen Gruppen)}
+Sei $G$ eine endliche einfache Gruppe. 
+Dann kommt $G$ in folgender Liste vor:
+\begin{itemize}
+	\item abelsche einfache Gruppe $\nicefrac{\Z}{p\Z},~p$ Primzahl\marginnote{Die größte sporadische Gruppe, das "Monster", hat mehr Elemente als es Elementarteilchen gibt.}
+	\item $\alt(n),~n\ge 5$
+	\item Matrizengruppen wie $\Sl_n(F),~F$ endlicher Körper, "Gruppen vom Lie-Typ"
+	\item 26 sogenannte sporadische einfache endliche Gruppen.\\
+	Der Beweis ist ca. 10000 Seiten in vielen Arbeiten lang, ca. 1980er Jahre.
+\end{itemize} 
+%sub end 
+%sec end
+\newpage
+
+\section{Kommutative Ringe}
+\label{sec:komm_ringe}
+\subsection{Erinnerung / Definiton}
+\label{sub:erinnerung_def}
+Sei $(R,+)$ eine abelsche Gruppe mit Neutralelement $0\in R$. 
+Angenommen, es gibt eine weitere assoziative Verknüpfung auf $R$, die \uline{Multiplikation} $R\times R\to R,~ (a,b)\mapsto a\cdot b=ab$.\\
+Weiter gilt: 
+\begin{enumerate}[(R1)]
+	\item es gelten die \uline{Distributivgesetze},
+	\begin{equation*}
+	\begin{aligned}
+		a(x+y)&= ax+ay\\
+		(x+y)a&= xa+ya
+	\end{aligned}
+	\end{equation*}
+	\item Es gibt ein \uline{Einselement} $1\in R$, d.h. 
+	\[
+	1\cdot x=x=x\cdot 1~\forall x\in R
+	\]
+	\item $ab=ba$ für alle $a,b\in R$
+\end{enumerate}
+dann heißt $(R,+,\cdot)$ ein \Index{kommutativer Ring}. 
+Verlangt man nur (R1) \& (R2), spricht man von einem \uline{nicht kommutativem Ring}. 
+Wenn man nur (R1) fordert, spricht man von einem \uline{Ring ohne Eins} oder \Index{Rng} (Jacobsen).
+
+\subsubsection*{Beispiele}
+\begin{enumerate}[(a)]
+	\item Jeder Körper ist ein Ring, z.B. $\Q,\R,\C$
+	\item $\Z$ ist ein Ring (kommutativ).
+	\item $V$ ein $K$-Vektorraum, $\End(V)=\{\varphi:V\to V~|~\varphi \text{ linear}\}$\\
+	\begin{equation*}
+	\begin{aligned}
+		\varphi,\psi\in \End(V): &(\varphi+\psi)(v)=\varphi(v)+\psi(v),~v\in V\\
+		&(\varphi\circ\psi)(v)=\varphi(\psi(v))
+	\end{aligned}
+	\end{equation*}
+	$\Rightarrow \End(V)$ Ring, nicht kommutativ, falls $\dim(V)\ge 2$.
+	\item $m\Z=\{mk~|~k\in \Z \}$ für ein $m\ge 1$\\
+	Rng, wenn $m\ge 2$.
+	\item $R=\{0\}$ mit $0\cdot 0=0=0+0$ der \uline{Nullring}. 
+	Im Nullring gilt $0=1$. 
+\end{enumerate}
+%sub end
+
+\subsection{Rechenregeln in Ringen}
+\label{sub:rechenregeln_ringen}
+\begin{enumerate}[(a)]
+	\item \uline{Additiv} darf man kürzen:
+	\[
+	a+x=a+y\Rightarrow x=y
+	\]
+	(addieren von $-a$ auf beiden Seiten)
+	\item Es gilt stets 
+	\[
+	0\cdot a=a\cdot 0=0
+	\]
+	\item Es gilt 
+	\[
+	a(-b)=-(ab)=(-a)b,~ (-a)(-b)=ab \text{ und } (-1)a=-a=a(-1)
+	\]
+\end{enumerate}
+
+\bet{Beweis:}\\
+(b):
+\[
+0\cdot a =(0+0)a\stackrel{\text{R1}}{=}0a+0a\stackrel{\text{Kürzen}}{\Rightarrow} 0a=0
+\]
+genauso $a\cdot 0=0$.\\
+(c): 
+\[
+a(-b)+ab\bgl{\text{R1}} a(b-b)=a0=0\Rightarrow a(-b)=-(ab)
+\]
+genauso
+\[
+(-a)b+ab=(-a+a)b=0b=0\Rightarrow (-a)b=-(ab)
+\]
+\[
+(-a)(-b)=-(a(-b))=-(-(ab))=ab
+\]
+sowie
+\[
+(-1)a=-(1a)=-a=a(-1)
+\]
+\hfill $\square$\\
+\uline{Vorsicht!} Beim Multiplizieren darf man nicht immer einfach kürzen. 
+Beispiel:
+\[
+a=\begin{pmatrix}1&0\\0&0\end{pmatrix},~x=\begin{pmatrix}1&0\\0&2\end{pmatrix},~y=\begin{pmatrix}1&0\\0&3\end{pmatrix}
+\]
+$a,x,y\in \R^{2\times 2},~ ax=ay$, aber $x\neq y$.
+%sub end
+
+\subsection{Definition Einheiten}
+\label{sub:def_einheiten}
+Sei $R$ ein Ring. 
+Ein Element $a\in R$ heißt \Index{Einheit}, wenn es $b\in R$ gibt mit 
+\[
+ab=1=ba
+\]
+Die Menge aller Einheiten ist die \Index{Einheitengruppe}
+\[
+R^*=\{a\in R~|~a\text{ Einheit}\}
+\]
+Offensichtlich ist $(R^*,\cdot)$ eine Gruppe, mit $1$ als Neutralelement.\\
+
+\uline{Beispiel:}
+\begin{enumerate}[(a)]
+	\item $K$ Körper, $K^*=K\backslash \{0\}$
+	\item $\Z^*=\{\pm 1\}$
+	\item $\End(V)^*=\Gl(V)=\{\varphi:V\to V~|~\varphi\text{ linear + bijektiv}\}$
+	\item $R=\{0\},~R^*=R$
+\end{enumerate}
+% sub end
+
+\subsection{Homomorphismen und Ideale}
+\label{sub:homomor_ideale}
+Seien $R$ und $S$ Ringe. 
+Eine Abbildung $\varphi:R\to S$ heißt \Index{Ringhomomorphismus}, wenn für alle $x,y\in R$ gilt:
+\begin{enumerate}[(H1)]
+	\item $\varphi(x+y)=\varphi(x)+\varphi(y)$
+	\item $\varphi(xy)=\varphi(x)\varphi(y)$
+	\item $\varphi(1_R)=1_S$
+\end{enumerate}
+(H1) sagt, dass $\varphi$ ein Homomorphismus der additven Gruppe $(R,+)$ und $(S,+)$ ist.\\
+Der \uline{Kern} eines Ringhomomorphismus $\varphi$ ist
+\[
+\ker(\varphi)=\{x\in R~|~\varphi(x)=0 \}
+\]
+Ist $R$ ein Ring und $S\subseteq R$ eine Teilmenge mit folgenden Eigenschaften, so heißt $S$ \Index{Teilring} oder \Index{Unterring}
+\begin{enumerate}[(TR1)]
+	\item $0\in S$ und $x\pm y\in S$ für alle $x,y\in S$
+	\item $x\cdot y\in S$ für alle $x,y\in S$
+	\item $1\in S$
+\end{enumerate}
+Wenn nur (TR1) und (TR2) verlangt wird, spricht man von einem "Teilrng".\\
+Sei $R$ ein Ring. 
+Ein Teilrng $I\in R$ heißt \Index{Ideal}, wenn für alle $r\in R$ und $i\in I$ gilt
+\[
+ir\in I \text{ und } ri\in I
+\]
+Man schreibt $I\trianglelefteq R$.
+Für ein Ideal $I\trianglelefteq R$ gilt offensichtlich
+\[
+I=R\Leftrightarrow 1\in I
+\]
+(denn: $1\in I\Rightarrow r=r\cdot 1\in I$ für alle $r\in R$.)
+
+\subsubsection*{Konstruktion}
+Sei $R$ ein Ring und $I\trianglelefteq R$ Ideal. 
+Dann ist 
+\[
+\nicefrac{R}{I}=\{x+I~|~x\in R\}
+\]
+ein Ring mit Multiplikation
+\[
+(x+I)(y+I)=xy+I
+\]
+\uline{Denn:} Das ist eine wohldefinierte Verknüpfung,\\
+\begin{equation*}
+\begin{aligned}
+&\begin{array}{c} x+I=x'+I\\ y+I=y'+I    \end{array} \Rightarrow \begin{array}{c} x'=x+i\\y'=y+j \end{array} \text{ für } i,j\in I \Rightarrow x'y'+I=(x+i)(y+j)+I\\
+&= xy+\underbracket{iy+xj+ij}_{\in I}+I=xy+I
+\end{aligned}
+\end{equation*}
+Es gilt weiter
+\[
+(1+I)(x+I)=(x+I)=(x+I)(1+I)
+\]
+\hfill $\square$
+
+\subsubsection*{Satz}
+Sei $R$ ein Ring und $I\subseteq R$. 
+Dann sind äquivalent:
+\begin{enumerate}[(i)]
+	\item $I\trianglelefteq R$
+	\item Es gibt ein Ring $S$ und einen Homomorphismus $R \xrightarrow{\varphi} S$ mit $\ker(\varphi)=I$.
+\end{enumerate}
+
+\bet{Beweis:}\\
+\uline{(i)$\Rightarrow$(ii):} 
+Setze $S=\nicefrac{R}{I},~\pi_I:R\to S,~x\mapsto x+I$\\
+Nach obiger Konstruktion ist $\nicefrac{R}{I}$ ein Ring.
+Es gilt 
+\[
+\ker(\pi_I)=\{x\in R~|~x+I=I \}=I
+\]
+\uline{(ii)$\Rightarrow$(i):} 
+Sei $\varphi:R\to S$ ein Ringhomomorphismus mit $I=\ker(\varphi)$. 
+Dann ist $(I,+)$ Untergruppe von $(R,+)$. Für alle $i\in I,~r\in R$ gilt
+\[
+\left.\begin{array}{c} \varphi(ir)=\varphi(i)\varphi(r)=0_S\cdot \varphi(r)=0_S\\ \text{und } \varphi(ri)=\dots=0_S    \end{array}\right\} \Rightarrow ir,ri\in I
+\]
+\hfill $\square$
+%sub end
+
+\subsection{Homomorphiesatz für Ringe, Isomorphiesätze}
+\label{sub:homosatz_isosatz}
+\subsubsection*{Satz (Homomorphiesatz)}
+Sei $R\stackrel{\varphi}{\to}S$ ein Ringhomomorphismus, sei $I\trianglelefteq R$ Ideal mit $I\subseteq \ker(\varphi)$. 
+Dann gibt es genau ein Ringhomomorphismus $\overline{\varphi}:\nicefrac{R}{I}\to S$ mit $\overline{\varphi}\circ \pi_I=\varphi$
+\begin{center}
+	\begin{tikzcd}[column sep=small]
+		R \ar{rr}{\varphi} \ar{rd}[below,left]{\pi_I} & & S\\
+		& \nicefrac{R}{I} \ar{ru}[below,right]{\overline{\varphi}} &
+	\end{tikzcd}
+	\captionof{figure}{Homomorphiesatz für Ringe}
+\end{center}
+
+\bet{Beweis:}\\
+Aus dem Isomorphiesatz für Gruppen \hyperref[sub:der_homomorphiesatz]{1.20} angewandt auf den Gruppenhomomorphismus $(R,+)\stackrel{\varphi}{\to} (S,+)$ erhalten wir die Existenz und Eindeutigkeit des Gruppenhomomorphismus $\overline{\varphi}$. 
+Zu zeigen bleibt, dass $\overline{\varphi}$ ein Ringhomomorphismus ist. 
+Für $x\in R$ gilt
+\[
+\overline{\varphi}(x+I)=\varphi(x)\qquad \text{vgl. \hyperref[sub:der_homomorphiesatz]{1.20}}
+\]
+\[
+\overline{\varphi}(xy+I)=\varphi(xy)\bgl{\varphi\text{ Ringhom.}}\varphi(x)\varphi(y)=\overline{\varphi}(x+I)\overline{\varphi}(y+I)
+\]
+sowie
+\[
+\overline{\varphi}(1_R+I)=\varphi(1_R)=1_S
+\]
+\hfill $\square$
+
+\subsubsection*{Satz (1. Isomorphiesatz für Ringe)}
+Sei $R$ ein Ring, $S\subseteq R$ Teilring und $I\trianglelefteq R$ ein Ideal. Dann ist $S+I=\{s+i~|~s\in S,~i\in I\}\subseteq R$ Teilring und $S\cap I\trianglelefteq S$ Ideal. Die Abbildung
+\[
+\nicefrac{S}{S\cap I}\stackrel{\varphi}{\to}\nicefrac{S+I}{I},~s+S\cap I\mapsto s+I
+\]
+ist ein Ringisomorphismus (bijektiver Ringhomomorphismus).\\
+
+\bet{Beweis:}\\
+Klar: $S+I$ und $S\cap I$ sind Untergruppen in $(R,+)$.
+Für $s,s'\in S,~i,i'\in I$ gilt
+\[
+(s+i)(s'+i')=ss'+\underbracket{is'+s'i+ii'}_{\in I}\in S+I
+\]
+sowie $1\in S\subseteq S+I\Rightarrow S+I\subseteq R$ ist Teilring.
+Für $s\in S,~i\in I\cap S$ gilt $\left.\begin{array}{c} is\in I\cap S\\ si\in I\cap S \end{array}\right\} \Rightarrow I\cap S \trianglelefteq S$.\\
+Die Abbildung $\varphi:s+S\cap I \mapsto s+I$ ist nach \hyperref[sub:isomorphiesaetze]{1.23} ein Gruppenisomorphismus bzgl. der Addition. 
+Es gilt $\varphi(1+S\cap I)=1+I$ sowie für $s,t\in S$
+\[
+\varphi(st+I\cap S)=st+I=(s+I)(t+I)=\varphi(s+I\cap S)\varphi(t+I\cap s)
+\]
+\hfill $\square$
+
+\subsubsection*{Satz (2. Isomorphiesatz für Ringe)}
+Sei $R$ ein Ring, $I,J\trianglelefteq R$ Ideale mit $I\subseteq J$. 
+Dann ist 
+\[
+\nicefrac{J}{I}=\{j+I~|~j\in J \}\subseteq \nicefrac{R}{I}
+\]
+ein Ideal und es gibt 
+\[
+\nicefrac{\nicefrac{R}{I}}{\nicefrac{J}{I}} \stackrel{\cong}{\to} \nicefrac{R}{J}
+\]
+einen Ringisomorphismus.\\
+
+\bet{Beweis:}\\
+Genau wie in \hyperref[sub:isomorphiesaetze]{1.23}. 
+Betrachte $\psi:R\to\nicefrac{R}{J},~x\mapsto x+J \rightsquigarrow \text{ Homomorphismus }\overline{\psi}:\nicefrac{R}{I}\to\nicefrac{R}{J}$ (Homomorphiesatz). 
+$\ker(\overline{\psi}=\nicefrac{J}{I})$, also existiert der Ringisomorphismus.
+\hfill $\square$
+
+\subsubsection*{Bemerkung}
+Ein \Index{Ringisomorphismus} ist also ein bijektiver Ringhomomorphismus $\varphi:R\to S$. 
+Die Umkehrabbildung $\psi$ von $\varphi$, $\psi:S\to R$ ist dann ebenfalls ein Ringhomomorphismus (Ringisomorphismus).
+
+%sub end
+
+\subsection{Rechnen mit Idealen}
+\label{sub:rechnen_ideale}
+Sei $R$ ein Ring mit Idealen $I,J\trianglelefteq R$. 
+Dann sind auch die folgenden Mengen Ideale:
+\begin{enumerate}[(a)]
+	\item $I+J=\{i+j~|~i\in I,~j\in J\}$
+	\item $I\cap J$
+	\item $IJ=\{i_1j_1+i_2j_2+\dots+i_lj_l~|~l\ge 1,~i_1,\dots,i_l\in I,~j_1,\dots,j_l\in J \}$
+\end{enumerate}
+Es gilt
+\[
+IJ\subseteq I\cap J\subseteq I,J\subseteq I+J
+\]
+
+\bet{Beweis:}\\
+Klar: $I+J,~I\cap J$ und $IJ$ sind additive Gruppen.
+Sei $r\in R,~i\in I,~j\in J$. 
+Es folgt
+\[
+r(i+j)=\underbracket{ri+rj}_{\in I+J}
+\]
+\[
+(i+j)r=\underbracket{ir+jr}_{\in I+J}\Rightarrow I+J\trianglelefteq R
+\]
+\[
+i\in I\cap J \Rightarrow ri\in I\cap J\Rightarrow I\cap J\trianglelefteq R
+\]
+\[
+r(ij)=\underbracket{ri}_{\in I}\cdot j\in J \text{ genauso } r(ij)\in I
+\]
+also $IJ\trianglelefteq R$ und $IJ\subseteq I\cap J$.
+\hfill $\square$
+%sub end
+
+\subsection{Beispiel 6, Ideale}
+\label{sub:bsp_ideale}
+\begin{enumerate}[(a)]
+	\item $K$ ein Körper. 
+	Ist $I\trianglelefteq K$ Ideal und $I\neq \{0\}$, so folgt $1\in I$, denn:
+	\[
+	i\in I\backslash\{0\}\Rightarrow i^{-1}i=1\in I \Rightarrow I=K.
+	\]
+	Also sind $\{0\}$ und $K$ die einzigen Ideale in $K$.
+	\item $V\neq \{0\}$ ein $K$-Vektorraum, $R=\End(V)$. 
+	Die einzigen Ideale in $R$ sind $\{0\},R$ ($\rightsquigarrow$ Höhere Algebra?)
+	\item $R$ kommutativer Ring, $a\in R$. 
+	Setze $(a):=Ra=\{ra~|~r\in R\}$. 
+	Dann gilt $(a)\trianglelefteq R$. \\%(später genauer).\\
+	Denn 
+	\[
+	0=0a\in Ra,~ra,sa\in Ra\Rightarrow ra\pm sa=(r\pm s)a\in Ra
+	\]
+	Für $r,s\in R$ gilt
+	\[
+	r\underbracket{sa}_{\in Ra}=(rs)a\in Ra \rightsquigarrow \text{Ideal}
+	\]
+	\item $R=\Z$. Wir zeigen gleich: jedes Ideal $I\trianglelefteq \Z$ ist von der Form $I=m\Z=\{mk~|~k\in \Z\}$ für ein $m\in \N$. 
+	Als Quotient erhält man für $m\ge 1$
+	\[
+	\nicefrac{\Z}{m}:=\nicefrac{\Z}{m\Z}=\{\overline{0},\dots,\overline{m-1},\overline{m}=\overline{0} \}
+	\]
+	$\overline{k}=k+m\Z$ \Index{Kongruenzklasse} von $k$ \Index{modulo} $m$ (die Bedeutung des Querstrichs hängt also vom $m$ ab!)\\
+	Addition: 
+	$\overline{k}\pm\overline{l}=\overline{k\pm l}$, 
+	Multiplikation: 
+	$\overline{k}\cdot\overline{l}=\overline{kl}$ nach \hyperref[sub:homomor_ideale]{3.4}. 
+	Also ist für $m\ge 1$ $\nicefrac{\Z}{m}$ ein kommutativer Ring mit $m$ Elementen.
+	Für $m=0$ gilt $\nicefrac{\Z}{0}\cong \Z$.
+\end{enumerate}
+
+%sub end
+
+\subsection{Satz 12}
+\label{sub:satz_12}
+Sei $I\subseteq \Z$ eine Teilmenge. Dann sind äquivalent:
+\begin{enumerate}[(i)]
+	\item $I=m\Z=\{mk~|~k\in\Z\}$ für ein $m\in \N$
+	\item $I\subseteq \Z$ ist eine Untergruppe (bzgl. Addition)
+	\item $I\subseteq \Z$ ist ein Rng (Ring ohne Eins)
+	\item $I\trianglelefteq \Z$ ist ein Ideal
+\end{enumerate}
+
+\bet{Beweis:}\\
+(iv)$\Rightarrow$(iii)$\Rightarrow$(ii) nach Definition.
+Wir haben eben überlegt, dass $m\Z\trianglelefteq \Z$, also (i)$\Rightarrow$(iv).
+Fehlt noch (ii)$\Rightarrow$(i): Sei $I\subseteq \Z$ Untergruppe bzgl. "+".\\
+
+\uline{Fall 1:} $I=\{0\}=0\Z$ fertig.\\
+\uline{Fall 2:} Es gibt $x\in I,~x\neq 0$. 
+Es folgt $\pm x\in I$, also gibt es $x\in I$ mit $x>0$. 
+Setze $m=\min\{x\in I~|~x>0\}$.
+Es folgt $m\in I$ und damit $m\Z\subseteq I$, weil $I$ Untergruppe ist.\\
+\uline{Behauptung:} $I=m\Z$. 
+Denn angenommen, $y\in I\backslash m\Z$. 
+Teilen durch $m$ mit Rest liefert
+\[
+y=\underbracket{m\cdot k}_{\in m\Z}+l \text{ mit } 0\le l < m
+\]
+und $l\neq 0$ wegen $y\notin m\Z$.
+Es folgt
+\[
+y-mk=l\in I,\text{ aber } 0<l<m\quad \lightning_{\text{zur Minimalität von }m}
+\]
+Also gibt es solch ein $y$ nicht, $I=m\Z$.
+\hfill $\square$
+%sub end
+
+\subsection{Definition Nullteiler}
+\label{sub:def_nullteiler}
+Sei $R$ ein Ring. 
+Ein Element $a\in R$ heißt \Index{Nullteiler}, wenn es ein $0\neq b\in R$ gibt mit 
+\[
+ab=0 ~(\text{oder }ba=0)
+\]
+\subsubsection*{Beispiele}
+\begin{enumerate}[(a)]
+	\item $R=\Z$. 
+	Der einzige Nullteiler ist 0.
+	\item $R=\nicefrac{\Z}{6}$.
+	Es gilt $\overline{2}\neq \overline{0} \neq \overline{3}$, aber $\overline{2}\cdot \overline{3}=\overline{6}=\overline{0}$, also sind $\overline{0},\overline{2},\overline{3}$ Nullteiler in $\nicefrac{\Z}{6}$.
+\end{enumerate}
+Ist $R$ ein Ring und $a\in R$ \uline{kein} Nullteiler in $R$, dann darf man beim Multiplizieren mit $a$ kürzen, d.h.
+\[
+ax=ay\Rightarrow x=y
+\]
+Denn
+\[
+ax=ay\Rightarrow a(x-y)=0 \Rightarrow x-y=0\Rightarrow x=y
+\]
+\hfill $\square$
+
+%sub end
+
+\subsection{Definition Integritätsbereich}
+\label{sub:def_integritaetsbereich}
+Ein kommutativer Ring $R\neq \{0\}$ heißt \Index{Integritätsbereich} (engl.: integral domain oder domain), wenn 0 der einzige Nullteiler in $R$ ist.
+
+\subsubsection*{Beispiele}
+\begin{enumerate}[(a)]
+	\item $\Z$ ist ein Integritätsbereich.
+	\item Jeder Körper ist ein Integritätsbereich.
+	\item $\nicefrac{\Z}{6}$ ist \uline{kein} Integritätsbereich.
+\end{enumerate}
+
+\subsubsection*{Lemma}
+Jeder endliche Integritätsbereich ist ein Körper.\\
+
+\bet{Beweis:}\\
+Sei $R$ ein endlicher Integritätsbereich.
+Also gilt $R\neq \{0\}$.
+Sei $a\in R\backslash \{0\}$, zeige, dass $a$ eine Einheit ist, d.h. es gibt $b\in R$ mit $ab=1$.\\
+Betrachte die Abbildung $\lambda_a:R\to R,~x\mapsto ax$.
+Diese Abbildung $\lambda_a$ ist injektiv, denn 
+\[
+\lambda_a(x)=\lambda_a(y)\Rightarrow ax=ay\stackrel{a\neq 0}{\Rightarrow} x=y
+\]
+Weil $R$ endlich ist, ist $\lambda_a$ auch surjektiv, insbesondere gibt es $b\in R$ mit
+\[
+\lambda_a(b)=ab=1
+\]
+\hfill $\square$
+\subsubsection*{Bemerkung}
+$\Z$ ist ein (unendlicher) Integritätsbereich, aber \uline{kein} Körper.
+%sub end
+
+\subsection{Der Quotientenkörper eines Integritätsbereiches}
+\label{sub:quotientenkoerper}
+\uline{Ziel:} $R$ Integritätsbereich, konstruiere aus $R$ ein Körper $Q$, der $R$ als Teilring enthält.
+\uline{Idee:} Kopiere die Konstruktion von $\Q$ aus $\Z$.\\
+
+Sei $R$ ein Integritätsbereich, z.B. $R=\Z$.
+Setze $M=\{(x,y)~|~x,y\in R,~y\neq 0\}$.
+Definiere Verknüpfungen $+$ und $\cdot$ auf $M$ durch
+\[
+(x,y)+(u,v):=(xv+yu,\underbracket{yv}_{\neq 0})
+\]
+\[
+(x,y)\cdot (u,v):=(xu,\underbracket{yv}_{\neq 0})
+\]
+Es gilt $(x,y)+(0,1)=(x,y)=(0,1)+(x,y)$, ebenso $(x,y)\cdot (1,1)=(x,y)=(1,1)\cdot (x,y)$.\\
+Beide Verknüpfungen sind assoziativ (nachzurechnen...), aber es fehlen Kürzungs- und Erweiterungsregeln für Brüche.
+Inverse funktionieren so nicht.\\
+Wir definieren eine Relation $\sim$ auf $M$ durch:
+\[
+(x,y)\sim(x',y')\stackrel{\text{DEF}}{\Leftrightarrow}\qquad \enbrace{\frac{x}{y}=\frac{x'}{y'}\Leftrightarrow xy'=x'y}
+\] 
+\uline{Behauptung:} Das ist $\sim$ eine Äquivalenzrelation auf $M$.\\
+\uline{Denn:} 
+\[
+(x,y)\sim(x,y)~ (\text{\checkmark})
+\]
+\[
+(x,y)\sim(x',y')\Rightarrow(x',y')\sim(x,y)~ (\text{\checkmark})
+\]
+\[
+(x,y)\sim(x',y')\sim(x'',y'')\stackrel{!}{\Rightarrow}(x,y)\sim(x'',y'')
+\]
+Folgt aus: $xy'=x'y$ und $x'y''=x''y'$
+\[
+\Rightarrow xx'y''=xx''y',~ xx'y''=x'x''y \stackrel{x'\neq 0}{\Rightarrow} xy''=x''y
+\]
+Wenn $x'=0$, dann $x=x''=0$. (\checkmark)\\
+
+Wir bezeichnen die Äquivalenzklassen von $(x,y)\in M$ mit 
+\[
+\frac{x}{y}=\{(x',y')\in M~|~(x,y)\sim(x',y') \}
+\]
+Setze $\Quot(R):= \penbrace{\frac{a}{b}~|~(a,b)\in Q}$.\\
+\uline{Behauptung:}
+\[
+\left.\begin{array}{c} (x,y)\sim(x',y')\\ (u,v)\sim(u',v') \end{array}\right\} \Rightarrow \begin{array}{c} (x,y)+(u,v)\sim (x',y')\sim (u',v')\\\text{und } (x,y)\cdot(u,v)\sim(x',y')\cdot(u',v') \end{array}
+\]
+Denn:
+\begin{equation*}
+\begin{aligned}
+	&(xxv+yu,yv)\sim(x'v'+u'y',y'v')\\
+	&\Leftrightarrow \underbracket{xy'}vv'+\underbracket{uv'}yy'=\underbracket{x'y}vv'+\underbracket{u'v}yy'
+\end{aligned}
+\end{equation*}
+und $xy'=x'y$ sowie $uv'=u'v$, Rest genauso.\\
+
+\uline{Folgerung:} Wir erhalten wohldefinierte Verknüpfungen
+\[
+\frac{x}{y}+\frac{u}{v}=\frac{xv+yu}{yv},~\frac{x}{y}\cdot\frac{u}{v}=\frac{xu}{yv}
+\]
+Eine Routine-Rechnung zeigt: $(\Quot(R),+,\cdot)$ ist ein Ring mit Nullelement $\frac{0}{1}$ und Einselement $\frac{1}{1}\neq \frac{0}{1}$.
+Ist $a,b\neq 0$ so gilt $\frac{a}{b}\cdot\frac{b}{a}=\frac{1}{1}$, also ist $\Quot(R)$ sogar ein \uline{Körper}.\\
+Wir definieren $\iota:R\to\Quot(R),~ r\mapsto \frac{r}{1}$, das ist ein Ringhomomorphismus und injektiv, $\ker(\iota)=\{e\}$.
+Für $R=\Z$ erhalten wir genau $\Quot(\Z)=\Q$.
+
+\subsubsection*{Satz}
+Der \Index{Quotientenkörper} $\Quot(R)$ hat folgende \uline{universelle Eigenschaft}:\\
+Ist $K$ ein Körper und $R$ ein Integritätsbereich und ist $\varphi:R\to K$ ein injektiver Ringhomomorphismus, so gibt es genau einen Ringhomomorphismus $\tilde{\varphi}$ mit
+\[
+\tilde{\varphi}\circ \iota=\varphi
+\]
+\begin{center}
+	\begin{tikzcd}[column sep=small]
+		R \ar{rr}{\varphi} \ar{rd}[below,left]{\iota} & & K\\
+		& \Quot(R) \ar{ru}[below,right]{\tilde{\varphi}} &
+	\end{tikzcd}
+	\captionof{figure}{Quotientenkörper}
+\end{center}
+
+\bet{Beweis:}\\
+Definiere $\tilde{\varphi}\enbrace{\frac{a}{b}}=\frac{\varphi(a)}{\varphi(b)}$.
+Das ist wohldefiniert:
+\begin{equation*}
+\begin{aligned}
+	&\frac{a}{b}=\frac{a'}{b'}\Rightarrow ab'=a'b \Rightarrow\varphi(a)\underbracket{\varphi(b')}_{\neq 0}=\varphi(a')\underbracket{\varphi(b)}_{\neq 0} \text{ da $\varphi$ injektiv}\\
+	&\Rightarrow \frac{\varphi(a)}{\varphi(b)}=\frac{\varphi(a')}{\varphi(b')}
+\end{aligned}
+\end{equation*}
+Es folgt (nachrechnen), dass $\tilde{\varphi}$ ein Homomorphismus ist
+\[
+\tilde{\varphi}\enbrace{\frac{a}{b}+\frac{u}{v}}=\tilde{\varphi}\enbrace{\frac{a}{b}}+\tilde{\varphi}\enbrace{\frac{u}{v}},~\tilde{\varphi}\enbrace{\frac{a}{b}\cdot\frac{u}{v}}=\tilde{\varphi}\enbrace{\frac{a}{b}}\cdot\tilde{\varphi}\enbrace{\frac{u}{v}},~\tilde{\varphi}\enbrace{\frac{1}{1}}=\mathbb{1}_K
+\]
+Zur Eindeutigkeit von $\tilde{\varphi}$:
+Angenommen, $\psi:\Quot(R)\to K$ ist ein Homomorphismus mit $\psi\circ\iota=\varphi$.
+Für $a,b\in R,~b\neq 0$ folgt
+\[
+\varphi(a)=\psi\enbrace{\frac{a}{1}},~\varphi(b)=\psi\enbrace{\frac{b}{1}}\neq 0 \Rightarrow \psi\enbrace{\frac{1}{b}}=\frac{1}{\varphi(b)}\Rightarrow \psi\enbrace{\frac{a}{b}}=\psi\enbrace{\frac{a}{1}\cdot\frac{1}{b}}=\frac{\varphi(a)}{\varphi(b)}
+\]
+\hfill $\square$
+% sub end
+
+\subsection{Satz 13}
+\label{sub:satz_13}
+Sei $\varphi:R\to S$ ein Homomorphismus von (kommutativen oder nicht kommutativen) Ringen.
+Wenn $I\trianglelefteq R$ ein Ideal ist, so ist $\varphi(I)\trianglelefteq \varphi(R)$ ein Ideal (und $\varphi(R)\subseteq S$ ist Teilring).
+Wenn $J\trianglelefteq S$ ein Ideal ist, so ist $\varphi^{-1}(J)=\{r\in R~|~\varphi(r)\in J\}\trianglelefteq R$ ein Ideal.\\
+
+\bet{Beweis:}\\
+Übungsaufgabe!
+\hfill $\square$
+%sub end
+
+\subsection{Definition verschiedener Ideale}
+\label{sub:def_vers_ideale}
+Sei $R$ ein kommutativer Ring und $I\trianglelefteq R$ ein Ideal.
+\begin{enumerate}[(a)]
+	\item $I$ heißt \bet{maximales Ideal}\index{Ideal!maximales}, wenn $I\neq R$ und wenn es kein Ideal $J\trianglelefteq R$ gibt mit
+	\[
+	I\subsetneq J\subsetneq R
+	\]
+	\item $I$ heißt \bet{Primideal}\index{Ideal!Primideal}, wenn gilt:
+	$I\neq R$ und für $a,b\in R$ und $ab\in I$, so folgt
+	\[
+	a\in I \text{ oder } b\in I
+	\]
+\end{enumerate}
+
+\subsubsection*{Satz}
+Sei $R$ ein kommutativer Ring, sei $I\trianglelefteq R$ ein Ideal.
+\begin{enumerate}[(i)]
+	\item $I$ ist Primideal genau dann, wenn $\nicefrac{R}{I}$ ein Integritätsbereich ist.
+	\item $I$ ist maximales Ideal genau dann, wenn $\nicefrac{R}{I}$ ein Körper ist.
+\end{enumerate}
+
+\bet{Beweis:}\\
+(i): Ist $I$ Primideal, so ist $I\neq R\rightsquigarrow \nicefrac{R}{I}\neq \{0\}$.
+Ist $x=r+I,~y=s+I$ und $xy=I$, so folgt $rs\in I\rightsquigarrow r\in I$ oder $s\in I\rightsquigarrow x=I$ oder $y=I$ $\Rightarrow \nicefrac{R}{I}$ Integritätsbereich.\\
+Ist $\nicefrac{R}{I}$ ein Integritätsbereich, so ist $I\neq R$.
+Für $r,s\in R$ gilt 
+\[
+\pi_I(rs)=0+I\Leftrightarrow rs\in I \Leftrightarrow\pi_I(r)=r+I=I \text{ oder } \pi_I(s)=s+I=I \Leftrightarrow r\in I \text{ oder } s\in I
+\]
+\hfill $\square$\\
+
+(ii): Sei $I\trianglelefteq R$ ein maximales Ideal, sei $a+I\in \nicefrac{R}{I}$ mit $a\notin I$.
+Da $(a)+I=aR+I$ ein Ideal ist und $I\subsetneq (a)+I$, folgt $R=(a)+I$, d.h. es gibt $b\in R$ und $i\in I$ mit $ab+i=1$.
+Es folgt 
+\[
+(a+I)(b+I)=ab+i+I=ab+I=1+I,
+\]
+also $a+I\in\enbrace{\nicefrac{R}{I}}^*$ Einheit $\Rightarrow \nicefrac{R}{I}$ ist Körper.\\
+Ist $\nicefrac{R}{I}$ ein Körper, so ist $I\neq R$.
+Angenommen, $J\trianglelefteq R$ ist ein Ideal mit $I\subsetneq J$.
+Es folgt aus \hyperref[sub:satz_13]{3.12}, dass $\pi_I(J)\subseteq \nicefrac{R}{I}$ ein Ideal ist und $\pi_I(J)\neq \{0_{\nicefrac{R}{I}}\}$.
+Da $\nicefrac{R}{I}$ ein Körper ist, folgt mit \hyperref[sub:bsp_ideale]{3.7(a)}, dass $\pi_I(J)=\nicefrac{R}{I}$.
+Wegen $I\subseteq J$ folgt
+\[
+J=\pi_I^{-1}(\pi_I(J))=R
+\]
+\hfill $\square$
+
+\subsubsection*{Korollar}
+Jedes maximale Ideal ist ein Primideal.\\
+
+\bet{Beweis:}\\
+Jeder Körper ist ein Integritätsbereich.
+\hfill $\square$
+% sub end
+
+\subsection{Satz 14}
+\label{sub:satz_14}
+Sei $R$ ein kommutativer Ring, sei $R\neq I\trianglelefteq R$ ein Ideal.
+Dann existiert ein maximales Ideal $J\trianglelefteq R$ mit 
+\[
+I\subseteq J\subsetneq R.
+\]
+
+\bet{Beweis:}\\
+Sei $P=\{J\trianglelefteq R~|~1\notin J\text{ und }I\subseteq J \}$.
+Dann ist $P$ bzgl. $\subseteq$ partiell geordnet.
+Wir benutzen Zorns Lemma, vgl. LA II §7.
+Sei $C\subseteq P$ eine Kette (d.h. für alle $J,K\in C$ gilt $J\subseteq K$ oder $K\subseteq J$).
+Setze $J=\bigcup C$.
+Es folgt $1\notin J$ (weil $1\notin \bigcup P$).\\
+\uline{Behauptung:} $J$ ist ein Ideal.\\
+Denn: $a,b\in J,~r\in R\rightsquigarrow$ es gibt $K,L\in C$ mit $a\in K,~b\in L$.\\
+\OE $K\subseteq L$: $\Rightarrow a,b\in L\rightsquigarrow a\pm b\in L,~a\cdot b\in L,~ra\in L$.
+Wegen $L\subseteq J$ folgt
+\[
+a\cdot b,~a\pm b,~ ra\in J.
+\]
+Also $J\trianglelefteq R$.
+Wegen $1\notin J$ ist $R\neq J$, also (wegen $I\subseteq J$) $J\in P$.\\
+Nach Zorns Lemma gibt es maximale Elemente in $P$.
+Nach Konstruktion und \hyperref[sub:homomor_ideale]{3.4} besteht $P$ genau aus allen Idealen $J\trianglelefteq R$ mit
+\[
+I\subseteq J\subsetneq R.
+\]
+\hfill $\square$
+
+\subsubsection*{Korollar}
+Ist $R$ ein kommutativer Ring, $R\neq \{0\}$, so existiert ein Körper $K$ und ein surjektiver Ringhomomorphismus $R\stackrel{\varphi}{\to}K$.
+\hfill $\square$
+%sub end
+
+\subsection{Beispiel 7}
+\label{sub:bsp_7}
+$R=\Z$ wir wissen bereits: alle Ideale sind von der Form $I=m\Z,~m\in \N$.
+\begin{itemize}
+	\item $I=\{0\}=0\Z$ ist ein Primideal, denn $\nicefrac{\Z}{0}\cong \Z$ ist Integritätsbereich.
+	Oder direkt: $a,b\in \Z,~ab\in\{0\}\Rightarrow a=0$ oder $b=0$.
+	\item $p$ Primzahl $\rightsquigarrow p\Z$ Primideal, denn: $a,b\in\Z$:
+	\[
+	ab=k\cdot p\rightsquigarrow p\text{ teilt }a\text{ oder }p\text{ teilt }b\stackrel{\text{Euklids Lemma}}{\rightsquigarrow}a\in p\Z \text{ oder }b\in p\Z.
+	\]
+	Da jeder endliche Integritätsbereich ein Körper ist, vgl.\hyperref[sub:def_integritaetsbereich]{3.10}, ist $p\Z$ auch ein maximales Ideal in $\Z$.
+	\item $m=k\cdot l$ mit $k,l\ge 2$.
+	Dann gilt 
+	\[
+	\overline{k}\cdot\overline{l}=\overline{m}=\overline{0}, \text{ aber }\overline{k}\neq\overline{0}\neq\overline{l}.
+	\]
+	Da $\nicefrac{\Z}{m}$ kein Integritätsbereich ist, ist $m\Z$ kein Primideal.
+\end{itemize}
+\bet{Fazit:}
+Die \uline{Primideale} in $\Z$ sind die Ideale $0\Z,~p\Z$ mit $p$ ist Primzahl.
+Die \uline{maximalen Ideale} in $\Z$ sind die Ideale $p\Z$ mit $p$ ist Primzahl.\\
+Wenn $m>1$ und $m$ keine Primzahl ist, dann ist $m\Z$ kein Primideal/maximales Ideal (und $1\cdot \Z=\Z$ ist kein echtes Ideal!)
+
+%sub end
+
+\subsection{Erinnerung}
+\label{sub:erinnerung}
+Zwei Zahlen $k,l\in \Z$ heißen \Index{teilerfremd} oder \Index{koprim}, wenn $\pm 1$ die einzigen gemeinsamen Teiler von $k$ und $l$ sind.\\
+
+\bet{Beispiel:}
+\begin{itemize}
+	\item $1,l$ sind für alle $l\in \Z$ koprim.
+	\item $\abs{0,1}$ sind koprim, 2,6 sind \uline{nicht} koprim.
+	\item $0,l$ sind für $l\neq\pm 1$ koprim.
+\end{itemize}
+
+\subsubsection*{Lemma}
+Sei $k,l\in\Z$. 
+Dann sind äquivalent:
+\begin{enumerate}[(i)]
+	\item $k$ und $l$ sind koprim.
+	\item $1\in k\Z+l\Z$ (äquivalent: $\Z=k\Z+l\Z$, vgl. \hyperref[sub:homomor_ideale]{3.4} und \hyperref[sub:rechnen_ideale]{3.6}).
+	\item $\overline{k}$ ist Einheit in $\nicefrac{\Z}{l\Z}$.
+\end{enumerate}
+
+\bet{Beweis:}\\
+\uline{(iii)$\Rightarrow$(ii):}
+$\overline{k}$ Einheit $\rightsquigarrow \overline{k}\overline{u}=\overline{1}$ für ein $u\in \Z \rightsquigarrow ku=1+lv$ für $u,v\in \Z \Rightarrow 1=ku-vl$.\\
+
+\uline{(ii)$\Rightarrow$(i):}
+Ist $t$ ein Teiler von $k$ und $l$, so ist $t$ auch Teiler von $ku+lv=1$, fertig.\\
+
+\uline{(i)$\Rightarrow$(iii):}
+Angenommen, $\overline{k}$ ist \uline{keine} Einheit in $\nicefrac{\Z}{l\Z}$.\\
+1. Fall: $l=0\rightsquigarrow k$ keine Einheit in $\Z\rightsquigarrow k\neq \pm 1$ (dann $\Z^*=\{\pm1\}$) $\rightsquigarrow k,l$ koprim (\checkmark)\\
+2. Fall: $l\neq 0$.
+Dann gibt es $w\in \Z$ mit $0<w<\abs{l}$ mit $\overline{kw}=\overline{0}$ (ÜA 8.3), d.h.
+\[
+o(\overline{k})\le w<\abs{l}=\#\nicefrac{\Z}{l\Z}.
+\]
+Setze $u=o(\overline{k})$, dann gibt es $l'\neq \pm 1$ mit $l'u=l$, denn $u$ teilt $\abs{l}$ nach Lagrange.\\
+Es folgt
+\[
+u\overline{k}=\overline{0}\rightsquigarrow uk=vl=vul'\Rightarrow k=vl'
+\]
+also ist $l'\neq \pm 1$ ein gemeinsamer Teiler von $k$ und $l$.
+%sub end
+
+\subsection{Produkt von Ringen}
+\label{sub:produkt_ringe}
+Sei $(R_i)_{i\in I}$ eine (endliche oder unendliche) Familie von Ringen.
+Dann ist auch
+\[
+R=\prod_{i\in I}R_i
+\]
+ein Ring, mit 
+\[
+(x_i)_{i\in I}+(y_i)_{i\in I}=(x_i+y_i)_{i\in I},~(x_i)_{i\in I}\cdot (y_i)_{i\in I}=(x_i\cdot y_i)_{i\in I}
+\]
+Nullelement $(0_i)_{i\in I}$, Einselement $(1_i)_{i\in I}$.
+Solche Produkte haben im allgemeinen viele Nullteiler, $\Z\times \Z$ hat $(l,0)$ sowie $(0,l)$ als Nullteiler.
+
+\subsubsection*{Koprime Ideale}
+\index{Ideal!koprim}
+Sei $R$ ein kommutativer Ring.
+Zwei Ideale $I,J\trianglelefteq R$ heißen koprim, wenn gilt
+\[
+R=I+J \qquad(\text{äquivalent: } 1\in I+J)
+\]
+%sub end
+
+\subsection{Der chinesische Restsatz}
+\label{sub:restsatz}
+\subsubsection*{Theorem (Chinesischer Restsatz, algebraische Version)}
+Sei $R$ ein kommutativer Ring und seien $I_1,\dots,I_n\trianglelefteq R$ Ideale.
+Wenn für alle $1\le s<t\le n$ gilt $R=I_s+I_t$ (d.h. wenn die Ideale $I_1,\dots,I_n$ paarweise koprim sind), dann ist der Ringhomomorphismus
+\[
+R\stackrel{\pi}{\to}\nicefrac{R}{I_1}\times\dots\times \nicefrac{R}{I_n},~r\mapsto (r+I_1,\dots,r+I_n)
+\]
+surjektiv.
+Der Kern von $\pi$ ist $I_1\dt{\cap} I_n$.\\
+
+\bet{Beweis:}\\
+Induktion nach $n$.
+Für $n=1$ ist nichts zu zeigen.
+Wir nehmen jetzt an, die Aussage gilt für $n$ paarweise koprime Ideale.\\
+Seien $I_1,\dots,I_{n+1}\trianglelefteq R$ paarweise koprim.
+Sei $(x_1,\dots,x_{n+1})\in R^{n+1}$ gegeben.
+Wir suchen ein $x\in R$ mit $x+I_s=x_s+I_s$ für $s=1,\dots,n$ mit
+\[
+y_s+z_s=1~(I_s+I_{n+1}=R).
+\]
+Es folgt
+\[
+1=(y_1+z_1)\cdots(y_n+z_n)\in \underbracket{I_1\cdot I_2\cdots I_n}_{=K\subseteq I_n\cap\dots\cap I_n}+I_{n+1}
+\]
+also sind $K=I_1I_2\cdots I_n\subseteq I_1\cap\dots\cap I_n$ und $I_{n+1}$ koprim.
+Wähle $j\in I_{n+1}$ und $k\in K$ mit $j+k=1$.\\
+Wähle jetzt $x'\in R^n$ so, dass gilt
+\begin{equation*}
+\begin{aligned}
+	x_s+I_s &= x'+I_s\text{ für }s=1,\dots,n~(\text{Induktionsannahme})\\
+	1+I_s &= (j+k)+I_s \bgl{k\in I_s\subseteq K} j+I_s \text{ für }1\le s \le n\\
+	1+I_{n+1} &= (j+k)+I_{n+1} = k+I_{n+1}
+\end{aligned}
+\end{equation*}
+Setze $x=\underbracket{x'\cdot j}_{\in I_{n+1}}+\underbracket{x_{n+1}\cdot k}_{\in K}$, es folgt
+\[
+x+I_s=x'\cdot j+I_s=x'(j+k)+I_s=x'+I_s,~1\le s\le n
+\]
+\[
+x+I_{n+1}=x_{n+1}\cdot k+I_{n+1}=x_{n+1}(j+k)+I_{n+1}=x_{n+1}+I_{n+1}
+\]
+Der Kern von $\pi$ ist 
+\[
+\{x\in R~|~x+I_1=I_1,\dots, x+I_n=I_n \}=\{x\in R~|~x\in I_1,\dots,x\in I_n \}=I_1\dt{\cap} I_n
+\]
+\hfill $\square$
+
+\subsubsection*{Korollar A (Chinesischer Restsatz, Sun Zi)}
+Seien $l_1,\dots,l_n\in\Z$ $n$ verschiedene paarweise koprime ganze Zahlen.
+Dann gibt es zu jedem $n$-Tupel $(x_1,\dots,x_n)\in \Z^n$ eine ganze Zahl $y\in \Z$ mit
+\[
+y+l_i\Z=x_i+l_i\Z,~i=1,\dots,n
+\]
+\hfill $\square$
+
+\subsubsection*{Korollar B}
+Seien $l_1,\dots,l_n\in \Z$ $n$ paarweise koprime ganze Zahlen.
+Dann existiert ein Ringisomorphismus
+\[
+\nicefrac{\Z}{l_1\cdots l_n\Z}\stackrel{\cong}{\to} \nicefrac{\Z}{l_1\Z}\times \dots \times \nicefrac{\Z}{l_n\Z}
+\]
+
+\bet{Beweis:}\\
+Betrachte $\pi:\Z\to \nicefrac{\Z}{l_1\Z}\times \dots \times \nicefrac{\Z}{l_n\Z}$ Epimorphismus wie im Theorem.
+Es gilt
+\[
+\ker(\pi)=l_1\Z \cap\dots\cap l_n\Z.
+\]
+Für $n=2$ erhalten wir $l_1\Z\cap l_n\Z=l_1l_2\Z$ (denn $l_1l_2$ ist das kleinste gemeinsame Vielfache von $l_1,l_2$ vgl. ÜA 8.2) und damit sofort
+\[
+l_1\Z\dt{\cap}l_n\Z=l_1\cdots l_n\Z
+\]
+per Induktion.
+Jetzt Homomorphiesatz \hyperref[sub:homosatz_isosatz]{3.5}.
+\hfill $\square$
+%sub end
+
+\subsection{Polynomringe}
+\label{sub:polynomringe}
+Sei $R$ ein kommutativer Ring.
+Sei $R^{(\N)}=\{(r_i)_{i\in \N}~|~r_i=0\text{ für fast alle }i\in \N \}$ ('für \Index{fast alle}' heißt: nur endlich viele Ausnahmen).
+Dann ist $R^{(\N)}$ eine abelsche Gruppe bzgl. komponentenweiser Addition
+\[
+(r_i)_{i\in\N}+(s_i)_{i\in\N}=(r_i+s_i)_{i\in \N}.
+\]
+Wir definieren eine Multiplikation auf $\R^{(\N)}$ wie folgt:
+\[
+(r_i)_{i\in \N}\cdot (s_i)_{i\in \N}=(t_i)_{i\in \N},~t_j=\sum_{i=0}^jr_is_{j-i}
+\]
+Eine einfache Rechnung zeigt:
+$\R^{(\N)}$ wird mit diesen beiden Verknüpfungen ein kommutativer Ring.\\
+Sei $T$ ein nicht in $R$ enthaltenes Element.
+Ist $(r_i)_{i\in \N}\in R^{(\N)}$, so gibt es ein $n\in \N$ mit $r_i=0$ für alle $i>n$ (weil nur endlich viele $r_i\neq 0$).\\
+Schreibe formal
+\[
+(r_i)_{i\in \N}=r_0+r_1T+r_2T^2\dt{+}r_nT^n
+\]
+Die Terme $r_iT^i$ mit $r_i=0$ lässt man auch weg.
+Die beiden Verknüpfungen + und $\cdot$ schreiben sich dann intuitiv als
+\[
+(r_0+r_1T\dt{+}r_nT^n)+(s_0+s_1T\dt{+}s_nT^n)=(r_0+s_0)+(r_1+s_1)T\dt{+}(r_n+s_n)T^n
+\]
+wobei $n\gg 1$ so gewählt wird, dass $r_i=0=s_i$ für alle $i>n$ gilt.
+\[
+(r_0\dt{+}r_nT^n)\cdot(s_0\dt{+}s_nT^n)=\sum_{j=0}^{n}\sum_{i=0}^{j}r_is_{j-i}T^j
+\]
+Man nennt $R[T]=\R^{(\N)}$ den \Index{Polynomring} über $\R$ (in der Unbekannten $T$).
+Die Elemente von $R[T]$ heißen \Index{Polynome} in R (in der Unbekannten $T$).
+
+\subsubsection*{Bemerkung}
+\begin{itemize}
+	\item $T,T^2,T^3\dt{,}T^n$ sind Terme, die man symbolisch hinschreibt.
+	Statt $T$ nennt man die Unbekannten oft auch $X$ und schreibt $R[X]$ usw.
+	\item Der Polynomring $R[T]$ enthält $R$ als Teilring via $R\to R[T],~t\mapsto r=r+0T$.
+	Das Nullelement in $R[T]$ ist 0 (das \Index{Nullpolynom}), das Einselement ist $1=1+0T$.
+	Die Polynome der Form $r,~r\in R$ nennt man auch \uline{konstant} oder \uline{Skalare}.
+	\item Warum haben wir $R[T]$ nicht definiert als Menge der Abbildungen der Form
+	\[
+	f(x)=r_0+xr_1+x^2r_2\dt{+}x^nr_n~?
+	\]
+	\uline{Beispiel:} $R=\mathds{F}_2=\{0,1\}$.
+	Die beiden Abbildungen
+	\[
+	f(x)=0,~g(x)=x+x^2
+	\]
+	stimmen überein.
+	Dagegen sind die Polynome $0,~T+T^2\in\mathds{F}_2[T]$ so, wie wir das definiert haben, von einander \uline{verschieden}.
+	In der Algebra ist der Unterschied wichtig!
+\end{itemize}
+Der \bet{Grad} eines Polynoms $f=r_0+r_1T\dt{+} r_nT^n\neq 0$ ist
+\[
+\deg(f)=\max\{k\ge 0~|~r_k\neq 0\}.
+\]
+Für das Nullpolynom setzt man $\deg(0)=-\infty$.
+Ist $f=r_0+r_1T\dt{+}r_nT^n$ mit Grad $\deg(f)=n$, so heißt $r_n$ der \Index{Leitkoeffizient} von $f$ und $r_0$ heißt der \Index{konstante Term} von $f$.
+%sub end
+
+\subsection{Lemma 8}
+\label{sub:lemma_8}
+Seien $f=r_0\dt{+}r_nT^n,~g=s_0\dt{+}s_mT^m$ Polynome in $R[T]$, $R$ ein kommutativer Ring, mit $\deg(f)=n$ und $\deg(g)=m,~n,m\ge 0$.\\
+Dann gilt
+\[
+\deg(f+g)\le \max\penbrace{\deg(f),\deg(g)}
+\]
+\[
+\deg(f\cdot g)\le \deg(f)\cdot\deg(g)
+\]
+Wenn die Leitkoeffizienten $r_n$ und $s_m$ keine Nullteiler sind, gilt
+\[
+\deg(f \cdot g)=\deg(f)+\deg(g)
+\]
+
+\bet{Beweis:}\\
+Die beiden Formeln folgen direkt aus den Additions- und Multiplikationsregeln für Polynome.
+Es gilt
+\[
+f\cdot g=r_0s_0\dt{+}r_ns_mT^{n+m}
+\]
+Wenn also $r_n,s_m$ keine Nullteiler sind, so folgt, dass $r_ns_m$ der Leitkoeffizient von $f\cdot g$ ist.
+
+\subsubsection*{Korollar}
+Sei $R$ ein kommutativer Ring.
+Dann sind äquivalent:
+\begin{enumerate}[(i)]
+	\item $R$ ist Integritätsbereich
+	\item $R[T]$ ist Integritätsbereich
+\end{enumerate}
+
+\bet{Beweis:}\\
+\uline{(i)$\Rightarrow$(ii):}
+Ist $f,g\neq 0$, so ist $\deg(f\cdot g)\neq -\infty$, also $f\cdot g\neq 0$.\\
+\uline{(ii)$\Rightarrow$(i):}
+$R$ ist ein Teilring von $R[T]$
+\hfill $\square$
+
+%sub end
+%sec end
+\newpage
+
+\section{Teilbarkeit in Integritätsbereichen}
+\label{sec:teilbarkeit_intbereiche}
+\subsection{Definition Teiler}
+\label{sub:def_teiler}
+Sei $R$ ein kommutativer Ring, sei $a,b\in R$.
+Wir nennen $a$ einen \Index{Teiler} von $b$, wenn es ein $x\in R$ gibt mit $ax=b$.
+Schreibe dafür kurz
+\[
+a\mid b\qquad (\text{'$a$ teilt $b$'})
+\]
+Wenn $a$ \uline{kein} Teiler von $b$ ist, schreibe $a\nmid b$.\\
+Klar: $1\mid a$ und $a\mid 0$ gilt für alle $a\in R$.
+Weiter gilt 
+\[
+a\mid 1 \Leftrightarrow a\text{ Einheit}
+\]
+\[
+a\mid b\text{ und } b\mid c \Rightarrow a\mid c
+\]
+Wenn $a$ kein Nullteiler ist und wenn gilt
+\[
+a\mid b\text{ und } b\mid a,
+\]
+so folgt: es gibt eine Einheit $u\in R^*$  mit $au=b$.\\
+Denn:
+\[
+b=ax,~ a=by \Rightarrow a=axy \stackrel{a\text{ kein Nullteiler}}{\Rightarrow} 1=xy
+\]
+Ist $u\in R^*$, so gilt stets $ua\mid a$.
+Sind $b_1\dt{,}b_n\in R$ und gilt
+\[
+a\mid b_1\dt{,} a\mid b_n,\text{ so folgt } a\mid b_1\dt{+}b_n.
+\]
+%sub end
+
+\subsubsection*{Definition ggT}
+Sei $R$ ein Integritätsbereich, sei $b_1\dt{,}b_n\in R$.
+Wir nennen $a$ einen \Index{größten gemeinsamen Teiler} von $b_1\dt{,}b_n$, wenn gilt:
+\begin{enumerate}[(1)]
+	\item $a\mid b_1\dt{,}a\mid b_n$
+	\item Ist $c\in R$ mit $c\mid b_1\dt{,} c\mid b_n$, so folgt $c\mid a$.
+\end{enumerate}
+Schreibe kurz $a\in \ggT(b_1\dt{,}b_n)$. (Der $\ggT$ ist im allgemeinen nicht eindeutig bestimmt: ist $u\in R^*$ und $a\in \ggT(b_1\dt{,}b_n)$, so folgt $au\in \ggT(b_1\dt{,}b_n)$.
+Über die Existenz einen $\ggT$ wird hier nichts behauptet.)
+%sub end
+
+\subsection{Definition Hauptideal}
+\label{sub:def_hauptideal}
+Sei $R$ ein kommutativer Ring, sei $a_1\dt{,}a_n\in R$.
+Wir setzen $(a_1\dt{,}a_n)=a_1R\dt{+}a_nR$ (übliche, aber etwas problematische Schreibweise - links steht kein $n$-Tupel...).\\
+Ist speziell $n=1$, so heißt $(a_1)=a_1R$ das von $a_1$ erzeugte \Index{Hauptideal}.\\
+Ein Integritätsbereich $R$ heißt \Index{Hauptidealbereich} (\bet{Hauptidealring}, engl. principal ideal domain PID), wenn alle Ideal in $R$  Hauptideale sind.
+
+\subsubsection*{Beispiele}
+\begin{enumerate}[(a)]
+	\item Jeder Körper $K$ ist ein Hauptidealbereich, denn $\{0\}=(0)$ und $K=(1)$ sind die einzigen Ideale.
+	\item $R=\Z$, jedes Ideal ist von der Form $m\Z=(m)$ nach \hyperref[sub:satz_12]{3.8}.
+\end{enumerate}
+%sub end
+
+\subsection{Lemma 9}
+\label{sub:lemma_9}
+Sei $R$ ein Integritätsbereich, $d,b_1\dt{,}b_n\in R$.
+Wenn gilt
+\[
+(d)=(b_1\dt{,}b_n),
+\]
+dann ist $d\in\ggT(b_1\dt{,}b_n)$.\\
+
+\bet{Beweis:}\\
+Aus $b_j\in(d)$ folgt $d\mid b_j,~j=1\dt{,}n$.
+Weiter gibt es $r_1\dt{,}r_n\in R$ mit 
+\[
+d=b_1r_1\dt{+}b_nr_n,
+\]
+weil $d\in (b_1\dt{,}b_n)$.
+Wenn also $c\in R$ ein gemeinsamer Teiler der $b_j$ ist, so gilt $c\mid d$.
+\hfill $\square$\\
+In Hauptidealbereichen existieren also immer $\ggT$'s.
+
+\subsubsection*{Korollar (Lemma von Bézout)}
+Ist $b_1\dt{,}b_n\in \Z$ und ist $d$ ein $\ggT$ von $b_1\dt{,}b_n$, so gibt es $r_1\dt{,}r_n\in \Z$ mit
+\[
+d=b_1r_1\dt{+}b_nr_n
+\]
+\hfill $\square$
+%sub end
+
+\subsection{Definition irreduzibel und prim}
+\label{sub:def_irreduzibel_prim}
+Sei $R$ ein Integritätsbereich, sei $r\in R,~r\neq 0,~r\notin R^*$.
+\begin{enumerate}[(a)]
+	\item $r$ heißt \Index{irreduzibel}, wenn aus $r=xy,~x,y\in R$ folgt, dass $x\in R^*$ oder $y\in R^*$.
+	\item $r$ heißt \Index{prim}, wenn aus $r\mid xy,~x,y\in R$ folgt, dass $r\mid x$ oder $r\mid y$.
+\end{enumerate}
+
+\subsubsection*{Beispiel}
+In $\Z$ gilt: $r\in \Z$ ist irreduzibel $\Leftrightarrow$ $\pm r$ Primzahl $\stackrel{\text{Euklids Lemma}}{\Leftrightarrow}$ $r$ ist prim
+
+\subsubsection*{Lemma}
+Sei $R$ ein Integritätsbereich, sei $r\in R,~r\neq 0,~r\notin R^*$.
+Dann gilt folgendes:
+\begin{enumerate}[(i)]
+	\item $r$ prim $\Rightarrow$ $r$ irreduzibel
+	\item $r$ prim $\Leftrightarrow$ $(r)$ Primideal
+\end{enumerate}
+
+\bet{Beweis:}\\
+(i): Sei $r\in R$ prim und $r=xy$ für $x,y\in R$ dann gilt
+\[
+r\mid xy\stackrel{r\text{ prim }}{\rightsquigarrow} r\mid x \text{ oder } r\mid y.
+\]
+Wenn $r\mid x$, dann 
+\[
+x=sr \text{ für ein } s\in R\rightsquigarrow r=sry\stackrel{\text{kürzen}}{\rightsquigarrow} 1=sy\rightsquigarrow s\in R^* \text{ und } y\in R^*.
+\]
+Genauso, wenn $r\mid y\rightsquigarrow r$ irreduzibel.
+\hfill $\square$\\
+
+(ii): Sei $r$ prim, sei 
+\[
+xy\in (r)\rightsquigarrow r\mid xy\rightsquigarrow r\mid x \text{ oder } r\mid y\rightsquigarrow x\in (r) \text{ oder } y\in (r)\Rightarrow (r) \text{ Primideal}
+\]
+Sei $(r)$ Primideal und gelte 
+\[
+r\mid xy\rightsquigarrow xy\in (r)\rightsquigarrow x\in (r) \text{ oder } y\in (r)\rightsquigarrow r\mid x \text{ oder } r\mid y.
+\]
+\hfill $\square$
+
+%sub end
+
+\subsection{Satz 15}
+\label{sub:satz_15}
+Sei $R$ ein Hauptidealbereich, sei $r\in R,~r\neq 0,~r\notin R^*$.
+Dann sind äquivalent:
+\begin{enumerate}[(i)]
+	\item $r$ ist prim
+	\item $r$ ist irreduzibel
+	\item $(r)$ ist maximales Ideal
+	\item $(r)$ ist Primideal
+\end{enumerate}
+
+\bet{Beweis:}\\
+Wir wissen schon: (iii)$\stackrel{\hyperref[sub:def_vers_ideale]{3.13}}{\Rightarrow}$(iv)$\Leftrightarrow$(i)$\Rightarrow$(ii).\\
+\zz~(ii)$\Rightarrow$(iii).
+Angenommen, es gibt $J\trianglelefteq R$ mit $(r)\subseteq J\subseteq R$.
+Schreibe $J=(a)$ für ein $a\in R$, $(r)\subseteq (a)\subseteq R$.
+Es folgt $a\mid r\rightsquigarrow r=ab$ für ein $b\in R$.
+Es folgt $a\in R^*$ oder $b\in R^*$, da $r$ irreduzibel ist.
+Wenn $a\in R^*$, dann ist $(a)=R$.
+Wenn $b\in R^*$, dann ist $a\in (r)$ also $(a)=(r)$.
+Also ist $(r)$ maximal.\\
+$(r)\neq R$ weil $r\notin R^*$.
+\hfill $\square$\\
+%sub end
+
+Beim Faktorisieren ganzer Zahlen ist die \Index{Primfaktorzerlegung} ganz wichtig.
+Wir suchen eine Analogie dazu in Integritätsbereichen.
+
+\subsection{Definition faktoriell}
+\label{sub:def_faktoriell}
+Ein Integritätsbereich $R$ heißt \Index{faktoriell} (Faktorieller Ring, Gauß'scher Ring, ZPE-Ring ('zerlegbar in prim Elemente'), engl. UFD (unique factorization domain)), wenn  jedes $r\in R,~r\neq 0,~r\notin R^*$ ein Produkt von Primelementen (=Elemente, die prim sind) ist.
+
+\subsubsection*{Satz}
+Jeder Hauptidealbereich ist faktoriell.\\
+
+\bet{Beweis:}\\
+Vorüberlegung: Ist $a_n\in R$, für alle $n\in \N$ mit
+\[
+(a_0)\subseteq (a_1)\subseteq (a_2)\subseteq...
+\]
+so gibt es ein $m\in \N$ so, dass
+\[
+(a_m)=(a_{m+1})\dt{=}(a_{m+k})\text{ für alle }k\ge 0,
+\]
+jede aufsteigende Kette von Idealen wird stationär (ÜA 9.4).
+Wenn dies für alle Ketten von Idealen in $R$ gilt, heißt $R$ \Index{noethersch}.\\
+Sei $S=\penbrace{s\in R~|~s\neq 0,~s\notin R^*,~s\text{ kein Produkt von Primelementen}}$.
+Zeige: $S=\emptyset$.
+Angenommen, $S\neq \emptyset$.
+Dann gibt es $s\in S$ mit folgender Eigenschaft: ist $(t)\nsupseteq (s)$, so ist $t\notin S$.
+\marginnote{wähle $t$ solange größer bis dies gilt}
+Das geht nach der Vorüberlegung.
+Weiter ist $s$ \uline{nicht} prim, also gibt es $x,y\in R$ mit
+\[
+s=xy,~x,y\notin R^*.
+\]
+Es folgt
+\[
+(s)\nsubseteq (x) \text{ und } (s)\nsubseteq (y)\Rightarrow x,y\notin S.
+\]
+Also sind $x,y$ beide Produkte von Primelementen.
+Aber dann ist $s=xy$ auch ein Produkt von Primelementen, $s\notin S \lightning$
+\hfill $\square$
+%sub end
+
+\subsection{Satz 16}
+\label{sub:satz_16}
+Sei $R$ ein Integritätsbereich.
+Dann sind folgende Bedingungen äquivalent:
+\begin{enumerate}[(i)]
+	\item $R$ ist faktoriell
+	\item Jedes Element $r\in R,~r\neq 0,~r\notin R^*$ ist ein Produkt irreduzibler Elemente, $r=p_1\cdots p_m,~p_j$ irreduzibel, wobei die $p_j$ bis auf Reihenfolge und Multiplikation mit Einheiten \uline{eindeutig} sind.
+\end{enumerate}
+
+\bet{Beweis:}\\
+\uline{(i)$\Rightarrow$(ii):}
+Weil Primelemente irreduzibel sind, ist nur die Eindeutigkeit der Faktorisierung zu zeigen.\\
+Sei also $r\in R,~r\neq 0,~r\notin R^*$, dann
+\[
+r=p_1\cdots p_m=q_1\cdots q_n,~ q_i \text{ prim},~p_i\text{ irreduzibel}
+\]
+Also $q_1\mid r \stackrel{q_1\text{ prim}}{\rightsquigarrow}$ es gibt ein $j$ mit $q_1\mid p_j$ \OE $j=1$ (Umnummerieren).\\
+Daher $q_1\mid p_1\rightsquigarrow p_1=u_1q_1\stackrel{p_1\text{ irreduzibel}}{\rightsquigarrow} u_1\in R^*$.
+\marginnote{Teiler von Einheiten sind wieder Einheiten}
+Also $p_2\cdots p_m u_1=q_2\cdots q_n$.\\
+Iteriere das, dann folgt $n=m$ und wir haben $p_j=u_jq_j$ für $u_j\in R^*\rightsquigarrow$ fertig.\\
+
+\uline{(ii)$\Rightarrow$(i):}
+Zeige: wenn (ii) gilt, ist jedes irreduzible Element prim.\\
+Sei $r\in R$ irreduzibel und gelte $r\mid xy$.
+Ist $x\in R^*$ so folgt $r\mid y$ und wenn $y\in R^*$ folgt $r\mid x$.
+Ist weder $x$ noch $y$ eine Einheit, so folgt
+\[
+x=x_1\cdots x_k,~ y=y_1\cdots y_l,~x_i,y_i\text{ irreduzibel und eindeutig}
+\]
+Wenn $r\mid x_1\cdots x_k\cdot y_1\cdots y_l\rightsquigarrow$ es gibt $x_j$ mit $r\mid x_j$ oder $y_j$ mit $r\mid y_j$, daraus folgt $r\mid x$ oder $r\mid y$.
+\hfill $\square$
+
+\subsubsection*{Bemerkung}
+In faktoriellen Integritätsbereichen gilt also: 'prim'='irreduzibel'.
+%sub end
+
+\subsection{Beobachtung}
+\label{sub:beobachtung}
+Ist $R$ faktoriell, $r\in R,~r\neq 0,~r\notin R^*$, schreibe
+\[
+r=p_1^{l_1}\cdots p_n^{l_n} \text{ wobei für }i\neq j\text{ gelte: }p_i\nmid p_j,~p_j\text{ prim}
+\]
+Dann ist \uline{jeder} Teiler von $r$ von der Form
+\[
+s=p_1^{k_1}\cdots p_n^{k_n}\cdot u \text{ mit } u\in R^*,~k_i\le l_i~(p_j^0=1)
+\]
+Folglich existieren in faktoriellen Ringen $\ggT$'s.
+%sub end
+
+\subsection{Definition euklidischer Bereich}
+\label{sub:def_euklid_bereich}
+Sei $R$ ein Integritätsbereich.
+Eine Abbildung $\delta:R\to\N$ heißt \Index{Gradfunktion}, wenn gilt:
+Für alle $a,b\in R$ mit $b\neq 0$ gibt es $q,r\in R$ mit
+\[
+a=bq+r \text{ und } \delta(r)<\delta(b).
+\]
+Ein Integritätsbereich mit Gradfunktion heißt \Index{euklidischer Bereich} (euklidischer Ring).
+
+\subsubsection*{Beispiel}
+\begin{enumerate}[(a)]
+	\item $R=\Z,~\delta(x)=\abs{x}$ Absolutbetrag.
+	Dann liefert teilen mit Rest: ist $a,b\in\Z,~b\neq 0$, so gibt es $q,r\in\Z$ mit
+	\[
+	a=bq+r,~0\le r<\abs{b}
+	\]
+	\item $K$ Körper, $\delta(x)\left\{\begin{array}{cl}1 & x\neq 0\\ 0 & x=0 \end{array}\right.$ ist Gradfunktion:
+	\[
+	a=bq \text{ mit } q=ab^{-1} \text{ (Teilen ohne Rest)}
+	\]
+\end{enumerate}
+%sub end
+
+\subsection{Satz 17}
+\label{sub:satz_17}
+Jeder euklidischer Bereich ist ein Hauptidealbereich.\\
+
+\bet{Beweis:}\\
+Sei $\delta$ eine Gradfunktion auf $R$, sei $I\trianglelefteq R$.
+Für $I=\{0\}=(0)$ ist $I$ ein Hauptideal.
+Für $I\neq \{0\}$ wähle $b\in I\backslash\{0\}$ so, dass $\delta(b)$ minimal ist.
+Ist $a\in I$ schreibe $a=bq+r$ mit $\delta(r)<\delta(b)$.
+Es folgt
+\[
+r=a-bq\in I,\text{ also } r=0\rightsquigarrow a\in (b) \rightsquigarrow I=(b)
+\]
+\hfill $\square$\\
+Gezeigt ist damit:\\
+$R$ Körper $\Rightarrow$ $R$ euklidischer Bereich $\Rightarrow$ $R$ Hauptidealbereich $\Rightarrow$ $R$ faktoriell\\
+(keiner der Pfeile ist umkehrbar!).
+%sub end
+
+\subsection{Lemma 10 (Polynomdivision)}
+\label{sub:polynomdivision}
+Sei $R$ ein Integritätsbereich, sei $g=a_0+a_1T\dt{+}a_mT^m\in R[T]$ mit $\deg(g)=m\ge 0$ und Leitkoeffizient $a_m\in R^*$.
+Sei $f\in R[T]$.
+Dann gibt es eindeutig bestimmte Polynome $q,r\in R[T]$ mit
+\[
+f=q\cdot g+r \text{ und } \deg(r)<m.
+\]
+
+\bet{Beweis:}\\
+\uline{Eindeutigkeit:}
+$f=gq+r=g\tilde{q}+\tilde{r}$ und $\deg(\tilde{r})<m \rightsquigarrow g(q-\tilde{q})=\tilde{r}-r.$
+Da $a_m\in R^*$ folgt
+\[
+\deg(g(q-\tilde{q}))=\underbracket{\deg(g)}_{=m}+\deg(q-\tilde{q})=\underbracket{\deg(\tilde{r}-r)}_{<m}
+\]
+also
+\[
+\deg(q-\tilde{q})=-\infty \text{ d.h. } q=\tilde{q} \rightsquigarrow r=\tilde{r}
+\]
+
+\uline{Existenz:}
+Induktion nach $\deg(f)=n$.
+Für $n<m$ setze $q=0$ und $r=f\rightsquigarrow$ fertig.
+Sei jetzt $n\ge m\ge 0,~ f=b_o\dt{+}b_nT^n$.
+Setze $h=f-b_na_m^{-1}T^{n-m}\cdot g$, es folgt $\deg(h)<n$.
+Also gibt es $\tilde{q},r\in R[T]$ mit
+\[
+h=g\cdot \tilde{q}+r,~\deg(r)<m.
+\]
+Es folgt
+\[
+f=h+b_na_m^{-1}T^{n-m}g=g(\tilde{q}+b_na_m^{-1}T^{n-m})+r
+\]
+\hfill $\square$
+%sub end
+
+\subsection{Korollar 1}
+\label{sub:korollar_1}
+Sei $K$ ein Körper.
+Dann ist der Polynomring $K[T]$ ein euklidischer Bereich und insbesondere faktoriell.\\
+
+\bet{Beweis:}\\
+Setze $\delta(f)=2{-\deg(f)},~2{-\infty}=0 \rightsquigarrow \delta$ ist Gradfunktion nach \hyperref[sub:polynomdivision]{4.11}.
+\hfill $\square$\\
+%sub end
+
+Unser nächstes Ziel ist der \uline{Satz von Gauß}:
+wenn $R$ faktoriell ist, so ist auch $R[T]$ faktoriell.\\
+Die Idee:
+betrachte $\underbracket{R\subseteq R[T]\subseteq Q[T]}_{\text{faktoriell}},~Q=\Quot(R)$.
+
+\subsection{Vorbereitung für den Satz von Gauß}
+\label{sub:vorbereitung_satz_von_gauss}
+Sei $R$ ein faktorieller Integritätsbereich.
+\begin{enumerate}[(A)]
+	\item Es gilt $R[T]^*=R^*$.
+	Ist $r\in R$ irreduzibel in $R$, so ist $r$ auch irreduzibel in $R[T]$ (ÜA).
+	\item Sei $f\in R[T]$ mit $\deg(f)=m\ge 1,~f=a_0\dt{+}a_mT^m$.
+	Sei $d\in\ggT(a_0\dt{,}a_m)$, es folgt mit $a_i=d\cdot b_i$, dass
+	\[
+	f=d(b_0\dt{+}b_mT^m) \text{ und } 1\in \ggT(b_0\dt{,}b_m).
+	\]
+	Man nennt ein Polynom $g\in R[T]$ mit $\deg(g)=m\ge 1$ \Index{primitiv}, wenn 
+	\[
+	g=b_0\dt{+}b_mT^m \text{ und } 1\in \ggT(b_0\dt{,}b_m).
+	\]
+	Jedes Polynom $f\in R[T]$ mit $\deg(f)\ge 1$ lässt sich also schreiben als $f=d\cdot \tilde{f}$, mit $d\in R$ und $\tilde{f}\in R[T]$ primitiv.
+	Diese Zerlegung ist eindeutig bis auf Multiplikation mit Einheiten, weil $\ggT$ bis auf Einheiten eindeutig ist.
+	Außerdem sind irreduzible Polynome von $\deg(.)\ge 1$ primitiv.
+	\item Sei $m=\deg(f)\ge 1,~f=\frac{a_0}{b_0}\dt{+} \frac{a_m}{b_m}T^m,~b=b_0\cdot b_m,~a_i,b_i\in R$.
+	Es folgt $b\cdot f\in R[T]\rightsquigarrow b\cdot f =d\cdot \tilde{f}$ mit $\tilde{f}\in R[T]$ primitiv, $d\in R\rightsquigarrow f=\frac{d}{b}\cdot \tilde{f}$.
+	Ist $f=\frac{x}{y}\tilde{\tilde{f}}$ mit $\tilde{\tilde{f}}\in R[T]$ primitiv, $x,y\in R$, so folgt
+	\[
+	y\cdot d\cdot \tilde{f}=x\cdot b\cdot \tilde{\tilde{f}}\stackrel{\text{(B)}}{\Rightarrow} \tilde{\tilde{f}}=u\cdot \tilde{f} \text{ für } u\in R^*
+	\]
+\end{enumerate}
+%sub end
+
+\subsection{Lemma 11 (Gauß Lemma)}
+\label{sub:gauss_lemma}
+Sei $R$ faktoriell, seien $f,g\in R[T]$ primitiv, $\deg(f),\deg(g)\ge 1$.\\
+Dann ist $h=f\cdot g$ primitiv.\\
+
+\bet{Beweis:}\\
+Angenommen, das ist falsch.
+Dann existiert ein Element $p\in R$, $p$ prim, mit $h=p\cdot \tilde{h},~\tilde{h}\in R[T]$.
+Betrachte $\varphi:R\to \nicefrac{R}{(p)}$ \marginnote{Integritätsbereich weil $(p)$ Primideal} und $\varphi:R[T]\to \nicefrac{R}{(p)}[T],~ a_0\dt{+}a_nT^n\mapsto \varphi(a_0)\dt{+}\varphi(a_n)T^n$.
+Es folgt $\varphi(h)=0$, aber $\varphi(f)\neq 0 \neq \varphi(g)$, weil $p$ \uline{nicht} alle Koeffizienten von $f$ und $g$ teilt. $\lightning$
+\hfill $\square$
+%sub end
+
+\subsection{Satz 18}
+\label{sub:satz_18}
+Sei $R$ faktoriell und $f\in R[T]$ mit $\deg(f)\ge 1$.
+Wenn $f$ irreduzibel in $R[T]$ ist, so ist $f$ auch irreduzibel in $Q[T],~Q=\Quot(R)$.\\
+\newpage
+\bet{Beweis:}\\
+Angenommen, es gibt $g,h\in Q[T]$ mit $\deg(g),\deg(h)\ge 1$ und $f=g\cdot h$ (Skalare sind Einheiten in $Q[T]$).
+Schreibe $g=a\tilde{g},~h=b\cdot \tilde{h}$ mit $\tilde{g},\tilde{h}\in R[T]$ primitiv $\rightsquigarrow f=a\cdot b\cdot \underbracket{(\tilde{g}\tilde{h})}_{\text{primitiv}}$.
+Andererseits $f=d\cdot \tilde{f}$ mit $\tilde{f}$ primitiv.
+Schriebe $ab=\frac{x}{y}$ mit $x,y\in R$:
+\[
+y\cdot d\cdot \tilde{f}=x\cdot (\tilde{g}\cdot \tilde{h}) \rightsquigarrow \tilde{f}=u\cdot \tilde{g}\cdot
+\tilde{h}
+\]
+für ien $u\in R^*$ und \hyperref[sub:vorbereitung_satz_von_gauss]{4.13 (B)}$\lightning$
+\hfill $\square$
+%sub end
+
+\subsection{Theorem (Satz von Gauß)}
+\label{sub:satz_von_gauss}
+Wenn $R$ ein faktorieller Integritätsbereich ist, so ist auch $R[T]$ faktoriell.\\
+
+\bet{Beweis:}\\
+Wir wenden Theorem \hyperref[sub:satz_16]{4.7} an.
+Sei zuerst $f\in R[T]$ mit $\deg(f)\ge 1$ primitiv.
+Wenn $f$ nicht irreduzibel ist, gibt es $g,h\in R[T]$ mit $f=g\cdot h,~g,h\notin R[T]^*=R^*$.
+Weil $f$ primitiv ist, folgt $\deg(g),\deg(h)\ge 1$ und $g,h$ sind ebenfalls primitiv.
+Induktiv folgt
+\[
+f=q_1\cdots q_m,~q_i\in R[T] \text{ primitiv, irreduzibel, }\deg(q_i)\ge 1.
+\]
+Angenommen, $\tilde{q}_1\dt{,}\tilde{q}_n\in R[T]$ sind ebenfalls irreduzibel mit $f=ilde{q}_1\cdots\tilde{q}_n$.
+Das folgt (weil $f$ primitiv) $\deg(\tilde{q}_j)\ge 1$ und $\tilde{q}_j$ primitiv.
+Nach Satz \hyperref[sub:satz_18]{4.15} sind die $\tilde{q}_j,q_i$ irreduzibel in $Q[T]$.
+Da $Q[T]$ faktoriell ist, folgt $n=m$ und nach Umsortieren
+\[
+\tilde{q}_i=a_iq_i,~a_i=\frac{x_i}{y_i}\in Q,~x_i,y_i\in R
+\]
+Wegen $y_i\tilde{q}_i=x_iq_i$ folgt $a_i\in R^*$ (wie vorher) $\Rightarrow$ die Zerlegung $f=q_1\cdots q_n$ ist eindeutig bis auf Einheiten in $R^*$.\\
+Sei jetzt $f\in R[T],~f\neq 0,~f\notin R[T]^*=R^*$.
+Wenn $\deg(f)=0$, so ist $f\in R$ und hat eine eindeutige Zerlegung in $R$ (weil $R$ faktoriell ist), also auch in $R[T]$ nach \hyperref[sub:vorbereitung_satz_von_gauss]{4.13 (A)}.
+Ist $\deg(f)\le 1$ schreibe $f=D\cdot \tilde{f}$ mit $\tilde{f}\in R[T]$ primitiv, dann folgt
+\[
+f=c_1\cdots c_k\cdot g_1\cdots g_l,~c_i\in R\text{ irreduzibel, } g_j\in R[T] \text{ prmitiv und irreduzibel, }\deg(g_i)\ge 1
+\]
+Ist $f=\tilde{c}_1\cdots \tilde{c}_{\tilde{k}}\cdot \tilde{g}_1\cdots\tilde{g}_{\tilde{l}}$ eine zweite Zerlegung in primitive Elemente, mit $\tilde{c}_i\in R,~\deg(\tilde{g}_i)\ge 1$, so sind die $\tilde{g}_j$ primitiv (weil irreduzibel).
+Es folgt
+\[
+\tilde{c}_1\cdots\tilde{c}_{\tilde{k}}=c_1\cdots c_k\cdot u,~u\in R^*\qquad \tilde{g}_1\cdots \tilde{g}_{\tilde{l}}=g_1\cdots g_k\cdot u^{-1}
+\]
+und damit $k=\tilde{k},~l=\tilde{l}$ und (nach Umsortieren)
+\[
+\tilde{c}_i=u_ic_i,~u_i\in R^*\qquad\tilde{g}_j=v_jg_j,~v_j\in R^*
+\]
+\hfill $\square$
+%sub end
+
+%sec end
+\newpage
+\section{Körper, Körpererweiterungen und Konstruierbarkeit}
+\label{sec:k,k,k}
+\subsection{Definition Charakteristik}
+\label{sub:def_charakteristik}
+Sei $K$ ein Körper, sei $c:\Z\to K$ der Ringhomomorphismus $c(n)=n\cdot 1_K=\underbracket{1_K+1_K\dt{+}1_K}_{n-\text{mal}}$.
+Es gilt $\ker(c)=l\Z$ für ein $l\in \N$ nach \hyperref[sub:satz_12]{3.8} ($I\subseteq \Z \Leftrightarrow I=l\Z$ für ein $l\in\N$).
+Die Zahl $l$ nennt man die \Index{Charakteristik} von $K$, $l=\Char(K)$.
+Da $c(\Z)\subseteq K$ ein Integritätsbereich ist, folgt $l=0$ oder $l$ ist Primzahl, vgl. \hyperref[sub:def_vers_ideale]{3.13} und \hyperref[sub:bsp_7]{3.15}. 
+\begin{center}
+	denn:
+	\begin{tikzcd}[column sep=small]
+		\Z \ar{rr}{c} \ar{rd}[below,left]{} & & c(\Z)\\
+		& \nicefrac{\Z}{l\Z} \ar{ru}[below,right]{\cong} &
+	\end{tikzcd}
+	\captionof{figure}{Charakteristik von $K$}
+\end{center}
+%sub end
+
+\subsection{Beobachtungen über Körper}
+\label{sub:beo_koerper}
+\begin{enumerate}[(a)]
+	\item Sind $K,L$ Körper und ist $\varphi: K\to L$ ein Ringhomomorphismus, so ist $\varphi$ injektiv, weil $\{0\},K$ die einzigen Ideale in $K$ sind und weil $\varphi(1_K)=1_L$.
+	Es folgt $\Char(K)=\Char(L)$ $\big($denn: $\Z\stackrel{c}{\to}K\stackrel{\varphi}{\hookrightarrow}L$, also $\ker(c:\Z\to K)=\ker(\varphi\circ c=c':\Z\to L)\big)$.
+	\item Ist $K$ ein Körper, $X\subseteq K$ eine Teilmenge, so ist
+	\[
+	\bigcap \penbrace{L\subseteq K~|~L\text{ Teilkörper, }X\subseteq L}\subseteq K,
+	\]
+	der von $X$ erzeugte \Index{Teilkörper}.
+\end{enumerate}
+
+\subsection{Satz 19}
+\label{sub:satz_19}
+Jeder Körper $K$ besitzt einen eindeutig bestimmten minimalen Teilkörper $K_0\subseteq K$, den \Index{Primkörper}.
+Wenn $\Char(K)=0$, gilt $K_0\cong \Q$ und wenn $\Char(K)=l>0$ gilt, ist $K_0=c(\Z)\cong \nicefrac{\Z}{l\Z}$.\\
+
+\bet{Beweis:}\\
+Sei $K_0=\bigcap\penbrace{L\subseteq K~|~L\text{ Teilkörper}}$, dann ist $K_0\subseteq K$ ein Teilkörper nach \hyperref[sub:beo_koerper]{5.2}.
+Wegen $1_K\in K_0$ folgt $c(\Z)\subseteq K_0$.
+Wenn $l>0$ ist, $c(\Z)\cong \nicefrac{\Z}{l\Z}$ ein Teilkörper, also $K_0\subseteq c(\Z)$, also
+\[
+c(\Z)=K_0
+\]
+Ist $\Char(K)=0$, so ist $c:\Z\to K$, so ist $c$ injektiv, nach \hyperref[sub:quotientenkoerper]{3.11} existiert ein (eindeutiger) Homomorphismus:
+\begin{center}
+	\begin{tikzcd}[column sep=small]
+		\Z \ar{rr}{c} \ar{rd}[below,left]{} & & K_0\subseteq K\\
+		& \Q \ar{ru}[below,right]{\tilde{c}} &
+	\end{tikzcd}
+\end{center}
+\[
+\Rightarrow \underbracket{\tilde{c}(\Q)}_{\cong \Q}=K_0
+\]
+\hfill $\square$
+%sub end
+
+\subsection{Erinnerung an LA II, der verbesserte Einsetzungshomomorphismus}
+\label{sub:verbesserte_einsetzungshomomorphismus}
+Seien $R,S$ kommutative Ringe, $\varphi:R\to S$ ein Ringhomomorphismus.
+Sei $a\in S$.
+Definiere
+\[
+\Phi_a:R[T]\to S,+ \Phi_a(r_0\dt{+}r_nT^n)=\varphi(r_0)\dt{+}\varphi(r_n)a^n
+\]
+Das ist ein Ringhomomorphismus, der \Index{Einsetzungshomomorphismus}.\\
+Für $R=S$ und $\varphi=\id_R$ schreibe $\Phi_a(f)=f(a)$.
+%sub end
+
+\subsection{Definition Körpererweiterung}
+\label{sub:def_koerpererweiterung}
+Sei $K\subseteq L$ ein Teilkörper des Körpers $L$.
+Dann nennt man $L$ eine \Index{Körpererweiterung} von $K$.\\
+\uline{Beispiele:}
+$\Q\subseteq \R\subseteq \C$ sind Körpererweiterungen.\\
+
+Sei nun $u\in L$, betrachte $\Phi_u:K[T]\to L,~r_0\dt{+}r_nT^n\mapsto r_0\dt{+}r_nu^n$.\\
+1. Möglichkeit: $\Phi_u$ ist injektiv:
+Dann heißt $u$ \Index{transzendent} über $K$, das heißt es gibt kein Polynom $f\neq 0$ in $K[T]$ mit
+\[
+\Phi_u(f)=f(u)=0,
+\]
+also erfüllt $u$ \uline{keine} algebraische Gleichung über $K$.\\
+\uline{Beispiele:}
+$e=2.71828..=\exp(1)$ und $\pi=3.14159..$ sind transzendent über $\Q$ (!)\\
+Der kleinste Teilkörper von $L$, der $K\cup \{u\}$ enthält, ist dann \uline{isomorph} zu
+\[
+K(T)=\Quot(K[T])=\penbrace{\frac{f}{g}~|~f,g\in K[T],~g\neq 0}
+\]
+dem Körper der \uline{rationalen Funktionen} auf $K$, denn wir haben nach \hyperref[sub:quotientenkoerper]{3.11}:
+\begin{center}
+	\begin{tikzcd}[column sep=small]
+		K[T] \ar{rr}{\Phi_u} \ar{rd} & & L\\
+		& \Quot(K[T])=K(T) \ar{ru}[swap]{\tilde{\Phi}_u} &\\
+		
+	\end{tikzcd}
+\end{center}
+Man schreibt $K(u)=\penbrace{\frac{f(u)}{g(u)}\in L~|~f,g\in K[T],~g\neq 0}\cong K(T)$.\\
+
+2. Möglichkeit: $\Phi_u K[T]\to L$ ist nicht injektiv, also gibt es $f\neq 0,~f\in K[T]$ mit
+\[
+\Phi_u(f)=f(u)=0.
+\]
+Nach \hyperref[sub:korollar_1]{4.12} ist $K[T]$ ein Hauptidealbereich, also gibt es ein Polynom $\mu\in K[T]$ mit
+\[
+\ker(\Phi_u)=(\mu)\subseteq K[T].
+\]
+Es gilt $\deg(\mu)\ge 1$ (denn für $f\in K[T]$ mit $\deg(f)=0$ gilt $\Phi_u(f)\neq 0$).
+Bis auf Multiplikation mit Skalaren $a\in K^*$ ist $\mu$ eindeutig bestimmt \hyperref[sub:def_teiler]{(4.1)}, wir dürfen annehmen, dass
+\[
+\mu=\mu_u=r_0\dt{+}r_{n-1}T^{n-1}+T^n \text{ und } \deg(\mu)=n\ge 1.
+\]
+Man nennt $\mu=r_0\dt{+}T^n$ das \Index{Minimalpolynom} von $u$ über $K$ und nennt $u$ \Index{algebraisch} über $K$.
+Da $L$ ein Integritätsbereich ist, ist $(\mu)$ ein Primideal in $K[T]$, und da $\deg(\mu)\ge 1$ ist $(\mu)\neq K[T]$.
+Also ist $(\mu)$ nach \hyperref[sub:satz_15]{4.5} ein maximales Ideal und damit ist $\Phi_u(K[T])\cong \nicefrac{K[T]}{(\mu)}$ ein Körper, der kleinste Teilkörper von $L$, der $K\cup\{u\}$ enthält.
+Man schreibt dann kurz
+\[
+K[u]=\penbrace{f(u)~|~f\in K[T]}\subseteq L
+\]
+und nennt $u$ einen \Index{primitiven Erzeuger} von $K[u]$.\\
+
+\uline{Beispiel:}
+$K=\Q,~L=\R,~u=\sqrt{2}\notin \Q$.
+Es gilt $f(u)=0$ für $f=T^2-2$ und $u=f$ das Minimalpolynom von $u$.
+Es folgt, dass $\Q\subseteq \Q[\sqrt{2}]\subseteq \R$ ein Teilkörper ist.\\
+
+In beiden Fällen 1. und 2. schreibt man
+\[
+K(u)=\bigcap \penbrace{M\subseteq L \text{ Teilkörper}~|~K\cup\{u\}\subseteq M}
+\]
+$u$ algebraisch $\Rightarrow K(u)=K[u]$,\\
+$u$ transzendent $\Rightarrow K(u)=\penbrace{\frac{f(u)}{g(u)}~|~f,g\in K[T],~g\neq 0}$.
+%sub end
+
+\subsection{Definition }
+\label{sub:def_grad_kw}
+Sei $K\subseteq L$ eine Körpererweiterung.
+Dann ist $L$ ein $K$-Vektorraum:
+$(L,+)$ ist abelsche Gruppe, für $v\in L,~a\in K$ ist $va\in L$ und die Vektorraumaxiome gelten alle.
+Man nennt die Dimension von $L$ als $K$-Vektorraum den \Index{Grad der Körpererweiterung} und schreibt:
+\[
+[L:K]=\dim_K L \marginnote{Teilkörper $K\subseteq L$ mit angeben!}
+\]
+
+\subsubsection*{Satz}
+Sei $K\subseteq L$ eine Körpererweiterung, sei $u\in L,~n\in \N$.
+Dann sind äquivalent:
+\begin{enumerate}[(i)]
+	\item $u$ ist algebraisch über $K$ mit Minimalpolynom $\mu$ und $\deg(\mu)=n$.
+	\item $[K(u):K]=n<\infty$.
+\end{enumerate}
+
+\bet{Beweis:}\\
+\uline{(i)$\Rightarrow$(ii):}
+Sei $g\in K[T]$ beliebig, dann $g=q\cdot \mu+r$ mit $q,r\in K[T],~\deg(r)<n=\deg(\mu)$, vgl. \hyperref[sub:polynomdivision]{4.11}.
+Es folgt:
+\[
+g(u)=\underbracket{q(u)\cdot \underbracket{\mu(u)}_{=0}}_{=0}+r(u)=r(u),
+\]
+also
+\[
+K[u]=\penbrace{r_0\dt{+}r_{n-1}u^{n-1}~|~r_0\dt{,}r_{n-1}\in K}
+\]
+daraus folgt: $\dim_K K[u]\le n$, denn $\{1,u\dt{,}u^{n-1} \}$ ist ein lineares Erzeugendensystem von $K[u]$.
+Dieses ERZ ist linear unabhängig:
+\[
+r_0\cdot 1\dt{+}r_{n-1}u^{n-1}=0 \rightsquigarrow f=r_0\dt{+}r_{n-1}T^{n-1} \rightsquigarrow f\in (\mu),
+\]
+aber $\deg(f)<\deg(\mu) \Rightarrow f=0$.\\
+Also ist $\{1,u\dt{,u^{n-1}}\}$ eine Basis von $K[u]$ als $K$-Vektorraum.\\
+\uline{(ii)$\Rightarrow$(i):}
+Angenommen, $u$ ist transzendent über $K$.
+Dann gilt $g(u)\neq 0$ für alle $g\in K[T],g\neq 0$.
+Folglich ist die unendliche Menge $\{1,u,u^2,...\}$ linear unabhängig über $K$, daraus folgt $\dim_K K(u)$ ist nicht endlich.
+\hfill $\square$
+%sub end
+
+\subsection{Satz 20}
+\label{sub:satz_20}
+Seien $K\subseteq L\subseteq M$ Körpererweiterungen.
+Dann gilt $[M:K]=n<\infty$ genau dann, wenn $[M:L]=l<\infty$ und $[L:K]=k<\infty$, mit $n=k\cdot l$,
+\[
+[M:K]=[M:L]\cdot [L:K]
+\]
+
+\bet{Beweis:}\\
+Ist $\dim_K(M)=n$, so folgt $\dim_K(L)=l<\infty$, da $L\subseteq M$ ein Unterraum ist.
+Sei $u_1\dt{,}u_n\in M$ eine Basis für $M$ über $K$, so ist $u_1\dt{,}u_n$ ein Erzeugendensystem für $M$ über $L$, also
+\[
+\dim_L(M)\le n.
+\]
+Sei nun $v_1\dt{,}v_l\in M$ eine Basis für $M$ über $L$ und $w_1\dt{,}w_k\in L$ eine Basis für $L$ über $K$.\\
+Sei $x\in M,~x=\sum_{j=1}^{l}v_jx_j$ mit $x_j\in L$.
+Schreibe $x_j=\sum_{i=1}^k
+w_i\xi_{ij}$ mit $\xi_{ij}\in K\rightsquigarrow x=\sum_{i,j}=v_jw_i\xi_{ij}$, also ist die Menge 
+\[
+\penbrace{v_jw_i~|~1\le j\le l,~1\le i\le k}
+\]
+ein Erzeugendensystem für $M$ über $K$ und
+\[
+[M:K]\le \underbracket{[M:L]}_{=l}\cdot \underbracket{[L:K]}_{=k}
+\]
+\uline{Behauptung:} diese Menge $\penbrace{v_jw_i~|~i,j,\dots}$ ist linear unabhängig über $K$.
+Denn angenommen, $\xi_{ij}\in K$ mit
+\[
+\sum_{i,j}v_j\underbracket{w_i\xi_{ij}}_{\in L}=0\stackrel{\penbrace{v_j}\text{ Basis}}{\Rightarrow} \sum_i w_i\xi_{ij}=0\stackrel{\penbrace{w_i}\text{ Basis}}{\Rightarrow} \xi_{ij}=0
+\]
+Also $u=k\cdot l$.
+\hfill $\square$
+%sub end
+
+\subsection{Konstruierbarkeit mit Zirkel und Lineal}
+\label{sub:zirkel_lineal}
+Gegeben sei eine endliche Menge von Punkten $S=\penbrace{P_1\dt{,}P_n}\subseteq \R^2$ in der Ebene.
+Ein Punkt $q\in\R^2$ heißt \Index{elementar konstruierbar} aus $S$, wenn $q$ von den folgenden Typen ist
+\begin{enumerate}[(a)]
+	\item $q$ ist Schnittpunkt zweier geraden $k,l$, wobei $k$ und $l$ jeweils durch zwei Punkte in $S$ gehen
+	\item $q$ ist Schnittpunkt einer Geraden $l$, die durch zwei Punkte in $S$ geht mit einem Kreis $k$, dessen Mittelpunkt in $S$ ist und dessen Radius der Abstand zweier Punkte in $S$ ist $\bigg($Abstand heißt: euklidischer Abstand, $p=(x,y),~p'=(x',y'),~d(p,p')=\big((x-x')^2+(y-y')^2\big)^{\frac{1}{2}}\bigg)$
+	\item $q$ ist Schnittpunkt zweier Kreise $k,l$, deren Mittelpunkte in $S$ sind und deren Radien Abstände von Punkten in $S$ sind.
+\end{enumerate} 
+Setze nun $S=S_0$ und
+\[
+S_{j+1}=S_j\cup \penbrace{q\in \R^2~|~q \text{ aus }S_j \text{ elementar konstruierbar}}
+\]
+sowie $\mc{K}(S)=\bigcup\ablim{j\ge 0}S_j$.
+Die Punkte in $\mc{K}(S)$ ist die \uline{Menge aller aus $S$ in endlich vielen Schritten mit Zirkel und Lineal konstruierbaren Punkte}.\\
+Ist $S=\emptyset$, so ist $S_j=\emptyset~\forall j\rightsquigarrow \mc{K}(S)=\emptyset$.
+Ist $S=\{p\}$, so ist $S_j=\{p\}~\forall j\rightsquigarrow \mc{K}(S)=\{p\}$, diese beiden Fälle sind interessant.
+
+\subsubsection*{Beobachtung}
+Verschiebungen, Drehungen und zentrische Streckungen von $\R^2$ überführen Kreise in Kreise und Geraden in Geraden.
+Wenn also $\#S\ge 2$ gilt, dann dürfen wir annehmen, dass die Punkte $(0,0)$ und $(1,0)$ in $S$ liegen, indem wir $S$ geeignet verschieben, drehen und strecken; die ganze Menge $\mc{K}(S)$ wird dann auch verschoben, gedreht und gestreckt.
+%sub end
+
+\subsection{Erinnerung: Die komplexen Zahlen}
+\label{sub:komplexe_zahlen}
+$\C=\R^2$, setze $1=(1,0)$ und $i=(0,1)$. Jede komplexe  Zahl $z\in \C$ ist von der Form
+\[
+z=(u,v)=u\cdot 1+v\cdot i,~u,v\in \R.
+\]
+Die Addition ist die Addition im $\R$-Vektorraum $\R^2$, die Multiplikation ist erklärt durch
+\[
+z=(u,v)=u+v\cdot i,~u,v\in \R
+\]
+\[
+w=(x,y)=x+y\cdot i,~x,y\in \R
+\]
+\[
+z\cdot w=(u+vi)(x+yi)=(ux-vy)+(uy+vx)i
+\]
+Damit ist $\C$ ein Körper, der $\R$ als Teilkörper enthält via $r\mapsto r\cdot 1+ 0\cdot i,~r\in \R$.
+Es gilt $i^2=-1$, vgl. LA II 3.18.
+Ist $z=u+vi\in \C,~u,v\in\R$, so setzt man $\re(z)=u$ \Index{Realteil} von $z$, $\im(z)=v$ \Index{Imaginärteil} von $z$:
+\[
+\overline{z}=u-vi\text{ \Index{komplexe Konjugierte} von } z.
+\]
+Nachrechnen zeigt:
+\[
+\overline{z\cdot w}=\overline{z}\cdot\overline{w},~\overline{z+w}=\overline{z}+\overline{w},~\overline{\overline{z}}=z,~\overline{1}=1
+\]
+also ist die Abbildung $\C\to\C,~z\mapsto \overline{z}$ ist ein Automorphismus des Körpers $\C$.\\
+Beachte auch: $z\cdot \overline{z}=(u^2+v^2)\cdot 1\in\R\subseteq \C$.
+Der \uline{Absolutbetrag} von $z$ wird definiert als
+\[
+\abs{z}=\sqrt{z\overline{z}}\in\R_{\ge0}
+\]
+%sub end
+
+\subsection{Satz 21}
+\label{sub:satz_21}
+Sei nun $S\subseteq \R^2$ endlich.
+Wir identifizieren $\R^2$ mit $\C$ und betrachten $S$ als Teilmenge des Körpers $\C$.\\
+Sei $S\subseteq \C$ endlich mit $0,1\in S$.
+Dann ist $\mc{K}(S)\subseteq \C$ ein Teilkörper.
+Für alle $z\in \C$ gilt folgendes:
+\begin{enumerate}[(i)]
+	\item $z\in\mc{K}(S)\Leftrightarrow \overline{z}\in \mc{K}(S)$
+	\item $z^2\in\mc{K}(S)\Leftrightarrow z\in\mc{K}(S)$
+\end{enumerate}
+
+\bet{Beweis:}\\
+\begin{enumerate}[(i)]
+	\item $\mc{K}(S)$ ist Gruppe bzgl. +.\\
+	\begin{center}
+		\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=.5cm,y=.5cm]
+		\draw[->,color=black] (-4.3,0.) -- (7.68,0.);
+		\draw[->,color=black] (0.,-4.3) -- (0.,6.3);
+		\draw[color=black] (0pt,-10pt) node[right,green] {\footnotesize $0$};
+		\clip(-4.3,-4.88) rectangle (7.68,6.3);
+		\draw [domain=-4.3:7.68] plot(\x,{(-0.--2.54*\x)/2.12});
+		\draw(0.,0.) circle (3.30847396846cm);
+		\draw (0.,0.)-- (8.32,2.14);
+		\draw (0.,1.99471153846)-- (8.72540494838,4.23898636893);
+		\draw [shift={(2.12,2.54)}] plot[domain=-0.0893139929932:1.14726096976,variable=\t]({1.*2.69072480941*cos(\t r)+0.*2.69072480941*sin(\t r)},{0.*2.69072480941*cos(\t r)+1.*2.69072480941*sin(\t r)});
+		\draw [shift={(3.20418057046,0.824152214036)}] plot[domain=0.522981585764:1.44953713537,variable=\t]({1.*2.83472644598*cos(\t r)+0.*2.83472644598*sin(\t r)},{0.*2.83472644598*cos(\t r)+1.*2.83472644598*sin(\t r)});
+		\draw [fill=red] (-2.12,-2.54) circle (1.5pt) node[below,red] {$\hat{z}$};
+		\draw [fill=green] (0.,0.) circle (1.5pt);
+		\draw [fill=green] (2.12,2.54) circle (1.5pt) node[below,green]{$z$};
+		\draw [fill=green] (3.20418057046,0.824152214036) circle (1.5pt) node[below,green] {$w$};
+		\draw [fill=red] (4.7241899712,3.21690072677) circle (1.5pt) node[below,red] {$z+w$};
+		\end{tikzpicture}
+		\captionof{figure}{Konstruierbarkeit (i)}
+	\end{center}
+
+	\item Es gilt $i\in \mc{K}(S)$\\
+	\begin{center}
+		\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=.6cm,y=.6cm]
+		\draw[->,color=black] (-3.,0.) -- (3.,0.);
+		\draw[->,color=black] (0.,-6.) -- (0.,6.);
+		\draw [shift={(0.,0.)}] plot[domain=0.:1.57079632679,variable=\t]({1.*2.74148148148*cos(\t r)+0.*2.74148148148*sin(\t r)},{0.*2.74148148148*cos(\t r)+1.*2.74148148148*sin(\t r)});
+		\draw [shift={(-4.18648679326,0.101533896368)}] plot[domain=-1.05656961786:1.02647155575,variable=\t]({1.*6.92871225755*cos(\t r)+0.*6.92871225755*sin(\t r)},{0.*6.92871225755*cos(\t r)+1.*6.92871225755*sin(\t r)});
+		\draw [shift={(4.25078081344,0.0735695132422)}] plot[domain=2.1317818472:4.18145128247,variable=\t]({1.*7.00968541365*cos(\t r)+0.*7.00968541365*sin(\t r)},{0.*7.00968541365*cos(\t r)+1.*7.00968541365*sin(\t r)});
+		\draw [fill=green] (0.,0.) circle (1.5pt);
+		\draw[color=green] (0.,0.) node[below left] {$0$};
+		\draw [fill=green] (2.74148148148,0.) circle (1.5pt);
+		\draw[color=green] (2.88148148148,0.0) node[below] {$1$};
+		\draw [fill=red] (0.,2.76888888889) circle (1.5pt);
+		\draw[color=red] (0.141481481481,3.04888888889) node[left] {$i$};
+		\draw [fill=green] (-2.75851851852,0.) circle (1.5pt);
+		\draw[color=green] (-2.61851851852,0.) node[below] {$-1$};
+		\end{tikzpicture}
+		\captionof{figure}{Konstruierbarkeit (ii)}
+	\end{center}
+
+	\item $z\in\mc{K}(S)\Rightarrow \re(z),~\im(z),\overline{z}\in\mc{K}(S)$ also $i\cdot \im(z)=z-\re(z)\in\mc{K}(S)$.\\
+	\begin{center}
+	\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=.8cm,y=.8cm]
+		\draw[->,color=black] (-1.,0.) -- (8.,0.);
+		\draw[->,color=black] (0.,-4.) -- (0.,5.);
+		\clip(-1.5,-4.) rectangle (8.,5.);
+		\draw (3.58148148148,-5.) -- (3.58148148148,5.);
+		\draw [shift={(0.,0.)}] plot[domain=-1.00936992207:0.951981560057,variable=\t]({1.*4.37281751952*cos(\t r)+0.*4.37281751952*sin(\t r)},{0.*4.37281751952*cos(\t r)+1.*4.37281751952*sin(\t r)});
+		\draw (0.,0.)-- (3.58148148148,2.50888888889) node[midway,above,sloped]{$\abs{z}$};
+		\draw (3.58148148148,2.50888888889)-- (7.,0.) node[midway,above,sloped]{$\abs{z}$};
+		\draw [shift={(5.29074074074,1.25444444444)}] plot[domain=5.21803935973:6.08238538927,variable=\t]({1.*2.12018821796*cos(\t r)+0.*2.12018821796*sin(\t r)},{0.*2.12018821796*cos(\t r)+1.*2.12018821796*sin(\t r)});
+		\draw [shift={(5.29074074074,1.25444444444)}] plot[domain=1.98832038895:3.12541733806,variable=\t]({1.*2.12018821796*cos(\t r)+0.*2.12018821796*sin(\t r)},{0.*2.12018821796*cos(\t r)+1.*2.12018821796*sin(\t r)});
+		\draw [shift={(0.,0.)}] plot[domain=0.:1.57079632679,variable=\t]({1.*1.79074074074*cos(\t r)+0.*1.79074074074*sin(\t r)},{0.*1.79074074074*cos(\t r)+1.*1.79074074074*sin(\t r)});
+		\draw [fill=green] (0.,0.) circle (1.5pt);
+		\draw[color=green] (-0.141481481481,-0.288888888889) node {$0$};
+		\draw [fill=red] (7.,0.) circle (1.5pt);
+		\draw[color=red] (7.,0.) node[below] {$z\re(z)$};
+		\draw [fill=green] (3.58148148148,2.50888888889) circle (1.5pt);
+		\draw[color=green] (3.72148148148,2.78888888889) node {$z$};
+		\draw [fill=red] (3.58148148148,-2.50888888889) circle (1.5pt);
+		\draw[color=red] (3.72148148148,-2.23111111111) node {$\overline{z}$};
+		\draw [fill=red] (3.58148148148,0.) circle (1.5pt);
+		\draw[color=red] (3.72148148148,0.) node[below] {$\re(z)$};
+		\draw [fill=red] (1.79074074074,0.) circle (1.5pt);
+		\draw[color=red] (1.79074,0) node[below] {$\im(z)$};
+		\draw [fill=red] (0.,1.78888888889) circle (1.5pt);
+		\draw[color=red] (0,1.7888) node[left] {$i\cdot\im(z)$};
+		\draw [fill=green] (1.,0.) circle (1.5pt);
+		\draw[color=green] (1,0) node[below] {$1$};
+	\end{tikzpicture}
+	\captionof{figure}{Konstruierbarkeit (iii)}
+	\end{center}
+
+	\item $z\in\mc{K}(S),~z\neq 0\Rightarrow \hat{z}=\frac{z}{\abs{z}}\in\mc{K}(S)$.\\
+	\begin{center}
+	\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=.8cm,y=.8cm]
+		\draw[->,color=black] (-1.,0.) -- (5.,0.);
+		\draw[->,color=black] (0.,-1.) -- (0.,4.);
+		\clip(-1.,-1.) rectangle (5.,4.);
+		\draw [shift={(0.,0.)}] plot[domain=0.:1.57079632679,variable=\t]({1.*3.32*cos(\t r)+0.*3.32*sin(\t r)},{0.*3.32*cos(\t r)+1.*3.32*sin(\t r)});
+		\draw [domain=-1.:5.] plot(\x,{(-0.--2.4*\x)/3.96});
+		\draw [fill=green] (0.,0.) circle (1.5pt);
+		\draw[color=green] (0.14,0.28) node {$0$};
+		\draw [fill=green] (3.32,0.) circle (1.5pt);
+		\draw[color=green] (3.46,0.28) node {$1$};
+		\draw [fill=green] (3.96,2.4) circle (1.5pt);
+		\draw[color=green] (4.1,2.68) node {$z$};
+		\draw [fill=green] (0.,3.3) circle (1.5pt);
+		\draw[color=green] (0.14,3.58) node {$i$};
+		\draw [fill=red] (2.83925680076,1.72076169743) circle (1.5pt);
+		\draw[color=red] (2.98,2.) node {$\hat{z}$};
+	\end{tikzpicture}
+	\captionof{figure}{Konstruierbarkeit (iv)}
+	\end{center}
+
+	\item $z,w\in\mc{K}(S),~z,w\neq v \Rightarrow \hat{z}\cdot \hat{w}\in \mc{K}(S)$.\\
+	\begin{minipage}[c]{6cm}
+	$\hat{z},\hat{w}$ sind Drehungen um den Ursprung um Winkel $\alpha,\beta\rightsquigarrow \hat{z}\cdot\hat{w}$ Drehung um Winkel $\alpha+\beta$.
+	\end{minipage}
+	\begin{minipage}[c]{9cm}
+	\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+		\draw[->,color=black] (-1.,0.) -- (5.,0.);
+		\draw[->,color=black] (0.,-1.) -- (0.,5.);
+		\draw [shift={(0.,0.)},color=black]  (0,0) --  plot[domain=0.:1.57079632679,variable=\t]({1.*4.*cos(\t r)+0.*4.*sin(\t r)},{0.*4.*cos(\t r)+1.*4.*sin(\t r)}) -- cycle ;
+		\draw (0.,0.)-- (1.85230575773,3.54527338577);
+		\draw (0.,0.)-- (2.79828657405,2.85824985778);
+		\draw (0.,0.)-- (3.90615704985,0.861357708429);
+		\draw(4.,0.) circle (0.866454615755cm);
+		\draw(2.79828657405,2.85824985778) circle (1.16913687516cm);
+		\draw [shift={(0.,0.)},color=red]  plot[domain=-0.0144917390655:1.08933323092,variable=\t]({1.*1.38014491993*cos(\t r)+0.*1.38014491993*sin(\t r)},{0.*1.38014491993*cos(\t r)+1.*1.38014491993*sin(\t r)});
+		\draw [shift={(0.,0.)},color=green]  plot[domain=0.:0.795998473053,variable=\t]({1.*2.*cos(\t r)+0.*2.*sin(\t r)},{0.*2.*cos(\t r)+1.*2.*sin(\t r)});
+		\draw [shift={(0.,0.)},color=green]  plot[domain=0.:0.217039398158,variable=\t]({1.*2.78*cos(\t r)+0.*2.78*sin(\t r)},{0.*2.78*cos(\t r)+1.*2.78*sin(\t r)});
+		\draw [fill=green] (0.,0.) circle (1.5pt);
+		\draw[color=green] (0,0) node[below] {$0$};
+		\draw [fill=green] (4.,0.) circle (1.5pt);
+		\draw[color=green] (4.,-0.) node[below] {$1$};
+		\draw [fill=green] (0.,4.) circle (1.5pt);
+		\draw[color=green] (0.,4.) node[left] {$i$};
+		\draw [fill=red] (1.85230575773,3.54527338577) circle (1.5pt);
+		\draw[color=red] (2.,3.82) node {$\hat{z}\cdot\hat{w}$};
+		\draw [fill=green] (2.79828657405,2.85824985778) circle (1.5pt);
+		\draw[color=green] (2.94,3.14) node {$\hat{w}$};
+		\draw [fill=green] (3.90615704985,0.861357708429) circle (1.5pt);
+		\draw[color=green] (4.04,1.14) node {$\hat{z}$};
+		\draw[color=red] (1.,.7) node {$\alpha+\beta$};
+		\draw[color=green] (2.02,1.06) node {$\beta$};
+		\draw[color=green] (2.94,0.4) node {$\alpha$};
+	\end{tikzpicture}
+	\captionof{figure}{Konstruierbarkeit (v)}
+	\end{minipage}
+
+	\item $r,s\in \mc{K}(S),~r,s\neq0\Rightarrow \frac{s}{r}\in\mc{K}(S)$ und $\Rightarrow r,s\in\mc{K}(S)\land \R\Rightarrow r\cdot s\in\mc{K}(S)$\\
+
+	\begin{center}
+	\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+		\draw[->,color=black] (-1.,0.) -- (4.5,0.);
+		\draw[->,color=black] (0.,-1.) -- (0.,3.5);
+		\clip(-1.,-1.) rectangle (4.5,3.5);
+		\draw [domain=-1.:4.5] plot(\x,{(--7.28-2.*\x)/3.64});
+		\draw [domain=-1.:4.5] plot(\x,{(-0.--3.64*\x)/2.});
+		\draw [domain=-1.:4.5] plot(\x,{(-10.32--2.*\x)/-3.64});
+		\draw [shift={(0.,0.)}] plot[domain=0.:1.57079632679,variable=\t]({1.*2.84*cos(\t r)+0.*2.84*sin(\t r)},{0.*2.84*cos(\t r)+1.*2.84*sin(\t r)});
+		\draw [fill=green] (2.,0.) circle (1.5pt) node[below,green] {$0$};
+		\draw [fill=green] (3.64,0.) circle (1.5pt) node[below,green] {$r$};
+		\draw [fill=green] (5.16,0.) circle (1.5pt) node[below,green] {$s$};
+		\draw [fill=green] (0.,2.) circle (1.5pt) node[left,green] {$i$};
+		\draw [fill=green] (0.,0.) circle (1.5pt) node[below left,green] {$0$};
+		\draw [fill=red] (0.,2.83516483516) circle (1.5pt) node[left,red] {$?$};
+		\draw [fill=red] (2.84,0.) circle (1.5pt) node[below,red] {$\frac{s}{r}$};
+	\end{tikzpicture}
+	\captionof{figure}{Konstruierbarkeit (vi)}
+	\end{center}
+
+	\newpage
+	\item $z\in\mc{K}(S),~z\neq 0\Rightarrow \abs{z}\in\mc{K}(S)$\\
+	\begin{center}
+	\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=.6cm,y=.6cm]
+		\draw[->,color=black] (-1.,0.) -- (4.,0.);
+		\draw[->,color=black] (0.,-1.) -- (0.,4.);
+		\clip(-1.,-1.) rectangle (4.,4.);
+		\draw [shift={(0.,0.)}] plot[domain=0.:1.57079632679,variable=\t]({1.*3.3*cos(\t r)+0.*3.3*sin(\t r)},{0.*3.3*cos(\t r)+1.*3.3*sin(\t r)});
+		\draw [fill=green] (0.,0.) circle (1.5pt) node[below left,green] {$0$};
+		\draw [fill=green] (2.22,2.44) circle (1.5pt) node[below,green] {$z$};
+		\draw [fill=red] (3.3,0.) circle (1.5pt) node[below,red] {$\abs{z}$};
+	\end{tikzpicture}
+	\captionof{figure}{Konstruierbarkeit (vii)}
+	\end{center}
+
+	\item $z\neq 0$ mit $\hat{z},\abs{z}\in\mc{K}(S)\Rightarrow z\in \mc{K}(S)$\\
+	Es folgt $z,w\in\mc{K}(S),~z,w\neq 0$
+	\[
+	z\cdot w=\hat{z}\abs{z}\cdot \hat{w}\abs{w}=\hat{z}\hat{w}\cdot\abs{z}\abs{w}=\hat{zw}\abs{zw}
+	\]
+	sowie
+	\[
+	\frac{1}{z}=\frac{\hat{z}^{-1}}{\abs{z}}=\frac{\overline{\hat{z}}}{\abs{z}}\in\mc{K}(S)
+	\]
+	Weil
+	\[
+	\hat{z}\overline{\hat{z}}=\abs{\hat{z}}^2=1
+	\]
+	\[
+	z=\abs{z}\hat{z}\Rightarrow \frac{1}{z}\frac{1}{\abs{z}\hat{z}}=\frac{\hat{z}^{-1}}{\abs{z}}
+	\]
+	Also ist $\mc{K}(S)$ ein Körper und $z\in\mc{K}(S)\Rightarrow\overline{z}\in\mc{K}(S)$.\\
+	\begin{center}
+	\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=.7cm,y=.7cm]
+		\draw[->,color=black] (-1.,0.) -- (4.5,0.);
+		\draw[->,color=black] (0.,-1.) -- (0.,4.5);
+		\clip(-1.,-1.) rectangle (4.5,4.5);
+		\draw [shift={(0.,0.)}] plot[domain=0.:1.57079632679,variable=\t]({1.*2.*cos(\t r)+0.*2.*sin(\t r)},{0.*2.*cos(\t r)+1.*2.*sin(\t r)});
+		\draw [shift={(0.,0.)}] plot[domain=0.:1.57079632679,variable=\t]({1.*4.*cos(\t r)+0.*4.*sin(\t r)},{0.*4.*cos(\t r)+1.*4.*sin(\t r)});
+		\draw (0.,0.)-- (2.31927533967,3.25898172729);
+		\draw [fill=green] (0.,0.) circle (1.5pt) node[below left,green] {$0$};
+		\draw [fill=green] (2.,0.) circle (1.5pt) node[below,green] {$1$};
+		\draw [fill=green] (0.,2.) circle (1.5pt) node[left,green] {$i$};
+		\draw [fill=green] (4.,0.) circle (1.5pt) node[below,green] {$\abs{z}$};
+		\draw [fill=red] (2.31927533967,3.25898172729) circle (1.5pt) node[below,red] {$z$};
+		\draw [fill=green] (1.15963766983,1.62949086365) circle (1.5pt) node[below,green] {$\hat{z}$};
+	\end{tikzpicture}
+	\captionof{figure}{Konstruierbarkeit (viii)}
+	\end{center}
+
+	\item $r\in\mc{K}(S)\cap\R,~r>0\Rightarrow\sqrt{r}\in\mc{K}(S)$
+	\begin{equation*}
+	\begin{aligned}
+		1^2+s^2&=\beta^2\\
+		r^2+s^2&=\alpha^2\\
+		\alpha^2+\beta^2&=(1+r)^2\\
+		1+s^2+r^2+s^2&=1+2r+r^2\\
+		s^2=r\Rightarrow s&=\sqrt{r}
+	\end{aligned}
+	\end{equation*}
+	\begin{center}
+	\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=.7cm,y=.7cm]
+		\draw[->,color=black] (-1.,0.) -- (6.,0.);
+		\draw[->,color=black] (0.,-1.) -- (0.,3.5);
+		\clip(-1.,-1.) rectangle (6.,3.5);
+		\draw [shift={(2.72,0.)}] plot[domain=0.:3.1415,variable=\t]({1.*2.72*cos(\t r)+0.*2.72*sin(\t r)},{0.*2.72*cos(\t r)+1.*2.72*sin(\t r)});
+		\draw (1.78,-1.) -- (1.78,3.5);
+		\draw (0.,0.)-- (1.78,2.55241062527) node[midway, above,sloped] {$\beta$};
+		\draw (1.78,2.55241062527)-- (5.44,0.) node[midway, above,sloped] {$\alpha$};
+		\draw [domain=-1.:6.] plot(\x,{(--2.55241062527-0.*\x)/1.});
+		\draw [fill=green] (1.78,0.) circle (1.5pt) node[below,green] {$1$};
+		\draw [fill=green] (5.44,0.) circle (1.5pt) node[below,green] {$r+1$};
+		\draw [fill=green] (0.,0.) circle (1.5pt) node[below left,green] {$0$};
+		\draw [fill=green] (2.72,0.) circle (1.5pt) node[below,green] {$\frac{r+1}{2}$};
+		\draw [fill=green] (1.78,2.55241062527) circle (1.5pt);
+		\draw [fill=red] (0.,2.55241062527) circle (1.5pt) node[left,red] {$s$};
+	\end{tikzpicture}
+	\captionof{figure}{Konstruierbarkeit (ix)}
+	\end{center}
+
+	\item $z\in\mc{K}(S),~w\in\C,~w^2=z\Rightarrow w\in\mc{K}(S)$.
+	\[
+	\hat{w}^2=\hat{z},~w=\pm \hat{w}\sqrt{\abs{z}}
+	\]
+	sind die beiden Quadratwurzeln aus $z$ mit
+	\[
+	w^2=z,~w=\hat{w}\abs{w}
+	\]
+	\[
+	w^2=\hat{w}\hat{w}\abs{w}\abs{w}=\hat{ww}\abs{ww}=\hat{z}\abs{z}
+	\]
+	\begin{center}
+	\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=.7cm,y=.7cm]
+		\draw[->,color=black] (-1.,0.) -- (5.,0.);
+		\draw[->,color=black] (0.,-1.) -- (0.,4.);
+		\clip(-1.,-1.) rectangle (5.,4.);
+		\draw [shift={(0.,0.)}] plot[domain=0.:1.57079632679,variable=\t]({1.*3.*cos(\t r)+0.*3.*sin(\t r)},{0.*3.*cos(\t r)+1.*3.*sin(\t r)});
+		\draw (0.,0.)-- (4.,2.);
+		\draw (0.,0.)-- (2.7,3.32);
+		\draw (1.89283337874,2.32748400646)-- (4.,2.);
+		\draw (4.,2.)-- (3.,0.);
+		\draw [shift={(0.,0.)}] plot[domain=0.:1.57079632679,variable=\t]({1.*3.72*cos(\t r)+0.*3.72*sin(\t r)},{0.*3.72*cos(\t r)+1.*3.72*sin(\t r)});
+		\draw [fill=green] (0.,0.) circle (1.5pt) node[below left,green] {$0$};
+		\draw [fill=green] (3.,0.) circle (1.5pt) node[below,green] {$1$};
+		\draw [fill=green] (0.,3.) circle (1.5pt)node[left,green] {$i$};
+		\draw [fill=green] (4.,2.) circle (1.5pt) node[right,green] {$\hat{z}+1$};
+		\draw [fill=green] (2.7,3.32) circle (1.5pt) node[below,green] {$z$};
+		\draw [fill=green] (1.89283337874,2.32748400646) circle (1.5pt) node[below,green] {$\hat{z}$};
+		\draw [fill=green] (2.683281573,1.3416407865) circle (1.5pt) node[below,green] {$\hat{w}$};
+		\draw [fill=green] (3.352,1.676) circle (1.5pt)node[below,green] {$\overline{w}$};
+		\draw [fill=green] (3.72,0.) circle (1.5pt) node[below,green] {$\abs{w}$};
+	\end{tikzpicture}
+	\captionof{figure}{Konstruierbarkeit (x)}
+	\end{center}
+	\hfill $\square$
+\end{enumerate}
+%sub end
+
+\subsection{Lemma 12}
+\label{sub:lemma_12}
+\subsubsection*{Lemma A}
+Sei $K\subseteq L$ eine Körpererweiterung, sei $u\in L$ mit $u^2\in K$.
+Dann gilt
+\[
+[K(u):K]\le 2
+\]
+
+\bet{Beweis:}\\
+$u$ ist Nullstelle von $T^2-u^2\in K[T]$, also algebraisch über $K$.
+Für das Minimalpolynom $\mu_u$ von $u$ über $K$ gilt
+\[
+\mu_u\mid T^2-u^2\Rightarrow \deg(\mu_u)\le 2
+\]
+und
+\[
+\deg(\mu_u)=[K(u):K]
+\]
+nach \hyperref[sub:def_grad_kw]{5.6}.
+\hfill $\square$
+
+\subsubsection*{Lemma B}
+Sei $K\subseteq \C$ eine Teilkörper mit folgender Eigenschaft:
+\[
+x\in K\Rightarrow \overline{x}\in K
+\]
+Ist dann $z\in \C$ aus einer Teilmenge $S\subseteq K$ mit einem der drei Verfahren aus \hyperref[sub:zirkel_lineal]{5.8} konstruierbar, so gibt es $w\in \C$ mit $w^2\in K$ mit $z\in K(w)$.\\
+
+\bet{Beweis:}\\
+\begin{enumerate}[(a)]
+	\item Betrachte die Abbildung $x\mapsto x'=\frac{x-a}{b-a}\in K$.
+	Dann ist $z'=c'+t(d'-c'),~t\in \R$ also
+	\[
+	z'\in \R\Leftrightarrow \im(z')=0\Leftrightarrow \im(c')+t\cdot \im(d'-c')=0
+	\]
+	dann kann $t$ berechnet werden, $t=\frac{-\im(c')}{\im(d'-c')}=\frac{-i\im(c')}{i\im(d'-c')}$.\\
+	Ist $x\in K$, so ist auch $\overline{x}\in K$.
+	Wegen $\re(x)=\frac{1}{2}(x+\overline{x})$ gilt dann
+	\[
+	\re(x)\in K\Rightarrow \im(x)\cdot i=x-\re(x)\in K
+	\]
+	Es folgt $t\in K$, also $z'\in K$, also auch $z\in K$.
+	Also $z\in K=K(1)$.\\
+	\begin{minipage}[c]{8cm}
+		\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+		\clip(-1.,-1.) rectangle (4.,4.);
+		\draw [domain=-1.:4.] plot(\x,{(--4.7748--1.02*\x)/3.32});
+		\draw [domain=-1.:4.] plot(\x,{(--11.9676-1.84*\x)/3.9});
+		\draw (-0.58,1.26) circle (1.5pt);
+		\draw (-0.44,1.54) node {$a$};
+		\draw (2.74,2.28) circle (1.5pt);
+		\draw (2.88,2.56) node {$b$};
+		\draw (-0.66,3.38) circle (1.5pt);
+		\draw (-0.52,3.66) node {$c$};
+		\draw (3.24,1.54) circle (1.5pt);
+		\draw (3.38,1.82) node {$d$};
+		\draw[red] (2.09290478645,2.08119363921) circle (1.5pt);
+		\draw[color=red] (2.24,2.36) node {$z$};
+		\end{tikzpicture}
+	\end{minipage}
+	\begin{minipage}[c]{8cm}
+		Nach der Transformation:\\
+		\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=.8cm,y=.8cm]
+		\clip(-1.,-2.) rectangle (6.,3.);
+		\draw [domain=-1.:6.] plot(\x,{(-1.6416-0.*\x)/3.42});
+		\draw [domain=-1.:6.] plot(\x,{(--10.956-3.24*\x)/4.76});
+		\draw (-0.62,-0.48) circle (1.5pt);
+		\draw (-0.48,-0.2) node {$a'=0$};
+		\draw (2.8,-0.48) circle (1.5pt);
+		\draw (2.94,-0.2) node {$b'=1$};
+		\draw (0.12,2.22) circle (1.5pt);
+		\draw (0.26,2.5) node {$c'$};
+		\draw (4.88,-1.02) circle (1.5pt);
+		\draw (5.02,-0.74) node {$d'$};
+		\draw [fill=red] (4.08666666667,-0.48) circle (1.5pt);
+		\draw[color=red] (4.22,-0.2) node {$z'$};
+		\end{tikzpicture}
+	\end{minipage}
+	\item Betrachte Transformation $x\mapsto x'=\frac{x-a}{b-a}\in K$.\\
+	Ansatz $z'=d'+t(d'-c')$ mit $\abs{z'}^2=1$ führt auf quadratische Gleichung $t=\alpha+\sqrt{\delta},~\alpha\in K,~\delta\cap\R_{\ge0}$.
+	Es folgt $t\in K(\sqrt{\delta}) \rightsquigarrow z' \in K(\sqrt{\delta})\rightsquigarrow z\in K(\sqrt{\delta})$.\\
+	\begin{minipage}[c]{8cm} 
+		\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+		\clip(-3.,-3.) rectangle (4.,3.5);
+		\draw(0.9,-0.22) circle (2.cm);
+		\draw [domain=-3.:4.] plot(\x,{(--6.1168-2.62*\x)/1.76});
+		\draw [->] (-1.48,-1.94) -- (0.9,-0.22);
+		\draw [->] (-2.64247638744,-0.312533057587) -- (-0.20940039245,1.44410058868);
+		\draw [->] (0.9,-0.22) -- (0.453247687341,-2.16946463706) node[midway,right] {$r$};
+		\draw [->] (-1.48,-1.94) -- (-2.64247638744,-0.312533057587) node[midway,right] {$r$};
+		\draw (0.9,-0.22) circle (1.5pt) node[right] {$a$};
+		\draw (0.4,2.88) circle (1.5pt) node[below] {$d$};
+		\draw (2.16,0.26) circle (1.5pt) node[below] {$c$};
+		\draw (-1.48,-1.94) circle (1.5pt) node[below] {$p$};
+		\draw (-2.64247638744,-0.312533057587) circle (1.5pt) node[below] {$q$};
+		\draw (-0.20940039245,1.44410058868) circle (1.5pt) node[below] {$b$};
+		\draw [fill=red] (2.835,-.755) circle (1.5pt) node[left,red] {$z$};
+		\end{tikzpicture}
+	\end{minipage}
+	\begin{minipage}[c]{8cm}
+		Nach der Transformation:\\
+		\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+		\draw[->,color=black] (-2.5,0.) -- (2.5,0.);
+		\draw[->,color=black] (0.,-2.5) -- (0.,2.5);
+		\clip(-2.5,-2.5) rectangle (2.5,2.5);
+		\draw(0.,0.) circle (2.cm);
+		\draw [domain=-2.5:2.5] plot(\x,{(--3.8428-1.4*\x)/2.62});
+		\draw (0.,0.) circle (1.5pt) node[below left] {$a'=0$};
+		\draw (2.,0.) circle (1.5pt) node[below right] {$b'=1$};
+		\draw (-1.26,2.14) circle (1.5pt) node[below] {$d'$};
+		\draw (1.36,0.74) circle (1.5pt) node[below] {$c'$};
+		\draw [fill=red] (1.95495358452,0.422085870869) circle (1.5pt) node[above right,red] {$z'$};
+		\end{tikzpicture}
+	\end{minipage}
+	\item Schnitt zweier Kreise führt auf genauso eine Formel.
+\end{enumerate}
+\hfill $\square$
+%sub end
+
+\subsection{Notation}
+\label{sub:notation}
+Sei $K\subseteq L$ eine Körpererweiterung, sei $u\in L$.
+Dann bezeichnet $K(u)$ den kleinsten Teilkörper von $L$, der $K\cup \{u\}$ enthält.
+Die Elemente von $K(u)$ sind von der Form
+\[
+x=x_ku^k+x_{k+1}u^{k+1}\dt{+}x_{k+l}u^{k+l},~x_k\in K,~k\in \Z,~l\ge0
+\]
+Sind $u_1\dt{,}u_m\in L$, so schreibe
+\[
+K(u_1\dt{,}u_m)=K(u_1)K(u_2)\dots K(u_m),
+\]
+das ist der kleinste Teilkörper von $L$, der $K\cup\{u_1\dt{,}u_m\}$ enthält.
+%sub end
+
+\subsection{Satz 22}
+\label{sub:satz_22}
+Sei $S=\penbrace{0,1,p_1\dt{,}p_m}\subseteq \C$, sei $K=\Q(p_1,\bar{p_1}\dt{,}p_m,\bar{p_m})\subseteq \mc{K}(S)\subseteq \C$.
+Sei $q\in \mc{K}(S)$.
+Dann gibt es Teilkörper
+\[
+K_0=K\subseteq K_1\dt{\subseteq}K_n\subseteq \mc{K}(S)\text{ mit }q\in K_n
+\]
+und $[K_{j+1}:K_j]=2$.
+Es folgt
+\[
+[K_n:K]=2^n.
+\]
+
+\bet{Beweis:}\\
+Die Elemente von $K$ sind Linearkombinationen von Potenzen der $p_j,\bar{p}_j$, also gilt für alle $x\in K$, dass $\bar{x}\in K$.\\
+Wir benutzen die Notation aus \hyperref[sub:def_koerpererweiterung]{5.5}:
+$S_{j+1}$ entsteht aus $S_j$ durch Hinzunahme aller Punkte, die durch die Verfahren (a),(b),(c) aus $S_j$ mit Zirkel und Lineal konstruierbar sind, mit $S_0=S$.
+Sei $q\in  S_1$.
+Dann gibt es nach \hyperref[sub:lemma_12]{5.11} ein $w\in \C$ mit $w^2\in K$ und $q\in K(w)$.
+Weiter ist $[K(w):K]\le 2$ und $\bar{w}^2\in K\subseteq K(w)$
+\[
+\Rightarrow [K(w,\bar{w}):K]=\underbracket{[K(w,\bar{w}):K(w)]}_{\le 2}\cdot \underbracket{[K(w):K]}_{\le 2}\in \{1,2,4\}
+\]
+Ist also $S_1=S_0\cup \penbrace{q_1\dt{,}q_r}$ so gibt es $w_1\dt{,}w_r\in \C$ mit $w_j^2\in K$:
+\[
+S_1\subseteq K(w_1,\bar{w_1}\dt{,}w_r\bar{w}_r)=K'\subseteq \mc{K}(S)
+\]
+\[
+K\subseteq K(w_1)\subseteq K(w_1,\bar{w}_1)\subseteq K(w_1,\bar{w}_1,w_2)\dt{\subseteq}K'
+\]
+und $[K':K]$ ist Zweierpotenz und $S_1\subseteq K'$.
+Jetzt weiter mit $S_2$ und $K'\rightsquigarrow$ Behauptung
+\hfill $\square$
+%sub end
+
+\subsection{Satz 23}
+\label{sub:satz_23}
+Ausgehend von der Menge $S=\{0,1\}$ ist die Dreiteilung des Winkels $60\degree=\frac{\pi}{3}$ nicht mit Zirkel und Lineal möglich.\\
+
+\bet{Beweis:}\\
+\begin{minipage}{4cm}
+	grafik
+\end{minipage}
+\begin{minipage}{8cm}
+	\begin{equation*}
+	\begin{aligned}
+		w&=\frac{1}{2}+i\frac{\sqrt{3}}{2}\\
+		q^3&=w\\
+		q&= \cos(20\degree)+i\cdot \sin(20\degree)=u+iv,~u^2+v^2=1\Leftrightarrow v^2=1-u^2\\
+		q^3&=(u+iv)^3\\
+		\re(q^3)&=\frac{1}{2}=\re \big((u+iv)(u^2-v^2+2iuv) \big)=u^3-uv^2-2uv^2\\
+		&=u^3-u(1-u^2)-2u(1-u^2)=u^3-u+u^3-2u+2u^3\\
+		&=4u^3-3u
+	\end{aligned}
+	\end{equation*}
+\end{minipage}
+
+Wenn $q$ konstruierbar ist, so auch $u=\re(q)$.
+Für das Minimalpolynom von $2u$ über $\Q$ gilt, wegen $(2u)^3-3(2u)-1=0$, dass
+\[
+\mu_{2u}\mid T^3-3T-1
+\]
+\uline{Behauptung:} $T^3-3T-1\in \Z[T]$ ist irreduzibel in $\Z[T]$, also auch in $\Q[T]$.\\
+\bet{Beweis:}\\
+\[
+T^3-3T-1=(\alpha T+\beta)(\gamma T^2+\delta T+\epsilon)\text{ mit } \alpha,\beta,\gamma,\delta,\epsilon\in \Z,~1=\alpha\cdot \gamma \text{\OE} \alpha=1
+\]
+daraus folgt
+\[
+-1=\beta\cdot\epsilon\Rightarrow \beta=\pm 1
+\]
+ist Nullstelle von $f$, aber
+\[
+f(1)\neq 0\neq f(-1)\lightning
+\]
+\hfill $\square$\\
+
+Es folgt $\mu_{2u}=T^3-3-1$, also $[\Q(2u):\Q]=3$.
+Wäre$u\in \mc{K}(\{0,1\})$, so wäre $2u\in L$ mit 
+\[
+[L:\Q]=2^l\text{, aber } [L:\Q]=[L:\Q(2u)]\cdot\underbracket{[\Q(2u):\Q]}_{=3}\lightning
+\]
+\hfill $\square$
+%sub end
+
+\subsection{Bemerkung}
+\label{sub:bemerkung}
+Wir haben im vorigen Beweis folgende nützliche Hilfsmittel benutzt:
+\begin{enumerate}[(A)]
+	\item Ist $R$ faktoriell und $f\in R[T]$ irreduzibel, so ist $f$ irreduzibel in $Q[T]$ für $Q=\Quot(R)$ (vgl. \hyperref[sub:satz_18]{4.15}).
+	\item Sei $f=aT^3+bT^2+cT+d\in R[T]$ und $a=1$ und sei $R$ faktoriell.
+	Wenn $f$ reduzibel ist, gibt es ein Teiler von $d$, der Nullstelle von $f$ ist.\\
+	Denn: $f=(\alpha T+\beta)(\gamma T^2+\delta T+\epsilon)$ ($f$ primitiv!)
+	\[
+	\Rightarrow \alpha\gamma=1 ~ \text{\OE} ~\alpha=1\rightsquigarrow f(-\beta)=0\text{ und } d=\beta\cdot \epsilon
+	\]
+	\item Ist $K\subseteq L$ eine Körpererweiterung mit $m=[L:K]$, ist $u\in L$ mit Minimalpolynom $\mu_u$ über $K$, so gilt
+	\[
+	\deg(\mu_u)\mid m.
+	\]
+	Denn
+	\[
+	m=[L:K]=[L:K(u)]\cdot \underbracket{[K(u):K]}_{\deg \mu_u}
+	\]
+\end{enumerate}
+%sub end
+\newpage
+\subsection{Das Delische Problem}
+\label{sub:delisches_problem}
+Das \Index{Delische Problem} ist mit Zirkel und Lineal nicht lösbar.\\
+Die Pest wütete in Delos... Aufgabe: einen Würfel zu konstruieren, dessen Volumen 2 ist.
+
+\subsubsection*{Satz}
+$\sqrt[3]{2}\notin \mc{K}(\{0,1\})$, die Zahl $\sqrt[3]{2}$ ist nicht mit Zirkel und Lineal aus $\{0,1\}$ konstruierbar.\\
+
+\bet{Beweis:}\\
+$u=\sqrt[3]{2}$ ist Nullstelle von $T^3-2=f$.
+Da $\pm1,\pm2$ keine Nullstellen von $f$ sind und $f$ primitiv in $\Z[T]$ ist, ist $f$ irreduzibel, also
+\[
+\mu_u=T^3-2\rightsquigarrow \left[\Q\enbrace{\sqrt[3]{2}}:\Q\right]=3
+\]
+\[
+\Rightarrow \sqrt[3]{2}\notin \mc{K}(\{0,1\})
+\]
+\hfill $\square$\\
+
+Wie kann man Irreduzibilität von Polynomen in $\Z[T]$ prüfen?\\
+\uline{Vorsicht:} Kriterium \hyperref[sub:bemerkung]{5.15 (B)} greift nur bei Polynomen von Grad $\le3$!!\\
+
+\subsubsection*{Beispiel}
+$f=(T^2+1)^2$ ist primitiv in $\Z[T]$, hat keine Nullstelle in $\Z,\Q$ oder $\R$, ist aber reduzibel!
+%sub end
+
+\subsection{Satz 24 (Eisensteins Kriterium)}
+\label{sub:satz_24}
+Sei $R$ faktoriell, sei $p\in R$ prim und sei $f=a_nT^n\dt{+}a_0\in R[T]$ primitiv und von Grad $n\ge 1$.\\
+Falls gilt: $p\mid a_j$ für $j=0\dt{,}n-1$ und $p\nmid a_n$ und $p^2\nmid a_0$, so ist $f$ irreduzibel.\\
+
+\bet{Beweis:}\\
+Angenommen, $f=g\cdot h$ mit $\deg(g),\deg(h)\ge 1$, also $g=b_kT^k\dt{+}b_0$ und $h=c_lT^l\dt{+}c_0$. 
+Außerdem $a_0=b_0c_0$ mit $p\mid c_0$ und \OE $p\mid b_0$.
+Da $p^2\nmid a_0$ folgt $p\nmid c_0$.
+Sei $m$ minimal mit $p\nmid b_m$ (also $p\mid b_0\dt{,}p\mid b_{m-1}$).\\
+Da $g$ primitiv ist, gilt $m\le k$.
+\[
+a_m=\underbracket{b_0c_m+b_1c_{m-1}\dt{+}b_{m-1}c_1}_{\text{wird von }p\text{ geteilt}}+\underbracket{b_mc_0}_{\text{wird nicht von }p \text{ geteilt}}
+\]
+\[
+p\nmid a_m\Rightarrow m=n~\lightning_{\deg(h)\ge 1}
+\]
+\hfill $\square$\\
+
+Mit dem \Index{Eisenstein-Kriterium} folgt z.B. sofort: ist $p\in\N$ eine Primzahl, so ist für $m\ge 1$ das Polynom
+\[
+T^m\pm p\in \Z[T]\text{ irreduzibel in }\Q[T]
+\]
+%sub end
+\newpage
+\subsection{Substitution}
+\label{sub:substitution}
+Sei $R$ ein kommutativer Ring, sei $u\in R^*$ und $k\in R[T]$.\\
+Für $f=a_nT^n\dt{+}a_0\in R[T]$ schreibe
+\[
+f(uT+k)=a_n(uT+k)^n\dt{+}a_0\in R[T]
+\]
+(substituiere/ersetze $T$ durch $uT+k$).\\
+Die Abbildung
+\[
+f\mapsto f(uT+k),~\phi:R[T]\to R[T]
+\]
+ist ein Ringisomorphismus mit Inversen
+\[
+g\mapsto g(u^{-1}(T-k)),~\psi:R[T]\to R[T]
+\]
+Denn:
+\[
+\psi\circ\phi(f)=\psi(f(uT+k))=f(u(u^{-1}(T-k))+k)=f(T-k+k)=f(T)=f
+\]
+Also gilt:
+\[
+f\text{ irreduzibel}\Leftrightarrow f(uT+k)\text{ irreduzibel}
+\]
+%sub end
+
+\subsection{Lemma 13}
+\label{sub:lemma_13}
+Sei $p\in \N$ eine Primzahl.
+Dann ist $f=T^{p-1}\dt{+}T+1\in \Z[T]$ irreduzibel.\\
+
+\bet{Beweis:}\\
+$(T-1)f=T^p-1$ (geometrische Summe)\\
+Substitution: $T\mapsto T+1$: zu zeigen $f(T+1)=\tilde{f}$ ist irreduzibel.
+\begin{equation*}
+\begin{aligned}
+	&\Rightarrow (T+1-1)\tilde{f}=(T+1)^p-1 \Rightarrow T\cdot \tilde{f}=\sum_{k=0}^{p}\binom{p}{k}T^k-1\\
+	&\Rightarrow T\cdot \tilde{f}=\sum_{k=1}^{p}\binom{p}{k}T^k=\binom{p}{1}T\dt{+}\binom{p}{p}T^p\\
+	&\Rightarrow \tilde{f}=\binom{p}{1}\dt{+}\binom{p}{p}T^{p-1} \Rightarrow \tilde{f}=p+\binom{p}{2}T\dt{+}T^{p-1}\\
+	&\Rightarrow p\mid \binom{p}{k}\in \N\text{ für }k=1\dt{,}p-1
+\end{aligned}
+\end{equation*}
+Nach Eisenstein ist $\tilde{f}$ irreduzibel, also ist $f$ irreduzibel.
+\hfill $\square$
+%sub end
+
+\subsection{Konstruktion von regelmäßigen $n$-Ecken mit Zirkel und Lineal}
+\label{sub:konstruktion_n_ecken}
+Sei $n\in \N,~n\ge 3$.
+\begin{center}
+	\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1cm,y=1cm]
+	\draw[->,color=black] (-2.5,0.) -- (2.5,0.);
+	\draw[->,color=black] (0.,-2.5) -- (0.,2.5);
+	\clip(-2.5,-2.5) rectangle (2.5,2.5);
+	\fill[color=red,fill=red,fill opacity=0.1] (1.4142135623730967,1.4142135623730934) -- (0.,2.) -- (-1.4142135623730974,1.414213562373095) -- (-2.,0.) -- (-1.4142135623730991,-1.414213562373099) -- (0.,-2.) -- (1.414213562373095,-1.414213562373101) -- (2.,0.) -- cycle;
+	\draw(0.,0.) circle (2.cm);
+	\draw (0.,0.)-- (1.4142135623730967,1.4142135623730934);
+	\draw [color=red] (1.4142135623730967,1.4142135623730934)-- (0.,2.);
+	\draw [color=red] (0.,2.)-- (-1.4142135623730974,1.414213562373095);
+	\draw [color=red] (-1.4142135623730974,1.414213562373095)-- (-2.,0.);
+	\draw [color=red] (-2.,0.)-- (-1.4142135623730991,-1.414213562373099);
+	\draw [color=red] (-1.4142135623730991,-1.414213562373099)-- (0.,-2.);
+	\draw [color=red] (0.,-2.)-- (1.414213562373095,-1.414213562373101);
+	\draw [color=red] (1.414213562373095,-1.414213562373101)-- (2.,0.);
+	\draw [color=red] (2.,0.)-- (1.4142135623730967,1.4142135623730934);
+	\draw [shift={(0.,0.)}] plot[domain=0.:0.7853981633974471,variable=\t]({1.*0.8533333333333345*cos(\t r)+0.*0.8533333333333345*sin(\t r)},{0.*0.8533333333333345*cos(\t r)+1.*0.8533333333333345*sin(\t r)});
+	\draw [fill=green] (0.,0.) circle (1.5pt);
+	\draw [fill=green] (1.4142135623730967,1.4142135623730934) circle (1.5pt);
+	\draw [fill=green] (0.,2.) circle (1.5pt) node[above left] {$i$};
+	\draw [fill=green] (-2.,0.) circle (1.5pt);
+	\draw [fill=green] (2.,0.) circle (1.5pt) node[below right] {$1$};
+	\draw [fill=green] (0.,-2.) circle (1.5pt);
+	\draw [fill=green] (-1.4142135623730974,1.414213562373095) circle (1.5pt);
+	\draw [fill=green] (-1.4142135623730991,-1.414213562373099) circle (1.5pt);
+	\draw [fill=green] (1.414213562373095,-1.414213562373101) circle (1.5pt);
+	\draw (1,.5) node {\tiny$\frac{360\degree}{8}$};
+	\end{tikzpicture}
+	\captionof{figure}{Konstruktion eines 8-Ecks}
+\end{center}
+Beispiel: für $n=8$ müssen wir den Winkel $\frac{360\degree}{8}$ konstruieren.\\
+
+Setze $q(n)=\cos\enbrace{\frac{2\pi}{n}}+i\sin\enbrace{\frac{2\pi}{n}}$\\
+Frage:für welche $n$ gilt
+\[
+q(n)\in \mc{K}(\{0,1\})
+\]
+
+\subsubsection*{Vorüberlegung}
+Reduzierung der Frage:
+für welche Primzahlen $p$ gilt $q(p)\in \mc{K}(\{0,1\})$?\\
+Denn:
+\begin{equation*}
+\begin{aligned}
+n=p_1p_2\rightsquigarrow \underbracket{q(n)\cdots q(n)}_{p_2} &\hat{=} \underbracket{\frac{360\degree}{n}\cdots\frac{360\degree}{n}}_{p_2}\\
+&= p_2\cdot \frac{360\degree}{p_1p_2}=\frac{360\degree}{p_1}\hat{=}q(p_1)
+\end{aligned}
+\end{equation*}
+Wir erhalten: Wenn 
+\[
+q(n)\in\mc{K}(\{0,1\})\Rightarrow q(p_i)\in\mc{K}(\{0,1\})\text{ für }i=1\dt{,}k\text{ und }n=p_1\cdots p_k
+\]
+Für $q(p)$ gilt
+\[
+q(p)^p=1\Leftrightarrow q(p)^p-1=0
+\]
+für das Minimalpolynom $\mu_{q(p)}$ von $q(p)$ über $\Q$ gilt also:
+\[
+\mu_{q(p)}\mid T^p-1=(T-1)\underbracket{(T^{p-1}\dt{+}1)}_{\text{irreduzibel, \hyperref[sub:lemma_13]{5.19}}}
+\]
+\[
+\Rightarrow \mu_{q(p)}=T^{p-1}\dt{+}1
+\]
+Falls also $q(p)\in\mc{K}(\{0,1\})$, so ist 
+\[
+\deg(\mu_{q(p)})=p-1=2^l\text{ für ein }l\ge 2
+\]
+Solche Primzahlen nennt man \bet{Fermatsche Primzahlen}\index{Primzahl!Fermatsche},
+\[
+2^l+1=p
+\]
+Frage: Struktur von $l$?
+
+\subsubsection*{Lemma}
+Ist $2^l+1$ eine Primzahl, so ist $l$ eine Zweierpotenz.\\
+
+\bet{Beweis:}\\
+$l=1$ dann $l=2^0=1$ \checkmark\\
+Sei nun $l>1$.
+Wir schreiben $l=\underbracket{g}_{\text{gerade oder }g=1}\underbracket{u}_{\text{ungerade}}$.\\
+$\zz~u=1$\\
+\[
+z=2^g\rightsquigarrow 2^l=(s^g)^u=z^u
+\]
+Dann folgt:
+\begin{equation*}
+\begin{aligned}
+	p&= 2^l+1=z^u+1 \bgl{u\text{ ungerade}}1-(-z)u \\
+	&= \underbracket{(1-(-z))}_{=1+z\ge3}\underbracket{((-z)^{u-1}+(-z)^{u-2}\dt{+}1)}_{=\frac{1-(-z)^u}{1-(-z)}}\\
+	&\stackrel{p\text{ prim}}{\Rightarrow} 1=\frac{1-(-z)^u}{1-(-z)}\\
+	&\Rightarrow u=1
+\end{aligned}
+\end{equation*}
+\hfill $\square$\\
+
+Setze $F_j=2^{2^j}+1$.
+Dann sind $F_0=3,~F_1=5,~F_2=2^4+1=17,~F_3=257,~F_4=65537$ Primzahlen.
+Dagegen ist $F_5$ keine Primzahl.
+Es ist ein \uline{offenes} Problem, ob es außer $F_1\dt{,}F_4$ noch weitere Fermatsche Zahlen gibt.
+
+\subsubsection*{Zusammenfassung}
+\begin{itemize}
+	\item $n\in \N,~n\ge3$.
+	Für welche $n$ ist $q(n)\in\mc{K}(\{0,1\})$?\\
+	Wenn $q(n=p_1\cdots p_k)\in \mc{K}(\{0,1\})\Rightarrow q(p_i)\in\mc{K}(\{0,1\})$ für $i=1\dt{,}k$.
+	\item Für welche Primzahlen $p$ ist $q(p)\in\mc{K}(\{0,1\})$?
+	\item Wenn $q(p)\in\mc{K}(\{0,1\})$, dann $p=2^l+1,~l\in\N$ mit $l=2^k$ für ein $k\in\N$.
+\end{itemize}
+\uline{Man kann zeigen:}
+\[
+q(n)\in\mc{K}(\{0,1\})\Leftrightarrow n=2^mp_1\cdots p_k,~p_1\dt{<}p_k \text{ alles Fermatsche Primzahlen, }m\in\N
+\]
+Der Beweis benutzt Galois-Theorie, vgl. Jacobsen 4.11.
+Gauß gab als erster eine Konstruktion eines regelmaäßigen 17-Ecks an.
+%sub end
+
+Wir betrachten jetzt transzendente Zahlen und zeigen, dass
+\[
+e=\exp(1)=\sum_{k=0}^{\infty}\frac{1}{k!} \text{ nicht algebraisch über }\Q\text{ ist.}
+\]
+
+\subsection{Definition algebraische Hülle}
+\label{sub:alg_huelle}
+Sei $K\subseteq L$ eine Körpererweiterung.
+Die \Index{algebraische Hülle} von $K$ in $L$ ist
+\[
+\acl_L(K)=\penbrace{u\in L~|~ u \text{ algebraisch über }K}\qquad(\text{acl='algebraic cloure'})
+\]
+
+\subsubsection*{Satz}
+Ist $K\subseteq L$ eine Körpererweiterung, so ist 
+\[
+K\subseteq \acl_L(K)\subseteq L
+\] 
+ein Teilkörper.\\
+Es gilt:
+\[
+\acl_L(\acl_L(K))=\acl(K).
+\]
+\newpage
+\bet{Beweis:}\\
+Sei $u,v\in L$ algebraisch über $K$.
+Es folgt
+\[
+u\pm v,~u\cdot v,~\frac{u}{v}\in K(u,v)
+\]
+und
+\[
+[K(u,v):K]=\underbracket{[K(u,v):K(u)]}_{\text{endlich}}\cdot \underbracket{[K(u):K]}_{\text{endlich}}
+\]
+weil $u,v$ algebraisch sind.
+Nach ÜA 11.4 ist jedes Element von $K(u,v)$ algebraisch über $K$.
+Also ist $\acl_L(K)\subseteq L$ ein Körper.
+Sei $K'=\acl_L(K)$ und $u\in \acl_L(K')$.
+Dann gibt es $w_1\dt{,}w_r\in K'$ mit
+\[
+u\in\acl_LK(w_1\dt{,}w_r)
+\]
+Damit folgt, dass
+\[
+[K(u,w_1\dt{,}w_r):K]=[K(u,w_1\dt{,}w_r):K(w_1\dt{,}w_r)]\cdot [K(w_1\dt{,}w_r):K]
+\]
+Beide Faktoren sind endlich $\rightsquigarrow u$ algebraisch über $K$ nach ÜA 11.4 $\Rightarrow u\in\acl_L(K)$.
+\hfill $\square$\\
+
+Eine Vorüberlegung zur Existenz reeller Zahlen, die transzendent über $\Q$ sind.
+$\Q$ ist abzählbar, jedes Polynom $f\in \Q[T]$ hat endlich viele rationale Koeffizienten $\rightsquigarrow \Q[T]$ ist abzählbar.
+Jedes Polynom in $\Q[T]$ hat nur endliche viele Nullstellen (überlegen wir später nochmal!) daraus folgt, dass $\acl_\C(\Q)$ und $\acl_\R(\Q)$ sind beides \uline{abzählbare} Körper.
+Da $\R$ und $\C$ überabzählbar sind, ist 'fast jede' reelle oder komplexe Zahl transzendent über $\Q$.
+%sub end
+
+\subsection{Definition formale Ableitung}
+\label{sub:def_formale_ableitung}
+Für $f=a_nT^n\dt{+}a_0\in R[T]$ setzen wir 
+\[
+Df=na_nT^{n-1}\dt{+}a_1\in R[T]
+\] 
+als \Index{formale Ableitung}, sowie
+\[
+F=(1+D\dt{+}D^n)f,~n=\deg(f)
+\]
+($F$ löst dann formal die DGL $(1-D)F=f$).\\
+Für $f=\frac{1}{n!}T^n\in \Q[T]$ ergibt sich
+\[
+F=1+T+\frac{1}{2}T^2\dt{+}\frac{1}{n!}T^n=\sum_{k=0}^{n}\frac{1}{k!}T^k \tag*{$\ast$}
+\]
+%sub end
+
+\subsection{Lemma 14}
+\label{sub:lemma_14}
+Sei $f=\sum_{k=0}^{n}a_kT^k\in\C[T]$.
+Sei $F=(1+D\dt{+}D^n)f$.
+Für jedes $z\in \C$ gilt dann
+\[
+\abs{F(0)\exp(z)-F(z)}\le\sum_{k=0}^{n}\abs{a_k}\cdot\abs{z}^k\exp(z)
+\]
+
+\bet{Beweis:}\\
+\begin{equation*}
+\begin{aligned}
+	\abs{F(0)\exp(z)-F(z)} &= \abs{\sum_{k=0}^na_kk!\cdot \sum_{k=0}^n \frac{z^l}{l!}-\sum_{k=0}^{n}a_k\underbracket{\sum_{k=0}^{n}\frac{k!}{l!}z^l}_{\text{ nach }\ast}}\\
+	&= \abs{\sum_{k=0}^n a_k\cdot \sum_{l\ge k}\frac{k!}{l!}z^l} \le \sum_{k=0}^n \sum_{l\ge k}\abs{a_k} \frac{k!}{l!}\abs{z}^l\\
+	&\le \sum_{k=0}^n \sum_{l\ge k}\abs{a_k}\abs{z}^k \frac{1}{(l-k)!}\abs{z}^{l-k}~\text{ weil } \binom{l}{k}=\frac{l!}{k!(l-k)!}\ge 1\\
+	&\le \sum_{k=0}^{n}\abs{a_k}\cdot \abs{k}^k\exp\abs{z}
+\end{aligned}
+\end{equation*}
+\hfill $\square$
+%sub end
+
+\subsection{Bemerkung zu Nullstellen}
+\label{sub:bemerkung_nullstellen}
+Sei $p\in \N$ eine Primzahl und sei $n\ge 1$.
+Betrachte
+\[
+f=\frac{1}{(p-1)!}\cdot \underbracket{T^{p-1}}_{p-1\text{-fache NS}}\cdot  \prod_{k=1}^{n}\underbracket{(k-T)^p}_{p\text{-fache NS}}\in \C[T]
+\]
+Es folgt
+\begin{equation*}
+\begin{aligned}
+	D^mf(v) &= 0\text{ für }m\le p-2,~v=0\dt{,}n\\
+	D^{p-1}f(v) &= 0\text{ für } v=1\dt{,}n\\
+	D^{p-1}f(0) &= \frac{(p-1)!}{(p-1)!}(n!)^p=(n!)^p
+\end{aligned}
+\end{equation*}
+Für $m\ge p$ hat $D^mf$ ganzzahlige Koeffizienten, die alle von $p$ geteilt werden.
+(Das folgt alles mit der Produktregel für Ableitungen.)\\
+Sei $F=(1+D\dt{+}D^n)f,~N=\deg(f)$.
+Es folgt 
+\[
+F(0)\equiv (n!)^p \mod{p},~ F(v)\equiv 0 \mod{p}
+\]
+Schreibe $f=\sum_{n=1}^N a_nT^n,~a_n\in \Q$.
+%sub end
+
+\subsection{Satz 25 (Hermite 1873)}
+\label{sub:satz_25}
+Die Zahl $e=\exp(1)\approx 2.71..$ ist transzendent.\\
+
+\bet{Beweis:}\\
+Es genügt, folgendes zu zeigen.
+Ist $q_0\dt{,}q_n\in \Z$ mit $q_0\neq 0$, so ist
+\[
+q_0\dt{+}q_ne^n \neq 0,
+\]
+denn wenn $e$ algebraisch wäre, gäbe es ein Polynom $f\in \Q[T]$ mit $f(e)=0$, $\deg(f)\ge 1$.
+Nach Durchmultiplizieren mit dem Hauptnenner hätten wir $f\in \Z[T]$ mit $f(e)=0,~\deg(f)\ge 1$ und nach Division durch eine $e$-Potenz, dass $f(0)\neq 0$.\\
+Sei nun $p\in \N$ eine Primzahl mit $p>m$ und $p>\abs{q_0}$.
+Esfolgt (mit der Bezeichnung aus \hyperref[sub:bemerkung_nullstellen]{5.24} für dieses $p$ und $n$)
+\begin{equation*}
+\begin{aligned}
+	&\sum_{v=0}^{n}q_vF(v)\equiv q_0\cdot (n!)^p\not\equiv 0 \mod{p}\\
+	\Rightarrow &\sum_{v=0}^n q_vF(0)e^v=\sum_{v=0}^{n}q_vF(v)+\epsilon
+\end{aligned}
+\end{equation*}
+und
+\[
+\abs{\epsilon}\le \underbracket{\sum_{v=0}^{n}\abs{q_v}e^v}_{\text{hängt nicht von $p$ ab}}\underbracket{\sum_{k=1}^{N}\abs{a_k}\cdot\abs{v^k}}_{\text{hängt von $p$ ab}}
+\]
+nach \hyperref[sub:lemma_14]{5.23}, mit $f=\sum_{k=1}^{N}a_kT^k$.\\
+Nun gilt für jedes $v$
+\begin{equation*}
+\begin{aligned}
+	\sum_{k=1}^{N}\abs{a_k}\cdot\abs{v}^k &= \sum_{k=1}^{N}\abs{a_k}\cdot v^k\\
+	&\stackrel{(\ast\ast)}{\le} \frac{v^{p-1}}{(p-1)!}\prod_{k=1}^N(k+v)^p\\
+	&= \frac{1}{(p-1)!}\underbracket{\prod_{k=1}^{N}(k+v)}_{=\alpha}\underbracket{\enbrace{v\prod_{k=1}^{N}(k+v)}^p}_{=\beta} = \alpha\frac{\beta^p}{(p-1)!}
+\end{aligned}
+\end{equation*}
+wobei $\alpha, \beta$ nur von $n$ und $v$ abhängen, nihct von $p$.\\
+Für $p\gg 1$ wird $\alpha\frac{\beta^p}{(p-1)!}$ beliebig klein.
+Da es beliebig große Primzahlen $p$ gibt, können wir also durch geeignete Wahl von $p\gg 1$ erreichen, dass
+\[
+\abs{\epsilon}\le \sum_{v=0}^{N}\abs{q_v}e^v\cdot \alpha\frac{\beta^p}{(p-1)!}>\frac{1}{2}
+\]
+gilt.
+Da $\sum_{v=0}^{N}q_vF(v)\in \Z\backslash\{0\}$ gilt, folgt
+\[
+F(0)\cdot \sum_{v=0}^{N}q_ve^v\neq 0
+\]
+Zu $(\ast\ast)$:
+\begin{equation*}
+\begin{aligned}
+	(k-T)^p &= \sum_{l=0}^{p}\binom{p}{l}k^{p-l}(-1)^lT^l\\
+	(k+T)^p &= \sum_{k=0}^{p}\binom{p}{l}k^{p-l}t^l
+\end{aligned}
+\end{equation*}
+Ausmultiplizieren liefert die Abschätzung.
+\hfill $\square$\\
+
+Der vorige Beweis stammt aus \uline{E. Landaus} Zahlentheorie-Buch (Lindenmann 1882).
+Ein etwas anderer Beweis steht bei Jacobsen.
+
+\subsubsection*{Korollar}
+Die Zahl $e$ ist nicht mit Zirkel und Lineal aus $\{0,1\}$  konstruierbar.
+
+\subsubsection*{Bemerkung}
+Mit ähnlichen Methoden kann man zeigen, dass $\pi\approx 3.14..$ transzendent über $\Q$ ist.
+Der Beweis ist allerdings erheblich länger (siehe Landau oder Jacobsen) - im Prinzip aber genauso elementar.
+
+\subsubsection*{Korollar}
+Die 'Quadratur des Kreises' mit Zirkel und Lineal ist unmöglich, d.h. man kann aus $\{0,1\}$ mit Zirkel und Lineal kein Quadrat mit Fläche $\pi$ konstruieren.
+%sub end
+
+%sec end
+
+\newpage
+\section{Zerfällungskörper und algebraischer Abschluss}
+\label{sec:zerfaellungskoerper_alg_abschluss}
+\subsection{Lemma 15}
+\label{sub:lemma_15}
+Sei $K$ ein Körper, sei $f\in K[T]$ mit $\deg(f)=n\ge1$.
+Angenommen $u_1\dt{,}u_m\in K$ sind Nullstellen von $f$, d.h.
+\[
+f(u_j)=0 \text{ für } j=1\dt{,}m
+\]
+Wenn für alle $i<j$ gilt $u_i\neq u_j$, so gibt es $g\in K[T]$ mit 
+\[
+f=(T-u_1)(T-u_2)\cdots(T-u_m)\cdot g
+\]
+Insbesondere ist $m\le n$.\\
+
+\bet{Beweis:}\\
+Angenommen, $u\in K$ ist eine Nullstelle von $f$.
+Teilen mit Rest wie in \hyperref[sub:polynomdivision]{4.11}:
+\[
+f=(T-u)\cdot q+r\qquad \deg(r)<\deg(T-u)=1\Rightarrow r\in K\text{ konstant}
+\]
+da
+\[
+0=f(u)=(u-u)\cdot q(u)+r
+\]
+Es folgt $f=(T-u)\cdot q$.
+Ist $v\neq u$ eine weitere Nullstelle von $f$, so folgt
+\[
+0=f(v)=\underbracket{v-u}_{\neq 0}\cdot q(v)\rightsquigarrow v\text{ ist Nullstelle von }q=q_1\neq 0
+\]
+Daraus folgt $q=(T-v)q_2$ und
+\[
+f=(T-u_1)\cdots(T-u_m)q_m,~q_m\neq 0
+\]
+und
+\[
+\deg(f)=m+\deg(q_m)
+\]
+\hfill $\square$
+%sub end
+
+\subsection{Definition normiert}
+\label{sub:def_normiert}
+Ein Polynom $f$ dessen Leitkoeffizient 1 ist, also $f=T+a_{n-1}T^{n-1}\dt{+}a_0$ heißt \Index{normiert}.
+Ist $K$ ein Körper, so ist jedes $f\in K[T],~f\neq 0$ von der Form $f=a\cdot \tilde{f},~\tilde{f}\in K[T]$ normiert, $a\in K^*$ und $f,\tilde{f}$ haben die gleichen Nullstellen (klar).
+Ist $f\in K[T]$ normiert und gibt es $u_1\dt{,}u_m\in K$ mit
+\[
+f=(T-u_1)\cdots(T-u_m),
+\]
+so \Index{zerfällt} $f$ in \Index{Linearfaktoren} über $K$ ($\rightsquigarrow$ Jordannormalform).
+%sub end
+
+\subsection{Definition Zerfällungskörper}
+\label{sub:def_zerfaellungskoerper}
+Sei $K$ ein Körper, $f\in K[T]$ normiert.
+Eine Körpererweiterung $K\subseteq L$ heißt \Index{Zerfällungskörper} von $f$, wenn es $u_1\dt{,}u_m\in L$ gibt es mit
+\begin{enumerate}[(i)]
+	\item $f=(T-u_1)\cdots(T-u_m)$
+	\item $L=K(u_1\dt{,}u_m)$ (folglich $[L:K]<\infty$)
+\end{enumerate}
+
+\subsubsection*{Beispiel}
+\[
+f=T^2+1\in \R[T]\qquad f=(T-i)(T+i),~i\in \C
+\]
+$\C=\R(i)\rightsquigarrow \C$ ist Zerfällungskörper von $T^2+1$.
+%sub end
+
+\subsection{Satz 26}
+\label{sub:satz_26}
+Sei $K$ ein Körper und sei $f\in K[T]$ normiert mit $n=\deg(f)\ge 1$.
+Dann existiert ein Zerfällungskörper $L\supseteq K$ mit 
+\[
+[L:K]\le n!
+\]
+
+\bet{Beweis:}\\
+Induktion nach $n$:\\
+\uline{$n=1$:} $f=T-u,~u\in K\rightsquigarrow L=K$ fertig.\\
+\uline{Sei jetzt $n\ge 2$:} Schreibe $f=g\cdot h$ mit $g\in K[T]$ normiert und irreduzibel.
+Dann ist $K'=\nicefrac{K[T]}{(g)}$ ein Körper nach \hyperref[sub:satz_15]{4.5}.\\
+Via $K\hookrightarrow K[T]\stackrel{\pi}{\rightarrow}K'$ können wir $K$ als Teilkörper von $K'$ auffassen - die Elemente von $K'$ sind von der Form
+\[
+f+(g),~f\in K[T].
+\]
+Setze $u=\pi(T)\in K',~u=T+(g)\rightsquigarrow u^k=T^k+(g)$ dann folgt
+\[
+g=T^n\dt{+}a_0\Rightarrow g(u)=\underbracket{T^n\dt{+}a_0}_{=g}+(g)=(g)
+\]
+also ist $u$ eine Nullstelle von $g$.\\
+In $K'[T]$ folgt $g=(T-u)\cdot \tilde{g}$.
+Weiter gilt $\mu_u=g$,da $g$ irreduzibel ist, also gilt für $K'=K(u)$, dass
+\[
+[K':K]=\deg(g)\le n.
+\]
+Nun $\deg(\tilde{g}\cdot h)=n-1\rightsquigarrow$ es gibt ein Zerfällungskörper $L\supseteq K'$ für $\tilde{g}\cdot h$ mit
+\[
+L=K'(u_2\dt{,}u_m)=K(u_1\dt{,}u_m),~u=u_1
+\]
+also
+\[
+[L:K]=\underbracket{[L:K']}_{\le (n-1)!}\cdot \underbracket{[K':K]}_{\le n}\le n!
+\]
+\hfill $\square$\\
+
+Wir zeigen jetzt, dass ein Zerfällungskörper bis auf Isomorphie eindeutig bestimmt ist.
+%sub end
+
+\subsection{Definition Homomorphismus}
+\label{sub:def_homomorphismus}
+Sei $\varphi:K\to K'$ ein Isomorphismus von Körpern.
+\begin{enumerate}[(a)]
+	\item Für $f\in K[T],~f=a_nT^n\dt{+}a_0$ setze $\varphi(f)=\varphi(a_n)T^n\dt{+}\varphi(a_0)\in K'[T]$.
+	Dann ist
+	\[
+	\varphi:K[T]\to K'[T]
+	\]
+	ein Isomorphismus.
+	\item Wenn $L\supseteq K$ und $L'\supseteq K'$ Körpererweiterungen sind und $\psi:L\to L'$ ein Homomorphismus mit 
+	\[
+	\psi|_K=\varphi
+	\]
+	so heißt $\psi$ \Index{Homomorphismus} über $\varphi$.
+	\begin{center}
+		\begin{tikzcd}[column sep=small]
+			 L \ar{r}{\psi} & L'\\
+			 K \ar{r}{\varphi} \ar[u,hook] & K' \ar[u,hook] 
+		\end{tikzcd}
+		\captionof{figure}{Homomorphismus}
+	\end{center}
+\end{enumerate}
+%sub end
+
+\subsection{Lemma 16}
+\label{sub:lemma_16}
+Sei $\varphi:K\to K'$ ein Isomorphismus von Körpern, seien $L\supseteq K$ und $L'\supseteq K'$ Körpererweiterungen.
+Sei $u\in L$ mit normierten Minimalpolynom $\mu_u=g$.
+\begin{enumerate}[(i)]
+	\item Wenn $v\in L'$ eine Nullstelle von $\varphi(g)$ ist, gibt es \uline{genau einen} Isomorphismus 
+	\[
+	K(u)\stackrel{\psi}{\to}K'(u)
+	\]
+	über $\varphi$ mit $\psi(u)=v$.
+	\item Wenn $\varphi(g)$ keine Nullstelle in $L'$ hat, gibt es \uline{kein} Homomorphismus
+	\[
+	\psi:K(u)\to L'
+	\]
+	über $\varphi$.
+\end{enumerate}
+
+\bet{Beweis:}\\
+\uline{zu (i):}\\
+Da $g$ irreduzibel ist und $\varphi:K[T]\to K'[T]$ ein Isomorphismus ist, ist $\varphi(g)$ irreduzibel.
+Betrachte
+\begin{center}
+	\begin{tikzcd}[column sep=small]
+		K(u) \ar{r}{\cong}& \nicefrac{K[T]}{(g)} \ar{r}{\cong} & \nicefrac{K'[T]}{(\varphi(g))} \ar{r}{\cong} & K'(u)\\
+		K \ar[r,equal]\ar[u,hook] & K \ar{r}{\varphi} \ar[u,hook] & K' \ar[r,equal]\ar[u,hook] & K' \ar[u,hook]  
+	\end{tikzcd}
+	\captionof{figure}{Beweis Lemma 16}
+\end{center}
+Es folgt die Existenz von $\psi:K(u)\stackrel{\cong}{\to}K'(u)$ mit $\psi(u)=v$.
+Jedes Element $z\in K(u)$ ist von der Form
+\[
+z=a_lu^l\dt{+}a_0 \text{ und }a_j\in K,
+\]
+also ist $\psi(z)$ festgesetzt durch $\psi(u)$.
+\hfill $\square$\\
+\uline{zu (ii):}\\
+Ist $\psi:K(u)\to L'$ ein Homomorphismus über $\varphi$, so folgt für $\psi(u)=v$, dass 
+\[
+\varphi(g)(v)=\psi(g(u))=0
+\]
+\hfill $\square$
+%sub end
+
+\subsection{Satz 27}
+\label{sub:satz_27}
+Sei $\varphi:K\to K'$ ein Isomorphismus von Körpern, sei $f\in K[T]$ normiert, seien $L\supseteq K$ sowie $L'\supseteq K'$ Zerfällungskörper von $f$ bzw. $\varphi(f)$.
+Sei 
+\[
+H =\penbrace{\psi: L\to L'~|~\psi\text{ Isomorphismus über }\varphi}
+\]
+Dann gilt
+\[
+1\le\# H\le [L:K]
+\]
+(d.h. es gibt solche Isomorphismen über $\varphi$, aber höchstens $[L:K]$ viele).\\
+
+\bet{Beweis:}\\
+Induktion nach $n=\deg(f)$.\\
+\uline{$n=1$:} $f=T-u$ und $\varphi(f)=T-\varphi(u),~u\in K,~\varphi(u)\in K'$.
+Dann folgt
+\[
+L=K,~L'=K'\Rightarrow \psi=\phi \text{ fertig.}
+\]
+\uline{$n\ge 2$:} Schreibe $f=g\cdot h, g \in  K[T]$ normiert und irreduzibel.
+Da $f$ in $L[T]$ in Linearfaktoren zerfällt, zerfällt auch $g$ in $L[T]$ in Linearfaktoren.
+Sei $u\in  L$ eine Nullstelle von $g$.
+Sei $v\in L'$ eine Nullstelle von $\varphi(g)$ ($\varphi(g)$ zerfällt in $L'[T]$ in Linearfaktoren).\\
+Nach \hyperref[sub:lemma_16]{Lemma 6.6} gibt es genau ein Isomorphismus $\zeta:K(u)\to K'[T]$ über $\varphi$ mit $\zeta(u)=v$.
+Setze $M=K(u)\subseteq L$ sowie $M'=K'(u)\subseteq L'$.
+Dann folgt
+\[
+g(T-u)\tilde{g}\text{ für }\tilde{g}\in M[T]
+\]
+und 
+\[
+f=(t-u)\cdot \tilde{g}\cdot h \text{ für }\tilde{g}\in M[T].
+\]
+Nach Induktionsschritt gibt es ein Isomorphismus $\psi$ über $\zeta$, also über $\varphi$.
+\begin{center}
+	\begin{tikzcd}[column sep=small]
+		L \ar{r}{\psi} & L'\\
+		M \ar{r}{\zeta} \ar[u,hook] & M' \ar[u,hook]\\
+		K \ar{r}{\varphi} \ar[u,hook] & K' \ar[u,hook]
+	\end{tikzcd}
+	\captionof{figure}{Beweis Satz 27}
+\end{center}
+Für $\psi$ über $\zeta$ gibt es höchstens $[L:M]$ Möglichkeiten.
+Ist $\psi$ über $\varphi$, so gibt es höchstens $\deg(g)$ viele Möglichkeiten für $\psi(u)=v$, zu jeder davon höchstens $[M:K]$ Möglichkeiten über $K(u)\stackrel{\varphi}{\to}K'(u)$, also höchstens
+\[
+[L:M]\cdot [M:K]=[L:K]
+\]
+Möglichkeiten.
+\hfill $\square$
+%sub end
+
+\subsection{Korollar 2}
+\label{sub:korollar_2}
+Sei $f\in K[T]$ normiert, sei $L\supseteq K$ ein Zerfällungskörper.
+Sei
+\[
+\aut(L~|~K)=\penbrace{\psi:L\to L~|~\psi \text{ Isomorphismus über }\id_K}
+\]
+Dann ist $\aut(L~|~K)$ eine Gruppe (bzgl. Komposition von Isomorphismen) und
+\[
+\#\aut(L~|~K)\le n! \text{ wobei } n=[L:K]
+\]
+
+\subsubsection*{Bemerkung}
+Über Eigenschaften der Gruppe $\aut(L~|~K)$ kann man Aussagen über die Lösbarkeit der Gleichung $f(u)=0$ machen.
+Das ist (unter anderem) Inhalt der \Index{Galois-Theorie}.
+Auflösbarkeit von $\aut(L~|~K)$ entspricht (grob gesagt) der Auflösbarkeit der Gleichung $f(u)=0$ durch Wurzeln (vgl. Mitternachtsformel für $\deg(f)=2$).
+Die nicht-Auflösbarkeit von $\sym(n)$ für $n\ge 5$ entspricht der Nicht-Existenz von allgemeinen Lösungsformeln für Gleichungen von Grad $n\ge 5$.
+%sub end
+
+\subsection{Definition algebraisch abgeschlossen}
+\label{sub:def_alg_abgeschlossen}
+Ein Körper $K$ heißt \Index{algebraisch abgeschlossen}, wenn er eine der folgenden äquivalenten Bedingungen erfüllt
+\begin{enumerate}[(i)]
+	\item jedes normierte Polynom $f\in K[T]$ mit $\deg(f)=n\ge1$ zerfällt in Linearfaktoren,
+	\[
+	f=(T-u_1)\cdots(T-u_n),~u_j\in K.
+	\]
+	\item jedes Polynom $f\in K[T]$ mit $\deg(f)=n\ge 1$ hat mindestens eine Nullstelle $u\in K$.
+\end{enumerate}
+
+\bet{Beweis:}\\
+\uline{(i)$\Rightarrow$(ii):} nach \hyperref[sub:def_normiert]{6.2}.\\
+\uline{(ii)$\Rightarrow$(i):} nach \hyperref[sub:lemma_15]{6.1} mit Induktion nach $n$.
+
+\subsubsection*{Beispiel}
+Den Körper $\C$ ist abgeschlossen nach LA 5.27.
+%sub end
+
+\subsection{Satz 28}
+\label{sub:satz_28}
+Sei $K\subseteq L$ eine Körpererweiterung.
+Wenn $L$ algebraisch abgeschlossen ist, dann ist $\acl_L(K)\subseteq L$ algebraisch abgeschlossen.\\
+
+\bet{Beweis:}\\
+Sei $K'=\acl_L(K)$, sei $f\in K'[T]$ normiert, $\deg(f)\ge1$.
+Sei $u\in L$ eine Nullstelle von $f$.
+Dann gilt
+\[
+u\in \acl_L(K')\bgl{\hyperref[sub:alg_huelle]{5.21}}\acl_L(K)=K'
+\]
+\hfill $\square$
+%sub end
+
+\subsection{Satz 29}
+\label{sub:satz_29}
+Sei $K$ ein Körper.
+Dann existiert eine Körpererweiterung $L\supseteq K$ mit
+\begin{enumerate}[(i)]
+	\item $L$ ist algebraisch über $K$
+	\item $L$ ist algebraisch abgeschlossen.
+\end{enumerate}
+
+\bet{Beweis:}\\
+Mengentheoretische Vorüberlegung:
+Es gilt
+\[
+\#K[T]\le \#(K\times \N).
+\]
+Jedes Polynom hat nur endlich viele Nullstellen.
+Ist also $M\supseteq K$ algebraisch, so folgt
+\[
+\#M\le \#(K\times \N),
+\]
+denn jedes Polynom $f\in K[T]$ hat höchstens endlich viele Nullstellen
+Es folgt:
+es gibt eine Menge $U$ mit folgenden Eigenschaften:
+\begin{enumerate}[(i)]
+	\item Ist $L\supseteq K$ algebraisch, so gibt es ein zu $L$ isomorphen Körper $L'$, dessen Elemente der Menge $K\cup U$ sind.
+	\item Sind $M\supseteq L\supseteq K$ beides algebraische Körpererweiterungen (dann ist auch $M\supseteq K$ algebraisch nach \hyperref[sub:alg_huelle]{5.21}!) und ist $L$ Teilmenge von $U\cup K$, so gibt es einen Körper
+	\[
+	M'\subseteq U\cup K,
+	\] 
+	der über $L$ isomorph zu $M$ ist.
+\end{enumerate}
+
+Sei $\mc{P}=\penbrace{M\supseteq K~|~M\text{ alg. Körpererweiterung, die Elemente von $M$ sind Elemente von }U\cup K}$.\\
+Definiere $M_1\le M_2 \Leftrightarrow M_1\subseteq M_2$ ist eine Körpererweiterung.
+Damit ist $(\mc{P},\le)$ partiell geordnet.
+Ist $C\subseteq \mc{P}$ eine Kette, setze $\tilde{L}=\bigcup C$.\\
+\uline{Behauptung:} $\tilde{L}\in \mc{P}$.\\
+Sei $a,b\in \tilde{L} \rightsquigarrow$ es gibt $L_1,L_2\in C$ mit
+\[
+a\in L_1,~b\in L_2 ~\text{\OE}~ L_1\le L_2
+\]
+\[
+\rightsquigarrow a,b,a\pm b,a\cdot b,\frac{a}{b} \in L_2
+\]
+\[
+\Rightarrow \tilde{L} \text{ Körper}
+\]
+weiter ist $a\in L_2$ algebraisch über $K\rightsquigarrow \tilde{L}$ algebraisch über $K\rightsquigarrow \tilde{L}\in \mc{P}$.\\
+Nach Zorns Lemma gibt es in $\mc{P}$ maximale Elemente.
+Sei $L\in \mc{P}$ maximal.
+Behauptung: Dann ist $L$ algebraisch abgeschlossen.\\
+\uline{Denn:}
+$f\in L[T]$ nicht konstant $\rightsquigarrow M\supseteq L$ algebraisch, $f$ hat Nullstelle $u\in M$ (z.B. $M$ ein Zerfällungskörper von $f$ über $L$) $\text{\OE}~ M\in \mc{P}$.
+(jetzt die Mengentheoretische Vorüberlegung)
+\[
+\Rightarrow M=L \Rightarrow u\in L
+\]
+Also ist $L$ algebraisch abgeschlossen.
+\hfill $\square$\\
+
+Man nennt $L\supseteq K$ einen (den) \Index{algebraischen Abschluss} von $K$.
+%sub end
+
+\subsection{Satz 30, Eindeutigkeit des algebraischen Abschlusses}
+\label{sub:satz_30}
+Sei $K$ ein Körper, seinen $L\supseteq K$ und $L'\supseteq K$ algebraische Körpererweiterungen.
+Wenn $L$ und $L'$ algebraisch abgeschlossen sind, gibt es einen Isomorphismus $\varphi:L\to L'$ über $\id_K$.\\
+
+\bet{Beweis:}\\
+Sei $\mc{P}=\penbrace{\left.M \xrightarrow[\cong]{\psi}M'\right| M\subseteq L,~M'\subseteq L'\text{ Teilkörper, }\psi \text{ Isomophismus über }\id_K}$.
+Dann folgt: $K\stackrel{\id}{\to} K\in \mc{P}$.
+Definiere $(M\xrightarrow{\psi}M')\le (N\xrightarrow{\rho}N')$ gilt genau dann, wenn
+\begin{center}
+	\begin{tikzcd}[column sep=small]
+		N \ar{r}{\rho} & N'\\
+		M \ar[u,hook] \ar{r}{\psi} & M' \ar[u,hook]
+	\end{tikzcd}
+\end{center}
+Dann folgt jede Kette in $\mc{P}$ hat obere Schranke (ähnlich wie eben), daher hat $\mc{P}$ maximale Elemente.
+Sei $\enbrace{M\xrightarrow[\cong]{\varphi}M'}\in \mc{P}$ maximal.
+Ist $u\in L$ so erhalten wir mit \hyperref[sub:def_homomorphismus]{6.5}
+\[
+(M(u)\stackrel{\cong}{\to}M'(u))\in \mc{P}
+\]
+\[
+\Rightarrow u\in M,~u'\in M' \Rightarrow M=L\text{ und } M'=L'
+\]
+\hfill $\square$
+%sub end
+
+%sec end
+
+\cleardoubleoddemptypage
+\pagenumbering{Alph}
+\setcounter{page}{1}
+
+
+
+
+\printindex
+\listoffigures
+\end{document}
