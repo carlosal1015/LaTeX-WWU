@@ -10,7 +10,7 @@ services:
   - docker
   
 before_install:
-  - sudo docker build -t texlive !docker
+  - sudo docker build -t texlive \!docker
   
 install: true
 
