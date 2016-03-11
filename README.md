@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/JaMeZ-B/LaTeX-WWU.svg?branch=master)](https://travis-ci.org/JaMeZ-B/LaTeX-WWU)
 # LaTeX-WWU
 lecture notes written at WWU Münster, FB10
 
