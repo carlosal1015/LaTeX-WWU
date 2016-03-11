@@ -115,3 +115,32 @@ Seien $X$ ein topologischer Raum und $U$, $V$ offen in $X$.
 In dem Beweis haben wir die Offenheit von $U$ und $V$ nur gebraucht, damit $C_*(U + V) \hookrightarrow C_*(U \cup V)$ einen Isomorphismus in Homologie induziert.
 Dies kann aber auch in anderen Fällen eintreten, zum Beispiel wenn $U$ und $V$ Unterkomplexe des CW-Komplexes $X$ sind.
 % subsection relative_cup_produkte (end)
+
+\subsection{Paarung ist Isomorphismus, wenn $H_{n-1}(X)$ frei ist} % (fold)
+\label{sub:paarung_isomorphismus_frei}
+\emph{Dies war Aufgabe 3 von Blatt 3 und spielt in \autoref{bem:paarung_iso_koerper} eine Rolle.}\smallskip\\
+Sei $X$ ein topologischer Raum und $V$ eine abelsche Gruppe.
+Angenommen $H_{n-1}(X)$ ist frei für ein $n \in \mathbb{N}$.
+Dann ist der kanonische Epimorphismus aus \autoref{eig_kohomo_to_hom_homo}
+\[
+	f \colon H^n(X;V) \longrightarrow \Hom_\mathbb{Z} \enbrace*{H_n(X),V}
+\]
+ein Isomorphismus.
+\begin{beweis}
+	Es sei $[\alpha] \in \ker f$, das heißt $\alpha(a)=0$ für alle $a \in \ker d_n$.
+	Da $\alpha$ auf dem Kern von $d_n$ trivial ist, faktorisiert $\alpha$ über $\im d_n \subseteq C_{n-1}(X)$ mittels $\beta_0 \colon \im d_n \to V$, also $\alpha = \beta_0 \circ d_n$.
+	Wir wollen $\beta_0$ nun auf ganz $C_{n-1}(X)$ fortsetzen.
+	Da $H_{n-1}(X)$ nach Voraussetzung frei ist, spaltet 
+	\[
+		\begin{tikzcd}
+			\im d_n \rar[hook] & \ker d_{n-1} \rar[two heads] & H_{n-1}(X)
+		\end{tikzcd}
+	\]
+	und es folgt $\ker d_{n-1} \cong \im d_n \oplus H_{n-1}(X)$.
+	Da $C_{n-1}(X) \cong \im d_{n-1} \oplus \ker d_{n-1}$ ist, folgt
+	\[
+		C_{n-1}(X) \cong \im d_{n-1} \oplus \im d_n \oplus H_{n-1}(X)
+	\]
+	Damit können wir $\beta_0$ trivial zu $\beta \colon C_{n-1}(X) \to V$ fortsetzen und es folgt $\alpha= \beta \circ d_n = \pm d^{n-1} \beta$ und somit $[\alpha]=0$ in Kohomologie.
+\end{beweis}
+% subsection paarung_ist_isomorphismus_wenn_h__n_1_x_frei_ist (end)
