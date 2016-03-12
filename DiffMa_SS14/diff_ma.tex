@@ -151,7 +151,7 @@ Ein Atlas einer topologischen Mannigfaltigkeit heißt \bet{differenzierbar}\inde
 	\item $S^n$ mit Atlas $\set[h_i^\pm : U_i^\pm \to \mathds{R}^n]{i=1, \ldots , n+1} $
 	\item $S^n$ mit Atlas $\set{h^\pm : S^n \setminus \set{(0, \ldots , 0, \pm 1)} \xrightarrow{\cong} \mathds{R}^n} $ (\Index{stereographische Projektion}, siehe Blatt 1).
 	\begin{figure}[h]
-		\tikzsetnextfilename{stereographic_projection}
+		% \tikzsetnextfilename{stereographic_projection}
 		\centering{\begin{tikzpicture}[scale=0.8]
 			\draw[name path=real] (-5.2,0) node[above right]{$\mathds{R}^n$} -- (5.2,0);
 			\draw[name path=sphere, thick] (0,0) circle[radius=2cm];
@@ -1206,9 +1206,9 @@ Betrachte den 2-Torus $S^1 \times S^1 \subset \mathds{C} \times \mathds{C}$ mit 
 \]
 Für $a=0$ ergibt sich:
 \[
-	\tikzsetnextfilename{fluss_3}
+	% \tikzsetnextfilename{fluss_3}
 	\vcenter{\hbox{\includegraphics[width=0.4\textwidth, keepaspectratio]{Mathematica/torus.png}}}
-	\hspace{2cm} \tikzsetnextfilename{fundamentalgebiet_a_0}
+	\hspace{2cm} % \tikzsetnextfilename{fundamentalgebiet_a_0}
 	\vcenter{\hbox{\begin{tikzpicture}[scale=0.7]
 		\draw[very thick] (0,0) rectangle (4,4);
 		\foreach \x in {0,0.5,...,4}{
@@ -1222,7 +1222,7 @@ $a= \sqrt{11}$ \missingfigure{Torus + Fundamentalgebiet zum zweiten}
 Betrachte nun die 2-Sphäre $S^2 \subset \mathds{C} \times \mathds{R}$ mit dem Fluss $\Phi\enbrace[\big]{t, (z,r)} = \enbrace*{e^{it} z, r}$
 \missingfigure{Rotation um die $r$-Achse}
 
-"Schwingen" einer Ebene um den Nordpol des $S^2$
+\enquote{Schwingen} einer Ebene um den Nordpol des $S^2$
 \missingfigure{"Schwingen" einer Ebene um den Nordpol des $S^2$}
 % subsubsection 252 (end)
 
@@ -2098,7 +2098,7 @@ Eine \Index{Bündeläquivalenz} ist ein Bündelmorphismus mit $B = B'$, $\overli
 \minisec{Beispiel}%
 \begin{figure}[h]%
 	\centering{
-	\tikzsetnextfilename{induziertes_Buendel}
+	% \tikzsetnextfilename{induziertes_Buendel}
 	\begin{tikzpicture}[scale=1.1]
 		%\draw[help lines] (0,0) grid(13,8);
 		\coordinate (a) at (1.5,5);

@@ -11,7 +11,7 @@ build:
 	echo '\\tikzexternaldisable' >> \!config/mitschrift_headings.tex
 	cat \!config/mitschrift_headings.tex
 	echo '\\tikzexternaldisable' >> \!config/PhistScript.tex
-	docker run -it --rm -v $(CURDIR):/var/texlive  texlive sh -c "ls -a; ./compile_all.sh && ls OpAlg_WS15/tikz/"
+	docker run -it --rm -v $(CURDIR):/var/texlive  texlive sh -c "ls -a; ./compile_all.sh && ls DiffMa_SS14/tikz/"
 
 
 .PHONY: help build
