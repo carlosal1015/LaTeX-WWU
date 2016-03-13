@@ -27,8 +27,9 @@
 \label{sec:1}
 
 \begin{definition}[{name=[Kokettenkomplex und Kohomologie]}]
-	Sei $R$ ein Ring. Ein \bet{$R$-Kokettenkomplex}\index{Kokettenkomplex} $(C^*,d^*)$ ist eine Folge von $R$-Moduln $(C^n)_{n}$ zusammen mit $R$-linearen Abbildungen 
-	$d^n \colon C^n \to C^{n+1}$, sodass $d^{n+1} \circ d^n =0$ gilt. Der \bet{$n$-te Kohomologiemodul}\index{Kohomologiemodul} von $(C^*,d^*)$ ist definiert als 
+	Sei $R$ ein Ring. 
+	Ein \bet{$R$-Kokettenkomplex}\index{Kokettenkomplex} $(C^*,d^*)$ ist eine Folge von $R$-Moduln $(C^n)_{n}$ zusammen mit $R$-linearen Abbildungen $d^n \colon C^n \to C^{n+1}$, sodass $d^{n+1} \circ d^n =0$ gilt. 
+	Der \bet{$n$-te Kohomologiemodul}\index{Kohomologiemodul} von $(C^*,d^*)$ ist definiert als 
 	\[
 		H^n(C^*,d^*) = \frac{\ker d^n \colon C^n \to C^{n+1}}{\im d^{n-1} \colon C^{n-1} \to C^n} 
 	\]
@@ -1139,7 +1140,7 @@
 	Damit folgt die Gleichheit.
 \end{beweis}
 
-Ab jetzt ist $R$ immer kommutativ! 
+\textbf{Ab jetzt ist $R$ immer kommutativ!} 
 Wir wenden uns nun einmal mehr der Topologie von Mannigfaltigkeiten zu und erinnern uns dazu an das letzte Kapitel aus Topologie \RM{1} über die \emph{Fundamentalklasse}:
 
 \begin{erinnerungA}[{name=[Fundamentalklasse]}]
@@ -1247,15 +1248,15 @@ Wir wenden uns nun einmal mehr der Topologie von Mannigfaltigkeiten zu und erinn
 	\end{itemize}
 \end{bemerkung}
 
-\begin{erinnerungA}[{name=[Orientierungsklassen für kompakte Teilmengen]}]
-	Sei $M$ eine (nicht notwendig kompakte) $n$-Mannigfaltigkeit und $K \subseteq M$ eine kompakte Teilmenge. Dann gilt nach Lemma 16.13 aus Topologie \RM{1}.:
-	\begin{enumerate}[(i)]
+\begin{erinnerungA}[{name=[Orientierungsklassen für kompakte Teilmengen]},label=errinnerung:Orientierung_kompakteTM]
+	Sei $M$ eine (nicht notwendig kompakte) $n$-Mannigfaltigkeit und $K \subseteq M$ eine kompakte Teilmenge. Dann gilt nach Lemma 16.11 aus Topologie \RM{1}.:
+	\begin{enumerate}[(i),itemsep=0pt]
 		\item Ist $(\mu_x)_{x \in M}$ eine $R$-Orientierung von $M$, so gibt es eine eindeutige Orientierungsklasse $\mu_K \in H_n(M,M \setminus K;R)$ mit 
 		\[
 			\mu_K\big|_x = \mu_x \in H_n(M,M \setminus \set*{x};R)
 		\]
 		für alle $x \in K$.
-		\item $H_l(M, M \setminus K;R)=0$ für $l>n$.
+		\item Für $l>n$ ist $H_l(M, M \setminus K;R)=0$.
 	\end{enumerate}
 \end{erinnerungA}
 
@@ -1276,9 +1277,9 @@ Wir wenden uns nun einmal mehr der Topologie von Mannigfaltigkeiten zu und erinn
 	\[
 		H^n(\mathbb{R}^n,\mathbb{R}^n \setminus B;R) \longrightarrow \Hom_R \enbrace[\big]{H_n(\mathbb{R}^n,\mathbb{R}^n \setminus B;R),R}
 	\]
-	immer surjektiv ist nach \autoref{eig_kohomo_to_hom_homo}, gibt es $\xi \in H^n \enbrace*{\mathbb{R}^n,\mathbb{R}^n \setminus B;R}$ mit $\xi(\mu_B)=1$. 
-	Also ist $\epsilon(\xi \capp \mu_B)=1$ (siehe \ref{bem_augmentation_cap}). 
-	Folglich ist $\xi \capp \mu_B$ ein Erzeuger von $H^0(\mathbb{R}^n;R)$ und $\capp \mu_B$ ein Isomorphismus.
+	immer surjektiv ist nach \autoref{eig_kohomo_to_hom_homo} und in diesem Fall injektiv nach \cref{sub:paarung_isomorphismus_frei}, gibt es genau ein $\xi \in H^n \enbrace*{\mathbb{R}^n,\mathbb{R}^n \setminus B;R}$ mit $\xi(\mu_B)=1$. 
+	Nach \autoref{bem_augmentation_cap} ist also $\epsilon(\xi \capp \mu_B)=1$. 
+	Folglich ist $\xi \capp \mu_B$ ein Erzeuger von $H_0(\mathbb{R}^n;R)$ und $\capp \mu_B$ ein Isomorphismus.
 \end{beweis}
 
 \begin{definition}[{name=[gerichtete Menge]}]
@@ -1286,9 +1287,9 @@ Wir wenden uns nun einmal mehr der Topologie von Mannigfaltigkeiten zu und erinn
 \end{definition}
 
 \begin{beispiel}[{name=[für gerichtete Mengen]}]
-	Es gibt zahlreiche Beispiele für gerichtete Mengen
+	Es gibt zahlreiche Beispiele für gerichtete Mengen:
 	\begin{itemize}[itemsep=0pt] 
-		\item $(N,\le)$, $(\mathbb{Z},\le)$, $(\mathbb{Q},\le)$ und $(\mathbb{R},\le)$ mit der üblichen Ordnung.
+		\item $(\mathbb{N},\le)$, $(\mathbb{Z},\le)$, $(\mathbb{Q},\le)$ und $(\mathbb{R},\le)$ mit der üblichen Ordnung.
 		\item Sei $X$ ein topologischer Raum. Dann ist $\mathcal{K}(X)= \set*{K \subseteq X \given K \text{ kompakt}}$ gerichtet durch \enquote{$\subseteq$}.
 	\end{itemize}
 \end{beispiel}
@@ -1312,7 +1313,7 @@ Wir wenden uns nun einmal mehr der Topologie von Mannigfaltigkeiten zu und erinn
 	für $\lambda,\lambda' \le \mu$ erhalten wir eine $R$-Modulstruktur auf $\colim_\Lambda F$. Die Abbildungen sind dann $R$-linear.
 \end{definition}
 
-\begin{bemerkung}
+\begin{bemerkung}[{name=[{gerichtete Kolimiten}]}]
 	\leavevmode
 	\begin{itemize}
 		\item Nicht jede kleine Kategorie gehört zu einer gerichteten Menge:
@@ -1322,7 +1323,7 @@ Wir wenden uns nun einmal mehr der Topologie von Mannigfaltigkeiten zu und erinn
 		\end{enumerate}
 		\item Der Kolimes über gerichtete Mengen ist eine Spezialfall des Kolimes über kleine Kategorien aus den Übungen. 
 		Insbesondere hat der Kolimes über gerichtete Mengen einen universelle Eigenschaft, die ihn charakterisiert.
-		\item Sei $v_\lambda \in F(\lambda)$. Dann gilt
+		\item Sei $v_\lambda \in F(\lambda)$. Dann gilt:
 		\(
 			s_\lambda(v_\lambda) =0 \in \colim_\Lambda F \iff \exists \lambda' : \lambda \le \lambda', F(i_\lambda^{\lambda'})(v_\lambda)=0 \in F(\lambda')
 		\).
@@ -1333,7 +1334,7 @@ Wir wenden uns nun einmal mehr der Topologie von Mannigfaltigkeiten zu und erinn
 	Sei $(\Lambda,\le)$ eine gerichtete Menge. $\Lambda_0 \subseteq \Lambda$ heißt \Index{kofinal}, falls es zu jedem $\lambda \in \Lambda$ ein $\lambda_0 \in \Lambda_0$ gibt mit $\lambda\le \lambda_0$.
 \end{definition}
 
-\begin{lemma}[{name=[Isomorphismus zum Kolimes einer kofinalen Teilmenge]}]
+\begin{lemma}[{name=[Isomorphismus zum Kolimes einer kofinalen Teilmenge]},label=lem:kofinal_gleicher_kolimes]
 	Sei $\Lambda_0 \subseteq \Lambda$ kofinal. Dann ist die kanonische Abbildung (induziert von der Inklusion $\coprod_{\lambda_0} F(\lambda_0) \hookrightarrow \coprod_{\lambda} F(\lambda)$)
 	\[
 		c \colon \colim_{\lambda_0 \in \Lambda_0} F(\lambda_0) \longrightarrow \colim_{\lambda \in \Lambda} F(\lambda)
@@ -1357,16 +1358,16 @@ Wir wenden uns nun einmal mehr der Topologie von Mannigfaltigkeiten zu und erinn
 	Es folgt $v=0$ und damit die Behauptung.
 \end{beweis}
 
-\begin{korollarB}
+\begin{korollarB}[{name=[{einelementige kofinale Menge}]}]
 	Gibt es $\lambda_\infty \in \Lambda$ mit $\lambda \le \lambda_\infty$ für alle $\lambda \in \Lambda$, so ist $\colim_\Lambda F = F(\lambda_\infty)$.
 \end{korollarB}
 
 \begin{beispiel}[{name=[Kolimiten]}]\leavevmode
 	\begin{itemize}
 		\item Sei $\mathcal{P}\mkern-2.5mu_{\mathrm{endl}}$ die Menge aller endlichen Teilmengen der Menge $S$. 
-		Bezüglich $\subseteq$ ist $\mathcal{P}\mkern-2.5mu_{\mathrm{endl}}$ gerichtet.
+		Bezüglich \enquote{$\subseteq$} ist $\mathcal{P}\mkern-2.5mu_{\mathrm{endl}}$ gerichtet.
 		Sei $F \colon \enbrace*{\mathcal{P}\mkern-2.5mu_{\mathrm{endl}},\subseteq} \to R\text{-}\MOD$ definiert durch $F(S_0)=R[S_0]$ für $S_0 \subseteq S$ endlich. 
-		Dann ist $\colim_{\mathcal{P}\mkern-2.5mu_{\mathrm{endl}}} F \cong R[S]$ und $s_{S_0} \colon R[S_0]\to R(S)$ ist die von $S_0 \subseteq S$ induzierte Abbildung.
+		Dann ist $\colim_{\mathcal{P}\mkern-2.5mu_{\mathrm{endl}}} F \cong R[S]$ und $s_{S_0} \colon R[S_0]\to R[S]$ ist die von $S_0 \subseteq S$ induzierte Abbildung.
 		\item Sei $F \colon \mathbb{N} \to \mathbb{Z}\text{-}\MOD$ definiert durch $F(n)=\mathbb{Z}$ für alle $n$ und $F(i_n^{n'}) \colon \mathbb{Z} \to \mathbb{Z}$ ist Multiplikation mit $2^{n'-n}$. 
 		Es ergibt sich also folgendes Bild:
 		\[
@@ -1376,7 +1377,7 @@ Wir wenden uns nun einmal mehr der Topologie von Mannigfaltigkeiten zu und erinn
 		\]
 		Dann liefert $(n,z) \mapsto \frac{z}{2^n}$ eine Abbildung
 		\[
-			\colim F = \Faktor{\coprod_{\mathbb{N}} \mathbb{Z}}{\sim} = \Faktor{\mathbb{N}\times \mathbb{Z}}{\scriptstyle(n,z) \sim (n',2^{n'-n} z), n < n'} \grenzw{} \mathbb{Z}\benbrace*{\sfrac{1}{2}} = \set*{\sfrac{a}{2^n}\given a \in \mathbb{Z}, n \in \mathbb{N} }
+			\colim F = \Faktor{\coprod_{\mathbb{N}} \mathbb{Z}}{\sim} = \Faktor{\mathbb{N}\times \mathbb{Z}}{\scriptstyle(n,z) \sim (n',2^{n'-n} z), n < n'} \grenzw{} \mathbb{Z}\benbrace*{\sfrac{1}{2}} = \set[\big]{\sfrac{a}{2^n}\given a \in \mathbb{Z}, n \in \mathbb{N} }
 		\]
 		\item Ist $F$ konstant -- also $F(i_\lambda^{\lambda'})=\id_{F(\lambda)}$ für alle $\lambda \le \lambda'$ -- so ist 
 		\(
@@ -1394,7 +1395,7 @@ Wir wenden uns nun einmal mehr der Topologie von Mannigfaltigkeiten zu und erinn
 \begin{bemerkung}[{name=[gerichteter Limes als Funktor]}]
 	Sei $\FUN\enbrace*{(\Lambda,\le), R\text{-}\MOD}$ die Kategorie, deren Objekte Funktoren $F \colon (\Lambda,\le) \to R \text{-}\MOD$ sind und deren Morphismen natürliche Transformationen $\tau \colon F \to G$ sind. Dann ist
 	\[
-		\colim_\Lambda \colon \FUN\enbrace*{(\Lambda,\le), R\text{-}\MOD} \longrightarrow R\text{-}\MOD
+		\colim_\Lambda \colon \FUN\enbrace[\big]{(\Lambda,\le), R\text{-}\MOD} \longrightarrow R\text{-}\MOD
 	\]
 	ein Funktor: Ist $\tau \colon F \to G$ eine natürliche Transformation, so induziert $\coprod_{\lambda \in \Lambda}\tau_\lambda \colon \coprod_{\lambda \in \Lambda} F(\lambda) \to \coprod_{\lambda \in \Lambda} G(\lambda)$ eine $R$-lineare Abbildung $\tau_* =\colim_\Lambda \tau \colon \colim_\Lambda F \to \colim_\Lambda G$
 \end{bemerkung}
@@ -1419,7 +1420,7 @@ Wir wenden uns nun einmal mehr der Topologie von Mannigfaltigkeiten zu und erinn
 			0 \rar & F \rar["\tau"] & F' \rar["\tau'"] & F'' \rar & 0
 		\end{tikzcd}
 	\]
-	exakt in $\FUN \enbrace*{(\Lambda,\le), R\text{-}\MOD}$ so ist auch folgende Sequenz exakt
+	exakt in $\FUN \enbrace*{(\Lambda,\le), R\text{-}\MOD}$, so ist auch folgende Sequenz exakt
 	\[
 		\begin{tikzcd}[sep=large]
 			0 \rar & \colim_\Lambda F \rar["\colim_\Lambda \tau"] & \colim_\Lambda F' \rar["\colim_\Lambda \tau'"] & \colim_\Lambda F'' \rar & 0
@@ -1433,7 +1434,7 @@ Wir wenden uns nun einmal mehr der Topologie von Mannigfaltigkeiten zu und erinn
 	Dann ist $\tau_*(v)=s_\lambda'\enbrace[\big]{\tau_\lambda \enbrace*{v_\lambda}}$.
 	Da $\tau_*(v)=0$ ist, gibt es $\mu \ge \lambda$ mit 
 	\[
-		F'(i_\lambda^\mu) \enbrace[\Big]{s_\lambda'\enbrace[\big]{\tau_\lambda \enbrace*{v_\lambda}}}=0
+		F'(i_\lambda^\mu) \enbrace[\big]{\tau_\lambda \enbrace*{v_\lambda}}=0
 	\]
 	Da $\tau$ eine natürliche Transformation ist, ist 
 	\begin{align}
@@ -1441,10 +1442,11 @@ Wir wenden uns nun einmal mehr der Topologie von Mannigfaltigkeiten zu und erinn
 	\end{align}
 	Da $\tau_\mu$ injektiv ist, folgt also $F(i_\lambda^\mu)(v_\lambda)=0$ und damit ist $v=s_\lambda(v_\lambda)=0$.
 \end{beweis}
+\todo[inline]{Zur Übung könnte man die fehlenden Teile noch zeigen}
 
-\begin{bemerkung}[{name=[gerichteter Kolimes von Kern und Kokern]}]
-	Für eine natürliche Transformation $\tau \colon F \to F'$ in $\FUN \enbrace*{(\Lambda,\le),R \text{-}\MOD}$ können wir $\ker \tau$ und $\coker \tau \in \FUN \enbrace*{(\Lambda,\le), R \text{-}\MOD}$ erklären durch $\ker \tau (\lambda) = \ker \tau_\lambda$ und $\coker \tau(\lambda) = \coker \tau_\lambda$.
-	Mit der Exaktheit vom $\colim_\Lambda$ folgt insbesondere\todo{Revision 7}
+\begin{bemerkung}[{name=[gerichteter Kolimes von Kern und Kokern]},label=bem:colim_ker_coker]
+	Für eine natürliche Transformation $\tau \colon F \to F'$ in $\FUN \enbrace*{(\Lambda,\le),R \text{-}\MOD}$ können wir Funktoren(!) $\ker \tau$ und $\coker \tau \in \FUN \enbrace*{(\Lambda,\le), R \text{-}\MOD}$ erklären durch $\ker \tau (\lambda) = \ker \tau_\lambda$ und $\coker \tau(\lambda) = \coker \tau_\lambda$.
+	Mit der Exaktheit vom $\colim_\Lambda$ folgt insbesondere
 	\[
 		\colim_\Lambda \ker \tau = \ker \colim_\Lambda \tau \qquad \text{und} \qquad \colim_\Lambda \coker \tau = \coker \colim_\Lambda \tau
 	\]
@@ -1458,15 +1460,16 @@ Wir wenden uns nun einmal mehr der Topologie von Mannigfaltigkeiten zu und erinn
 \begin{beweis}
 	Sei $d^{\lambda}_n \colon C_n(\lambda) \to C_{n-1}(\lambda)$ die Randabbildung von $C_*(\lambda)$.
 	Wir fassen $d_n$ als natürliche Transformation $C_n \to C_{n-1}$ in $\FUN \enbrace*{(\Lambda,\le),R\text{-}\MOD}$ auf. 
-	Da $(\Lambda,\le)$ gerichtet ist und daher $\colim_\Lambda$ exakt ist, folgen
+	Da $(\Lambda,\le)$ gerichtet ist und daher $\colim_\Lambda$ exakt ist, folgt mit \autoref{bem:colim_ker_coker}
 	\[
-		\ker \enbrace*{d_* \colon \colim_{\Lambda} C_n \to \colim_\Lambda C_{n-1}} \cong \colim_\Lambda \enbrace*{\ker d_n \colon C_n \to C_{n-1} }
+		\ker \enbrace[\big]{d_* \colon \colim_{\Lambda} C_n \to \colim_\Lambda C_{n-1}} \cong \colim_\Lambda \enbrace[\big]{\ker d_n \colon C_n \to C_{n-1} }\marginnote{$d_*=\colim_\Lambda d_n$}
 	\]
 	und 
 	\[
-		\Underbrace{\coker \enbrace*{ d_{*} \colon \colim_\Lambda C_{n+1} \to \colim_\Lambda \ker d_n}}{ \cong H_n(\colim C_*)}
-		\cong \colim_\Lambda \enbrace[\Big]{ \Underbrace{\coker d_{n+1} \colon C_{n+1} \to \ker d_n}{\cong H_n(C_*)}} \qedhere
+		\Underbrace{\coker \enbrace[\Big]{ d_{*} \colon \colim_\Lambda C_{n+1} \to \colim_\Lambda \ker d_n}}{ \cong H_n(\colim C_*)}
+		\cong \colim_\Lambda \enbrace[\Big]{ \Underbrace{\coker d_{n+1} \colon C_{n+1} \to \ker d_n}{\cong H_n(C_*)}}
 	\]
+	und damit die Behauptung.\todo{Revision 7}
 \end{beweis}
 
 \begin{definition}[{name=[singuläre Kohomologie mit kompaktem Träger]}]
@@ -1477,43 +1480,43 @@ Wir wenden uns nun einmal mehr der Topologie von Mannigfaltigkeiten zu und erinn
 \end{definition}
 
 \begin{beispiel}[{name=[Kohomologie mit kompaktem Träger des des euklidischen Raumes]}]
-	Es gilt $H^k_c(\mathbb{R}^n;R) \cong \mathbb{R}$ für $k=0$ und $H^k_c(\mathbb{R}^n;R)=0$ sonst. 
+	Es gilt $H^k_c(\mathbb{R}^n;R) \cong R$ für $k=0$ und $H^k_c(\mathbb{R}^n;R)=0$ sonst. 
 \end{beispiel}
 \begin{beweis}
 	Die Menge $\mathcal{B}$ der kompakten Bälle $B_r(0) \subset \mathbb{R}^n$ ist kofinal in der gerichteten Menge aller kompakten Unterräume von $\mathbb{R}^n$.
 	Daher ist nach \autoref{Rn_kompakteBaelle}
 	\[
 		H^*_c(\mathbb{R}^n;R) = \colim_{K \in \mathcal{K}(\mathbb{R}^n)} H^* \enbrace*{\mathbb{R}^n , \mathbb{R}^n \setminus K;R} 
-		\cong \colim_{B \in \mathcal{B}} H^* \enbrace*{\mathbb{R}^n,\mathbb{R}^n \setminus B;R} \cong \begin{cases}
+		\StackText{\ref{lem:kofinal_gleicher_kolimes}}{\cong} \colim_{B \in \mathcal{B}} H^* \enbrace*{\mathbb{R}^n,\mathbb{R}^n \setminus B;R} \cong \begin{cases}
 			R &\text{ falls }*=n\\
 			0 &\text{ sonst }
 		\end{cases} \qedhere
 	\]
 \end{beweis}
 
-\begin{beispiel}
-	Ist $X$ kompakt, so ist $H^*_c(X)= H^*(X)$, denn für $X$ kompakt ist $X \in \mathcal{K}(X)$ ein maximal, also $\colim_{K \in \mathcal{K}(X)} H^*(X,X \setminus K) = H^*(X,X\setminus X) = H^*(X)$.
+\begin{beispiel}[{name=[{Kohomologie mit kompaktem Träger von kompakten Räumen}]}]
+	Ist $X$ kompakt, so ist $H^*_c(X)= H^*(X)$, denn für $X$ kompakt ist $X \in \mathcal{K}(X)$ ein maximales Element, also $\colim_{K \in \mathcal{K}(X)} H^*(X,X \setminus K) = H^*(X,X\setminus X) = H^*(X)$.
 \end{beispiel}
 
-\begin{definition}
-	Setze $C_c^*(X) := \colim_{\mathcal{K}(X)} C^*(X,X\setminus K)$
+\begin{definition}[{name=[{Kokettenkomplex mit kompaktem Träger}]}]
+	Setze analog zu obiger Definition 
+	\[
+		C_c^*(X) := \colim_{\mathcal{K}(X)} C^*(X,X\setminus K)
+	\]
+	Es gilt $H^*_c(X) = H^*( C^*_c(X))$, da $\colim$ mit $H^*$ vertauscht.
 \end{definition}
 
-\begin{korollarB}
-	Es gilt $H^*_c(X) = H^*( C^*_c(X))$, da $\colim$ mit $H^*$ vertauscht.
-\end{korollarB}
-
-\begin{lemma}
-	$C^*_c(X)$ lässt sich mit dem Unterkomplex von $C^*(X)$ identifizieren, der aus allen $\alpha \colon C*(X) \to R$ besteht, für die es $K \subseteq X$ kompakt gibt mit $\alpha(\sigma)=0$ für $\sigma \colon \abs*{\Delta^n} \to X\setminus K$.
+\begin{lemma}[{name=[{Kokettenkomplex mit kompaktem Träger als Unterkomplex}]}]
+	$C^*_c(X)$ lässt sich mit dem Unterkomplex von $C^*(X)$ identifizieren, der aus allen $\alpha \colon C_*(X) \to R$ besteht, für die es $K \subseteq X$ kompakt gibt mit $\alpha(\sigma)=0$ für $\sigma \colon \abs*{\Delta^n} \to X\setminus K$.
 \end{lemma}
 \begin{beweis}
 	Für $K \subseteq L$ ist $C^*(X,X\setminus K)\to C^*(X,X\setminus L)$ injektiv.
-	Nachdem wir jedes $C^*(X,X\setminus K)$ mit einem Unterraum von $C^*(X)$ identifizieren, wird der Kolimes über $\mathcal{K}(X)$ einfach zur Vereinigung dieser Unterräume.
+	Nachdem wir jedes $C^*(X,X\setminus K)$ mit einem Unterraum von $C^*(X)$ identifizieren, wird der Kolimes über $\mathcal{K}(X)$ einfach zur Vereinigung dieser Unterräume und es folgt die Behauptung.
 \end{beweis}
 
-\begin{bemerkung}
-	Sei $M $ eine $n$-dimensionale Mannigfaltigkeit mit einer $R$-Orientierung. Für $K \subseteq M$ kompakt sei $\mu_K \in H_n(M,M \setminus K;R)$ die durch die $R$-Orientierung bestimmte (Orientierungs)-Klasse.
-	Für $K \subseteq L$, $L$ auch kompakt ist dann $\mu_L|_K = \mu_K$.
+\begin{bemerkung}[{name=[{Herleitung der Poincaré-Dualitäts-Abbildung}]}]
+	Sei $M $ eine $n$-dimensionale Mannigfaltigkeit mit einer $R$-Orientierung. Für $K \subseteq M$ kompakt sei $\mu_K \in H_n(M,M \setminus K;R)$ die durch die $R$-Orientierung bestimmte (Orientierungs)-Klasse nach \autoref{errinnerung:Orientierung_kompakteTM}.
+	Für $K \subseteq L$, wobei $L$ auch kompakt ist, gilt dann $\mu_L|_K = \mu_K$.
 	Daher kommutiert
 	\[
 		\begin{tikzcd}
@@ -1527,30 +1530,31 @@ Wir wenden uns nun einmal mehr der Topologie von Mannigfaltigkeiten zu und erinn
 	\]
 \end{bemerkung}
 
-\begin{definition}
+\begin{definition}[{name=[{Poincaré-Dualitäts-Abbildung}]}]
 	$\PD_M$ heißt die \Index{Poincaré-Dualitäts-Abbildung} für $M$. 
 \end{definition}
 
-\begin{bemerkung}
+\begin{bemerkung}[{name=[{Dualitäts-Abbildung für kompakte Mannigfaltigkeiten}]}]
 	Ist $M$ kompakt, so ist $\PD_M= {\capp \mu}$, wobei $\mu$ die durch die Orientierung bestimmte Fundamentalklasse von $M$ ist.
 \end{bemerkung}
 
-\begin{lemma}
+\begin{lemma}[{name=[{Dualitäts-Abbildung ist ein Isomorphismus für den euklidischen Raum}]}]
 	Für $M=\mathbb{R}^n$ ist die Poincaré-Dualitäts-Abbildung ein Isomorphismus. 
 \end{lemma}
 \begin{beweis}
 	Ist $B \subset \mathbb{R}^n$ ein kompakter Ball, so ist ${\capp\mu_B} \colon H^k(\mathbb{R}^n,\mathbb{R}^n \setminus B,R) \to H_{n-k}(\mathbb{R}^n)$ ein Isomorphismus.
 	Da die Menge der kompakten Bälle $\mathcal{B}$ kofinal in allen kompakten Teilmengen ist, ist auch
 	\(
-		\PD_M = \colim_{\mathcal{B}} {\capp \mu_B}
+		\PD_M = \colim_{\mathcal{B}} \enbrace*{\capp \mu_B}
 	\)
 	ein Isomorphismus.
 \end{beweis}
 
-\begin{bemerkung}
+\begin{bemerkung}[{name=[{lokal endliche Homologie}]}]
 	Für nicht kompakte orientierte Mannigfaltigkeiten lässt sich die Fundamentalklasse in lokal endlicher Homologie definieren: 
+	Sie basiert auf dem folgenden Kettenkomplex
 	\[
-		C^\lf_{n}(M) = \set*{\sum_{\sigma\in S_n(M)} r_\sigma \cdot \sigma \given \begin{array}{l}
+		C^\lf_{n}(M) = \set*{\sum_{\sigma\in S_n(M)}\hspace{-1ex} r_\sigma \cdot \sigma \given \begin{array}{l}
 			\text{für jedes $K \subseteq M$ kompakt gibt es nur endlich viele $\sigma \colon \abs*{\Delta^n} \to M$} \\
 			\text{mit $r_\sigma\neq 0$ und $\sigma(\abs*{\Delta^n}) \cap K \neq \emptyset$} 
 		\end{array}
