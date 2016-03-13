@@ -3,7 +3,7 @@
 lecture notes written at WWU Münster, FB10
 
 ---
-## Das Bereitstellen der PDFs ist noch nicht eingerichtet!
+## Das Bereitstellen der PDFs ist noch nicht vollständig eingerichtet!
 
 Dies betrifft insbesondere auch den Dropbox- sowie den Sciebo-Ordner!
 Da momentan nur am Topologie II.-Skript gearbeitet wird, ist dies als Zwischenlösung  über die _Releasess_ verfügbar: 

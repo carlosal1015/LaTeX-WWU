@@ -26,4 +26,4 @@ deploy:
     - CAT0_WS15/CAT0.pdf
   skip_cleanup: true
   on:
-    tags: true
+    repo: JaMeZ-B/LaTeX-WWU
