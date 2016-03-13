@@ -7,7 +7,7 @@ before_install:
 install: true
 script:
 - make build
-- sudo chown -R ($USER) *
+- sudo chown -R $USER *
 deploy:
   provider: releases
   skip_cleanup: true
