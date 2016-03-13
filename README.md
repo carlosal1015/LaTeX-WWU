@@ -3,7 +3,12 @@
 lecture notes written at WWU Münster, FB10
 
 ---
-##Das alte Repository mit den PDFs findet man  [HIER](https://github.com/JaMeZ-B/LaTeX-wwu-old)
+## Das Bereitstellen der PDFs ist noch nicht vollständig eingerichtet!
+
+Dies betrifft insbesondere auch den Dropbox- sowie den Sciebo-Ordner!
+Da momentan nur am Topologie II.-Skript gearbeitet wird, ist dies momentan über die _Releasess_ verfügbar: 
+
+###Das alte Repository mit den PDFs findet man  [HIER](https://github.com/JaMeZ-B/LaTeX-wwu-old)
 
 
 #### Hinweise (technische und rechtliche)
