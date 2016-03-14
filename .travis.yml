@@ -13,6 +13,10 @@ install: true
 script:
   - make build
   - sudo chown -R $USER *
+  
+branches:
+  except:
+    - /^untagged-.*/
 
 deploy:
   provider: releases
