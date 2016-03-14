@@ -6,10 +6,10 @@ lecture notes written at WWU Münster, FB10
 ## Das Bereitstellen der PDFs ist noch nicht vollständig eingerichtet!
 
 Dies betrifft insbesondere auch den Dropbox- sowie den Sciebo-Ordner!
-Da momentan nur am Topologie II.-Skript gearbeitet wird, ist dies als Zwischenlösung  über die _Releasess_ verfügbar: 
-### [TOPOLOGIE II.](https://github.com/JaMeZ-B/LaTeX-WWU/releases/latest)
+Als Zwischenlösung sind einige aktuelle Skripte über die _Releasess_ verfügbar: 
+### [PDFs](https://github.com/JaMeZ-B/LaTeX-WWU/releases/latest)
 
-###Das alte Repository mit den PDFs findet man  [HIER](https://github.com/JaMeZ-B/LaTeX-wwu-old)
+Das alte Repository mit den – eventuell veralteten – PDFs findet man  [HIER](https://github.com/JaMeZ-B/LaTeX-wwu-old)
 
 
 #### Hinweise (technische und rechtliche)
