@@ -1051,7 +1051,7 @@
 	$\sigma \colon \abs{\Delta^{p+q}}\to X$.
 \end{definition}
 
-\begin{lemma}[{name=[Produktregel für das Cap-Produkt]}]
+\begin{lemma}[{name=[Produktregel für das Cap-Produkt]},label=lem:cap_prod]
 	Es gilt die Produktregel $d_q(\alpha \capp \sigma) = d^p \alpha \capp \sigma + (-1)^p \cdot \alpha \capp d_{p+q} \sigma$.\marginnote{vgl. \autoref{lem:eig_cup} (i)}
 \end{lemma}
 \begin{beweis}
@@ -1409,7 +1409,7 @@ Wir wenden uns nun einmal mehr der Topologie von Mannigfaltigkeiten zu und erinn
 	\( \begin{tikzcd}[cramped]
 		F(\lambda)\rar["\tau_\lambda"] & F'(\lambda) \rar["\tau_\lambda'"] & F''(\lambda)
 	\end{tikzcd} \) 
-	exakt ist.
+	für jedes $\lambda$ exakt ist.
 \end{definition}
 
 
@@ -1507,14 +1507,14 @@ Wir wenden uns nun einmal mehr der Topologie von Mannigfaltigkeiten zu und erinn
 \end{definition}
 
 \begin{lemma}[{name=[{Kokettenkomplex mit kompaktem Träger als Unterkomplex}]}]
-	$C^*_c(X)$ lässt sich mit dem Unterkomplex von $C^*(X)$ identifizieren, der aus allen $\alpha \colon C_*(X) \to R$ besteht, für die es $K \subseteq X$ kompakt gibt mit $\alpha(\sigma)=0$ für $\sigma \colon \abs*{\Delta^n} \to X\setminus K$.
+	$C^*_c(X)$ lässt sich mit dem Unterkomplex von $C^*(X)$ identifizieren,\marginnote{dies begründet die Bezeichnung \enquote{mit kompaktem Träger}} der aus allen $\alpha \colon C_*(X) \to R$ besteht, für die es $K \subseteq X$ kompakt gibt mit $\alpha(\sigma)=0$ für $\sigma \colon \abs*{\Delta^n} \to X\setminus K$.
 \end{lemma}
 \begin{beweis}
 	Für $K \subseteq L$ ist $C^*(X,X\setminus K)\to C^*(X,X\setminus L)$ injektiv.
 	Nachdem wir jedes $C^*(X,X\setminus K)$ mit einem Unterraum von $C^*(X)$ identifizieren, wird der Kolimes über $\mathcal{K}(X)$ einfach zur Vereinigung dieser Unterräume und es folgt die Behauptung.
 \end{beweis}
 
-\begin{bemerkung}[{name=[{Herleitung der Poincaré-Dualitäts-Abbildung}]}]
+\begin{bemerkung}[{name=[{Herleitung der Poincaré-Dualitäts-Abbildung}]},label=bem:herleitung_PD]
 	Sei $M $ eine $n$-dimensionale Mannigfaltigkeit mit einer $R$-Orientierung. Für $K \subseteq M$ kompakt sei $\mu_K \in H_n(M,M \setminus K;R)$ die durch die $R$-Orientierung bestimmte (Orientierungs)-Klasse nach \autoref{errinnerung:Orientierung_kompakteTM}.
 	Für $K \subseteq L$, wobei $L$ auch kompakt ist, gilt dann $\mu_L|_K = \mu_K$.
 	Daher kommutiert
@@ -1524,7 +1524,7 @@ Wir wenden uns nun einmal mehr der Topologie von Mannigfaltigkeiten zu und erinn
 			H^k(M,M \setminus L;R) \rar["\capp\mu_L"] & H_{n-k}(M;R)
 		\end{tikzcd}
 	\]
-	Daher induzieren die $\capp$-Produkte mit den $\mu_K$ eine Abbildung 
+	und die $\capp$-Produkte mit den $\mu_K$ induzieren eine Abbildung 
 	\[
 		\PD_M \colon H^k_c(M;R) \longrightarrow H_{n-k}(M;R)
 	\]
@@ -1538,7 +1538,7 @@ Wir wenden uns nun einmal mehr der Topologie von Mannigfaltigkeiten zu und erinn
 	Ist $M$ kompakt, so ist $\PD_M= {\capp \mu}$, wobei $\mu$ die durch die Orientierung bestimmte Fundamentalklasse von $M$ ist.
 \end{bemerkung}
 
-\begin{lemma}[{name=[{Dualitäts-Abbildung ist ein Isomorphismus für den euklidischen Raum}]}]
+\begin{lemma}[{name=[{Dualitäts-Abbildung ist ein Isomorphismus für den euklidischen Raum}]},label=lem:poincare_eukli_raum]
 	Für $M=\mathbb{R}^n$ ist die Poincaré-Dualitäts-Abbildung ein Isomorphismus. 
 \end{lemma}
 \begin{beweis}
@@ -1554,7 +1554,7 @@ Wir wenden uns nun einmal mehr der Topologie von Mannigfaltigkeiten zu und erinn
 	Für nicht kompakte orientierte Mannigfaltigkeiten lässt sich die Fundamentalklasse in lokal endlicher Homologie definieren: 
 	Sie basiert auf dem folgenden Kettenkomplex
 	\[
-		C^\lf_{n}(M) = \set*{\sum_{\sigma\in S_n(M)}\hspace{-1ex} r_\sigma \cdot \sigma \given \begin{array}{l}
+		C^\lf_{n}(M) = \set*{\sum_{\sigma\in S_n(M)}\hspace{-1em} r_\sigma \cdot \sigma \given \begin{array}{l}
 			\text{für jedes $K \subseteq M$ kompakt gibt es nur endlich viele $\sigma \colon \abs*{\Delta^n} \to M$} \\
 			\text{mit $r_\sigma\neq 0$ und $\sigma(\abs*{\Delta^n}) \cap K \neq \emptyset$} 
 		\end{array}
@@ -1567,9 +1567,11 @@ Wir wenden uns nun einmal mehr der Topologie von Mannigfaltigkeiten zu und erinn
 \section{Poincaré-Dualität} % (fold)
 \label{sec:8}
 
+\emph{Um die Notation abzukürzen, verzichten wir in diesem Abschnitt auf die Angabe des Koeffizientenrings $R$.}
+
 \begin{lemma}[{name=[{Isomorphismus in Kohomologie von relativen Kokettenkomplexen}]}]
 	Seien $U,V \subseteq X$ offen. 
-	Sei $C^*(X,U+V)$ der Unterkomplex von $C^*(X)$, der aus allen $\varphi \colon C_*(X)\to R$ besteht mit $\varphi(\sigma)=0$ für $\sigma \colon \abs*{\Delta^n}\to X$ mit $\im (\sigma) \subseteq U$ \emph{oder} $\im (\sigma) \subseteq V$. 
+	Sei $C^*(X,U+V)$ der Unterkomplex von $C^*(X)$, der aus allen $\alpha \colon C_*(X)\to R$ besteht mit $\varphi(\sigma)=0$ für $\sigma \colon \abs*{\Delta^n}\to X$ mit $\im (\sigma) \subseteq U$ \emph{oder} $\im (\sigma) \subseteq V$. 
 	Dann induziert die Inklusion $C^*(X, U\cup V) \to C^*(X,U+V)$ einen Isomorphismus in Kohomologie.
 \end{lemma}
 \begin{beweis}
@@ -1586,38 +1588,39 @@ Wir wenden uns nun einmal mehr der Topologie von Mannigfaltigkeiten zu und erinn
 	\]
 	Die zweite und dritte Abbildung induzieren jeweils Isomorphismen in Kohomologie. 
 	Da das Diagramm kommutiert erhalten wir eine lange exakte Leiter mit den langen exakten Folgen in Kohomologie.
-	Das 5er-Lemma impliziert nun, dass auch die erste Abbildungen einen Isomorphismus in Kohomologie induziert.\todo{Revision 8}
+	Das 5er-Lemma impliziert nun, dass auch die erste Abbildungen einen Isomorphismus in Kohomologie induziert.
 \end{beweis}
 
-\begin{satz}
+\begin{satz}[{name=[{relative Mayer-Vietoris-Folge in Kohomologie}]},label=satz:MV_relativ_koho]
 	Seien $U,V \subseteq X$ offen. Dann gibt es eine lange exakte Mayer-Vietoris-Folge 
 	\[
 		\begin{tikzcd}[sep=1.55em]
-			\ldots \rar & H^n(X,U+V) \rar & H^n(X,U) \oplus H^n(X,V) \rar & H^n(X,U\cap V) \rar["\partial"] & H^{n+1}(X,U\cup V) \rar & \ldots 
+			\ldots \rar & H^n(X,U \cup V) \rar & H^n(X,U) \oplus H^n(X,V) \rar & H^n(X,U\cap V) \rar["\partial"] & H^{n+1}(X,U\cup V) \rar & \ldots 
 		\end{tikzcd}
 	\]
 	Der Verbindungshomomorphismus $\partial$ kann wie folgt beschrieben werden: Sei $\alpha \in C^n(X,U \cap V)$ mit $d^n(\alpha)=0$.
 	Dann lässt sich $\alpha$ schreiben als $\alpha= \alpha_U + \alpha_V$ mit $\alpha_U \in C^*(X,U)$ und $\alpha_V \in C^n(X,V)$ und es ist $\partial [\alpha] = \benbrace*{d^n \alpha_U}= \benbrace*{d^n \alpha_V}$
 \end{satz}
 \begin{beweis}
-	Benutze die kurze exakte Folge von Kokettenkomplexen: 
+	Benutze die kurze exakte Folge von Kokettenkomplexen 
 	\[
 		\begin{tikzcd}
-			0 \rar & C^*(X,U + V) \rar & C^*(X,U) \oplus C^*(X,V) \rar & C^*(X, U \cup V) \rar & 0
+			0 \rar & C^*(X,U + V) \rar["\varphi"] & C^*(X,U) \oplus C^*(X,V) \rar["\psi"] & C^*(X, U \cap V) \rar & 0
 		\end{tikzcd}
 	\]
-	wobei die erste Abbildung $\alpha \mapsto (\alpha,\alpha)$ und die zweite $(\alpha,\beta) \mapsto \alpha-\beta$ ist. 
+	wobei die erste Abbildung $\alpha \mapsto (\alpha,\alpha)$ und die zweite $(\alpha,\beta) \mapsto \alpha-\beta$ ist.
+	Injektivität von $\varphi$ und die Inklusion $\im \varphi \subseteq \ker \psi$ für die Exaktheit in der Mitte sind klar.
+	Sei nun $\alpha- \beta=0 \in C^n(X,U \cap V)$ mit $\alpha \in C^n(X,U)$ und $\beta \in C^n(X,V)$.
+	Dann ist bereits $\alpha(\sigma)=\beta(\sigma)$ für alle $\sigma \colon \abs*{\Delta^n} \to X$ mit $\im \sigma \not\subseteq U \cap V$ und es folgt $\im \varphi \supseteq \ker \psi$.
 	
-	
-	Es ist $\alpha+\beta=0$ in $C^*(X,U \cap V) \subseteq C^*(X)$ für $\alpha \in C^*(X;U) \subseteq C^*(X)$, $\beta \in C^*(X,V) \subseteq C^*(X)$. Also ist
-	$\alpha(\sigma)= - \beta(\sigma)$ für alle $\sigma \subseteq X$.
-	
-	Die zugehörigen lange exakte Folge ist die gesuchte Mayer-Vietoris-Folge. 
+	Für die Surjektivität betrachten wir ein $\alpha \in C^*(X, U \cap V)$, welches wir als Abbildung auf der Menge der singulären Simplizes auffassen können, die auf den Simplizes mit Bild in $U \cap V$ verschwindet.
+	Da $\im \sigma \not\subseteq U \cap V$ direkt $\im \sigma \not\subseteq U$ oder $\im \sigma \not\subseteq V$ impliziert, können wir Simplex für Simplex Elemente $\alpha_U \in C^*(X,U)$ und $\alpha_V \in C^*(X,V)$ definieren mit $\alpha_U - (- \alpha_V)=\alpha$. 
+	Die zugehörigen lange exakte Folge ist die gesuchte Mayer-Vietoris-Folge und auch die restliche Behauptung folgt aus dem Schlangenlemma.
 \end{beweis}
 
-\begin{satz}
+\begin{satz}[{name=[{Mayer-Vietoris-Folge in Kohomologie mit kompaktem Träger}]}]
 	Seien $U,V \subseteq X$ offen. Sei $X$ lokalkompakt und Hausdorffsch. 
-	Dann gibt e seine lange exakte Mayer-Vietoris-Folge 
+	Dann gibt es seine lange exakte Mayer-Vietoris-Folge 
 	\[
 		\begin{tikzcd}
 			\ldots \rar & H^n_c(U\cap V) \rar & H^n_c(U) \oplus H^n_c(V) \rar & H^n_c(U \cup V) \rar["\partial"] & H^{n+1}_c(U\cap V) \rar & \ldots 
@@ -1625,12 +1628,9 @@ Wir wenden uns nun einmal mehr der Topologie von Mannigfaltigkeiten zu und erinn
 	\]
 \end{satz}
 \begin{beweis}
-	Seien $K \subseteq U$, $L \subseteq V$ kompakt. Es ist 
-	\begin{align}
-		(X\setminus K) \cup (X\setminus L) &= X \setminus (K \cap L) \\
-		(X \setminus K) \cap (X \setminus L) &= X \setminus (K \cup L)
-	\end{align}
-	Wir erhalten eine lange exakte Folge 
+	Seien $K \subseteq U$, $L \subseteq V$ kompakt. 
+	Es ist $X\setminus K) \cup (X\setminus L) = X \setminus (K \cap L)$ und $(X \setminus K) \cap (X \setminus L) = X \setminus (K \cup L)$
+	Nach \autoref{satz:MV_relativ_koho} erhalten wir eine lange exakte Folge 
 	\[
 		\begin{tikzcd}[sep=1.9em]
 			\ldots \rar & H^n \enbrace*{X,X \setminus (K \cap L)} \rar & H^n \enbrace*{X,X \setminus K} \oplus H^n(X,X \setminus L) \rar & H^n \enbrace*{X,X \setminus (K \cup L)} \rar & \ldots 
@@ -1639,17 +1639,19 @@ Wir wenden uns nun einmal mehr der Topologie von Mannigfaltigkeiten zu und erinn
 	Mit Ausschneidung ergibt sich eine lange exakte Folge 
 	\[
 		\begin{tikzcd}[sep=small,font=\small]
-			\ldots  \rar & H^n \enbrace*{U \cap V, U  \cap V  \setminus K \cap L} \rar & H^k(U,U \setminus K) \oplus H^k(C,V \setminus L) \rar & H^k(U \cup V, U \cup V \setminus K \cup L) \rar & \ldots 
+			\ldots  \rar & H^n \enbrace*{U \cap V, U  \cap V  \setminus K \cap L} \rar & H^k(U,U \setminus K) \oplus H^k(V,V \setminus L) \rar & H^k(U \cup V, U \cup V \setminus K \cup L) \rar & \ldots 
 		\end{tikzcd}
 	\]
-	Sei $\mathcal{K}$ die gerichtete Menge der kompakten Unterräume von $U$, $\mathcal{L}$ die von $V$.
+	Sei $\mathcal{K}$ die gerichtete Menge der kompakten Unterräume von $U$, $\mathcal{L}$ die entsprechende Menge von $V$.
 	Sei $\Lambda = \mathcal{K} \times \mathcal{L}$ das Produkt der gerichteten Mengen $\mathcal{K}$ und $\mathcal{L}$.
 	Da $\colim_\Lambda$ exakt ist, erhalten wir auch im Kolimes eine lange exakte Folge. Dies ist die gesuchte lange exakte Folge. 
-	(Da $X$ lokalkompakt und Hausdorffsch ist, ist jeder kompakter Teilraum $M$ von $U \cup V$ die Vereinigung von $M=K \cup L$ mit $(K,L) \in \Lambda$.)
+	Da $X$ lokalkompakt und Hausdorffsch ist, ist jeder kompakter Teilraum $M$ von $U \cup V$ die Vereinigung von kompakten Teilmengen in $U$ und $V$.
 \end{beweis}
 
-\begin{erinnerung}
-	Seien $U,V \subseteq X$ offen. Dann ist $H_*(U \cup V) = H_* \enbrace*{C_*(U+V)}$ und es gibt eine lange exakte Folge 
+Zum Vergleich erinnern wir uns an dieser Stelle noch einmal an die Konstruktion der Mayer-Vietoris-Folge in Homologie:
+
+\begin{erinnerungA}[{name=[{Konstruktion der Mayer-Vietoris-Folge in Homologie}]}]
+	Seien $U,V \subseteq X$ offen. Dann ist $H_*(U \cup V) = H_* \enbrace*{C_*(U+V)}$ und es gibt eine lange exakte Mayer-Vietoris-Folge 
 	\[
 		\begin{tikzcd}
 			\ldots  \rar & H_n(U \cap V) \rar & H_n(U) \oplus H_n(C) \rar & H_n(U \cup V) \rar["\partial"]& \ldots 
@@ -1657,18 +1659,18 @@ Wir wenden uns nun einmal mehr der Topologie von Mannigfaltigkeiten zu und erinn
 	\]
 	Der Verbindungshomomorphismus kann wie folgt beschrieben werden: Sei $x \in C_n(U + V)$ mit $d_n x =0$.
 	Dann ist $x=x_U - x_V$ mit $x_U \in C_n(U)$, $x_V \in C_n(V)$ und es ist $\partial[x] = \benbrace*{d_n x_U} = \benbrace*{d_n x_V}$.
-\end{erinnerung}
+\end{erinnerungA}
 \begin{beweis}
 	Benutze 
-	\[
-		\begin{tikzcd}
+	\(
+		\begin{tikzcd}[sep=small,cramped]
 			0 \rar & C_*(U \cap V) \rar & C_*(U) \oplus C_*(V) \rar & C_*(U+V) \rar & 0
-		\end{tikzcd} \qedhere
-	\]
+		\end{tikzcd}
+	\)
 \end{beweis}
 
-\begin{proposition}
-	Seien $U,V$ offene Teilmengen einer $R$-orientierten $n$-Mannigfaltigkeit $M$. 
+\begin{proposition}[{name=[{Mayer-Vietoris-Leiter mit Dualitätsabbildungen}]}]
+	Seien $U,V$ offene Teilmengen einer $R$-orientierten $n$-Mannigfaltigkeit $M$.\marginnote{vgl. \cite[Lemma 3.36]{Hatcher}, bei ihm aber nur Kommutativität bis auf Vorzeichen (?)} 
 	Dann bilden die Poincaré-Dualitätsabbildungen zusammen mit der Mayer-Vietorisfolge ein kommutatives Diagramm
 	\[
 		\begin{tikzcd}
@@ -1679,58 +1681,41 @@ Wir wenden uns nun einmal mehr der Topologie von Mannigfaltigkeiten zu und erinn
 \end{proposition}
 \begin{beweis}
 	Ohne Einschränkungen sei $M=U \cup V$. 
-	Die Kommutativität der ersten beiden folgt aus der Natürlichkeit des $\capp$-Produktes.
+	Die Kommutativität der ersten beiden Quadrate folgt aus der Natürlichkeit des $\capp$-Produktes. \marginnote{siehe auch \autoref{bem:herleitung_PD}}
 	Da $\partial \colon H^k_c(M) \to H_c^{k+1}(U \cap V)$ der Kolimes der 
 	\[
-		H^k(M,M \setminus (K \cup L)) \grenzw{\partial} H^{k+1}(M,M \setminus (K \cap L)) 
+		H^k(M,M \setminus (K \cup L)) \grenzw{\delta} H^{k+1}(M,M \setminus (K \cap L)) 
 	\]
 	für $K \subseteq U, L \subseteq V$ kompakt ist, genügt es für die Kommutativität des dritten Quadrats die Kommutativität von folgendem Diagramm nachzurechnen.
 	\[
 		\begin{tikzcd}[row sep=large,column sep=1.6em]
-			H^k \enbrace[\big]{M , (M \setminus K) \cap (M \setminus L)} \rar["\partial"] \dar[equal] & H^{k+1} \enbrace[\big]{M,(M \setminus K) \cup (M \setminus L)} \dar[equal]\\
-			H^k \enbrace[\big]{M , M \setminus (K \cup L)} \dar["\capp \mu_{K \cup L}"] \rar["\partial"] & H^{k+1} \enbrace[\big]{M, M \setminus (K \cap L)} \rar["\cong"] & H^{k+1} \enbrace[\big]{U \cap V, U \cap V \setminus (K \cap L)} \dar["\capp \mu_{K \cap L}"] \\
+			H^k \enbrace[\big]{M , (M \setminus K) \cap (M \setminus L)} \rar["\delta"] \dar[equal] & H^{k+1} \enbrace[\big]{M,(M \setminus K) \cup (M \setminus L)} \dar[equal]\\
+			H^k \enbrace[\big]{M , M \setminus (K \cup L)} \dar["\capp \mu_{K \cup L}"] \rar["\delta"] & H^{k+1} \enbrace[\big]{M, M \setminus (K \cap L)} \rar["\cong"] & H^{k+1} \enbrace[\big]{U \cap V, U \cap V \setminus (K \cap L)} \dar["\capp \mu_{K \cap L}"] \\
 			H_{n-k}(M) \ar[rr,"\partial"] & & H_{n-k-1}(U \cap V)
 		\end{tikzcd}
 	\]
-	Sei $\alpha \in C^{k} \enbrace*{M,M \setminus (K \cup L)}$ mit $d^k\alpha=0$, $\alpha=\alpha_K-\alpha_L$ mit $\alpha_K \in C^k \enbrace*{M,M \setminus K}$ und $\alpha_L \in C^k(M,M \setminus L)$.
-	Dann ist $\partial [\alpha]= \benbrace*{d^k \alpha_K} = \benbrace*{d^k \alpha_L}$.\marginnote{$U \cup V = U \setminus L  \cup V \setminus K \cup U \cap V$}
-	Wegen Ausschneidung finden wir $x_K \in C_n(V\setminus K)$, $x_L \in C_n(U \setminus L)$ und $x_\cap C_n(U \cap V)$ mit $\mu_{K \cup L} = \benbrace*{x_\cap +x_K+x_L}$.
-	Es ist dann auch $\mu_{K \cap L} = \benbrace*{x_\cap}$ und daher ist das Bild von $\partial[\alpha]$ in $H_{n-k-1}(U \cap V)$ gegeben durch $\benbrace*{d^k \alpha_K \capp x_\cap}$.
+	Sei dazu $\alpha \in C^{k} \enbrace*{M,M \setminus (K \cup L)}$ mit $d^k\alpha=0$, sowie $\alpha=\alpha_K-\alpha_L$ mit $\alpha_K \in C^k \enbrace*{M,M \setminus K}$ und $\alpha_L \in C^k(M,M \setminus L)$.
+	Dann ist $\delta [\alpha]= \benbrace*{d^k \alpha_K} = \benbrace*{d^k \alpha_L}$.\marginnote{$U \cup V = U \setminus L  \cup V \setminus K \cup U \cap V$}
+	Wegen Ausschneidung finden wir $x_K \in C_n(V\setminus K)$, $x_L \in C_n(U \setminus L)$ und $x_\cap \in C_n(U \cap V)$ mit $\mu_{K \cup L} = \benbrace*{x_\cap +x_K+x_L}$.
+	Es ist dann auch $\mu_{K \cap L} = \benbrace*{x_\cap}$ und daher ist das Bild von $\delta[\alpha]$ in $H_{n-k-1}(U \cap V)$ gegeben durch $\benbrace*{d^k \alpha_K \capp x_\cap}$.
 	Es ist andererseits 
 	\begin{align}
-		[\alpha] \cap \mu_{K \cup L} &= \benbrace[\big]{(\alpha_K -\alpha_L) \capp (x_\cap + x_K+x_L)} \\
+		[\alpha] \capp \mu_{K \cup L} &= \benbrace[\big]{(\alpha_K -\alpha_L) \capp (x_\cap + x_K+x_L)} \\
 		&= \benbrace[\Big]{\alpha_K \capp x_\cap  + \Underbracket{\alpha_K \capp x_K}{=0} + \alpha_K \capp x_L - \alpha_L \capp x_\cap - \alpha_L \capp x_K - \Underbracket{\alpha_L \capp x_L}{=0}} \\
-		&= \benbrace[\Big]{\Underbracket{\alpha_K \capp x_L}{\in C_k(U)} + \enbrace[\big]{\Underbracket{\alpha_K \capp x_\cap - \alpha_L \capp x_\cap}{\in C_K(U \cap V)}} - \Underbracket{\alpha_L \capp x_K}{\in C_k(V)}} 
+		&= \benbrace[\Big]{\Underbracket{\alpha_K \capp x_L}{\in C_{n-k}(U)} + \enbrace[\big]{\Underbracket{\alpha_K \capp x_\cap - \alpha_L \capp x_\cap}{\in C_{n-k}(U \cap V)}} - \Underbracket{\alpha_L \capp x_K}{\in C_{n-k}(V)}} 
 	\end{align}
-	Damit haben wir 
-	\(
-		\partial \enbrace*{[\alpha] \capp \mu_{K \cup L}} = \benbrace[\big]{d_{n-k} \enbrace*{\alpha_K \capp x_L}} = \benbrace[\Big]{\Underbracket{d^k \alpha_K \capp x_L}{=+d^k \alpha_L \capp x_L=0} + (-1)^k \alpha_K \capp d_n x_L}
-	\).
-	Mit $d_n x_L = - d_n x_K - d_n x_\cap$ folgt 
+	Damit haben wir
 	\begin{align}
-		\partial \enbrace*{[\alpha]\capp \mu_{K \cup L}} &= (-1)^{k+1} \benbrace[\Big]{\Underbracket{\alpha_K \capp d_n x_K}{=0} + \alpha_K \capp d_n x_\cap} \\
+		\partial \enbrace*{[\alpha] \capp \mu_{K \cup L}} = \benbrace[\big]{d_{n-k} \enbrace*{\alpha_K \capp x_L}} &\StackTextClap{\ref{lem:cap_prod}}{=}\benbrace[\Big]{\Underbracket{d^k \alpha_K \capp x_L}{=d^k \alpha_L \capp x_L=0} + (-1)^k \cdot {\alpha_K \capp d_n x_L}} \\
+		\intertext{Da $\mu_{K \cup L}$ ein Zykel ist, gilt $d_n x_L = - d_n x_K - d_n x_\cap$ und es folgt}
+		&= (-1)^{k+1} \benbrace[\Big]{\Underbracket{\alpha_K \capp d_n x_K}{=0} + \alpha_K \capp d_n x_\cap} \\
 		&= (-1)^{k+1} \benbrace[\big]{\alpha_K \capp d_n x_\cap}
 	\end{align}
-	Wegen $d_{n-k}(\alpha_K \capp x_\cap)= d^k \alpha_K \capp x_\cap + (-1)^k \alpha_K \capp d_n x_\cap$ folgt $\benbrace*{\alpha_K \capp d_n x_\cap} = (-1)^{k+1} \benbrace*{d^k \alpha_K  \cap x_{\cap}}$.
-	Also ist $\partial \enbrace*{[\alpha] \capp \mu_{K \cup L}} = \benbrace*{d^k  \alpha_K \capp x_\cap}$.
+	Wegen $d_{n-k}(\alpha_K \capp x_\cap)= d^k \alpha_K \capp x_\cap + (-1)^k \alpha_K \capp d_n x_\cap$ folgt $\benbrace*{\alpha_K \capp d_n x_\cap} = (-1)^{k+1} \benbrace{d^k \alpha_K  \capp x_{\cap}}$.
+	Also ist $\partial \enbrace*{[\alpha] \capp \mu_{K \cup L}} = \benbrace{d^k  \alpha_K \capp x_\cap}$.
 \end{beweis}
 
-\begin{satz}
-	Sei $M$ eine $R$-orientierbare $n$-Mannigfaltigkeit. 
-	Dann ist $\PD_M \colon H^k_c(M) \to H_{n-k}(M)$ ein Isomorphismus.
-	Insbesondere ist, falls $M$ sogar geschlossen ist, $\capp \mu_M \colon H^k(M) \to H_{n-k}(M)$ ein Isomorphismus.
-\end{satz}
-\begin{beweis}
-	Für $U \cong \mathbb{R}^n$ haben wir die Behauptung schon bewiesen.\todo{Referenz}
-	Da offene konvexe Unterräume im $\mathbb{R}^n$ homöomorph zum $\mathbb{R}^n$ sind, ist die Behauptung auch für solche richtig.
-	Schnitte offener konvexer Teilräume des $\mathbb{R}^n$ wieder offen und konvex sind, folgt mit den Mayer-Vietoris-Folgen die Behauptung für endliche Vereinigungen offener und konvexer Unterräume des $\mathbb{R}^n$.
-	Mit \autoref{lem:abzUeber} folgt die Behauptung auch für abzählbare Vereinigungen von offenen konvexen Unterräumen im $\mathbb{R}^n$.
-	Da jeder offene Unterraum des $\mathbb{R}^n$ die abzählbare Vereinigung offener konvexer Unterräume ist, folgt die Behauptung für beliebige Kartengebiete\footnote{$U \subseteq M$ mit $\varphi \colon U \grenzw{\cong} V \subseteq \mathbb{R}^n$ und $V \subseteq \mathbb{R}^n$ offen} in Mannigfaltigkeiten.
-	Mit der Mayer-Vietoris-Folge folgt die Behauptung für endliche Vereinigungen von Kartengebieten in Mannigfaltigkeiten und mit \autoref{lem:abzUeber} für abzählbare Vereinigungen von Kartengebieten.
-	Da jede Mannigfaltigkeit die abzählbare Vereinigung von Kartengebieten ist, folgt die Behauptung.
-\end{beweis}
-
-\begin{lemma}[label=lem:abzUeber]
+\begin{lemma}[label=lem:abzUeber,{name=[{Mannigfaltigkeit als Vereinigung offener Teilmengen}]}]
 	Sei $M$ eine $R$-orientierte $n$-Mannigfaltigkeit. 
 	Seien $U_1 \subseteq U_2 \subseteq \ldots \subseteq M$ offen mit $M= \bigcup_{i=1}^\infty U_i$.
 	Sind alle $\PD_{U_i}$ Isomorphismen, so ist auch $\PD_M$ ein Isomorphismus.
@@ -1739,8 +1724,24 @@ Wir wenden uns nun einmal mehr der Topologie von Mannigfaltigkeiten zu und erinn
 	Jeder singuläre Simplex in $M$ liegt schon in einem $U_i$. 
 	Das heißt $C_*(M)=\colim_{\mathbb{N}} C_*(U_i)$ und $H_*(M)= \colim_{i \in \mathbb{N}} H_*(U_i)$.
 	Ebenso liegt jede kompakte Teilmenge von $M$ schon in einem $U_i$.
-	Daher ist $H^*_c(M) = \colim_{i \in \mathbb{N}} H^*_c(U_i)$. 
+	Daher ist auch $H^*_c(M) = \colim_{i \in \mathbb{N}} H^*_c(U_i)$. 
 	Nun ist $\PD_M = \colim_{i \in \mathbb{N}} \PD_{U_i}$ ein Isomorphismus.
+\end{beweis}
+
+\begin{satz}[{name=[Poincarés Dualitätssatz]}]
+	Sei $M$ eine $R$-orientierbare $n$-Mannigfaltigkeit. 
+	Dann ist $\PD_M \colon H^k_c(M) \to H_{n-k}(M)$ ein Isomorphismus.
+	Insbesondere ist, falls $M$ sogar geschlossen ist, $\capp \mu_M \colon H^k(M) \to H_{n-k}(M)$ ein Isomorphismus.
+\end{satz}
+\begin{beweis}
+	Für $U \cong \mathbb{R}^n$ haben wir die Behauptung schon bewiesen (siehe \autoref{lem:poincare_eukli_raum}).
+	Da offene konvexe Unterräume im $\mathbb{R}^n$ homöomorph zum $\mathbb{R}^n$ sind, ist die Behauptung auch für solche richtig.
+	Da Schnitte offener konvexer Teilräume des $\mathbb{R}^n$ wieder offen und konvex sind, folgt mit den Mayer-Vietoris-Folgen und dem Fünfer-Lemma die Behauptung für endliche Vereinigungen offener und konvexer Unterräume des $\mathbb{R}^n$.
+	Mit \autoref{lem:abzUeber} folgt die Behauptung auch für abzählbare Vereinigungen von offenen konvexen Unterräumen im $\mathbb{R}^n$.
+	
+	Da jeder offene Unterraum des $\mathbb{R}^n$ die abzählbare Vereinigung offener konvexer Unterräume ist, folgt die Behauptung für beliebige Kartengebiete\footnote{$U \subseteq M$ mit $\varphi \colon U \grenzw{\cong} V \subseteq \mathbb{R}^n$ und $V \subseteq \mathbb{R}^n$ offen} in Mannigfaltigkeiten.
+	Mit der Mayer-Vietoris-Folge folgt die Behauptung für endliche Vereinigungen von Kartengebieten in Mannigfaltigkeiten und mit \autoref{lem:abzUeber} für abzählbare Vereinigungen von Kartengebieten.
+	Da jede Mannigfaltigkeit die abzählbare Vereinigung von Kartengebieten ist, folgt die Behauptung.
 \end{beweis}
 % section 8 (end)
 \newpage
@@ -3330,6 +3331,7 @@ Es folgt $d(a-b) = dc' \in d \enbrace*{F_{p-1} C_{p+q}} \cap F_{p-r} C_{p+q-1}$.
 	\]
 	Diese Folge ist natürlich in $X$ und $W$; sie spaltet, aber der Spalt kann nicht natürlich in $X$ gewählt werden.
 \end{satz}
+\todo[inline]{Hier ist eventuell HIR nötig}
 \begin{beweis}
 	Wir wenden den \autoref{satz:ext_kettenkompl_kef} auf $C_*^\sing(X;R)$ an und benutzen
 	\[
