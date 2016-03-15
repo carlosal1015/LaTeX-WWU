@@ -1510,7 +1510,7 @@ Wir wenden uns nun einmal mehr der Topologie von Mannigfaltigkeiten zu und erinn
 	$C^*_c(X)$ lässt sich mit dem Unterkomplex von $C^*(X)$ identifizieren,\marginnote{dies begründet die Bezeichnung \enquote{mit kompaktem Träger}} der aus allen $\alpha \colon C_*(X) \to R$ besteht, für die es $K \subseteq X$ kompakt gibt mit $\alpha(\sigma)=0$ für $\sigma \colon \abs*{\Delta^n} \to X\setminus K$.
 \end{lemma}
 \begin{beweis}
-	Für $K \subseteq L$ ist $C^*(X,X\setminus K)\to C^*(X,X\setminus L)$ injektiv.
+	Für $K \subseteq L$, beide kompakt, ist $C^*(X,X\setminus K)\to C^*(X,X\setminus L)$ injektiv.
 	Nachdem wir jedes $C^*(X,X\setminus K)$ mit einem Unterraum von $C^*(X)$ identifizieren, wird der Kolimes über $\mathcal{K}(X)$ einfach zur Vereinigung dieser Unterräume und es folgt die Behauptung.
 \end{beweis}
 
@@ -1599,7 +1599,7 @@ Wir wenden uns nun einmal mehr der Topologie von Mannigfaltigkeiten zu und erinn
 		\end{tikzcd}
 	\]
 	Der Verbindungshomomorphismus $\partial$ kann wie folgt beschrieben werden: Sei $\alpha \in C^n(X,U \cap V)$ mit $d^n(\alpha)=0$.
-	Dann lässt sich $\alpha$ schreiben als $\alpha= \alpha_U + \alpha_V$ mit $\alpha_U \in C^*(X,U)$ und $\alpha_V \in C^n(X,V)$ und es ist $\partial [\alpha] = \benbrace*{d^n \alpha_U}= \benbrace*{d^n \alpha_V}$
+	Dann lässt sich $\alpha$ schreiben als $\alpha= \alpha_U + \alpha_V$ mit $\alpha_U \in C^*(X,U)$ und $\alpha_V \in C^n(X,V)$ und es ist $\partial [\alpha] = \benbrace*{d^n \alpha_U}= \benbrace*{-d^n \alpha_V}$
 \end{satz}
 \begin{beweis}
 	Benutze die kurze exakte Folge von Kokettenkomplexen 
@@ -1675,7 +1675,7 @@ Zum Vergleich erinnern wir uns an dieser Stelle noch einmal an die Konstruktion 
 	\[
 		\begin{tikzcd}
 			\ldots \rar & H^k_c(U \cap V) \rar \dar["\PD_{U \cap V}"] & H^k_c(U) \oplus H^k_c(V) \dar["\PD_{U} \oplus \PD_{V}"] \rar & H^k_c(U \cup V) \rar["\partial"] \dar["\PD_{U \cup V}"]& \ldots \dar \\
-			\ldots \rar & H_{n-k}(U \cap V) \rar & H_{n-kk}(U) \oplus H_{n-kk}(V) \rar & H_{n-k}(U \cup V) \rar & \ldots 
+			\ldots \rar & H_{n-k}(U \cap V) \rar & H_{n-k}(U) \oplus H_{n-k}(V) \rar & H_{n-k}(U \cup V) \rar & \ldots 
 		\end{tikzcd}
 	\]
 \end{proposition}
