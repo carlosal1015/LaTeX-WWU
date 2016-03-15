@@ -449,7 +449,7 @@
 	Das $\cupp$-Produkt hat folgende Eigenschaften:
 	\begin{enumerate}[1)]
 		\item $d^{p+q}(\alpha \cupp \beta) = d^p(\alpha) \cupp \beta + (-1)^p \cdot \alpha \cupp d^q(\beta)$
-		\item Das $\cupp$-Produkt ist assoziativ.
+		\item Das $\cupp$-Produkt ist assoziativ und bilinear.
 		\item Für $f \colon X \to X'$ gilt $f^*(\alpha \cupp \beta)= f^*(\alpha) \cupp f^*(\beta)$ für $\alpha \in C^p_\sing(X';R)$, $\beta \in C^q_\sing(X';R)$.
 		\item Sei $1_X \in C_\sing^0(X;R)$ mit $1_X(\sigma)=1_R$ für alle $\sigma \colon \abs{\Delta^0} \to X$. Dann gilt $1_X \cupp \alpha = \alpha = \alpha\cupp 1_X$.
 	\end{enumerate}
@@ -742,7 +742,7 @@
 	Nach \autoref{prop:H0_kettenhomotop} bzw. \autoref{korr:H0_kettenhomotop} ist $\Sp$ damit kettenhomotop zur Identität.
 \end{beweis}
 
-\begin{satz}[{name=[Das $\cupp$-Produkt in Kohomologie ist graduiert kommutativ]}]
+\begin{satz}[{name=[Das $\cupp$-Produkt in Kohomologie ist graduiert kommutativ]},label=satz:cup_grad_komm]
 	Das $\cupp$-Produkt in Kohomologie ist graduiert kommutativ. 
 \end{satz}
 \begin{beweis}
@@ -1195,7 +1195,7 @@ Wir wenden uns nun einmal mehr der Topologie von Mannigfaltigkeiten zu und erinn
 	\]
 \end{beispiel}
 
-\begin{satz}[{name=[Ringstruktur der Kohomologie für die projektiven Räume]}]
+\begin{satz}[{name=[Ringstruktur der Kohomologie für die projektiven Räume]},label=satz:kohomo_ring_projektiv]
 	Es gibt Isomorphismen von graduierten Ringen: 
 	\begin{enumerate}[(i)]
 		\item $H^* \enbrace*{\mathbb{R}P^n,\mathbb{F}_2} \cong \Faktor{\mathbb{F}_2[\xi]}{\xi^{n+1}=0}$ mit $\abs*{\xi}=1$.
@@ -1277,7 +1277,7 @@ Wir wenden uns nun einmal mehr der Topologie von Mannigfaltigkeiten zu und erinn
 	\[
 		H^n(\mathbb{R}^n,\mathbb{R}^n \setminus B;R) \longrightarrow \Hom_R \enbrace[\big]{H_n(\mathbb{R}^n,\mathbb{R}^n \setminus B;R),R}
 	\]
-	immer surjektiv ist nach \autoref{eig_kohomo_to_hom_homo} und in diesem Fall injektiv nach \cref{sub:paarung_isomorphismus_frei}\todo{leider gilt auch das nur für $\mathbb{Z}$ und dafür war es sowieso klar}, gibt es genau ein $\xi \in H^n \enbrace*{\mathbb{R}^n,\mathbb{R}^n \setminus B;R}$ mit $\xi(\mu_B)=1$. 
+	immer surjektiv ist nach \autoref{eig_kohomo_to_hom_homo} und in diesem Fall injektiv nach \cref{sub:paarung_isomorphismus_frei}\todo{leider gilt auch das nur für $\mathbb{Z}$ und dafür war es sowieso klar … es soll möglich sein, den allgemeinen Fall auf $\mathbb{Z}$ zu reduzieren mit dem universellen Koeffizienten-Theorem}, gibt es genau ein $\xi \in H^n \enbrace*{\mathbb{R}^n,\mathbb{R}^n \setminus B;R}$ mit $\xi(\mu_B)=1$. 
 	Nach \autoref{bem_augmentation_cap} ist also $\epsilon(\xi \capp \mu_B)=1$. 
 	Folglich ist $\xi \capp \mu_B$ ein Erzeuger von $H_0(\mathbb{R}^n;R)$ und $\capp \mu_B$ ein Isomorphismus.
 \end{beweis}
@@ -1871,27 +1871,26 @@ Zum Vergleich erinnern wir uns an dieser Stelle noch einmal an die Konstruktion 
 \section{Die Signatur} % (fold)
 \label{sec:10}
 
-\todo[inline]{Revision 10}
 \begin{definition}[{name=[Schnittform]}]
 	Sei $M$ eine $R$-orientierte geschlossene $n$-Mannigfaltigkeit mit Fundamentalklasse $\mu_M \in H_n(M;R)$.
 	Die Abbildung
-	\mapdef{\sprod*{\enspace}{\enspace}_R \colon H^k(M) \otimes H^{n-k}(M)}{R}{\xi \otimes \eta}{(\xi \cupp \eta)(\mu_M)}{}
+	\mapdef{\sprod*{\enspace}{\enspace}_R \colon H^k(M;R) \otimes H^{n-k}(M;R)}{R}{\xi \otimes \eta}{(\xi \cupp \eta)(\mu_M)}{}
 	heißt die \Index{Schnittform} von $M$. 
 \end{definition}
 
 \begin{bemerkung}[{name=[Begründung des Namens \enquote{Schnittform}]}]
 	Eine kurze Begründung des Namens \enquote{Schnittform}:
 	
-	Seien für $i=0,1$ $N_i$ geschlossene $K$-orientierte $k_i$-Mannigfaltigkeiten mit Fundamentalklasse $\mu_i \in H_{k_i}(N_i;K)$.
-	Seien $f_i \colon N_i \to M$ stetige Abbildungen in eine geschlossene $K$-orientierte $(n=k_0+k_1)$-Mannigfaltigkeit.
-	Seien $\xi_i \in H^{n-{k_i}}$ die zu $(f_i)_*(\mu_i)$ Poincaré-dualen Kohomologieklassen. Dann \enquote{gilt}
+	Seien für $i=0,1$ $N_i$ geschlossene $K$-orientierte\marginnote{$K$ Körper} $k_i$-Mannigfaltigkeiten mit Fundamentalklassen $\mu_i \in H_{k_i}(N_i;K)$.
+	Seien $f_i \colon N_i \to M$ stetige Abbildungen in eine geschlossene $K$-orientierte $(n=k_0+k_1)$-Mannigfaltigkeit $M$.
+	Seien weiter $\xi_i \in H^{n-{k_i}}$ die zu $(f_i)_*(\mu_i)$ Poincaré-dualen Kohomologieklassen. Dann \enquote{gilt}
 	\[
 		\sprod*{\xi_1}{\xi_2} = \# f_1(N_1) \cap f_2(N_2)
 	\]
 	nachdem $f_1(N_1)$ und $f_2(N_2)$ in $M$ in \enquote{allgemeiner Lage} sind und $\#$ zählt die Schnittpunkte mit Vorzeichen.
 \end{bemerkung}
 
-\begin{lemma}[{name=[Schnittform ist bilinear und graduiert kommutativ]}]
+\begin{lemma}[{name=[Schnittform ist bilinear und graduiert kommutativ]},label=lem:schnittform_bil_grad_komm]
 	Es gilt:
 	\begin{enumerate}[(i),itemsep=2pt]
 		\item Die Schnittform ist bilinear.
@@ -1899,40 +1898,40 @@ Zum Vergleich erinnern wir uns an dieser Stelle noch einmal an die Konstruktion 
 	\end{enumerate}
 \end{lemma}
 \begin{beweis}
-	Folgt aus den entsprechenden Eigenschaften des $\cupp$-Produktes.
+	Folgt aus den entsprechenden Eigenschaften des $\cupp$-Produktes (siehe \ref{lem:eig_cup} bzw. \ref{satz:cup_grad_komm}).
 \end{beweis}
 
-\begin{satz}[{name=[Für einen Körper sind Schnittformen regulär]}]
+\begin{satz}[{name=[Für einen Körper sind Schnittformen regulär]},label=satz:schnittform_koerper_regulaer]
 	Ist $R=K$ ein Körper, so ist die Schnittform \Index{regulär}, das heißt $\xi \mapsto \enbrace*{\eta \mapsto \sprod*{\xi}{\eta}_K}$ definiert einen Isomorphismus $H^k(M;K) \to \Hom_K \enbrace*{H^{n-k}(M;K),K}$.
 \end{satz}
 \begin{beweis}
-	Wir haben einen Isomorphismen
+	Wir haben einen Isomorphismen\marginnote{universelles Koeffizienten"=Theorem und Poincaré"=Dualtität}
 	\begin{align}
 		H^k(M;K) &\cong \Hom_K \enbrace*{H_k(M;K),K}  & \xi &\longmapsto  \enbrace[\big]{x \mapsto \xi(x)} \\
-		\Hom_K \enbrace*{H_k(M;K),K} &\cong \Hom_K \enbrace*{H^{n-k}(M;K),K}   &  \varphi &\longmapsto  \enbrace[\big]{\eta \mapsto \varphi \enbrace*{\eta \capp \mu}}
+		\Hom_K \enbrace*{H_k(M;K),K} &\cong \Hom_K \enbrace*{H^{n-k}(M;K),K}   &  \varphi &\longmapsto  \enbrace[\big]{\eta \mapsto \varphi \enbrace*{\eta \capp \mu_M}}
 	\end{align}
 	Ihre Komposition bildet $\xi \in H^k(M;K)$ auf die Abbildung
 	\[
-		\eta \longmapsto \xi \enbrace*{\eta \capp \mu} \StackText{\ref{bem_augmentation_cap}}{=} \epsilon \enbrace[\big]{\xi \capp (\eta \capp \mu)} = \epsilon \enbrace[\big]{(\xi \cupp \eta) \capp \mu} = (\xi \cupp \eta)(\mu) = \sprod*{\xi}{\eta}_K
+		\eta \longmapsto \xi \enbrace*{\eta \capp \mu_M} \StackText{\ref{bem_augmentation_cap}}{=} \epsilon \enbrace[\big]{\xi \capp (\eta \capp \mu_M)} \StackText{\ref{lem:cup_n_cap}}{=} \epsilon \enbrace[\big]{(\xi \cupp \eta) \capp \mu_M} = (\xi \cupp \eta)(\mu_M) = \sprod*{\xi}{\eta}_K
 	\]
 	ab und es folgt die Behauptung.
 \end{beweis}
 
 \begin{korollar}[{name=[Kohomologiemoduln über $K$ sind endlichdimensional]}]
-	Für $K$-orientierbare geschlossene Mannigfaltigkeiten sind die Kohomologiemoduln $H^*(M;K)$ (und auch die Homologiemoduln $H_*(M;K)$) endlich dimensional.
+	Für $K$-orientierbare geschlossene Mannigfaltigkeiten sind die Kohomologiemoduln $H^*(M;K)$ (und damit auch die Homologiemoduln $H_*(M;K)$) endlich dimensional.
 \end{korollar}
 \begin{beweis}
 	Wir benutzen, dass Vektorräume genau dann endlich dimensional sind, wenn sie isomorph sind zu ihrem Bidualraum sind.
-	Wegen 
+	Zweimaliges Anwenden von \autoref{satz:schnittform_koerper_regulaer} liefert
 	\[
 		H^k(M;K) \cong \Hom_K \enbrace*{H^{n-k}(M;K),K} \cong \Hom_K \enbrace*{\Hom_K \enbrace*{H^k(M;K),K}} 
 	\]
-	folgt $\dim_K H^k(M;K) < \infty$.
+	und es folgt $\dim_K H^k(M;K) < \infty$.
 \end{beweis}
 
-\begin{lemma}
+\begin{lemma}[{name=[{Zerlegung eines Vektorraums mittels Bilinearform}]}]
 	Sei $\varphi \colon V \times V \to \mathbb{R}$ eine symmetrische reguläre Bilinearform auf einem endlich dimensionalen $\mathbb{R}$-Vektorraum $V$.
-	Dann gibt es Unterräume $V_+$ und $V_-$ mit $\varphi|_{V_\mp \times V_\mp}$ negativ/positiv definit und $\varphi|_{V_- \times V_+}=0$ und $V= V_- \oplus V_+$.
+	Dann gibt es Unterräume $V_+$ und $V_-$, sodass $\varphi|_{V_\pm \times V_\pm}$ positiv/negativ definit ist und $\varphi|_{V_- \times V_+}=0$ sowie $V= V_- \oplus V_+$ gilt.
 	Die Zahlen $n_- := \dim_\mathbb{R} V_-$ und $n_+ := \dim_\mathbb{R} V_+$ hängen nur von $\varphi$ ab.
 \end{lemma}
 \begin{beweis}
@@ -1946,91 +1945,97 @@ Zum Vergleich erinnern wir uns an dieser Stelle noch einmal an die Konstruktion 
 		(\lambda')^{-1} \sum \varphi(v,b) \varphi(v',b)&= \varphi \enbrace*{v, (\lambda')^{-1} \sum \varphi(v',b) b} \\ &= \varphi(v,v')\\
 		&= \varphi \enbrace*{\lambda^{-1} \sum \varphi(v,b)b , v'} = \lambda^{-1} \sum \varphi(v,b) \varphi(b,v')
 	\end{align}
-	Also ist $\lambda=\lambda'$ oder $\varphi(v,v')=0$. 
-	Für die Eindeutigkeit der Dimensionen sei $V=W_- \oplus W_+$ eine zweite solche Zerlegung, so gilt $V_ \cap W_+ =0$ also $\dim V_- + \dim W_+ \le n$, bzw. $V_+ \cap W_- =0$ also $\dim V_+ + \dim W_- \le n$.
-	Mit $\dim V_- + \dim V_+ = \dim W_- + \dim W_+ = n$ folgt $\dim V_{\mp} = \dim W_{\mp}$.
+	Also ist $\lambda=\lambda'$ oder $\varphi(v,v')=0$ und die Definitheit folgt. 
+	Für die Eindeutigkeit der Dimensionen sei $V=W_- \oplus W_+$ eine zweite solche Zerlegung. 
+	Dann gilt $V_- \cap W_+ =0$ also $\dim V_- + \dim W_+ \le n$, bzw. $V_+ \cap W_- =0$ also $\dim V_+ + \dim W_- \le n$.
+	Mit $\dim V_- + \dim V_+ = \dim W_- + \dim W_+ = n$ folgt $\dim V_{\pm} = \dim W_{\pm}$.
 \end{beweis}
 
 \begin{definition}[{name=[Signatur]}]
 	Die \bet{Signatur}\index{Signatur!symmetrische reguläre Bilinearform} von $\varphi$ ist definiert als $\sig(\varphi) := n_+ - n_-$. 
 \end{definition}
 
-\begin{korollar}
+\begin{korollar}[{name=[{Basis mit Kronecker-Delta bezüglich der Bilinearform}]},label=korr:basis_kron_delta]
 	Es gibt eine Basis $v_1, \ldots , v_{n_-}, w_1 , \ldots , w_{n_+}$ von $V$ mit 
 	\[
 		\varphi(v_i,v_j) = - \delta_{ij} \quad , \quad \varphi(w_i,w_j) =\delta_{ij} \quad , \quad \varphi(v_i,w_j)=0
 	\]
 \end{korollar}
 \begin{beweis}
-	Wähle eine Orthonormalbasis von $V_-$ bezüglich $-\varphi$ und eine Orthonormalbasis bezüglich $\varphi$.
+	Wähle eine Orthonormalbasis von $V_-$ bezüglich $-\varphi|_{V_- \times V_-}$ und eine Orthonormalbasis von $V_+$ bezüglich $\varphi|_{V_+ \times V_+}$.
 \end{beweis}
 
-\begin{lemma}[label=sig_null]
+\begin{lemma}[label=sig_null,{name=[{Äquivalenz dazu, dass die Signatur 0 ist}]}]
 	Die Signatur von $\varphi$ ist genau dann $0$, wenn es $L \le V$ gibt mit $\varphi|_{L \times L}=0$ und $\dim L = \frac{1}{2} \dim V$.
 \end{lemma}
 \begin{beweis}
-	Sei $\sig(\varphi)=0$. Dann wählen wir eine Basis $v_1,\ldots ,v_l,w_1,\ldots ,w_l$ wie im Korollar\todo{oder doch Lemma?}.
-	Dann hat $L := \langle v_1+ w_1, \ldots ,v_l+w_l$ die gesuchte Eigenschaft.
+	Sei $\sig(\varphi)=0$. Dann wählen wir eine Basis $v_1,\ldots ,v_l,w_1,\ldots ,w_l$ wie in \autoref{korr:basis_kron_delta}.
+	Dann hat $L := \langle v_1+ w_1, \ldots ,v_l+w_l\rangle$ die gesuchte Eigenschaft.
 	
 	Sei umgekehrt $L \le V$ mit $\varphi|_{L \times L}=0$ und $\dim L = \frac{1}{2} \dim V$.
 	Dann ist $L \cap V_- =0$, also $\dim L + \dim V_- \le \dim V$ und genauso $L \cap V_+ =0$, also $\dim L + \dim V_+ \le \dim V$.
-	Damit folgt $\dim L = \dim V_- = \dim V_+ = \frac{1}{2} \dim V$.
+	Damit folgt $\dim L = \dim V_- = \dim V_+ = \frac{1}{2} \dim V$ und damit die Behauptung.
 \end{beweis}
 
-\begin{definition}[{name=[Signatur]}]
+\begin{definition}[{name=[Signatur einer Mannigfaltigkeit]}]
 	Sei $M$ eine $4k$-dimensionale geschlossene orientierte Mannigfaltigkeit.
-	Dann ist $\sprod*{\enspace}{\enspace}_\mathbb{R} \colon H^{2k}(M;\mathbb{R}) \otimes H^{2k}(M;\mathbb{R}) \to \mathbb{R}$ eine reguläre symmetrische Bilinearform.
+	Dann ist $\sprod*{\enspace}{\enspace}_\mathbb{R} \colon H^{2k}(M;\mathbb{R}) \otimes H^{2k}(M;\mathbb{R}) \to \mathbb{R}$ eine reguläre symmetrische Bilinearform nach \autoref{lem:schnittform_bil_grad_komm}.
 	Wir definieren die \bet{Signatur}\index{Signatur!Mannigfaltigkeit} $\sig(M)$ von $M$ als die Signatur dieser Bilinearform.
 \end{definition}
 
-\begin{bemerkung}
+\begin{bemerkung}[{name=[{über reelle Koeffizienten}]}]
 	\leavevmode
 	\begin{itemize}
-		\item Es ist $H_n(M;\mathbb{R}) \cong H_n(M;\mathbb{Z})\otimes \mathbb{R}$.
-	Insbesondere bestimmt jede $\mathbb{Z}$-Orientierung von $M$ eine $\mathbb{R}$-Orientierung von $M$.
-	\item Für eine orientierte Mannigfaltigkeit $M$ bezeichnen wir mit $-M$ die Mannigfaltigkeit $M$ mit der umgekehrten Orientierung (also $\mu_{-M}=-\mu_M$).
-	Ist $M$ geschlossen mit $\dim M = 4k$, so gilt $\sig(M)=- \sig(-M)$.
+		\item Es ist $H_n(M;\mathbb{R}) \cong H_n(M;\mathbb{Z})\otimes \mathbb{R}$ nach dem \hyperref[satz:univ_koeff_homo]{universellen Koeffzienten-Theorem für Homologie}.
+		Insbesondere bestimmt jede $\mathbb{Z}$-Orientierung von $M$ eine $\mathbb{R}$-Orientierung von $M$.
+		\item Für eine orientierte Mannigfaltigkeit $M$ bezeichnen wir mit $-M$ die Mannigfaltigkeit $M$ mit der umgekehrten Orientierung (also $\mu_{-M}=-\mu_M$).
+		Ist $M$ geschlossen mit $\dim M = 4k$, so gilt $\sig(M)=- \sig(-M)$.
 	\end{itemize}
 \end{bemerkung}
 
-\begin{beispiel}
-	Sei $\alpha \in H^2(\mathbb{CP}^{2k})$ ein Erzeuger.
+\begin{beispiel}[{name=[{Signatur des komplex projektiven Raumes}]}]
+	Sei $\alpha \in H^2(\mathbb{CP}^{2k})$ ein Erzeuger.\marginnote{vgl. \autoref{satz:kohomo_ring_projektiv} (ii)}
 	Wir wählen die Orientierung $\mu \in H_{4k} \enbrace{\mathbb{CP}^{2k}}$ für die $\alpha^{2k} (\mu)=1$.
 	Mit dieser Orientierung ist $\sig \enbrace{\mathbb{CP}^{2k}}=1$.
 \end{beispiel}
 
-\begin{satz}
+\begin{satz}[{name=[{Rand einer 4k+1 Mannigfaltigkeit hat Signatur 0}]}]
 	Sei $W$ eine kompakte orientierte Mannigfaltigkeit mit Rand.
 	Falls $\dim W = 4k+1$ ist, so gilt $\sig(\partial W)=0$.
 \end{satz}
 \begin{beweis}
 	Sei $L :=  \im \enbrace[\big]{i^* \colon H^{2k}(W;\mathbb{R}) \hookrightarrow H^{2k}(\partial W;\mathbb{R})}$. Es gilt
 	\begin{enumerate}[a)]
-		\item $(i^* \xi \cupp i^* \eta) (\mu_{\partial W}) = \enbrace*{i^*(\xi \cupp \eta)}(\mu_{\partial W})= (\xi \cupp \eta) \enbrace*{i_* \mu_{\partial W}} =0$, da $\mu_{\partial W}=\partial (\mu_{W,\partial W})$, wobei $\mu_{W,\partial W} \in H^{4k+1}(W,\partial W)$ die Orientierungsklasse von $W$ relativ zu $\partial W$ ist.
-		\item Zu zeigen: $\dim L = \frac{1}{2} \dim H^{2k}(\partial W;\mathbb{R})$.
-		
-		Betrachte 
+		\item Wir zeigen, dass die Schnittform auf $L$ trivial ist:
+		Es seien also $i^* \xi, i^* \eta \in L$.
+		Dann gilt
+		\[
+			(i^* \xi \cupp i^* \eta) (\mu_{\partial W}) = \enbrace[\big]{i^*(\xi \cupp \eta)}(\mu_{\partial W})= (\xi \cupp \eta) \enbrace*{i_* \mu_{\partial W}} =0
+		\]
+		wegen Exaktheit der Paarfolge, da $\mu_{\partial W}=\partial (\mu_{W,\partial W})$, wobei $\mu_{W,\partial W} \in H^{4k+1}(W,\partial W)$ die Orientierungsklasse von $W$ relativ zu $\partial W$ ist.\todo{Referenz zur Übungsaufgabe}
+		\item Wir zeigen: $\dim L = \frac{1}{2} \dim H^{2k}(\partial W;\mathbb{R})$.
+		Betrachte dazu
 		\[
 			\begin{tikzcd}[sep=large]
 				\ldots  \rar & H^{2k}(W) \dar["\capp \mu_{W,\partial W}","\cong"'] \rar["i^*"] & H^{2k}(\partial W)  \dar["\capp \mu_{\partial W}","\cong"']\rar["\partial"] & H^{2k+1}(W,\partial W) \rar \dar["\capp \mu_{W,\partial W}","\cong"']& \ldots \\
-				\ldots \rar & H_{2k+1} \rar["\partial"] & H_{2k}(\partial W) \rar & H_{2k}(W) \rar & \ldots 
+				\ldots \rar & H_{2k+1}(W,\partial W) \rar["\partial"] & H_{2k}(\partial W) \rar["i_*"] & H_{2k}(W) \rar & \ldots 
 			\end{tikzcd}
 		\]
 		Die Kommutativität benutzt wieder $\partial (\mu_{W,\partial W})=\mu_{\partial W}$.
-		Es gilt
+		Es gilt\todo{ich habe keine Ahnung, was der dritte Ausdruck sein soll}
 		\[
 			\dim \im i^* = \dim \ker i_* = \dim \ker \enbrace[\big]{\Hom(i_*,\mathbb{R})} = \dim \ker i^*
 		\]
 		Da $\dim H^{2k}(\partial W) = \dim \ker i^* + \dim \im i^*$, folgt $\dim \im i^* = \frac{1}{2} \dim H^{2k}(\partial W)$. 
 	\end{enumerate}
-	Mit dem \autoref{sig_null} folgt die Behauptung.
+	Mit dem \autoref{sig_null} folgt nun die Behauptung.
 \end{beweis}
 
-\begin{korollarB}
-	$\mathbb{CP}^{2k}$ ist nicht Rand einer orientierten kompakten Mannigfaltigkeit.
+\begin{korollarB}[{name=[{Für gerade n ist der komplex projektive Raum nicht Rand einer Mannigfaltigkeit}]}]
+	$\mathbb{CP}^{2k}$ ist nicht der Rand einer orientierten kompakten Mannigfaltigkeit.
 \end{korollarB}
 
-\begin{ausblick}
+\begin{ausblick}[{name=[{Klassifizierung von geschlossenen 4-Mannigfaltigkeiten}]}]
 	Nach dem Satz von \textsc{Freedman}\footnote{\url{https://de.wikipedia.org/wiki/Michael_Freedman}} werden einfach zusammenhängende geschlossene orientierte $4$-Mannigfaltigkeiten bis auf Homöomorphismus durch die ganzzahlige Schnittform auf $H^2(M;\mathbb{Z})$ und eine $\sfrac{\mathbb{Z}}{2 \mathbb{Z}}$-wertige Invariante klassifiziert.
 	Jede ganzzahlige reguläre Schnittform wird realisiert.
 \end{ausblick}
@@ -3243,7 +3248,7 @@ Es folgt $d(a-b) = dc' \in d \enbrace*{F_{p-1} C_{p+q}} \cap F_{p-r} C_{p+q-1}$.
 	Dann spaltet die obige Sequenz für jedes $C_*^\ssbbrace{i}$ (auf triviale Weise!) und damit auch für $C_*$.
 \end{beweis}
 
-\begin{satz}
+\begin{satz}[{name=[{Universelles Koeffizienten-Theorem für Homologie}]},label=satz:univ_koeff_homo]
 	Sei $R$ ein Hauptidealring, $V$ ein $R$-Modul und $X$ ein topologischer Raum.
 	Dann gibt es eine kurze exakte Folge 
 	\[
