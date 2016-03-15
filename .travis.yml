@@ -28,8 +28,8 @@ deploy:
     - Topo1_WS14/topologie_1.pdf
     - ModRed_WS15/Modellreduktion.pdf
     - CAT0_WS15/CAT0.pdf
-	- KTheorie_SS15/K-Theorie.pdf
-	- AnaTopGeo_SS14/ana_top_geo.pdf
+    - KTheorie_SS15/K-Theorie.pdf
+    - AnaTopGeo_SS14/ana_top_geo.pdf
   skip_cleanup: true
   on:
     repo: JaMeZ-B/LaTeX-WWU
