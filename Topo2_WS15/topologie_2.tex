@@ -2208,24 +2208,22 @@ Zum Vergleich erinnern wir uns an dieser Stelle noch einmal an die Konstruktion 
 \section[Tor und Ext]{$\Tor$ und $\Ext$} % (fold)
 \label{sec:12}
 
-\todo[inline]{Revision 12}
-\begin{frage}
-	Sei $V$ ein $\mathbb{Z}$-Modul und $V''$ ein $R$-Modul. Ist $H_*(X;V) \cong H_*(X) \otimes V$? 
-	\[
-		H_* \enbrace*{V' \otimes_R C_*(X;R)}= H_*(X;V') \cong V' \otimes_R H_*(X;R)
-	\]
-	Sei $W$ ein $R$-Modul. Gilt dann
-	\[
-		H^*(X;V) \cong \Hom_\mathbb{Z}(H_*(X),V) \qquad H^*(X;W) \cong \Hom_R \enbrace*{H_*(X;R),W}
-	\]
+\begin{frage}[{name=[{Isomorphismen von Kohomologiemoduln}]}]
+	Sei $V$ ein $\mathbb{Z}$-Modul also eine abelsche Gruppe, $V'$ ein $R$-Rechtsmodul und  $W$ ein $R$-(Links)-Modul.
+	Es stellen sich folgende Fragen:
+	\begin{itemize}
+		\item $H_*(X;V) \cong H_*(X) \otimes V$ ?\todo{Definition von Homologie mit Koeffizienten in abelscher Gruppe}
+		\item $H_* \enbrace*{V' \otimes_R C_*(X;R)}= H_*(X;V') \cong V' \otimes_R H_*(X;R)$ ?
+		\item $H^*(X;V) \cong \Hom_\mathbb{Z}(H_*(X),V)$ ?
+		\item $H^*(X;W) \cong \Hom_R \enbrace*{H_*(X;R),W}$ ?
+	\end{itemize}
 	Genauso für Kettenkomplexe: Sei $C_*$ ein $\mathbb{Z}$-Kettenkomplex ud $C_*'$ ein $R$-Kettenkomplex. Gilt dann
-	\[
-		H_* \enbrace*{V \otimes_\mathbb{Z} C_*} \cong V \otimes _\mathbb{Z} H_*(C_*) \qquad H_* \enbrace*{V' \otimes_R C_*'} \cong V' \otimes_R H_*(C_*)
-	\]
-	und wie sieht es hiermit aus:
-	\[
-		H^* \enbrace[\big]{\Hom_\mathbb{Z}(C_*,V)} \cong \Hom_\mathbb{Z} \enbrace[\big]{H_*(C_*),V} \qquad H^*\enbrace[\big]{\Hom_R(C_*',W)} \cong \Hom_R \enbrace[\big]{H_*(C_*'),W}
-	\]
+	\begin{itemize}
+		\item $H_* \enbrace*{V \otimes_\mathbb{Z} C_*} \cong V \otimes _\mathbb{Z} H_*(C_*)$ ?
+		\item $H_* \enbrace*{V' \otimes_R C_*'} \cong V' \otimes_R H_*(C_*)$ ?
+		\item $H^* \enbrace[\big]{\Hom_\mathbb{Z}(C_*,V)} \cong \Hom_\mathbb{Z} \enbrace[\big]{H_*(C_*),V}$ ?
+		\item $H^*\enbrace[\big]{\Hom_R(C_*',W)} \cong \Hom_R \enbrace[\big]{H_*(C_*'),W}$ ?
+	\end{itemize}
 \end{frage}
 
 \begin{konvention}[{name=[Links- und Rechtsmoduln]}]
@@ -2241,10 +2239,10 @@ Zum Vergleich erinnern wir uns an dieser Stelle noch einmal an die Konstruktion 
 
 \begin{bemerkung}[{name=[exakte Funktoren und (Ko-)Homologie]}]
 	Sei $C_*$ ein $R$-Kettenkomplex.
-	Ist $F \colon \Mod{R} \to \Mod{S}$ exakt, so gilt
+	Ist $F \colon \Mod{R} \to \Mod{S}$ exakt, so gilt\todo{Revision 12}
 	\[
 		\begin{array}{ll}
-			H_* \enbrace[\big]{F(C_*)} = F_* \enbrace[\big]{H_*(C_*)} & \text{ falls $F$ kovariant ist} \\
+			H_* \enbrace[\big]{F(C_*)} = F \enbrace[\big]{H_*(C_*)} & \text{ falls $F$ kovariant ist} \\[4pt]
 			H^* \enbrace[\big]{F(C_*)} = F \enbrace[\big]{H_*(C_*)} & \text{ falls $F$ kontravariant ist} 
 		\end{array}
 	\]
@@ -2489,7 +2487,7 @@ Zum Vergleich erinnern wir uns an dieser Stelle noch einmal an die Konstruktion 
 \newpage
 % section 12 (end)
 
-\section{Das Tensorprodukt und $\Hom$ als Kettenkomplexe} % (fold)
+\section[Das Tensorprodukt und Hom als Kettenkomplexe]{Das Tensorprodukt und $\Hom$ als Kettenkomplexe} % (fold)
 \label{sec:das_tensorprodukt_und_hom_als_kettenkomplexe}
 
 \todo[inline]{Revision 13}
