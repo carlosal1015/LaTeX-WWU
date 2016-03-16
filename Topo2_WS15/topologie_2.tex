@@ -2213,7 +2213,7 @@ Zum Vergleich erinnern wir uns an dieser Stelle noch einmal an die Konstruktion 
 	Sei $V$ ein $\mathbb{Z}$-Modul also eine abelsche Gruppe, $V'$ ein $R$-Rechtsmodul und  $W$ ein $R$-(Links)-Modul.
 	Es stellen sich folgende Fragen:
 	\begin{itemize}
-		\item $H_*(X;V) \cong H_*(X) \otimes V$ ?\todo{Definition von Homologie mit Koeffizienten in abelscher Gruppe}
+		\item $H_*(X;V) \cong H_*(X) \otimes V$ ?
 		\item $H_* \enbrace*{V' \otimes_R C_*(X;R)}= H_*(X;V') \cong V' \otimes_R H_*(X;R)$ ?
 		\item $H^*(X;V) \cong \Hom_\mathbb{Z}(H_*(X),V)$ ?
 		\item $H^*(X;W) \cong \Hom_R \enbrace*{H_*(X;R),W}$ ?
@@ -2233,14 +2233,14 @@ Zum Vergleich erinnern wir uns an dieser Stelle noch einmal an die Konstruktion 
 
 \begin{definition}[{name=[{lineare und exakte Funktoren}]}]
 	Seien $R$ und $S$ Ringe.
-	Ein Funktor $F\colon \Mod{R} \to \Mod{S}$ heißt \bet{$\mathbb{Z}$-linear}\index{Funktor!$\mathbb{Z}$-linearer}, wenn für $f,g \colon M \to M'$ gilt $F(f + g)= F(f) + F(g)$.
+	Ein Funktor $F\colon \Mod{R} \to \Mod{S}$ heißt \bet{$\mathbb{Z}$-linear}\index{Funktor!$\mathbb{Z}$-linearer},\marginnote{insb. wird die Nullabbildung auf die Nullabbildung geschickt} wenn für $f,g \colon M \to M'$ gilt $F(f + g)= F(f) + F(g)$.
 	
 	Ein solcher Funktor heißt \bet{exakt}\index{Funktor!exakter}, wenn er kurze exakte Folgen von $R$-Moduln auf kurze exakte Folgen von $S$-Moduln abbildet.
 \end{definition}
 
 \begin{bemerkung}[{name=[exakte Funktoren und (Ko-)Homologie]}]
 	Sei $C_*$ ein $R$-Kettenkomplex.
-	Ist $F \colon \Mod{R} \to \Mod{S}$ exakt, so gilt\todo{Revision 12}
+	Ist $F \colon \Mod{R} \to \Mod{S}$ exakt, so gilt\todo{nochmal detailliert durchgehen, Aufgabe 2 Blatt 8}
 	\[
 		\begin{array}{ll}
 			H_* \enbrace[\big]{F(C_*)} = F \enbrace[\big]{H_*(C_*)} & \text{ falls $F$ kovariant ist} \\[4pt]
@@ -2249,24 +2249,26 @@ Zum Vergleich erinnern wir uns an dieser Stelle noch einmal an die Konstruktion 
 	\]
 \end{bemerkung}
 
-\begin{beispiel}
+\begin{beispiel}[{name=[Tensorieren und Hom]}]
+	\leavevmode
 	\begin{enumerate}[(i)]
 		\item Sei $V$ ein $R$-Rechtsmodul.
 		Dann erhalten wir einen $\mathbb{Z}$-linearen Funktor 
 		\[
-			V \otimes_R \colon \Mod{R} \to \Mod{\mathbb{Z}}
+			V \otimes_R {-} \colon \Mod{R} \to \Mod{\mathbb{Z}}
 		\]
 		\item Sei $W$ ein $R$-Modul. 
-		Dann erhalten wir einen $\mathbb{Z}$-linearen Funktor 
+		Dann erhalten wir einen $\mathbb{Z}$-linearen Funktor
 		\[
 			\Hom_R(-,W) \colon \Mod{R} \to \Mod{\mathbb{Z}}
 		\]
-		\item Für $R=\mathbb{Z}$ und $V= \sfrac{\mathbb{Z}}{2 \mathbb{Z}}$ sind weder $\sfrac{\mathbb{Z}}{2 \mathbb{Z}} \otimes $ noch $\Hom_\mathbb{Z} \enbrace*{-, \sfrac{\mathbb{Z}}{2 \mathbb{Z}}}$ exakt:
-		\[
-			\begin{tikzcd}
+		\item Für $R=\mathbb{Z}$ und $V= \sfrac{\mathbb{Z}}{2 \mathbb{Z}}$ sind weder $\sfrac{\mathbb{Z}}{2 \mathbb{Z}} \otimes {-}$ noch $\Hom_\mathbb{Z} \enbrace*{-, \sfrac{\mathbb{Z}}{2 \mathbb{Z}}}$ exakt:
+		Die Sequenz
+		\(
+			\begin{tikzcd}[sep=small, cramped]
 				0 \rar & \mathbb{Z} \rar["\cdot 2"] & \mathbb{Z} \rar & \sfrac{\mathbb{Z}}{2 \mathbb{Z}} \rar & 0
 			\end{tikzcd}
-		\]
+		\)
 		wird nach Tensorieren zu 
 		\[
 			\begin{tikzcd}
@@ -2282,10 +2284,10 @@ Zum Vergleich erinnern wir uns an dieser Stelle noch einmal an die Konstruktion 
 	\end{enumerate}
 \end{beispiel}
 
-\begin{lemma}
+\begin{lemma}[{name=[{Exaktheit vom Tensorieren und Hom}]}]
 	Sei $V$ ein $R$-Rechtsmodul und $W$ ein $R$-Modul.
 	Sei $\begin{tikzcd}[cramped,sep=small]
-		0 \rar& M \rar &M' \rar & M'' \rar & 0
+		0 \rar& M \rar["f"] &M' \rar["g"] & M'' \rar & 0
 	\end{tikzcd}$ 
 	eine kurze exakte Folge von $R$-Moduln.
 	Dann sind folgende Sequenzen exakt:
@@ -2294,12 +2296,35 @@ Zum Vergleich erinnern wir uns an dieser Stelle noch einmal an die Konstruktion 
 					V \otimes_R M \rar & V \otimes_R M' \rar & V \otimes_R M'' \rar & 0
 				\end{tikzcd} \)
 		\item $\begin{tikzcd}[cramped,sep=1.8em]
-			\Hom_R(M,W)  & \Hom_R(M',W) \lar & \Hom_R(M'',W) \lar & 0 \lar
+			\Hom_R(M,W)  & \Hom_R(M',W) \lar["f^*"'] & \Hom_R(M'',W) \lar["g^*"'] & 0 \lar
 		\end{tikzcd}$
 	\end{enumerate}
 \end{lemma}
 \begin{beweis}
-	\emph{Übungsaufgabe 2 von Blatt 5.}
+	\leavevmode
+	\begin{enumerate}[(i)]
+		\item Die Surjektivität ist trivial.
+		Sei $B$ das Bild von $V \otimes_R M \to V \otimes_R M'$.
+		Wir zeigen, dass $V \otimes_R M' \to V \otimes_R M''$ einen Isomorphismus auf $\varphi \colon\sfrac{V \otimes_R M'}{B} \to V \otimes_R M''$ induziert.
+		Dazu konstruieren wir ein Linksinverses $\psi$ durch $\psi(v \otimes m'') = v \otimes m'$, wobei $m'$ ein Urbild von $m''$ unter $M' \twoheadrightarrow M''$ ist.
+		Dies ist wohldefiniert, denn für ein weiteres Urbild $n'$ gilt $g(m'-n')=0$, also $m'-n' \in \ker g = \im f$.
+		Dann existiert $m \in M$ mit $f(m)=m'-n'$ und es folgt
+		\[
+			[v \otimes m'] = \benbrace[\big]{v \otimes \enbrace*{n' + f(m)}} = \benbrace*{v \otimes n'} + \benbrace[\big]{v \otimes f(m)} = \benbrace*{v \otimes n'} + \benbrace[\big]{\id \otimes f (v \otimes m)} = \benbrace*{v \otimes n'}
+		\]
+		und damit die Wohldefiniertheit. $\psi$ ist die gesuchte zu $\varphi$ linksinverse Abbildung.
+		\item Injektivität von $g^*$: Für $\varphi \in \ker g$ ist $\varphi \circ g =0$ und da $g$ surjektiv ist, folgt damit schon $\varphi=0$.
+		
+		Für $\varphi \in \im g^*$ existiert $\psi \in \Hom_R(M'',W)$ mit $\varphi= \psi \circ g$. 
+		Komposition mit $f$ liefert also $\varphi \circ f = \psi \circ g \circ f =0$, woraus $\im g^* \subseteq \ker f^*$ folgt.
+		Ist umgekehrt $\varphi \in \ker f^*$, so konstruieren wir ein $\psi \in  \Hom_R(M'',W)$ mit $\psi \circ g = \varphi$ wie folgt:
+		$[m] \mapsto \varphi(m)$ liefert einen wohldefinierten Homomorphismus $\psi' \colon \sfrac{M'}{\ker g} \to W$ und da $g$ surjektiv ist, gilt $\sfrac{M'}{\ker g} \cong  M''$.
+		Wir erhalten also einen Homomorphismus $\psi \colon M'' \to W$, für den gilt\todo{Revision 12}
+		\[
+			\psi \circ g(m) = \psi' ([m]) = \varphi(m)
+		\]
+		Damit ist die Exaktheit gezeigt.\qedhere
+	\end{enumerate}
 \end{beweis}
 
 \begin{lemma}
