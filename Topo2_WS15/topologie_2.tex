@@ -2045,7 +2045,6 @@ Zum Vergleich erinnern wir uns an dieser Stelle noch einmal an die Konstruktion 
 \section{Projektive Auflösungen} % (fold)
 \label{sec:11}
 
-\todo[inline]{Revision 11}
 \begin{definition}[{name=[projektive Auflösung]}]
 	Sei $M$ ein $R$-Modul.
 	Eine \Index{projektive Auflösung} von $M$ ist eine lange exakte Folge 
@@ -2055,7 +2054,8 @@ Zum Vergleich erinnern wir uns an dieser Stelle noch einmal an die Konstruktion 
 		\end{tikzcd}
 	\]
 	wobei die $P_i$ projektive $R$-Moduln sind.
-	Wir schreiben oft $(P_*,\epsilon)$ für eine solche Auflösung, wobei $P_*$ ein Kettenkomplex projektiver Moduln ist, $H_k(P_*)=0$ für $k>0$ und $H_0(P_*)\cong M$ via $\epsilon$ ist.
+	Wir schreiben oft $(P_*,\epsilon)$ für eine solche Auflösung, wobei $P_*$ ein Kettenkomplex projektiver Moduln ist. 
+	Es gilt $H_k(P_*)=0$ für $k>0$ und $H_0(P_*)\cong M$ via $\epsilon$.
 \end{definition}
 
 \begin{satz}[{name=[Existenz projektiver Auflösungen]}]
@@ -2078,27 +2078,25 @@ Zum Vergleich erinnern wir uns an dieser Stelle noch einmal an die Konstruktion 
 	\end{enumerate}
 \end{beweis}
 
-\begin{proposition}[label=prop:113]
+\begin{proposition}[label=prop:113,{name=[{Isomorphismus zwischen Kettenhomotopieklassen und Abbildungen in 0-ter Homologie}]}]
 	Seien $A_*$ und $P_*$ zwei Kettenkomplexe mit 
 	\begin{itemize}[itemsep=0pt]
-		\item Die Kettenmoduln von $P_*$ sind projektiv.
+		\item die Kettenmoduln von $P_*$ sind projektiv.
 		\item $H_*(A_*)=0$ für $*\ge 1$.
 	\end{itemize}
 	Dann definiert $f \mapsto H_0(f)$ einen Isomorphismus zwischen Kettenhomotopieklassen von Kettenabbildungen $f \colon P_* \to A_*$ und $R$-linearen Abbildungen $\varphi \colon H_0(P_*) \to H_0(A_*)$.
 \end{proposition}
 \begin{beweis}
 	Sei $\varphi \colon H_0(P_*) \to H_0(A_*)$ gegeben. 
-	Wir konstruieren $f_n \colon P_n \to A_n$ induktiv: 
+	Wir konstruieren $f_* \colon P_* \to A_*$ induktiv:
 	Seien entsprechende Abbildungen $f_0,\ldots ,f_n$ bereits konstruiert, sodass folgendes Diagramm kommutiert
 	\[
-		\begin{tikzcd}[sep=large]
-			H_0(P_*) \dar["\varphi"] & P_0 \lar[two heads]  \dar["f_0"]& P_1 \lar  \dar["f_1"]& \ldots \lar & P_n \lar["d_n"']\dar["f_n"] & P_{n+1} \lar["d_{n+1}"'] \dar[dashed,"f_{n+1}"] \\
-			H_0(A_*) & A_0 \lar[two heads] & A_1 \lar["d_1'"'] & \ldots \lar & A_n \lar["d_n'"'] & A_{n+1} \lar["d_{n+1}'"']
+		\begin{tikzcd}[row sep=2.3em, column sep=2.7em]
+			H_0(P_*) \dar["\varphi"] & P_0 \lar[two heads]  \dar["f_0"] & \ldots \lar & P_n \lar["d_n"']\dar["f_n"] & P_{n+1} \lar["d_{n+1}"'] \dar[dashed,"f_{n+1}"] \\
+			H_0(A_*) & A_0 \lar[two heads] & \ldots \lar["d_1'"'] & A_n \lar["d_n'"'] & A_{n+1} \lar["d_{n+1}'"']
 		\end{tikzcd}
-	\]
-	Wir erhalten 
-	\[
-		\begin{tikzcd}[row sep=large, column sep=huge]
+		\hspace{2em}
+		\begin{tikzcd}[row sep=2.3em, column sep=huge]
 			\mbox{ } & A_{n+1} \dar[two heads,"d_{n+1}'"]\\
 			P_{n+1} \ar[ur,dashed] \rar["f_n \circ d_{n+1}"] & \ker d_{n}'
 		\end{tikzcd}
@@ -2106,18 +2104,18 @@ Zum Vergleich erinnern wir uns an dieser Stelle noch einmal an die Konstruktion 
 	Da $P_{n+1}$ projektiv ist, gibt es $f_{n+1} \colon P_{n+1} \to A_{n+1}$ mit $d_{n+1}' \circ f_{n+1} = f_n \circ d_{n+1}$.
 	
 	Für die Injektivität seien $f,g \colon P_* \to A_*$ Kettenabbildung mit $H_0(f) = H_0(g)$. 
-	Wir konstruieren eine Kettenhomotopie $s_n \colon P_n \to A_{n+1}$ induktiv. Seien $s_0, \ldots ,s_{n-1}$ schon konstruiert mit $f_i -g_i= s_{i-1} d_i + d_{i+1} s_i$ für $i=0, \ldots , n$.
+	Wir konstruieren eine Kettenhomotopie $s_n \colon P_n \to A_{n+1}$ induktiv. Seien $s_0, \ldots ,s_{n-1}$ schon konstruiert mit $f_i -g_i= s_{i-1} \circ d_i + d'_{i+1} \circ s_i$ für $i=0, \ldots , n$.
 	\[
 		\begin{tikzcd}[row sep=large, column sep=3.15em]
 			H_0(P_*) \dar["0"] & P_0 \lar \dar["f_0-g_0"'] \drar[sloped,pos=.4,"s_0"] & P_1 \lar \dar[pos=.7,"f_1-g_1"] \drar[sloped,pos=.4,"s_1"] & P_2 \lar \dar["f_2 - g_2"] & \ldots \lar & P_{n-1} \lar\dar["f_{n-1}- g_{n-1}"'] \drar[sloped,pos=.3,"s_{n-1}"] & P_n \lar \dar[pos=.7,"f_n - g_n"]  \drar[dashed,sloped,pos=.4,"s_n"] & P_{n+1} \lar \\
 			H_0(A_*) & A_0 \lar & A_1 \lar & A_2 \lar & \ldots \lar & A_{n-1} \lar & A_n \lar & A_{n+1} \lar 
 		\end{tikzcd}
 	\]
-	Wir erhalten
+	Wir erhalten\marginnote{dass die Abbildung in $\ker d_n'$ liegt, lässt sich leicht nachrechnen}
 	\[
 		\begin{tikzcd}[row sep=large, column sep=7.5em]
-			\mbox{} &  A_{n+1} \dar["d_{n+1}"] \\
-			P_n \rar["(f_n-g_n)- s_{n-1} d_n"'] \urar[dashed] &\ker d_n
+			\mbox{} &  A_{n+1} \dar["d_{n+1}'",two heads] \\
+			P_n \rar["(f_n-g_n)- s_{n-1} d_n"'] \urar[dashed] &\ker d_n'
 		\end{tikzcd}
 	\]
 	Da $P_n$ projektiv ist, gibt es $s_n \colon P_n \to A_{n+1}$ mit $d'_{n+1} \circ s_n = (f_n -g_n) - s_{n-1} \circ d_n$.
@@ -2135,7 +2133,7 @@ Zum Vergleich erinnern wir uns an dieser Stelle noch einmal an die Konstruktion 
 \end{definition}
 
 \begin{beispiel}[{name=[Körper haben projektive Dimension $0$]}]
-	Ist $R=K$ ein Körper, so ist jeder $K$-Modul, also jeder $K$-Vektorraum, frei.
+	Ist $R=K$ ein Körper, so ist jeder $K$-Modul, also jeder $K$-Vektorraum, frei und insbesondere projektiv.
 	Daher ist die projektive Dimension $0$.
 \end{beispiel}
 
@@ -2144,7 +2142,7 @@ Zum Vergleich erinnern wir uns an dieser Stelle noch einmal an die Konstruktion 
 \end{satz}
 \begin{beweis}
 	Ist $M$ ein $R$-Modul, so gibt es einen freien $R$-Modul $P_0$ mit einer surjektiven Abbildung $\epsilon \colon P_0 \to M$.
-	Ist $R$ ein Hauptidealring, so ist $P_1 := \ker \epsilon$ als Untermodul eines freien Moduls wieder frei\todo{Referenz} und wir erhalten wir eine projektive Auflösung
+	Ist $R$ ein Hauptidealring,\marginnote{die Ringe mit dieser Eigenschaft sind genau die HIR, siehe Aufgabe 4, Blatt 2} so ist $P_1 := \ker \epsilon$ als Untermodul eines freien Moduls wieder frei und wir erhalten wir eine projektive Auflösung
 	\(
 		\begin{tikzcd}[cramped,sep=small]
 			M & P_0 \lar & P_1 \lar
@@ -2157,7 +2155,7 @@ Zum Vergleich erinnern wir uns an dieser Stelle noch einmal an die Konstruktion 
 	Sei 
 	\[
 		\begin{tikzcd}
-			0 \rar & M \rar["f"] & M' \rar["f'"] & M'' \rar & 0
+			0 \rar & M \rar["f",hook] & M' \rar["f'",two heads] & M'' \rar & 0
 		\end{tikzcd}
 	\]
 	eine kurze exakte Sequenz von $R$-Moduln. Dan gilt
@@ -2166,7 +2164,7 @@ Zum Vergleich erinnern wir uns an dieser Stelle noch einmal an die Konstruktion 
 		\[
 			\begin{tikzcd}
 				0 \rar & P \rar[hook] \dar["\epsilon"] & P \oplus P'' \rar[two heads] \dar["\epsilon'"] & P'' \rar  \dar["\epsilon''"] & 0 \\
-				0 \rar & M \rar["f"] & M' \rar["f'"] & M'' \rar & 0
+				0 \rar & M \rar["f",hook] & M' \rar["f'", two heads] & M'' \rar & 0
 			\end{tikzcd}
 		\]
 		\item Es gibt projektive Auflösungen $(P_*,\epsilon)$, $(P_*',\epsilon')$ und $(P_*'',\epsilon'')$ von $M$, $M'$ und $M''$ und eine kurze exakte Folge von Kettenkomplexen
@@ -2185,16 +2183,17 @@ Zum Vergleich erinnern wir uns an dieser Stelle noch einmal an die Konstruktion 
 	\end{enumerate}
 \end{lemma}
 \begin{beweis}
+	\leavevmode
 	\begin{enumerate}[a)]
 		\item Da $f' \colon M' \to M''$ surjektiv und $P''$ projektiv ist, gibt es $\hat{\epsilon}'' \colon P'' \to M'$ mit $\epsilon'' = f' \circ \hat{\epsilon}''$.
 		Nun können wir $\epsilon' \colon P \oplus P'' \to M'$ durch $\epsilon' (p,p'') := f \enbrace*{\epsilon(p)} + \hat{\epsilon}''(p'')$ definieren.
 		Noch zu zeigen: $\epsilon'$ ist surjektiv. 
 		Sei $v' \in M'$. Da $\epsilon''$ surjektiv ist, gibt es $x'' \in P''$ mit $\epsilon''(x'')=f'(v')$. Dann gilt
 		\[
-			f'\enbrace*{v' - \hat{\epsilon}''(x'')} = f'(v') - \Underbracket{f' \enbrace*{\hat{\epsilon}''(x'')}}{=\epsilon''(x'')} = 0
+			f'\enbrace[\big]{v' - \hat{\epsilon}''(x'')} = f'(v') - \Underbracket{f' \enbrace*{\hat{\epsilon}''(x'')}}{=\epsilon''(x'')} = 0
 		\]
 		Daher gibt es $v \in M$ mit $f(v)=v' - \hat{\epsilon}''(x'')$.
-		Sei nun $x \in P$ nut $\epsilon(x)=v$.
+		Sei nun $x \in P$ mit $\epsilon(x)=v$.
 		Dann ist $\epsilon'(x,x'')=v'$.
 		\item Wähle projektive Auflösungen $(P_*,\epsilon)$ von $M$ und $(P_*'',\epsilon'')$ von $M''$.
 		Sei $P_n' := P_n \oplus P_n''$.
