@@ -2059,7 +2059,7 @@ Zum Vergleich erinnern wir uns an dieser Stelle noch einmal an die Konstruktion 
 	Es gilt $H_k(P_*)=0$ für $k>0$ und $H_0(P_*)\cong M$ via $\epsilon$.
 \end{definition}
 
-\begin{satz}[{name=[Existenz projektiver Auflösungen]}]
+\begin{satz}[{name=[Existenz projektiver Auflösungen]},label=satz:ex_eind_proj_aufl]
 	Sei $M$ ein $R$-Modul. Dann gilt
 	\begin{enumerate}[a),itemsep=0pt]
 		\item $M$ besitzt eine projektive Auflösung.
@@ -2133,12 +2133,12 @@ Zum Vergleich erinnern wir uns an dieser Stelle noch einmal an die Konstruktion 
 	Gibt es kein solches $n \in \mathbb{N}$, so sagen wir die projektive Dimension von $R$ ist $\infty$.
 \end{definition}
 
-\begin{beispiel}[{name=[Körper haben projektive Dimension $0$]}]
+\begin{beispiel}[{name=[Körper haben projektive Dimension $0$]},label=bsp:koerper_proj_dim]
 	Ist $R=K$ ein Körper, so ist jeder $K$-Modul, also jeder $K$-Vektorraum, frei und insbesondere projektiv.
 	Daher ist die projektive Dimension $0$.
 \end{beispiel}
 
-\begin{satz}[{name=[projektive Dimension von Hauptidealringen]}]
+\begin{satz}[{name=[projektive Dimension von Hauptidealringen]},label=satz:HIR_proj_dim]
 	Für Hauptidealringe ist die projektive Dimension immer $\le 1$.
 \end{satz}
 \begin{beweis}
@@ -2152,14 +2152,14 @@ Zum Vergleich erinnern wir uns an dieser Stelle noch einmal an die Konstruktion 
 	der Länge $1$.
 \end{beweis}
 
-\begin{lemma}
+\begin{lemma}[{name=[{projektive Auflösungen von kurzen exakten Folgen}]},label=lem:proj_aufl_kes_ketten]
 	Sei 
 	\[
 		\begin{tikzcd}
 			0 \rar & M \rar["f",hook] & M' \rar["f'",two heads] & M'' \rar & 0
 		\end{tikzcd}
 	\]
-	eine kurze exakte Sequenz von $R$-Moduln. Dan gilt
+	eine kurze exakte Sequenz von $R$-Moduln. Dann gilt
 	\begin{enumerate}[a)]
 		\item Sind $\epsilon \colon P \to M$, $\epsilon'' \colon P'' \to M''$ surjektiv, wobei $P''$ projektiv, so gibt es $\epsilon' \colon P \oplus P'' \to M'$ surjektiv, sodass folgendes Diagramm kommutiert:
 		\[
@@ -2284,14 +2284,14 @@ Zum Vergleich erinnern wir uns an dieser Stelle noch einmal an die Konstruktion 
 	\end{enumerate}
 \end{beispiel}
 
-\begin{lemma}[{name=[{Exaktheit vom Tensorieren und Hom}]}]
+\begin{lemma}[{name=[{Exaktheit vom Tensorieren und Hom}]},label=lem:exakt_tens_hom]
 	Sei $V$ ein $R$-Rechtsmodul und $W$ ein $R$-Modul.
 	Sei $\begin{tikzcd}[cramped,sep=small]
 		0 \rar& M \rar["f"] &M' \rar["g"] & M'' \rar & 0
 	\end{tikzcd}$ 
 	eine kurze exakte Folge von $R$-Moduln.
 	Dann sind folgende Sequenzen exakt:
-	\begin{enumerate}[(i)]
+	\begin{enumerate}[(i),itemsep=0pt]
 		\item \( \begin{tikzcd}[cramped,sep=2.3em]
 					V \otimes_R M \rar & V \otimes_R M' \rar & V \otimes_R M'' \rar & 0
 				\end{tikzcd} \)
@@ -2301,7 +2301,7 @@ Zum Vergleich erinnern wir uns an dieser Stelle noch einmal an die Konstruktion 
 	\end{enumerate}
 \end{lemma}
 \begin{beweis}
-	\leavevmode
+	\marginnote{Die Injektivität von $f$ wird für diese Aussagen nicht benötig!}\leavevmode
 	\begin{enumerate}[(i)]
 		\item Die Surjektivität ist trivial.
 		Sei $B$ das Bild von $V \otimes_R M \to V \otimes_R M'$.
@@ -2319,15 +2319,14 @@ Zum Vergleich erinnern wir uns an dieser Stelle noch einmal an die Konstruktion 
 		Komposition mit $f$ liefert also $\varphi \circ f = \psi \circ g \circ f =0$, woraus $\im g^* \subseteq \ker f^*$ folgt.
 		Ist umgekehrt $\varphi \in \ker f^*$, so konstruieren wir ein $\psi \in  \Hom_R(M'',W)$ mit $\psi \circ g = \varphi$ wie folgt:
 		$[m] \mapsto \varphi(m)$ liefert einen wohldefinierten Homomorphismus $\psi' \colon \sfrac{M'}{\ker g} \to W$ und da $g$ surjektiv ist, gilt $\sfrac{M'}{\ker g} \cong  M''$.
-		Wir erhalten also einen Homomorphismus $\psi \colon M'' \to W$, für den gilt\todo{Revision 12}
+		Wir erhalten also einen Homomorphismus $\psi \colon M'' \to W$, für den gilt
 		\[
-			\psi \circ g(m) = \psi' ([m]) = \varphi(m)
+			\psi \circ g(m) = \psi' ([m]) = \varphi(m) \qedhere
 		\]
-		Damit ist die Exaktheit gezeigt.\qedhere
 	\end{enumerate}
 \end{beweis}
 
-\begin{lemma}
+\begin{lemma}[{name=[{Eindeutigkeit von projektiven Auflösungen nach Tensorieren und Hom}]},label=lem:eind_tensor_hom_proj_aufl]
 	Sei $V$ ein $R$-Rechtsmodul, $W$ und $M$  $R$-Moduln.
 	Sei $\epsilon \colon P_* \to M$ eine projektive Auflösung.
 	Dann sind die (Ko)"=Kettenkomplexe $V \otimes_R P_*$ und $\Hom_R(P_*,W)$ bis auf (Ko)"=Kettenhomotopieäquivalenz unabhängig von der Wahl der Auflösung $P_*$ und es gilt
@@ -2335,29 +2334,32 @@ Zum Vergleich erinnern wir uns an dieser Stelle noch einmal an die Konstruktion 
 		H_0(V \otimes_R P_*) = V \otimes_R M \qquad \text{ und } \qquad H^0 \enbrace[\big]{\Hom_R(P_*,W)} = \Hom_R(M,W)
 	\]
 \end{lemma}
-
-\noindent\todo[inline]{Hier fehlt noch was \ldots insbesondere kann sich die Nummerierung noch ändern}
+\begin{beweis}
+	Nach \autoref{satz:ex_eind_proj_aufl} sind projektive Auflösungen eindeutig bis auf Kettenhomotopieäquivalenz.
+	Beide Funktoren erhalten Kettenhomotopieäquivalenzen (bzw. wandeln diese in Kokettenhomotopieäquivalenz um) und somit folgt der erste Teil der Aussage.
+	Mit dem eben gezeigten \autoref{lem:exakt_tens_hom} folgt die Aussage über die (Ko-)Homologieklassen.
+\end{beweis}
 
 \begin{definition}[{name=[Tor und Ext]}]
-	Wir setzen
+	Wir setzen in der Situation von obigem \autoref{lem:eind_tensor_hom_proj_aufl}
 	\[
 		\Tor_n^R(V,M) := H_n(V \otimes_R P_*) \qquad \text{ und } \qquad \Ext_R^n(M,W) := H^n \enbrace*{\Hom_R(P_*,W)} 
 	\]
 \end{definition}
 
-\begin{bemerkung}[label=bem:tor_ext_koerper_hir]
-	Es gilt $\Tor_0^R(V,M) = V \otimes_R M$ und $\Ext_R^0(M,W)=\Hom_R(M,W)$.
-	Unter einigen zusätzlichen Annahmen, haben wir folgende einfache Schlussfolgerungen für $\Tor$ und $\Ext$:
-	\begin{enumerate}[(i)]
+\begin{bemerkung}[label=bem:tor_ext_koerper_hir,{name=[{Einfache Berechnungen von Tor und Ext}]}]
+	Es gilt $\Tor_0^R(V,M) = V \otimes_R M$ und $\Ext_R^0(M,W)=\Hom_R(M,W)$ nach \autoref{lem:eind_tensor_hom_proj_aufl}.
+	Unter zusätzlichen Annahmen, haben wir folgende einfache Schlussfolgerungen für $\Tor$ und $\Ext$:
+	\begin{enumerate}[(i),itemsep=0pt]
 		\item Ist $M$ projektiv, so ist $\Tor_n^R(V,M)=0$ und $\Ext_R^n(M,W)=0$ für $n>0$.
-		\item Ist $K$ ein Körper, so ist $\Tor_n^K(V,M)=0$ und $\Ext_K^n(M,W)=0$ für $n>0$.
-		\item Ist $R$ ein Hauptidealring, so ist $\Tor_n^R(V,M)=0$ und $\Ext_R^n(M,W)=0$ für $n>1$.
+		\item Ist $K$ ein Körper, so ist $\Tor_n^K(V,M)=0$ und $\Ext_K^n(M,W)=0$ für $n>0$.\marginnote{vgl. \autoref{bsp:koerper_proj_dim}}
+		\item Ist $R$ ein Hauptidealring, so ist $\Tor_n^R(V,M)=0$ und $\Ext_R^n(M,W)=0$ für $n>1$.\marginnote{vgl. \autoref{satz:HIR_proj_dim}}
 	\end{enumerate}
-	$\Tor^R_n$ und $\Ext_R^n$ sind Funktoren in $V,M$ für $\Tor$ (kovariant) und $M$ (kontravariant), $W$ (kovariant) für $\Ext$.
+	$\Tor^R_n$ ist ein kovarianter Funktor in $V$ und $M$.
+	$\Ext_R^n$ ist kontravariant in $M$ und kovariant in $W$.
 \end{bemerkung}
 
-\todo[inline]{Verbindungsho\-momorphismen hinzufügen}
-\begin{satz}
+\begin{satz}[{name=[{lange exakte Sequenzen für Tor und Ext}]}]
 	Sei 
 	\(
 		\begin{tikzcd}[cramped,sep=small]
@@ -2366,25 +2368,47 @@ Zum Vergleich erinnern wir uns an dieser Stelle noch einmal an die Konstruktion 
 	\)
 	eine kurze exakte Folge von $R$-Moduln.
 	Dann gibt es lange exakte Folgen 
-	\begin{enumerate}[(i)]
-		\item \[
+	\begin{enumerate}[(i),itemsep=1em]
+		\item \hspace{1.2cm}\(
 			\begin{tikzcd}
-				\ldots \rar & \Tor^R_n(V,M) \rar & \Tor^R_n(V,M') \rar & \Tor_n^R(V,M'') & \\
-				&\Tor^R_{n-1}(V,M) \rar & \ldots \rar & \Tor_1^R(V,M'') \\
+				\ldots \rar & \Tor^R_n(V,M) \rar & \Tor^R_n(V,M') \rar \ar[d,phantom,""{coordinate, name=Z}] & \Tor_n^R(V,M'') \ar[dll,rounded corners,to path={
+																		-- ([xshift=2ex]\tikztostart.east)
+																		|- (Z) [near end]\tikztonodes
+																		-| ([xshift=-2ex]\tikztotarget.west)
+																		-- (\tikztotarget)
+																		}] & \\
+				&\Tor^R_{n-1}(V,M) \rar & \minwidthbox{\ldots}{3em} \rar \ar[d,phantom,""{coordinate, name=Y}]& \Tor_1^R(V,M'') \ar[dll,rounded corners,to path={
+																		-- ([xshift=2ex]\tikztostart.east)
+																		|- (Y) [near end]\tikztonodes
+																		-| ([xshift=-4.4ex]\tikztotarget.west)
+																		-- (\tikztotarget)
+																		}] \\
 				&V \otimes_R M \rar & V \otimes_R M' \rar & V \otimes_R M'' \rar & 0 
 			\end{tikzcd}
-		\]
-		\item \[
+		\) \\
+		und
+		\item \hspace{1cm}\(
 			\begin{tikzcd}
-				\ldots & \Ext_R^n(M,W) \lar & \Ext^n_R(M',W) \lar & \Ext_R^n(M'',W) \lar \\
-				&\Ext_R^{n-1}(M,W) & \lar \ldots \\
-				&\Hom_R(M,W) & \Hom_R(M',W) \lar & \Hom_R(M'',W) \lar & 0 \lar
+				\ldots & \Ext_R^n(M,W) \lar & \Ext^n_R(M',W) \ar[d,phantom,""{coordinate, name=Z}]\lar & \Ext_R^n(M'',W) \lar \\
+				&\Ext_R^{n-1}(M,W) \ar[urr,rounded corners,to path={
+								-- ([xshift=-2ex]\tikztostart.west)
+								|- (Z) [near end]\tikztonodes
+								-| ([xshift=2ex]\tikztotarget.east)
+								-- (\tikztotarget)
+								}] 
+				& \lar \minwidthbox{\ldots}{3em} \ar[d,phantom,""{coordinate, name=Y}] & \Ext_R^1(M'',W) \lar \\
+				&\Hom_R(M,W) \ar[urr,rounded corners,to path={
+								-- ([xshift=-2ex]\tikztostart.west)
+								|- (Y) [near end]\tikztonodes
+								-| ([xshift=2ex]\tikztotarget.east)
+								-- (\tikztotarget)
+								}] & \Hom_R(M',W) \lar & \Hom_R(M'',W) \lar & 0 \lar
 			\end{tikzcd}
-		\]
+		\)
 	\end{enumerate}
 \end{satz}
 \begin{beweis}
-	Wir können Auflösungen $(P_*,\epsilon)$, $(P_*',\epsilon')$ und $(P_*'',\epsilon'')$ von $M$, $M'$ und $M''$ wählen, sodass wir eine kurze exakte Folge
+	Nach \autoref{lem:proj_aufl_kes_ketten} wir können Auflösungen $(P_*,\epsilon)$, $(P_*',\epsilon')$ und $(P_*'',\epsilon'')$ von $M$, $M'$ und $M''$ wählen, sodass wir eine kurze exakte Folge von Kettenkomplexen
 	\(
 		\begin{tikzcd}[cramped,sep=small]
 			0 \rar & P_* \rar & P_*' \rar & P_*'' \rar & 0
@@ -2393,7 +2417,7 @@ Zum Vergleich erinnern wir uns an dieser Stelle noch einmal an die Konstruktion 
 	erhalten, für die folgendes Diagramm kommutiert: 
 	\[
 		\begin{tikzcd}
-			P_* \rar \dar["\epsilon"] & P_*' \dar["\epsilon'"] \rar & P_*'' \dar["\epsilon''"] \\
+			P_0 \rar \dar["\epsilon"] & P_0' \dar["\epsilon'"] \rar & P_0'' \dar["\epsilon''"] \\
 			M \rar & M' \rar & M''
 		\end{tikzcd}
 	\]
@@ -2416,7 +2440,7 @@ Zum Vergleich erinnern wir uns an dieser Stelle noch einmal an die Konstruktion 
 		\end{tikzcd}
 	\]
 	sind immer noch kurz exakt. 
-	Die lange exakte Folge in (i) und (ii) sind die zugehörigen langen exakten Folgen in Homologie bzw. Kohomologie.
+	Die langen exakten Folgen in (i) und (ii) sind die zugehörigen langen exakten Folgen in Homologie bzw. Kohomologie (Schlangenlemma).\todo{Revision 12}
 \end{beweis}
 
 \begin{bemerkung}
