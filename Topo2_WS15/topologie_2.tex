@@ -2012,20 +2012,21 @@ Zum Vergleich erinnern wir uns an dieser Stelle noch einmal an die Konstruktion 
 		\[
 			(i^* \xi \cupp i^* \eta) (\mu_{\partial W}) = \enbrace[\big]{i^*(\xi \cupp \eta)}(\mu_{\partial W})= (\xi \cupp \eta) \enbrace*{i_* \mu_{\partial W}} =0
 		\]
-		wegen Exaktheit der Paarfolge, da $\mu_{\partial W}=\partial (\mu_{W,\partial W})$, wobei $\mu_{W,\partial W} \in H^{4k+1}(W,\partial W)$ die Orientierungsklasse von $W$ relativ zu $\partial W$ ist.\todo{Referenz zur Übungsaufgabe}
+		aufgrund der Exaktheit der Paarfolge, da $\mu_{\partial W}=\partial (\mu_{W,\partial W})$, wobei $\mu_{W,\partial W} \in H^{4k+1}(W,\partial W)$ die Orientierungsklasse von $W$ relativ zu $\partial W$ ist.\todo{Referenz zur Übungsaufgabe}
 		\item Wir zeigen: $\dim L = \frac{1}{2} \dim H^{2k}(\partial W;\mathbb{R})$.
 		Betrachte dazu
 		\[
-			\begin{tikzcd}[sep=large]
-				\ldots  \rar & H^{2k}(W) \dar["\capp \mu_{W,\partial W}","\cong"'] \rar["i^*"] & H^{2k}(\partial W)  \dar["\capp \mu_{\partial W}","\cong"']\rar["\partial"] & H^{2k+1}(W,\partial W) \rar \dar["\capp \mu_{W,\partial W}","\cong"']& \ldots \\
-				\ldots \rar & H_{2k+1}(W,\partial W) \rar["\partial"] & H_{2k}(\partial W) \rar["i_*"] & H_{2k}(W) \rar & \ldots 
+			\begin{tikzcd}[row sep=large, column sep=2.4em]
+				\ldots  \rar & H^{2k}(W;\mathbb{R}) \dar["\capp \mu_{W,\partial W}","\cong"'] \rar["i^*"] & H^{2k}(\partial W;\mathbb{R})  \dar["\capp \mu_{\partial W}","\cong"']\rar["\partial"] & H^{2k+1}(W,\partial W;\mathbb{R}) \rar \dar["\capp \mu_{W,\partial W}","\cong"']& \ldots \\
+				\ldots \rar & H_{2k+1}(W,\partial W;\mathbb{R}) \rar["\partial"] & H_{2k}(\partial W;\mathbb{R}) \rar["i_*"] & H_{2k}(W;\mathbb{R}) \rar & \ldots 
 			\end{tikzcd}
 		\]
 		Die Kommutativität benutzt wieder $\partial (\mu_{W,\partial W})=\mu_{\partial W}$.
-		Es gilt\todo{ich habe keine Ahnung, was der dritte Ausdruck sein soll}
+		Es gilt
 		\[
-			\dim \im i^* = \dim \ker i_* = \dim \ker \enbrace[\big]{\Hom(i_*,\mathbb{R})} = \dim \ker i^*
+			\dim \im i^* = \dim \ker i_* = \dim \ker i^*
 		\]
+		wie man sich mittels Dimensionsformeln überlegt, siehe \cref{sub:dimensionsargument_rand_mfkt}.
 		Da $\dim H^{2k}(\partial W) = \dim \ker i^* + \dim \im i^*$, folgt $\dim \im i^* = \frac{1}{2} \dim H^{2k}(\partial W)$. 
 	\end{enumerate}
 	Mit dem \autoref{sig_null} folgt nun die Behauptung.

@@ -144,3 +144,25 @@ ein Isomorphismus.
 	Damit können wir $\beta_0$ trivial zu $\beta \colon C_{n-1}(X) \to V$ fortsetzen und es folgt $\alpha= \beta \circ d_n = \pm d^{n-1} \beta$ und somit $[\alpha]=0$ in Kohomologie.
 \end{beweis}
 % subsection paarung_ist_isomorphismus_wenn_h__n_1_x_frei_ist (end)
+
+\subsection{Dimensionsargument in \autoref{satz:sig_rand_4k+1_mfkt}} % (fold)
+\label{sub:dimensionsargument_rand_mfkt}
+Es seien $f \colon V \to W$ eine lineare Abbildung, wobei $V$ und $W$ endlichdimensional sind. 
+Mit $V^*$ und $W^*$ bezeichnen wir die Dualräume.
+Dann gilt
+\[
+	\dim \ker f = \dim \ker f^*
+\]
+\begin{beweis}
+	Für eine Teilmenge $U \subseteq V$ bezeichnet $U^0 := \set*{\varphi \in V^* \given \varphi(x)=0 \,\forall x \in U}$ den Annullator von $U$.
+	In der linearen Algebra zeigt man\footnote{z.B. auf StackExchange \url{http://math.stackexchange.com/questions/611575/proof-dimension-of-annihilator} und \url{http://math.stackexchange.com/questions/1344904/show-that-ker-hatt-textann-textrange-t}}
+	\begin{enumerate}[(i)]
+		\item $\dim U^0 = \dim V - \dim U$ und
+		\item $\ker f^* = (\im f)^0$
+	\end{enumerate}
+	Mit $U= \im f$ folgt also
+	\(
+		\dim \ker f = \dim V - \dim \im f = \dim (\im f)^0 = \dim \ker f^* 
+	\) wie gewünscht.
+\end{beweis}
+% subsection dimensionsargument_in_autoref_satz_sig_rand_4k_1_mfkt (end)
