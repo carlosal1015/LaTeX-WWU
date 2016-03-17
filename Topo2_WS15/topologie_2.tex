@@ -2550,12 +2550,11 @@ Zum Vergleich erinnern wir uns an dieser Stelle noch einmal an die Konstruktion 
 % section 12 (end)
 
 \section[Das Tensorprodukt und Hom als Kettenkomplexe]{Das Tensorprodukt und $\Hom$ als Kettenkomplexe} % (fold)
-\label{sec:das_tensorprodukt_und_hom_als_kettenkomplexe}
+\label{sec:13}
 
-\todo[inline]{Revision 13}
-\begin{definition}
+\begin{definition}[{name=[{Tensorprodukt von Kettenkomplexen}]}]
 	Sei $R$ ein Ring, $C_*$ ein Kettenkomplex von $R$-Rechtsmoduln und $D_*$ ein Kettenkomplex von $R$-Linksmoduln.
-	Dann definieren wir den $\mathbb{Z}$-Kettenkomplex $(C \otimes_R D)_*$ durch 
+	Dann definieren wir den $\mathbb{Z}$-Kettenkomplex $(C \otimes_R D)_*$ durch\index{Tensorprodukt!von Kettenkomplexen}\marginnote{In Aufgabe 2 von Blatt 3 haben wir gezeigt, dass dies tatsächlich ein Kettenkomplex ist} 
 	\[
 		(C \otimes_R D)_n := \bigoplus_{p+q=n} C_p \otimes_R D_q
 	\]
@@ -2565,21 +2564,21 @@ Zum Vergleich erinnern wir uns an dieser Stelle noch einmal an die Konstruktion 
 	\).
 \end{definition}
 
-\begin{bemerkung}
+\begin{bemerkung}[{name=[{zur Definition des Tensorprodukts von Kettenkomplexen}]}]
 	\leavevmode
 	\begin{itemize}[itemsep=0pt]
 		\item Sind $C$ und $D$ $\mathbb{N}$-graduiert, so ist $C \otimes_R D$ auch $\mathbb{N}$-graduiert. 
-		\item Ist $R$ kommutativ, so ist $C \otimes_R D$ ein $R$-Kettenkomplex.
+		\item Ist $R$ kommutativ, so ist $C \otimes_R D$ ein $R$-Kettenkomplex.\todo{Revision 13}
 	\end{itemize}
 \end{bemerkung}
 
-\begin{definition}
+\begin{definition}[{name=[{Hom von Kettenkomplexen}]}]
 	Sei $C_*$ ein $R$-Kettenkomplex und $\tilde{D}^*$ ein $R$-Kokettenkomplex.
 	Wir definieren den $\mathbb{Z}$-Kokettenkomplex $\Hom_R(C,\tilde{D})^*$ durch 
 	\[
 		\enbrace*{\Hom_R(C,\tilde{D})}^n := \bigoplus_{p+q=n} \Hom_R \enbrace*{C_p, \tilde{D}^q}
 	\]
-	und die Randabbildung durch
+	und die Randabbildung durch\marginnote{graduierter Kommutator}
 	\(
 		\partial f = \partial^{\tilde{D}} \circ f - (-1)^{\abs*{f}} f \circ \partial^C
 	\).
@@ -3428,7 +3427,7 @@ Es folgt $d(a-b) = dc' \in d \enbrace*{F_{p-1} C_{p+q}} \cap F_{p-r} C_{p+q-1}$.
 % section 17 (end)
 \newpage
 
-\section{Symmetrie von $\Tor$ und $\Ext$} % (fold)
+\section[Symmetrie von Tor und Ext]{Symmetrie von $\Tor$ und $\Ext$} % (fold)
 \label{sec:18}
 
 \begin{satz}
