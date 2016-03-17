@@ -2440,26 +2440,35 @@ Zum Vergleich erinnern wir uns an dieser Stelle noch einmal an die Konstruktion 
 		\end{tikzcd}
 	\]
 	sind immer noch kurz exakt. 
-	Die langen exakten Folgen in (i) und (ii) sind die zugehörigen langen exakten Folgen in Homologie bzw. Kohomologie (Schlangenlemma).\todo{Revision 12}
+	Die langen exakten Folgen in (i) und (ii) sind die zugehörigen langen exakten Folgen in Homologie bzw. Kohomologie (Schlangenlemma).
 \end{beweis}
 
-\begin{bemerkung}
-	Es gibt natürliche Isomorphismen für $\Tor$:
+\begin{bemerkung}[{name=[{Verträglichkeit von Tor und Ext mit (Ko)-Produkten}]}]
+	Es gibt natürliche Isomorphismen für $\Tor$:\marginnote{Das Tensorprodukt erhält beliebige direkte Summen, Homologie auch}
 	\[
-		\bigoplus_{i \in I} \Tor_n^R(V_i,M) \cong \Tor_n^R \enbrace*{\bigoplus_{i \in I} V_i, M} \qquad \text{ und } \qquad 
-		\bigoplus_{i \in I} \Tor_n^R(V,M_i) \cong \Tor_n^R \enbrace*{V, \bigoplus_{i \in I} M} 
+		\bigoplus\nolimits_{i}\! \Tor_n^R(V_i,M) \cong \Tor_n^R \enbrace*{\bigoplus\nolimits_{i}\! V_i, M} \qquad \text{ und } \qquad 
+		\bigoplus\nolimits_{i} \!\Tor_n^R(V,M_i) \cong \Tor_n^R \enbrace*{V, \bigoplus\nolimits_{i}\! M} 
 	\]
 	und für $\Ext$:
 	\[
-		\Ext_R^n \enbrace*{\bigoplus_{i \in I} M,W} \cong \prod_{i \in I} \Ext_R^n(M_i,W) \qquad \text{ und } \qquad \Ext_R^n \enbrace*{M, \prod_{i \in I} W_i} \cong \prod_{i \in I} \Ext_R^n(M,W_i) 
+		\Ext_R^n \enbrace*{\bigoplus\nolimits_{i}\! M,W} \cong \prod\nolimits_{i} \!\Ext_R^n(M_i,W) \qquad \text{ und } \qquad \Ext_R^n \enbrace*{M, \prod\nolimits_{i} \!W_i} \cong \prod\nolimits_{i}\! \Ext_R^n(M,W_i) 
 	\]
 \end{bemerkung}
+\begin{beweis}
+	Hier nur für $\Ext$ (für $\Tor$ folgt die Behauptung analog mit den Isomorphismen der Randnotiz):
+	Die Behauptung folgt direkt aus den kanonischen Isomorphismen
+	\[
+		\hom_R\enbrace*{\bigoplus\nolimits_{i}\!M,W} \cong \prod\nolimits_i \!\hom_R(M_i,W) \qquad \quad 
+		\hom_R\enbrace*{M, \prod\nolimits_{i} \!W_i} \cong \prod\nolimits_i \!\hom_R(M,W_i) 
+	\]
+	sowie dem Isomorphismus $H^n \enbrace*{\prod_i C^*[i]} \cong \prod_i H^n \enbrace*{C^*[i]}$ für Kokettenkomplexe.
+\end{beweis}
 
-\begin{bemerkung}
+\begin{bemerkung}[{name=[{Formeln für den Fall eines Hauptidealringes}]}]
 	Sei $R$ ein Hauptidealring. 
 	Seien $a,b \in R\setminus \set*{0}$ und $d$ ein größter gemeinsamer Teiler von $a$ und $b$.
 	Sei $M$ ein $R$-Modul.
-	Dann gilt 
+	Dann gilt
 	\begin{multicols}{2}
 		\begin{enumerate}[(i)]
 			\item $\sfrac{R}{(a)} \otimes_R \sfrac{R}{(b)} \cong \sfrac{R}{(d)}$
@@ -2476,7 +2485,7 @@ Zum Vergleich erinnern wir uns an dieser Stelle noch einmal an die Konstruktion 
 	\end{multicols}
 \end{bemerkung}
 
-\begin{bemerkung}
+\begin{bemerkung}[{name=[{Tor: Auflösung für den \enquote{an-tensorierten} Modul}]}]
 	Sei $(P_*,\epsilon)$ ein projektive Auflösung von $V$ durch projektive $R$-Rechtsmoduln.
 	Dann gilt 
 	\[
@@ -2485,11 +2494,11 @@ Zum Vergleich erinnern wir uns an dieser Stelle noch einmal an die Konstruktion 
 	Beweis kommt später noch.\todo{Referenz wenn soweit}
 \end{bemerkung}
 
-\begin{korollarB}
+\begin{korollarB}[{name=[{Reihenfolge der Argumente von Tor}]}]
 	Für $R$ kommutativ gilt: $\Tor_n^R(V,M) \cong \Tor_n^R(M,V)$.
 \end{korollarB}
 
-\begin{definition}
+\begin{definition}[{name=[injektiver Modul]}]
 	Ein $R$-Modul $I$ heißt \bet{injektiv}\index{injektiver Modul}, falls es zu jedem $j \colon M \hookrightarrow N$ und $f \colon M \to I$ ein $\hat{f} \colon N \to I$ gibt mit $f = \hat{f} \circ j$, also
 	\[
 		\begin{tikzcd}
@@ -2499,7 +2508,7 @@ Zum Vergleich erinnern wir uns an dieser Stelle noch einmal an die Konstruktion 
 	\]
 \end{definition}
 
-\begin{bemerkung}
+\begin{bemerkung}[{name=[{kurze exakte mit injektivem Modul an der ersten Stelle}]}]
 	Jede kurze exakte Folge \(
 		\begin{tikzcd}[cramped,sep=small]
 			0 \rar & M \rar & M' \rar & M'' \rar & 0
@@ -2512,22 +2521,25 @@ Zum Vergleich erinnern wir uns an dieser Stelle noch einmal an die Konstruktion 
 	Sei $M$ ein $R$-Modul.
 	Dann gibt es einen injektiven $R$-Modul $I$ mit einer injektiven Abbildung $M \hookrightarrow I$.
 \end{satz}
+\begin{beweis}
+	\todo{Referenz angeben}
+\end{beweis}
 
-\begin{definition}
-	Eine injektive Auflösung einer $R$-Moduls $M$ ist eine lange exakte Folge 
+\begin{definition}[{name=[{injektive Auflösung}]}]
+	Eine \Index{injektive Auflösung} einer $R$-Moduls $M$ ist eine lange exakte Folge 
 	\[
 		\begin{tikzcd}
-			0 \rar & M \rar[hook] & I_0 \rar["\partial_0"] & I_1 \rar["\partial_1"] & \ldots 
+			0 \rar & M \rar[hook] & I_0 \rar["\partial^0"] & I_1 \rar["\partial^1"] & \ldots 
 		\end{tikzcd}
 	\]
 	mit $I_i$ injektiv.
 \end{definition}
 
-\begin{korollarB}
+\begin{korollarB}[{name=[{Existenz von injektiven Auflösungen}]}]
 	Zu jedem $M$ gibt es eine injektive Auflösung.
 \end{korollarB}
 
-\begin{bemerkung}
+\begin{bemerkung}[{name=[{Ext mittels injektiver Auflösung}]}]
 	Sei $(I_*,j)$ eine injektive Auflösung von $W$. 
 	Dann gilt
 	\[
