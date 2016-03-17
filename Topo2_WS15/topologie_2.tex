@@ -2688,11 +2688,11 @@ Zum Vergleich erinnern wir uns an dieser Stelle noch einmal an die Konstruktion 
 
 \begin{beispiel}[{name=[Tensorprodukt als Totalkomplex]}]
 	Das Tensorprodukt von Kettenkomplexen $C_*$ und $D_*$ ist der Totalkomplex eines Doppelkomplexes, dessen $(p,q)$-ter Modul $C_p \otimes_R D_q$ ist mit $\partial^v = \partial^C \otimes \id$, $\partial^h = \pm {\id \otimes \partial^D}$.
-	Definiert man eine zweite Art von Totalkomplex mit einem Produkt anstatt der Summe, lässt sich auch $\Hom(C_*,D_*)$ als Totalkomplex auffassen (siehe zum Beispiel \cite[V.1, S.~167ff]{HiltonHomAlg}).\todo{Revision 13}
+	Definiert man eine zweite Art von Totalkomplex mit einem Produkt anstatt der Summe, lässt sich auch $\Hom(C_*,D_*)$ als Totalkomplex auffassen (siehe zum Beispiel \cite[V.1, S.~167ff]{HiltonHomAlg}).
 \end{beispiel}
 
 \begin{definition}[{name=[Filtrierung]}]
-	Sei $C_*$ ein Kettenkomplex. Eine \Index{Filtrierung!Kettenkomplex} auf $C_*$ ist eine Folge 
+	Sei $C_*$ ein Kettenkomplex. Eine \bet{Filtrierung}\index{Filtrierung!Kettenkomplex} auf $C_*$ ist eine Folge 
 	\[
 		0 = F_0 C_* \subseteq F_1 C_*  \subseteq F_2 C_* \subseteq \ldots \subseteq F_n C_* \subseteq \ldots \subseteq C_*
 	\] 
@@ -2711,21 +2711,25 @@ Zum Vergleich erinnern wir uns an dieser Stelle noch einmal an die Konstruktion 
 	\end{itemize}
 \end{beispiel}
 
-\begin{bemerkung}
+\begin{bemerkung}[{name=[{Konstruktion weiterer Komplexe aus einem Doppelkomplex}]}]
 	Sei $(C_{**},\partial^v,\partial^h)$ ein Doppelkomplex.
 	Sei $E^0_{**}= C_{**}$.
 	$\partial^v$ ist eine Randabbildung auf jedem Kettenkomplex $C_{p*}$.
 	Wir setzen $E^1_{p*} := H_*\enbrace*{E^0_{p*},\partial^v}$.
-	$\partial^h$ induziert eine Randabbildung $\overline{\partial^h}$ auf jedem $E^1_{*q}$. Wir setzen also
+	Die horizontale Randabbildung $\partial^h$ induziert eine Randabbildung $\overline{\partial^h}$ auf jedem $E^1_{*q}$. Wir setzen also
 	\[
 		E^2_{*,q} := H_* \enbrace*{E^1_{*q},\overline{\partial^h}}
 	\]
+	Man könnte nun meinen, dass wir unser Pulver verschossen habenn, denn beide Randabbildungen wurden offenbar benutzt.
+	Tatsächlich fängt jetzt aber der Spaß erst richtig an:
 	Wir erhalten weitere Randabbildungen $d^2_{p,q} \colon E^2_{p,q} \to E^2_{p-2,q+1}$ wie folgt: Sei $z \in E^2_{p,q}$, also $z=[x]$ mit $x \in E^0_{p,q}$ und 
 	\begin{enumerate}[(i),itemsep=0pt]
 		\item $\partial^v x =0$
 		\item Es existiert ein $x' \in E^0_{p-1,q+1}$ mit $\partial^v x' = \partial^h x$
 	\end{enumerate}
 	Setze nun $d^2_{p,q}(z) := \benbrace*{\partial^h x'} \in E^2_{p-2,q+1}$.
+	Man überlegt sich, dass dies wohldefiniert ist.
+	Diese Konstruktion werden wir im nächsten Abschnitt als sogenannte \emph{Spektralfolgen} formalisieren.
 \end{bemerkung}
 \newpage
 % section das_tensorprodukt_und_hom_als_kettenkomplexe (end)
