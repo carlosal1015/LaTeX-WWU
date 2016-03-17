@@ -1986,7 +1986,7 @@ Zum Vergleich erinnern wir uns an dieser Stelle noch einmal an die Konstruktion 
 \begin{bemerkung}[{name=[{über reelle Koeffizienten}]}]
 	\leavevmode
 	\begin{itemize}
-		\item Es ist $H_n(M;\mathbb{R}) \cong H_n(M;\mathbb{Z})\otimes \mathbb{R}$ nach dem \hyperref[satz:univ_koeff_homo]{universellen Koeffzienten-Theorem für Homologie}.
+		\item Es ist $H_n(M;\mathbb{R}) \cong H_n(M;\mathbb{Z})\otimes \mathbb{R}$ nach dem \hyperref[satz:univ_koeff_homo_space]{universellen Koeffzienten-Theorem für Homologie}.
 		Insbesondere bestimmt jede $\mathbb{Z}$-Orientierung von $M$ eine $\mathbb{R}$-Orientierung von $M$.
 		\item Für eine orientierte Mannigfaltigkeit $M$ bezeichnen wir mit $-M$ die Mannigfaltigkeit $M$ mit der umgekehrten Orientierung (also $\mu_{-M}=-\mu_M$).
 		Ist $M$ geschlossen mit $\dim M = 4k$, so gilt $\sig(M)=- \sig(-M)$.
@@ -2059,7 +2059,7 @@ Zum Vergleich erinnern wir uns an dieser Stelle noch einmal an die Konstruktion 
 	Es gilt $H_k(P_*)=0$ für $k>0$ und $H_0(P_*)\cong M$ via $\epsilon$.
 \end{definition}
 
-\begin{satz}[{name=[Existenz projektiver Auflösungen]},label=satz:ex_eind_proj_aufl]
+\begin{satz}[{name={Fundamentalsatz der homologischen Algebra}},label=satz:ex_eind_proj_aufl]
 	Sei $M$ ein $R$-Modul. Dann gilt
 	\begin{enumerate}[a),itemsep=0pt]
 		\item $M$ besitzt eine projektive Auflösung.
@@ -2301,7 +2301,7 @@ Zum Vergleich erinnern wir uns an dieser Stelle noch einmal an die Konstruktion 
 	\end{enumerate}
 \end{lemma}
 \begin{beweis}
-	\marginnote{Die Injektivität von $f$ wird für diese Aussagen nicht benötig!}\leavevmode
+	\marginnote{Die Injektivität von $f$ wird für diese Aussagen nicht benötigt!}\leavevmode
 	\begin{enumerate}[(i)]
 		\item Die Surjektivität ist trivial.
 		Sei $B$ das Bild von $V \otimes_R M \to V \otimes_R M'$.
@@ -2341,7 +2341,7 @@ Zum Vergleich erinnern wir uns an dieser Stelle noch einmal an die Konstruktion 
 \end{beweis}
 
 \begin{definition}[{name=[Tor und Ext]}]
-	Wir setzen in der Situation von obigem \autoref{lem:eind_tensor_hom_proj_aufl}
+	Wir setzen in der Situation von obigem \autoref{lem:eind_tensor_hom_proj_aufl}\marginnote{$\Tor$ und $\Ext$ messen, wie exakt die Funktoren $V \otimes_R - $ bzw. $\Hom(-,W)$ sind}
 	\[
 		\Tor_n^R(V,M) := H_n(V \otimes_R P_*) \qquad \text{ und } \qquad \Ext_R^n(M,W) := H^n \enbrace*{\Hom_R(P_*,W)} 
 	\]
@@ -2385,7 +2385,7 @@ Zum Vergleich erinnern wir uns an dieser Stelle noch einmal an die Konstruktion 
 																		}] \\
 				&V \otimes_R M \rar & V \otimes_R M' \rar & V \otimes_R M'' \rar & 0 
 			\end{tikzcd}
-		\) \\
+		\) \\[1em]
 		und
 		\item \hspace{1cm}\(
 			\begin{tikzcd}
@@ -2491,8 +2491,10 @@ Zum Vergleich erinnern wir uns an dieser Stelle noch einmal an die Konstruktion 
 	\[
 		\Tor_n^R(V,M) \cong H_n(P_* \otimes M)
 	\]
-	Beweis kommt später noch.\todo{Referenz wenn soweit}
 \end{bemerkung}
+\begin{beweis}
+	\emph{Siehe \autoref{satz:symmetrie_tor}.}
+\end{beweis}
 
 \begin{korollarB}[{name=[{Reihenfolge der Argumente von Tor}]}]
 	Für $R$ kommutativ gilt: $\Tor_n^R(V,M) \cong \Tor_n^R(M,V)$.
@@ -2522,7 +2524,7 @@ Zum Vergleich erinnern wir uns an dieser Stelle noch einmal an die Konstruktion 
 	Dann gibt es einen injektiven $R$-Modul $I$ mit einer injektiven Abbildung $M \hookrightarrow I$.
 \end{satz}
 \begin{beweis}
-	\todo{Referenz angeben}
+	\emph{Siehe zum Beispiel \cite[Satz~5.5.3]{Kasch}.}
 \end{beweis}
 
 \begin{definition}[{name=[{injektive Auflösung}]}]
@@ -2532,7 +2534,7 @@ Zum Vergleich erinnern wir uns an dieser Stelle noch einmal an die Konstruktion 
 			0 \rar & M \rar[hook] & I_0 \rar["\partial^0"] & I_1 \rar["\partial^1"] & \ldots 
 		\end{tikzcd}
 	\]
-	mit $I_i$ injektiv.
+	mit $I_i$ injektiv für alle $i$.
 \end{definition}
 
 \begin{korollarB}[{name=[{Existenz von injektiven Auflösungen}]}]
@@ -2560,52 +2562,53 @@ Zum Vergleich erinnern wir uns an dieser Stelle noch einmal an die Konstruktion 
 	\]
 	mit Randabbildung definiert durch
 	\(
-		\partial^{C \otimes D} (c \otimes d) := \partial^C(c) \otimes d + (-1)^{\abs*{c}} c \otimes \partial^D(d)
+		\partial^{C \otimes D} (c \otimes d) := \partial^C(c) \otimes d + (-1)^{\abs*{c}}\, c \otimes \partial^D(d)
 	\).
 \end{definition}
 
 \begin{bemerkung}[{name=[{zur Definition des Tensorprodukts von Kettenkomplexen}]}]
 	\leavevmode
 	\begin{itemize}[itemsep=0pt]
-		\item Sind $C$ und $D$ $\mathbb{N}$-graduiert, so ist $C \otimes_R D$ auch $\mathbb{N}$-graduiert. 
-		\item Ist $R$ kommutativ, so ist $C \otimes_R D$ ein $R$-Kettenkomplex.\todo{Revision 13}
+		\item Sind $C$ und $D$ $\mathbb{N}$-graduiert, so ist $C \otimes_R D$ auch $\mathbb{N}$-graduiert und die Summe endlich. 
+		\item Ist $R$ kommutativ, so ist $C \otimes_R D$ ein $R$-Kettenkomplex.
 	\end{itemize}
 \end{bemerkung}
 
-\begin{definition}[{name=[{Hom von Kettenkomplexen}]}]
-	Sei $C_*$ ein $R$-Kettenkomplex und $\tilde{D}^*$ ein $R$-Kokettenkomplex.
-	Wir definieren den $\mathbb{Z}$-Kokettenkomplex $\Hom_R(C,\tilde{D})^*$ durch 
+\begin{definition}[{name=[{Hom von Kettenkomplex und Kokettenkomplex}]}]
+	Sei $C_*$ ein $R$-Kettenkomplex und $\tilde{D}^*$ ein $R$-Kokettenkomplex.\marginnote{für zwei Kettenkomplexe $p+n=q$}
+	Wir definieren den $\mathbb{Z}$-Kokettenkomplex $\Hom_R(C,\tilde{D})^*$ durch
 	\[
-		\enbrace*{\Hom_R(C,\tilde{D})}^n := \bigoplus_{p+q=n} \Hom_R \enbrace*{C_p, \tilde{D}^q}
+		\enbrace*{\Hom_R(C,\tilde{D})}^n := \prod_{p+q=n} \Hom_R \enbrace*{C_p, \tilde{D}^q} \marginnote{An der Tafel stand $\bigoplus$} 
 	\]
 	und die Randabbildung durch\marginnote{graduierter Kommutator}
 	\(
-		\partial f = \partial^{\tilde{D}} \circ f - (-1)^{\abs*{f}} f \circ \partial^C
+		\partial f = \partial^{\tilde{D}} \circ f - (-1)^{\abs*{f}}\, f \circ \partial^C
 	\).
 \end{definition}
 
-\begin{bemerkung}
+\begin{bemerkung}[{name=[{zur Definition von Hom für Kettenkomplexe}]}]
 	\leavevmode
 	\begin{itemize}[itemsep=0pt]
 		\item Sind $C$ und $\tilde{D}$ $\mathbb{N}$-graduiert, so ist  $\Hom_R(C,\tilde{D})$ auch $\mathbb{N}$-graduiert.
 		\item Ist $R$ kommutativ, so ist $\Hom_R(C,\tilde{D})$ ein $R$-Kokettenkomplex.
+		\item $H_0 \enbrace*{\Hom_R(C,D)_*}$ ist der Modul der Kettenhomotopieklassen von Kettenabbildungen $C \to D$\marginnote{$C,D$ Kettenkomplexe}.
 	\end{itemize}
 \end{bemerkung}
 
-\begin{lemma}[label=projaufl:iso:hom]
-	Sei $C_*$ ein $R$-Kettenkomplex ($\mathbb{N}$-graduiert), dessen Kettenmodule projektiv sind.
+\begin{lemma}[label=projaufl:iso:hom,{name=[{Tensorieren mit projektiver Auflösung anstatt einem Rechtsmodul}]}]
+	Sei $C_*$ ein $\mathbb{N}$-graduierter $R$-Kettenkomplex, dessen Kettenmodule projektiv sind.
 	Sei $V$ ein $R$-Rechtsmodul und $(P_*,\epsilon)$ eine projektive Auflösung von $V$ durch $R$-Rechtsmoduln.
 	Dann induziert $\epsilon \otimes \id \colon P_* \otimes_R C_* \to V \otimes_R C_*$ einen Isomorphismus in Homologie.
 \end{lemma}
 \begin{beweis}
 	Sei $v \in (P \otimes C)_n$.
-	Dann schreiben wir $v=\sum_{i=0}^{n} v_i$ mit $v_i \in P_i \otimes C_{n-i}$
+	Dann schreiben wir $v=\sum_{i=0}^{n} v_i$ mit $v_i \in P_i \otimes C_{n-i}$.
 	Die $v_i$ sind durch $v$ eindeutig bestimmt.
-	Es ist
+	Man betrachte nun das Diagramm in \cref{fig:tensor:ketten}.
+	Da wir $\mathbb{N}$-graduierte Kettenkomplexe betrachten, sind die Randabbildungen in den \enquote{Randfällen} trivial und wir erhalten also eindeutige Darstellung von $\partial^{P \otimes C}(v)$:
 	\[
 		\partial^{P \otimes C}(v)= \sum_{i=0}^{n-1} \Underbracket{(-1)^i \id \otimes \partial^C(v_i) + (\partial^P \otimes \id)(v_{i+1})}{\in P_i \otimes C_{n-1-i}}
 	\]
-	die eindeutige Darstellung von $\partial^{P \otimes C}(v)$.
 	\begin{figure}[bt]
 		\centering{
 		\begin{tikzcd}[row sep=2.5em]
@@ -2621,7 +2624,7 @@ Zum Vergleich erinnern wir uns an dieser Stelle noch einmal an die Konstruktion 
 	\begin{equation}
 		\partial^{P \otimes C}v =0 \iff (-1)^{i+1} (\id \otimes \partial^C)(v_i)= (\partial^P \otimes \id)(v_{i+1}) \label{eq:13:1}\tag{\#}
 	\end{equation}
-	Da die $C_i$ projektiv sind, ist $\otimes_R C_i$ exakt und für jedes $i$ ist 
+	Da die $C_i$ projektiv sind, ist $\otimes_R C_i$ exakt und für jedes $i$ ist somit
 	\begin{equation}
 		\begin{tikzcd}[sep=large]
 			V \otimes_R C_i & P_0 \otimes_R C_i \lar["\epsilon \otimes \id"'] & P_1 \otimes C_i \lar["\partial^P \otimes \id"'] & \ldots \lar["\partial^P \otimes \id"']
@@ -2632,52 +2635,64 @@ Zum Vergleich erinnern wir uns an dieser Stelle noch einmal an die Konstruktion 
 	Sei $x \in H_n(V \otimes C_*)$.
 	Sei $a \in V \otimes C_n$ mit $\id \otimes \partial^C(a)=0$ und $x=[a]$.
 	Wähle $v_0 \in P_0 \otimes C_n$ mit $\epsilon \otimes \id(v_0)=a$.
-	Behauptung: Es gibt $v_i \in P_i \otimes C_{n-i}$ mit 
+	Behauptung: Es gibt für $i=1,\ldots ,n$ Elemente $v_i \in P_i \otimes C_{n-i}$ mit 
 	\(
 		\partial^{P \otimes C} \enbrace[\big]{\sum_{i=0}^{n} v_i } = 0
 	\).
 	Wir beweisen dies per Induktion: Seien $v_0, \ldots ,v_j$ bereits konstruiert mit \eqref{eq:13:1} für $i<j$.
-	Dann ist $(\partial^P \otimes \id)(\id \otimes \partial^C)(v_j) = \pm \enbrace*{\partial^P \otimes \id} \enbrace*{\partial^P \otimes \id}(v_{j-1})=0$.
+	Dann ist $(\partial^P \otimes \id)(\id \otimes \partial^C)(v_j) = \pm (\id \otimes \partial^C) (\id \otimes \partial^C)(v_{j-1})=0$.
 	Wegen \eqref{eq:13:2} gibt es $v_{j+1} \in P_{j+1} \otimes C_{n-j-1}$ mit 
 	\[
 		\enbrace*{\partial^P \otimes \id}(v_{j+1}) = \enbrace*{\id \otimes \partial^C}(v_j)
 	\]
 	Damit ist die Behauptung bewiesen.
-	Es folgt $(\epsilon \otimes \id)_* \enbrace*{\benbrace*{\sum_{i=0} v_i}} = [a]$.
+	Es folgt $(\epsilon \otimes \id)_* \enbrace*{\benbrace[\big]{\sum_{i=0}^n v_i}} = [a]$.
 	Daher ist $\enbrace*{\epsilon \otimes \id}_*$ surjektiv. 
-	Die Injektivität erhält man genauso.
+	
+	Für die Injektivität betrachten wir $v= \sum_{i=0}^{n} v_i \in (P \otimes C)_n$ mit $\partial^{P \otimes C}(v)=0$ und $(\epsilon \otimes \id)_* ([v])=0 \in H_n(V \otimes C_*)$.
+	Dann gibt es $y \in V \otimes C_{n+1}$ mit $\id \otimes \partial^C(y)=\epsilon \otimes \id(v)$.
+	Weiter finden wir $w_0 \in P_0 \otimes C_{n+1}$ mit $\varepsilon \otimes \id(w_0)=y$.
+	Analog zum obigen Vorgehen konstruiert man nun $w_i \in P_i \otimes C_{n-i+1}$ mit $\partial^{P \otimes C} \enbrace[\big]{\sum_{i=0}^{n+1} w_i }=0$.
+	Damit folgt dann die Behauptung.
 \end{beweis}
 
-\begin{lemma}
-	Sei $C_*$ ein $R$-Kettenkomplex ($\mathbb{N}$-graduiert), dessen Kettenmodule projektiv sind.
+\begin{lemma}[{name=[{Hom mit injektiver Auflösung des Zielmoduls}]}]
+	Sei $C_*$ ein $\mathbb{N}$-graduierter $R$-Kettenkomplex, dessen Kettenmodule projektiv sind.
 	Sei $(I^*,j)$ eine injektive Auflösung des $R$-Moduls $W$.
 	Dann induziert $j$ einen Isomorphismus 
 	\[
-		H^*\enbrace*{\Hom_R(C_*,W)} \to H^* \enbrace*{\Hom_R(C_*,I^*)}
+		H^*\enbrace*{\Hom_R(C_*,W)} \longrightarrow H^* \enbrace*{\Hom_R(C_*,I^*)}
 	\]
 \end{lemma}
+\begin{beweis}
+	\emph{Übungsaufgabe, ähnlich wie \autoref{projaufl:iso:hom}.}
+\end{beweis}
 
-\begin{bemerkung}
-	Für den Isomorphismus $H_*(P \otimes_R C_*) \to H_*(V \otimes_R C_*)$ war es wichtig, dass die Homologie von $\enbrace*{P_* \otimes C_i,\partial^P \otimes \id}$ in Grad $0$ konzentriert ist und damit genau $V \otimes C_i$ ist (dies entspricht den Spalten in \cref{fig:tensor:ketten}).
+\begin{bemerkung}[{name=[zu \autoref{projaufl:iso:hom}]}]
+	Für den Isomorphismus $H_*\enbrace*{(P \otimes_R C)_*} \to H_*(V \otimes_R C_*)$ war es wichtig, dass die Homologie von $\enbrace*{P_* \otimes C_i,\partial^P \otimes \id}$ in Grad $0$ konzentriert ist und damit genau $V \otimes C_i$ ist (dies entspricht den Zeilen in \cref{fig:tensor:ketten}).
 	Umgekehrt ist die Homologie von $\enbrace*{P_p \otimes C_*, \id \otimes \partial^C}$ isomorph zu $P_p \otimes H_*(C_*)$.
 	Wir erhalten also Komplexe $\enbrace*{P_* \otimes H_n(C_*), \partial^P \otimes \id}$ deren Homologie genau $\Tor^R_* \enbrace*{V, H_n(C_*)}$ ist.
-	Dies stellt einen Zusammenhang zwischen $H_*(V \otimes C_*)$ und $\Tor_*^R \enbrace*{V, H_*(C_*)}$ her.
+	Dies stellt einen Zusammenhang zwischen $H_*(V \otimes C_*)$ und $\Tor_*^R \enbrace*{V, H_*(C_*)}$ her.\todo{nochmal durchgehen, wenn die nächsten Kapitel geschafft sind}
 \end{bemerkung}
 
 \begin{definition}[{name=[Doppelkomplex und Totalkomplex]}]
 	Ein \bet{$R$-Doppelkomplex}\index{Doppelkomplex} $C_{**}$ ist eine Folge von $R$-Moduln $C_{p,q}$ zusammen mit $R$-linearen Abbildungen $\partial^h \colon C_{p,q} \to C_{p-1,q}$ und $\partial^v \colon C_{p,q} \to C_{p,q-1}$, für die gelten:\marginnote{\emph{v}ertikal, \emph{h}orizontal}
 	\[
-		\partial^h \circ \partial^h =0 \qquad \partial^v \circ \partial^v=0 \qquad \partial^v \circ \partial^h + \partial^h \circ \partial^v =0
+		\partial^h  \partial^h =0 \qquad \quad \partial^v  \partial^v=0 \qquad \quad \partial^v  \partial^h + \partial^h \partial^v =0
 	\]
-	Der \Index{Totalkomplex} von $\enbrace*{C_{*,*}, \partial^v,\partial^h}$ ist der Kettenkomplex $T(C_{**})$ mit $T(C_{**})_n := \bigoplus_{p+q=n} C_{p,q}$ und $\partial^T := \partial^v + \partial^h$.
+	Der \Index{Totalkomplex} von $\enbrace*{C_{**}, \partial^v,\partial^h}$ ist der Kettenkomplex $T(C_{**})$ mit 
+	\[
+		T(C_{**})_n := \bigoplus_{p+q=n} C_{p,q} \qquad \text{ und } \qquad \partial^T := \partial^v + \partial^h
+	\]
 \end{definition}
 
 \begin{beispiel}[{name=[Tensorprodukt als Totalkomplex]}]
-	Das Tensorprodukt von Kettenkomplexen $C_*$ und $D_*$ ist der Totalkomplex eines Doppelkomplexes, dessen $(p,q)$-ter Modul $C_p \otimes_R D_q$ ist mit $\partial^v = \partial^C \otimes \id$, $\partial^h = \pm \id \otimes \partial^D$.
+	Das Tensorprodukt von Kettenkomplexen $C_*$ und $D_*$ ist der Totalkomplex eines Doppelkomplexes, dessen $(p,q)$-ter Modul $C_p \otimes_R D_q$ ist mit $\partial^v = \partial^C \otimes \id$, $\partial^h = \pm {\id \otimes \partial^D}$.
+	Definiert man eine zweite Art von Totalkomplex mit einem Produkt anstatt der Summe, lässt sich auch $\Hom(C_*,D_*)$ als Totalkomplex auffassen (siehe zum Beispiel \cite[V.1, S.~167ff]{HiltonHomAlg}).\todo{Revision 13}
 \end{beispiel}
 
 \begin{definition}[{name=[Filtrierung]}]
-	Sei $C_*$ ein Kettenkomplex. Eine \Index{Filtrierung} auf $C_*$ ist eine Folge 
+	Sei $C_*$ ein Kettenkomplex. Eine \Index{Filtrierung!Kettenkomplex} auf $C_*$ ist eine Folge 
 	\[
 		0 = F_0 C_* \subseteq F_1 C_*  \subseteq F_2 C_* \subseteq \ldots \subseteq F_n C_* \subseteq \ldots \subseteq C_*
 	\] 
@@ -2689,7 +2704,7 @@ Zum Vergleich erinnern wir uns an dieser Stelle noch einmal an die Konstruktion 
 	\begin{itemize}
 		\item Ist $X$ ein CW-Komplex, so erhalten wir eine Filtrierung auf dem singulären Kettenkomplex mit $F_p \enbrace*{C^\sing_*(X;R)} := C_*^\sing \enbrace*{X^\ssbrace{p};R}$.
 		\item Sei $C_{**}$ ein Doppelkomplex. 
-		Dann erhalten wir zwei Filtrierungen $F^v$ und $F^h$ auf $T(C_{**})$ mit 
+		Dann erhalten wir zwei Filtrierungen $F^v$ und $F^h$ auf $T(C_{**})$ mit\todo{prüfen, ob Notation so geblieben ist} 
 		\[
 			F^v_p \enbrace[\big]{T(C_{**})} = T \enbrace[\big]{C_{*\le p,*}} \qquad F^h_p \enbrace[\big]{T(C_{**})} := T \enbrace[\big]{C_{*,*\le p}}
 		\]
@@ -2699,11 +2714,11 @@ Zum Vergleich erinnern wir uns an dieser Stelle noch einmal an die Konstruktion 
 \begin{bemerkung}
 	Sei $(C_{**},\partial^v,\partial^h)$ ein Doppelkomplex.
 	Sei $E^0_{**}= C_{**}$.
-	$\partial^v$ ist eine Randabbildung auf jedem $C_{p*}$.
+	$\partial^v$ ist eine Randabbildung auf jedem Kettenkomplex $C_{p*}$.
 	Wir setzen $E^1_{p*} := H_*\enbrace*{E^0_{p*},\partial^v}$.
 	$\partial^h$ induziert eine Randabbildung $\overline{\partial^h}$ auf jedem $E^1_{*q}$. Wir setzen also
 	\[
-		E^2_{*,q} := H_* \enbrace*{E^1_{*,q},\overline{\partial^h}}
+		E^2_{*,q} := H_* \enbrace*{E^1_{*q},\overline{\partial^h}}
 	\]
 	Wir erhalten weitere Randabbildungen $d^2_{p,q} \colon E^2_{p,q} \to E^2_{p-2,q+1}$ wie folgt: Sei $z \in E^2_{p,q}$, also $z=[x]$ mit $x \in E^0_{p,q}$ und 
 	\begin{enumerate}[(i),itemsep=0pt]
@@ -3306,7 +3321,7 @@ Es folgt $d(a-b) = dc' \in d \enbrace*{F_{p-1} C_{p+q}} \cap F_{p-r} C_{p+q-1}$.
 	Dann spaltet die obige Sequenz für jedes $C_*^\ssbbrace{i}$ (auf triviale Weise!) und damit auch für $C_*$.
 \end{beweis}
 
-\begin{satz}[{name=[{Universelles Koeffizienten-Theorem für Homologie}]},label=satz:univ_koeff_homo]
+\begin{satz}[{name=[{Universelles Koeffizienten-Theorem für Homologie}]},label=satz:univ_koeff_homo_space]
 	Sei $R$ ein Hauptidealring, $V$ ein $R$-Modul und $X$ ein topologischer Raum.
 	Dann gibt es eine kurze exakte Folge 
 	\[
@@ -3430,7 +3445,7 @@ Es folgt $d(a-b) = dc' \in d \enbrace*{F_{p-1} C_{p+q}} \cap F_{p-r} C_{p+q-1}$.
 \section[Symmetrie von Tor und Ext]{Symmetrie von $\Tor$ und $\Ext$} % (fold)
 \label{sec:18}
 
-\begin{satz}
+\begin{satz}[label=satz:symmetrie_tor]
 	Sei $R$ ein Ring, $V$ ein $R$-Rechtsmodul und $W$ ein $R$-Linksmodul.
 	Sei $(P_*,\epsilon)$ eine projektive Auflösung von $V$ und $(Q_*,\delta)$ eine projektive Auflösung von $W$.
 	Dann gibt es einen natürlichen Isomorphismus $H_* \enbrace*{P_* \otimes_R W} \cong H_* \enbrace*{V \otimes_R Q_*}$.
