@@ -2878,16 +2878,17 @@ Zum Vergleich erinnern wir uns an dieser Stelle noch einmal an die Konstruktion 
 \section{Die Spektralfolge zu einem filtrierten Kettenkomplex} % (fold)
 \label{sec:15}
 
-\todo[inline]{Revision 15}
-\begin{satz}
+Wir wollen in diesem Abschnitt den folgenden Satz beweisen:
+\begin{satz}[{name=[{Spektralfolge zu einem Kettenkomplex mit Filtrierung}]}]
 	Sei $C_*$ ein Kettenkomplex mit einer Filtrierung von Kettenkomplexen $F_s C_* \subseteq C_*$, sodass
 	\[
 		0 = F_{-1}C_n \subseteq F_0 C_n \subseteq \ldots \subseteq F_n C_n = C_n
 	\]
+	gilt und die Filtrierung mit der Randabbildung von $C_*$ verträglich ist, das heißt $d^C (F_s C_n) \subseteq F_s C_{n-1}$.
 	Dann bestimmt die Filtrierung eine Spektralfolge $\enbrace*{E^r_{p,q},d^r_{p,q}}$ mit $E_{p,q}^0 = \sfrac{F_p C_{p+q}}{F_{p-1} C_{p+q}}$ und $E^2_{p,q} \Rightarrow H_{p+q}(C_*)$.
 \end{satz}
 
-Wir erhalten folgende Kette von $R$-Moduln zwischen $F_{p-q} C_n \subseteq F_p C_n$:\todo{eventuell könnte man die $C$s weglassen, um das ganze übersichtlicher zu machen}
+Wir erhalten folgende Kette von $R$-Moduln zwischen $F_{p-1} C_n \subseteq F_p C_n$:
 \begin{align}
 	F_{p-1} C_n \subseteq d \enbrace*{F_0 C_{n+1}} \cap F_p C_n + F_{p-1} C_n &\subseteq d \enbrace*{F_1 C_{n+1}}\cap F_p C_n + F_{p-1} C_n \\
 	&\subseteq \ldots \\
@@ -2897,39 +2898,47 @@ Wir erhalten folgende Kette von $R$-Moduln zwischen $F_{p-q} C_n \subseteq F_p C
 	&\subseteq \ldots  \\
 	&\subseteq d^{-1} \enbrace*{F_{n-2}C_{n-1}} \cap F_p C_n + F_{p-1} C_n \subseteq F_p C_n
 \end{align}
-Wir setzen 
+Wir definieren nun
 \[
 	E^r_{p,q} := \frac{d^{-1}\enbrace*{F_{p-r} C_{p+q-1}} \cap F_p C_{p+q} + F_{p-1}C_{p+q}}{d \enbrace*{F_{p+r-1} C_{p+q+1}} \cap F_p C_{p+q} + F_{p-1} C_{p+q}}
 	%\subseteq \sfrac{F_p C_{p+q}}{F_{p-1} C_{p+q}} 
 \]
-Die Filtrierung $F_s C_*$ auf $C_*$ induziert eine Filtrierung auf $H_n(C_*)$ mit 
+Es gilt dann $E_{p,q}^0 = \sfrac{F_p C_{p+q}}{F_{p-1} C_{p+q}}$ wie gewünscht.
+Die Filtrierung $F_s C_*$ auf $C_*$ induziert eine Filtrierung auf $H_n(C_*)$ durch
 \[
-	F_s H_n(C_*) := \im \enbrace*{H_n(F_s C_*) \to H_n(C_*)}
+	F_s H_n(C_*) := \im \enbrace[\big]{H_n(F_s C_*) \to H_n(C_*)}
 \]
 
-\begin{lemma}
-	Für $r>p,q+1$ ist $E^r_{p,q} \cong E^{r+1}_{p,q} \cong \ldots \cong \sfrac{F_p H_{p+q}(C_*)}{F_{p-1} H_{p+q}(C_*)}$.
+\begin{lemma}[{name=[{Seiten bleiben stabil für $r >p,q+1$}]}]
+	Für $r>p,q+1$ ist 
+	\[
+		E^r_{p,q} \cong E^{r+1}_{p,q} \cong \ldots \cong \frac{F_p H_{p+q}(C_*)}{F_{p-1} H_{p+q}(C_*)}
+	\]
 \end{lemma}
 \begin{beweis}
-	Für $r>p,q+1$ ist $E^r_{p,q} = \frac{\ker d \cap F_p C_{p+q} + F_{p-1}C_{p+q}}{\im d \cap F_p C_{p+q} + F_{p-1} C_{p+q}}$.
-	Es ist $F_p H_{p+q}(C_*) = \frac{\ker d \cap F_p C_{p+q}}{\im d  \cap F_p C_{p+q}}$ und es folgt
+	Für $r>p,q+1$ ist nach obiger Definition 
 	\[
-		\frac{F_p H_{p+q}(C_*)}{F_{p-1} H_{p+q}(C_*)} \cong \frac{\ker d \cap F_p C_{p+q}}{ \im d \cap F_p C_{p+q} + \ker d \cap F_{p-1}C_{p+q}} 
+		E^r_{p,q} = \cfbox{DeepSkyBlue2}{\frac{\ker d \cap F_p C_{p+q} + F_{p-1}C_{p+q}}{\im d \cap F_p C_{p+q} + F_{p-1} C_{p+q}}}
 	\]
-	Es ist weiter $\ker d \cap F_p C_{p+q} \subseteq \ker d \cap F_p C_{p+q} + F_{p-1} C_{p+q}$ und somit erhalten wir 
+	Es ist weiter $F_p H_{p+q}(C_*) \cong \frac{\ker d \cap F_p C_{p+q}}{\im d  \cap F_p C_{p+q}}$ und damit folgt
 	\[
-		\ker d \cap F_p C_{p+q} \longrightarrow \frac{\ker d \cap F_p C_{p+q} + F_{p-1}C_{p+q}}{\im d \cap F_p C_{p+q} + F_{p-1} C_{p+q}}
+		\frac{F_p H_{p+q}(C_*)}{F_{p-1} H_{p+q}(C_*)} \cong \cfbox{Sienna2}{\frac{\ker d \cap F_p C_{p+q}}{ \im d \cap F_p C_{p+q} + \ker d \cap F_{p-1}C_{p+q}} }
+	\]
+	Die Inklusion $\cfbox{Sienna2}{\ker d \cap F_p C_{p+q}} \hookrightarrow \cfbox{DodgerBlue2}{\ker d \cap F_p C_{p+q} + F_{p-1} C_{p+q}}$ induziert nun eine Abbildung
+	\[
+		\ker d \cap F_p C_{p+q} \longrightarrow \cfbox{DodgerBlue2}{\frac{\ker d \cap F_p C_{p+q} + F_{p-1}C_{p+q}}{\im d \cap F_p C_{p+q} + F_{p-1} C_{p+q}}}
 	\]
 	Diese Abbildung ist surjektiv und ihr Kern ist $\enbrace*{\ker d \cap F_p C_{p+q}} \cap \enbrace*{\im d \cap F_p C_{p+q} + F_{p-1} C_{p+q}}$.
-	Wir müssen jetzt nur noch zeigen, dass 
+	Wir müssen jetzt also nur noch zeigen, dass folgende Gleichheit gilt
 	\[
 		\im d \cap F_p C_{p+q} + \ker d \cap F_{p-1}C_{p+q}=\enbrace*{\ker d \cap F_p C_{p+q}} \cap \enbrace*{\im d \cap F_p C_{p+q} + F_{p-1} C_{p+q}}
 	\]
 	% dies dasselbe ist wie $\im d \cap F_p C_{p+q} + \ker d \cap F_{p-1}C_{p+q}$.
 	% Dies ist dasselbe wie $\im d \cap F_p C_{p+q} + \ker d \cap F_{p-1}C_{p+q}$ und es folgt.
-	Die Inklusion \enquote{$\subset$} ist dabei sofort klar. Für die umgekehrte sei $x$ in der rechten Menge.
+	Die Inklusion \enquote{$\subseteq$} ist dabei sofort klar. 
+	Für die umgekehrte Inklusion sei $x$ in der rechten Menge.
 	Dann ist $x=x' + x''$ mit $x' \in \im d \cap F_p C_{p+q}$, $x'' \in F_{p-1} C_{p+q}$ und $x \in \ker d \cap F_p C_{p+q}$.
-	Es folgt $x''=x-x' \in \ker d \cap F_{p-1} C_{p+q}$ und somit ist $x$ auch in der linken Menge enthalten.
+	Es folgt $x''=x-x' \in \ker d \cap F_{p-1} C_{p+q}$ und somit ist $x$ auch in der linken Menge enthalten.\todo{Revision 15}
 \end{beweis}
 
 Wir definieren nun die Randabbildung 
