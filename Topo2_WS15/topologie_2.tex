@@ -2238,7 +2238,7 @@ Zum Vergleich erinnern wir uns an dieser Stelle noch einmal an die Konstruktion 
 	Ein solcher Funktor heißt \bet{exakt}\index{Funktor!exakter}, wenn er kurze exakte Folgen von $R$-Moduln auf kurze exakte Folgen von $S$-Moduln abbildet.
 \end{definition}
 
-\begin{bemerkung}[{name=[exakte Funktoren und (Ko-)Homologie]}]
+\begin{bemerkung}[{name=[exakte Funktoren und (Ko-)Homologie]},label=bem:exakte_funktoren_homologie]
 	Sei $C_*$ ein $R$-Kettenkomplex.
 	Ist $F \colon \Mod{R} \to \Mod{S}$ exakt, so gilt\todo{nochmal detailliert durchgehen, Aufgabe 2 Blatt 8}
 	\[
@@ -3051,9 +3051,9 @@ Wir rechnen nun noch Punkt 3. aus der Definition einer Spektralfolge nach:
 
 \section{Die Künnethformeln} % (fold)
 \label{sec:16}
-\todo[inline]{Wer ist diese/r Künneth?}
-\todo[inline]{Revision 16}
-\begin{proposition}
+\emph{Benannt nach Hermann \textsc{Künneth}\footnote{\url{https://de.wikipedia.org/wiki/Hermann_Künneth}}}
+
+\begin{proposition}[{name=[{Spektralfolgen zum Tensorprodukt von Kettenkomplexen}]}]
 	Sei $R$ ein Ring, $C_*$ ein Kettenkomplex von $R$-Rechtsmoduln und $D_*$ ein Kettenkomplex von $R$-Linksmoduln.
 	\begin{enumerate}[a)]
 		\item Sind die Kettenmoduln von $C_*$ projektiv, so gibt es eine Spektralfolge mit 
@@ -3072,16 +3072,16 @@ Wir rechnen nun noch Punkt 3. aus der Definition einer Spektralfolge nach:
 	\leavevmode
 	\begin{enumerate}[a)]
 		\item Wir benutzen die vertikale Spektralfolge des Doppelkomplexes $C_* \otimes_R D_*$.
-		Dann ist $E^1_{p,q}= H_q \enbrace*{C_p \otimes D_*, \id \otimes \partial^D}$ und $d^1$ wird von $\partial^C \otimes \id$ induziert.
+		Nach \autoref{prop:spektral_total} ist $E^1_{p,q}= H_q \enbrace*{C_p \otimes D_*, \id \otimes \partial^D}$ und $d^1$ wird von $\partial^C \otimes \id$ induziert.
 		Da $C_p$ projektiv ist und daher $C_p \otimes_R -$ ein exakter Funktor ist, ist die kanonische Abbildung 
 		\[
 			C_p \otimes_R H_q \enbrace*{D_*,\partial^D} \longrightarrow H_q \enbrace*{C_p \otimes_R D_*, \id \otimes \partial^D} 
 		\]
-		ein Isomorphismus. Also 
+		nach \autoref{bem:exakte_funktoren_homologie} ein Isomorphismus. Also 
 		\[
 			E^2_{p,q} \cong H_p \enbrace*{C_* \otimes_R H_q(D_*), \partial^C \otimes \id} \cong H_p \enbrace*{C_* \otimes_R H_q(D_*)}
 		\]
-		\item analog. \qedhere
+		\item analog mit b) von \autoref{prop:spektral_total}.\qedhere
 	\end{enumerate}
 \end{beweis}
 
@@ -3101,23 +3101,23 @@ Wir rechnen nun noch Punkt 3. aus der Definition einer Spektralfolge nach:
 	\[
 		C_*^\ssbbrace{0} = \begin{cases}
 			C_0 &\text{ falls }*=0\\
-			\partial(C_1) &\text{ falls }*=1 \\
+			\partial_1(C_1) &\text{ falls }*=1 \\
 			0 &\text{ sonst} 
 		\end{cases}
 	\]
-	und definieren die Randabbildung $\partial^\ssbbrace{0} \colon \partial(C_1) \to C_0$ also die Inklusionsabbildung.
-	Es gelten offenbar \cref{enum:zerlegungssatz:1,enum:zerlegungssatz:2,enum:zerlegungssatz:3} für $C_*^\ssbbrace{0}$ und da $R$ ein Hauptidealring ist, ist auch $\partial(C_1)= C_1^\ssbbrace{0}$ ein freier $R$-Modul.
-	Es folgt auch, dass $\partial \colon C_1 \twoheadrightarrow \partial(C_1)$ spaltet.
-	Wir erhalten einen Isomorphismus $C_1 \cong \im \partial \oplus \ker \partial_1$.
-	Sei 
+	und definieren die Randabbildung $\partial_1^\ssbbrace{0} \colon \partial_1(C_1) \to C_0$ als die Inklusionsabbildung.
+	Es gelten offenbar \cref{enum:zerlegungssatz:1,enum:zerlegungssatz:2,enum:zerlegungssatz:3} für $C_*^\ssbbrace{0}$ und da $R$ ein Hauptidealring ist, ist auch $\partial_1(C_1)= C_1^\ssbbrace{0}$ ein freier $R$-Modul.
+	Es folgt auch, dass $\partial_1 \colon C_1 \twoheadrightarrow \partial(C_1)$ spaltet.
+	Wir erhalten einen Isomorphismus $C_1 \cong \im \partial_1 \oplus \ker \partial_1$.
+	Wir definieren 
 	\[
-		\tilde{C}_* = \begin{cases}
+		\tilde{C}_* := \begin{cases}
 			C_* &\text{ falls }*\ge 2\\
 			\ker \partial_1 &\text{ falls } *=1 \\
 			0 &\text{ falls } *=0 
 		\end{cases}
 		\qquad \text{ und } \qquad 
-		\begin{cases}
+		\tilde{\partial}_* := \begin{cases}
 			\partial_* &\text{ falls }*\ge 3\\
 			\partial_2 \colon C_2 \to \ker \partial_1 &\text{ falls } *=2 \\
 			0 &\text{ sonst} 
@@ -3127,57 +3127,68 @@ Wir rechnen nun noch Punkt 3. aus der Definition einer Spektralfolge nach:
 	Da $\tilde{C}_0=0$ können wir nun induktiv die $C_*^\ssbbrace{i}$ für $i >0$ konstruieren.
 \end{beweis}
 
-\begin{satz}[label=satz:hom_tensor]
+\begin{satz}[label=satz:homol_tensor,{name=[{Homologie des Tensorproduktes von Kettenkomplexen}]}]
 	Seien $C_*$ und $D_*$ Kettenkomplexe über einem Hauptidealring $R$, deren Kettenmodule frei sind.
 	Dann gibt es Isomorphismen
 	\[
-		H_n \enbrace*{C_* \otimes D_*} \cong \smashoperator[r]{\bigoplus_{p+q=n}}\enspace H_p(C_*) \otimes H_q(D_*) \oplus \smashoperator[r]{\bigoplus_{p+q=n-1}}\enspace \Tor_1^2 \enbrace*{H_p(C_*),H_q(D_*)}
+		H_n \enbrace*{C_* \otimes D_*} \cong \smashoperator[r]{\bigoplus_{p+q=n}}\enspace H_p(C_*) \otimes H_q(D_*) \,\,\oplus \smashoperator[r]{\bigoplus_{p+q=n-1}}\enspace \Tor_1^R \enbrace[\big]{H_p(C_*),H_q(D_*)}
 	\]
 \end{satz}
 \begin{beweis}
 	Nach dem \hyperref[zerlegungssatz]{Zerlegungssatz (\ref*{zerlegungssatz})} können wir annehmen, dass es $p$ und $q$ gibt mit $C_*=0$ für $*\neq p,p+1$ und $D_*=0$ für $* \neq q,q+1$ und dass die Randabbildungen $\partial^C_{p+1} \colon C_{p+1} \to C_p$ und $\partial^D_{q+1} \colon D_{q+1} \to D_q$ injektiv sind.
-	Wir benutzen die Spektralfolge bezüglich der vertikalen Filtrierung $F_s \enbrace*{C_* \otimes D_*} = C_{*\le s} \otimes D_*$.
-	\[
-		E^0,d^0
-		\begin{tikzcd}[row sep=large]
-			C_{p} \otimes D_{q+1} \dar["\id \otimes \partial^D"] & C_{p+q} \otimes D_{q+1} \dar["\id \otimes \partial^D"] \\
-			C_p \otimes D_q & C_{p+1} \otimes D_q
-		\end{tikzcd}
-		\qquad 
-		E^1,d^1
-		\begin{tikzcd}[row sep=large]
-			0 & 0 \\
-			C_p \otimes H_q(D_*) & C_{p+1} \otimes H_q(D_*) \lar["\partial^C \otimes \id_{H_q(D_*)}"',"=d^1"]
-		\end{tikzcd}
-	\]
-	\todo[inline]{vlt als figure}
-	Nun ist $\begin{tikzcd}[cramped,sep=small] H_p(C_*) & C_p \lar[two heads] & C_{p+1} \lar[hook] \end{tikzcd}$ eine freie Auflösung von $H_p(C_*)$, also gilt
-	\[
-		E^2_{p,q} = \sfrac{C_p \otimes H_p(D_*)}{\im d^1} = H_p \enbrace*{C_*} \otimes H_q(D_*) \quad \text{und} \quad 
-		E_2(p+1,q) = \ker d^1 = \Tor_1^R \enbrace*{H_p(C_*), H_q(D_*)}
-	\]
-	Es folgt $E^\infty=E^2$.
-	Bild für $E^\infty=E^2$:
-	\[
-		\begin{tikzcd}
-			0 & 0 \\
-			H_p(C_*) \otimes H_q(D_*) & \Tor_1^R \enbrace*{H_p(C_*) \otimes H_q(D_*)}
-		\end{tikzcd}
-	\]
-	Da auf der $E^\infty$-Seite auf jeder Antidiagonalen höchstens ein nichttrivialer Eintrag ist, folgt mit der Konvergenz der Spektralfolge 
+	Wir benutzen die Spektralfolge bezüglich der vertikalen Filtrierung $F_s \enbrace*{C_* \otimes D_*} := C_{*\le s} \otimes D_*$.
+	\begin{figure}[hbt]
+		\centering{
+			\[
+				\begin{tikzcd}[row sep=large]
+					C_{p} \otimes D_{q+1} \dar["\id \otimes \partial^D"] & C_{p+1} \otimes D_{q+1} \dar["\id \otimes \partial^D"] \\
+					C_p \otimes D_q & C_{p+1} \otimes D_q
+				\end{tikzcd}
+				\hspace{2.5cm} 
+				\begin{tikzcd}[row sep=large,column sep=3em]
+					0 & 0 \\
+					C_p \otimes H_q(D_*) & C_{p+1} \otimes H_q(D_*) \lar["\partial^C \otimes \id"',"=: d^1"]
+				\end{tikzcd}
+			\]
+			\caption{Die $0$-Seite $E^0_{p,q}$ (links) und die $1$-Seite $E^1_{p,q}$ (rechts) der Spektralsequenz $E^r_{pq}$}\label{fig:homol_tensor:1}
+		}
+	\end{figure}
+	In \cref{fig:homol_tensor:1} sind Ausschnitte der $0$- sowie der $1$-Seite dargestellt.
+	Nun ist $\begin{tikzcd}[cramped,sep=small] H_p(C_*) & C_p \lar[two heads] & C_{p+1} \lar[{Hooks[left]}-{Computer Modern Rightarrow}] \end{tikzcd}$ eine freie und damit auch projektive Auflösung von $H_p(C_*)$, also gilt für die einzigen beiden Moduln der $2$-Seite\todo{das zweite \enquote{=} in der ersten Zeile verstehe ich noch nicht}
 	\begin{align}
-		H_{p+q}(C_* \otimes D_*) &\cong H_p(C_*) \otimes H_q(D_*) \\
-		H_{p+q+1}(C_* \otimes D_*) &= \Tor_1^R \enbrace[\big]{H_p(C_*) \otimes H_q(D_*)} \\
-		H_n(C_* \otimes D_*)&= 0 \qquad \text{ für } n \notin \set*{p+q,p+q+1} \qedhere
+		E^2_{p,q} &= \frac{C_p \otimes H_q(D_*)}{\im d^1} = H_p \enbrace*{C_*} \otimes H_q(D_*) \quad \text{und} \quad \\
+		E^2_{p+1,q} &= \ker d^1 = \Tor_1^R \enbrace[\big]{H_p(C_*), H_q(D_*)}
 	\end{align}
+	Es folgt $E^\infty=E^2$.
+	% Bild für $E^\infty=E^2$:
+	% \[
+	% 	\begin{tikzcd}
+	% 		0 & 0 \\
+	% 		H_p(C_*) \otimes H_q(D_*) & \Tor_1^R \enbrace*{H_p(C_*) \otimes H_q(D_*)}
+	% 	\end{tikzcd}
+	% \]
+	Da auf der $E^\infty$-Seite auf jeder Antidiagonalen höchstens ein nichttrivialer Eintrag ist, folgt mit der Konvergenz der Spektralfolge 
+	\[
+		H_{n}(C_* \otimes D_*) \cong \begin{cases}
+			H_p(C_*) \otimes H_q(D_*) &\text{ falls }n=p+q\\
+			\Tor_1^R \enbrace[\big]{H_p(C_*) \otimes H_q(D_*)} &\text{ falls } n=p+q+1 \\
+			0 &\text{ sonst }  
+		\end{cases}\qedhere
+	\]
+	% \begin{align}
+	% 	H_{p+q}(C_* \otimes D_*) &\cong H_p(C_*) \otimes H_q(D_*) \\
+	% 	H_{p+q+1}(C_* \otimes D_*) &\cong \Tor_1^R \enbrace[\big]{H_p(C_*) \otimes H_q(D_*)} \\
+	% 	H_n(C_* \otimes D_*)&= 0 \qquad \text{ für } n \notin \set*{p+q,p+q+1} \qedhere
+	% \end{align}
 \end{beweis}
 
-\begin{bemerkung}
-	Der Isomorphismus in \autoref{satz:hom_tensor} ist nicht natürlich in $C_*$ und $D_*$.
+\begin{bemerkung}[{name=[{zur Natürlichkeit des Isomorphismus in \autoref{satz:homol_tensor}}]}]
+	Der Isomorphismus in \autoref{satz:homol_tensor} ist nicht natürlich in $C_*$ und $D_*$.
 	Es gibt aber eine natürliche kurze exakte Folge 
 	\[
 		\begin{tikzcd}
-			\bigoplus_{p+q=n} H_p (C_*) \otimes H_q (D_*) \rar["\alpha"] & H_n(C_* \otimes D_*) \rar & \bigoplus_{p+q=n-1} \Tor_1^R \enbrace[\big]{H_p(C_*), H_q(D_*)}
+			\displaystyle\smashoperator[r]{\bigoplus_{p+q=n}}\enspace H_p (C_*) \otimes H_q (D_*) \rar["\alpha"] & H_n(C_* \otimes D_*) \rar &
+			\displaystyle\smashoperator[r]{\bigoplus_{p+q=n-1}}\enspace \Tor_1^R \enbrace[\big]{H_p(C_*), H_q(D_*)}
 		\end{tikzcd}
 	\]
 	Diese Folge spaltet, aber es gibt keinen natürlichen Spalt.
@@ -3188,7 +3199,7 @@ Wir rechnen nun noch Punkt 3. aus der Definition einer Spektralfolge nach:
 	Sei $R$ ein kommutativer Ring, $X,Y$ topologische Räume.
 	Dann induziert 
 	\[
-		\enbrace[\big]{\sigma \colon \abs*{\Delta^n} \to X \times Y } \longmapsto \sum_{p=0}^{n} (\pr_X \circ \sigma)\big|_{\benbrace*{0,\ldots ,p}} \otimes (\pr_Y \circ \sigma)\big|_{p,\ldots ,n}
+		\enbrace[\big]{\sigma \colon \abs*{\Delta^n} \to X \times Y } \longmapsto \sum_{p=0}^{n} (\pr_X \circ \sigma)\big|_{\benbrace*{0,\ldots ,p}} \otimes (\pr_Y \circ \sigma)\big|_{\benbrace*{p,\ldots ,n}}
 	\]
 	eine Kettenhomotopieäquivalenz, die \Index{Alexander-Whitney-Abbildung} 
 	\[
@@ -3196,13 +3207,13 @@ Wir rechnen nun noch Punkt 3. aus der Definition einer Spektralfolge nach:
 	\]
 \end{satz}
 
-\begin{korollar}
+\begin{korollarB}[{name=[{Künneth-Formel für die Homologie eines Produktraums}]}]
 	Sei $R$ ein Hauptidealring, $X,Y$ topologische Räume.
 	Dann gilt
 	\[
-		H_n(X \times Y;R) \cong \bigoplus_{p+q=n} H_p(X;R) \otimes_R H_q(Y;R) \oplus \bigoplus_{p+q=n-1} \Tor_1^R \enbrace*{H_p(X;R),H_q(Y;R)}
+		H_n(X \times Y;R) \cong \bigoplus_{p+q=n} H_p(X;R) \otimes_R H_q(Y;R) \oplus \bigoplus_{p+q=n-1} \Tor_1^R \enbrace[\big]{H_p(X;R),H_q(Y;R)}
 	\]
-\end{korollar}
+\end{korollarB}
 
 \begin{proposition}[{name={Existenz}}]
 	Sei $R$ ein kommutativer Ring.
@@ -3212,26 +3223,26 @@ Wir rechnen nun noch Punkt 3. aus der Definition einer Spektralfolge nach:
 	\)
 	mit 
 	\[
-		m \enbrace*{ \enbrace*{\sigma \colon \abs{\Delta^0} \to X } \otimes \enbrace*{\tau \colon \abs{\Delta^0} \to Y}}= \enbrace[\big]{\sigma \times \tau \colon \abs{\Delta^0} \to X \times Y}
+		m \enbrace*{ \enbrace{\sigma \colon \abs{\Delta^0} \to X } \otimes \enbrace{\tau \colon \abs{\Delta^0} \to Y}}= \enbrace[\big]{\sigma \times \tau \colon \abs{\Delta^0} \to X \times Y}
 	\]
 \end{proposition}
 \begin{beweis}
-	Wir benutzen die \emph{Methode der azyklischen Modelle} und konstruieren 
+	Wir benutzen die \emph{Methode der azyklischen Modelle}\todo{genauere Erklärung bzw. Übungsaufgabe hinzufügen} und konstruieren 
 	\[
-		m_n \colon \bigoplus_{p+q=n} C^\sing_p(X;R) \otimes_R C^\sing_q(Y;R) \longrightarrow C^\sing_n(X \times Y;R) 
+		m_n \colon \bigoplus_{p+q=n}\!\! C^\sing_p(X;R) \otimes_R C^\sing_q(Y;R) \longrightarrow C^\sing_n(X \times Y;R) 
 	\]
 	induktiv für $n=0,1,\ldots $.
 	Für $n=0$ ist $m_0$ schon durch die Behauptung festgelegt.
 	Sei also $m_k$ für $k<n$ bereits konstruiert mit $\partial_k \circ m_k = m_{k-1} \circ \partial_k$ für $k<n$.
 	Für $p+q=n$ betrachte $\id_{\abs*{\Delta^p}} \otimes \id_{\abs*{\Delta^q}} \in C^\sing_p(\abs*{\Delta^p};R) \otimes_R C_q \enbrace*{\abs*{\Delta^q};R}$.
-	Dann liegt $m_{n-1} \enbrace*{\partial \enbrace*{\id_{\abs*{\Delta^p}} \otimes \id_{\abs*{\Delta^q}}}}$ im Kern von $\partial$ auf $C^\sing_{n-1} \enbrace*{\abs*{\Delta^p} \times \abs*{\Delta^q};R}$.
-	Wegen $H_*(\abs*{\Delta^p} \times \abs*{\Delta^q})=0$ gibt es $v_{p,q} \in C^\sing_n \enbrace*{\abs*{\Delta^p} \times \abs*{\Delta^q}}$ mit 
+	Dann liegt $m_{n-1} \enbrace*{\partial \enbrace{\id_{\abs*{\Delta^p}} \otimes \id_{\abs*{\Delta^q}}}}$ im Kern von $\partial$ auf $C^\sing_{n-1} \enbrace*{\abs*{\Delta^p} \times \abs*{\Delta^q};R}$.
+	Wegen $\tilde{H}_*(\abs*{\Delta^p} \times \abs*{\Delta^q})=0$ gibt es $v_{p,q} \in C^\sing_n \enbrace*{\abs*{\Delta^p} \times \abs*{\Delta^q}}$ mit 
 	\[
-		\partial_k(v_{p,q}) = m_{n-1} \enbrace*{\partial \enbrace*{\id_{\abs*{\Delta^p} } \otimes \id_{\abs*{\Delta^q}}}}. 
+		\partial_k(v_{p,q}) = m_{n-1} \enbrace*{\partial \enbrace{\id_{\abs*{\Delta^p} } \otimes \id_{\abs*{\Delta^q}}}}. 
 	\]
 	Nun definieren wir $m_n$ durch 
 	\[
-		m_n \enbrace*{ \enbrace*{\sigma \colon \abs{\Delta^0} \to X } \otimes \enbrace*{\tau \colon \abs{\Delta^0} \to Y}} := (\sigma\times \tau)_* \enbrace*{v_{p,q}} \qedhere
+		m_n \enbrace[\big]{ \enbrace{\sigma \colon \abs{\Delta^p} \to X } \otimes \enbrace{\tau \colon \abs{\Delta^q} \to Y}} := (\sigma\times \tau)_* \enbrace*{v_{p,q}} \qedhere
 	\]
 \end{beweis}
 
@@ -3253,30 +3264,31 @@ Wir rechnen nun noch Punkt 3. aus der Definition einer Spektralfolge nach:
 	\end{align}
 \end{proposition}
 \begin{beweis}
-	Wir benutzten wieder die Methode der azyklischen Modelle und konstruieren 
+	Wir benutzten wieder die Methode der azyklischen Modelle und konstruieren
 	\[
-		h_n \colon \bigoplus_{p+q=n} C^\sing_p(X;R) \otimes_R C^\sing_q(Y;R) \longrightarrow C_{n+1}^\sing(X \times Y;R)
+		h_n \colon \bigoplus_{p+q=n}\!\! C^\sing_p(X;R) \otimes_R C^\sing_q(Y;R) \longrightarrow C_{n+1}^\sing(X \times Y;R)
 	\]
 	mit 
 	\begin{equation}
-		\partial \circ h_n + h_{n+1} \circ \partial=m_n -m_n' \label{eq:16:rand} \tag{\#}
+		\partial \circ h_n + h_{n-1} \circ \partial=m_n -m_n' \label{eq:16:rand} \tag{\#}
 	\end{equation}
 	induktiv. Für $n=0$ ist 
 	\begin{equation}
-		m_n \enbrace*{\sigma \colon \abs*{\Delta^0} \to X \otimes \tau \colon \abs*{\Delta^0} \to Y  } = m_n' \enbrace*{\sigma \colon \abs*{\Delta^0} \to X \otimes \tau \colon \abs*{\Delta^0} \to Y  } \label{eq:16:mn}\tag{\ddag}
+		m_n \enbrace[\big]{(\sigma \colon \abs{\Delta^0} \to X) \otimes (\tau \colon \abs{\Delta^0} \to Y ) } = m_n' \enbrace[\big]{(\sigma \colon \abs{\Delta^0} \to X) \otimes (\tau \colon \abs{\Delta^0} \to Y)} \label{eq:16:mn}\tag{\ddag}
 	\end{equation}
-	denn \eqref{eq:16:H0} impliziert dies für $X=\abs*{\Delta^0}, Y=\abs*{\Delta^0}$ wegen
+	denn \eqref{eq:16:H0} impliziert dies für $X=\abs{\Delta^0}, Y=\abs{\Delta^0}$, denn es gilt $C_0(\abs*{\Delta^0})\cong H_0(\abs*{\Delta^0})$, da $\partial_1^{\abs{\Delta^0} }=0$. Wegen
 	\begin{align}
-		m_n \enbrace*{\sigma \colon \abs*{\Delta^0} \to X \otimes \tau \colon \abs*{\Delta^0} \to Y} &= (\sigma,\tau)_* \enbrace*{m_n \enbrace*{\id_{\abs*{\Delta^0} } \otimes \id_{\abs*{\Delta^0} }}}\\
-		m_n' \enbrace*{\sigma \colon \abs*{\Delta^0} \to X \otimes \tau \colon \abs*{\Delta^0} \to Y} &= (\sigma,\tau)_* \enbrace*{m_n' \enbrace*{\id_{\abs*{\Delta^0} } \otimes \id_{\abs*{\Delta^0} }}}
+		m_n \enbrace[\big]{(\sigma \colon \abs{\Delta^0} \to X) \otimes (\tau \colon \abs{\Delta^0} \to Y)} &= (\sigma,\tau)_* \enbrace[\big]{m_n \enbrace{\id_{\abs*{\Delta^0} } \otimes \id_{\abs*{\Delta^0}}}}\\
+		m_n' \enbrace[\big]{(\sigma \colon \abs{\Delta^0} \to X) \otimes (\tau \colon \abs{\Delta^0} \to Y)} &= (\sigma,\tau)_* \enbrace[\big]{m_n' \enbrace{\id_{\abs*{\Delta^0} } \otimes \id_{\abs*{\Delta^0}}}}
 	\end{align}
 	folgt dann \eqref{eq:16:mn} für beliebige $X$ und $Y$.
 	Wir können also $h_0 \equiv 0$ setzen.
-	Sei $h_k$ für $k < n$ mit \eqref{eq:16:rand} schon konstruiert.
-	Für $p+q=n$ betrachten wir wieder $\id_{\abs*{\Delta^0}} \otimes \id_{\abs*{\Delta^0}} \in C_p \enbrace*{\abs*{\Delta^p};R} \otimes_R C_P \enbrace*{\abs*{\Delta^q};R }$.
+	Sei nun $h_k$ für $k < n$ mit \eqref{eq:16:rand} schon konstruiert.
+	Für $p+q=n$ betrachten wir wieder $\id_{\abs*{\Delta^p}} \otimes \id_{\abs*{\Delta^q}} \in C_p \enbrace*{\abs*{\Delta^p};R} \otimes_R C_q \enbrace*{\abs*{\Delta^q};R }$.
 	Es ist 
 	\begin{align}
-		\partial \enbrace*{m_n -m'_n - h_{n-1} \circ \partial} &= m_{n-1} \circ \partial -m_{n-1}' \circ \partial - \Underbracket{\partial \circ h_{n-1}}{= - h_{n-2} \partial + m_{n-1} - m_{n-1}'} \circ \partial \\
+		\SwapAboveDisplaySkip
+		\partial \enbrace*{m_n -m'_n - h_{n-1} \circ \partial} &= m_{n-1} \circ \partial -m_{n-1}' \circ \partial - \hspace{-2em}\Overbracket{\partial \circ h_{n-1}}{= - h_{n-2} \partial + m_{n-1} - m_{n-1}'} \hspace{-2em} \circ \partial \\
 		&= m_{n-1} \circ \partial - m_{n-1}' \circ \partial + h_{n-2} \circ \partial^2 - m_{n-1} \circ \partial + m_{n-1}' \circ \partial =0
 	\end{align}
 	Insbesondere ist $\enbrace*{m_n -m_n' - h_{n-1} \circ \partial} \enbrace*{\id_{\abs*{\Delta^p}} \otimes \id_{\abs*{\Delta^q} }} \in \ker \partial$.
@@ -3285,14 +3297,14 @@ Wir rechnen nun noch Punkt 3. aus der Definition einer Spektralfolge nach:
 		\partial v_{n+1} = \enbrace*{m_n -m_n' - h_{n-1} \circ \partial} \enbrace*{\id_{\abs*{\Delta^p}} \otimes \id_{\abs*{\Delta^q} }}
 	\]
 	Nun definieren wir $h_n$ durch
-	\[
-		h_n \enbrace*{\enbrace*{\tau \colon \abs*{\Delta^p} \to X } \otimes  \enbrace*{\sigma \colon \abs*{\Delta^q} \to Y}} := (\tau \times \sigma)_* \enbrace*{v_{n+1}}
-	\]
+	\(
+		h_n \enbrace[\big]{\enbrace*{\sigma \colon \abs*{\Delta^p} \to X } \otimes  \enbrace*{\tau \colon \abs*{\Delta^q} \to Y}} := (\sigma \times \tau)_* \enbrace*{v_{n+1}}
+	\)
 	Dann ist
 	\begin{align}
-		\partial \circ h_n(\tau \otimes \sigma) = \partial \enbrace[\big]{(\tau \times \sigma)_*(v_{n+1})} &= \enbrace*{\tau \times \sigma}_* \enbrace*{\partial v_{n+1}}\\
-		&=(\tau \times \sigma)_* \enbrace*{m_n -m'_n - h_{n-1} \circ \partial}\enbrace*{\id_{\abs*{\Delta^p}} \otimes \id_{\abs*{\Delta^q} }} \\
-		&= \enbrace*{m_n - m'_n - h_{n-1} \circ \partial} \enbrace*{\tau \otimes \sigma}
+		\partial \circ h_n(\sigma \otimes \tau) = \partial \enbrace[\big]{(\sigma \times \tau)_*(v_{n+1})} &= \enbrace*{\sigma \times \tau}_* \enbrace*{\partial v_{n+1}}\\
+		&=(\sigma \times \tau)_* \enbrace*{m_n -m'_n - h_{n-1} \circ \partial}\enbrace*{\id_{\abs*{\Delta^p}} \otimes \id_{\abs*{\Delta^q} }} \\
+		&= \enbrace*{m_n - m'_n - h_{n-1} \circ \partial} \enbrace*{\sigma \otimes \tau}
 	\end{align}
 	Also gilt \eqref{eq:16:rand} wie gewünscht.
 \end{beweis}
