@@ -2699,19 +2699,19 @@ Zum Vergleich erinnern wir uns an dieser Stelle noch einmal an die Konstruktion 
 	von  Unterkettenkomplexen mit $\bigcup_{p} F_p C_* = C_*$.
 \end{definition}
 
-\begin{beispiel}[{name=[Filtrierungen]}]
+\begin{beispiel}[{name=[Filtrierungen]},label=bsp:filtrierungen_total]
 	\leavevmode
 	\begin{itemize}
 		\item Ist $X$ ein CW-Komplex, so erhalten wir eine Filtrierung auf dem singulären Kettenkomplex mit $F_p \enbrace*{C^\sing_*(X;R)} := C_*^\sing \enbrace*{X^\ssbrace{p};R}$.
-		\item Sei $C_{**}$ ein Doppelkomplex. 
-		Dann erhalten wir zwei Filtrierungen $F^v$ und $F^h$ auf $T(C_{**})$ mit\todo{prüfen, ob Notation so geblieben ist} 
+		\item Sei $C_{**}$ ein Doppelkomplex.\marginnote{siehe auch \autoref{prop:spektral_total}} 
+		Dann erhalten wir zwei Filtrierungen $F^v$ und $F^h$ auf $T(C_{**})$ mit
 		\[
 			F^v_p \enbrace[\big]{T(C_{**})} = T \enbrace[\big]{C_{*\le p,*}} \qquad F^h_p \enbrace[\big]{T(C_{**})} := T \enbrace[\big]{C_{*,*\le p}}
 		\]
 	\end{itemize}
 \end{beispiel}
 
-\begin{bemerkung}[{name=[{Konstruktion weiterer Komplexe aus einem Doppelkomplex}]}]
+\begin{bemerkung}[{name=[{Konstruktion weiterer Komplexe aus einem Doppelkomplex}]},label=bem:konst_seiten_doppelkomplex]
 	Sei $(C_{**},\partial^v,\partial^h)$ ein Doppelkomplex.
 	Sei $E^0_{**}= C_{**}$.
 	$\partial^v$ ist eine Randabbildung auf jedem Kettenkomplex $C_{p*}$.
@@ -2742,11 +2742,11 @@ Zum Vergleich erinnern wir uns an dieser Stelle noch einmal an die Konstruktion 
 	\begin{enumerate}[1.]
 		\item Eine Folge von $R$-Moduln $E^r_{p,q}$ für $r,p,q\ge 0$
 		\item $R$-linearen Abbildungen $d^r_{p,q} \colon E_{p,q}^r \to E^r_{p-r,q+r-1}$ mit $d^r_{p-r,q+r-1} \circ d^r_{p,q}=0$
-		\item Isomorphismen zwischen $E^{r+1}_{p,q}$ und der Homologie von $E^r_{*,*}$ bezüglich $d^r_{*,*}$, genauer:
+		\item Isomorphismen zwischen $E^{r+1}_{p,q}$ und der Homologie von $E^r_{**}$ bezüglich $d^r_{**}$, genauer:
 		\[
 			E^{r+1}_{p,q} \cong \frac{\ker d^r_{p,q} \colon E^r_{p,q} \to E^r_{p-r,q+r-1}}{\im d^r_{p+r,q-r+1} \colon E^r_{p+r,q-r+1} \to E^r_{p,q}}
 		\]
-		$E^r_{*,*}$ heißt die \bet{$r$-Seite}\index{Spektralfolge!Seite} der Spektralfolge.
+		$E^r_{**}$ heißt die \bet{$r$-Seite}\index{Spektralfolge!Seite} der Spektralfolge.
 	\end{enumerate}
 \end{definition}
 
@@ -2758,7 +2758,8 @@ Zum Vergleich erinnern wir uns an dieser Stelle noch einmal an die Konstruktion 
 			f = \enbrace*{f^r_{p,q}} \colon \enbrace*{E^r_{p,q},d^r_{p,q}} \longrightarrow \enbrace*{{E'}^r_{p,q},{d'}^r_{p,q}}
 		\]
 		aus einer Folge von $R$-linearen Abbildungen $f^r_{p,q} \colon E^r_{p,q} \to {E'}^r_{p,q}$ besteht, sodass $d^r_{p,q} \circ f^r_{p,q} = f^r_{p-r,q+r-1} \circ d^r_{p,q}$ und $f^{r+1}_{p,q} = H_* \enbrace*{f^r_{p,q}}$ für alle $r,p,q\ge 0$ gilt.
-		\item Für $r > \max\set{p,q+1}$ sind $d^r_{p,q}$ und $d^r_{p+r,q-r+1}$ trivial und daher gilt 
+		\item Für $r > \max\set{p,q+1}$ sind $d^r_{p,q}$ und $d^r_{p+r,q-r+1}$ trivial, da wir nur den ersten Quadranten betrachten. 
+		Daher gilt 
 		\[
 			E^r_{p,q} \cong E^{r+1}_{p,q} \cong E^{r+2}_{p,q} \cong \ldots
 		\]
@@ -2766,7 +2767,7 @@ Zum Vergleich erinnern wir uns an dieser Stelle noch einmal an die Konstruktion 
 	\end{itemize}
 \end{bemerkung}
 
-\begin{definition}[{name=[konvergente Spektralfolge]}]
+\begin{definition}[{name=[konvergente Spektralfolge]},label=def:konvergente_spektralfolge]
 	Wir sagen eine Spektralfolge $\enbrace*{E^r_{p,q},d^r_{p,q}}$ \bet{konvergiert}\index{Spektralfolge!konvergente} gegen den graduierten $R$-Modul $A_*$, falls es eine endliche Filtrierung $F_s A_*$ von $A_*$ gibt mit
 	\[
 		0 = F_{-1}A_n \subseteq F_0 A_n \subseteq \ldots \subseteq F_n A_n = A_n \qquad \text{ und }\qquad  E^\infty_{p,q} \cong \frac{F_p A_{p+q}}{F_{p-1}A_{p+q}}
@@ -2858,7 +2859,7 @@ Zum Vergleich erinnern wir uns an dieser Stelle noch einmal an die Konstruktion 
 			0 \rar & F'_s A'_n \rar  & F'_{s+1} A'_n \rar & \sfrac{F'_{s+1} A'_n}{F'_s A'_n} \rar  & 0 
 		\end{tikzcd}
 	\]
-	um per Induktion über $s=-1,0,1,2, \ldots ,n$ zu zeigen, dass $h\big|_{F_s A_n} \colon F_s A_n \to F'_s A'_n$ ein Isomorphismus ist.
+	um per Induktion über $s=-1,0,1,2, \ldots ,n$ zu zeigen, dass $h|_{F_s A_n} \colon F_s A_n \to F'_s A'_n$ ein Isomorphismus ist.
 \end{beweis}
 
 \begin{definition}[{name=[kohomologische Spektralfolge]}]
@@ -2879,17 +2880,16 @@ Zum Vergleich erinnern wir uns an dieser Stelle noch einmal an die Konstruktion 
 \label{sec:15}
 
 Wir wollen in diesem Abschnitt den folgenden Satz beweisen:
-\begin{satz}[{name=[{Spektralfolge zu einem Kettenkomplex mit Filtrierung}]}]
+\begin{satz}[{name=[{Spektralfolge zu einem Kettenkomplex mit Filtrierung}]},label=satz:spektralfolge_filtrierung]
 	Sei $C_*$ ein Kettenkomplex mit einer Filtrierung von Kettenkomplexen $F_s C_* \subseteq C_*$, sodass
 	\[
 		0 = F_{-1}C_n \subseteq F_0 C_n \subseteq \ldots \subseteq F_n C_n = C_n
 	\]
 	gilt und die Filtrierung mit der Randabbildung von $C_*$ verträglich ist, das heißt $d^C (F_s C_n) \subseteq F_s C_{n-1}$.
-	Dann bestimmt die Filtrierung eine Spektralfolge $\enbrace*{E^r_{p,q},d^r_{p,q}}$ mit $E_{p,q}^0 = \sfrac{F_p C_{p+q}}{F_{p-1} C_{p+q}}$ und $E^2_{p,q} \Rightarrow H_{p+q}(C_*)$.
+	Dann bestimmt die Filtrierung eine Spektralfolge $\enbrace*{E^r_{p,q},d^r_{p,q}}$ mit $E_{p,q}^0 = \sfrac{F_p C_{p+q}}{F_{p-1} C_{p+q}}$ und $E^r_{p,q} \Rightarrow H_{p+q}(C_*)$.
 \end{satz}
-\todo[inline]{kommt da wirklich eine 2 hin?}
 
-Wir erhalten folgende Kette von $R$-Moduln zwischen $F_{p-1} C_n \subseteq F_p C_n$:
+\noindent Wir erhalten folgende Kette von $R$-Moduln zwischen $F_{p-1} C_n \subseteq F_p C_n$:
 \begin{align}
 	F_{p-1} C_n \subseteq d \enbrace*{F_0 C_{n+1}} \cap F_p C_n + F_{p-1} C_n &\subseteq d \enbrace*{F_1 C_{n+1}}\cap F_p C_n + F_{p-1} C_n \\
 	&\subseteq \ldots \\
@@ -2910,11 +2910,12 @@ Die Filtrierung $F_s C_*$ auf $C_*$ induziert eine Filtrierung auf $H_n(C_*)$ du
 	F_s H_n(C_*) := \im \enbrace[\big]{H_n(F_s C_*) \to H_n(C_*)}
 \]
 
-\begin{lemma}[{name=[{Seiten bleiben stabil für $r >p,q+1$}]}]
+\begin{lemma}[{name=[{Konvergenz der Spektralfolge}]}]
 	Für $r>p,q+1$ ist 
 	\[
 		E^r_{p,q} \cong E^{r+1}_{p,q} \cong \ldots \cong \frac{F_p H_{p+q}(C_*)}{F_{p-1} H_{p+q}(C_*)}
 	\]
+	Also gilt $E^r_{p,q} \Rightarrow H_{p+q}$ wie in \autoref{satz:spektralfolge_filtrierung} behauptet.\marginnote{vgl. \autoref{def:konvergente_spektralfolge}}
 \end{lemma}
 \begin{beweis}
 	Für $r>p,q+1$ ist nach obiger Definition 
@@ -2944,8 +2945,8 @@ Die Filtrierung $F_s C_*$ auf $C_*$ induziert eine Filtrierung auf $H_n(C_*)$ du
 
 Wir definieren nun die Randabbildung 
 \[
-	\hspace{-1ex}\begin{tikzcd}[row sep=7pt,column sep=5pt]
-		E^r_{p,q} \rar["d^r_{p,q}"] \dar[equal]& E^r_{p-r,q+r-1} \dar[equal] \\
+	\hspace{-1ex}\begin{tikzcd}[row sep=7pt,column sep=6pt]
+		\scalebox{1.3}{$E^r_{p,q}$} \rar["d^r_{p,q}"] \dar[equal]& \scalebox{1.3}{$E^r_{p-r,q+r-1}$} \dar[equal] \\
 		\displaystyle\frac{d^{-1} \enbrace*{F_{p-r}C_{p+q-1}} \cap F_p C_{p+q}+ F_{p-1}C_{p+q}}{d \enbrace*{F_{p+r-1}C_{p+q+1} }\cap F_p C_{p+q} + F_{p-1}C_{p+q}} & 
 		\displaystyle\frac{d^{-1} \enbrace*{F_{p-2r}C_{p+q-2}} \cap F_{p-r} C_{p+q-1} + F_{p-r-1}C_{p+q-1}}{d \enbrace*{F_{p-1} C_{p+q}} \cap F_{p-r} C_{p+q-1} + F_{p-r-1} C_{p+q-1} }
 	\end{tikzcd}
@@ -3015,30 +3016,35 @@ Wir rechnen nun noch Punkt 3. aus der Definition einer Spektralfolge nach:
 		d^r_{p,q} x = \benbrace*{d \tilde{a}} \in E^r_{p-r,q+r-1}
 	\]
 	Zu zeigen: $\benbrace*{d \tilde{a}} =0 \in E^r_{p-r,q+r-1}$, also $d \tilde{a} \in d \enbrace*{F_{p-1} C_{p+q}} \cap F_{p-r} C_{p+q-1} + F_{p-r-1} C_{p+q-1}$.
-	Da $\tilde{a} \in d^{-1} \enbrace*{F_{p-r-1} C_{p+q-1}}\cap F_p C_{p+q} \subseteq d^{-1} (F_{p-r-1} C_{p+q-1})$ ist $d\tilde{a} \in F_{p-r-1} C_{p+q-1}$.\todo{Revision 15}
+	Da $\tilde{a} \in d^{-1} \enbrace*{F_{p-r-1} C_{p+q-1}}\cap F_p C_{p+q} \subseteq d^{-1} (F_{p-r-1} C_{p+q-1})$ ist $d\tilde{a} \in F_{p-r-1} C_{p+q-1}$.
 \end{beweis}
 
-\begin{proposition}
-	Sei $(C_{*,*},d^v,d^h)$ ein Doppelkomplex.
-	Seien nun $F^v_s T(C_{*,*}) := T \enbrace*{C_{*\le s,*}}$ und $F^h_s T(C_{*,*}) := T \enbrace*{C_{*,*\le s}}$ die vertikale und die horizontale Filtrierung des Totalkomplexes von $C_{*,*}$.
-	Dann gilt für die zugehörige Spektralfolgen $^v E^r_{p,q}$ und $^h E^r_{p,q}$ folgendes:
+\begin{proposition}[{name=[{Spektralfolgen aus einem Totalkomplex}]},label=prop:spektral_total]
+	Sei $(C_{**},d^v,d^h)$ ein Doppelkomplex.
+	Seien nun $F^v_s T(C_{**}) := T \enbrace*{C_{*\le s,*}}$ und $F^h_s T(C_{**}) := T \enbrace*{C_{*,*\le s}}$ die \bet{vertikale und die horizontale Filtrierung}\index{Filtrierung!}\marginnote{vgl. \autoref{bsp:filtrierungen_total} und \autoref{bem:konst_seiten_doppelkomplex}} des Totalkomplexes von $C_{**}$.
+	Dann gilt für die zugehörigen Spektralfolgen $^v E^r_{p,q}$ und $^h E^r_{p,q}$ folgendes:
 	\begin{enumerate}[a)]
-		\item $^v E^1_{p,q} = H_q \enbrace*{C_{p,*},d^v}$, $^v d^1$ wird von $d^h$ induziert.
-		\item $^h E^1_{p,q} = H_p \enbrace*{C_{*,q},d^h}$, $^h d^1$ wird von $d^v$ induziert.
+		\item $^v E^1_{p,q} = H_q \enbrace*{C_{p,*},d^v}$ und $^v d^1$ wird von $d^h$ induziert,
+		\item $^h E^1_{p,q} = H_p \enbrace*{C_{*,q},d^h}$ und $^h d^1$ wird von $d^v$ induziert.
 	\end{enumerate}
 \end{proposition}
 \begin{beweis}
-	\ldots 
+	Nach \autoref{satz:spektralfolge_filtrierung} haben wir die folgenden Isomorphismen\marginnote{die horizontale Filtrierung unterscheidet sich quasi nur durch eine Spiegelung ander Diagonalen von der vertikalen Filtrierung}
+	\[
+		{^vE^0_{p,q}} \cong\frac{F_p^v T(C_{**})_{p+q}}{F_{p-1}^v T(C_{**})_{p+q}} \cong  C_{p,q} \qquad {^hE^0_{p,q}}\cong\frac{F^h_p T(C_{**})_{p+q}}{F_{p-1}^h T(C_{**})_{p+q}} \cong C_{q,p}
+	\]
+	Die Randabbildungen sind dann durch die vertikale bzw. horizontale Randabbildung aus dem Doppelkomplex gegeben, wie man sich leicht an der Definition der Randabbildung der Spektralfolge klar macht, denn diese muss ja eine Abbildung $E^0_{p,q} \to E^0_{p,q-1}$ sein.
+	Damit folgt offensichtlich die Behauptung.
 \end{beweis}
 
-\begin{korollar}
-	Sei $\enbrace*{C_{*,*},d^v,d^h}$ ein Doppelkomplex, dessen Zeilen (oder Spalten) exakt sind.
-	Dann ist $H_* \enbrace*{T(C_{*,*})}=0$
+\begin{korollar}[{name=[{Homologie des Totalkomplexes bei exakten Spalten/Zeilen}]}]
+	Sei $\enbrace*{C_{**},d^v,d^h}$ ein Doppelkomplex, dessen Spalten (oder Zeilen) exakt sind.
+	Dann ist $H_* \enbrace*{T(C_{**})}=0$.
 \end{korollar}
 \begin{beweis}
-	Sind die Zeilen exakt, so ist $^vE^1_{p,q}=0$\todo{hier muss vlt $h$ statt $v$ stehen, unten genauso} für alle $p,q$ und damit $E^\infty_{p,q}=0$.
-	Da die $^v E^r_{p,q} \Rightarrow H_{p+q} \enbrace*{T(C_{*,*})}$ folgt $H_{p,+q} \enbrace*{T(C_{*,*})}=0$.
-	Für Spalten folgt die Aussage genauso mittels der horizontalen Spektralfolge.
+	Sind die Spalten exakt, so ist $^vE^1_{p,q}=0$ für alle $p,q$ nach voriger \autoref{prop:spektral_total} und damit $^vE^\infty_{p,q}=0$.
+	Da $^v E^r_{p,q} \Rightarrow H_{p+q} \enbrace*{T(C_{**})}$ nach \autoref{satz:spektralfolge_filtrierung} folgt $H_{p,+q} \enbrace*{T(C_{**})}=0$.
+	Für Zeilen folgt die Aussage genauso mittels der horizontalen Spektralfolge.
 \end{beweis}
 \newpage
 % section 15 (end)
