@@ -2531,10 +2531,10 @@ Zum Vergleich erinnern wir uns an dieser Stelle noch einmal an die Konstruktion 
 	Eine \Index{injektive Auflösung} einer $R$-Moduls $M$ ist eine lange exakte Folge 
 	\[
 		\begin{tikzcd}
-			0 \rar & M \rar[hook] & I_0 \rar["\partial^0"] & I_1 \rar["\partial^1"] & \ldots 
+			0 \rar & M \rar[hook] & I^0 \rar["\partial^0"] & I^1 \rar["\partial^1"] & \ldots 
 		\end{tikzcd}
 	\]
-	mit $I_i$ injektiv für alle $i$.
+	mit $I^i$ injektiv für alle $i$.
 \end{definition}
 
 \begin{korollarB}[{name=[{Existenz von injektiven Auflösungen}]}]
@@ -2542,10 +2542,10 @@ Zum Vergleich erinnern wir uns an dieser Stelle noch einmal an die Konstruktion 
 \end{korollarB}
 
 \begin{bemerkung}[{name=[{Ext mittels injektiver Auflösung}]}]
-	Sei $(I_*,j)$ eine injektive Auflösung von $W$. 
-	Dann gilt
+	Sei $(I^*,j)$ eine injektive Auflösung von $W$. 
+	Dann gilt\todo{Referenz?}
 	\[
-		\Ext_R^n(M,W) \cong H^n \enbrace*{\Hom_R(M,I_*)}
+		\Ext_R^n(M,W) \cong H^n \enbrace[\big]{\Hom_R(M,I^*)}
 	\]
 \end{bemerkung}
 \newpage
