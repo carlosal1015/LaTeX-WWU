@@ -2595,7 +2595,7 @@ Zum Vergleich erinnern wir uns an dieser Stelle noch einmal an die Konstruktion 
 	\end{itemize}
 \end{bemerkung}
 
-\begin{lemma}[label=projaufl:iso:hom,{name=[{Tensorieren mit projektiver Auflösung anstatt einem Rechtsmodul}]}]
+\begin{lemma}[label=lem:projaufl_iso_hom,{name=[{Tensorieren mit projektiver Auflösung anstatt einem Rechtsmodul}]}]
 	Sei $C_*$ ein $\mathbb{N}$-graduierter $R$-Kettenkomplex, dessen Kettenmodule projektiv sind.
 	Sei $V$ ein $R$-Rechtsmodul und $(P_*,\epsilon)$ eine projektive Auflösung von $V$ durch $R$-Rechtsmoduln.
 	Dann induziert $\epsilon \otimes \id \colon P_* \otimes_R C_* \to V \otimes_R C_*$ einen Isomorphismus in Homologie.
@@ -2617,7 +2617,7 @@ Zum Vergleich erinnern wir uns an dieser Stelle noch einmal an die Konstruktion 
 			V \otimes C_1 \dar["\id \otimes \partial^C"'] & P_0 \otimes C_1 \lar["\epsilon \otimes \id"']\dar & P_1 \otimes C_1\lar\dar & P_2 \otimes C_1 \lar\dar & \cdots \lar\\
 			V \otimes C_0 & P_0 \otimes C_0 \lar["\epsilon \otimes \id"']& P_1 \otimes C_0\lar & P_2 \otimes C_0 \lar & \cdots \lar
 		\end{tikzcd}
-		\caption{Diagramm zum Beweis von \cref{projaufl:iso:hom}}\label{fig:tensor:ketten}
+		\caption{Diagramm zum Beweis von \cref{lem:projaufl_iso_hom}}\label{fig:tensor:ketten}
 		}
 	\end{figure}%
 	Insbesondere gilt: 
@@ -2665,10 +2665,10 @@ Zum Vergleich erinnern wir uns an dieser Stelle noch einmal an die Konstruktion 
 	\]
 \end{lemma}
 \begin{beweis}
-	\emph{Übungsaufgabe, ähnlich wie \autoref{projaufl:iso:hom}.}
+	\emph{Übungsaufgabe, ähnlich wie \autoref{lem:projaufl_iso_hom}.}
 \end{beweis}
 
-\begin{bemerkung}[{name=[zu \autoref{projaufl:iso:hom}]}]
+\begin{bemerkung}[{name=[zu \autoref{lem:projaufl_iso_hom}]}]
 	Für den Isomorphismus $H_*\enbrace*{(P \otimes_R C)_*} \to H_*(V \otimes_R C_*)$ war es wichtig, dass die Homologie von $\enbrace*{P_* \otimes C_i,\partial^P \otimes \id}$ in Grad $0$ konzentriert ist und damit genau $V \otimes C_i$ ist (dies entspricht den Zeilen in \cref{fig:tensor:ketten}).
 	Umgekehrt ist die Homologie von $\enbrace*{P_p \otimes C_*, \id \otimes \partial^C}$ isomorph zu $P_p \otimes H_*(C_*)$.
 	Wir erhalten also Komplexe $\enbrace*{P_* \otimes H_n(C_*), \partial^P \otimes \id}$ deren Homologie genau $\Tor^R_* \enbrace*{V, H_n(C_*)}$ ist.
