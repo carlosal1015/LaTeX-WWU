@@ -3565,17 +3565,17 @@ Wir rechnen nun noch Punkt 3. aus der Definition einer Spektralfolge nach:
 
 \section{Orientierungen und Karten} % (fold)
 \label{sec:19}
-\todo[inline]{Revision 19}
+
 \emph{And now for something completely different.}
 
-\begin{satz}
-	Sei $M$ eine topologischer $n$-Mannigfaltigkeit und $\mu^{\mathbb{R}^n} = \enbrace*{\mu_\lambda^{\mathbb{R}^n} \in H_n(\mathbb{R}^n, \mathbb{R}^n \setminus \set*{\lambda})}_{\lambda \in \mathbb{R}^n}$ eine Orientierung des $\mathbb{R}^n$.
+\begin{satz}[{name=[{Äquivalenz von Orientierbarkeit und Existenz eines Orientierungsatlanten}]},label=satz:orientierbar_atlas]
+	Sei $M$ eine topologische $n$-Mannigfaltigkeit und $\mu^{\mathbb{R}^n} = \enbrace*{\mu_\lambda^{\mathbb{R}^n} \in H_n(\mathbb{R}^n, \mathbb{R}^n \setminus \set*{\lambda})}_{\lambda \in \mathbb{R}^n}$ eine Orientierung des $\mathbb{R}^n$.
 	Dann sind äquivalent
 	\begin{enumerate}[(i)]
 		\item $M$ ist orientierbar.
 		\item Es gibt einen Atlas $\set*{h \colon M\supseteq U_h \to V_h \subseteq \mathbb{R}^n}$ für $M$, sodass alle Kartenwechsel 
 		\[
-			h_1 \circ h_0^1 \big|_{h_0(U_0 \cap U_1)} \colon h_0 (U_0 \cap U_1) \longrightarrow h_1(U_0 \cap U_1)
+			h_1 \circ h_0^{-1} \big|_{h_0(U_0 \cap U_1)} \colon h_0 (U_0 \cap U_1) \longrightarrow h_1(U_0 \cap U_1)
 		\]
 		bezüglich $\mu^{\mathbb{R}^n}$ orientierungserhaltend sind.
 	\end{enumerate}
@@ -3583,7 +3583,7 @@ Wir rechnen nun noch Punkt 3. aus der Definition einer Spektralfolge nach:
 \begin{beweis}
 	Sei $\mu^M$ eine Orientierung für $M$.
 	Wähle für jedes $x \in M$ eine Karte $h_x \colon U_x \to V_x$ mit $x \in U_x$.
-	Indem wir $h_x$, falls nötig, durch $\Sp \circ h_x$ ersetzen, wobei $\Sp \colon \mathbb{R}^n \to \mathbb{R}^n$ eine orientierungsumkehrender Isomorphismus ist, können wir erreichen, dass alle $h_x$ orientierungserhaltend sind.
+	Indem wir $h_x$, falls nötig, durch ${\Sp} \circ h_x$ ersetzen, wobei $\Sp \colon \mathbb{R}^n \to \mathbb{R}^n$ eine orientierungsumkehrender Isomorphismus ist, können wir erreichen, dass alle $h_x$ orientierungserhaltend sind.
 	Dann sind auch die Kartenwechsel zwischen den $h_x$ orientierungserhaltend.
 	
 	Sei nun umgekehrt $\set*{h \colon U_h \to V_h}$ ein Atlas wie in (ii).
@@ -3592,15 +3592,15 @@ Wir rechnen nun noch Punkt 3. aus der Definition einer Spektralfolge nach:
 	Wir definieren $\mu_x^M$ als das Bild von $\mu_{h(x)}^{\mathbb{R}^n}$ unter der Komposition der folgenden Isomorphismen:
 	\[
 		\begin{tikzcd}[sep=2.1em]
-			\mu^{\mathbb{R}^n}_{h(x)} \in H_n \enbrace[\big]{\mathbb{R}^n,\mathbb{R}^n \setminus \set*{h(x)}} & H_n(V,V\setminus \set*{h(x)}) \lar["\cong"'] &
-			H_n(U,U \setminus \set*{x}) \lar["\cong","h_*"'] \rar["\cong"] & H_n \enbrace[\big]{M,M \setminus \set*{x}}
+			\mu^{\mathbb{R}^n}_{h(x)} \in H_n \enbrace[\big]{\mathbb{R}^n,\mathbb{R}^n \setminus \set*{h(x)}} & H_n \enbrace[\big]{V,V\setminus \set*{h(x)}} \lar["\cong"'] &
+			H_n \enbrace[\big]{U,U \setminus \set*{x}} \lar["\cong","h_*"'] \rar["\cong"] & H_n \enbrace[\big]{M,M \setminus \set*{x}}
 		\end{tikzcd}
 	\]
 	Da die Kartenwechsel orientierungserhaltend sind, hängt $\mu_x^M$ nicht von der Wahl von $h$ ab.
 	Da $\mu^{\mathbb{R}^n}$ eine Orientierung ist, ist auch $\mu^M$ eine Orientierung.
 \end{beweis}
 
-\begin{bemerkung}
+\begin{bemerkung}[{name=[{zu \autoref{satz:orientierbar_atlas}}]}]
 	\leavevmode
 	\begin{enumerate}[i)]
 		\item Genauer haben wir gezeigt, dass jede Orientierung von $M$ einen Atlas wie in (ii) mittels $\mu^{\mathbb{R}^n}$ bestimmt und dass jeder Atlas wie in (ii) eine Orientierung von $M$ bestimmt.
@@ -3610,7 +3610,7 @@ Wir rechnen nun noch Punkt 3. aus der Definition einer Spektralfolge nach:
 	\end{enumerate}
 \end{bemerkung}
 
-\begin{lemma}
+\begin{lemma}[{name=[{Orientierungserhaltung von Diffeomorphismen}]}]
 	Sei $f \colon U \to V$ ein Diffeomorphismus zwischen offenen Teilmengen des $\mathbb{R}^n$.
 	Dann ist $f$ genau dann orientierungserhaltend, wenn für alle $x \in U$ die Determinante des Differentials $\D f_x \colon \mathbb{R}^n \to \mathbb{R}^n$ positiv ist.
 \end{lemma}
@@ -3628,7 +3628,8 @@ Wir rechnen nun noch Punkt 3. aus der Definition einer Spektralfolge nach:
 		\end{cases}
 	\]
 	Aus Topologie \RM{1}. wissen wir, dass $(\Sp)_* = - \id \colon H_{n-1}(S^{n-1}) \to H_{n-1}(S^{n-1})$.
-	Da wir einen natürlichen Isomorphismus $H_n(\mathbb{R}^n,\mathbb{R}^n \setminus \set*{0}) \to H_{n-1}(S^{n-1})$ haben, ist die Spiegelung daher orientierungserhaltend.
+	Da wir einen natürlichen Isomorphismus $H_n(\mathbb{R}^n,\mathbb{R}^n \setminus \set*{0}) \cong H_{n-1}(S^{n-1})$ haben, ist die Spiegelung daher orientierungsumkehrend.
+	Damit folgt die Behauptung für lineare Isomorphismen.
 	Ist nun $f \colon U \to V$ ein Diffeomorphismus mit $f(0)=0$, so ist 
 	\[
 		(\D f)_0 (v) = \lim_{t \to 0} \frac{f(t \cdot v)}{t} 
@@ -3637,13 +3638,13 @@ Wir rechnen nun noch Punkt 3. aus der Definition einer Spektralfolge nach:
 	\[
 		H(v,t) := \begin{cases}
 			\D f_0(v) &\text{ falls }t=0\\
-			f(t \cdot v) /t &\text{ falls } t \in (0,1]
+			\frac{f(t \cdot v)}{t}  &\text{ falls } t \in (0,1]
 		\end{cases}
 	\]
-	und die Behauptung folgt für beliebige $f$.
+	und die Behauptung folgt für beliebige Diffeomorphismen $f \colon U \to V$.
 \end{beweis}
 
-\begin{korollarB}
+\begin{korollarB}[{name=[{Orientierbarkeit im homologischen Sinne ist das gleiche wie im differentialtopologischen Sinne}]}]
 	Eine $C^\infty$-Mannigfaltigkeit $M$ ist genau dann orientierbar, wenn es einen $C^\infty$-Atlas $\set*{h \colon U \to V}$ für $M$ gibt, sodass die Differentiale der Kartenwechsel in jedem Punkt positive Determinante besitzen.
 \end{korollarB}
 % section 19 (end)
