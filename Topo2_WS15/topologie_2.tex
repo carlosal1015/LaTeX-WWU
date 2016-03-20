@@ -3505,57 +3505,60 @@ Wir rechnen nun noch Punkt 3. aus der Definition einer Spektralfolge nach:
 \section[Symmetrie von Tor und Ext]{Symmetrie von $\Tor$ und $\Ext$} % (fold)
 \label{sec:18}
 
-\todo[inline]{Revision 18}
-\begin{satz}[label=satz:symmetrie_tor]
+\begin{satz}[label=satz:symmetrie_tor,{name=[{Homologie von Auflösungen der Faktoren des Tensorproduktes}]}]
 	Sei $R$ ein Ring, $V$ ein $R$-Rechtsmodul und $W$ ein $R$-Linksmodul.
 	Sei $(P_*,\epsilon)$ eine projektive Auflösung von $V$ und $(Q_*,\delta)$ eine projektive Auflösung von $W$.
 	Dann gibt es einen natürlichen Isomorphismus $H_* \enbrace*{P_* \otimes_R W} \cong H_* \enbrace*{V \otimes_R Q_*}$.
 \end{satz}
 \begin{beweis}
-	Wir zeigen, dass $\id \otimes \delta \colon P_* \otimes_R Q_* \to P_* \otimes_R W$ und $\epsilon \otimes \id \colon P_* \otimes_R Q_* \to V \otimes_R Q_*$ Isomorphismen auf Homologie induzieren.
+	Wir zeigen, dass ${\id} \otimes \delta \colon P_* \otimes_R Q_* \to P_* \otimes_R W$ und $\epsilon \otimes \id \colon P_* \otimes_R Q_* \to V \otimes_R Q_*$ Isomorphismen auf Homologie induzieren.
 	Dazu benutzen wir die vertikale und die horizontale Spektralfolge des Doppelkomplexes $P_* \otimes_R Q_*$.
-	Es ist 
+	Es ist nach \autoref{prop:spektral_total}
 	\[
 		^v E^1_{p,q} = H_q \enbrace*{P_p \otimes Q_*} \cong P_p \otimes H_q(Q_*) \cong \begin{cases}
 			P_p \otimes W &\text{ falls }q=0\\
 			0 &\text{ sonst }
 		\end{cases}
 	\]
-	Daher ist $^v E^2_{p,q}\cong \begin{cases}
-		H_p(P_*\otimes W) &\text{ falls }q=0\\
-		0 &\text{ sonst }
-	\end{cases}$
-	Die natürliche Spektralfolge kollabiert bei $E^2$ und $H_n \enbrace*{P_* \otimes_R Q_*} \cong {^v E^2_{n,0}} \cong H_p (P_* \otimes W)$.
-	Genauer induziert $\id \otimes \delta \colon P_* \otimes Q_* \to P_* \otimes W$ auf den $E^1$-Seiten der zwei Spektralfolgen (bezüglichen der vertikalen Filtrierung auf $P_* \otimes Q_*$ und der vertikalen (=trivialen) Filtrierung auf $P_* \otimes W$) einen Isomorphismus und daher auch einen Isomorphismus in Homologie.
+	Daher gilt weiter
+	\[
+		^v E^2_{p,q}\cong \begin{cases}
+			H_p(P_*\otimes W) &\text{ falls }q=0\\
+			0 &\text{ sonst }
+		\end{cases}
+	\]
+	Die natürliche Spektralfolge kollabiert bei $E^2$ und es gilt $H_n \enbrace*{P_* \otimes_R Q_*} \cong {^v E^2_{n,0}} \cong H_p (P_* \otimes W)$.
+	Genauer induziert ${\id} \otimes \delta \colon P_* \otimes Q_* \to P_* \otimes W$ auf den $E^1$-Seiten der zwei Spektralfolgen (bezüglichen der vertikalen Filtrierung auf $P_* \otimes Q_*$ und der vertikalen (=trivialen) Filtrierung auf $P_* \otimes W$) einen Isomorphismus und daher auch einen Isomorphismus in Homologie.
 	Genauso zeigt man, dass $\epsilon \otimes \id \colon P_* \otimes_R Q_* \to V \otimes_R Q_*$ einen Isomorphismus der $E^1$-Seiten der horizontalen Spektralfolge induziert und daher auch einen Isomorphismus in Homologie induziert.
 \end{beweis}
 
-\begin{bemerkung}
+\begin{bemerkung}[{name=[{Symmetrie von Tor}]}]
 	\leavevmode
 	\begin{enumerate}[(i)]
 		\item Es folgt, dass sich $\Tor_*^R(V,W)$ sowohl durch eine projektive Auflösung von $V$ als auch durch eine projektive Auflösung von $W$ berechnen lässt.
-		\item Ist $R$ kommutativ, so gilt $V \otimes_R W \cong W \otimes_R V$ via $v \otimes w \mapsto w \otimes v$ und es folgt 
+		\item Ist $R$ kommutativ, so gilt $V \otimes_R W \cong W \otimes_R V$ via $v \otimes w \mapsto w \otimes v$ und es folgt
 		\[
 			\Tor_*^R(V,W) \cong H_*\enbrace*{V \otimes_R Q_*} \cong H_* \enbrace*{Q_* \otimes_R V} \cong \Tor_*^R(W,V)
 		\]
 	\end{enumerate}
 \end{bemerkung}
 
-\begin{satz}
+\begin{satz}[{name=[{Kohomologie von Hom über projektive oder injektive Auflösung}]}]
 	Sei $R$ ein Ring.
 	Seien $V,W$ zwei $R$-Moduln.
 	Sei $(P_*,\epsilon)$ eine projektive Auflösung von $V$ und $(I^*,j)$ eine injektive Auflösung von $W$.
 	Dann gibt es einen natürlichen Isomorphismus 
 	\[
-		H^* \enbrace*{\Hom(P_*,W)} \to H^* \enbrace*{\Hom(V,I^*)}
+		H^* \enbrace[\big]{\Hom(P_*,W)} \to H^* \enbrace[\big]{\Hom(V,I^*)}
 	\]
 \end{satz}
 \begin{beweis}
 	Wir betrachten $\Hom(P_*,I^*)$ und zeigen wie vorher mit der kohomologischen Spektralfolge, dass $j_* \colon \Hom \enbrace*{P_*,W} \to \Hom(P_*,I^*)$ und $\epsilon^* \colon \Hom(V,I^*) \to \Hom(P_*,I^*)$ Isomorphismen in Kohomologie induzieren.
 \end{beweis}
 
-\begin{bemerkung}
+\begin{bemerkung}[{name=[{\enquote{Symmetrie} von Ext}]}]
 	Es folgt, dass sich $\Ext_R^*(V,W)$ sowohl durch eine projektive Auflösung von $V$ als auch eine injektive Auflösung von $W$ definieren lässt.
+	Eine \enquote{richtige} Symmetrie wie bei $\Tor$ existiert allerdings nicht, da auch für kommutative Ringe $\Hom_R(V,W) \cong \Hom_R(W,V)$ im Allgemeinen nicht stimmt.
 \end{bemerkung}
 % section 18 (end)
 \newpage
