@@ -2784,8 +2784,8 @@ Zum Vergleich erinnern wir uns an dieser Stelle noch einmal an die Konstruktion 
 	Die Behauptung folgt direkt aus der Eigenschaft $f^{r+1}_{p,q} = H_* \enbrace*{f^r_{p,q}}$ für alle $r,p,q\ge 0$ aus der Definition, siehe \autoref{bem:mor_spektralfolge}.
 \end{beweis}
 
-\begin{bemerkung}[{name=[kollabierende Spektralfolge]}]
-	Eine Spektralfolge \bet{kollabiert}\index{Spektralfolge!kollabierende} bei $E^r$, falls es auf der $r$-Seite $E^r_{p,q}$ genau eine Spalte $E^r_{p_0,*}$ oder eine Zeile $E^r_{*,q_0}$ gibt, sodass alle Moduln $E^r_{p,q}$ außerhalb dieser Spalte bzw. Zeile trivial sind.
+\begin{bemerkung}[{name=[kollabierende Spektralfolge]},label=bem:kollabierende_spektralfolge]
+	Eine Spektralfolge \bet{kollabiert}\index{Spektralfolge!kollabierende} bei $E^r$, falls es auf der $r$-Seite $E^r$ genau eine Spalte $E^r_{p_0,*}$ oder eine Zeile $E^r_{*,q_0}$ gibt, sodass alle Moduln $E^r_{p,q}$ außerhalb dieser Spalte bzw. Zeile trivial sind.
 	Gilt $E^r_{p,q}\Rightarrow A_{p+q}$, so folgt\marginnote{das gilt nur für $r>0$ bzw. $r>1$ (?)} 
 	\[
 		A_n \cong E^r_{p_0,n-p_0} \quad \text{ bzw. } \quad A_n \cong E^r_{n-q_0,q_0}
@@ -3053,7 +3053,7 @@ Wir rechnen nun noch Punkt 3. aus der Definition einer Spektralfolge nach:
 \label{sec:16}
 \emph{Benannt nach Hermann \textsc{Künneth}\footnote{\url{https://de.wikipedia.org/wiki/Hermann_Künneth}}}
 
-\begin{proposition}[{name=[{Spektralfolgen zum Tensorprodukt von Kettenkomplexen}]}]
+\begin{proposition}[{name=[{Spektralfolgen zum Tensorprodukt von Kettenkomplexen}]},label=prop:spektralfolgen_konv_homlo_tensor]
 	Sei $R$ ein Ring, $C_*$ ein Kettenkomplex von $R$-Rechtsmoduln und $D_*$ ein Kettenkomplex von $R$-Linksmoduln.
 	\begin{enumerate}[a)]
 		\item Sind die Kettenmoduln von $C_*$ projektiv, so gibt es eine Spektralfolge mit 
@@ -3081,7 +3081,8 @@ Wir rechnen nun noch Punkt 3. aus der Definition einer Spektralfolge nach:
 		\[
 			E^2_{p,q} \cong H_p \enbrace*{C_* \otimes_R H_q(D_*), \partial^C \otimes \id} \cong H_p \enbrace*{C_* \otimes_R H_q(D_*)}
 		\]
-		\item analog mit b) von \autoref{prop:spektral_total}.\qedhere
+		Mit \autoref{satz:spektralfolge_filtrierung} folgt die Konvergenz.
+		\item Analog mit b) von \autoref{prop:spektral_total}, also der horizontalen Spektralfolge.\qedhere
 	\end{enumerate}
 \end{beweis}
 
@@ -3317,33 +3318,38 @@ Wir rechnen nun noch Punkt 3. aus der Definition einer Spektralfolge nach:
 
 \section{Universelle Koeffizienten-Theoreme} % (fold)
 \label{sec:17}
-\todo[inline]{Revision 17}
-\begin{satz}
+
+\begin{satz}[{name=[{Spektralfolge mit Tor auf der 2-Seite}]}]
 	Sei $R$ ein Ring, $V$ ein $R$-Rechtsmodul und $C_*$ ein Kettenkomplex von projektiven $R$-Linksmoduln.
-	Dann gibt es eine Spektralfolge $E^2_{p,q}= \Tor_p^R\enbrace[\big]{V, H_q(C_*)} \Rightarrow H_{p+q}(V \otimes C_*)$.
+	Dann gibt es eine Spektralfolge mit
+	\[
+		E^2_{p,q}= \Tor_p^R\enbrace[\big]{V, H_q(C_*)} \Rightarrow H_{p+q}(V \otimes C_*)
+	\]
+	Diese Spektralfolge ist natürlich in $V$ und $C_*$.
 \end{satz}
 \begin{beweis}
 	Sei $(P_*, \epsilon)$ eine projektive Auflösung von $V$.
 	Wir betrachten den Doppelkomplex $P_* \otimes_R C_*$.
-	Wir benutzen zunächst die horizontale Spektralfolge um -- nochmal -- zu zeigen, dass $\epsilon \otimes \id \colon P_* \otimes_R C_* \to V \otimes_R C_*$ einen Isomorphismus in Homologie induziert.
+	Wir benutzen zunächst die horizontale Spektralfolge um -- ein weiteres Mal, siehe \autoref{lem:projaufl_iso_hom} -- zu zeigen, dass $\epsilon \otimes \id \colon P_* \otimes_R C_* \to V \otimes_R C_*$ einen Isomorphismus in Homologie induziert.
 	Es ist 
 	\[
-		^h E^1_{p,q} =H_p \enbrace*{P_* \otimes C_q} \StackText{projektiv}{=\joinrel=\joinrel=}H_p(P_*) \otimes C_q = \begin{cases}
+		^h E^1_{p,q} \StackText{\ref{prop:spektral_total}b)}{=\joinrel=}H_p \enbrace*{P_* \otimes C_q} \stackrel[\mbox{\scriptsize\ref{bem:exakte_funktoren_homologie}}]{\text{projektiv}}{=\joinrel=\joinrel=}H_p(P_*) \otimes C_q = \begin{cases}
 			V \otimes_R C_q  &\text{ falls }p=0\\
 			0 &\text{ sonst}
 		\end{cases}
 	\]
-	Die horizontale Spektralfolge kollabiert also bei $E^2$ und es folgt 
+	Nach \autoref{prop:spektral_total} wird $^h d^1$ von $d^v= {\id} \otimes {\partial^C}$ induziert.
+	Die horizontale Spektralfolge \hyperref[bem:kollabierende_spektralfolge]{kollabiert} also bei $^h E^2$ und es folgt
 	\[
-		H_n \enbrace*{P_* \otimes_R C_*} \cong E_{0,n}^2 \cong H_n \enbrace*{V \otimes_E C_*}
+		H_n \enbrace*{P_* \otimes_R C_*} \StackText{\ref{bem:kollabierende_spektralfolge}}{\cong} {^h E_{0,n}^2} \cong H_n \enbrace*{V \otimes_R C_*}
 	\]
-	(Indem man die durch $\epsilon \otimes \id$ induzierte Abbildung auf Spektralfolgen betrachtet, sieht man, dass $\epsilon \otimes \id$ den Isomorphismus induziert.)
-	Für die vertikale Spektralfolge folgt nun $^v E^2_{p,q} \Rightarrow H_{p+q}(P_* \otimes_R C_*) \cong H_{p+q}(V \otimes C_*)$.
+	Indem man die durch $\epsilon \otimes \id$ induzierte Abbildung auf Spektralfolgen betrachtet, sieht man, dass $\epsilon \otimes \id$ den Isomorphismus induziert.
+	Für die vertikale Spektralfolge folgt nun nach \autoref{prop:spektralfolgen_konv_homlo_tensor} $^v E^2_{p,q} \Rightarrow H_{p+q}(P_* \otimes_R C_*) \cong H_{p+q}(V \otimes C_*)$.
 	Weiter ist wegen der Projektivität von $P_p$
 	\[
 		^v E^1_{p,q} = H_q \enbrace*{P_p \otimes C_*} \cong P_p \otimes H_q(C_*)
 	\]
-	und daher $^v E^2_{p,q}=H_p \enbrace*{P_* \otimes_R H_q(C_*)}= \Tor_p^R \enbrace*{V, H_q(C_*)}$.
+	und daher $^v E^2_{p,q}=H_p \enbrace[\big]{P_* \otimes_R H_q(C_*)}= \Tor_p^R \enbrace[\big]{V, H_q(C_*)}$.\todo{Revision 17}
 \end{beweis}
 
 \begin{satz}[label=satz:hir_tensorprod_homologie]
