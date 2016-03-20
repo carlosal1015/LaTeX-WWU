@@ -2792,7 +2792,7 @@ Zum Vergleich erinnern wir uns an dieser Stelle noch einmal an die Konstruktion 
 	\]
 \end{bemerkung}
 
-\begin{lemma}[{name=[{exakte Folgen mit Moduln der $2$-Seite}]}]
+\begin{lemma}[{name=[{exakte Folgen mit Moduln der $2$-Seite}]},label=lem:kes_konvergente_spektralfolge]
 	Sei $E^r_{p,q}$ eine Spektralfolge, die gegen $A_{p+q}$ konvergiert. 
 	\begin{enumerate}[(i),itemsep=0pt]
 		\item Angenommen $E^2_{p,q}=0$ für $p\ge 2$.\marginnote{Die $2$-Seite besteht nur aus zwei Spalten}
@@ -3029,7 +3029,7 @@ Wir rechnen nun noch Punkt 3. aus der Definition einer Spektralfolge nach:
 	\end{enumerate}
 \end{proposition}
 \begin{beweis}
-	Nach \autoref{satz:spektralfolge_filtrierung} haben wir die folgenden Isomorphismen\marginnote{die horizontale Filtrierung unterscheidet sich quasi nur durch eine Spiegelung ander Diagonalen von der vertikalen Filtrierung}
+	Nach \autoref{satz:spektralfolge_filtrierung} haben wir die folgenden Isomorphismen\marginnote{die horizontale Filtrierung unterscheidet sich quasi nur durch eine Spiegelung an der Diagonalen von der vertikalen Filtrierung}
 	\[
 		{^vE^0_{p,q}} \cong\frac{F_p^v T(C_{**})_{p+q}}{F_{p-1}^v T(C_{**})_{p+q}} \cong  C_{p,q} \qquad {^hE^0_{p,q}}\cong\frac{F^h_p T(C_{**})_{p+q}}{F_{p-1}^h T(C_{**})_{p+q}} \cong C_{q,p}
 	\]
@@ -3319,7 +3319,7 @@ Wir rechnen nun noch Punkt 3. aus der Definition einer Spektralfolge nach:
 \section{Universelle Koeffizienten-Theoreme} % (fold)
 \label{sec:17}
 
-\begin{satz}[{name=[{Spektralfolge mit Tor auf der 2-Seite}]}]
+\begin{satz}[{name=[{Spektralfolge mit Tor auf der 2-Seite}]},label=satz:spektralfolge_tor_homol_tensor]
 	Sei $R$ ein Ring, $V$ ein $R$-Rechtsmodul und $C_*$ ein Kettenkomplex von projektiven $R$-Linksmoduln.
 	Dann gibt es eine Spektralfolge mit
 	\[
@@ -3349,24 +3349,24 @@ Wir rechnen nun noch Punkt 3. aus der Definition einer Spektralfolge nach:
 	\[
 		^v E^1_{p,q} = H_q \enbrace*{P_p \otimes C_*} \cong P_p \otimes H_q(C_*)
 	\]
-	und daher $^v E^2_{p,q}=H_p \enbrace[\big]{P_* \otimes_R H_q(C_*)}= \Tor_p^R \enbrace[\big]{V, H_q(C_*)}$.\todo{Revision 17}
+	und daher $^v E^2_{p,q}=H_p \enbrace[\big]{P_* \otimes_R H_q(C_*)}= \Tor_p^R \enbrace[\big]{V, H_q(C_*)}$.
 \end{beweis}
 
-\begin{satz}[label=satz:hir_tensorprod_homologie]
-	Sei $R$ ein Hauptidealring, $V$ ein $R$-Modul und $C_*$ ein $R$-Kettenkomplex von freien $R$-Moduln.
+\begin{satz}[label=satz:hir_tensorprod_homologie,name={Universelles Koeffizienten-Theorem für Homologie von Kettenkomplexen}]
+	Sei $R$ ein Hauptidealring, $V$ ein $R$-Modul und $C_*$ ein $R$-Kettenkomplex von freien\marginnote{$\Leftrightarrow$ projektiv, da HIR} $R$-Moduln.
 	Dann gibt es eine eine kurze exakte Folge
 	\[
 		\begin{tikzcd}
-			0 \rar & V \otimes_R H_n(C_*) \rar & H_n(V \otimes_R C_*) \rar & \Tor_1^R \enbrace*{V, H_{n-1}(C_*)} \rar & 0
+			0 \rar & V \otimes_R H_n(C_*) \rar & H_n(V \otimes_R C_*) \rar & \Tor_1^R \enbrace[\big]{V, H_{n-1}(C_*)} \rar & 0
 		\end{tikzcd}
 	\]
 	Diese Folge ist natürlich in $V$ und $C_*$.
 	Sie spaltet, aber der Spalt ist nur natürlich in $V$.
 \end{satz}
 \begin{beweis}
-	Da $R$ ein Hauptidealring ist, ist $\Tor^R_p \enbrace*{V, H_q(C_*)}=0$ für $p \ge 2$.
-	Die Spektralsequenz hat also nur zwei Spalten und wir erhalten die gesuchte exakte Folge.
-	Um einen Spalt zu konstruieren benutzen wir den Zerlegungssatz und schreiben 
+	Da $R$ ein Hauptidealring ist, ist $\Tor^R_p \enbrace*{V, H_q(C_*)}=0$ für $p \ge 2$, siehe \autoref{bem:tor_ext_koerper_hir}.
+	Die Spektralsequenz $\Tor_p^R\enbrace[\big]{V, H_q(C_*)} \Rightarrow H_{p+q}(V \otimes C_*)$ aus \autoref{satz:spektralfolge_tor_homol_tensor} hat also nur zwei Spalten und wir erhalten die gesuchte exakte Folge aus \autoref{lem:kes_konvergente_spektralfolge} (i).
+	Um einen Spalt zu konstruieren benutzen wir den \hyperref[zerlegungssatz]{Zerlegungssatz} und schreiben 
 	\[
 		C_* \cong \bigoplus C_*^\ssbbrace{i}
 	\]
@@ -3374,7 +3374,7 @@ Wir rechnen nun noch Punkt 3. aus der Definition einer Spektralfolge nach:
 	Dann spaltet die obige Sequenz für jedes $C_*^\ssbbrace{i}$ (auf triviale Weise!) und damit auch für $C_*$.
 \end{beweis}
 
-\begin{satz}[{name=[{Universelles Koeffizienten-Theorem für Homologie}]},label=satz:univ_koeff_homo_space]
+\begin{satz}[{name={Universelles Koeffizienten-Theorem für Homologie von Räumen}},label=satz:univ_koeff_homo_space]
 	Sei $R$ ein Hauptidealring, $V$ ein $R$-Modul und $X$ ein topologischer Raum.
 	Dann gibt es eine kurze exakte Folge 
 	\[
@@ -3385,9 +3385,9 @@ Wir rechnen nun noch Punkt 3. aus der Definition einer Spektralfolge nach:
 	Diese Folge ist natürlich in $X$ und $V$ und spaltet, aber der Spalt kann nur in $V$ natürlich gewählt werden.
 \end{satz}
 \begin{beweis}
-	Wende \autoref{satz:hir_tensorprod_homologie} auf $C_* := C_*^\sing(X;R)$ an und benutze 
+	Wende \autoref{satz:hir_tensorprod_homologie} auf den singulären Kettenkomplex $C_* := C_*^\sing(X;R)$ an und benutze 
 	\[
-		C_*^\sing(X;V) = C^\sing_*(X;\mathbb{Z}) \otimes_\mathbb{Z} V \cong \enbrace*{C_*^\sing(X;R) \otimes_\mathbb{Z} R} \otimes_R V \cong C_*^\sing(X;R) \otimes_R V \qedhere
+		C_*^\sing(X;V) = C^\sing_*(X;\mathbb{Z}) \otimes_\mathbb{Z} V \cong \enbrace*{C_*^\sing(X) \otimes_\mathbb{Z} R} \otimes_R V \cong C_*^\sing(X;R) \otimes_R V \qedhere
 	\]
 \end{beweis}
 
@@ -3403,63 +3403,66 @@ Wir rechnen nun noch Punkt 3. aus der Definition einer Spektralfolge nach:
 	\)
 	mit 
 	\[
-		E_0^{p,q}= \frac{F^pC^{p+q}}{F^{p-q}C^{p+q}} \qquad E^{p,q}_1 = H^{p+q}\enbrace*{E_0^{p,*}}
+		E_0^{p,q}= \frac{F^pC^{p+q}}{F^{p+1}C^{p+q}} \qquad E^{p,q}_1 = H^{p+q}\enbrace*{E_0^{p,*}}
 	\]
 \end{satz}
 \begin{beweis}
-	Wie im homologischen Fall.
-	Es ist 
+	Wie im \hyperref[satz:spektralfolge_filtrierung]{homologischen Fall}, siehe \cref{sec:15}.
+	Dabei setzt man 
 	\[
 		E^{p,q}_r := \frac{d^{-1} \enbrace*{F^{p+r}C^{p+q+1}} \cap F^pC^{p+q} + F^{p+1}C^{p+q}}{d \enbrace*{F^{p-r+1} C^{p+q-1}} \cap F^p C^{p+q} + F^{p+1}C^{p+q}} 
 	\]
-	und $d^{p+1}_r[a]=[d a]$ für $a \in d^{-1} \enbrace*{F^{p+r}C^{p+q+1}} \cap F^pC^{p+q}$.
+	und $d^{p,q}_r[a]=[d a]$ für $a \in d^{-1} \enbrace*{F^{p+r}C^{p+q+1}} \cap F^pC^{p+q}$.
 \end{beweis}
 
-\begin{satz}
-	Sei $R$ ein Ring, $C_*$ Kettenkomplex von projektiven $R$-Moduln und $W$ ein $R$-Modul.
-	Dann gibt es eine kohomologische Spektralfolge $\Ext_R^p \enbrace*{H_q(C_*),W} \Rightarrow H^{p+q} \enbrace*{\Hom(C_*,W)}$
+\begin{satz}[{name=[{Spektralfolge mit Ext auf der 2-Seite}]},label=satz:spektralfolge_ext]
+	Sei $R$ ein Ring, $C_*$ Kettenkomplex von projektiven $R$-Moduln und $W$ ein $R$-Modul.\marginnote{vgl. \autoref{satz:spektralfolge_tor_homol_tensor}}
+	Dann gibt es eine kohomologische Spektralfolge 
+	\[
+		\Ext_R^p \enbrace[\big]{H_q(C_*),W} \Rightarrow H^{p+q} \enbrace[\big]{\Hom(C_*,W)}
+	\]
 \end{satz}
 \begin{beweis}
-	Sei $I^* \to W$ eine injektive Auflösung von $W$.
+	Sei $I^* \leftarrow W$ eine injektive Auflösung von $W$.
 	Betrachte auf $\Hom(C_*,I^*)$ die Filtrierungen 
 	\begin{align}
 		^h F^s \enbrace[\big]{\Hom(C_*,I^*)} &:= \Hom \enbrace*{C_*, I^{*\ge s}} \qquad \text{ und } \\
 		^v F^s \enbrace[\big]{\Hom(C_*,I^*)} &:= \Hom \enbrace*{C_{*\ge s}, I^*}
 	\end{align}
 	sowie die zugehörigen Spektralfolgen $^h E^{p,q}_r$ und $^v E^{p,q}_r$.
-	Es ist $^v E^{p,q}_0 = \Hom \enbrace*{C_p,I^q}$ und $^v d_0^{p,q}$ wird von $\partial^I$ induziert.
+	Es ist $^v E^{p,q}_0 = \Hom \enbrace*{C_p,I^q}$ und $^v d_0^{p,q}$ wird von $\partial_I$ induziert.
 	Also gilt 
 	\[
-		^v E^{p,q}_1 = H^q \enbrace*{\Hom(C_P, I^*)} \StackText{projektiv}{\cong}\Hom \enbrace*{C_p, H^q(I^*)} \cong \begin{cases}
+		^v E^{p,q}_1 = H^q \enbrace[\big]{\Hom(C_P, I^*)} \stackrel[\mbox{\scriptsize\ref{bem:exakte_funktoren_homologie}}]{\text{projektiv}}{=\joinrel=\joinrel=} \Hom \enbrace[\big]{C_p, H^q(I^*)} \cong \begin{cases}
 			\Hom_R(C_p,W) &\text{ falls }q=0\\
 			0 &\text{ sonst}
 		\end{cases}
 	\]
-	und $d_2^{p,q}$ wird von $d_C$ induziert.
+	und $d_1^{p,q}$ wird von $\partial^C$ induziert.
 	Daher ist 
 	\[
 		^v E^{p,q}_2 = \begin{cases}
-			H^p \enbrace*{C_*,W} &\text{ falls }q=0\\
+			H^p \enbrace*{C_*;W} &\text{ falls }q=0\\
 			0 &\text{ sonst}
 		\end{cases}
 	\]
-	und die Spektralfolge kollabiert bei $E^2$.
+	und die Spektralfolge kollabiert bei $E_2$.
 	Es folgt 
 	\[
-		H^* \enbrace*{\Hom(C_*,I^*)} \cong H^* \enbrace*{\Hom(C_*,W)}
+		H^* \enbrace[\big]{\Hom(C_*,I^*)} \cong H^* \enbrace[\big]{\Hom(C_*,W)}
 	\]
-	Insbesondere folgt $^h E^{p,q}_2 \Rightarrow H^* \enbrace*{\Hom(C_*,W)}$.
-	Es ist $^h E^{p,q}_0 = \Hom \enbrace*{C_p,I^q}$ und $^h d^{p,q}_0$ wird von $d^C$ induziert.
+	und insbesondere $^h E^{p,q}_2 \Rightarrow H^* \enbrace*{\Hom(C_*,W)}$.
+	Es ist $^h E^{p,q}_0 = \Hom \enbrace*{C_q,I^p}$ und $^h d^{p,q}_0$ wird von $\partial^C$ induziert.
 	Daher ist 
 	\[
-		^h E^{p,q}_1 = H^p \enbrace*{\Hom(C_*,I^q)} \StackText{injektiv}{=\joinrel=} \Hom \enbrace*{H_p(C_*),I^q}
+		^h E^{p,q}_1 = H^q \enbrace[\big]{\Hom(C_*,I^p)} \StackText{injektiv}{=\joinrel=} \Hom \enbrace[\big]{H_q(C_*),I^p}
 	\]
-	und $^h d_1^{p,q}$ wird von $\partial^I$ induziert.
-	Also ist $^h E^{p,q}_2 = H^q \enbrace*{\Hom_R \enbrace*{H_p(C_*),I^*}} = \Ext_R^q \enbrace*{H_p(C_*),W}$.
+	und $^h d_1^{p,q}$ wird von $\partial_I$ induziert.
+	Also ist $^h E^{p,q}_2 = H^p \enbrace[\big]{\Hom_R \enbrace*{H_q(C_*),I^*}} = \Ext_R^p \enbrace[\big]{H_q(C_*),W}$.
 \end{beweis}
 
-\begin{satz}[label=satz:ext_kettenkompl_kef]
-	Sei $R$ ein Hauptidealring, $C_*$ ein Kettenkomplex von projektiven $R$-Moduln und $W$ ein $R$-Modul.
+\begin{satz}[label=satz:ext_kettenkompl_kef,name={Universelles Koeffizienten-Theorem für Kohomologie von Kettenkomplexen}]
+	Sei $R$ ein Hauptidealring, $C_*$ ein Kettenkomplex von projektiven $R$-Moduln und $W$ ein $R$-Modul.\marginnote{vgl. \autoref{satz:hir_tensorprod_homologie}}
 	Dann gibt es eine kurze exakte Folge
 	\[
 		\begin{tikzcd}
@@ -3471,11 +3474,11 @@ Wir rechnen nun noch Punkt 3. aus der Definition einer Spektralfolge nach:
 \begin{beweis}
 	Da $R$ ein Hauptidealring ist, hat jeder $R$-Modul eine projektive Auflösung der Länge $\le 1$.
 	Da $\Ext_R^p \enbrace*{H_q(C_*),W}$ auch durch eine projektive Auflösung von $H_q(C_*)$ berechnet weden kann, folgt $\Ext_R^p \enbrace*{H_q(C_*),W}=0$ für $p \ge 2$.
-	Daher hat die Spektralfolge nur zwei Spalten und wir erhalten eine kurze exakte Folge.
+	Daher hat die Spektralfolge $\Ext_R^p \enbrace[\big]{H_q(C_*),W} \Rightarrow H^{p+q} \enbrace[\big]{\Hom(C_*,W)}$ aus \autoref{satz:spektralfolge_ext} nur zwei Spalten und wir erhalten die kurze exakte Folge aus einer zu \autoref{lem:kes_konvergente_spektralfolge} analogen Aussage für kohomologische Spektralsequenzen.
 	Um einen Spalt zu erhalten wenden wir wieder den Zerlegungssatz auf $C_*$ an.
 \end{beweis}
 
-\begin{satz}[label=univ_koeff_space]
+\begin{satz}[label=univ_koeff_space,{name={Universelles Koeffizienten-Theorem für Kohomologie von Räumen}}]
 	Sei $R$ ein Hauptidealring, $W$ ein $R$-Modul und $X$ ein topologischer Raum.
 	Dann gibt es eine kurze exakte Folge
 	\[
@@ -3485,12 +3488,16 @@ Wir rechnen nun noch Punkt 3. aus der Definition einer Spektralfolge nach:
 	\]
 	Diese Folge ist natürlich in $X$ und $W$; sie spaltet, aber der Spalt kann nicht natürlich in $X$ gewählt werden.
 \end{satz}
-\todo[inline]{Hier ist eventuell HIR nötig}
 \begin{beweis}
 	Wir wenden den \autoref{satz:ext_kettenkompl_kef} auf $C_*^\sing(X;R)$ an und benutzen
 	\[
-		C_\sing^*(X;W) = \Hom_\mathbb{Z} \enbrace*{C_*^\sing(X),W} \cong \Hom_R \enbrace*{C_*^\sing(X;R),W} \qedhere
+		C_\sing^*(X;W) = \Hom_\mathbb{Z} \enbrace*{C_*^\sing(X),W} \cong \Hom_R \enbrace*{C_*^\sing(X;R),W} 
 	\]
+	Den Isomorphismus erhält man am elegantesten aus der \href{https://en.wikipedia.org/wiki/Tensor-hom_adjunction}{Tensor-Hom-Adjunktion}\footnote{\url{https://en.wikipedia.org/wiki/Tensor-hom_adjunction}}, die besagt, dass folgender natürlicher Isomorphismus existiert:\marginnote{siehe auch Aufgabe 1 von Blatt 4}
+	\[
+		\Hom_R \enbrace*{Y \otimes_S X, Z} \cong \Hom_S \enbrace[\big]{Y, \Hom_R (X,Z)}
+	\]
+	wobei $R,S$ Ringe sind, $Z$ ein $R$-Rechtsmodul, $Y$ ein $S$-Rechtsmodul und $X$ ein $(S,R)$-Bimodul ist, das heißt ein $S$-Linksmodul und ein $R$-Rechtsmodul, sodass die Skalarmultiplikationen miteinander verträglich -- also assoziativ -- sind.
 \end{beweis}
 % section 17 (end)
 \newpage
