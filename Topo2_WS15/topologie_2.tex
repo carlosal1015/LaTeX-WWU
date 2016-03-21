@@ -1473,7 +1473,7 @@ Wir wenden uns nun einmal mehr der Topologie von Mannigfaltigkeiten zu und erinn
 \end{beweis}
 
 \begin{definition}[{name=[singuläre Kohomologie mit kompaktem Träger]}]
-	Sei $X$ ein topologischer Raum. Dann definieren wir die\marginnote{$H^*_c$ ist \emph{kein} Funktor von $\TOP$, um einen Funktor zu erhalten muss man sich auf eigentliche Abbildungen beschränken, d.h. stetige Abbildungen, sodass Urbilder kompakter Mengen wieder kompakt sind!} \bet{singuläre Kohomologie von $X$ mit kompaktem Träger}\index{Kohomologie mit kompaktem Träger} durch
+	Sei $X$ ein topologischer Raum. Dann definieren wir die\marginnote{$H^*_c$ ist \emph{kein} Funktor von $\TOP$, um einen Funktor zu erhalten muss man sich auf eigentliche Abbildungen beschränken, d.h. stetige Abbildungen, sodass Urbilder kompakter Mengen wieder kompakt sind! Siehe auch Aufgabe 2 von Blatt 7} \bet{singuläre Kohomologie von $X$ mit kompaktem Träger}\index{Kohomologie mit kompaktem Träger} durch
 	\[
 		H^*_c(X;R) := \colim_{K \in \mathcal{K}(X)} H^*(X,X \setminus K;R)
 	\]
@@ -3142,7 +3142,7 @@ Wir rechnen nun noch Punkt 3. aus der Definition einer Spektralfolge nach:
 	Da $\tilde{C}_0=0$ können wir nun induktiv die $C_*^\ssbbrace{i}$ für $i >0$ konstruieren.
 \end{beweis}
 
-\begin{satz}[label=satz:homol_tensor,{name=[{Homologie des Tensorproduktes von Kettenkomplexen}]}]
+\begin{satz}[label=satz:homol_tensor,{name=[{Homologie des Tensorproduktes von Kettenkomplexen}]{Künneth}}]
 	Seien $C_*$ und $D_*$ Kettenkomplexe über einem Hauptidealring $R$, deren Kettenmodule frei sind.
 	Dann gibt es Isomorphismen
 	\[
@@ -3156,7 +3156,7 @@ Wir rechnen nun noch Punkt 3. aus der Definition einer Spektralfolge nach:
 		\centering{
 			\[
 				\begin{tikzcd}[row sep=large]
-					C_{p} \otimes D_{q+1} \dar["\id \otimes \partial^D"] & C_{p+1} \otimes D_{q+1} \dar["\id \otimes \partial^D"] \\
+					C_{p} \otimes D_{q+1} \dar["\id \otimes \partial^D",hook] & C_{p+1} \otimes D_{q+1} \dar["\id \otimes \partial^D",hook] \\
 					C_p \otimes D_q & C_{p+1} \otimes D_q
 				\end{tikzcd}
 				\hspace{2.5cm} 
@@ -3169,9 +3169,9 @@ Wir rechnen nun noch Punkt 3. aus der Definition einer Spektralfolge nach:
 		}
 	\end{figure}
 	In \cref{fig:homol_tensor:1} sind Ausschnitte der $0$- sowie der $1$-Seite dargestellt.
-	Nun ist $\begin{tikzcd}[cramped,sep=small] H_p(C_*) & C_p \lar[two heads] & C_{p+1} \lar[{Hooks[left]}-{Computer Modern Rightarrow}] \end{tikzcd}$ eine freie und damit auch projektive Auflösung von $H_p(C_*)$, also gilt für die einzigen beiden Moduln der $2$-Seite\marginnote{Homomorphiesatz}
+	Nun ist $\begin{tikzcd}[cramped,sep=small] H_p(C_*) & C_p \lar[two heads] & C_{p+1} \lar[{Hooks[left]}-{Computer Modern Rightarrow}] \end{tikzcd}$ eine freie und damit auch projektive Auflösung von $H_p(C_*)$, also gilt für die einzigen beiden Moduln der $2$-Seite\marginnote{Homomorphiesatz auf der tensorierten exakten Folge}
 	\begin{align}
-		E^2_{p,q} &= \frac{C_p \otimes H_q(D_*)}{\im d^1} = H_p \enbrace*{C_*} \otimes H_q(D_*) \quad \text{und} \quad \\
+		E^2_{p,q} &= \frac{C_p \otimes H_q(D_*)}{\im d^1} \cong H_p \enbrace*{C_*} \otimes H_q(D_*) \quad \text{und} \quad \\
 		E^2_{p+1,q} &= \ker d^1 = \Tor_1^R \enbrace[\big]{H_p(C_*), H_q(D_*)}
 	\end{align}
 	Es folgt $E^\infty=E^2$.
