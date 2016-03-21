@@ -2820,33 +2820,63 @@ Zum Vergleich erinnern wir uns an dieser Stelle noch einmal an die Konstruktion 
 		Dann gibt es eine lange exakte Folge
 		\[
 			\begin{tikzcd}[sep=3.2em]
-				\ldots \rar & A_{p+1} \rar & E^2_{p+1,0} \rar["d^2_{p+1,0}"] & E^2_{p-1,1} \rar & A_p \rar & E^2_{p,0} \rar & \ldots 
+				\ldots \rar & A_{p+1} \rar["\varphi_{p+1}"] & E^2_{p+1,0} \rar["d^2_{p+1,0}"] & E^2_{p-1,1} \rar["\psi_{p-1}"] & A_p \rar & E^2_{p,0} \rar & \ldots 
 			\end{tikzcd}
 		\] 
 	\end{enumerate}
 \end{lemma}
 \begin{beweis}
-	Sei $F_s A_n \subseteq A_n$ die zur Konvergenz gehörige Filtrierung. 
-	Dann ist 
-	\[
-		E^\infty_{p,q} \cong E_{p,q}^2 \cong \frac{F_p A_{p+q}}{F_{p-1}A_{p+q}} 
-	\]
-	% \[
-	% 	\frac{F_n A_n}{F_{n-1 A_n}} \cong E^\infty_{n,0} \cong E^2_{n,0} \quad \text{ und } \quad \frac{F_{n-1} A_n}{F_{n-2} A_n} \cong E^\infty_{n-1,1} \cong E^2_{n-1,1}
-	% \]
-	Damit folgt $F_0 A_n = \frac{F_0 A_n}{F_{-1} A_n} \cong E^\infty_{0,n}$, $\frac{F_1 A_n}{F_0 A_n} \cong E^\infty_{1,n-1}$ und $\frac{F_{2}A_n}{F_{1}A_n} \cong \frac{F_{3} A_n}{F_{2} A_n} \cong \ldots \cong 0$.
-	Insbesondere ist 
-	\[
-		0 = F_{-1} A_n \subseteq F_0 A_n \subseteq F_1 A_n = F_{2}A_n = \ldots = F_{n} A_n = A_n
-	\]
-	Damit ergibt sich die gesuchte kurze exakte Sequenz
-	\[
-		\begin{tikzcd}[row sep=5pt]
-			0 \rar & F_{0} A_n \rar \dar[phantom,"\cong", sloped] & F_1 A_n \rar\dar[phantom,"\cong", sloped] & \sfrac{F_1 A_n}{F_{0} A_n} \rar\dar[phantom,"\cong", sloped] &0  \\
-			& E^2_{0,n} & A_n & E_{1,n-1}^2
-		\end{tikzcd}
-	\]
-	\emph{Aussage (ii) ist Übungsaufgabe 3 von Blatt 11.}\todo{eventuell \TeX{}en}
+	\begin{enumerate}[(i)]
+		\item Sei $F_s A_n \subseteq A_n$ die zur Konvergenz gehörige Filtrierung. 
+		Dann ist 
+		\[
+			E^\infty_{p,q} \cong E_{p,q}^2 \cong \frac{F_p A_{p+q}}{F_{p-1}A_{p+q}} 
+		\]
+		% \[
+		% 	\frac{F_n A_n}{F_{n-1 A_n}} \cong E^\infty_{n,0} \cong E^2_{n,0} \quad \text{ und } \quad \frac{F_{n-1} A_n}{F_{n-2} A_n} \cong E^\infty_{n-1,1} \cong E^2_{n-1,1}
+		% \]
+		Damit folgt $F_0 A_n = \frac{F_0 A_n}{F_{-1} A_n} \cong E^\infty_{0,n}$, $\frac{F_1 A_n}{F_0 A_n} \cong E^\infty_{1,n-1}$ und $\frac{F_{2}A_n}{F_{1}A_n} \cong \frac{F_{3} A_n}{F_{2} A_n} \cong \ldots \cong 0$.
+		Insbesondere ist 
+		\[
+			0 = F_{-1} A_n \subseteq F_0 A_n \subseteq F_1 A_n = F_{2}A_n = \ldots = F_{n} A_n = A_n
+		\]
+		Damit ergibt sich die gesuchte kurze exakte Sequenz
+		\[
+			\begin{tikzcd}[row sep=5pt]
+				0 \rar & F_{0} A_n \rar \dar[phantom,"\cong", sloped] & F_1 A_n \rar\dar[phantom,"\cong", sloped] & \sfrac{F_1 A_n}{F_{0} A_n} \rar\dar[phantom,"\cong", sloped] &0  \\
+				& E^2_{0,n} & A_n & E_{1,n-1}^2
+			\end{tikzcd}
+		\]
+		\item Wir beweisen nun die zweite Aussage:\marginnote{dies war Übungsaufgabe 3 von Blatt 11.}
+		Wegen $E^r_{p,q}=0$ für $q \ge 2$ gilt $E^\infty_{p,q}=E^3_{p,q}$.
+		Weiter gilt
+		\[
+			0 = E^\infty_{p-2,2}= \frac{F_{p-2} A_p}{F_{p-3} A_p} \qquad 0 = E^\infty_{p-3,3} = \frac{F_{p-3}A_p}{F_{p-4}A_p} \qquad \ldots \qquad 0=E^\infty_{0,p} = \frac{F_0 A_p}{F_{-1} A_p} = F_0 A_p
+		\]
+		Damit folgt $0=F_0 A_p = \ldots = F_{p-2} A_p$.
+		Weiter gilt
+		\[
+			\frac{A_{p+1}}{F_p A_{p+1}} = \frac{F_{p+1}A_{p+1}}{F_p A_{p+1}} \cong E^\infty_{p+1,0} = E^3_{p+1,0} \cong \frac{\ker d^2_{p+1,0}}{\im d^2_{p-1,-1}} = \ker d^2_{p+1,0}
+		\]
+		Wir definieren nun $\varphi_{p+1} \colon A_{p+1} \to E^2_{p+1,0}$ als die Komposition
+		\[
+			\begin{tikzcd}
+				A_{p+1} \rar[two heads] & \frac{A_{p+1}}{F_p A_{p+1}} \rar["\cong"] & \ker d^2_{p+1,0} \rar[hook] & E^2_{p+1,0}
+			\end{tikzcd}
+		\]
+		Insbesondere gilt $\im \varphi_{p+1} = \ker d^2_{p+1,0}$.
+		Weiter gilt nach obigen Überlegungen
+		\[
+			F_{p-1} A_p = \frac{F_{p-1}A_p}{F_{p-2} A_p} \cong E^\infty_{p-1,1} = E^3_{p-1,1} = \frac{\ker d^2_{p-1,1}}{\im d^2_{p+1,0}} = \frac{E^2_{p-1,1}}{\im d^2_{p+1,0}}  
+		\]
+		Definiere nun $\psi_{p-1}$ als die Komposition
+		\(
+			\begin{tikzcd}[cramped,sep=small]
+				E^2_{p-1,1} \rar[two heads] & \sfrac{E^2_{p-1,1}}{\im d^2_{p+1,0}} \cong F_{p-1} A_p \rar[hook] & A_p  
+			\end{tikzcd}
+		\)
+		Dann gilt $\ker \psi_{p-1}= \im d^2_{p+1,0}$ und $\im \psi_{p-1}= F_{p-1} A_p = \ker \varphi_p$, woraus insgesamt die lange exakte Sequenz folgt.\qedhere
+	\end{enumerate}
 \end{beweis}
 
 \begin{satz}[name={Vergleichssatz}]
