@@ -2233,14 +2233,14 @@ Zum Vergleich erinnern wir uns an dieser Stelle noch einmal an die Konstruktion 
 
 \begin{definition}[{name=[{lineare und exakte Funktoren}]}]
 	Seien $R$ und $S$ Ringe.
-	Ein Funktor $F\colon \Mod{R} \to \Mod{S}$ heißt \bet{$\mathbb{Z}$-linear}\index{Funktor!$\mathbb{Z}$-linearer},\marginnote{insb. wird die Nullabbildung auf die Nullabbildung geschickt} wenn für $f,g \colon M \to M'$ gilt $F(f + g)= F(f) + F(g)$.
+	Ein Funktor $F\colon \Mod{R} \to \Mod{S}$ heißt \bet{$\mathbb{Z}$-linear}\index{Funktor!$\mathbb{Z}$-linearer} oder \bet{additiv}\index{Funktor!additiver},\marginnote{insb. wird die Nullabbildung auf die Nullabbildung geschickt} wenn für $f,g \colon M \to M'$ gilt $F(f + g)= F(f) + F(g)$.
 	
 	Ein solcher Funktor heißt \bet{exakt}\index{Funktor!exakter}, wenn er kurze exakte Folgen von $R$-Moduln auf kurze exakte Folgen von $S$-Moduln abbildet.
 \end{definition}
 
 \begin{bemerkung}[{name=[exakte Funktoren und (Ko-)Homologie]},label=bem:exakte_funktoren_homologie]
 	Sei $C_*$ ein $R$-Kettenkomplex.
-	Ist $F \colon \Mod{R} \to \Mod{S}$ exakt, so gilt\todo{nochmal detailliert durchgehen, Aufgabe 2 Blatt 8}
+	Ist $F \colon \Mod{R} \to \Mod{S}$ exakt, so gilt
 	\[
 		\begin{array}{ll}
 			H_* \enbrace[\big]{F(C_*)} = F \enbrace[\big]{H_*(C_*)} & \text{ falls $F$ kovariant ist} \\[4pt]
@@ -2248,6 +2248,20 @@ Zum Vergleich erinnern wir uns an dieser Stelle noch einmal an die Konstruktion 
 		\end{array}
 	\]
 \end{bemerkung}
+\begin{beweis}
+	Aus der exakten Sequenz
+	\(
+		\begin{tikzcd}[cramped]
+			C_{n+1} \rar["d_{n+1}"] & \ker d_n \rar & H_n(C_*) \rar & 0
+		\end{tikzcd}
+	\)
+	erhalten wir durch Anwenden von $F$ 
+	\[
+		F \enbrace[\big]{H_n(C_*) } \cong \frac{F (\ker d_n)}{\im F(d_{n+1})}
+	\]
+	Nach \cref{sub:exakte_funktoren_und_der_kern} vertauscht $F$ mit $\ker$ und die Behauptung folgt.
+	Die analoge Aussage für kontravariante Funktoren folgt genauso.
+\end{beweis}
 
 \begin{beispiel}[{name=[Tensorieren und Hom]}]
 	\leavevmode
