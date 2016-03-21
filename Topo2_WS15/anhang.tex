@@ -69,6 +69,26 @@ Die Homotopieinvarianz wurde bereits in der Vorlesung gezeigt.
 \end{beweis}
 % subsection sing_kohomo (end)
 
+\subsection{Ringe, sodass Untermoduln freier Moduln frei sind} % (fold)
+\label{sub:untermod_frei}
+\emph{Dies war Übungsaufgabe 4 von Blatt 2.}\smallskip\\
+Es sei $R$ ein Ring mit der Eigenschaft, dass Untermoduln freier $R$-Moduln wieder frei sind.
+Dann ist $R$ ein Hauptidealring.
+
+Es gilt auch die Umkehrung.\footnote{siehe z.B. \url{http://math.stackexchange.com/a/162958/196134}}
+\begin{beweis}
+	Sei $r \in R \setminus \set*{0}$.
+	Dann ist $r R$ als Untermodul von $R$ frei und damit auch torsionsfrei.
+	Da $r$ beliebig war, ist $R$ also ein Integritätsbereich.
+	
+	Sei nun $I \subsetneq R$ ein Ideal.
+	Wir können $I$ wieder als Untermodul des $R$-Moduls $R$ auffassen und wissen damit, dass $I$ eine Basis hat.
+	Eine solche kann aber nur ein Element haben, da zwei Ringelemente in einem kommutativen Ring nicht linear unabhängig sein können (für $a \neq b \in R$ gilt $ab -ba=0$).
+	Damit ist $I$ ein Hauptideal und $R$ ein Hauptidealring.
+\end{beweis}
+% subsection untermod_frei (end)
+
+
 \subsection{Relative Cup-Produkte, Blatt 4 Aufgabe 3} % (fold)
 \label{sub:relative_cup_produkte}
 \emph{Dies komplettiert \autoref{bem:rel_cup}.}\smallskip\\
