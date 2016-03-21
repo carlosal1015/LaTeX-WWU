@@ -166,3 +166,50 @@ Dann gilt
 	\) wie gewünscht.
 \end{beweis}
 % subsection dimensionsargument_in_autoref_satz_sig_rand_4k_1_mfkt (end)
+
+\subsection{Linksexakte Funktoren und der Kern} % (fold)
+\label{sub:exakte_funktoren_und_der_kern}
+\emph{Dies war Übungsaufgabe 2 von Blatt 8.}\smallskip \\
+Sei $R$ ein Ring, $\mathcal{A}$ die Kategorie der $R$-Moduln und $F \colon \mathcal{A} \to \mathcal{A}$ ein Funktor, sodass die induzierte Abbildung $\Hom(M,N) \to \Hom \enbrace*{F(M), F(N)}$ für alle Moduln $M,N$ ein Homomorphismen von abelschen Gruppen ist. 
+Ein solcher Funktor heißt \bet{additiv}\index{Funktor!additiver}.
+
+Die folgenden Aussagen äquivalent:
+\begin{enumerate}[(i)]
+	\item $F$ schickt exakte Folgen $ \begin{tikzcd}[cramped,sep=small]
+		0 \rar & M' \rar["f"] & M \rar["g"] & M''
+	\end{tikzcd}$ auf kurze exakte Folgen
+	\[
+		\begin{tikzcd}
+			0 \rar & F(M') \rar & F(M) \rar & F(M'')
+		\end{tikzcd}
+	\]
+	\item Wie (i) nur mit 
+	\(
+		\begin{tikzcd}[cramped,sep=small]
+			0 \rar & M' \rar & M \rar & M'' \rar & 0
+		\end{tikzcd}
+	\)
+	\item Für jeden Homomorphismus $f \colon M \to M''$ von $R$-Moduln ist die kanonische von $\iota \colon \ker f \hookrightarrow M$ induzierte Abbildung $F(\ker f) \to \ker F(f)$ ein Isomorphismus.
+\end{enumerate}
+\begin{beweis}
+	Da $F$ additiv ist, gilt $F(0)=0$ sowohl für Homomorphismen als auch für Moduln. 
+	Die Implikation (i)$\Rightarrow$(ii) ist klar.
+	Für (ii)$\Rightarrow$(iii) betrachten wir die exakte Sequenz\marginnote{$F(\iota) \colon F(\ker f) \to \ker F(f)$}
+	\[
+		\begin{tikzcd}
+			0 \rar & \ker f \rar[hook,"\iota"] & M \rar["f"] & M''
+		\end{tikzcd}
+	\]
+	Sie bleibt exakt nach Anwenden von $F$ und somit folgt $\ker F(f) = \im F(\iota) \cong F(\ker f)$, wobei der Isomorphismus wegen der Injektivität von $F(\iota)$ gilt.
+	
+	Sei nun eine exakte Folge wie in (i) gegeben und es gelte (iii).
+	Da $F(0)=0$ folgt direkt $\im f \subset \ker g$ aus $g \circ f =0$.
+	Nach (iii) gilt $\ker F(f) \cong F(\ker f) = 0$, womit wir die Injektivität von $F(f)$ erhalten.
+	Der Isomorphismus $M' \cong \im f$ bleibt durch Anwenden von $F$ bestehen und es gilt
+	\[
+		F(M') \cong F(\im f) = F(\ker g) \cong \ker F(g)
+	\]
+	wobei der letzte Isomorphismus durch $F(\iota)$ für $\iota \ker g \to M$ gegeben ist.
+	Die gesamte Komposition ist dann durch $F(\iota \circ f) = F(f)$ gegeben und es folgt $\ker F(g) \subseteq \im F(f)$.
+\end{beweis}
+% subsection exakte_funktoren_und_der_kern (end)
