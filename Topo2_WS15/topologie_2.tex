@@ -1837,7 +1837,8 @@ Zum Vergleich erinnern wir uns an dieser Stelle noch einmal an die Konstruktion 
 	Der zweite Modul ist nicht trivial, da $N \times [0,1]$ orientierbar ist (siehe \autoref{bem:orientierung_rand}).
 	Damit ist $H_{n-1}(N)\neq 0$ und $N$ ist $R$-orientierbar.
 \end{beweis}
-\begin{satz}[{name={Poincaré-Dualität für Mannigfaltigkeiten mit Rand}}]
+
+\begin{satz}[{name={Poincaré-Dualität für Mannigfaltigkeiten mit Rand}},label=satz:poincare_rand]
 	Sei $M$ eine kompakte $R$"=orientierbare $n$-Mannigfaltigkeit, deren Rand $\partial M$ die Vereinigung von zwei $(n-1)$-Mannigfaltigkeiten $\partial_0 M$ und $\partial_1 M$ entlang ihres gemeinsamen Randes\marginnote{$\partial_0 M$, $\partial_1 M$ und $\partial_0 M \cap \partial_1 M$ dürfen leer sein!} 
 	\[
 		\partial \enbrace*{\partial_0 M } = \partial \enbrace*{\partial_1 M} = \partial_0 M \cap \partial_1 M
@@ -1849,7 +1850,7 @@ Zum Vergleich erinnern wir uns an dieser Stelle noch einmal an die Konstruktion 
 		\capp \mu \colon H^k \enbrace*{M, \partial_0 M} \grenzw{\cong} H_{n-k} \enbrace*{M, \partial_1 M}
 	\]
 \end{satz}
-\begin{beweis}[{name=[{\cite[Th.~3.43]{Hatcher}}]}]
+\begin{beweis}[{name={\cite[Th.~3.43]{Hatcher}}}]
 	Sei zunächst $\partial_1 M = \emptyset$, also $\partial _0 M = \partial M$.
 	Betrachte 
 	\[

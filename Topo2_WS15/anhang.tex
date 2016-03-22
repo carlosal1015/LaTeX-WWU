@@ -167,11 +167,34 @@ ein Isomorphismus.
 
 \subsection{Fundamentalklassen unter Randabbildung der Paarfolge} % (fold)
 \label{sub:fundamentalklasse_rand}
+\emph{Dies war Aufgabe 4 von Blatt 9 und wird beim Beweis der Poincaré-Dualität für Mannigfaltigkeiten mit Rand benötigt, siehe \autoref{satz:poincare_rand}.}\smallskip\\
 Sei $W$ eine kompakte orientierte $(n+1)$-Mannigfaltigkeit mit Rand $\partial W$ und Orientierungsklasse $\mu_W \in H_{n+1}(W,\partial W)$.
 Sei $\partial \colon H_{n+1}(W,\partial W) \to H_n(\partial W)$ die Randabbildung aus der Paarsequenz.
 Dann ist $\partial \mu_W$ eine Orientierungsklasse von $\partial W$.
-\begin{beweis}
-	\todo[inline]{Beweisen!}
+\begin{beweis}[{name={\cite[\RM{14}. Th.~7.6]{Massey}}}]
+	Wir müssen zeigen, dass $\partial(\mu_W)|_x$ für jedes $x \in \partial W$ ein Erzeuger von $H_n(\partial W, \partial W \setminus \set*{x})$ ist.
+	Per Definition existiert ein Kartengebiet $x \in U \subseteq W$ und eine Karte, von der wir annehmen dürfen, dass $x$ auf $(0,\ldots ,0) \in \mathbb{R}^{n+1}_+$ abgebildet wird.
+	Wir identifizieren die Punkte in $U$ mit ihren Bildern.
+	Dann sind die Punkte in $\partial W \cap U$ durch die Gleichung $x_{n+1}=0$ bestimmt.
+	Sei $y \in U$ der Punkt mit den Koordinaten $(0,\ldots ,0,1)$.
+	Wir definieren Teilmengen von $U$
+	\[
+		A := \set*{(x_1, \ldots ,x_{n+1}) \in U \given \sum\nolimits_i x_i^2 \le 4 } \qquad B := \set*{(x_1,\ldots ,x_{n+1}) \in A \given \sum\nolimits_i x_i^2 < 4 \text{ und } x_{n+1}>0 }
+	\]
+	und $C := A \cap \partial W$.
+	Betrachte nun das folgende kommutative Diagramm\marginnote{dabei $\iota \colon \partial W \hookrightarrow (\partial W,\partial W \setminus \set*{x})$ die Inklusion}
+	\[
+		\begin{tikzcd}[row sep=4em, column sep=5.2em]
+			H_{n+1} \enbrace[\big]{W,\partial W}\rar["\partial' = \iota_*\circ \partial"] \dar["\rho"] \ar[dr] & H_{n} \enbrace[\big]{\partial W, \partial W \setminus \set*{x}}\drar & H_n \enbrace[\big]{C,C\setminus \set*{x}} \dar["5"] \lar["6"']\\
+			H_{n+1} \enbrace[\big]{W,W\setminus \set*{y}} & H_{n+1} \enbrace[\big]{W,W \setminus B}\lar["1"']  \rar["\partial_1"] & H_n \enbrace[\big]{W \setminus B,(W \setminus B) \setminus \set*{x} } \\
+			H_{n+1} \enbrace[\big]{A,A\setminus \set*{y}}\uar["2"] & H_{n+1} \enbrace[\big]{A,A \setminus B} \uar \lar["3"'] \rar["\partial_2"] & H_n \enbrace[\big]{A \setminus B, (A \setminus B) \setminus \set*{x}} \uar["4"]
+		\end{tikzcd}
+	\]
+	Die Homomorphismen $\partial',\partial_1, \partial_2$ sind dabei Randabbildungen aus den entsprechenden Tripeln, alle anderen sind von Inklusionen induziert.
+	Die Kommutativität folgt dann auf der Ebene von Raumpaaren beziehungsweise aus der Natürlichkeit der Randabbildung.
+	Mit den üblichen Methoden rechnet man nach, dass die Homomorphismen $1-6$, sowie $\partial_2$ Isomorphismen sind.
+	
+	Wir wissen nun, dass $\rho(\mu_W)$ ein Erzeuger von $H_{n+1} (W,W\setminus \set*{y})$ ist, also muss auch $\partial'(\mu_W)$ ein Erzeuger sein.
 \end{beweis}
 
 % subsection fundamentalklasse_rand (end)
