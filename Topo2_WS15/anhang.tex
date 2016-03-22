@@ -233,3 +233,66 @@ Die folgenden Aussagen äquivalent:
 	Die gesamte Komposition ist dann durch $F(\iota \circ f) = F(f)$ gegeben und es folgt $\ker F(g) \subseteq \im F(f)$.
 \end{beweis}
 % subsection exakte_funktoren_und_der_kern (end)
+
+\subsection{Einschränkung und Erweiterung der Skalare} % (fold)
+\label{sub:einschrankung_und_erweiterung_der_skalare}
+\emph{Diese Ausführungen sind dem englischen Wikipedia-Artikel \enquote{Change of rings}\footnote{\url{https://en.wikipedia.org/wiki/Change_of_rings}} entnommen.}\smallskip\\
+Seien $S$ und $R$ Ringe und $f \colon S \to R$ ein Ringhomomorphismus.\marginnote{Moduln meint wieder Linksmoduln}
+Wir wollen untersuchen, wie man $S$-Moduln in $R$-Moduln überführt und umgekehrt.
+\begin{description}
+	\item[Einschränkung der Skalare]
+	Sei $M$ ein $R$-Modul.\index{Einschränkung der Skalare}
+	Dann können wir $M$ als $S$-Modul auffassen durch die $S$-Wirkung $s.m = f(s) \cdot m$ für $m \in M$.
+	Dies definiert offenbar auch einen Funktor, denn ein $R$-Homomorphismus wird mit dieser Definition automatisch zu einem $S$-Morphismus.
+	Für $S=\mathbb{Z}$ erhält man den Vergissfunktor $\Mod{R} \to \ABELGRUPPEN$.
+	\item[Erweiterung der Skalare] 
+	Wir wollen nun einen $S$-Modul zu einem $R$-Modul machen.\index{Erweiterung der Skalare}
+	Sei $N$ ein $S$-Modul.
+	Betrachte das Tensorprodukt
+	\[
+		_R N := R \otimes_S N
+	\]
+	Dabei fallen wir $R$ mittels $f$ als $S$-Rechtsmodul auf (damit wird $R$ zu einem $(R,S)$-Bimodul).
+	$_R N$ ist ein $R$-Modul mittels $r \cdot (R' \otimes n) = rr' \otimes n$.
+	Offensichtlich erhalten wir auch hier wieder einen Funktor, indem wir für $\varphi \colon N \to N'$ 
+	\[
+		_R \varphi \colon {_R N} \longrightarrow {_R N'}
+	\]
+	durch $_R \varphi = \id_R \otimes \varphi$ definieren.
+	\item[Adjunktion der beiden Funktoren] 
+	Wir konstruieren nun einen Homomorphismus von abelschen Gruppen $F \colon \Hom_S(N,M) \to \Hom_R({_R N},M)$. 
+	Sei also $\varphi \in \Hom_S(N,M)$, wobei wir $M$ mittels Einschränkung der Skalare als $S$-Modul auffassen.
+	Wir setzen
+	\[
+		F(\varphi) \colon {_R N} \longrightarrow M \qquad r \otimes m \longmapsto r \cdot \varphi(m)
+	\]
+	Dies definiert offensichtlich einen $R$-Homomorphismus.
+	
+	Wir nehmen nun zusätzlich an, dass $R$ und $S$ Einheiten besitzen und $f$ diese erhält.
+	Unter diesen Vorraussetzungen können wir nun einen zu $F$ inversen Homomorphismus 
+	\[
+		G \colon \Hom_R({_R N},M) \longrightarrow \Hom_S(N,M)
+	\]
+	angeben.
+	$\psi \in \Hom_R({_R N},M)$ bilden wir dazu auf die Komposition
+	\[
+		\begin{tikzcd}[sep=2.8em]
+			N \rar & S \otimes_S N \rar["f \otimes {\id_N}"] & R \otimes_S N = {_R N} \rar["\psi"] & M
+		\end{tikzcd}
+	\]
+	ab, wobei die erste Abbildung der kanonische Isomorphismus $n \mapsto 1 \otimes n$ ist.
+	Man macht sich schnell klar, dass $F$ und $G$ tatsächlich inverse zueinander sind.
+	Desweiteren kann man sich auch noch überlegen, dass dieser Isomorphismus natürlich ist, da er nur von $f$ abhängt.
+	Damit ist die Erweiterung der Skalare linksadjungiert zur Einschränkung der Skalare.
+\end{description}
+Statt \enquote{zu Fuß} nachzurechnen, dass dieser Isomorphismus existiert,\marginnote{ich habe das nicht durchgerechnet, bin mir aber ziemlich sicher, dass das stimmt} hätte man sich auch überlegen können, dass dies nur ein Spezialfall der \href{https://en.wikipedia.org/wiki/Tensor-hom_adjunction}{Tensor-Hom-Adjunktion}\footnote{\url{https://en.wikipedia.org/wiki/Tensor-hom_adjunction}} ist, siehe dazu auch Beweis von \autoref{univ_koeff_space}.
+% subsection einschrankung_und_erweiterung_der_skalare (end)
+
+
+
+
+
+
+
+
+
