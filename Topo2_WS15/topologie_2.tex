@@ -1273,13 +1273,25 @@ Wir wenden uns nun einmal mehr der Topologie von Mannigfaltigkeiten zu und erinn
 	ein Isomorphismus.
 \end{lemma}
 \begin{beweis}
-	Es genügt $k=n$ zu betrachten, denn andernfalls sind beide Moduln trivial. Da die Auswertungsabbildung 
+	Es genügt $k=n$ zu betrachten, denn andernfalls sind beide Moduln trivial. 
+	Wir stellen zunächst fest, dass offensichtlich $H_n(\mathbb{R}^n,\mathbb{R}^n\setminus B) \otimes_\mathbb{Z} R \cong H_n(\mathbb{R}^n,\mathbb{R}^n\setminus B;R)$ gilt.
+	Wir haben nun das folgende kommutative Diagramm\marginnote{Beweis stark modifiziert, Original auf der Homepage}
 	\[
-		H^n(\mathbb{R}^n,\mathbb{R}^n \setminus B;R) \longrightarrow \Hom_R \enbrace[\big]{H_n(\mathbb{R}^n,\mathbb{R}^n \setminus B;R),R}
+		\begin{tikzcd}[column sep=3em]
+			H^n(\mathbb{R}^n,\mathbb{R}^n\setminus B;R) \dar[equal] \rar[two heads] & \Hom_\mathbb{Z} \enbrace[\big]{H_n(\mathbb{R}^n,\mathbb{R}^n\setminus B),R} \dar["\cong"'] \\
+			H^n(\mathbb{R}^n,\mathbb{R}^n\setminus B;R) \dar[equal] \rar & \Hom_R \enbrace[\big]{H_n(\mathbb{R}^n,\mathbb{R}^n\setminus B) \otimes_\mathbb{Z} R,R} \dar["\cong"']\\
+			H^n(\mathbb{R}^n,\mathbb{R}^n\setminus B;R) \rar & \Hom_R \enbrace[\big]{H_n(\mathbb{R}^n,\mathbb{R}^n\setminus B;R),R}
+		\end{tikzcd}
 	\]
-	immer surjektiv ist nach \autoref{eig_kohomo_to_hom_homo} und in diesem Fall injektiv nach \cref{sub:paarung_isomorphismus_frei}\todo{leider gilt auch das nur für $\mathbb{Z}$ und dafür war es sowieso klar … es soll möglich sein, den allgemeinen Fall auf $\mathbb{Z}$ zu reduzieren mit dem universellen Koeffizienten-Theorem}, gibt es genau ein $\xi \in H^n \enbrace*{\mathbb{R}^n,\mathbb{R}^n \setminus B;R}$ mit $\xi(\mu_B)=1$. 
-	Nach \autoref{bem_augmentation_cap} ist also $\epsilon(\xi \capp \mu_B)=1$. 
-	Folglich ist $\xi \capp \mu_B$ ein Erzeuger von $H_0(\mathbb{R}^n;R)$ und $\capp \mu_B$ ein Isomorphismus.
+	Nach \autoref{eig_kohomo_to_hom_homo} ist die obere Zeile surjektiv.
+	Der Isomorphismus unten rechts ergibt sich aus dem eben erwähnten Isomorphismus und der Isomorphismus oben rechts kommt durch \emph{Erweiterung der Skalare} zustande, siehe \cref{sub:einschrankung_und_erweiterung_der_skalare}.
+	Die Kommutativität rechnet man einfach mit den Definition der einzelnen Homomorphismen nach.
+	Es folgt, dass auch die untere Abbildung surjektiv ist.
+	
+	Nach \cref{sub:paarung_isomorphismus_frei} ist die obere Abbildung auch injektiv und damit auch wieder die untere.
+	Es gibt also genau ein $\xi \in H^n \enbrace*{\mathbb{R}^n,\mathbb{R}^n \setminus B;R}$ mit $\xi(\mu_B)=1$. 
+	Nach \autoref{bem_augmentation_cap} ist dann $\epsilon(\xi \capp \mu_B)=1$ und
+	folglich ist $\xi \capp \mu_B$ ein Erzeuger von $H_0(\mathbb{R}^n;R)$ und $\capp \mu_B$ ein Isomorphismus.
 \end{beweis}
 
 \begin{definition}[{name=[gerichtete Menge]}]
