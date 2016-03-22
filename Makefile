@@ -1,8 +1,11 @@
+compile:
+	./compile_all.sh
 help:
 	@echo 'Makefile for automatic LaTeX compilation                                  '
 	@echo '                                                                          '
 	@echo 'Usage:                                                                    '
-	@echo '   make build	                        generate files					 '
+	@echo '   make compile	                        generate all files				 '
+	@echo '   make build	                        generate all files (for travis)	 '
 	@echo '                                                                          '
 
 
@@ -14,4 +17,4 @@ build:
 	docker run -it --rm -v $(CURDIR):/var/texlive  texlive sh -c "./compile_all.sh"
 
 
-.PHONY: help build
+.PHONY: compile help build
