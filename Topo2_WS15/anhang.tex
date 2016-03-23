@@ -202,24 +202,22 @@ Dann ist $\partial \mu_W$ eine Orientierungsklasse von $\partial W$.
 
 \subsection{Dimensionsargument in \autoref{satz:sig_rand_4k+1_mfkt}} % (fold)
 \label{sub:dimensionsargument_rand_mfkt}
-\todo{Beweis austauschen}
 Es seien $f \colon V \to W$ eine lineare Abbildung, wobei $V$ und $W$ endlichdimensional sind. 
 Mit $V^*$ und $W^*$ bezeichnen wir die Dualräume.
-Dann gilt
+Dann gilt für die duale Abbildung $f^* \colon W^* \to V^*$
 \[
-	\dim \ker f = \dim \ker f^*
+	\im f \cong \im f^*
 \]
 \begin{beweis}
-	Für eine Teilmenge $U \subseteq V$ bezeichnet $U^0 := \set*{\varphi \in V^* \given \varphi(x)=0 \,\forall x \in U}$ den Annullator von $U$.
-	In der linearen Algebra zeigt man\footnote{z.B. auf StackExchange \url{http://math.stackexchange.com/questions/611575/proof-dimension-of-annihilator} und \url{http://math.stackexchange.com/questions/1344904/show-that-ker-hatt-textann-textrange-t}}
-	\begin{enumerate}[(i)]
-		\item $\dim U^0 = \dim V - \dim U$ und
-		\item $\ker f^* = (\im f)^0$
-	\end{enumerate}
-	Mit $U= \im f$ folgt also
+	Für $\varphi,\psi \in W^*$ gilt offenbar
 	\(
-		\dim \ker f = \dim V - \dim \im f = \dim (\im f)^0 = \dim \ker f^* 
-	\) wie gewünscht.
+		\varphi\big|_{\im f} = \psi\big|_{\im f} \iff f^*(\varphi) = f^*(\psi)
+	\).
+	Damit folgt, dass die Einschränkung $f^* \colon (\im f)^* \to V^*$ injektiv ist.
+	Insbesondere existieren die folgenden Isomorphismen:
+	\[
+		\im f^* \cong (\im f)^* \cong \im f \qedhere
+	\]
 \end{beweis}
 % subsection dimensionsargument_in_autoref_satz_sig_rand_4k_1_mfkt (end)
 
