@@ -3138,7 +3138,7 @@ Wir rechnen nun noch Punkt 3. aus der Definition einer Spektralfolge nach:
 		\]
 		nach \autoref{bem:exakte_funktoren_homologie} ein Isomorphismus. Also 
 		\[
-			E^2_{p,q} \cong H_p \enbrace*{C_* \otimes_R H_q(D_*), \partial^C \otimes \id} \cong H_p \enbrace*{C_* \otimes_R H_q(D_*)}
+			E^2_{p,q} \cong H_p \enbrace*{C_* \otimes_R H_q(D_*), \partial^C \otimes \id} \cong H_p \enbrace[\big]{C_* \otimes_R H_q(D_*)}
 		\]
 		Mit \autoref{satz:spektralfolge_filtrierung} folgt die Konvergenz.
 		\item Analog mit b) von \autoref{prop:spektral_total}, also der horizontalen Spektralfolge.\qedhere
@@ -3402,7 +3402,7 @@ Wir rechnen nun noch Punkt 3. aus der Definition einer Spektralfolge nach:
 	\[
 		H_n \enbrace*{P_* \otimes_R C_*} \StackText{\ref{bem:kollabierende_spektralfolge}}{\cong} {^h E_{0,n}^2} \cong H_n \enbrace*{V \otimes_R C_*}
 	\]
-	Indem man die durch $\epsilon \otimes \id$ induzierte Abbildung auf Spektralfolgen betrachtet, sieht man, dass $\epsilon \otimes \id$ den Isomorphismus induziert.
+	Indem man die durch $\epsilon \otimes \id$ induzierte Abbildung auf Spektralfolgen betrachtet,\marginnote{dass $\epsilon \otimes \id$ den Isomorphismus induziert, brauchen wir für die Natürlichkeit} sieht man, dass $\epsilon \otimes \id$ den Isomorphismus induziert.
 	Für die vertikale Spektralfolge folgt nun nach \autoref{prop:spektralfolgen_konv_homlo_tensor} $^v E^2_{p,q} \Rightarrow H_{p+q}(P_* \otimes_R C_*) \cong H_{p+q}(V \otimes C_*)$.
 	Weiter ist wegen der Projektivität von $P_p$
 	\[
@@ -3501,12 +3501,12 @@ Wir rechnen nun noch Punkt 3. aus der Definition einer Spektralfolge nach:
 	Daher ist 
 	\[
 		^v E^{p,q}_2 = \begin{cases}
-			H^p \enbrace*{C_*;W} &\text{ falls }q=0\\
+			H^p \enbrace[\big]{\Hom(C_*,W)} &\text{ falls }q=0\\
 			0 &\text{ sonst}
 		\end{cases}
 	\]
 	und die Spektralfolge kollabiert bei $E_2$.
-	Es folgt\todo{wie bei $\otimes$ mit 14.5}
+	Es folgt
 	\[
 		H^n \enbrace[\big]{\Hom(C_*,I^*)} \StackText{\ref{bem:kollabierende_spektralfolge}}{\cong} {^v E_2^{n,0}} \cong H^n \enbrace[\big]{\Hom(C_*,W)}
 	\]
