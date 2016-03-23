@@ -2017,7 +2017,7 @@ Zum Vergleich erinnern wir uns an dieser Stelle noch einmal an die Konstruktion 
 	Falls $\dim W = 4k+1$ ist, so gilt $\sig(\partial W)=0$.
 \end{satz}
 \begin{beweis}
-	Sei $L :=  \im \enbrace[\big]{i^* \colon H^{2k}(W;\mathbb{R}) \hookrightarrow H^{2k}(\partial W;\mathbb{R})}$. Es gilt
+	Sei $L :=  \im \enbrace[\big]{i^* \colon H^{2k}(W;\mathbb{R}) \to H^{2k}(\partial W;\mathbb{R})}$. Es gilt
 	\begin{enumerate}[a)]
 		\item Wir zeigen, dass die Schnittform auf $L$ trivial ist:
 		Es seien also $i^* \xi, i^* \eta \in L$.
@@ -2035,12 +2035,14 @@ Zum Vergleich erinnern wir uns an dieser Stelle noch einmal an die Konstruktion 
 			\end{tikzcd}
 		\]
 		Die Kommutativität benutzt wieder $\partial (\mu_{W,\partial W})=\mu_{\partial W}$.
-		Es gilt
+		Es folgt $\dim \im i^* = \dim \ker i_*$.
+		Da wir Koeffizienten in $\mathbb{R}$ betrachten gilt $H^{2k}(W;\mathbb{R}) \cong \Hom \enbrace*{H_{2k}(W),\mathbb{R}}$ und wir können $i^*$ mit $(i_*)^*$ identifizieren.
+		Mit \cref{sub:dimensionsargument_rand_mfkt} folgt damit $\dim \im i_* = \dim \im i^*$.
+		Es gilt nun 
 		\[
-			\dim \im i^* = \dim \ker i_* = \dim \ker i^*
+			\dim H^{2k}(\partial W) = \dim \ker i_* + \dim \im i_* = \dim \im i^* + \dim \im i^* = 2 \cdot \dim \im i^*
 		\]
-		wie man sich mittels Dimensionsformeln überlegt, siehe \cref{sub:dimensionsargument_rand_mfkt}.
-		Da $\dim H^{2k}(\partial W) = \dim \ker i^* + \dim \im i^*$, folgt $\dim \im i^* = \frac{1}{2} \dim H^{2k}(\partial W)$.\todo{hier stimmt das noch nicht ganz}
+		also folgt $\dim \im i^* = \frac{1}{2} \dim H^{2k}(\partial W)$.
 	\end{enumerate}
 	Mit dem \autoref{sig_null} folgt nun die Behauptung.
 \end{beweis}
