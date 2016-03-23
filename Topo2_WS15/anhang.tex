@@ -322,6 +322,103 @@ Wir wollen untersuchen, wie man $S$-Moduln in $R$-Moduln überführt und umgekeh
 Statt \enquote{zu Fuß} nachzurechnen, dass dieser Isomorphismus existiert,\marginnote{ich habe das nicht durchgerechnet, bin mir aber ziemlich sicher, dass das stimmt} hätte man sich auch überlegen können, dass dies nur ein Spezialfall der \href{https://en.wikipedia.org/wiki/Tensor-hom_adjunction}{Tensor-Hom-Adjunktion}\footnote{\url{https://en.wikipedia.org/wiki/Tensor-hom_adjunction}} ist, siehe dazu auch Beweis von \autoref{univ_koeff_space}.
 % subsection einschrankung_und_erweiterung_der_skalare (end)
 
+\subsection{Aufgabe 3 von Blatt 12} % (fold)
+\label{sub:aufg3_blatt12}
+Sei $R$ ein Hauptidealring und $C,D$ Kettenkomplexe von freien $R$-Moduln.
+Der Kern und das Bild des Differential $d^D$ von $D$ lassen sich wie folgt als Kettenkomplexe auffassen:
+Die $n$-ten Kettenmoduln sind $(\ker d^D)_n := \ker(d^D_n)$ und $(\im d^D)_n := \im (d^D_{n+1})$.
+Die Differentiale seien alle $0$.
+Es gelten die folgenden Aussagen:
+\begin{enumerate}[a)]
+	\item Für alle $i\ge0$ ist 
+	\(
+		\begin{tikzcd}[cramped,sep=small]
+			0 \rar & \im d_{i+1}^D \rar[hook] & \ker d_i^D \rar[two heads] & H_i(D) \rar & 0
+ 		\end{tikzcd}
+	\)
+	eine projektive Auflösung von $H_i(D)$.
+	\item Es existiert die folgende exakte Sequenz von Kettenkomplexen
+	\[
+		\begin{tikzcd}
+			0 \rar & C \otimes \ker d^D \rar & C \otimes D \rar & C \otimes \Sigma \im d^D \rar & 0
+		\end{tikzcd}
+	\]
+	\item Die aus b) resultierende lange exakte Sequenz in Homologie lässt sich in folgende kurze exakte Sequenz zerlegen
+	\[
+		\hspace{-1em}\begin{tikzcd}
+			0 \rar & \displaystyle\bigoplus_{i+j=n} \!H_i(C) \otimes H_j(D) \rar & H_n(C \otimes D) \rar &\!\!\displaystyle \bigoplus_{i+j=n-1}\hspace{-1.5ex} \Tor_1^R \enbrace[\big]{H_i(C),H_j(D)} \rar & 0
+		\end{tikzcd}
+	\]
+\end{enumerate} 
+\begin{beweis}
+	\leavevmode
+	\begin{enumerate}[a)]
+		\item Da $R$ ein Hauptidealring ist, sind Untermoduln freier Moduln wieder frei.
+		\item Für alle $q \in \mathbb{Z}$ ist 
+		\(
+			\begin{tikzcd}[cramped,sep=small]
+				0 \rar & \ker d_q^D \rar[hook] & D_q \rar[two heads] & \im d_q^D \rar & 0 
+			\end{tikzcd}
+		\)
+		eine kurze exakte Folge.
+		Da $C_p$ für alle $p \in \mathbb{Z}$ frei ist, bleibt die Folge exakt nach Tensorieren mit $C_p$.
+		Nach Definition des Tensorprodukt von Kettenkomplexen in \autoref{def:tensor_ketten} folgt die Behauptung.
+		\item Die lange exakte Sequenz hat die Form
+		\[
+			\hspace{-1cm}\begin{tikzcd}[sep=1.7em,font={\fontsize{9.7}{11}\selectfont}]
+				\ldots \rar & H_{n+1} \enbrace*{C \otimes \Sigma \im d^D} \rar["\partial_{n+1}"] & H_n \enbrace*{C \otimes \ker d^D} \rar["i_n"] & H_n(C \otimes D) \rar["p_n"] & H_n (C \otimes \Sigma \im d^D) \rar &  \ldots 
+			\end{tikzcd}
+		\]
+		Wir betrachten die kurzen exakten Sequenzen
+		\[
+			\begin{tikzcd}
+				0 \rar & \underset{{\cong \coker \partial_{n+1}}}{\ker p_n = \im i_n}  \rar[hook] & H_n(C \otimes D) \rar[two heads] & \im p_n=\ker \partial_n \rar  & 0
+			\end{tikzcd}
+		\]
+		Es bleibt zu zeigen, dass 
+		\begin{enumerate}[(i),itemsep=0pt]
+			\item $\coker \partial_{n+1}$ isomorph ist zur direkten Summe der Tensorprodukte.
+			\item $\ker \partial_n$ isomorph ist zur direkten Summe der $\Tor$-Moduln und
+		\end{enumerate}
+		Wir müssen also die Randabbildung genauer untersuchen:
+		Sei $[x] \in H_n(C \otimes \Sigma \im d^D)$, das heißt ohne Beschränkung der Allgemeinheit können wir annehmen, dass $x=c \otimes e \in C_p \otimes  \im d_q^D$ mit $p+q=n$ ist.
+		Dann ist $e= d_q^D(f)$ für ein $f \in D_q$.
+		Man überlege sich, wie diese Elemente in folgendem Diagramm abgebildet werden
+		\[
+			\begin{tikzcd}
+				& C \otimes D \rar \dar["d^{C \otimes D}"] & C \otimes \Sigma \im d^D \\
+				C \otimes \ker d^D \rar & C \otimes D
+			\end{tikzcd}
+		\]
+		Das heißt die Randabbildung $\partial \colon H_n \enbrace*{C \otimes \Sigma \im d^D} \to H_{n-1}$ wird von der Inklusion ${\id} \otimes \iota \colon C_p \otimes \im d^D_q \to C_p \otimes \ker d_{q-1}^D$ induziert.
+		Definiere
+		\[
+			\oplus (\id \otimes \iota) =\iota_n \colon \enbrace*{C \otimes  \im d^D}_n \longrightarrow \enbrace*{C \otimes \ker d^D}_n
+		\]
+		Damit gilt für die lange exakte Folge oben\marginnote{triviale Differentiale für Kern und Bild!}
+		\[
+			\begin{tikzcd}[sep=2em]
+				\ldots  \rar["(\iota_{n+1})_*"] & H_n \enbrace*{C \otimes \ker d^D} \dar[equal] \rar["i_n"] & H_n(C \otimes D) \rar["p_n"] & H_n (C \otimes \Sigma \im d^D) \rar["(\iota_n)_*"] \dar[equal] &  \ldots  \\
+				& \displaystyle\bigoplus_{i+j=n}\!\! H_i(C) \otimes (\ker d^D)_j & & \displaystyle \bigoplus_{i+j=n}\!\! H_i(C) \otimes \im d^D_j
+			\end{tikzcd}
+		\]
+		Es folgt sofort $\coker \partial_{n+1} \cong \bigoplus_{i+j=n} H_i(C) \otimes H_j(D)$, also (i).
+		Es bleibt (ii) zu zeigen:
+		Tensorieren der Auflösung aus a) ergibt 
+		\[
+			\begin{tikzcd}[sep=3.7em]
+				0 \rar & H_i(C) \otimes  \im d_{j+1}^D \rar["\varphi={\id} \otimes \iota"] & H_i(C) \otimes \ker d_j^D \rar & H_i(C) \otimes H_j(D)
+			\end{tikzcd}
+		\]
+		Es gilt nach Definition also $\Tor_1^R \enbrace*{H_i(C) ,H_j(D)} = \ker \varphi$ und somit folgt auch (ii).\qedhere
+	\end{enumerate}
+\end{beweis}
+% subsection aufg3_blatt12 (end)
+
+
+
+
+
 
 
 
