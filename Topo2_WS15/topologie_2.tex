@@ -2799,7 +2799,7 @@ Zum Vergleich erinnern wir uns an dieser Stelle noch einmal an die Konstruktion 
 \end{bemerkung}
 
 \begin{definition}[{name=[konvergente Spektralfolge]},label=def:konvergente_spektralfolge]
-	Wir sagen eine Spektralfolge $\enbrace*{E^r_{p,q},d^r_{p,q}}$ \bet{konvergiert}\index{Spektralfolge!konvergente} gegen den graduierten $R$-Modul $A_*$, falls es eine endliche Filtrierung $F_s A_*$ von $A_*$ gibt mit
+	Wir sagen eine Spektralfolge $\enbrace*{E^r_{p,q},d^r_{p,q}}$ \bet{konvergiert}\index{Spektralfolge!konvergente} gegen den graduierten $R$-Modul $A_*$, falls es eine endliche Filtrierung $F_s A_*$ von $A_*$ gibt mit\marginnote{mit nichttrivialer Erweiterung kann man zeigen, dass \enquote{Grenzwerte} nicht eindeutig sind}
 	\[
 		0 = F_{-1}A_n \subseteq F_0 A_n \subseteq \ldots \subseteq F_n A_n = A_n \qquad \text{ und }\qquad  E^\infty_{p,q} \cong \frac{F_p A_{p+q}}{F_{p-1}A_{p+q}}
 	\]
@@ -2903,7 +2903,7 @@ Zum Vergleich erinnern wir uns an dieser Stelle noch einmal an die Konstruktion 
 	Angenommen $f \colon E^\infty_{p,q} \to {E'}^\infty_{p,q}$ stimmt mit der von $h$ induzierten Abbildung 
 	\[
 		\begin{tikzcd}[row sep=1.5em, column sep=2.8em]
-			\frac{F_p A_{p+q}}{F_{p-1} A_p+q} \rar["h"] \dar[phantom,"\cong", sloped] &\frac{F'_p A'_{p+q}}{F'_{p-1} A'_{p+q}} \dar[phantom,"\cong", sloped] \\
+			\displaystyle\frac{F_p A_{p+q}}{F_{p-1} A_p+q} \rar["h"] \dar[phantom,"\cong", sloped] & \displaystyle\frac{F'_p A'_{p+q}}{F'_{p-1} A'_{p+q}} \dar[phantom,"\cong", sloped] \\
 			E^\infty_{p,q} \rar["f"] & {E'}^\infty_{p,q}
 		\end{tikzcd}
 	\]
@@ -3245,16 +3245,17 @@ Wir rechnen nun noch Punkt 3. aus der Definition einer Spektralfolge nach:
 \end{beweis}
 
 \begin{bemerkung}[{name=[{zur Natürlichkeit des Isomorphismus in \autoref{satz:homol_tensor}}]}]
-	Der Isomorphismus in \autoref{satz:homol_tensor} ist nicht natürlich in $C_*$ und $D_*$.\todo{genauer?}
+	Der Isomorphismus in \autoref{satz:homol_tensor} ist nicht natürlich in $C_*$ und $D_*$.
 	Es gibt aber eine natürliche kurze exakte Folge 
 	\[
-		\begin{tikzcd}
-			\displaystyle\smashoperator[r]{\bigoplus_{p+q=n}}\enspace H_p (C_*) \otimes H_q (D_*) \rar["\alpha"] & H_n(C_* \otimes D_*) \rar &
-			\displaystyle\smashoperator[r]{\bigoplus_{p+q=n-1}}\enspace \Tor_1^R \enbrace[\big]{H_p(C_*), H_q(D_*)}
-		\end{tikzcd}
+		\begin{tikzcd}[column sep=2.0em]
+			0 \rar &\displaystyle\smashoperator[r]{\bigoplus_{p+q=n}}\enspace H_p (C_*) \otimes H_q (D_*) \rar["\alpha"] & H_n(C_* \otimes D_*) \rar &
+			\displaystyle\smashoperator[r]{\bigoplus_{p+q=n-1}}\enspace \Tor_1^R \enbrace[\big]{H_p(C_*), H_q(D_*)} \rar & 0
+		\end{tikzcd} 
 	\]
 	Diese Folge spaltet, aber es gibt keinen natürlichen Spalt.
 	Die Abbildung $\alpha$ ist gegeben durch $\alpha \enbrace*{[a] \otimes [b]} = \benbrace*{a \otimes b}$.
+	Diese Folge haben in Aufgabe 3 von Blatt 12 konstruiert.\todo{\TeX{}en?}
 \end{bemerkung}
 
 \begin{satz}[{name={Eilenberg-Zilber}},label=eilenbergzilber]
