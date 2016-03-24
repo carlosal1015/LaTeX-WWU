@@ -322,8 +322,9 @@ Wir wollen untersuchen, wie man $S$-Moduln in $R$-Moduln überführt und umgekeh
 Statt \enquote{zu Fuß} nachzurechnen, dass dieser Isomorphismus existiert,\marginnote{ich habe das nicht durchgerechnet, bin mir aber ziemlich sicher, dass das stimmt} hätte man sich auch überlegen können, dass dies nur ein Spezialfall der \href{https://en.wikipedia.org/wiki/Tensor-hom_adjunction}{Tensor-Hom-Adjunktion}\footnote{\url{https://en.wikipedia.org/wiki/Tensor-hom_adjunction}} ist, siehe dazu auch Beweis von \autoref{univ_koeff_space}.
 % subsection einschrankung_und_erweiterung_der_skalare (end)
 
-\subsection{Aufgabe 3 von Blatt 12} % (fold)
+\subsection{Kurze exakte Folge im Künneth-Theorem} % (fold)
 \label{sub:aufg3_blatt12}
+\emph{Die hier bewiesene Aussage wurde in \autoref{bem:exakte_folge_kuenneth} erwähnt und war Aufgabe 3 von Blatt 12.}\smallskip\\
 Sei $R$ ein Hauptidealring und $C,D$ Kettenkomplexe von freien $R$-Moduln.
 Der Kern und das Bild des Differential $d^D$ von $D$ lassen sich wie folgt als Kettenkomplexe auffassen:
 Die $n$-ten Kettenmoduln sind $(\ker d^D)_n := \ker(d^D_n)$ und $(\im d^D)_n := \im (d^D_{n+1})$.
@@ -410,10 +411,95 @@ Es gelten die folgenden Aussagen:
 				0 \rar & H_i(C) \otimes  \im d_{j+1}^D \rar["\varphi={\id} \otimes \iota"] & H_i(C) \otimes \ker d_j^D \rar & H_i(C) \otimes H_j(D)
 			\end{tikzcd}
 		\]
-		Es gilt nach Definition also $\Tor_1^R \enbrace*{H_i(C) ,H_j(D)} = \ker \varphi$ und somit folgt auch (ii).\qedhere
+		Es gilt nach Definition also $\Tor_1^R \enbrace[\big]{H_i(C) ,H_j(D)} = \ker \varphi$ und somit folgt auch (ii).\qedhere
 	\end{enumerate}
 \end{beweis}
 % subsection aufg3_blatt12 (end)
+
+\subsection{Azyklische Modelle} % (fold)
+\label{sub:azyklische_modelle}
+\emph{Dies liefert einen theoretischen Hintergrund zum Vorgehen in \autoref{prop:existenz_eilenberg_zilber} und \autoref{prop:16:eind} und war Aufgabe 2 von Blatt 12.}\smallskip\\
+Sei $\mathcal{C}$ eine Kategorie zusammen mit einer Teilmenge $\mathcal{M}$ von Objekten, die wir \emph{Modelle} nennen wollen.
+Seien
+\[
+	F,G \colon \mathcal{C} \longrightarrow \CH_{\ge 0}(R)
+\]
+Funktoren, wobei $\CH_{\ge 0}(R)$ die Kategorie der $\mathbb{N}$-graduierten $R$-Kettenkomplexe bezeichnet.
+Weiter gelte
+\begin{itemize}
+	\item $F$ ist \emph{frei} auf $\mathcal{M}$, das heißt für jedes $n\ge 0$ gibt es eine Teilmenge $\mathcal{M}_n \subset \mathcal{M}$, sodass es für jedes Modell $M \in \mathcal{M}_n$ ein Element $m_M \in F(M)_n$ gibt, sodass $\set*{F(f)(m_M) \given f \colon M \to X, M \in \mathcal{M}_n}$ für jedes Objekt $X$ in $\mathcal{C}$ eine Basis von $F(X)_n$ bildet.
+	\item Der Funktor $G$ ist \emph{azyklisch} auf $\mathcal{M}$, das heißt für jedes Modell $M \in \mathcal{M}$ hat der Kettenkomplex $G(M)$ triviale Homologie in positiven Graden.
+\end{itemize}
+Es gelten nun die beiden folgenden Aussagen
+\begin{enumerate}[a)]
+	\item Jede natürliche Transformation $H_0 F \Rightarrow H_0 G$ wird von einer natürlichen Transformation $F \Rightarrow G$ induziert.
+	Hierbei ist $H_0 F \colon \mathcal{C}\to \ABEL$ der Funktor, der ein Objekt $X$ in $\mathcal{C}$ auf die abelsche Gruppe $H_0(F(X))$ schickt.
+	\item Zwei natürliche Transformationen $F \Rightarrow G$, die die gleiche natürliche Transformation $H_0F \Rightarrow H_0G$ induzieren, sind kettenhomotop via einer natürlichen Kettenhomotopie.
+\end{enumerate}
+\begin{beweis}
+	Definiere $\tilde{F},\tilde{G} \colon \mathcal{C} \to \CH_{\ge -1}(R)$ als die mit $H_0 F(X)$ augmentierten Kettenkomplexe, also 
+	\[
+		\begin{tikzcd}
+			0 & \lar H_0(F(X)) & F_0(X) \lar & F_1(X) \lar & \ldots \lar
+		\end{tikzcd}
+	\]
+	Um die Notation kurz zu halten, lassen wir die Tilde im weiteren Verlauf an den meisten Stellen weg.
+	\begin{enumerate}[a)]
+		\item Sei $\tau \colon H_0 F \Rightarrow H_0 G$ die natürliche Transformation.
+		Wir konstruieren $\phi \colon \tilde{F}\Rightarrow \tilde{G}$ induktiv:
+		Dazu setzen wir $\phi_{-1} = \tau$.
+		Sei nun $\phi_k \colon \tilde{F}_k \Rightarrow \tilde{G}_k$ für alle $k \le n-1$ bereits konstruiert mit $d^{G} \circ \phi_k = \phi_{k-1} \circ d^{F}$.
+		Dann gilt
+		\[
+			d^{G} \circ  \phi_{n-1} \circ d^{F} = \phi_{n-2} \circ d^{F} \circ d^{F} =0
+		\]
+		Sei nun $M \in \mathcal{M}_n$ und $m_M$ ein Element wie oben.
+		Da $G$ azyklisch ist, muss $\phi_{n-1} \circ d^{F}(m_M) \in \im d^{G}$ gelten, es existiert also ein $a_M \in G(M)_n$ mit $d^{G}(a_M) = \phi_{n-1} \circ d^{F}(m_M)$.
+		Da $F$ frei ist, können wir also $\phi_{n,X} \colon  F(X)_n \to G(X)_n$ durch\marginnote{$f \colon M \to X$}
+		\[
+			F(f)_n(m_M) \longmapsto G(f)_n(a_M)
+		\]
+		definieren.
+		Wir rechnen die Natürlichkeit nach:
+		Sei $g \colon X \to Y$ ein Morphismus in $\mathcal{C}$.
+		Wir müssen zeigen, dass folgendes Diagramm kommutiert
+		\[
+			\begin{tikzcd}[sep=large]
+				F(X)_n \rar["F(g)_n"] \dar["\phi_{n,X}"] & F(Y)_n \dar["\phi_{n,Y}"] \\
+				G(X)_n \rar["G(g)_n"] & G(Y)_n
+			\end{tikzcd}
+		\]
+		Es genügt dies auf der Basis von $F(X)_n$ zu überprüfen:
+		\begin{align}
+			G(g)_n \circ \phi_{n,X} \enbrace[\big]{F(f)_n(m_M)} = G(g)_n \circ G(f)_{n} (a_M) &= G(g \circ f)_n (a_M) \\
+			&= \phi_{n,Y} \circ F(g \circ f)_n (m_M) \\
+			&= \phi_{n,Y} \circ F(g)_n \enbrace[\big]{F(f)_n(m_M)}
+		\end{align}
+		Es bleibt zu zeigen, dass $\phi$ tatsächlich Randabbildungen liefert.
+		Auch hier reicht es wieder nur die Basis zu betrachten:
+		\begin{align}
+			d^G \circ \phi_{n,X} \enbrace[\big]{F(f)_n(m_M)} \StackText{nat.}{=} G(f)_{n-1} \circ d^G \circ \phi_{n,M_n}(m_M) &=  G(f)_{n-1} \circ d^G (a_M) \\
+			&= G(f)_{n-1} \enbrace*{\phi_{n-1,M} \circ d^F(m_M)} \\
+			&= \phi_{n-1,X} \circ d^F \enbrace[\big]{F(f)_{n} (m_M)}
+		\end{align}
+		Es folgt die Behauptung.
+		\item Hier genügt es zu zeigen, dass, wenn $\phi \colon \tilde{F} \Rightarrow \tilde{G}$ eine natürliche Transformation ist mit $\phi_{-1}=0$, $\phi$ natürlich nullhomotop ist.
+		Wir definieren induktiv $h_n \colon \tilde{F}_n \Rightarrow \tilde{G}_{n+1}$, sodass 
+		\[
+			d^G \circ h_n + h_{n-1} \circ d^F = \phi_n
+		\]
+		gilt.
+		Dafür setzen wir $h_{-1} =0$.
+		Sei nun $h_k$ für $k=-1, \ldots , n-1$ bereits konstruiert.
+		Dann gilt $d^G \enbrace{\phi_n - h_{n-1} \circ d^F} =0$ und da $G$ azyklisch ist, existiert ein $b_M \in G(M)_{n+1}$ mit $d^G(b_M) = \phi_n - h_{n-1} \circ d^F(m_M)$.
+		Wir können, da $F$ frei ist, also $h_{n,X} \colon F(X)_n \to G(X)_{n+1}$ wie folgt definieren
+		\[
+			F(f)_n(m_M) \longmapsto G(f)_{n+1}(b_M)
+		\]
+		Der Rest des Beweises erfolgt nun analog zu a).\qedhere
+	\end{enumerate}
+\end{beweis}
+% subsection azyklische_modelle (end)
 
 
 
