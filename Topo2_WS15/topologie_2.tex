@@ -117,7 +117,7 @@
 		\item $F(\id_C)= \id_{F(C)}$
 		\item Für $\begin{tikzcd}[cramped] C \rar["f"] & C' \rar["f'"] & C'' \end{tikzcd}$ gilt $F(f' \circ f) = F(f) \circ F(f')$. 
 	\end{enumerate}
-	Kürzer ist ein \emph{kontravarianter} Funktor $F \colon \mathcal{C} \to \mathcal{D}$ das selbe wie ein \emph{kovarianter} Funktor $\mathcal{C}^\op \to \mathcal{D}$.
+	Kürzer ist ein \emph{kontravarianter} Funktor $F \colon \mathcal{C} \to \mathcal{D}$ dasselbe wie ein \emph{kovarianter} Funktor $\mathcal{C}^\op \to \mathcal{D}$.
 \end{definition}
 
 \begin{beispiel}[{name=[kontravariante Funktoren]}] Es gibt zahlreiche Beispiele für kontravariante Funktoren:
@@ -812,7 +812,7 @@
 \end{definition}
 
 \begin{beispiel}[{name=[Polynomring und äußere Algebra]}]
-	Sind alle $\abs*{a_i}$ gerade, so ist $\Lambda_R \benbrace*{a_1,\ldots,a_n}$ der Polynomring über $R$ in den Variablen $a_1, \ldots ,a_n$.
+	Sind alle $\abs*{a_i}$ gerade, so ist $\Lambda_R \benbrace*{a_1,\ldots,a_n}$ der Polynomring\index{Polynomring} über $R$ in den Variablen $a_1, \ldots ,a_n$.
 	Sind alle $\abs*{a_i}$ ungerade, so ist $\Lambda_R \benbrace*{a_1, \ldots a_n}$ die \Index{äußere Algebra} in den Variablen $a_1, \ldots , a_n$.
 	
 	\emph{Definition der äußeren Algebra aus \cite[Ex. 3.15]{Hatcher}:}
@@ -860,12 +860,12 @@
 \section{Azyklische Kettenkomplexe} % (fold)
 \label{sec:5}
 
-\begin{frage}
+\begin{frage}[{name=[Isomorphismen in Homologie und Kettenhomotopieäquivalenz]}]
 	Sei $f  \colon C_* \to D_*$ eine Kettenabbildung, die einen Isomorphismus in Homologie induziert. Ist dann $f$ schon eine Kettenhomotopieäquivalenz?
 \end{frage}
 % Frage: Sei $f  \colon C_* \to D_*$ eine Kettenabbildung, die einen Isomorphismus in Homologie induziert. Ist dann $f$ schon eine Kettenhomotopieäquivalenz?
 
-\begin{frage}
+\begin{frage}[{name=[Isomorphismus in Homologie im Satz über kleine Simplizes]}]
 	Sei $\mathcal{U}$ eine offene Überdeckung von $X$. 
 	Dann haben wir schon gesehen, dass die Inklusion $i \colon C_*^\mathcal{U}(X;R) \hookrightarrow C_*^\sing(X;R)$ einen Isomorphismus in Homologie induziert. 
 	Ist $i$ eine Kettenhomotopieäquivalenz?
@@ -1030,7 +1030,7 @@
 \end{korollarB}
 
 \begin{korollar}[label=korr:ausschneidung_sing_koho,{name=[{Ausschneidung für Kohomologie}]}]
-	Singuläre Kohomologie erfüllt das Ausschneidungsaxiom.
+	Singuläre Kohomologie erfüllt das Ausschneidungsaxiom.\marginnote{vgl. \autoref{satz:110}}
 \end{korollar}
 \begin{beweis}
 	Für eine offene Überdeckung $\mathcal{U}$ von $X$ sei $C^*_{\mathcal{U}}(X,A;V) := \Hom \enbrace*{C_*^{\mathcal{U}}(X,A),V}$. Da die Inklusion $i \colon C^{\mathcal{U}}_*(X,A) \to C_*(X;A)$ 
@@ -1226,7 +1226,7 @@ Wir wenden uns nun einmal mehr der Topologie von Mannigfaltigkeiten zu und erinn
 	Ohne Einschränkungen können wir annehmen, dass $M$ zusammenhängend ist, da die Euler-Charakteristik additiv ist. Es ist nach Poincaré-Dualität 
 	\begin{align}
 		\chi_M = \sum_{k=0}^{n} (-1)^k \dim_{\mathbb{F}_2} H_k(M;\mathbb{F}_2) &= \sum_{k=0}^{n} (-1)^k \dim_{\mathbb{F}_2} H^{n-k}(M;\mathbb{F}_2) \\
-		\intertext{Da $M$ homotopieäquivalent zu einem CW-Komplex ist, ist $\dim_{\mathbb{F}_2} H_k(M; \mathbb{F}_2)<\infty $ und insbesondere $\dim_{\mathbb{F}_2} H_k(M;\mathbb{F}_2) = \dim_{\mathbb{F}_2} \Hom_{\mathbb{F}_2} \enbrace*{H_k(M; \mathbb{F}_2),\mathbb{F}_2} = \dim_{\mathbb{F}_2} H^k(M; \mathbb{F}_2)$ ist, folgt}
+		\intertext{Da $M$ homotopieäquivalent zu einem CW-Komplex ist, ist $\dim_{\mathbb{F}_2} H_k(M; \mathbb{F}_2)<\infty $ und insbesondere gilt $\dim_{\mathbb{F}_2} H_k(M;\mathbb{F}_2) = \dim_{\mathbb{F}_2} \Hom_{\mathbb{F}_2} \enbrace*{H_k(M; \mathbb{F}_2),\mathbb{F}_2} = \dim_{\mathbb{F}_2} H^k(M; \mathbb{F}_2)$, sodass folgt}
 		&= \sum_{k=0}^{n} (-1)^k \dim_{\mathbb{F}_2} H_{n-k}(M; \mathbb{F}_2) \\
 		&= \sum_{k=0}^{n} (-1)^{n-k} \dim_{\mathbb{F}_2} H_k(M; \mathbb{F}_2) \\
 		&= - \sum_{k=0}^{n} (-1)^k \dim_{\mathbb{F}_2} H_k(M;\mathbb{F}_2) \\
@@ -1333,7 +1333,7 @@ Wir wenden uns nun einmal mehr der Topologie von Mannigfaltigkeiten zu und erinn
 			\item Die von der Gruppe $\sfrac{\mathbb{Z}}{2}$ erzeugte Kategorie mit einem Objekt und den Gruppenelementen als Morphismen.
 			\item Die Kategorie bestehend aus zwei Objekten und keinem Morphismus, der nicht eine Identität ist.
 		\end{enumerate}
-		\item Der Kolimes über gerichtete Mengen ist eine Spezialfall des Kolimes über kleine Kategorien aus den Übungen. 
+		\item Der Kolimes über gerichtete Mengen ist eine Spezialfall des Kolimes über kleine Kategorien aus den Übungen (Blatt 3 Aufgabe1). 
 		Insbesondere hat der Kolimes über gerichtete Mengen einen universelle Eigenschaft, die ihn charakterisiert.
 		\item Sei $v_\lambda \in F(\lambda)$. Dann gilt:
 		\(
@@ -2090,7 +2090,7 @@ Zum Vergleich erinnern wir uns an dieser Stelle noch einmal an die Konstruktion 
 		\end{tikzcd}$
 		bereits definiert und $S$ ein Erzeugendensystem von $\ker d_n$.
 		Wir setzen $P_{n+1} := R[S]$ und definieren $d_{n+1} \colon P_{n+1} \to P_n$ als die Fortsetzung der Inklusion $S \subseteq P_n$ zu einer $R$-linearen Abbildung $R[S]\to P_n$.
-		\item Folgt aus der folgenden \autoref{prop:113}.\qedhere
+		\item Folgt aus der folgenden \autoref{prop:113} und \autoref{satz:5:kettenhomotopie}.\qedhere
 	\end{enumerate}
 \end{beweis}
 
@@ -3012,7 +3012,7 @@ Wir definieren nun die Randabbildung
 		\displaystyle\frac{d^{-1} \enbrace*{F_{p-2r}C_{p+q-2}} \cap F_{p-r} C_{p+q-1} + F_{p-r-1}C_{p+q-1}}{d \enbrace*{F_{p-1} C_{p+q}} \cap F_{p-r} C_{p+q-1} + F_{p-r-1} C_{p+q-1} }
 	\end{tikzcd}
 \]
-wie folgt: Sie $x \in E^r_{p,q}$. 
+wie folgt: Sei $x \in E^r_{p,q}$. 
 Wähle $a \in d^{-1} \enbrace*{F_{p-r}C_{p+q-1}} \cap F_p C_{p+q}$ mit $\benbrace*{a}= x$.
 Dann gilt
 \[
