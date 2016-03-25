@@ -582,7 +582,7 @@
 	\begin{align}
 		\partial^\times(\xi \times \zeta)= \partial^\times \enbrace*{p_A^* \xi \cupp p_Y^* \zeta} = \partial^\times \benbrace[\big]{p_A^* \alpha \cupp p_Y^* \beta} &= 
 		\benbrace[\big]{d^{p+q} \enbrace[\big]{p^*_X (\hat{\alpha}) \cupp p^*_Y(\beta)}} \\
-		\shortintertext{da $p^*_X(\hat{\alpha}) \cupp p_Y^*(\beta)$ eine Fortsetzung von $p_A^* (\alpha) \cupp p_Y^*(\beta)$ ist. Weiter gilt}
+		\shortintertext{da $p^*_X(\hat{\alpha}) \cupp p_Y^*(\beta)$ eine Fortsetzung von $p_A^* (\alpha) \cupp p_Y^*(\beta)$ ist. Weiter gilt nach \autoref{lem:eig_cup}}
 		&= \benbrace[\big]{p_X^* \enbrace*{d^p\hat{\alpha}} \cupp p_Y^*(\beta) \pm p_X^*(\hat{\alpha}) \cupp p_Y^* \enbrace*{d^q \beta}} \\
 		&= p_X^* \benbrace[\big]{d^p(\hat{\alpha})} \cupp p_Y^* \benbrace*{\beta} = \benbrace[\big]{d^p(\hat{\alpha})} \times \benbrace*{\beta} \\ 
 		&= \partial \xi \times \zeta \qedhere
@@ -612,7 +612,7 @@
 	Seien $j \colon \partial D^1 \hookrightarrow D^1$ und $i_\pm \colon \set*{\pm 1} \hookrightarrow \partial D^1$ die Inklusionen. 
 	Sei weiter $p \colon D^1 \to \set*{-1}$ die Projektion. 
 	Dann gilt ${p^*} \circ {i_-^*} \circ {j^*} = \id_{H^0(D^1;R)}$. 
-	Insbesondere spaltet die Sequenz und bleibt somit exakt nach Anwenden des Funktors ${-}\otimes H^p(X;R)$.
+	Insbesondere spaltet die Sequenz und bleibt somit exakt nach Anwenden des Funktors ${-}\otimes H^p(X;R)$.\marginnote{dieser Funktor ist stets rechtsexakt}
 	Genauso überlegt man sich, dass die Paarfolge
 	\[
 		\begin{tikzcd}
@@ -635,9 +635,9 @@
 	\]
 	Für das zweite $\times$-Produkt betrachte folgendes Diagramm
 	\[
-		\begin{tikzcd}[row sep=large]
-			H^0(\set*{-1}) \otimes H^p(X) \dar["{(p_{-1})^*} \otimes \id"] \rar["\times","\cong"']& H^p(\set*{-1} \times X)  \dar["(p_{-1} \times \id_X)^*"] \\
-			H^0(\partial D^1) \otimes H^p(X) \rar["\times"] \dar["{(i_{+1})^*} \otimes \id"] & H^p(\partial D^1 \times X) \dar["(i_{+1} \times \id_X)^*"] \\
+		\begin{tikzcd}[sep=large]
+			H^0(\set*{-1}) \otimes H^p(X) \dar["{(p_{-1})^*} \otimes {\id}"] \rar["\times","\cong"']& H^p(\set*{-1} \times X)  \dar["(p_{-1} \times \id_X)^*"] \\
+			H^0(\partial D^1) \otimes H^p(X) \rar["\times"] \dar["{(i_{+1})^*} \otimes {\id}"] & H^p(\partial D^1 \times X) \dar["(i_{+1} \times \id_X)^*"] \\
 			H^0(\set*{+1}) \otimes H^p(X) \rar["\times","\cong"'] & H^p \enbrace*{\set*{+1} \times X}
 		\end{tikzcd}\marginnote{\enquote{$R$} aus Platzgründen weggelassen}
 	\]
@@ -668,6 +668,7 @@
 	\[
 		H^p \enbrace*{X;R} \oplus H^{p-1}(X;R) \longrightarrow H^p(S^1 \times X;R) \quad , \quad (\eta_1,\eta_2) \longmapsto \enbrace[\big]{p_X^*(\eta_1) + \xi\times \eta_2}
 	\]
+	Dies macht man sich durch sorgsames Durchgehen der obigen Proposition klar.
 \end{bemerkung}
 % section 3 (end)
 \newpage
@@ -684,11 +685,12 @@
 \end{definition}
 
 \begin{bemerkung}[{name=[Cup-Produkt auf $C^*$ nicht graduiert kommutativ]}]
-	Das $\cupp$-Produkt auf $C^*_\sing(X;R)$ ist \emph{nicht} graduiert kommutativ, was man direkt aus der \autoref{sec3:def_cup} ablesen kann. 
+	Das $\cupp$-Produkt auf $C^*_\sing(X;R)$ ist \emph{nicht} graduiert kommutativ, was man direkt aus der \autoref{sec3:def_cup} ablesen kann.
+	Zu zeigen: Für den Kohomologiering gilt dies allerdings schon!
 \end{bemerkung}
 
 \begin{lemma}[{name=[Spiegelung von singulären Simplizes]},label=spiegelung_simplex]
-	Für $\sigma \colon \abs{\Delta^p} \to X$ sei die Spiegelung $\overline{\sigma} \colon \abs{\Delta^n} \to X$ definiert durch 
+	Für $\sigma \colon \abs{\Delta^p} \to X$ sei die \bet{Spiegelung}\index{Spiegelung eines singulären Simplex} $\overline{\sigma} \colon \abs{\Delta^n} \to X$ definiert durch 
 	\[
 		\overline{\sigma}(t_0, \ldots , t_p ) :=  \sigma(t_p, \ldots ,t_0)
 	\]
@@ -718,13 +720,13 @@
 		Für einen singulären Simplex $\sigma \colon \abs{\Delta^n} \to X$ gilt dann
 		\begin{align}
 			\enbrace*{\Sp^* \enbrace[\big]{\Sp^*(\alpha) \cupp \Sp^*(\beta)}}(\sigma) &= (-1)^{\frac{n(n+1)}{2}} \cdot \enbrace[\big]{\Sp^*(\alpha) \cupp \Sp^*(\beta)} 
-			\enbrace*{\sigma|_{\benbrace*{n, \ldots ,0}}} \\
+			\enbrace*{\sigma|_{\benbrace*{n, \ldots ,0}}} \\[2pt]
 			&= (-1)^{\frac{n(n+1)}{2}} \cdot (-1)^{p \cdot q}\cdot \Sp^*(\alpha) \enbrace*{\sigma_{\benbrace*{n, \ldots , q}}} \cdot \Sp^*(\beta) 
-			\enbrace*{\sigma|_{\benbrace*{q, \ldots ,0}}} \\
+			\enbrace*{\sigma|_{\benbrace*{q, \ldots ,0}}} \\[2pt]
 			&= (-1)^{\frac{n(n+1)}{2}} (-1)^{p \cdot q} (-1)^{\frac{p(p+1)}{2}} (-1)^{\frac{q(q+1)}{2}} \alpha \enbrace*{\sigma|_{\benbrace*{q, \ldots ,n}}}
-			\beta \enbrace*{\sigma|_{\benbrace{0, \ldots ,q}}} \\
+			\beta \enbrace*{\sigma|_{\benbrace{0, \ldots ,q}}} \\[-2pt]
 			&= (-1)^{\frac{n(n+1)}{2}} (-1)^{p \cdot q} (-1)^{\frac{p(p+1)}{2}} (-1)^{\frac{q(q+1)}{2}} \beta \enbrace*{\sigma|_{\benbrace{0, \ldots ,q}}} 
-			\alpha \enbrace*{\sigma|_{\benbrace*{q, \ldots ,n}}} \\
+			\alpha \enbrace*{\sigma|_{\benbrace*{q, \ldots ,n}}} \\[-2pt]
 			&\stackrel{!}{=} (-1)^{p \cdot q} \enbrace*{\beta \cupp \alpha}(\sigma) = \cancel{(-1)^{p \cdot q}} \cdot \cancel{(-1)^{p \cdot q}} \,\beta \enbrace*{\sigma|_{\benbrace{0, \ldots ,q}}} 
 			\alpha \enbrace*{\sigma|_{\benbrace*{q, \ldots ,n}}}
 		\end{align}
@@ -762,7 +764,7 @@
 \end{beweis}
 
 \begin{proposition}[label=prop:H0_kettenhomotop,{name=[Nullkettenhomotopie von natürlichen Transformationen]}]
-	Sei $\tau_* \colon C_*^\sing \to C_*^\sing$ eine natürliche Transformation durch Kettenabbildungen. 
+	Sei $\tau_* \colon C_*^\sing \to C_*^\sing$ eine natürliche Transformation durch Kettenabbildungen.\marginnote{Alternativ mit \cref{sub:azyklische_modelle}, Methode der azyklischen Modelle}
 	Induziert $\tau$ die triviale Abbildung auf $H_0(\set*{\pt})$, so ist $\tau_*$ kettenhomotop zur Nullabbildung, das heißt es gibt eine natürliche Transformation $\eta_* \colon C_*^\sing \to C_{*+1}^\sing$ mit 
 	\[
 		d^\sing_{*+1} \circ \eta_* + \eta_{*-1} \circ d_*^\sing = \tau_* 
@@ -855,7 +857,7 @@
 \begin{beispiel}[{name=[Kohomologieklassen des Torus]}]
 	$\xi_1 \cdots \xi_n$ ist ein Erzeuger von $H^n(T^n;R)$. Jedes $\eta \in H^k(T^n;R)$ für $k>0$ lässt sich schreiben als
 	\[
-		\eta= \!\smashoperator[r]{\sum_{i_1<\ldots <i_k}}\,\, r_{i_1,\ldots ,i_k} \xi_{i_1} \cupp \ldots \cupp \xi_{i_k}
+		\eta= \!\smashoperator[r]{\sum_{i_1<\ldots <i_k}}\,\, r_{i_1,\ldots ,i_k} \cdot \xi_{i_1} \cupp \ldots \cupp \xi_{i_k}
 	\]
 \end{beispiel}
 % section 4 (end)
