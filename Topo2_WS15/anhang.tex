@@ -26,13 +26,13 @@ Die Homotopieinvarianz wurde bereits in der Vorlesung gezeigt.
 		\item Wir wissen schon (Topologie \RM{1}, Bsp. 5.8), dass für den singulären Kettenkomplex von $\set{\pt}$ gilt
 		\[
 			\begin{tikzcd}
-				\mathbb{Z} & \mathbb{Z} \lar["0"'] & \mathbb{Z} \lar["\id"'] & \mathbb{Z} \lar["0"'] & \ldots \lar 
+				\mathbb{Z} & \mathbb{Z} \lar["0"'] & \mathbb{Z} \lar["\id"'] & \mathbb{Z} \lar["0"'] & \ldots \lar["\id"] 
 			\end{tikzcd}
 		\]
 		Der zugehörige Kokettenkomplex mit Koeffizienten in $V$ hat nun die Form
 		\[
 			\begin{tikzcd}
-				V \rar["0"] & V \rar["\id"] & V \rar["0"] & V \rar & \ldots 
+				V \rar["0"] & V \rar["\id"] & V \rar["0"] & V \rar["\id"] & \ldots 
 			\end{tikzcd}
 		\]
 		Damit folgt direkt die Behauptung.
@@ -49,7 +49,7 @@ Die Homotopieinvarianz wurde bereits in der Vorlesung gezeigt.
 			\end{tikzcd}
 		\]
 		auch wieder kurz exakt ist:
-		$i^*$ ist surjektiv, da $i^*$ eine Kokette auf ihre Einschränkung auf singuläre $n$-Simplizes in $A$ abbildet und man eine Kokette in $C^n(A)$ durch $0$ offensichtlich auf singuläre $n$-Simplizes auf ganz $X$ fortsetzten lässt.
+		$i^*$ ist surjektiv, da $i^*$ eine Kokette auf ihre Einschränkung auf singuläre $n$-Simplizes in $A$ abbildet und man eine Kokette in $C^n(A)$ durch $0$ offensichtlich auf singuläre $n$-Simplizes auf ganz $X$ fortsetzten lässt.\marginnote{Man kann hier auch die Linksexaktheit von $\Hom(-,V)$ anwenden}
 		Der Kern von $i^*$ besteht aus Koketten in $C^n(X)$, die auf Simplizes in $A$ den Wert $0$ annehmen.
 		Da diese aber das gleiche sind, wie Homomorphismen $C_n(X,A) = \sfrac{C_n(X)}{C_n(A)}\to V$, folgt die Exaktheit in der Mitte der Sequenz. Beachte dabei, dass man $C^n(X,A;V)$ als die Menge der Funktionen von singulären $n$-Simplizes in $X$ nach $V$ auffassen kann, die auf singulären Simplizes mit Bild in $A$ verschwinden, denn die Basis von $C_n(X)$ ist die disjunkte Vereinigung der singulären Simplizes, deren Bild in $A$ enthalten ist, mit denen, deren Bild nicht in $A$ enthalten ist.
 		Damit ist die Injektivität von $j^*$ auch klar. 

@@ -95,6 +95,7 @@
 	\)
 	isomorph zum $V$-dualen $R$-Kokettenkomplex des $R$-Kettenkomplexes $\enbrace*{C^\sing_*(X,A;R), d^\sing_*}$, da $C^\sing_*(X,A;R) \cong R \otimes C^\sing_*(X,A)$ und
 	$\hom_\mathbb{Z}(W,V) \cong \hom_R(R \otimes W,V)$ für jeden $\mathbb{Z}$-Modul $W$.
+	\emph{Siehe auch \cref{sub:einschrankung_und_erweiterung_der_skalare}.}
 \end{bemerkung}
 
 
@@ -111,8 +112,9 @@
 \end{bemerkung}
 
 \begin{definition}[{name=[kontravarianter Funktor]}]
-	Seien $\mathcal{C}$ und $\mathcal{D}$ Kategorien. Ein \Index{kontravarianter Funktor}  $F \colon \mathcal{C} \to \mathcal{D}$ ordnet jedem Objekt $C$ in $\mathcal{C}$ ein Objekt
-	$D$ in $\mathcal{D}$ zu und jedem Morphismus $f \colon C \to C'$ einem Morphismus $F(f) \colon F(C') \to F(C)$ in $\mathcal{D}$ zu. Dabei muss gelten:
+	Seien $\mathcal{C}$ und $\mathcal{D}$ Kategorien. 
+	Ein \Index{kontravarianter Funktor}  $F \colon \mathcal{C} \to \mathcal{D}$ ordnet jedem Objekt $C$ in $\mathcal{C}$ ein Objekt $D$ in $\mathcal{D}$ zu und jedem Morphismus $f \colon C \to C'$ einem Morphismus $F(f) \colon F(C') \to F(C)$ in $\mathcal{D}$ zu.\marginnote{\enquote{Pfeile umdrehen}}
+	Dabei muss gelten:
 	\begin{enumerate}[i),noitemsep]
 		\item $F(\id_C)= \id_{F(C)}$
 		\item Für $\begin{tikzcd}[cramped] C \rar["f"] & C' \rar["f'"] & C'' \end{tikzcd}$ gilt $F(f' \circ f) = F(f) \circ F(f')$. 
@@ -176,9 +178,11 @@
 \end{beweis}
 
 \begin{bemerkung}[{name=[Angabe des Verbindungshomomorphismus]},label=bem:verbindungshomo]
-	Sei $(X,A)$ ein Paar von topologischen Räumen. Der Verbindungshomomorphismus $\partial \colon H^n(A;V) \to H^{n+1}(X,A;V)$ kann wie folgt beschrieben werden: Sei 
-	$\alpha \colon C_n(A) \to V$ ein Kozykel. Setze $\alpha$  durch $\hat{\alpha}(\sigma)=0$ für $\sigma \colon \abs{\Delta^n} \to X$, $\im \sigma \nsubseteq A$ zu 
-	$\hat{\alpha} \colon C_n(X) \to V$ fort. Dann ist 
+	Sei $(X,A)$ ein Paar von topologischen Räumen. 
+	Der Verbindungshomomorphismus $\partial \colon H^n(A;V) \to H^{n+1}(X,A;V)$ kann wie folgt beschrieben werden:\marginnote{Schlangenlemma/\newline{}Diagrammjagd} 
+	Sei $\alpha \colon C_n(A) \to V$ ein Kozykel. 
+	Setze $\alpha$  durch $\hat{\alpha}(\sigma)=0$ für $\sigma \colon \abs{\Delta^n} \to X$, $\im \sigma \nsubseteq A$ zu $\hat{\alpha} \colon C_n(X) \to V$ fort. 
+	Dann ist 
 	\[
 		\partial \benbrace{\alpha} = \benbrace*{d^n \hat{\alpha}} = \benbrace*{\hat{\alpha} \circ d_{n+1}} \in H^{n+1}(X,A;V)
 	\]
@@ -280,7 +284,7 @@
 			+ \Underbrace{d^{n-1}(\beta) \enbrace[\big]{a + d_{n+1}(b)}}{=0}
 		\]
 		Damit folgt, dass die Paarung wohldefiniert ist.
-		\item Für $r \in \mathbb{Z}$, $x,x' \in H_n(X,A)$, $\xi,\xi' \in H^n(X,A;V)$ gelten folgende Regeln
+		\item Für $r \in \mathbb{Z}$, $x,x' \in H_n(X,A)$ und $\xi,\xi' \in H^n(X,A;V)$ gelten folgende Regeln
 		\[
 			(r \cdot \xi)(x) = r \cdot \xi(x) = \xi(r \cdot x) \qquad (\xi +\xi')(x) = \xi(x) + \xi'(x) \qquad \xi(x+x')= \xi(x) + \xi(x')
 		\]
@@ -298,7 +302,7 @@
 	\end{enumerate}
 \end{satz}
 
-\noindent Um den Satz beweisen zu können, benötigen wir zunächst zwei technische Aussagen:
+\noindent Um den Satz beweisen zu können, benötigen wir zunächst zwei Hilfslemmata:
 
 \begin{lemma}[label=lem:untergrp_frei,{name=[Untergruppen freier abelscher Gruppen sind frei]}]
 	Untergruppen freier abelscher Gruppen sind frei.\marginnote{Dies gilt auch für $R$-Moduln über einem Hauptidealring, siehe auch \cref{sub:untermod_frei}. Damit folgt \autoref{eig_kohomo_to_hom_homo} auch für HIR.}
@@ -391,7 +395,7 @@
 \end{korollarB}
 
 \begin{bemerkung}[{name=[{Verschärfung von \autoref{kor:26} mit Q-Homomorphismen}]}]
-	Es gilt sogar $H^n \enbrace*{X,A;\mathbb{Q}} \cong \Hom_\mathbb{Q} \enbrace[\big]{H_n(X,A;\mathbb{Q}),\mathbb{Q}}$.
+	Es gilt sogar $H^n \enbrace*{X,A;\mathbb{Q}} \cong \Hom_\mathbb{Q} \enbrace[\big]{H_n(X,A;\mathbb{Q}),\mathbb{Q}}$ mittels \emph{Erweiterung der Skalare} und dem \emph{universellen Koeffiziententheorem}, siehe \cref{sub:einschrankung_und_erweiterung_der_skalare} und \autoref{satz:hir_tensorprod_homologie}.
 \end{bemerkung}
 \newpage
 % section 2 (end)
@@ -2588,7 +2592,7 @@ Zum Vergleich erinnern wir uns an dieser Stelle noch einmal an die Konstruktion 
 	Sei $R$ ein Ring, $C_*$ ein Kettenkomplex von $R$-Rechtsmoduln und $D_*$ ein Kettenkomplex von $R$-Linksmoduln.
 	Dann definieren wir den $\mathbb{Z}$-Kettenkomplex $(C \otimes_R D)_*$ durch\index{Tensorprodukt!von Kettenkomplexen}\marginnote{In Aufgabe 2 von Blatt 3 haben wir gezeigt, dass dies tatsächlich ein Kettenkomplex ist} 
 	\[
-		(C \otimes_R D)_n := \bigoplus_{p+q=n} C_p \otimes_R D_q
+		(C \otimes_R D)_n := \bigoplus_{p+q=n}\!\! C_p \otimes_R D_q
 	\]
 	mit Randabbildung definiert durch
 	\(
@@ -2608,7 +2612,7 @@ Zum Vergleich erinnern wir uns an dieser Stelle noch einmal an die Konstruktion 
 	Sei $C_*$ ein $R$-Kettenkomplex und $\tilde{D}^*$ ein $R$-Kokettenkomplex.\marginnote{für zwei Kettenkomplexe $p+n=q$}
 	Wir definieren den $\mathbb{Z}$-Kokettenkomplex $\Hom_R(C,\tilde{D})^*$ durch
 	\[
-		\enbrace*{\Hom_R(C,\tilde{D})}^n := \prod_{p+q=n} \Hom_R \enbrace*{C_p, \tilde{D}^q} \marginnote{An der Tafel stand $\bigoplus$} 
+		\enbrace*{\Hom_R(C,\tilde{D})}^n := \prod_{p+q=n}\!\! \Hom_R \enbrace*{C_p, \tilde{D}^q} \marginnote{An der Tafel stand $\bigoplus$} 
 	\]
 	und die Randabbildung durch\marginnote{graduierter Kommutator}
 	\(
