@@ -1370,7 +1370,7 @@ Wir wenden uns nun einmal mehr der Topologie von Mannigfaltigkeiten zu und erinn
 	\]
 	Injektivität: Sei $v \in \ker c$. Dann existieren $\lambda_0 \in \Lambda_0$, $v_{\lambda_0} \in F(\lambda_0)$ mit $v=s_{\lambda_0}(v_{\lambda_0})$. 
 	Da $v \in \ker c$ ist, gibt es $\lambda \in \Lambda$ mit $\lambda_0 \le \lambda$ und $F(i_{\lambda_0}^{\lambda})(v_{\lambda_0}) =0$. 
-	Da $\Lambda_0 \subseteq \Lambda$ kofinal ist, gibt es $\lambda_0' \in \Lambda_0$ mit $\lambda \le \lambda_0$. 
+	Da $\Lambda_0 \subseteq \Lambda$ kofinal ist, gibt es $\lambda_0' \in \Lambda_0$ mit $\lambda \le \lambda_0'$. 
 	Es folgt 
 	\begin{align}
 		F(i_{\lambda_0}^{\lambda_0'})(v_{\lambda_0}) = F (i_\lambda^{\lambda_0'} \circ i_{\lambda_0}^\lambda)(v_{\lambda_0}) = F(i_{\lambda}^{\lambda_0'}) \enbrace[\Big]{\Underbrace{F(i_{\lambda_0}^\lambda)(v_{\lambda_0})}{=0}} = 0
@@ -1595,7 +1595,7 @@ Wir wenden uns nun einmal mehr der Topologie von Mannigfaltigkeiten zu und erinn
 	Dann induziert die Inklusion $C^*(X, U\cup V) \to C^*(X,U+V)$ einen Isomorphismus in Kohomologie.
 \end{lemma}
 \begin{beweis}
-	Sei $C^*(U+V) := C_*^{\set*{U,V}}(U \cup V)$. 
+	Sei $C_*(U+V) := C_*^{\set*{U,V}}(U \cup V)$. 
 	Die Inklusion $C_*(U +V)\to C_*(U \cup V)$ ist nach dem Satz über kleine Simplizes eine Kettenhomotopieäquivalenz.
 	Sei $C^*(U+V)= \Hom \enbrace*{C_*(U+V),R}$ der zu $C_*(U+V)$ duale Kokettenkomplex. 
 	Dann ist auch $C^*(U \cup V) \to C^*(U+V)$ eine Kokettenhomotopieäquivalenz.
