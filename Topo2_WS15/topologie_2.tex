@@ -889,7 +889,9 @@
 		\end{tikzcd}
 	\]
 	ist ein azyklischer Kettenkomplex, der nicht kettenkontraktibel ist, da es keine nicht trivialen Abbildungen $\sfrac{\mathbb{Z}}{2 \mathbb{Z}} \to \mathbb{Z}$ gibt, eine solche zur Konstruktion einer Kettenhomotopie aber nötig wäre.
-	Damit ist die Antwort auf die erste Frage \enquote{Nein}.
+	Damit ist die Antwort auf die erste Frage im Allgemeinen \enquote{Nein}.
+	Unter zusätzlichen Forderungen an die Kettenmoduln ist die Antwort allerdings \enquote{Ja}, wie wir in diesem Kapitel sehen werden.
+	Diese zusätzliche Forderung ist die folgende:
 \end{beispiel}
 
 \begin{definition}[{name=[projektiver Modul]},label=def_projektiv]
@@ -972,11 +974,11 @@
 \end{beweis}
 
 \begin{definition}[{name=[Kegel und Einhängung]}]
-	Sei $f \colon C_* \to D_*$ eine Kettenabbildung. 
+	Sei $f \colon C_* \to D_*$ eine Kettenabbildung.\marginnote{Für $f \colon X \to Y$ ist $C_*(\Keg(f)) \cong \Keg(f_*)_*$ als Kettenkomplexe} 
 	Der \bet{Kegel}\index{Kegel!Kettenkomplex} $\Keg(f)_*$ von $f$ ist der Kettenkomplex, dessen $n$-ter Kettenmodul $D_n \oplus C_{n-1}$ ist und dessen $n$-te Randabbildung gegeben ist durch
 	\[
 		d^{\Keg(f)}_n := \begin{pmatrix}
-			d^D_n & f\\
+			d^D_n & f_{n-1} \\
 			0 & -{d^C_{n-1}}
 		\end{pmatrix}
 	\]
@@ -984,7 +986,7 @@
 \end{definition}
 
 \begin{lemma}[{name=[{Isomorphismus induziert genau dann, wenn der Kegel azyklisch ist}]},label=lem:iso_homo_keg_azyklisch]
-	Eine Kettenabbildung $f\colon C_* \to D_*$ induziert genau dann einen Isomorphismus in Homologie, wenn $\Keg(f_*)$ azyklisch ist.
+	Eine Kettenabbildung $f\colon C_* \to D_*$ induziert genau dann einen Isomorphismus in Homologie, wenn $\Keg(f)_*$ azyklisch ist.
 \end{lemma}
 \begin{beweis}
 	Betrachte die lange exakte Folge zur kurzen exakten Folge von Kettenkomplexen
@@ -1039,7 +1041,7 @@
 	Singuläre Kohomologie erfüllt das Ausschneidungsaxiom.\marginnote{vgl. \autoref{satz:110}}
 \end{korollar}
 \begin{beweis}
-	Für eine offene Überdeckung $\mathcal{U}$ von $X$ sei $C^*_{\mathcal{U}}(X,A;V) := \Hom \enbrace*{C_*^{\mathcal{U}}(X,A),V}$. Da die Inklusion $i \colon C^{\mathcal{U}}_*(X,A) \to C_*(X;A)$ 
+	Für eine offene Überdeckung $\mathcal{U}$ von $X$ sei $C^*_{\mathcal{U}}(X,A;V) := \Hom \enbrace*{C_*^{\mathcal{U}}(X,A),V}$. Da die Inklusion $i \colon C^{\mathcal{U}}_*(X,A) \to C_*(X,A)$ 
 	eine Kettenhomotopieäquivalenz ist, ist auch $i^* \colon C^*(X,A;V) \to C^*_{\mathcal{U}}(X,A;V)$ eine Kokettenhomotopieäquivalenz. Nun genauso wie für Homologie.
 \end{beweis}
 % section 5 (end)
