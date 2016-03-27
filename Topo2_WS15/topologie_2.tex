@@ -1839,7 +1839,7 @@ Zum Vergleich erinnern wir uns an dieser Stelle noch einmal an die Konstruktion 
 	Nun betrachte einen Teil der Paarfolge zu $\enbrace*{N \times [0,1], \partial (N \times [0,1])}$
 	\[
 		\begin{tikzcd}[sep=1.8em]
-			\underset{=H_n(N)=0}{H_n(N \times [0,1])} \rar & \underset{\neq 0}{H_n \enbrace[\big]{N \times [0,1], N \times \set*{0,1}}} \rar & \underset{= H_{n-1}(N) \oplus H_{n-1}(N) \neq 0}{H_{n-1} \enbrace[\big]{N \times \set*{0,1}}} \rar & H_{n-1} \enbrace*{N \times [0,1]}
+			\underset{=H_n(N)=0}{H_n(N \times [0,1])} \rar & \underset{\neq 0}{H_n \enbrace[\big]{N \times [0,1], N \times \set*{0,1}}} \rar & \underset{= H_{n-1}(N) \oplus H_{n-1}(N)}{H_{n-1} \enbrace[\big]{N \times \set*{0,1}}} \rar & H_{n-1} \enbrace*{N \times [0,1]}
 		\end{tikzcd}
 	\]
 	Der zweite Modul ist nicht trivial, da $N \times [0,1]$ orientierbar ist (siehe \autoref{bem:orientierung_rand}).
@@ -1902,9 +1902,9 @@ Zum Vergleich erinnern wir uns an dieser Stelle noch einmal an die Konstruktion 
 \begin{bemerkung}[{name=[Begründung des Namens \enquote{Schnittform}]}]
 	Eine kurze Begründung des Namens \enquote{Schnittform}:
 	
-	Seien für $i=0,1$ $N_i$ geschlossene $K$-orientierte\marginnote{$K$ Körper} $k_i$-Mannigfaltigkeiten mit Fundamentalklassen $\mu_i \in H_{k_i}(N_i;K)$.
+	Seien für $i=1,2$ $N_i$ geschlossene $K$-orientierte\marginnote{$K$ Körper} $k_i$-Mannigfaltigkeiten mit Fundamentalklassen $\mu_i \in H_{k_i}(N_i;K)$.
 	Seien $f_i \colon N_i \to M$ stetige Abbildungen in eine geschlossene $K$-orientierte $(n=k_0+k_1)$-Mannigfaltigkeit $M$.
-	Seien weiter $\xi_i \in H^{n-{k_i}}$ die zu $(f_i)_*(\mu_i)$ Poincaré-dualen Kohomologieklassen. Dann \enquote{gilt}
+	Seien weiter $\xi_i \in H^{n-{k_i}}(M)$ die zu $(f_i)_*(\mu_i)$ Poincaré-dualen Kohomologieklassen. Dann \enquote{gilt}
 	\[
 		\sprod*{\xi_1}{\xi_2} = \# f_1(N_1) \cap f_2(N_2)
 	\]
@@ -1933,7 +1933,7 @@ Zum Vergleich erinnern wir uns an dieser Stelle noch einmal an die Konstruktion 
 	\end{align}
 	Ihre Komposition bildet $\xi \in H^k(M;K)$ auf die Abbildung
 	\[
-		\eta \longmapsto \xi \enbrace*{\eta \capp \mu_M} \StackText{\ref{bem_augmentation_cap}}{=} \epsilon \enbrace[\big]{\xi \capp (\eta \capp \mu_M)} \StackText{\ref{lem:cup_n_cap}}{=} \epsilon \enbrace[\big]{(\xi \cupp \eta) \capp \mu_M} = (\xi \cupp \eta)(\mu_M) = \sprod*{\xi}{\eta}_K
+		\eta \longmapsto \xi \enbrace*{\eta \capp \mu_M} \StackText{\ref{bem_augmentation_cap}}{=} \epsilon \enbrace[\big]{\xi \capp (\eta \capp \mu_M)} \StackText{\ref{lem:cup_n_cap}}{=} \epsilon \enbrace[\big]{(\xi \cupp \eta) \capp \mu_M} \StackText{\ref{bem_augmentation_cap}}{=} (\xi \cupp \eta)(\mu_M) = \sprod*{\xi}{\eta}_K
 	\]
 	ab und es folgt die Behauptung.
 \end{beweis}
@@ -2015,9 +2015,9 @@ Zum Vergleich erinnern wir uns an dieser Stelle noch einmal an die Konstruktion 
 \end{bemerkung}
 
 \begin{beispiel}[{name=[{Signatur des komplex projektiven Raumes}]}]
-	Sei $\alpha \in H^2(\mathbb{CP}^{2k})$ ein Erzeuger.\marginnote{vgl. \autoref{satz:kohomo_ring_projektiv} (ii)}
-	Wir wählen die Orientierung $\mu \in H_{4k} \enbrace{\mathbb{CP}^{2k}}$ für die $\alpha^{2k} (\mu)=1$.
-	Mit dieser Orientierung ist $\sig \enbrace{\mathbb{CP}^{2k}}=1$.
+	Sei $\alpha \in H^2(\mathbb{C}P^{2k})$ ein Erzeuger.\marginnote{vgl. \autoref{satz:kohomo_ring_projektiv} (ii)}
+	Wir wählen die Orientierung $\mu \in H_{4k} \enbrace{\mathbb{C}P^{2k}}$ für die $\alpha^{2k} (\mu)=1$.
+	Mit dieser Orientierung ist $\sig \enbrace{\mathbb{C}P^{2k}}=1$.
 \end{beispiel}
 
 \begin{satz}[{name=[{Rand einer 4k+1 Mannigfaltigkeit hat Signatur 0}]},label=satz:sig_rand_4k+1_mfkt]
@@ -2025,7 +2025,8 @@ Zum Vergleich erinnern wir uns an dieser Stelle noch einmal an die Konstruktion 
 	Falls $\dim W = 4k+1$ ist, so gilt $\sig(\partial W)=0$.
 \end{satz}
 \begin{beweis}
-	Sei $L :=  \im \enbrace[\big]{i^* \colon H^{2k}(W;\mathbb{R}) \to H^{2k}(\partial W;\mathbb{R})}$. Es gilt
+	Sei $L :=  \im \enbrace[\big]{i^* \colon H^{2k}(W;\mathbb{R}) \to H^{2k}(\partial W;\mathbb{R})}$. 
+	Wir überprüfen die Bedingungen aus \autoref{sig_null}:
 	\begin{enumerate}[a)]
 		\item Wir zeigen, dass die Schnittform auf $L$ trivial ist:
 		Es seien also $i^* \xi, i^* \eta \in L$.
@@ -2044,7 +2045,7 @@ Zum Vergleich erinnern wir uns an dieser Stelle noch einmal an die Konstruktion 
 		\]
 		Die Kommutativität benutzt wieder $\partial (\mu_{W,\partial W})=\mu_{\partial W}$.
 		Es folgt $\dim \im i^* = \dim \ker i_*$.
-		Da wir Koeffizienten in $\mathbb{R}$ betrachten gilt $H^{2k}(W;\mathbb{R}) \cong \Hom \enbrace*{H_{2k}(W),\mathbb{R}}$ und wir können $i^*$ mit $(i_*)^*$ identifizieren.
+		Da wir Koeffizienten in $\mathbb{R}$ betrachten, gilt $H^{2k}(W;\mathbb{R}) \cong \Hom \enbrace*{H_{2k}(W),\mathbb{R}}$ und wir können $i^*$ mit $(i_*)^*$ identifizieren.
 		Mit \cref{sub:dimensionsargument_rand_mfkt} folgt damit $\dim \im i_* = \dim \im i^*$.
 		Es gilt nun 
 		\[
@@ -2056,7 +2057,7 @@ Zum Vergleich erinnern wir uns an dieser Stelle noch einmal an die Konstruktion 
 \end{beweis}
 
 \begin{korollarB}[{name=[{Für gerade n ist der komplex projektive Raum nicht Rand einer Mannigfaltigkeit}]}]
-	$\mathbb{CP}^{2k}$ ist nicht der Rand einer orientierten kompakten Mannigfaltigkeit.
+	$\mathbb{C}P^{2k}$ ist nicht der Rand einer orientierten kompakten Mannigfaltigkeit.
 \end{korollarB}
 
 \begin{ausblick}[{name=[{Klassifizierung von geschlossenen 4-Mannigfaltigkeiten}]}]
@@ -2116,10 +2117,10 @@ Zum Vergleich erinnern wir uns an dieser Stelle noch einmal an die Konstruktion 
 	Seien entsprechende Abbildungen $f_0,\ldots ,f_n$ bereits konstruiert, sodass folgendes Diagramm kommutiert
 	\[
 		\begin{tikzcd}[row sep=2.3em, column sep=2.7em]
-			H_0(P_*) \dar["\varphi"] & P_0 \lar[two heads]  \dar["f_0"] & \ldots \lar & P_n \lar["d_n"']\dar["f_n"] & P_{n+1} \lar["d_{n+1}"'] \dar[dashed,"f_{n+1}"] \\
+			H_0(P_*) \dar["\varphi"] & P_0 \lar[two heads]  \dar["f_0"] & \ldots \lar["d_1"] & P_n \lar["d_n"']\dar["f_n"] & P_{n+1} \lar["d_{n+1}"'] \dar[dashed,"f_{n+1}"] \\
 			H_0(A_*) & A_0 \lar[two heads] & \ldots \lar["d_1'"'] & A_n \lar["d_n'"'] & A_{n+1} \lar["d_{n+1}'"']
 		\end{tikzcd}
-		\hspace{2em}
+		\hspace{3em}
 		\begin{tikzcd}[row sep=2.3em, column sep=huge]
 			\mbox{ } & A_{n+1} \dar[two heads,"d_{n+1}'"]\\
 			P_{n+1} \ar[ur,dashed] \rar["f_n \circ d_{n+1}"] & \ker d_{n}'
@@ -2241,7 +2242,7 @@ Zum Vergleich erinnern wir uns an dieser Stelle noch einmal an die Konstruktion 
 		\item $H^*(X;V) \cong \Hom_\mathbb{Z}(H_*(X),V)$ ?
 		\item $H^*(X;W) \cong \Hom_R \enbrace*{H_*(X;R),W}$ ?
 	\end{itemize}
-	Genauso für Kettenkomplexe: Sei $C_*$ ein $\mathbb{Z}$-Kettenkomplex ud $C_*'$ ein $R$-Kettenkomplex. Gilt dann
+	Genauso für Kettenkomplexe: Sei $C_*$ ein $\mathbb{Z}$-Kettenkomplex und $C_*'$ ein $R$-Kettenkomplex. Gilt dann
 	\begin{itemize}
 		\item $H_* \enbrace*{V \otimes_\mathbb{Z} C_*} \cong V \otimes _\mathbb{Z} H_*(C_*)$ ?
 		\item $H_* \enbrace*{V' \otimes_R C_*'} \cong V' \otimes_R H_*(C_*)$ ?
@@ -2373,14 +2374,14 @@ Zum Vergleich erinnern wir uns an dieser Stelle noch einmal an die Konstruktion 
 \end{lemma}
 \begin{beweis}
 	Nach \autoref{satz:ex_eind_proj_aufl} sind projektive Auflösungen eindeutig bis auf Kettenhomotopieäquivalenz.
-	Beide Funktoren erhalten Kettenhomotopieäquivalenzen (bzw. wandeln diese in Kokettenhomotopieäquivalenz um) und somit folgt der erste Teil der Aussage.
+	Beide Funktoren erhalten Kettenhomotopieäquivalenzen (bzw. wandeln diese in Kokettenhomotopieäquivalenzen um) und somit folgt der erste Teil der Aussage.
 	Mit dem eben gezeigten \autoref{lem:exakt_tens_hom} folgt die Aussage über die (Ko-)Homologieklassen.
 \end{beweis}
 
 \begin{definition}[{name=[Tor und Ext]}]
 	Wir setzen in der Situation von obigem \autoref{lem:eind_tensor_hom_proj_aufl}\marginnote{$\Tor$ und $\Ext$ messen, wie exakt die Funktoren $V \otimes_R - $ bzw. $\Hom(-,W)$ sind}
 	\[
-		\Tor_n^R(V,M) := H_n(V \otimes_R P_*) \qquad \text{ und } \qquad \Ext_R^n(M,W) := H^n \enbrace*{\Hom_R(P_*,W)} 
+		\Tor_n^R(V,M) := H_n(V \otimes_R P_*) \qquad \text{ und } \qquad \Ext_R^n(M,W) := H^n \enbrace[\big]{\Hom_R(P_*,W)} 
 	\]
 \end{definition}
 
@@ -2618,9 +2619,9 @@ Zum Vergleich erinnern wir uns an dieser Stelle noch einmal an die Konstruktion 
 	\[
 		\enbrace*{\Hom_R(C,\tilde{D})}^n := \prod_{p+q=n}\!\! \Hom_R \enbrace*{C_p, \tilde{D}^q} \marginnote{An der Tafel stand $\bigoplus$} 
 	\]
-	und die Randabbildung durch\marginnote{graduierter Kommutator}
+	und die Randabbildung durch\marginnote{für Kettenkomplexe \enquote{-} statt \enquote{+}; graduierter Kommutator}
 	\(
-		\partial f = \partial^{\tilde{D}} \circ f - (-1)^{\abs*{f}}\, f \circ \partial^C
+		\partial f = \partial^{\tilde{D}} \circ f + (-1)^{\abs*{f}}\, f \circ \partial^C
 	\).
 \end{definition}
 
@@ -2643,9 +2644,9 @@ Zum Vergleich erinnern wir uns an dieser Stelle noch einmal an die Konstruktion 
 	Dann schreiben wir $v=\sum_{i=0}^{n} v_i$ mit $v_i \in P_i \otimes C_{n-i}$.
 	Die $v_i$ sind durch $v$ eindeutig bestimmt.
 	Man betrachte nun das Diagramm in \cref{fig:tensor:ketten}.
-	Da wir $\mathbb{N}$-graduierte Kettenkomplexe betrachten, sind die Randabbildungen in den \enquote{Randfällen} trivial und wir erhalten also eindeutige Darstellung von $\partial^{P \otimes C}(v)$:
+	Da wir $\mathbb{N}$-graduierte Kettenkomplexe betrachten, sind die Randabbildungen in den \enquote{Randfällen} trivial und wir erhalten als eindeutige Darstellung von $\partial^{P \otimes C}(v)$:
 	\[
-		\partial^{P \otimes C}(v)= \sum_{i=0}^{n-1} \Underbracket{(-1)^i \id \otimes \partial^C(v_i) + (\partial^P \otimes \id)(v_{i+1})}{\in P_i \otimes C_{n-1-i}}
+		\partial^{P \otimes C}(v)= \sum_{i=0}^{n-1} \Underbracket{(-1)^i \,(\id \otimes \partial^C)(v_i) + (\partial^P \otimes \id)(v_{i+1})}{\in P_i \otimes C_{n-1-i}}
 	\]
 	\begin{figure}[bt]
 		\centering{
@@ -2662,34 +2663,34 @@ Zum Vergleich erinnern wir uns an dieser Stelle noch einmal an die Konstruktion 
 	\begin{equation}
 		\partial^{P \otimes C}v =0 \iff (-1)^{i+1} (\id \otimes \partial^C)(v_i)= (\partial^P \otimes \id)(v_{i+1}) \label{eq:13:1}\tag{\#}
 	\end{equation}
-	Da die $C_i$ projektiv sind, ist $\otimes_R C_i$ exakt und für jedes $i$ ist somit
+	Da die $C_i$ projektiv sind, ist $-\otimes_R C_i$ exakt und für jedes $i$ ist somit
 	\begin{equation}
 		\begin{tikzcd}[sep=large]
-			V \otimes_R C_i & P_0 \otimes_R C_i \lar["\epsilon \otimes \id"'] & P_1 \otimes C_i \lar["\partial^P \otimes \id"'] & \ldots \lar["\partial^P \otimes \id"']
+			V \otimes_R C_i & P_0 \otimes_R C_i \lar["\epsilon \otimes {\id}"'] & P_1 \otimes C_i \lar["\partial^P \otimes {\id}"'] & \ldots \lar["\partial^P \otimes {\id}"']
 		\end{tikzcd}
 		\label{eq:13:2}\tag{\S}
 	\end{equation}
 	exakt.
 	Sei $x \in H_n(V \otimes C_*)$.
-	Sei $a \in V \otimes C_n$ mit $\id \otimes \partial^C(a)=0$ und $x=[a]$.
+	Sei $a \in V \otimes C_n$ mit ${\id} \otimes \partial^C(a)=0$ und $x=[a]$.
 	Wähle $v_0 \in P_0 \otimes C_n$ mit $\epsilon \otimes \id(v_0)=a$.
 	Behauptung: Es gibt für $i=1,\ldots ,n$ Elemente $v_i \in P_i \otimes C_{n-i}$ mit 
 	\(
 		\partial^{P \otimes C} \enbrace[\big]{\sum_{i=0}^{n} v_i } = 0
 	\).
 	Wir beweisen dies per Induktion: Seien $v_0, \ldots ,v_j$ bereits konstruiert mit \eqref{eq:13:1} für $i<j$.
-	Dann ist $(\partial^P \otimes \id)(\id \otimes \partial^C)(v_j) = \pm (\id \otimes \partial^C) (\id \otimes \partial^C)(v_{j-1})=0$.
+	Dann ist $(\partial^P \otimes {\id})({\id} \otimes \partial^C)(v_j) = \pm ({\id} \otimes \partial^C) ({\id} \otimes \partial^C)(v_{j-1})=0$.
 	Wegen \eqref{eq:13:2} gibt es $v_{j+1} \in P_{j+1} \otimes C_{n-j-1}$ mit 
 	\[
 		\enbrace*{\partial^P \otimes \id}(v_{j+1}) = \enbrace*{\id \otimes \partial^C}(v_j)
 	\]
 	Damit ist die Behauptung bewiesen.
-	Es folgt $(\epsilon \otimes \id)_* \enbrace*{\benbrace[\big]{\sum_{i=0}^n v_i}} = [a]$.
-	Daher ist $\enbrace*{\epsilon \otimes \id}_*$ surjektiv. 
+	Es folgt $(\epsilon \otimes {\id})_* \enbrace*{\benbrace[\big]{\sum_{i=0}^n v_i}} = [a]$.
+	Daher ist $\enbrace*{\epsilon \otimes {\id}}_*$ surjektiv. 
 	
-	Für die Injektivität betrachten wir $v= \sum_{i=0}^{n} v_i \in (P \otimes C)_n$ mit $\partial^{P \otimes C}(v)=0$ und $(\epsilon \otimes \id)_* ([v])=0 \in H_n(V \otimes C_*)$.
-	Dann gibt es $y \in V \otimes C_{n+1}$ mit $\id \otimes \partial^C(y)=\epsilon \otimes \id(v)$.
-	Weiter finden wir $w_0 \in P_0 \otimes C_{n+1}$ mit $\varepsilon \otimes \id(w_0)=y$.
+	Für die Injektivität betrachten wir $v= \sum_{i=0}^{n} v_i \in (P \otimes C)_n$ mit $\partial^{P \otimes C}(v)=0$ und $(\epsilon \otimes {\id})_* ([v])=0 \in H_n(V \otimes C_*)$.
+	Dann gibt es $y \in V \otimes C_{n+1}$ mit ${\id} \otimes \partial^C(y)=\epsilon \otimes {\id}(v)$.
+	Weiter finden wir $w_0 \in P_0 \otimes C_{n+1}$ mit $\varepsilon \otimes {\id}(w_0)=y$.
 	Analog zum obigen Vorgehen konstruiert man nun $w_i \in P_i \otimes C_{n-i+1}$ mit $\partial^{P \otimes C} \enbrace[\big]{\sum_{i=0}^{n+1} w_i }=0$.
 	Damit folgt dann die Behauptung.
 \end{beweis}
@@ -2699,7 +2700,7 @@ Zum Vergleich erinnern wir uns an dieser Stelle noch einmal an die Konstruktion 
 	Sei $(I^*,j)$ eine injektive Auflösung des $R$-Moduls $W$.
 	Dann induziert $j$ einen Isomorphismus 
 	\[
-		H^*\enbrace*{\Hom_R(C_*,W)} \longrightarrow H^* \enbrace*{\Hom_R(C_*,I^*)}
+		H^*\enbrace[\big]{\Hom_R(C_*,W)} \longrightarrow H^* \enbrace[\big]{\Hom_R(C_*,I^*)}
 	\]
 \end{lemma}
 \begin{beweis}
@@ -2726,7 +2727,7 @@ Zum Vergleich erinnern wir uns an dieser Stelle noch einmal an die Konstruktion 
 \end{definition}
 
 \begin{beispiel}[{name=[Tensorprodukt als Totalkomplex]}]
-	Das Tensorprodukt von Kettenkomplexen $C_*$ und $D_*$ ist der Totalkomplex eines Doppelkomplexes, dessen $(p,q)$-ter Modul $C_p \otimes_R D_q$ ist mit $\partial^v = \id \otimes \partial^D$, $\partial^h = {\pm {\partial^C \otimes \id}}$.
+	Das Tensorprodukt von Kettenkomplexen $C_*$ und $D_*$ ist der Totalkomplex eines Doppelkomplexes, dessen $(p,q)$-ter Modul $C_p \otimes_R D_q$ ist mit $\partial^v = {\id} \otimes \partial^D$, $\partial^h = {\pm {\partial^C \otimes {\id}}}$.
 	Definiert man eine zweite Art von Totalkomplex mit einem Produkt anstatt der Summe, lässt sich auch $\Hom(C_*,D_*)$ als Totalkomplex auffassen (siehe zum Beispiel \cite[V.1, S.~167ff]{HiltonHomAlg}).
 \end{beispiel}
 
