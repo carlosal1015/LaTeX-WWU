@@ -1619,7 +1619,7 @@ Wir wenden uns nun einmal mehr der Topologie von Mannigfaltigkeiten zu und erinn
 		\end{tikzcd}
 	\]
 	Der Verbindungshomomorphismus $\partial$ kann wie folgt beschrieben werden: Sei $\alpha \in C^n(X,U \cap V)$ mit $d^n(\alpha)=0$.
-	Dann lässt sich $\alpha$ schreiben als $\alpha= \alpha_U + \alpha_V$ mit $\alpha_U \in C^*(X,U)$ und $\alpha_V \in C^n(X,V)$ und es ist $\partial [\alpha] = \benbrace*{d^n \alpha_U}= \benbrace*{-d^n \alpha_V}$
+	Dann lässt sich $\alpha$ schreiben als $\alpha= \alpha_U + \alpha_V$ mit $\alpha_U \in C^n(X,U)$ und $\alpha_V \in C^n(X,V)$ und es ist $\partial [\alpha] = \benbrace*{d^n \alpha_U}= \benbrace*{-d^n \alpha_V}$
 \end{satz}
 \begin{beweis}
 	Benutze die kurze exakte Folge von Kokettenkomplexen 
@@ -1693,9 +1693,9 @@ Zum Vergleich erinnern wir uns an dieser Stelle noch einmal an die Konstruktion 
 	Seien $U,V$ offene Teilmengen einer $R$-orientierten $n$-Mannigfaltigkeit $M$.\marginnote{vgl. \cite[Lemma 3.36]{Hatcher}, bei ihm aber nur Kommutativität bis auf Vorzeichen (?)} 
 	Dann bilden die Poincaré-Dualitätsabbildungen zusammen mit der Mayer-Vietorisfolge ein kommutatives Diagramm
 	\[
-		\begin{tikzcd}
-			\ldots \rar & H^k_c(U \cap V) \rar \dar["\PD_{U \cap V}"] & H^k_c(U) \oplus H^k_c(V) \dar["\PD_{U} \oplus \PD_{V}"] \rar & H^k_c(U \cup V) \rar["\partial"] \dar["\PD_{U \cup V}"]& \ldots \dar \\
-			\ldots \rar & H_{n-k}(U \cap V) \rar & H_{n-k}(U) \oplus H_{n-k}(V) \rar & H_{n-k}(U \cup V) \rar & \ldots 
+		\hspace{-.68ex}\begin{tikzcd}[column sep=1.67em]
+			\ldots \rar & H^k_c(U \cap V) \rar \dar["\PD_{U \cap V}"] & H^k_c(U) \oplus H^k_c(V) \dar["\PD_{U} \oplus \PD_{V}"] \rar & H^k_c(U \cup V) \rar["\partial"] \dar["\PD_{U \cup V}"]& H^{k+1}_c(U \cap V) \dar["\PD_{U \cap V}"] \rar & \ldots  \\
+			\ldots \rar & H_{n-k}(U \cap V) \rar & H_{n-k}(U) \oplus H_{n-k}(V) \rar & H_{n-k}(U \cup V) \rar["\partial"] & H_{n-k-1}(U \cap V) \rar & \ldots  
 		\end{tikzcd}
 	\]
 \end{proposition}
