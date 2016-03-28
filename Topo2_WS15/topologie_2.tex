@@ -1562,7 +1562,7 @@ Wir wenden uns nun einmal mehr der Topologie von Mannigfaltigkeiten zu und erinn
 	Für $M=\mathbb{R}^n$ ist die Poincaré-Dualitäts-Abbildung ein Isomorphismus. 
 \end{lemma}
 \begin{beweis}
-	Ist $B \subset \mathbb{R}^n$ ein kompakter Ball, so ist ${\capp\mu_B} \colon H^k(\mathbb{R}^n,\mathbb{R}^n \setminus B,R) \to H_{n-k}(\mathbb{R}^n)$ ein Isomorphismus.
+	Ist $B \subset \mathbb{R}^n$ ein kompakter Ball, so ist ${\capp\mu_B} \colon H^k(\mathbb{R}^n,\mathbb{R}^n \setminus B,R) \to H_{n-k}(\mathbb{R}^n)$ ein Isomorphismus nach \autoref{Rn_kompakteBaelle}.
 	Da die Menge der kompakten Bälle $\mathcal{B}$ kofinal in allen kompakten Teilmengen ist, ist auch
 	\(
 		\PD_M = \colim_{\mathcal{B}} \enbrace*{\capp \mu_B}
@@ -3099,7 +3099,7 @@ Wir rechnen nun noch Punkt 3. aus der Definition einer Spektralfolge nach:
 	\end{enumerate}
 \end{proposition}
 \begin{beweis}
-	Nach \autoref{satz:spektralfolge_filtrierung} haben wir die folgenden Isomorphismen\marginnote{die horizontale Filtrierung unterscheidet sich quasi nur durch eine Spiegelung an der Diagonalen von der vertikalen Filtrierung}
+	Nach \autoref{satz:spektralfolge_filtrierung} haben wir die folgenden Isomorphismen\marginnote{die horizontale Filtrierung unterscheidet sich quasi durch eine Spiegelung an der Diagonalen von der vertikalen Filtrierung}
 	\[
 		{^vE^0_{p,q}} \cong\frac{F_p^v T(C_{**})_{p+q}}{F_{p-1}^v T(C_{**})_{p+q}} \cong  C_{p,q} \qquad {^hE^0_{p,q}}\cong\frac{F^h_p T(C_{**})_{p+q}}{F_{p-1}^h T(C_{**})_{p+q}} \cong C_{q,p}
 	\]
@@ -3283,7 +3283,7 @@ Wir rechnen nun noch Punkt 3. aus der Definition einer Spektralfolge nach:
 	Sei $R$ ein Hauptidealring, $X,Y$ topologische Räume.
 	Dann gilt
 	\[
-		H_n(X \times Y;R) \cong \bigoplus_{p+q=n} H_p(X;R) \otimes_R H_q(Y;R) \oplus \bigoplus_{p+q=n-1} \Tor_1^R \enbrace[\big]{H_p(X;R),H_q(Y;R)}
+		H_n(X \times Y;R) \cong \smashoperator[r]{\bigoplus_{p+q=n}}\enspace H_p(X;R) \otimes_R H_q(Y;R) \oplus \smashoperator[r]{\bigoplus_{p+q=n-1}}\enspace \Tor_1^R \enbrace[\big]{H_p(X;R),H_q(Y;R)}
 	\]
 \end{korollarB}
 
@@ -3381,8 +3381,8 @@ Wir rechnen nun noch Punkt 3. aus der Definition einer Spektralfolge nach:
 	Also gilt \eqref{eq:16:rand} wie gewünscht.
 \end{beweis}
 \begin{beweis}[{name={von Eilenberg-Zilber, \ref{eilenbergzilber}}}]
-	Sei $m$ wie oben.
-	Dann sind nach \autoref{prop:16:eind} $\AW \circ m$ und $m \circ \AW$ kettenhomotop zur Identität.
+	Sei $m$ die natürliche Kettenabbildung aus \autoref{prop:existenz_eilenberg_zilber}.
+	Dann sind nach \autoref{prop:16:eind} ${\AW} \circ m$ und $m \circ \AW$ kettenhomotop zur Identität.
 \end{beweis}
 % section 16 (end)
 \newpage
@@ -3600,9 +3600,10 @@ Wir rechnen nun noch Punkt 3. aus der Definition einer Spektralfolge nach:
 			0 &\text{ sonst }
 		\end{cases}
 	\]
-	Die natürliche Spektralfolge kollabiert bei $E^2$ und es gilt $H_n \enbrace*{P_* \otimes_R Q_*} \cong {^v E^2_{n,0}} \cong H_p (P_* \otimes W)$.
+	Die natürliche Spektralfolge kollabiert bei $E^2$ und es gilt $H_n \enbrace*{P_* \otimes_R Q_*} \cong {^v E^2_{n,0}} \cong H_n (P_* \otimes W)$.
 	Genauer induziert ${\id} \otimes \delta \colon P_* \otimes Q_* \to P_* \otimes W$ auf den $E^1$-Seiten der zwei Spektralfolgen (bezüglichen der vertikalen Filtrierung auf $P_* \otimes Q_*$ und der vertikalen (=trivialen) Filtrierung auf $P_* \otimes W$) einen Isomorphismus und daher auch einen Isomorphismus in Homologie.
 	Genauso zeigt man, dass $\epsilon \otimes \id \colon P_* \otimes_R Q_* \to V \otimes_R Q_*$ einen Isomorphismus der $E^1$-Seiten der horizontalen Spektralfolge induziert und daher auch einen Isomorphismus in Homologie induziert.
+	Dies haben wir auch schon in \autoref{satz:spektralfolge_tor_homol_tensor} gezeigt.
 \end{beweis}
 
 \begin{bemerkung}[{name=[{Symmetrie von Tor}]}]
@@ -3611,7 +3612,7 @@ Wir rechnen nun noch Punkt 3. aus der Definition einer Spektralfolge nach:
 		\item Es folgt, dass sich $\Tor_*^R(V,W)$ sowohl durch eine projektive Auflösung von $V$ als auch durch eine projektive Auflösung von $W$ berechnen lässt.
 		\item Ist $R$ kommutativ, so gilt $V \otimes_R W \cong W \otimes_R V$ via $v \otimes w \mapsto w \otimes v$ und es folgt
 		\[
-			\Tor_*^R(V,W) \cong H_*\enbrace*{V \otimes_R Q_*} \cong H_* \enbrace*{Q_* \otimes_R V} \cong \Tor_*^R(W,V)
+			\Tor_*^R(V,W) = H_*\enbrace*{V \otimes_R Q_*} \cong H_* \enbrace*{Q_* \otimes_R V} \cong \Tor_*^R(W,V)
 		\]
 	\end{enumerate}
 \end{bemerkung}
