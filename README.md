@@ -6,10 +6,23 @@ lecture notes written at WWU Münster, FB10
 ## Das Bereitstellen der PDFs ist noch nicht vollständig eingerichtet!
 
 Dies betrifft insbesondere auch den Dropbox- sowie den Sciebo-Ordner!
-Als Zwischenlösung sind einige aktuelle Skripte über die _Releasess_ verfügbar: 
+Als Zwischenlösung sind einige aktuelle Skripte über die _Releases_ verfügbar: 
 ### [PDFs](https://github.com/JaMeZ-B/LaTeX-WWU/releases/latest)
 
 Das alte Repository mit den – eventuell veralteten – PDFs findet man  [HIER](https://github.com/JaMeZ-B/LaTeX-wwu-old)
+
+### Mitarbeit
+Ich lade jeden herzlich ein, sich mittels Forks und Pull-Requests an der Entwicklung der Skripte zu beteiligen. Es gibt sicherlich noch diverse Fehler und auch bei den
+Zeichnungen fehlt noch eine ganze Menge.
+Schon einmal vielen Dank an
+
+* Phil (phist91) _PDGL I., Elementare Zahlentheorie, Elliptische Kurven und Kryptographie, CAT(0) kubische Komplexe, Lineare Algebra II._
+* Arne (moregrey) _Differentialformen und Mannigfaltigkeiten, Differentialgeometrie_
+* Tobias (Tazdr) _Einführung in die Algebra, Finanzmathematik, Modellreduktion_
+* Tim (Tii1) _Analysis II._
+* Gautam (gdbgauda) _Höhere Algebra I._
+
+für die Beteiligung an diesem Projekt!
 
 
 #### Hinweise (technische und rechtliche)
