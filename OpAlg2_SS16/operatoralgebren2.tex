@@ -1,0 +1,42 @@
+%!TEX TS-program = xelatex
+%!TEX TS-options = -shell-escape
+\input{../!config/mitschrift3.tex}
+\newcommand{\fach}{Operatoralgebren \RM{2}.}
+\newcommand{\semester}{Sose 2016}
+\newcommand{\homepage}{http://wwwmath.uni-muenster.de/u/wilhelm.winter/wwinter/operatoralgebren_II.html}
+
+\newcommand{\prof}{Prof.\ Dr.\ Wilhelm Winter}
+\publishers{\scalebox{10}{\Huge$C^*$\Large\RM{2}.}}
+\input{../!config/mitschrift_headings.tex}
+
+\begin{document}
+\pagenumbering{Roman}
+\maketitle
+\begin{abstract}
+\input{../!config/vorwort.tex}
+\end{abstract}
+
+\tableofcontents
+\cleardoubleoddemptypage
+
+\pagenumbering{arabic}
+\setcounter{page}{1}
+\setcounter{footnote}{0}
+
+
+
+\cleardoubleoddemptypage
+\pagenumbering{Alph}
+\setcounter{page}{1}
+\cleardoubleoddemptypage
+\appendix
+
+\section{Anhang} % (fold)
+\label{sec:anhang}
+\input{anhang.tex}
+\printindex
+\printbibliography
+\listoffigures
+\todototoc
+\listoftodos[To-do's und andere Baustellen]
+\end{document}
