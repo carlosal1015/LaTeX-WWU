@@ -14,6 +14,8 @@
 \maketitle
 \begin{abstract}
 \input{../!config/vorwort.tex}
+\section*{Literatur}
+Rosenberg, Weibel, Milnor\todo{schöne Literaturliste erstellen}
 \end{abstract}
 
 \tableofcontents
@@ -23,7 +25,146 @@
 \setcounter{page}{1}
 \setcounter{footnote}{0}
 
+\section{$K_0$ eines Ringes} % (fold)
+\label{sec:k_0_eines_ringes}
 
+\begin{definition}[{name=[{projektiv}]}]
+	Sei $R$ ein Ring.
+	Ein $R$-Modul $P$ heißt \Index{projektiv}, falls er folgende Eigenschaft hat:
+	Sei $f \colon M \twoheadrightarrow P$ $R$-linear und surjektiv. 
+	Dann gibt es einen Spalt $s \colon P \to M$, das heißt eine $R$-lineare Abbildung $s$ mit $f \circ s = \id_P$.
+\end{definition}
+
+\begin{bemerkung}[{name=[{Äquivalenzen zu Projektivität}]}]
+	Die zwei folgenden Bedingungen sind äquivalent zur Projektivität von $P$:
+	\begin{enumerate}[1)]
+		\item Sind $\varphi \colon P \to N$, $\psi \colon M \twoheadrightarrow N$ $R$-linear und $\psi$ surjektiv, so gibt es $\hat{\varphi} \colon P \to M$ mit $\psi \colon \hat{\varphi} = \varphi$.
+		\[
+			\begin{tikzcd}
+				& M \dar[two heads,"\psi"] \\
+				P \rar["\varphi"] \urar["\hat{\varphi}",dashed] & N
+			\end{tikzcd}
+		\]
+		\item $P$ ist ein direkter Summand in einem freien Modul, das heißt es gibt einen $R$-Modul $Q$, sodass $P \otimes Q$ eine $R$-Basis besitzt.
+	\end{enumerate}
+\end{bemerkung}
+
+\begin{definition}[{name=[{endlich erzeugter $R$-Modul}]}]
+	Ein $R$-Modul heißt \bet{endlich erzeugt}\index{endlich erzeugter $R$-Modul}, wenn es eine endliche Teilmenge $S \subseteq M$ gibt, sodass $M$ der einzige Untermodul von $M$ ist, der $S$ enthält.
+	Wir nennen $S$ ein \index{endliches Erzeugendensystem} für $M$.
+\end{definition}
+
+\begin{bemerkung}[{name=[{endlich erzeugte freie Moduln}]}]
+	Ein freier $R$-Modul ist genau dann endlich erzeugt, wenn er eine endliche Basis besitzt.
+	Er ist dann isomorph zu $R^n$ für geeignetes $n \in \mathbb{N}$.\marginnote{dieses $n$ muss nicht eindeutig sein!}
+\end{bemerkung}
+
+\begin{satz}[{name=[{Äquivalenzen zur Projektivität endlich erzeugter Moduln}]},label=satz:proj_endlich_erz]
+	Sei $P$ ein endlich erzeugter $R$-Modul.
+	Dann sind äquivalent:
+	\begin{enumerate}[1)]
+		\item $P$ ist projektiv.
+		\item $P$ ist direkter Summand in einem $R^n$.
+		\item Es gibt eine $R$-lineare idempotente\marginnote{$p^2=p$} Abbildung $p \colon R^n \to R^n$ mit $P \cong \im p$.
+	\end{enumerate}
+\end{satz}
+\begin{beweis}
+	Sei zunächst $P$ projektiv.
+	Ist $v_1,\ldots ,v_n$ ein endliches Erzeugendensystem von $P$, so erhalten wir $R$-lineare surjektive Abbildung $f \colon R^n \to P$, $f(r_1,\ldots,r_n)=\sum_{i=1}^n r_i \cdot v_i$.
+	Da $P$ projektiv ist, gibt es einen Spalt $s$ für $f$ und es folgt $\mathbb{R}^n \cong P \oplus \ker f$.
+	
+	Sei $\varphi \colon P \oplus Q \to \mathbb{R}^n$ ein Isomorphismus.
+	Sei $\tilde{p} \colon P \oplus  Q \to P \oplus Q$ die Projektion auf $P$, also $\tilde{p} (v,w) = (v,0)$ für $v \in P$, $w \in Q$.
+	Dann ist $p := \varphi \circ \tilde{p} \circ \varphi^{-1} \in \End_R(R^n)$ idempotent und $\varphi|_{P} \colon P \xrightarrow{\cong} \im p$ ein Isomorphismus.
+	
+	Sei $p \colon R^n \to R^n$ idempotent.
+	Wir zeigen, dass $\im p = p(R^n)$ projektiv ist.
+	Sei $f \colon M \twoheadrightarrow p(R^n)$ $R$-linear und surjektiv.
+	Dann gibt es $v_1,\ldots ,v_n \in M$ mit $f(v_i)= p(e_i)$.
+	Sei $\hat{s} \colon R^n \to M$ gegeben durch $\hat{s}(r_1,\ldots ,r_n)=\sum_{i=1}^{n} r_i \cdot v_i$.
+	Dann ist $f \circ \hat{s} =p$ und daher gilt für $w =p(w) \in \im p$
+	\[
+		f \enbrace[\big]{\hat{s}(w)} =p(w)=w
+	\]
+	Also ist $s:= \hat{s}|_{p(R^n)}$ der gesuchte Spalt.
+\end{beweis}
+
+\begin{bemerkung}[{name=[{direkte Summanden des $R^n$ sind endlich erzeugt}]}]
+	Ist $P \subseteq R^n$ ein direkter Summand, so ist $P$ endlich erzeugt, da wir eine Surjektion $R^n \to P$ erhalten und das Bild der endlichen Basis der $R^n$ dann auch ein endliches Erzeugendensystem für $P$ ist.
+\end{bemerkung}
+
+\begin{bemerkung}
+	Für jedes $n$ bilden die Untermoduln von $R^n$ eine Menge, insbesondere bilden die direkten Summanden eine Menge.
+	Es folgt mit \autoref{satz:proj_endlich_erz}, dass auch die Isomorphieklassen von endlich erzeugten $R$-Moduln eine Menge bilden.
+	Diese nennen wir $\Proj(R)$.
+\end{bemerkung}
+
+\begin{bemerkung}
+	$\Proj(R)$ wird durch $\oplus$ zu einer abelschen Halbgruppe mit der Isomorphieklasse des Nullmoduls als neutralem Element.
+\end{bemerkung}
+
+\begin{satz}[name={Grothendiek-Konstruktion}]
+	Sei $S$ eine abelsche Halbgruppe.
+	Dann gibt es eine abelsche Gruppe $\Gr(S)$ zusammen mit einem Halbgruppenhomomorphismus $\varphi \colon S\to \Gr(S)$, der folgende universelle Eigenschaft erfüllt:
+	Ist $A$ eine abelsche Gruppe und $\psi \colon S \to A$ ein Halbgruppenhomomorphismus, so gibt es einen eindeutigen Gruppenhomomorphismus $\hat{\psi} \colon \Gr(S) \to A$ mit $\psi = \hat{\psi} \circ \varphi$.
+	\[
+		\begin{tikzcd}[column sep=3em]
+			S \rar["\varphi"] \drar["\psi"'] & \Gr(S) \dar[dashed,"\hat{\psi}"] \\
+			& A
+		\end{tikzcd}
+	\]
+\end{satz}
+\begin{beweis}
+	Wir nehmen an, dass $S$ ein neutrales Element besitzt.
+	Wir definieren $\Gr(S)$ wie folgt: Auf $S \times S$ betrachten wir die Äquivalenzrelation 
+	\[
+		(s,t) \sim (s',t') :\iff \exists x \in S : s +t' + x = s'+t +x
+	\] 
+	und setzen $\Gr(S) := \sfrac{S\times S}{\sim}$.
+	Wir schreiben $s-t$ für die Äquivalenzklasse von $(s,t)$.
+	Die Addition auf $\Gr(S)$ ist durch $(s-t) + (s'-t') = s+s'  - (t+t')$ gegeben, das Inverse zu $s-t$ ist $t-s$.
+	Der Halbgruppenhomomorphismus $\varphi \colon S \to \Gr(S)$ ist definiert durch $\varphi(s)= s - 0$.
+	Ist $\psi \colon S \to A$ ein Halbgruppenhomomorphismus, so erhalten wir $\hat{\psi} \colon \Gr(S) \to A$ durch $\hat{\psi}(s-t) = \psi(s)- \psi(t)$.
+\end{beweis}
+
+\begin{definition}[{name=[{Grothendiek-Gruppe}]}]
+	$\Gr(S)$ heißt die \Index{Grothendiek-Gruppe} oder \Index{Gruppenvervollständigung} von $S$.  
+\end{definition}
+
+\begin{bemerkung}[{name=[alternative Konstruktion]}]
+	Alternativ können wir die freie abelsche Gruppe $\mathbb{Z}[S]$ benutzen, um $\Gr(S)$ zu konstruieren:
+	\[
+		\Gr(S) := \sfrac{\mathbb{Z}[S]}{A}
+	\]
+	wobei $A$ von $\set*{s + t-(s +_S t) \given s,t \in S}$ erzeugt wird.
+\end{bemerkung}
+
+\begin{beispiel}[{name=[{für Grothendiek-Konstruktionen}]}]
+	Es gilt
+	\begin{multicols}{2}
+		\begin{itemize}
+			\item $\Gr(\mathbb{N},+) \cong \mathbb{Z}$
+			\item $\Gr(\mathbb{N}_{\ge 17},+) \cong \mathbb{Z}$
+			\item $\Gr(\mathbb{N}_{>0},\cdot ) \cong (\mathbb{Q}_{>0},\cdot )$
+			\item $\Gr(\mathbb{N}_{\ge 0},\cdot) \cong 0$
+			\item $\Gr(\mathbb{N} \cup \set*{\infty},+) \cong 0$
+		\end{itemize}
+	\end{multicols}
+\end{beispiel}
+
+\begin{bemerkung}[{name=[{Funktorialität}]}]
+	$S \mapsto \Gr(S)$ ist ein Funktor von der Kategorie der abelschen Halbgruppen in die Kategorie der abelschen Gruppen:
+	Ist $\psi \colon S \to S'$ ein Halbgruppenhomomorphismus, so ist $\Gr(\psi) \colon \Gr(S) \to \Gr(S')$, $s-t \mapsto \psi(s) - \psi(t)$ der induzierte Gruppenhomomorphismus.
+\end{bemerkung}
+
+\begin{definition}[{name=[{$K_0$ von Ringen}]}]
+	Sei $R$ ein Ring. 
+	Wir definieren
+	\[
+		K_0(R) := \Gr \enbrace[\big]{\Proj(R),\oplus }
+	\]
+\end{definition}
+% section k_0_eines_ringes (end)
 
 \cleardoubleoddemptypage
 \pagenumbering{Alph}
