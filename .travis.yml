@@ -32,6 +32,7 @@ deploy:
     - AnaTopGeo_SS14/ana_top_geo.pdf
     - LA2_SS16/LA2.pdf
     - AlgKT_SS16/algebraische_KTheorie.pdf
+    - LieGrp_SS16/liegruppen.pdf
   skip_cleanup: true
   on:
     repo: JaMeZ-B/LaTeX-WWU
