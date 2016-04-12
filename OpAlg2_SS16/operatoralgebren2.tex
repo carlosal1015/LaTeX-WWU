@@ -23,7 +23,162 @@
 \setcounter{page}{1}
 \setcounter{footnote}{0}
 
+\section{Tensorprodukte} % (fold)
+\label{sec:1}
 
+\begin{erinnerungA}[{name=[Tensorprodukt]}]
+	Seien $V,W$ $\mathbb{K}$-Vektorräume.
+	Sei $X$ ein weiterer $\mathbb{K}$-Vektorraum und $\phi \colon V\times W \to X$ bilinear.
+	Dann heißt $(X,\varphi)$ \Index{Tensorprodukt} von $V$ und $W$, falls folgende universelle Eigenschaft gilt:
+	\[
+		\begin{tikzcd}[sep=large]
+			V \times W \drar["\text{bil.}"'] \rar["\varphi"] & X \dar[dashed,"\exists ! \psi \text{ lin.} "] \\
+			& U
+		\end{tikzcd}
+	\]
+\end{erinnerungA}
+
+\begin{definitionP}[label=propdef:12]
+	$(X,\varphi)$ wie oben existiert und ist eindeutig bis auf linearen Isomorphismus.
+	Wir schreiben $V \odot W$ für $X$ und $v \otimes w$ für $\varphi(v,w)$.
+\end{definitionP}
+\begin{beweis}
+	Sei $M$ der freie Vektorraum mit Basis $V \times W$, anders ausgedrückt
+	\[
+		M:= \set[\big]{f \colon V\times W \to \mathbb{K} \given \supp f \text{ endlich}}
+	\]
+	Sei nun 
+	\[
+		N := \Span \set*{
+			\begin{array}{l}
+				(v_1 +v_2,w) - \enbrace[\big]{(v_1,w) + (v_2,w)} \\
+				(v,w_1+w_2) - \enbrace[\big]{(v,w_1) + (v,w_2)} \\
+				(v,\lambda \cdot w) - \lambda \cdot (v,w), (\lambda \cdot v,w) - \lambda \cdot (v,w) 
+			\end{array}
+		\given 
+		\begin{array}{l}
+			v,v_1,v_2 \in V,\\
+			w,w_1,w_2 \in W,\\
+			\lambda \in \mathbb{K}
+		\end{array}}
+	\]
+	Wir setzen $X := \sfrac{M}{N}$ und $\varphi(v,w) := (v,w)+N$.
+	Der Rest ist eine einfache Übung.
+\end{beweis}
+
+\begin{proposition}[{name=[Tensorprodukt von Algebren]}]
+	Seien $A,B$ $\mathbb{K}$-Algebren.
+	Dann ist $A \odot B$ wieder eine $\mathbb{K}$-Algebra mit 
+	\[
+		(a \otimes b) (a' \otimes b') = aa' \otimes bb'
+	\]
+	Sind $A$ und $B$ $^*$-Algebren, dann ist $A \odot B$ wieder eine $^*$-Algebra mit 
+	\[
+		(a \otimes b)^* = a^* \otimes b^*
+	\]
+	Sind $A$ und $B$ kommutativ/unital, so auch $A \odot B$.
+\end{proposition}
+\begin{beweis}
+	Betrachte $M$ wie in \autoref{propdef:12} und überprüfe, dass Multiplikation auf $\sfrac{M}{N}$ wohldefiniert und assoziativ ist.
+	
+	Alternativ: $(a,b) \in A \times B$ liefern eine bilineare Abbildung
+	\mapdef{M_{(a,b)} \colon A \times B}{A \odot B}{(a',b')}{aa' \otimes bb'}{}
+	Aus der universellen Eigenschaft erhält man $m_{(a,b)} \colon A \odot B \to A \odot B$ linear.
+	Dies liefert wiederum eine bilineare Abbildung $m \colon A \times B \to \mathrm{L}(A \odot B, A \odot B)$ durch $(a,b) \mapsto m_{(a,b)}$.
+	Nach der universellen Eigenschaft bekommt man nun eine lineare Abbildung $A \odot B \to \mathrm{L}(A \odot B, A\odot B)$.
+	Daraus erhält man eine bilineare Abbildung
+	\[
+		\mu \colon A \odot B \times A \odot B \longrightarrow A \odot B
+	\]
+	Dann ist $(A \odot B,\mu)$ eine $\mathbb{K}$-Algebra.
+\end{beweis}
+
+\begin{bemerkung}[label=bem:14]
+	\begin{enumerate}[(i)]
+		\item Seien $A,B$ $^*$-Algebren.
+		Dann hat das Tensorprodukt $A \odot B$ als $^*$-Algebra die folgende universelle Eigenschaft:
+		
+		Falls $C$ eine $^*$-Algebra ist und $\pi_A \colon A \to C$, $\pi_B \colon B \to C$ $^*$-Homomorphismen sind, sodass für den Kommutator $\benbrace*{\pi_A(A), \pi_B(B)}=0$ gilt, so existiert genau ein $^*$-Homomorphismus $\pi \colon A \odot B \to C$ mit $\pi(a \otimes b)= \pi_A(a) \pi_B(b)$ für alle $a \in A$, $b \in B$.
+		\item Es seien $A,B,C,D$ $^*$-Algebren, $\pi_A \colon A \to C$, $\pi_B \colon B \to D$ $^*$-Homomorphismen.
+		Dann existiert genau ein $\pi \colon A \odot B \to C \odot D$ mit $\pi(a \otimes b)= \pi_A(a) \otimes \pi_B(b)$.
+	\end{enumerate}
+\end{bemerkung}
+
+\begin{definitionP}[{name=[{Tensorprodukt von Hilberträumen}]}]
+	Es seien $\mathcal{H}_1$, $\mathcal{H}_2$ Hilberträume.
+	Dann ist $\mathcal{H}_1 \odot \mathcal{H}_2$ ein Prä-Hilbertraum mit
+	\[
+		\skal*{\xi \otimes \eta}{\xi' \otimes \eta'} := \skal*{\xi}{\xi'} \cdot \skal*{\eta}{\eta'} 
+	\]
+	Dann ist das \bet{Tensorprodukt von Hilberträumen}\index{Tensorprodukt!von Hilberträumen} definiert durch
+	\[
+		\mathcal{H}_1 \otimes \mathcal{H}_2 := \overline{\mathcal{H}_1 \odot \mathcal{H}_2}^{\skal*{\cdot}{\cdot}}
+	\]
+\end{definitionP}
+\begin{beweis}
+	Es seien $\xi \in \mathcal{H}_1$ und $\eta \in \mathcal{H}_2$.
+	Nach der universellen Eigenschaft existiert eine lineare Abbildung $\tau_{(\xi,\eta)} \colon \mathcal{H}_1 \odot \mathcal{H}_2 \to \mathbb{C}$ mit $\tau_{{\xi,\eta}} \enbrace*{\xi' \otimes \eta'} = \skal*{\xi}{\xi'} \cdot \skal*{\eta}{\eta'}$.
+	Die Abbildung $(\xi,\eta) \mapsto \overline{\tau_{{\xi,\eta}}}$ ist dann bilinear.
+	Aus der universellen Eigenschaft erhalten wir eine antilineare Abbildung $\xi \otimes \eta \mapsto \tau_{(\xi,\eta)}$.
+	Daraus erhält man eine Sesquilinearform 
+	\[
+		\skal*{\cdot}{\cdot } \colon \mathcal{H}_1 \odot \mathcal{H}_2 \longrightarrow \mathbb{C}
+	\]
+	Wir müssen noch zeigen, dass diese positiv definit ist:
+	Sei $z = \sum_{i=1}^{n} \xi_i \otimes \eta_i \in \mathcal{H}_1 \odot \mathcal{H}_2$.
+	Wähle eine Orthonormalbasis $\zeta_1, \ldots , \zeta_m$ für $\Span \set*{\eta_1, \ldots,\eta_n}$.
+	Dann ist $z=\sum_{j=1}^{m} \xi_j' \otimes \zeta_j$ für $\xi_j' \in \mathcal{H}_1$ geeignet.
+	Damit folgt 
+	\[
+		\skal*{z}{z} = \sum_{j=1}^{m} \norm*{\xi'_j}^2 \ge 0
+	\]
+	Insbesondere ist $z=0$ genau dann, wenn $\xi_1' = \ldots = \xi_m'=0$, also $\skal*{z}{z}=0$ gilt.
+\end{beweis}
+
+\begin{bemerkung}[{name=[{Einbettung mit beschränkten Operatoren}]},label=bem:16]
+	Es existiert eine Einbettung $\iota \colon \mathcal{B}(\mathcal{H}_1) \odot \mathcal{B}(\mathcal{H}_2) \hookrightarrow \mathcal{B}(\mathcal{H}_1 \otimes \mathcal{H}_2)$ gegeben durch $(a \otimes b)(\xi \otimes \eta) = a(\xi) \otimes b (\eta)$. (Warum?)
+\end{bemerkung}
+
+\begin{frageA}[{name=[{C*-Norm auf dem algebraischen Tensorprodukt}]}]
+	Seien $A$, $B$ $C^*$-Algebren.
+	\begin{center}
+		¿ Was für $C^*$-Normen existieren auf $A \odot B$?
+	\end{center}
+\end{frageA}
+
+\begin{bemerkung}
+	Falls $\gamma \colon A \odot B \to \mathbb{R}^+$ eine $C^*$-Norm ist, so ist $A \otimes_\gamma B := \overline{A \odot B}^\gamma$ eine $C^*$-Algebra.
+\end{bemerkung}
+
+\begin{proposition}
+	Es seien $A$, $B$ $C^*$-Algebren.
+	\begin{enumerate}[(i)]
+		\item Für $^*$-Darstellungen $\pi_A \colon A \to \mathcal{B}(\mathcal{H}_1)$, $\pi_B \colon B \to \mathcal{B}(\mathcal{H}_2)$ definiert 
+		\[
+			(\pi_A \otimes \pi_B)(a \otimes b) := \iota\enbrace[\big]{\pi_A(a) \otimes \pi_B(b)}
+		\]
+		eine $^*$-Darstellung $\pi_A \otimes \pi_B \colon A \odot B \to \mathcal{B}(\mathcal{H}_1 \otimes \mathcal{H}_2)$.
+		Falls $\pi_A$ und $\pi_B$ treu sind, so ist auch $\pi_A \otimes \pi_B$ treu.
+		\item Die Abbildung $\norm*{\cdot }_{\min} \colon A \odot B \to \mathbb{R}^+$, gegeben durch
+		\[
+			\norm[\big]{\textstyle\sum\nolimits_{i=1}^{n} a_i \otimes b_i}_{\min} := \sup \set[\Big]{\norm[\big]{(\pi_A \otimes \pi_B)\enbrace*{\textstyle\sum\nolimits_{i=1}^{n} a_i \otimes b_i}} \given \pi_A, \pi_B \text{ $^*$-Darstellungen} }
+		\]
+		ist eine $C^*$-Norm.
+	\end{enumerate}
+\end{proposition}
+\begin{beweis}
+	\begin{enumerate}[(i)]
+		\item Nach \autoref{bem:14} und \autoref{bem:16} existiert genau eine $^*$-Darstellung 
+		\[
+			\pi_A \otimes \pi_B = \iota \circ (\pi_A \otimes \pi_B)
+		\]
+		Seien $\pi_A$ und $\pi_B$ treu und $0 \neq c \in \ker (\pi_A \otimes \pi_B)$.
+		Es gilt $c= \sum_{i=1}^{n} a_i \otimes b_i$ für geeignete $a_i$, $b_i$ und $n$.
+		Ohne Einschränkungen können wir annehmen, dass die $b_i$ linear unabhängig sind.
+		Da $\pi_B$ treu ist, sind auch die $\pi_B(b_i)$ linear unabhängig.
+	\end{enumerate}
+\end{beweis}
+% section 1 (end)
 
 \cleardoubleoddemptypage
 \pagenumbering{Alph}
