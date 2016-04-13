@@ -386,6 +386,7 @@
 % -- theorem packages
 \usepackage{amsthm}
 \usepackage{thmtools,thm-restate}
+\usepackage{mdframed}
 \renewcommand{\listtheoremname}{Übersicht aller Aussagen}
 
 % -- Theoreme als PDF-Lesezeichen
@@ -417,6 +418,17 @@
 	postheadspace=1em,
 	spaceabove=15pt,spacebelow=10pt,
 	shaded={bgcolor=gray!20},
+	% mdframed={%
+	% 	backgroundcolor=gray!20,
+	% 	innertopmargin=0pt,
+	% 	innerleftmargin=0pt,
+	% 	% roundcorner=5pt,
+	% 	innerbottommargin=0pt,
+	% 	splittopskip = 0pt,
+	% 	% skipbelow=6pt,
+	% 	% skipbelow=6pt,
+	% 	topline=false,bottomline=false,leftline=false,rightline=false
+	% },
 	postheadhook=\theorembookmark]%
 {mainstyle}
 \declaretheoremstyle[%
