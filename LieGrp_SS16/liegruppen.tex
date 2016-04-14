@@ -146,7 +146,7 @@ Sei $\mathfrak{g}$ die Menge der linksinvarianten Vektorfelder auf $G$.
 	\end{align}
 	Ein Vektorfeld ist linksinvariant genau dann, wenn $X$ für alle $g \in G$ $L_g$-verwandt zu sich selbst ist, das heißt
 	\[
-		X \enbrace*{L_g(h)} = (\mathd L_g)_h X(h) \qquad  \forall h \in G
+		X \enbrace[\big]{L_g(h)} = (\mathd L_g)_h X(h) \qquad  \forall h \in G
 	\]
 	Nach Diffgeo I ist die Lieklammer von $L_g$-verwandten Vektorfeldern wieder $L_g$-verwandt.
 	Die Lieklammer linksinvarianter Vektorfelder ist also wieder ein linksinvariantes Vektorfeld
@@ -160,7 +160,143 @@ Sei $\mathfrak{g}$ die Menge der linksinvarianten Vektorfelder auf $G$.
 	die Lieklammer von $\Tmap_e G = \mathfrak{g}$.
 	Da die Lieklammer differenzierbarer Vektorfelder die Jacobi-Identität erfüllt, ist $\benbrace*{\cdot ,\cdot }$ eine Lieklammer auf $\Tmap_e G$.
 \end{definition}
+
+Sei $G=\GL(n,\mathbb{K})$, $\mathbb{K}=\mathbb{R}$ ($\mathbb{K}=\mathbb{C}$).
+Da die Determinante $\det \colon G \to \mathbb{K}$ stetig ist, ist 
+\[
+	{\det}^{-1} \enbrace[\big]{\mathbb{R}\setminus \set*{0}} = \GL(n,\mathbb{K}) 
+\]
+eine offene Teilmenge des euklidischen Vektorraums $\Mat(n,\mathbb{K})$ und somit eine differenzierbare Mannigfaltigkeit.
+Wir bezeichnen mit $x_{ij} \colon G \to \mathbb{K}$ die Abbildung $(a_{kl})_{k,l} \mapsto a_{ij}$ für festes $(i,j)$ mit $1\le i,j\le n$.
+Da $x_{ij}$ linear ist, gilt für $A \in G$
+\[
+	(X_v)(x_{ij})(A) = (\mathd x_{ij})_A X_v(A) = x_{ij}(A \cdot v) = (A v)_{ij}
+\]
+Somit ist
+\begin{align}
+	\benbrace[\big]{X_v,X_w}(x_{ij})(e) = X_v(e) \enbrace[\big]{X_w(x_{ij})} - X_w(e) \enbrace[\big]{X_v(x_{ij})} &= v \enbrace[\Big]{\Underbrace{X_w(x_{ij})}{\mathclap{A \mapsto (A \cdot w)_{ij}}}} - w \enbrace*{X_v(x_{ij})} \\
+	&= (v w- w v)_{ij}
+\end{align}
+Für alle differenzierbaren Vektorfelder $X$ und Koordinaten $(x_1, \ldots ,x_n)=x$  gilt in einem Kartengebiet $U$
+\[
+	X = \sum_{i=1}^{n} X(x_i) \cdot \diff{}{x_i}
+\]
+Somit gilt $\benbrace*{X_v,X_w} =X(vw -wv)$ und daher $\benbrace*{v,w}_{\mathfrak{gl}(n,\mathbb{R})}=vw -wv$
 % subsection 11 (end)
+
+\section{Lieuntergruppen und Homomorphismen von Liegruppen} % (fold)
+\label{sec:12}
+
+\begin{definition}
+	Seien $H,G$ Liegruppen.
+	\begin{enumerate}[1)]
+		\item Eine Abbildung $\Phi \colon H \to G$ nennt man Liegruppenhomomorphismus, falls $\Phi$ differenzierbar ist und falls $\Phi$ ein Gruppenhomomorphismus ist.
+		\item Einen Liegruppenhomomorphismus $\Phi \colon H \to G$ nennt man Liegruppenisomorphismus, falls $\Phi$ bijektiv und $\Phi^{-1}$ differenzierbar ist. ($\Phi^{-1}$ ist auch Gruppenhomomorphismus)
+		\item Liealgebrenhomomorphismen und Liealgebrenisomorphismen werden entsprechend definiert:  $L \colon \mathfrak{h} \to \mathfrak{g}$ linear mit
+		\[
+			L \cdot \benbrace*{v,w}_{\mathfrak{h}} = \benbrace*{L \cdot v, L \cdot w}_\mathfrak{g}
+		\]
+	\end{enumerate}
+\end{definition}
+
+Ist $\Phi \colon H \to G$ ein Liegruppenhomomorphismus, so kommutiert das folgende Diagramm
+\[
+	\begin{tikzcd}
+		H \rar["\Phi"] \dar["L_h"] & G \dar["L_{\Phi(h)}"] \\
+		H \rar["\Phi"] & G
+	\end{tikzcd}
+\]
+da
+\begin{align}
+	(\Phi \circ L_h)(\tilde{h}) = \Phi \enbrace*{L_h(\tilde{h})} = \Phi(h \cdot \tilde{h}) = \Phi(h) \cdot \Phi(\tilde{h}) = \enbrace*{L_{\Phi(h)} \circ \Phi}(\tilde{h})
+\end{align}
+Einen Homomorphismus $\Phi \colon G \to \GL(n,\mathbb{K})$ nennt man \bet{reelle}\index{reelle Darstellung} bzw. \Index{komplexe Darstellung} von $G$. ($\Phi_0(G)\equiv E_n$)
+Ist $\Phi \colon G \to \GL(n,\mathbb{K})$ injektiv, so besitzt die Gruppe $G$ die \Index{treue Darstellung} $\Phi(G)$ in $\GL(n,\mathbb{K})$.
+
+\begin{lemma}
+	Sei $\Phi \colon H \to G$ ein Liegruppenhomomorphismus.
+	Dann ist $(\mathd\Phi)_e \colon \Tmap_e H \to \Tmap_e G$ ein Liealgebrenhomomorphismus.
+\end{lemma}
+\begin{beweis}
+	Seien $v_1,v_2 \in \Tmap_e H$ und $w_i := (\mathd \Phi)_e \cdot v_i$ für $i=1,2$.\marginnote{$\mathd \Phi=: L$}
+	Zu zeigen
+	\[
+		(\mathd \Phi)_e \benbrace*{X_{v_1}, X_{v_2}} (e) = \benbrace*{X_{w_1},X_{w_2}}(e)
+	\]
+	Wir zeigen, dass $X_{v_1}$ und $X_{w_1}$ $\Phi$-verwandt sind:
+	\begin{align}
+		(\mathd \Phi)_h X_{v_1}(h) = \enbrace*{\mathd \Phi}_h \cdot (\mathd L)_e \cdot v_1 &= \mathd \enbrace*{\Phi \circ L_h}_e \cdot v_1 \\
+		&= \mathd \enbrace*{L_{\Phi(h)} \circ \Phi}_e \cdot v_1 \\
+		&= \mathd \enbrace*{L_{L_{\Phi(h)}}} \cdot \enbrace*{\mathd \Phi}_e \cdot v_1 \\
+		&= \mathd \enbrace*{L_{\Phi(h)}} \cdot w_1 \\
+		&= X_{w_1}(\Phi(h))
+	\end{align}
+	Somit sind $X_{v_1}$ und $X_{w_1}$ $\Phi$-verwandt , analog für $v_2$ und $w_2$.
+	Mit DiffGeo \RM{1} sind dann auch $\benbrace*{X_{v_1}, X_{v_2}}$ und $\benbrace*{X_{w_1},X_{w_2}}$ $\Phi$-verwandt, das heißt
+	\[
+		(\mathd \Phi)_h \benbrace*{X_{v_1},X_{v_2}}(h) = \benbrace*{X_{w_1}, X_{w_2}} \enbrace*{\Phi(h)}
+	\]
+	Mit $h=e$ folgt die Behauptung.
+\end{beweis}
+
+Sei $G$ eine Liegruppe und $i_g \colon G \to G$ gegeben durch $h \mapsto g \cdot h \cdot g^{-1}$ die \Index{Konjugation} mit $g$.
+Dann ist $i_g$ ein Liegruppenisomorphismus
+\begin{itemize}
+	\item $i_g(h) = \enbrace*{l_g \circ R_{g^{-1}}}(h) \Rightarrow$ differenzierbar
+	\item Die Gruppenhomomorphismuseigenschaft ist klar. 
+	\item $(i_g)^{-1}= i_{g^{-1}}$
+\end{itemize}
+Somit ist $\Ad(g) := \enbrace*{\mathd i_g}_e \colon \mathfrak(g) \to \mathfrak{g}$ ein Liealgebrenisomorphismus.
+Ist $G = \GL(n,\mathbb{K})$, so kann man $\Ad(g)$ einfach berechnen:
+Sei $(h(t))_{t \in (-\varepsilon,\varepsilon)}$ eine differenzierbare Kurve in $G$ mit $h(0)= E_n$, $h'(0)=v$.
+Dann gilt
+\begin{align}
+	\Ad(g)(v)= (\mathd i_g)_e \cdot h'(0) = \diffd{}{t}\big|_{t=0} i_g (h(t)) = \diffd{}{t}\big|_{t=0} g \cdot h(t) \cdot g^{-1}
+	&= g \cdot \diffd{}{t}\big|_{t=0} h(t) \cdot g^{-1}\\
+	&= g \cdot v \cdot g^{-1}
+\end{align}
+Ferner ist $\Ad \colon G \to \GL\enbrace*{\Tmap_e G}$, $g \mapsto \Ad(g)$ ein Liegruppenhomomorphismus:
+\begin{align}
+	\Ad(g_1 \cdot g_2) = (\mathd i_{g_1 \cdot g_2})(e) = (\mathd i_{g_1})_e \cdot (\mathd i_{g_2})_e = \Ad(g_1) \circ \Ad(g_2)
+\end{align}
+$\Ad \colon G \to \GL(\mathfrak{g})$ heißt die \Index{adjungierte Darstellung} von $G$.
+
+\begin{definition}
+	Sei $G$ eine Liegruppe.
+	\begin{enumerate}[1)]
+		\item Mann nennt eine Teilmenge $H \subseteq G$ eine \Index{Lieuntergruppe}, falls 
+		\begin{itemize}
+			\item $H$ eine Untergruppe von $G$ ist
+			\item $H$ ist Liegruppe, wenn $H$ mit der von $G$ induzierten Multiplikation und Inversenbildung versehen wird.
+			\item Die Inklusionsabbildung $i \colon H \to G$ ist eine Immersion\\ 
+			(nicht notwendigerweise eine Einbettung!).
+		\end{itemize}
+		\item Mann nennt einen Teilraum $\mathfrak{h} \subseteq \mathfrak{g}$ Lieunteralgebra, falls $\benbrace*{x,y}_\mathfrak{g} \in H$ für alle $x,y \in \mathfrak{h}$ gilt.
+	\end{enumerate}
+\end{definition}
+\todo[inline]{Def Immersion als Fußnote}
+ 
+Die Gruppe $S^1_r = \set*{\enbrace*{e^{i \varphi}, e^{i r \varphi}} \given \varphi \in \mathbb{R}}$ ist eine Lieuntergruppe von $T^2=S^1 \times S^1$.
+Für $r \in \mathbb{Q}$ ist $S^1_r$ eine (eingebettete) Untermannigfaltigkeit; für $r \in \mathbb{R}\setminus \mathbb{Q}$ ist $S^1_r$ \enquote{nur} eine immersierte Untermannigfaltigkeit, jedoch nicht eingebettet.
+
+$\SO(n) \subset \GL(n,\mathbb{R})$ ist eine Lieuntergruppe mit Liealgebra 
+\[
+	\mathfrak{so}(n) := \Tmap_e \SO(n) = \set*{X \in \Mat(n,\mathbb{R}) \given X^T=-X}
+\]
+Sei dazu $(A(t))_{t \in (-\varepsilon,\varepsilon)}$ eine differenzierbare Kurve mit $A(0)=E_n$ und $A'(0)=X$.
+Aus $A(t)^T \cdot A(t) \equiv E_n$ folgt durch Differenzieren $X^T + X =0$.
+Sei umgekehrt $X$ eine schiefsymmetrische Matrix.
+Setze dann 
+\[
+	A(t) =\exp(t X) = \sum_{k=0}^{\infty} \frac{(tX)^k}{k!} 
+\]
+Behauptung: $A(t) \in \SO(n)$.
+\begin{align}
+	A(t)^T \cdot A(t) = \enbrace*{\sum_{k=0}^{\infty} \frac{(tX)^k}{k!} }^T \cdot \sum_{k=0}^{\infty} \frac{(tX)^k}{k!} &\stackrel{X^T=-X}{= }\sum_{k=0}^{\infty} \frac{(-tX)^k}{k!}  \cdot \sum_{k=0}^{\infty} \frac{(tX)^k}{k!} \\
+	&= \exp(x-x) = \exp(0) =E_n
+\end{align}
+die folgt mit $\exp(x+y)= \exp(x) \exp(y)$, da $[x,y]=0$.
+% subsection 12 (end)
 % section 1 (end)
 
 \cleardoubleoddemptypage
