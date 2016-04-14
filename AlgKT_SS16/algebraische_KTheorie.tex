@@ -167,7 +167,123 @@
 	\[
 		K_0(R) := \Gr \enbrace[\big]{\Proj(R),\oplus }
 	\]
+	Elemente in $K_0$ sind also formale Differenzen $[P]- [Q]$ von Isomorphieklassen von endlich erzeugten projektiven Moduln.
 \end{definition}
+
+Es gilt $[P] - [Q] = [P']- [Q']$ genau dann, wenn es einen endlich erzeugten projektiven Modul $X$ gibt mit
+\[
+	P \otimes Q' \oplus X \cong P' \oplus Q \oplus X
+\]
+Da jedes solche $X$ direkter Summand in einem endlich erzeugten freien Modul ist, genügt es für $X$ endlich erzeugte freie Moduln zu betrachten.
+Insbesondere ist $[P]=0 \in K_0(R)$ genau dann, wenn es $n \in \mathbb{N}$ gibt mit $P \otimes R^n \cong R^n$.
+
+\begin{bemerkung}[{name=[{Funktoreigenschaften der 0-ten K-Theorie}]}]
+	$K_0(R)$ ist ein Funktor: Ist $f \colon R \to R'$ ein Ringhomomorphismus, so erhalten wir eine induzierte Abbildung $\Proj(R) \to \Proj(R')$ durch $_R P \mapsto  R' \otimes_R {_R P}$, dabei wird $R'$ durch $f$ zu einem $R$-Rechtsmodul:
+	\[
+		r' \cdot r := r' \cdot f(r)
+	\]
+	Es ist nun $K_0(f) \colon K_0(R) \to K_0(R')$ gegeben durch 
+	\(
+		[P]- [Q] \longmapsto \benbrace*{R' \otimes_R P} - \benbrace*{R' \otimes_R Q}
+	\).
+\end{bemerkung}
+
+\begin{bemerkung}[{name=[{kontravarianter Funktor}]}]
+	Ist $f \colon R \to R'$ ein Ringhomomorphismus und $M'$ ein $R'$-Modul, so wird $M'$ zu einem $R$-Modul durch $r \cdot m' := f(r) \cdot m'$.
+	Manchmal bezeichnet wir diesen $R$-Modul mit $\res_f M'$ oder $f^* M'$.
+	Der Funktor $f^* \colon R'\text{-}\MOD \to R\text{-}\MOD$ erhält aber nicht notwendig endlich erzeugte bzw. projektive Moduln.
+	Betrachte dazu die Inklusion $\mathbb{Z} \hookrightarrow \mathbb{Q}$. 
+	Als $\mathbb{Q}$-Modul ist $\mathbb{Q}$ frei, als $\mathbb{Z}$-Modul nicht endlich erzeugt.
+	
+	Manchmal fasst man $f$ als eine Abbildung $f \colon \Spec R' \to \Spec R$ auf und schreibt $f_*$ für obigen Funktor.
+\end{bemerkung}
+
+\begin{satz}[{name=[{K0 von einem Körper}]}]
+	Sei $F$ ein Körper.
+	Dann erhalten wir einen Isomorphismus $\dim K_0(F) \to \mathbb{Z}$ mit 
+	\[
+		\dim\enbrace[\big]{[P]- [Q]} = \dim_F P - \dim_F Q
+	\]
+\end{satz}
+\begin{beweis}
+	Sei $[P]- [Q] = [P']- [Q']$ in $K_0(R)$.
+	Dann gibt es einen endlich erzeugten Modul $V$ mit $P \oplus Q' \oplus V \cong P' \oplus Q \oplus V$.
+	Insbesondere gilt 
+	\[
+		\dim P + \dim Q' + \dim V = \dim P' + \dim Q + \dim V,
+	\]
+	also $\dim P - \dim Q = \dim P' - \dim Q'$ und somit ist die Abbildung $\dim$ wohldefiniert auf $K_0(R)$.
+	Wegen $\dim \enbrace*{[F^n]- [F^m]} = n-m$ ist $\dim$ surjektiv.
+	
+	Sei nun $[P]-[Q] \in K_0(R)$ mit $\dim \enbrace*{[P]- [Q]}=0$.
+	Dann ist $\dim P - \dim Q =0$, also $P \cong Q$ und $[P]=[Q]$ bzw. $[P]-[Q]=0$.
+\end{beweis}
+
+\begin{definition}
+	Sei $\iota \colon \mathbb{Z} \to K_0(R)$ der durch $n \mapsto \benbrace*{R^n}$ induzierte Gruppenhomomorphismus.
+	Wir definieren 
+	\[
+		\tilde{K}_0(R) := \sfrac{K_0(R)}{\iota(\mathbb{Z})}
+	\]
+\end{definition}
+
+\begin{bemerkung}
+	\leavevmode
+	\begin{enumerate}[1)]
+		\item Im Allgemeinen ist $\iota$ weder injektiv noch surjektiv.
+		\item $[P]=0 \in \tilde{K}_0(R)$ ist äquivalent zu $P$ ist \Index{stabil endlich erzeugt frei}, das heißt es gibt einen endlich erzeugten freien $R$-Modul $F$, sodass $F \oplus P$ frei ist.
+		Insbesondere 
+		\[
+			\tilde{K}_0(R) =0 \iff \text{Jeder endlich erzeugte projektive Modul ist stabil endlich erzeugt frei} 
+		\]
+		\item Sei $R$ ein Ring, für den jeder endlich erzeugte projektive Modul frei von wohldefiniertem Rang ist, also $P \cong R^n$ für eindeutiges $n$.
+		Dann definiert der Rang -- wie bei Körpern -- ein Inverses zu $\iota$ und wir erhalten $K_0(R)\cong \mathbb{Z}$.
+		
+		(Dies gilt zum Beispiel für Hauptidealringe oder lokale Ringe.)
+		\item Gilt $R^n \cong R^m$ genau dann, wenn $n=m$ (also also wenn der Rang für endlich erzeugte freie Moduln wohldefiniert ist), so ist $\iota$ injektiv.
+		Dies gilt zum Beispiel für kommutative Ringe oder Gruppenringen über kommutativen Ringen. 
+	\end{enumerate}
+\end{bemerkung}
+
+\begin{beispiel}[{name={Eilenberg-Schwindel}}]
+	Betrachte die Menge $\Proj^\infty(R)$ der Isomorphieklassen von projektiven $R$-Moduln mit einem abzählbaren Erzeugendensystem.
+	Dann ist $\enbrace*{\Proj^\infty(R), \oplus }$ eine abelsche Halbgruppe.
+	Dann ist aber $\Gr\enbrace*{\Proj^\infty(R),\oplus}=0$, denn zu jedem solchen Modul $P$ gibt es einen zweiten $Q$ mit $P \oplus Q \cong Q$, nämlich $Q := \bigoplus_{i=1}^\infty P$ ist auch projektiv und abzählbar erzeugt.\marginnote{man kann $Q$ auch frei wählen}
+\end{beispiel}
+
+\begin{definition}[{name=[Morita-äquivalent]}]
+	Ringe $R$ und $S$ heißen \Index{Morita-äquivalent}, wenn es Bimoduln $_R X_S$ und $_S Y _R$ gibt, sodass 
+	\begin{equation}
+		\begin{split}
+			{_R X_S} \otimes_S {_S Y _R} &\cong {_R R_R} \enspace\text{ als $R$-$R$-Bimodul} \\ 
+			{_S Y _R} \otimes_R {_R X_S} &\cong {_S S_S} \enspace\text{ als $S$-$S$-Bimodul}
+		\end{split} \tag{\#}\label{eq:def:morita}
+	\end{equation}
+\end{definition}
+
+\begin{bemerkung}
+	\eqref{eq:def:morita} impliziert, dass $_R X_S$ sowohl als $R$-Linksmodul als auch als $S$-Rechtsmodul endlich erzeugt projektiv ist,
+	Gleiches gilt (umgekehrt) auch für ${_S X_R}$.
+\end{bemerkung}
+
+\begin{beispiel}
+	Für jeden Ring $R$ ist $R$ Morita-äquivalent zum Ring $M_n(R)$ der $n \times n$-Matrizen über $R$ via ${_R X_{M_n(R)}}=R^n$ und $_{M_n(R)} Y_R = R^n$.
+	Dabei wirkt $M_n(R)$ einmal auf $R^n$ als Spalten von links und einmal als Zeilen von rechts.
+\end{beispiel}
+
+\begin{satz}[{name=[K0 ist Morita-invariant]}]
+	Sind $R$ und $S$ Morita-äquivalent, so gilt $K_0(R) \cong K_0(S)$.
+\end{satz}
+\begin{beweis}
+	Betrachte $\benbrace*{_R P} \mapsto \benbrace[\big]{{_S Y_R} \otimes_R {_R P}}$ ist ein Isomorphismus $\Proj(R) \to \Proj(S)$.
+	Die Inverse wird von $_R X _S$ induziert.
+\end{beweis}
+
+\begin{korollarB}
+	$K_0(R) \cong K_0 \enbrace[\big]{M_n(R)}$.
+\end{korollarB}
+
+
 % section k_0_eines_ringes (end)
 
 \cleardoubleoddemptypage
