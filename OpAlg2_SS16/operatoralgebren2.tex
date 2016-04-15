@@ -14,6 +14,20 @@
 \maketitle
 \begin{abstract}
 \input{../!config/vorwort.tex}
+\section*{Anmerkung}
+Innerhalb dieser Mitschrift wird man öfter den Ausdruck \enquote{Warum?} finden. Dies sind vom Dozenten bewusst weggelassene Details, die zu verstärktem Mitdenken beim Lesen 
+animieren sollen. Oftmals sind dies schon aus vorherigen Semestern bekannte Sachverhalte. Nur an wenigen Stellen habe ich die fehlenden Details hinzugefügt.
+
+\section*{Literatur}
+\begin{itemize}[itemsep=0pt]
+	\item G. J. \textsc{Murphy} \emph{C*-algebras and Operator Theory} \cite{Murphy}
+	\item B. \textsc{Blackadar} \emph{Operator Algebras}
+	\item J. \textsc{Dixmier} \emph{C*-algèbres}
+	\item J. \textsc{Dixmier} \emph{Algèbres de von Neumann}
+	\item M. \textsc{Takesaki} \emph{Theory of Operator Algebras I.}
+	\item R.V. \textsc{Kadison} und J. R. \textsc{Ringrose} \emph{Fundamentals of the Theory of Operator Algebras I.}
+	\item G.K. \textsc{Pedersen} \emph{C*-algebras and their Automorphism Groups}\todo{fertig machen, dies ist nur CP von Opertoralgebren I.}
+\end{itemize}
 \end{abstract}
 
 \tableofcontents
@@ -27,7 +41,7 @@
 \label{sec:1}
 
 \begin{erinnerungA}[{name=[Tensorprodukt]}]
-	Seien $V,W$ $\mathbb{K}$-Vektorräume.
+	Seien $V,W$ $\mathbb{K}$-Vektorräume.\todo{Revision Kapitel 1}
 	Sei $X$ ein weiterer $\mathbb{K}$-Vektorraum und $\phi \colon V\times W \to X$ bilinear.
 	Dann heißt $(X,\varphi)$ \Index{Tensorprodukt} von $V$ und $W$, falls folgende universelle Eigenschaft gilt:
 	\[
@@ -110,7 +124,7 @@
 	\[
 		\skal*{\xi \otimes \eta}{\xi' \otimes \eta'} := \skal*{\xi}{\xi'} \cdot \skal*{\eta}{\eta'} 
 	\]
-	Dann ist das \bet{Tensorprodukt von Hilberträumen}\index{Tensorprodukt!von Hilberträumen} definiert durch
+	Das \bet{Tensorprodukt von Hilberträumen}\index{Tensorprodukt!von Hilberträumen} ist nun definiert durch
 	\[
 		\mathcal{H}_1 \otimes \mathcal{H}_2 := \overline{\mathcal{H}_1 \odot \mathcal{H}_2}^{\skal*{\cdot}{\cdot}}
 	\]
@@ -176,8 +190,116 @@
 		Es gilt $c= \sum_{i=1}^{n} a_i \otimes b_i$ für geeignete $a_i$, $b_i$ und $n$.
 		Ohne Einschränkungen können wir annehmen, dass die $b_i$ linear unabhängig sind.
 		Da $\pi_B$ treu ist, sind auch die $\pi_B(b_i)$ linear unabhängig.
+		Für $\xi \in \mathcal{H}_1$ wählen eine Orthonormalbasis $\set*{\xi_1, \ldots ,\xi_m}$ für $\Span \set*{\pi_A(a_i) \xi \given i=1,\ldots ,n} \subset \mathcal{H}_1$.
+		Es existieren also $\lambda_{ij} \in \mathbb{C}$ für $i=1,\ldots ,n$, $j=1,\ldots ,m$ mit 
+		\(
+			\pi_A(a_i) \xi = \sum_{j=1}^{m} \lambda_{ij} \cdot \xi_j
+		\)
+		für $i=1,\ldots ,n$.
+		Für $\eta \in \mathcal{H}_2$ gilt
+		\begin{align}
+			0 = \enbrace*{\pi_A \otimes \pi_B}(c) \enbrace*{\xi \otimes \eta} = \sum_{i=1}^{n} \pi_A(a_i) \xi \otimes \pi_B(b_i) \eta &= \sum_{i=1}^{n} \enbrace*{\sum_{j=1}^{m} \lambda_{ij} \cdot \xi_j} \otimes \pi_B(b_i) \eta \\
+			&= \sum_{j=1}^{m} \xi_j \otimes \enbrace*{\sum_{i=1}^{n} \lambda_{ij} \cdot \pi_B(b_i) \eta }
+		\end{align}
+		Es folgt, dass $\sum_{i=1}^{n} \lambda_{ij} \cdot \pi_B(b_i) \eta=0$ für $j=1,\ldots ,m$ und $\eta \in \mathcal{H}_2$.
+		Damit sind die $\pi_B(b_i)$ linear abhängig oder $\lambda_{ij}=0$.
+		Ersteres kann nicht gelten, also muss $\pi_A(a_i)\xi=0$ für $\xi \in \mathcal{H}_1$ gelten, also $\pi_A(a_i)=0$.
+		Folglich ist $c=0$ im Widerspruch zur Annahme.
+		\item $C^*$-Halbnorm: Übung!
+		Wir zeigen, dass $\norm*{\cdot }_{\min}$ endlich ist: 
+		\begin{align}
+			\norm*{\enbrace*{\pi_A \otimes \pi_B} \enbrace*{\sum\nolimits_{i=1}^{n} a_i \otimes b_i}} &= \norm*{\sum_{i=1}^{n} \enbrace*{\pi_A(a_i) \otimes \ind_{\mathcal{H}_1} } \enbrace*{\ind_{\mathcal{H}_2} \otimes \pi_B(b_i)}}\\
+			&\le \sum_{i=1}^{n} \norm*{\pi_A(a_i) \otimes \ind_{\mathcal{H}_1}} \norm*{\ind_{\mathcal{H}_2} \otimes \pi_B(b_i)} \\
+			\intertext{$\pi_A(\cdot ) \otimes \ind_{\mathcal{H}_1}$ und $\ind_{\mathcal{H}_2} \otimes \pi_B(\cdot )$ sind als $^*$-Darstellungen kontraktiv, also}
+			&\le \sum_{i=1}^{n} \norm*{a_i} \norm*{b_i} < \infty
+		\end{align}
+		$\norm*{\cdot }_{\min}$ ist eine Norm nach (i), denn $A$ und $B$ besitzen treue Darstellungen.\qedhere
 	\end{enumerate}
 \end{beweis}
+
+\begin{definition}[{name=[{minimales Tensorprodukt}]}]
+	\[
+		\overline{A \odot B}^{\norm*{\cdot }_{\min}} =: A \otimes_{\min}B \enspace(= {A \otimes B})
+	\]
+	heißt \bet{minimales} (oder \bet{räumliches} oder \bet{spatiales}) \bet{Tensorprodukt}\index{minimales Tensorprodukt} von $A$ und $B$.
+\end{definition}
+
+\begin{satz}
+	Seien $A,B$ $C^*$-Algebren und $\pi \colon A \odot B \to \mathcal{B}(\mathcal{H})$ eine nichtdegenerierte Darstellung.
+	Dann existieren eindeutig bestimmte nichtdegenerierte Darstellungen $\pi_A \colon A \to \mathcal{B}(\mathcal{H})$ und $\pi_B \colon B \to \mathcal{B}(\mathcal{H})$ mit 
+	\[
+		\pi(a \otimes b) = \pi_A(a) \cdot \pi_B(b)=\pi_B(b) \cdot \pi_A(a)
+	\]
+	Falls $\pi$ eine Faktordarstellung ist (das heißt $\overline{\pi(A \odot B)}^{\wo}$ ist ein Faktor), so auch $\pi_A$ und $\pi_B$.
+\end{satz}
+\begin{beweis}
+	Falls $A$ und $B$ unital sind, so sind $\pi_A$, $\pi_B$ gegeben durch $\pi_A(a) = \pi(a \otimes \ind_B)$ bzw. $\pi_B(b) = \pi(\ind_A \otimes b)$.
+	Im allgemeinen Fall seien $(h_\lambda), (k_\mu)$ approximative Einsen.
+	Setze 
+	\begin{align}
+		\pi_A(a) &:= \solim \pi(a \otimes k_\mu) \\
+		\pi_B(b) &:= \solim \pi(h_\lambda \otimes b)
+	\end{align}
+	Wir zeigen, dass diese Limiten existieren:
+	Für $\xi \in \mathcal{H}$ und $a \in A_+$ definiert $b \mapsto \skal*{\xi}{\pi(a \otimes b) \xi}$ ein positives Funktional $f_a$ auf $B$ (beschränkt nach OpAlg Satz 5.3).
+	Damit existiert
+	\[
+		\lim_\mu f_a(k_\mu) = \lim_\mu \skal*{\xi}{\pi(a \otimes k_\mu)\xi}
+	\]
+	Für $a \in A_+$, $\mu \le \mu'$ gilt 
+	\begin{align}
+		\norm[\Big]{\enbrace[\big]{\pi(a \otimes k_{\mu'}) - \pi (a \otimes k_\mu)}\xi}^2 = \skal[\Big]{\xi}{\pi \enbrace[\big]{a^2 \otimes \enbrace*{k_{\mu'} - k_\mu}^2} \xi}
+		&\le \skal[\Big]{\xi}{ \pi \enbrace[\big]{a \otimes \enbrace*{k_{\mu'}- k_\mu}} \xi} \\
+		&= f_a(k_{\mu'}) - f_a(k_\mu) < \varepsilon
+	\end{align}
+	für $\mu, \mu'$ groß genug.
+	Also existiert $\pi_A(a)$ für $a \in A_+$. 
+	Mit Linearität folgt, dass $\pi_A$ auch insgesamt wohldefiniert ist.
+	Dass $\pi_A, \pi_B$ $^*$-Darstellungen sind mit den gewünschten Eigenschaften, verbleibt als Übung!
+	
+	Es gilt nach dem Bikommutantensatz
+	\[
+		\begin{tikzcd}
+			\pi_A(A)\dar[phantom,"\subset", sloped] \rar[phantom,"\subset", sloped] & \pi_B(B)' \dar[equals] \\
+			\pi_A(A)'' \rar[phantom,"\subset", sloped] & \pi_B(B)''
+		\end{tikzcd}
+	\]
+	Damit folgt $\pi_A(A)' \cap \pi_A(A)'' \subset \pi_A(A)' \cap \pi_B(B)' \subset \pi(A \odot B)'$.
+	Weiter haben wir $\pi_A(A) \subset \overline{\pi(A \odot B)}^{\so} = \pi(A \odot B)''$, also gilt $\pi_A(A)'' \subset \pi(A \odot B)''$, womit weiter folgt
+	\[
+		\mathbb{C} \cdot \ind_{\mathcal{H}} \subset \pi_A(A)' \cap \pi_A(A)'' \subset \pi(A \odot B)' \cap \pi(A \odot B)'' = \mathbb{C} \cdot \ind_{\mathcal{H}}\qedhere
+	\]
+\end{beweis}
+
+\begin{korollar}
+	Seien $A,B$ $C^*$-Algebren, $\gamma$ eine $C^*$-Halbnorm auf $A \odot B$.
+	Dann gilt $\gamma(a \otimes b) \le \norm*{a} \cdot \norm*{b}$ für $a \in A$, $b	\in B$.
+	$\gamma$ besitzt eine eindeutige Fortsetzung zu einer $C^*$-Halbnorm auf $A^\simm \odot B^\simm$.
+\end{korollar}
+\begin{beweis}
+	Setze $N := \set*{x \in A \odot B \given \gamma(x)=0} \lhd A \odot B$.
+	$\gamma$ induziert eine $C^*$-Norm $\overline{\gamma}$ auf $\sfrac{A \odot B}{N}$.
+	Damit ist $C := \overline{\sfrac{A \odot B}{N}}^{\overline{\gamma}}$ eine $C^*$-Algebra.
+	$C$ besitzt eine nichtdegenerierte treue Darstellung.
+	Wir erhalten $\pi \colon A \odot B \to \mathcal{B}(\mathcal{H})$ mit $\norm*{\pi(X)}= \overline{\gamma}(x +N) =\gamma(x)$ für $x \in A \odot B$.
+	Weiter gilt
+	\[
+		\gamma(a \otimes b) = \norm*{\pi(a \otimes b)} \le \norm*{\pi_A(a)} \cdot \norm*{\pi_B(b)} \le \norm*{a} \cdot \norm*{b}
+	\]
+	Seien $\tilde{\pi}_A \colon A^\simm \to \mathcal{B}(\mathcal{H})$, $\tilde{\pi}_B \colon B^\simm \to \mathcal{B}(\mathcal{H})$ die Fortsetzungen auf den Unitalisierungen.
+	Dann definiert $\tilde{\pi}(a \otimes b) := \tilde{\pi}_A(a) \cdot \tilde{\pi}_B(b)$ eine Fortsetzung $\tilde{\pi} \colon A^\simm \odot B^\simm \to \mathcal{B}(\mathcal{H})$ von $\pi$.
+	($\tilde{\pi}$ existiert nach \autoref{bem:14}).
+	$\tilde{\gamma}(\cdot ) := \norm*{\tilde{\pi}(\cdot)}$ ist eine Fortsetzung von $\gamma$.
+	Wir müssen die Eindeutigkeit zeigen:
+	\begin{align}
+		\tilde{\gamma}(x) = \norm*{\tilde{\pi}(x)} = \norm*{\ind_{\mathcal{H}} \cdot \tilde{\pi}(x)} &= \norm*{\solim \pi\enbrace[\big]{h_\lambda^{\sfrac{1}{2}} \otimes k_\mu^{\sfrac{1}{2}}} \cdot \tilde{\pi}(x)} \\
+		&= \lim_{\lambda,\mu} \norm*{\tilde{\pi}(x^*) \pi \enbrace*{h_\lambda \otimes k_\mu} \tilde{\pi}(x)}^{\sfrac{1}{2}} \\
+		&= \lim_{\lambda,\mu} \norm*{\pi \enbrace*{x^* (h_\lambda \otimes k_\mu) x}}^{\sfrac{1}{2}} \\
+		&= \lim_{\lambda,\mu} \gamma \enbrace*{x^*(h_\lambda \otimes k_\mu)x}
+	\end{align}
+	Der letzte Ausdruck ist unabhängig von $\pi$.
+\end{beweis}
+
 % section 1 (end)
 
 \cleardoubleoddemptypage
