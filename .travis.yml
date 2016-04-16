@@ -11,8 +11,10 @@ before_install:
 install: true
 
 before_script:
+  - git config user.name "Travis CI"
+  - git config user.email "j.bantje@wwu.de"
   - git tag -a latest -m "aktuelle Version aller Skripte"
-  - git push -f origin latest
+  - git push -f --tags "https://${GH_TOKEN}@${GH_REF}"
   
 script:
   - make build
@@ -41,3 +43,7 @@ deploy:
   skip_cleanup: true
   on:
     repo: JaMeZ-B/LaTeX-WWU
+env:
+  global:
+  - GH_REF: github.com/JaMeZ-B/LaTeX-WWU.git
+  - secure: E3TwBW3CW9xSmW4VhXgFSPDNPt2GDxN2ZW+BnlBGo7mHTJW/CjVUEY0zea0/L8okJ6AcpiPjXlbmGnnnpZQhRC33RZVUVfaQifqqQkgBNJ+vE8NOtFMit3VHLUGHowQ5hvN3qi43YhzY8CXFDi1wkFp/TuUcKtDA6XQexywAal7yKexuPXP8iRwVAYb1amuHv5wyqk9pEGnJdReNG+1bT6gPLQfZCpmRUJY9hDapkdd/+ZNe7/7FppS7M7ij/jd2lBIyl0KjPxHkR+5WjODwcDnXATZDS6MBIWsgOaaENB5QRI59bm2SEgK3MrEw4cVf9qk67oudbzDXxIvzaieDh3f8VDEzF2DsA5S2Ns2+C6PNGTSfwWmEukgGWV9sMiQUOa4bqlZJy+pChJQnecP5oaORtPtmhXsLgjgsfgUdNk6oCGkgZt7O+IUzp65NZ7B+goVDOHiIbY1Tf/zpxzlTU34OnXXuVdiXnOmPAmjW8z7jJoGcylQ0XOAG1WOner385Zr7kMXcNLr+lythkc6jlyJShXzQxKgC5Cw2PopF2iaWzwW8X4uBRWS9RwGe1fA8HD4s465+IVKMIozev3duCvjZPCFaK/akEY7fdXhCj4KdmDiTzFdRZOStsnGA51i68QthSKxDQH1JAUZgZ8OeHhBMpxGIqzWO8DSsth3SfuQ=
