@@ -10,6 +10,9 @@ before_install:
 
 install: true
 
+before_script:
+  - git tag
+  
 script:
   - make build
   - sudo chown -R $USER *
