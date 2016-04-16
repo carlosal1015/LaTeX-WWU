@@ -23,6 +23,7 @@ script:
 branches:
   except:
     - /^untagged-.*/
+    - /^latest/
 
 deploy:
   provider: releases
