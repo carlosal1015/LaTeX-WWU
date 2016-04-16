@@ -11,7 +11,8 @@ before_install:
 install: true
 
 before_script:
-  - git tag
+  - git tag -a latest -m "aktuelle Version aller Skripte"
+  - git push -f origin latest
   
 script:
   - make build
