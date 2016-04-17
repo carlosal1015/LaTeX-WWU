@@ -1,21 +1,16 @@
 sudo: required
 
-language: ruby
+language: go
 
 services:
   - docker
 
 before_install:
   - sudo docker build -t texlive \!deploy
+  - go get github.com/aktau/github-release
 
 install: true
 
-before_script:
-  - git config user.name "Travis CI"
-  - git config user.email "j.bantje@wwu.de"
-  - git push "https://${GH_TOKEN}@${GH_REF}" :refs/tags/latest
-  - git tag -af latest -m "aktuelle Version aller Skripte"
-  - git push -f --tags "https://${GH_TOKEN}@${GH_REF}"
   
 script:
   - make build
@@ -25,6 +20,14 @@ branches:
   except:
     - /^untagged-.*/
     - /^latest/
+    
+after_success:
+  - git config user.name "Travis CI"
+  - git config user.email "j.bantje@wwu.de"
+  - git push "https://${GH_TOKEN}@${GH_REF}" :refs/tags/latest
+  - git tag -af latest -m "aktuelle Version aller Skripte"
+  - git push -f --tags "https://${GH_TOKEN}@${GH_REF}"
+
 
 deploy:
   provider: releases
