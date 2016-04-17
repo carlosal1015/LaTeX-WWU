@@ -1,5 +1,5 @@
 compile:
-	./compile_all.sh
+	./\!deploy/compile_all.sh
 help:
 	@echo 'Makefile for automatic LaTeX compilation                                  '
 	@echo '                                                                          '
@@ -14,7 +14,7 @@ build:
 	echo '\\tikzexternaldisable' >> \!config/mitschrift_headings.tex
 	# cat \!config/mitschrift_headings.tex
 	echo '\\tikzexternaldisable' >> \!config/PhistScript.tex
-	docker run -it --rm -v $(CURDIR):/var/texlive  texlive sh -c "./compile_all.sh"
+	docker run -it --rm -v $(CURDIR):/var/texlive  texlive sh -c "./\!deploy/compile_all.sh"
 
 
 .PHONY: compile help build
