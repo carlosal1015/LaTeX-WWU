@@ -6,10 +6,41 @@ lecture notes written at WWU Münster, FB10
 ## Das Bereitstellen der PDFs ist noch nicht vollständig eingerichtet!
 
 Dies betrifft insbesondere auch den Dropbox- sowie den Sciebo-Ordner!
-Als Zwischenlösung sind einige aktuelle Skripte über die _Releases_ verfügbar: 
-### [PDFs](https://github.com/JaMeZ-B/LaTeX-WWU/releases/latest)
+Als Zwischenlösung sind einige aktuelle Skripte über die _Releases_ (in der Leiste über der Dateienliste) verfügbar.
 
-Das alte Repository mit den – eventuell veralteten – PDFs findet man  [HIER](https://github.com/JaMeZ-B/LaTeX-wwu-old)
+* WiSe 2015
+	* [CAT(0) kubische Komplexe](https://github.com/JaMeZ-B/LaTeX-WWU/releases/download/latest/CAT0.pdf "CAT(0) kubische Komplexe") (Phil)
+	* [Topologie II.](https://github.com/JaMeZ-B/LaTeX-WWU/releases/download/latest/topologie_2.pdf "Topologie II.") (Jannes)
+	* [Operatoralgebren](https://github.com/JaMeZ-B/LaTeX-WWU/releases/download/latest/operatoralgebren.pdf "Operatoralgebren") (Jannes)
+	* [Modellreduktion](https://github.com/JaMeZ-B/LaTeX-WWU/releases/download/latest/Modellreduktion.pdf "Modellreduktion") (Tobias)
+* SoSe 2015
+	* [Elliptische Kurven und Kryptographie](https://github.com/JaMeZ-B/LaTeX-WWU/releases/download/latest/EKK.pdf "Elliptische Kurven und Kryptographie") (Phil)
+	* [K-Theorie](https://github.com/JaMeZ-B/LaTeX-WWU/releases/download/latest/K-Theorie.pdf "K-Theorie und die Hopf-Invariante") (Jannes; momentan noch etwas unvollständig…)
+	* [Analysis II.](https://github.com/JaMeZ-B/LaTeX-WWU/releases/download/latest/Ana2.pdf "Analysis II.") (Tim)
+* WiSe 2014
+	* [Topologie I.](https://github.com/JaMeZ-B/LaTeX-WWU/releases/download/latest/topologie_1.pdf "Topologie I.") (Jannes)
+	* [Funktionalanalysis](https://github.com/JaMeZ-B/LaTeX-WWU/releases/download/latest/funktional_analysis.pdf "Funktionalanalysis") (Jannes)
+	* [Elementare Zahlentheorie](https://github.com/JaMeZ-B/LaTeX-WWU/releases/download/latest/EZT.pdf "Elementare Zahlentheorie") (Phil)
+	* [Differentialgeometrie](https://github.com/JaMeZ-B/LaTeX-WWU/releases/download/latest/diff_geo.pdf "Differentialgeometrie") (Arne)
+	* [Einführung in die Algebra](https://github.com/JaMeZ-B/LaTeX-WWU/releases/download/latest/Einf_Algebra.pdf "Einführung in die Algebra") (Tobias)
+	* [Finanzmathematik](https://github.com/JaMeZ-B/LaTeX-WWU/releases/download/latest/Fima_WS14.pdf "Finanzmathematik") (Tobias)
+* SoSe 2014
+	* [Höhere Algebra I.](https://github.com/JaMeZ-B/LaTeX-WWU/releases/download/latest/hoehere_algebra.pdf "Höhere Algebra I.") (Jannes)
+	* [Differentialformen und Mannigfaltigkeiten](https://github.com/JaMeZ-B/LaTeX-WWU/releases/download/latest/diff_ma.pdf "Differentialformen und Mannigfaltigkeiten") (Jannes)
+	* [Grundlagen der Analysis, Topologie, Geometrie](https://github.com/JaMeZ-B/LaTeX-WWU/releases/download/latest/ana_top_geo.pdf "Grundlagen der Analysis, Topologie und Geometrie") (Jannes)
+	* [Partielle Differentialgleichungen I.](https://github.com/JaMeZ-B/LaTeX-WWU/releases/download/latest/PDGL1.pdf "Partielle Differentialgleichungen I.") (Phil)
+* WiSe 2013
+	* [Analysis III.](https://github.com/JaMeZ-B/LaTeX-WWU/releases/download/latest/analysis3.pdf "Analysis III.") (Jannes)
+	* [Einführung in die Algebra](https://github.com/JaMeZ-B/LaTeX-WWU/releases/download/latest/algebra.pdf "Einführung in die Algebra") (Jannes)
+* SoSe 2013
+	* [Analysis II.](https://github.com/JaMeZ-B/LaTeX-WWU/releases/download/latest/analysis2.pdf "Analysis II.") (Jannes)
+	* [Lineare Algebra II.](https://github.com/JaMeZ-B/LaTeX-WWU/releases/download/latest/lineare_algebra2.pdf "Lineare Algebra II.") (Jannes)
+* WiSe 2012,  
+_Nur der Vollständigkeit wegen hinzugefügt, Qualität bleibt hinter anderen Skripten zurück_
+	* [Analysis I.](https://github.com/JaMeZ-B/LaTeX-WWU/releases/download/latest/analysis1.pdf "Analysis I.") (Jannes)
+	* [Lineare Algebra I.](https://github.com/JaMeZ-B/LaTeX-WWU/releases/download/latest/lineare_algebra1.pdf "Lineare Algebra I.") (Jannes)
+	
+(Die Links führen direkt zu den PDF-Dateien; hauptsächlicher Autor in Klammern)
 
 ### Mitarbeit
 Ich lade jeden herzlich ein, sich mittels Forks und Pull-Requests an der Entwicklung der Skripte zu beteiligen. Es gibt sicherlich noch diverse Fehler und auch bei den
