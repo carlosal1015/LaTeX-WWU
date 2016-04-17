@@ -6,7 +6,7 @@
 \newcommand{\homepage}{http://wwwmath.uni-muenster.de/u/wilhelm.winter/wwinter/operatoralgebren_II.html}
 
 \newcommand{\prof}{Prof.\ Dr.\ Wilhelm Winter}
-\publishers{\scalebox{10}{\Huge$C^*$\Large\RM{2}.}}
+\publishers{\scalebox{10}{\Huge$^{\raisebox{2.2pt}{\text{\small\RM{2}.}}}\mkern-1.5mu C^*$}}
 \input{../!config/mitschrift_headings.tex}
 
 \begin{document}
@@ -43,7 +43,7 @@ animieren sollen. Oftmals sind dies schon aus vorherigen Semestern bekannte Sach
 \label{sec:1}
 
 \begin{erinnerungA}[{name=[Tensorprodukt]}]
-	Seien $V,W$ $\mathbb{K}$-Vektorräume.\todo{Revision Kapitel 1}
+	Seien $V,W$ $\mathbb{K}$-Vektorräume.
 	Sei $X$ ein weiterer $\mathbb{K}$-Vektorraum und $\phi \colon V\times W \to X$ bilinear.
 	Dann heißt $(X,\varphi)$ \Index{Tensorprodukt} von $V$ und $W$, falls folgende universelle Eigenschaft gilt:
 	\[
@@ -54,9 +54,9 @@ animieren sollen. Oftmals sind dies schon aus vorherigen Semestern bekannte Sach
 	\]
 \end{erinnerungA}
 
-\begin{definitionP}[label=propdef:12]
+\begin{definitionP}[label=propdef:12,{name=[{Konstruktion des algebraischen Tensorproduktes}]}]
 	$(X,\varphi)$ wie oben existiert und ist eindeutig bis auf linearen Isomorphismus.
-	Wir schreiben $V \odot W$ für $X$ und $v \otimes w$ für $\varphi(v,w)$.
+	Wir schreiben $V \odot W$ für $X$ und $v \otimes w$ für $\varphi(v,w)$.\marginnote{$\odot$ algebraisches Tensorprodukt}
 \end{definitionP}
 \begin{beweis}
 	Sei $M$ der freie Vektorraum mit Basis $V \times W$, anders ausgedrückt
@@ -97,16 +97,16 @@ animieren sollen. Oftmals sind dies schon aus vorherigen Semestern bekannte Sach
 \begin{beweis}
 	Betrachte $M$ wie in \autoref{propdef:12} und überprüfe, dass Multiplikation auf $\sfrac{M}{N}$ wohldefiniert und assoziativ ist.
 	
-	Alternativ: $(a,b) \in A \times B$ liefern eine bilineare Abbildung
+	Alternativ: Die Elemente $(a,b) \in A \times B$ liefern eine bilineare Abbildung
 	\mapdef{M_{(a,b)} \colon A \times B}{A \odot B}{(a',b')}{aa' \otimes bb'}{}
 	Aus der universellen Eigenschaft erhält man $m_{(a,b)} \colon A \odot B \to A \odot B$ linear.
-	Dies liefert wiederum eine bilineare Abbildung $m \colon A \times B \to \mathrm{L}(A \odot B, A \odot B)$ durch $(a,b) \mapsto m_{(a,b)}$.
+	Dies liefert wiederum eine bilineare Abbildung $m \colon A \times B \to \mathcal{L}(A \odot B, A \odot B)$ durch $(a,b) \mapsto m_{(a,b)}$.
 	Nach der universellen Eigenschaft bekommt man nun eine lineare Abbildung $A \odot B \to \mathrm{L}(A \odot B, A\odot B)$.
 	Daraus erhält man eine bilineare Abbildung
 	\[
 		\mu \colon A \odot B \times A \odot B \longrightarrow A \odot B
 	\]
-	Dann ist $(A \odot B,\mu)$ eine $\mathbb{K}$-Algebra.
+	Dann ist $(A \odot B,\mu)$ eine $\mathbb{K}$-Algebra.\todo{RevChap 1}
 \end{beweis}
 
 \begin{bemerkung}[label=bem:14]
