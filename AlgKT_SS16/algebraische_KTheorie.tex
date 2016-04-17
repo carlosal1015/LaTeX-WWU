@@ -49,13 +49,13 @@
 				P \rar["\varphi"] \urar["\hat{\varphi}",dashed] & N
 			\end{tikzcd}
 		\]
-		\item $P$ ist ein direkter Summand in einem freien Modul, das heißt es gibt einen $R$-Modul $Q$, sodass $P \oplus Q$ eine $R$-Basis besitzt.\todo{RevChap 1}
+		\item $P$ ist ein direkter Summand in einem freien Modul, das heißt es gibt einen $R$-Modul $Q$, sodass $P \oplus Q$ eine $R$-Basis besitzt.
 	\end{enumerate}
 \end{bemerkung}
 
 \begin{definition}[{name=[{endlich erzeugter $R$-Modul}]}]
 	Ein $R$-Modul heißt \bet{endlich erzeugt}\index{endlich erzeugter $R$-Modul}, wenn es eine endliche Teilmenge $S \subseteq M$ gibt, sodass $M$ der einzige Untermodul von $M$ ist, der $S$ enthält.
-	Wir nennen $S$ ein \index{endliches Erzeugendensystem} für $M$.
+	Wir nennen $S$ ein \Index{endliches Erzeugendensystem} für $M$.
 \end{definition}
 
 \begin{bemerkung}[{name=[{endlich erzeugte freie Moduln}]}]
@@ -75,11 +75,11 @@
 \begin{beweis}
 	Sei zunächst $P$ projektiv.
 	Ist $v_1,\ldots ,v_n$ ein endliches Erzeugendensystem von $P$, so erhalten wir $R$-lineare surjektive Abbildung $f \colon R^n \to P$, $f(r_1,\ldots,r_n)=\sum_{i=1}^n r_i \cdot v_i$.
-	Da $P$ projektiv ist, gibt es einen Spalt $s$ für $f$ und es folgt $\mathbb{R}^n \cong P \oplus \ker f$.
+	Da $P$ projektiv ist, gibt es einen Spalt $s$ für $f$ und es folgt $R^n \cong P \oplus \ker f$.
 	
-	Sei $\varphi \colon P \oplus Q \to \mathbb{R}^n$ ein Isomorphismus.
+	Sei nun $\varphi \colon P \oplus Q \to R^n$ ein Isomorphismus.
 	Sei $\tilde{p} \colon P \oplus  Q \to P \oplus Q$ die Projektion auf $P$, also $\tilde{p} (v,w) = (v,0)$ für $v \in P$, $w \in Q$.
-	Dann ist $p := \varphi \circ \tilde{p} \circ \varphi^{-1} \in \End_R(R^n)$ idempotent und $\varphi|_{P} \colon P \xrightarrow{\cong} \im p$ ein Isomorphismus.
+	Dann ist $p := \varphi \circ \tilde{p} \circ \varphi^{-1} \in \End_R(R^n)$ idempotent und $\varphi|_{P} \colon P \to \im p$ ein Isomorphismus.
 	
 	Sei $p \colon R^n \to R^n$ idempotent.
 	Wir zeigen, dass $\im p = p(R^n)$ projektiv ist.
@@ -97,13 +97,13 @@
 	Ist $P \subseteq R^n$ ein direkter Summand, so ist $P$ endlich erzeugt, da wir eine Surjektion $R^n \to P$ erhalten und das Bild der endlichen Basis der $R^n$ dann auch ein endliches Erzeugendensystem für $P$ ist.
 \end{bemerkung}
 
-\begin{bemerkung}
-	Für jedes $n$ bilden die Untermoduln von $R^n$ eine Menge, insbesondere bilden die direkten Summanden eine Menge.
-	Es folgt mit \autoref{satz:proj_endlich_erz}, dass auch die Isomorphieklassen von endlich erzeugten $R$-Moduln eine Menge bilden.
+\begin{bemerkung}[{name=[{Menge der Isomorphieklassen von endlich erzeugten projektiven Moduln}]}]
+	Für jedes $n \in \mathbb{N}$ bilden die Untermoduln von $R^n$ eine Menge, insbesondere bilden die direkten Summanden eine Menge.
+	Es folgt mit \autoref{satz:proj_endlich_erz}, dass auch die Isomorphieklassen von endlich erzeugten projektiven $R$-Moduln eine Menge bilden.
 	Diese nennen wir $\Proj(R)$.
 \end{bemerkung}
 
-\begin{bemerkung}
+\begin{bemerkung}[{name=[{Proj(R) als abelsche Halbgruppe}]}]
 	$\Proj(R)$ wird durch $\oplus$ zu einer abelschen Halbgruppe mit der Isomorphieklasse des Nullmoduls als neutralem Element.
 \end{bemerkung}
 
@@ -135,12 +135,13 @@
 	$\Gr(S)$ heißt die \Index{Grothendiek-Gruppe} oder \Index{Gruppenvervollständigung} von $S$.  
 \end{definition}
 
-\begin{bemerkung}[{name=[alternative Konstruktion]}]
-	Alternativ können wir die freie abelsche Gruppe $\mathbb{Z}[S]$ benutzen, um $\Gr(S)$ zu konstruieren:
+\begin{bemerkung}[{name=[alternative Konstruktion mit freier abelscher Gruppe]}]
+	Alternativ können wir auch die \Index{freie abelsche Gruppe} $\mathbb{Z}[S]$ benutzen, um $\Gr(S)$ zu konstruieren.
+  Setze dazu
 	\[
 		\Gr(S) := \sfrac{\mathbb{Z}[S]}{A}
 	\]
-	wobei $A$ von $\set*{s + t-(s +_S t) \given s,t \in S}$ erzeugt wird.
+	wobei $A$ von $\set[\big]{s + t-(s +_S t) \given s,t \in S}$ erzeugt wird.
 \end{bemerkung}
 
 \begin{beispiel}[{name=[{für Grothendiek-Konstruktionen}]}]
@@ -150,7 +151,7 @@
 			\item $\Gr(\mathbb{N},+) \cong \mathbb{Z}$
 			\item $\Gr(\mathbb{N}_{\ge 17},+) \cong \mathbb{Z}$
 			\item $\Gr(\mathbb{N}_{>0},\cdot ) \cong (\mathbb{Q}_{>0},\cdot )$
-			\item $\Gr(\mathbb{N}_{\ge 0},\cdot) \cong 0$
+			\item $\Gr(\mathbb{N}_{\ge 0},\cdot) \cong 0$ (mit $x=0$)
 			\item $\Gr(\mathbb{N} \cup \set*{\infty},+) \cong 0$
 		\end{itemize}
 	\end{multicols}
@@ -159,6 +160,7 @@
 \begin{bemerkung}[{name=[{Funktorialität}]}]
 	$S \mapsto \Gr(S)$ ist ein Funktor von der Kategorie der abelschen Halbgruppen in die Kategorie der abelschen Gruppen:
 	Ist $\psi \colon S \to S'$ ein Halbgruppenhomomorphismus, so ist $\Gr(\psi) \colon \Gr(S) \to \Gr(S')$, $s-t \mapsto \psi(s) - \psi(t)$ der induzierte Gruppenhomomorphismus.
+  Dieser induzierte Gruppenhomomorphismus lässt sich auch mit der universellen Eigenschaft konstruieren.
 \end{bemerkung}
 
 \begin{definition}[{name=[{$K_0$ von Ringen}]}]
@@ -172,10 +174,10 @@
 
 Es gilt $[P] - [Q] = [P']- [Q']$ genau dann, wenn es einen endlich erzeugten projektiven Modul $X$ gibt mit
 \[
-	P \otimes Q' \oplus X \cong P' \oplus Q \oplus X
+	P \oplus Q' \oplus X \cong P' \oplus Q \oplus X
 \]
 Da jedes solche $X$ direkter Summand in einem endlich erzeugten freien Modul ist, genügt es für $X$ endlich erzeugte freie Moduln zu betrachten.
-Insbesondere ist $[P]=0 \in K_0(R)$ genau dann, wenn es $n \in \mathbb{N}$ gibt mit $P \otimes R^n \cong R^n$.
+Insbesondere ist $[P]=0 \in K_0(R)$ genau dann, wenn es $n \in \mathbb{N}$ gibt mit $P \oplus R^n \cong R^n$.\todo{RevChap 1}
 
 \begin{bemerkung}[{name=[{Funktoreigenschaften der 0-ten K-Theorie}]}]
 	$K_0(R)$ ist ein Funktor: Ist $f \colon R \to R'$ ein Ringhomomorphismus, so erhalten wir eine induzierte Abbildung $\Proj(R) \to \Proj(R')$ durch $_R P \mapsto  R' \otimes_R {_R P}$, dabei wird $R'$ durch $f$ zu einem $R$-Rechtsmodul:
