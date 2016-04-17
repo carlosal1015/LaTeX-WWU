@@ -26,7 +26,7 @@ after_success:
   - git config user.email "j.bantje@wwu.de"
   - GITHUB_TOKEN=$GH_TOKEN
   - github-release --help
-  - github-release delete --user JaMeZ-B --repo LaTeX-WWU --tag latest
+  - github-release delete -s ${GH_TOKEN} --user JaMeZ-B --repo LaTeX-WWU --tag latest
   - git push --delete "https://${GH_TOKEN}@${GH_REF}" latest
   - git tag -af latest -m "aktuelle Version aller Skripte"
   - git push --force --tags "https://${GH_TOKEN}@${GH_REF}"
