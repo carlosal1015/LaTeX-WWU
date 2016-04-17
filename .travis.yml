@@ -24,8 +24,6 @@ branches:
 after_success:
   - git config user.name "Travis CI"
   - git config user.email "j.bantje@wwu.de"
-  - GITHUB_TOKEN=$GH_TOKEN
-  - github-release --help
   - github-release delete -s ${GH_TOKEN} --user JaMeZ-B --repo LaTeX-WWU --tag latest
   - git push --delete "https://${GH_TOKEN}@${GH_REF}" latest
   - git tag -af latest -m "aktuelle Version aller Skripte"
