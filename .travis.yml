@@ -24,11 +24,12 @@ branches:
 after_success:
   - git config user.name "Travis CI"
   - git config user.email "j.bantje@wwu.de"
-  - git push "https://${GH_TOKEN}@${GH_REF}" :refs/tags/latest
-  - git tag -af latest -m "aktuelle Version aller Skripte"
-  - git push -f --tags "https://${GH_TOKEN}@${GH_REF}"
-  - export GITHUB_TOKEN=$GH_TOKEN
+  - GITHUB_TOKEN=$GH_TOKEN
   - github-release --help
+  - github-release delete --user JaMeZ-B --repo LaTeX-WWU --tag latest
+  - git push --delete "https://${GH_TOKEN}@${GH_REF}" latest
+  - git tag -af latest -m "aktuelle Version aller Skripte"
+  - git push --force --tags "https://${GH_TOKEN}@${GH_REF}"
 
 deploy:
   provider: releases
