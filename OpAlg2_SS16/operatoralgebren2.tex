@@ -106,16 +106,16 @@ animieren sollen. Oftmals sind dies schon aus vorherigen Semestern bekannte Sach
 	\[
 		\mu \colon A \odot B \times A \odot B \longrightarrow A \odot B
 	\]
-	Dann ist $(A \odot B,\mu)$ eine $\mathbb{K}$-Algebra.\todo{RevChap 1}
+	Dann ist $(A \odot B,\mu)$ eine $\mathbb{K}$-Algebra.
 \end{beweis}
 
-\begin{bemerkung}[label=bem:14]
+\begin{bemerkung}[label=bem:14,{name=[{universelle Eigenschaft des Tensorproduktes von *-Algebren}]}]
 	\begin{enumerate}[(i)]
 		\item Seien $A,B$ $^*$-Algebren.
 		Dann hat das Tensorprodukt $A \odot B$ als $^*$-Algebra die folgende universelle Eigenschaft:
 		
-		Falls $C$ eine $^*$-Algebra ist und $\pi_A \colon A \to C$, $\pi_B \colon B \to C$ $^*$-Homomorphismen sind, sodass für den Kommutator $\benbrace*{\pi_A(A), \pi_B(B)}=0$ gilt, so existiert genau ein $^*$-Homomorphismus $\pi \colon A \odot B \to C$ mit $\pi(a \otimes b)= \pi_A(a) \pi_B(b)$ für alle $a \in A$, $b \in B$.
-		\item Es seien $A,B,C,D$ $^*$-Algebren, $\pi_A \colon A \to C$, $\pi_B \colon B \to D$ $^*$-Homomorphismen.
+		Falls $C$ eine $^*$-Algebra ist und $\pi_A \colon A \to C$, $\pi_B \colon B \to C$ $^*$-Homomorphismen sind, sodass für den Kommutator $\benbrace*{\pi_A(A), \pi_B(B)}=0$ gilt, so existiert genau ein $^*$-Homomorphismus $\pi \colon A \odot B \to C$ mit $\pi(a \otimes b)= \pi_A(a) \cdot \pi_B(b)$ für alle $a \in A$, $b \in B$.
+		\item Es seien $A,B,C,D$ $^*$-Algebren, $\pi_A \colon A \to C$ und $\pi_B \colon B \to D$ $^*$-Homomorphismen.
 		Dann existiert genau ein $\pi \colon A \odot B \to C \odot D$ mit $\pi(a \otimes b)= \pi_A(a) \otimes \pi_B(b)$.
 	\end{enumerate}
 \end{bemerkung}
@@ -148,26 +148,27 @@ animieren sollen. Oftmals sind dies schon aus vorherigen Semestern bekannte Sach
 	\[
 		\skal*{z}{z} = \sum_{j=1}^{m} \norm*{\xi'_j}^2 \ge 0
 	\]
-	Insbesondere ist $z=0$ genau dann, wenn $\xi_1' = \ldots = \xi_m'=0$, also $\skal*{z}{z}=0$ gilt.
+	Insbesondere ist $z=0$ genau dann, wenn $\xi_1' = \ldots = \xi_m'=0$ ist, also $\skal*{z}{z}=0$ gilt.
 \end{beweis}
 
-\begin{bemerkung}[{name=[{Einbettung mit beschränkten Operatoren}]},label=bem:16]
+\begin{bemerkung}[{name=[{Einbettung der Tensorprodukte beschränkter Operatoren}]},label=bem:16]
 	Es existiert eine Einbettung $\iota \colon \mathcal{B}(\mathcal{H}_1) \odot \mathcal{B}(\mathcal{H}_2) \hookrightarrow \mathcal{B}(\mathcal{H}_1 \otimes \mathcal{H}_2)$ gegeben durch $(a \otimes b)(\xi \otimes \eta) = a(\xi) \otimes b (\eta)$. (Warum?)
 \end{bemerkung}
 
-\begin{frageA}[{name=[{C*-Norm auf dem algebraischen Tensorprodukt}]}]
-	Seien $A$, $B$ $C^*$-Algebren.
+\begin{frageA}[{name=[{C*-Normen auf dem algebraischen Tensorprodukt}]}]
+	Seien $A$ und $B$ $C^*$-Algebren.
+	Die spannende Frage ist nun:
 	\begin{center}
-		¿ Was für $C^*$-Normen existieren auf $A \odot B$?
+		\fbox{{\large¿}\,Was für $C^*$-Normen existieren auf $A \odot B$\,{\large?}}
 	\end{center}
 \end{frageA}
 
-\begin{bemerkung}
-	Falls $\gamma \colon A \odot B \to \mathbb{R}^+$ eine $C^*$-Norm ist, so ist $A \otimes_\gamma B := \overline{A \odot B}^\gamma$ eine $C^*$-Algebra.
+\begin{bemerkung}[{name=[Tensorprodukt aus C*-Norm auf dem algebraischen Tensorprodukt]}]
+	Falls $\gamma \colon A \odot B \to \mathbb{R}^+$ eine $C^*$-Norm ist, so ist $A \otimes_\gamma B := \overline{A \odot B}^\gamma$ eine $C^*$-Algebra.\todo{RevChap 1}
 \end{bemerkung}
 
-\begin{proposition}
-	Es seien $A$, $B$ $C^*$-Algebren.
+\begin{proposition}[{name=[{minimale C*-Norm auf dem Tensorprodukt}]}]
+	Es seien $A$ und $B$ $C^*$-Algebren.
 	\begin{enumerate}[(i)]
 		\item Für $^*$-Darstellungen $\pi_A \colon A \to \mathcal{B}(\mathcal{H}_1)$, $\pi_B \colon B \to \mathcal{B}(\mathcal{H}_2)$ definiert 
 		\[
@@ -177,7 +178,7 @@ animieren sollen. Oftmals sind dies schon aus vorherigen Semestern bekannte Sach
 		Falls $\pi_A$ und $\pi_B$ treu sind, so ist auch $\pi_A \otimes \pi_B$ treu.
 		\item Die Abbildung $\norm*{\cdot }_{\min} \colon A \odot B \to \mathbb{R}^+$, gegeben durch
 		\[
-			\norm[\big]{\textstyle\sum\nolimits_{i=1}^{n} a_i \otimes b_i}_{\min} := \sup \set[\Big]{\norm[\big]{(\pi_A \otimes \pi_B)\enbrace*{\textstyle\sum\nolimits_{i=1}^{n} a_i \otimes b_i}} \given \pi_A, \pi_B \text{ $^*$-Darstellungen} }
+			\norm[\big]{\textstyle\sum\nolimits_{i=1}^{n} a_i \otimes b_i}_{\min} := \sup \set[\Big]{\norm[\big]{(\pi_A \otimes \pi_B)\enbrace[\big]{\textstyle\sum\nolimits_{i=1}^{n} a_i \otimes b_i}} \given \pi_A, \pi_B \text{ $^*$-Darstellungen} }
 		\]
 		ist eine $C^*$-Norm.
 	\end{enumerate}
@@ -243,7 +244,7 @@ animieren sollen. Oftmals sind dies schon aus vorherigen Semestern bekannte Sach
 		\pi_B(b) &:= \solim \pi(h_\lambda \otimes b)
 	\end{align}
 	Wir zeigen, dass diese Limiten existieren:
-	Für $\xi \in \mathcal{H}$ und $a \in A_+$ definiert $b \mapsto \skal*{\xi}{\pi(a \otimes b) \xi}$ ein positives Funktional $f_a$ auf $B$ (beschränkt nach OpAlg Satz 5.3).
+	Für $\xi \in \mathcal{H}$ und $a \in A_+$ definiert $b \mapsto \skal*{\xi}{\pi(a \otimes b) \xi}$ ein positives Funktional $f_a$ auf $B$ (beschränkt nach \cite[Satz 5.3]{OpAlg}).
 	Damit existiert
 	\[
 		\lim_\mu f_a(k_\mu) = \lim_\mu \skal*{\xi}{\pi(a \otimes k_\mu)\xi}
