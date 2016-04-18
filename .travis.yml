@@ -59,7 +59,7 @@ deploy:
     - OpAlg_WS15/operatoralgebren.pdf
     - OpAlg2_SS16/operatoralgebren2.pdf
     - PDGL1_SS14/PDGL1.pdf
-    - PDGL1_SS16/pdeskript
+    - PDGL1_SS16/pdeskript.pdf
     - Topo1_WS14/topologie_1.pdf
     - Topo2_WS15/topologie_2.pdf
   skip_cleanup: true
