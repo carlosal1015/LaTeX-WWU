@@ -277,16 +277,173 @@ Insbesondere ist $[P]=0 \in K_0(R)$ genau dann, wenn es $n \in \mathbb{N}$ gibt 
 	Sind $R$ und $S$ Morita-äquivalent, so gilt $K_0(R) \cong K_0(S)$.
 \end{satz}
 \begin{beweis}
-	Betrachte $\benbrace*{_R P} \mapsto \benbrace[\big]{{_S Y_R} \otimes_R {_R P}}$ ist ein Isomorphismus $\Proj(R) \to \Proj(S)$.
-	Die Inverse wird von $_R X _S$ induziert.
+	% Betrachte $\benbrace*{_R P} \mapsto \benbrace[\big]{{_S Y_R} \otimes_R {_R P}}$ ist ein Isomorphismus $\Proj(R) \to \Proj(S)$.
+	% Die Inverse wird von $_R X _S$ induziert.
+	Seien $x_i \in X$, $y_i \in Y$ und setze $\psi \enbrace*{\sum_{i=1}^{n} y_i \otimes x_i} = 1_S$.
+	\[
+		\begin{tikzcd}
+			_R X \rar["\alpha"] & R^n & R^n \rar["\beta"] & X_R \\
+			x \rar[mapsto] & \enbrace*{\varphi(x \otimes y_1), \ldots , \varphi(x \otimes y_n)} & (r_1, \ldots ,r_n) \rar[mapsto] & \sum_{i=1}^{n} r_i x_i
+		\end{tikzcd}
+	\]
+	Damit ist $\beta \enbrace{\alpha(x)} = \sum_{i=1}^{n} \varphi(x \otimes y_i) x_i$.
+	Betrachte nun das folgende Diagramm:\todo{Diagramm fertig machen}
+	\[
+		\begin{tikzcd}[sep=large]
+			_R X \ar[rr,"\beta \circ \alpha"] \dar["\cong"] & & _R X \\
+			{_R X} \otimes_S S \rar["\id \otimes \psi^{-1}"]  & {_R X} \otimes_S X \otimes_R X \rar["\varphi \otimes {\id}","\cong"'] & R \otimes_R X \uar["\cong"]
+		\end{tikzcd}
+	\]
+	Damit ist $\alpha \circ \beta$ ein Isomorphismus.
 \end{beweis}
 
 \begin{korollarB}
-	$K_0(R) \cong K_0 \enbrace[\big]{M_n(R)}$.
+	$K_0(R) \cong K_0 \enbrace[\big]{M_n(R)}$, ist $F$ ein Körper, so gilt $K_0 \enbrace[\big]{M_n(F)} \cong \mathbb{Z}$.
 \end{korollarB}
 
+\begin{satz}
+	Sei $(\Lambda,\le)$ eine gerichtete Menge, $R \colon \Lambda \to \textsc{Ringe}$ ein Funktor.
+	Dann gilt 
+	\[
+		K_0 \enbrace[\Big]{\colim_{\lambda \in \Lambda} R(\lambda)} \cong \colim_{\lambda \in \Lambda} K_0\enbrace[\big]{R(\lambda)}
+	\]
+\end{satz}
+\begin{beweis}[Skizze]
+	Man zeigt zunächst $\Proj \enbrace*{\colim_\Lambda R(\lambda)} = \colim_\Lambda \Proj \enbrace*{R(\lambda)}$.
+	Sei $\mathcal{R} := \colim_\Lambda R(\lambda)$.
+	Der entscheidende Punkt ist: Zu jedem endlich erzeugten projektiven Modul $\mathcal{R}$-Modul $\mathcal{M}$ gibt es $\lambda \in \Lambda$ und einen endlich erzeugten projektiven $R(\lambda)$-Modul $M(\lambda)$ mit $\mathcal{M} \cong \mathcal{R} \otimes_{R(\lambda)} M(\lambda)$.
+	Dazu wählen wir $\tilde{p} \in M_n(\mathcal{R})$ idempotent mit $\mathcal{M} \cong \im \tilde{p}$.
+	Dann gibt es $\lambda \in \Lambda$ mit $p(\lambda) \in M_n(R(\lambda))$ mit $\tilde{p} =f_\lambda(p(\lambda))$ unter $f_\lambda \colon M_n(R(\lambda)) \to M_n(\mathcal{R})$.
+	Dann ist $\mathcal{M} \cong \im \tilde{p} \cong \mathcal{R} \otimes_{R(\lambda)} \im p(\lambda)$.
+	Nun zeigt man, dass auch $\Gr$ mit gerichteten Kolimiten vertauscht.
+\end{beweis}
 
+\begin{beispiel}
+	Sei $F$ ein Körper.
+	Betrachte den Ringhomomorphismus $i_n \colon M_{2^n}(F) \to M_{2^{n+1}}(F)$ mit $i_n(A) = \begin{psmallmatrix} A & 0 \\ 0 & A \end{psmallmatrix}$.
+	Sei $R= \colim_n M_n(F)$.
+	Es folgt
+	\[
+		K_0(R) = \colim_{n \in \mathbb{N}} K_0 \enbrace*{M_n(F)} = \colim \Big(
+		\begin{tikzcd}
+			\mathbb{Z} \rar["(i_1)_*"] & \mathbb{Z} \rar["(i_2)_*"] & \mathbb{Z} \rar["(i_3)_*"]  & \mathbb{Z} \rar & \ldots 
+		\end{tikzcd}
+		\Big)
+	\]
+	Für $n \in \mathbb{N}$ sei $f_n \colon K_0(F) \to$ der durch die Morita-Äquivalenz $V \mapsto  F^n \otimes_R V$ induzierte Isomorphismus.
+	Dann kommutiert
+	\[
+		\begin{tikzcd}
+			\mathbb{Z} \dar["\cdot 2"] & K_0(F) \lar["\dim"] \dar["\cdot 2"] \rar["f_n"] & K_0 \enbrace*{M_{2^n}(F)} \dar["(i_n)_*"] \\
+			\mathbb{Z} & K_0(F) \lar["\dim"] \rar["f_{n+1}"] & K_0 \enbrace*{M_{2^{n+1}} (F)}
+		\end{tikzcd}
+	\]
+	Also $K_0(R) = \colim \colim \big(
+		\begin{tikzcd}
+			\mathbb{Z} \rar["\cdot 2"] & \mathbb{Z} \rar["\cdot 2"] & \mathbb{Z} \rar["\cdot 2"]  & \mathbb{Z} \rar & \ldots 
+		\end{tikzcd}
+		\big) = \mathbb{Z}\benbrace*{\frac{1}{2}}$.
+\end{beispiel}
 % section k_0_eines_ringes (end)
+\newpage
+
+\section{$K_0$ und Dedekind-Ringe} % (fold)
+\label{sec:2}
+In \cref{sec:2} ist $R$ immer nullteilerfrei, kommutativ und $Q := \mathrm{Quot}(R)$ der Quotientenkörper von $R$.
+
+\begin{definition}[{name=[{gebrochenes Ideal}]}]
+	Ein \bet{gebrochenes Ideal}\index{Ideal!gebrochenes} von $R$ ist ein $R$-Untermodul $I \neq 0$ von $Q$ zu dem es $a \in R$ gibt mit $a I \subseteq R$.
+	Jedes nichttriviale Ideal von $R$ ist auch ein gebrochenes Ideal.
+	Zur besseren Unterscheidung nennt man dann Ideale von $R$ auch \bet{ganze Ideale}\index{Ideal!ganzes}.
+	Für $\frac{a}{b} \in Q$, $a,b\neq 0$ ist $\frac{a R}{b}$ ein bebrochenes Ideal.
+	Wir nennen solche gebrochenen Ideale \Index{gebrochene Hauptideale}.
+\end{definition}
+
+\begin{bemerkung}
+	Die Menge der gebrochenen Ideale bildet bezüglich Multiplikation von gebrochenen Idealen $I \cdot J := \set*{\sum_{i} a_i b_i \given a_i \in I, b_i \in J}$ eine abelsche Halbgruppe mit neutralem Element $R$.
+\end{bemerkung}
+
+\begin{definition}[{name=[{Dedekind-Ring}]}]
+	$R$ heißt \Index{Dedekind-Ring}, falls die gebrochenen Ideale eine Gruppe bezüglich Multiplikation bilden. 
+\end{definition}
+
+\begin{lemma}
+	Sei $R$ ein Dedekind-Ring, $I$ ein gebrochenes Ideal.
+	Dann ist $I^{-1} = \set*{a \in Q \given a I \subseteq R}$.
+\end{lemma}
+\begin{beweis}
+	Sei $J:= \set*{a \in Q \given a I \subseteq R}$.
+	Wegen $I^{-1} \cdot I \subseteq R$ ist $I^{-1} \subseteq J$ und daher $R = I \cdot I^{-1} \subseteq I \cdot J \subseteq R$, also $I \cdot J =R$, also $J=I^{-1}$.
+\end{beweis}
+
+\begin{definition}[{name=[{Klassengruppe}]}]
+	Die \Index{Klassengruppe} eines Dedekind-Ringes ist definiert als 
+	\[
+		C(R):=  \frac{\text{Gruppe der gebrochenen Ideale}}{\text{Untergruppe der gebrochenen Hauptidealringe}} 
+	\]
+\end{definition}
+
+\begin{lemma}
+	$C(R)=0 \iff R$ ist Hauptidealring.
+\end{lemma}
+\begin{beweis}
+	Sei $I \subseteq R$ ein Ideal.
+	Dann ist $I$ auch ein gebrochenes Ideal und aus $C(R)=0$ folgt, dass $I$ auch ein gebrochenes Hauptideal, also $I = \frac{aR}{b}$ ist.
+	Wegen $\frac{a}{b} \in I \subseteq R$ ist $I$ ein Hauptideal.
+	
+	Sei umgekehrt $I \subseteq Q$ ein gebrochenes Ideal.
+	Wähle $b \in R$ mit $b I \subseteq R$.
+	Dann ist $b \cdot I=a R$, also $I= \frac{a R}{b}$ wie gewünscht. 
+\end{beweis}
+
+\begin{satz}[label=satz:2:1]
+	Sei $F$ ein \Index{Zahlkörper}, das heißt $F$ ist eine endliche Körpererweiterung von $\mathbb{Q}$.
+	Sei $R$ der Ring der ganzen Zahlen in $F$, das heißt $\alpha \in F$ liegt genau dann in $R$, wenn $\alpha$ Nullstelle eines normierten Polynoms über $\mathbb{Z}$ ist.
+	Dann ist $R$ ein Dedekind-Ring.
+\end{satz}
+\todo[inline]{Referenz Rosenberg}
+
+
+\begin{satz}
+	Sei $R$ ein Dedekind-Ring.
+	Dann ist die Klassengruppe isomorph zu $\tilde{K}_0(R)$.
+\end{satz}
+
+\begin{lemma}
+	Sei $R$ ein Dedekind-Ring.
+	Dann gilt
+	\begin{enumerate}[a)]
+		\item Ideale in $R$ sind endlich erzeugt projektiv als $R$-Moduln.
+		\item Jeder projektive endlich erzeugte $R$-Modul ist isomorph zu einer Summe von Idealen $I_1 \oplus \ldots \oplus I_n$.
+		\item Ist ein Ideal $I \subseteq R$ stabil frei (als $R$-Modul), dann ist $I$ ein Hauptideal.
+	\end{enumerate}
+\end{lemma}
+\begin{beweis}
+	\begin{enumerate}[a)]
+		\item Sei $I \subseteq R$ ein Ideal. 
+		Da $I^{-1} \cdot I=R$ ist, gibt es $a_1, \ldots, a_n \in I^{-1}$, $b_1, \ldots ,b_n \in I$ mit $1= a_1 b_1 + \ldots + a_n b_n$.
+		Weiter ist $a_i I \subseteq R$ für alle $i$.
+		Betrachte nun 
+		\begin{align}
+			p \colon R^n \longrightarrow I &\quad \text{ mit } p(r_1,\ldots ,r_n) =r_1 b_1+ \ldots r_n b_n \\
+			s \colon I \longrightarrow R^n &\quad \text{ mit } s(b) = \enbrace*{b a_1, \ldots , b a_n}  
+		\end{align}
+		Dann ist $p \circ s(b) = b a_1 b_1 + \ldots + b a_n b_n = b \enbrace*{a_1 b_i + \ldots + a_n b_n}= b$.
+		Also ist $p \circ s =\id$ und folglich ist $I$ endlich erzeugt projektiv als $R$-Modul.
+		\item Wir zeigen per Induktion nach $k$: Ist $P \subseteq R^k$ ein direkter Summand, so ist $P$ isomorph zu einer Summe von Idealen.
+		
+		Für $k=1$ ist die Aussage klar, da Untermoduln von $R$ Ideale sind. Für den Induktionsschritt $k-1 \mapsto k$ sei $P \subseteq R^k$ ein direkter Summand.
+		Die Projektion auf die letzte Koordinate liefert kurze exakte Folgen 
+		\[
+			\begin{tikzcd}
+				R^{k-1} \rar[hook] & R^k \rar["\pi"] & R \\
+				P \cap R^{k-1}\uar[phantom,sloped,"\subseteq"] \rar & P \rar \uar[phantom,sloped,"\subseteq"] &  \pi(P) \uar[phantom,sloped,"\subseteq"]
+			\end{tikzcd}
+		\]
+		Nach a) ist $\pi(P)$ projektiv und daher spaltet die unter Folge und wir können die Induktionsvorraussetzung anwenden.
+	\end{enumerate}
+\end{beweis}
+% section 2 (end)
 
 \cleardoubleoddemptypage
 \pagenumbering{Alph}
