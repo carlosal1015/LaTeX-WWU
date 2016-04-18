@@ -1,0 +1,365 @@
+\section{Das charakteristische Polynom und Diagonalisierbarkeit}
+\label{sec:2.2}
+
+\minisec{Wiederholung aus LA 1}
+Sei $V$ ein endlich dimensionaler $K$-Vektorraum und $F \in \End_K(V)$ ein Endomorphismus von $V$, das heißt $F\colon V \rightarrow V$ ist eine lineare Abbildung.
+
+Dann heißt $F$ \Index{diagonalisierbar}, wenn es eine Basis $B=\{v_1,\dots,v_n\}$ von $V$ gibt, sodass die Darstellungsmatrix $A_F^B := \mat{A}{B}{b}{F}$ eine Diagonalmatrix ist, das heißt es existieren $\lambda_1,\dots,\lambda_n \in K$ mit
+\[
+	A^B_F = \begin{pmatrix}
+	\lambda_1 &  & 0 \\ 
+	& \ddots &  \\ 
+	0 &  & \lambda_n
+	\end{pmatrix}.
+\]
+
+Beachte: Die Einträge $a_{ij}$ der Matrix $A_F^B$ sind festgelegt durch die Gleichungen
+\begin{equation}
+	F(v_j) = \sum_{i=1}^{n} a_{ij} v_i	\label{eq:darstellungsmatrix}
+\end{equation}
+
+Analog: Eine Matrix $A \in M(n\times n,K)$ heißt \Index{diagonalisierbar}, wenn eine invertierbare Matrix $S \in M(n \times n,K)$ existiert mit $S^{-1}AS$ ist Diagonalmatrix.
+
+Zusammenhang: Ist $C$ eine beliebige Basis von $V$ und $A := A_F^C$ Darstellungsmatrix von $F$ bezüglich $C$, so gilt:
+\[
+	F \text{ diagonalisierbar} \qquad \Leftrightarrow \qquad A \text{ diagonalisierbar}
+\]
+
+\minisec{Eigenwerte und Eigenvektoren}
+Ist $F \colon V \rightarrow V$ ein Endomorphismus, so heißt ein $\lambda \in K$ \Index{Eigenwert} von $F$, wenn ein $v \in V \setminus \setzero$ existiert mit $F(v) = \lambda v$.
+Ein solcher Vektor $v \in V\setminus \setzero$ mit $F(v) = \lambda v$ heißt dann \Index{Eigenvektor} zum Eigenwert $\lambda$.
+Ist nun $B = \{v_1,\dots,v_n\}$ eine Basis von $V$ mit
+\[
+	A_F^B =\begin{pmatrix}
+	\lambda_1 &  & 0 \\ 
+	& \ddots &  \\ 
+	0 &  & \lambda_n
+	\end{pmatrix},
+\]
+so folgt mit \eqref{eq:darstellungsmatrix} $F(v_i) = \lambda_i v_i$, das heißt $v_i$ ist ein Eigenvektor zum Eigenwert $\lambda_i$ von $F$.
+Damit folgt die Äquivalenz der folgenden Aussagen:
+\begin{enumerate}[(1)]
+	\item $F$ ist diagonalisierbar.
+	\item $V$ besitzt eine Basis aus Eigenvektoren von $F$.
+\end{enumerate}
+Ist nun $A \in M(n\times n,K)$ und $S \in M(n \times n,K)$ invertierbar, so gilt
+\[
+	S^{-1}AS = \begin{pmatrix}
+	\lambda_1 &  & 0 \\ 
+	& \ddots &  \\ 
+	0 &  & \lambda_n
+	\end{pmatrix} \quad \Leftrightarrow \quad \text{Die Spalten von } S \text{ bilden Basis aus Eigenvektoren für } A.
+\]
+Ist umgekehrt $F \colon V \rightarrow V$ ein Endomorphismus $A := A_F^C$ für eine beliebige Basis $C = \{w_1,\dots,w_n\}$ von $V$ und $S$ invertierbar mit
+\[
+	S^{-1}AS = \begin{pmatrix}
+	\lambda_1 &  & 0 \\ 
+	& \ddots &  \\ 
+	0 &  & \lambda_n
+	\end{pmatrix},
+\]
+so gilt mit $v_j := \sum_{i=1}^{n} s_{ij}w_i$, dass $B=\{v_1,\dots,v_n\}$ eine Basis aus Eigenvektoren für $F$ ist, mit
+\[
+	A_F^B = \begin{pmatrix}
+	\lambda_1 &  & 0 \\ 
+	& \ddots &  \\ 
+	0 &  & \lambda_n
+	\end{pmatrix}.
+\]
+$S$ ist dann die \Index{Basiswechselmatrix} $\mat{A}{C}{B}{\id}$ und dann folgt $A_F^B = \mat{A}{B}{B}{F} = \mat{A}{B}{C}{F} \mat{A}{C}{C}{F} \mat{A}{C}{B}{F} = S^{-1}AS$.
+
+\minisec{Berechnung der Eigenwerte}
+Ist $F \in \End_K(V)$ und $A = A_F^C$ für eine beliebige Basis $C$, so setzen wir
+\[
+	\det(F) := \det(A).
+\]
+Dies hängt nicht von der Wahl der Basis ab! (Warum?)
+Dann gilt:
+\begin{align*}
+	&\lambda \text{ ist Eigenwert von } F \\
+\stack{\text{Def.}}{\Leftrightarrow} \quad &\exists v \in V \setminus \setzero \text{ mit } F(v) = \lambda v \\
+\stack{}{\Leftrightarrow} \quad &\exists v \in V \setminus \setzero \text{ mit } (\lambda \cdot \id - F)(v) = 0 \\
+\stack{}{\Leftrightarrow} \quad &\Kern(\lambda \cdot \id - F) \neq \setzero \\
+\stack{}{\Leftrightarrow} \quad &\lambda \cdot \id-F \text{ ist nicht bijektiv} \\
+\stack{}{\Leftrightarrow} \quad &A^C_{\lambda \cdot \id-F} = \lambda E_n - A_F^C \text{ ist nicht invertierbar} \\
+\stack{}{\Leftrightarrow} \quad &\det(\lambda E_n - A_F^C) = 0 \\
+\stack{\text{s.o.}}{\Leftrightarrow} \quad &\det(\lambda \cdot \id - F) = 0
+\end{align*}
+Damit: Die Eigenwerte von $F$ sind genau die Nullstellen der \Index{charakteristischen Funktion}
+\begin{align*}
+	\chi_F \colon K &\longrightarrow K \\
+	\lambda &\longmapsto \det(\lambda \cdot \id - F)
+\end{align*}
+Analog: Ist $A \in M(n \times n,K)$, so sind die Eigenwerte von $A$ gerade die Nullstellen von $\chi_A(\lambda) := \det(\lambda \cdot E_n - A)$.
+\newpage
+\minisec{Berechnung einer Basis von Eigenvektoren}
+Ist $\lambda \in K$ Eigenwert zu $F$, so heißt
+\[
+	E_\lambda(F) = \{v \in V : F(v) = \lambda v\} = \Kern(\lambda \cdot \id - F)
+\]
+der \Index{Eigenraum} zum Eigenwert $\lambda$.
+Sind dann $\lambda_1,\dots,\lambda_l$ die paarweise verschiedenen Eigenwerte von $F$ und sind $\{v_{11},\dots,v_{1n_1}\}, \{v_{21},\dots,v_{2n_2}\}, \dots, \{v_{l1},\dots,v_{ln_l}\}$ Basem von $E_{\lambda_1}(F), \dots, E_{\lambda_l}(F)$, so ist
+\[
+	B = \{v_{11},\dots,v_{1n_1},v_{21},\dots,v_{2n_2},\dots,v_{l1},\dots,v_{ln_l}\}
+\]
+ein linear unabhängiges System von Eigenvektoren von $F$ (dies folgt aus \autoref{satz:I.16.19}).
+Nach \autoref{satz:I.16.20} ist $F$ diagonalisierbar genau dann, wenn $B$ eine Basis von $V$ ist, das heißt genau dann, wenn
+\[
+	\dim(V) = \dim(F_{\lambda_1}(F)) + \cdots + \dim(E_{\lambda_l}(F)).
+\]
+Wir müssen also \enquote{nur} Basen der Eigenräume berechnen und checken, ob wir zusammen genügend viele Vektoren (d.h. $n = \dim(V)$ viele) bekommen!
+
+Wir wollen im Folgenden ein Kriterium dafür herleiten, wenn jeder ein Kriterium dafür herleiten, wann jeder einzelne Eigenwert $\lambda_i$ genügend Basisvektoren liefert.
+Dazu wollen wir die charakteristische\linebreak (Polynom-)Funktion genauer anschauen.
+
+\begin{satz}
+	\label{satz:2.1}
+	Sei $A \in M(n \times n,K)$.
+	Dann existieren Koeffizienten $a_0, \dots,a_{n-1} \in K$ mit $\chi_A(\lambda) = \lambda^n + \sum_{k=0}^{n-1} a_k \lambda^k$, das heißt $\chi_A$ ist Polynomfunktion für ein normiertes Polynom vom Grad $n$.
+\end{satz}
+
+\begin{beweis}
+	Sei $\widetilde{A}	 = \lambda E_n - A = (\widetilde{a}_{ij})_{1 \leq i,j \leq n}$.
+	Dann gilt nach \textsc{Leibniz} (\autoref{satz:I.14.15}):
+	\[
+		\chi_A(\lambda) = \det(\lambda E_n - A) = \sum_{\sigma \in S_n}^{} \sign(\sigma) \widetilde{a}_{1 \sigma(1)},\dots,\widetilde{a}_{n \sigma (n)},
+	\]
+	wobei $S_n$ die Gruppe der Permutationen von $\{1,\dots,n\}$ bezeichnet.
+	Ferner gilt
+	\[
+		\widetilde{a}_{ij} = \begin{cases}
+			-a_{ij}, & \text{ falls } i \neq j \\
+			\lambda - a_{ii}, & \text{ falls } i = j.
+		\end{cases}
+	\]
+	Damit ist jeder Summand in der Leibnizformel eine Polynomfunktion vom Grad $k \leq n$, wobei $k$ genau die Anzahl der $i \in \{1,\dots,n\}$ mit $\sigma(i) = i$ ist.
+	(Für jedes solche $i$ erhalten wir den Faktor $(\lambda - a_{ii})$ im Summanden für $\sigma$).
+	\newpage	
+	Es folgt: Es gibt genau einen Summanden vom Grad $n$, nämlich wenn $\sigma(i) = i$ für alle $i \in \{1,\dots,n\}$, also $\sigma=\id$.
+	Dieser Summand hat die Form
+	\[
+		(\lambda - a_{11})(\lambda-a_{22}) \cdots (\lambda-a{nn}) = \lambda^n + \sum_{k=0}^{n-1} b_k \lambda^k
+	\]
+	für geeignete $b_0,\dots,b_{n-1} \in K$.
+	Zusammen folgt:
+	\begin{align*}
+		\chi_A(\lambda) &= \lambda^n + \sum (\text{Polynome vom Grad} < n) \\
+		&= \lambda^n + \sum_{k=0}^{n-1} a_k \lambda^k \text{ für geeignete } a_0,\dots,a_{n-1} \in K \qedhere
+	\end{align*}
+\end{beweis}
+
+\begin{problem}
+	\label{prob:2.2}
+	Im Folgenden möchten wir gerne mit dem Polynom
+	\[
+		\chi_F(T) := \chi_A(T) = \det(TE_n - A)
+	\]
+	arbeiten, wenn $A := A_F^C$ für eine beliebige Basis $C$ ist.
+	Hierbei ist $T$ eine beliebige Unbesitmmte und kein Element im Körper $K$.
+	Die Koeffizienten der Matrix
+	\[
+		TE_n-A = \begin{pmatrix}
+		T-a_{11} & -a_{12} & \cdots & -a_{1n} \\ 
+		\vdots & T-a_{22} &  & \vdots \\ 
+		\vdots &  & \ddots & \vdots \\ 
+		-a_{n1} & \cdots & \cdots & T-a_{nn}
+		\end{pmatrix} 
+	\]
+	liegen alle im Polynomring $K[T]$.
+	Die Leibnizformel macht dann Sinn, und wir erhalten das Polynom
+	\[
+		\chi_A(T) = T^n - \sum_{k=0}^{n-1} a_kT^k
+	\]
+	mit genau den Koeffizienten $a_0,\dots,a_{n-1}$ wie in \autoref{satz:2.1}.
+	
+	Wir müssen zeigen, dass dieses Polynom nur von $F$ abhängt und nicht von der Wahl der Basis $C$ (bzw. von $A = A_F^C$)!
+	
+	Für die Polynomfunktion $\lambda \mapsto \chi_F(\lambda)$ folgt dies wie folgt:
+	Ist $B$ weitere Basis von $V$ und $S = \mat{A}{C}{B}{\id}$ die Basiswechselmatrix, so gilt $\lambda E_n - A_F^B = S^{-1}(\lambda E_n - A_F^C)S$, und damit
+	\begin{align*}
+		\det(\lambda E_n - A_F^B) &= \det(S^{-1}(\lambda E_n-A_F^C)S) \\
+		&= \Underbrace{\det(S^{-1})}{=\det(S)^{-1}} \det(\lambda E_n - A_F^C) \det(S) = \det(\lambda E_n -A_F^C).
+	\end{align*}
+	\newpage
+	Besitzt $K$ unendlich viele Elemente, so folgt aus \autoref{satz:I.15.6}, dass die Abbildung
+	\begin{align*}
+		K[T] &\longrightarrow \Abb(K,K) \\
+		p &\longmapsto f_p = \text{ Polynomfunktion von } p
+	\end{align*}
+	injektiv ist.
+	Damit folgt dann auch, dass das Polynom $\chi_F(T) := \det(TE_n - A_F^C)$ nicht von der Wahl der Basis $C$ abhängt.
+	Dieses Argument geht nicht, wenn $K$ endlich ist!
+
+	Ausweg: Man bettet den Polynomring $K[T]$ in einen Quotientenkörper $Q[T] = \penb{\frac{p}{q} : p,q \in K[T], q \neq 0}$ ein, wobei wir
+	\[
+		\frac{p}{q} = \frac{p'}{q'} \quad \Leftrightarrow \quad pq' = p'q
+	\]
+	setzen.
+	Es gilt dann $K \subseteq K[T] \subseteq Q(T)$.
+	
+	Das Verfahren funktioniert, da $K[T]$ keine Nullteiler besitzt, das heißt wenn $pq = 0$ in $K[T]$, so folgt $p = 0$ oder $q=0$.
+	
+	Die Formel
+	\begin{align*}
+		\det(TE_n - A_F^B) &= \det(S^{-1}(TE_n - A_F^C)S) \\
+		&= \det(S)^{-1} \det(TE_n - A_F^C) \det(S) = \det(TE_n - A_F^C)
+	\end{align*}
+	macht dann Sinn für Matrizen in $M(n \times n,Q[T])$ und wir erhalten die ersehnte Unabhängigkeit von $\chi_F(T)$ von der Wahl der Basis.
+\end{problem}
+
+\begin{definition}[charakteristisches Polynom]
+	\label{def:2.3}
+	Sei $V$ ein endlich dimensionaler $K$-Vektorraum und $F \in \End_K(V)$.
+	Sei $A:= A_F^C$ Darstellulngsmatrix für eine beliebige Basis $C$ von $V$.
+	Dann heißt
+	\[
+		\chi_F(T) = \chi_A(T) = \det(TE_n-A)
+	\]
+	das \textbf{charakteristische Polynom} von $F$. \index{charakteristisches Polynom}
+\end{definition}
+
+\begin{beispiel}
+	\label{bsp:2.4}
+	Sei $F \in \End_K(V)$ diagonalisierbar und sei $B = \{v_1,\dots,v_n\}$ Basis von Eigenvektoren von $F$.
+	Dann gilt $A_F^B = \begin{pmatrix}
+	\lambda_1 &  & 0 \\ 
+	& \ddots &  \\ 
+	0 &  & \lambda_n
+	\end{pmatrix}$ mit $\lambda_1,\dots,\lambda_n$ Eigenwerte von $F$ und es folgt
+	\[
+		\chi_F(T) = \det\begin{pmatrix}
+			T-\lambda_1 &  & 0 \\ 
+			& \ddots &  \\ 
+			0 &  & T-\lambda_n
+			\end{pmatrix} = \prod_{i=1}^{n} (T-\lambda_i).
+	\]
+	Insbesondere zerfällt $\chi_F$ in Linearfaktoren.
+\end{beispiel}
+
+Wir halten fest:
+\begin{satz}
+	\label{satz:2.5}
+	Sei $F \in \End_K(V)$ diagonalisierbar.
+	Dann zerfällt $\chi_F(T)$ in Linearfaktoren.
+\end{satz}
+
+\begin{beispiel}
+	\label{bsp:2.6}
+	Dass $\chi_F(T)$ in Linearfaktoren zerfällt, ist eine notwendige, aber keine hinreichende Bedingung für die Diagonalisierbarkeit von $F$:
+	
+	Sei $A = \begin{pmatrix}
+	1 & 1 \\ 
+	0 & 1
+	\end{pmatrix}$ und $F = F_A\colon \CC^2 \rightarrow \CC^2, z \mapsto Az$.
+	Dann gilt $\chi_F(T) = \chi_A(T) = (T-1)^2$, das heißt $\chi_F$ zerfällt in Linearfaktoren. Aber: $1$ ist einziger Eigenwert und
+	\[
+		E_1(F) = \Kern\begin{pmatrix}
+		0 & -1 \\ 
+		0 & 0
+		\end{pmatrix} = \CC \begin{pmatrix}
+		1 \\ 
+		0 
+		\end{pmatrix},
+	\]
+	also $\dim(E_1) = 1 < 2 = \dim(\CC^2)$, das heißt $F$ ist nicht diagonalisierbar.
+\end{beispiel}
+
+\begin{erinnerung}
+	\label{erinnerung:2.7}
+	\begin{enumerate}[(a)]
+		\item Wenn $\chi_F$ in Linearfaktoren zerfällt, so gilt, da $\chi_F$ normiert ist,
+		\[
+			\chi_F(T) = (T-\lambda_1)^{n_1} \cdots (T-\lambda_l)^{n_l},
+		\]
+		wobei $\lambda_1,\dots,\lambda_l$ die paarweise verschiedenen Eigenwerte von $F$ bezeichnet und dann ist $\alpha(\lambda_i) := n_i$ die \Index{algebraische Vielfachheit} des Eigenwerts $\lambda_i$.
+		\item In \autoref{def:I.16.21} hatten wir für einen Eigenwert $\lambda_i$ von $F$ die \Index{geometrische Vielfachheit} von $\lambda_i$ definiert durch die Dimension des Eigenraums: $\gamma(\lambda_i) := \dim(E_{\lambda_i}(F))$.
+	\end{enumerate}
+\end{erinnerung}
+
+\begin{satz}
+	\label{satz:2.8}
+	Sei $V$ ein endlich dimensionaler $K$-Vektorraum und sei $F \colon V \rightarrow V$ ein Endomorphismus.
+	Dann sind äquivalent:
+	\begin{enumerate}[(1)]
+		\item $F$ ist diagonalisierbar.
+		\item Das charakteristische Polynom $\chi_F \in K[T]$ zerfällt in Linearfaktoren, und für jeden Eigenwert $\lambda$ von $F$ gilt $\alpha(\lambda) = \gamma(\lambda)$, das heißt die algebraische Vielfachheit und die geometrische Vielfachheit von $\lambda$ stimmen überein.
+	\end{enumerate}
+\end{satz}
+
+\begin{beweis}
+	Seien $\lambda_1,\dotsm\lambda_l$ die paarweise verschiedenen Eigenwerte von $F$.
+	\begin{description}
+		\item[(1) $\Rightarrow$ (2):] Ist $F$ diagonalisierbar, so existiert eine Basis $B=\{v_{11},\dots,v_{1n_1},v_{21},\dots,v_{2n_2},\dots,v_{l1},\dots,v_{ln_l}\}$ von $V$ mit $\{v_{i1},\dots,v_{in_i}\}$ Basis von $E_{\lambda_i}(F)$ für alle $1 \leq i \leq l$ (\autoref{satz:I.16.20}).
+		Die zugehörige Darstellungsmatrix $A_F^B$ für $F$ lautet dann
+		
+		\[
+			A_F^B = \enb{\begin{BMAT}(e)[1pt]{cccccccccc}{cccccccccc}
+			\lambda_1 &  &  &  &  &  &  &  &  &  \\ 
+			& \ddots &  &  &  &  &  &  &  &  \\ 
+			&  & \lambda_1 &  &  &  &  & 0 &  &  \\ 
+			&  &  & \lambda_2 &  &  &  &  &  &  \\ 
+			&  &  &  & \ddots &  &  &  &  &  \\ 
+			&  &  &  &  & \lambda_2 &  &  &  &  \\ 
+			&  &  &  &  &  & \ddots &  &  &  \\ 
+			&  & 0 &  &  &  &  & \lambda_l &  &  \\ 
+			&  &  &  &  &  &  &  & \ddots &  \\ 
+			&  &  &  &  &  &  &  &  & \lambda_l
+			\addpath{(0,7,|)rrruuulllddd}
+			\addpath{(3,4,|)rrruuulllddd}
+			\addpath{(7,0,|)rrruuulllddd}
+			\end{BMAT}}
+		\]
+		und damit folgt $\chi_F(T) = \det(T\cdot \id - A_F^B) = (T-\lambda_1)^{n_1} \cdots (T-\lambda_l)^{n_l}$.
+		Für jeden Eigenwert $\lambda_i$ folgt dann:
+		$n_i = \dim(E_{\lambda_i}(F))$ ist genau die algebraische Vielfachheit der Nullstelle $\lambda_i$ von $F$, also $\gamma(\lambda_i) = \alpha(\lambda_i)$ für alle $1 \leq i \leq l$.
+		\item[(2) $\Rightarrow$ (1):] Sei nun $n_i := \alpha(\lambda_i) = \gamma(\lambda_i) = \dim(\Kern(E_{\lambda_i}(F)))$ für alle $1 \leq i \leq l$.
+		Da $\chi_F$ in Linearfaktoren zerfällt, gilt $\dim(V) =: n = \grad(\chi_F) = n_1+\dots+n_l = \dim(E_{\lambda_1}(F)) + \cdots + \dim(E_{\lambda_l}(F))$.
+		Nach \autoref{satz:I.16.20} folgt, dass $F$ diagonalisierbar ist. \qedhere
+	\end{description}
+\end{beweis}
+
+\begin{beispiel}
+	\label{bsp:2.9}
+	Sei $\CC_5[T]$ der $\CC$-Vektorraum aller komplexen Polynome von Grad $\leq 5$.
+	Sei
+	\begin{align*}
+		F \colon \CC_5[T] &\longrightarrow \CC_5[T] \\
+		p = \sum_{k=0}^{N} a_kT^k &\longmapsto p' = \sum_{k=1}^{N} ka_kT^{k-1}
+	\end{align*}
+	mit $p'$ die Ableitung von $p$.
+	
+	Wir wollen $F$ auf Diagonalisierbarkeit untersuchen.
+	Betrachte die Basis $C = \{1,T,T^2,\dots,T^5\}$ von $\CC_5[T]$.
+	Wegen
+	\[
+		F(1) = 0, \quad F(T) = 1, \quad F(T^2) = 2T, \quad F(T^3) = 3T^2, \quad F(T^4)=4T^3, \quad F(T^5) = 5T^4
+	\]
+	gilt
+	\[
+		A_C^F = \begin{pmatrix}
+		0 & 1 & 0 & 0 & 0 & 0 \\ 
+		0 & 0 & 2 & 0 & 0 & 0 \\ 
+		0 & 0 & 0 & 3 & 0 & 0 \\ 
+		0 & 0 & 0 & 0 & 4 & 0 \\ 
+		0 & 0 & 0 & 0 & 0 & 5 \\ 
+		0 & 0 & 0 & 0 & 0 & 0
+		\end{pmatrix}
+	\]
+	und dann gilt
+	\[
+		\chi_F(T) = \det \begin{pmatrix}
+		T & -1 & 0 & 0 & 0 & 0 \\ 
+		0 & T & -2 & 0 & 0 & 0 \\ 
+		0 & 0 & T & -3 & 0 & 0 \\ 
+		0 & 0 & 0 & T & -4 & 0 \\ 
+		0 & 0 & 0 & 0 & T & -5 \\ 
+		0 & 0 & 0 & 0 & 0 & T
+		\end{pmatrix} = T^5.
+	\]
+	Dann ist $\lambda = 0$ einziger Eigenwert von $F$ mit algebraischer Vielfachheit $5$.
+	Aber die geometrische Vielfachheit von $\lambda = 0$ ist
+	\[
+		\dim(E_0(F)) = \dim(\Kern(0 E_n - A_F^C)) = \dim(\Kern(-A_F^C)) = \dim(\Kern(A_F^C)) = 1.
+	\]
+	Also ist $F$ nicht diagonalisierbar.
+\end{beispiel}
