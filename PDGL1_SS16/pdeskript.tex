@@ -1,0 +1,596 @@
+%skript für Die Vorlesung Partielle Differentialgleichungen
+\newcommand{\Semester}{SoSe 2016}
+\newcommand{\fach}{Partielle Differentialgleichungen}
+\newcommand{\prof}{Prof.\ Zeppieri}
+
+\input{../!config/VorlagenTim/preambel.tex}
+
+\numberwithin{equation}{section}
+
+\begin{document}
+
+\maketitle
+\cleardoubleoddemptypage
+
+\pagenumbering{Alph}
+\section*{Vorwort --- Mitarbeit am Skript}
+Dieses Dokument ist eine Mitschrift aus der Vorlesung \enquote{\fach, \Semester}, gelesen von \prof. Der Inhalt entspricht weitestgehend dem Tafelanschrieb. Für die
+Korrektheit des Inhalts werde ich keinerlei Garantie übernehmen. Dieses Skript wird allerdings zusätzlich von \prof \, Korrektur gelesen. Für Bemerkungen und Korrekturen -- und seien es nur Rechtschreibfehler -- bin ich sehr dankbar. Bitte durch persönliches Ansprechen oder per Mail an keil.menden@web.de.
+
+\newpage
+
+\tableofcontents
+\cleardoubleoddemptypage
+\pagenumbering{arabic}
+\setcounter{page}{1}
+
+\section{Einleitung} 
+\label{sec:einleitung}
+\begin{definition}[PDGL]
+	Sei $\Omega$ eine offene Teilmenge des $\mathbb{R}^n$ mit $n \geq 2$ und $ k \in \mathbb{N}$. Eine partielle Differentialgleichung (PDGL) ist eine Gleichung der Form
+	\begin{equation}\label{(1)}
+		E(x,u(x),Du(x),\dots,D^ku(x))=0 \qquad \text{für alle }x \in \Omega.
+	\end{equation}
+	für eine unbekannte Funktion $u$ (und ihre Ableitungen $Du,\dots,D^ku$ bis zur Ordnung $k$), wobei $E: \Omega \times \mathbb{R} \times \mathbb{R}^n \times \dots \times \mathbb{R}^{n^k} \to \mathbb{R}$ ein gegebene Funktion ist. Die höchste Ableitungsordnung, die in \eqref{(1)} auftritt, nennt man die Ordnung der PDGL.
+\end{definition}
+
+\begin{notation}
+\begin{itemize}
+	\item $D = (\partial_1, \dots , \partial_n)$, $\partial_i = \partial_{x_i} = \diff{}{x_i}$ für $i=1,\dots,n$
+	\item $D^k:= \set[D^{\alpha }]{\abs{\alpha }=k}$
+	\item $\alpha \in \mathbb{N}_0^n$ ist ein Multiindex mit $\alpha = (\alpha_1, \dots, \alpha_n)$ und
+	\[
+		\abs{\alpha} = \sum^{n}_{i=1}\alpha_i \qquad \qquad D^{\alpha}= \prod\limits_{i=1}^{n}\partial_i^{\alpha_i} = \partial_1^{\alpha_1} \cdots \partial_n^{\alpha_n}
+	\]
+\end{itemize}
+\end{notation}
+
+\begin{bemerkung}
+Für $n=1$ wird \eqref{(1)} auf eine gewöhnliche Differentialgleichung (ODE) reduziert: $u: \Omega \subseteq \mathbb{R} \to \mathbb{R}$ mit
+\[
+	E(x,u(x),u'(x),\dots,u^{(k)}(x))=0 \qquad \text{in } \Omega
+\]
+\end{bemerkung}
+
+\begin{definition}[System von PDE's]
+	Ein System von PDE's ist eine Gleichung der Form \eqref{(1)}, wenn du unbekannte Funktion $u$ und die gegebene Funktion $E$ vektorwertig sind, d.h. $u: \Omega \to \mathbb{R}^m$ für ein $m \geq 1$, $u = (u_1, \dots, u_m)$ und
+	\[
+		E: \Omega \times \mathbb{R}^m \times \dots \times \mathbb{R}^{m \times n^k} \to \mathbb{R}^m
+	\]
+\end{definition}
+\begin{definition}[Klassifikation für PDE's]
+		Die PDE \eqref{(1)} heißt:
+		\begin{enumerate}[(i)]
+			\item LINEAR, falls sie in $u$ und allen ihren Ableitungen linear ist und die dazugehörigen Koeffizienten nur von $x$ abhängen, d.h., falls man sie in der Form
+			\begin{equation}
+				\sum_{\abs{\alpha}\leq k}^{}a_{\alpha}(x) D^{\alpha}u(x) - f(x) = 0 \qquad \text{in } \Omega \label{(2)}
+			\end{equation} 
+			schreiben kann, wobei $a_{\alpha}$ ($\abs{\alpha}\leq k$) und $f$ gegebene Funktionen sind.
+			Im Fall $f=0$ nennt man \eqref{(2)} homogen, sonst inhomogen.
+			\item SEMILINEAR, falls sie in der höchsten Ableitung $D^ku$ linear ist und die dazugehörigen Koeffizienten nur von $x$ abhängen, d.h. falls man sie in der Form
+			\begin{equation}
+				\sum_{\abs{\alpha}=k}^{}a_{\alpha}(x)D^{\alpha}u(x) + E_0(x,u(x),Du(x),\dots,D^{k-1}u(x))=0 \qquad \text{in }\Omega
+			\end{equation}
+			schreiben kann, wobei $a_{\alpha}(x)$ ($\abs{\alpha}=k$) und $E_0$ gegebene Funktionen sind.
+			\item QUASILINEAR, falls sie linear in der höchsten Ableitung $D^ku$ ist und die dazugehörigen Koeffizienten nur von $x$, $u$, und $D^lu$ mit $\abs{l}\leq k-1$ abhängen, 
+			d.h. falls man sie in der Form
+			\begin{small}
+			\begin{equation}
+				\sum_{\abs{\alpha}=k}^{}a_{\alpha}(x,u(x),Du(x),\dots,D^{k-1}u(x))D^{\alpha}u(x) + E_0(x,u(x),Du(x),\dots,D^{k-1}u(x)) = 0 
+			\end{equation}
+			\end{small}
+			schreiben kann, wobei $a_{\alpha}$ und $E_0$ gegebene Funktionen sind.
+			\item VOLL NICHTLINEAR in allen anderen Fällen
+			
+		\end{enumerate}
+\end{definition}
+
+\begin{bemerkung}
+	\[
+		\set{\text{lineare PDE}} \subseteq \set{\text{semilineare PDE}} \subseteq \set{\text{quasilineare PDE}} \subseteq \set{\text{PDE}}
+	\]
+\end{bemerkung}
+
+\begin{definition}[Typeinteilung für PDE's zweiter Ordnung]
+		Sei $\Omega$ eine offene Teilmenge des $\mathbb{R}^n$ und $E: \Omega \times \mathbb{R} \times \mathbb{R}^n \times \mathbb{R}^{n \times n} \to \mathbb{R}$ eine gegebene Funktion, so dass $p \mapsto E(x,u,z,p)$ für alle $(x,u,z) \in \Omega \times \mathbb{R}\times \mathbb{R}^n$ von der Klasse $C^1(\mathbb{R}^{n \times n})$ ist. Die PDE
+		\begin{equation}
+			E(x,u(x),Du(x),D^2u(x))=0 \qquad \text{in }\Omega 
+		\end{equation}
+		heißt
+		\begin{enumerate}[(i)]
+			\item ELLIPTISCH, falls die $(n \times n)$-Matrix 
+			\begin{equation}
+				\left( \diff{E}{p_{ij}}(x,u,z,p) \right)_{i,j=1,\dots,n} \label{(3)}
+			\end{equation}
+			für alle $(x,u,z,p) \in \Omega \times \mathbb{R} \times \mathbb{R}^n \times \mathbb{R}^{n \times n}$ positiv definit ist.
+			\item HYPERBOLISCH, falls die Matrix in \eqref{(3)} genau einen negativen und $(n-1)$ positive Eigenwerte besitzt. (auch anders herum möglich)
+			\item PARABOLISCH, falls man sie in der Form
+			\begin{equation}
+				D_1u(x)= \overline{E}(x,u(x),D'u(x),(D')^2u(x)) \qquad \text{in } \Omega
+			\end{equation}
+			%%%% unvollständig
+			schreiben kann, wobei $D'=(\partial_1,\dots,\partial_n)$ und $\overline{E}: \Omega \times \mathbb{R} \times \mathbb{R}^{n-1} \times \mathbb{R}^{(n-1) \times (n-1)} \to \mathbb{R}$
+			von der Klasse $C^1$ ist und 
+			\begin{equation}
+				\left( \diff{\overline{E}}{p_{ij}}(x,u,z',p') \right)_{i,j=1,\dots,n} 
+			\end{equation}
+		\end{enumerate}
+\end{definition}
+
+\begin{beispiel}[Typeinteilung für lineare PDE's zweiter Ordnung]
+Sei $\Omega$ eine offene Teilmenge des $\mathbb{R}^n$ und seien $a_{ij}$, $b_i$ (für $i,j=1,\dots,n$), $c$ und $f$ skalarwertige Funktionen auf $\Omega$
+\begin{enumerate}
+	\item Die lineare PDE der Form
+	\[
+		\sum^{n}_{i,j=1} a_{ij}(x) D_{ij}u(x) + \sum^{n}_{i=1}b_i(x) D_iu(x) + c(x)u(x) - f(x) = 0 \qquad \text{in } \Omega
+	\]
+	ist elliptisch, falls die Matrix $\left(a_{ij}(x)\right)_{i,j=1,\dots,n}$ für alle $x \in \Omega$ positiv definit ist.
+	\item Die lineare PDE der Form 
+	\[
+		D_11u(x) - \sum^{n}_{i,j=1} a_{ij}(x)D_{ij}u(x) + \sum^{n}_{i=1}b_i(x) D_iu(x) + c(x)u(x) - f(x) = 0 \qquad \text{in }\Omega
+	\]
+	ist hyperbolisch falls die Matrix $\left( a_{ij}(x) \right)_{i,j=2,\dots,n}$ für alle $x \in \Omega$ positiv definit ist.
+	\item Die lineare PDE der Form 
+	\begin{equation}
+		D_1u(x) - \sum^{n}_{i,j=2}a_{ij}(x)D_{ij}u(x) + \sum^{n}_{i=2}b_i(x)D_i(x) + c(x)u(x)- f(x)= 0 \qquad \text{in } \Omega
+	\end{equation}
+	ist parabolisch, falls die Matrix $\left( a_{ij}(x) \right)_{i,j=2,\dots,n}$ für alle $x \in \Omega$ positiv definit ist.
+ \end{enumerate}
+\end{beispiel}
+
+\begin{definition}[klassische Lösung]
+	Eine Funktion $u: \Omega \to  \mathbb{R}$ heißt klassische Lösung der PDE der Form 
+	\begin{equation}
+		E(x,u(x),Du(x),\dots,D^ku(x))=0 \qquad  \text{in } \Omega \label{(4)}
+	\end{equation}
+	falls $u \in  C^k(\Omega)$ gilt und die Gleichung \eqref{(4)} überall in $\Omega$ erfüllt ist.
+\end{definition}
+
+\begin{beispiel}
+	$D_1D_2u(x)=0$ in $\mathbb{R}^2$, $u(x_1,x_2)=v_1(x_1)+v_2(x_2)$ für beliebige Funktionen $v_1,v_2 \in C^2(\mathbb{R})$.
+\end{beispiel}  
+
+\begin{nb} 
+\[
+	B(x,u(x),Du(x),\dots,Du^{k-1}(x))=0 \qquad  \text{auf }\partial \Omega,
+\] wobei $B: \partial \Omega \times \mathbb{R} \times \mathbb{R}^n \times \dots \times \mathbb{R}^{n^{k-1}} \to \mathbb{R}$ eine vorgegebene Funktion ist.
+\end{nb}
+
+\begin{bemerkung}
+	Ein Problem ( = PDE + Nebenbedinung) heißt wohlgestellt (well-posed) im Sinne von Hadamerd, wenn zu gegebenen Daten eine eindeutige Lösung existiert und sie stetig von den Daten abhängt.
+	Wir stellen uns in der Vorlesung folgende Fragen:
+	\begin{itemize}
+		\item Existenz und Eindeutigkeit von Lösungen
+		\item Hängen die Lösungen stetig von den Daten ab?
+		\item Wie können Lösungen dargestellt werden?
+		\item Wie ist das qualitative Verhalten von Lösungen?
+	\end{itemize}
+\end{bemerkung}
+
+\begin{beispiele}
+	\begin{enumerate}[1.]
+		\item Laplacegleichung (linear, elliptisch):
+		\begin{equation}
+			\Delta u = 0 \qquad \text{in }\Omega
+		\end{equation}
+		modelliert das elektrische Feld im Vakuum. Inhomogen ist dies die Poissongleichung und es gilt $\Delta u = \diver(Du)$
+		\item Monge-Ampère-Gleichung (voll nichtlinear):
+		\begin{equation}
+			\det(D^2u)=f(x,u,Du) \qquad \text{in }\Omega
+		\end{equation}
+		für Transportprobleme und Differentialgeometrie.
+		\item Wärmeleitungsgleichung (linear, parabolisch):
+		\begin{equation}
+			\partial_t u - \Delta u = 0 \qquad \text{in } \mathbb{R}^+ \times \Omega,
+		\end{equation}
+		wobei $\Omega \subseteq  \mathbb{R}^n$, $t$= Zeitkoordinate, $x$= Raumkoordinate modelliert die Verteilung von Wärme. $u(t,x)$ die Temperatur im Punkt $x \in \Omega$ zum Zeitpunkt
+		$t \in \mathbb{R}^+$.
+		\item Reaktions-Diffusions-Gleichung (semilinear, parabolisch):
+		\begin{equation}
+			\partial_t u - \Delta u = f(x,t,u) \qquad \text{in } \mathbb{R}^+ \times \Omega
+		\end{equation}
+		\item System der Navier-Stokes-Gleichungen (seminlinear, parabolisch):
+		\begin{equation}
+			\partial_t u - \Delta u + u \cdot Du = -Dp \qquad \text{in } \mathbb{R}^+ \times \Omega,
+		\end{equation}
+		wobei $u: \mathbb{R}^+ \times \Omega \to  \mathbb{R}^n$, $p: \mathbb{R}^+ \times \Omega \to \mathbb{R}$ und $\Omega \subseteq  \mathbb{R}^n$. Modelliert die Strömung von inkompressiblen Flüssigkeiten, $u$ = Geschwindigkeit, $p$ = Druck
+		\item Transportgleichung (linear):
+		\begin{equation}
+			\partial_t u + b(t,x) \cdot Du = 0 \qquad \text{in } \mathbb{R}^+ \times \Omega 
+		\end{equation}
+		\item Wellengleichung (linear, hyperbolisch):
+		\begin{equation}
+			\partial_{tt}u - \Delta u = 0 \qquad \text{in } \mathbb{R}^+ \times \Omega,
+		\end{equation}
+		Für $n=2$ modelliert sie die Schwingung einer elastischen Membran. Für $n=3$ modelliert sie die Ausbreitung von Wellen (Licht und Wasser).
+	\end{enumerate}
+\end{beispiele}
+
+\section{Laplacegleichung} 
+\label{sec:laplacegleichung}
+
+\begin{equation}
+	\Delta u = 0 \qquad \text{in }\Omega
+\end{equation}
+wobei $\Omega \subseteq \mathbb{R}^n$, offen, $n \geq 2$ und $\Delta u = \sum^{n}_{i=1} \diff{^2u}{x_i^2} = \sum^{n}_{i=1} a_{ij} \diff{^2u}{x_i \partial x_j}$ wobei $a_{ij}= I_n \in \mathbb{R}^{n \times n}$
+
+\begin{definition}[Harmonische Funktion]
+	Sei $\Omega$ eine offene Teilmenge des $\mathbb{R}^n$ mit $n \geq 2$ und $u \in C^2(\Omega)$. Man nennt $u$ \underline{harmonisch}, falls $\Delta u = 0$ in $\Omega$ gilt. Falls lediglich $\Delta u \geq 0$ in $\Omega$ gilt, nennt man $u$ subharmonisch und falls $\Delta u \leq 0$ in $\Omega$ gilt, superharmonisch.
+\end{definition}
+	
+\begin{beispiele}
+	\begin{enumerate}[1.]
+		\item Jede affine Funktion ($u(x) = b \cdot x + x, b \in \mathbb{R}^n , c \in \mathbb{R}$) ist harmnoisch in $\mathbb{R}^n$.
+		\item Sei $A \in \mathbb{R}^{n \times n}$. Die Matri $u(x) = Ax \cdot x$ ist genau dann harmonisch / subharmonich / superharmonisch, falls $ \Tr(A)= 0$ / $ \Tr(A) \geq  0 $ / $ \Tr(A) \geq  0 $ gilt. (weil in diesem Fall $\Delta u = \Tr(A)$).
+		\item Die Funktionen $u(x_1,x_2)= e^{ax_1}\sin(ax_2)$, $u(x_1,x_2)= e^{ax_1} \cos(ax_2)$ für alle $a \in \mathbb{R}$ sind harmonisch in $\mathbb{R}^2$.
+		\begin{align}
+			\diff{^2u}{x_1^2} = a^2 e^{ax_1} \sin(ax_2) \qquad \text{,} \qquad \diff{u}{x_2} &= a e^{ax_1} \cos(ax_2) 
+			\qquad \text{,} \qquad \diff{^2u}{x_2^2} = - a^2 e^{ax_1} \sin(ax_2)  \\
+			\Rightarrow \Delta u &= 0 \qquad \text{in } \mathbb{R}^2
+		\end{align}
+		\item Real- und Imaginärteil holomorpher Funktionen sind harmonisch. Sei dazu $\Omega \in \mathbb{C}$ offen und $f: \Omega \to \mathbb{C}$ eine holomorphe Funktion.
+		\begin{equation}
+			f ( x_1 + i x_2) = u(x_1,x_2) + i v(x_1,x_2) 
+		\end{equation}
+		wobei $u,v : \Omega \to  \mathbb{R}$ gilt. Da $f$ holomorph ist, erfüllen $u$ und $v$ die Cauchy-Riemann Differentialgleichungen:
+		\begin{align}
+			(*)
+			\begin{cases}
+				\diff{u}{x_1}= \diff{v}{x_2} \\
+				\diff{u}{x_2}= -\diff{v}{x_1}	\label{(stern)}
+			\end{cases}
+		\end{align}
+		und sind beliebig oft differenzierbar in $\Omega$
+		\begin{equation}
+			\Delta u = \diff{^2u}{x_1^2} + \diff{^2u}{x_2^2} \stackrel{(*)}{=} \diff{}{x_1} \left( \diff{v}{x_2} \right) + \diff{}{x_2} \left( - \diff{v}{x_1} \right) = 0
+		\end{equation}
+		und ebenso
+		\[
+			\Delta v = 0 \qquad \text{in } \Omega
+		\]
+	\end{enumerate}
+\end{beispiele}
+
+\subsection{Die Fundamentallösung der Laplacegleichung} 
+\label{sub:die_fundamentallosung_der_laplacegleichung}
+Wir betrachten die Laplacegleichung in $\mathbb{R}^n$ mit ($n \geq 2$) und suchen eine Rotationssymmetrische Lösung, d.h. $u(x) = v(r)$, wobei $r := \abs{x}= \sqrt{x_1^2 + \dots x_n^2}$ und $v : \mathbb{R}^+ \to \mathbb{R}$. Es gilt
+\begin{equation}
+	\diff{r}{x_i} = \frac{2x_i}{2\sqrt{x_1^2 + \dots x_n^2} } = \frac{x_i}{r}
+\end{equation}
+für alle $i=1,\dots,n$ und für $x \neq 0$
+\begin{align}
+	\diff{u}{x_i} = \diff{v(r)}{x_i} &= v'(r) \diff{r}{x_i} = v'(r) \frac{x_i}{r}, \\
+	\diff{^2u}{x_i^2} = \diff{}{x_i} \left( v'(r) \frac{x_i}{r} \right) = v''(r) \frac{x_i^2}{r^2} + &v'(r) \left( r - \frac{x_i^2}{r} \right) \frac{1}{r^2} = v''(r) \frac{x_i^2}{r^2} + v'(r) \left( \frac{1}{r} - \frac{x_i^2}{r^2} \right)
+\end{align}
+Dann gilt
+
+\begin{align*}
+	\Delta u = \sum^{n}_{i=1} \diff{^2u}{x_i^2} &= \sum^{n}_{i=1} \left( v''(r) \frac{x_i^2}{r^2} + v'(r) \left( \frac{1}{r} - \frac{x_i^2}{r^2} \right) \right) \\
+	&= v''(r) + v'(r) \left( \frac{n-1}{r} \right)
+\end{align*}
+
+Aus $\Delta u = 0$ in $\mathbb{R}^n$ erhalten wir eine ODE:
+\begin{equation}
+	v''(r) + v'(r)\left( \frac{n-1}{r} \right) = 0  \label{(5)}
+\end{equation}
+Wenn $v' \neq 0$, kann man \eqref{(5)} für $v'$ lösen
+\begin{align}
+	\frac{v''(r)}{v'(r)} &= \frac{1-n}{r} \\
+	\diffd{}{r}\left( \lg(\abs{v'(r)}) \right) &= \diffd{}{r} \left( (1-n) \lg(r) \right)
+\end{align}
+Integration liefert 
+\begin{equation}
+	\lg \abs{v'(r)} = \lg( r ^{1-n}) + \alpha
+\end{equation}
+mit Integrationskonstante $\alpha$.
+\begin{align*}
+	&\hphantom{\Rightarrow} e^{\lg \abs{v'(r)}} = e^{\lg(r^{1-n})+2} \\
+	&\Rightarrow \abs{v'(r)} = e^{\alpha} r^{1-n} \\
+	&\Rightarrow v'(r) = \beta r^{1-n}
+\end{align*}
+für eine beliebige Konstante $\beta \in \mathbb{R}$. Es gilt
+\begin{equation}
+	v'(r) = \begin{cases}
+		\frac{\beta}{r}, &\text{ falls } n = 2\\
+		\beta r^{1-n}, , &\text{ falls } n \geq 3		
+	\end{cases}
+\end{equation}
+und daraus folgt
+\begin{equation}
+	v'(r) = \begin{cases}
+		\beta \lg(r)+ \gamma, &\text{ falls } n = 2\\
+		\beta r^{2-n} + \gamma, , &\text{ falls } n \geq 3		
+	\end{cases}
+\end{equation}
+wobei $\beta,\gamma \in \mathbb{R}$. \\
+Wir setzen $ \gamma = 0$ (für $n \geq 3$ gilt $v(r) \to 0$ für $r \to +\infty$). Um $\beta$ zu bestimmen, verwendet man 
+\begin{equation}
+	-1 = \int_{\partial B_k(0)}^{} \Delta u \cdot \nu \,\mathrm{d}S \label{(6)}
+\end{equation}
+$\nu$ ist der äußere Einheitsnormalenvektor an $\partial B_r(0)$ und das Integral ist ein Oberflächenintegral. ( $ \Delta = D$). \\
+\[
+	\nu = \frac{x}{\abs{x}} \qquad \text{,} \qquad \Delta u = \nu'(\abs{x}) \frac{x}{\abs{x}}
+\]
+Aus \eqref{(6)} folgt 
+\begin{equation}
+	-1 = \int\limits_{\substack{\partial B_r(0)\\ \abs{x}=r}}^{} v'(\abs{x}) \underset{=1}{\underbrace{\frac{x}{\abs{x}} \cdot \frac{x}{\abs{x}}}} \,\mathrm{d}S  
+	= v'(r) \underset{= r^{n-1}S_n}{\underbrace{\int_{\partial B_r(0)}^{} \,\mathrm{d}S }}
+\end{equation}
+Wobei $S_n$ das $(n-1)$- dimensionale Volumen der Einheitsphäre bezeichnet. [siehe Übung]
+
+\begin{equation}
+	-1 = v'(r) r^{n-1} S_n = \begin{cases}
+		\frac{\beta}{r}r S_2 = \beta S_2 = \beta 2 \pi, &\text{ falls } n=2\\
+		\beta (2-n) \frac{r^{1-n}r^{n-1} }{  S_n}, &\text{ falls } n \geq 3
+	\end{cases}
+\end{equation}
+Für $n=2$ folgt
+\[
+	\beta = - \frac{1}{2 \pi}
+\] 
+und sonst folgt
+\[
+	\beta = -\frac{1}{(2-n)S_n} = \frac{1}{(n-2)n\omega_n}
+\]
+Hierbei ist $\omega_n$ das $n$-dimensionale Volumen der Einheitskugel $B_1(0)$ [Übung]
+
+\begin{align*}
+	v(r) = \begin{cases}
+		-\frac{1}{2 \pi} \lg(r), &\text{ falls }n=2\\
+		\frac{1}{n (n-2) \omega_n } r^{2-n}, &\text{ falls }n \geq 3
+	\end{cases}
+\end{align*}
+
+\begin{definition}[Fundamentallösung der Laplacegleichung]
+	Die Funktion $\Phi: \mathbb{R}^n \setminus \set{0} \to \mathbb{R}$ definiert als
+	\begin{equation}
+		\Phi(x) := \begin{cases}
+			-\frac{1}{2 \pi} \lg \abs{x}, &\text{ falls }n=2\\
+			\frac{1}{n (n-2) \omega_n } \abs{x}^{2-n}, &\text{ falls }n \geq 3
+		\end{cases}
+	\end{equation}
+	heißt die Fundamentallösung der Laplacegleichung.
+\end{definition}
+
+\begin{bemerkung}
+	$\Phi$ hat bei $x=0$ eine Singularität aber $\Phi , \abs{ \nabla \Phi} \in L^1_{\text{loc}}(\mathbb{R}^n)$ und $ \abs{ \nabla^2 \Phi} \not\in L^1_{\text{loc}}(\mathbb{R}^n) $. Tatsächlich ist im Fall $n=2$ für $\abs{x} < 1$
+	\[
+		\abs{ \Phi (x)} = \abs{ - \frac{1}{2 \pi} lg(x)} = - \frac{1}{2 \pi} lg \abs{x} = \frac{1}{2 \pi} lg \frac{1}{\abs{x}} \leq  \frac{C}{\abs{x}} \in L^1(B_1(0)) 
+	\]
+	weil $ \frac{1}{\abs{x}^2} \in L^1(B_1(0)) \Leftrightarrow a < n$ . \\
+	Für $n \geq 3$ gilt
+	\begin{align*}
+		\abs{ \Phi} &\leq \frac{C}{\abs{x}^{n-2}} \in L^1(B_1(0)) \\
+		\abs{  \nabla  \Phi} &\leq \frac{C}{\abs{x}^{n-1}} \in  L^1 ( B_1(0)) 
+	\end{align*}
+	dagegen 
+	\begin{equation}
+		\abs{  \nabla^2 \Phi } \simeq \frac{1}{\abs{x}^n} \not\in L^1(B_1(0))
+	\end{equation}
+\end{bemerkung}
+
+\subsection{Mittelwerteigenschaft} 
+\label{sub:mittelwerteigenschaft}
+\begin{equation}
+	u(x_0) = \fint_{\partial B_r(x_0)}^{} u \,\mathrm{d}S \qquad  \text{,} \qquad u(x_0) = \fint_{B_r(x_0)}^{} u \,\mathrm{d}x
+\end{equation}
+für $u$ harmonisch, wobei 
+\begin{align*}
+	\fint_{\partial B_r(x_0)}^{} u \,\mathrm{d}S &= \frac{1}{r^{n-1}S_n} \int_{\partial B_r(x_0)}^{}  u\,\mathrm{d}S \\
+	\fint_{B_r(x_0)}^{} u \,\mathrm{d}x &= \frac{1}{r^n \omega_n} \int_{B_r(x_0)}^{}u \,\mathrm{d}x
+\end{align*}
+
+\begin{definition*}[$C^1$-Rand]
+	Sei $\Omega \in \mathbb{R}^n$ offen. Wir sagen, dass $\Omega$ einen $C^1$-Rand hat, falls gilt: \\
+	Für alle $p \in \partial \Omega$ gibt es eine offene Menge $U \subseteq \mathbb{R}^n$ und eine Funktion $f \in C^1(U)$ so dass $ \nabla f(x) \neq 0$ für alle $x \in U$ gilt und
+	\begin{align*}
+		\partial \Omega \cap U &= \set[x \in U]{f(x)=0} \\
+		\Omega \cap U &= \set[x \in U]{f(x) < 0}
+	\end{align*}
+\end{definition*}
+
+\begin{bemerkung}
+	$\partial \Omega$ ist eine $(n-1)$-dimensionale $C^1$-Mannigfaltigkeit und $\partial \Omega$ liegt lokal nur auf einer Seite von $\Omega$.
+\end{bemerkung}
+
+\begin{lemma}
+	Sei $\Omega$ eine offene Teilmenge in $\mathbb{R}^n$, $B_R(x_0) \subseteq \Omega$ und $u \in C^2(\Omega)$. Definiert man $\varphi : (0,R) \to \mathbb{R}$ mittels
+	\[
+		\varphi(r) = \fint_{\partial B_r(x_0)}^{} u \,\mathrm{d}S \qquad \text{für } r \in (0,R)
+	\]
+	so gelten
+	\begin{enumerate}[(i)]
+		\item $\varphi(r) \to  u (x_0)$ für $ r \to 0^+$
+		\item $\varphi'(r) = \frac{r}{n} \fint_{B_r(x_0)}^{} \Delta u \,\mathrm{d}x$ 
+	\end{enumerate}
+	\end{lemma}
+	\begin{beweis}
+		\begin{enumerate}[(i)]
+			\item \begin{align*}
+				\abs{ \varphi(r)-u(x_0)} &= \abs{ \fint_{\partial B_r(x_0)}^{}u \,\mathrm{d}S - u(x_0)} \\
+				&= \abs{ \fint_{\partial B_r(x_0)}^{} (u(x)-u(x_0)) \,\mathrm{d}S} \\
+				& \leq \fint_{\partial B_r(x_0)}^{} \abs{u(x)-u(x_0)} \,\mathrm{d}S \\
+				& \leq  \underset{=1}{\underbrace{\abs{\fint_{\partial B_r(x_0)}^{} \,\mathrm{d}S}}} \max \abs{u(x)-u(x_0)} \stackrel{r \to 0^+}{\to} 0
+			\end{align*}
+		\item Es gilt
+		\begin{equation}
+			\varphi(r) = \frac{1}{r^{n-1}S_n} \int_{\partial B_r(x_0)}^{}u(x) \,\mathrm{d}S(x) \stackrel{x=x_0 + r y}{=} \frac{1}{S_n} \int_{\partial B_r(x_0)}^{} u(x_0 + ry) \,\mathrm{d}S(y)
+		\end{equation}
+		$u(x_0 + ry)$ ist differenzierbar nach $r$ für alle $y \in \partial B_1(0)$. \\
+		$\diffd{}{r}u(x_0 + ry) =  \nabla u(x_0+ry) \cdot y$ ist integrierbar auf $ \partial B_1(0)$.
+		\begin{align*}
+			\varphi'(r) &\stackrel{\hphantom{x=x_0+ry}}{=} \diffd{}{r} \left( \frac{1}{S_n} \int_{\partial B_1(0)}^{} u(x_0 + ry) \,\mathrm{d}S(y) \right) \\
+			& \stackrel{\hphantom{x=x_0+ry}}{=} \frac{1}{S_n} \int_{\partial B_1(0)}^{} \diffd{}{r} u(x_0 + ry) \,\mathrm{d}S(y) \\
+			& \stackrel{\hphantom{x=x_0+ry}}{=} \frac{1}{S_n} \int_{\partial B_1(0)}^{} \nabla u(x_0 + r y) \cdot y \,\mathrm{d}S(y) \\
+			& \stackrel{x=x_0+ry}{=} \frac{1}{S_n r^{n-1}} \int_{\partial B_r(x_0)}^{}  \nabla u(x) \cdot \frac{x-x_0}{r} \,\mathrm{d}S(x) \\
+			&\stackrel{\hphantom{x=x_0+ry}}{=} \frac{1}{S_n r^{n-1}} \int_{\partial B_k(x_0)}^{} \div (  \nabla u(x)) \,\mathrm{d}x
+		\end{align*}
+		Hierbei ist $\frac{x-x_0}{r}$ die äußere Einheitsnormalenableitung an $\partial B_k(x_0)$ im Punkt x. Wegen $u \in C^2(\Omega)$ gilt $ \nabla u \in C^1( \overline{B_k(x_0)})$ wobei $\overline{B_k(x_0)} \subseteq \Omega$. \\
+		Es gilt außerdem $\div(  \nabla u) = \Delta u$ und somit
+		\begin{equation}
+			\varphi'(r) \stackrel{\text{Gauß}}{=} \frac{r}{S_n r^n} \int_{B_k(x_0)}^{} \Delta u \,\mathrm{d}x 
+			\stackrel{\omega_n = S_n n}{=} \frac{r}{n} \fint_{B_k(x_0)}^{} \Delta u \,\mathrm{d}x
+		\end{equation}
+		\end{enumerate}
+		
+	\end{beweis}
+\begin{korollar}[Mittelwerteigenschaft]
+	Sei $\Omega$ eine offene Teilmenge in $\mathbb{R}^n$, $\overline{B_r(x_0)} \subseteq \Omega$ ($B_r(x_0) \subset \subset \Omega$), $u \in C^2(\Omega)$.
+	\begin{enumerate}[(i)]
+		\item Falls $ \Delta u = 0 $ in $\Omega$ gilt, so folgt
+		\begin{equation}
+			u(x_0) = \fint_{\partial B_r(x_0)}^{} u \,\mathrm{d}S = \fint_{B_r(x_0)}^{} u 	\,\mathrm{d}x
+		\end{equation}
+		\item Falls $\Delta \geq 0$ in $\Omega$ gilt, so folgt
+		\begin{equation}
+			u(x_0) \geq \fint_{\partial B_r(x_0)}^{} u \,\mathrm{d}S \qquad \text{,} \qquad u(x_0) \leq \fint_{B_r(x_0)}^{}u \,\mathrm{d}x
+		\end{equation}
+		\item Falls $\Delta u > 0$ in $\Omega$ gilt, so folgt
+		\begin{equation}
+			u(x_0) < \fint_{\partial B_r(x_0)}^{} u\,\mathrm{d}S \qquad \text{,} \qquad u(x_0) < \fint_{B_r(x_0)}^{} u \,\mathrm{d}x
+		\end{equation}
+	\end{enumerate}
+	\end{korollar}
+	\begin{beweis}
+		\begin{enumerate}[(i)]
+			\item folgt aus $(ii)$ angewandt auf $u$ und $-u$
+			\item Aus $\Delta u \geq 0$ folgt, dass $\varphi$ monoton wachsend ist.
+			\begin{equation}
+				u(x_0) = \lim_{S \to 0^+} \varphi(s) \leq \varphi(\rho) = \fint_{\partial B_{\rho}(x_0)}^{}u \,\mathrm{d}S \qquad \forall\, \rho \in (0,r]
+			\end{equation}
+			Insbesondere folgt direkt
+			\[
+				u(x_0) \geq \fint_{\partial B_r(x_0)}^{}u \,\mathrm{d}S
+			\]
+			Die zweite Ungleichung in $(ii)$ folgt durch Integration.
+			\begin{align*}
+				u(x_0)\abs{B_r(x_0)} &= u(x_0) \omega_n r^n \\ &= u(x_0) \omega_n \int_{0}^{r}n \rho^{n-1} \,\mathrm{d}\rho \\ 
+				&= n\omega_n \int_{0}^{r}u(x_0)\rho^{n-1} \,\mathrm{d}\rho  \\
+				&\leq n \omega_n \int_{0}^{r}\fint_{\partial B_{\rho}(x_0)}^{} u \,\mathrm{d}S \rho^{n-1} \,\mathrm{d}\rho \\
+				&= n \omega_n \int_{0}^{r} \frac{1}{S_n} \int_{B_{\rho}(x_0)}^{} u \,\mathrm{d}S \,\mathrm{d}\rho \\
+				&= \int_{0}^{r} \int_{B_{\rho}(x_0)}^{}u \,\mathrm{d}S \,\mathrm{d}\rho \\
+				&= \int_{B_{r}(x_0)}^{}u \,\mathrm{d}x
+			\end{align*}
+			wobei der letzte Schritt die Anwendung von Polarkoordinaten beinhaltet. $(iii)$ folgt analog. In diesem Fall ist $\varphi$ streng monoton wachsend.
+			\end{enumerate}
+	\end{beweis}
+
+\begin{satz}
+	Sei $\Omega$ eine offene Teilmenge in $\mathbb{R}^n$ und $u \in C^2(\Omega)$. Die folgenden Eigenschaften sind äquivalent:
+	\begin{enumerate}[(i)]
+		\item $u$ ist harmonisch, d.h. es gilt 
+		\begin{equation}
+			\Delta u = 0 \qquad \text{in } \Omega
+		\end{equation}
+		\item $u$ erfüllt die sphärische Mittelwerteigenschaft, d.h. es gilt
+		\begin{equation}
+			u(x_0) \fint_{\partial B_r(x_0)}^{}u \,\mathrm{d}S
+		\end{equation}
+		für alle $x_0 \in \Omega$ und $r>0$ mit $B_k(x_0) \subset \subset \Omega$
+		\item $u$ erfüllt die Mittelwerteigenschaft auf Kugeln, d.h. es gilt
+		\begin{equation}
+			u(x_0) = \fint_{B_r(x_0)}^{}u \,\mathrm{d}x
+		\end{equation}
+		für alle $x_0 \in \Omega$ und $r > 0$ mit $B_r(x_0) \subset \subset \Omega$.
+		\item $u$ erfüllt die Mittelwerteigenschaft auf \underline{kleinen} Kugeln, d.h. für jedes $x_0 \in \Omega$ existiert eine positive Zahl von $R(x_0) < \dist(x_0,\partial \Omega)$, so dass für alle $r < R(x_0)$ gilt
+		\begin{equation}
+			u(x_0) = \fint_{B_r(x_0)}^{}u \,\mathrm{d}x
+		\end{equation}
+	\end{enumerate}
+\end{satz}
+\begin{beweis}
+	\begin{description}
+		\item[\underline{$(i) \Rightarrow (ii)$}:] War gerade die Aussage $(i)$ von Korrolar $2.4$
+		\item[\underline{$(ii) \Rightarrow (iii)$}:] folgt mittels der Polarkoordinaten
+		\begin{align*}
+			\int_{B_r(x_0)}^{}u \,\mathrm{d}x &= \int_{0}^{r} \int_{\partial B_r(x_0)}^{} u \,\mathrm{d}S \,\mathrm{d}\rho  \\
+			&= \int_{0}^{r} \rho^{n-1}S_n \underset{=u(x_0)}{\underbrace{\fint_{\partial B_{\rho}(x_0)}^{} u \,\mathrm{d}S}} \,\mathrm{d} \rho \\
+			&= \int_{0}^{r}S_n \rho^{n-1} u(x_0)\,\mathrm{d}\rho \\
+			&= S_n \frac{r^n}{n} u(x_0)
+		\end{align*}
+		Es folgt \[
+			u(x_0) = \fint_{B_r(x_0)}^{} u \,\mathrm{d}x
+		\]
+		\item[\underline{$(iii) \Rightarrow (iv)$}:] ist offensichtlich
+		\item[\underline{$(iv) \Rightarrow (i)$}:] folgt durch ein Widerspruchsargument: \\
+		Angenommen, es gilt $(iv)$ und $\Delta u(x_0) \neq 0$ für ein $x_0 \in \Omega$, zum Beispiel $ \Delta u(x_0) > 0$. Da $u \in C^2(\Omega)$ ist, findet man eine Kugel $B_r(x_0)$ mit $r < R(x_0)$, so dass
+		\[
+			\Delta u(x) > 0 \qquad \text{in } B_r(x_0)
+		\]
+		Außerdem folgt dann aus Korollar $2.4$, dass 
+		\[
+			u(x_0)< \fint_{\partial B_r(x_0)}^{} u \,\mathrm{d}S
+		\]
+		Dies ist ein Widerspruch.
+	\end{description}
+\end{beweis}
+
+\subsection{Folgerung aus der Mittelwerteigenschaft} 
+\label{sub:folgerung_aus_der_mittelwerteigenschaft}
+\begin{satz}[Maximumsprinzipien]
+	Sei $\Omega$ eine beschränkte, offene Teilmenge des $\mathbb{R}^n$ und $u \in C^0(\overline{\Omega}) \cap C^2(\Omega)$ eine subharmonische Funktion (d.h. $ \Delta u \geq 0$ in $\Omega$). Dann gilt
+	\begin{enumerate}[(i)]
+		\item Das schwache Maximumsprinzip:
+		\[
+			\max_{\overline{\Omega}} u = \max_{\partial \Omega}u
+		\]
+		\item Das starke Maximumsprinzip: \\
+		Ist $\Omega$ zusammenhängend und existiert ein innerer Punkt $x_0 \in \Omega$ mit \[
+			u(x_0) = \max_{ \overline{\Omega}} u,
+		\]so ist $u$ konstant.
+	\end{enumerate}
+\end{satz}
+
+\begin{definition*}
+	Eine Teilmenge $\Omega$ in $\mathbb{R}^n$ heißt zusammenhängend,
+	falls sie sich nicht als disjunkte Vereinigung zweier nicht leerer $\Omega$-offene (= relativ offen in $\Omega$) Mengen schreiben lässt. \\
+	\\
+	Wenn $\Omega = O_1 \cup O_2$ mit $O_1,O_2$ offen und $O_1 \cap O_2 = \emptyset$, so folgt entweder $O_1 = \emptyset$ oder $O_2 = \emptyset$.
+\end{definition*}
+\begin{bemerkung}
+	Diese Definition ist äquivalent zu: \\
+	\\
+	$\Omega$ und $\emptyset$ sind die beiden einzigen Mengen, die zugleich $\Omega$-offen und $\Omega$-abgeschlossen.
+\end{bemerkung}
+
+\begin{beweis}
+	\begin{description}
+		\item[\underline{$(ii) \Rightarrow (i)$}:] Beweis durch ein Wiederspruchsargument: \\
+		Angenommen, es gelte 
+		\begin{equation}
+			\max_{\overline{\Omega}}u > \max_{\partial \Omega} u
+		\end{equation}
+		($\geq$ ist trivial, da $\partial \Omega \subseteq \overline{\Omega}$). \\
+		Dann gäbe es ein Punkt $x_0 \in \Omega$ mit $u(x_0) = \max_{\overline{\Omega}}u$ auf die Zusammenhangskomponente von $\Omega(x_0)$, wäre also
+		\begin{align*}
+			\max_{\overline{\Omega(x_0)}}u &= \max_{\overline{\Omega}}u \\
+			&> \max_{\partial \Omega}u \\
+			&\geq  \max_{ \partial \Omega(x_0)}u
+		\end{align*}
+		Dies gilt wegen $ \partial \Omega(x_0) \subseteq \partial \Omega$. \\
+		Aus dem starken Maximumsprinzip folgt, dass $u$ Konstant in $\Omega(x_0)$ ist und dies ist ein Widerspruch zu der obigen Aussage
+		\[
+			\max_{\overline{\Omega(x_0)}}u > \max_{\partial \Omega(x_0)} u
+		\]
+		\item[\underline{$(ii)$}:] Sei $x_0 \in \Omega$ mit $u(x_0) = \max_{\overline{\Omega}}u =: M$. Dann gilt
+		\begin{align*}
+			M = u(x_0) \stackrel{(*)}{\leq } \fint_{B_r(x_0)}^{} u \,\mathrm{d}x \leq  \fint_{B_r(x_0)}^{} M \,\mathrm{d}x = M 
+		\end{align*}
+		mit $\overline{B_r(x_0)} \subseteq \Omega$. Hierbei folgt $(*)$ aus der Mittelwerteigenschaft mit $ \Delta u \geq 0$. $M \leq M$ ist allerdings nur möglich, 
+		wenn $u \equiv M$ auf $B_r(x_0)$ ist. Sei
+		\[
+			\Omega_M := \set[x \in \Omega]{u(x)=M}
+		\]
+		Dann ist $\Omega_M$ offen also findet man für jedes $x_0 \in \Omega_M$ eine offene Kugel $B_r(x_0) \subseteq \Omega_M$ finden. \\
+		Für $x_0 \in \Omega_M$ existiert $r>0$, so dass auf $B_r(x_0)$ $u(x) \equiv M$ gilt. 
+		Daraus folgt $B_r(x_0) \subseteq  \Omega_M$ und somit ist $\Omega_M$ offen. \\
+		Da $u$ stetig ist, ist $\Omega_M$ relativ abgeschlossen in $\Omega$. 
+		Und weil $\Omega$ zusammenhängend ist, gilt somit entweder $\Omega_M = \Omega$ oder $\Omega_M = \emptyset$.
+		Da aber $x_0 \in \Omega_M$ gilt somit $\Omega_M = \Omega$ und so $u \equiv M$ auf $\Omega$.
+	\end{description}
+\end{beweis}
+\cleardoubleoddemptypage
+\pagenumbering{Alph}
+\setcounter{page}{1}
+
+\end{document}
