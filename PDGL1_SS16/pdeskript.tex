@@ -1,3 +1,4 @@
+%!TEX TS-program = xelatex
 %skript für Die Vorlesung Partielle Differentialgleichungen
 \newcommand{\Semester}{SoSe 2016}
 \newcommand{\fach}{Partielle Differentialgleichungen}
@@ -15,7 +16,7 @@
 \pagenumbering{Alph}
 \section*{Vorwort --- Mitarbeit am Skript}
 Dieses Dokument ist eine Mitschrift aus der Vorlesung \enquote{\fach, \Semester}, gelesen von \prof. Der Inhalt entspricht weitestgehend dem Tafelanschrieb. Für die
-Korrektheit des Inhalts werde ich keinerlei Garantie übernehmen. Dieses Skript wird allerdings zusätzlich von \prof \, Korrektur gelesen. Für Bemerkungen und Korrekturen -- und seien es nur Rechtschreibfehler -- bin ich sehr dankbar. Bitte durch persönliches Ansprechen oder per Mail an keil.menden@web.de.
+Korrektheit des Inhalts werde ich keinerlei Garantie übernehmen. Dieses Skript wird allerdings zusätzlich von \prof \, Korrektur gelesen. Für Bemerkungen und Korrekturen -- und seien es nur Rechtschreibfehler -- bin ich sehr dankbar. Bitte durch persönliches Ansprechen oder per Mail an \href{mailto:keil.menden@web.de}{keil.menden@web.de}.
 
 \newpage
 
@@ -48,7 +49,7 @@ Korrektheit des Inhalts werde ich keinerlei Garantie übernehmen. Dieses Skript 
 \begin{bemerkung}
 Für $n=1$ wird \eqref{(1)} auf eine gewöhnliche Differentialgleichung (ODE) reduziert: $u: \Omega \subseteq \mathbb{R} \to \mathbb{R}$ mit
 \[
-	E(x,u(x),u'(x),\dots,u^{(k)}(x))=0 \qquad \text{in } \Omega
+	E(x,u(x),u'(x),\dots,u^{(k)}(x))=0 \qquad \text{in } \Omega 
 \]
 \end{bemerkung}
 
@@ -91,7 +92,7 @@ Für $n=1$ wird \eqref{(1)} auf eine gewöhnliche Differentialgleichung (ODE) re
 	\]
 \end{bemerkung}
 
-\begin{definition}[Typeinteilung für PDE's zweiter Ordnung]
+\begin{definition}[Typeinteilung für PDEs zweiter Ordnung]
 		Sei $\Omega$ eine offene Teilmenge des $\mathbb{R}^n$ und $E: \Omega \times \mathbb{R} \times \mathbb{R}^n \times \mathbb{R}^{n \times n} \to \mathbb{R}$ eine gegebene Funktion, so dass $p \mapsto E(x,u,z,p)$ für alle $(x,u,z) \in \Omega \times \mathbb{R}\times \mathbb{R}^n$ von der Klasse $C^1(\mathbb{R}^{n \times n})$ ist. Die PDE
 		\begin{equation}
 			E(x,u(x),Du(x),D^2u(x))=0 \qquad \text{in }\Omega 
@@ -117,7 +118,7 @@ Für $n=1$ wird \eqref{(1)} auf eine gewöhnliche Differentialgleichung (ODE) re
 		\end{enumerate}
 \end{definition}
 
-\begin{beispiel}[Typeinteilung für lineare PDE's zweiter Ordnung]
+\begin{beispiel}[Typeinteilung für lineare PDEs zweiter Ordnung]
 Sei $\Omega$ eine offene Teilmenge des $\mathbb{R}^n$ und seien $a_{ij}$, $b_i$ (für $i,j=1,\dots,n$), $c$ und $f$ skalarwertige Funktionen auf $\Omega$
 \begin{enumerate}
 	\item Die lineare PDE der Form
