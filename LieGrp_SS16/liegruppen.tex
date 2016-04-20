@@ -35,20 +35,19 @@
 
 \section{Liegruppen und Liealgebren} % (fold)
 \label{sec:1}
-\todo[inline]{Nummerierung fixen}
-\begin{definition}[label=def:111]
+\begin{definition}[label=def:111,{name=[Liegruppe]}]
 	Eine \Index{Liegruppe} st eine abstrakte Gruppe, welche zusätzlich eine $n$-dimensionale, differenzierbare Mannigfaltigkeit ist, sodass die beiden Abbildungen 
 	$m \colon G \times G \to G$, $(g,h) \mapsto g \cdot h$ und $^{-1} \colon G \to G$, $g \mapsto g^{-1}$ differenzierbar sind.
 \end{definition}
 
 Beispiele für Liegruppen: 
 \begin{itemize}
-	\item Die $1$-Sphäre $S^1 = \set*{e^{i \varphi} \in \mathbb{C} \given \varphi \in \mathbb{R}} = \set[\big]{z \in \mathbb{C} \given \abs*{z}=1} \simeq \set*{\begin{psmallmatrix}
+	\item Die $1$-Sphäre $S^1 = \set*{e^{i \varphi} \in \mathbb{C} \given \varphi \in \mathbb{R}} = \set[\big]{z \in \mathbb{C} \given \abs*{z}=1} \simeq \set*{\begin{psmallmatrix*}[r]
 		\cos \varphi & - \sin \varphi \\
 		\sin \varphi & \cos \varphi
-	\end{psmallmatrix} \given \varphi \in \mathbb{R}} = \SO(\mathbb{R})$
+	\end{psmallmatrix*} \given \varphi \in \mathbb{R}} = \SO(\mathbb{R})$
 	\item Der $n$-Torus $T^n = S^1 \times \ldots \times S^1 $ ($n$-mal)
-	\item Sei $R \in \mathbb{R}$ und $S^1_r := \set*{\enbrace{e^{i \varphi}, e^{i r \varphi}} \in S^1 \times S^1 \given \varphi \in \mathbb{R}}$
+	\item Sei $r \in \mathbb{R}$ und $S^1_r := \set*{\enbrace{e^{i \varphi}, e^{i r \varphi}} \in S^1 \times S^1 \given \varphi \in \mathbb{R}}$.
 	Für $r \in \mathbb{Q}$ ist $S^1_r$ eine $1$-dimensionale Untermannigfaltigkeit des Torus $T^2= S^1 \times S^1$.
 	Für $r \in \mathbb{R} \setminus \mathbb{Q}$ ist $S^1_r$ \emph{keine} eingebettete Untermannigfaltigkeit, denn es gilt 
 	\[
@@ -64,31 +63,31 @@ Beispiele für Liegruppen:
 	Man kann ferner zeigen, dass $\Ad(q)|_{\mathbb{R}^3} \subset SO(3)$.
 	Es gilt sogar $\Ad(S^3) = SO(3)$ und $\pi \colon S^3 \to SO(3)$, $q \mapsto \Ad(q)|_{\mathbb{R}^3}$ ist eine $2$-fache Überlagerung.
 	Dies folgt mit $\Ad(q)=\Ad(-q)$.
-	\item \Index{Orthogonale Gruppe} $\On(n) = \set*{A \in \Mat(n,\mathbb{R}) \given A A^T = E_n}$, $\SO(n) = \set*{A \in \On(n) \given \det A=1}$
-	\item \Index{Unitäre Gruppe} $\Un(n) = \set*{A \in \Mat (n,\mathbb{C}) \given A A^* =E_n}$, $\SU(n) = \set*{A \in \Un(n) \given \det A=1}$
-	\item \Index{Allgemeine lineare Gruppe}: $\GL(n,\mathbb{K}) = \set*{A \in \Mat(n,\mathbb{K}) \given A \text{ invertierbar}}$. Spezielle lineare Gruppe:
-	$\SL(n,\mathbb{K}) = \set*{A \in \GL(n,\mathbb{K}) \given \det A =1}$
+	\item \Index{Orthogonale Gruppe} $\On(n) = \set*{A \in \Mat(n,\mathbb{R}) \given A A^T = E_n}$, $\SO(n) = \set[\big]{A \in \On(n) \given \det A=1}$
+	\item \Index{Unitäre Gruppe} $\Un(n) = \set[\big]{A \in \Mat (n,\mathbb{C}) \given A A^* =E_n}$, $\SU(n) = \set[\big]{A \in \Un(n) \given \det A=1}$
+	\item \Index{Allgemeine lineare Gruppe}: $\GL(n,\mathbb{K}) = \set[\big]{A \in \Mat(n,\mathbb{K}) \given A \text{ invertierbar}}$. \Index{Spezielle lineare Gruppe}:
+	$\SL(n,\mathbb{K}) = \set[\big]{A \in \GL(n,\mathbb{K}) \given \det A =1}$
 	\item Sind $G_1$ und $G_2$ Liegruppen, so ist auch $G_1 \times G_2$ eine Liegruppe.
 	\item Ist $G$ eine Liegruppe, so ist 
 	\[
-		G_0 :=  \set*{g \in G \given \exists c \colon [0,1] \to G \text{ stetig mit } c(0)=e, c(1)=g}
+		G_0 :=  \set[\big]{g \in G \given \exists c \colon [0,1] \to G \text{ stetig mit } c(0)=e, c(1)=g}
 	\]
 	ein Liegruppe, die Zusammenhangskomponente der Eins.
-	Beispiel: $\On(n)=\SO(n) \dot{\cup} I \cdot \SO(n)$, wobei $I$ eine Spiegelung ist.
-	Tatsächlich hat $\On(n)$ genau zwei Zusammenhangskomponenten, für $n=2$
+	Beispiel: $\On(n)=\SO(n) \mathbin{\dot{\cup}} I \cdot \SO(n)$, wobei $I$ eine Spiegelung ist.
+	Tatsächlich hat $\On(n)$ genau zwei Zusammenhangskomponenten, für $n=2$:
 	\[
-		\On(2) = \SO(2) \mathbin{\dot{\cup}} \set*{\begin{pmatrix}
+		\On(2) = \SO(2) \mathbin{\dot{\cup}} \set*{\begin{pmatrix*}[r]
 			\cos \varphi & \sin \varphi \\
 			\sin \varphi & - \cos \varphi
-		\end{pmatrix} \given \varphi \in \mathbb{R}}
+		\end{pmatrix*} \given \varphi \in \mathbb{R}}
 	\]
 \end{itemize}
 
-\begin{definition}
+\begin{definition}[{name=[Lieklammer]}]
 	Eine \Index{Liealgebra} über $\mathbb{R}$ oder $\mathbb{C}$ ist ein $\mathbb{K}$-Vektorraum $V$ zusammen mit einer bilinearen, schiefsymmetrischen Abbildung 
-	\[
+	\(
 		[\cdot ,\cdot ] \colon V \times V \to V
-	\]
+	\)
 	welche die Jacobi-Identität 
 	\[
 		\benbrace[\big]{X, \benbrace*{Y,Z}} + \benbrace[\big]{Z, \benbrace*{X,Y}} + \benbrace[\big]{Y, \benbrace*{Z,X}} =0
@@ -98,14 +97,15 @@ Beispiele für Liegruppen:
 \end{definition}
 
 Wir werden zeigen, dass für eine Liegruppe $G$ der Tangentialraum $\Tmap_e G$ auf natürliche Art und Weise eine Liealgebra ist.
-Notation: Sei $g \in G$:
+Dazu ein wenig Notation: Für $g \in G$ betrachten wir Links- und Rechtsmultiplikation
 \begin{align}
-	L_g \colon G \longrightarrow G \quad , \quad &h \longmapsto g \cdot h \\
-	R_g \colon G \longrightarrow G \quad , \quad &h \longmapsto h \cdot g
+	\SwapAboveDisplaySkip
+	L_g \colon G \longrightarrow G \quad , \qquad &h \longmapsto g \cdot h \\
+	R_g \colon G \longrightarrow G \quad , \qquad &h \longmapsto h \cdot g
 \end{align}
 Die Links-, sowie die Rechtsmultiplikation sind Diffeomorphismen. 
 
-\begin{definition}
+\begin{definition}[{name=[linksinvariantes Vektorfeld]}]
 	Ein Vektorfeld $X$ auf $G$ nennt man \Index{linksinvariant}, falls für alle $g,h \in G$ gilt
 	\[
 		X(g \cdot h) = \mathd(L_g)_h \cdot X(h)
@@ -118,16 +118,16 @@ Offenbar ist ein linksinvariantes Vektorfeld $X$ schon eindeutig durch seinen We
 \]
 Wir schreiben daher auch $X=X_v$ mit $X(e)=v \in \Tmap_e G$.
 
-\begin{lemma}[label=lem:114]
+\begin{lemma}[label=lem:114,{name=[Linksinvariante Vektorfelder sind differenzierbar]}]
 	Linksinvariante Vektorfelder sind differenzierbar.
 \end{lemma}
 \begin{beweis}
 	Nach \autoref{def:111} ist die Multiplikation $m \colon G \times G \to G$ differenzierbar, somit auch $\mathd m \colon \Tmap G \times \Tmap G \to\Tmap G$ und damit für alle $v \in \Tmap_e G$ auch $\tilde{X}_v \colon G \to \Tmap G$, $g \mapsto (\mathd m)_{(g,e)}(0,v)$.
 	Wir zeigen nun $\tilde{X}_v=X_v$.
-	Sei $(g(t))_{t \in (-1,1)}$ eine differenzierbare Kurve in $G$ mit $g(0)=e$ und $g'(0)=v$.
+	Sei $\enbrace[\big]{g(t)}_{t \in (-1,1)}$ eine differenzierbare Kurve in $G$ mit $g(0)=e$ und $g'(0)=v$.
 	Dann gilt 
 	\[
-		(\mathd m)_{(g,e)}(0,v) = \diffd{}{t}\big|_{t=0} m \enbrace*{g,g(t)} = \diffd{}{t}\big|_{t=0} L_g\enbrace{g(t)} = \mathd(L_g)_{g(0)} g'(0)
+		(\mathd m)_{(g,e)}(0,v) = \diffd{}{t}\Big|_{t=0} m \enbrace[\big]{g,g(t)} = \diffd{}{t}\Big|_{t=0} L_g\enbrace[\big]{g(t)} = \mathd(L_g)_{g(0)} g'(0)
 		 =\mathd(L_g)_e v = X_v(g) \qedhere
 	\]
 \end{beweis}
@@ -187,14 +187,14 @@ Somit gilt $\benbrace*{X_v,X_w} =X(vw -wv)$ und daher $\benbrace*{v,w}_{\mathfra
 \section{Lieuntergruppen und Homomorphismen von Liegruppen} % (fold)
 \label{sec:12}
 
-\begin{definition}
+\begin{definition}[{name=[Liegruppen- und Liealgebrenhomomorphismen]}]
 	Seien $H,G$ Liegruppen.
 	\begin{enumerate}[1)]
-		\item Eine Abbildung $\Phi \colon H \to G$ nennt man Liegruppenhomomorphismus, falls $\Phi$ differenzierbar ist und falls $\Phi$ ein Gruppenhomomorphismus ist.
-		\item Einen Liegruppenhomomorphismus $\Phi \colon H \to G$ nennt man Liegruppenisomorphismus, falls $\Phi$ bijektiv und $\Phi^{-1}$ differenzierbar ist. ($\Phi^{-1}$ ist auch Gruppenhomomorphismus)
-		\item Liealgebrenhomomorphismen und Liealgebrenisomorphismen werden entsprechend definiert:  $L \colon \mathfrak{h} \to \mathfrak{g}$ linear mit
+		\item Eine Abbildung $\Phi \colon H \to G$ nennt man \Index{Liegruppenhomomorphismus}, falls $\Phi$ differenzierbar ist und falls $\Phi$ ein Gruppenhomomorphismus ist.
+		\item Einen Liegruppenhomomorphismus $\Phi \colon H \to G$ nennt man \Index{Liegruppenisomorphismus}, falls $\Phi$ bijektiv und $\Phi^{-1}$ differenzierbar ist. ($\Phi^{-1}$ ist auch Gruppenhomomorphismus)
+		\item \bet{Liealgebrenhomomorphismen}\index{Liealgebrenhomomorphismus} und Liealgebrenisomorphismen werden entsprechend definiert:  $L \colon \mathfrak{h} \to \mathfrak{g}$ linear mit
 		\[
-			L \cdot \benbrace*{v,w}_{\mathfrak{h}} = \benbrace*{L \cdot v, L \cdot w}_\mathfrak{g}
+			L \cdot \benbrace*{v,w}_{\mathfrak{h}} = \benbrace[\big]{L \cdot v, L \cdot w}_\mathfrak{g}
 		\]
 	\end{enumerate}
 \end{definition}
@@ -261,20 +261,19 @@ Ferner ist $\Ad \colon G \to \GL\enbrace*{\Tmap_e G}$, $g \mapsto \Ad(g)$ ein Li
 \end{align}
 $\Ad \colon G \to \GL(\mathfrak{g})$ heißt die \Index{adjungierte Darstellung} von $G$.
 
-\begin{definition}
+\begin{definition}[{name=[{Lieuntergruppe}]}]
 	Sei $G$ eine Liegruppe.
 	\begin{enumerate}[1)]
 		\item Mann nennt eine Teilmenge $H \subseteq G$ eine \Index{Lieuntergruppe}, falls 
 		\begin{itemize}
 			\item $H$ eine Untergruppe von $G$ ist
 			\item $H$ ist Liegruppe, wenn $H$ mit der von $G$ induzierten Multiplikation und Inversenbildung versehen wird.
-			\item Die Inklusionsabbildung $i \colon H \to G$ ist eine Immersion\\ 
+			\item Die Inklusionsabbildung $i \colon H \hookrightarrow G$ ist eine Immersion \marginnote{Immersion: injektives Differential}\\ 
 			(nicht notwendigerweise eine Einbettung!).
 		\end{itemize}
 		\item Mann nennt einen Teilraum $\mathfrak{h} \subseteq \mathfrak{g}$ Lieunteralgebra, falls $\benbrace*{x,y}_\mathfrak{g} \in H$ für alle $x,y \in \mathfrak{h}$ gilt.
 	\end{enumerate}
 \end{definition}
-\todo[inline]{Def Immersion als Fußnote}
  
 Die Gruppe $S^1_r = \set*{\enbrace*{e^{i \varphi}, e^{i r \varphi}} \given \varphi \in \mathbb{R}}$ ist eine Lieuntergruppe von $T^2=S^1 \times S^1$.
 Für $r \in \mathbb{Q}$ ist $S^1_r$ eine (eingebettete) Untermannigfaltigkeit; für $r \in \mathbb{R}\setminus \mathbb{Q}$ ist $S^1_r$ \enquote{nur} eine immersierte Untermannigfaltigkeit, jedoch nicht eingebettet.
