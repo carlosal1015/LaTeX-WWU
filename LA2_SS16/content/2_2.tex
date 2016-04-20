@@ -3,7 +3,6 @@
 
 \minisec{Wiederholung aus LA 1}
 Sei $V$ ein endlich dimensionaler $K$-Vektorraum und $F \in \End_K(V)$ ein Endomorphismus von $V$, das heißt $F\colon V \rightarrow V$ ist eine lineare Abbildung.
-
 Dann heißt $F$ \Index{diagonalisierbar}, wenn es eine Basis $B=\{v_1,\dots,v_n\}$ von $V$ gibt, sodass die Darstellungsmatrix $A_F^B := \mat{A}{B}{b}{F}$ eine Diagonalmatrix ist, das heißt es existieren $\lambda_1,\dots,\lambda_n \in K$ mit
 \[
 	A^B_F = \begin{pmatrix}
@@ -38,7 +37,7 @@ Ist nun $B = \{v_1,\dots,v_n\}$ eine Basis von $V$ mit
 \]
 so folgt mit \eqref{eq:darstellungsmatrix} $F(v_i) = \lambda_i v_i$, das heißt $v_i$ ist ein Eigenvektor zum Eigenwert $\lambda_i$ von $F$.
 Damit folgt die Äquivalenz der folgenden Aussagen:
-\begin{enumerate}[(1)]
+\begin{enumerate}[(i)]
 	\item $F$ ist diagonalisierbar.
 	\item $V$ besitzt eine Basis aus Eigenvektoren von $F$.
 \end{enumerate}
@@ -85,7 +84,7 @@ Dann gilt:
 \stack{}{\Leftrightarrow} \quad &\det(\lambda E_n - A_F^C) = 0 \\
 \stack{\text{s.o.}}{\Leftrightarrow} \quad &\det(\lambda \cdot \id - F) = 0
 \end{align*}
-Damit: Die Eigenwerte von $F$ sind genau die Nullstellen der \Index{charakteristischen Funktion}
+Damit: Die Eigenwerte von $F$ sind genau die Nullstellen der \textbf{charakteristischen Funktion} \index{charakteristische Funktion}
 \begin{align*}
 	\chi_F \colon K &\longrightarrow K \\
 	\lambda &\longmapsto \det(\lambda \cdot \id - F)
@@ -98,7 +97,7 @@ Ist $\lambda \in K$ Eigenwert zu $F$, so heißt
 	E_\lambda(F) = \{v \in V : F(v) = \lambda v\} = \Kern(\lambda \cdot \id - F)
 \]
 der \Index{Eigenraum} zum Eigenwert $\lambda$.
-Sind dann $\lambda_1,\dots,\lambda_l$ die paarweise verschiedenen Eigenwerte von $F$ und sind $\{v_{11},\dots,v_{1n_1}\}, \{v_{21},\dots,v_{2n_2}\}, \dots, \{v_{l1},\dots,v_{ln_l}\}$ Basem von $E_{\lambda_1}(F), \dots, E_{\lambda_l}(F)$, so ist
+Sind dann $\lambda_1,\dots,\lambda_l$ die paarweise verschiedenen Eigenwerte von $F$ und sind $\{v_{11},\dots,v_{1n_1}\}, \{v_{21},\dots,v_{2n_2}\}, \dots, \{v_{l1},\dots,v_{ln_l}\}$ Basen von $E_{\lambda_1}(F), \dots, E_{\lambda_l}(F)$, so ist
 \[
 	B = \{v_{11},\dots,v_{1n_1},v_{21},\dots,v_{2n_2},\dots,v_{l1},\dots,v_{ln_l}\}
 \]
@@ -210,7 +209,7 @@ Dazu wollen wir die charakteristische\linebreak (Polynom-)Funktion genauer ansch
 \begin{definition}[charakteristisches Polynom]
 	\label{def:2.3}
 	Sei $V$ ein endlich dimensionaler $K$-Vektorraum und $F \in \End_K(V)$.
-	Sei $A:= A_F^C$ Darstellulngsmatrix für eine beliebige Basis $C$ von $V$.
+	Sei $A:= A_F^C$ Darstellungsmatrix für eine beliebige Basis $C$ von $V$.
 	Dann heißt
 	\[
 		\chi_F(T) = \chi_A(T) = \det(TE_n-A)
@@ -266,12 +265,13 @@ Wir halten fest:
 
 \begin{erinnerung}
 	\label{erinnerung:2.7}
+	\mbox{} \\[-1.4cm]
 	\begin{enumerate}[(a)]
 		\item Wenn $\chi_F$ in Linearfaktoren zerfällt, so gilt, da $\chi_F$ normiert ist,
 		\[
 			\chi_F(T) = (T-\lambda_1)^{n_1} \cdots (T-\lambda_l)^{n_l},
 		\]
-		wobei $\lambda_1,\dots,\lambda_l$ die paarweise verschiedenen Eigenwerte von $F$ bezeichnet und dann ist $\alpha(\lambda_i) := n_i$ die \Index{algebraische Vielfachheit} des Eigenwerts $\lambda_i$.
+		wobei $\lambda_1,\dots,\lambda_l$ die paarweise verschiedenen Eigenwerte von $F$ bezeichnet, und dann ist $\alpha(\lambda_i) := n_i$ die \Index{algebraische Vielfachheit} des Eigenwerts $\lambda_i$.
 		\item In \autoref{def:I.16.21} hatten wir für einen Eigenwert $\lambda_i$ von $F$ die \Index{geometrische Vielfachheit} von $\lambda_i$ definiert durch die Dimension des Eigenraums: $\gamma(\lambda_i) := \dim(E_{\lambda_i}(F))$.
 	\end{enumerate}
 \end{erinnerung}

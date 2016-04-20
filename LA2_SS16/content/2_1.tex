@@ -9,7 +9,7 @@
 	Sei $K$ ein Körper.
 	Dann ist $K[T]$ gegeben als die Menge aller formalen Summen
 	\[
-		p(T) = \sum_{k=0}^{\infty} a_k T^k \text{ mit } a_k \in K \ \forall k \in \NN_0 \text{ und } \exists N \in \NN_0 : a_k = 0 \ \forall k > N.
+		p(T) = \sum_{k=0}^{\infty} a_k T^k \text{ mit } a_k \in K \ \forall k \in \NN_0 \text{ und } \exists N \in \NN_0 \text{ mit } a_k = 0 \ \forall k > N.
 	\]
 	Wir schreiben dann auch $p(T) = \sum_{k=0}^{N} a_kT^k$.
 	
@@ -18,7 +18,7 @@
 	Wir definieren Addition und Multipliation auf $K[T]$ wie folgt:
 	\begin{align*}
 		\sum_{k=0}^{\infty} a_kT^{k} + \sum_{k=0}^{\infty} b_kT^{k} &= \sum_{k=0}^{\infty} (a_k+b_k)T^{k} \\
-		\enb{\sum_{k=0}^{\infty} a_kT^{k}} \cdot \enb{\sum_{k=0}^{\infty} b_kT^{k}} &= \sum_{k=0}^{\infty} \enb{\sum_{n=0}^{\infty} a_kb_{n-k}} T^{k}
+		\enb{\sum_{k=0}^{\infty} a_kT^{k}} \cdot \enb{\sum_{k=0}^{\infty} b_kT^{k}} &= \sum_{k=0}^{\infty} \enb{\sum_{n=0}^{k} a_kb_{n-k}} T^{k}
 	\end{align*}
 	$(K[T],+,\cdot)$ ist ein kommutativer Ring mit Einselement -- der \Index{Polynomring} über $K$.
 	
@@ -37,7 +37,7 @@
 	gilt, so heißt $\mathcal{A}$ eine $\mathbf{K}$\textbf{-Algebra}. \index{K-Algebra}
 \end{bemerkung}
 
-Beispiele für $K$-Algebren sind $K[T]$ mit Addition und Multiplikation wie in \ref{erinnerung:1.1} und $M(n\times n,K)$ mit kanonischer $K$-Vektorraum-Struktur und Matrixmultiplikation.
+Beispiele für $K$-Algebren sind $K[T]$ mit Addition und Multiplikation wie in \autoref{erinnerung:1.1} und $M(n\times n,K)$ mit kanonischer $K$-Vektorraum-Struktur und Matrixmultiplikation.
 
 \begin{definition}[Grad]
 	\label{def:1.3}
@@ -122,7 +122,8 @@ Wir kommen nun zur \Index{Polynomdivision}:
 \begin{beweis}
 	Induktion nach $n = \grad(p)$.
 	\begin{description}
-		\item[$n=0$:] Ist $\grad(p) = 0$, so ist $p(\lambda) = a_0 \in K$ für alle $\lambda$, und da $p \neq 0$, ist $a_0 \neq 0$, also besitzt $p$ keine Nullstelle in $K$.Es folgt $q = p$ (eindeutig!)
+		\item[$n=0$:] Ist $\grad(p) = 0$, so ist $p(\lambda) = a_0 \in K$ für alle $\lambda$, und da $p \neq 0$, ist $a_0 \neq 0$, also besitzt $p$ keine Nullstelle in $K$.
+		Es folgt $q = p$ (eindeutig!)
 		\item[$n \rightsquigarrow n+1$:] Sei $\grad(p) = n+1$.
 		Besitzt $p$ keine Nullstelle in $K$, so setze wieder $q = p$.
 		Sonst sei $\lambda_0$ eine beliebige Nullstelle von $p$.
@@ -152,7 +153,7 @@ Wir kommen nun zur \Index{Polynomdivision}:
 		\]
 		In beiden Fällen gilt $n_1+\dots+n_l \leq n+1$ bzw. $n_0 + \dots + n_l \leq n+1$.
 		
-		Zur Eindeutigkeit:
+		\textit{Zur Eindeutigkeit:}
 		Ist $\lambda$ eine beliebige Nullstelle von $p$, so folgt $\lambda = \lambda_i$ für ein $1 \leq i \leq n$.
 		Damit erhalten wir eine Zerlegung
 		\begin{align*}
@@ -210,19 +211,19 @@ Wir kommen nun zur \Index{Polynomdivision}:
 
 \begin{beweis}[nach Oswaldo Rio Branco \textsc{de Oliveira}]
 	Der Beweis benutzt die folgenden Tatsachen:
-	\begin{enumerate}[(1)]
+	\begin{enumerate}[(i)]
 		\item Ist $K \subseteq \CC$ beschränkt und abgeschlossen (also kompakt) und ist $f \colon K \rightarrow \RR$ stetig, so existiert $z_0 \in K$ mit $f(z_0) \leq f(z)$ für alle $z \in K$ ($f$ nimmt auf $K$ sein absolutes Minimum an).
 		\item Für jedes $0 \leq \omega \in \CC$ besitzt die Gleichung $z^n = \omega$ eine Lösung $z \in \CC$ (sogar genau $n$ verschiedene Lösung).
 		\item Für alle $a,b \in \CC$ gilt $|a+b|^2 - |a|^2 = 2 \cdot \Re(\ol{a},b)+|b|^2$.
 	\end{enumerate}
-	(1) wurde (oder wird) in der Analysis bewiesen, (2) folgt mit Polarkoordinaten:
+	(i) wurde (oder wird) in der Analysis bewiesen, (ii) folgt mit Polarkoordinaten:
 	Ist $\omega = |\omega|e^{i\varphi}$, so sind $z_0,\dots,z_{n-1}$ mit
 	\[
 		z_j := |\omega|^{\frac{1}{n}} e^{i \frac{\varphi+2\pi}{n}}, \quad j=0,1,\dots,n-1
 	\]
 	(die) Lösungen von $z^n = \omega$.
 	
-	(3) folgt aus:
+	(iii) folgt aus:
 	\begin{align*}
 		|a+b|^2 - |a|^2 &= (\ol{a+b})(a+b) - \ol{a}a \\
 		&= \ol{a}a + \ol{a}b + \ol{b}a + \ol{b}b - \ol{a}a = \ol{a}b + \ol{\ol{a}b} + |b|^2 \\
@@ -238,7 +239,7 @@ Wir kommen nun zur \Index{Polynomdivision}:
 		|p(z)| &= \abs*{\sum_{k=0}^{n} a_k z^{k}} \stack{\Delta\text{Ungl.}}{\geq} |a_n| \cdot |z|^n - \sum_{k=0}^{n-1} |a_k| \cdot |z|^k \\
 		&= \Bigg(\Underbrace{|a_n| - \sum_{k=0}^{n-1} |a_k| \cdot |z|^{k-n}}{\rightarrow |a_n| \text{ für } |z| \rightarrow \infty}\Bigg) |z|^n \xrightarrow{|z|\rightarrow \infty} \infty.
 	\end{align*}
-	Nach (1) existiert ein $z_0 \in B_R(0) = \{z \in \CC : |z| \leq R\}$ mit $|p(z_0)| \leq |p(z)|$ für alle $z \in B_r(z_0)$.
+	Nach (i) existiert ein $z_0 \in B_R(0) = \{z \in \CC : |z| \leq R\}$ mit $|p(z_0)| \leq |p(z)|$ für alle $z \in B_r(z_0)$.
 	Aber dann gilt auch $|p(z_0)| \leq |p(z)$ für alle $z \in \CC$, denn ist $z \notin z \in B_R(z_0)$, so gilt $|z|>R$ und dann $|p(z)| > S = |p(a)| \geq |p(z_0)|$ (wegen $|p(a)| = S$ folgt $a \in B_R(0)$).
 	
 	Durch übergang auf das Polynom $\tilde{p}(z) = p(z+z_0)$ wenn nötig, können wir o.B.d.A. $z_0 = 0$ annehmen.
@@ -258,7 +259,7 @@ Wir kommen nun zur \Index{Polynomdivision}:
 	Dann folgt mit \eqref{eq:1.11.1}:
 	\begin{align*}
 		0 &\stack{}{\leq} |p(r \omega)|^2 - |p(0)|^2 = |p(0) + r^{l}\omega^{l}q(r\omega)|^2 - |p(0)|^2 \\
-		&\stack{(3)}{=} 2 \cdot \Re(\ol{p(0)} r^{l} \omega^{l} q(r\omega)) - |r^l \omega^{l} q(r\omega)|^2 \\
+		&\stack{(iii)}{=} 2 \cdot \Re(\ol{p(0)} r^{l} \omega^{l} q(r\omega)) - |r^l \omega^{l} q(r\omega)|^2 \\
 		&\stack{}{=} r^{l} (2\cdot \Re(\ol{p(0)} \omega^{l}q(r\omega))) - r^{2l} |q(rw)|^2
 	\end{align*}
 	Division mit $r^{l} > 0$ liefert
