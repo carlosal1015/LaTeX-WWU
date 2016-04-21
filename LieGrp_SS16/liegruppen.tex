@@ -445,6 +445,130 @@ Es gilt $c_v(t)= \exp(t \cdot v) = \sum_{k=0}^{\infty} \frac{(tv)^k}{k!}$, denn
 	Die zweite Behauptung ist klar.
 \end{beweis}
 
+\begin{satz}[label=satz:1210]
+	Sei $G$ eine Liegruppe. Dann gilt
+	\begin{enumerate}[1)]
+		\item Eine Lieuntergruppe $H$ von $G$ ist genau dann eine eingebettete Untermannigfaltigkeit von $G$, wenn $H$ abgeschlossen ist.
+		\item Eine \enquote{abstrakte} Untergruppe $H$ von $G$ ist eine Lieuntergruppe, falls $H$ abgeschlossen ist.
+	\end{enumerate}
+\end{satz}
+\begin{beweis}
+	\begin{enumerate}[1)]
+		\item Sei $H \subset G$ ein eingebettete Lieuntergruppe. 
+		Zu zeigen ist, dass $H$ abgeschlossen ist.
+		Angenommen es existiert $(h_i)_{i \in \mathbb{N}} \subset H$ mit $h_i \to g \in G \setminus H$.
+		Sei $U$ eine offene Umgebung von $e$, sodass $H \cap U$ eine zusammenhängende Untermannigfaltigkeit von $U$ ist.
+		Eine solche Umgebung existiert, da $H$ eingebettet ist.
+		Da $L_g$ ein Diffeomorphismus ist, ist $L_g(U)$ eine offene Umgebung von $g$.
+		Somit existiert $i_0$ mit $h_i \in g(U)$ für alle $i \ge i_0$.
+		Wegen $h_i \to g$ können wir $h_{i_0}^{-1} \cdot g \in U$ annehmen.
+		Es gilt $h_{i_0}^{-1} \cdot g \notin H \cap U$, denn sonst folgt $g \in H$.
+		Wegen $h_i \to g$ folgt
+		\[
+			\Underbracket{h_{i_0}^{-1}\cdot h_i}{\in H}  \xrightarrow{i \to \infty} h_{i_0}^{-1} \cdot g
+		\]
+		Dies ist -- in lokalen Koordinaten via einem Flachmacher -- ein Widerspruch und somit muss $H$ abgeschlossen sein.
+		
+		Sei nun $H$ eine abgeschlossene Lieuntergruppe von $G$.
+		Zu zeigen ist, dass $H$ eine eingebettete Untermannigfaltigkeit ist, das heißt es existiert eine offene Umgebung $U$ von $e$ in $G$, sodass $H \cap U$ eine zusammenhängende Untermannigfaltigkeit von $U$ ist. 
+		Annahme: Es existiert eine Umgebung $U$ von $e$, sowie eine Folge $(h_i)_{i \in \mathbb{N}}$ in $H$ mit
+		\begin{itemize}
+			\item $h_i \to e$
+			\item $h_i \notin (U \cap H)_e$ (Zusammenhangskomponente der Eins)
+		\end{itemize}
+		Die Exponentialabbildung $\exp \Tmap_e G \to G$ ist nahe bei $e$ ein lokaler Diffeomorphismus (Umkehrsatz auf Mannigfaltigkeiten) mit 
+		\[
+			\enbrace*{\mathd \exp}_e = \id_{\Tmap_p M^n}
+		\]
+		Somit ist $h_i = \exp(v_i)$ für alle $i \in \mathbb{N}$ und $v_i \in \mathfrak{g}$ mit $v_i \to 0$ für $i \to \infty$.
+		Wir wählen nun eine reelle Folge $(s_i)_{i \in \mathbb{N}}$ in $\mathbb{R}$ mit 
+		\begin{equation}
+			s_i \cdot v_i \to v \label{eq:1210:1} \tag{\#}
+		\end{equation}
+		längst einer Teilfolge.
+		(Da $\mathfrak{g}$ ein Vektorraum ist, können wir das Skalarprodukt auf $\mathfrak{g}$ betrachten und erhalten eine Norm, setze dann $s_i := \frac{1}{\norm*{v_i}} $.)
+		Sei $t \in \mathbb{R}$ \emph{fest} gewählt.
+		\eqref{eq:1210:1} impliziert dann
+		\begin{equation}
+			t \cdot s_i \cdot v_i \grenzw{i \to \infty} t \cdot v \label{eq:1210:2} \tag{\#\#}
+		\end{equation}
+		Eine einfache Überlegung zeigt, dass man $t \cdot s_i \in \mathbb{Z}$ annehmen kann; 
+		\[
+			s_i \leadsto \tilde{s}_i := s_i + \text{\enquote{$\sfrac{1}{t}$}} 
+		\]
+		Beachte das \eqref{eq:1210:1} immernoch gilt.
+		Aus $H \ni h_i = \exp(v_i)$ folgt 
+		\[
+			H \ni \exp(v_i)^{t \cdot s_i} = \exp \enbrace*{t \cdot s_i \cdot v_i} \xrightarrow[\text{\eqref{eq:1210:2}}]{i \to \infty} \exp(t \cdot v) \in H
+		\]
+		da $H$ abgeschlossen ist!
+		Dies gilt für alle $t \in \mathbb{R}$.
+		Somit $v \in \Tmap_e H$.
+		Nächster Schritt: $\skal*{\cdot }{\cdot }$ sei ein Skalarprodukt auf $\Tmap_e G$.
+		Dann gilt $\Tmap_e G = \mathfrak{h} \oplus_{\bot} \mathfrak{h}^{\bot}$.
+		Mit dieser Zerlegung schreiben wir $v_i =x_i + y_i$.
+		Die Abbildung 
+		\mapdef{\Phi \colon \mathfrak{h} \oplus_{\bot} \mathfrak{h}^\bot}{G}{(x,y)}{\exp(x) \cdot \exp(y)}{}
+		ist nahe $(0,0)$ ein lokaler Diffeomorphismus.
+		Wir haben
+		\[
+			\Underbracket{\exp(v_i)}{\in H} = \Underbracket{\exp(\tilde{x}_i)}{\in H} \cdot \exp(\tilde{y}_i)
+		\]
+		$\leadsto e \leftarrow  \exp(\tilde{y}_i) = \exp(- \tilde{x}_i) \cdot \exp(v_i) \in H \setminus (H \cap U)_e$.
+		Wie eben bewiesen, können wir nun eine Grenzrichtung 
+		\[
+			\frac{y_i}{\norm*{y_i}} \grenzw{i \to \infty}  y
+		\]
+		in $\mathfrak{h}$ konstruieren (mittels Teilfolge).
+		Die Eigenschaften $y \in H$, $y \in H^\bot$ und $\norm*{y}=1$ widersprechen sich!
+		Also existiert eine solche Folge nicht und $H$ ist eine eingebettete Untermannigfaltigkeit.
+		\item Sei $H$ ein abgeschlossene \enquote{abstrakte} Untergruppe von $G$.
+		Wir zeigen zunächst, dass 
+		\[
+			\mathfrak{h} := \set[\big]{v \in \Tmap_e G \given \exp(t \cdot v) \in H \,\forall t \in \mathbb{R}} \ni 0
+		\]
+		ein Unterraum ist.
+		Annahme: Es gibt eine Folge $(h_i)_{i \in \mathbb{N}}$ in $H \setminus \set*{e}$ mit $h_i \to e$ (falls nicht: $e$ ist isoliert und $H$ ist eine diskrete Untergruppe von $G$).
+		Wie in 1) zeigt man, dass die \enquote{Grenzrichtungen} $\lim_{i \to \infty} \frac{v_i}{\norm*{v_i}}$ in $\mathfrak{h}$ liegen.
+		\begin{itemize}
+			\item $v \in \mathfrak{h} \implies t \cdot v \in \mathfrak{h}$ für alle $t \in \mathbb{R}$
+			\item $v_1 + v_2 \in \mathfrak{h} \implies v_1 + v_2 \in \mathfrak{h}$
+		\end{itemize}
+		Sei $(t_n)_{n \in \mathbb{N}}$ eine Nullfolge in $\mathbb{R}$.
+		Dann gilt $t_n v_1, t_n v_2 \to 0$ für $n \to \infty$.
+		Folglich gilt 
+		\[
+			\exp(t_n v_1), \exp(t_n v_2) \to e \text{ für }  n \to \infty
+		\]
+		Somit erhalten wir
+		\[
+			H \ni \exp(v_n) = \exp \enbrace*{t_n v_1} \exp(t_n v_2) \to e
+		\]
+		mit $v_n \to 0$.
+		Nun gilt $\exp(t_n v_1) \cdot \exp(t_n v_2) = \exp \enbrace*{t_n(v_1 + v_2)} + \mathcal{O}(t_n^2)$.
+		Somit
+		\[
+			\frac{v_n}{t_n} \grenzw{n \to \infty} v_1 +v_2 + \mathcal{O} \enbrace*{\frac{t_n^2}{t_n} \to 0 } 
+		\]
+		Damit ist $\mathfrak{h}$ ein Unterraum.
+		Wie in 1) zeigt man nun, das $H$ ein Untermannigfaltigkeit ist.\qedhere
+	\end{enumerate}
+\end{beweis}
+
+\begin{satz}[name={Ado},label=satz:1211]
+	Jede endlichdimensionale Liealgebra $(V,\benbrace*{\cdot,\cdot }]$ ist isomorph zu einer Unteralgebra von $\mathfrak{gl}(n,\mathbb{R}) = \Tmap_e \GL(n,\mathbb{R})$.
+\end{satz}
+
+\begin{korollar}
+	Zu jeder endlichdimensionalen Liealgebra $(V,\benbrace*{\cdot ,\cdot })$ existiert eine Liegruppe $G$ mit $V \cong \mathfrak{g}$
+\end{korollar}
+\begin{beweis}
+	\autoref{satz:1211} und \autoref{satz:125}.
+\end{beweis}
+
+Bemerkung: Für $n \ge 3$ ist $\pi_1 \enbrace*{\SL(n,\mathbb{R})} = \mathbb{Z}_2$
+Die universelle Überlagerung $\widetilde{\SL(n,\mathbb{R})}$ von $\SL(n,\mathbb{R})$ ist eine Liegruppe, welche in keine der Gruppen $\GL(N,\mathbb{R})$ eingebetten werden kann! Keine Matrixgruppe!
+
 % subsection 12 (end)
 % section 1 (end)
 
