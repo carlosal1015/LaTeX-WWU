@@ -14,8 +14,7 @@
 
 \pagenumbering{Alph}
 \section*{Vorwort --- Mitarbeit am Skript}
-Dieses Dokument ist eine Mitschrift aus der Vorlesung \enquote{\fach, \Semester}, gelesen von \prof. Der Inhalt entspricht weitestgehend dem Tafelanschrieb. Für die
-Korrektheit des Inhalts werde ich keinerlei Garantie übernehmen. Dieses Skript wird allerdings zusätzlich von \prof \, Korrektur gelesen. Für Bemerkungen und Korrekturen -- und seien es nur Rechtschreibfehler -- bin ich sehr dankbar. Bitte durch persönliches Ansprechen oder per Mail an keil.menden@web.de.
+Dieses Dokument ist eine Mitschrift aus der Vorlesung \enquote{\fach, \Semester}, gelesen von \prof. Der Inhalt entspricht weitestgehend dem Tafelanschrieb. Für die Korrektheit des Inhalts wird keinerlei Garantie übernommen. Dieses Skript wird allerdings zusätzlich von \prof \, Korrektur gelesen. Für Bemerkungen und Korrekturen -- und seien es nur Rechtschreibfehler -- bin ich sehr dankbar. Bitte durch persönliches Ansprechen oder per Mail an keil.menden@web.de.
 
 \newpage
 
@@ -540,7 +539,9 @@ für $u$ harmonisch, wobei
 		\]so ist $u$ konstant.
 	\end{enumerate}
 \end{satz}
-
+\begin{bemerkung}
+	Entsprechend gelten Minimumsprinzipien für subharmonische Funktionen.
+\end{bemerkung}
 \begin{definition*}
 	Eine Teilmenge $\Omega$ in $\mathbb{R}^n$ heißt zusammenhängend,
 	falls sie sich nicht als disjunkte Vereinigung zweier nicht leerer $\Omega$-offene (= relativ offen in $\Omega$) Mengen schreiben lässt. \\
@@ -589,6 +590,232 @@ für $u$ harmonisch, wobei
 		Da aber $x_0 \in \Omega_M$ gilt somit $\Omega_M = \Omega$ und so $u \equiv M$ auf $\Omega$.
 	\end{description}
 \end{beweis}
+
+\begin{align}\label{poi}\tag{p}
+	\Delta u &= f \qquad \text{in }\Omega \qquad \text{  Poisson-Gleichung}\\
+	u&=g \qquad \text{auf }\partial \Omega \qquad \text{Dirichlet-Randbedingungen}
+ \end{align}
+
+\begin{korollar}[Eindeutigkeit von Lösungen von (p)]
+	Sei $\Omega \subseteq \mathbb{R}^n$ offen und beschränkt, seien $f \in C^0(\Omega)$ und $g \in C^0(\partial \Omega)$ gegebene Funktionen. Seien $u_1,u_2 \in C^2(\Omega)\cap C^0(\overline{\Omega})$ zwei Lösunen von \eqref{poi}. Dann folgt
+	\begin{equation}
+		u_1 \equiv u_2
+	\end{equation}
+\end{korollar}
+\begin{beweis}
+	Sei $w := u_1 - u_2$ Dann gilt
+	\begin{align}
+		\Delta w &= 0 \qquad \text{in }\Omega \\
+		w &= 0 \qquad \text{auf }\partial \Omega
+	\end{align}
+	Da $w$ subharmonisch ist, gilt
+	\begin{equation}
+		\max_{\bar{\Omega}} w = \max_{\partial \Omega} w = 0
+	\end{equation}
+	Da $-w$ subharmonisch ist, gilt außerdem
+	\begin{equation} 
+		\max_{\bar{\Omega}}(-w) = \max_{\partial \Omega}(-w)
+	\end{equation}
+	und \begin{equation}
+		\max_{\bar{\Omega}}(-w) = \min_{\bar{\Omega}}(w) = \min_{\partial \Omega}(w) = 0
+	\end{equation}
+	\begin{equation}
+		\Rightarrow w \equiv 0 \qquad \text{in }\Omega 
+	\end{equation}
+	\[
+		\Rightarrow u_1 \equiv u_2
+	\]
+Stetig Abhängigkeit von Randbedingungen in der $C^0-Norm$:
+\begin{align*}
+	\norm{u_1-u_2}_{C^0(\bar{\Omega})} &= \max_{\bar{\Omega}} \abs{u_1-u_2} \\
+	&= \max( \max_{\bar{\Omega}} (u_1-u_2), \max_{\bar{\Omega}}(u_2-u_1) ) \\
+	&= \max( \max_{\bar{\Omega}} (u_1-u_2), -\min_{\bar{\Omega}}(u_1-u_2) ) \\
+	&= \max( \max_{\partial \Omega} (u_1-u_2), -\min_{\partial \Omega}(u_1-u_2) ) \\
+	&= \max( \max_{\partial \Omega} (g_1-g_2), -\min_{\partial \Omega}(g_1-g_2) ) \\
+	&= \max \abs{g_1-g_2} \\
+	&= \norm{g_1-g_2}_{C^0(\Omega)}
+\end{align*}
+Es folgt
+\[
+	\norm{u_1-u_2}_{C^0(\overline{\Omega})} = \norm{g_1-g_2}_{C^0(\partial \Omega)}
+\]
+\end{beweis}
+
+\begin{satz}[Harneck-Ungleichung]
+	Sei $\overline{V}$ kompakt und $\overline{V} \subseteq \Omega$. Sei $\Omega \subseteq  \mathbb{R}^n$ offen und $V \subset \subset \Omega $ offen und
+	zusammenhängend. Dann gibt es eine Konstante $C = C(V) >0$ so dass
+	\begin{equation}
+		\sup_{V}u \leq C \inf_{V}u
+	\end{equation}
+	für alle nichtnegativen, harmonischen Funktionen $u$ auf $\Omega$. Insbesondere sind alle Funktionswerte von $u$ in $V$ vergleichbar, das heißt es gilt
+	\begin{equation}
+		u(y) \leq C u(x) \leq C^2 u(y)
+	\end{equation}
+	für alle $x,y \in V$.
+\end{satz}
+\begin{beweis}
+	\begin{description}
+		\item[$\underline{\text{Schritt }1:}$] Wir setzen $r:= \frac{\dist(V,\partial \Omega)}{4} > 0$. $V \subset \subset \Omega$. Dann folgt für $x_0,x_1 \in V$, dass $\abs{x_1-x_0}< r$ und somit
+		\begin{equation}
+			B_{2r}(x_1) \subset \subset \Omega 
+		\end{equation}
+		\begin{equation}
+			B_r(x_1) \subseteq B_{2r}(x_1)
+		\end{equation}
+		Es gilt
+		\begin{equation}
+			y \in B_r(x_0) \Rightarrow \abs{y-x_1} \leq \abs{y-x_0} + \abs{x_1 - x_0} < 2r
+		\end{equation}
+		Da $u$ harmonisch ist gilt
+		\begin{align*}
+			u(x_0) = \fint_{B_r(x_0)}^{} u \,\mathrm{d}x &= \frac{1}{\omega_n r^n} \int_{B_r(x_0)}^{}u\,\mathrm{d}x \stackrel{u \geq 0}{=} \frac{2^n}{2^n \omega_n r^n}
+			\int_{B_{2r}(x_0)}^{}u \,\mathrm{d}x \\ &= 2^n \fint_{B_{2r}(x_0)}^{}u \,\mathrm{d}x = 2^n u(x_1)
+		\end{align*}
+		wobei die letzte Gleichheit aus der Mittelwerteigenschaft auf $B_{2r}(x_1)$ folgt. Insgesamt gilt somit
+		\[
+			u(x_0) \leq 2^n u(x_1)
+		\]
+		\item[$\underline{\text{Schritt }1:}$] $x,y \in V$. 
+		Da $\bar{V}$ kompakt ist und $V$ zusammenhängend ist, existiert eine \underline{endliche} Überdeckung von $V$ 
+		durch eine Kette von offenen Kugeln $B_j := B_{\frac{k}{2}}(x_j)$ für $j=1,\dots,N$ so dass $B_j \cap B_{j+1} \neq \emptyset$ für $j=1,\dots,N-1$.
+		\begin{equation}
+			\abs{x_j - x_{j+1}} < r \qquad \stackrel{\text{Schritt }1}{\Rightarrow } \qquad u(x_j) \leq 2^n u(x_{j+1})
+		\end{equation}
+		Sind $x,y \in V$ beliebige Punkte, so können wie Zwischenpunkte $x_1,\dots,x_N$ wählen so dass $\abs{x-x_1}<r$, $\abs{x_2-x_1}<r$, $\dots$, $\abs{y-x_N}<r$.
+		\begin{equation}
+			u(x) \leq 2^n u(x_1) \leq (2^n)^2 u(x_2) \dots \qquad \Rightarrow  \qquad u(x) \leq \left(2^n \right)^N u(y)
+		\end{equation} 
+		\begin{equation}
+			\Rightarrow \sup_V u \leq \left( 2^n \right)^N \inf_{V}u
+		\end{equation}
+	\end{description}
+\end{beweis}
+\subsection{Ein schwaches Maximumsprinzip für lineare elliptische Gleichungen} 
+\label{sub:ein_schwaches_maximumsprinzip_fur_lineare_elliptische_gleichungen}
+Sei $\Omega \subseteq \mathbb{R}^n$ offen und $x \in \Omega$
+\[
+	Lu := - \sum^{n}_{i,j=1}a_{ij}(x)D_{ij}u(x) + \sum^{n}_{i=1}b_i(x)D_iu(x)
+\]
+Wie nehmen an, dass $A= (a_{ij})_{i,j=1,\dots,n}$ stetig, beschränkt symmetrisch ($A^T = A$) und elliptisch ist, im Sinne: \\
+es existiert ein $\alpha$, so dass für alle $x \in \Omega$ und $\xi \in \mathbb{R}^n$ gilt
+\[
+	A(x) \xi \cdot \xi  = \sum^{n}_{i,j=1} a_{ij}(x)\xi_i\xi_j \geq \alpha \abs{\xi}^2
+\]
+Außerdem sei $b=(b_1,\dots,b_n)$ stetig und beschränkt.
+\begin{bemerkung}
+	$A \in I_n$, $b=0$. Dann $Lu= - \Delta u$
+\end{bemerkung}
+
+\begin{satz}[Schwaches Maximumsprinzip]
+	Sei $\Omega$ eine offene, beschränkte Teilmenge des $\mathbb{R}^n$ und $u \in C^2(\Omega) \cap C^0(\bar{\Omega})$. Falls $Lu \leq 0$ gilt , so folgt:
+	\begin{equation}
+		\max_{\bar \Omega}u = \max_{ \partial \Omega}u
+	\end{equation}
+	Entsprechend gilt ein schwaches Maximumsprinzip, falls $Lu \geq 0$ gilt.
+\end{satz}
+\begin{beweis}
+	Wie nehmen an, dass $x_0 \in \Omega$ existiert mit $u(x_0)= \max_{\bar{\Omega}}u > \max_{ \partial \Omega}u$.
+	\begin{description}
+		\item[\underline{Schritt $1$:}]Herleitung eines Widerspruchs im Fall $Lu < 0$. $Du(x_0)=0$, weil $x_0$ ein innerer Maximumspunkt von $u$ ist. $D^2u(x_0)$ ist negativ semidefinit, d.h 
+		\begin{equation}
+			D^2u(x_0) \xi \cdot \xi \leq 0 \qquad \forall\, \xi \in \mathbb{R}^n
+		\end{equation}  
+		Da $A$ symmetrisch und positiv definit ist. 
+		\[
+			O^T A(x_0) O = \begin{pmatrix}
+				d_1 & & 0 \\ & \ddots & \\ 0 & & d_n
+			\end{pmatrix} \qquad \text{mit } d_i > 0 \qquad \text{und } O \text{ Orthogonale Matrix}
+		\]
+		\[
+			A(x_0)= O \begin{pmatrix}
+				d_1 & & 0 \\ & \ddots & \\ 0 & & d_n
+			\end{pmatrix} O^T
+		\]
+		Also
+		\[
+			a_{ij}(x_0) = \sum^{n}_{k=1}O_{ik}d_kO_{jk} \qquad \forall\, i,j=1,\dots,n
+		\]
+		\begin{align*}
+			Lu(x_0) &= - \sum^{n}_{i,j=1} a_{ij}(x_0) D_{ij}u(x_0) + \sum^{n}_{i=1}b_i(x_0)D_iu(x_0)  \\
+			&= - \sum^{n}_{i,j=1} a_{ij}(x_0)D_{ij}u(x_0) \\
+			&= - \sum_{k=1}^{n} d_k \underset{\underset{\leq 0}{\underbrace{D^2u(x_0)O_k \cdot O_k}}}{\underbrace{\sum^{n}_{i,j=1} O_{ik}O_{jk} D_{ij}u(x_0)}} > 0 
+		\end{align*}
+		Dies steht im Widerspruch zu $Lu < 0$. Also falls $Lu < 0$, dann gilt
+		\[
+			\max_{\bar{\Omega}}u = \max_{ \partial \Omega}u
+		\]
+		\item[\text{Schritt $2$:}] Herleitung eines Widerspruchs im allgemeinen Fall. Sei $Lu \leq 0$ und sei 
+		\[
+			u_{\varepsilon}(x):= u(x) + \varepsilon e^{\lambda x_1}
+		\]
+		wobei $x = (x_1, \dots, x_n)$, $\varepsilon > 0$ und $\lambda \in \mathbb{R}$ ein freier Parameter.
+		\begin{align*}
+			Lu_{\varepsilon}(x) &= Lu(x) + L \varepsilon e^{\lambda x_1} \leq \varepsilon L e^{\lambda x_1} \\ 
+			&= - \varepsilon \lambda^2 a_{11}(x) e^{\lambda x_1} + \varepsilon \lambda b_1(x) e^{\lambda x_1} \\
+			&= e \lambda e^{\lambda x_1} ( - \lambda a_{11}(x)+ b_1(x))
+		\end{align*}
+		Aus \begin{equation}
+			a_{11}(x)= A(x)e_1 \cdot e_1 \geq \alpha \abs{e_1}^2 = \alpha
+		\end{equation}
+		folgt
+		\[
+			-a_{11}(x) \leq -\alpha.
+		\]
+		und aus $\abs{b_1} \leq \norm{b}_{L^{\infty}(\Omega,\mathbb{R}^n)}$ folgt dann
+		\[
+			Lu_{\varepsilon}(x) \leq  \varepsilon \lambda e^{\lambda x_1}(-\lambda \alpha + \norm{b}_{L^{\infty}(\Omega,\mathbb{R}^n)})
+		\]
+		Es muss gelten 
+		\[
+			-\lambda \alpha + \norm{b}_{L^{\infty}(\Omega,\mathbb{R}^n)}<0 \qquad \Leftrightarrow \qquad \lambda > \frac{\norm{b}_{L^{\infty}(\Omega,\mathbb{R}^n)}}{\alpha}
+		\]
+		Also folgt 
+		\[
+			Lu_{\varepsilon} < 0 \qquad \forall\, \varepsilon >0 
+		\]
+		Aus Schritt $1$ folgt dann
+		\[
+			\max_{\bar{\Omega}}u_{\varepsilon} = \max_{ \partial \Omega}u_{\varepsilon}.
+		\]
+		Aber es gilt \[
+			\max_{\bar{\Omega}}u > \max_{ \partial \Omega}u
+		\]
+		also gilt für kleine $\varepsilon >0$, dass \[
+			\max_{\bar{\Omega}}u_{\varepsilon} > \max_{ \partial \Omega}u_{\varepsilon}
+		\]
+		Dies ist der Widerspruch zu oben.
+		%feeehlend
+ 	\end{description}
+\end{beweis}
+\subsection{Regularität harmonischer Funktionen} 
+\label{sub:regularitat_harmonischer_funktionen}
+Wir werden zeigen, dass wenn $u$ harmonisch auf $\Omega$ ist folgt, dass $u \in C^{\infty}(\Omega)$.
+\minisec{Glättungen}
+$\eta \in C^{\infty}_0(B_1(0))$ Glättungskern, d.h eine nicht-negative, radialsymmetrische ($\eta(x)=\tilde\eta(\abs{x})$) Funktion mit
+\[
+	\int_{\mathbb{R}^n}^{}\eta \,\mathrm{d}x = 1
+\]	
+\begin{beispiel}
+	\begin{equation}
+		\eta(x) = \begin{cases}
+			C e^{\frac{1}{\abs{x}^2-1}}, &\text{ falls }\abs{x}<1\\
+			0 , &\text{ falls }\abs{x}\geq 1\\
+		\end{cases}
+	\end{equation}
+	ist der Standard-Glättungskern mit einer Normierungskonstante $C$. FÜr $\varepsilon > 0$ definiert man die assoziierten \underline{skalierten} Glättungskerne als
+	\[
+		\eta_{\varepsilon}:= \frac{1}{\varepsilon^n}\eta \left( \frac{x}{\varepsilon} \right)
+	\]
+	mit $\eta_{\varepsilon} \in C_0^{\infty}(B_{\varepsilon}(0))$ und die anderen Eigenschaften bleiben erhalten.
+\end{beispiel}
+\begin{definition}[$\varepsilon$-Glättung]
+	Sei $\Omega$ eine offene Teilmenge im $\mathbb{R}^n$, $\varepsilon >0$ und \[
+		\Omega_{\varepsilon} := \set[x \in \Omega]{\dist(x,\partial \Omega)> \varepsilon}
+	\]Für $f \in L^1_{\text{loc}}(\Omega)$ definiert man die $\varepsilon$-Glättung $f \varepsilon$ von $f$ als die Faltung von $f$ mit dem Glättungskern $\eta_{\varepsilon}$, also
+	\[
+		f_{\varepsilon}(x):= \eta_{\varepsilon} * f := \int_{\Omega}^{}\eta_{\varepsilon}(x-y)f(y) \,\mathrm{d}y \qquad \text{für alle }x \in \Omega_{\varepsilon}
+	\]
+\end{definition}
 \cleardoubleoddemptypage
 \pagenumbering{Alph}
 \setcounter{page}{1}
