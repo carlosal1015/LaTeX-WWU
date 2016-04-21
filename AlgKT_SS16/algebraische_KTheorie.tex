@@ -349,10 +349,10 @@ Insbesondere ist $[P]=0 \in K_0(R)$ genau dann, wenn es $n \in \mathbb{N}$ gibt 
 
 \section{$K_0$ und Dedekind-Ringe} % (fold)
 \label{sec:2}
-In \cref{sec:2} ist $R$ immer nullteilerfrei, kommutativ und $Q := \mathrm{Quot}(R)$ der Quotientenkörper von $R$.
+\emph{In diesem Abschnitt ist der Ring $R$ immer nullteilerfrei, kommutativ und $Q := \mathrm{Quot}(R)$ bezeichnet den Quotientenkörper von $R$.}\todo{RevChap2}
 
 \begin{definition}[{name=[{gebrochenes Ideal}]}]
-	Ein \bet{gebrochenes Ideal}\index{Ideal!gebrochenes} von $R$ ist ein $R$-Untermodul $I \neq 0$ von $Q$ zu dem es $a \in R$ gibt mit $a I \subseteq R$.
+	Ein \bet{gebrochenes Ideal}\index{Ideal!gebrochenes} von $R$ ist ein $R$-Untermodul $I \neq 0$ von $Q$, zu dem es $a \in R$ gibt mit $a I \subseteq R$.
 	Jedes nichttriviale Ideal von $R$ ist auch ein gebrochenes Ideal.
 	Zur besseren Unterscheidung nennt man dann Ideale von $R$ auch \bet{ganze Ideale}\index{Ideal!ganzes}.
 	Für $\frac{a}{b} \in Q$, $a,b\neq 0$ ist $\frac{a R}{b}$ ein bebrochenes Ideal.
@@ -360,14 +360,14 @@ In \cref{sec:2} ist $R$ immer nullteilerfrei, kommutativ und $Q := \mathrm{Quot}
 \end{definition}
 
 \begin{bemerkung}
-	Die Menge der gebrochenen Ideale bildet bezüglich Multiplikation von gebrochenen Idealen $I \cdot J := \set*{\sum_{i} a_i b_i \given a_i \in I, b_i \in J}$ eine abelsche Halbgruppe mit neutralem Element $R$.
+	Die Menge der gebrochenen Ideale bildet bezüglich Multiplikation von gebrochenen Idealen $I \cdot J := \set[\big]{\sum_{i} a_i b_i \given a_i \in I, b_i \in J}$ eine abelsche Halbgruppe mit neutralem Element $R$.
 \end{bemerkung}
 
 \begin{definition}[{name=[{Dedekind-Ring}]}]
-	$R$ heißt \Index{Dedekind-Ring}, falls die gebrochenen Ideale eine Gruppe bezüglich Multiplikation bilden. 
+	$R$ heißt \Index{Dedekind-Ring}\footnote{nach Julius Wilhelm Richard \textsc{Dedekind}, * 1831 † 1916, deutscher Mathematiker}, falls die gebrochenen Ideale eine Gruppe bezüglich Multiplikation bilden. 
 \end{definition}
 
-\begin{lemma}
+\begin{lemma}[{name=[Invereses eines gebrochenen Ideals]}]
 	Sei $R$ ein Dedekind-Ring, $I$ ein gebrochenes Ideal.
 	Dann ist $I^{-1} = \set*{a \in Q \given a I \subseteq R}$.
 \end{lemma}
@@ -404,17 +404,20 @@ In \cref{sec:2} ist $R$ immer nullteilerfrei, kommutativ und $Q := \mathrm{Quot}
 \todo[inline]{Referenz Rosenberg}
 
 
-\begin{satz}
+\begin{satz}[label=satz:klassengruppe_K_0]
 	Sei $R$ ein Dedekind-Ring.
 	Dann ist die Klassengruppe isomorph zu $\tilde{K}_0(R)$.
 \end{satz}
 
-\begin{lemma}
+\begin{lemma}[label=lem:ideale_dedekind]
 	Sei $R$ ein Dedekind-Ring.
 	Dann gilt
 	\begin{enumerate}[a)]
 		\item Ideale in $R$ sind endlich erzeugt projektiv als $R$-Moduln.
-		\item Jeder projektive endlich erzeugte $R$-Modul ist isomorph zu einer Summe von Idealen $I_1 \oplus \ldots \oplus I_n$.
+		\item Jeder projektive endlich erzeugte $R$-Modul ist isomorph zu einer Summe von Idealen 
+		\[
+			I_1 \oplus \ldots \oplus I_n
+		\]
 		\item Ist ein Ideal $I \subseteq R$ stabil frei (als $R$-Modul), dann ist $I$ ein Hauptideal.
 	\end{enumerate}
 \end{lemma}
@@ -430,9 +433,9 @@ In \cref{sec:2} ist $R$ immer nullteilerfrei, kommutativ und $Q := \mathrm{Quot}
 		\end{align}
 		Dann ist $p \circ s(b) = b a_1 b_1 + \ldots + b a_n b_n = b \enbrace*{a_1 b_i + \ldots + a_n b_n}= b$.
 		Also ist $p \circ s =\id$ und folglich ist $I$ endlich erzeugt projektiv als $R$-Modul.
-		\item Wir zeigen per Induktion nach $k$: Ist $P \subseteq R^k$ ein direkter Summand, so ist $P$ isomorph zu einer Summe von Idealen.
+		\item Wir zeigen per Induktion nach $k$: Ist $P \subseteq R^k$, so ist $P$ isomorph zu einer Summe von Idealen.
 		
-		Für $k=1$ ist die Aussage klar, da Untermoduln von $R$ Ideale sind. Für den Induktionsschritt $k-1 \mapsto k$ sei $P \subseteq R^k$ ein direkter Summand.
+		Für $k=1$ ist die Aussage klar, da Untermoduln von $R$ Ideale sind. Für den Induktionsschritt $(k-1) \mapsto k$ sei $P \subseteq R^k$.
 		Die Projektion auf die letzte Koordinate liefert kurze exakte Folgen 
 		\[
 			\begin{tikzcd}
@@ -441,7 +444,98 @@ In \cref{sec:2} ist $R$ immer nullteilerfrei, kommutativ und $Q := \mathrm{Quot}
 			\end{tikzcd}
 		\]
 		Nach a) ist $\pi(P)$ projektiv und daher spaltet die unter Folge und wir können die Induktionsvorraussetzung anwenden.
+		\item Vorbemerkung: Gibt es $a \in I$ mit $a^{-1} \in I^{-1}$, so ist $I$ ein Hauptideal, genauer ist $I = R \cdot a$.
+		Sei dazu $x \in I$.
+		Dann ist $x = (x a^{-1}) a$.
+		
+		Sei nun $f \colon R^n \hookrightarrow R^m$ mit $\im f = R^{m-1} \oplus I$.
+		Wegen $I \neq 0$ wird $f$ über $Q$ invertierbar, insbesondere ist $n=m$.
+		Sei $A \subset Q^{n \times n}$ die dazugehörigen Matrix.
+		Da $A(R^n) \subseteq R^{n-1} \oplus I$ gilt, liegen alle Einträge von $A$ in $R$, die unterste Zeile sogar in $I$.
+		Insbesondere $a := \det A \in I$
+		
+		Sei $B := A^{-1}$.
+		Wegen $B \enbrace*{R^{n-1} \oplus I} \subseteq R^n$ liegen die Einträge der ersten $n-1$ Spalten in $R$ und die der letzten in $I^{-1}$.
+		Insbesondere $a^{-1} = \det A^{-1} \in I^{-1}$.
+		Nun ist $a \cdot a^{-1} = \det A \cdot \det A^{-1} = \det E_n =1$ und die Behauptung folgt aus der Vorbemerkung.\qedhere
 	\end{enumerate}
+\end{beweis}
+
+\begin{proposition}[label=prop:summe_ideale]
+	Sei $R$ ein Dedekind-Ring.
+	Für Ideale $I_1$, $I_2$ gibt es dann einen $R$-linearen Isomorphismus $I_1 \oplus I_2 \cong I_1 \cdot I_2 \oplus R$.
+\end{proposition}
+
+\begin{korollar}[label=kor:isomorphismus_endl_erz_proj]
+	Sei $R$ ein Dedekind-Ring.
+	Dann ist jeder endlich erzeugte projektive Modul isomorph zu $R^n \oplus I$ für ein geeignetes $n$ und ein Ideal $I$.
+\end{korollar}
+\begin{beweis}
+	Folgt mit Induktion aus \autoref{lem:ideale_dedekind} b) und \autoref{prop:summe_ideale}.
+\end{beweis}
+
+\begin{beweis}[name={von \autoref{satz:klassengruppe_K_0}}]
+	Sei $f \colon C(R) \to \tilde{K}_0(R)$ die Abbildung, die ein gebrochenes Ideal $I \subseteq R$ die Klasse von $I$ als $R$-Modul $[I] \in \tilde{K}_0(R)$ zuordnet.
+	Da $I\cong a \cdot I \subseteq R$ als $R$-Modul für geeignetes $a \in R$, ist $I$ nach \autoref{lem:ideale_dedekind} a) endlich erzeugt und projektiv.
+	Ist $I \cong R \cdot a$ ein gebrochenes Hauptideal, so ist $I \cong R$ als $R$-Modul.
+	\autoref{prop:summe_ideale} impliziert, dass $f$ ein Gruppenhomomorphismus ist und damit ist $f$ auch wohldefiniert.
+	Wegen b) aus \autoref{lem:ideale_dedekind} (oder wegen \autoref{kor:isomorphismus_endl_erz_proj}) ist $f$ surjektiv.
+	
+	Zur Injektivität: Sei $I$ ein gebrochenes Ideal mit $[I]=0 \in \tilde{K}_0(R)$.
+	Dann ist $I$ als $R$-Modul stabil frei.
+	Ohne Beschränkung der Allgemeinheit können wir annehmen, dass $I$ ein Ideal ist.
+	Nach c) aus \autoref{lem:ideale_dedekind} ist dann $I$ ein Hauptideal und $I$ ist trivial in $C(R)$.
+\end{beweis}
+
+\begin{satz}
+	Sei $R$ ein Dedekind-Ring.
+	\begin{enumerate}[a)]
+		\item Alle Primideale $\neq 0$ sind maximal.
+		\item Jedes Ideal $\neq 0$ lässt sich eindeutig als Produkt von Primidealen schreibem.
+	\end{enumerate}
+\end{satz}
+\begin{beweis}
+	\begin{enumerate}[a)]
+		\item Sei $0 \subsetneq P \subsetneq J \subseteq R$ mit $P$ prim.
+		Wegen $P \subsetneq J$ folgt $J^{-1} P \subsetneq R$.
+		Es ist $P = J \cdot \enbrace*{J^{-1} P}$.
+		Da $P$ prim ist, folgt $J^{-1} P \subseteq P$.
+		Es folgt $R= P P^{-1} \subseteq J \subseteq R$, also $J=R$.
+		\item \emph{Existenz:} Sei $\mathcal{C}$ die Menge der Ideale $\neq 0$, die sich nicht als Produkt von Primidealen schreiben lassen.
+		Wir zeigen $\mathcal{C}=\emptyset$.
+		Angeommen, dies wäre nicht der Fall.
+		Da Ideale in $R$ endlich erzeugt sind, finden wir mit Zorns Lemma ein maximales Element $I \in \mathcal{C}$.
+		
+		Offenbar ist $I$ kein maximales Ideal, andernfalls wäre $I$ selbst prim.
+		Sei $I \subsetneq J \subsetneq R$.
+		Dann ist $I =J \enbrace*{J^{-1} I}$ und wegen $I \subseteq J$ folgt $J^{-1} I \subseteq R$.
+		Aus $J \subsetneq R$ folgt durch Multiplikation mit $J^{-1} I$
+		\[
+			I \subsetneq J^{-1}I
+		\] 
+		Also gilt $J^{-1} I \notin \mathcal{C}$ und $J \notin \mathcal{C}$.
+		Daher lassen sich beide als Produkt von Primidealen schreiben unt damit auch $I$.
+		
+		\emph{Eindeutigkeit:} Sei $P_1 \cdot \ldots \cdot P_m = Q_1 \cdot \ldots \cdot Q_n$ mit $P_i, Q_j$ prim.
+		Dann ist
+		\[
+			P_1 \supseteq P_1 \cdot \ldots \cdot P_m = Q_1 \cdot \ldots \cdot Q_n
+		\]
+		Da $P_1$ prim ist, liegt eines der $Q_i$ in $P_1$, ohne Einschränkungen $Q_1 \subseteq P_1$.
+		Da nach a) $Q_1$ maximal ist, folgt $Q_1=P_1$.
+		Es folgt $p_2 \cdot \ldots \cdot P_m = Q_2 \cdot \ldots \cdot Q_n$ und die Behauptung folgt induktiv.
+		\qedhere
+	\end{enumerate}
+\end{beweis}
+
+\begin{lemma}[label=lem:]
+	Sei $R$ ein kommutativer Ring.
+	$P \subseteq R$ ein Primideal, $I,J$ Ideale mit $I J  \subseteq P$.
+	Dann gilt $I \subseteq P$ oder $J \subseteq P$.
+\end{lemma}
+\begin{beweis}
+	Angenommen dies gilt nicht, dann gibt es $a \in  I\setminus P$, $b \in J \setminus P$.
+	Dann gilt $a \cdot b \in I \cdot J \subseteq P$, also $a \in P$ oder $b \in P$. Widerspruch!
 \end{beweis}
 % section 2 (end)
 
