@@ -17,7 +17,7 @@
 		F_A \colon K^n &\longrightarrow K^m \\
 		x &\longmapsto Ax
 	\end{align*}
-	mit $Ax$ wie in \autoref{def:I.3.5}(3) linear.
+	mit $Ax$ wie in \autoref{def:I.3.5}(iii) linear.
 \end{lemma}
 
 \begin{satz}[Umkehrung von \autoref{lemma:I.6.3}]
@@ -42,7 +42,7 @@
 	\label{satz:I.6.8}
 	Seien $A \in M(m\times n,K)$ und $b \in K^m$.
 	Dann gilt:
-	\begin{enumerate}[(1)]
+	\begin{enumerate}[(i)]
 		\item Das LGS $Ax = b$ besitzt genau dann eine Lösung $x \in K^n$, wenn $b \in \Bild(A)$.
 		\item Ist $x_s \in K^n$ eine spezielle Lösung von $Ax=b$, so ist die Menge $\LL$ aller Lösungen von $Ax=b$ gegeben durch
 		\[
@@ -50,12 +50,12 @@
 		\]
 	\end{enumerate}
 \end{satz}
-
+\newpage
 \begin{korollar}
 	\label{folg:I.6.9}
 	Sei $A \in M(m\times n,K)$.
 	Dann sind äquivalent:
-	\begin{enumerate}[(1)]
+	\begin{enumerate}[(i)]
 		\item Die Gleichung $Ax=b$ besitzt für jedes $b \in K^m$ genau eine Lösung $x \in K^n$.
 		\item Es gilt $\Kern(A) = \setzero$ und $\Bild(A) = K^m$.
 		\item Die Abbildung $F_A$ ist bijektiv.
@@ -91,14 +91,14 @@
 	\label{satz:I.6.19}
 	Sei $A \in M(n \times n,K)$.
 	Folgende Aussagen sind äquivalent:
-	\begin{enumerate}[(1)]
+	\begin{enumerate}[(i)]
 		\item $A$ ist invertierbar.
 		\item $F_A\colon K^n \rightarrow K^n$ ist invertierbar und es gilt $(F_A)^{-1} = F_{A^{-1}}$.
 		\item Für jedes $b \in K^n$ existiert genau eine Lösung $x \in K^n$ für das LGS $Ax = b$, und es gilt $x = A^{-1}b$.
-		\item $A$ lässt sich durch elementare Zeilenumformungen in die Einheitsmatrix $E_n$
+		\item $A$ lässt sich durch elementare Zeilenumformungen in die Einheitsmatrix $E_n$ überführen.
 	\end{enumerate}
 \end{satz}
-\newpage
+
 \setcounter{definition}{21}
 \begin{definition}[allgemeine lineare Gruppe]
 	\label{def:I.6.22}
@@ -109,3 +109,4 @@
 	\]
 	ist versehen mit der Matrixmultiplikation eine Gruppe -- die \Index{allgemeine lineare Gruppe}.
 \end{definition}
+\newpage

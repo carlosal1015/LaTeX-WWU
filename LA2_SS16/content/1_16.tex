@@ -17,7 +17,7 @@
 	
 	$F \in \End(V)$ heißt \Index{diagonalisierbar}, falls eine Basis $B$ von $V$ existiert, sodass $A^B_F$ eine Diagonalmatrix ist.
 \end{definition}
-\newpage
+
 \begin{definition}[Ähnlichkeit, Diagonalisierbarkeit von Matrizen]
 	\label{def:I.16.3}
 	Zwei Matrizen $A,B \in M(n \times n,K)$ heißen \Index{ähnlich}, falls eine Matrix $S \in \GL(n,K)$ existiert mit $B = S^{-1}AS$.
@@ -29,7 +29,7 @@
 	\label{satz:I.16.4}
 	Sei $V$ ein $n$-dimensionaler $K$-Vektorraum und $F \in \End(V)$.
 	Dann sind folgende Aussagen äquivalent:
-	\begin{enumerate}[(1)]
+	\begin{enumerate}[(i)]
 		\item $F$ ist diagonalisierbar.
 		\item Jede Darstellungsmatrix von $A$ ist diagonalisierbar.
 	\end{enumerate}
@@ -53,12 +53,12 @@
 	\label{satz:I.16.9}
 	Sei $V$ ein $n$-dimensionaler $K$-Vektorraum und $F \in \End(V)$.
 	Dann sind äquivalent:
-	\begin{enumerate}[(1)]
+	\begin{enumerate}[(i)]
 		\item $F$ ist diagonalisierbar.
 		\item $V$ besitzt eine Basis aus Eigenvektoren von $F$.
 	\end{enumerate}
 \end{satz}
-
+\newpage
 \setcounter{definition}{10}
 \begin{definition}[charakteristische Funktion]
 	\label{def:I.16.11}
@@ -75,7 +75,7 @@
 	\label{satz:I.16.12}
 	Sei $V$ ein $n$-dimensionaler $K$-Vektorraum und $F \in \End(V)$.
 	Dann sind für $\lambda \in K$ äquivalent:
-	\begin{enumerate}[(1)]
+	\begin{enumerate}[(i)]
 		\item $\lambda$ ist Eigenwert von $F$.
 		\item $\chi_F(\lambda) = 0$.
 	\end{enumerate}
@@ -133,13 +133,13 @@
 		\sum\limits_{i=1}^l E_{\lambda_i}(F) = \bigoplus\limits_{i=1}^{l} E_{\lambda_i}(F).
 	\]
 \end{satz}
-\newpage
+
 \begin{satz}
 	\label{satz:I.16.20}
 	Sei $V$ ein $n$-dimensionaler $K$-Vektorraum und $F \in \End(V)$.
 	Dann existieren höchstens $n$ paarweise verschiedene Eigenwerte von $F$.
 	Sind $\lambda_1,\dots,\lambda_l$ alle paarweise verschiedenen Eigenwerte von $F$, so sind äquivalent:
-	\begin{enumerate}[(1)]
+	\begin{enumerate}[(i)]
 		\item $F$ ist diagonalisierbar.
 		\item Es gilt $V = \sum\limits_{i=1}^{l} E_{\lambda_i}(F)$.
 		\item Es gilt $\dim(V) = \sum\limits_{i=1}^l \dim(E_{\lambda_i}(F))$.

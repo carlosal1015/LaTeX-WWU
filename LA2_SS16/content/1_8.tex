@@ -1,4 +1,3 @@
-\newpage
 \section{Basen endlich erzeugter $\mathbf{K}$-Vektorräume}
 
 \begin{definition}[Lineare Hülle, Erzeugendensystem]
@@ -51,7 +50,7 @@
 	\label{satz:I.8.9}
 	Sei $A \in M(m\times n, K)$ und $a_1, \dots, a_n \in K^m$ die Spalten von $A$.
 	Dann sind äquivalent:
-	\begin{enumerate}[(1)]
+	\begin{enumerate}[(i)]
 		\item $a_1,\dots,a_n$ sind linear unabhängig.
 		\item $\Kern(A) = \{x \in K^n : Ax = 0\} = \setzero$.
 		\item Für alle $i \in \{1,\dots,n\}$ gilt:
@@ -63,7 +62,7 @@
 	\label{def:I.8.10}
 	Sei $V$ ein $K$-Vektorraum und $B \subseteq V$.
 	Dann heißt $B$ eine \Index{Basis} von $V$, wenn gelten:
-	\begin{enumerate}[(1)]
+	\begin{enumerate}[(i)]
 		\item $B$ ist linear unabhängig.
 		\item $\LH(B) = V$
 	\end{enumerate}
@@ -74,7 +73,7 @@
 	\label{satz:I.8.12}
 	Sei $V$ ein endlich erzeugter $K$-Vektorraum mit $V \neq \setzero$ und $B := \{v_1,\dots,v_n\} \subseteq V$.
 	Dann sind äquivalent:
-	\begin{enumerate}[(1)]
+	\begin{enumerate}[(i)]
 		\item $B$ ist Basis von $V$.
 		\item Es gilt $V = \LH(B)$ und für alle $i \in \{1,\dots,n\}$ gilt $V \neq \LH(B \setminus \{v_i\})$.
 		Das heißt, $B$ ist ein minimales Erzeugendensystem.
@@ -96,7 +95,7 @@
 	Seien $V,W$ $K$-Vektorräume, $B := \{v_1,\dots v_n\}$ eine Basis von $V$ und $w_1,\dots,w_n \in W$.
 	Dann existiert genau eine lineare Abbildung $F \colon V \rightarrow W$ mit $F(v_i) = w_i$ für alle $1 \leq i \leq n$.
 	Ferner gelten:
-	\begin{enumerate}[(1)]
+	\begin{enumerate}[(i)]
 		\item $F$ injektiv $\Leftrightarrow$ $w_1,\dots, w_n$ sind linear unabhängig.
 		\item $F$ surjektiv $\Leftrightarrow \LH\{w_1,\dots,w_n\} = W$.
 		\item $F$ bijektiv $\Leftrightarrow \{w_1,\dots,w_n\}$ ist Basis von $W$.
@@ -106,12 +105,12 @@
 \begin{korollar}
 	\label{kor:I.8.16}
 	Sei $V$ ein $K$-Vektorraum und $B = \{v_1,\dots,v_n\}$ eine Basis von $V$.
-	\begin{enumerate}[(1)]
-		\item	Es existiert genau ein Isomorphismus $K^n \rightarrow V$, und zwar
-		\begin{align*}
-			\Phi_B \colon K^n &\longrightarrow V \\
-			x &\longmapsto \sum_{i=1}^{n} x_iv_i.
-		\end{align*}
+	\begin{enumerate}[(i)]
+		\item	Es existiert genau ein Isomorphismus $K^n \rightarrow V$, und zwar $\Phi_B(x) := \sum_{i=1}^{n} x_iv_i$.
+%		\begin{align*}
+%			\Phi_B \colon K^n &\longrightarrow V \\
+%			x &\longmapsto \sum_{i=1}^{n} x_iv_i.
+%		\end{align*}
 		\item Ist $B' = \{w_1,\dots,w_m\}$ eine weitere Basis von $V$, so gilt $n = m$.
 	\end{enumerate}
 \end{korollar}
@@ -124,3 +123,4 @@
 		\dim_K(V) := \#B = n.
 	\]
 \end{definition}
+\newpage

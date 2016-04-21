@@ -1,4 +1,5 @@
-\RequirePackage[thinlines]{easybmat} %-- muss aufgrund eines Bugs vor etex und tikz geladen werden
+%!TEX root = ../../PDGL1_SS16/pdeskript.tex
+%!TEX TS-program = xelatex
 %\documentclass[a4paper, twoside, headsepline, index=totoc,toc=listof, fontsize=11pt, cleardoublepage=empty, headinclude, DIV=12, BCOR=5mm, titlepage]{scrartcl}
 \documentclass[a4paper, twoside, headsepline, index=totoc,toc=listof,toc=bibliography,toc=index, fontsize=11pt, cleardoublepage=empty, headinclude, DIV=12, BCOR=5mm, titlepage,draft]{scrartcl}
 \usepackage{scrtime} % KOMA, Uhrzeit ermoeglicht
@@ -8,19 +9,6 @@
 \usepackage{ifthen}
 \usepackage{amsmath}
 \usepackage{esint}
-
-%-- Compiler-abhaengige IFs
-\usepackage{ifxetex,ifluatex}
-\newif\ifxetexorluatex
-\ifxetex
-  \xetexorluatextrue
-\else
-  \ifluatex
-    \xetexorluatextrue
-  \else
-    \xetexorluatexfalse
-  \fi
-\fi
 
 %--Farbdefinitionen
 %-- muss vor tikz geladen werden
@@ -98,43 +86,22 @@
 \newcommand{\Underbrace}[2]{{\underbrace{#1}_{#2}}}
 
 %-- Alles was mit Schrift und XeTeX zu tun hat
-\ifxetexorluatex
-    % XeLaTeX or LuaTeX
-	\ifxetex
-		\usepackage{mathspec} %beinhaltet fontspec 
-	\else
-		\usepackage[no-math]{fontspec}
-	\fi
-    \usepackage{polyglossia} % moderner babel-ersatz
-    \setmainlanguage[spelling=new,babelshorthands=true]{german}
-	\shorthandoff{"}
-	\setotherlanguage{english}
-	% \newcommand\glqq{"}
-	% \newcommand\grqq{"}
-	\defaultfontfeatures{Mapping=tex-text, WordSpace={1.4}} %
-    \setmainfont[Ligatures=Common, BoldFont={* Bold}, ItalicFont={* Light Italic},SmallCapsFont={Linux Libertine O}, SmallCapsFeatures={Letters=SmallCaps}]{Source Sans Pro}
-	\setsansfont[Scale=MatchLowercase,Ligatures=Common, BoldFont={* Medium}]{Ubuntu}
-	% \newfontface\fancy{texgyreadventor-italic.otf}
-	% \setkomafont{title}{\fancy\Huge}
-	\ifxetex
-		\setallmonofonts[Scale=MatchLowercase, ItalicFont={*}]{Consolas} 
-	\else
-		\setmonofont[Scale=MatchLowercase, ItalicFont={*}]{Consolas}
-	\fi
-	\usepackage{xltxtra}
-	\usepackage{fontawesome}
-	\usepackage{microtype}
-\else
-    % default: pdfLaTeX
-    \usepackage[ngerman]{babel}
-    \usepackage[T1]{fontenc}
-    \usepackage[utf8]{inputenc}
-	\usepackage{textcomp} %verhindert ein paar Fehler bei den Fonts
-    \usepackage[babel=true, tracking=true]{microtype}
-	% \usepackage{lmodern}
-	\usepackage{newpxtext}
-	\renewcommand{\familydefault}{\sfdefault} 
-\fi
+\usepackage[no-math]{fontspec}
+\usepackage{polyglossia} % moderner babel-ersatz
+\setmainlanguage[spelling=new,babelshorthands=true]{german}
+\shorthandoff{"}
+\setotherlanguage{english}
+% \newcommand\glqq{"}
+% \newcommand\grqq{"}
+\defaultfontfeatures{Mapping=tex-text, WordSpace={1.4}} %
+\setmainfont{SourceSansPro}[Scale=MatchUppercase,Extension=.otf,UprightFont=*-Regular,BoldFont=*-Semibold,ItalicFont=*-LightIt,BoldItalicFont=*-SemiboldIt]
+\setsansfont{SourceSansPro}[Scale=MatchUppercase,Extension=.otf,UprightFont=*-Regular,BoldFont=*-Semibold,ItalicFont=*-LightIt,BoldItalicFont=*-SemiboldIt]
+
+\setmonofont{Inconsolatazi4}[Scale=MatchLowercase,Extension=.otf,UprightFont=*-Regular,BoldFont=*-Bold,StylisticSet=1]
+\usepackage{xltxtra}
+\usepackage{fontawesome}
+\usepackage{microtype}
+
 
 
 %--Mixed
@@ -160,7 +127,7 @@
 \newcommand{\bet}[1]{\textbf{#1}}
 \newcommand{\Index}[1]{\textbf{#1}\index{#1}}
 \makeindex
-\setindexpreamble{{\noindent \itshape Die \emph{Seitenzahlen} sind mit Hyperlinks zu den entsprechenden Seiten versehen, also anklickbar} \ifxetexorluatex \faHandUp\fi \par \bigskip}
+\setindexpreamble{{\noindent \itshape Die \emph{Seitenzahlen} sind mit Hyperlinks zu den entsprechenden Seiten versehen, also anklickbar} \faHandUp\par \bigskip}
 \renewcommand{\indexpagestyle}{scrheadings}
 
 
@@ -179,16 +146,17 @@
 \LetLtxMacro{\oldmissingfigure}{\missingfigure}
 \renewcommand{\missingfigure}[2][]{\tikzexternaldisable\oldmissingfigure[{#1}]{#2}\tikzexternalenable}
 
-\ifxetexorluatex
-\newcommand{\hrefsym}[2]{\href{#1}{\texttt{#2\,\faExternalLink}}}
-\newcommand{\hrefsymmail}[2]{\href{#1}{\texttt{\faEnvelope\,#2}}}
-\renewcommand{\url}[1]{\hrefsym{#1}{\nolinkurl{#1}}}
-\fi
-\providecommand{\hrefsym}{\href}
-\providecommand{\hrefsymmail}{\hrefsym}
-
 %--Konfiguration von Hyperref pdfstartview=FitH, 
-\usepackage[hidelinks, pdfpagelabels,  bookmarksopen=true, bookmarksnumbered=true, linkcolor=black, urlcolor=SkyBlue2, plainpages=false,pagebackref, citecolor=black, hypertexnames=true, pdfauthor={Jannes Bantje}, pdfborderstyle={/S/U}, linkbordercolor=SkyBlue2, colorlinks=false]{hyperref}
+\usepackage[hidelinks, pdfpagelabels,  bookmarksopen=true, bookmarksnumbered=true, linkcolor=black, urlcolor=SkyBlue2, plainpages=false,pagebackref, citecolor=black, hypertexnames=true, pdfauthor={Tim Keil}, pdfborderstyle={/S/U}, linkbordercolor=SkyBlue2, colorlinks=false,final,backref=false]{hyperref}
+
+\usepackage[nameinlink,noabbrev]{cleveref}
+
+\newcommand{\appendLink}[1]{#1\,\faExternalLink}
+\newcommand{\hrefsym}[2]{\href{#1}{\texttt{\appendLink{#2}}}}
+\newcommand{\hrefsymX}[2]{\href{#1}{\appendLink{#2}}}
+\newcommand{\hrefsymmail}[2]{\href{#1}{\texttt{\faEnvelopeO\,#2}}}
+\renewcommand{\url}[1]{\hrefsym{#1}{\nolinkurl{#1}}}
+
 % -- QR-Codes
 \usepackage{qrcode} %-- hinter hyperref laden!
 
@@ -274,44 +242,6 @@
 %--Differential
 \newcommand{\diff}[2]{\ensuremath{\frac{{\partial #1}}{{\partial #2}} }}
 \newcommand{\diffd}[2]{\ensuremath{\frac{\mathd #1}{\mathd #2} }}
-
-%--Diagonale Linien für Matrizen
-\newcommand\tikzmark[1]{%
-  \tikzexternaldisable\tikz[overlay,remember picture,baseline] \node [anchor=base] (#1) {};\tikzexternalenable}
-
-\newcommand\MyLine[3][]{%
-  \tikzexternaldisable\begin{tikzpicture}[overlay,remember picture]
-    \draw[#1] (#2.south) -- (#3.north);
-  \end{tikzpicture}\tikzexternalenable}
-  
-%--Jordankasten
-\newcommand{\Jord}{ \tikzexternaldisable \begin{BMAT}{|ccc|}{|ccc|} %
-				0 & & \\ %
-				1\tikzmark{z} &  \diagdown & \\ %
-				& \tikzmark{u}1 \MyLine[thick]{z}{u} &  0 %
-			\end{BMAT} \tikzexternalenable}
-			
-%--Jordankasten mit Lambda
-\newcommand{\JordLa}[1][\empty]{%
-	\tikzexternaldisable\ifthenelse{\equal{#1}{\empty}}
-		{\begin{BMAT}{|ccc|}{|ccc|} %
-				\lambda & & \\ %
-				1\tikzmark{z} &  \diagdown & \\ %
-				& \tikzmark{u}1 \MyLine[thick]{z}{u} &  \lambda  %
-			\end{BMAT}}
-		{\begin{BMAT}{|ccc|}{|ccc|} %
-				\lambda_{#1}  & & \\ %
-				1\tikzmark{z} &  \diagdown & \\ %
-				& \tikzmark{u}1 \MyLine[thick]{z}{u} &  \lambda_{#1}  %
-			\end{BMAT}}\tikzexternalenable}
-
-%--Inhaltsverzeichnis
-\usepackage[tocindentauto]{tocstyle}
-\usetocstyle{KOMAlike}	
-\shorthandon{"}
-		
-%--Punkte (als letztes laden)
-\usepackage{ellipsis}
 
 
 %thrm declare
@@ -542,6 +472,15 @@
 \ofoot[{ \color{dark_gray} \LARGE \sffamily \thepage}]{{ \color{dark_gray} \LARGE \sffamily \thepage}} %hier wir auch der plain Stil bearbeitet!
 \automark{section}
 \ifoot{ \color{dark_gray} \small \leftmark}
+
+
+%--Inhaltsverzeichnis
+\usepackage[tocindentauto]{tocstyle}
+\usetocstyle{KOMAlike}	
+\shorthandon{"}
+
+%--Punkte (als letztes laden)
+\usepackage{ellipsis}
 
 %--Metadaten
 \providecommand{\mail}{keil.menden@web.de}

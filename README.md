@@ -8,6 +8,13 @@ lecture notes written at WWU Münster, FB10
 Dies betrifft insbesondere auch den Dropbox- sowie den Sciebo-Ordner!
 Als Zwischenlösung sind einige aktuelle Skripte über die _Releases_ (in der Leiste über der Dateienliste) verfügbar.
 
+
+* SoSe 2016
+	* [Operatoralgebren II.](https://github.com/JaMeZ-B/LaTeX-WWU/releases/download/latest/operatoralgebren2.pdf "Operatoralgebren II.") (Jannes)
+	* [Lineare Algebra II.](https://github.com/JaMeZ-B/LaTeX-WWU/releases/download/latest/LA2.pdf "Lineare Algebra II.") (Phil)
+	* [Liegruppen](https://github.com/JaMeZ-B/LaTeX-WWU/releases/download/latest/liegruppen.pdf "Liegruppen") (Jannes)
+	* [Algebraische K-Theorie](https://github.com/JaMeZ-B/LaTeX-WWU/releases/download/latest/algebraische_KTheorie.pdf "Algebraische K-Theorie") (Jannes)
+	* [PDGL I.](https://github.com/JaMeZ-B/LaTeX-WWU/releases/download/latest/pdeskript.pdf "PDGL I.") (Tim)
 * WiSe 2015
 	* [CAT(0) kubische Komplexe](https://github.com/JaMeZ-B/LaTeX-WWU/releases/download/latest/CAT0.pdf "CAT(0) kubische Komplexe") (Phil)
 	* [Topologie II.](https://github.com/JaMeZ-B/LaTeX-WWU/releases/download/latest/topologie_2.pdf "Topologie II.") (Jannes)

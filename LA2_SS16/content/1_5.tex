@@ -8,7 +8,7 @@
 		\cdot \colon K \times V \rightarrow V, (\lambda,v) \mapsto \lambda \cdot v,
 	\end{align*}
 	sodass $(V,+)$ eine abelsche Gruppe ist und für alle $\lambda, \mu \in K$ und $u,v \in V$ gilt:
-	\begin{enumerate}[(1)]
+	\begin{enumerate}[(i)]
 		\item $(\lambda \mu) v = \lambda (\mu v)$
 		\item $\lambda(v+w) = \lambda v + \lambda w$
 		\item $(\lambda + \mu) v = \lambda v + \mu v$
@@ -19,7 +19,7 @@
 \begin{beispiel}[Diverse Vektorräume]
 	\label{bsp:I.5.2}
 	\mbox{} \\[-1.4cm]
-	\begin{enumerate}[(1)]
+	\begin{enumerate}[(i)]
 		\item $K^n$ ist ein Vektorraum mit den Verknüpfungen aus \autoref{def:I.3.5}(2).
 		\item $M(m \times n,K)$ ist ein Vektorraum vermöge komponentenweiser Addition und skalarer Multiplikation.
 		\item Für eine Menge $X \neq \emptyset$ und einen $K$-Vektorraum $V$ ist $\Abb(X,V) := \{f \colon X \rightarrow V\}$ ein Vektorraum vermöge
@@ -41,7 +41,7 @@
 	\label{def:I.5.4}
 	Sei $V$ ein $K$-Vektorraum und $U \subseteq V$ nichtleer.
 	$U$ heißt \Index{Untervektorraum} von $V$, wenn gilt:
-	\begin{enumerate}[(1)]
+	\begin{enumerate}[(i)]
 		\item Für alle $v,w \in U$ ist $v+w \in U$.
 		\item Für alle $\lambda \in K$ und $v \in U$ ist $\lambda v \in U$.
 	\end{enumerate}
@@ -68,11 +68,11 @@
 	\end{align*}
 	eine lineare Abbildung
 \end{beispiel}
-\newpage
+
 \begin{definition}[Isomorphismus, Kern, Bild]
 	\label{def:I.5.9}
 	Sei $F\colon V \rightarrow W$ linear.
-	\begin{enumerate}[(1)]
+	\begin{enumerate}[(i)]
 		\item Ist $F$ bijektiv, so heißt $F$ ein \Index{Isomorphismus}.
 		$F^{-1}$ ist ebenfalls linear.
 		Existiert für zwei Vektorräume $V,W$ ein Isomorphismus $V \rightarrow W$, so heißen $V,W$ \textbf{isomorph} und wir schreiben $V \simeq W$.
@@ -81,3 +81,4 @@
 		\item Der Untervektorraum $\Bild(F) := F(V) := \{F(V) : v \in V\} \subseteq W$ heißt \Index{Bild} von $F$.
 	\end{enumerate}
 \end{definition}
+\newpage

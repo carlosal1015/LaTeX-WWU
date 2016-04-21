@@ -106,16 +106,16 @@ animieren sollen. Oftmals sind dies schon aus vorherigen Semestern bekannte Sach
 	\[
 		\mu \colon A \odot B \times A \odot B \longrightarrow A \odot B
 	\]
-	Dann ist $(A \odot B,\mu)$ eine $\mathbb{K}$-Algebra.\todo{RevChap 1}
+	Dann ist $(A \odot B,\mu)$ eine $\mathbb{K}$-Algebra.
 \end{beweis}
 
-\begin{bemerkung}[label=bem:14]
+\begin{bemerkung}[label=bem:14,{name=[{universelle Eigenschaft des Tensorproduktes von *-Algebren}]}]
 	\begin{enumerate}[(i)]
 		\item Seien $A,B$ $^*$-Algebren.
 		Dann hat das Tensorprodukt $A \odot B$ als $^*$-Algebra die folgende universelle Eigenschaft:
 		
-		Falls $C$ eine $^*$-Algebra ist und $\pi_A \colon A \to C$, $\pi_B \colon B \to C$ $^*$-Homomorphismen sind, sodass für den Kommutator $\benbrace*{\pi_A(A), \pi_B(B)}=0$ gilt, so existiert genau ein $^*$-Homomorphismus $\pi \colon A \odot B \to C$ mit $\pi(a \otimes b)= \pi_A(a) \pi_B(b)$ für alle $a \in A$, $b \in B$.
-		\item Es seien $A,B,C,D$ $^*$-Algebren, $\pi_A \colon A \to C$, $\pi_B \colon B \to D$ $^*$-Homomorphismen.
+		Falls $C$ eine $^*$-Algebra ist und $\pi_A \colon A \to C$, $\pi_B \colon B \to C$ $^*$-Homomorphismen sind, sodass für den Kommutator $\benbrace*{\pi_A(A), \pi_B(B)}=0$ gilt, so existiert genau ein $^*$-Homomorphismus $\pi \colon A \odot B \to C$ mit $\pi(a \otimes b)= \pi_A(a) \cdot \pi_B(b)$ für alle $a \in A$, $b \in B$.
+		\item Es seien $A,B,C,D$ $^*$-Algebren, $\pi_A \colon A \to C$ und $\pi_B \colon B \to D$ $^*$-Homomorphismen.
 		Dann existiert genau ein $\pi \colon A \odot B \to C \odot D$ mit $\pi(a \otimes b)= \pi_A(a) \otimes \pi_B(b)$.
 	\end{enumerate}
 \end{bemerkung}
@@ -148,28 +148,29 @@ animieren sollen. Oftmals sind dies schon aus vorherigen Semestern bekannte Sach
 	\[
 		\skal*{z}{z} = \sum_{j=1}^{m} \norm*{\xi'_j}^2 \ge 0
 	\]
-	Insbesondere ist $z=0$ genau dann, wenn $\xi_1' = \ldots = \xi_m'=0$, also $\skal*{z}{z}=0$ gilt.
+	Insbesondere ist $z=0$ genau dann, wenn $\xi_1' = \ldots = \xi_m'=0$ ist, also $\skal*{z}{z}=0$ gilt.
 \end{beweis}
 
-\begin{bemerkung}[{name=[{Einbettung mit beschränkten Operatoren}]},label=bem:16]
+\begin{bemerkung}[{name=[{Einbettung der Tensorprodukte beschränkter Operatoren}]},label=bem:16]
 	Es existiert eine Einbettung $\iota \colon \mathcal{B}(\mathcal{H}_1) \odot \mathcal{B}(\mathcal{H}_2) \hookrightarrow \mathcal{B}(\mathcal{H}_1 \otimes \mathcal{H}_2)$ gegeben durch $(a \otimes b)(\xi \otimes \eta) = a(\xi) \otimes b (\eta)$. (Warum?)
 \end{bemerkung}
 
-\begin{frageA}[{name=[{C*-Norm auf dem algebraischen Tensorprodukt}]}]
-	Seien $A$, $B$ $C^*$-Algebren.
+\begin{frageA}[{name=[{C*-Normen auf dem algebraischen Tensorprodukt}]}]
+	Seien $A$ und $B$ $C^*$-Algebren.
+	Die spannende Frage ist nun:
 	\begin{center}
-		¿ Was für $C^*$-Normen existieren auf $A \odot B$?
+		\fbox{{\large¿}\,Was für $C^*$-Normen existieren auf $A \odot B$\,{\large?}}
 	\end{center}
 \end{frageA}
 
-\begin{bemerkung}
-	Falls $\gamma \colon A \odot B \to \mathbb{R}^+$ eine $C^*$-Norm ist, so ist $A \otimes_\gamma B := \overline{A \odot B}^\gamma$ eine $C^*$-Algebra.
+\begin{bemerkung}[{name=[Tensorprodukt aus C*-Norm auf dem algebraischen Tensorprodukt]}]
+	Falls $\gamma \colon A \odot B \to \mathbb{R}^+$ eine $C^*$-Norm ist, so ist $A \otimes_\gamma B := \overline{A \odot B}^\gamma$ eine $C^*$-Algebra.\todo{RevChap 1}
 \end{bemerkung}
 
-\begin{proposition}
-	Es seien $A$, $B$ $C^*$-Algebren.
+\begin{proposition}[{name=[{minimale C*-Norm auf dem Tensorprodukt}]},label=prop:19]
+	Es seien $A$ und $B$ $C^*$-Algebren.
 	\begin{enumerate}[(i)]
-		\item Für $^*$-Darstellungen $\pi_A \colon A \to \mathcal{B}(\mathcal{H}_1)$, $\pi_B \colon B \to \mathcal{B}(\mathcal{H}_2)$ definiert 
+		\item \label{enum:19:1}Für $^*$-Darstellungen $\pi_A \colon A \to \mathcal{B}(\mathcal{H}_1)$, $\pi_B \colon B \to \mathcal{B}(\mathcal{H}_2)$ definiert 
 		\[
 			(\pi_A \otimes \pi_B)(a \otimes b) := \iota\enbrace[\big]{\pi_A(a) \otimes \pi_B(b)}
 		\]
@@ -177,7 +178,7 @@ animieren sollen. Oftmals sind dies schon aus vorherigen Semestern bekannte Sach
 		Falls $\pi_A$ und $\pi_B$ treu sind, so ist auch $\pi_A \otimes \pi_B$ treu.
 		\item Die Abbildung $\norm*{\cdot }_{\min} \colon A \odot B \to \mathbb{R}^+$, gegeben durch
 		\[
-			\norm[\big]{\textstyle\sum\nolimits_{i=1}^{n} a_i \otimes b_i}_{\min} := \sup \set[\Big]{\norm[\big]{(\pi_A \otimes \pi_B)\enbrace*{\textstyle\sum\nolimits_{i=1}^{n} a_i \otimes b_i}} \given \pi_A, \pi_B \text{ $^*$-Darstellungen} }
+			\norm[\big]{\textstyle\sum\nolimits_{i=1}^{n} a_i \otimes b_i}_{\min} := \sup \set[\Big]{\norm[\big]{(\pi_A \otimes \pi_B)\enbrace[\big]{\textstyle\sum\nolimits_{i=1}^{n} a_i \otimes b_i}} \given \pi_A, \pi_B \text{ $^*$-Darstellungen} }
 		\]
 		ist eine $C^*$-Norm.
 	\end{enumerate}
@@ -226,7 +227,7 @@ animieren sollen. Oftmals sind dies schon aus vorherigen Semestern bekannte Sach
 	heißt \bet{minimales} (oder \bet{räumliches} oder \bet{spatiales}) \bet{Tensorprodukt}\index{minimales Tensorprodukt} von $A$ und $B$.
 \end{definition}
 
-\begin{satz}
+\begin{satz}[{name=[{Zerlegung von Darstellungen des algebraischen Tensorproduktes}]}]
 	Seien $A,B$ $C^*$-Algebren und $\pi \colon A \odot B \to \mathcal{B}(\mathcal{H})$ eine nichtdegenerierte Darstellung.
 	Dann existieren eindeutig bestimmte nichtdegenerierte Darstellungen $\pi_A \colon A \to \mathcal{B}(\mathcal{H})$ und $\pi_B \colon B \to \mathcal{B}(\mathcal{H})$ mit 
 	\[
@@ -243,7 +244,7 @@ animieren sollen. Oftmals sind dies schon aus vorherigen Semestern bekannte Sach
 		\pi_B(b) &:= \solim \pi(h_\lambda \otimes b)
 	\end{align}
 	Wir zeigen, dass diese Limiten existieren:
-	Für $\xi \in \mathcal{H}$ und $a \in A_+$ definiert $b \mapsto \skal*{\xi}{\pi(a \otimes b) \xi}$ ein positives Funktional $f_a$ auf $B$ (beschränkt nach OpAlg Satz 5.3).
+	Für $\xi \in \mathcal{H}$ und $a \in A_+$ definiert $b \mapsto \skal*{\xi}{\pi(a \otimes b) \xi}$ ein positives Funktional $f_a$ auf $B$ (beschränkt nach \cite[Satz 5.3]{OpAlg}).
 	Damit existiert
 	\[
 		\lim_\mu f_a(k_\mu) = \lim_\mu \skal*{\xi}{\pi(a \otimes k_\mu)\xi}
@@ -273,7 +274,7 @@ animieren sollen. Oftmals sind dies schon aus vorherigen Semestern bekannte Sach
 	\]
 \end{beweis}
 
-\begin{korollar}
+\begin{korollar}[{name=[{Submultiplikativität bezüglich des Tensorproduktes}]}]
 	Seien $A,B$ $C^*$-Algebren, $\gamma$ eine $C^*$-Halbnorm auf $A \odot B$.
 	Dann gilt $\gamma(a \otimes b) \le \norm*{a} \cdot \norm*{b}$ für $a \in A$, $b	\in B$.
 	$\gamma$ besitzt eine eindeutige Fortsetzung zu einer $C^*$-Halbnorm auf $A^\simm \odot B^\simm$.
@@ -301,6 +302,142 @@ animieren sollen. Oftmals sind dies schon aus vorherigen Semestern bekannte Sach
 	\end{align}
 	Der letzte Ausdruck ist unabhängig von $\pi$.
 \end{beweis}
+
+\begin{definitionP}[{name=[{Max-Norm}]}]
+	Die Abbildung $\norm*{\cdot }_{\max} \colon A \odot B \to \mathbb{R}^+$ gegeben durch
+	\[
+		\norm*{x}_{\max} := \sup \set*{\norm*{\pi(x)} \given \pi \text{ ist $^*$-Darstellung von } A \odot B}
+	\] 
+	ist eine $C^*$-Norm auf $A \odot B$.
+	Für jede weitere $C^*$-Norm $\gamma$ gilt $\gamma(x) \le \norm*{x}_{\max}$ für $x \in A \odot B$.
+\end{definitionP}
+\begin{beweis}
+	$\norm*{\cdot}_{\max}$ ist submultiplikativ, also ist $\norm*{x}_{\max}$ endlich für alle $x \in A \odot B$.
+	Damit ist dann auch klar, dass $\norm*{\cdot}_{\max}$ eine $C^*$-Halbnorm ist.
+	Es seien nun $\pi_A, \pi_B$ treue Darstellungen von $A$ beziehungsweise $B$.
+	Dann ist $\pi_A \otimes \pi_B$ eine treue Darstellung von $A \odot B$ nach \autoref{prop:19} \ref{enum:19:1}.
+	Damit ist $\norm*{\cdot}_{\max}$ eine $C^*$-Norm und auch die Maximalität folgt.
+\end{beweis}
+
+\begin{definition}[{name=[{maximales Tensorprodukt}]}]
+	$A \tensormax B := \overline{A \odot B}^{\norm*{\cdot }_{\max}}$ heißt \Index{maximales Tensorprodukt} von $A$ und $B$. 
+\end{definition}
+
+\begin{bemerkung}
+	\begin{enumerate}[(i)]
+		\item Sei $\gamma$ eine $C^*$-Norm auf $A \odot B$.
+		Dann erhalten wir eine Abbildung
+		\[
+			\begin{tikzcd}
+				A \tensormax B \rar[two heads] & A \otimes_\gamma B
+			\end{tikzcd}
+		\]
+		denn $\id A \odot B \to A \odot B$ ist normvermindernd, setzt sich ale fort auf $A \tensormax B$.
+		Das Bild ist eine dichte $C^*$-Unteralgebra, also alles.
+		\item Sind $A,B$ unital, so ist $A \otimes_\gamma B$ unital und es gibt Inklusionen
+		\begin{align}
+			A \hookrightarrow &A \otimes_\gamma B , \quad a \mapsto a \otimes \ind_B \\
+			B \hookrightarrow &A \otimes_\gamma B , \quad b \mapsto \ind_A \otimes b
+		\end{align}
+		\item Sind $A$, $B$ unital, dann ist $A \tensormax B \cong C^* \enbrace*{A,B \mid \benbrace*{A,B}=0}$ (universelle $C^*$-Algebra, Übung!)
+		\item $\tensormax $ und $\tensormin$ sind assoziativ und kommutativ (warum?).
+	\end{enumerate}
+\end{bemerkung}
+
+\begin{definition}[{name=[{Zustände auf dem algebraischen Tensorprodukt}]}]
+	Für $C^*$-Algebren $A$, $B$ setzen wir 
+	\[
+		(A \odot B)^* := \set*{f \colon A \odot B \to \mathbb{C} \text{ linear}}
+	\]
+	$f \in (A \odot B)^*$ heißt positiv, falls $f(x^* x)\ge 0$ für $x \in A \odot B$.
+	Wir setzen
+	\[
+		\norm*{f} := \sup \set*{f(a \otimes b) \given a \in A^1_+, b \in B_+^1}
+	\]
+	Wir definieren die \bet{Zustände}\index{Zustände auf dem algebraischen Tensorprodukt} auf $A \odot B$ durch $S(A \odot B) := \set[\big]{f \in (A \odot B)^* \given \norm*{f}=1}$.
+\end{definition}
+
+\begin{proposition}
+	Jedes positive $f \in (A \odot B)^*$ besitzt eine positive Fortsetzung $f^\sim \in \enbrace*{A^\simm \odot B^\simm}^*$ mit 
+	\[
+		\norm*{f}= \norm*{f^\sim} = \tilde{f}(\ind_{A^\simm} \otimes \ind_{B^\simm}) < \infty
+	\]
+\end{proposition}
+\begin{beweis}
+	Sei $(h_\lambda)_{\Lambda} \subset A$ eine approximative Eins. 
+	Für $b \in B_+$ setze $f_b(a) := f (a \otimes b)$.
+	Dann ist $f_b \in A^*$ positiv und insbesondere beschränkt.\todo{Ref}
+	Wir setzen
+	\[
+		\hat{f} \enbrace*{\ind_{A^\simm} \otimes b} := \Underbracket{\lim_\lambda f(h_\lambda \otimes b)}{f^\sim_b (\ind_{A^\simm})} = \sup_\lambda f(h_\lambda \otimes b) < \infty
+	\]
+	Wir setzen $\hat{f}$ wie folgt fort, sodass $\hat{f} \in (A^\simm \odot B)^*$ gilt:
+	\[
+		\hat{f}(x) = \lim_\lambda f \enbrace[\big]{\enbrace*{h_\lambda \otimes  \ind_{B^\simm}} x} = \lim_\lambda f\enbrace*{\enbrace*{h_\lambda \otimes  \ind_{B^\simm}}^{\sfrac{1}{2}} x \enbrace*{h_\lambda \otimes  \ind_{B^\simm}}^{\sfrac{1}{2}}}
+	\]
+	Man sieht damit, dass $\hat{f}$ linear, wohldefiniert und positiv ist. 
+	$\hat{f}$ lässt sich fortsetzen zu $f^\sim \in (A^\simm \odot B^\simm)^*$ positiv.
+	Es gilt trivialerweise $\norm*{f} \le \norm*{f^\sim}$ und $f^\sim (a \otimes b) \le f^\sim (\ind_{A^\simm} \otimes \ind_{B^\simm})$ für $a \in (A_+^\simm)^1$ und $b \in (B_+^\simm)^1$.
+	Damit folgt $\norm*{f^\sim} \le f^\sim (\ind_{A^\simm} \otimes \ind_{B^\simm}) \le \norm*{f^\sim}$.
+	Weiter gilt
+	\[
+		f^\sim \enbrace*{\ind_{A^\simm} \otimes \ind_{B^\simm}} = \lim_{\lambda,\mu} f \enbrace*{h_\lambda \otimes k_\mu} \le \norm*{f}
+	\]
+	Damit ist $\norm*{f} = \norm*{f^\sim} = f^\sim \enbrace*{\ind_{A^\simm} \otimes \ind_{B^\simm}}$ wie behauptet.
+\end{beweis}
+
+\begin{lemma}[label=lem:118]
+	Seien $A$, $B$ unitale $C^*$-Algebren und $x=x* \in A \odot B$.
+	Dann existieren $\lambda > 0$, $n \in \mathbb{N}$, $z_1, \ldots ,z_n \in A \odot B$ mit 
+	\[
+		\lambda \cdot \enbrace*{\ind_{A^\simm} \otimes \ind_{B^\simm}} -x = \sum_{i=1}^{n} z_i^* \, z_i
+	\]
+	Wir schreiben auch $\lambda \cdot \enbrace*{\ind_{A^\simm} \otimes \ind_{B^\simm}} \ge_{\alg} x$.
+\end{lemma}
+\begin{beweis}
+	Für $a \in A_+$, $b \in B_+$ gilt
+	\[
+		0 \le_\alg a \otimes b \le_\alg \norm*{a} \cdot \norm*{b} \cdot \enbrace*{\ind_A \otimes \ind_B}
+	\]
+	Weiter gilt $(A \odot B)_\so = A_\so \odot B_\so$ \emph{nicht}.
+	Falls $y=y* = \sum_{k=1}^{m} a_k \otimes b_k$, so gilt
+	\[
+		y= \frac{1}{4} \cdot \sum_{k=1}^{m} (a_k +a_k^*) \otimes (b_k + b_k^*) - i (a_k - a_k^*) \otimes i \cdot (b_k -b_k^*)
+	\]
+	Schreibe $x= \sum_{k=1}^{n} c_k \otimes d_k$ mit $c_k \in A_\sa$, $d_k \in B_\sa$.
+	Dann ist 
+	\[
+		x \le_\alg \sum_{k=1}^{n} \enbrace[\big]{(c_k)_+ + (c_k)_-} \otimes  \enbrace[\big]{(d_k)_+ + (d_k)_-} \le_\alg \enbrace[\bigg]{\Underbracket{\sum \norm*{c_k} \cdot \norm*{d_k}}{=: \lambda} } \cdot \enbrace*{\ind_A \otimes \ind_B} \qedhere
+	\]
+\end{beweis}
+
+\begin{lemma}
+	Sei $f \in (A \odot B)^*$ positiv. 
+	Die GNS-Konstruktion liefert einen Hilbertraum 
+	\[
+		\mathcal{H}_f := \overline{\sfrac{A \odot B}{N_f}}^{\skal*{\cdot}{\cdot }_f}
+	\]
+	Mit Vektoren $\xi_f = \benbrace*{\ind_A \otimes \ind_B} \in \mathcal{H}_f$.
+	Falls $A$ oder $B$ nicht unital sind, benutze $\tilde{f} \in (A^\simm \odot B^\simm)^*$.
+	Wir definieren einen $^*$-Homomorphismus $\pi_f \colon A \odot B \to \mathcal{B}(\mathcal{H}_f)$ wie folgt:
+	Für $x,y \in A \odot B$ setze $\pi_f(x)[y] := [xy] \in \sfrac{A \odot B}{N_f} \subset \mathcal{H}_f$.
+	$\pi_f(x)$ setzt sich auf $\mathcal{H}_f$ fort: 
+	Mit \autoref{lem:118} folgt die Existenz von $\lambda>0$ mit $x^*x \le_\alg \lambda \cdot (\ind_{A} \otimes \ind_B)$.
+	Für $y \in A \odot B$ gilt 
+	\begin{align}
+		\norm*{\pi_f(x)[y]}^2 = \norm*{[xy]}^2 = f \enbrace*{y^* x^*x y} &= f \enbrace*{y^* \lambda  \cdot (\ind_{A} \otimes \ind_B) y} - \sum_{k=1}^{n} f \enbrace*{y^* z_k^* z_k y}\\
+		&\le \lambda \cdot 	f(y^* y) = \lambda \cdot \norm*{[y]}^2
+	\end{align}
+	Also ist $\norm*{\pi_f(x)} \le \lambda^{\sfrac{1}{2}}$ und damit ist $\pi_f(x)$ beschränkt und setzt sich fort auf $\mathcal{H}_f$.
+	$\pi_f$ induziert einen $^*$-Homomorphismus $\overline{\pi}_f \colon A \tensormax B \to \mathcal{B}(\mathcal{H}_f)$.
+	Dieser wiederum induziert eine eindeutige stetige Fortsetzung 
+	\[
+		\overline{f}( .) := \skal*{\xi_f}{\overline{\pi}_f(.) \xi_f}
+	\]
+	von $f$ auf $A \tensormax B$.
+	Wir haben nun einen Homöomorphismus $S(A \odot B) \xrightarrow{\approx} S(A \tensormax B)$ konstruiert.
+\end{lemma}
+
 
 % section 1 (end)
 
