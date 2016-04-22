@@ -227,7 +227,7 @@ animieren sollen. Oftmals sind dies schon aus vorherigen Semestern bekannte Sach
 	heißt \bet{minimales} (oder \bet{räumliches} oder \bet{spatiales}) \bet{Tensorprodukt}\index{minimales Tensorprodukt} von $A$ und $B$.
 \end{definition}
 
-\begin{satz}[{name=[{Zerlegung von Darstellungen des algebraischen Tensorproduktes}]}]
+\begin{satz}[{name=[{Zerlegung von Darstellungen des algebraischen Tensorproduktes}]},label=satz:111]
 	Seien $A,B$ $C^*$-Algebren und $\pi \colon A \odot B \to \mathcal{B}(\mathcal{H})$ eine nichtdegenerierte Darstellung.
 	Dann existieren eindeutig bestimmte nichtdegenerierte Darstellungen $\pi_A \colon A \to \mathcal{B}(\mathcal{H})$ und $\pi_B \colon B \to \mathcal{B}(\mathcal{H})$ mit 
 	\[
@@ -274,7 +274,7 @@ animieren sollen. Oftmals sind dies schon aus vorherigen Semestern bekannte Sach
 	\]
 \end{beweis}
 
-\begin{korollar}[{name=[{Submultiplikativität bezüglich des Tensorproduktes}]}]
+\begin{korollar}[{name=[{Submultiplikativität bezüglich des Tensorproduktes}]},label=kor:112]
 	Seien $A,B$ $C^*$-Algebren, $\gamma$ eine $C^*$-Halbnorm auf $A \odot B$.
 	Dann gilt $\gamma(a \otimes b) \le \norm*{a} \cdot \norm*{b}$ für $a \in A$, $b	\in B$.
 	$\gamma$ besitzt eine eindeutige Fortsetzung zu einer $C^*$-Halbnorm auf $A^\simm \odot B^\simm$.
@@ -347,7 +347,7 @@ animieren sollen. Oftmals sind dies schon aus vorherigen Semestern bekannte Sach
 \begin{definition}[{name=[{Zustände auf dem algebraischen Tensorprodukt}]}]
 	Für $C^*$-Algebren $A$, $B$ setzen wir 
 	\[
-		(A \odot B)^* := \set*{f \colon A \odot B \to \mathbb{C} \text{ linear}}
+		(A \odot B)^* := \set[\big]{f \colon A \odot B \to \mathbb{C} \text{ linear}}
 	\]
 	$f \in (A \odot B)^*$ heißt positiv, falls $f(x^* x)\ge 0$ für $x \in A \odot B$.
 	Wir setzen
@@ -387,7 +387,7 @@ animieren sollen. Oftmals sind dies schon aus vorherigen Semestern bekannte Sach
 \end{beweis}
 
 \begin{lemma}[label=lem:118]
-	Seien $A$, $B$ unitale $C^*$-Algebren und $x=x* \in A \odot B$.
+	Seien $A$, $B$ unitale $C^*$-Algebren und $x=x^* \in A \odot B$.
 	Dann existieren $\lambda > 0$, $n \in \mathbb{N}$, $z_1, \ldots ,z_n \in A \odot B$ mit 
 	\[
 		\lambda \cdot \enbrace*{\ind_{A^\simm} \otimes \ind_{B^\simm}} -x = \sum_{i=1}^{n} z_i^* \, z_i
@@ -411,33 +411,138 @@ animieren sollen. Oftmals sind dies schon aus vorherigen Semestern bekannte Sach
 	\]
 \end{beweis}
 
-\begin{lemma}
-	Sei $f \in (A \odot B)^*$ positiv. 
-	Die GNS-Konstruktion liefert einen Hilbertraum 
-	\[
-		\mathcal{H}_f := \overline{\sfrac{A \odot B}{N_f}}^{\skal*{\cdot}{\cdot }_f}
-	\]
-	Mit Vektoren $\xi_f = \benbrace*{\ind_A \otimes \ind_B} \in \mathcal{H}_f$.
-	Falls $A$ oder $B$ nicht unital sind, benutze $\tilde{f} \in (A^\simm \odot B^\simm)^*$.
-	Wir definieren einen $^*$-Homomorphismus $\pi_f \colon A \odot B \to \mathcal{B}(\mathcal{H}_f)$ wie folgt:
-	Für $x,y \in A \odot B$ setze $\pi_f(x)[y] := [xy] \in \sfrac{A \odot B}{N_f} \subset \mathcal{H}_f$.
-	$\pi_f(x)$ setzt sich auf $\mathcal{H}_f$ fort: 
-	Mit \autoref{lem:118} folgt die Existenz von $\lambda>0$ mit $x^*x \le_\alg \lambda \cdot (\ind_{A} \otimes \ind_B)$.
-	Für $y \in A \odot B$ gilt 
-	\begin{align}
-		\norm*{\pi_f(x)[y]}^2 = \norm*{[xy]}^2 = f \enbrace*{y^* x^*x y} &= f \enbrace*{y^* \lambda  \cdot (\ind_{A} \otimes \ind_B) y} - \sum_{k=1}^{n} f \enbrace*{y^* z_k^* z_k y}\\
-		&\le \lambda \cdot 	f(y^* y) = \lambda \cdot \norm*{[y]}^2
-	\end{align}
-	Also ist $\norm*{\pi_f(x)} \le \lambda^{\sfrac{1}{2}}$ und damit ist $\pi_f(x)$ beschränkt und setzt sich fort auf $\mathcal{H}_f$.
-	$\pi_f$ induziert einen $^*$-Homomorphismus $\overline{\pi}_f \colon A \tensormax B \to \mathcal{B}(\mathcal{H}_f)$.
-	Dieser wiederum induziert eine eindeutige stetige Fortsetzung 
-	\[
-		\overline{f}( .) := \skal*{\xi_f}{\overline{\pi}_f(.) \xi_f}
-	\]
-	von $f$ auf $A \tensormax B$.
-	Wir haben nun einen Homöomorphismus $S(A \odot B) \xrightarrow{\approx} S(A \tensormax B)$ konstruiert.
-\end{lemma}
+Sei $f \in (A \odot B)^*$ positiv. 
+Die GNS-Konstruktion liefert einen Hilbertraum 
+\[
+	\mathcal{H}_f := \overline{\sfrac{A \odot B}{N_f}}^{\skal*{\cdot}{\cdot }_f}
+\]
+Mit Vektoren $\xi_f = \benbrace*{\ind_A \otimes \ind_B} \in \mathcal{H}_f$.
+Falls $A$ oder $B$ nicht unital sind, benutze $\tilde{f} \in (A^\simm \odot B^\simm)^*$.
+Wir definieren einen $^*$-Homomorphismus $\pi_f \colon A \odot B \to \mathcal{B}(\mathcal{H}_f)$ wie folgt:
+Für $x,y \in A \odot B$ setze $\pi_f(x)[y] := [xy] \in \sfrac{A \odot B}{N_f} \subset \mathcal{H}_f$.
+$\pi_f(x)$ setzt sich auf $\mathcal{H}_f$ fort: 
+Mit \autoref{lem:118} folgt die Existenz von $\lambda>0$ mit $x^*x \le_\alg \lambda \cdot (\ind_{A} \otimes \ind_B)$.
+Für $y \in A \odot B$ gilt 
+\begin{align}
+	\norm*{\pi_f(x)[y]}^2 = \norm*{[xy]}^2 = f \enbrace*{y^* x^*x y} &= f \enbrace*{y^* \lambda  \cdot (\ind_{A} \otimes \ind_B) y} - \sum_{k=1}^{n} f \enbrace*{y^* z_k^* z_k y}\\
+	&\le \lambda \cdot 	f(y^* y) = \lambda \cdot \norm*{[y]}^2
+\end{align}
+Also ist $\norm*{\pi_f(x)} \le \lambda^{\sfrac{1}{2}}$ und damit ist $\pi_f(x)$ beschränkt und setzt sich fort auf $\mathcal{H}_f$.
+$\pi_f$ induziert einen $^*$-Homomorphismus $\overline{\pi}_f \colon A \tensormax B \to \mathcal{B}(\mathcal{H}_f)$.
+Dieser wiederum induziert eine eindeutige stetige Fortsetzung 
+\[
+	\overline{f}( .) := \skal*{\xi_f}{\overline{\pi}_f(.) \xi_f}
+\]
+von $f$ auf $A \tensormax B$.
+Wir haben nun einen Homöomorphismus $S(A \odot B) \xrightarrow{\approx} S(A \tensormax B)$ konstruiert.
+Wir erhalten:
 
+\begin{satz}
+	Für $x \in A \odot B$ gilt
+	\[
+		\norm*{x}_{\max}^2 = \sup \set*{\frac{f(y^* x^* xy)}{f(y^* y)} \given f \in S(A \odot B) , y \in A \odot B, f(y^* y)\neq 0 }
+	\]
+\end{satz}
+\begin{beweis}
+	Es ist
+	\begin{align}
+		&\hspace{1.14em}\sup \set*{\frac{f(y^* x^* xy)}{f(y^* y)} \given f \in S(A \odot B) , y \in A \odot B, f(y^* y)\neq 0 }\\ 
+		&=\sup \set*{\frac{f(y^* x^* xy)}{f(y^* y)} \given f \in S(A \tensormax B) , y \in A \odot B, f(y^* y)\neq 0 } \\
+		&= \sup \set*{\norm*{\pi_f(x)}^2 \given f \in S(A \tensormax B)} \\
+		&= \norm*{x}_{\max}^2 \qedhere
+	\end{align}
+\end{beweis}
+
+Wir wollen nun ein ähnliches Ergebnis für die Minimumsnorm beweisen:
+Seien $f \in A^*$, $g \in B^*$ positiv, dann ist $f \otimes g \in (A \odot B)^*$ positiv, wo $(f \otimes g) \enbrace*{\sum_{i=1}^{n} a_i \otimes b_i} = \sum_{i=1}^n f(a_i) g(b_i)$.
+Seien $(\pi_f,\xi_f)$, $(\pi_g,\xi_g)$ die GNS-Darstellungen von $A$ beziehungsweise $B$.
+Dann ist
+\[
+	(f \otimes g)(x) = \skal[\big]{ \enbrace*{\xi_f \otimes \xi_g} }{(\pi_f \otimes \pi_g)(x) \enbrace*{\xi_f \otimes \xi_g}}
+\]
+für $x \in A \odot B$.
+$f \otimes g$ ist also ein Vektorzustand und damit positiv.
+Wir erhalten:
+
+\begin{satz}[label=satz:120]
+	Es gilt für $x \in A \odot B$
+	\[
+		\norm*{x}^2_{\min} = \sup \set*{\frac{(f \otimes g) (y^*x^*xy)}{(f \otimes g)(y^*y)} \given f \in S(A), g \in S(B), y \in A \odot B, (f \otimes g)(y^* y)\neq 0 }
+	\]
+	(Tatsächlich genügt es reine Zustände zu betrachten.)
+\end{satz}
+\begin{beweis}
+	Es gilt\marginnote{nach Zorn ist jede Darstellung Summe zyklischer Darstellungen}
+	\begin{align}
+		\norm*{x}_{\min}^2 &= \sup \set*{\norm*{(\pi_A \otimes \pi_B)(x)}^2 \given \pi_A, \pi_B \text{ Darstell.} } \\
+		&= \sup \set*{ \norm*{(\pi_A \otimes \pi_B)(x)}^2 \given (\pi_A,\xi_A), (\pi_B,\xi_B) \text{ zykl. Darstell.}} \\
+		&= \sup \set*{ \frac{\skal[\Big]{(\pi_A \otimes \pi_B)(y) \enbrace*{\xi_A \otimes \xi_B}}{(\pi_A \otimes \pi_B)(x^*x) \enbrace[\big]{ (\pi_A \otimes \pi_B)(y) \enbrace*{\xi_A \otimes \xi_B}}}}{\norm[\big]{(\pi_A \otimes \pi_B)(y) \enbrace*{\xi_A \otimes \xi_B}}^2}  \given\hspace{-3pt} \begin{array}{l}
+	(\pi_A,\xi_A), \\
+	(\pi_B, \xi_B)
+\end{array} \hspace{-3pt}} \\
+		&= \sup \set*{ \frac{\enbrace*{f_{\xi_A} \otimes f_{\xi_B}} \enbrace*{y^*x^*xy}}{\enbrace*{f_{\xi_A} \otimes f_{\xi_B} }(y^*y)} \given (\pi_A,\xi_A), (\pi_B, \xi_B)} \\
+		&\le \sup \set*{ \frac{(f \otimes g)(y^*x^* xy)}{(f \otimes g)(y^*y)} \given f \in S(A) , g \in S(B), y \in A \odot B, (f \otimes g)(y^* y)\neq 0 } \\
+		&\StackTextClap{GNS}{\le} \norm*{x}_{\min}^2 \qedhere
+	\end{align}
+\end{beweis}
+
+\begin{satz}[{name={Takesaki}}]
+	Seien $A =C_0(X)$ und $B$ $C^*$-Algebren.
+	Dann existiert nur eine $C^*$-Norm auf $A \odot B$ und $A \otimes B \cong C_0(X,B)$ (mit $a \otimes b(x) = a(x) \cdot b$).
+	Falls $B=C_0(Y)$, so haben wir $A \otimes B \cong C_0(X \times Y)$ mit $(a \otimes b)(x,y)=a(x) \cdot b(y)$.
+\end{satz}
+\begin{beweis}
+	In mehreren Schritten
+	\begin{enumerate}[(i)]
+		\item Wir dürfen annehmen, dass $A$ und $B$ unital sind: 
+		\[
+			\norm*{\cdot }_{\min, A^\simm \odot B^\simm}\Big|_{A \odot B} = \norm*{\cdot }_{\min, A \odot B}
+		\]
+		denn $\pi_A^\simm \otimes \pi_B^\simm\big|_{A \odot B} = \pi_A \otimes \pi_B$.
+		Ebenso für $\norm*{\cdot }_\gamma$, denn $\gamma$ setzt sich fort zu $\gamma^\simm$ auf $A^\simm \otimes B^\simm$ (nach \autoref{satz:111} bzw. \autoref{kor:112}).
+		\item Es gilt $P(A \tensormax B) \approx P(A) \times P(B)$:
+		
+		Sei $f \in P(A \tensormax B)$.
+		Die GNS-Darstellung $\pi_f$ ist dann irreduzibel.\todo{Ref letztes Semester}
+		Nach \autoref{satz:111} erhalten wir Darstellungen $\pi_A$, $\pi_B$ von $A$ bzw. $B$.
+		$\pi_f$ ist eine Faktordarstellung, also ist $\pi_A$ nach \autoref{satz:111} auch eine Faktordarstellung.
+		Nun gilt, da $A$ kommutativ ist
+		\[
+			\pi_A(A) \subset \pi_A(A)'' \cap \pi_A(A)'= C \cdot \ind_{\mathcal{H}_f} \implies \pi_A \in \hat{A}
+ 		\]
+		also ist $\pi_A(\cdot ) = \ev_x(\cdot) \cdot \ind_{\mathcal{H}_f}$ für ein $x \in X$.
+		Damit ist 
+		\[
+			f(a \otimes b) = \skal[\big]{\xi_f}{\pi_f(a \otimes b) \xi_f} = \ev_x(a) \cdot \Underbracket{\skal[\big]{\xi_f}{\pi_f(\ind_A \otimes b) \xi_f}}{=: g(b)}
+		\]
+		$\pi_B$ ist irreduzibel und $g$ ist Vektorstand und damit rein, also $g \in P(B)$ und damit $f= \ev_x \otimes g$.
+		Für die Umkehrung: $\ev_x \otimes h \in P(A \tensormax B)$ (Warum?)
+		\item Wir zeigen $\norm*{\cdot }_{\max} = \norm*{\cdot }_{\min}$:
+		\[
+			\hspace{-1em}\norm*{z}^2_{\max} = \sup \set[\big]{f(z^*z) \given f \in P(A \tensormax B)} \le \sup \set[\big]{(\ev_x \otimes g)(z^*z) \given x \in X, g \in P(B)} \StackTextClap{\ref{satz:120}}{\le} \norm*{z}_{\min}^2 \le \norm*{z}_{\max}^2
+		\]
+		für $z \in A \odot B$.
+		\item Es gilt $\Prim(A \tensormax B) \approx X \times \Prim B$:\todo{hübsch machen}
+		\[
+			\begin{tikzcd}
+				& {\ev_x} \otimes g & (x,g) \lar[mapsto] \\
+				{\ev_x} \otimes g \dar[mapsto] & P(A \tensormax B) \dar[two heads]& X\times P(B) \lar \dar[two heads] & (x,g) \dar[mapsto] \\
+				\ker(\pi_{\ev_x \otimes g}) = \ker(\pi_{\ev_x} \otimes \pi_g) & \Prim(A \tensormax B) & X \times \Prim B \lar[dotted,"\Theta"] & (x, \ker \pi_g) \\
+				& \ker (\pi_{\ev_x} \otimes \pi_g) & (x, \ker \pi_g) \lar[mapsto]
+			\end{tikzcd}
+		\]
+		$\Theta$ ist wohldefiniert (dann ist $\Theta$ automatisch ein Homöomorphismus):
+		\[
+			\begin{tikzcd}[column sep=0pt,row sep=2.5em]
+				& & A \tensormax B \dlar["\delta_x"] \ar[ddrr,"\ev_x \otimes \pi_g = \pi_{\ev_x \otimes g}"]\\
+				& B \dlar["\pi_g"] \\
+				\mathcal{B}(\mathcal{H}_g) \ar[rrrr,"\cong"] & & & & \mathcal{B} \enbrace*{C \otimes \mathcal{H}_g}
+			\end{tikzcd}
+		\]
+		Damit ist $\ker \pi_{\ev_x \otimes g} = \delta^{-1}_x (\ker \pi_g)$.
+		Dies hängt nur von $\ker \pi_g$ ab und damit ist $\Theta$ wohldefiniert.
+	\end{enumerate}
+\end{beweis}
 
 % section 1 (end)
 
