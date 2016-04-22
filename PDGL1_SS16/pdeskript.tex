@@ -822,9 +822,11 @@ $\eta \in C^{\infty}_0(B_1(0))$ Glättungskern, d.h eine nicht-negative, radials
 	mit $\eta_{\varepsilon} \in C_0^{\infty}(B_{\varepsilon}(0))$ und die anderen Eigenschaften bleiben erhalten.
 \end{beispiel}
 \begin{definition}[$\varepsilon$-Glättung]
-	Sei $\Omega$ eine offene Teilmenge im $\mathbb{R}^n$, $\varepsilon >0$ und \[
+	Sei $\Omega$ eine offene Teilmenge im $\mathbb{R}^n$, $\varepsilon >0$ und 
+	\[
 		\Omega_{\varepsilon} := \set[x \in \Omega]{\dist(x,\partial \Omega)> \varepsilon}.
-	\]Für $f \in L^1_{\text{loc}}(\Omega)$ definiert man die $\varepsilon$-Glättung $f \varepsilon$ von $f$ als die Faltung von $f$ mit dem Glättungskern $\eta_{\varepsilon}$, also
+	\]
+	Für $f \in L^1_{\text{loc}}(\Omega)$ definiert man die $\varepsilon$-Glättung $f \varepsilon$ von $f$ als die Faltung von $f$ mit dem Glättungskern $\eta_{\varepsilon}$, also
 	\[
 		f_{\varepsilon}(x):= \eta_{\varepsilon} * f := \int_{\Omega}^{}\eta_{\varepsilon}(x-y)f(y) \,\mathrm{d}y \qquad \text{für alle }x \in \Omega_{\varepsilon}.
 	\]
