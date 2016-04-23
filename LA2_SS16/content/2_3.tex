@@ -1,0 +1,250 @@
+\section{Orthogonale und unitäre Vektorräume}
+\label{sec:2.3}
+
+In diesem Abschnitt betrachten wir die Körper $\KK = \RR$ oder $\KK = \CC$.
+Ist $V$ ein $\KK$-Vektorraum, so wollen wir eine zusätzliche Struktur auf $V$ betrachten, die es erlaubt, die Längen eines Vektors und den Winkel zwischen zwei Vektoren zu erklären.
+
+\begin{definition}[Skalarprodukt]
+	\label{def:3.1}
+	Sei $V$ ein $\KK$-Vektorraum.
+	Ein \Index{Skalarprodukt} auf $V$ ist eine Abbildung
+	\begin{align*}
+		\sprod{\cdot,\cdot} \colon V \times V &\longrightarrow \KK \\
+		(v,w) &\longmapsto \sprod{v,w}
+	\end{align*}
+	mit folgenden Eigenschaften:
+	\begin{enumerate}[(i)]
+		\item $\sprod{\cdot,\cdot}$ ist \textbf{linear in der ersten Variablen}, das heißt für alle $v_1,v_2,w \in V$ und $\lambda_1,\lambda_2 \in \KK$ gilt
+		\[
+			\sk{\lambda_1v_1+\lambda_2v_2,w} = \lambda_1 \sk{v_1,w} + \lambda_2 \sk{v_2,w}.
+		\]
+		\item $\sprod{\cdot,\cdot}$ ist \Index{hermitesch}, das heißt für alle $v,w \in V$ gilt $\sk{v,w} = \ol{\sk{w,v}}$.
+		Im Fall $\KK=\RR$ bedeutet das also $\sk{v,w} = \sk{w,v}$, das heißt $\sprod{\cdot,\cdot}$ ist \Index{symmetrisch}.
+		\item  $\sprod{\cdot,\cdot}$ ist \Index{positiv definit}, das heißt für alle $v \in V$ gilt $\sk{v,v} \geq 0$, und es gilt
+		\[
+			\sk{v,v} = 0 \quad \Leftrightarrow \quad v = 0.
+		\]
+	\end{enumerate}
+\end{definition}
+
+\begin{bemerkung}
+	\label{bem:3.2}
+	\mbox{} \\[-1.4cm]
+	\begin{enumerate}[(a)]
+		\item Verzichten wir auf Bedingung (iii), so heißt $\sprod{\cdot,\cdot}$  eine \textbf{hermitesche Sesquilinearform}.
+		Ein Skalarprodukt ist also eine positiv definite hermitesche Sesquilinearform. \index{Sesquilinearform}
+		\item Aus (i) und (ii) folgt die Eigenschaft
+		\begin{equation}
+			\sk{w,\lambda_1v_1+\lambda_2v_2} = \ol{\lambda_1} \sk{w,v_1} + \ol{\lambda_2} \sk{w,v_2}. \label{eq:antilin}
+		\end{equation}
+		Wir sagen dann, $\sprod{\cdot,\cdot}$ ist \Index{antilinear} oder \Index{semilinear} in der zweiten Variablen.
+		Eine Abbildung $V \times V \rightarrow \KK$, die linear in der ersten und semilinear in der zweiten Variablen ist, heißt \Index{Sesquilinearform}.
+		\item Ist $\KK = \RR$, so gilt $\ol{\lambda} = \lambda$ für alle $\lambda \in \RR$, das heißt $\sprod{\cdot,\cdot}$ ist dann auch linear in der zweiten Variable.
+		Wir sagen dann, dass $\sprod{\cdot,\cdot}$ \Index{bilinear} ist.
+		Ein Skalarprodukt auf einem $\RR$-Vektorraum ist also eine symmetrische positiv definite Bilinearform.
+	\end{enumerate}
+\end{bemerkung}
+
+\begin{beispiel}
+	\label{bsp:3.3}
+	\mbox{} \\[-1.4cm]
+	\begin{enumerate}[(a)]
+		\item Sei $V = \KK^n$.
+		Für $x = (x_1,\dots,x_n)^T, y = (y_1,\dots,y_n)^T \in \KK^n$ definieren wir
+		\[
+			\sk{x,y} := \sum_{i=1}^{n} x_i \ol{y_i}.
+		\]
+		Dann ist $\sprod{\cdot,\cdot}$ ein Skalarprodukt auf $\KK^n$, denn für $x,y,z \in \KK^n, \lambda_1,\lambda_2 \in \KK$ gilt:
+		\begin{align*}
+			\sk{\lambda_1 x + \lambda_2 y,z} &= \sum_{k=1}^{n} (\lambda_1 x_i + \lambda_2 y_i)\ol{z_i} \\
+			&= \lambda_1 \enb{\sum_{i=1}^n x_i \ol{z_i}} + \lambda_2 \enb{\sum_{i=1}^{n} y_i \ol{z_i}} = \lambda_1 \sk{x,y} + \lambda_2 \sk{y,z}.
+		\end{align*}
+		Ferner gilt
+		\[
+			\sk{x,y} = \sum_{i=1}^{n} x_i \ol{y_i} = \sum_{i=1}^{n} \ol{y_i}x_i = \ol{\sum_{i=1}^{n} y_i \ol{x_i}} = \ol{\sk{y,z}}
+		\]
+		und $\sk{x,x} = \sum_{i=1}^{n} x_i \ol{x_i} = \sum_{i=1}^{n} \abs{x_i}^2 \geq 0$, und die Summe ist $0$ genau dann, wenn alle Summanden 0 sind und damit $x = 0$ ist.
+		
+		Dieses Skalarprodukt heißt das \Index{Standard-Skalarprodukt} auf $\KK^n$.
+		\item Sei $V$ ein beliebiger endlich dimensionaler $\KK$-Vektorraum mit Basis $B := \{v_1,\dots,v_n\}$.
+		Dann wird durch
+		\[
+			\sk{\sum_{i=1}^{n} \lambda_i v_i, \sum_{i=1}^{n} \mu_i v_i} := \sum_{i=1}^n \lambda_i \ol{\mu_i}
+		\]
+		ein Skalarprodukt auf $V$ definiert -- das Standard-Skalarprodukt bzgl. $B$.
+		
+		Beachte: Identifizieren wir $V$ mit $\KK^n$ vermöge $v_j \mapsto e_j$, so geht dieses Skalarprodukt über auf das Standard-Skalarprodukt auf $\KK^n$.
+		\item Sei $V = \RR^2$.
+		Dann wird durch
+		\[
+			\sk{x,y} := (2x_1,x_2)y_1 + (x_1+2x_2)y_2
+		\]
+		ein Skalarprodukt auf $\RR^2$ definiert, welches nicht das Standard-Skalarprodukt auf $\RR^2$ ist.
+		Später werden wir aber sehen, dass es das Skalarprodukt bezüglich einer geeigneten Basis von $\RR^2$ ist.
+		Es gibt unendlich viele verschiedene Skalarprodukte auf $\RR^2$.
+		\item Sei $V = \mathcal{C}[a,b] = \{f \colon [a,b] \rightarrow \CC \text{ stetig}\}$ mit $a,b \in \RR, a < b$.
+		Dann wird durch
+		\[
+			\sk{f,g} := \int_{a}^{b} f(t) \ol{g(t)} dt
+		\]
+		ein Skalarprodukt auf $\mathcal{C}[a,b]$ definiert.
+	\end{enumerate}
+\end{beispiel}
+
+\begin{satz}[\textsc{Cauchy-Schwarz}-Ungleichung]
+	\label{satz:3.4}
+	Sei $\sk{\cdot,\cdot}$ ein Skalarprodukt auf dem $\KK$-Vektorraum $V$.
+	Dann gilt für alle $v,w \in V$: \index{Cauchy-Schwarz-Ungleichung}
+	\[
+		\abs{\sk{v,w}}^2 \leq \sk{v,v} \cdot \sk{w,w}
+	\]
+	Ferner gilt $\abs{\sk{v,w}}^2 = \sk{v,v} \sk{w,w}$ genau dann, wenn $v$ und $w$ linear abhängig sind.
+\end{satz}
+
+\begin{beweis}
+	Ist $w = 0$, so sind beide Seiten $0$ und die Behauptung folgt.
+	Sei also o.B.d.A. $w \neq 0$.
+	Für $\lambda in \KK$ folgt:
+	\begin{align*}
+		0 &\stack{}{\leq} \sk{v-\lambda w, v - \lambda w} \\
+		&\stack{(i)}{=} \sk{v,v-\lambda w} - \lambda \sk{w,v-\lambda w} \\
+		&\stack{\eqref{eq:antilin}}{=} \sk{v,v} - \ol{\lambda} \sk{v,w} - \lambda \sk{w,v} + \lambda \ol{\lambda} \sk{w,w}.
+	\end{align*}
+	Mit $\lambda = \frac{\sk{v,w}}{\sk{w,w}}$ (geht, da $w \neq 0$) folgt
+	\begin{align*}
+		0 &\leq \sk{v,v} - \frac{\ol{\sk{v,w}}}{\sk{w,w}} \sk{v,w} - \frac{\ol{v,w}}{\sk{w,w}} \sk{w,v} + \frac{\abs{\sk{v,w}}^2}{\sk{w,w}^2} \sk{w,w} \\
+		&= \sk{v,v} - \frac{1}{\sk{w,w}} \abs{\sk{v,w}}^2 - \frac{1}{\sk{w,w}} \abs{\sk{v,w}}^2 + \frac{1}{\sk{w,w}} \abs{\sk{v,w}}^2 \\
+		&= \sk{v,v} - \frac{1}{\sk{w.w}} \abs{\sk{v,w}}^2.
+	\end{align*}
+	Es folgt $\frac{1}{\sk{w,w}} \abs{\sk{v,w}}^2 \leq \sk{v,v}$ und damit $\abs{\sk{v,w}}^2 \leq \sk{v,v} \sk{w,w}$.
+	
+	Es gilt Gleichheit genau dann, wenn
+	\[
+		0 = \sk{v,v} - \frac{1}{\sk{w,w}} \abs{\sk{v,w}}^2 = \sk{v- \lambda w, v-\lambda w}
+	\]
+	für $v = \frac{\sk{v,w}}{\sk{w,w}}$.
+	Da $\sk{\cdot,\cdot}$ positiv definit ist, folgt $v - \lambda w = 0$, also sind $v$ und $w$ linear abhängig.
+	
+	Umgekehrt gilt:
+	Sind $v$ und $w$ linear abhängig mit $w \neq 0$, so existiert ein $\mu \in \KK$ mit $v = \mu w$ und dann folgt
+	\begin{align*}
+		\abs{\sk{v,w}}^2 &= \abs{\sk{\mu w,w}}^2 = \abs{\mu \sk{w,w}}^2 = \abs{\mu}^2 \sk{w,w}^2 \\
+		&= \mu \ol{\mu} \sk{w,w} \sk{w,w} = \sk{\mu w, \mu w} \sk{w,w} \\
+		&= \sk{v,v} \sk{w,w}. \qedhere
+	\end{align*}
+\end{beweis}
+
+Wir wollen nun sehen, dass man mit Hilfe eines Skalarprodukts eine Norm auf $V$ definieren kann, das heißt ein Maß für die Länge eines Vektors:
+
+\begin{definition}[Norm]
+	\label{def:3.5}
+	Sei $V$ ein $\KK$-Vektorraum.
+	Eine \Index{Norm} auf $V$ ist eine Abbildung $\Norm{\cdot} \colon V \rightarrow [0,\infty)$	mit den Eigenschaften
+	\begin{enumerate}[(i)]
+		\item $\no{\lambda v} = \abs{\lambda} \cdot \no{v}$ für alle $\lambda \in \KK$ und $v \in V$.
+		\item $\no{v+w} \leq \no{v} + \no{w}$ für alle $v,w \in V$ (\Index{Dreiecksungleichung})
+		\item $\no{v} = 0 \quad \Leftrightarrow \quad v = 0$.
+	\end{enumerate}
+	\newpage
+	Ist $\no{\cdot}$ eine Norm auf $V$ so heißt für $v,w \in V$
+	\[
+		d(v,w) := \no{v-w}
+	\]
+	der \Index{Abstand} von $v$ zu $w$ bezüglich $\no{\cdot}$.
+\end{definition}
+
+\begin{beispiel}
+	\label{bsp:3.6}
+	\mbox{} \\[-1.4cm]
+	\begin{enumerate}[(a)]
+		\item Ist $V = \CC$ (als $\CC$-Vektorraum oder auch als $\RR$-Vektorraum), so ist $\no{z} := \abs{z}$ eine Norm auf $\CC$.
+		Ebenso ist $\no{x} = \abs{x}$ eine Norm auf $\RR$ als $\RR$-Vektorraum.
+		\item Ist $V = \mathcal{C}[a,b]$, so ist
+		\[
+			\no{f}_{\infty} := \sup_{x \in [a,b]} \abs{f(x)}
+		\]
+		eine Norm auf $\mathcal{C}[a,b]$ -- die \Index{Supremumsnorm}.
+		Diese spielt eine wichtige Rolle in der Analysis.
+		\item Ist $V = \KK^n$, so sind $\no{x}_1 := \sum_{i=1}^{n} \abs{x_i}$ und $\no{x}_\infty := \max\{ \abs{x_1},\dots,\abs{x_n}\}$ Normen auf $\KK^n$. Allgemein ist die $\mathbf{p}$\textbf{-Norm} definiert durch \index{p-Norm@$p$-Norm}
+		\[
+			\no{x}_p = \enb{\sum_{i=1}^{n} \abs{x_i}^p}^{\frac{1}{p}}.
+		\]
+	\end{enumerate}
+	Es gibt also sehr viele verschiedene Normen auf $\KK^n$.
+\end{beispiel}
+
+\begin{satz}[Induzierte Norm und Parallelogrammgleichung]
+	\label{satz:3.7}
+	Sei $\sk{\cdot,\cdot}$ ein Skalarprodukt auf dem $\KK$-Vektorraum $V$.
+	Dann wird durch
+	\[
+		\no{v} := \sqrt{\sk{v,v}}, \qquad v \in V
+	\]
+	eine Norm auf $V$ definiert.
+	Diese erfüllt für alle $v,w \in V$ die \Index{Parallelogrammgleichung}
+	\[
+		\no{v+w}^2 + \no{v-w}^2 = 2 (\no{v}^2 + \no{w}^2).
+	\]
+\end{satz}	
+	
+\begin{figure}[h]
+	\centering
+	\begin{tikzpicture}[scale=.4,>=Latex]
+			\draw (0,0) node[fill,circle,inner sep=1.5pt]{};
+			\draw (5,2) node[fill,circle,inner sep=1.5pt]{};
+			\draw (2,5) node[fill,circle,inner sep=1.5pt]{};
+			\draw (7,7) node[fill,circle,inner sep=1.5pt]{};
+			\draw (3,-3) node[fill,circle,inner sep=1.5pt]{};
+			
+			\draw (0,0) node[left]{$0$};
+			\draw (5,2) node[right]{$v$};
+			\draw (2,5) node[left]{$w$};
+			\draw (7,7) node[right]{$v+w$};
+			\draw (3,-3) node[right]{$v-w$};
+			%\draw (3.3,1.33) node[rotate=-20]{$\Norm{v-w}$};
+			
+			\draw [->,thick] (0,0) -- (2,5);
+			\draw [->,thick] (0,0) -- (5,2);
+			\draw [->,darkgray] (0,0) -- (7,7);
+			\draw [->,darkgray] (0,0) -- (3,-3);
+			\draw [thick,dashed] (2,5) -- (7,7) -- (3,-3);
+			\draw [thick,dashed] (5,2) -- (2,5);
+	\end{tikzpicture}
+	\caption{Die Summe der Quadrate der Diagonalen ist gleich der doppelten Summe der Quadrate der Seiten.}
+\end{figure}
+\newpage
+\begin{beweis}
+	Zunächst gilt $\no{\lambda v}^2 = \sk{\lambda v,\lambda v} = \lambda \ol{\lambda} \sk{v,v} = \abs{\lambda}^2 \sk{v,v}$, also $\no{\lambda v} = \abs{\lambda} \cdot \no{v}$ für alle $\lambda \in \KK$ und $v \in V$.
+	Sind $v,w \in V$, so gilt
+	\begin{align*}
+		\no{v+w}^2 &\stack{}{} \sk{v+w,v+w} = \sk{v,v} + \sk{v,w} + \sk{w,v} + \sk{w,w} \\
+		&\stack{}{=} \no{v}^2 + \sk{v,w} + \ol{\sk{v,w}} + \no{w}^2 \\
+		&\stack{}{=} \no{v}^2 + 2 \cdot \Re( \sk{v,w}) + \no{w}^2 \\
+		&\stack{}{\leq} \no{v}^2 + 2 \cdot \abs{\sk{v,w}} + \no{w}^2 \\
+		&\stack{\ref{satz:3.4}}{\leq} \no{v}^2 + 2 \cdot \no{v} \cdot \no{w} + \no{w}^2 = (\no{v} + \no{w})^2,
+	\end{align*}
+	also folgt $\no{v+w} \leq \no{v} + \no{w}$.
+	
+	Schließlich gilt $\no{v} = 0 \Rightarrow \sk{v,v} = \no{v}^2 = 0 \Rightarrow v = 0$.
+	Damit ist $\no{\cdot}$ eine Norm.
+	Es gilt dann für alle $v,w \in V$:
+	\begin{align*}
+		\no{v+w}^2 + \no{v-w}^2 &= \sk{v+w,v+w} + \sk{v-w,v-w} \\
+		&= \sk{v,v} + \sk{v,w} + \sk{w,v} + \sk{w,w} + \sk{v,v} - \sk{v,w} - \sk{w,v} + \sk{w,w} \\
+		&= 2 \sk{v,v} + 2\sk{w,w} = 2 \cdot \no{v}^2 + 2 \cdot \no{w}^2 \qedhere
+	\end{align*}
+\end{beweis}
+
+\begin{bemerkung}
+	\label{bem:3.9}
+	Man kann zeigen, dass jede Norm, die die Parallelogrammgleichung erfüllt, durch ein Skalarprodukt definiert ist.
+	Im Fall $\KK = \RR$ ist dann
+	\[
+		\sk{v,w} := \frac{1}{4} (\no{v+w}^2 - \no{v-w}^2).
+	\]
+	Im Fall $\KK= \CC$ gilt
+	\begin{align*}
+		\sk{v,w} := &\frac{1}{4} \sum_{k=0}^{3} i^k \no{v+i^kw}^2 \\
+		= &\frac{1}{4} (\no{v+w}^2 + i \cdot \no{v+iw}^2 - \no{v-w}^2 - i \cdot \no{v-iw}^2).
+	\end{align*}
+\end{bemerkung}
