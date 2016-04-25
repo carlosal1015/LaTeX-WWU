@@ -16,9 +16,9 @@
 \input{../!config/vorwort.tex}
 \section*{Literatur}
 \begin{itemize}
-	\item \citetitle{Rosenberg} von J. \citeauthor{Rosenberg} \cite{Rosenberg}
-	\item \citetitle{Weibel} von Charles \citeauthor{Weibel} \cite{Weibel}
-	\item \citetitle{MilnorKtheory} von John \citeauthor{MilnorKtheory} \cite{MilnorKtheory}
+	\item \citetitle{Rosenberg} von J. \textsc{\citeauthor{Rosenberg}} \cite{Rosenberg}
+	\item \citetitle{Weibel} von Charles \textsc{\citeauthor{Weibel}} \cite{Weibel}
+	\item \citetitle{MilnorKtheory} von John \textsc{\citeauthor{MilnorKtheory}} \cite{MilnorKtheory}
 \end{itemize}
 \end{abstract}
 
@@ -30,7 +30,7 @@
 \setcounter{footnote}{0}
 
 \section{$K_0$ eines Ringes} % (fold)
-\label{sec:k_0_eines_ringes}
+\label{sec:1}
 
 \begin{definition}[{name=[{projektiv}]}]
 	Sei $R$ ein Ring.
@@ -163,7 +163,7 @@
   Dieser induzierte Gruppenhomomorphismus lässt sich auch mit der universellen Eigenschaft konstruieren.
 \end{bemerkung}
 
-\begin{definition}[{name=[{$K_0$ von Ringen}]}]
+\begin{definition}[{name=[{$K_0$ von Ringen}]},label=def:K0_ring]
 	Sei $R$ ein Ring. 
 	Wir definieren
 	\[
@@ -355,12 +355,14 @@ Insbesondere ist $[P]=0 \in K_0(R)$ genau dann, wenn es $n \in \mathbb{N}$ gibt 
 	Ein \bet{gebrochenes Ideal}\index{Ideal!gebrochenes} von $R$ ist ein $R$-Untermodul $I \neq 0$ von $Q$, zu dem es $a \in R$ gibt mit $a I \subseteq R$.
 	Jedes nichttriviale Ideal von $R$ ist auch ein gebrochenes Ideal.
 	Zur besseren Unterscheidung nennt man dann Ideale von $R$ auch \bet{ganze Ideale}\index{Ideal!ganzes}.
+	
 	Für $\frac{a}{b} \in Q$, $a,b\neq 0$ ist $\frac{a R}{b}$ ein bebrochenes Ideal.
 	Wir nennen solche gebrochenen Ideale \Index{gebrochene Hauptideale}.
 \end{definition}
 
-\begin{bemerkung}
-	Die Menge der gebrochenen Ideale bildet bezüglich Multiplikation von gebrochenen Idealen $I \cdot J := \set[\big]{\sum_{i} a_i b_i \given a_i \in I, b_i \in J}$ eine abelsche Halbgruppe mit neutralem Element $R$.
+\begin{bemerkung}[{name=[{algebraische Struktur auf Menge der gebrochenen Ideale}]}]
+	Die Menge der gebrochenen Ideale bildet bezüglich Multiplikation von gebrochenen Idealen $I \cdot J := \set[\big]{\sum_{i} a_i b_i \given a_i \in I, b_i \in J}$ eine abelsche Halbgruppe. 
+	Das neutrale Element ist dabei $R$.
 \end{bemerkung}
 
 \begin{definition}[{name=[{Dedekind-Ring}]}]
@@ -383,7 +385,7 @@ Insbesondere ist $[P]=0 \in K_0(R)$ genau dann, wenn es $n \in \mathbb{N}$ gibt 
 	\]
 \end{definition}
 
-\begin{lemma}
+\begin{lemma}[{name=[{Klassengruppe ist trivial gdw. $R$ ein Hauptidealring ist}]}]
 	$C(R)=0 \iff R$ ist Hauptidealring.
 \end{lemma}
 \begin{beweis}
@@ -401,8 +403,12 @@ Insbesondere ist $[P]=0 \in K_0(R)$ genau dann, wenn es $n \in \mathbb{N}$ gibt 
 	Sei $R$ der Ring der ganzen Zahlen in $F$, das heißt $\alpha \in F$ liegt genau dann in $R$, wenn $\alpha$ Nullstelle eines normierten Polynoms über $\mathbb{Z}$ ist.
 	Dann ist $R$ ein Dedekind-Ring.
 \end{satz}
-\todo[inline]{Referenz Rosenberg}
+\begin{beweis}
+	\emph{siehe \todo{Referenz \textsc{Rosenberg}}}
+\end{beweis}
 
+Wir wollen nun einen Zusammenhang zwischen der eben eingeführten Klassengruppe und der Gruppe $K_0$ eines Ringes herstellen, die in \hyperref[def:K0_ring]{\cref*{sec:1} \autoref{def:K0_ring}} definiert wurde.
+Dies leistet der folgende Satz:
 
 \begin{satz}[label=satz:klassengruppe_K_0]
 	Sei $R$ ein Dedekind-Ring.
