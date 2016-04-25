@@ -493,11 +493,11 @@ Dies leistet der folgende Satz:
 	Nach c) aus \autoref{lem:ideale_dedekind} ist dann $I$ ein Hauptideal und $I$ ist trivial in $C(R)$.
 \end{beweis}
 
-\begin{satz}
+\begin{satz}[label=satz:primfaktoren_ideale]
 	Sei $R$ ein Dedekind-Ring.
 	\begin{enumerate}[a)]
 		\item Alle Primideale $\neq 0$ sind maximal.
-		\item Jedes Ideal $\neq 0$ lässt sich eindeutig als Produkt von Primidealen schreibem.
+		\item Jedes Ideal $\neq 0$ lässt sich eindeutig als Produkt von Primidealen schreiben.
 	\end{enumerate}
 \end{satz}
 \begin{beweis}
@@ -510,7 +510,7 @@ Dies leistet der folgende Satz:
 		\item \emph{Existenz:} Sei $\mathcal{C}$ die Menge der Ideale $\neq 0$, die sich nicht als Produkt von Primidealen schreiben lassen.
 		Wir zeigen $\mathcal{C}=\emptyset$.
 		Angeommen, dies wäre nicht der Fall.
-		Da Ideale in $R$ endlich erzeugt sind, finden wir mit Zorns Lemma ein maximales Element $I \in \mathcal{C}$.
+		Da Ideale in $R$ endlich erzeugt sind, finden wir mit Zorns Lemma ein maximales Element $I \in \mathcal{C}$.\todo{das geht auch ohne das Lemma von Zorn}
 		
 		Offenbar ist $I$ kein maximales Ideal, andernfalls wäre $I$ selbst prim.
 		Sei $I \subsetneq J \subsetneq R$.
@@ -529,7 +529,7 @@ Dies leistet der folgende Satz:
 		\]
 		Da $P_1$ prim ist, liegt eines der $Q_i$ in $P_1$, ohne Einschränkungen $Q_1 \subseteq P_1$.
 		Da nach a) $Q_1$ maximal ist, folgt $Q_1=P_1$.
-		Es folgt $p_2 \cdot \ldots \cdot P_m = Q_2 \cdot \ldots \cdot Q_n$ und die Behauptung folgt induktiv.
+		Es folgt $P_2 \cdot \ldots \cdot P_m = Q_2 \cdot \ldots \cdot Q_n$ und die Behauptung folgt induktiv.
 		\qedhere
 	\end{enumerate}
 \end{beweis}
@@ -542,6 +542,139 @@ Dies leistet der folgende Satz:
 \begin{beweis}
 	Angenommen dies gilt nicht, dann gibt es $a \in  I\setminus P$, $b \in J \setminus P$.
 	Dann gilt $a \cdot b \in I \cdot J \subseteq P$, also $a \in P$ oder $b \in P$. Widerspruch!
+\end{beweis}
+
+
+\begin{lemma}[label=lem:ideale_dedekind_summe_invers]
+    Sei $R$ ein Dedekind-Ring und $I$, $J$ Ideale in $R$.
+    Dann gibt es $a \in I$ mit $I^{-1}a + J = R$.
+\end{lemma}
+\begin{beweis}
+    Wegen der Primfaktorzerlegung für $J$ (siehe \autoref{satz:primfaktoren_ideale}) gibt es nur endlich viele maximale Ideale $P_1, \ldots ,P_n$ oberhalb von $J$.
+    Wir zeigen: 
+    \[
+        \exists a \in I  \text{ mit } I^{-1}a \not\subseteq P_i \text{ für alle } i
+    \]
+    Dann kann $I^{-1}a +J$ in keinem der $P_i$ liegen und wegen $J \subseteq I^{-1}a + J$ kann $I^{-1}a +J$ auch in keinem anderen maximalen Ideal liegen.
+    Also gilt $I^{-1}a +J=R$.
+    
+    Zur Konstruktion von $a$ wählen wir für jedes $i$ ein 
+    \[
+        a_i \in I P_1 \cdot \ldots \bcancel{P_i} \cdot \ldots \cdot P_n \setminus I \cdot P_1 \cdot \ldots \cdot P_n
+    \]
+    Dann ist $a_i I^{-1} \subseteq P_j$ für $j\neq i$, aber $a_iI^{-1} \not\subseteq P_i$, da andernfalls $a_i I^{-1} \subseteq \bigcap_{i=1}^n P_i = P_1 \cdot \ldots \cdot P_n$, also $a_i \in IP_1 \cdot \ldots \cdot P_n$.
+    Es folgt für $a := a_1 + \ldots +a_n$ nun
+    \(
+        a I^{-1} \not\subseteq P_i
+    \).
+\end{beweis}
+
+\begin{lemma}[label=lem:linearkombi_eins_dedekind]
+    Seien $I_1$, $I_2$ nichttriviale Ideale in einem Dedekind-Ring $R$.
+    Dann gibt es $a_i \in I_i$, $b_i \in I^{-1}_i$ mit $1 = a_2 b_2 -a_1 b_1$
+\end{lemma}
+\begin{beweis}
+    Wähle $a_1 \in I_1$ mit $a_1 \neq 0$.
+    Dann ist $J := a_1 I^{-1} \subseteq R$ ein Ideal.
+    Für $I=I_2$ gibt es nach \autoref{lem:ideale_dedekind_summe_invers} $a_2 \in I_2$ mit $I^{-1}_2 a_2 + a_1 I_1^{-1} =R$.
+    Also gibt es $b_i \in I_1^{-1}$ mit $1 = b_2 a_2 - a_1 b_1$.
+\end{beweis}
+
+\begin{beweis}[{name={von \autoref{prop:summe_ideale}}}]
+    Sind $a_i$, $b_i$ wie in \autoref{lem:linearkombi_eins_dedekind}, so ist
+    \[
+        \begin{pmatrix}
+            a_2 & a_1 \\
+            b_1 & b_2
+        \end{pmatrix} \colon I_1 \oplus I_2 \longrightarrow I_1 I_2 \oplus R
+    \]
+    ein Isomorphismus mit Inversem
+    \[
+        \begin{pmatrix*}[r]
+            b_2 & -a_1 \\
+            -b_1 & a_2
+        \end{pmatrix*} \colon I_1 I_2 \oplus R \longrightarrow I_1 \oplus I_2 \qedhere
+    \]
+\end{beweis}
+
+\begin{beispiel}
+    Betrachte $R := \mathbb{Z} \benbrace*{\sqrt{-5}} \subseteq \mathbb{Q} \benbrace*{\sqrt{-5}} =: K$.
+    \begin{enumerate}[a)]
+        \item Sei $I \subseteq R$ ein nichttriviales Ideal.
+        Sei $\alpha = a + b \cdot \sqrt{-5} \in Q$ mit $\alpha I \subseteq I$.
+        Dann gilt $\alpha \in R$.
+        \item Sei $I \subseteq R$ ein nichttriviales Ideal.
+        Dann gibt es $c \in K \setminus R$ mit $c I \subseteq R$.
+        \item $R$ ist ein Dedekind-Ring.
+        \item $\enbrace*{2, 1 + \sqrt{-5}}$ ist ein projektiver $R$-Modul, der nicht stabil frei ist, also
+        \[
+            \benbrace[\Big]{\enbrace[\big]{2, 1+ \sqrt{-5}}} \neq 0 \in \tilde{K}_0(R)
+        \]
+        \item Es gilt $2 \benbrace[\Big]{\enbrace[\big]{2, 1+ \sqrt{-5}}} =0 \in \tilde{K}_0(R)$.
+    \end{enumerate}
+\end{beispiel}
+\begin{beweis}
+    \begin{enumerate}[a)]
+        \item Als $\mathbb{Z}$-Modul hat $I$ Rang 2.
+        Sei $\chi_\alpha \in \mathbb{Z} \benbrace*{\lambda}$ das charakteristische Polynom von $\alpha \colon I \to I$.
+        Da $I \otimes_{\mathbb{Z}} \mathbb{Q} = K$ ist $\chi_\alpha$ auch das charakteristische Polynom über $\mathbb{Q}$ von $\alpha \colon K \to K$.
+        Indem wir die $\mathbb{Q}$-Basis $\set*{1, \sqrt{-5}}$ von $K$ benutzen erhalten wir 
+        \[
+            \chi_\alpha(X) = \det \begin{pmatrix}
+                X- a & 5b\\
+                -b & X-a
+            \end{pmatrix} = (X-a)^2 + 5 b^2 = X^2 -2 a X + (a^2 + 5b^2)
+        \]
+        Also $2a, a^2 + 5b^2 \in \mathbb{Z}$, insbesondere $20b^2 \in \mathbb{Z}$.
+        Damit ist auch $2 b \in \mathbb{Z}$, es folgt $a^2 +b^2 \in \mathbb{Z}$ und daher
+        \[
+            (2a)^2 + (2b)^2 \equiv 0 \mod 4
+        \]
+        Wäre $2 a$ oder $2b$ ungerade, so wären beide ungerade und $(2a)^2 + (2b)^2 \equiv 2 \mod 4$.
+        Also sind $2a$ und $2b$ gerade und $a,b \in \mathbb{Z}$.
+        \item Als $\mathbb{Z}$-Modul hat $I$ Rang 2, insbesondere wird $I=(\alpha,\beta)$ von zwei Elementen erzeugt.
+        Nun sind auch $(\alpha), (\beta) \subseteq (\alpha,\beta)$ Ideale von Rang 2.
+        Es folgt $(\alpha) \cap (\beta) \neq (0)$, denn sonst ist $(\alpha) \oplus (\beta) \subseteq (\alpha,\beta)$ ein Untermodul vom Rang 4.
+        Sei $0 \neq r \in (\alpha) \cap (\beta)$, also $r = a \cdot \alpha = b \cdot \beta$ mit $a,b \in R$.
+        Sei $c \coloneqq \frac{ab}{r} $.
+        Dann ist $c \cdot I \subseteq R$.\todo{noch nicht ganz fertig}
+        \item Sei $I \subseteq R$ ein Ideal.
+        Sei $J = \set*{\alpha \in K \given \alpha I \subseteq R}$.
+        Es ist $I \cdot J =R$ zu zeigen.
+        
+        Sei $N \coloneqq \set*{\alpha \in K \given \alpha \cdot I \cdot J \subseteq R}$.
+        Dann ist
+        \[
+            (N \cdot J) \cdot I = N \cdot (I \cdot J) \subseteq R
+        \]
+        also $N \cdot J \subseteq J$ nach Definition von $J$.
+        Mit a) folgt $N \subseteq R$.
+        Ist $J \cdot I \subsetneq R$, so folgt mit b) $N \subsetneq R$.
+        Also ist $J \cdot I =R$. 
+        \item \begin{enumerate}[(i)]
+            \item Zu zeigen: $\enbrace*{2, 1+ \sqrt{-5}} \subsetneq R$. Es gilt
+            \begin{align}
+                2 \enbrace*{a + b\sqrt{-5}} + \enbrace*{1 + \sqrt{-5}} \enbrace*{\alpha + \beta \cdot \sqrt{-5}} &= 2a + 2 b\cdot \sqrt{-5} + \alpha - 5 \beta +(\alpha +\beta) \sqrt{-5} \\
+                &= 2 a + \alpha - 5 \beta + \enbrace*{2b + \alpha+ \beta} \sqrt{-5}
+            \end{align}
+            Aus den Gleichungen $2 a + \alpha - 5 \beta = 1$ und $2 b +\alpha + \beta=0$ folgt
+            \[
+                2a -2b -6 \beta =1
+            \]
+            was einen Widerspruch darstellt, also $1 \notin \enbrace*{2, 1+ \sqrt{-5}}$.
+            \item $\enbrace*{2, 1+ \sqrt{-5}}$ ist kein Hauptideal.
+            Angenommen $\enbrace*{2, 1+ \sqrt{-5}} = (\alpha)$.
+            Dann teilt $\alpha$ sowohl $2$ als auch $1+ \sqrt{-5}$ und $\abs*{\alpha}^2$ teilt $4$ und $6$, also $\norm*{\alpha}^2 \in \set*{1,2}$.
+            Da $2$ nicht als $\norm*{a + b \sqrt{-5}}^2$ vorkommt, folgt $\abs*{\alpha}^2=1$ und $\alpha = \pm 1$.
+            Aber $\enbrace*{2, 1+ \sqrt{-5}} \neq R$.
+        \end{enumerate}
+        \item Es gilt
+        \begin{align}
+            \enbrace*{2, 1+ \sqrt{-5}} \cdot \enbrace*{2, 1+ \sqrt{-5}} = \enbrace*{4, 2 + 2 \sqrt{-5}, -4 + 2\sqrt{-5}} = (2) 
+        \end{align}
+        Dies ist die $0$ in $\tilde{K}_0(R)$.
+        \qedhere
+    \end{enumerate}
 \end{beweis}
 % section 2 (end)
 
