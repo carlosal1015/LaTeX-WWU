@@ -486,7 +486,7 @@ Wir erhalten:
 	\end{align}
 \end{beweis}
 
-\begin{satz}[{name={Takesaki}}]
+\begin{satz}[{name={Takesaki}},label=satz:121]
 	Seien $A =C_0(X)$ und $B$ $C^*$-Algebren.
 	Dann existiert nur eine $C^*$-Norm auf $A \odot B$ und $A \otimes B \cong C_0(X,B)$ (mit $a \otimes b(x) = a(x) \cdot b$).
 	Falls $B=C_0(Y)$, so haben wir $A \otimes B \cong C_0(X \times Y)$ mit $(a \otimes b)(x,y)=a(x) \cdot b(y)$.
@@ -496,7 +496,7 @@ Wir erhalten:
 	\begin{enumerate}[(i)]
 		\item Wir dürfen annehmen, dass $A$ und $B$ unital sind: 
 		\[
-			\norm*{\cdot }_{\min, A^\simm \odot B^\simm}\Big|_{A \odot B} = \norm*{\cdot }_{\min, A \odot B}
+			\norm*{\cdot }_{\min, A^\simm \odot B^\simm}\big|_{A \odot B} = \norm*{\cdot }_{\min, A \odot B}
 		\]
 		denn $\pi_A^\simm \otimes \pi_B^\simm\big|_{A \odot B} = \pi_A \otimes \pi_B$.
 		Ebenso für $\norm*{\cdot }_\gamma$, denn $\gamma$ setzt sich fort zu $\gamma^\simm$ auf $A^\simm \otimes B^\simm$ (nach \autoref{satz:111} bzw. \autoref{kor:112}).
@@ -541,10 +541,116 @@ Wir erhalten:
 		\]
 		Damit ist $\ker \pi_{\ev_x \otimes g} = \delta^{-1}_x (\ker \pi_g)$.
 		Dies hängt nur von $\ker \pi_g$ ab und damit ist $\Theta$ wohldefiniert.
+		\item $\norm*{\cdot}_{\max}=\norm*{\cdot}_{\min}$ ist die einzige $C^*$-Norm auf $A \odot B$:
+        
+        Sei $\gamma$ eine weitere $C^*$-Norm auf $A \odot B$ und $q \colon A \tensormax B \twoheadrightarrow  A \otimes_\gamma B$ die Quotientenabbildung.
+        Dann ist 
+        \[
+            Y \coloneqq \set*{y \in \Prim(A \tensormax B) \given \ker q \subset y} \subset_{\mathrm{abg.}} \Prim \enbrace*{A \tensormax B}
+        \]
+        Erinnerung an die Hülle-Kern-Topologie:\todo{hübsch machen} 
+        \[
+            \begin{tikzcd}
+                \set*{\text{abg. Ideale von }C} \rar["\approx"] & \set*{\text{abg. Teilmengen von }\Prim C } \\
+                J \rar[mapsto] & \set*{y \in \Prim C \given J \subset y} \\
+                \bigcap_{y \in W} y & W \lar[mapsto]
+            \end{tikzcd}
+        \]
+        Angenommen $\set*{0} \neq \ker q$.
+        Dann ist $Y \neq \Prim (A \tensormax B) \approx X \times \Prim B$.
+        Folglich existiert $\emptyset \neq U \subset \Prim A =X$ offen und $\emptyset \neq V \subset \Prim B$ offen, sodass $U \times V \cap Y = \emptyset$.
+        Dann sind $X \setminus U \subsetneq X$ und $\Prim B \setminus V \subsetneq \Prim B$ abgeschlossen, sowie $I \coloneqq \bigcap_{x \in X \setminus U} \ker \ev_x \neq \set*{0}$.
+        Weiter ist $I \lhd A$ ein Ideal.
+        Auch
+        \(
+            J \coloneqq \bigcap_{z \in \Prim B \setminus V} z \neq \set*{0}
+        \)
+        ist ein Ideal in $B$.
+        Wir haben nun\marginnote{nach (iv) kann man $y=(y_A,y_B)$ schreiben}
+        \[
+            \ker q = \bigcap_{y \in Y} y \supset \bigcap_{y \notin U \times V} y = \enbrace*{\bigcap_{y_A \notin U} y} \cap \enbrace*{\bigcap_{y_B \notin V} y} \supset I \odot B \cap A \odot J \supset I \odot J \neq \set*{0}
+        \]
+        Damit folgt $\gamma(I \odot J)=0$.
+        Aber $\gamma|_{I \odot J}$ ist eine $C^*$-Norm, darf also nicht verschwinden. Widerspruch!\qedhere
 	\end{enumerate}
 \end{beweis}
 
+\begin{satz}[{name=[Die minimale Norm ist minimal]}]
+    Seien $A,B$ $C^*$-Algebren und $\gamma$ eine $C^*$-Norm auf $A \odot B$.
+    Dann gilt $\norm*{x}_{\min} \le \gamma(x)$ für alle $x \in A \odot B$.
+\end{satz}
+\begin{beweis}
+    Wir beweisen den Satz in mehreren Schritten:
+    \begin{itemize}
+        \item Wir dürfen $A$ und $B$ als unital annehmen:
+        
+        Nach \autoref{kor:112} setzt sich $\gamma$ auf $A^\simm \odot B^\simm$ fort.
+        Weiter gilt $\norm*{\cdot}_{\min,A^\simm \odot B^\simm}\big|_{A \odot B} = \norm*{\cdot}_{\min, A \odot B}$. (warum?)\marginnote{Darstellungen fortsetzen}
+        \item Für reine Zustände $f \in P(A)$ und $g \in P(B)$ ist $f \otimes g$ stetig bezüglich $\gamma$ und setzt zu einem Zustand auf $A \otimes_\gamma B$ fort:
+        
+        Setze $S_\gamma \coloneqq \set[\big]{(f,g) \in P(A) \times P(B) \given f \otimes g \text{ hat Fortsetzung zu Zustand auf } A \otimes_\gamma B}$.
+        Dann ist $S_\gamma \subset P(A) \times P(B)$ abgeschlossen in der Produkttopologie der $\w^*$-Topologien (Übung).
+        Für $b \in B_+$ setze $C \coloneqq C^*(b) \cong C_0 \enbrace*{\sigma(b) \setminus \set*{0}}$.
+        Wähle $\omega \in P(C)$ mit $\omega(b)=\norm*{b}$.\todo{Ref letztes Semester}
+        Falls $f' \in P(A)$, dann ist $f' \otimes \omega \in P(A \tensormax C)= P (A \otimes_\gamma C)$ wie im Beweis von \autoref{satz:121} gesehen.
+        Nach Krein-Milmann existiert eine Fortsetzung $\Theta \in P(A \otimes_\gamma B)$.\todo{ref  7.14 letztes Semester}
+        
+        Es gilt $\Theta = f' \otimes g'$, wobei $g' \coloneqq \Theta|_{\ind_A \otimes_\gamma B} \in P(B)$:
+        Sei $y \in B_+^1$.
+        Dann definieren wir $f_1 \in A^*$ durch $f_1(x) := \Theta(x \otimes y)$ und $f_2 \in  A^*$ durch $f_2(x) \coloneqq \Theta(x \otimes \ind_B -y)$.
+        Wir haben dann $f_1 + f_2 =f'$ und da $f'$ rein ist, folgt $f_1 = \lambda \cdot f'$ mit $\lambda = f_1(\ind_A) =g'(y)$.
+        Also ist
+        \[
+            \Theta(x \otimes y) =f_1(x) = f'(x) g'(y) = \enbrace*{f' \otimes g'}(x \otimes y) \implies \Theta = f' \otimes g'
+        \]
+        $g'$ ist ein reiner Zustand (warum?).
+        Weiter gilt 
+        \[
+            \norm*{b} =\omega(b) =f' \otimes \omega(\ind_A \otimes b) = \Theta(\ind _A \otimes b) = (f' \otimes g')(\ind_A \otimes b) = g'(b)
+        \]
+        Insgesamt: $Y_{f'} \coloneqq \set*{g' \in P(B) \given (f',g') \in S_\gamma}$ normiert $B$ für jedes $f' \in P(A)$.
+        Damit ist $Y_{f'} \subset P(B)$ $\w^*$-dicht (Übung).
+        Aber $\set*{f'} \times Y_{f'} \subset S_\gamma \subset_{\mathrm{abg.}} P(A) \times P(B)$, also 
+        \[
+            \set*{f'} \times P(B) = \set*{f'} \times \overline{Y_{f'}}^{P(B)} = \overline{\set*{f'} \times Y_{f'}}^{P(A) \times P(B)} \subset S_\gamma
+        \]
+        Es folgt also $P(A) \times P(B) \subset S_\gamma \subset P(A) \times P(B)$.
+        \item Jedes $f \otimes g$ mit $f \in S(A)$, $g \in S(B)$ setzt sich fort zu einem Zustand auf $A \otimes_\gamma B$ (Übung).
+        \item Für $x \in A \odot B$ gilt
+        \begin{align}
+            \norm*{x}_{\min}^2 &\StackTextClap{\ref{satz:120}}{=} \sup \set*{ \frac{f \otimes g(y^* x^* xy)}{f \otimes g(y* y)} \given f \in S(A), g \in S(B), y \in A \odot B, \text{ Nenner } \neq 0} \\
+            &\StackTextClap{(iii)}{\le} \sup \set*{ \frac{\gamma(x^* x) f \otimes g(y^*y)}{f \otimes g(y* y)} \given f \in S(A), g \in S(B), y \in A \odot B, \text{ Nenner } \neq 0}\\
+            &= \gamma(x^*x) = \gamma(x)^2 \qedhere
+        \end{align}
+    \end{itemize}
+\end{beweis}
+
+\begin{bemerkung}
+    \begin{enumerate}[(i)]
+        \item Für jede $C^*$-Norm $\gamma$ auf $A \odot B$ gilt 
+        \[
+            \norm*{\cdot}_{\min} \le \gamma(\cdot ) \le \norm*{\cdot}_{\max}
+        \]
+        und $\gamma(a \otimes b) = \norm*{a}_A \cdot \norm*{b}_B$ für $a \in A$ und $b \in B$, denn
+        \begin{align}
+            \norm*{a}^2 \cdot \norm*{b}^2 \ge \gamma(a \otimes b)^2 \ge \norm*{a \otimes b}_{\min}^2 &\StackTextClap{\ref{satz:120}}{\ge} \sup \set[\big]{(f \otimes g) \enbrace*{a^* a \otimes b^*b} \given f \in P(A), g \in P(B)} \\
+            &= \sup \set*{f (a^*a) g(b^*b) \given f \in P(A), g \in P(B)} \\
+            &= \norm*{a}^2 \cdot \norm*{b}^2
+        \end{align}
+        \item Wir haben kanonische $^*$-Homomorphismen 
+        $A \tensormax B \twoheadrightarrow A \otimes_\gamma B \twoheadrightarrow A \tensormin B$
+    \end{enumerate}
+\end{bemerkung}
+
+\begin{korollar}[{name=[minimales Tensorprodukt erhält Einfachheit]}]
+    Sind $A$ und $B$ einfach, so ist $A \tensormin B$ auch einfach.
+\end{korollar}
+\begin{beweis}
+    
+\end{beweis}
 % section 1 (end)
+
+
 
 \cleardoubleoddemptypage
 \pagenumbering{Alph}
