@@ -236,7 +236,7 @@ Wir wollen nun sehen, dass man mit Hilfe eines Skalarprodukts eine Norm auf $V$ 
 \end{beweis}
 
 \begin{bemerkung}
-	\label{bem:3.9}
+	\label{bem:3.8}
 	Man kann zeigen, dass jede Norm, die die Parallelogrammgleichung erfüllt, durch ein Skalarprodukt definiert ist.
 	Im Fall $\KK = \RR$ ist dann
 	\[
@@ -248,3 +248,130 @@ Wir wollen nun sehen, dass man mit Hilfe eines Skalarprodukts eine Norm auf $V$ 
 		= &\frac{1}{4} (\no{v+w}^2 + i \cdot \no{v+iw}^2 - \no{v-w}^2 - i \cdot \no{v-iw}^2).
 	\end{align*}
 \end{bemerkung}
+
+\begin{beispiel}
+	\label{bsp:3.9}
+	Sei $V = \RR^n$ versehen mit dem Standard-Skalarprodukt $\sk{x,y} = \sum_{i=1}^{n} x_iy_i$.
+	Dann ist die zugehörige Norm
+	\[
+		\no{x}_2 := \sqrt{\sk{x,x}} = \sqrt{\enb{\sum_{i=1}^{n} x_i^2}}
+	\]
+	die \Index{euklidische Norm} (oder $2$-Norm) auf $\RR^n$.
+	Für $x,y \in \RR^n$ ist dann $\no{x-y}_2 = \sqrt{\enb{\sum_{i=1}^{n} (x_i-y_i)^2}}$ der euklidische Abstand von $x$ zu $y$. \todo{Skizze einfügen!}
+	
+	Vergleiche: $\no{x-y}_1 = \abs{x_1-y_1} + \abs{x_2-y_2}$ ist die Länge des Wegs, wenn ich \enquote{über den rechten Winkel} von $x$ nach $y$ gehe.
+	$\no{x-y}_\infty$ gibt die größere der Strecken von $x_1$ nach $y_1$ und von $x_2$ nach $y_2$ an.
+\end{beispiel}
+
+\begin{definition}[euklidischer und unitärer Vektorraum, orthogonal]
+	\label{def:3.10}
+	Sei $V$ ein $\KK$-Vektorraum versehen mit einem Skalarprodukt $\sk{\cdot,\cdot}$.
+	\begin{enumerate}[(i)]
+		\item Ist $\KK= \RR$, so heißt $(V,\sk{\cdot,\cdot})$ ein \Index{euklidischer Vektorraum}.
+		\item Ist $\KK = \CC$, so heißt $(V,\sk{\cdot,\cdot})$ ein \Index{unitärer Vektorraum}
+	\end{enumerate}
+	Ist $(V,\sk{\cdot,\cdot})$ ein euklidischer bzw. unitärer Vektorraum und sind $v,w \in V$, so sagen wir:
+	$v$ steht \Index{orthogonal} (senkrecht) zu $w$ genau dann, wenn $\sk{v,w} = 0$.
+	Wir schreiben dann $v \perp w$.
+\end{definition}
+
+\begin{beispiel}
+	\label{bsp:3.11}
+	Sei $V = \RR^2$ mit dem Standard-Skalarprodukt $\sk{x,y} = x_1 y_1 + x_2 y_2$ für $x = (x_1,x_2)^T, y = (y_1,y_2)^T$.
+	Dann gilt:
+	\[
+		x \perp y \quad \Leftrightarrow \quad \sk{x,y} = 0 \quad x_1y_1 + x_2y_2 = 0.
+	\]
+	Ist dann $y \neq 0$, so folgt $(x_1, x_2)^T = \lambda \cdot (-y_2,y_1)^T$ für ein $\lambda \in \RR$, denn $x_1 y_1 + x_2 y_2 = 0$ gilt genau dann, wenn $(x_1 x_2)^T \in \Kern(A)$ ist mit $A = (y_1,y_2)$, und $\{ (-y_2,y_1)^T\}$ ist eine Basis von $\Kern(A)$.
+	Das heißt, $x$ steht senkrecht zu $y$ im \enquote{geometrischen} (anschaulichen) Sinn! \todo{Skizze einfügen!}
+	
+	Allgemein gilt: Ist $\sk{\cdot,\cdot}$ das Standard-Skalarprodukt auf $\RR^n$, so bedeutet $\sk{x,y} = 0$, dass $x \perp y$ im geometrischen Sinn (sofern man für $n > 3$ davon reden kann).
+	
+	Achtung: Verschiedene Skalarprodukte geben verschiedene Begriffe von $\perp$!
+	Zum Beispiel:
+	
+	Seien $v_1 = (1, 0)^T, v_2 = (1, 1)^T \in \RR^2$.
+	Dann ist $B = \{v_1,v_2\}$ eine Basis von $\RR^2$.
+	Definiere $\sk{\cdot,\cdot}_B$ auf $\RR^2$ wie in \autoref{bsp:3.3} (b).
+	Dann ist $v_1 \perp v_2$ bezüglich $\sk{\cdot,\cdot}_B$, aber nicht bezüglich des Standard-Skalarprodukts! \todo{Skizze einfügen!}
+\end{beispiel}
+
+\begin{bemerkung}
+	\label{bem:3.12}
+	Wenn wir wissen, was \enquote{senkrecht} bedeutet, können wir auch schon das senkrechte Lot eines (Punkt-)Vektors $w \in V$ auf eine Gerade $G \subseteq V$ bestimmen.
+	Wir betrachten dazu zunächst nur Geraden durch den Nullpunkt, also $G = \RR \cdot v$ (bzw. $G = \CC \cdot v$). \todo{Skizze einfügen!}
+	
+	Das Lot $L$ von $w$ auf $G$ ist eindeutig durch die Bedingungen $L \in G$ und $(w-L) \perp v$ festgelegt.
+\end{bemerkung}
+
+\begin{lemma}[orthogonale Projektion]
+	\label{lemma:3.13}
+	Sei $v \in V \setminus \setzero$.
+	Ist $w \in V$, so existiert genau ein Vektor $L \in G = \KK \cdot v$ mit $L \in G$ und $(w-L) \perp v$.
+	$L$ ist gegeben durch die Formel
+	\[
+		L = \frac{\sk{w,v}}{\sk{v,v}} \cdot v = \frac{\sk{w,v}}{\no{x}^2} \cdot v.
+	\]
+	$L$ heißt die \Index{orthogonale Projektion} (das senkrechte Lot) von $w$ auf die Gerade $G = \KK \cdot v$.
+\end{lemma}
+
+\begin{beweis}
+	Ist $L \in G = \KK \cdot v$ mit $(w-L) \perp v$, so existiert ein $\lambda \in \KK$ mit $L = \lambda v$ und
+	\begin{align*}
+		&0 = \sk{w-L,v} = \sk{w- \lambda v,v} = \sk{w,v} - \lambda \cdot \sk{v,v} \\
+		\Leftrightarrow \quad &\lambda = \frac{\sk{w,v}}{\sk{v,v}} \quad \Leftrightarrow \quad L = \lambda v = \frac{\sk{w,v}}{\sk{v,v}} \cdot v. \qedhere
+	\end{align*}
+\end{beweis}
+
+\begin{bemerkung}[Winkel zwischen Vektoren]
+	\label{bem:3.14}
+	Sei $(V,\sk{\cdot,\cdot})$ ein euklidischer Vektorraum (also $\KK= \RR$).
+	Sind dann $v,w \in V$ mit $\no{v} = \no{w} = 1$, so gilt
+	\begin{description}
+		\item[1. Fall:] Ist der (kleine) Winkel $\alpha$ zwischen $v$ und $w \leq \frac{\pi}{2}$, so gilt wegen $\no{v} = \no{w} = 1$:
+		$L = \sk{w,v} \cdot v$ mit $0 \leq \sk{w,v} \leq 1$ und dann $0 \leq \no{L} = \sk{w,v} \leq 1$ und damit folgt \todo{Skizze einfügen!}
+		\[
+			 \cos{\alpha} = \frac{\mathrm{Ankathete}}{\mathrm{Hypotenuse}} = \frac{\no{L}}{1} = \sk{w,v}
+		\] 
+		\item[2. Fall:] Ist $\alpha > \frac{\pi}{2}$, so gilt $L = \sk{w,v} \cdot v$ mit $\sk{w,v} < 0$.
+		Dann gilt für $\alpha' = \pi - \alpha$: \todo{Skizze einfügen!}
+		\[
+			\cos(\alpha') = \frac{\no{L}}{1} = -\sk{w,v}.
+		\]
+		Da $\cos(\pi-\alpha) = \cos(\alpha - \pi) = -\cos(\alpha)$ folgt $\cos(\alpha) = - \cos(\alpha') = \sk{w,v}$.
+		In beiden Fällen folgt also die Formel
+		\[
+			\cos(\alpha) = \sk{w,v}.
+		\]
+		Sind nun $v,w \in V$ beliebig mit $v,w \neq 0$ und ist $v' = \frac{1}{\no{v}} \cdot v, w' = \frac{1}{\no{w}} w$, so ist der Winkel $\alpha$ zwischen $v$ und $w$ gleich dem Winkel zwischen $v'$ und $w'$ und wir erhalten die Formel
+		\[
+			\cos(\alpha) = \sk{w',v'} = \sk{\frac{w}{\no{w}},\frac{v}{\no{v}}} = \frac{\sk{w,v}}{\no{w} \cdot \no{v}}.
+		\]
+		Beachte: In diesen Überlegungen haben wir so getan, als wäre $\perp$ in $V$ auch \enquote{anschaulich} das selbe wie $\perp$ (was aber von der Wahl als Skalarprodukts abhängt!)
+	\end{description}
+\end{bemerkung}
+
+\begin{definition}[Winkel]
+	\label{def:3.15}
+	Sei $(V,\sk{\cdot,\cdot})$ ein euklidischer Vektorraum und seien $0 \leq v,w \in V$.
+	Dann definieren wir den \Index{Winkel} $\alpha = \sphericalangle(v,w)$ zwischen $v$ und $w$ durch
+	\[
+		\alpha = \arccos \enb{\frac{\sk{v,w}}{\no{v} \cdot \no{w}}} \in [0,\pi].
+	\]
+	Hierbei ist $\arccos\colon [-1,1] \rightarrow [0,\pi]$ die Umkehrfunktion von $\cos \colon [0,\pi] \rightarrow [-1,1]$.
+\end{definition}
+
+Fazit: Ist $V$ ein reeller Vektorraum und $\sk{\cdot,\cdot}$ ein Skalarprodukt auf $V$, so liefert $\sk{\cdot,\cdot}$ die folgenden geometrischen Größen:
+\begin{enumerate}[(i)]
+	\item Die Länge $\no{v} = \sqrt{\sk{v,v}}$ von $v \in V$ (bezüglich $\sk{\cdot,\cdot}$).
+	\item Den Winkel $\alpha = \sphericalangle(v,w) = \arccos \enb{\frac{\sk{v,w}}{\no{v} \cdot \no{w}}}$ zwischen den Vektoren $v$ und $w$ (bezüglich $\sk{\cdot,\cdot}$).
+	Insbesondere gilt $v \perp w \Leftrightarrow \sk{v,w} = 0$.
+\end{enumerate}
+Ist $V$ ein $\CC$-Vektorraum mit Skalarprodukt $\sk{\cdot,\cdot}$, so können wir immer noch die Länge $\no{v} = \sqrt{\sk{v,v}}$ definieren, und die Relation $v \perp w$ definieren:
+\[
+	v \perp w \quad \Leftrightarrow \quad \sk{v,w} = 0.
+\]
+
+Beachte: Ist $V = \RR^n$ mit Standard-Skalarprodukt $\sk{x,y} = \sum_{i=1}^{n} x_i y_i$, so liefern $\no{x}$ und $\sphericalangle(x,y)$ die \enquote{anschaulichen} geometrischen Größen!
+\newpage
+
