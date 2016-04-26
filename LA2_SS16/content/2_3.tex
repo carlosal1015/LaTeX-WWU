@@ -257,11 +257,35 @@ Wir wollen nun sehen, dass man mit Hilfe eines Skalarprodukts eine Norm auf $V$ 
 		\no{x}_2 := \sqrt{\sk{x,x}} = \sqrt{\enb{\sum_{i=1}^{n} x_i^2}}
 	\]
 	die \Index{euklidische Norm} (oder $2$-Norm) auf $\RR^n$.
-	Für $x,y \in \RR^n$ ist dann $\no{x-y}_2 = \sqrt{\enb{\sum_{i=1}^{n} (x_i-y_i)^2}}$ der euklidische Abstand von $x$ zu $y$. \todo{Skizze einfügen!}
+	Für $x,y \in \RR^n$ ist dann $\no{x-y}_2 = \sqrt{\enb{\sum_{i=1}^{n} (x_i-y_i)^2}}$ der euklidische Abstand von $x$ zu $y$. 
+	\newpage
+	\begin{figure}[h]
+		\centering
+		\begin{tikzpicture}[>=Latex]
+		\draw [thick,->] (-.5,0) -- (3.5,0);
+		\draw [thick,->] (0,-.5) -- (0,3);
+		
+		\draw (1,-.1) node[below]{$x_1$} -- (1,.1);
+		\draw (3,-.1) node[below]{$y_1$} -- (3,.1);
+		\draw (-.1,1) node[left]{$x_2$} -- (.1,1);
+		\draw (-.1,2.5) node[left]{$y_2$} -- (.1,2.5);
+		
+		\draw (1,1) node[fill,circle,inner sep=1pt]{};
+		\draw (1,1) node[below]{$x$};
+		\draw (3,2.5) node[fill,circle,inner sep=1pt]{};
+		\draw (3,2.5) node[right]{$y$};
+		
+		\draw (1,1) coordinate (x) -- (3,2.5) coordinate (y) -- (3,1) coordinate (r) -- cycle;
+		
+		\draw pic["$\bullet$",draw=black,angle eccentricity=.5,angle radius=.5cm]{angle=y--r--x};
+		\end{tikzpicture}
+		\caption{Es gilt $\no{x-y}_2^2 = (x_1 - y_1)^2 + (x_2 - y_2)^2$ (Satz von \textsc{Pythagoras}).}
+	\end{figure}
 	
 	Vergleiche: $\no{x-y}_1 = \abs{x_1-y_1} + \abs{x_2-y_2}$ ist die Länge des Wegs, wenn ich \enquote{über den rechten Winkel} von $x$ nach $y$ gehe.
 	$\no{x-y}_\infty$ gibt die größere der Strecken von $x_1$ nach $y_1$ und von $x_2$ nach $y_2$ an.
 \end{beispiel}
+
 
 \begin{definition}[euklidischer und unitärer Vektorraum, orthogonal]
 	\label{def:3.10}
@@ -280,10 +304,32 @@ Wir wollen nun sehen, dass man mit Hilfe eines Skalarprodukts eine Norm auf $V$ 
 	Sei $V = \RR^2$ mit dem Standard-Skalarprodukt $\sk{x,y} = x_1 y_1 + x_2 y_2$ für $x = (x_1,x_2)^T, y = (y_1,y_2)^T$.
 	Dann gilt:
 	\[
-		x \perp y \quad \Leftrightarrow \quad \sk{x,y} = 0 \quad x_1y_1 + x_2y_2 = 0.
+		x \perp y \quad \Leftrightarrow \quad \sk{x,y} = 0 \quad \Leftrightarrow \quad x_1y_1 + x_2y_2 = 0.
 	\]
 	Ist dann $y \neq 0$, so folgt $(x_1, x_2)^T = \lambda \cdot (-y_2,y_1)^T$ für ein $\lambda \in \RR$, denn $x_1 y_1 + x_2 y_2 = 0$ gilt genau dann, wenn $(x_1 x_2)^T \in \Kern(A)$ ist mit $A = (y_1,y_2)$, und $\{ (-y_2,y_1)^T\}$ ist eine Basis von $\Kern(A)$.
-	Das heißt, $x$ steht senkrecht zu $y$ im \enquote{geometrischen} (anschaulichen) Sinn! \todo{Skizze einfügen!}
+	Das heißt, $x$ steht senkrecht zu $y$ im \enquote{geometrischen} (anschaulichen) Sinn! 
+	
+	\begin{figure}[h]
+		\centering
+		\begin{tikzpicture}[>=Latex]
+		\draw [thick,->] (-2,0) -- (3.5,0);
+		\draw [thick,->] (0,-.5) -- (0,3.5);
+		
+		\draw (3,-.1) node[below]{$y_1$} -- (3,.1);
+		\draw (-1.5,-.1) node[below]{$-y_2$} -- (-1.5,.1);
+		\draw (-.1,1.5) node[left]{$y_2$} -- (.1,1.5);
+		\draw (-.1,3) node[left]{$y_1$} -- (.1,3);
+		
+		\draw (-1.5,3) node[fill,circle,inner sep=1pt]{};
+		\draw (-1.5,3) node[left]{$(-y_2, y_1)^T$};
+		\draw (3,1.5) node[fill,circle,inner sep=1pt]{};
+		\draw (3,1.5) node[right]{$(y_1,y_2)^T$};
+		
+		\draw (-1.5,3) coordinate (x) -- (0,0) coordinate (y) -- (3,1.5) coordinate (r);
+		
+		\draw pic["$\bullet$",draw=black,angle eccentricity=.5,angle radius=.5cm]{angle=r--y--x};
+		\end{tikzpicture}
+	\end{figure}
 	
 	Allgemein gilt: Ist $\sk{\cdot,\cdot}$ das Standard-Skalarprodukt auf $\RR^n$, so bedeutet $\sk{x,y} = 0$, dass $x \perp y$ im geometrischen Sinn (sofern man für $n > 3$ davon reden kann).
 	
@@ -293,13 +339,39 @@ Wir wollen nun sehen, dass man mit Hilfe eines Skalarprodukts eine Norm auf $V$ 
 	Seien $v_1 = (1, 0)^T, v_2 = (1, 1)^T \in \RR^2$.
 	Dann ist $B = \{v_1,v_2\}$ eine Basis von $\RR^2$.
 	Definiere $\sk{\cdot,\cdot}_B$ auf $\RR^2$ wie in \autoref{bsp:3.3} (b).
-	Dann ist $v_1 \perp v_2$ bezüglich $\sk{\cdot,\cdot}_B$, aber nicht bezüglich des Standard-Skalarprodukts! \todo{Skizze einfügen!}
+	Dann ist $v_1 \perp v_2$ bezüglich $\sk{\cdot,\cdot}_B$, aber nicht bezüglich des Standard-Skalarprodukts!
 \end{beispiel}
 
 \begin{bemerkung}
 	\label{bem:3.12}
 	Wenn wir wissen, was \enquote{senkrecht} bedeutet, können wir auch schon das senkrechte Lot eines (Punkt-)Vektors $w \in V$ auf eine Gerade $G \subseteq V$ bestimmen.
-	Wir betrachten dazu zunächst nur Geraden durch den Nullpunkt, also $G = \RR \cdot v$ (bzw. $G = \CC \cdot v$). \todo{Skizze einfügen!}
+	Wir betrachten dazu zunächst nur Geraden durch den Nullpunkt, also $G = \RR \cdot v$ (bzw. $G = \CC \cdot v$)
+	
+	\vspace*{-.75cm}
+	\begin{figure}[h]
+		\centering
+		\begin{turn}{15}
+		\begin{tikzpicture}[>=Latex]
+		\coordinate (O) at (0,0);
+		\coordinate (v) at (2,0);
+		\coordinate (wL) at (0,3);
+		\coordinate (w) at (-1.5,3);
+		\coordinate (L) at (-1.5,0);
+		
+		\draw (-3,0) -- (3.5,0) node[right]{$G = \RR \cdot v$};
+		\draw [thick,->] (O) node[below]{$0$} -- (v) node[below]{$v$};
+		\draw [dashed] (O) node[fill,circle,inner sep=1pt]{} -- (wL) node[fill,circle,inner sep=1pt]{} -- (w) node[fill,circle,inner sep=1pt]{};
+		
+		\draw (w) node[above]{$w$} -- (L) node[below]{$L$};
+		\draw (w) node[fill,circle,inner sep=1pt]{};
+		\draw (L) node[fill,circle,inner sep=1pt]{};
+		\draw (wL) node[right]{$w-L$};
+		
+		\draw pic["$\bullet$",draw=black,angle eccentricity=.5,angle radius=.5cm]{angle=v--O--wL};
+		\draw pic["$\bullet$",draw=black,angle eccentricity=.5,angle radius=.5cm]{angle=O--L--w};
+		\end{tikzpicture}
+		\end{turn}
+	\end{figure}
 	
 	Das Lot $L$ von $w$ auf $G$ ist eindeutig durch die Bedingungen $L \in G$ und $(w-L) \perp v$ festgelegt.
 \end{bemerkung}
@@ -327,18 +399,56 @@ Wir wollen nun sehen, dass man mit Hilfe eines Skalarprodukts eine Norm auf $V$ 
 	\label{bem:3.14}
 	Sei $(V,\sk{\cdot,\cdot})$ ein euklidischer Vektorraum (also $\KK= \RR$).
 	Sind dann $v,w \in V$ mit $\no{v} = \no{w} = 1$, so gilt
-	\begin{description}
-		\item[1. Fall:] Ist der (kleine) Winkel $\alpha$ zwischen $v$ und $w \leq \frac{\pi}{2}$, so gilt wegen $\no{v} = \no{w} = 1$:
-		$L = \sk{w,v} \cdot v$ mit $0 \leq \sk{w,v} \leq 1$ und dann $0 \leq \no{L} = \sk{w,v} \leq 1$ und damit folgt \todo{Skizze einfügen!}
+	
+	\vspace*{.2cm}
+	\begin{minipage}{.75\textwidth}
+		\textbf{1. Fall:} Ist der (kleine) Winkel $\alpha$ zwischen $v$ und $w \leq \frac{\pi}{2}$, so gilt wegen $\no{v} = \no{w} = 1$:
+		$L = \sk{w,v} \cdot v$ mit $0 \leq \sk{w,v} \leq 1$ und dann $0 \leq \no{L} = \sk{w,v} \leq 1$ und damit folgt
 		\[
 			 \cos{\alpha} = \frac{\mathrm{Ankathete}}{\mathrm{Hypotenuse}} = \frac{\no{L}}{1} = \sk{w,v}
 		\] 
-		\item[2. Fall:] Ist $\alpha > \frac{\pi}{2}$, so gilt $L = \sk{w,v} \cdot v$ mit $\sk{w,v} < 0$.
-		Dann gilt für $\alpha' = \pi - \alpha$: \todo{Skizze einfügen!}
+	\end{minipage} \hfill 
+	\begin{minipage}{.2\textwidth}
+		\begin{tikzpicture}[>=Latex]
+			\coordinate (O) at (0,0);
+			\coordinate (L) at (1.5,0);
+			\coordinate (v) at (2,0);
+			\coordinate (w) at (1.5,2);
+			
+			\draw [thick,->] (O) node[below]{$0$} -- (v) node[below]{$v$};
+			\draw [thick,->] (O) -- (w) node[right]{$w$};
+			\draw [dashed] (L) node[below]{$L$} -- (w);
+			
+			\draw pic["$\alpha$",draw=black,angle eccentricity=.65,angle radius=.5cm]{angle=L--O--w};
+			\draw pic["$\bullet$",draw=black,angle eccentricity=.5,angle radius=.5cm]{angle=w--L--O};
+		\end{tikzpicture}
+	\end{minipage}
+	\newpage
+	\begin{minipage}{.75\textwidth}
+		\textbf{2. Fall:} Ist $\alpha > \frac{\pi}{2}$, so gilt $L = \sk{w,v} \cdot v$ mit $\sk{w,v} < 0$.
+		Dann gilt für $\alpha' = \pi - \alpha$:
 		\[
-			\cos(\alpha') = \frac{\no{L}}{1} = -\sk{w,v}.
+		\cos(\alpha') = \frac{\no{L}}{1} = -\sk{w,v}.
 		\]
 		Da $\cos(\pi-\alpha) = \cos(\alpha - \pi) = -\cos(\alpha)$ folgt $\cos(\alpha) = - \cos(\alpha') = \sk{w,v}$.
+	\end{minipage} \hfill 
+	\begin{minipage}{.2\textwidth}
+		\begin{tikzpicture}[>=Latex]
+		\coordinate (O) at (0,0);
+		\coordinate (L) at (1.5,0);
+		\coordinate (v) at (-1,0);
+		\coordinate (w) at (1.5,2);
+		
+		\draw (O) -- (2,0);
+		\draw [thick,->] (O) node[below]{$0$} -- (v) node[below]{$v$};
+		\draw [thick,->] (O) -- (w) node[right]{$w$};
+		\draw [dashed] (L) node[below]{$L$} -- (w);
+		
+		\draw pic["$\alpha'$",draw=black,angle eccentricity=.75,angle radius=.8cm]{angle=L--O--w};
+		\draw pic["$\alpha$",draw=black,angle eccentricity=.5,angle radius=.5cm]{angle=w--O--v};
+		\end{tikzpicture}
+	\end{minipage}
+		
 		In beiden Fällen folgt also die Formel
 		\[
 			\cos(\alpha) = \sk{w,v}.
@@ -348,7 +458,7 @@ Wir wollen nun sehen, dass man mit Hilfe eines Skalarprodukts eine Norm auf $V$ 
 			\cos(\alpha) = \sk{w',v'} = \sk{\frac{w}{\no{w}},\frac{v}{\no{v}}} = \frac{\sk{w,v}}{\no{w} \cdot \no{v}}.
 		\]
 		Beachte: In diesen Überlegungen haben wir so getan, als wäre $\perp$ in $V$ auch \enquote{anschaulich} das selbe wie $\perp$ (was aber von der Wahl als Skalarprodukts abhängt!)
-	\end{description}
+
 \end{bemerkung}
 
 \begin{definition}[Winkel]
