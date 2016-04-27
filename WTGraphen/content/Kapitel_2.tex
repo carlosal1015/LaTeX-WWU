@@ -1,0 +1,284 @@
+%!TEX root = ./WTG.tex
+
+Heute wollen wir eine weitere Größe kennenlernen, die bei der Beantwortung von Fragen über Irrfahrten hilft
+
+\section{Energie}
+Sei zunächst $G = \enb{V,E,c}$ ein endliches Netzwerk.
+\begin{definition}
+	Sei $l^2\enb{V}$ die Menge aller Funktionen $F: V \to Real$. $l^2(V)$ sei versehen mit dem üblichen Skalarprodukt 
+	\begin{gather}
+		<f,g> := \sum\limits_{v \in V} f(v)g(v), ||f||^2 = <f,f>
+	\end{gather}	
+\end{definition}
+\begin{definition}
+	Sei $l^2(E)$ die Menge aller antisymmetrischen Funktionen 
+	\begin{gather}
+		\Theta = E \to \Real \text{mit } \Theta(-e) = -\Theta(e)
+	\end{gather}
+	mit Skalarprodukt 
+	\begin{gather}
+		<\Theta,\Theta'> = \frac{1}{2}\sum\limits_{e \in E} \Theta(e) \Theta'(e) = \sum\limits_{e \in E_{1/2}} \Theta(e)\Theta'(e)
+	\end{gather}
+	wobei $E_{1/2}$ eine Teilmenge von $E$, die von jedem Paar $(e,-e), e \in E$ genau einen Vertreter enthält.
+\end{definition}
+
+\begin{definition}
+	Sei $d:l^2(V) \to l^2(E)$ der \emph{Co-Rand-Operator}, definiert als
+	\begin{gather}
+		(df)(e) =  f(e^-) - f(e^+) \text{wobei } e= (e^-,e^+)
+	\end{gather}
+	Weiter sei $d^*: l^2(E) \to l^2(V)$ der Rand Operator, definiert als
+	\begin{gather}
+		(d^*\Theta)(x) = \sum\limits_{e:e^-=x} \Theta(e)
+	\end{gather}
+\end{definition}
+\begin{uebung}
+	$\forall f \in l^2(V), \forall \Theta \in l^2_-(E)gilt$
+	\begin{gather}
+		<df,\Theta>_{l^2_-E} = <f,d^*\Theta>_{l^2(V)}
+	\end{gather}
+	Man kann Ohm und Kirchhoff mittels $d$ und $d^*$ elegant aufschreiben.
+	\begin{itemize}
+		\item Ohm: $dv = ir$, d.h. $\forall \ c \in E$ gilt $(dv)(e) = i(e) \cdot r(e)$.
+		\item Kirchhoff: Für alle $x$, die nmicht an einer Spannungsquelle liegen, gilt $(d^*i)(x)= 0$.
+	\end{itemize}
+\end{uebung}
+Wir wollen nun Flüsse auf Netzwerken studieren. Ein Fluss $\Theta$ auf $G = (V,E,c)$ sei ein Element auf $l^2_-(E)$. Ein Fluss $\Theta$ heißt Fluss von $A$ nach $Z$, $A,Z \subseteq V, A \cap Z = \setzero$, falls $g'H (d^*\Theta)(a) > 0 \forall a\in A , (d^*\Theta)(z)<0 \forall z \in Z$. Für alle $x \notin A\cup Z$ gilt $(d^*\Theta)(x) = 0$. Die \emph{Stärke} von $\Theta$ sei 
+\begin{gather}
+	S(\Theta) :=\sum\limits_{a \in A}(d^*\Theta)(a)
+\end{gather}
+$A$ heißt \emph{Quelle} und $Z$ heißt \emph{Senke}. Es gibt quellefreie  Flüsse. Vernünftige Flüsse wollen nichts verlieren:
+\begin{lemma}
+	Sei $G$ endlich, $A,Z \subseteq V, A \cap Z = \setzero$. Dann gilt $S(\Theta) = -\sum\limits_{z \in Z}(d^*\Theta)(z)$ 
+\end{lemma}\todo{korrekt?} 
+\begin{beweis}
+	\begin{gather}
+		\sum\limits_{a \in A} (d^*\Theta)(a) + \sum\limits_{z \in Z} (d^*\Theta)(z) = \sum\limits_{x \in V}(d^*\Theta)(x) \cdot 1 = <d^*\Theta,\mathds{1}> = <\Theta,d \mathds{1}> = 0.
+	\end{gather}
+\end{beweis}
+
+\begin{lemma}
+	Sei $G$ endlich, $A,Z \subseteq V, A\cap Z = \setzero$ und $\Theta$ ein Fluss von $A$ nahc $Z$. Sei $f \in l^2(V)$ mit $f|_A \equiv \alpha, f|_Z = \zeta$. Dann gilt
+	\begin{gather}
+		<\Theta,df> = (\alpha - \zeta) S(\Theta).
+	\end{gather}
+\end{lemma}
+\begin{beweis}
+	\begin{align}
+		<\Theta,df> &= <d^*\Theta,f> = \sum\limits_{x \in V} (d*\Theta)(x)f(x) \\
+			&= \alpha\sum\limits_{x\in A} (d^* \Theta)(x) + \sum\limits_{x \notin A \cup Z} (d^*\Theta)(x)f(x) + \zeta\sum\limits_{x\in Z} (d^*\Theta)(x) \\
+			&= \alpha S(\Theta) + 0 - \zeta S(\Theta)  = (\alpha - \zeta) S(\Theta)
+	\end{align}
+\end{beweis}
+Idee aus der Physik: An einem Widerstand der Stärke $v$ wird eine Arbeit der Stärke $s^2v$ geleistet. Wir übertragen das auf Flüsse auf Netzwerken:
+\begin{definition}
+	Für einen beliebigen Vektrorraum $H$ mit Skalarprodukt $<\cdot,\cdot>$ definiere für $f,g,h \in H$
+	\begin{align}
+		<f,g>_h = <fh,g> = <f,gh> && ||f||^2_v = <f,f>.
+	\end{align}
+\end{definition}
+Für $\Theta \in l^2_-(E)$ sei $\mathcal{E}(\Theta) = ||\Theta||^2_v$ die Energie von $\Theta$. Insbesondere ist für einen Stromfluss $i$. $\mathcal{E}(i) = ||i||^2_v = <i,i\cdot v>  =<i, dv>$ nach Ohm.
+
+\begin{uebung}
+	Für $A\cap Z = ??$ definiere $C(A \leftrightarrow Z)$ als $C(a \leftrightarrow Z)$, wenn man alkke $x \in A$ zu $a$ identifiziert nun entsprechend $R(A \leftrightarrow Z) = \frac{1}{C(A \leftrightarrow Z)}$. Man zeige, dass dann für \todo{const?}
+	\begin{align} 
+		v|_A \equiv const = v_A && v|_Z \equiv const = v_Z \\ 
+	\end{align}
+	\begin{align}
+		v_A - v_Z = \mathcal{I}_{AZ}R(A \leftrightarrow Z), \text{wobei } \mathcal{I}_{AZ} = \sum\limits_{??}\sum\limits_{??}??
+	\end{align}
+	
+	
+	Damit lässt sich die Energie für einen Einheitsraum mit 
+\end{uebung}
+-------------------------------------------------------------------------------------------
+
+Sei $X^l = \mathds{1}_{\set{e}} - \mathds{1}_{\set{-e}}$. Dann gilt für alle $\Theta \in l^2_-(E):$
+\begin{gather}
+	<\Theta,\chi^e>_r = \Theta(e)r(e)
+\end{gather}
+Somit 
+\begin{gather}
+	<\sum\limits_{e \cdot e^ = x} c(e)\chi^e,\Theta> = \sum\limits_{e \cdot e^-}<c(e\chi^e,\Theta(e))> = \sum\limits_{e^-=x} \Theta(e) = (d^*\Theta)(x).
+\end{gather}
+Wenn an $x$ keine Spannung anliegt, sagt Kirchhoff
+\begin{gather}
+	<\sum\limits_{e \cdot e^- = x} c(e)\chi^e,\Theta> = 0
+\end{gather}
+Die kirchhoffsche Maschenregel lässt sich schreiben als 
+\begin{gather}
+	<\sum\limits_{k=1}^{n}\chi^{e_k},i> = 0 \text{für einen gerichteten Kreis } e_1, \dots, r_n
+\end{gather}
+Definiere
+\begin{align}
+	\star &= SPAN \set{\Theta \in l^2_- \in E \given \Theta = \sum\limits_{e \cdot e^- = x}c(e)\chi^e} \\
+	\mathcal{O} &= SPAN \set{\Theta \in l^2_-(E) \given \Theta = \sum\limits_{k=1}^{e_n}\chi^{e_k}} \text{für einen gerichteten Kreis} e_1, \dots e_n
+\end{align}
+
+\begin{uebung}
+	STERN und O sund bezüglich $<\cdot,\cdot>_r$ auf $E$ orthogonal
+	\begin{gather}
+		STERN DIREKTE SUMME O = l^2_-(E)
+	\end{gather}
+\end{uebung}
+Es folgt aus der orthogonalen Zerlegung von $\Theta$ in $i$ und $\Theta - i$, dass $||\Theta||^2_r = ||i||^2_r$. Dies ergibt sofort
+\begin{satz}[Thompsonsches Prinzip]
+	Sei $G$ endlich, $A,Z \subseteq V, A \cap Z = \setzero.$ Sei $\Theta$ ein Fluss von $A$ nach $Z$ und $i$ in der Stromfluss von $A$ nach $Z$, mit $(d^*\Theta) = (d^2i)$. Dann gilt $\mathcal{E}(\Theta) \geq \mathcal(i)$
+\end{satz}
+\begin{beweis}
+	Folgt, da $\mathcal{E}(\Theta) = ||\Theta||^2_r$
+\end{beweis}
+
+\begin{satz}[Bel... Prinzip]
+	bla
+\end{satz}
+\begin{beweis}
+	Es gilt
+	\begin{gather}
+		\mathcal{E}(i_c) =  R_c(A \leftrightarrow Z) = \frac{1}{\mathcal{C}(A \leftrightarrow Z)}
+	\end{gather}
+	und 
+	\begin{gather}
+		\mathcal{E}_c(i_c) = ||i_c||^2_r = ||i_c||^2_c =\geq ||i_c||^2_{1/c'} \geq \mathcal{E}_{c'}(i_c) \geq \mathcal{E}_{c'}(i_{c'}).
+	\end{gather}
+	Kehrwert Bilden ergibt $\mathcal{_c}(A \leftrightarrow) \leq \mathcal{C}_{c'} (A \leftrightarrow Z)$
+\end{beweis}
+
+
+\section{Transienz \& Rekkurenz}
+
+%Wir haben gesehen: Begriffe wie \qte{effektive Kapazität}, \qte{effektiver Widerstand}, \qte{Energie}, \qte{Spannung} helfen, um das Verhalten von Irrfahrten auf Graphen besser zu verstehen. Zum Beispiel entsprechen Spannungen Treffwahrscheinlichkeitenm effektive Widerstände bzw. Kapazitäten entsprechen Durchgangswahrscheinlichkeiten, Energie ist so etwas wie effektive Widerstände.
+
+Bislang haben wir einiges erst auf endlichen Graphen definiert, dieses Setup ist für Fragen der Rekkurenz und Transienz jedoch zu klein. Sei nun $G$ unendlich. Wir definieren wieder
+\todo[inline]{fehler ausbessern Quellcode}
+\begin{align}
+	l^2(V) = \set{f_V \to \Real: \sum\limits_{v\in V} f^2(v)<\infty } && \text{mit Skalarprodukt } <f,g> = \sum\limits_{v} f(v)g(v) \text{und } ||f||^2 = <f,f>
+\end{align}
+und
+\begin{gather}
+	l^2_-(E) = \set{\Theta:F \to \Real: \Theta(-e) = -\Theta(e), \sum \Theta^2(e)r(e) < \infty} \\
+	 \text{mit Skalarprodukt } <\Theta, \Theta'>_r = \sum\limits_{e \in E_{1/2}} \Theta(e)\Theta'(e)r(e) \text{ ,und Energie } \mathcal{E}(\Theta) = ||\Theta||^2_r
+\end{gather}
+
+Man kann dann den Co-Randoperator $(df)(e)= d(e^-) - f(e^+)$ definieren, den Randoperator $(d^*\Theta)(x) = \sum\limits_{x = c^-}\Theta(e)$ und man erhält wieder deren Dualität. Man kann sich vergewissern, dass sich so das gesamte Kapiel 1.4 \todo{Referenz} af die unendliche Situation verallgemeinern lässt. Wir wollen nun Flüsse aus einem $a \in V$ nach undendlich betrachten, d.h. $\Theta$ ist von der Form $d^*\Theta(x) := \alpha EINSFKT_{a}(x)$. 
+
+Wir wollen die Frage der Transienz in Beziehung zur Existenz solcher Flüsse setzen.
+\todo[inline]{Missing part}
+
+\begin{satz}[Lyans]
+	Wenn $G$ ein abzählbares, zusammenhängendes Netzwerk ist, dann ist die Irrfahrt uf $G$ genau dann transient, wenn es einen Fluss endlicher Energie von $a \in V$ nach $\infty$ gibt.
+\end{satz}
+\begin{beweis}
+	Sei $G_n  \subseteq G$ endlich, $G_n \uparrow G$. Die Punkte in $V \backslash V_n$ kleben wir wieder summen zu $z_n$, behalten Doppelkanten und werfen Schlaufen weg. Das resultierende Nezuwerk sei $G^w_n$ o.E. $a \in G_n$. Es gilt $R(a \leftrightarrow \infty) = \lim R(a \leftrightarrow z_n)$.
+	\todo[inline]{Layout}
+	Nun ist einerseits $R(a \leftrightarrow z_n) = \frac{1}{\weight{a \leftrightarrow z_n}} \sim \frac{1}{\prop{\tau^+_a < \tau_{z_n}}}$, d.h. 
+	\begin{equation}
+		lim R(a \leftrightarrow z_n) < \infty \Leftrightarrow \lim\limits_{n \to \infty} \prop{a \to z_n} < 0. \marginnote{Transienz}
+	\end{equation}
+	Auf der anderen Seite ist $\lim R(a \leftrightarrow z_n) = \lim \mathcal{E}(in)$ für einen Einheitsstrom von $a$ nach $z_n$. Das heißt Transienz der Irrfahrt ist äquivalent zur Endlichkeit von $\lim \mathcal{E}(in)$. Sei nun $\Theta$ irgendein Einheitsfliuss endlicher Energie von $a$ nach $\infty$. Sei $in$ der Einheitsstrom-fluss von $a$ nach $z_n$, $\Theta_n = \Theta|_{G^W_n}$. Dann gilt nach Thompson \todo{verweis}
+	\begin{align}
+		\mathcal{E}(i_n) \leq \mathcal{E}(\Theta_n) = \mathcal{E}(\Theta) < \infty \text{für alle } n
+	\end{align}
+	zu $Rightarrow:$ $\lim \mathcal{E}(i_n) < \infty \Rightarrow$ Die Irrfahrt ist transient. \\
+	
+	Sei nun die Irrfahrt transient. Wir wollen nun einen Fluss von $a$ nach $\infty$ endlicher Energie basteln, Kandidat: $\lim i_n.$ Nach der Vorüberlegung gilt;
+	\begin{align}
+		\exists N > 0: \lim \mathcal{E}(i_n) \leq N < \infty, (\mathcal{E}(i_n)\leq N \forall n)
+	\end{align}
+	Sei nun 
+	\begin{align}
+		Y_n(x) &= \text{Anzahl der Besuche der Irrfahrt bei Start in $a$ in $x$ vor Verlassen von } G_n \\
+		Y(x) &= \text{Anzahl der Besuche der Irrfahrt bei Start in $a$ in $x$} 
+	\end{align}
+	Dann gilt mit der monotonen Konvergenz:
+	\begin{align}
+		\EWE{Y(x)} = \EWE{\lim Y_n(x)} = \lim\limits_{n \to \infty} \EWE{Y_n(x)} = \lim\limits_{n \to \infty} \pi(x) v_n(x) = \pi(x)v(x) \marginnote{$v_n(x)$ Spannung von $x$ in $G_n$}
+	\end{align}
+	Da die Irrfahrt transient ist, ist die linke Seite endlich, also existiert $\lim v_n(x) = v(x)$. Also ist
+	\begin{align}
+		\Gamma := c (dv) = \lim\limits_{n\to\infty} c (dv_n) = \lim\limits_{n\to\infty} i_n
+	\end{align}
+	der Strom auf $G$.
+
+	Die ist ein Stromfluss endlicher Energie nach der folgenden Übung.
+\end{beweis}
+
+\begin{uebung}
+	$G$ abzählbar, $(\Theta_n)_n \in l^2_e(E): \mathcal{E} \leq M < \infty$ für ein $M$ und $\Theta_n(e) \to \Theta(e)$. Dann ist $\Theta$ antisymmetrisch und $\mathcal{E}(\Theta) \leq \liminf \mathcal{E}(\Theta_n), \forall x: (d^*\Theta_n)(x) \to (d^*\Theta)(x)$
+	\todo[inline]{missing parts}
+\end{uebung}
+
+Allgemeiner gilt (ohne Beweis)
+
+	\begin{satz}
+		Sei $G$ transient und zusammenhängend, $G_n \uparrow G$, $G_n$ endlich. $G_n^W$ kostruiert wie immer und $i_n$ der Einheitsstrom in $G^W_n$ von einem $a$ nach $z_n$ Dann:
+		
+		$i_n$ konvergiert punkt-(d.h. Kanten-) weise gegen ein $i$, der Einheitsstromfluss von $a$ nach $\infty$.
+
+	Sind $v_n$ die zugehörigen Spannungen in $G^W_n$ mit $v(z_n) = 0,$ gilt $v  = \lim v_n$ existiert.
+
+	Es gilt:
+	\begin{align}
+		dv = ir && v(0) = \mathcal{E} = R(a \leftrightarrow \infty) && \forall x: \frac{v(x)}{v(0)} = \prop{\tau_a < \infty}
+	\end{align}
+	Weiter sei $\mathcal{G}(a,x) := \pi(x)v(x) = \EW{\text{Treffer von }x}.$ Schließlich 
+	\begin{equation}
+		i(l) = \EW{\text{Anzahl signierte Überquerungen von}e} 
+	\end{equation}
+
+\end{satz}
+Wie findet man nun heraus ob es einen Fluss endlicher Energie von einem $a\in V$ nach $\infty$ gibt? Für die erste Methode benötigen wir die folgende Definition
+\begin{definition}
+	$\pi \subseteq E$ heißt \emph{Cut-Set} zwischen $a$ und $\infty$, wenn jeder Pfad $\gamma$ von $a$ nach $\infty$ die Ungleichheit $\gamma \cap \pi \neq \setzero$ erfüllt.
+\end{definition}
+
+\begin{satz}[Nash-Williams]
+	Sei $(\pi_n)$ eine Folge paarweise disjunkter Cut-Sets, die $a$ von $\infty$ trennt. Dann gilt 
+	\begin{align}
+		R(a \leftrightarrow \infty) \geq \sum\limits_{n = 1}^{\infty}\enb{\sum\limits_{e \in \pi_n} c(e)}^{-1}
+	\end{align}
+\end{satz}
+
+\begin{bemerkung}
+	\begin{enumerate}[a)]
+		\item Ist für eine Folge von $\Pi_n$ wie Satz 1.10\todo{Ref} die rechte Seite unendlich, so ist die Irrfahrt rekurrent
+		\item Intuitiv sollte die Aussage des Satzes \todo{Ref} 1.10 klar sein, denn jedes $Pi_n$ hat einen Widerstand $ \geq \enb{\sum\limits_{l\in \Pi_n} c(e)}^{-1}$
+	\end{enumerate}
+\end{bemerkung}
+\begin{beweis}
+	$\Theta$ sei ein Einheitsfluss von $a$ nach $\infty$. Es gilt:
+	\begin{align}
+		\sum\limits_{e \in \Pi_n} \Theta^2(e) r(e) \sum\limits_{e \in \Pi_n} c(e) \geq \enb{\sum\limits_{e \in \Pi_n}\abs{\Theta(e)} \sqrt{r(e)}\sqrt{c(e)}}^2 = \enb{\sum\limits_{e \in \Pi_n}\abs{\Theta(e)}}^2 \geq \enb{\sum\limits_{e \in F_n}\abs{\Theta(e)} }^2
+	\end{align}
+	wobei $k_n$ (kommt noch) die Menge aller Kanten ist, die \underline{nicht} von $a$ getrennt werden durch $\Pi_n$, und $F_n$ die Menge aller Kanten $c = (e^-,e^+)$ mit $e^- \in k_n$, aber $e^+ \notin k_n$. Es ist klar, dass $F_n \leq \Pi_n$.
+	
+	Nun ist 
+	\begin{gather}
+		\sum\limits_{r \in F_n} \abs{\Theta_i(e)} \geq \sum\limits_{e \in F_n} \Theta(e) = \sum\limits_{x \in k_n} (d^*\Theta)(x) = (d^*\Theta)(a) = 1 \\
+		\Rightarrow \sum\limits_{e \in \Pi_n} \Theta^2(e)r(e) \geq \frac{1}{\sum\limits_{c \in \Pi_n}c(e)}.
+	\end{gather}
+	Also 
+	\begin{align}
+		R (a \leftrightarrow \infty) = \mathcal{E}(i) \geq \sum\limits_{n \geq 1}\sum\limits_{e\in \Pi_n} \Theta^2(e)r(e) \geq \sum\limits_{n \geq 1} \enb{\sum\limits_{e \in\Pi} c(e)}
+	\end{align}
+	
+	
+\end{beweis}
+
+Für einen Transienz--Beweis hilft Nash-Williams zunächst nicht. Hier versuchen wir die zufällige Pfadwahl. Dazu sei $\p$ eine Wahrscheinlichkeit auf der Menge der Pfade von $a$ nach $\infty$. So ein Pfad $(e_n)$ entspricht einem Einheitsfluss
+\begin{gather}
+	\gamma^{(e_n)} := \sum\limits_{n \geq 1} \chi^{e_n} = \sum\limits_{n \geq 1} EINSFKT_{\set{e_n}}- EINSFKT_{\set{-e_n}}
+\end{gather}
+Da alle $(e_n)$ in $a$ starten, ist der Einheitsfluss von $a \to \infty$  \todo{"Dann aber auch der Erwartungswert. Wohin?}
+
+\begin{align}
+	\Theta = \EW{\gamma} = \sum\limits_{n \geq 1}\prop{e_n} - \prop{-e_n}
+\end{align}
+Von einem solchen $\Theta$ möchte man die Energie beschränken. 
+
+
+
+
+
+
+

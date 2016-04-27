@@ -1,0 +1,323 @@
+%!TEX root = WTG.tex
+% -- Vorlage von: Phil Steinhorsts, p.st@wwu.de
+\documentclass[a4paper,twoside,index=totoc,toc=bibliography,fontsize=10,DIV=12,headinclude,BCOR=12mm,cleardoublepage=empty]{scrreprt}
+
+\usepackage[usenames,x11names]{xcolor} % Die Optionen definieren zusätzliche Farben (siehe Dokumentation)
+\definecolor{dark_gray}{gray}{0.45}
+\definecolor{light_gray}{gray}{0.6}
+\definecolor{fb10_blue}{cmyk}{0.8,0.4,0.13,0.07}
+\usepackage[final]{graphicx}
+
+\usepackage{dsfont}
+
+\usepackage{scrtime}
+
+\usepackage{multicol}
+
+\usepackage{lmodern}
+\usepackage{mathtools,amssymb,amsthm} % Verbesserung von amsmath (die amsmath selbst lädt)
+\mathtoolsset{showonlyrefs}
+\usepackage[libertine,cmintegrals,bigdelims,varbb]{newtxmath}
+\usepackage[no-math]{fontspec}
+\usepackage{polyglossia} % moderner babel-ersatz
+\setmainlanguage[spelling=new,babelshorthands=true,latesthyphen]{german}
+\shorthandoff{"}
+\defaultfontfeatures{Mapping=tex-text, Ligatures={Required,Common,Contextual}}
+\setmainfont{LinLibertine}[Extension=.otf,UprightFont=*_R,BoldFont=*_RZ,ItalicFont=*_RI,BoldItalicFont=*_RZI]
+\setsansfont{LinBiolinum}[Scale=MatchUppercase, Extension=.otf, UprightFont=*_R, BoldFont=*_RB, ItalicFont=*_RI,BoldItalicFont=*_RBO]
+\setmonofont{Inconsolatazi4}[Scale=MatchUppercase,Extension=.otf,UprightFont=*-Regular,BoldFont=*-Bold,StylisticSet=1]
+\usepackage[final]{microtype}
+
+%%% Mathematikpakete und Einstellungen
+\mathtoolsset{centercolon} % sorgt dafür dass := und =: besser aussehen
+\usepackage{mathdots} % sorgt dafür, dass Punte wie zB \ddots besser aussehen
+\usepackage{easybmat}
+\usepackage{tensor}
+
+%%% kommutative Diagramme
+\usepackage{tikz-cd} %-- meiner Meinung nach das beste Paket für kommutative Diagramme
+\tikzset{% um Kompatibilität mit Babel herzustellen und die angenehme "<label>"-Syntax zu nutzen
+  every picture/.append style={
+    execute at begin picture={\shorthandoff{"}},
+    execute at end picture={\shorthandon{"}}
+  }
+}
+\usetikzlibrary{quotes,babel,angles}
+\usetikzlibrary{patterns}
+\usetikzlibrary{arrows.meta}
+\usetikzlibrary{matrix}
+\tikzset{
+	schraffiert/.style={pattern=north west lines,pattern color=#1},
+	schraffiert/.default=black
+}
+\tikzset{>=Latex}
+
+%%% Biber-Settings
+\usepackage[%
+	backend=biber,
+	sortlocale=auto,
+	natbib,
+	hyperref,
+	backref,
+	backrefstyle=three+,
+	style=alphabetic % eine unvollständige Auswahl von Styles: ieee, numeric, apa
+	]%
+{biblatex}
+\setlength{\bibitemsep}{1em}     % Abstand zwischen den Literaturangaben
+\setlength{\bibhang}{2em}        % Einzug nach jeweils erster Zeile
+\addbibresource{literature.bib} % Literaturdatei einlesen
+
+%%% Hyperref-Konfigration
+\usepackage[hidelinks, pdfpagelabels, bookmarksopen=true, bookmarksnumbered=true, linkcolor=black, urlcolor=SkyBlue2, plainpages=false,pagebackref, citecolor=black, hypertexnames=true, pdfauthor={Lukas Schneider}, pdfborderstyle={/S/U}, linkbordercolor=SkyBlue2, colorlinks=false,backref=false]{hyperref}
+\hypersetup{final}
+
+%%% Aufzählung und Zitate
+\usepackage[shortlabels]{enumitem}
+\setlist[enumerate,description]{font=\sffamily\bfseries}
+\usepackage[german=quotes]{csquotes}
+
+\usepackage[textsize=small]{todonotes}
+\usepackage{marginnote}
+\renewcommand*{\marginfont}{\color{gray} \footnotesize }
+\setlength{\parindent}{0em} 
+
+%%%% Kopf-/Fußzeilen
+\usepackage{scrpage2}
+\pagestyle{scrheadings}
+\clearscrheadfoot 
+\input{headings.tex}
+%\setheadsepline{1pt} 
+%\automark[section]{section} % definiert, welcher Text in den Kolumnentiteln erscheinen soll
+%\rohead{\rightmark} 
+%\lehead{\rightmark} 
+%\ofoot[\pagemark]{\pagemark} 
+
+% Indexerstellung
+\usepackage{makeidx}
+\newcommand{\Index}[1]{\textbf{#1}\index{#1}}
+\makeindex
+\renewcommand{\indexpagestyle}{scrheadings}
+
+
+
+
+
+
+% -- theorem packages
+\usepackage{amsthm}
+\usepackage{thmtools,thm-restate}
+\usepackage{mdframed}
+\renewcommand{\listtheoremname}{Übersicht aller Aussagen}
+
+% -- Theoreme als PDF-Lesezeichen
+\usepackage{bookmark}
+\bookmarksetup{open,numbered}
+\makeatletter
+\newcommand*{\theorembookmark}{%
+	\bookmark[
+	dest=\@currentHref,
+	rellevel=1,
+	keeplevel,
+	]{%
+		\thmt@thmname\space\csname the\thmt@envname\endcsname
+		\ifx\thmt@shortoptarg\@empty
+		\else
+		\space(\thmt@shortoptarg)%
+		\fi
+	}%
+}   
+\makeatother
+
+% -- Definition der einzelnen Umgebungen
+\declaretheoremstyle[%
+	headfont=\sffamily\bfseries,
+	notefont=\normalfont\sffamily\scshape,
+	bodyfont=\normalfont,
+	headformat=\NUMBER\ \NAME\NOTE,
+%	headpunct=.,
+	headpunct={\\},
+	postheadspace=1em,
+	spaceabove=15pt,spacebelow=10pt,
+	shaded={bgcolor=gray!20},
+	% mdframed={%
+	% 	backgroundcolor=gray!20,
+	% 	innertopmargin=0pt,
+	% 	innerleftmargin=0pt,
+	% 	% roundcorner=5pt,
+	% 	innerbottommargin=0pt,
+	% 	splittopskip = 0pt,
+	% 	% skipbelow=6pt,
+	% 	% skipbelow=6pt,
+	% 	topline=false,bottomline=false,leftline=false,rightline=false
+	% },
+	postheadhook=\theorembookmark]%
+{mainstyle}
+	\declaretheoremstyle[%
+	headfont=\sffamily\bfseries,
+	notefont=\normalfont\sffamily\scshape,
+	bodyfont=\normalfont,
+	headformat=\NUMBER\ \NAME\NOTE,
+%	headpunct=.,
+	headpunct={\\},
+	postheadspace=1em,
+	spaceabove=15pt,spacebelow=10pt,
+	shaded={bgcolor=fb10_blue!20},
+	postheadhook=\theorembookmark]%
+	{mainstyle_blue}
+	\declaretheoremstyle[%
+	headfont=\sffamily\bfseries,
+	notefont=\normalfont\sffamily\scshape,
+	bodyfont=\normalfont,
+	headformat=\NUMBER\ \NAME\NOTE,
+	headpunct=.,
+	postheadspace=1em,
+	spaceabove=15pt,spacebelow=10pt,
+	postheadhook=\theorembookmark]%
+{mainstyle_unshaded}
+	\declaretheoremstyle[%
+	headfont=\sffamily\bfseries,
+	notefont=\normalfont\sffamily\scshape,
+	bodyfont=\normalfont,
+	headformat=\NUMBER\NAME\NOTE,
+%	headpunct=.,
+	headpunct={\\},
+	postheadspace=1em,
+	spaceabove=15pt,spacebelow=10pt,
+	% shaded={bgcolor=gray!20},
+	postheadhook=\theorembookmark]%
+	{mainstyle_unnumbered}
+	\declaretheoremstyle[%
+	headfont=\sffamily\bfseries,
+	notefont=\normalfont\sffamily\scshape,
+	bodyfont=\normalfont,
+	headformat=swapnumber,
+	headpunct=.,
+	postheadspace=1em,
+	spaceabove=15pt,spacebelow=10pt,
+	shaded={bgcolor=gray!20},
+	postheadhook=\theorembookmark,
+	qed=\qedsymbol]%
+{mainstyleB}
+\declaretheorem[name=Definition,parent=section,style=mainstyle_blue]{definition}
+\declaretheorem[name=Definition \& Proposition,refname=Proposition,sharenumber=definition,style=mainstyle_blue]{definitionP}
+\declaretheorem[name=Definition,numbered=no,style=mainstyle_unnumbered]{definition*}
+\declaretheorem[name=Theorem,sharenumber=definition,style=mainstyle]{theorem}
+\declaretheorem[name=Theorem,numbered=no,style=mainstyle_unnumbered]{theorem*}
+\declaretheorem[name=Proposition,sharenumber=definition,style=mainstyle]{proposition}
+\declaretheorem[name=Lemma,sharenumber=definition,style=mainstyle]{lemma}
+\declaretheorem[name=Satz,sharenumber=definition,style=mainstyle]{satz}
+\declaretheorem[name=Satz,sharenumber=definition,style=mainstyle_unshaded]{satzUnshaded}
+\declaretheorem[name=Definition,sharenumber=definition,style=mainstyle_unshaded]{definitionUnshaded}
+\declaretheorem[name=Satz,numbered=no,style=mainstyle_unnumbered]{satz*}
+\declaretheorem[name=Korollar,sharenumber=definition,style=mainstyle]{korollar}
+\declaretheorem[name=Korollar,sharenumber=definition,style=mainstyleB]{korollarB}
+\declaretheorem[name=Frage,numbered=no,style=mainstyle_unnumbered]{frage}
+\declaretheorem[name=Frage,sharenumber=definition,style=mainstyle_unshaded]{frageA}
+\declaretheorem[name=Erinnerung,sharenumber=definition,style=mainstyle_unshaded]{erinnerungA}
+\declaretheorem[name=Ausblick,sharenumber=definition,style=mainstyle_unshaded]{ausblick}
+\declaretheorem[name=Konvention,sharenumber=definition,style=mainstyle]{konvention}
+\declaretheorem[name=Notation,sharenumber=definition,style=mainstyle_unshaded]{notation}
+\declaretheorem[name=Bemerkung,sharenumber=definition,style=mainstyle_unshaded]{bemerkung}
+\declaretheorem[name=Beispiel,sharenumber=definition,style=mainstyle_unshaded]{beispiel}
+
+
+% -- Beweise
+\declaretheoremstyle[headfont=\bfseries\scshape,bodyfont=\normalfont,headpunct=:,postheadspace=1em,spacebelow=12pt,spaceabove=2pt,qed=\qedsymbol]{beweise}
+\declaretheoremstyle[headfont=\sffamily\bfseries,bodyfont=\normalfont,headpunct=:,postheadspace=1em,spacebelow=10pt,spaceabove=10pt]{bemerkungen}
+\declaretheorem[name=Beweis,numbered=no,style=beweise]{beweis}
+
+
+\declaretheorem[name=Übung,numbered=no,style=bemerkungen]{uebung}
+\declaretheorem[name=Erinnerung,numbered=no,style=bemerkungen]{erinnerung}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+%%-- Theorem-Pakete und Konfiguration
+%\usepackage{thmtools}
+
+%\declaretheoremstyle[%
+%	headfont=\sffamily\bfseries,
+%	notefont=\normalfont\sffamily,
+%	bodyfont=\normalfont,
+%	headformat=\NUMBER \ \NAME \NOTE,
+%	headpunct={\\},
+%	postheadspace=1ex,
+%	spaceabove=15pt,spacebelow=10pt]%
+%{mainstyle}
+%\declaretheoremstyle[%
+%	headfont=\sffamily\bfseries,
+%	notefont=\normalfont\sffamily,
+%	bodyfont=\normalfont,
+%	headformat=\NAME \NOTE,
+%	headpunct={\\},
+%	postheadspace=1ex,
+%	spaceabove=15pt,spacebelow=10pt]%
+%{nonumber}
+%\declaretheoremstyle[%
+%	headfont=\sffamily\bfseries,
+%	notefont=\normalfont\sffamily,
+%	bodyfont=\normalfont,
+%	headformat=\NAME \ \NOTE,
+%	headpunct={\\},
+%	postheadspace=1ex,
+%	spaceabove=15pt,spacebelow=10pt]%
+%{miscstyle}
+%\declaretheoremstyle[%
+%	headfont=\bfseries\scshape,
+%	bodyfont=\normalfont,
+%	headpunct=:,
+%	postheadspace=1ex,
+%	spacebelow=12pt,spaceabove=2pt,
+%	qed=\qedsymbol]%
+%{beweise}
+%
+%
+%\declaretheorem[name=Definition,parent=section,style=mainstyle]{definition}
+%\declaretheorem[name=Satz,sharenumber=definition,style=mainstyle]{satz}
+%\declaretheorem[name=Korollar,sharenumber=definition,style=mainstyle]{korollar}
+%\declaretheorem[name=Lemma,sharenumber=definition,style=mainstyle]{lemma}
+%\declaretheorem[name=Proposition,sharenumber=definition,style=mainstyle]{proposition}
+%\declaretheorem[name=Bemerkung,sharenumber=definition,style=mainstyle]{bemerkung}
+%\declaretheorem[name=Beispiel,sharenumber=definition,style=mainstyle]{beispiel}
+%\declaretheorem[name=Erinnerung,sharenumber=definition,style=mainstyle]{erinnerung}
+%\declaretheorem[name=Beobachtung,sharenumber=definition,style=mainstyle]{beobachtung}
+%\declaretheorem[name=Theorem,sharenumber=definition,style=mainstyle]{theorem}
+%\declaretheorem[name=Aufgabe,parent=chapter,style=mainstyle]{aufgabe}
+%\declaretheorem[name=Problem,sharenumber=definition,style=mainstyle]{problem}
+%
+%\declaretheorem[name=Beweis,numbered=no,style=beweise]{beweis}
+
+% \declaretheorem[name=Erinnerung,numbered=no,style=nonumber]{no-erinnerung}
+
+
+\usepackage{xparse}
+
+\usepackage{setspace}
+\usepackage{hyphenat}
+\usepackage{bm}
+\allowdisplaybreaks
+\raggedbottom
+\renewcommand{\phi}{\varphi}
+\usepackage{chngcntr}
+\counterwithout{equation}{chapter} % undo numbering system provided by phstyle.cls
+\counterwithout{section}{chapter}
+\renewcommand\thechapter{\Roman{chapter}}
+\usepackage{faktor}
+
+\input{MathCmds.tex}
+\input{Commands_WT.tex}

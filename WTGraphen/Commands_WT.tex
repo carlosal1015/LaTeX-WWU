@@ -1,0 +1,145 @@
+\DeclareMathOperator{\med}{med}					%median	
+\DeclareMathOperator{\Bin}{Bin}					%Binomialvert.
+\DeclareMathOperator{\BetaV}{Beta}				%Betavert.
+
+\newcommand{\gauss}[1]{\left\lfloor#1\right\rfloor}	%Floor
+
+\newcommand{\RG}{\ensuremath{G\enbrace{n,p}}} 	%Random Graph
+
+%cases Umgebung anpassbar
+\makeatletter
+\renewcommand{\env@cases}[1][@{}l@{\quad}l@{}]{%
+  \let\@ifnextchar\new@ifnextchar
+  \left\lbrace
+  \def\arraystretch{1.2}%
+  \array{#1}%
+}
+\makeatother
+
+%Anführungszeichen
+\newcommand{\qte}[1]{\glqq #1\grqq}
+
+%%Wkeitsbefehl definieren
+%\newcommand{\propNEW}[2][\relax]{
+%\ifx#3\relax
+%	\ifx#2\relax
+%		\ifx#1\relax
+%			\ensuremath{\mathbb{P}}
+%		\else
+%			\ensuremath{\mathbb{P}\enb{#1}}
+%		\fi
+%%	\else
+%%		\ifx#1\relax
+%%			\ensuremath{\mathbb{P}_{#2}}
+%%		\else
+%%			\ensuremath{\mathbb{P}_{#2}\enb{#1}}
+%%		\fi
+%	\fi
+%\else
+%	\ifx#2\relax
+%%		\ifx#1\relax
+%%			\ensuremath{\mathbb{P}^{#3}
+%%		\else
+%%			\ensuremath{\mathbb{P}^{#3}\enb{#1}}
+%%		\fi
+%%	\else
+%%		\ifx#1\relax
+%%			\ensuremath{\mathbb{P}^{#3}_{#2}}
+%%		\else
+%%			\ensuremath{\mathbb{P}^{#3}_{#2}\enb{#1}}
+%%		\fi
+%	\fi			
+%\fi
+%}
+
+
+\NewDocumentCommand{\propEckig}{m o o}{
+	\IfNoValueTF{#2}
+		{
+			\IfNoValueTF{#3}
+				{\ensuremath{\mathbb{P}\enb{\renewcommand\given{\;\middle\vert\;} #1}}}
+				{\ensuremath{\mathbb{P}_{#3}\enb{\renewcommand\given{\;\middle\vert\;} #1}}}
+		}
+		{
+			\IfNoValueTF{#3}
+				{\ensuremath{\mathbb{P}^{#2}\enb{\renewcommand\given{\;\middle\vert\;} #1}}}
+				{\ensuremath{\mathbb{P}^{#2}_{#3}\enb{\renewcommand\given{\;\middle\vert\;} #1}}}	
+		}
+	}
+\NewDocumentCommand{\propRund}{m o o}{
+	\IfNoValueTF{#2}
+	{
+		\IfNoValueTF{#3}
+		{\ensuremath{\mathbb{P}\enb{\renewcommand\given{\;\middle\vert\;} #1}}}
+		{\ensuremath{\mathbb{P}_{#3}\enb{\renewcommand\given{\;\middle\vert\;} #1}}}
+	}
+	{
+		\IfNoValueTF{#3}
+		{\ensuremath{\mathbb{P}^{#2}\enb{\renewcommand\given{\;\middle\vert\;} #1}}}
+		{\ensuremath{\mathbb{P}^{#2}_{#3}\enb{\renewcommand\given{\;\middle\vert\;} #1}}}	
+	}
+}	
+
+
+	
+\newcommand{\prop}[1]{\propRund{#1}}
+\newcommand{\propE}[1]{\propEckig{#1}}
+
+\newcommand{\p}{\mathbb{P}}
+%%Wkeitsbefehl definieren
+%\newcommand{\prop}[1]{
+%	\ifx#1\relax \ensuremath{\mathbb{P}}
+%	\else \propRund{#1}
+%	\fi}
+
+%Wkeitsbefehl definieren Eckig
+%\newcommand{\propE}[1]{
+%	\ifx#1\relax \ensuremath{\mathbb{P}}
+%	\else \ensuremath{\mathbb{P}\bracketeckig{#1}}	
+%	\fi}
+
+%EW definieren
+\newcommand{\EW}[1]{
+	\ifx#1\relax \ensuremath{\mathbb{E}}
+	\else \ensuremath{\mathbb{E}\enb{#1}}	
+	\fi}
+
+%Var definieren
+\newcommand{\Var}[1]{
+	\ifx#1\relax \ensuremath{\mathbb{V}}
+	\else \ensuremath{\mathbb{V}\enb{#1}}	
+	\fi}
+
+%Cov definieren
+\newcommand{\Cov}[1]{
+	\ifx#1\relax \ensuremath{Cov}
+	\else \ensuremath{Cov\enb{#1}}	
+	\fi}
+
+%Cov definieren eckig
+\newcommand{\CovE}[1]{
+	\ifx#1\relax \ensuremath{Cov}
+	\else \ensuremath{Cov\benb{#1}}	
+	\fi}
+
+%EW definieren Eckig
+\newcommand{\EWE}[1]{
+	\ifx#1\relax \ensuremath{\mathbb{E}}
+	\else \ensuremath{\mathbb{E}\benb{#1}}	
+	\fi}
+
+%Var definieren Eckig
+\newcommand{\VarE}[1]{
+	\ifx#1\relax \ensuremath{\mathbb{V}}
+	\else \ensuremath{\mathbb{V}\benb{#1}}	
+	\fi}
+
+%asymptotisch fast sicher
+\newcommand{\afs}{\ifmmode \mathrm{\ a.f.s.} \else a.f.s. \fi}
+
+%Landau big O
+\newcommand{\bigO}[1]{\mathcal{O}\enb{#1}}
+%Reele Zahlen
+\newcommand{\Real}{\mathbb{R}}
+\newcommand{\Nat}{\mathbb{N}}
+\newcommand{\weight}[1]{\mathcal{C}\enb{#1}}

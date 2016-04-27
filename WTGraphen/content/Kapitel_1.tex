@@ -1,0 +1,102 @@
+%!TEX root = ./WTG.tex
+\section{Erstes Kapitel}
+
+\begin{definition}[Netzwerk] 
+	\marginnote{Mit anderen Worten: Ein Netzwerk ist ein positiv gewichteter Graph.} 
+	Ein Netzwerk $G = (V,E,c)$ ist ein Graph $\enb{V,E}$ mit entweder gerichteten oder ungerichteten Kanten, d.h.
+	\begin{align}
+		E \subseteq \set{\enb{x,y} \given x,y \in V} && \text{beziehungsweise} && E \subseteq \set{\set{x,y} \given x,y \in V},
+	\end{align}
+	zusammen mit einer Gewichtsfunktion $c:E \to \Real^+$.
+\end{definition}
+
+Ist nun $\enb{X_n}_n$ eine Irrfahrt auf $\enb{V,E}$ mit Übergangswahrscheinlichkeiten $P = \enb{p_{xy}}$, dann wollen wir daraus ein Netzwerk konstruieren. Dazu nehmen wir an, dass die Irrfahrt \emph{reversibel} bezüglich eines Maßes $\pi$ auf $V$ ist.
+\begin{gather}
+	\pi\enb{x}p_{xy} = \pi\enb{y} p_{yx}
+\end{gather}
+Dabei muss $\pi$ kein Wahrscheinlichkeitsmaß sein.
+
+\begin{bemerkung}
+	Das Maß $\pi$ ist stationär für die Markovkette.
+\end{bemerkung}
+\begin{beweis}
+	Zu zeigen: $\pi \cdot \p = \pi$. 
+	\begin{gather}
+		\marginnote{$y\sim x:=$ alle $y$ die zu $x$ benachbart sind.}
+		\pi\enb{x} = \pi\enb{x} \sum\limits_{y \sim x} p_{xy} = \sum\limits_{y \sim x} \pi(x)p_{xy} = \sum\limits_{y\sim x} \pi(y)p_{yx}.
+	\end{gather}
+\end{beweis}
+Wählt man nun $c(x,y):=\pi(x)p_{xy}$ so gilt $c(x,y)=\pi(x)p_{xy} = \pi(y)p_{yx} =  c(y,x)$.
+Das Kantengewicht ist also unabhängig von der Orientierung der Kante. Zusammenfassend haben wir nun festgestellt, dass eine reversible Irrfahrt bezüglich $\pi$ auf $(V,E)$ ein Netzwerk mit Kantengewicht $c(x,y) = \pi(x)\p_{xy} = c(y,x)$ induziert.
+
+Umgekehrt existiert es zu einem gegebenen Netzwerk $(V,E,c)$ eine Irrfahrt auf $(V,E)$, mit $p_{xy} \approx c(x,y)$. Genauer: 
+\begin{gather}	
+p_{xy} = \frac{1}{\sum\limits_{z \sim x}} \cdot c(x,y) = \frac{c(x,y)}{\pi(x)}.
+\end{gather}
+Gilt $c(x,y) = c(y,x)$ für alle $x,y$, so ist die Irrfahrt bezüglich $\pi$ reversibel, denn 
+\begin{gather}
+	\pi(x)p_{xy} = c(x,y) = c(y,x) = \pi(y)p_{yx} 
+\end{gather}
+
+\begin{beispiel}[Gambler's Run] \todo{das geht schöner}
+	Sei $X_n$ eine Irrfahrt auf $0, \dots, n$ und	
+	\begin{gather}
+		\prop{X_n = i+1 \given X_{n-1} = i} = p = 1 - \prop{X_n = i-1 \given X_{n-1} = i}.
+	\end{gather}
+	Wie kommt man nun auf die Kantengewichte?
+	\begin{gather}
+		\prop{X_{n+1} = i+1 \given X_n = i} = \frac{c(i,i+1)}{c(i,i+1)+c(i,i-1)} = \frac{\enb{\frac{p}{q}}^i}{\enb{\frac{p}{q}}^i + \enb{\frac{p}{q}}^{i-1}} = \frac{\frac{p}{q}}{\frac{p}{q} +1} = p
+	\end{gather}
+	Sei nun $A,Z \subseteq V, A \cap Z = \setzero$. Was ist nun $\prop{\tau_A < \tau_Z}[][x]?$ (Wobei $\tau_1$ die erste Treffzeit der Menge $A$ ist und $\p_x$ die Wahrscheinlichkeit, bei Start in $x$). Sei $F(x) = \prop{\tau_A < \tau_Z}[][x]$, dann ist $F|_A = 1$ und $F|_Z = 0$. Ist $x \notin A \cup Z$, dann ist $\set{x,y} \in E$ 
+	\begin{equation}
+		F(x) = \sum\limits_{y \sim x} p_{xy} F(y) = \frac{1}{\pi(x)} \sum\limits_{y \sim x} c(x,y)F(y) \tag{*} \label{eqn:GamblersRun}
+	\end{equation}
+	Im einfachsten Fall (Simple Random Walk) ist $c(x,y) = 1$ und $\pi(x) = \deg(x)$ \marginnote{$\deg(x)$ ist der Grad von $x$} und wir haben
+	\begin{equation}
+		F(x) = \frac{1}{\deg(x)} \sum\limits_{y \sim x} F(y),
+	\end{equation}
+	also ist $F(x)$ der Mittelwert all seiner Nachbarn. 
+\end{beispiel}
+
+\begin{definition}
+	Eine Funktion $F$, welche \eqref{eqn:GamblersRun} erfüllt, heißt harmonisch in $x$ bezüglich der Gewichte $c$. Ist $F$ harmonisch für alle $x \in V$ so heißt es nur harmonisch.
+\end{definition}
+Harmonische Funktionen erfüllen einige nützliche Prinzipien, Dazu sei für $W \subseteq V$
+\begin{align}
+	\delta W := \set{y \notin W \given \exists x \in W: y \sim x} && \overline{W} = W \cup \delta W
+\end{align}
+\begin{satz}[Maximumsprinzip]
+	Sei $G(V,E,c)$ endlich oder unendlich und $H = (V(H),E(H),c)$ ein endliches zusammenhängendes Teilnetzwerk. Sei $f: V \to \Real$ harmonisch auf $H$. Falls dann gilt
+	\begin{align}
+		\max\limits_{x \in V(H)} f(x) = \sup\limits_G f
+	\end{align}
+	so gilt auf $V(H)$:
+	\begin{align}
+		f \equiv \sup f 
+	\end{align}
+\end{satz}
+\begin{beweis}
+	Sei $K := \set{f(x) = \sup f \given x \in V}$. Ist $x \in K \cap V(H)$, so gilt
+	\begin{equation}
+		\sup f = f(x) = \frac{1}{\pi(x)} \sum\limits_{y \sim x} c(x,y) f(y) \Rightarrow f(y) = f(x)
+	\end{equation}
+	für alle $y \sim x$. Das heißt, mit $x \in K$ sind auch alle $y \sim x$ in $K$. Da $V(H)$ endlich und zusammenhängend ist, kann man dies iterieren und kommt so bis $V(H) \cup \delta V(H) = \overline{V}(H)$.
+\end{beweis}
+\todo{was steht hier genau? (Eindeutigkeitsprinzip)} 
+\begin{korollar}[Eindeutigkeitsprinzip]
+	Sei $G = (V,E,c)$ beliebig, $W \subseteq V$ endlich. Falls $f,g: V \to Real$ harmonisch auf $W$ sind, so folgt
+	\begin{align}
+		f|_{V\backslash W} = g|_{V\backslash W} \Rightarrow f = g
+	\end{align}
+\end{korollar}
+\begin{beweis}
+	Die Funktion $h = f\cdot g$ ist harmonisch auf $W$ und $h=0$ auf $V\backslash W$. Wähle $x \in W$, sodass $h(x) > 0$ maximal ist. Wähle die Zusammenhangskomponente in der $x$ liegt. \todo{Beweis nochmal checken. } $h \equiv h(x)$ auf $W_0 \cup \delta W_0$. Aber $\delta W \subseteq V \backslash W$ und dort ist $h(x) = 0 \lightning \Rightarrow h \leq 0$ überall. 
+	
+	Das gleiche stimmt für $\overline{h} = g-f \leq 0$.
+\end{beweis}
+
+\todo[inline]{Hier fehlt noch ein großer Teil, der nachgetext werden muss (ab Korolloar 1.2)}
+\newpage
+
+
+

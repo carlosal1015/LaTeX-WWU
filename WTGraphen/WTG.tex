@@ -1,0 +1,27 @@
+%!TEX TS-program = xelatex 
+\input{config.tex}
+\nocite{*}
+\begin{document}
+\hyphenation{Hil-bert-raum}
+\pagenumbering{Roman}
+\input{content/title.tex}
+\onehalfspacing
+\input{content/preface.tex}
+\tableofcontents
+\cleardoubleoddemptypage
+\pagenumbering{arabic}
+\setcounter{page}{1}
+
+\input{content/Kapitel_0.tex}
+\input{content/Kapitel_1.tex}
+\input{content/Kapitel_2.tex}
+
+%\appendix
+%\input{content/A.tex}
+
+\printbibliography
+\printindex
+\listoftodos
+\todototoc
+
+\end{document}
