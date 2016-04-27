@@ -1,10 +1,39 @@
-%!TEX root = topologie_2.tex
-% Hier findet man einige ausgewählte Beweise und Ergänzungen, auf die der Vorlesung hingewiesen wurde und die teilweise im Rahmen von Übungsaufgaben bearbeitet wurden.
-% Sie stammen also auch hauptsächlich aus den Übungen und deswegen sei hier noch einmal darauf hingewiesen, dass für die Richtigkeit keine Garantie übernommen wird!
-%
-% Die Reihenfolge richtet sich nach dem Auftreten der Verweise in der Vorlesung.
+%!TEX root = operatoralgebren2.tex
+Hier findet man einige ausgewählte Beweise und Ergänzungen, auf die der Vorlesung hingewiesen wurde und die teilweise im Rahmen von Übungsaufgaben bearbeitet wurden.
+Sie stammen also auch hauptsächlich aus den Übungen und deswegen sei hier noch einmal darauf hingewiesen, dass für die Richtigkeit keine Garantie übernommen wird!
 
+Die Reihenfolge richtet sich nach dem Auftreten der Verweise in der Vorlesung.
 
+\subsection{Injektivität der Einbettung des Tensorproduktes von beschränkten Operatoren} % (fold)
+\label{sub:injek_tensor_beschraenkte_operatoren}
+\emph{Dies beweist die Injektivität der Abbildung aus \autoref{bem:16} und war Aufgabe 3 von Blatt 1.}\smallskip
+
+Seien $\mathcal{H}_1$ und $\mathcal{H}_2$ Hilberträumen.
+Dann ist die kanonische Abbildung
+\mapdef{\iota \colon \mathcal{B}(\mathcal{H}_1) \odot \mathcal{B}(\mathcal{H}_2)}{\mathcal{B}(\mathcal{H}_1 \otimes \mathcal{H}_2)}{a \otimes b}{\enbrace[\big]{\xi \otimes \mu \mapsto a(\xi) \otimes b(\mu)}}{}
+injektiv, liefert also eine Einbettung.
+\begin{beweis}
+	Ein beliebiges Element in $\mathcal{B}(\mathcal{H}_1) \odot \mathcal{B}(\mathcal{H}_2)$ ist von der Form $\sum_{i} S_i \otimes T_i$ mit
+	$S_i \in \mathcal{B}(\mathcal{H}_1)$ und $T_i \in \mathcal{B}(\mathcal{H}_2)$.
+	Ohne Beschränkung der Allgemeinheit können wir annehmen, dass die $S_i$ linear unabhängig sind.
+	Sei also $\iota \enbrace*{\sum_{i} S_i \otimes T_i}=\sum_{i} S_i \otimes T_i=0$.
+	Für $v_1,w_1 \in \mathcal{H}_1$ und $v_2,w_2 \in \mathcal{H}_2$ gilt
+	\begin{align}
+		\skal*{\enbrace*{\sum\nolimits_{i} S_i \otimes T_i}(v_1 \otimes v_2)}{w_1 \otimes w_2} &= \skal*{\sum\nolimits_i S_i(v_1) \otimes T_i(v_2)}{w_1 \otimes w_2}\\
+		&= \sum\nolimits_i \skal*{S_i(v_1)}{w_1} \cdot \skal*{T_i(v_2)}{w_2} \\
+		&= \skal*{\enbrace*{\sum\nolimits_i \skal*{T_i (v_2)}{w_2} \cdot S_i}(v_1)}{w_1}_{\mathcal{H}_1}
+	\end{align}
+	Damit erhalten wir 
+	\begin{align}
+		\sum\nolimits_{i} S_i \otimes T_i =0 &\iff \skal*{\enbrace*{\sum\nolimits_{i} S_i \otimes T_i}(v_1 \otimes v_2)}{w_1 \otimes w_2} =0 & \forall v_1,w_1 \in \mathcal{H}_1 v_2,w_2 \in \mathcal{H}_2 \\
+		&\iff \skal*{\enbrace*{\sum\nolimits_i \skal*{T_i (v_2)}{w_2} \cdot S_i}(v_1)}{w_1}_{\mathcal{H}_1} =0 & \forall v_1,w_1 \in \mathcal{H}_1 v_2,w_2 \in \mathcal{H}_2\\
+		&\iff \sum\nolimits_i \skal*{T_i(v_2)}{w_2} \cdot S_i =0 & \forall v_2,w_2 \in \mathcal{H}_2 \\
+		&\iff \skal*{T_i(v_2)}{w_2} =0 & \forall v_2,w_2 \in \mathcal{H}_2 \\
+		&\iff T_i =0 & \forall i
+	\end{align}
+	Es hat genügt dies auf Elementartensoren zu zeigen, denn $\Span \set*{v_1 \otimes v_2 \given v_1 \in \mathcal{H}_1 , v_2 \in \mathcal{H}_2}$ ist dicht $\mathcal{H}_1 \otimes \mathcal{H}_2$.
+\end{beweis}
+% subsection injek_tensor_beschraenkte_operatoren (end)
 
 
 
