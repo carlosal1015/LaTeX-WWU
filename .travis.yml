@@ -62,6 +62,7 @@ deploy:
     - PDGL1_SS16/pdeskript.pdf
     - Topo1_WS14/topologie_1.pdf
     - Topo2_WS15/topologie_2.pdf
+    - WTGraph_SS16/WTG.pdf
   skip_cleanup: true
   on:
     repo: JaMeZ-B/LaTeX-WWU
