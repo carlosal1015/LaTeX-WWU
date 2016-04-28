@@ -95,6 +95,37 @@ Harmonische Funktionen erfüllen einige nützliche Prinzipien, Dazu sei für $W 
 	Das gleiche stimmt für $\overline{h} = g-f \leq 0$.
 \end{beweis}
 
+\begin{korollar}
+	Sei $V$ endlich, $A,Z \subseteq V, v \cap Z = \setzero$. $G \colon V \to \Real$ erfüllen $G|_A = 1, G|_Z \equiv 0$ $G$ harmonisch azf $V \backslash (A \cap Z)$. Dann ist $G(x) = F(x) = \prop{\tau_A < \tau_Z}[][x]$
+\end{korollar}
+\begin{beweis}
+	Folgt aus dem Eindeutigkeitsprinzip, wenn man $W = V\backslash (A \cap Z)$
+\end{beweis}
+
+\begin{satz}[Existenzprinzip]
+	Sei $V$ endlich oder unendlich, $G = (V,E,c)$. Sei $W \nsubseteq V$ und $f_0 \colon V_0 \backslash W \to \Real$ beschränkt. Dann gibt es eine Funktion $f \colon V \to \Real$, sodass $f|_(v \backslash W) = f_0$ und $f|_W$ harmonisch.
+\end{satz}
+
+\begin{beweis}
+	Starte die Netzwerk-Irrfahrt $(X_n)$, d.h. die deren \todo{text schwer lesbar} Übergangswahrscheinlichkeiten durch $c(x,y)$ bestimmt sind. Sei $X$ die ZV, die angibt, wann $(X_n)$ die Menge $V \backslash W$ trifft, falls dies überhaupt der Fall ist. Sei
+	\begin{gather}
+		Y = 
+		\begin{cases}
+			f_0(X), & \text{falls} (X_n) \text{ die Menge } V \backslash W \text{ trifft } \\
+			0, & \text{ sonst}
+		\end{cases}
+	\end{gather}
+	Behauptung: $\EW{Y}$ ist eine harmonische Fortsetzung von $f_0$
+\end{beweis}
+\begin{uebung}
+	Berechnen Sie im Gambler's Run die Wahrscheinlichkeit links oder rechts anzuschlagen, sowie die erwartete Treffzeit.
+\end{uebung}
+\todo[inline]{missing figure}
+Wir bertrachten jetzt ein Netzwerk als ein elektrisches Netzwerk, d.h. $c(x,y)$ sei die Leitfähigkeit und $\frac{1}{c(x,y)} = r(x,y)$ sei der Widerstand der Kante $(x,y)$. Wir legen in einem $a$ eine Spannung $v(a)$.....
+
+
+
+
 \todo[inline]{Hier fehlt noch ein großer Teil, der nachgetext werden muss (ab Korolloar 1.2)}
 \newpage
 
