@@ -296,9 +296,9 @@ animieren sollen. Oftmals sind dies schon aus vorherigen Semestern bekannte Sach
 	Wir müssen die Eindeutigkeit zeigen:
 	\begin{align}
 		\tilde{\gamma}(x) = \norm*{\tilde{\pi}(x)} = \norm*{\ind_{\mathcal{H}} \cdot \tilde{\pi}(x)} &= \norm*{\solim \pi\enbrace[\big]{h_\lambda^{\sfrac{1}{2}} \otimes k_\mu^{\sfrac{1}{2}}} \cdot \tilde{\pi}(x)} \\
-		&= \lim_{\lambda,\mu} \norm*{\tilde{\pi}(x^*) \pi \enbrace*{h_\lambda \otimes k_\mu} \tilde{\pi}(x)}^{\sfrac{1}{2}} \\
-		&= \lim_{\lambda,\mu} \norm*{\pi \enbrace*{x^* (h_\lambda \otimes k_\mu) x}}^{\sfrac{1}{2}} \\
-		&= \lim_{\lambda,\mu} \gamma \enbrace*{x^*(h_\lambda \otimes k_\mu)x}
+		&= \lim_{\lambda,\mu} \norm[\big]{\tilde{\pi}(x^*) \pi \enbrace*{h_\lambda \otimes k_\mu} \tilde{\pi}(x)}^{\sfrac{1}{2}} \\
+		&= \lim_{\lambda,\mu} \norm[\big]{\pi \enbrace*{x^* (h_\lambda \otimes k_\mu) x}}^{\sfrac{1}{2}} \\
+		&= \lim_{\lambda,\mu} \gamma \enbrace[\big]{x^*(h_\lambda \otimes k_\mu)x}
 	\end{align}
 	Der letzte Ausdruck ist unabhängig von $\pi$.
 \end{beweis}
@@ -306,7 +306,7 @@ animieren sollen. Oftmals sind dies schon aus vorherigen Semestern bekannte Sach
 \begin{definitionP}[{name=[{Max-Norm}]}]
 	Die Abbildung $\norm*{\cdot }_{\max} \colon A \odot B \to \mathbb{R}^+$ gegeben durch
 	\[
-		\norm*{x}_{\max} := \sup \set*{\norm*{\pi(x)} \given \pi \text{ ist $^*$-Darstellung von } A \odot B}
+		\norm*{x}_{\max} := \sup \set[\big]{\norm*{\pi(x)} \given \pi \text{ ist $^*$-Darstellung von } A \odot B}
 	\] 
 	ist eine $C^*$-Norm auf $A \odot B$.
 	Für jede weitere $C^*$-Norm $\gamma$ gilt $\gamma(x) \le \norm*{x}_{\max}$ für $x \in A \odot B$.
@@ -332,12 +332,12 @@ animieren sollen. Oftmals sind dies schon aus vorherigen Semestern bekannte Sach
 				A \tensormax B \rar[two heads] & A \otimes_\gamma B
 			\end{tikzcd}
 		\]
-		denn $\id A \odot B \to A \odot B$ ist normvermindernd, setzt sich also fort auf $A \tensormax B$.
+		denn $\id \colon A \odot B \to A \odot B$ ist normvermindernd, setzt sich also fort auf $A \tensormax B$.
 		Das Bild ist eine dichte $C^*$-Unteralgebra, also alles.
 		\item Sind $A,B$ unital, so ist $A \otimes_\gamma B$ unital und es gibt Inklusionen
 		\begin{align}
-			A \hookrightarrow &A \otimes_\gamma B , \quad a \mapsto a \otimes \ind_B \\
-			B \hookrightarrow &A \otimes_\gamma B , \quad b \mapsto \ind_A \otimes b
+			A &\xhookrightarrow{\hspace{1.4em}} A \mathop{\otimes_\gamma} B , \qquad a \longmapsto a \otimes \ind_B \\
+			B &\xhookrightarrow{\hspace{1.4em}} A \mathop{\otimes_\gamma} B , \qquad b \longmapsto \ind_A \otimes b
 		\end{align}
 		\item Sind $A$, $B$ unital, dann ist $A \tensormax B \cong C^* \enbrace*{A,B \mid \benbrace*{A,B}=0}$ (universelle $C^*$-Algebra, Übung!)
 		\item $\tensormax $ und $\tensormin$ sind assoziativ und kommutativ (warum?).
