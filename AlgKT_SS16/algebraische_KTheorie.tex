@@ -604,7 +604,7 @@ Dies leistet der folgende Satz:
         Sei $\alpha = a + b \cdot \sqrt{-5} \in Q$ mit $\alpha I \subseteq I$.
         Dann gilt $\alpha \in R$.
         \item Sei $I \subseteq R$ ein nichttriviales Ideal.
-        Dann gibt es $c \in K \setminus R$ mit $c I \subseteq R$.
+        Dann gibt es $c \in K \setminus R$ mit $c \cdot I \subseteq R$.
         \item $R$ ist ein Dedekind-Ring.
         \item $\enbrace*{2, 1 + \sqrt{-5}}$ ist ein projektiver $R$-Modul, der nicht stabil frei ist, also
         \[
@@ -634,10 +634,12 @@ Dies leistet der folgende Satz:
         Also sind $2a$ und $2b$ gerade und $a,b \in \mathbb{Z}$.
         \item Als $\mathbb{Z}$-Modul hat $I$ Rang 2, insbesondere wird $I=(\alpha,\beta)$ von zwei Elementen erzeugt.
         Nun sind auch $(\alpha), (\beta) \subseteq (\alpha,\beta)$ Ideale von Rang 2.
-        Es folgt $(\alpha) \cap (\beta) \neq (0)$, denn sonst ist $(\alpha) \oplus (\beta) \subseteq (\alpha,\beta)$ ein Untermodul vom Rang 4.
-        Sei $0 \neq r \in (\alpha) \cap (\beta)$, also $r = a \cdot \alpha = b \cdot \beta$ mit $a,b \in R$.
-        Sei $c \coloneqq \frac{ab}{r} $.
-        Dann ist $c \cdot I \subseteq R$.\todo{noch nicht ganz fertig}
+        Ist $I=(\alpha)$, so nehmen wir $c := \sfrac{1}{\alpha}$.
+        Andernfalls ist $\beta +(\alpha) \in \sfrac{R}{(\alpha)}$ nicht invertierbar und da $\sfrac{R}{(\alpha)}$ endlich ist, muss $\beta +(\alpha)$ ein Nullteiler sein.
+        Wir finden also $b \in R$ mit $b \cdot \beta \in (\alpha)$.
+        Setze nun $c := \sfrac{b}{\alpha}$.
+        Dann gilt $\alpha c, \beta c \in R$, also $c I \subseteq R$.
+        Wegen $(\alpha) \neq I$ ist $\beta \in (\alpha)$, also $\sfrac{b}{\alpha} \notin R$.
         \item Sei $I \subseteq R$ ein Ideal.
         Sei $J = \set*{\alpha \in K \given \alpha I \subseteq R}$.
         Es ist $I \cdot J =R$ zu zeigen.
@@ -677,6 +679,163 @@ Dies leistet der folgende Satz:
     \end{enumerate}
 \end{beweis}
 % section 2 (end)
+
+\newpage
+
+\section{Endlichkeit von Kettenkomplexen} % (fold)
+\label{sec:3}
+In diesem Abschnitt sind Kettenkomplexe immer $\mathbb{N}$-graduiert. (Allgemeiner könnten wir nach unten beschränkte Kettenkomplexe betrachten)
+
+\begin{definition}
+    Ein Kettenkomplex $C_*$ von $R$-Moduln heißt \bet{beschränkt}\index{Kettenkomplex!beschränkter}, wenn $C_j \neq 0$ nur für endlich viele $j$.
+    Er heißt von \bet{endlichem Typ}\index{Kettenkomplex!von endlichem Typ}, falls er beschränkt ist und alle $C_j$ endlich erzeugt sind.
+\end{definition}
+
+\begin{definition}
+    Sei $C_*$ ein Kettenkomplex von endlichem Typ von projektiven $R$-Moduln.
+    Dann definieren wir die \Index{Euler-Charakteristik} von $C_*$ als 
+    \[
+        \chi(C_*) := \sum_j (-1)^j \cdot \benbrace[\big]{C_j} \in K_0(R)
+    \]
+    Wir schreiben $\tilde{\chi}(C_*)$ für das Bild von $\chi(C_*)$ in $\tilde{K}_0(R)$.
+\end{definition}
+
+\begin{bemerkung}
+    Für $R=\mathbb{Z}$ ist $K_0(R) \cong \mathbb{Z}$ und $\chi(C_*)$ die Eulercharakteristik aus Topologie \RM{1}.    
+    Ebenso: Für einen endlichen CW-Komplex $X$ ist $\chi(X) = \chi \enbrace*{C^{\cell}_*(X)}$ (unter $K_0(\mathbb{Z})\cong \mathbb{Z}$).
+\end{bemerkung}
+
+\begin{lemma}
+    Sei $\begin{tikzcd} C_* \rar & C_*' \rar & C_*'' \end{tikzcd}$ eine kurze exakte Folge von Kettenkomplexen von endlichem Typ von projektiven $R$-Moduln.
+    Dann gilt
+    \[
+        \chi(C_*') = \chi(C_*) + \chi(C_*'')
+    \]
+\end{lemma}
+\begin{beweis}
+    Da die $C_j$ projektiv sind, gilt $C_j' \cong C_j \oplus C_j''$, also $\benbrace*{C_j'} = \benbrace*{C_j} + \benbrace*{C_j''} \in K_0(R)$.
+    Es gilt nun
+    \[
+        \chi(C_*') = \sum_{j} (-1)^j \cdot \benbrace*{C_j'} = \sum_j (-1)^j \cdot \enbrace*{ \benbrace*{C_j} + \benbrace*{C_j''}} = \chi(C_*) + \chi(C_*'') \qedhere
+    \]
+\end{beweis}
+
+\begin{proposition}[label=prop:euler_homologie]
+    Sei $C_*$ ein Kettenkomplex von endlichem Typ von projektiven Moduln.
+    Seien alle Homologiegruppen von $C_*$ projektiv.
+    Dann gilt 
+    \[
+        \chi(C_*) = \sum_j (-1)^j \cdot \benbrace[\big]{H_j(C_*)} \in K_0(R)
+    \] 
+\end{proposition}
+\begin{beweis}
+    Sei $Z_j \coloneqq \ker  \enbrace*{C_j \to C_{j-1}}$ und $B_j \coloneqq \im \enbrace*{Z_{j+1} \to Z_j}$.
+    Wir erhalten kurze exakte Folgen
+    \[
+        \begin{tikzcd}
+            0 \rar & Z_{j+1} \rar & C_{j+1} \rar & B_j \rar & 0
+        \end{tikzcd}
+    \]
+    und 
+    \[
+        \begin{tikzcd}
+            0 \rar & B_j \rar & Z_j \rar[two heads] & H_j(C_*) \rar & 0
+        \end{tikzcd}
+    \]
+    Es folgt $Z_j \cong B_j \oplus H_j(C_*)$.
+    Für $j<0$ ist $C_j=0$ und insbesondere ist $Z_0 =C_0$ projektiv und endlich erzeugt.
+    Daher sind auch $B_0$ und $H_0(C_*)$ projektiv und endlich erzeugt.
+    Es folgt $C_1 \cong Z_1 \oplus B_0$ und $Z_1$ ist projektiv und endlich erzeugt.
+    Induktiv folgt, dass alle $C_j$, $B_j$ und $H_j(C_*)$ projektiv und endlich erzeugt sind.
+    Mit $\benbrace*{C_{j+1}} = \benbrace*{B_j} + \benbrace*{Z_{j+1}}$ und $\benbrace*{Z_j} = \benbrace*{B_j} + \benbrace*{H_j(C_*)}$ folgt nun die Behauptung, vergleiche Topologie \RM{1}.
+\end{beweis}
+
+\begin{bemerkung}
+    Es gilt $-\chi(C_*) = \chi (\Sigma C_*)$.
+\end{bemerkung}
+
+\begin{proposition}[label=prop:euler_invariant_kettenhomotopie]
+    Seien $C_*$, $C_*'$ kettenhomotopieäquivalente Kettenkomplexe von endlichem Typ von projektiven $R$-Moduln.
+    Dann gilt 
+    \[
+        \chi(C_*) = \chi(C_*') \in K_0(R)
+    \]
+\end{proposition}
+\begin{beweis}
+    Sei $\varphi \colon C_* \to C_*'$ eine Kettenhomotopieäquivalenz.
+    Sei $\Keg(\varphi)_*$ der Kegel von $\varphi$.
+    Wir erhalten eine kurze exakte Folge von Kettenkomplexen
+    \[
+        \begin{tikzcd}
+            0 \rar & C_*' \rar & \Keg(\varphi)_* \rar & (\Sigma C)_* \rar & 0
+        \end{tikzcd}
+    \]
+    Also gilt $\chi(\Keg(\varphi)_*) = \chi(C_*') + \chi((\Sigma C)_*) = \chi(C_*') - \chi(C_*)$.
+    Da $\varphi$ in Homologie einen Isomorphismus induziert, ist $H_*(\Keg(\varphi)_*)=0$ und insbesondere projektiv.
+    Nach \autoref{prop:euler_homologie} ist dann 
+    \[
+        \chi \enbrace[\big]{\Keg(\varphi)_*} = \sum_j (-1)^j \cdot  H_j \enbrace[\big]{\Keg(\varphi)_*} =0
+    \]
+    und die Behauptung folgt.
+\end{beweis}
+
+\begin{definition}[{name=[homologie-endlich]}]
+    Ein Kettenkomplex $C_*$ von $R$-Moduln heißt \Index{homologie-endlich}, wenn er homotopieäquivalent zu einem Kettenkomplex $D_*$ von endlichem Typ von projektiven $R$-Moduln ist.
+    Wir definieren dann 
+    \[
+        \chi(C_*) \coloneqq \chi(D_*) \in K_0(R)
+    \]
+\end{definition}
+
+\begin{lemma}
+    Sei 
+    \(
+    	\begin{tikzcd}[cramped]
+            C \rar["i"] & C' \rar["\pi"] & C''
+        \end{tikzcd}
+    \) 
+	eine kurze exakte Folge von homotopie-endlichen Kettenkomplexen von projektiven Moduln.
+	Dann gilt
+	\[
+		\chi(C') = \chi(C) + \chi(C'') \in K_0(R)
+	\]
+\end{lemma}
+\begin{beweis}
+	Wir ersetzen $C$ und $C''$ in zwei Schritten durch Kettenkomplexe von endlichem Typ von projektiven $R$-Moduln.
+	Sei $\varphi \colon D'' \to C''$ eine Kettenhomotpieäquivalenz, wobei $D''$ von endlichem Typ von projektiven Moduln ist.
+	Sei $C' \oplus^{C''} D$ der Unterkomplex von $C' \oplus D$, der durch 
+	\[
+		(c',d'') \in C' \stackrel{C''}{\oplus} D :\Leftrightarrow \pi(c') =\varphi(d'')
+	\]
+	definiert wird.
+	Wir erhalten eine kommutatives Diagramm mit kurzen exakten Zeilen
+	\[
+		\begin{tikzcd}[column sep=3.8em,row sep=2.8em]
+			0 \rar & C \rar["i"] & C' \rar["\pi"] & C'' \rar & 0 \\
+			0 \rar & C \rar["{c \mapsto (i(c),0)}"] \uar["\id"] & C' \oplus^{C''} D \rar[two heads] \uar & D'' \rar \uar["\varphi"] & 0
+		\end{tikzcd}
+	\]
+	Mit der langen exakten Folge in Homologie und dem 5er-Lemma sehen wir, dass auch die mittlere Abbildung einen Isomorphismus in Homologie induziert.
+	Da $C'$ und $C' \oplus^{C''} D$ projektiv sind, ist die mittlere Abbildung daher auch eine Kettenhomotopieäquivalenz.
+	Wir können also nun annehmen, dass $C'$ von endlichem Typ von projektiven $R$-Moduln ist.
+	
+	Sei nun  $\varphi \colon C \to D$ eine Kettenhomotopieäquivalenz und $D$ von endlichem Typ von projektiven $R$-Moduln.
+	Sei $D \oplus_C C'$ der Quotient von $D \oplus C'$ nach dem Unterkomplex $\Delta C = \set*{\enbrace*{\varphi(c), - i(c)} \given c \in C}$.
+	Wir erhalten ein kommutatives Diagramm mit exakten Zeilen
+	\[
+		\begin{tikzcd}
+			0 \rar &C \dar["\phi"] \rar["i"] & C' \rar["\pi"] \dar & C'' \rar \dar["\id"] & 0 \\
+			0 \rar & D \rar & D \oplus_C C' \rar & C'' \rar & 0
+		\end{tikzcd}
+	\]
+	Wie vorher ist auch die mittlere Abbildung eine Kettenhomotopieäquivalenz.
+	
+	Wir können also annehmen, dass $C$ und $C''$ vom endlichen Typ von projektiven $R$-Moduln sind.
+	Dann ist aber auch $C'$ von endlichem Typ von projektiven $R$-Moduln und die Behauptung folgt aus \autoref{prop:euler_invariant_kettenhomotopie}.
+\end{beweis}
+
+
+% section 3 (end)
 
 \cleardoubleoddemptypage
 \pagenumbering{Alph}
