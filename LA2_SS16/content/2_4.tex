@@ -1,0 +1,176 @@
+\section{Orthogonale Projektionen und Orthonormalbasen}
+\label{sec:2.4}
+
+In diesem Abschnitt ist wieder $\KK = \RR$ oder $\KK= \CC$.
+
+\begin{definition}[Orthogonales Komplement einer Menge]
+	\label{def:4.1}
+	Sei $V$ ein $\KK$-Vektorraum mit Skalarprodukt $\sk{\cdot,\cdot}$.
+	Ist dann $M \subseteq V$, so setzen wir \index{orthogonales Komplement}
+	\[
+		M^\perp := \{v \in V : \sk{v,w} = 0 \text{ für alle } w \in M\} \subseteq V.
+	\]
+	$M^\perp$ ist dann ein Untervektorraum von $V$, denn sind $v_1,v_2 \in M^\perp$ und $\lambda_1,\lambda_2 \in \KK$, so folgt für alle $w \in M$:
+	\[
+		\sk{\lambda_1 v_1 + \lambda_2 v_2, w} = \lambda_1 \cdot \Underbrace{\sk{v_1,w}}{=0} + \lambda_2 \Underbrace{\sk{v_2,w}}{=0} = 0,
+	\]
+	also ist $\lambda_1 v_1 + \lambda_2 v_2 \in M^\perp$.
+\end{definition}
+
+\begin{bemerkung}[Orthogonale direkte Summe]
+	\label{bem:4.2}
+	Ist $U \subseteq V$ ein beliebiger Untervektorraum von $V$, so gilt $U \cap U^\perp = \setzero$, denn für $u \in U \cap U^\perp$ gilt $\no{u}^2 = \sk{u,u} = 0$, also $u = 0$.
+	Gilt zusätzlich $U + U^\perp = V$, so ist $V$ die direkte Summe von $U$ mit $U^\perp$.
+	Da die Räume senkrecht zueinander stehen, sagen wir dann, dass $V = U \oplus U^\perp$ die \Index{orthogonale direkte Summe} von $U$ und $U^\perp$ ist.
+	
+	Beachte: Wir werden später sehen, dass für Untervektorräume $U \subseteq V$ mit $\dim(U) < \infty$ immer gilt, dass $U + U^\perp = V$ gilt, also $V = U \oplus U^\perp$.
+\end{bemerkung}
+
+\begin{definition}[Lot, orthogonale Projektion]
+	\label{def:4.3}
+	Sei $V$ ein $\KK$-Vektorraum mit $\sk{\cdot,\cdot}$ und $U \subseteq V$ ein Untervektorraum von $V$.
+	Ist dann $v \in V$, so heißt $P_U(v) \in U$ das \Index{Lot} von $v$ auf $U$ (bzw. die \Index{orthogonale Projektion} von $v$ auf $U$), falls gilt: \todo{Skizze einfügen}
+	\[
+	(v- P_U(v)) \perp U \qquad \text{bzw.} \qquad v-P_U(v) \in U^\perp.
+	\]
+\end{definition}
+
+\begin{bemerkung}
+	\label{bem:4.4}
+	\mbox{} \\[-1.4cm]
+	\begin{enumerate}[(1)]
+		\item Wenn $P_U(v)$ existiert, so ist es eindeutig bestimmt, denn sind $u_1,u_2 \in U$ mit $(v-u_1) \in U^\perp$ und $(v-u_2) \in U^\perp$, so folgt
+		\[
+			u_2 - u_1 = (v-u_1) - (v-u_2) \in U \cap U^\perp = \setzero.
+		\]
+		\item Existiert $P_U(v)$ für alle $v \in V$, so folgt für alle $v \in V$:
+		\[
+			v = \Underbrace{P_U(v)}{\in U} + \Underbrace{(v-P_U(v))}{\in U^\perp} \in U + U^\perp.
+		\]
+		Damit folgt $V = U+U^\perp$ und dann $V = U \oplus U^\perp$, da $U \cap U^\perp = \setzero$, und $P_U \colon V \rightarrow U$ ist die Projektion von $V$ auf $U$ wie in \autoref{satz:I.12.5}.
+		\item Existiert $P_U(v)$ für alle $v \in V$, so existiert auch $P_{U^\perp}(v)$ für alle $v \in V$, und es gilt
+		\[
+			P_{U^\perp}(v) = v - P_U(v).
+		\]
+		Denn $v - P_U(v) \in U^\perp$ und $v-(v-P_U(v)) = P_U(v) \in U$ und $U \subseteq (U^\perp)^\perp$.
+		In diesem Fall gilt sogar $U = (U^\perp)^\perp$, denn ist $v \in (U^\perp)^\perp$, so gilt nach (ii) $v = u+w$ für ein $u \in U, w \in U^\perp$, und dann folgt
+		\[
+			0 = \sk{v,w} = \sk{u+w,w} = \Underbrace{\sk{u,w}}{\mathclap{=0\text{, da } u \in U, w \in U^\perp}} + \sk{w,w},
+		\]
+		also folgt $0 = \sk{w,w}$ und damit $w = 0, v = u \in U$.
+	\end{enumerate}
+\end{bemerkung}
+
+Wir wollen im Folgenden zeigen, dass $P_U$ immer existiert, wenn $\dim(U) < \infty$.
+Dazu benötigen wir die folgende wichtige Notation:
+
+\begin{definition}[Orthogonalsystem, Orthonormalsystem, Orthonormalbasis]
+	\label{def:4.5}
+	Sei $V$ ein $\KK$-Vektorraum mit Skalarprodukt $\sk{\cdot,\cdot}$ und seien $v_1,\dots,v_l \in V$.
+	Dann definieren wir:
+	\begin{enumerate}[(i)]
+		\item $\{v_1,\dots,v_l\}$ heißt \Index{Orthogonalsystem}, wenn $v_i \perp v_j$ für alle $1 \leq i,j \leq l$ mit $i \neq j$.
+		\item $\{v_1,\dots,v_l\}$ heißt \Index{Orthonormalsystem}, falls $\{v_1,\dots,v_l\}$ ein Orthogonalsystem ist mit $\no{v_i} = 1$ für alle $1 \leq i \leq l$.
+		\item $\{v_1,\dots,v_l\}$ heißt \Index{Orthonormalbasis}, falls $\{v_1,\dots,v_l\}$ ein Orthogonalsystem ist mit $\LH\{v_1,\dots,v_l\} = V$.
+	\end{enumerate}
+\end{definition}
+
+\begin{definition}[Kroneckersymbol]
+	\label{def:4.6}
+	Ist $I \neq \emptyset$ eine Indexmenge, so definieren wir für $i,j \in I$ das \Index{Kroneckersymbol}:
+	\[
+		\delta_{ij} = \begin{cases}
+			1, & \text{falls } i = j \\
+			0, & \text{falls } i \neq j
+		\end{cases}
+	\]
+	Dann ist $\{v_1,\dots,v_l\}$ ein Orthogonalsystem, falls für alle $i,j \in \{1,\dots,l\}$ gilt:
+	\[
+		\sk{v_i,v_j} = \delta_{ij} = \no{v_i}^2
+	\]
+\end{definition}
+
+\begin{satz}[Satz von \textsc{Pythagoras}]
+	\label{satz:4.7}
+	Ist $\{v_1,\dots,v_l\}$ ein Orthogonalsystem, so gilt für alle $\lambda_1,\dots,\lambda_l \in \KK$: \todo{Skizze einfügen}
+	\[
+		\no{\sum_{i=1}^{l} \lambda_i v_i}^2 = \sum_{i=1}^{l} \abs{\lambda_i}^2 \no{v_i}^2.
+	\]
+\end{satz}
+
+\begin{beweis}
+	Es gilt
+	\[
+		\no{\sum_{i=1}^{l} \lambda_i v_i}^2 = \sk{\sum_{i=1}^{l} \lambda_i v_i,\sum_{j=1}^{l} \lambda_j v_j} = \sum_{i=1}^{l} \sum_{j=1}^{l} \lambda_i \ol{\lambda_j} \sk{v_i,v_j} = \sum_{i,j=1}^{l} \lambda_i \ol{\lambda_j} \delta_{ij} \no{v_i}^2 = \sum_{i=1}^{l} \lambda_i \ol{\lambda_i} \no{v_i}^2 \qedhere
+	\]
+\end{beweis}
+
+\begin{lemma}
+	\label{lemma:4.8}
+	Ist $\{v_1,\dots,v_l\}$ ein Orthogonalsystem mit $v_i \neq 0$ für alle $1 \leq i \leq l$, dann sind die $v_1, \dots, v_l$ linear unabhängig.
+	Insbesondere folgt, dass jede Orthonormalbasis von $V$ eine Basis von $V$ ist.
+\end{lemma}
+
+\begin{beweis}
+	Seien $\lambda_1, \dots, \lambda_l \in \KK$ mit $\sum_{i=1}^{l} \lambda_i v_i = 0$, so folgt mit \autoref{satz:4.7}:
+	\[
+		0 = \no{\sum_{i=1}^{l} \lambda_i v_i}^2 \stackrel{\ref{satz:4.7}}{=} \sum_{i=1}^{l} \abs{\lambda_i}^2 \no{v_i}^2,
+	\]
+	und damit $\abs{\lambda_i}^2 \no{v_i}^2 = 0$ für alle $1 \leq i \leq l$.
+	Da $v_i \neq 0$, folgt $\lambda_i = 0$ für alle $1 \leq i \leq l$. \qedhere
+\end{beweis}
+
+\begin{satz}
+	\label{satz:4.9}
+	Sei $V$ ein $\KK$-Vektorraum mit $\sk{\cdot,\cdot}$ und sei $\{v_1,\dots,v_l\}$ ein Orthonormalsystem in $V$.
+	Ferner sei $U = \LH\{v_1,\dots,v_l\}$.
+	Dann gelten:
+	\begin{enumerate}[(i)]
+		\item Für alle $v \in V$ existiert die orthogonale Projektion $P_U(v) \in U$ und es gilt
+		\[
+			P_U(v) = \sum_{i=1}^{l} \sk{v,v_i} v_i
+		\]
+		\item Für alle $v \in V$ gilt die \Index{Besselsche Ungleichung}
+		\[
+			\no{P_U(v)}^2 = \sum_{i=1}^{l} \abs{\sk{v,v_i}}^2 \leq \no{v}^2.
+		\]
+		\item Ist $v \in V$, so gilt für alle $u \in U$ mit $u \neq v$:
+		\[
+			\no{v- P_U(v)} \leq \no{v-u},
+		\]
+		das heißt $P_U(v)$ ist das eindeutige Element in $U$, das von $v$ den kleinsten Abstand hat.
+	\end{enumerate}
+\end{satz}
+
+\begin{beweis}
+	\mbox{} \\[-.9cm]
+	\begin{enumerate}[(i)]
+		\item Nach \autoref{bem:4.4} genügt es zu zeigen:
+		Ist $u_0 = \sum_{i=1}^{l} \sk{v,v_i} v_i$, so gilt $(v-u_0) \perp U$.
+		Zunächst gilt für alle $v_j$ mit $1 \leq j \leq l$:
+		\begin{align*}
+			&\sk{v-u_0,v_j} = \sk{v,v_j} - \sk{u_0,v_j} = \sk{v,v_j} - \sk{\sum_{i=1}^{l} \sk{v_i,v}v_i,v_j} \\
+			=\quad &\sk{v,v_j} - \sum_{i=1}^{l} \sk{v_i,v} \Underbrace{\sk{v_i,v_j}}{=\delta_{ij}} = \sk{v,v_j} - \sk{v,v_j} = 0.
+		\end{align*}
+		Damit folgt $\sk{v-u_0,v_j} = 0$ für alle $1 \leq j \leq l$.
+		Ist nun $u = \sum_{j=1}^{l} \lambda_j v_j \in \LH\{v_1,\dots,v_l\} = U$, so folgt auch
+		\[
+			\sk{v-u_0,u} = \sk{v-u_0,\sum_{i=1}^{l} \lambda_j v_j} = \sum_{i=1}^{l} \ol{\lambda_j} \sk{v-u_0,v_j} = 0.
+		\]
+		\item Nach \autoref{satz:4.7} und (i) gilt
+		\[
+			\no{P_U(v)}^2 = \no{\sum_{i=1}^{l} \sk{v,v_i} v_i}^2 = \sum_{i=1}^{l} \abs{\sk{v,v_i}}^2 \Underbrace{\no{v_i}^2}{=1} = \sum_{i=1}^{l} \abs{\sk{v,v_i}}^2.
+		\]
+		Ferner gilt, da $v - P_U(v) \perp P_U(v)$, dass
+		\[
+			\no{v}^2 = \no{(v-P_U(v)) + P_U(v)}^2 \stack{\ref{satz:4.7}}{=} \no{v - P_U(v)}^2 + \no{P_U(v)}^2 \geq \no{P_U(v)}^2
+		\]
+		Beachte: Es folgt auch $\no{v} = \no{P_U(v)} \Leftrightarrow v = P_U(v) \in U$.
+		\item Ist $u \in U$ mit $u \neq P_U(v)$, so folgt $P_U(v) - u \neq 0$.
+		Dann folgt mit \autoref{satz:4.7}:
+		\begin{align*}
+			\no{v-u}^2 &\stack{}{=} \no{(v-P_U(v)) + \Underbrace{(P_U(v) - u)}{\in U}}^2 \\
+			&\stack{\ref{satz:4.7}}{=} \no{v-P_U(v)}^2 + \Underbrace{\no{P_U(v)-u}}{\neq 0 \text{ n.V.}}^2 > \no{v-P_U(v)}^2 \qedhere
+		\end{align*}
+	\end{enumerate}
+\end{beweis}
