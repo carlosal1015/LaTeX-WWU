@@ -174,3 +174,194 @@ Dazu benötigen wir die folgende wichtige Notation:
 		\end{align*}
 	\end{enumerate}
 \end{beweis}
+
+\begin{definition}[Abstand]
+	\label{def:4.10}
+	Ist $V$ ein $\KK$-Vektorraum mit $\sk{\cdot,\cdot}$ und ist $\emptyset \neq M \subseteq V$, so definieren wir für ein $v \in V$ den \Index{Abstand} von $v$ zu $M$ durch
+	\[
+		d(v,M) := \inf \{ \no{v-u} : u \in M\} \geq 0
+	\]
+\end{definition}
+
+\begin{korollar}
+	\label{kor:4.11}
+	Ist $U \subseteq V$ ein Untervektorraum, sodass eine orthogonale Projektion $P_U\colon V \rightarrow U$ existiert, dann gilt für alle $v \in V$
+	\[
+		d(v,U) = \no{v - P_U(v)}
+	\]
+	und $P_U(v)$ ist eindeutig durch diese Gleichung festgelegt.
+\end{korollar}
+
+\begin{beweis}
+	Das folgt aus dem Beweis von \autoref{satz:4.9}(iii). \qedhere
+\end{beweis}
+
+Ist $\{v_1,\dots,v_n\}$ eine Orthonormalbasis von $V$, so erhalten wir eine besonders schöne Darstellung der Elemente von $V$ als Linearkombination der Basiselemente:
+
+\begin{satz}[Fourierentwicklung]
+	\label{satz:4.12}
+	Sei $V$ ein $\KK$-Vektorraum mit $\sk{\cdot,\cdot}$ und sei $\{v_1,\dots,v_n\}$ ein Orthonormalsystem von $V$.
+	Dann sind äquivalent:
+	\begin{enumerate}[(1)]
+		\item $\{v_1,\dots,v_n\}$ ist eine Orthonormalbasis von $V$.
+		\item Für alle $v \in V$ gilt $v = \sum_{i=1}^{n} \sk{v,v_i} v_i$ (\Index{Fourierentwicklung}).
+		\item Für alle $v,w \in V$ gilt die \Index{Parsevalsche Gleichung} $\sk{v,w} = \sum_{i=1}^{n} \sk{v,v_i} \cdot \ol{\sk{w,v_i}}$.
+		\item Für alle $v \in V$ gilt die \Index{Plancherel-Formel} $\no{v}^2 = \sum_{i=1}^{n} \abs{\sk{v,v_i}}^2$.
+		\item Ist $v \in V$ mit $\sk{v,v_i} = 0$ für alle $1 \leq i \leq n$, so gilt $v = 0$, das heißt $\{v_1,\dots,v_n\}$ ist ein maximales Orthonormalsystem.
+	\end{enumerate}
+\end{satz}
+
+\begin{beweis}
+	\mbox{} \\[-.85cm]
+	\begin{description}
+		\item[(i) $\Rightarrow$ (ii):] Nach \autoref{lemma:4.8} folgt aus (i), dass $V = \LH\{v_1,\dots,v_n\}$, das heißt $v = \sum_{j=1}^{n} \lambda_j v_j$ für geeignete $\lambda_i \in \KK$.
+		Dann folgt für alle $1 \leq i \leq n$:
+		\[
+			\sk{v,v_i} = \sk{\sum_{j=1}^{n} \lambda_j v_j, v_i} = \sum_{j=1}^{n} \lambda_j \cdot \Underbrace{\sk{v_j,v_i}}{=\delta_{ij}} = \lambda_i,
+		\]
+		also $v = \sum_{i=1}^{n} \sk{v,v_i} v_i$.
+		\item[(ii) $\Rightarrow$ (iii):] Nach (ii) gilt
+		\begin{align*}
+			\sk{v,w} &= \sk{\sum_{i=1}^{n} \sk{v,v_i} v_i, \sum_{j=1}^{n} \sk{w,v_j} v_j} \\
+			&= \sum_{i=1}^{n} \sum_{j=1}^{n} \sk{v,v_i} \ol{\sk{w,v_j}} \Underbrace{\sk{v_i,v_j}}{=\delta_{ij}} = \sum_{i=1}^{n} \sk{v,v_i} \ol{\sk{w,v_i}}.
+		\end{align*}
+		\item[(iii) $\Rightarrow$ (iv):] Einsetzen von $w = v$ liefert
+		\[
+			\no{v}^2 = \sk{v,v} = \sum_{i=1}^{n} \sk{v,v_i} \ol{\sk{v,v_i}} = \sum_{i=1}^{n} \abs{\sk{v,v_i}}^2.
+		\]
+		\item[(iv) $\Rightarrow$ (v):] Ist $v \in V$ mit $\sk{v,v_i} = 0$ für alle $1 \leq i \leq n$, so folgt
+		\[
+			\no{v}^2 = \sum_{i=1}^{n} \abs{\sk{v,v_i}}^2 = 0,
+		\]
+		also $v = 0$.
+		\item[(v) $\Rightarrow$ (i):] Sei $U = \LH\{v_1,\dots,v_n\}$.
+		Zeige: $U = V$.
+		Nach \autoref{satz:4.9} existiert die orthogonale Projektion $P_U\colon V \rightarrow U$.
+		Ist dann $v \in V$, so gilt $v - P_U(v) \perp U$, also insbesondere $\sk{v-P_U(v),v_i} = 0$ für alle $1 \leq i \leq l$.
+		Nach (v) folgt $v - P_U(v) = 0$, also $v = P_U(v) \in U$. \qedhere
+	\end{description}
+\end{beweis}
+
+\textbf{Problem:} Besitzt jeder endlich dimensionale $\KK$-Vektorraum mit $\sk{\cdot,\cdot}$ eine Orthonormalbasis?
+Und wenn ja, wie kann man eine Orthonormalbasis finden?
+
+\begin{satz}[Schmidtsches Orthonormalisierungsverfahren]
+	\label{satz:4.13}
+	Sei $V$ ein $\KK$-Vektorraum mit $\sk{\cdot,\cdot}$ und seien $w_1,\dots,w_l \in V$ linear unabhängige Vektoren.
+	Dann existiert ein Orthonormalsystem $\{v_1,\dots,v_l\}$ in $V$, sodass für alle $1 \leq j \leq l$ gilt:
+	\[
+		\LH\{v_1,\dots,v_j\} = \LH\{w_1,\dots,w_j\}.
+	\]
+	Insbesondere folgt:
+	Ist $\{w_1,\dots,w_l\}$ eine Basis von $V$ so ist $\{v_1,\dots,v_l\}$ eine Orthonormalbasis von $V$. \index{Schmidtsches Orthonormalisierungsverfahren}
+\end{satz}
+
+\begin{beweis}
+	Wir konstruieren $\{v_1,\dots,v_l\}$ rekursiv wie folgt
+	\begin{enumerate}[(i)]
+		\item Setze $v_1 = \no{w_1}^{-1} w_1$. (geht, da $w_i \neq 0$)
+		\item Sind $v_1,\dots,v_j$ bereits konstruiert mit $j < l$, so setzen wir
+		\[
+			\widetilde{v}_{j+1} = w_{j+1} - \Underbrace{\sum_{i=1}^{j} \sk{w_{j+1},v_i} v_i}{\mathclap{=P_{U_j}(w_{j+1}) \text{ mit } U_j = \LH\{v_1,\dots,v_j\}}}
+		\]
+		Da $w_{j+1} \notin \LH\{w_1,\dots,w_j\} = \LH\{v_1,\dots,v_j\}$ gilt $\widetilde{v}_{j+1} \neq 0$.
+		Setze dann
+		\[
+			v_{j+1} := \no{\widetilde{v}_{j+1}} \widetilde{v}_{j+1}.
+		\]
+		Nach Induktionsvoraussetzung ist $\{v_1,\dots,v_j\}$ ein Orthonormalsystem mit $\LH\{v_1,\dots,v_j\} = \LH\{w_1,\dots,w_j\} =: U_j$.
+		Wir zeigen nun, dass dann Ähnliches für $\{v_1,\dots,v_{j+1}\}$ gilt:
+		
+		Da $\widetilde{v}_{j+1} = w_{j+1} - P_{U_j}(w_{j+1}) \in U_j^\perp$, gilt $\sk{\widetilde{v}_{j+1},v_i} = 0$ für alle $1 \leq i \leq j$, und dann auch $\sk{v_{j+1},v_i} = 0$ für alle $1 \leq i \leq j$.
+		Da $\no{v_{j+1}} = 1$ und da $\{v_1,\dots,v_j\}$ ein Orthonormalsystem ist, folgt dann $\sk{v_i,v_j} = \delta_{ij}$ für alle $1 \leq i,l \leq  j+1$.
+		
+		Zeige nun: $\LH\{w_1,\dots,w_{j+1}\} = \LH\{v_1,\dots,v_{j+1}\}$.
+		Da $\LH\{w_1,\dots,w_j\} = \LH\{v_1,\dots,v_j\}$, gilt zunächst, das $\LH\{w_1,\dots,w_{j+1}\} = \LH\{v_1,\dots,v_j,w_{j+1}\}$.
+		Nach Konstruktion gilt
+		\[
+			v_{j+1} = \frac{1}{\no{\tilde{v}_{j+1}}} \enb{w_{j+1} - \sum_{i=1}^{j} \sk{w_{j+1},v_i} v_i}
+		\]
+		und damit ist $v_{j+1}$ eine Linearkombination von $\{v_1,\dots,v_j,w_{j+1}\}$ derart, dass der Koeffizient von $w_{j+1}$ nicht $0$ ist.
+		Nach dem Austauschlemma \ref{lemma:I.9.1} folgt dann
+		\[
+			\LH\{v_1,\dots,v_{j+1}\} = \LH\{v_1,\dots,v_j,w_{j+1}\} = \LH\{w_1,\dots,w_{j+1}\}. \qedhere
+		\]
+	\end{enumerate}
+\end{beweis}
+
+\begin{korollar}
+	\label{kor:4.14}
+	Jeder endlich dimensionale $\KK$-Vektorraum $V$ mit Skalarprodukt $\sk{\cdot,\cdot}$ besitzt eine Orthonormalbasis.
+\end{korollar}
+
+\begin{beispiel}
+	\label{bsp:4.15}
+	\mbox{} \\[-1.4cm]
+	\begin{enumerate}[(i)]
+		\item Ist $\KK^n$ versehen mit dem Standard-Skalarprodukt $\sk{x,y} = \sum_{i=1}^{n} x_i \ol{y_i}$, so ist $\{e_1,\dots,e_n\}$ eine Orthonormalbasis.
+		\item Sei $\RR^2$ versehen mit dem Standard-Skalarprodukt.
+		Dann ist auch
+		\[
+			B = \penb{\frac{1}{\sqrt{2}} \binom{1}{1}, \frac{1}{\sqrt{2}} \binom{-1}{1}}
+		\]
+		eine Orthonormalbasis von $\RR^2$.
+		
+		Allgemein gilt: Ist $\binom{a}{b} \in \RR^2$ mit $a^2 + b^2 = 1$, so ist
+		\[
+			\penb{\binom{a}{b}, \binom{-b}{a}}
+		\]
+		eine Orthonormalbasis von $\RR^2$ bezüglich des Standard-Skalarprodukts. \todo{Skizze einfügen!}
+		\item Sei $V = \RR^4$ mit dem Standard-Skalarprodukt $\sk{\cdot,\cdot}$ und sei $U \subseteq V$ der von $w_1,w_2,w_3 \in \RR^4$ erzeugte Untervektorraum von $V$ mit
+		\[
+			w_1 = \begin{pmatrix} 1 \\ 1 \\ 0 \\ 0 \end{pmatrix}, \qquad
+			w_2 = \begin{pmatrix} 0 \\ 1 \\ 1 \\ 0 \end{pmatrix}, \qquad 
+			w_3 = \begin{pmatrix} 0 \\ 0 \\ 1 \\ 1 \end{pmatrix}.
+		\]
+		Wir wollen eine Orthonormalbasis von $U$ berechnen.
+		Da $w_1,w_2,w_3$ linear unabhängig sind, setzen wir nach Schmidt
+		\[
+			v_1 = \frac{1}{\no{w_1}} w_1 = \frac{1}{\sqrt{2}} \begin{pmatrix} 1 \\ 1 \\ 0 \\ 0 \end{pmatrix}
+		\]
+		\[
+			\widetilde{v}_2 = w_2 - \sk{w_2,v_1} v_1 = \frac{1}{2} \begin{pmatrix} -1 \\ 1 \\ 2 \\ 0 \end{pmatrix} \qquad \text{ und } \qquad 
+			v_2 = \frac{1}{\no{\widetilde{v}_2}} \widetilde{v}_2 = \frac{1}{\sqrt{6}} \begin{pmatrix} -1 \\ 1 \\ 2 \\ 0 \end{pmatrix}
+		\]
+		\[
+			\widetilde{v}_3 = w_3 - \sk{w_3,v_1} v_1 - \sk{w_3,v_2} v_2 = \frac{1}{3}\begin{pmatrix} 1 \\ -1 \\ 1 \\ 3 \end{pmatrix} \qquad \text{ und } \qquad 
+			v_3 = \frac{1}{\no{\widetilde{v}_3}} \widetilde{v}_3 = \frac{1}{\sqrt{12}} \begin{pmatrix} 1 \\ -1 \\ 1 \\ 3 \end{pmatrix}
+		\]
+		Wir können nun mit Hilfe der Orthonormalbasis $\{v_1,v_2,v_3\}$ von $U$ ohne Probleme die orthogonale Projektion $P_U\colon \RR^4 \rightarrow U \subseteq \RR^4$ berechnen.
+		Nach \autoref{satz:4.9} gilt
+		\[
+			P_U(v) = \sk{v,v_1} v_1 + \sk{v,v_2} v_2 + \sk{v,v_3} v_3.
+		\]
+		Ist zum Beispiel $v = e_1$, so gilt
+		\[
+			P_U(e_1) = \sk{e_1,v_1} v_1 + \sk{e_1,v_2} v_2 + \sk{e_1,v_3} v_3 =
+			\frac{1}{4} \begin{pmatrix} 3 \\ 1 \\ -1 \\ 1 \end{pmatrix}.
+		\]
+		Der Abstand von $e_1$ zu $U$ ist dann gegeben durch
+		\[
+			d(e_1,U) = \no{e_1,P_U(e_1)} = \frac{1}{2}.
+		\]
+		Beachte: Setzen wir $\widetilde{v}_4 := e_1 - P_U(e_1)$ und
+		\[
+			v_4 = \no{\widetilde{v}_4}^{-1} v_4 = \frac{1}{2} \begin{pmatrix}
+			1 \\ -1 \\ 1 \\ -1
+			\end{pmatrix},
+		\]
+		so ist $\{v_1,\dots,v_4\}$ eine Orthonormalbasis von $\RR^4$ (filgt aus Schmidt mit $w_4 = e_1$.
+	\end{enumerate}
+\end{beispiel}
+
+Zum Abschluss noch zur direkten Summenzerlegung:
+\begin{satz}
+	\label{satz:4.16}
+	Sei $V$ ein $\KK$-Vektorraum mit Skalarprodukt $\sk{\cdot,\cdot}$ und sei $U \subseteq V$ ein Untervektorraum mit $\dim(U) < \infty$.
+	Dann gilt $V = U \oplus U^\perp$ und die orthogonale Projektion $P_U \colon V \rightarrow U$ erfüllt $P_U(u+w) = u$ für $u \in U$ und $w \in U^\perp$ (vergleiche \autoref{satz:I.12.5}).
+\end{satz}
+
+\begin{beweis}
+	In \autoref{bem:4.4}(ii) haben wir schon gesehen, dass der Satz wahr ist, wenn die orthogonale Projektion existiert.
+	Dies folgt aber sofort aus \autoref{satz:4.9} und \autoref{satz:4.13}. \qedhere
+\end{beweis}
