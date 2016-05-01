@@ -391,7 +391,7 @@ Es gilt $c_v(t)= \exp(t \cdot v) = \sum_{k=0}^{\infty} \frac{(tv)^k}{k!}$, denn
 	&= c_v(t_0) \cdot v = X_v \enbrace*{c_v(t_0)}_v
 \end{align}
 
-\begin{lemma}
+\begin{lemma}[label=lem:127]
 	Sei $G$ eine Liegruppe.
 	Die Integralkurve $c_v$ ist auf ganz $\mathbb{R}$ definiert und es gilt 
 	\[
@@ -834,23 +834,74 @@ Auf $\SL(2,\mathbb{R})$
 	Dann nennt man einen Homomorphismus $\Phi \colon (\mathbb{R},+) \to G$ eine \Index{Einparameteruntergruppe} (von $G$).
 \end{definition}
 
-Beispiel: $G = \GL(n;\mathbb{R})$, $V \in \Tmap_e \GL(n,\mathbb{R}) = \Mat(n,\mathbb{R})$.
+Beispiel: $G = \GL(n;\mathbb{R})$, $v \in \Tmap_e \GL(n,\mathbb{R}) = \Mat(n,\mathbb{R})$.
 \[
 	\Phi_V \colon \mathbb{R} \to G \quad t \mapsto \exp(t \cdot v) = \sum_{k=0}^{\infty}  \frac{(tv)^k}{k!} 
 \]
 Es gilt $\Phi_v(s+t) = \Phi_v(s) \Phi_v(t) = \Phi_v(t) \Phi_v(s)$ für alle $s,t \in \mathbb{R}$.
 
 Zurück zum allgemeinen Fall: Sei $v \in \Tmap_e G \setminus \set*{0}$.
-Wegen $\Tmap_0 \mathbb{R} = \mathbb{R}$ ist
+Wegen $\Tmap_0 \mathbb{R} \cong \mathbb{R}$ ist
 \[
 	\psi_v \colon \mathbb{R} \to \Tmap_e G \quad t \mapsto t \cdot v
 \]
 ein Liealgebrenhomomorphismus. 
 Da $\mathbb{R}$ einfach zusammenhängend ist, existiert nach \autoref{lem:134} ein eindeutig bestimmter Homomorphismus
-\[
+\(
 	\Phi_v \colon \mathbb{R} \to G
-\]
+\)
 mit $\Phi_v'(0)= (\mathd \Phi_v)_0 = \psi_v$.
+
+\begin{lemma}[label=lem:142]
+	Sei $G$ eine Liegruppe mit Exponentialabbildung $\exp \colon \Tmap_e G \to G$.
+	Dann gilt $\Phi_v(1) = \exp(v)$ für alle $v \in \Tmap_e G$.
+\end{lemma}
+\begin{beweis}
+	Wir hatten in \autoref{lem:127} gezeigt, dass $c_v(s +t) = c_v(s) \cdot c_v(t)$ für alle $t,s \in \mathbb{R}$ gilt, wobei $c_v$ die Integralkurve von $X_v$ ist mit $X_v(e)=v$.
+	Somit gilt
+	\[
+		\exp \enbrace*{(s+t) v} = c_{(s+t)v}(1) = c_v(s+t) = c_v(s) \cdot c_v(t) = c_{sv}(1) \cdot c_{tv}(1) = \exp(sv) \cdot \exp(tv)
+	\]
+	Damit ist $t \mapsto \exp(tv)$ eine Einparametergruppe mit $\diffd{}{t}\big|_{t=0} \exp(tv)=v$.
+	Die Eindeutigkeit impliziert $\Phi_v(t)=\exp(tv)$.
+\end{beweis}
+
+\begin{lemma}
+	Es gilt
+	\begin{enumerate}[(1)]
+		\item Für alle $v \in \Tmap_eG$ ist $\Phi_v(t)=\exp(tv)$ eine Einparamtergruppe von $G$ mit $\Phi'_v(0)=v$.
+		\item Sei $g \in G$ und $v \in \Tmap_eG$.
+		Dann ist $L_g(\Phi_v(t))$ Integralkurve von $X_v$.
+		\item Ist $\Phi \colon H \to G$ ein Homomorphismus, so gilt für alle $w \in \Tmap_eW$ für alle $t \in \mathbb{R}$
+		\[
+			\Phi \enbrace*{\exp_H(tw)} = \exp_G \enbrace*{t \enbrace*{\mathd \Phi}_e \cdot w}
+		\]
+		\item Ist $H$ eine Lieuntergruppe von $G$, so gilt
+		\[
+			\Tmap_e H = \set*{v \in \Tmap_e G \given \exp_G(tv) \in H \enspace \forall t \in \mathbb{R}}
+		\]
+	\end{enumerate}
+\end{lemma}
+\begin{beweis}
+	\begin{enumerate}[(1)]
+		\item siehe \autoref{lem:142}
+		\item Klar, denn $\exp(tv)=c_v(t)$.
+		\item Homomorphismen bilden Einparametergruppen auf Einparametergruppen ab:
+		\[
+			\Phi \enbrace*{h(s+t)} = \Phi \enbrace*{h(s) \cdot h(t)} = \Phi \enbrace*{h(s)} \Phi \enbrace*{h(t)}
+		\]
+		mit $\diffd{}{t}\big|_{t=0} (\Phi \circ h)(t) = \enbrace*{\mathd\Phi}_e \cdot h'(0)$.
+		Aus der Eindeutigkeit folgt die Behauptung.
+		\item Sei $i \colon H \to G$ die Inklusion.
+		Dann ist $\exp_H(tw) = i \enbrace*{\exp_H(tw)} = \exp_G \enbrace*{(\mathd i)_e \cdot w \cdot t} = \exp_G(tw)$.\qedhere
+	\end{enumerate}
+\end{beweis}
+
+Beispiel: Es gilt $\Tmap_e\SO(n) = \set*{V \in \Mat_n(\mathbb{R}) \given V^T =-V}$
+\[
+	\benbrace*{V_1,V_2}^T = \enbrace*{V_1 V_2 - V_2 V_1}^T = V_2 V_1 - V_1 V_2 = -\benbrace*{V_1,V_2}
+\]
+Aus (4) folgt $\exp(tv) \in \SO(n)$ für alle $t \in \mathbb{R}$. Anders: $\exp_H = \exp_G\big|_{\Tmap_e H} \colon \Tmap_e H \to H$.
 % section 14 (end)
 % chapter 1 (end)
 
