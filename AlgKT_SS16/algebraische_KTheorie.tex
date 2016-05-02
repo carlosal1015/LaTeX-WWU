@@ -334,8 +334,8 @@ Insbesondere ist $[P]=0 \in K_0(R)$ genau dann, wenn es $n \in \mathbb{N}$ gibt 
 	Dann kommutiert
 	\[
 		\begin{tikzcd}
-			\mathbb{Z} \dar["\cdot 2"] & K_0(F) \lar["\dim"] \dar["\cdot 2"] \rar["f_n"] & K_0 \enbrace*{M_{2^n}(F)} \dar["(i_n)_*"] \\
-			\mathbb{Z} & K_0(F) \lar["\dim"] \rar["f_{n+1}"] & K_0 \enbrace*{M_{2^{n+1}} (F)}
+			\mathbb{Z} \dar["\cdot 2"] & K_0(F) \lar["\dim"'] \dar["\cdot 2"] \rar["f_n"] & K_0 \enbrace*{M_{2^n}(F)} \dar["(i_n)_*"] \\
+			\mathbb{Z} & K_0(F) \lar["\dim"'] \rar["f_{n+1}"] & K_0 \enbrace*{M_{2^{n+1}} (F)}
 		\end{tikzcd}
 	\]
 	Also $K_0(R) = \colim \colim \big(
@@ -787,7 +787,7 @@ In diesem Abschnitt sind Kettenkomplexe immer $\mathbb{N}$-graduiert. (Allgemein
     \]
 \end{definition}
 
-\begin{lemma}
+\begin{lemma}[{name=[{Euler-Charakteristik einer kurzen exakten Folge von Kettenkomplexen}]}]
     Sei 
     \(
     	\begin{tikzcd}[cramped]
@@ -810,7 +810,7 @@ In diesem Abschnitt sind Kettenkomplexe immer $\mathbb{N}$-graduiert. (Allgemein
 	definiert wird.
 	Wir erhalten eine kommutatives Diagramm mit kurzen exakten Zeilen
 	\[
-		\begin{tikzcd}[column sep=3.8em,row sep=2.8em]
+		\begin{tikzcd}[column sep=4em,row sep=2.8em]
 			0 \rar & C \rar["i"] & C' \rar["\pi"] & C'' \rar & 0 \\
 			0 \rar & C \rar["{c \mapsto (i(c),0)}"] \uar["\id"] & C' \oplus^{C''} D \rar[two heads] \uar & D'' \rar \uar["\varphi"] & 0
 		\end{tikzcd}
@@ -833,6 +833,118 @@ In diesem Abschnitt sind Kettenkomplexe immer $\mathbb{N}$-graduiert. (Allgemein
 	Wir können also annehmen, dass $C$ und $C''$ vom endlichen Typ von projektiven $R$-Moduln sind.
 	Dann ist aber auch $C'$ von endlichem Typ von projektiven $R$-Moduln und die Behauptung folgt aus \autoref{prop:euler_invariant_kettenhomotopie}.
 \end{beweis}
+
+\begin{bemerkung}
+	Sei \(
+		\begin{tikzcd}[cramped,sep=small]
+			0 \rar & C \rar & C' \rar & C'' \rar & 0
+		\end{tikzcd}
+	\) eine kurze exakte Sequenz von Kettenkomplexen von projektiven Moduln.
+	Aus dem Beweis des vorhergehenden Lemmas folgt: Sind $C$ und $C''$ homotopie-endlich, so ist auch $C'$ homotopie-endlich.
+	Allgemeiner gilt: Sind zwei von drei Kettenkomplexen $C$, $C'$ und $C''$ homotopie-endlich, so auch der dritte.
+	Dies folgt aus dem obigen Fall mit $\Sigma C \xrightarrow{\simeq} \Keg(\pi)$ und der kurzen exakten Folge 
+	\[
+		\begin{tikzcd}
+			0 \rar & C'' \rar & \Keg(\pi) \rar & \Sigma C' \rar & 0
+		\end{tikzcd}
+	\]
+	Ebenso $\Keg(i) \xrightarrow{\simeq} C''$.
+\end{bemerkung}
+
+\begin{satz}
+	Sei $C_*$ ein Kettenkomplex von projektiven $R$-Moduln.
+	Sei $C_*$ homotpie-endlich.
+	Dann sind äquivalent
+	\begin{enumerate}[(i)]
+		\item $\tilde{\chi}(C_*) =0 \in \tilde{K}_0(R)$.
+		\item $C_*$ ist kettenhomotopieäquivalent zu einem Kettenkomplex von endlichem Typ von \emph{freien} Moduln.
+	\end{enumerate}
+\end{satz}
+\begin{beweis}
+	Für die Implikation (ii) $\Rightarrow$ (i)  sei $C_* \simeq F_*$ mit $F_*$ von endlichem Typ von freien $R$-Moduln.
+	Dann ist $\chi(C_*) = \chi(F_*)$ und insbesondere $\tilde{\chi}(C_*) = \tilde{\chi}(F_*)$.
+	Aber es gilt
+	\[
+		\tilde{\chi}(F_*) = \sum_{j} (-1)^j \cdot \benbrace*{F_j} =0 \in \tilde{K}_0(R)
+	\]
+	Für die umgekehrte Implikation können wir ohne Einschränkungen annehmen, dass $C_*$ von endlichem Typ von projektiven $R$-Moduln ist.
+	Sei $C_j=0$ für $j>n$.
+	Sei $Q_0$ ein endlich erzeugter projektiver $R$-Modul mit $C_0 \oplus Q_0$ ist frei.
+	Sei $Q_*$ der Kettenkomplex
+	\[
+		\begin{tikzcd}
+			Q_0 & Q_0 \lar["\id"'] & 0 \lar & 0 \lar & \ldots \lar 
+		\end{tikzcd}
+	\]
+	Dann ist $C_*$ kettenhomotopieäquivalent zu $C_* \oplus Q_*$ mit $(C_* \oplus Q_*)_0$ ist frei.
+	Wir können also annehmen, dass $C_0$ frei ist.
+	Genauso können wir annehmen, dass $C_j$ frei ist für $j<n$.
+	Dann ist
+	\[
+		0 = \tilde{\chi}(C_*) = \sum_j (-1)^j \cdot \benbrace*{C_j} = (-1)^n \benbrace*{C_n} \in \tilde{K}_0(R)
+	\]
+	Damit ist $\benbrace*{C_n}=0 \in \tilde{K}_0(R)$, also ist $C_n$ stabil frei.
+	Dann gibt es $F_n$ endlich erzeugt und frei, sodass $C_n \oplus F_n$ endlich erzeugt frei ist.
+	Sei $F_*$ der Kettenkomplex
+	\[
+		\begin{tikzcd}
+			0 &  \ldots \lar & 0 \lar & F_n \lar & F_n \lar["\id"'] & 0 \lar & \ldots \lar
+		\end{tikzcd}
+	\]
+	Dann ist $C_*$ kettenhomotopieäquivalent zu $C_* \oplus F_*$ und die Kettenmodule von $C_* \oplus F_*$ sind alle frei.
+\end{beweis}
+
+\begin{definition}[{name=[dominierender Kettenkomplex]}]
+	Ein Kettenkomplex $D_*$ \Index{dominiert} einen Kettenkomplex $C_*$, falls es Kettenabbildungen \(
+		\begin{tikzcd}[cramped,sep=small]
+			C_* \rar["i"] & D_* \rar["p"] & C_*
+		\end{tikzcd}
+	\) gibt mit $p \circ i \simeq \id_{C_*}$.
+\end{definition}
+
+\begin{definition}[{name=[endlich dominiert]}]
+	Ein Kettenkomplex $C_*$ heißt \Index{endlich dominiert}, wenn er von einem Kettenkomplex von endlichem Typ von freien Moduln dominiert wird. 
+\end{definition}
+
+\begin{satz}
+	Sei $C_*$ ein Kettenkomplex von projektiven $R$-Moduln.
+	Dann sind äquivalent:
+	\begin{enumerate}[(i)]
+		\item $C_*$ ist homotopieäquivalent zu einen Kettenkomplex von endlichem Typ von projektiven Moduln.
+		\item $C_*$ ist endlich dominiert.
+	\end{enumerate}
+\end{satz}
+\begin{beweis}
+	Für die erste Implikation müssen wir zeigen, dass jeder Kettenkomplex $C_*$ von endlichem Typ von projektiven Moduln endlich dominiert ist.
+	Sei $n$ mit $C_j=0$ für $j>n$.
+	Wähle für $j \le n$ $Q_j$ endlich erzeugt projektiv mit $Q_j \oplus C_j$ frei.
+	Sei $P_*$ der Kettenkomplex 
+	\[
+		\begin{tikzcd}
+			P_0 & P_1 \lar["0"'] & P_2 \lar["0"'] & \ldots \lar & P_n \lar["0"'] & 0 \lar & \ldots \lar
+		\end{tikzcd}
+	\]
+	Dann dominiert $C_* \oplus P_*$ den Kettenkomplex $C_*$ und die Kettenmoduln von $(C_* \oplus P_*)$ sind frei.
+	
+	Für die umgekehrte Implikation zeigen wir zunächst per Induktion nach $k$ die Existenz von 
+	\begin{enumerate}[a),itemsep=0pt]
+		\item Kettenabbildungen \(
+			\begin{tikzcd}[cramped,sep=small]
+				C_* \rar["i"] & D_* \rar["p"] & C_*
+			\end{tikzcd}
+		\)
+		\item einer Kettenhomotopie $s \colon {\id_{C_*}} \simeq p \circ i$.
+		\item Für $j=0,\ldots ,k$ Abbildungen $t_j \colon D_j \to D_{j+1}$
+	\end{enumerate}
+	Sodass
+	\begin{enumerate}[1),itemsep=0pt]
+		\item $D_*$ ist von endlichem Typ von projektiven $R$-Moduln.
+		\item ${\id_{D_j}} - {i_j \circ p_j} = \partial^D_{j+1} \circ t_j + t_{j-1} \circ \partial_j^D$ für $j=0,\ldots ,k$
+		\item $p_{j+1} \circ t_j = s_j \circ p_j$ für $j=0,\ldots ,k$
+	\end{enumerate}
+	Für $j=-1$ folgt die Behauptung direkt aus (ii).
+\end{beweis}
+
 
 
 % section 3 (end)
