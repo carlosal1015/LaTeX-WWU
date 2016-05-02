@@ -121,8 +121,36 @@ Harmonische Funktionen erfüllen einige nützliche Prinzipien, Dazu sei für $W 
 	Berechnen Sie im Gambler's Run die Wahrscheinlichkeit links oder rechts anzuschlagen, sowie die erwartete Treffzeit.
 \end{uebung}
 \todo[inline]{missing figure}
-Wir bertrachten jetzt ein Netzwerk als ein elektrisches Netzwerk, d.h. $c(x,y)$ sei die Leitfähigkeit und $\frac{1}{c(x,y)} = r(x,y)$ sei der Widerstand der Kante $(x,y)$. Wir legen in einem $a$ eine Spannung $v(a)$.....
+Wir bertrachten jetzt ein Netzwerk als ein elektrisches Netzwerk, d.h. $c(x,y)$ sei die Leitfähigkeit und $\frac{1}{c(x,y)} = r(x,y)$ sei der Widerstand der Kante $(x,y)$. Wir legen in einem $a$ eine Spannung $v(a)$ an und leiten einen Strom $i$ durch das Netztwer, das in $Z \subseteq V$ abfließt ($v(z) = 0, \forall z \in Z$). Es gelten die klassischen Regeln der Elektrizitätslehre:
 
+\begin{regel}[Ohmsches Gesetz]
+	\label{regel:ohm}
+	\begin{align}
+		\forall x\sim y: v(x)-v(y) = i(x,y) \cdot r(x,y) = \frac{i(x,y)}{c(x,y)}
+	\end{align}
+\end{regel}
+
+\begin{regel}[Kirchhoffsches Gesetz]
+	\label{regel:kirch}
+	\begin{align}
+		\forall x \notin \set{a} \cup Z: \sum\limits_{y \sim x} i(x,y) = 0
+	\end{align}
+\end{regel}
+
+Aus diesen Regeln lassen sich einige Konsequenzen ableiten:
+\begin{itemize}
+	\item da $c(x,y) = c(y,x) \Rightarrow i(x,y) = c(x,y)\big(v(x) -v(y)\big) = -c(x,y)\big(v(y)- v(x)\big) = - i(y,x)$
+	\item da $c(x,y) > 0 \Rightarrow \Big({i(x,y) > 0 \Leftrightarrow v(x) > v(y)}\Big)$
+	\item ist $x \notin A \cup Z$, so gilt nach \ref{regel:kirch} 
+		\begin{align}
+			0 = \sum\limits_{y \sim x} i(x,y) = \sum\limits_{y \sim x} \big[v(x)-v(y)\big]c(x,y)
+		\end{align}
+		Und wegen $c(x,y) = p_{xy} \cdot \pi(x)$, sowie im darauffolgenden Schritt $\sum\limits_{y \sim x} p_{xy} = 1$, folgt
+		\begin{align}
+			\Rightarrow \sum\limits_{y\sim x} v(y)c(x,y) = v(x)\pi(x) \sum\limits_{y \sim x} p_{xy} \\
+			\Rightarrow v(x) = \frac{1}{\pi(x)} \sum\limits_{y \sim x} v(y) c(x,y)
+		\end{align}
+\end{itemize}
 
 
 
