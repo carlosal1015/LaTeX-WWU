@@ -296,9 +296,9 @@ animieren sollen. Oftmals sind dies schon aus vorherigen Semestern bekannte Sach
 	Wir müssen die Eindeutigkeit zeigen:
 	\begin{align}
 		\tilde{\gamma}(x) = \norm*{\tilde{\pi}(x)} = \norm*{\ind_{\mathcal{H}} \cdot \tilde{\pi}(x)} &= \norm*{\solim \pi\enbrace[\big]{h_\lambda^{\sfrac{1}{2}} \otimes k_\mu^{\sfrac{1}{2}}} \cdot \tilde{\pi}(x)} \\
-		&= \lim_{\lambda,\mu} \norm*{\tilde{\pi}(x^*) \pi \enbrace*{h_\lambda \otimes k_\mu} \tilde{\pi}(x)}^{\sfrac{1}{2}} \\
-		&= \lim_{\lambda,\mu} \norm*{\pi \enbrace*{x^* (h_\lambda \otimes k_\mu) x}}^{\sfrac{1}{2}} \\
-		&= \lim_{\lambda,\mu} \gamma \enbrace*{x^*(h_\lambda \otimes k_\mu)x}
+		&= \lim_{\lambda,\mu} \norm[\big]{\tilde{\pi}(x^*) \pi \enbrace*{h_\lambda \otimes k_\mu} \tilde{\pi}(x)}^{\sfrac{1}{2}} \\
+		&= \lim_{\lambda,\mu} \norm[\big]{\pi \enbrace*{x^* (h_\lambda \otimes k_\mu) x}}^{\sfrac{1}{2}} \\
+		&= \lim_{\lambda,\mu} \gamma \enbrace[\big]{x^*(h_\lambda \otimes k_\mu)x}
 	\end{align}
 	Der letzte Ausdruck ist unabhängig von $\pi$.
 \end{beweis}
@@ -306,7 +306,7 @@ animieren sollen. Oftmals sind dies schon aus vorherigen Semestern bekannte Sach
 \begin{definitionP}[{name=[{Max-Norm}]}]
 	Die Abbildung $\norm*{\cdot }_{\max} \colon A \odot B \to \mathbb{R}^+$ gegeben durch
 	\[
-		\norm*{x}_{\max} := \sup \set*{\norm*{\pi(x)} \given \pi \text{ ist $^*$-Darstellung von } A \odot B}
+		\norm*{x}_{\max} := \sup \set[\big]{\norm*{\pi(x)} \given \pi \text{ ist $^*$-Darstellung von } A \odot B}
 	\] 
 	ist eine $C^*$-Norm auf $A \odot B$.
 	Für jede weitere $C^*$-Norm $\gamma$ gilt $\gamma(x) \le \norm*{x}_{\max}$ für $x \in A \odot B$.
@@ -332,12 +332,12 @@ animieren sollen. Oftmals sind dies schon aus vorherigen Semestern bekannte Sach
 				A \tensormax B \rar[two heads] & A \otimes_\gamma B
 			\end{tikzcd}
 		\]
-		denn $\id A \odot B \to A \odot B$ ist normvermindernd, setzt sich also fort auf $A \tensormax B$.
+		denn $\id \colon A \odot B \to A \odot B$ ist normvermindernd, setzt sich also fort auf $A \tensormax B$.
 		Das Bild ist eine dichte $C^*$-Unteralgebra, also alles.
 		\item Sind $A,B$ unital, so ist $A \otimes_\gamma B$ unital und es gibt Inklusionen
 		\begin{align}
-			A \hookrightarrow &A \otimes_\gamma B , \quad a \mapsto a \otimes \ind_B \\
-			B \hookrightarrow &A \otimes_\gamma B , \quad b \mapsto \ind_A \otimes b
+			A &\xhookrightarrow{\hspace{1.4em}} A \mathop{\otimes_\gamma} B , \qquad a \longmapsto a \otimes \ind_B \\
+			B &\xhookrightarrow{\hspace{1.4em}} A \mathop{\otimes_\gamma} B , \qquad b \longmapsto \ind_A \otimes b
 		\end{align}
 		\item Sind $A$, $B$ unital, dann ist $A \tensormax B \cong C^* \enbrace*{A,B \mid \benbrace*{A,B}=0}$ (universelle $C^*$-Algebra, Übung!)
 		\item $\tensormax $ und $\tensormin$ sind assoziativ und kommutativ (warum?).
@@ -634,7 +634,7 @@ Wir erhalten:
         und $\gamma(a \otimes b) = \norm*{a}_A \cdot \norm*{b}_B$ für $a \in A$ und $b \in B$, denn
         \begin{align}
             \norm*{a}^2 \cdot \norm*{b}^2 \ge \gamma(a \otimes b)^2 \ge \norm*{a \otimes b}_{\min}^2 &\StackTextClap{\ref{satz:120}}{\ge} \sup \set[\big]{(f \otimes g) \enbrace*{a^* a \otimes b^*b} \given f \in P(A), g \in P(B)} \\
-            &= \sup \set*{f (a^*a) g(b^*b) \given f \in P(A), g \in P(B)} \\
+            &= \sup \set[\big]{f (a^*a) g(b^*b) \given f \in P(A), g \in P(B)} \\
             &= \norm*{a}^2 \cdot \norm*{b}^2
         \end{align}
         \item Wir haben kanonische $^*$-Homomorphismen 
@@ -646,9 +646,106 @@ Wir erhalten:
     Sind $A$ und $B$ einfach, so ist $A \tensormin B$ auch einfach.
 \end{korollar}
 \begin{beweis}
-    
+	Es genügt zu zeigen, dass jede irreduzible Darstellung $\pi \colon A \tensormin B \to \mathcal{B}(\mathcal{H})$ isometrisch ist, denn wenn man für $J \lhd A \tensormin B$ die Komposition
+	\[
+		A \tensormin B \longrightarrow \sfrac{A \tensormin B}{J} \xrightarrow{\text{irred. Darst.}} \mathcal{B}(\mathcal{H})
+	\]
+	betrachtet, folgt dann $J=0$.
+	Es genügt weiter zu zeigen, dass für $\pi \colon A \tensormin B \to \mathcal{B}(\mathcal{H})$ irreduzibel $\pi|_{A \odot B}$ treu ist, denn dann ist $\gamma(\cdot ) = \norm*{\pi(\cdot )}$ eine $C^*$-Norm auf $A \odot B$ und es gilt $\norm*{\cdot}_{\min} \le \gamma(\cdot) \le \norm*{\cdot }_{\min} \implies \pi$ isometrisch.
+	
+	Sei also $\pi$ irreduzibel gegeben und seien $\pi_A$, $\pi_B$ wie in \autoref{satz:111}.
+	Sei $c = \sum_{i=1}^{n} a_i \otimes b_i \in A \odot B$ mit $\pi(c) = \sum_{i=1}^{n} \pi_A(a_i) \pi_B(b_i)=0$.
+	Wir zeigen, dass $c=0$ ist.
+	Setze $\tilde{\mathcal{H}} \coloneqq \mathcal{H} \otimes \mathbb{C}^n$ und
+	\begin{align}
+		X &\coloneqq \set*{\sum\nolimits_{i=1}^{n} \pi_B(bb_i) \xi \otimes e_i \given b \in B, \xi \in \mathcal{H}} \stackrel[\text{abg.}]{}{\subset} \tilde{\mathcal{H}} \\
+		Y &\coloneqq \set*{\sum\nolimits_{i=1}^{n} \pi_A(a_i^*) \eta \otimes e_i \given \eta \in \mathcal{H} }\stackrel[\text{abg.}]{}{\subset} \tilde{\mathcal{H}}
+	\end{align}
+	Da $\pi(c) =0$ und $\benbrace*{\pi_A(A), \pi_B(B)}=0$ ist, gilt $X \perp Y$.
+	Sei $\mathcal{B}(\tilde{\mathcal{H}}) \ni p \colon \tilde{\mathcal{H}} \to X \subset \tilde{\mathcal{H}}$ die orthogonale Projektion.
+	Mit $\mathcal{B} (\tilde{\mathcal{H}}) \cong M_n \enbrace*{\mathcal{B}(\mathcal{H})}$ können wir $p=(p_{ij})$ mit $p_{ij} \in \mathcal{B}(\mathcal{H})$ schreiben.
+	Es gilt $\enbrace*{\pi_B(B) \otimes \ind_{\mathbb{C}^n}} X \subset X$ und $\enbrace*{\pi_A(A) \otimes \ind_{\mathbb{C}^n}}X \subset X$, also ist
+	\[
+		p \in \enbrace[\big]{\pi_B(B) \otimes \ind_{\mathbb{C}^n}}' \cap \enbrace[\big]{\pi_A(A) \otimes \ind_{\mathbb{C}^n}}' \subset \mathcal{B}(\tilde{\mathcal{H}})
+	\]
+	Damit gilt dann auch $p_{ij} \in \pi_B(B)' \cap \pi_A(A)' \subset \mathcal{B}(\mathcal{H})$.
+	Es folgt nun, dass $p_{ij} \in \pi \enbrace*{A \tensormin B}'$ gilt und weiter mit der Irreduzibilität $p_{ij} \in \mathbb{C}\cdot \ind_{\mathcal{H}}$, also $p \in \ind_{\mathcal{H}} \otimes M_n$.
+	
+	Für $b \in B$ und $\xi \in \mathcal{H}$ haben wir nun
+	\begin{align}
+		X \ni \sum_{i=1}^{n} \enbrace[\big]{\pi_B(bb_i) \xi} \otimes e_i = p \enbrace*{\sum_{i=1}^{n} \pi_B(bb_i) \xi \otimes e_i} &= \sum_{i,j=1}^n p_{ij} \pi_B(bb_j) \otimes e_i \\
+		&= \sum_{i=1}^{n} \sum_{j=1}^{n} p_{ij} \pi_B(bb_j) \xi \otimes e_i
+	\end{align}
+	Also ist $\pi_B(bb_i)\xi = \sum_{i=1}^{n} p_{ij} \pi_B(bb_j) \xi$ für alle $b \in B$ und $\xi \in \mathcal{H}$.
+	Da $b \in B$ beliebig war, folgt $\pi_B(b_i) = \sum_{j=1}^{n}  p_{ij} \pi_B(b_j)$ für $i=1,\ldots ,n$.
+	Weiter gilt für $\eta \in \mathcal{H}$
+	\[
+		0 = p \Underbracket{\sum_{j=1}^{n} \pi_A(a_i^*) \eta \otimes e_i}{\in Y} = \sum_{i,j=1}^{n} p_{ij} \pi_B(a_j^*) \eta \otimes e_i
+	\]
+	Damit ist $0 = \sum_{j=1}^{n} p_{ij} \pi_A(a_j^*)$ für $i=1,\ldots ,n$, also auch $0 = \sum_{j=1}^{n} \overline{p_{ij}} \pi_A(a_j)$ für $i=1,\ldots ,n$.
+	Wir erhalten also insgesamt\todo{Indizes noch falsch anscheinend}
+	\[
+		\pi_A \otimes \pi_B(c) = \sum_{i=1}^{n} \pi_A(a_i) \otimes \pi_B(b_i) = \sum_{i=1}^{n} \pi_A(a_i) \otimes  \sum_{j=1}^{n} p_{ij} \pi_B(b_j) = \sum_{i,j=1}^{n} p_{ij} \pi_A(a_i) \otimes \pi_B(b_j) =0
+	\]
+	$\pi_A$ und $\pi_B$ sind treu, also ist auch $\pi_A \otimes \pi_B$ treu auf $A \odot B$ und es folgt $c=0$.
+\end{beweis}
+
+\begin{proposition}[label=prop:125]
+	Es seien $A_1$, $A_2$, $B_1$ und $B_2$ $C^*$-Algebren, $\varphi \colon A_1 \to B_1$ und $\psi \colon A_2 \to B_2$ $^*$-Homomorphismen.
+	Dann existieren kanonische $^*$-Homomorphismen $\varphi \otimes \psi$
+	\[
+		\begin{tikzcd}[row sep=0pt]
+			\varphi \otimes \psi \colon & A_1 \odot A_2 \rar & B_1 \odot B_2 \\
+			\varphi \tensormax  \psi \colon & A_1 \tensormax  A_2 \rar & B_1 \tensormax  B_2 \\
+			\varphi \tensormin  \psi \colon & A_1 \tensormin  A_2 \rar & B_1 \tensormin  B_2
+		\end{tikzcd}
+	\]
+	Sind $\varphi$ und $\psi$ injektiv, so ist auch $\varphi \tensormin \psi$ injektiv -- im Allgemeinen ist dies nicht richtig für $\tensormax$.
+\end{proposition}
+\begin{beweis}
+	\emph{Übung!}
 \end{beweis}
 % section 1 (end)
+\newpage
+
+\section{Nuklearität und Exaktheit} % (fold)
+\label{sec:2}
+
+\begin{definition}
+	Eine $C^*$-Algebra $A$ heißt \Index{nuklear},\marginnote{\enquote{nuklear} -- das Wort heißt \enquote{nuklear}} falls für jede $C^*$-Algebra $B$ nur eine $C^*$-Norm auf $A \odot B$ existiert, das heißt $A \tensormax B = A \tensormin B$. 
+\end{definition}
+
+\begin{proposition}
+	\leavevmode
+	\begin{enumerate}[(i)]
+		\item Sind $A,B$ nuklear, so sind auch $A \oplus B$ und $A \otimes B$ nuklear.
+		\item Ist $A = \Dlim A_i$ mit $A_i$ nuklear, so ist auch $A$ nuklear.
+		\item Für \(
+			\begin{tikzcd}[cramped,sep=small]
+				0 \rar & J \rar & A \rar & \sfrac{A}{J} \rar & 0 
+			\end{tikzcd}
+		\) ist $A$ nuklear genau dann, wenn $J$ und $\sfrac{A}{J}$ nuklear sind.
+	\end{enumerate}
+\end{proposition}
+\begin{beweis}
+	\begin{enumerate}[(i)]
+		\item Für direkte Summen, ist die Aussage klar.
+		Für Tensorprodukte benutzt man die Assoziativität von $\tensormax$ und $\tensormin$.
+		\item \enquote{klar} für injektive Verbindungsabbildungen. 
+		Für den allgemeinen Fall benutzte (iii).
+		\item Für die erste Implikation zeigen wir, dass $J$ nuklear ist.
+		Folgendes Diagramm kommutiert
+		\[
+			\begin{tikzcd}
+				J \tensormax  B \rar["\rho",two heads] & \overline{J \odot B}^{\norm*{\cdot}_{\max, A \odot B}} \dar[hook,two heads] \rar[phantom,sloped,"\lhd"] & A \tensormax \dar[equals] \\
+				& J \tensormin B \rar[hook,"\ref{prop:125}"] & A \tensormin B
+			\end{tikzcd}
+		\]
+		Damit ist $\overline{J \odot B}^{\norm*{\cdot}_{\max,A \odot B}} = J \tensormin B$.  
+	\end{enumerate}
+\end{beweis}
+
+% section 2 (end)
 
 
 

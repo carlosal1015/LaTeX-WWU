@@ -358,7 +358,7 @@ Beispiel:
 	Dies ist ein Widerspruch.
 \end{beweis}
 
-\begin{korollar}
+\begin{korollar}[label=kor:126]
 	Seien $H,G$ zusammenhängende Liegruppen und $\Phi, \psi \colon H \to G$ Gruppenhomomorphismen.
 	Gilt $(\mathd \Phi)_e = (\mathd \psi)_e \colon \Tmap_e H \to \Tmap_e G$, so folgt $\Phi = \psi$.
 \end{korollar}
@@ -391,7 +391,7 @@ Es gilt $c_v(t)= \exp(t \cdot v) = \sum_{k=0}^{\infty} \frac{(tv)^k}{k!}$, denn
 	&= c_v(t_0) \cdot v = X_v \enbrace*{c_v(t_0)}_v
 \end{align}
 
-\begin{lemma}
+\begin{lemma}[label=lem:127]
 	Sei $G$ eine Liegruppe.
 	Die Integralkurve $c_v$ ist auf ganz $\mathbb{R}$ definiert und es gilt 
 	\[
@@ -619,7 +619,7 @@ Beispiele:
     Ferner gilt $M^n = \sfrac{\tilde{M}^n}{\pi_1(M^n)}$.
 \end{itemize}
 
-\begin{lemma}
+\begin{lemma}[label=lem:132]
     Sei $G$ eine zusammenhängende Liegruppe.
     \begin{enumerate}[1)]
         \item Ist $\tilde{G}$ eine zusammenhängede Mannigfaltigkeit und $\pi \colon \tilde{G} \to G$ eine Überlagerungsabbildung, so besitzt $\tilde{G}$ genau eine Liegruppenstruktur, sodass $\pi$ ein Liegruppenhomomorphismus ist.
@@ -672,10 +672,10 @@ Beispiele:
     \end{enumerate}
 \end{beweis}
 
-\begin{korollar}
+\begin{korollar}[label=lem:133]
     Seien $\tilde{G}$, $G$ zusammenhängende Liegruppen. 
     \begin{enumerate}[1)]
-        \item Ist $\Phi \colon \tilde{G} \to G$ eine Überlagerung von Liegruppen, so ist $\tilde{\Gamma} = \ker \Phi$ eine diskret Untergruppe von $Z(G)$.\marginnote{Zentrum von $\tilde{G}$}
+        \item Ist $\Phi \colon \tilde{G} \to G$ eine Überlagerung von Liegruppen, so ist $\tilde{\Gamma} = \ker \Phi$ eine diskrete Untergruppe von $Z(G)$.\marginnote{Zentrum von $\tilde{G}$}
         \item Ist $\tilde{\Gamma}$ eine diskrete Untergruppe von $Z(\tilde{G})$, so ist $G \coloneqq \sfrac{\tilde{G}}{\tilde{\Gamma}}$ eine Liegruppe und $\Phi \colon \tilde{G} \to G$, $\tilde{g} \mapsto [\tilde{g}]$ eine Überlagerung.
     \end{enumerate}
 \end{korollar}
@@ -693,7 +693,7 @@ Beispiele:
         Es folgt -- da $\tilde{\Gamma}$ diskret ist -- $\tilde{g}(t) \tilde{\gamma} (\tilde{g}(t))^{-1} \equiv \tilde{\gamma}$.
         Es folgt 
         \[
-            \tilde{g} \tilde{\gamma} ) \tilde{\gamma} \tilde{g} \forall \tilde{g} \in \tilde{G} \iff \tilde{\gamma} \in Z(\tilde{G})
+            \tilde{g} \tilde{\gamma} \tilde{\gamma} \tilde{g} \forall \tilde{g} \in \tilde{G} \iff \tilde{\gamma} \in Z(\tilde{G})
         \]
         \item \emph{Übung!}
     \end{enumerate}
@@ -713,7 +713,196 @@ Für $n \ge 2$
 Es gilt $\pi_1(\SO(n))= \mathbb{Z}_2$.
 Die universelle Überlagerung ist $\mathrm{Spin}(n)$.
 Für $n\ge 2$ $\pi \enbrace*{\SU(n)} = \set*{e}$ und $\SU(2) = S^3$.
+
+\begin{lemma}[label=lem:134]
+	Seien $H,G$ zusammenhängende Liegruppen.
+	Ist $H$ einfach zusammenhängend und $\psi \colon \Tmap_e H \to \Tmap_e G$ ein Liealgebrenhomomorphismus, so existiert ein eindeutiger Liegruppenhomomorphismus $\Phi \colon H \to G$ mit $(\mathd \Phi)_e = \psi$.
+\end{lemma}
+\begin{beweis}
+	Da der Graph
+	\[
+		\Graph(\psi) = \set[\big]{\enbrace*{v,\psi(v)} \given v \in \Tmap_e H} \subset \Tmap_e H \oplus \Tmap_e G
+	\]
+	eine Unteralgebra von $\Tmap_e H \oplus \Tmap_e G$ ist, existiert nach \autoref{satz:125} eine eindeutig bestimmte Lieuntergruppe $A$ von $H \times G$ mit $\Tmap_e A = \Graph(\psi)$.
+	Wir bezeichnen mit $\pi_1 \colon A \to H$ und $\pi_2 \colon A \to G$ die Projektionen auf den ersten bzw. zweiten Faktor von $H \times G$.
+	Die Abbildungen $\pi_1$ und $\pi_2$ sind Liegruppenhomomorphismen.
+	Ferner ist 
+	\mapdef{(\mathd \pi_1)_e \colon \Tmap_e A}{\Tmap_e H}{(v,\psi(v))}{v}{}
+	ein Isomorphismus.
+	Nach \autoref{lem:132} 2) überlagert $A$ somit $H$.
+	Da $H$ einfach zusammenhängend ist, folgt $A \cong H$.
+	Wir erhalten somit einen Homomorphismus 
+	\mapdef{\Phi \colon H = A}{G}{h}{\pi_2(h)}{}
+	mit $(\mathd \Phi)_e = (\mathd \pi_2)_e = \psi$.
+\end{beweis}
+
+Ist in obiger Situation $H$ \emph{nicht} einfach zusammenhängend, so erhält man einen Homomorphismus $\tilde{\Phi} \colon \tilde{H} \to G$, wobei $\tilde{H}$ eine universelle Überlagerung von $H$ ist.
+Dies liefert genau dann einen Homomorphismus $\Phi \colon H \to G$, wenn $\ker \pi \subset \ker \tilde{\Phi}$ ist, wobei $\pi \colon \tilde{H} \to H$ die Überlagerungsabbildung ist.
+
+Dies ist aber nicht immer richtig:
+So kann man zum Beispiel den durch die Identität gegeben Liealgebrenisomorphismus $\psi \colon \mathfrak{h} \to \mathfrak{h}$ betrachten.
+Dann ist die induzierte Abbildung $\tilde{\Phi} \colon \tilde{H} \to \tilde{H}$ injektiv, aber $\pi \tilde{H} \to H$ muss nicht injektiv sein.
+Ein konkretes Beispiel wäre die universelle Überlagerung von $\SL(n,\mathbb{R})$.
+
+\begin{satz}
+	Es gilt
+	\begin{enumerate}[1)]
+		\item Zwei zusammenhängende, einfach zusammenhängenden Liegruppen mit isomorphen Liealgebren sind isomorph.
+		\item Für jede endlich dimensionale Liealgebra $(V, \benbrace*{\cdot,\cdot })$ existiert genau eine zusammenhängende, einfach zusammenhängende Liegruppe $\tilde{G}$ mit Liealgebra $\tilde{\mathfrak{g}}=V$.
+		\item Jede zusammenhängende Liegruppe $G$ ist isomorph zu $\sfrac{\tilde{G}}{\tilde{\Gamma}}$, wobei $\tilde{G}$ eine zusammenhängende, einfach zusammenhängende Liegruppe und $\tilde{\Gamma} \subset Z(\tilde{G})$ eine diskrete Untergruppe ist.
+	\end{enumerate}
+\end{satz}
+\begin{beweis}
+	\begin{enumerate}[1)]
+		\item Sei $\psi \colon \Tmap_e H \to \Tmap_e G$ ein Liealgebrenisomorphismus, $H,G$ zusammenhängende und einfach zusammenhängende Liegruppen.
+		Nach \autoref{lem:134} existieren Homomorphismen $\Phi_1 \colon H \to G$ und $\Phi_2 \colon G \to H$ mit
+		\[
+			(\mathd \Phi_1)_e = \psi \qquad (\mathd \Phi_2)_e = \psi^{-1}
+		\]
+		Somit ist $\Phi_2 \circ  \Phi_1 \colon H \to G$ ein Liegruppenhomomorphismus mit $(\mathd \Phi_2 \circ \Phi_1)_e = \id_{\Tmap_e H}$.
+		Nach \autoref{kor:126} gilt $\Phi_2 \circ \Phi_1= \id_H$ und somit $\Phi_2 = \Phi_1^{-1}$.
+		\item Nach dem Satz von Ado existiert eine Liegruppe $G$ mit Liealgebra $\mathfrak{g}=V$.
+		Die universelle Überlagerung $\tilde{G}$ von $G$ ist die gesuchte Liegruppe.
+		Eindeutigkeit folgt aus 1).
+		\item \autoref{lem:133}\qedhere
+	\end{enumerate}
+\end{beweis}
+
+Beispiel: 
+\[
+	\SL(2,\mathbb{R}) = \set*{\begin{pmatrix}
+		a & b \\ c & d
+	\end{pmatrix} \given ad - bc =1}
+\]
+ist eine 3-dimensionale Untergruppe von $\GL(n,\mathbb{R})$.
+Es gilt $\SL(2,\mathbb{R}) = \SO(2) \times \mathbb{R}^2$.
+Somit ist $\pi_1 \enbrace*{\SL(2,\mathbb{R})} = \pi_1 (\SO(2)) = \mathbb{Z}$.
+Es sei $M^3 := D^2 \times \mathbb{R} \cong \mathbb{R}^3$ (diffeomorph) mit
+\[
+	D^2 := \set*{z \in \mathbb{C} \given \abs*{z} <1} = \set*{\begin{pmatrix}
+		x \\ y
+	\end{pmatrix} \in \mathbb{R}^2 \given x^2 +y^2 <1}
+\]
+Wir führen folgende Multiplikation auf $M^3$ ein:
+\[
+	(\alpha,\varphi) \cdot (\beta, \psi) := \enbrace*{ \frac{\beta + \alpha \cdot e^{-i \psi}}{1 + \alpha \tilde{\beta} e^{-i \psi}}, \varphi + \psi + 2 \mathrm{Arg} \enbrace*{1 + \alpha \overline{\beta} e^{-i \psi}} }
+\]
+Es gilt zum Beispiel $(\alpha,\varphi) \cdot (0,0) = \enbrace*{\alpha,\varphi} = (0,0) \cdot (\alpha,\varphi)$.
+Das heißt das neutrale Element ist $e=(0,0)$.
+Ferner gilt
+\[
+	(\alpha,\varphi) \cdot \enbrace*{- \alpha e^{i \varphi}, -\varphi} = (0,0) = e
+\]
+Somit ist $M^3$ eine einfach zusammenhängende Liegruppe (!).
+Man rechnet leicht nach, dass 
+\begin{align}
+	E_1(\alpha,\varphi) &= \enbrace*{\frac{1}{2}  (1- \alpha^2), \Im \alpha} = \enbrace*{\frac{1}{2} (1 -x^2 +y^2), -xy,y} \\
+	E_2(\alpha,\varphi) &= \enbrace*{\frac{1}{2} i (1+ \alpha^2), - \Re(\alpha) } = \enbrace*{-xy, \frac{1}{2} \enbrace*{1+x^2 -y^2}, -x} \\
+	E_3(\alpha,\varphi) &= \enbrace*{-i \alpha,1} = (y,-x,1)
+\end{align}
+linksinvariante Vektorfelder mit
+\[
+	E_1(0,0) = \enbrace*{\sfrac{1}{2},0,0 } \qquad E_2(0,0) = \enbrace*{0, \sfrac{1}{2}, 0 } \qquad E_3(0,0) = (0,0,1)
+\]
+Dies erhält man zum Beispiel durch
+\[
+	E_1(\alpha,\varphi) = \mathd L_{(\alpha,\varphi)} \cdot \enbrace*{\sfrac{1}{2},0,0} = \diffd{}{t}\big|_{t=0} (\alpha,\varphi) \cdot \enbrace*{\sfrac{1}{2},0,0} = \ldots 
+\]
+Es gilt
+\[
+	\benbrace*{E_1,E_2} = - E_3 \quad \benbrace*{E_3,E_1} = E_2 \quad \benbrace*{E_2,E_3} =E_1
+\]
+Auf $\SL(2,\mathbb{R})$
+\[
+	\overline{E}_1 := \frac{1}{2} \begin{pmatrix}
+		1 & 0 \\ 0 & -1
+	\end{pmatrix} \quad 
+	\overline{E}_2 := \frac{1}{2}  \begin{pmatrix}
+		0 & 1 \\ 1 & 0
+	\end{pmatrix} \quad 
+	\overline{E}_3 := \frac{1}{2} \begin{pmatrix}
+		0 & -1 \\ 1 & 0
+	\end{pmatrix} 
+\]
 % section 13 (end)
+
+\section{Die Exponentialabbildung} % (fold)
+\label{sec:14}
+
+\begin{definition}
+	Sei $G$ eine Liegruppe.
+	Dann nennt man einen Homomorphismus $\Phi \colon (\mathbb{R},+) \to G$ eine \Index{Einparameteruntergruppe} (von $G$).
+\end{definition}
+
+Beispiel: $G = \GL(n;\mathbb{R})$, $v \in \Tmap_e \GL(n,\mathbb{R}) = \Mat(n,\mathbb{R})$.
+\[
+	\Phi_V \colon \mathbb{R} \to G \quad t \mapsto \exp(t \cdot v) = \sum_{k=0}^{\infty}  \frac{(tv)^k}{k!} 
+\]
+Es gilt $\Phi_v(s+t) = \Phi_v(s) \Phi_v(t) = \Phi_v(t) \Phi_v(s)$ für alle $s,t \in \mathbb{R}$.
+
+Zurück zum allgemeinen Fall: Sei $v \in \Tmap_e G \setminus \set*{0}$.
+Wegen $\Tmap_0 \mathbb{R} \cong \mathbb{R}$ ist
+\[
+	\psi_v \colon \mathbb{R} \to \Tmap_e G \quad t \mapsto t \cdot v
+\]
+ein Liealgebrenhomomorphismus. 
+Da $\mathbb{R}$ einfach zusammenhängend ist, existiert nach \autoref{lem:134} ein eindeutig bestimmter Homomorphismus
+\(
+	\Phi_v \colon \mathbb{R} \to G
+\)
+mit $\Phi_v'(0)= (\mathd \Phi_v)_0 = \psi_v$.
+
+\begin{lemma}[label=lem:142]
+	Sei $G$ eine Liegruppe mit Exponentialabbildung $\exp \colon \Tmap_e G \to G$.
+	Dann gilt $\Phi_v(1) = \exp(v)$ für alle $v \in \Tmap_e G$.
+\end{lemma}
+\begin{beweis}
+	Wir hatten in \autoref{lem:127} gezeigt, dass $c_v(s +t) = c_v(s) \cdot c_v(t)$ für alle $t,s \in \mathbb{R}$ gilt, wobei $c_v$ die Integralkurve von $X_v$ ist mit $X_v(e)=v$.
+	Somit gilt
+	\[
+		\exp \enbrace*{(s+t) v} = c_{(s+t)v}(1) = c_v(s+t) = c_v(s) \cdot c_v(t) = c_{sv}(1) \cdot c_{tv}(1) = \exp(sv) \cdot \exp(tv)
+	\]
+	Damit ist $t \mapsto \exp(tv)$ eine Einparametergruppe mit $\diffd{}{t}\big|_{t=0} \exp(tv)=v$.
+	Die Eindeutigkeit impliziert $\Phi_v(t)=\exp(tv)$.
+\end{beweis}
+
+\begin{lemma}
+	Es gilt
+	\begin{enumerate}[(1)]
+		\item Für alle $v \in \Tmap_eG$ ist $\Phi_v(t)=\exp(tv)$ eine Einparamtergruppe von $G$ mit $\Phi'_v(0)=v$.
+		\item Sei $g \in G$ und $v \in \Tmap_eG$.
+		Dann ist $L_g(\Phi_v(t))$ Integralkurve von $X_v$.
+		\item Ist $\Phi \colon H \to G$ ein Homomorphismus, so gilt für alle $w \in \Tmap_eW$ für alle $t \in \mathbb{R}$
+		\[
+			\Phi \enbrace*{\exp_H(tw)} = \exp_G \enbrace*{t \enbrace*{\mathd \Phi}_e \cdot w}
+		\]
+		\item Ist $H$ eine Lieuntergruppe von $G$, so gilt
+		\[
+			\Tmap_e H = \set*{v \in \Tmap_e G \given \exp_G(tv) \in H \enspace \forall t \in \mathbb{R}}
+		\]
+	\end{enumerate}
+\end{lemma}
+\begin{beweis}
+	\begin{enumerate}[(1)]
+		\item siehe \autoref{lem:142}
+		\item Klar, denn $\exp(tv)=c_v(t)$.
+		\item Homomorphismen bilden Einparametergruppen auf Einparametergruppen ab:
+		\[
+			\Phi \enbrace*{h(s+t)} = \Phi \enbrace*{h(s) \cdot h(t)} = \Phi \enbrace*{h(s)} \Phi \enbrace*{h(t)}
+		\]
+		mit $\diffd{}{t}\big|_{t=0} (\Phi \circ h)(t) = \enbrace*{\mathd\Phi}_e \cdot h'(0)$.
+		Aus der Eindeutigkeit folgt die Behauptung.
+		\item Sei $i \colon H \to G$ die Inklusion.
+		Dann ist $\exp_H(tw) = i \enbrace*{\exp_H(tw)} = \exp_G \enbrace*{(\mathd i)_e \cdot w \cdot t} = \exp_G(tw)$.\qedhere
+	\end{enumerate}
+\end{beweis}
+
+Beispiel: Es gilt $\Tmap_e\SO(n) = \set*{V \in \Mat_n(\mathbb{R}) \given V^T =-V}$
+\[
+	\benbrace*{V_1,V_2}^T = \enbrace*{V_1 V_2 - V_2 V_1}^T = V_2 V_1 - V_1 V_2 = -\benbrace*{V_1,V_2}
+\]
+Aus (4) folgt $\exp(tv) \in \SO(n)$ für alle $t \in \mathbb{R}$. Anders: $\exp_H = \exp_G\big|_{\Tmap_e H} \colon \Tmap_e H \to H$.
+% section 14 (end)
 % chapter 1 (end)
 
 \cleardoubleoddemptypage

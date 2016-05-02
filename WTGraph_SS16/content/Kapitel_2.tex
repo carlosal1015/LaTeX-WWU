@@ -147,10 +147,10 @@ Es folgt aus der orthogonalen Zerlegung von $\Theta$ in $i$ und $\Theta - i$, da
 
 \section{Transienz \& Rekkurenz}
 
-%Wir haben gesehen: Begriffe wie \qte{effektive Kapazität}, \qte{effektiver Widerstand}, \qte{Energie}, \qte{Spannung} helfen, um das Verhalten von Irrfahrten auf Graphen besser zu verstehen. Zum Beispiel entsprechen Spannungen Treffwahrscheinlichkeitenm effektive Widerstände bzw. Kapazitäten entsprechen Durchgangswahrscheinlichkeiten, Energie ist so etwas wie effektive Widerstände.
+Wir haben gesehen: Begriffe wie \enquote{effektive Kapazität}, \enquote{effektiver Widerstand}, \enquote{Energie}, \enquote{Spannung} helfen, um das Verhalten von Irrfahrten auf Graphen besser zu verstehen. Zum Beispiel entsprechen Spannungen Treffwahrscheinlichkeitenm effektive Widerstände bzw. Kapazitäten entsprechen Durchgangswahrscheinlichkeiten, Energie ist so etwas wie effektive Widerstände.
 
 Bislang haben wir einiges erst auf endlichen Graphen definiert, dieses Setup ist für Fragen der Rekkurenz und Transienz jedoch zu klein. Sei nun $G$ unendlich. Wir definieren wieder
-\todo[inline]{fehler ausbessern Quellcode}
+
 \begin{align}
 	l^2(V) = \set{f_V \to \Real: \sum\limits_{v\in V} f^2(v)<\infty } && \text{mit Skalarprodukt } <f,g> = \sum\limits_{v} f(v)g(v) \text{und } ||f||^2 = <f,f>
 \end{align}
@@ -267,14 +267,114 @@ Wie findet man nun heraus ob es einen Fluss endlicher Energie von einem $a\in V$
 
 Für einen Transienz--Beweis hilft Nash-Williams zunächst nicht. Hier versuchen wir die zufällige Pfadwahl. Dazu sei $\p$ eine Wahrscheinlichkeit auf der Menge der Pfade von $a$ nach $\infty$. So ein Pfad $(e_n)$ entspricht einem Einheitsfluss
 \begin{gather}
-	\gamma^{(e_n)} := \sum\limits_{n \geq 1} \chi^{e_n} = \sum\limits_{n \geq 1} EINSFKT_{\set{e_n}}- EINSFKT_{\set{-e_n}}
+	\gamma^{(e_n)} (e) := \sum\limits_{n \geq 1} \chi^{e_n} = \sum\limits_{n \geq 1} \mathds{1}_{\set{e_n}}- \mathds{1}_{\set{-e_n}}
 \end{gather}
-Da alle $(e_n)$ in $a$ starten, ist der Einheitsfluss von $a \to \infty$  \todo{"Dann aber auch der Erwartungswert. Wohin?}
-
+Da alle $(e_n)$ in $a$ starten, ist die Erwartung dieses Einheitsfluss von $a \to \infty$  
 \begin{align}
 	\Theta = \EW{\gamma} = \sum\limits_{n \geq 1}\prop{e_n} - \prop{-e_n}
 \end{align}
 Von einem solchen $\Theta$ möchte man die Energie beschränken. 
+
+\marginnote{Beginn Vorlesung vom 28.04}
+Wählt man $\p$ so, dass Kanten hoher Leitfähigkeit oft benutzt, und Kanten niedriger Leitfähigkeit wenig, kann man hoffen einen Fluss endlicher Energie von $a \to \infty$ zu konstruieren. Ein Beispiel ist der folgende Satz
+
+\begin{satz}[Polyò]
+	Die Irrfahrt auf $\ZZ^d$ ist rekurrent für $d\leq 2$ und transient für $d \geq 3$.
+\end{satz}
+\begin{beweis}
+	Für $d=1,2$ verwenden wir das Kriterium von Nash-Williams. \todo{ref} \todo[inline]{missing figure}
+	Sind das die $\Pi_n$, so gilt 
+	\begin{gather}
+		(a \leftrightarrow \infty) \leq \sum\limits_{n \geq 1} \enb{\sum c(e) }^{-1} = \sum\limits_{n \geq 1 } \frac{1}{2} = \infty
+	\end{gather}
+	
+	Sei $n = 2$, dann
+	
+	\begin{gather}
+		\Pi_n = \set{e = (x,y) \given x \in Q_n, y \in Q_{n+1}}
+	\end{gather}
+	$Q_n$ sei der Quader der Kantenlänge $n$ \todo[inline]{missing figure}
+	$\abs{\Pi_n} = 8n + 4$. Damit erhält man 
+	\begin{gather}
+		R(a\leftrightarrow \infty) \geq \sum\limits_{n \geq 1} \enb{\sum\limits_{c \in \Pi} 1}^{-1} = \sum\limits_{n \geq 1} \frac{1}{8n + 4} = \infty
+	\end{gather}
+	Nach Rayleigh \todo{ref} genügt es für die Transienz den Fall $d=3$ zu betrachten. 
+	
+	\underline{Idee:} Wähle alle Pfade, die \enquote{direkt} von $0$ nach $\infty$ laufen \enquote{mit gleicher Wahrscheinlichkeit}.
+	
+	Wir wählen einen Punkt $s \in S^2$ nach dem Haarschen Maß. Konstruiere eine Gerade durch $\overrightarrow{0s}$. Wähle zu jeden $\overrightarrow{0s}$ einen Pfad in $\ZZ^3$, der nach $\infty$ läuft und \enquote{direkt} an $\overrightarrow{0s}$ liegt (Es gibt einen solchen Pfad, der Abstand $\leq 4$ hat). \todo{figuuuuure}
+	Das gibt eine Menge von Pfaden $\set{(e_n)}$ und hierauf habe ich ein Wahrscheinlichkeit die durch das Haar--Maß induziert wird. Wir wollen für das wie in $(*)$ \todo{ref} konstruierte $\Theta$ $\mathcal{E}(\Theta)$ berechnen.
+	\begin{align}
+		\mathcal{E}(\Theta) &= \sum\limits_{e} \Theta^2(e) r(e) = \sum\limits_{e}\Theta^2(e) \leq \sum\limits_{e} \prop{e_n=e}[2] \\
+							&= \sum\limits_{n=1}^{\infty} \sum\limits_{e\colon d(0,e^+) = n}\prop{e_n = e}[2] \\
+							&= \sum\limits_{n = 1}^{\infty}Cn^2\frac{c'}{n^4} = const \sum\limits_{n \geq} \frac{1}{n^2} < \infty \marginnote{Es gibt $Cn^2$ viele Kanten mit $d(0,e^+) = n$} 
+	\end{align}
+	
+	Die Wahrscheinlichkeit eine Kante zu benutzen ist nach oben beschränkt durch $\frac{c'}{n^2}$, weil durch die Wahl von $s$ alle kanten im Bastand \enquote{ungefähr gleich} häufig getroffen werden.
+	
+\end{beweis}
+
+\section{Spezielle Netzwerke}
+
+\subsection{Flüsse, Cutsets und Ford........}
+\todo{subsections? Titel?}
+Gegeben sei irgendein Netzwerk $G = (V,R,c).$ Sei $a,(z) \in V$ oder $z = \infty$. Gibt es einen Fluss $\Theta$ von $a$ nach $z$, dergestalt
+\begin{align}
+	\abs{\Theta(e)} \leq c(e) && \text{für alle } e
+\end{align}
+Zum Beispiel gilt für den Einheitsstromfluss von $a$ ncah $z$ mit Spannungen $v$, dass 
+\begin{align}
+	\abs{i(e)} = \abs{c(e) dv(e)} \leq c(e)v(a)
+\end{align}
+Somit ist $\frac{i}{v(a)}$ ein Fluss von $a$ nach $z$, mit $\frac{\abs{i(e)}}{v(a)} \leq c(e)$. \todo{v(a) oder v(0)??} Solche Flüsse wollen wir zulässig nennen.
+\todo[inline]{missing figure. böum}
+Die erste Frage ist: Was ist die maximale Flussstärke eines zulässigen Flusses von $A$ nach $Z$ mit $A \cap Z = \setzero$?
+\todo[inline]{uuuuuund noch eine Zeichnung}
+Es ist intuitiv zu erwarten, dass ein Fluss nicht stärker sein kann, als die Summe der Leitfähigkeiten der Gewichte in einem Cutset. \marginnote{\enquote{Katze!}} Das erstaunliche ist, dass man auf diese Weise tatsächlich die maximale Flussstärke ermitteln kann. Es gilt
+
+\begin{satz}[Ford Fulkersen, Max--Float--Min--Cut--Theorem]
+	Sei $G = (V,E,c)$ ein ungerichteter, endlicher Graph. Sei $A,Z \subset V, A \cap Z = \setzero$. Dann für zulässige Flüsse $\Theta$ von $A$ nach $Z$
+	\begin{align}
+		\max\limits_{\Theta \text{ zulässig}} S(\Theta) = \min \set{\sum\limits_{e \in \Pi}c(e) \given \Pi \text{ist ein $A$--$Z$ Cut--Set}}
+	\end{align}
+\end{satz}
+Wir beweisen allgemeiner eine Version für gerichtete Graphen
+\begin{beweis}
+	Dazu sei $G = (V,E,c), E \subseteq V \times V$. Dabei ist $c(e) = c(-e)$ nicht mehr notwendigerweise erfüllt. Sei
+	\begin{align}
+		\Phi (x,e) = \mathds{1}_{\set{x = e^-}}- \mathds{1}_{\set{x = e^+}}
+	\end{align}
+	die Kanten--Knoten--Inzidenz-Funktion.
+
+\begin{definition}
+	$\Theta\colon E \to \Real^+$ heißt Fluss von $A$ nach $Z$ mit $A \cap Z = \setzero$, wenn gilt
+	\begin{align}
+		x \in A &\Rightarrow \sum\limits_{e} \Phi(x,e) \Theta(e) > 0 \\
+		x \in Z &\Rightarrow \sum\limits_{e} \Phi(x,e) \Theta(e) < 0 \\
+		x \notin A \cup Z &\Rightarrow \sum\limits_{e} \Phi(x,e) \Theta(e) = 0
+	\end{align}
+	$A$ heißt \emph{Quelle}, $Z$ heißt \emph{Senke} von $\Theta$. $\Theta$ heißt \emph{zulässig}, wenn $\Theta(e) \leq c(e)$ für alle $e \in E$. Die \emph{Flussstärke} $S$ ist definiert durch
+	\begin{align}
+		S(\Theta):= \sum\limits_{x \in A} \sum\limits_{e \in E} \Phi(x,e) \Theta(e)
+	\end{align}
+\end{definition}
+	
+\begin{satz}
+	$G = (V,E,c)$ gerichtetes, endliches Netzwerk. Dann gilt
+	\begin{align}
+		\max\set{S(\Theta) \given \Theta \text{ zulässiger Fluss von $A$ nach $Z$}} = \min\set{\sum\limits_{e \in \Pi}c(e) \given \Pi \text{ ist ein $A$--$Z$ Cutset}}
+	\end{align}
+\end{satz}
+\begin{beweis}
+	Nur der Anfang: Das Maximum existiert und wird angenommen. Die Menge aller Flüsse $\Theta \colon E \to \RR^+\subseteq \RR_+^{\abs{E}}$. Aus der Zulässigkeitsbedingung folgt \todo{missing part. letzten 3 sätze}
+\end{beweis}
+	
+\end{beweis}
+
+
+
+
+
 
 
 
