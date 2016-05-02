@@ -1242,6 +1242,202 @@ Für $\Omega \subseteq \mathbb{R}^n$ offen, beschränkt und regulär betrachten 
 	Die Randintegrale verschwinden wegen der kompakten Träger für $f$ und $  \nabla f$. 
 \end{beweis}
 
+%%%%% 02.05.2016
+
+\begin{bemerkung}
+	\begin{enumerate}[(i)]
+		\item Für $n \geq3$ ist $u$ beschränkt und $\lim_{\abs{x} \to \infty}u(x)=0$
+		\item Für $n=2$ ist $u$ potentiell und beschränkt
+		\item Jede andere beschränkte Lösung der Poisson-Gleichung auf $\mathbb{R}^n$ unterscheidet sich nur für eine additive Konstante.
+	\end{enumerate}
+	\begin{beweis}
+		\begin{enumerate}[(i)]
+			\item Sei $n \geq  3$ und $\Phi(y)= \frac{1}{n(n-2)\omega_n}\frac{1}{\abs{y}^{n-2}}$ für $y \neq 0$ die Fundamentallösung der Poisson-Gleichung. 
+			Da $f \in C^2_0(\mathbb{R}^n)$ und somit $ \supp(f) \subset B_R(0)$ für ein hinreichend großes $R > 0$. Wegen $B_R(x) \subset B_{2R}(0)$ gilt
+			\begin{align*}
+				\abs{u(x)} &= \abs{ \int_{B_R(0)}^{} \Phi(x-y)f(y) \,\mathrm{d}}y \\
+				& \leq \norm{f}_{L^{\infty}(\mathbb{R}^n)} \int_{B_R(0)}^{0}\abs{\Phi(x-y)} \,\mathrm{d}y \\
+				&= \norm{f}_{L^{\infty}(\mathbb{R}^n)} \int_{B_R(x)}^{} \abs{\Phi(y)} \,\mathrm{d}y \\
+				& \leq \norm{f}_{L^{\infty}(\mathbb{R}^n)} \underset{\leq M}{\underbrace{\int_{B_{2R}(0)}^{} \abs{\Phi(y)} \,\mathrm{d}y}} \\
+				& \leq C
+			\end{align*}
+			für $x \in B_R(0)$. Für $x \in \mathbb{R}^n \setminus B_R(0)$ gilt mit $y \in B_R(0)$ und $\abs{x}> R$
+			\begin{equation}
+				\abs{x-y} \geq \abs{x} - \abs{y} > \abs{x} - R > 0 
+			\end{equation}
+			und damit
+			\begin{align*}
+				\abs{u(x)} &\leq \norm{f}_{L^{\infty}(\mathbb{R}^n)} \int_{B_R(0)}^{} \abs{ \Phi(x-y)} \,\mathrm{d}y \\
+				& c \norm{f}_{L^{\infty}(\mathbb{R}^n)} \int_{B_R(0)}^{} \frac{1}{\abs{x-y}^{n-2}} \,\mathrm{d}y \\
+				& \leq  c \norm{f}_{L^{\infty}(\mathbb{R}^n)} \int_{B_R(0)}^{} \frac{1}{\left( \abs{x}-R \right)^{n-2}} \,\mathrm{d}y \\
+				& = c \norm{f}_{L^{\infty}(\mathbb{R}^n)} \frac{1}{(\abs{x}-R)^{n-2}} \stackrel{\abs{x}\to \infty}{\to} 0 .
+			\end{align*}
+			\item Sei nun $n=2$. Beachte, dass nun für $y \neq 0$
+			\[
+				\Phi(y) = - \frac{1}{2R} \lg \abs{y}
+			\]. Ist $f$ beispielsweise $f \leq 0$ mit $f \leq -1$ in $B_1(0)$ und $\supp (f) \subset B_2(0)$ so gilt $\Phi(y) \leq 0$ für $\abs{y}> 1$ 
+			Außerdem gilt für $\abs{x} > 3$
+			\[
+				\abs{x-y} \geq \abs{x}-\abs{y} > 3- 2 = 1
+			\]
+			\begin{equation}
+				\Rightarrow \Phi(x-y) \leq 0
+			\end{equation}
+			\begin{equation}
+				\Rightarrow \Phi(x-y)f(y) \geq 0 \qquad \text{ für } x \in \mathbb{R}^n \setminus B_3(0), y \in B_2(0).
+			\end{equation}
+			Damit wegen $\abs{x-y} > \abs{x}-1$
+			\begin{align*}
+					u(x) &= \int_{B_2(0)}^{} \Phi(x-y) f(y) \,\mathrm{d}y \\
+					& \geq \int_{B_1(0)}^{} \Phi(x-y)f(y) \,\mathrm{d}y \\
+					& \geq  \int_{B_1(0)}^{} \abs{\Phi(x-y)} \,\mathrm{d}y \\
+					& \geq  \int_{B_1(0)}^{} c \lg ( \abs{x}-1) \,\mathrm{d}y \\
+					&= c \lg(\abs{x}-1),
+			\end{align*}
+			also insgesamt für $\abs{x} \to \infty$
+			\begin{equation}
+				u(x) \to  \infty.
+			\end{equation}
+		\item Wir nehmen an, dass $u_1,u_2$ zwei beschränkte Lösungen der Poisson-Gleichung sind. 
+		Die Funktion $u_1-u_2$ ist beschränkt und harmonisch in $\mathbb{R}^n$ und daher nach dem Satz von Liouville konstant. Also ist 
+		\begin{equation}
+			u_1 = u_2 + \text{Konstante}.
+		\end{equation}
+		\end{enumerate}
+	\end{beweis}
+\end{bemerkung}
+
+Wir betrachten nun wieder die Poisson-Gleichung mit Dirichlet-Randbedingungen.
+\begin{align*}
+	\begin{cases}
+		- \Delta u = f, &\text{ falls }x \in \Omega\\
+		u =g, &\text{ falls } x \in \partial \Omega,
+	\end{cases}
+\end{align*}
+wobei $\Omega \subseteq \mathbb{R}^n$ offen, beschränkt und mit $C^1$-Rand. Außerdem seien $f,g$ hier reguläre Funktionen.
+Wir wollen eine Darstellungsformel für die Lösung finden. Wir haben bereits bewiesen, dass diese Gleichung höchstens eine Lösung hat.
+
+\begin{definition}[Greensche Funktion für $\Omega$]
+	Sei $\Omega$ eine offene Menge in $\mathbb{R}^n$. 
+	Eine Funktion $G : \set[(x,y) \in \Omega \times \Omega]{x \neq y} \to \mathbb{R}$ heißt Greensche Funktion für $\Omega$, falls für alle $x \in \Omega$ gilt:
+	\begin{enumerate}[(i)]
+		\item $y \to G(x,y)- \Phi(x-y)$ ist von der Klasse $C^2(\Omega) \cap C^1(\bar{\Omega})$ und harmonisch in $\Omega$,
+		\item $y \to G(x,y)$ hat Nullrandwerte auf $\partial \Omega$, d.h. es gilt 
+		\[
+			\lim_{y \to y_0}G(x,y) = 0 \qquad \text{ für } y_0 \in \partial \Omega.
+		\]
+		(und bei unbeschränktem $\Omega$ auch für $y_0 = \infty$)
+	\end{enumerate}
+\end{definition}
+\begin{bemerkung}
+	\begin{enumerate}[1)]
+		\item $y \to G(x,y) - \Phi(x-y)$ heißt die Korrektorfunktion. 
+		Ist $\Omega$ beschränkt, so ist nach der Eindeutigkeit der Lösung der Poissongleichung die Korrektorfunktion 
+		(und damit auch die Greensche Funktion) eindeutig, falls sie existiert.
+		\begin{equation}
+			\Delta_y ( G(x,y) - \Phi(x-y)) = 0 \qquad  \Rightarrow \qquad \Delta_y G(x,y) = \Delta_y \Phi(x-y) = 0 \qquad \text{ für }x \neq y
+		\end{equation}
+		Also ist $y \to G(x,y)$ harmonisch. Es gilt außerdem
+		\[
+			G(x,y) - \Phi(x-y)  \Big|_{\partial \Omega}^{} = - \Phi(x-y)  \Big|_{\partial \Omega}^{}
+		\]
+		\item $y \to G(x,y)$ ist von der Klasse $C^2(\Omega \setminus \set{x}) \cap C^1( \bar{\Omega} \setminus \set{x})$ und besitzt die gleiche Singularität in $x$
+		wie $\Phi$.
+	\end{enumerate}
+\end{bemerkung}
+
+\begin{satz}[Greensche Lösungsformel]
+	Sei $\Omega$ eine beschränkte offene Menge in $\mathbb{R}^n$ mit $C^1$-Rand und $G$ die Greensche Funktion für $\Omega$ (falls existent). 
+	Ist $u \in C^2(\Omega) \cap C^1(\bar{\Omega})$ eine Lösung der Poissongleichung. 
+	Für Funktionen $f \in C^{\infty}(\Omega) \cap L^1(\Omega)$ und $g \in C^0(\partial \Omega)$ gilt für alle $x \in \Omega$
+	\[
+		u(x) = \int_{\Omega}^{} G(x,y)f(y) \,\mathrm{d}y - \int_{\partial \Omega}^{}  \nabla_y G(x,y) g(y) \cdot \nu(y) \,\mathrm{d}S(y).
+	\]
+\end{satz}
+\begin{beweis}
+	Wir benutzen die Greensche Formel und Satz 2.19. Die Greensche Formel wenden wir auf die harmonische Funktion $y \to G(x,y) - \Phi(x-y)$ und die Lösung $u$ an. 
+	Sei $v(y):= G(x,y) - \Phi(x-y)$ und $w(y)= u(y)$. Dann gilt
+	\begin{align*}
+		\int_{\Omega}^{}(G(x,y)-\Phi(x-y)) \Delta u \,\mathrm{d}y 
+		&= \int_{\partial \Omega}^{} \left[ (G(x,y)- \Phi(x-y))  \nabla u - u  \nabla_y (G(x,y)-\Phi(x-y)) \right] \cdot \nu(y)  \,\mathrm{d}S(y) \\
+		& \qquad \qquad - \int_{\Omega}^{} G(x,y)f(y) \,\mathrm{d}y - \int_{\Omega}^{} \Phi(x-y) \Delta u(y) \,\mathrm{d}y  \\
+		& = - \int_{\partial \Omega}^{} \left[ \Phi(x-y)  \nabla u(y) + u(y)  \nabla_y \Phi(x-y) \right] \cdot \nu(y)  \,\mathrm{d}S(y) \\
+		& \qquad \qquad -\int_{\partial \Omega}^{} g  \nabla_y G(x,y) \cdot \nu(y)  \,\mathrm{d}S(y).		
+	\end{align*}
+	Insgesamt folgt die Behauptung.
+\end{beweis}
+Wir wollen nun zeigen, dass die Funktion $G$ symmetrisch ist, also $G(x,y)=G(y,y)$. Dies führt dann zu folgendem Resultat.
+$y \to G(x,y)$ ist harmonisch in $\Omega \setminus \set{x}$ und somit $ \Delta_y G(x,y)=0$. Dann ist auch $x \to G(x,y)$ harmonisch in $\Omega \setminus \set{y}$
+
+\begin{lemma}
+	Sei $\Omega$ eine offene Teilmenge des $\mathbb{R}^n$, $G$ die Greensche Funktion für $\Omega$ und $B_r(x) \subset \subset \Omega$. 
+	Ist $h \in C^2(B_r(x)) \cap C^1( \overline{B_r(x)})$, so gilt
+	\begin{equation}
+		\lim_{\varepsilon \to 0} \int_{\partial B _{\varepsilon}(x)}^{} \left( G(x,y)  \nabla h(y) - h(y)  \nabla_y G(x,y) \right) \cdot \nu(y) \,\mathrm{d}S(y) =
+		h(x).
+	\end{equation}
+\end{lemma}
+\begin{beweis}
+	Aus dem Beweis von Satz von 2.19 folgt
+	\begin{align*}
+		\lim_{\varepsilon \to 0} \underset{-D_{\varepsilon}- E_{\varepsilon}}{\underbrace{\int_{\partial B_{\varepsilon}(x)}^{}\left( \Phi(x-y) 
+		 \nabla h(y) - h(y)  \nabla_y \Phi(x-y) \right) \cdot \nu(y) \,\mathrm{d}S(y)}}=h(x).
+	\end{align*}
+	$h$ und die Korrektorfunktion $G(x,y)-\Phi(x-y)$ sind regulär.
+	\begin{align}
+		\int_{ \partial B_{\varepsilon}(x)}^{} &\left( \left( \underset{ C^1(\overline{B_r(x)})}{\underbrace{G(x,y)- \Phi(x-y)}} \right) 
+		 \underset{ C^0(\overline{B_r(x)})}{\underbrace{\nabla h(y) }} - \underset{ C^1(\overline{B_r(x)})}{\underbrace{h(y)}} 
+		  \underset{ C^0(\overline{B_r(x)})}{\underbrace{\nabla_y \left( G(x-y) -\Phi(x-y) \right)}} \right) \cdot \nu(y) \,\mathrm{d}S(y) \\
+		   &\leq M S_n \varepsilon^{n-1} \stackrel{\varepsilon \to 0}{\to } 0
+	\end{align}
+\end{beweis}
+
+\begin{satz}[Symmetrie der Greenschen Funktion]
+	Ist $G$ die Greensche Funktion zu einer beschränkten, offenen Menge $\Omega \subseteq \mathbb{R}^n$ mit $C^1$-Rand, so gilt 
+	\[
+	G(x,y)=G(y,x)  	
+	\]  
+	für alle $x,y \in \Omega$ mit  $x \neq y$.
+\end{satz}
+\begin{beweis}
+	Für feste $x,y \in \Omega$ mit $x \neq y$ definieren wir die Hilfsfunktionen 
+	\begin{align*}
+		v(z) &= G(x,z), \qquad z \in \bar{\Omega} \setminus \set{x} \\
+		w(z) &= G(y,t), \qquad z \in \bar{\Omega} \setminus \set{y}
+	\end{align*}
+	Dann gilt
+	\begin{align*}
+		\Delta v(z) &= 0 \qquad \text{ in } \Omega \setminus \set{x}, \qquad v  \Big|_{\partial \Omega}^{}= 0 \\
+		\Delta w(z) &= 0 \qquad \text{ in } \Omega \setminus \set{y}, \qquad w  \Big|_{\partial \Omega}^{}= 0 
+	\end{align*}
+	Für $\varepsilon < \min \set{ \dist(x, \partial \Omega) , \dist(y, \partial \Omega), \frac{\dist(x,y)}{2} }$ folgt
+	\[
+		\overline{B_\varepsilon(x)} \cup \overline{B_\varepsilon(y)} \subseteq \Omega \qquad
+		 \qquad \overline{B_\varepsilon(x)} \cup \overline{B_\varepsilon(y)} = \emptyset 
+	\]
+	Die Greensche Formel angewandt auf die Menge $\Omega \setminus \overline{B_\varepsilon(x)} \cup \overline{B_\varepsilon(y)}$ liefert
+	\begin{align*}
+		0 &= \int_{\Omega \setminus (\overline{B_\varepsilon(x)} \cup \overline{B_\varepsilon(y)})}^{} (v \Delta w - w \Delta v) \,\mathrm{d}z  \\
+		&= \int_{\partial ( \Omega \setminus \overline{B_\varepsilon(x)} \cup \overline{B_\varepsilon(y)})}^{} (v(z)  \nabla w(z)- w(z)  \nabla v(z))\cdot \nu(z)
+		 \,\mathrm{d}S(z)\\ 
+		& \stackrel{*}{=} \int_{\partial B_\varepsilon(x) }^{} (v(z)  \nabla w(z)- w(z)  \nabla v(z))\cdot \nu(z)
+		 \,\mathrm{d}S(z) \\
+		& \qquad + \int_{\partial B_\varepsilon(y) }^{} (v(z)  \nabla w(z)- w(z)  \nabla v(z))\cdot \nu(z)
+		 \,\mathrm{d}S(z) \\
+		&= \int_{\partial B_\varepsilon(x) }^{} (G(x,z)  \nabla w(z)- w(z)  \nabla G(x,z))\cdot \nu(z)
+		 \,\mathrm{d}S(z) \\
+		& \qquad + \int_{\partial B_\varepsilon(y) }^{} (v(z)  \nabla G(y,z)- G(y,z)  \nabla v(z))\cdot \nu(z)
+		 \,\mathrm{d}S(z) \\
+		 &= w(x)- v(y) \qquad \text{ für } \varepsilon \to  0
+		\end{align*}
+		Es folgt
+		\[
+			0 = w(x)- v(y)
+		\]
+		Also \[
+			w(x)= G(y,x) = v(y) = G(x,y)
+		\]
+\end{beweis}
 \cleardoubleoddemptypage
 \pagenumbering{Alph}
 \setcounter{page}{1}
