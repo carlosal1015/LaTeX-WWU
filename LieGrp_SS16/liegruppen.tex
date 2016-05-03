@@ -152,12 +152,12 @@ Sei $\mathfrak{g}$ die Menge der linksinvarianten Vektorfelder auf $G$.
 	Die Lieklammer linksinvarianter Vektorfelder ist also wieder ein linksinvariantes Vektorfeld
 \end{beweis}
 
-\begin{definition}
+\begin{definition}[{name=[Lieklammer der Liealgebra]}]
 	Wir bezeichnen mit 
 	\[
 		\benbrace*{\cdot ,\cdot } \colon \Tmap_e G \times \Tmap_e G \to \Tmap_e G \quad ,\quad  (v,w) \longmapsto \benbrace*{X_v,X_w}(e)
 	\] 
-	die Lieklammer von $\Tmap_e G = \mathfrak{g}$.
+	die \Index{Lieklammer} von $\Tmap_e G = \mathfrak{g}$.
 	Da die Lieklammer differenzierbarer Vektorfelder die Jacobi-Identität erfüllt, ist $\benbrace*{\cdot ,\cdot }$ eine Lieklammer auf $\Tmap_e G$.
 \end{definition}
 
@@ -246,13 +246,13 @@ Dann ist $i_g$ ein Liegruppenisomorphismus
 	\item Die Gruppenhomomorphismuseigenschaft ist klar. 
 	\item $(i_g)^{-1}= i_{g^{-1}}$
 \end{itemize}
-Somit ist $\Ad(g) := \enbrace*{\mathd i_g}_e \colon \mathfrak(g) \to \mathfrak{g}$ ein Liealgebrenisomorphismus.
+Somit ist $\Ad(g) := \enbrace*{\mathd i_g}_e \colon \mathfrak{g} \to \mathfrak{g}$ ein Liealgebrenisomorphismus.
 Ist $G = \GL(n,\mathbb{K})$, so kann man $\Ad(g)$ einfach berechnen:
 Sei $(h(t))_{t \in (-\varepsilon,\varepsilon)}$ eine differenzierbare Kurve in $G$ mit $h(0)= E_n$, $h'(0)=v$.
 Dann gilt
 \begin{align}
-	\Ad(g)(v)= (\mathd i_g)_e \cdot h'(0) = \diffd{}{t}\big|_{t=0} i_g (h(t)) = \diffd{}{t}\big|_{t=0} g \cdot h(t) \cdot g^{-1}
-	&= g \cdot \diffd{}{t}\big|_{t=0} h(t) \cdot g^{-1}\\
+	\Ad(g)(v)= (\mathd i_g)_e \cdot h'(0) = \diffd{}{t}\Big|_{t=0} i_g (h(t)) = \diffd{}{t}\Big|_{t=0} g \cdot h(t) \cdot g^{-1}
+	&= g \cdot \diffd{}{t}\Big|_{t=0} h(t) \cdot g^{-1}\\
 	&= g \cdot v \cdot g^{-1}
 \end{align}
 Ferner ist $\Ad \colon G \to \GL\enbrace*{\Tmap_e G}$, $g \mapsto \Ad(g)$ ein Liegruppenhomomorphismus:
@@ -829,16 +829,16 @@ Auf $\SL(2,\mathbb{R})$
 \section{Die Exponentialabbildung} % (fold)
 \label{sec:14}
 
-\begin{definition}
+\begin{definition}[{name=[{Einparameteruntergruppe}]}]
 	Sei $G$ eine Liegruppe.
 	Dann nennt man einen Homomorphismus $\Phi \colon (\mathbb{R},+) \to G$ eine \Index{Einparameteruntergruppe} (von $G$).
 \end{definition}
 
 Beispiel: $G = \GL(n;\mathbb{R})$, $v \in \Tmap_e \GL(n,\mathbb{R}) = \Mat(n,\mathbb{R})$.
 \[
-	\Phi_V \colon \mathbb{R} \to G \quad t \mapsto \exp(t \cdot v) = \sum_{k=0}^{\infty}  \frac{(tv)^k}{k!} 
+	\Phi_v \colon \mathbb{R} \longrightarrow G \qquad t \longmapsto \exp(t \cdot v) = \sum_{k=0}^{\infty}  \frac{(tv)^k}{k!} 
 \]
-Es gilt $\Phi_v(s+t) = \Phi_v(s) \Phi_v(t) = \Phi_v(t) \Phi_v(s)$ für alle $s,t \in \mathbb{R}$.
+Es gilt $\Phi_v(s+t) = \Phi_v(s) \cdot \Phi_v(t) = \Phi_v(t) \cdot \Phi_v(s)$ für alle $s,t \in \mathbb{R}$, wie man sich leicht überlegt.
 
 Zurück zum allgemeinen Fall: Sei $v \in \Tmap_e G \setminus \set*{0}$.
 Wegen $\Tmap_0 \mathbb{R} \cong \mathbb{R}$ ist
