@@ -204,3 +204,176 @@ Dafür benötigen wir:
 		Ist $v = \Phi_B(x), x \in \KK^n$, so folgt $\sk{F(v),v} = \sk{Ax,x}$, also $\sk{F(v),v} > 0 \Leftrightarrow \sk{Ax,x} > 0$. \qedhere
 	\end{enumerate}
 \end{beweis}
+
+\begin{korollar}
+	\label{kor:5.10}
+	\mbox{} \\[-1.4cm]
+	\begin{enumerate}[(i)]
+		\item Sei $\sk{\cdot,\cdot}$ ein Skalarprodukt auf dem endlich dimensionalen $\KK$-Vektorraum $V$.
+		Ist dann $\sk{\sk{\cdot,\cdot}}$ ein weiteres Skalarprodukt auf $V$, so existiert eine eindeutig bestimmte positiv definite lineare Abbildung $F\colon V \rightarrow V$ mit $\sk{\sk{v,w}} = \sk{F(v),w}$ für alle $v,w \in V$.
+		\item Ist $\sk{\sk{\cdot,\cdot}}$ ein Skalarprodukt auf $\KK^n$, so existiert genau eine positiv definite Matrix $A \in M(n \times n,\KK)$ mit $\sk{\sk{x,y}} = \sk{Ax,y}_S$ für alle $x,y \in \KK^n$, wenn $\sk{\cdot,\cdot}_S$ das Standard-Skalarprodukt auf $\KK^n$ bezeichnet.
+	\end{enumerate}
+\end{korollar}
+
+\begin{beweis}
+	\mbox{} \\[-.9cm]
+	\begin{enumerate}[(i)]
+		\item Nach \autoref{satz:5.2} existiert genau eine lineare Abbildung $F \colon V \rightarrow W$ mit $\sk{\sk{v,w}} = \sk{F(v),w}$.
+		Da $\sk{\sk{\cdot,\cdot}}$ hermitesch ist, folgt $\sk{F(v),w} = \ol{\sk{F(w),v}}$, also gilt $F = F^*$.
+		Da $\sk{\sk{\cdot,\cdot}}$ positiv definit ist, folgt $\sk{F(v),v} \geq 0$ für alle $v \in V$ und $\sk{F(v),v} = 0 \Leftrightarrow v = 0$, also ist $F$ positiv definit.
+		\item Dies folgt direkt aus (i) und der Darstellung von linearen Abbildungen mit Hilfe von Matrixmultiplikation. \qedhere
+	\end{enumerate}
+\end{beweis}
+
+\begin{problem}
+	\label{prob:5.11}
+	Wie stellen wir fest, ob eine gegebene selbstadjungierte Matrix (bzw. ein $F \in \End(V)$) positiv definit ist?
+	Wir stellen zunächst fest:
+	\begin{enumerate}[(i)]
+		\item Ist $A$ positiv definit und ist $S \in M(n \times n,\KK)$ invertierbar, so gilt
+		\[
+			A \text{ positiv definit} \quad \Leftrightarrow \quad S^*AS \text{ positiv definit}
+		\]
+		\enquote{$\Rightarrow$} folgt aus $\sk{S^*ASx,x} = \sk{ASx,Sx} = \sk{Ay,y}$ mit $y = Sx$.
+		Analog folgt \enquote{$\Leftarrow$} aus der obigen Gleichung mit $x = S^{-1}y$ für ein beliebiges $y \in \KK^n$.
+		Dann ist $\sk{Ay,y} = \sk{ASx,Sx} = \sk{S^*ASx,x} > 0$ für $y \neq 0$.
+		\item Sei $A \in M(n\times n,\KK$.
+		Für $1 \leq k \leq n$ sei $A_k \in M(k \times k, \KK)$ der $k$-te \Index{Hauptminor} von $A$, das heißt ist $A = (a_{ij})_{1 \leq i,j \leq n}$, so ist $A_k = (a_{ij})_{1 \leq i,j \leq k}$.
+		\[
+			\enb{ \begin{BMAT}(e)[1pt]{ccccc}{ccccc}
+				a_{11} & \cdots & a_{1k} & \cdots & a_{1n} \\
+				\vdots & A_k & \vdots & & \vdots \\
+				a_{k1} & \cdots & a_{kk} & \cdots & a_{kn} \\
+				\vdots &  & \vdots & & \vdots \\
+				a_{n1} & \cdots & a_{nk} & \cdots & a_{nn}
+				\addpath{(0,2,|)rrruuu}
+				\end{BMAT}}
+		\]
+		Dann gilt: Ist $A$ positiv definit, so sind auch alle $A_k$ positiv definit für $1 \leq k \leq n$.
+		Denn: Ist $0 \neq x = (x_1, \dots, x_k)^T \in \KK^k$, so gilt mit $\wt{x} = (x_1, \dots, x_k,0,\dots,0)^T \in \KK^n$: $\sk{A_kx,x} = \sk{A\wt{x},\wt{x}}> 0$.
+		\item Ist $A \in M(m \times n, \KK), B \in M(n \times l,\KK)$, so gilt $(AB)^* = B^*A^*$.
+		Das folgt aus $(AB)^* = \ol{AB}^T = (\ol{A}\cdot \ol{B})^T = \ol{B}^T \ol{A}^T = B^* A^*$.
+		Ist $A$ invertierbar, so auch $A^*$ mit $(A^*)^{-1} = (A^{-1})^*$, denn z.B. gilt $(A^{-1})^*A^* = (A \cdot A^{-1})^* = E_n^* = E_n$.
+		\item Ist $A \in M(n \times n, \KK)$, so gilt $\det(A^*) = \ol{\det(A)}$, denn:
+		\begin{align*}
+			\det(A^*) &= \det(\ol{A}^T) = \det(\ol{A}) = \sum_{\sigma \in S_n} \sign(\sigma) \ol{a_{1,\sigma(1)}} \cdots \ol{a_{n,\sigma(n)}} \\
+			&= \ol{ \sum_{\sigma \in S_n} \sign(\sigma) a_{1,\sigma(1)} \cdots a_{n,\sigma(n)}} = \ol{\det(A)}.
+		\end{align*} 
+		Damit folgt: Ist $A = A^*$, so gilt $\det(A) = \ol{\det(A)}$, also $\det(A) \in \RR$.
+	\end{enumerate}
+\end{problem}
+
+\begin{satz}[Kriterium von \textsc{Sylvester}]
+	\label{satz:5.12}
+	Sei $A \in M(n \times n,\KK)$ selbstadjungiert, also $A^* = A$.
+	Dann ist $A$ positiv definit genau dann, wenn für alle Hauptminoren $A_k$ von $A$ gilt: $\det(A_k) > 0$. \index{Kriterium von Sylvester}
+\end{satz}
+
+\begin{beweis}
+	(vollständige Induktion nach $n$) \\
+	Für $n = 1$ ist die Aussage trivial:
+	Sei $A = (a)$, so gilt:
+	\begin{align*}
+		&A \text{ positiv definit} \\
+		\Leftrightarrow \quad &\text{Für alle} x \in \KK \setminus \setzero \text{ gilt } 0 < \sk{Ax,x} = ax\ol{x} = a\abs{x}^2 \\
+		\Leftrightarrow \quad &\det(A) = a > 0.
+	\end{align*}
+	Sei die Aussage wahr für $n$.
+	Sei $A \in M((n+1)\times(n+1),\KK)$ mit $A = A^*$.
+	Wir schreiben $A$ in Blockform wie folgt:
+	\[
+		A = \enb{ \begin{BMAT}(e)[1pt]{ccc|c}{ccc|c}
+		& & & \\
+		& A_n & & v \\
+		& & & \\
+		& v^* & & a
+		\end{BMAT}}
+	\]
+	mit $v \in \KK^n$ und $v^* = \ol{v}^T$.
+	Nach Induktionsvoraussetzung folgt:
+	$A_n$ ist positiv definit genau dann, wenn $\det(A_k) > 0$ für alle $ 1 \leq k \leq n$.
+	Insbesondere folgt dann, dass $A_n$ invertierbar ist.
+	Sei dann
+	\[
+	S = \enb{ \begin{BMAT}(r)[1pt]{ccc|c}{ccc|c}
+		& & & \\
+		& E_n & & A_n^{-1}v \\
+		& & & \\
+		& 0 & & 1
+		\end{BMAT}}.
+	\]
+	Dann gilt $\det(S) = 1$, also ist auch $S$ invertierbar.
+	Für ein $b \in \RR$ betrachten wir dann das Produkt
+	\begin{align*}
+		S^* \wt{A} S &=
+			\enb{\begin{BMAT}(r)[1pt]{ccc|c}{ccc|c}
+					& & & \\
+					& E_n & & 0 \\
+					& & & \\
+					& v^* A_n^{-1} & & 1
+					\end{BMAT}} \cdot
+			\enb{\begin{BMAT}(b)[1pt]{ccc|c}{ccc|c}
+				& & & \\
+				& A_n & & 0 \\
+				& & & \\
+				& 0 & & b
+				\end{BMAT}} \cdot
+			\enb{\begin{BMAT}(r)[1pt]{ccc|c}{ccc|c}
+				& & & \\
+				& E_n & & A_n^{-1}v \\
+				& & & \\
+				& 0 & & 1
+				\end{BMAT}} \\
+			&= \enb{\begin{BMAT}(b)[1pt]{ccc|c}{ccc|c}
+				& & & \\
+				& A_n & & 0 \\
+				& & & \\
+				& v^* & & b
+				\end{BMAT}} \cdot
+			\enb{\begin{BMAT}(r)[1pt]{ccc|c}{ccc|c}
+				& & & \\
+				& E_n & & A_n^{-1}v \\
+				& & & \\
+				& 0 & & 1
+				\end{BMAT}} \\
+			&= \enb{\begin{BMAT}(r)[1pt]{ccc|c}{ccc|c}
+				& & & \\
+				& A_n & & v \\
+				& & & \\
+				& v^* & & b + v^* A_n^{-1}v
+				\end{BMAT}} = A,\text{ falls } b = a-v^* A_n^{-1} v.
+	\end{align*}
+	Nach \autoref{prob:5.11}(i) ist $A$ positiv definit genau dann, wenn $\wt{A}$ positiv definit ist, und wegen $\sk{\wt{A}x,x} = \sk{A_n \wt{x},\wt{x}} + b \abs{x_{n+1}}^2$ mit $\wt{x} = (x_1,\dots,x_n)^T$ ist dies der Fall genau dann, wenn $A_n$ positiv definit und $b>0$.
+	
+	Sei nun $A$ positiv definit.
+	Nach \autoref{prob:5.11}(ii) ist dann auch $A_n$ positiv definit und dann folgt nach Induktionsvoraussetzung $\det(A_1),\cdots,\det(A_n) > 0$.
+	Nach obiger Rechnung ist dann auch $b > 0$ und dann folgt auch
+	\begin{align*}
+		\det(A_{n+1}) &= \det(A) = \det(S^* \wt{A} S) \\
+		&= \Underbrace{\det(S^*)}{=1} \cdot \det(\wt{A}) \cdot \Underbrace{\det(S)}{=1} = \det(\wt{A}) = \det(A_n) \cdot b >0,
+	\end{align*}
+	da $\det(A_n) > 0$ und $b > 0$.
+	Also gilt $\det(A_k) > 0$ für alle $1 \leq k \leq n+1$.
+	
+	Gilt umgekehrt $\det(A_k) > 0$ für alle $1 \leq k \leq n+1$, so folgt aus dieser Rechnung, dass $0 < \det(A_{n+1}) = \det(A) = \det(A_n) \cdot b$, und da $\det(A_n) > 0$, folgt auch $b > 0$.
+	Nach Induktionsvoraussetzung ist also $A_n$ positiv definit und $b > 0$, also folgt, dass $A$ positiv definit ist. \qedhere
+\end{beweis}
+\newpage
+\begin{beispiel}
+	\label{bsp:5.13}
+	Sei
+	\[
+		A = \begin{pmatrix}
+			2 & i \\ -i & 3
+		\end{pmatrix}.
+	\]
+	Dann gilt $A^* = A$ und $\det(A_1) = 2 >0, \det(A_2) = 5 > 0$.
+	Also ist $A$ positiv definit.
+	Damit wird durch $\sk{\sk{z,w}} := \sk{Az,w}, z,w \in \CC^2$ ein neues Skalarprodukt auf $\CC^2$ definiert.
+\end{beispiel}
+
+\begin{bemerkung}
+	\label{bem:5.14}
+	Positiv definite Matrizen spielen auch in der Analysis II eine wichtige Rolle.
+\end{bemerkung}
+\newpage
