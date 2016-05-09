@@ -437,7 +437,7 @@ von $f$ auf $A \tensormax B$.
 Wir haben nun einen Homöomorphismus $S(A \odot B) \xrightarrow{\approx} S(A \tensormax B)$ konstruiert.
 Wir erhalten:
 
-\begin{satz}
+\begin{satz}[label=satz:119]
 	Für $x \in A \odot B$ gilt
 	\[
 		\norm*{x}_{\max}^2 = \sup \set*{\frac{f(y^* x^* xy)}{f(y^* y)} \given f \in S(A \odot B) , y \in A \odot B, f(y^* y)\neq 0 }
@@ -711,15 +711,15 @@ Wir erhalten:
 \section{Nuklearität und Exaktheit} % (fold)
 \label{sec:2}
 
-\begin{definition}
+\begin{definition}[{name=[{nukleare C*-Algebra}]}]
 	Eine $C^*$-Algebra $A$ heißt \Index{nuklear},\marginnote{\enquote{nuklear} -- das Wort heißt \enquote{nuklear}} falls für jede $C^*$-Algebra $B$ nur eine $C^*$-Norm auf $A \odot B$ existiert, das heißt $A \tensormax B = A \tensormin B$. 
 \end{definition}
 
-\begin{proposition}
+\begin{proposition}[{name=[{Nuklearität und Summen, Tensorprodukte, direkte Limiten und Quotienten}]},label=prop:22]
 	\leavevmode
 	\begin{enumerate}[(i)]
 		\item Sind $A,B$ nuklear, so sind auch $A \oplus B$ und $A \otimes B$ nuklear.
-		\item Ist $A = \Dlim A_i$ mit $A_i$ nuklear, so ist auch $A$ nuklear.
+		\item Ist $A = \Dlim\, A_i$ mit $A_i$ nuklear, so ist auch $A$ nuklear.
 		\item Für \(
 			\begin{tikzcd}[cramped,sep=small]
 				0 \rar & J \rar & A \rar & \sfrac{A}{J} \rar & 0 
@@ -742,7 +742,102 @@ Wir erhalten:
 			\end{tikzcd}
 		\]
 		Damit ist $\overline{J \odot B}^{\norm*{\cdot}_{\max,A \odot B}} = J \tensormin B$.  
+		Falls $\pi \colon J \odot B \to \mathcal{B}(\mathcal{H})$ eine nichtdegenerierte Darstellung ist und $(h_\lambda)$, $(g_\nu)$ approximative Einsen von $J$ bzw. $B$, so definieren wir $\sigma \colon A \odot B \to \mathcal{B}(\mathcal{H})$ durch
+		\[
+			\sigma(a \otimes b) \coloneqq \lim_{\lambda,\nu} \pi \enbrace[\big]{a h_\lambda \otimes b g_\nu}
+		\]
+		$\sigma$ existiert und setzt $\pi$ fort.
+		Also gilt für $x \in J \odot B \subset J \tensormax B$
+		\begin{align}
+			\norm*{x}_{\max, J \odot B} &= \sup \set[\big]{\norm*{\pi(x)} \given \pi \text{ nicht deg. Darst. von } J \odot B} \\
+			&\le \sup \set[\big]{\norm*{\sigma(x)} \given \sigma \text{ nicht deg. Darst. von } A \odot B} \\
+			&\le \norm*{\rho(x)} \\
+			&\le \norm*{x}_{\max, J \odot B} 
+		\end{align} 
+		Damit ist $\rho$ isometrisch und $J \tensormax B = J \tensormin B$ für $B$ beliebig.
+		Also ist $J$ nuklear.
+		$\sfrac{A}{J}$ zeigen wir später.
+		
+		Die umgekehrte Implikation kommt auch später.\todo{referenzieren, wenn soweit}\qedhere
 	\end{enumerate}
+\end{beweis}
+
+\begin{beispiel}
+	\begin{enumerate}[(i)]
+		\item Ist $A$ endlichdimensional, so ist $A$ auch nuklear.
+		\item $A=C_0(X)$ ist nuklear nach \autoref{satz:121}.
+		\item Ist $A$ AF\todo{was sollt das sein?}\footnote{z.B. $M_{2^\infty} = M_2 \otimes M_2 \otimes \ldots$} ist nach (i) und \autoref{prop:22}(ii) $A$ nuklear.
+		\item Ist $A$ AH, so ist $A$ nuklear. Zum Beispiel
+		\[
+			A_\theta = C^* \enbrace*{u,v \mid u,v \text{ unitär}, uv=e^{2 \pi i \theta}vu}
+		\]
+		\item Die Teoplitzalgebra ist nuklear: Nach \autoref{prop:22}(iii) und (iii)
+		\[
+			\begin{tikzcd}
+				0 \rar & \mathcal{K} \rar & \mathcal{T} \rar & C(S^1) \rar & 0
+			\end{tikzcd}
+		\]
+		\item {\large¿} $C_r^*(G)$ (reduzierte Gruppen-$C^*$-Algebra) {\large?} \quad $\leadsto$ \quad {\large¡} Amenabilität {\large!}
+		\item {\large¿} $A \rtimes_{\alpha(r)} G$ {\large?}
+	\end{enumerate}
+\end{beispiel}
+\begin{beweis}
+	\begin{enumerate}[(i)]
+		\item Wegen \autoref{prop:22} (i) können wir $A=M_r$ annehmen.
+		Sei $B$ eine $C^*$-Algebra.
+		Dann ist $A \odot B$ bereits vollständig bezüglich $\norm*{\cdot}_{\min}$: 
+		Sei dazu $(d_\lambda) \subset A \odot B$ ein Cauchy-Netz, wo $d_\lambda = \sum_{i,j=1}^r e_{ij} \otimes d_{\lambda,ij}$ mit $d_{\lambda,ij} \in B$ für $\lambda, i,j$.
+		Dann ist
+		\[
+			e_{ij} \otimes d_{\lambda,ij} = \enbrace*{e_{ii} \otimes \ind_{B^\simm}} d_\lambda \enbrace*{e_{jj} \otimes \ind_{B^\simm}}
+		\]
+		ebenfalls Cauchy.\footnote{$\varepsilon \leadsto \lambda_0$, für $\lambda_1, \lambda_2 \ge \lambda_0$  $\norm*{d_{\lambda_1,ij} - d_{\lambda_2,ij}} = \norm*{e_{ij} \otimes \enbrace*{d_{\lambda_1,ij}- d_{\lambda_2, ij}}} = \norm*{e_{ij} \otimes d_{\lambda_1,ij}- e_{ij} \otimes d_{\lambda_2, ij}}_{\min} < \varepsilon$}
+		Aber $\norm*{e_{ij} \otimes b}_{\min} = \norm*{e_{ij}}_A \norm*{b}_B = \norm*{b}_B$.
+		Also ist $(d_{\lambda,ij})_{\Lambda} \subset B$ Cauchy und konvergiert in $B$ für jedes $i,j$.
+		Damit konvergiert auch $(d_\lambda)$ und somit ist $\enbrace*{A \odot B, \norm*{\cdot}_{\min}}$ eine $C^*$-Algebra.
+		Daraus folgt $\norm*{\cdot}_{\min}=\norm{\cdot}_{\max}$ mit der Eindeutigkeit einer \emph{vollständigen} $C^*$-Norm.\qedhere
+	\end{enumerate}
+\end{beweis}
+
+\begin{proposition}
+	$A \tensormax -$ ist ein exakter Funktor für jede $C^*$-Algebra $A$
+\end{proposition}
+\begin{beweis}
+	Für Funktorialität benutze \autoref{prop:125}.
+	$\pi \colon B \to C$ induziert also $\id_A \tensormax \pi \colon A \tensormax B \to A \tensormax C$.
+	Sei nun \(
+		\begin{tikzcd}[cramped,sep=small]
+			0 \rar & J \rar["\iota"] & B \rar["\pi"] & \sfrac{B}{J} \rar & 0
+		\end{tikzcd}
+	\) exakt.
+	Zu zeigen ist, dass folgende Seqenz exakt ist
+	\[
+		\begin{tikzcd}[column sep=3.5em]
+			0 \rar & A \tensormax J \rar["\id_A \tensormax \iota"] & A \tensormax B \rar["\id_A \tensormax \pi"] & A \tensormax \sfrac{B}{J} \rar & 0
+		\end{tikzcd}
+	\]
+	$\id_A \tensormax \pi$ hat dichtes Bild und vollständiges Bild und ist damit surjektiv, womit die Exaktheit an der dritten Stelle gezeigt ist.
+	
+	Für die Injektivität von $\id_A \tensormax \iota$ sei $f \in S(A \tensormax J) \StackText{\ref{satz:119}}{\approx} S(A \odot J)$ und $(u_\lambda)$ eine approximative Eins für $J$.
+	Dann definiert $a \otimes b \mapsto \lim_\lambda f \enbrace*{a \otimes u_\lambda b u_\lambda}$ eine Fortsetzung von $f$ zu $\tilde{f} \in S(A \odot B)\approx S(A \tensormax B)$ (warum?).
+	Nach \autoref{satz:119} ist nun $\norm*{\cdot}_{A \tensormax J} \big|_{A \odot J} = \norm*{\cdot}_{A \tensormax B}\big|_{A \odot J}$, also ist ${\id_{A}} \tensormax \iota \big|_{A \odot J}$ isometrisch.
+	Wegen Stetigkeit ist dann auch ${\id_A} \tensormax \iota$ isometrisch.
+	
+	Zur Exaktheit an der zweiten Stelle: 
+	Wir haben $A \tensormax J \lhd A \tensormax B$ (warum?) und außerdem
+	\[
+		A \tensormax J \subset \ker \enbrace*{{\id_A} \tensormax \pi}
+	\]
+	Damit erhalten wir eine induzierte Abbildung $\sigma\colon\sfrac{A \tensormax B}{A \tensormax J} \twoheadrightarrow \sfrac{A \tensormax B}{\ker \enbrace*{{\id_A} \tensormax \pi}} = A \tensormax \sfrac{B}{J}$.
+	Weiter haben wir $A \odot B \cap A \tensormax J = A \odot J$.
+	Damit gilt
+	\[
+		A \odot \sfrac{B}{J} = \sfrac{A \odot B}{A \odot J} = \sfrac{A \odot B}{A \odot B \cap A \tensormax J} \stackrel[\text{dicht}]{}{\subset} \sfrac{A \tensormax B}{A \tensormax J}
+	\]
+	Also erhalten wir $\rho \colon A \tensormax \sfrac{B}{J} \twoheadrightarrow \sfrac{A \tensormax B}{A \tensormax J}$ mit $\sigma \colon \circ \rho \big|_{A \odot \sfrac{B}{J}} = \id_{A \odot \sfrac{B}{J}}$.
+	$\sigma \circ \rho$ ist also isometrisch auf $A \odot \sfrac{B}{J}$ und wegen Stetigkeit damit überall.
+	Da $\rho$ surjektiv ist, muss $\sigma$ insbesondere injektiv sein.
+	Also gilt $A \tensormax J = \ker \enbrace*{{\id_A} \otimes \pi}$ und damit Exaktheit.
 \end{beweis}
 
 % section 2 (end)

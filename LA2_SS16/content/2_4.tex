@@ -29,12 +29,43 @@ In diesem Abschnitt ist wieder $\KK = \RR$ oder $\KK= \CC$.
 \begin{definition}[Lot, orthogonale Projektion]
 	\label{def:4.3}
 	Sei $V$ ein $\KK$-Vektorraum mit $\sk{\cdot,\cdot}$ und $U \subseteq V$ ein Untervektorraum von $V$.
-	Ist dann $v \in V$, so heißt $P_U(v) \in U$ das \Index{Lot} von $v$ auf $U$ (bzw. die \Index{orthogonale Projektion} von $v$ auf $U$), falls gilt: \todo{Skizze einfügen}
+	Ist dann $v \in V$, so heißt $P_U(v) \in U$ das \Index{Lot} von $v$ auf $U$ (bzw. die \Index{orthogonale Projektion} von $v$ auf $U$), falls gilt:
 	\[
 	(v- P_U(v)) \perp U \qquad \text{bzw.} \qquad v-P_U(v) \in U^\perp.
 	\]
 \end{definition}
 
+\begin{figure}[h]
+	\centering
+	\begin{tikzpicture}
+		\draw [lightgray,fill=lightgray] (0,1) -- (3,1) -- (4,3) -- (1,3) -- cycle;
+		\draw (1.5,1) node[below]{$U$};
+		
+		\draw [->,thick] (1,3) -- (0,1) -- (-.1,.8);
+		\draw [->,thick] (1,3) -- (4.2,3);
+		\draw [->,thick] (1,3) -- (1,5);
+		
+		\coordinate (Pv) at (2,2);
+		\coordinate (v) at (2,5);		
+		\coordinate (x) at (2.4,2.8);
+		\coordinate (y) at (1,2);
+		
+		\draw (Pv) node[fill, circle, inner sep=1pt]{};
+		\draw (v) node[fill, circle, inner sep=1pt]{};
+		
+		\draw (v) node[right]{$v$};
+		\draw (Pv) node[anchor=north west]{$P_U(v)$};
+		
+		\draw [thin] (Pv) -- (x);
+		\draw [thin] (Pv) -- (y);
+		\draw [thick,dashed] (Pv) -- (v);
+		
+		\draw pic["$\bullet$",draw=black,angle eccentricity=.7,angle radius=.8cm]{angle=x--Pv--v};
+		\draw pic["$\bullet$",draw=black,angle eccentricity=.5,angle radius=.5cm]{angle=v--Pv--y};
+	\end{tikzpicture}
+	\caption{Veranschaulichung der orthogonalen Projektion auf einen Untervektorraum.}
+\end{figure}
+\newpage
 \begin{bemerkung}
 	\label{bem:4.4}
 	\mbox{} \\[-1.4cm]
@@ -90,14 +121,38 @@ Dazu benötigen wir die folgende wichtige Notation:
 	\]
 \end{definition}
 
-\begin{satz}[Satz von \textsc{Pythagoras}]
-	\label{satz:4.7}
-	Ist $\{v_1,\dots,v_l\}$ ein Orthogonalsystem, so gilt für alle $\lambda_1,\dots,\lambda_l \in \KK$: \todo{Skizze einfügen}
-	\[
+\begin{minipage}{.7\textwidth}
+	\begin{satz}[Satz von \textsc{Pythagoras}]
+		\label{satz:4.7}
+		Ist $\{v_1,\dots,v_l\}$ ein Orthogonalsystem, so gilt für alle $\lambda_1,\dots,\lambda_l \in \KK$:
+		\[
 		\no{\sum_{i=1}^{l} \lambda_i v_i}^2 = \sum_{i=1}^{l} \abs{\lambda_i}^2 \no{v_i}^2.
-	\]
-\end{satz}
+		\]
+	\end{satz}
+\end{minipage} \hfill
+\begin{minipage}{.23\textwidth}
+		\centering
+		\begin{tikzpicture}[>=Latex]
+		\coordinate (O) at (0,0);
+		\coordinate (v1) at (2.5,0);
+		\coordinate (v2) at (0,1.5);
+		\coordinate (v3) at (2.5,1.5);
+		
+		\draw [thick,->] (0,0) -- (v1) node[anchor=north west]{$v_1$};
+		\draw [thick,->] (0,0) -- (v2) node[left]{$v_2$};
+		\draw (1.25,0) node[below]{$\no{v_1}$};
+		
+		\draw [thick,->] (0,0) -- (v3);
+		\draw (2.5,0.75) node[right]{$\no{v_2}$};
+		
+		\draw [thick,dashed] (2.5,0) -- (2.5,1.5);
+		\draw pic["$\bullet$",draw=black,angle eccentricity=.5,angle radius=.5cm]{angle=v3--v1--O};
+		
+		\draw (1.25,0.75) node[above,rotate=30]{$\no{v_1+v_2}$};
+		\end{tikzpicture}	
+\end{minipage}
 
+\vspace*{.25cm}
 \begin{beweis}
 	Es gilt
 	\[
@@ -134,14 +189,10 @@ Dazu benötigen wir die folgende wichtige Notation:
 		\[
 			\no{P_U(v)}^2 = \sum_{i=1}^{l} \abs{\sk{v,v_i}}^2 \leq \no{v}^2.
 		\]
-		\item Ist $v \in V$, so gilt für alle $u \in U$ mit $u \neq v$:
-		\[
-			\no{v- P_U(v)} \leq \no{v-u},
-		\]
-		das heißt $P_U(v)$ ist das eindeutige Element in $U$, das von $v$ den kleinsten Abstand hat.
+		\item Ist $v \in V$, so gilt $\no{v- P_U(v)} \leq \no{v-u}$ für alle $u \in U$ mit $u \neq v$, das heißt $P_U(v)$ ist das eindeutige Element in $U$, das von $v$ den kleinsten Abstand hat.
 	\end{enumerate}
 \end{satz}
-
+\newpage
 \begin{beweis}
 	\mbox{} \\[-.9cm]
 	\begin{enumerate}[(i)]
@@ -182,7 +233,7 @@ Dazu benötigen wir die folgende wichtige Notation:
 		d(v,M) := \inf \{ \no{v-u} : u \in M\} \geq 0
 	\]
 \end{definition}
-
+\newpage
 \begin{korollar}
 	\label{kor:4.11}
 	Ist $U \subseteq V$ ein Untervektorraum, sodass eine orthogonale Projektion $P_U\colon V \rightarrow U$ existiert, dann gilt für alle $v \in V$
@@ -269,9 +320,9 @@ Und wenn ja, wie kann man eine Orthonormalbasis finden?
 		\[
 			v_{j+1} := \no{\widetilde{v}_{j+1}} \widetilde{v}_{j+1}.
 		\]
-		Nach Induktionsvoraussetzung ist $\{v_1,\dots,v_j\}$ ein Orthonormalsystem mit $\LH\{v_1,\dots,v_j\} = \LH\{w_1,\dots,w_j\} =: U_j$.
+		Nach Induktionsvoraussetzung ist $\{v_1,\dots,v_j\}$ ein Orthonormalsystem mit $\LH\{v_1,\dots,v_j\}$ \linebreak $= \LH\{w_1,\dots,w_j\} =: U_j$.
 		Wir zeigen nun, dass dann Ähnliches für $\{v_1,\dots,v_{j+1}\}$ gilt:
-		
+		\newpage
 		Da $\widetilde{v}_{j+1} = w_{j+1} - P_{U_j}(w_{j+1}) \in U_j^\perp$, gilt $\sk{\widetilde{v}_{j+1},v_i} = 0$ für alle $1 \leq i \leq j$, und dann auch $\sk{v_{j+1},v_i} = 0$ für alle $1 \leq i \leq j$.
 		Da $\no{v_{j+1}} = 1$ und da $\{v_1,\dots,v_j\}$ ein Orthonormalsystem ist, folgt dann $\sk{v_i,v_j} = \delta_{ij}$ für alle $1 \leq i,l \leq  j+1$.
 		
@@ -310,7 +361,29 @@ Und wenn ja, wie kann man eine Orthonormalbasis finden?
 		\[
 			\penb{\binom{a}{b}, \binom{-b}{a}}
 		\]
-		eine Orthonormalbasis von $\RR^2$ bezüglich des Standard-Skalarprodukts. \todo{Skizze einfügen!}
+		eine Orthonormalbasis von $\RR^2$ bezüglich des Standard-Skalarprodukts. 
+		
+		\begin{figure}[h]
+			\centering
+			\begin{tikzpicture}[scale=.75]
+				\draw [very thick,->] (-2.5,0) -- (2.5,0);
+				\draw [very thick,->] (0,-2.5) -- (0,2.5);
+				
+				\coordinate (O) at (0,0);
+				\coordinate (P) at (-1.41421,1.41421);
+				\coordinate (Q) at (1.41421,1.41421);
+				
+				\draw (O) circle (2);
+				\draw (P) -- (O) -- (Q);
+				\draw (O) node[fill,circle,inner sep=1pt]{};
+				\draw (P) node[fill,circle,inner sep=1pt]{};
+				\draw (Q) node[fill,circle,inner sep=1pt]{};
+				\draw (P) node[anchor=south east]{$\binom{-b}{a}$};
+				\draw (Q) node[anchor=south west]{$\binom{a}{b}$};
+				\draw pic["$\bullet$",draw=black,angle eccentricity=.5,angle radius=.5cm]{angle=Q--O--P};
+			\end{tikzpicture}
+		\end{figure}
+		\newpage
 		\item Sei $V = \RR^4$ mit dem Standard-Skalarprodukt $\sk{\cdot,\cdot}$ und sei $U \subseteq V$ der von $w_1,w_2,w_3 \in \RR^4$ erzeugte Untervektorraum von $V$ mit
 		\[
 			w_1 = \begin{pmatrix} 1 \\ 1 \\ 0 \\ 0 \end{pmatrix}, \qquad
@@ -354,14 +427,80 @@ Und wenn ja, wie kann man eine Orthonormalbasis finden?
 	\end{enumerate}
 \end{beispiel}
 
-Zum Abschluss noch zur direkten Summenzerlegung:
+Als Folgerung von \autoref{bem:4.4}, \autoref{satz:4.9} und \autoref{satz:4.13} erhalten wir:
 \begin{satz}
 	\label{satz:4.16}
 	Sei $V$ ein $\KK$-Vektorraum mit Skalarprodukt $\sk{\cdot,\cdot}$ und sei $U \subseteq V$ ein Untervektorraum mit $\dim(U) < \infty$.
-	Dann gilt $V = U \oplus U^\perp$ und die orthogonale Projektion $P_U \colon V \rightarrow U$ erfüllt $P_U(u+w) = u$ für $u \in U$ und $w \in U^\perp$ (vergleiche \autoref{satz:I.12.5}).
+	Dann gilt $V = U \oplus U^\perp$.
+	Ist $\{v_1,\dots,v_l\}$ eine Orthonormalbasis von $U$, so gilt für die orthogonale Projektion $P_U \colon V \rightarrow U$:
+	\[
+		P_U(v) = \sum\limits_{i=1}^{l} \sk{v,v_i} v_i.
+	\]
+	Ferner gilt $P_{U^\perp} = \id_V - P_U$ (bzw. $P_U = \id_V - P_{U^\perp}$).
 \end{satz}
 
-\begin{beweis}
-	In \autoref{bem:4.4}(ii) haben wir schon gesehen, dass der Satz wahr ist, wenn die orthogonale Projektion existiert.
-	Dies folgt aber sofort aus \autoref{satz:4.9} und \autoref{satz:4.13}. \qedhere
-\end{beweis}
+\begin{anwendung}
+	\label{anw:4.17}
+	Sei $V = \mathcal{C}[0,1] = \{f \colon [0,1] \rightarrow \CC : f \text{ stetig}\}$ versehen mit dem Skalarprodukt
+	\[
+		\sk{f,g} = \int\limits_{0}^{1} f(t) \ol{g(t)}dt.
+	\]
+	Für alle $n \in \ZZ$ sei $e_n \in \mathcal{C}[0,1]$ mit $e_n(t) = e^{2\pi i n t}$.
+	Dann ist $\{e_n : n \in \ZZ\}$ ein Orthonormalsystem in $V$, denn für alle $n,m \in \ZZ$ gilt
+	\begin{align*}
+		\sk{e_n,e_m} &= \int\limits_{0}^{1} e^{2 \pi i n t} \ol{e^{2\pi i m t}} dt \\
+				&= \int\limits_{0}^{1} e^{2 \pi i n t} \ol{e^{-2\pi i m t}} dt \\
+				&= \int\limits_{0}^{1} e^{2\pi i (n-m)t} dt \\
+				&= \begin{dcases}
+					1, & \text{ falls } n=m \\
+					\frac{1}{2 \pi (n-m)} e^{2\pi i (n-m) t} \bigg|_0^1 = 0, & \text{ falls } n \neq m \\ 
+				\end{dcases} \\
+				&= \delta_{nm}.
+	\end{align*}
+	Sei nun $f \in \mathcal{C}[0,1]$ fest.
+	Für alle $n \in \ZZ$ sei
+	\[
+		c_n := \sk{f,e_n} = \int\limits_{0}^{1} f(t) e^{-2\pi i n t} dt.
+	\]
+	Dann heißt $c_n$ der $n$-te \textbf{Fourierkoeffizient} von $f$.
+	Für $N \in \NN$ sei
+	\[
+		S_N(f) = \sum\limits_{n=-N}^{N} c_n e_n.
+	\]
+	Dann heißt $S_N(f)$ das $N$-te Fourierpolynom von $f$.
+	$S_N(f)$ ist die orthogonale Projektion von $f$ auf dem Raum $\mathcal{U}_N = \LH\{e_n : \abs{n} \leq N\}$ aller trigonometrischen Polynome vom Grad $\leq N$.
+	Man kann dann zeigen:
+	Die Folge $(S_N(t))_{N \in \NN}$ konvergiert gegen $f$ bezüglich der von $\sk{\cdot,\cdot}$ erzeugten Norm $\no{\cdot}_2$, also
+	\[
+		\no{f-S_N(f)}_2 = \enb{\int\limits_{0}^{1} \abs{f(t)-S_N(f)(t)}^2 dt}^{\frac{1}{2}} \xrightarrow{N\rightarrow \infty} \infty.
+	\]
+	Die Folge $S_N(f)$ ist die Folge der Partialsummen der \Index{Fourierreihe}
+	\[
+		S(f)(t) = \sum\limits_{n=-\infty}^{\infty} c_n e^{2\pi i n t}.
+	\]
+	
+	Beachte: Da $e^{2\pi i n t} = \cos(2\pi n t) + i \cdot \sin(2 \pi n t)$ gilt
+	\begin{equation}
+		S_N(f)(t) = \sum\limits_{n = -N}^{N} c_n (\cos(2 \pi n t) + i \cdot \sin(2 \pi n t) \label{eq:fourier}
+	\end{equation}
+	Ist $f$ reellwertig, so gilt ferner
+	\[
+		c_n = \int\limits_{0}^{1} f(x) (\cos(2\pi n t) - i \cdot \sin(2 \pi n t)) dt = a_n - i \cdot b_n
+	\]
+	mit $a_n = \sk{f, \cos(2 \pi n \cdot)}, b_n = \sk{f,\sin(2\pi n \cdot)}$.
+	Da $\cos(-x) = \cos(x), \sin(-x) = - \sin(x)$, folgt $a_{-n} = a_n$ und $b_{-n} = -b_n$.
+	Einsetzen in \eqref{eq:fourier} liefert dann
+	\begin{align*}
+		S_N(f)(t) &\stack{}{=} \sum\limits_{n=-N}^{N} (a_n - i \cdot b_n) \cdot (\cos(2 \pi n t) - i \cdot \sin(2 \pi n t)) \\
+		&\stack{}{=} \sum\limits_{n=-N}^{N} (a_n \cdot \cos(2\pi n t) + b_n \cdot \sin(2 \pi n t)) - i \cdot (b_n \cdot \cos(2\pi n t) + a_n \cdot \sin(2 \pi n t)) \\
+		&\stack{}{=} a_0 + 2 \cdot \enb{\sum\limits_{n=1}^{} a_n \cos(2 \pi n t) + b_n \sin(2 \pi n t)}.
+	\end{align*}
+	Hierbei folgt die letzte Gleichheit aus den Relationen $b_0 = 0$, da $\sin(2 \pi 0 t) = 0$, $a_{-n} = a_n$ und $\cos(-x) = \cos(x)$, sowie $b_{-n} = -b_n$ und $\sin(-x) = -\sin(x)$. Wir sehen also, dass wir mit Hilfe der Fourierreihen die gegebene Funktion $f$ durch überlagerte $\cos$- und $\sin$-Schwingungen approximieren können, wobei die Koeffizienten gegeben sind durch
+	\[
+		a_n = \sk{f,\cos(2\pi n \cdot)}, \qquad b_n = \sk{f,\sin(2\pi n \cdot)}.
+	\]
+\end{anwendung}
+
+
+
+\newpage

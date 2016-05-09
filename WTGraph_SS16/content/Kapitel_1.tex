@@ -121,9 +121,49 @@ Harmonische Funktionen erfüllen einige nützliche Prinzipien, Dazu sei für $W 
 	Berechnen Sie im Gambler's Run die Wahrscheinlichkeit links oder rechts anzuschlagen, sowie die erwartete Treffzeit.
 \end{uebung}
 \todo[inline]{missing figure}
-Wir bertrachten jetzt ein Netzwerk als ein elektrisches Netzwerk, d.h. $c(x,y)$ sei die Leitfähigkeit und $\frac{1}{c(x,y)} = r(x,y)$ sei der Widerstand der Kante $(x,y)$. Wir legen in einem $a$ eine Spannung $v(a)$.....
+Wir bertrachten jetzt ein Netzwerk als ein elektrisches Netzwerk, d.h. $c(x,y)$ sei die Leitfähigkeit und $\frac{1}{c(x,y)} = r(x,y)$ sei der Widerstand der Kante $(x,y)$. Wir legen in einem $a$ eine Spannung $v(a)$ an und leiten einen Strom $i$ durch das Netztwer, das in $Z \subseteq V$ abfließt ($v(z) = 0, \forall z \in Z$). Es gelten die klassischen Regeln der Elektrizitätslehre:
 
+\begin{regel}[Ohmsches Gesetz]
+	\label{regel:ohm}
+	\begin{align}
+		\forall x\sim y: v(x)-v(y) = i(x,y) \cdot r(x,y) = \frac{i(x,y)}{c(x,y)}
+	\end{align}
+\end{regel}
 
+\begin{regel}[Kirchhoffsches Gesetz]
+	\label{regel:kirch}
+	\begin{align}
+		\forall x \notin \set{a} \cup Z: \sum\limits_{y \sim x} i(x,y) = 0
+	\end{align}
+\end{regel}
+
+Aus diesen Regeln lassen sich einige Konsequenzen ableiten:
+\begin{itemize}
+	\item da $c(x,y) = c(y,x) \Rightarrow i(x,y) = c(x,y)\big(v(x) -v(y)\big) = -c(x,y)\big(v(y)- v(x)\big) = - i(y,x)$
+	\item da $c(x,y) > 0 \Rightarrow \Big({i(x,y) > 0 \Leftrightarrow v(x) > v(y)}\Big)$
+	\item ist $x \notin A \cup Z$, so gilt nach \ref{regel:kirch} 
+		\begin{align}
+			0 = \sum\limits_{y \sim x} i(x,y) = \sum\limits_{y \sim x} \big[v(x)-v(y)\big]c(x,y)
+		\end{align}
+		Und wegen $c(x,y) = p_{xy} \cdot \pi(x)$, sowie im darauffolgenden Schritt $\sum\limits_{y \sim x} p_{xy} = 1$, folgt
+		\begin{align}
+			\Rightarrow \sum\limits_{y\sim x} v(y)c(x,y) = v(x)\pi(x) \sum\limits_{y \sim x} p_{xy} \\
+			\Rightarrow v(x) = \frac{1}{\pi(x)} \sum\limits_{y \sim x} v(y) c(x,y)
+		\end{align}
+\end{itemize}
+Also folgt aus \ref{regel:ohm} und \ref{regel:kirch}, dass $v$ harmonisch ist. Wenn also $V$ endlich ist, $V|_A = 1$ und $V|_Z \equiv 0$ ist, so folgt mit Korollar 1.2 \todo{REF} $v(x) = \prop{\tau_A < \tau_Z}[][x]$
+
+\begin{korollar}[Kirchhoffsche Maschenregel]
+	Sei $x_1 \sim x_2 \sim \dots \sim x_n \sim x_1$ ein Kreis. Dann gilt 
+	\begin{align}
+		\sum\limits_{j=1}^{n}i(x_j,x_{j+1})r(x_j,x_{j+1}) = \sum\limits_{0}^{n}v(x_{j+1}) - v(x_j) = 0
+	\end{align}
+\end{korollar}
+
+\section{Irrfahrte auf elektrischen Netzwerken}
+Zunächst sei $G(V,E,c)$ nun immer ein endliches Netzwerk. Sei $a \in V$ und $Z \subseteq V$. Wir fragen uns nach der Wahrscheinlichkeit mit der Irrfahrt vom Startpunkt $a$ $Z$ zu erreichen, bevor wir wieder nach $a$ zurückkommen, also $\prop{a \to Z} = \prop{\tau_Z < \tau_{\set{a}}}[][a]$. Das wird insbesondere interessant, wenn $G$ unendlich, $G_n$ unendlich mit $G_n \uparrow G$ und  $Z = \delta G_n$ und $a=0$.
+
+Dann fragt man sich offenbar nach der Wahrscheinlichkeit gegebenenfalls sehr weit von Ursprung entfernte Mengen $Z$ zu erreichen, bevor man $0$ wieder sieht. Das ist nichts anderes als Transienz. Wir wollen $\propE{a \to Z}[][a]$ studieren.
 
 
 \todo[inline]{Hier fehlt noch ein großer Teil, der nachgetext werden muss (ab Korolloar 1.2)}

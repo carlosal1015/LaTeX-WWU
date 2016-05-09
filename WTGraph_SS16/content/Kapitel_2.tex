@@ -333,7 +333,7 @@ Die erste Frage ist: Was ist die maximale Flussstärke eines zulässigen Flusses
 Es ist intuitiv zu erwarten, dass ein Fluss nicht stärker sein kann, als die Summe der Leitfähigkeiten der Gewichte in einem Cutset. \marginnote{\enquote{Katze!}} Das erstaunliche ist, dass man auf diese Weise tatsächlich die maximale Flussstärke ermitteln kann. Es gilt
 
 \begin{satz}[Ford Fulkersen, Max--Float--Min--Cut--Theorem]
-	Sei $G = (V,E,c)$ ein ungerichteter, endlicher Graph. Sei $A,Z \subset V, A \cap Z = \setzero$. Dann für zulässige Flüsse $\Theta$ von $A$ nach $Z$
+	Sei $G = (V,E,c)$ ein ungerichteter, endlicher Graph. Sei $A,Z \subset V, A \cap Z = \setzero$. Dann gilt für zulässige Flüsse $\Theta$ von $A$ nach $Z$
 	\begin{align}
 		\max\limits_{\Theta \text{ zulässig}} S(\Theta) = \min \set{\sum\limits_{e \in \Pi}c(e) \given \Pi \text{ist ein $A$--$Z$ Cut--Set}}
 	\end{align}
@@ -346,6 +346,8 @@ Wir beweisen allgemeiner eine Version für gerichtete Graphen
 	\end{align}
 	die Kanten--Knoten--Inzidenz-Funktion.
 
+\end{beweis}
+\todo{blabla weil bweweis gferichteter netze?}
 \begin{definition}
 	$\Theta\colon E \to \Real^+$ heißt Fluss von $A$ nach $Z$ mit $A \cap Z = \setzero$, wenn gilt
 	\begin{align}
@@ -360,23 +362,112 @@ Wir beweisen allgemeiner eine Version für gerichtete Graphen
 \end{definition}
 	
 \begin{satz}
-	$G = (V,E,c)$ gerichtetes, endliches Netzwerk. Dann gilt
+	$G = (V,E,c)$ gerichtetes, endliches Netzwerk. Dann gilt für zulässiger Flüsse $\Theta$ von $A$ nach $Z$ mit $\abs{\Theta(e)}  \leq c(e), \forall e$:
 	\begin{align}
-		\max\set{S(\Theta) \given \Theta \text{ zulässiger Fluss von $A$ nach $Z$}} = \min\set{\sum\limits_{e \in \Pi}c(e) \given \Pi \text{ ist ein $A$--$Z$ Cutset}}
+		\max\limits_{\Theta \text{ zulässig}}\set{S(\Theta)}  = \min\set{\sum\limits_{e \in \Pi}c(e) \given \Pi \text{ ist ein $A$--$Z$ Cutset}}
 	\end{align}
 \end{satz}
 \begin{beweis}
-	Nur der Anfang: Das Maximum existiert und wird angenommen. Die Menge aller Flüsse $\Theta \colon E \to \RR^+\subseteq \RR_+^{\abs{E}}$. Aus der Zulässigkeitsbedingung folgt \todo{missing part. letzten 3 sätze}
-\end{beweis}
+	Das Maximum existiert und wird angenommen. Die Menge aller Flüsse $T := \set{\Theta \colon E \to \RR^+ \given \Theta \text{ ist zulässiger $A$--$Z$--Fluss}}\subseteq \RR_+^{\abs{E}}$. Aus der Zulässigkeitsbedingung folgt $\Theta(e) \leq c(e), \forall e$. Damit ist die Menge aller zulässigen Flüsse abgeschlossen und beschränkt in $\Real^{\abs{E}}$, also kompakt. $S$ ist stetig in $\Theta$, somit wird das Maximum sowie das Minimum auf $T$ angenommen. 
 	
+	Sei $\Theta$ maximierend, sei $\Pi$ ein $A$--$Z$--Cutset. Dann ist $A'$ die Menge der Vertizes, die nicht durch \todo{malen malen malen} $\Pi$ von $A$ getrennt werden. Insbesondere ist $A \subseteq A'$. Dann gilt
+	\begin{align}
+		S(\Theta) = \sum\limits_{x \in A}\sum\limits_{c \in E} \Phi(x,e) \Theta(e) = \sum\limits_{x \in A'} \sum\limits_{c \in E} \Phi(x,e) \Theta(e)
+	\end{align}
+	da $A' \supseteq A$ und $\sum\limits_{e} \Phi (x,e) \Theta(e) = 0$ für $x \in A' \backslash A.$
+	\begin{align}
+		\dots = \sum\limits_{c \in E}\Theta(e)\sum\limits_{x\in A'}\Phi(x,e) \leq \sum\limits_{e \in \Pi} \Theta(e) \leq \sum\limits_{e \in \Pi} c(e)
+	\end{align}
+	Nun ist
+	\begin{align}
+		\sum\limits_{x \in A'} = 
+			\begin{cases}
+			0, & \text{wenn } e = (a',a'') \text{ mit } a',a'' \in A \text{ oder } a',a'' \notin A' \\
+			1, & \text{wenn } c = (a',y), a' \in A', y\notin A'\\
+			-1, & \text{wenn } e= (y,a'), a' \in A', y \notin A'
+			\end{cases}
+	\end{align}
+	Für die andere Richtung definieren wir für $\Theta$, dass $x_0,x_1, \dots , x_k$ ein vergrößerbarer Pfad ist, wenn $x_0 \in A$ und für alle $i = 1,\dots,k$ gilt, dass entweder
+	\begin{align}
+		e = (x_{i-1}x_i) \in E \text{ und } \Theta(e) < c(e) \\
+		e' = (x_i,x_{i-1}) \in E \text{ und } \Theta'(e) > 0.
+	\end{align}
+	
+	Sei $B= \set{y \in V \given \exists \text{ vergrößerbarer Pfad von einem $x \in A$ nach $y$}}$, mit Nebenbedingung $A\subseteq B$.
+	
+	\underline{Behauptung:} $B \cap Z = \setzero$. Angenommen $z \in B \cap Z$. Dann gibt es $\epsilon > 0$
+	\begin{align}
+		\epsilon = \min\Big\{\min\set{c(e) -\Theta(e), e = (x_{i-1},x_i)}, \min\set{\Theta(e'), e' = (x_i,x_{i-1})}\Big\}
+	\end{align}
+	
+	Der Fluss \begin{align}
+		\hat{\Theta(e)} = 
+			\begin{cases}
+				\Theta(e) + \epsilon, & \text{für } e = (x_{i-1},x_i)\\
+ 				\Theta(e) - \epsilon, & \text{für } e = (x_i,x_{i-1})
+			\end{cases}
+	\end{align}
+	vergrößert dann den Fluss $\Theta(e)$ entlang des Pfades $x_0, \dots, x_e$. Das ist im Widerspruch zur Maximalität von $\Theta$. Also ist $B \subseteq Z^c$. Definiere
+	\begin{align}
+		\Pi = B \times B^c%\set{(b,b') \given b \in B, b' \in B^c \lor b \in B^c, b' \in B}
+	\end{align} 
+	Dann gilt $\Theta(e) = c(e)$ für $e \in B \times B^c$ und $\Theta(e) = 0$ für ein $e \in B^c \times B$. Mit der gleichen Rechnung wie eben erhalten wir 
+	\begin{align} 
+		S(\Theta) &= \sum\limits_{x\in A} \sum\limits_{e \in E} \Phi(x,e) \Theta(e)\\ \marginnote{(*) \text{mit $A'$ wie eben}}
+				&\overset{(*)}{=} \sum\limits_{x \in A'} \sum\limits_{e \in E} \Phi(x,e) \Theta(e) \\
+				&= \sum\limits_{e \in Pi}\Theta(e) = \sum\limits_{e \in \Pi}c(e) 
+	\end{align}
 \end{beweis}
+Nun die Verallgemeinerung auf abzählbare Netzwerke. Dazu sei $G= (V,E,c)$ ein abzählbares Netzwerk, d.h. $V,E$ abzählbar. Weiter sei für alle $x$ 
+\begin{align}
+	\sum\limits_{e ^- = x} c(e) < \infty
+\end{align}
 
+dann gilt die folgende Verallgemeinerung von \todo{ref} vorherigem Satz. 
 
+\begin{satz}
+	Sei $G$ ein zusammenhängendes, abzählbares Netzwerk wie oben. Dann gilt für $a$ (die Quelle)
+	\begin{align}
+		\max\set{S(\Theta) \given \Theta \text{ ist ein zulässiger Fluss von $a$ nach $\infty$}} \\
+		=\inf\set{\sum\limits_{e\in\Pi}c(e) \given \Pi \text{ ist ein $a$--$\infty$ -- Cutset} }.
+	\end{align}
+\end{satz}
 
+\begin{bemerkung}
+	Tatsächlich ist die linke Seite ein Maximum, nicht nur ein Supremum. Denn ist $(\Theta_n)$ eine maximierende Folge auf endlichen $G_n \uparrow G$. Dann konvergiert $\Theta_n$ kantenweise und der Limes ist ein zulässiger $a \to \infty$ Fluss auf $G$.
+\end{bemerkung}
 
+Im ersten Schritt reduzieren wir unser Netzwerk, d.h. es gibt $\forall \epsilon > 0$ eine Menge an Kanten $D$ sodass $(V,E\backslash D,c)$ lokal--endlich ist \marginnote{lokal--endlich: Nur endlich viele Nachbarn an jedem Knoten} und $\sum\limits_{c \in D}c(e) < \epsilon$, denn sei $x_1,x_2, \dots$ eine Aufzählung von $V$, dann gibt es in jedem $x$ eine endliche Menge von Kanten $\mathcal{E}_{x_i} = \set{e,e^- = x_i}$ und 
+\begin{align}
+	\sum\limits_{e^- = x_i, e \notin \mathcal{E}_{x_i}} c(e) < \epsilon \cdot 2^{-i},
+\end{align}
+wobei wir nur die Kanten behalten welche in einem $\mathcal{E}_{x_i}$ liegen.
 
+Ein Pfad heißt einfach, wenn er keinen Vertex mehrfach seit.
+Auf $P$ kann man eine Metrik definieren:
 
+\begin{align}
+	d(\gamma,\gamma') = \inf\set{\frac{1}{n+1} \given \text{$\gamma$ und $\gamma'$ stimmen in den ersten n Schritten überein}}
+\end{align}	
+\begin{uebung}
+	Das ist eine Metrik.
+\end{uebung}
+Bezüglich $d$ ist $P$ kompakt. Zeige: $p$ ist folgen--kompakt.
 
+Sei $\Big(\enb{e^m_n}_n \Big)^m$ eine Folge von Pfaden in $P$. Alle starten in $a$ in $G'$ ist lokal--endlich. Es gibt also eine Teilfolge $\Big(\enb{e^{m_1}_n}_n \Big)^{m_1}$ sodass alle Pfade dieser Teilfolge die gleiche 1. Kante haben. 
+Nun gibt es eine Teilfolge $\Big(\enb{e^{m_2}_n}_n \Big)^{m_2}$ von $\Big(\enb{e^{m_1}_n}_n \Big)^{m_1}$, sodass die Pfade dieser Teilfolge in den ersten zwei Kanten übereinstimmen (mit dem gleichen Argument), und so weiter. Ein Diagonalfolgenargument zeigt dann, dass es eine konvergente Teilfolge (in $d$) der gesamten Folge gibt. Also ist $(P,d)$ kompakt. 
+
+Nun sei für $e \in E \backslash D$ 
+\begin{align}
+	\Gamma_e = \set{\gamma \in P, e \in \gamma}.
+\end{align}
+Die $\Gamma_e$ sind offen, denn wenn $d_V(a,e^+) = n$, dann gehört mit $\gamma \in \Gamma_e$ auch $\gamma' \in \Gamma_e$, wenn $d_P(\gamma,\gamma') \leq \frac{1}{n+2}$. Ist nun $\Pi$ ein Cutset, dann ist $(\Gamma_e)_{e \in \Pi}$ eine offene Überdeckung von $P$. Also gibt es davon eine endliche Teilüberdekcung $(\Gamma^*_e)$, welche die Gestalt $(\Gamma^*_e)_{e\in\Pi^*}, \Pi^*$ endlich hat. Da $G'$ lokal--endlich ist und $\Pi^*$ endlich, ist die Menge $A' := \set{x \given x \text{ wird von $\Pi^*$ von $\infty$ getrennt}}$ endlich.
+
+\underline{Daher:}
+\begin{align}
+	S(\Theta) = \sum\limits_{e \in E} \Phi(a,e) \Theta(e)  = \sum\limits_{x \in A'}\sum\limits_{e \in E\backslash D} \Phi(x,e) \Theta(e) \leq \sum\limits_{e \in \Pi} \Theta(e) + \epsilon \leq \sum\limits_{e \in \Pi} c(e) + \epsilon
+\end{align}
+\todo{letzte zeile ggfls nachtragen}
 
 
 

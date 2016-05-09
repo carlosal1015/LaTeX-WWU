@@ -152,12 +152,12 @@ Sei $\mathfrak{g}$ die Menge der linksinvarianten Vektorfelder auf $G$.
 	Die Lieklammer linksinvarianter Vektorfelder ist also wieder ein linksinvariantes Vektorfeld
 \end{beweis}
 
-\begin{definition}
+\begin{definition}[{name=[Lieklammer der Liealgebra]}]
 	Wir bezeichnen mit 
 	\[
 		\benbrace*{\cdot ,\cdot } \colon \Tmap_e G \times \Tmap_e G \to \Tmap_e G \quad ,\quad  (v,w) \longmapsto \benbrace*{X_v,X_w}(e)
 	\] 
-	die Lieklammer von $\Tmap_e G = \mathfrak{g}$.
+	die \Index{Lieklammer} von $\Tmap_e G = \mathfrak{g}$.
 	Da die Lieklammer differenzierbarer Vektorfelder die Jacobi-Identität erfüllt, ist $\benbrace*{\cdot ,\cdot }$ eine Lieklammer auf $\Tmap_e G$.
 \end{definition}
 
@@ -246,13 +246,13 @@ Dann ist $i_g$ ein Liegruppenisomorphismus
 	\item Die Gruppenhomomorphismuseigenschaft ist klar. 
 	\item $(i_g)^{-1}= i_{g^{-1}}$
 \end{itemize}
-Somit ist $\Ad(g) := \enbrace*{\mathd i_g}_e \colon \mathfrak(g) \to \mathfrak{g}$ ein Liealgebrenisomorphismus.
+Somit ist $\Ad(g) := \enbrace*{\mathd i_g}_e \colon \mathfrak{g} \to \mathfrak{g}$ ein Liealgebrenisomorphismus.
 Ist $G = \GL(n,\mathbb{K})$, so kann man $\Ad(g)$ einfach berechnen:
 Sei $(h(t))_{t \in (-\varepsilon,\varepsilon)}$ eine differenzierbare Kurve in $G$ mit $h(0)= E_n$, $h'(0)=v$.
 Dann gilt
 \begin{align}
-	\Ad(g)(v)= (\mathd i_g)_e \cdot h'(0) = \diffd{}{t}\big|_{t=0} i_g (h(t)) = \diffd{}{t}\big|_{t=0} g \cdot h(t) \cdot g^{-1}
-	&= g \cdot \diffd{}{t}\big|_{t=0} h(t) \cdot g^{-1}\\
+	\Ad(g)(v)= (\mathd i_g)_e \cdot h'(0) = \diffd{}{t}\Big|_{t=0} i_g (h(t)) = \diffd{}{t}\Big|_{t=0} g \cdot h(t) \cdot g^{-1}
+	&= g \cdot \diffd{}{t}\Big|_{t=0} h(t) \cdot g^{-1}\\
 	&= g \cdot v \cdot g^{-1}
 \end{align}
 Ferner ist $\Ad \colon G \to \GL\enbrace*{\Tmap_e G}$, $g \mapsto \Ad(g)$ ein Liegruppenhomomorphismus:
@@ -829,16 +829,16 @@ Auf $\SL(2,\mathbb{R})$
 \section{Die Exponentialabbildung} % (fold)
 \label{sec:14}
 
-\begin{definition}
+\begin{definition}[{name=[{Einparameteruntergruppe}]}]
 	Sei $G$ eine Liegruppe.
 	Dann nennt man einen Homomorphismus $\Phi \colon (\mathbb{R},+) \to G$ eine \Index{Einparameteruntergruppe} (von $G$).
 \end{definition}
 
 Beispiel: $G = \GL(n;\mathbb{R})$, $v \in \Tmap_e \GL(n,\mathbb{R}) = \Mat(n,\mathbb{R})$.
 \[
-	\Phi_V \colon \mathbb{R} \to G \quad t \mapsto \exp(t \cdot v) = \sum_{k=0}^{\infty}  \frac{(tv)^k}{k!} 
+	\Phi_v \colon \mathbb{R} \longrightarrow G \qquad t \longmapsto \exp(t \cdot v) = \sum_{k=0}^{\infty}  \frac{(tv)^k}{k!} 
 \]
-Es gilt $\Phi_v(s+t) = \Phi_v(s) \Phi_v(t) = \Phi_v(t) \Phi_v(s)$ für alle $s,t \in \mathbb{R}$.
+Es gilt $\Phi_v(s+t) = \Phi_v(s) \cdot \Phi_v(t) = \Phi_v(t) \cdot \Phi_v(s)$ für alle $s,t \in \mathbb{R}$, wie man sich leicht überlegt.
 
 Zurück zum allgemeinen Fall: Sei $v \in \Tmap_e G \setminus \set*{0}$.
 Wegen $\Tmap_0 \mathbb{R} \cong \mathbb{R}$ ist
@@ -866,9 +866,9 @@ mit $\Phi_v'(0)= (\mathd \Phi_v)_0 = \psi_v$.
 	Die Eindeutigkeit impliziert $\Phi_v(t)=\exp(tv)$.
 \end{beweis}
 
-\begin{lemma}
+\begin{lemma}[label=lem:143]
 	Es gilt
-	\begin{enumerate}[(1)]
+	\begin{enumerate}[(1),itemsep=0pt]
 		\item Für alle $v \in \Tmap_eG$ ist $\Phi_v(t)=\exp(tv)$ eine Einparamtergruppe von $G$ mit $\Phi'_v(0)=v$.
 		\item Sei $g \in G$ und $v \in \Tmap_eG$.
 		Dann ist $L_g(\Phi_v(t))$ Integralkurve von $X_v$.
@@ -883,7 +883,7 @@ mit $\Phi_v'(0)= (\mathd \Phi_v)_0 = \psi_v$.
 	\end{enumerate}
 \end{lemma}
 \begin{beweis}
-	\begin{enumerate}[(1)]
+	\begin{enumerate}[(1),itemsep=0pt]
 		\item siehe \autoref{lem:142}
 		\item Klar, denn $\exp(tv)=c_v(t)$.
 		\item Homomorphismen bilden Einparametergruppen auf Einparametergruppen ab:
@@ -902,7 +902,206 @@ Beispiel: Es gilt $\Tmap_e\SO(n) = \set*{V \in \Mat_n(\mathbb{R}) \given V^T =-V
 	\benbrace*{V_1,V_2}^T = \enbrace*{V_1 V_2 - V_2 V_1}^T = V_2 V_1 - V_1 V_2 = -\benbrace*{V_1,V_2}
 \]
 Aus (4) folgt $\exp(tv) \in \SO(n)$ für alle $t \in \mathbb{R}$. Anders: $\exp_H = \exp_G\big|_{\Tmap_e H} \colon \Tmap_e H \to H$.
+
+Bemerkung: 
+\begin{enumerate}[1)]
+	\item ist $H$ eine Lieuntergruppe von $G$, so gilt $\exp_H  = \exp_B\big|_{\Tmap_e H} \colon \Tmap_e H \to H$
+	\item Die Exponentialabbildung $\exp \colon \Tmap_e G \to G$ ist nicht immer surjektiv; richtig für kompakte zusammenhängende Liegruppen.
+	Es gilt $\im \enbrace*{\exp (\Tmap_e G)} \supset U \supset \set*{e}$ für eine offene Umgebung von $e$.
+	\item Es gilt $\exp(x)^{-1} = \exp(-x)$.
+	\item Der Fluss eines linksinvarianten Vektorfeldes $X_v$ ist gegeben durch
+	\[
+		\enbrace*{R_{\exp(tv)}}_{t \in \mathbb{R}} \qquad X_v(g) = \enbrace*{\mathd L_g}_e \cdot v
+	\]
+\end{enumerate}
 % section 14 (end)
+
+\section{Die adjungierte Darstellung} % (fold)
+\label{sec:15}
+Sei $G$ eine Liegruppe und $g \in G$ fest. Betrachte
+\mapdef{i_g \colon G}{G}{\tilde{g}}{m \enbrace*{m \enbrace*{g,\tilde{g}}, I(g)}= g \cdot \tilde{g} \cdot g^{-1}}{}
+wobei $m(g,\tilde{g})= g \cdot \tilde{g}$, $I(g)=g^{-1}$. 
+Somit gilt
+\[
+	i_g = L_g \circ R_{g^{-1}} = R_{g^{-1}} \circ L_g
+\]
+Wir hatten bereits gesehen, dass $i_g \colon G \to G$ ein Liegruppenhomomorphismus ist.
+Folglich ist 
+\[
+	\Ad(g) := \enbrace*{\mathd i_g}_e \colon \Tmap_e G \longrightarrow \Tmap_eG = \mathfrak{g}
+\]
+ein Liealgebrenhomomorphismus.
+Wir hatten auch gezeigt, dass aus $i(g_1 \cdot g_2) = i(g_1) \cdot i(g_2)$ die Identität 
+\[
+	\Ad(g_1 \cdot g_2) = \Ad(g_1) \circ \Ad(g_2)
+\]
+folgt.
+
+\begin{definition}[{name=[adjungierte Darstellung]}]
+	Sei $G$ eine Liegruppe,
+	Dann nennt man 
+	\[
+		\Ad \colon G \to \GL(\mathfrak{g}) \qquad g \longmapsto \Ad(g)
+	\]
+	die \Index{adjungierte Darstellung} von $G$.
+\end{definition}
+
+Ist zum Beispiel $G$ abelsch, so ist $i_g = \id_G$ und es folgt ${\Ad(g)} = \id_{\mathfrak{g}}$.
+Ist $G=S^3$, so wurde in den Übungen die adjungierte Darstellung von $G$ bestimmt:
+\[
+	\Tmap_e S^3 = \im \mathbb{H} = \Span_\mathbb{R} (i,j,k) =: \mathbb{R}^3
+\]
+Es gilt $\Ad(g)(x) = g \cdot x \cdot g^{-1} \in \mathbb{R}^3$.
+Es wurde auch $\Im \enbrace*{\Ad(S^3)} = \S0(3)$ gezeigt.
+
+\begin{definition}
+	Sei $G$ eine Liegruppe mit Liealgebra $\mathfrak{g}$.
+	Dann bezeichnen wir mit 
+	\[
+		\ad_v \colon \mathfrak{g} \to \mathfrak{g} \qquad w \longmapsto \benbrace*{v,w}
+	\]
+	\emph{hier fehlt noch ein Satz irgendwie}
+\end{definition}
+
+Die Jacobi-Identität 
+\[
+	\benbrace*{X,\benbrace*{Y,Z}} + \benbrace*{Z, \benbrace*{X,Y}} + \benbrace*{Y, \benbrace*{Z,X}} =0
+\]
+für alle $X,Y,Z$ kann nun folgendermaßen beschrieben werden:\marginnote{Kommutator}
+\[
+	\ad_{\benbrace*{X,Y}} = \ad_X \circ \ad_Y - \ad_Y \circ \ad_X = \benbrace*{\ad_X, \ad_Y}_0
+\]
+Folglich ist $\ad \colon \enbrace*{\mathfrak{g}, \benbrace*{\cdot ,\cdot }} \to \enbrace*{\mathfrak{gl}(\mathfrak{g}), \benbrace*{\cdot ,\cdot }_0}$
+ein Liealgebrenhomomorphismus.
+
+\begin{lemma}
+	Sei $G$ eine Liegruppe.
+	Dann gilt
+	\begin{enumerate}[(1)]
+		\item $\enbrace*{\mathd \Ad}_{\id_{\mathfrak{g}}} = \ad$
+		\item $i_g \enbrace*{\exp(v)} = \exp \enbrace*{\Ad(g)v}$
+		\item $\Ad \enbrace*{\exp(v)} = e^{\ad_v} = \sum_{k=0}^{\infty} \frac{(\ad_v)^k}{k!} \colon \mathfrak{g} \to \mathfrak{g}$
+		\item Ist $G$ zusammenhängend, so gilt $Z(G) = \ker (\Ad)$
+	\end{enumerate}
+\end{lemma}
+\begin{beweis}
+	\begin{enumerate}[(1)]
+		\item Erinnerung: Ist $M^n$ eine differenzierbare Mannigfaltigkeit, $p \in M^n$ ein Punkt, $X,Y$ glatte Vektorfelder und $\enbrace*{\psi_t}_{\abs*{t}<\varepsilon}$ lokaler Fluss von $X$ in einer Umgebung von $p$.
+		Dann gilt
+		\[
+			\benbrace*{X,Y}(p) = \diffd{}{t}\Big|_{t=0} \enbrace*{\mathd \psi_{-t}}_{\psi_t(p)} Y \enbrace*{\psi_t(p)}
+		\]
+		Es folgt für alle $w \in \mathfrak{g}$.
+		\begin{align}
+			\enbrace*{\mathd \enbrace*{\Ad(g)}_{\id_{\mathfrak{g}}} \cdot v} (w) = \diffd{}{t}\Big|_{t=0} \Ad \enbrace*{\exp(tv)}(w) &= \diffd{}{t}\Big|_{t=0} \enbrace*{\mathd R_{\exp(-tv)}}_{\exp{tv}} \cdot  \enbrace*{\mathd L_{\exp(tv)}}_{e} \cdot w \\
+			&= \diffd{}{t}\Big|_{t=0} \enbrace*{\mathd\enbrace*{R_{\exp(-tv)}}}_{\exp{tv}} X_w \enbrace*{\exp(tv)} \\
+			&= \benbrace*{X_v,X_w}(e)  = \benbrace*{v,w}_{\mathfrak{g}} \\
+			&= \ad_v(w)
+		\end{align}
+		\item Folgt direkt aus \autoref{lem:143}.
+		\item Folgt direkt aus \autoref{lem:143}.
+		\item Zur Inklusion $Z(G) \subseteq ker (\Ad)$: Ist $g \in Z(g)$, so ist $i_g = {\id_G} $ und es folgt $\Ad(g)=\id$.
+		
+		Es gelte andersrum $\Ad(g) = \id_{\mathfrak{g}}$.
+		Dann sind $i_g, \id_G \colon G \to G$ Liegruppenhomomorphismen mit $\enbrace*{\mathd i_g}_e = \mathd(\id_G)$.
+		Da $G$ zusammenhängend ist, folgt aus \autoref{kor:126} $i_g=\id_G$ und es folgt $g \in Z(G)$.
+	\end{enumerate}
+\end{beweis}
+
+Beispiel: Betrachte $G= \GL(n,\mathbb{R})$.
+Dann gilt
+\[
+	\begin{array}{ll}
+		i_A(\tilde{A}) = A \cdot \tilde{A} \cdot A^{-1} \quad & \tilde{A} \in \GL(n,\mathbb{R}) \\
+		\Ad(A)(B) = A \cdot B \cdot A^{-1} & B \in \Mat(n,\mathbb{R}) \\
+		\ad_v(W) = V \cdot W + W (-V) = \benbrace*{V,W}_0
+	\end{array}
+\]
+
+\begin{lemma}
+	Sei $G$ eine zusammenhängende Liegruppe. Dann gilt
+	\begin{enumerate}[1)]
+		\item $G$ ist abelsch genau dann, wenn $\Tmap_e G = \mathfrak{g}$ abelsch ist.
+		\item $G$ ist genau dann abelsch, wenn $G \cong T^k \times \mathbb{R}^{n-k}$.
+		\item Ist $H$ eine zusammenhängende Untergruppe von $G$, so ist $H$ Normalteiler genau dann, wenn $\mathfrak{h} = \Tmap_e H$ Ideal von $\mathfrak{g}$ ist, das heißt wenn $\benbrace*{\mathfrak{h},\mathfrak{h}} \subset \mathfrak{h}$ gilt.
+		\item Das Zentrum $Z(G)$ ist Lieuntergruppe von $G$ mit 
+		\[
+			Z(\mathfrak{g}) = \Tmap_e Z(G) = \set*{v \in \mathfrak{g} \given \ad_v =0}
+		\]
+		\item Ist $H$ eine Lieuntergruppe von $G$, so ist die Einschränkung der adjungierten Darstellung von $G$ auf $H$ gerade die adjungierte Darstellung von $H$.
+	\end{enumerate}
+\end{lemma}
+\begin{beweis}
+	\begin{enumerate}[1)]
+		\item Sei $G$ abelsch. Dann gilt $i_g=\id_G$, also $\Ad(g) = \id_{\mathfrak{g}}$ für alle $g \in G$ und es folgt $\ad_v=0$. Damit ist auch die Lieklammer trivial und $\mathfrak{g}$ ist abelsch.
+		
+		Sei andersrum $\mathfrak{g}$ abelsch: Dann ist $\ad_v=0$ für alle $v \in \mathfrak{g}$. Es gilt $\id_{\mathfrak{g}} = e^{\ad_v} = \Ad \enbrace*{\exp(v)}$
+		Es folgt $\Ad(g) = \id_{\mathfrak{g}} $ für alle $g \in G$.
+		\[
+			i_g \enbrace*{\exp(v)} =  g \exp(v) g^{-1} = \exp \enbrace*{\Ad(g)v} = \exp(v)
+		\]
+		Somit ist $G$ abelsch.
+		\item Da $G$ abelsch ist, ist $\mathfrak{g}$ abelsch und somit ist $\exp \colon (\Tmap_eG,+) \to (G,\cdot )$ ein Liegruppenhomomorphismus (wenn der Kommutator verschwindet gilt die Funktionalgleichung).
+		Somit ist $\exp \colon \Tmap_e G \to G$ eine Überlagerung und $\Gamma := \exp^{-1}(e)$ eine diskrete Untergruppe von $(\Tmap_e G,+)$.\marginnote{Gitter}
+		Somit existieren $v_1, \ldots, v_k \in \mathfrak{g}$ mit
+		\[
+			\Gamma = \set*{\sum\nolimits_{i=1}^{k} \lambda_i v_i \given \lambda_i \in \mathbb{Z}} \cong \mathbb{Z}^k
+		\]
+		Sei $V := \Span_\mathbb{R}(v_1,\ldots ,v_k)$ und $V^\bot$ ein Komplement von $V$ in $\mathfrak{g}$.
+		Es gilt also $\mathfrak{g} = V \oplus V^\bot$ (beide Grenzfälle sind möglich).
+		Es ist nun \enquote{klar}, dass 
+		\[
+			\im \enbrace*{\exp(V)} = T^k
+		\]
+		und $\im \enbrace*{\exp(V^\bot)} = \mathbb{R}^{n-k}$ gilt. 
+		Die Behauptung folgt.
+		\item Sei $H$ ein zusammenhängender Normalteiler von $G$, das heißt es gilt $g H g^{-1} \subset H$ für alle $g \in G$.
+		Es folgt $i_g(H) \subset H$ und damit auch $\Ad(g)(\Tmap_eH) \subset \Tmap_eH$ für alle $g \in G$.
+		Damit gilt auch $\ad_v(\Tmap_e H) \subset \Tmap_e H$, also $\benbrace*{\mathfrak{g},\mathfrak{h}}\subset \mathfrak{h}$.
+		
+		Ist umgekehrt $\mathfrak{h} = \Tmap_e H$ ein Ideal von $\mathfrak{g}$, so gilt $\ad_v(\mathfrak{h}) \subset \mathfrak{h}$ für alle $v \in \mathfrak{g}$.
+		Dann gilt auch $\Ad \enbrace*{\exp (v)} = e^{\ad_v}(\mathfrak{h}) \subset \mathfrak{h}$.
+		Damit gilt auch $\Ad(g)(\mathfrak{h}) \subset \mathfrak{h}$ für alle $g \in G$.
+		\begin{align}
+			H \ni \exp_G \enbrace*{\Ad(g)(w)} = i_g \enbrace*{\exp(w)}= g \cdot \exp(w) \cdot g^{-1} 
+		\end{align}
+		für alle $g \in G$ und $w \in \mathfrak{g}$.
+		Damit ist $H$ ein Normalteiler.
+		\item \emph{Übung!}
+		\item \emph{Übung!}\qedhere
+	\end{enumerate}
+\end{beweis}
+
+Frage: Wann sind Normalteiler abgeschlossene Untergruppen?
+Für $r$ irrational ist
+\[
+	S^1_r = \set*{\enbrace*{e^{i \varphi}, e^{i r \varphi}} \in T^2}
+\]
+ist Normalteiler, aber $\overline{S^1_r}=T^2$.
+% section 15 (end)
+
+\section{Automorphismen von Liegruppen} % (fold)
+\label{sec:16}
+
+\begin{definition}
+	Sei $G$ eine Liegruppe mit Liealgebra $\mathfrak{g}$.
+	\begin{enumerate}[(i)]
+		\item Dann nennt man einen linearen Isomorphismus $A \colon \mathfrak{g} \to \mathfrak{g}$ einen Liealgebra-Isomorphismus, falls 
+	\[
+		A \benbrace*{X,Y} = \benbrace*{AX,AY}
+	\]
+	für alle $X,Y \in \mathfrak{g}$ gilt.
+	Diese Menge der Automorphismen bezeichnen wir mit $\Aut(\mathfrak{g}) \subset \GL(\mathfrak{g})$.
+	\item Eine lineare Abbildung $A \colon \mathfrak{g} \to \mathfrak{g}$ nennt man \Index{Derivation}, falls 
+	\[
+		A \benbrace*{X,Y} = \benbrace*{AX,Y} + \benbrace*{X,AY}
+	\] 
+	für alle $X,Y \in \mathfrak{g}$ gilt. Bezeichnung: $\Der(\mathfrak{g}) \subset \End(\mathfrak{g})$.
+	\end{enumerate}	
+	Automorphismen sind Untergruppe von $\GL(\mathfrak{g})$
+\end{definition}
+
+% section 16 (end)
 % chapter 1 (end)
 
 \cleardoubleoddemptypage
