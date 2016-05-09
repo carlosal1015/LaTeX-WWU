@@ -1018,7 +1018,7 @@ Dann gilt
 	\end{array}
 \]
 
-\begin{lemma}
+\begin{lemma}[label=lem:154]
 	Sei $G$ eine zusammenhängende Liegruppe. Dann gilt
 	\begin{enumerate}[1)]
 		\item $G$ ist abelsch genau dann, wenn $\Tmap_e G = \mathfrak{g}$ abelsch ist.
@@ -1100,6 +1100,147 @@ ist Normalteiler, aber $\overline{S^1_r}=T^2$.
 	\end{enumerate}	
 	Automorphismen sind Untergruppe von $\GL(\mathfrak{g})$
 \end{definition}
+
+\begin{proposition}[label=prop:162]
+	Sei $\mathfrak{g}$ eine Liealgebra.
+	Dann ist $\Aut(\mathfrak{g})$ eine abgeschlossene Untergruppe von $\GL(\mathfrak{g})$ mit Liealgebra $\Der(\mathfrak{g})$
+\end{proposition}
+\begin{beweis}
+	Ist $A$ ein Automorphismus von $(\mathfrak{g},[\cdot ,\cdot ])$, so gilt für alle $x,y \in  \mathfrak{g}$
+	\[
+		A \benbrace*{x,y} = \benbrace*{A x, A y}
+	\]
+	somit ist $\Aut(\mathfrak{g})$ eine abgeschlossene Untergruppe und daher eine Lieuntergruppe von $\GL(\mathfrak{g})$.
+	Sei $A(t)\big|_{t \in (-\varepsilon,\varepsilon)}$ eine differenzierbare Kurve von Automorphismen mit $A(0) = {\id_{\mathfrak{g}}}$.
+	Differenzieren der Identität
+	\[
+		A(t) \benbrace*{x,y} = \benbrace*{A(t) x, A(t) y}
+	\]
+	 in $t=0$ liefert
+	 \[
+	 	A'(0) \benbrace*{x,y} = \benbrace*{A'(0) x , A'(0) y} + \benbrace*{x, A'(0)y}
+	 \]
+	 Also ist $A'(0) \in \Der(\mathfrak{g})$.
+	 Sei umgekehrt $V \in \Der(\mathfrak{g})$.
+	 Dann gilt\marginnote{$V \in \Der(\mathfrak{g}) \implies e^{tV} \in \End(\mathfrak{g})$}
+	 \begin{align}
+	 	\diffd{}{t}\Big|_{t=t_0} e^{-tV} \benbrace*{e^{tV}x, e^{tV}y} &= - e^{t_0 V} V \benbrace*{e^{t_0 V} x, e^{t_0 V} y} + e^{t_0 V} \benbrace*{V e^{t_0 V} x, e^{t_0 V} y} + e^{t_0 V} \benbrace*{e^{t_0 V} x , V e^{t_0 V} y} \\
+		\intertext{mit $z := e^{t_0 V} x$ und $w := e^{t_0 V}y$}
+		&= - e^{t_0 V} \enbrace[\big]{V \benbrace*{z,w} - \benbrace*{Vz,w} - \benbrace*{z,Vw}} =0
+	 \end{align}
+	 Somit ist wegen $e^{tV}={\id}$ für $t=0$
+	 \[
+	 	e^{tV} \benbrace*{e^{tV}x, e^{tV}y} \equiv \benbrace*{x,y}
+	 \]
+	 für alle $t \in (-\varepsilon,\varepsilon)$.
+	 Wir erhalten also $\benbrace*{e^{tV}x, e^{tV}y}= e^{tV}\benbrace*{x,y}$.
+\end{beweis}
+
+Da $\Ad \colon G  \to \Aut(\mathfrak{g})$, $g \mapsto \Ad(g)$ ein Liegruppenhomomorphismus ist, ist $\ad \colon \mathfrak{g} \to \Der(\mathfrak{g})$, $v \mapsto \ad_v$ ein Liealgebrenhomomorphismus.
+Insbesondere $\ad_v \in \Der(\mathfrak{g})$ für alle $v \in \mathfrak{g}$.
+
+\begin{definition}
+	Sei $\mathfrak{g}$ eine Liealgebra
+	\begin{enumerate}[1)]
+		\item Eine Derivation $A \in \Der(\mathfrak{g})$ nennt man \Index{innere Derivation}, falls $v \in \mathfrak{g}$ existiert mit $A = \ad_v$.
+		Wir schreiben 
+		\[
+			\intAlg(\mathfrak{g}) \coloneqq \set*{\ad_v \given v \in \mathfrak{g}}
+		\] 
+		\item Wir bezeichnen mit $\Int(\mathfrak{g}) \subset \Aut(\mathfrak{g})$ die zusammenhängende Lieuntergruppe von $\Aut(\mathfrak{g})$ mit Liealgebra $\intAlg(\mathfrak{g})$.
+		Elemente in $\Int(\mathfrak{g})$ nennt man \Index{innere Automorphismen}.
+	\end{enumerate}
+\end{definition}
+
+Ist $G$ eine zusammenhängende Liegruppe, so gilt $\Ad(G) = \Int(\mathfrak{g})$, denn: Sowohl $\Ad(G)$ also auch $\Int(\mathfrak{g})$ sind Lieuntergruppen von $\Aut(\mathfrak{g})$ mit Liealgebra $\intAlg(\mathfrak{g})$.
+
+Beispiel: Ist $\mathfrak{t}$ eine abelsche Liealgebra, so ist jeder Isomorphismus $A \colon \mathfrak{t} \to \mathfrak{t}$ ein Automorphismus.
+Innere Automorphismen existieren in diesem auch nicht.
+
+\begin{lemma}
+	Sie $G$ eine zusammenhängende Liegruppe mit Liealgebra $\mathfrak{g}$.
+	Dann ist $\Ad \colon G \to \Aut(\mathfrak{g})$ ein surjektiver Gruppenhomomorphismus mit Kern $Z(G)$.
+	Es gilt also
+	\[
+		\Int(\mathfrak{g}) \cong \sfrac{G}{Z(G)} \quad \text{ und } \quad \intAlg(\mathfrak{g}) = \mathfrak(g) \ominus Z(\mathfrak{g})
+	\]
+\end{lemma}
+
+\begin{lemma}
+	Sei $G$ eine zusammenhängende Liegruppe.
+	Dann ist $\Int(\mathfrak{g})$ ein Normalteiler von $\Aut(\mathfrak{g})_e$.
+\end{lemma}
+\begin{beweis}
+	Nach Definition ist $\Int(\mathfrak{g})$ zusammenhängend und nach \autoref{lem:154} 3) ist somit $\Int(\mathfrak{g})$ genau dann Normalteiler, wenn $\Tmap_e \Int(\mathfrak{g}) = \intAlg{\mathfrak{g}}$ ein Ideal von $\aut(\mathfrak{g}) = \Tmap_e \Aut(\mathfrak{g})$ ist.
+	Sei $L \in \aut(\mathfrak{g})$, $\ad_v \in \intAlg(\mathfrak{g})$.
+	Dann gilt
+	\begin{align}
+		\benbrace*{L,\ad_v}_0 (w) = \enbrace*{L \circ \ad_v - \ad_v \circ L}(w) = L \benbrace*{v,w}- \benbrace*{v,Lw} \StackText{\ref{prop:162}}{=} \benbrace*{Lv, w} + \benbrace*{v,Lw} - \benbrace*{v,Lw} 
+		= \ad_{Lv}(w)
+	\end{align}
+	Somit ist $\benbrace*{L, \ad_v} = \ad_{Lv} \in \intAlg(\mathfrak{g})$ für alle $L \in \Der(\mathfrak{g})$.
+\end{beweis}
+
+\begin{lemma}
+	Sei $G$ eine zusammenhängende, einfach zusammenhängende Liegruppe.
+	Dann gilt: Ist $H$ ein zusammenhängender Normalteiler von $G$, so ist $H$ eine abgeschlossene Untergruppe.
+\end{lemma}
+\begin{beweis}
+	Nach \autoref{lem:154} 3) ist $\mathfrak{h} \coloneqq \Tmap_e H$ ein Ideal von $\mathfrak{g}$.
+	Wir bezeichnen mit $\mathfrak{k} \coloneqq \sfrac{\mathfrak{g}}{\mathfrak{h}}$ die Quotientenliealgebra (!) und mit $K$ die einfach zusammenhängende Liegruppe mit Liealgebra $\mathfrak{k}$.
+	Der Liealgebrenhomomorphismus $\psi \colon \mathfrak{g} \to \mathfrak{k}$, $v \mapsto [v]$ kann zu einem Liegruppenhomomorphismus $\phi$ \enquote{fortgesetzt} werden (da $G$ einfach zusammenhängend).
+	Somit ist $\ker \phi$ eine abgeschlossene Untergruppe von $G$ mit Liealgebra $\ker \psi= \mathfrak{h}= \Tmap_e H$.
+	Es folgt $H= \ker (\phi)_e$, das heißt $H$ ist abgeschlossen.
+\end{beweis}
+
+Achtung! $S^1_r \subset T^2 = S^1 \times S^1$ ist Normalteiler mit $\overline{S^1_r}= T^2$.
+
+\begin{definition}[{name=[Killingform]}]
+	Sei $\mathfrak{g}$ eine Liealgebra (über $\mathbb{R}$ oder $\mathbb{C}$).
+	Dann nennt man 
+	\mapdef{\mathcal{B} \colon \mathfrak{g} \times \mathfrak{g}}{\mathbb{K}}{(v,w)}{\tr_{\mathfrak{g}} \enbrace*{\ad_v \circ \ad_w}}{}
+	die \Index{Killingform} von $\mathfrak{g}$.
+\end{definition}
+
+Beispiel: $G=\SO(n)$.
+Dann ist 
+\[
+	\mathfrak{so}(n) = \Tmap_e\SO(n) = \set*{V \in \Mat(n,\mathbb{R}) \given V^T=-V}
+\]
+Wir identifizieren nun 
+\[
+	\begin{pmatrix}
+		0 & & 1 \\
+		& \vdots & \\
+		-1 & & 0
+	\end{pmatrix} \longleftrightarrow e_i \wedge e_j \in \Lambda^2(\mathbb{R}^n)
+\]
+wobei $i > j$ und $-1$ an der Stelle $(i,j)$ steht, $1$ an der Stelle $(j,i)$.
+Versieht man $\mathfrak{g} = \mathfrak{so}(n)$ mit dem Skalarprodukt
+\[
+	\skal*{v}{w} = - \frac{1}{2}  \cdot \tr{V \cdot W} = \tr(V \cdot W^T)
+\]
+und $\Lambda^2(\mathbb{R}^n)$ mit dem Standardskalarprodukt ($(e_1,\ldots ,e_n)$ ONB von $\enbrace*{\mathbb{R}^n, \skal*{\cdot}{\cdot}_{\mathrm{std}}}$), so ist
+\[
+	e_1 \wedge e_2, e_1 \wedge e_3, \ldots , e_1 \wedge e_n, e_2 \wedge e_3, \ldots , e_{n-1} \wedge e_n
+\]
+ONB von $\benbrace*{\Lambda^2(\mathbb{R}^n), \skal*{\cdot}{\cdot}_{\mathrm{std}}}$, so ist obiger Isomorphismus eine Isometrie (!).
+Es gilt\marginnote{jeweils wenn alle Indizes verschieden sind}
+\[
+	\benbrace*{e_i \wedge e_j , e_j \wedge e_k} = e_i \wedge e_k \qquad \benbrace*{e_i \wedge e_j, e_k \wedge e_l}= 0
+\]
+(nachrechnen)
+
+Wir erhalten für eine ONB $\set*{b_1, \ldots ,b_N}$, $N=\frac{1}{2}(n-1)n$
+\begin{align}
+	\mathcal{B}(v,w) = \tr \enbrace*{\ad_v \circ \ad_w} &= \sum_{i=1}^{N} \skal*{(\ad_v \circ \ad_w)(b_i)}{b_i}_{\SO(n)} \\
+	&\stackrel{!}{=} -\sum_{i<j} \skal*{ \benbrace*{w,e_i \wedge e_j}}{ \benbrace*{v, e_i \wedge e_j}} = - \ad_v
+\end{align}
+Somit ist $\mathcal{B}(e_k \wedge e_l, e_k \wedge e_k)=-2(n-2)$ und
+\[
+	\mathcal{B} \enbrace*{e_k \wedge e_l, e_{\tilde{k}} \wedge e_{\tilde{l}}} =0
+\]
+für $\set*{k,l} \neq \set*{\tilde{k},\tilde{l}}$.
 
 % section 16 (end)
 % chapter 1 (end)
