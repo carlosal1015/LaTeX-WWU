@@ -1,0 +1,250 @@
+%%%% Lecture 28.05.2016
+
+\begin{satz}[Innere Abschätzung für Ableitungen harmonischer Funktionen]
+	Sei $\Omega \subseteq \mathbb{R}^n$ offen und $u \in C^2(\Omega)$ eine harmonische Funktion auf $\Omega$. Dann gilt für jeden Multiindex $\alpha$ mit $ \abs{\alpha}=k$ und jede Kugel $B_r(x_0) \subset \subset \Omega$
+	\begin{equation}
+		\abs{D^{\alpha}u(x_0)} \leq c(n,k)r^{-n-k} \norm{u}_{L^1(B_r(x_0))}
+	\end{equation}
+	mit Konstanten 
+	\begin{align}
+		c(n,k) &:= \frac{\left( 2^{(n+1)}nk \right)^k}{\omega_n} \qquad \text{für }k=1,\dots,n \\
+		c(n,0) &:= \frac{1}{\omega_n}
+	\end{align}
+\end{satz}
+
+\begin{beweis}
+	Wir beweisen die Abschätzungen mit Induktion über $k$. 
+	Beachte, dass mit $u$ auch jede Ableitung $D^{\alpha}u$ harmonisch ist (weil z.B $u \in C^{\infty}$ ist $\Delta \diff{u}{x_i}= \diff{}{x_i}\Delta u = 0$) 
+	und analog für alle anderen Ableitungen.
+	\begin{description}
+		\item[Der Fall $k=0$:] Die Behauptung folgt sofort aus der Mittelwerteigenschaft auf Kugeln:
+		\begin{equation}
+			u(x_0) = \frac{1}{r^n \omega_n} \int_{B_r(x_0)}^{}u \,\mathrm{d}
+		\end{equation} 
+		Also 
+		\begin{equation}
+			\abs{u(x_0)} \leq c(u,0)r^{-n} \norm{u}_{L^1(B_r(x_0))}
+		\end{equation}
+		\item[Der Fall $k=1$:] Für $i=1,\dots,n$ ist wegen oben $D_iu$ harmonisch und es gilt
+		\begin{align*}
+			\abs{D_i u(x_0)} & \stackrel{\hphantom{\text{P.I.}}}{=} \abs{ \fint_{B_{\frac{r}{2}}(x_0)}^{} D_iu(x) \,\mathrm{d}x} \\
+			& \stackrel{\hphantom{\text{P.I.}}}{=} \frac{2^n}{\omega_n r^n} \abs{\int_{B_{\frac{r}{2}}(x_0)}^{}D_i u(x) \,\mathrm{d}x} \\
+			& \stackrel{\text{P.I.}}{=} \abs{\int_{ \partial B_{\frac{r}{2}}(x_0)}^{} u \nu_i\,\mathrm{d}S} \\
+			& \stackrel{\hphantom{\text{P.I.}}}{\leq} \frac{2^n}{\omega_n r^n} \left( \frac{r}{2} \right)^{n-1}S_n \sup_{\partial B_{\frac{r}{2}}(x_0)}\abs{u} \\
+			& \stackrel{\hphantom{\text{P.I.}}}{=} \frac{2n}{r} \sup_{\partial B_{\frac{r}{2}}(x_0)}\abs{u}
+		\end{align*}
+		Es gilt für alle $x \in \partial B_{\frac{r}{2}}(x_0)$, dass $B_{\frac{r}{2}}(x) \subset B_r(x_0)$ und somit erhalten wir aus dem ersten Schritt
+		\begin{equation}
+			\abs{u(x)} \leq \frac{\left( \frac{r}{2} \right)^{-n}}{\omega_n} \norm{u}_{L^1(B_{\frac{r}{2}}(x))} 
+			\leq \frac{\left( \frac{r}{2} \right)^{-n}}{\omega_n} \norm{u}_{L^1(B_r(x_0))},
+		\end{equation}
+		für alle $x \in \partial B_{\frac{r}{2}}(x_0)$ und damit
+		\begin{equation}
+			\sup_{x \in \partial B_{\frac{r}{2}}(x_0)}\abs{u(x)} \leq \frac{2^n}{r^n \omega_n} \norm{u}_{L^1(B_r(x_0))}.
+		\end{equation}
+		Insgesamt folgt die Behauptung mit
+		\begin{equation}
+			\abs{D_iu(x_0)}
+			 = \underset{\frac{2^{n+1}n}{\omega_n}= c(n,1)}{\underbrace{\frac{2n}{r} \frac{\left( \frac{r}{2} \right)^{-n}}{\omega_n}}} \norm{u}_{L^1(B_r(x_0))}
+		\end{equation}
+		\item[Der Fall $k \geq 2$:]Ähnlich wie im Fall $k=1$ kann man die Ableitung der Ordnung $k$ durch das Supremum einer Ableitung der Ordnung $k-1$ auf einer
+		kleinere Kugel abschätzen.
+		So erhalten wir
+		\[
+			\abs{D^{\alpha}(x_0)} \leq  \frac{kn}{r} \sup_{\partial B_{\frac{r}{k}}(x_0)} \abs{D^{\beta}u}
+		\]
+		für einen Multiindex $\beta$ mit $\beta_j = \alpha_{j-1}$ für ein $j=1,\dots,n$ und $\beta_i = \alpha_i$ für $i \neq j$. Damit gilt $\abs{\beta}= k-1$. \\
+		Nach Induktionsannahme gilt ähnlich wie im Fall $k=1$
+		\begin{equation}
+			\sup_{\partial B_{\frac{r}{k}}(x_0)} \abs{D^{\beta}u} \leq \frac{c(n,k-1)k^{n+1-1}}{\left( k-1 \right)^{n+k-1}r^{n+k-1}} \norm{u}_{L^1(B_r(x_0))}.
+		\end{equation}
+		Insgesamt foglt dann die Behauptung.
+	\end{description}
+\end{beweis}
+
+\begin{satz}[Satz von Liouville]
+	Sei $u \in C^2(\mathbb{R}^n)$ harmonisch. Ist $u$ beschränkt, so ist $u$ konstant.
+\end{satz}
+\begin{beweis}
+	Sei $x_0 \in \mathbb{R}^n$ und $r >0$. Wie oben gilt für alle $k > 0$
+	\begin{align*}
+		\abs{D_iu(x_0)} &\leq c(n,1) \frac{1}{r^{n+1}} \norm{u}_{L^1(B_r(x_0))} \\
+		& \leq \frac{1}{r^{n+1}} \int_{B_r(x_0)}^{} \sup_{\mathbb{R}^n} \abs{u} \,\mathrm{d}x \\
+		&\leq \frac{1}{r^{n+1}}\, \underset{\leq M}{\underbrace{\sup_{\mathbb{R}^n}\abs{u}}} \,\omega_n r^n \\
+		&\leq \frac{c}{r}.
+	\end{align*}
+	Also gilt für alle $x_0 \in \mathbb{R}^n$ und für alle $i=1,\dots,n$
+	\[
+		\lim_{k \to \infty}\abs{D_iu(x_0)} = 0
+	\]
+	Damit gilt 
+	\[
+		 \nabla u \equiv 0 
+	\]
+	in $\mathbb{R}^n$ und somit ist $u$ konstant.
+\end{beweis}
+
+\begin{definition}
+	Sei $\Omega \in \mathbb{R}^n$ offen. Eine Funktion $f : \Omega \to \mathbb{R}$ heißt analytisch in einem Punkt $x \in \Omega$, 
+	falls $f$ sich lokal durch seine Taylorreihe darstellen lässt, also falls es ein $r \in (0, \dist(x,\partial \Omega))$ existiert, so dass
+	\begin{equation}
+		f(y) = \sum_{n \in \mathbb{N}^n}^{} \frac{}{} \frac{1}{\alpha !}D^{\alpha}f(x)(y-x)^{\alpha} \qquad \text{für alle }y \in B_r(x) \text{ gilt.}
+	\end{equation}
+	Falls $f$ in allen $x$ analytisch ist, so heißt $f$ analytisch in $\Omega$.
+\end{definition}
+
+\begin{satz}
+ 	   Sei $\Omega \subseteq \mathbb{R}^n$ offen und $u \in C^2(\Omega)$ harmonisch auf $\Omega$. Dann ist $u$ analytisch in $\Omega$.
+\end{satz}
+
+\begin{beweis}
+	siehe Blatt $3$ Aufgabe $4$.
+\end{beweis}
+
+Für $\Omega \subseteq \mathbb{R}^n$ offen, beschränkt und regulär betrachten wir für gegebene $f,g$ das Poisson-Problem
+\begin{align}
+	- \Delta u &= f \qquad \text{in }\Omega \\
+	u &= g \qquad \text{auf }\Omega
+\end{align}
+
+\subsection{Darstellungsformel für Lösungen der Poissongleichung} 
+\label{sub:darstellungsformel_fur_losungen_der_poissongleichung}
+
+\begin{satz}[Greensche Darstellungsformel]
+	Sei $\Omega $ eine offene, beschränkte Teilmenge des $\mathbb{R}^n$ mit $C^1$-Rand und $h \in C^2(\Omega) \cap C^1(\bar{\Omega})$ mit $ \Delta h \in L^1(\Omega)$.
+	Dann gilt für alle $x \in \Omega$:
+	\begin{equation}
+		h(x) = - \int_{\Omega}^{} \Phi(x-y) \Delta h(y) \,\mathrm{d}y 
+		+ \int_{\partial \Omega}^{} \left( \Phi(x-y)  \nabla h(y) - h(y)  \nabla_x \Phi(x-y) \right) \cdot \nu(y) \,\mathrm{d}S,
+	\end{equation}
+	wobei $\Phi$ die Fundamentallösung der Lagrange-Gleichung bezeichnet.
+\end{satz}
+
+\begin{beweis}
+	Zu vorgegebenen $x \in \Omega$ betrachten wir ein fixiertes $\varepsilon < \min \set{1,\dist(x, \partial \Omega)}$.
+	\[
+		\Omega = B_{\varepsilon}(x) \cup (\Omega \setminus B_{\varepsilon}(x))
+	\]
+	Dann gilt
+	\begin{align*}
+		\int_{\Omega}^{} \Phi(x-y) \Delta h(y) \,\mathrm{d}y 
+		&= \underset{=:A_{\varepsilon}}{\underbrace{\int_{B_{\varepsilon}(x)}^{} \Phi(x-y) \Delta h(y) \,\mathrm{d}y }}
+		+ \underset{=:C_{\varepsilon}}{\underbrace{\int_{ \Omega \setminus B _{\varepsilon}(x)}^{} \Phi(x-y) \Delta h(y) \,\mathrm{d}y}}
+	\end{align*}
+	Wir zeigen $\abs{A _{\varepsilon}}\to 0$ für $\varepsilon \to 0$ mit
+	\begin{equation}
+		\abs{A_{\varepsilon}} \leq c \norm{\Delta^2 h}_{L^{\infty}(B_{\varepsilon}(x))} \int_{B_{\varepsilon}(x)}^{}\Phi(x-y) \,\mathrm{d}y
+	\end{equation}
+	und mit $\abs{y} \leq \varepsilon$ gilt
+	\begin{align}
+		\int_{B_{\varepsilon}(x)}^{}\Phi(x-y) \,\mathrm{d}y = \int_{B_{\varepsilon}(0)}^{} \Phi(y) \,\mathrm{d}y &= \begin{cases}
+			c \int_{B_{\varepsilon}(0)}^{} -\lg(y) \,\mathrm{d}y, &\text{ falls } n =2\\
+			c \int_{B_{\varepsilon}(0)}^{} \abs{y}^{2n} \,\mathrm{d}y , &\text{ falls } n \geq 2
+			\end{cases} \\
+			&= \begin{cases}
+				c \abs{\lg \varepsilon} \varepsilon^2, &\text{ falls }n=2\\
+				c \varepsilon^{2-n} \varepsilon^n, &\text{ falls }n \geq 2\\
+			\end{cases}.
+	\end{align}
+	Daraus folgt dann \[
+		A_{\varepsilon} \to 0 \qquad \text{für }\varepsilon \to 0.
+	\]
+	$c$ ist hier eine von $\varepsilon$ unabhängige Konstante. \\
+	Als nächstes betrachten wir $C_{\varepsilon}$. Mit Hilfe der Greenschen Formel 
+	\[
+		\int_{U}^{} ( u \Delta v - v \Delta u) \,\mathrm{d}y = \int_{\partial U}^{}(u  \nabla  v - v  \nabla u) \cdot \nu \,\mathrm{d}S
+	\]
+	gilt mit $U = \Omega \setminus B _{\varepsilon}(x)$,$u(y) = \Phi(x-y)$ und $v(y)= h(y)$
+	\begin{align*}
+		C _{\varepsilon} &= \int_{\Omega \setminus B _{\varepsilon}(x)}^{} \Phi(x-y) \Delta h(y)  \,\mathrm{d}y
+		 - \int_{\Omega \setminus B _{\varepsilon}(x)}^{} h(y) \underset{=0, x \neq y}{\underbrace{\Delta_y \Phi(x-y)}} \,\mathrm{d}y \\
+		 &= \int_{\partial ( \Omega \setminus B _{\varepsilon}(x))}^{} \left( \Phi(x-y)  \nabla h(y) - h(y)  \nabla_y \Phi(x-y) \right) \cdot \nu(y) \,\mathrm{d}S \\
+		 &= \int_{\partial \Omega}^{} (\Phi(x-y)  \nabla h(y) - h(y)  \nabla_y \Phi(x-y)) \cdot \nu(y) \,\mathrm{d}S \\
+		 & \qquad \qquad - \underset{D_{\varepsilon}}{\underbrace{\int_{\partial B_{\varepsilon}(x)}^{} \Phi(x-y)  \nabla h(y) \cdot \nu(y) \,\mathrm{d}S}} \\
+		 & \qquad \qquad + \underset{E_{\varepsilon}}{\underbrace{\int_{\partial B_{\varepsilon}(x)}^{} h(y)  \nabla_y \Phi(x-y) \cdot \nu(y) \,\mathrm{d}S}}
+	\end{align*}
+	Nun gilt es zu zeigen, dass
+	\begin{enumerate}[(i)]
+		\item $\abs{D_{\varepsilon}} \to 0$ für $\varepsilon \to 0$
+		\item $E_\varepsilon \to -h(x)$ für $\varepsilon \to 0$
+	\end{enumerate}
+	\begin{beweis}
+		\begin{enumerate}[(i)]
+			\item Es gilt
+			\begin{align*}
+				\abs{D_{\varepsilon}} &\leq \norm{  \nabla h}_{L^{\infty}(B_1(x))} \int_{ \partial B_{\varepsilon}(x)}^{} \Phi(y) \,\mathrm{d}S \\ &\leq \begin{cases}
+					c \norm{ \nabla h}_{L^{\infty}(B_1(x))} \int_{\partial B_{\varepsilon}(0)}^{} 
+					- \lg \abs{y} \,\mathrm{d}S \leq C \abs{ \lg \varepsilon}\varepsilon, &\text{ falls }n=2\\
+					c \norm{ \nabla h}_{L^{\infty}(B_1(x))} \int_{\partial B_{\varepsilon}(0)}^{} \abs{y}^{2-n} \,\mathrm{d}S 
+					\leq  c \varepsilon^{2-n} \varepsilon^{n-1} = c \varepsilon , &\text{ falls } n \geq 3.
+				\end{cases}
+			\end{align*}
+			Insgesamt also $\abs{D_{\varepsilon}} \to 0$ für $\varepsilon \to 0$
+			\item Es gilt
+			\[
+				\Phi(y) = \begin{cases}
+					-\frac{1}{2 \omega_2} \lg \abs{y}, &\text{ falls }n=2\\
+					\frac{1}{n(n-2)\omega_n} \abs{y}^{2-n} , &\text{ falls } n \geq 3.
+				\end{cases}
+			\]
+			und für $n \geq  3$ außerdem
+			\begin{equation}
+				 \nabla \Phi(y) = - \frac{1}{n \omega_n} \abs{y}^{1-n} \frac{y}{\abs{y}}.
+			\end{equation}
+			Damit
+			\begin{equation}
+				 \nabla_y \Phi(x-y) = \frac{1}{n \omega_n} \abs{x-y}^{1-n} \frac{x-y}{\abs{x-y}} = \frac{1}{n \omega_n} \frac{x-y}{\abs{x-y}^n}.
+			\end{equation}
+			Für $\nu$ gilt
+			\begin{equation}
+				\nu(y) = \frac{y-x}{\abs{y-x}}  
+			\end{equation}
+			und somit für $y \in \partial B_{\varepsilon}(x)$
+			\begin{equation}
+				 \nabla_y \Phi(x-y) \cdot \nu(y) = - \frac{1}{n \omega_n} \frac{1}{\abs{x-y}^{n-1}} =- \frac{1}{n \omega_n} \frac{1}{\varepsilon^{n-1}}.
+			\end{equation}
+			Für $E_{\varepsilon}$ gilt damit folgt aus der Stetigkeit von $h$
+			\begin{equation}
+				E _{\varepsilon} = - \frac{1}{n \omega_n \varepsilon^{n-1}} \int_{\partial B_{\varepsilon}(x)}^{} h(y) \,\mathrm{d}S(y) 
+				= - \fint_{\partial B_{\varepsilon}(x)}^{} -h(y) \,\mathrm{d}S(y) \stackrel{\varepsilon \to 0}{\to } -h(x)
+			\end{equation}
+		\end{enumerate}
+	\end{beweis}
+	Insgesamt folgt die Behauptung des Satzes.
+\end{beweis}	
+
+\begin{korollar}
+	Sei $f \in C^2_0(\mathbb{R}^n)$ und $u : \mathbb{R}^n \to \mathbb{R}$ gegeben durch 
+	\[
+		u(x) = ( \Phi * f)(x) := \int_{\mathbb{R}^n}^{} \Phi(x-y) f(y) \,\mathrm{d}y =\int_{\mathbb{R}^n}^{} \Phi(y)f(x-y) \,\mathrm{d}y.
+	\]
+	Dann gilt $u \in C^2(\mathbb{R}^n)$ und $- \Delta u = f$ in $\mathbb{R}^n$.
+\end{korollar}
+\begin{beweis}
+	Zunächst zeigen wir $u \in C^2(\mathbb{R}^n)$. 
+	$\Phi(y)f(x-y)$ ist stetig differenzierbar nach $x_i$ für $i=1,\dots,n$ und $y \neq x$, weil $f \in C^2_0(\mathbb{R}^n)$.
+	\begin{equation}
+		\diff{}{x_i} \left( \Phi(y)f(x-y) \right) = \Phi(y) \diff{f(x-y)}{x_i}
+	\end{equation}
+	ist integrierbar, weil $f$ einen kompakten Träger besitzt und $\Phi \in L^1_{\text{loc}}(\mathbb{R}^n)$. Damit erhalten wir für alle $i=1,\dots,n$
+	\begin{equation}
+		\diff{u}{x_i}(x) = \int_{\mathbb{R}^n}^{} \Phi(y) \diff{f(x-y)}{x_i} \,\mathrm{d}y. 
+	\end{equation}
+	Analog gilt für alle $i,j=1,\dots,n$
+	\begin{equation}
+		\diff{^2u}{x_i \partial x_j} (x) = \int_{\mathbb{R}^n}^{}\Phi(y) \diff{^2f(x-y)}{x_i \partial x_j} \,\mathrm{d}y.
+	\end{equation}
+	und damit $u \in C^2(\mathbb{R}^n)$. Für die zweite Behauptung folgern wir
+	\begin{align}
+		\Delta u(x) &= \int_{\mathbb{R}^n}^{} \Phi(y) \Delta_x f(x-y) \,\mathrm{d}y \\ 
+		&= \int_{\mathbb{R}^n}^{} \Phi(y) \Delta_y f(x-y) \,\mathrm{d}y \\
+		&= \int_{\mathbb{R}^n}^{} \Phi(x-y)\Delta f(y) \,\mathrm{d}y
+	\end{align}
+	Wir wollen nun $- \Delta u = f$ in $\mathbb{R}^n$ zeigen. Dafür bemerken wir zunächst, dass wegen $f \in C^2_0(\mathbb{R}^n)$ auch $f \in C_0^2(B_R(0))$ für 
+	ein hinreichend großes $R > 0$ gilt. Mit Satz 2.19 erhalten wir 
+	\begin{equation}
+		- f(x) = \underset{= \Delta u(x)}{\underbrace{\int_{B_R(0)}^{} \Phi(x-y) \Delta f(y) \,\mathrm{d}y }} 
+	\end{equation}
+	Die Randintegrale verschwinden wegen der kompakten Träger für $f$ und $  \nabla f$. 
+\end{beweis}
+

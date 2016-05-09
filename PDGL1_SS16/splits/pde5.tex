@@ -1,0 +1,185 @@
+%%%%% lecture 09.05.2016 %%%%%
+
+\begin{definition}
+	Sei $B_r(a)$ eine Kugel im $\mathbb{R}^n$ und $x \in \mathbb{R}^n \setminus \set{a}$. Der Punkt $x^* \in \mathbb{R}^n \setminus \set{a}$ der definiert ist durch
+	\[
+		x^* := a + r^2 \frac{x-a}{\abs{x-a}^2}
+	\]
+	heißt Spiegelungspunkt von $x$ bezüglich der Sphäre $ \partial B_r(a)$.
+	Für $x \in \partial B_r(a)$ gilt
+	\[
+		x^* = a + \frac{r^2}{\abs{a-x}^2}(x-a) = a + x -a = x
+	\]
+	Es gilt
+	\begin{align*}
+		x^*-a &= \frac{r^2}{\abs{x-a}^2}(x-a) \\
+		\abs{x^*-a} &= \frac{r^2}{\abs{x-a}^2}\abs{x-a} \\
+		\abs{x-a}\abs{x*-a} &= r^2
+	\end{align*}
+	%%%fehlt eine Zeichnung
+\end{definition}
+\begin{bemerkung}
+	\begin{enumerate}[(i)]
+		\item Aus $\abs{x^*-a} \abs{x-a} = r^2$ folgt $\abs{x^* -a } = \frac{r^2}{\abs{x-a}}$. 
+		Dies bedeutet insbesondere, dass für $x \in  \mathbb{R}^n \setminus \left( \partial B_r(a) \cup \set{a} \right)$ genau einen der beiden Punkte $x,x^*$ 
+		in der Kugel $B_r(a)$ und der andere in $\mathbb{R}^n \setminus B_r(a)$ liegen muss.
+		\item \begin{align*}
+			x^{**} &= x \\
+			x^{**} &= a + r^2 \frac{x^* - a}{\abs{x^*-a}^2} = a + \frac{r^2}{\abs{x-a}^2}\left( \frac{r^2}{\abs{x-a}^2} \right)(x-a) = a + x-a =x
+		\end{align*}
+		\item Für Punkte $y \in \partial B_r(a)$ gilt
+		\[
+			\abs{x^*-y} = r \frac{\abs{y-x}}{x-a}
+		\]
+	\end{enumerate}
+\end{bemerkung}
+Wir definieren nun 
+\[
+	\Psi^*(y):= \begin{cases}
+		- \Phi \left( \frac{\abs{x-a}}{r}(y-x^*) \right), &\text{ falls } x \in B_r(a) \setminus \set{a} \\
+		- \Phi (r e_1) , &\text{ falls } x = a, y \in \overline{B_r(a)}
+	\end{cases},
+\]
+wobei $\Phi$ die Fundamentallösung der Laplacegleichung bezeichnet. 
+$\Phi$ hat eine Singularität in $ \frac{\abs{x-a}}{r} (y - x^*)= 0$ mit $x^* \in \mathbb{R}^n \setminus B_r(a)$. Außerdem gilt
+\[
+	\frac{\abs{x-a}}{r}(y- x^*) \neq 0
+\]
+für alle $y \in B_r(a)$ und $x \in B_r(a) \setminus \set{a}$. \\
+$y \to \Psi^*(y)$ ist glatt und harmonisch in $B_r(a)$ für alle $x \in B_r(a)$. \\
+Wir wollen nun zeigen, dass für \[
+	\Psi^*(y) + \Phi(x-y)=0 \qquad \text{für } y \in \partial B_r(a) \text{ und } x \in B_r(a)
+\]
+\begin{beweis}
+	Für $y \in \partial B_r(a)$ und $x = a$ gilt
+	\begin{align*}
+		\Psi^*(y)+ \Phi(x-y) &= - \Phi(re_1) + \Phi(a-y) = 0,
+	\end{align*}
+	weil $\abs{re_1} = \abs{a-y} = r$ und $\Phi$ nur vom Betrag des Arguments abhängt. \\
+	Für $y \in \partial B_r(a)$ und $x \in B_r(a) \setminus \set{a}$ gilt außerdem
+	\begin{align*}
+		\abs{\frac{\abs{x-a}}{r}(y-x^*)} &= \frac{\abs{x-a}}{r} \abs{y-x^*} \\
+		&= \frac{\abs{x-a}}{r} \frac{\abs{y-x}}{\abs{x-a}}r  \\ 
+		&= \abs{y-x}
+	\end{align*}
+	und somit
+	\[
+		- \Phi \left( \frac{\abs{x-a}}{r}(y-x^*) \right) + \Phi(x-y)= 0.
+	\]
+	\end{beweis}
+	Insgesamt erhalten wir als Resultat, dass $\Psi^*$ eine Korrektorfunktion ist und wir definieren die Greensche Funktion für $B_r(a)$ durch
+	\[
+		G_{B_r(a)}(x,y) := \Psi^*(y) + \Phi(x-y),
+	\]
+	wobei hier $y \in B_r(a)$ und $x \in B_r(a)$. \\
+	Die Greensche Funktion für $B_r(a)$ lautet
+	\[
+		G_{B_r(a)} := \begin{cases}
+			 \Phi(x-y)- \Phi \left( \frac{\abs{x-a}}{r}(y-x^*) \right) , &\text{ falls }x \in B_r(a) \setminus \set{a}\\
+			 \Phi(x-y)- \Phi(re_1) , &\text{ falls }x =a
+		\end{cases}
+	\]
+	für $x,y \in B_r(a)$ und $x \neq y$. Für $n \geq 3$, $x \in  B_r(a) \setminus \set{a}$ gilt
+	\[
+		G_{B_r(a)}(x,y) = \frac{1}{n (n-2) \omega_n} \left( \abs{x-y}^{2-n} - \frac{ \abs{x-a}^{2-n}}{r^{2-n}} \abs{y - x^*}^{2-n} \right).
+	\]
+	Außerdem gilt
+	\begin{align*}
+		 \nabla_y G(x,y) &= \frac{1}{\omega_n n(n-2)} \left( (2-n) \abs{x-y}^{1-n} \frac{y-x}{\abs{x-y}} 
+		 - (2-n) \frac{\abs{x-a}^{2-n}}{r ^{2-n}} \abs{y-x^*}^{1-n} \frac{y-x^*}{\abs{y-x^*}} \right) \\
+		 &= - \frac{1}{\omega_nn} \left( \frac{y-x}{\abs{x-y}^n} - \frac{\abs{x-a}^{2-n}}{r^{2-n}} \frac{y- x^*}{\abs{y- x^*}^n} \right) \\
+		 &= - \frac{1}{\omega_nn} \left( \frac{y-x}{\abs{x-y}^n} - \frac{\abs{x-a}^{2-n}}{r^{2-n}} \frac{y-x^*}{r^n \abs{y-x}} \abs{x-a}^n \right) \\
+		 &= - \frac{1}{\omega_n n \abs{y-x}^n} \left( y-x - \frac{\abs{x-a}^2}{r^2}(y-x^*) \right) \\
+		 &= - \frac{1}{\omega_n n \abs{y-x}^n} \left( y-x - \frac{\abs{x-a}^2}{r^2} \left( y - a - \frac{r^2}{\abs{x-a}^2}(x-a) \right) \right).
+	\end{align*}
+	Mit $\nu(y)= \frac{y-a}{r}$ gilt somit
+	\begin{align*}
+		 \nabla_y G(x,y) \cdot \nu(y) &= - \frac{1}{r \omega_n n \abs{y-x}^n} \left( y -x - \frac{\abs{x-a}^2}{r^2}(y-a) + (x-a) \right) \cdot (y-a) \\
+		 &= - \frac{1}{r \omega_n n \abs{y-x}^n} \left( (y-x)(y-a) - \frac{\abs{x-a}^2}{r^2} \abs{y-a}^2 \abs{y-a} + (x-a)(y-a) \right) \\
+		 &= - \frac{1}{r \omega_n n \abs{x-y}^n} \left( \underset{\abs{y-a}^2}{\underbrace{(y-x+x-a) \cdot (y-a)}} - \abs{x-a}^2 \right).
+	\end{align*}
+	Man kann leicht zeigen, dass das gleiche Endergebnis sich für $x=a$ und $n = 2$ ergibt. \\
+	Wir definieren nun den Poissonkern für die Kugel $B_r(a)$ durch
+	\[
+		K_{B_r(a)}(x-y) := -  \nabla_y G_{B_r(a)}(x,y) \nu (y) = \frac{1}{\omega_n n \abs{y-x}^n r} \left( \abs{y-a}^2 - \abs{x-a}^2 \right)
+	\]
+	für $x \in B_r(a)$ und $y \in \partial B_r(a)$. \\
+	Sei $y \in C^0(\partial B_r(a))$ und $u \in C^2(B_r(a)) \cap C^1( \overline{B_r(a)})$ mit 
+	\[
+		\begin{cases}
+			\Delta u = 0, &\text{ in }B_r(a)\\
+			 u = g, &\text{ auf } \partial B_r(a)
+		\end{cases}
+	\]
+	Dann gilt
+	\[
+		u(x) = \int_{\partial B_r(a) }^{} K_{B_r(a)}(x,y)g(y) \,\mathrm{d}S(y).
+	\]
+	Wichtig ist an diesem Punkt, dass dies kein Existenzresultat ist.
+	\begin{satz}[Poisson-Integralformel für Kugeln]
+		Sei $g \in C^0(\partial B_r(a))$ und sei $u$ die Funktion definiert durch die obige Formel. Dann gelten
+		\begin{enumerate}[(i)]
+			\item $ \Delta u = 0$ in $B_r(a)$
+			\item $u  \Big|_{\partial B_r(a)}^{} = g$ 
+		\end{enumerate}
+	\end{satz}
+	\begin{beweis}
+		\begin{enumerate}[(i)]
+			\item $ y \to G(x,y)$ ist harmonisch für $y \neq x$ und $G$ ist symmetrisch. Dann folgt also dass auch $x \to G(x,y)$ harmonisch für $y \neq x$ ist.
+			\[
+				K_{B_r(a)}(x,y) = -  \nabla_y G(x,y) \cdot \nu(y) 
+			\]
+			$\diff{}{y_i}G(x,y)$ ist harmonisch für alle $i = 1, \dots,n$, denn
+			\[
+				\Delta_x \diff{}{y_i}G(x,y) = \diff{}{y_i} \Delta_x G(x,y) = 0.
+			\]
+			Vertauschung von Differentiation und Integration liefert
+			\begin{align*}
+				\Delta u (x) &= \Delta \int_{\partial B_r(a)}^{} K_{B_r(a)}(x,y)g(y) \,\mathrm{d}S(y) \\
+				&= \int_{\partial B_r(a)}^{} \underset{=0}{\underbrace{ \Delta_x K_{B_r(a)}(x,y)}}g(y) \,\mathrm{d}S(y) = 0.
+			\end{align*}
+			\item Wir wollen 
+			\[
+				\lim_{x \to x_0} \abs{u(x)-g(x_0)}=0
+			\]
+			zeigen. Sei $x_0 \in  \partial B_r(a)$ und $\varepsilon >0$ mit
+			\[
+				\abs{g(y)-g(x_0)} < \varepsilon \qquad \qquad \forall\, y \in \partial B_r(a) \cap B_{2 \delta}(x_0)
+			\]
+			für ein $\delta > 0$ (wegen der Stetigkeit von $g$ auf $\partial B_r(a)$). 
+			\[
+				K_{B_r(a)}(x,y) \geq 0 \qquad , \qquad \int_{\partial B_r(a)}^{} K_{B_r(a)}(x,y) \,\mathrm{d}S(y) = 1
+			\]
+			Außerdem ist $u \equiv 1$ Lösung der Laplacegleichung. \\
+			Sei $x \in B_r(a) \cap B_{\varepsilon}(x_0)$ Dann gilt
+			\begin{align*}
+				\abs{u(x)-g(x_0)} &= \abs{\int_{\partial B_r(a)}^{} K(x,y)(g(x)-g(x_0)) \,\mathrm{d}S(y)} \\
+				&\leq \int_{\partial B_r(a)}^{} K(x,y)\abs{g(y)-g(x_0)} \,\mathrm{d}S(y) \\
+				&\leq \int_{\partial B_r(a) \cap B_{2 \delta}(x_0)}^{} K(x,y) \varepsilon \,\mathrm{d}S(y) 
+				+ \int_{\partial B_r(a) \setminus B_{2 \delta}(x_0)}^{} K(x,y) 2 \max_{\partial B_r(a)} \abs{g} \,\mathrm{d}S(y) \\
+				&\leq  \varepsilon \underset{=1}{\underbrace{\int_{\partial B_r(a)}^{} K(x,y) \,\mathrm{d}S(y) }}
+				+ 2 \max_{\partial B_r(a)}\abs{g} \int_{\partial B_r(a) \setminus B_{2 \delta }(x_0)}^{} K(x,y) \,\mathrm{d}S(y) .
+			\end{align*}
+			Wir haben $\abs{y-x_0} \geq 2 \delta $ für $y \in \partial B_r(a) \setminus B_{2 \delta }(x_0)$ und $\abs{x-x_0} < \varepsilon$. Damit folgt
+			\[
+				\abs{y-x} \geq  \abs{y-x_0}- \abs{x-x_0} \geq \delta 
+			\]
+			\[
+				\Rightarrow K(x,y) \leq \frac{1}{n \omega_n r} \frac{r^2 - \abs{x-a}^2}{r \delta ^n}
+			\]
+			und damit 
+			\begin{align*}
+				\int_{\partial B_r(a) \setminus B_{2 \delta }(x_0)}^{} K(x,y) \,\mathrm{d}S(y) 
+				&\leq \int_{\partial B_r(a) \setminus B_{2 \delta }(x_0)}^{} \frac{1}{\omega_n n r }\frac{ r^2 - \abs{x-a}^2}{r \delta^n } \,\mathrm{d}S(y) \\
+				&\leq c \frac{r^2 - \abs{x-a}^2}{r \delta^n} ,
+			\end{align*}
+			wobei $x \in B_r(a)$. Der Grenzübergang $x \to x_0$ ergibt dann
+			\[
+				\lim_{x \to x_0} \abs{u(x)-g(x_0)} \leq \varepsilon
+			\]
+			und damit folgt
+			\[
+				\lim_{x \to x_0} \abs{u(x)- g(x_0)} = 0
+			\]
+		\end{enumerate}
+	\end{beweis}
