@@ -933,21 +933,185 @@ In diesem Abschnitt sind Kettenkomplexe immer $\mathbb{N}$-graduiert. (Allgemein
 				C_* \rar["i"] & D_* \rar["p"] & C_*
 			\end{tikzcd}
 		\)
-		\item einer Kettenhomotopie $s \colon {\id_{C_*}} \simeq p \circ i$.
+		\item einer Kettenhomotopie $s \colon {\id_{C_*}} \to p \circ i$.
 		\item Für $j=0,\ldots ,k$ Abbildungen $t_j \colon D_j \to D_{j+1}$
 	\end{enumerate}
 	Sodass
 	\begin{enumerate}[1),itemsep=0pt]
-		\item $D_*$ ist von endlichem Typ von projektiven $R$-Moduln.
+		\item $D_*$ ist von endlichem Typ von freien $R$-Moduln.
 		\item ${\id_{D_j}} - {i_j \circ p_j} = \partial^D_{j+1} \circ t_j + t_{j-1} \circ \partial_j^D$ für $j=0,\ldots ,k$
 		\item $p_{j+1} \circ t_j = s_j \circ p_j$ für $j=0,\ldots ,k$
 	\end{enumerate}
 	Für $j=-1$ folgt die Behauptung direkt aus (ii).
+	Seien $i,p, D_*,s,t$ wie eben gegeben für $k-1$.
+	\[
+		\begin{tikzcd}[sep=huge]
+			C_{k-1} \rar[bend left,"s_{k-1}"] \dar["i_{k-1}",xshift=.7ex] 
+			& C_k \lar["\partial^C_k"'] \dar["i_k",xshift=.7ex] \rar[bend left,"s_{k}"]
+			& C_{k+1} \dar["i_{k+1}",xshift=.7ex]  \lar["\partial^C_{k+1}"']
+			& \ldots \lar \\
+			D_{k-1} \rar[bend right,"t_{k-1}"'] \uar["p_{k-1}",xshift=-.7ex] 
+			& D_k \lar["\partial_k^D"'] \uar["p_k",xshift=-.7ex]  \drar["t_k={\id}"',bend right,DodgerBlue3]
+			& D_{k+1} \lar["\partial^D_{k+1}"'] \uar["p_{k+1}",xshift=-.7ex] \dar[phantom,sloped,"\bigoplus",DodgerBlue3]
+			& \ldots \lar \\[-4ex]
+			& & \color{DodgerBlue3} D_k \ar[uu,bend right=55,pos=.6,"y"',DodgerBlue3] \ular["x"',DodgerBlue3]
+ 		\end{tikzcd}
+	\]
+	Wir definieren $\hat{D}_*$ indem wir in Grad $k+1$ die direkte Summe mit $D_k$ bilden.
+	Weiter definieren wir $\hat{t}_{k} \colon \hat{D}_k \to \hat{D}_{k+1}$ als die Inklusion $D_k \hookrightarrow D_{k+1} \oplus D_k$.
+	Ebenso definieren wir $\hat{i}_{k+1}$ als die Komposition von $i_{k+1} \colon C_{k+1} \to D_{k+1}$ mit der Inklusion $D_{k+1} \hookrightarrow \hat{D}_{k+1}$.
+	Wir müssen auch $\partial^D_{k+1}$ und $p_{k+1}$ auf $\hat{D}_{k+1}$ fortsetzen.
+	Sei $\partial^{\hat{D}}_{k+1} = \enbrace*{\partial^D_{k+1},x}$ und $\hat{p}_{k+1} ? \enbrace*{p_{k+1},y}$ mit $x \colon D_k \to D_k$ und $y \colon D_k \to C_{k+1}$.
+	Die Behauptung übersetzt sich nun in folgende Gleichungen:
+	\begin{enumerate}[1)]
+		\item $x + t_{k-1} \circ \partial_k^D = {\id_{D_k}} - i_k \circ p_k$
+		\item $\partial_k^D \circ x=0$
+		\item $\partial^C_{k+1} \circ y = p_k \circ x$
+		\item $y= s_k \circ p_k$
+	\end{enumerate}
+	Wir setze also $x := {\id_{D_k}} - i_k \circ p_k - t_{k-1} \circ \partial^D_k$ und $y := s_k \circ p_k$.
+	Wir müssen 2) und 3) nachrechnen:
+	\begin{align}
+		\partial^D_k \enbrace*{{\id_{D_k}} - i_k \circ p_k - t_{k-1} \circ \partial^D_k} &= \enbrace*{{\id_{D_{k-1}}} - i_{k-1} \circ p_{k-1} - \partial^D_k \circ t_{k-1}} \partial^D_k \\
+		&= \enbrace*{{\id_{D_{k-1}}} - i_{k-1} p_{k-1} - \enbrace*{{\id_{D_{k-1}}} - i_{k-1} p_{k-1} - t_{k-2} \partial_{k-1}^D}} \partial^D_k \\ 
+		&=0
+	\end{align}
+	und
+	\begin{align}
+		p_k \enbrace*{{\id_{D_k}} - i_k \circ p_k - t_{k-1} \partial^D_k} &= \enbrace*{{\id_{C_k}} - p_k \circ i_k} \circ p_k - p_k t_{k-1} \partial_k^D \\
+		&= \enbrace*{s_{k-1} \circ \partial^C_k + \partial^C_{k+1} \circ s_k} \circ p_k - p_k \circ t_{k-1} \circ \partial^D_k \\
+		&= \Underbrace{\enbrace[\big]{s_{k-1} \circ p_k - p_k \circ t_{k-1}}}{=0} \circ \partial^D_k + \partial_{k+1}^C \circ s_k \circ p_k = \partial^C_{k+1} \circ y
+	\end{align}
+	Mit $k \to \infty$ erhalten wir durch diese Konstruktion einen Kettenkomplex von endlich erzeugten freien Moduln, der kettenhomotopieäquivalent zu $C_*$ ist.
+	Wir können also ohne Beschränkung der Allgemeinheit annehmen, dass die Kettenmoduln von $C_*$ endlich erzeugt frei sind.
+	% \[
+	% 	\begin{tikzcd}
+	% 		C_0 & C_1 \lar & C_2 \lar & C_3 \lar & \ldots \lar & C_l \lar & C_{l+1} \lar & C_{l+2} \lar& \ldots \lar
+	% 	\end{tikzcd}
+	% \]
+	Da $C_*$ endlich dominiert ist, ist $\id_{C_*}$ kettenhomotop zur einer Kettenabbildung $f \colon C_* \to C_*$ mit $f_k =0$ für große $k$.
+	Für die zugehörige Kettenhomotopie $s_k \colon C_k \to C_{k+1}$ ist dann
+	\[
+		{\id_{C_k}} = \partial_{k+1} \circ s_k + s_{k-1} \circ \partial_k
+	\]
+	für genügend große $k$.
+	Es folgt für genügend große $k$:
+	\[
+		\partial_{k+1} \circ s_k \circ \partial_{k+1} \circ s_k = \partial_{k+1}\enbrace*{-\partial_{k+2} s_{k+1} + {\id_{C_{k+1}}}} \circ s_k = \partial_{k+1} \circ s_k
+	\]
+	Also ist $\partial_{k+1} \circ s_k \colon C_k \to C_k$ eine Projektion.
+	Offenbar ist $\im (\partial_{k+1} \circ s_k) \subseteq \ker \partial_k$.
+	Für $x \in \ker \partial_k$ ist 
+	\[
+		\partial_{k+1} \circ s_k(x) = \enbrace*{{\id} - s_{k+1} \circ \partial_k} (x) =x
+	\]
+	Also ist $\partial_{k+1} \circ s_k$ eine Projektion auf $\ker \partial_k$, insbesondere ist $\ker \partial_k$ projektiv.
+	Sei für festes großes $k$ nun $D_*$ definiert durch
+	\[
+		D_* = \begin{cases}
+			C_* &\text{ falls }* \le k\\
+			\ker \partial_k &\text{ falls } *=k+1 \\
+			0 &\text{ sonst} 
+		\end{cases}
+	\]
+	und Randabbildung
+	\[
+		\partial^D_* = \begin{cases}
+			\partial^C_* &\text{ falls }*\le k\\
+			\ker \partial_k \hookrightarrow C_k &\text{ falls } *=k+1 \\
+			0 &\text{ sonst} 
+		\end{cases}
+	\]
+	Wir erhalten $i \colon C_* \to D_*$ und $p \colon D_* \to C_*$ mit 
+	\[
+		i_* = \begin{cases}
+			{\id_{C_*}} &\text{ falls }* \le k\\
+			\partial_{k+1} &\text{ falls } * = k+1 \\
+			0 & \text{ sonst} 
+		\end{cases} \quad , \qquad 
+		p_* = \begin{cases}
+			\id_{C_*} &\text{ falls } * \le k\\
+			s_k &\text{ falls } * =k+1 \\
+			0 & \text{ sonst} 
+		\end{cases}
+	\]
+	Dann ist $i \circ p = {\id_D}$ und wir erhalten eine Kettenhomotopie $\hat{s} \colon \id_{C_*} \simeq p \circ i$ durch $0$, falls $* \le k$ und $s_k$ sonst.
 \end{beweis}
-
-
-
 % section 3 (end)
+\newpage
+
+\section{\textsc{Wall}s Endlichkeitshindernis für topologische Räume} % (fold)
+\label{sec:4}
+
+\begin{definition}[{name=[{endlicher CW-Komplex}]}]
+	Ein CW-Komplex $E$ heißt \bet{endlich}\index{endlicher CW-Komplex}, wenn er aus endlich vielen Zellen besteht. 
+	Ein topologischer Raum $X$ heißt \bet{endlich dominiert}\index{endlich dominiert!topologischer Raum}, wenn es einen endlichen CW-Komplex $E$ gibt und stetige Abbildungen
+	\[
+		\begin{tikzcd}
+			X \rar["i"] & E \rar["p"] & X
+		\end{tikzcd}
+	\]
+	sodass $p \circ i$ homotop zu $\id_X$ ist.
+\end{definition}
+
+\begin{frage}
+	Ist jeder endlich dominierte Raum homotopieäquivalent zu einem endlichen CW-Komplex?
+\end{frage}
+
+\begin{satz}
+	Ist $X$ endlich dominiert, so ist $X$ homotopieäquivalent zu einem endlich dimensionalen CW-Komplex.
+\end{satz}
+
+\begin{definition}[{name=[{Abbildungszylinder}]}]
+	Der \Index{Abbildungszylinder} einer stetigen Abbildung $f \colon X \to Y$ ist 
+	\[
+		\Zyl(f) \coloneqq \nicefrac{X \times [0,1] \amalg Y}{(x,1) \sim f(x)}
+	\]
+\end{definition}
+
+\begin{bemerkung}
+	\begin{enumerate}[(i)]
+		\item Die Inklusion $i_1 \colon Y \hookrightarrow \Zyl(f)$ ist eine Homotopieäquivalenz.
+		Die Inverse ist die Projektion $F \colon \Zyl(f) \to Y$, $F(x,t) = f(x)$, $F(y)=y$.
+		\item Die Inklusion $i_0 \colon X = X \times \set*{0} \hookrightarrow \Zyl(f)$ ist homotop zur Komposition $i_1 \circ f$.
+	\end{enumerate}
+\end{bemerkung}
+
+\begin{beispiel}
+	Sei $p \colon X \to X$ mit $p^2 \simeq p$.
+	Dann sind $i_0 \colon X \to \Zyl(p)$ und $i_1 \circ p \colon X \to \Zyl(p)$ homotop: 
+	\[
+		i_0 \circ p \simeq (i_1 \circ p) \circ p \simeq i_1 \circ p \simeq i_0
+	\]
+\end{beispiel}
+
+\begin{definition}[{name=[{Abbildungsteleskop}]}]
+	Das \Index{Abbildungsteleskop} einer stetigen Selbstabbildung $f \colon X \to X$ ist definiert als
+	\[
+		\Tel(f) \coloneqq \nicefrac{X \times [0,1] \times \mathbb{N}}{(x,1,n) \sim \enbrace*{f(x),0,n+1}}
+	\]
+	\missingfigure{das könnte man mal malen …}
+	Für Abbildungen $f \colon X \to Y$, $g \colon Y \to X$ definieren wir genauso 
+	\[
+		\Tel(f,g) \coloneqq \nicefrac{(X \amalg Y) \times [0,1] \times \mathbb{N}}{
+			\begin{array}{rl}
+				(x,1,n) &\sim \enbrace*{f(x),0,n} \\
+				(y,1,n) &\sim \enbrace*{g(y),0,n+1}
+			\end{array}
+		} 
+	\]
+	\missingfigure{auch hier ein Bild …}
+\end{definition}
+
+\begin{bemerkung}
+	\begin{enumerate}[(i)]
+		\item Es gilt $\Tel(f,g) \simeq \Tel(g,f) \simeq \Tel{g \circ f}$.
+		\item Es gilt $\Tel(f) \simeq \Tel(g)$ für $f \simeq g$
+		\item Es gilt $\Tel(\id_X) = X \times [0,\infty) \simeq X$.
+	\end{enumerate}
+\end{bemerkung}
+
+% section 4 (end)
 
 \cleardoubleoddemptypage
 \pagenumbering{Alph}
