@@ -7,8 +7,7 @@
 \usepackage{etoolbox}
 \usepackage{letltxmacro}
 \usepackage{ifthen}
-\usepackage{amsmath}
-\usepackage{esint}
+
 
 %--Farbdefinitionen
 %-- muss vor tikz geladen werden
@@ -65,6 +64,7 @@
 \usepackage{cancel} % Befehle zum Durchstreichen
 \usepackage{mathdots} % Verbesserung von Punkten wie zB \ldots
 \usepackage{mathrsfs} % das X wurde benötigt
+\usepackage{esint}
 
 %-- einzelne Symbole aus dem mathx-package
 \DeclareFontFamily{U}{mathx}{\hyphenchar\font45}
@@ -99,7 +99,7 @@
 
 \setmonofont{Inconsolatazi4}[Scale=MatchLowercase,Extension=.otf,UprightFont=*-Regular,BoldFont=*-Bold,StylisticSet=1]
 \usepackage{xltxtra}
-\usepackage{fontawesome}
+% \usepackage{fontawesome}
 \usepackage{microtype}
 
 
@@ -127,7 +127,7 @@
 \newcommand{\bet}[1]{\textbf{#1}}
 \newcommand{\Index}[1]{\textbf{#1}\index{#1}}
 \makeindex
-\setindexpreamble{{\noindent \itshape Die \emph{Seitenzahlen} sind mit Hyperlinks zu den entsprechenden Seiten versehen, also anklickbar} \faHandUp\par \bigskip}
+\setindexpreamble{{\noindent \itshape Die \emph{Seitenzahlen} sind mit Hyperlinks zu den entsprechenden Seiten versehen, also anklickbar}\par \bigskip}
 \renewcommand{\indexpagestyle}{scrheadings}
 
 
@@ -151,14 +151,14 @@
 
 \usepackage[nameinlink,noabbrev]{cleveref}
 
-\newcommand{\appendLink}[1]{#1\,\faExternalLink}
-\newcommand{\hrefsym}[2]{\href{#1}{\texttt{\appendLink{#2}}}}
-\newcommand{\hrefsymX}[2]{\href{#1}{\appendLink{#2}}}
-\newcommand{\hrefsymmail}[2]{\href{#1}{\texttt{\faEnvelopeO\,#2}}}
-\renewcommand{\url}[1]{\hrefsym{#1}{\nolinkurl{#1}}}
+% \newcommand{\appendLink}[1]{#1\,\faExternalLink}
+% \newcommand{\hrefsym}[2]{\href{#1}{\texttt{\appendLink{#2}}}}
+% \newcommand{\hrefsymX}[2]{\href{#1}{\appendLink{#2}}}
+% \newcommand{\hrefsymmail}[2]{\href{#1}{\texttt{\faEnvelopeO\,#2}}}
+% \renewcommand{\url}[1]{\hrefsym{#1}{\nolinkurl{#1}}}
 
 % -- QR-Codes
-\usepackage{qrcode} %-- hinter hyperref laden!
+% \usepackage{qrcode} %-- hinter hyperref laden!
 
 %--Römische Zahlen
 \newcommand{\RM}[1]{\MakeUppercase{\romannumeral #1{}}}
@@ -183,10 +183,6 @@
 \DeclareMathOperator{\spn}{span}
 \newcommand{\mathd}{\ensuremath{\mathrm{d}\mkern-1.0mu}}
 
-
-
-%--Beweisende
-\newcommand{\bewende}{\ifmmode \tag*{$\square$} \else \hfill $\square$ \fi}
 
 
 %--Skalarprodukt
@@ -248,7 +244,7 @@
 
 % -- theorem packages
 \usepackage{amsthm}
-\usepackage{thmtools,thm-restate}
+\usepackage{thmtools}
 \usepackage{mdframed}
 \usepackage{blindtext}
 \renewcommand{\listtheoremname}{Übersicht aller Aussagen}
