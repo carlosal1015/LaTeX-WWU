@@ -1178,10 +1178,10 @@ Für $\Omega \subseteq \mathbb{R}^n$ offen, beschränkt und regulär betrachten 
 			\[
 				\Phi(y) = \begin{cases}
 					-\frac{1}{2 \omega_2} \lg \abs{y}, &\text{ falls }n=2\\
-					\frac{1}{n(n-2)\omega_n} \abs{y}^{2-n} , &\text{ falls } n \geq 2.
+					\frac{1}{n(n-2)\omega_n} \abs{y}^{2-n} , &\text{ falls } n \geq 3.
 				\end{cases}
 			\]
-			und für $n \geq  2$ außerdem
+			und für $n \geq  3$ außerdem
 			\begin{equation}
 				 \nabla \Phi(y) = - \frac{1}{n \omega_n} \abs{y}^{1-n} \frac{y}{\abs{y}}.
 			\end{equation}
@@ -1246,8 +1246,8 @@ Für $\Omega \subseteq \mathbb{R}^n$ offen, beschränkt und regulär betrachten 
 
 \begin{bemerkung}
 	\begin{enumerate}[(i)]
-		\item Für $n \geq3$ ist $u$ beschränkt und $\lim_{\abs{x} \to \infty}u(x)=0$
-		\item Für $n=2$ ist $u$ potentiell und beschränkt
+		\item Für $n \geq3$ ist $u$ beschränkt und $\lim_{\abs{x} \to \infty}u(x)=0$.
+		\item Für $n=2$ ist $u$ potentiell und beschränkt.
 		\item Jede andere beschränkte Lösung der Poisson-Gleichung auf $\mathbb{R}^n$ unterscheidet sich nur für eine additive Konstante.
 	\end{enumerate}
 	\begin{beweis}
@@ -1256,7 +1256,7 @@ Für $\Omega \subseteq \mathbb{R}^n$ offen, beschränkt und regulär betrachten 
 			Da $f \in C^2_0(\mathbb{R}^n)$ und somit $ \supp(f) \subset B_R(0)$ für ein hinreichend großes $R > 0$. Wegen $B_R(x) \subset B_{2R}(0)$ gilt
 			\begin{align*}
 				\abs{u(x)} &= \abs{ \int_{B_R(0)}^{} \Phi(x-y)f(y) \,\mathrm{d}}y \\
-				& \leq \norm{f}_{L^{\infty}(\mathbb{R}^n)} \int_{B_R(0)}^{0}\abs{\Phi(x-y)} \,\mathrm{d}y \\
+				& \leq \norm{f}_{L^{\infty}(\mathbb{R}^n)} \int_{B_R(0)}^{}\abs{\Phi(x-y)} \,\mathrm{d}y \\
 				&= \norm{f}_{L^{\infty}(\mathbb{R}^n)} \int_{B_R(x)}^{} \abs{\Phi(y)} \,\mathrm{d}y \\
 				& \leq \norm{f}_{L^{\infty}(\mathbb{R}^n)} \underset{\leq M}{\underbrace{\int_{B_{2R}(0)}^{} \abs{\Phi(y)} \,\mathrm{d}y}} \\
 				& \leq C
@@ -1268,14 +1268,14 @@ Für $\Omega \subseteq \mathbb{R}^n$ offen, beschränkt und regulär betrachten 
 			und damit
 			\begin{align*}
 				\abs{u(x)} &\leq \norm{f}_{L^{\infty}(\mathbb{R}^n)} \int_{B_R(0)}^{} \abs{ \Phi(x-y)} \,\mathrm{d}y \\
-				& c \norm{f}_{L^{\infty}(\mathbb{R}^n)} \int_{B_R(0)}^{} \frac{1}{\abs{x-y}^{n-2}} \,\mathrm{d}y \\
+				&\leq c \norm{f}_{L^{\infty}(\mathbb{R}^n)} \int_{B_R(0)}^{} \frac{1}{\abs{x-y}^{n-2}} \,\mathrm{d}y \\
 				& \leq  c \norm{f}_{L^{\infty}(\mathbb{R}^n)} \int_{B_R(0)}^{} \frac{1}{\left( \abs{x}-R \right)^{n-2}} \,\mathrm{d}y \\
 				& = c \norm{f}_{L^{\infty}(\mathbb{R}^n)} \frac{1}{(\abs{x}-R)^{n-2}} \stackrel{\abs{x}\to \infty}{\to} 0 .
 			\end{align*}
 			\item Sei nun $n=2$. Beachte, dass nun für $y \neq 0$
 			\[
-				\Phi(y) = - \frac{1}{2R} \lg \abs{y}
-			\]. Ist $f$ beispielsweise $f \leq 0$ mit $f \leq -1$ in $B_1(0)$ und $\supp (f) \subset B_2(0)$ so gilt $\Phi(y) \leq 0$ für $\abs{y}> 1$ 
+				\Phi(y) = - \frac{1}{2R} \lg \abs{y}.
+			\] Ist $f$ beispielsweise $f \leq 0$ mit $f \leq -1$ in $B_1(0)$ und $\supp (f) \subset B_2(0)$ so gilt $\Phi(y) \leq 0$ für $\abs{y}> 1$ 
 			Außerdem gilt für $\abs{x} > 3$
 			\[
 				\abs{x-y} \geq \abs{x}-\abs{y} > 3- 2 = 1
@@ -1366,8 +1366,8 @@ Wir wollen eine Darstellungsformel für die Lösung finden. Wir haben bereits be
 	\end{align*}
 	Insgesamt folgt die Behauptung.
 \end{beweis}
-Wir wollen nun zeigen, dass die Funktion $G$ symmetrisch ist, also $G(x,y)=G(y,y)$. Dies führt dann zu folgendem Resultat.
-$y \to G(x,y)$ ist harmonisch in $\Omega \setminus \set{x}$ und somit $ \Delta_y G(x,y)=0$. Dann ist auch $x \to G(x,y)$ harmonisch in $\Omega \setminus \set{y}$
+Wir wollen nun zeigen, dass die Funktion $G$ symmetrisch ist, also $G(x,y)=G(y,x)$. Dies führt dann zu folgendem Resultat.
+$y \to G(x,y)$ ist harmonisch in $\Omega \setminus \set{x}$ und somit $ \Delta_y G(x,y)=0$. Dann ist auch $x \to G(x,y)$ harmonisch in $\Omega \setminus \set{y}$.
 
 \begin{lemma}
 	Sei $\Omega$ eine offene Teilmenge des $\mathbb{R}^n$, $G$ die Greensche Funktion für $\Omega$ und $B_r(x) \subset \subset \Omega$. 
