@@ -812,7 +812,7 @@ Wir erhalten:
 	\) exakt.
 	Zu zeigen ist, dass folgende Seqenz exakt ist
 	\[
-		\begin{tikzcd}[column sep=3.5em]
+		\begin{tikzcd}[column sep=3.8em]
 			0 \rar & A \tensormax J \rar["\id_A \tensormax \iota"] & A \tensormax B \rar["\id_A \tensormax \pi"] & A \tensormax \sfrac{B}{J} \rar & 0
 		\end{tikzcd}
 	\]
@@ -840,6 +840,200 @@ Wir erhalten:
 	Also gilt $A \tensormax J = \ker \enbrace*{{\id_A} \otimes \pi}$ und damit Exaktheit.
 \end{beweis}
 
+\todo[inline]{Hier fehlt noch eine gesamte Vorlesung!}
+
+\newpage
+
+\section{Vollständig positive Abbildungen} % (fold)
+\label{sec:3}
+\todo[inline]{Hier fehlt noch einiges}
+
+\begin{beispiel}
+	\begin{enumerate}[(i)]
+		\item 
+		\item 
+		\item 
+		\item $\tau \colon M_2 \to M_2$, $\tau(a)=a*$ ist positiv, aber nicht $2$-positiv.
+		
+		$\tau(a^*a)= a^*a \ge 0$ also positiv. Betrachtet man
+		\[
+			x \coloneqq \begin{pmatrix}
+				1 & 0 & 0 & 1 \\
+				0 & 0 & 0 & 0 \\
+				0 & 0 & 0 & 0 \\
+				1 & 0 & 0 & 1
+			\end{pmatrix} \in M_2(M_2)
+		\]
+		Es gilt $x \ge 0$ (warum?), aber 
+		\[
+			\tau^\ssbrace{2}(x) = \begin{pmatrix}
+				1 & 0 & 0 & 0 \\
+				0 & 0 & 1 & 0 \\
+				0 & 1 & 0 & 0 \\
+				0 & 0 & 0 & 1
+			\end{pmatrix} \not\ge 0
+		\]
+		(warum?)
+	\end{enumerate}
+\end{beispiel}
+
+\begin{proposition}[label=prop:36]
+	Seien $A,B$ $C^*$-Algebren und $\varphi \colon A \to B$ positiv.
+	Dann ist $\varphi$ beschränkt.
+\end{proposition}
+\begin{beweis}
+	Falls $\varphi$ unbeschränkt auf $A$ ist, so auch auf $A_+$.
+	Folglich existiert $(a_n)_{\mathbb{N}} \subset A_+^1$ mit $\norm*{\varphi(a_n)} \ge n^3$ für $n \in \mathbb{N}$.
+	Dann ist $a \coloneqq \sum_{n=0}^{\infty} \sfrac{1}{n^2} a_n \in A$ und $\sfrac{1}{n^2} a_n \le a$ für $n \in \mathbb{N}$.
+	Damit haben wir für alle $n \in \mathbb{N}$
+	\[
+		n \le \sfrac{1}{n^2} \cdot \norm*{\varphi(a_n)} = \norm*{\varphi \enbrace*{\sfrac{1}{n^2} \cdot a_n}} \le \norm*{\varphi(a)} 
+	\]
+	Dies ist ein Widerspruch.
+\end{beweis}
+
+\begin{bemerkung}[label=bem:37]
+	\leavevmode
+	\begin{enumerate}[(i)]
+		\item Sei $X$ ein Operatorsystem und $\varphi \colon X \to B$ positiv.
+		Dann gilt $\norm*{\varphi} \le 2 \cdot \norm*{\varphi(\ind)}$ (warum?)
+		\item In (i) kann Gleichheit auftreten: 
+		Betrachte dazu $X \coloneqq \Span \set*{1,z,\overline{z}} \subset C(\mathbb{T})$ und $\varphi \colon X \to M_2$ mit
+		\[
+			\varphi \enbrace*{a \cdot 1 + b \cdot z + c \cdot \overline{z}} = \begin{pmatrix}
+				a & 2 b \\
+				2 c & a
+			\end{pmatrix}
+		\]
+		$\varphi$ ist positiv (warum?).
+		Es gilt nach (i) $2 \cdot \norm*{\varphi(1)} = 2 = \norm*{\varphi(z)} \le \norm*{\varphi} \le 2 \cdot \norm*{\varphi(1)}$.
+	\end{enumerate}
+\end{bemerkung}
+
+\begin{lemma}[label=lem:38]
+	Sei $A$ eine $C^*$-Algebra und $a,h \in A$ ($h \in A_\sa$).
+	Dann gilt
+	\begin{enumerate}[(i)]
+		\item $\begin{psmallmatrix}
+			\ind_{A^\simm} & a \\
+			a^* & \ind_{A^\simm}
+		\end{psmallmatrix} \ge 0 \iff \norm*{a} \le 1$
+		\item $\begin{psmallmatrix}
+			h & a \\
+			a^* & h
+		\end{psmallmatrix} \ge 0 \implies a^* \le \norm*{h} \cdot h$, also $\norm*{a} \le \norm*{h}$\marginnote{Die Umkehrung gilt nicht!}
+		\item $\begin{psmallmatrix}
+			\ind_{A^\simm} & a \\
+			a^* & h
+		\end{psmallmatrix} \ge 0 \iff a^*a \le h$. 
+	\end{enumerate}
+\end{lemma}
+\begin{beweis}
+	Ohne Einschränkungen können wir $A \subset \mathcal{B}(\mathcal{H})$ und $M_2(A) \subset M_2(\mathcal{B}(\mathcal{H})) = \mathcal{B}(\mathcal{H} \oplus \mathcal{H})$ annehmen.
+	\begin{enumerate}[(i)]
+		\item Es gilt
+		\begin{align}
+			\skal*{\binom{\xi}{\eta}}{ \begin{pmatrix}
+				\ind_{A^\simm} & a \\
+				a^* & \ind_{A^\simm}
+			\end{pmatrix} \binom{\xi}{\eta}} &= \skal*{\xi}{\xi} + \skal*{\xi}{a \eta} + \skal*{\eta}{a^* \xi} + \skal*{\eta}{\eta} \label{eq:38:1} \tag{$*$}\\
+			&\ge \skal*{\xi}{\xi} - 2 \norm*{a} \cdot \norm*{\xi} \cdot \norm*{\eta} + \skal*{\eta}{\eta} \label{eq:38:2} \tag{$**$}
+		\end{align}
+		Falls $\norm*{a} \le 1$ ist also \eqref{eq:38:2} $\ge 0$ und somit $\begin{psmallmatrix}
+			1 & a \\ a^* & 1
+		\end{psmallmatrix} \ge 0$.
+		Falls $\norm*{a} > 1$, so existieren $\xi,\eta \in \mathcal{H}$ mit $\norm*{\xi} = \norm*{\eta}=1$ und $\skal*{\xi}{a \eta} < -1$
+		Damit folgt \eqref{eq:38:2} $<0$ und somit $\begin{psmallmatrix}
+			1 & a \\ a^* & 1
+		\end{psmallmatrix} \not\ge 0$.
+		\item Angenommen $h \neq 0$. Für $\eta \in \mathcal{H}$ setzen wir $\xi \coloneqq - \sfrac{1}{\norm*{h}} \cdot a \cdot \eta$.
+		Dann gilt
+		\[
+			\skal*{\binom{\xi}{\eta}}{\begin{pmatrix}
+				h & a \\ a^* & h
+			\end{pmatrix} \binom{\xi}{\eta}} = \ldots \le \sfrac{1}{\norm*{h}} \skal*{\eta}{a^* a \eta} - \sfrac{2}{\norm*{h}} \skal*{\eta}{a^* a \eta} + \skal*{\eta}{h \eta}
+		\]
+		und daraus folgt $\skal*{\eta}{ \enbrace*{h - \sfrac{1}{\norm*{h}} a^*a}\eta} \ge 0$ für $\eta \in \mathcal{H}$, also $h \ge \sfrac{1}{\norm*{h}} a^* a$.\marginnote{für $h=0$ den Bruch jeweils weglassen}
+	\end{enumerate}
+\end{beweis}
+
+\begin{proposition}[label=prop:39]
+	Sei $X$ ein Operatorsystem, $B$ eine unitale $C^*$-Algebra und $\varphi \colon X \to B$ unital und $2$-positiv.
+	Dann gilt $\norm*{\varphi}=1$.
+\end{proposition}
+\begin{beweis}
+	Sei $a \in X$ mit $\norm*{a} \le 1$. Mit \autoref{lem:38} (i) folgt 
+	\[
+		\begin{pmatrix}
+			\ind_{X} & a \\ a^* & \ind_X
+		\end{pmatrix} \ge 0 \implies \begin{pmatrix}
+			\ind_B & \varphi(a) \\ \varphi(a)^* & \ind_B
+		\end{pmatrix} \ge 0
+	\]
+	woraus mit \autoref{lem:38} (i) wieder $\norm*{\varphi(a)} \le 1$ folgt.
+\end{beweis}
+
+\begin{proposition}[{name={Cauchy-Schwarz}},label=prop:310]
+	Es seien $A$ und $B$ unitale $C^*$-Algebren und $\varphi \colon A \to B$ unital und $2$-positiv.
+	Dann gilt für $a \in A$
+	\[
+		\varphi(a)^* \varphi(a) \le \varphi(a^* a)
+	\]
+\end{proposition}
+\begin{beweis}
+	Es gilt
+	\[
+		\begin{pmatrix}
+			\ind_A & a \\ a^* & a^* a
+		\end{pmatrix} 
+		=
+		\begin{pmatrix}
+			\ind_A & 0  \\ a^* & 0
+		\end{pmatrix} \cdot 
+		\begin{pmatrix}
+			\ind_A & a \\ 0 & 0
+		\end{pmatrix} \ge 0
+	\]
+	Da $\varphi$ $2$-positiv ist, folgt
+	\[
+		\begin{pmatrix}
+			\ind_B & \varphi(a) \\ \varphi(a)^* & \varphi(a^* a) 
+		\end{pmatrix} \ge 0
+	\]
+	woraus wir mit \autoref{lem:38} (ii) $\varphi(a)^* \varphi(a) \le \varphi(a^* a)$ erhalten.
+\end{beweis}
+
+\begin{definitionP}
+	Sei $A$ eine $C^*$-Algebra.
+	Dann ist
+	\[
+		\mathcal{F}(A) \coloneqq \set[\big]{a \in A \given \exists e \in A : \norm*{e}\le 1, a e = e a = a}
+	\]
+	dicht in $A$.
+	Weiter ist $\mathcal{F}(A)_+ \subset A_+$ dicht und $\mathcal{F}(A)_\sa \subset A_\sa$ dicht.
+\end{definitionP}
+\begin{beweis}
+	Sei $(u_\lambda)_{\Lambda}$ eine approximative Eins.
+	Für $\varepsilon>0$ definiere $f_\varepsilon $ und $g_\varepsilon$ durch
+	\missingfigure{Hier fehlen noch zwei Bilder von Funktionsgraphen}
+	Es gilt $\lim_{\lambda, \varepsilon} f_\varepsilon(u_\lambda) a f_\varepsilon(u_\lambda) = a$ für alle $a \in A$ und $f_\varepsilon(u_\lambda) a f_\varepsilon(u_\lambda) \in \mathcal{F}(A)_{(+, \sa)}$, da $g_\varepsilon(u_\lambda) f_\varepsilon(u_\lambda) = f_\varepsilon(u_\lambda)$.
+\end{beweis}
+
+\begin{definition}[{name=[{Pedersen-Ideal}]}]
+	\[
+		\Ped(A) \coloneqq A \mathcal{F}(A) A \stackrel[\text{dicht}]{}{\subset} A
+	\]
+	ist das (eindeutig bestimmte) minimale dichte Ideal von $A$.\marginnote{$A$ unital $\Rightarrow$ $\Ped(A)=A$}
+	$\Ped(A)$ heißt das \Index{Pedersen-Ideal}. 
+\end{definition}
+
+\begin{proposition}
+	Seien $A,B$ beides $C^*$-Algebren, $\varphi \colon A \to B$ vollständig positiv und $\mu \ge \norm*{\varphi}$.
+	Sei $\varphi^+ \colon A^+ \to B^+$ (bzw. $B^\simm$) die durch $\varphi^*(\ind_{A^+}) \coloneqq \mu \cdot \ind_{B^+}$ definierte lineare Fortsetzung.
+	Dann ist $\varphi^+$ vollständig positiv und es gilt $\norm*{\varphi^+}= \mu$.
+\end{proposition}
+
+% section 3 (end)
 % section 2 (end)
 
 
