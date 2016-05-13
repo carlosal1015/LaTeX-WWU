@@ -918,9 +918,9 @@ Bemerkung:
 
 \section{Die adjungierte Darstellung} % (fold)
 \label{sec:15}
-Sei $G$ eine Liegruppe und $g \in G$ fest. Betrachte
-\mapdef{i_g \colon G}{G}{\tilde{g}}{m \enbrace*{m \enbrace*{g,\tilde{g}}, I(g)}= g \cdot \tilde{g} \cdot g^{-1}}{}
-wobei $m(g,\tilde{g})= g \cdot \tilde{g}$, $I(g)=g^{-1}$. 
+Sei $G$ eine Liegruppe und $g \in G$ ein festes Gruppenelement. Betrachte die Konjugation
+\mapdef{i_g \colon G}{G}{\tilde{g}}{m \enbrace[\big]{m \enbrace*{g,\tilde{g}}, I(g)}= g \cdot \tilde{g} \cdot g^{-1}}{}
+wobei bekanntermaßen $m(g,\tilde{g})= g \cdot \tilde{g}$ und $I(g)=g^{-1}$. 
 Somit gilt
 \[
 	i_g = L_g \circ R_{g^{-1}} = R_{g^{-1}} \circ L_g
@@ -1211,7 +1211,7 @@ Wir identifizieren nun
 \[
 	\begin{pmatrix}
 		0 & & 1 \\
-		& \vdots & \\
+		& \ddots & \\
 		-1 & & 0
 	\end{pmatrix} \longleftrightarrow e_i \wedge e_j \in \Lambda^2(\mathbb{R}^n)
 \]
@@ -1242,8 +1242,287 @@ Somit ist $\mathcal{B}(e_k \wedge e_l, e_k \wedge e_k)=-2(n-2)$ und
 \]
 für $\set*{k,l} \neq \set*{\tilde{k},\tilde{l}}$.
 
+Die Killingform $\mathcal{B}$ einer Liealgebra $\mathfrak{g}$ kann aber auch Null sein, ohne dass $\mathfrak{g}$ abelsch ist: 
+\[
+	H \coloneqq \set*{\begin{pmatrix}
+		1 & 0 & 0 \\
+		\alpha & 1 & 0 \\
+		\beta & \gamma & 1
+	\end{pmatrix} \given \alpha,\beta,\gamma \in \mathbb{R}}
+\]
+ist eine Untergruppe von $\GL(3,\mathbb{R})$ mit Liealgebra
+\[
+	\mathfrak{h} = \set*{\begin{pmatrix}
+		0 & 0 & 0 \\
+		x & 0 & 0 \\
+		y & z & 0
+	\end{pmatrix} \given x,y,z \in \mathbb{R}}
+\]
+Wir setzen 
+\[
+	e_1 \coloneqq \begin{pmatrix}
+		0 & 0 & 0 \\
+		1 & 0 & 0 \\
+		0 & 0 & 0
+	\end{pmatrix} \quad 
+	e_2 \coloneqq \begin{pmatrix}
+		0 & 0 & 0 \\
+		0 & 0 & 0 \\
+		0 & 1 & 0
+	\end{pmatrix} \quad 
+	e_3 \coloneqq \begin{pmatrix}
+		0 & 0 & 0 \\
+		0 & 0 & 0 \\
+		1 & 0 & 0
+	\end{pmatrix}
+\]
+Dann gilt $\benbrace*{e_i,e_3} = 0$ für $i=1,2,3$.
+Aber $\benbrace*{e_1,e_2}=-e_3$.
+Somit ist (bezüglich der Basis $(e_1,e_2,e_3)$)
+\[
+	\ad(e_1) = \begin{pmatrix}
+		0 & 0 & 0 \\
+		0 & 0 & 0 \\
+		0 & 1 & 0
+	\end{pmatrix} \quad 
+	\ad(e_2) = \begin{pmatrix}
+		0 & 0 & 0 \\
+		0 & 0 & 0 \\
+		1 & 0 & 0 
+	\end{pmatrix} \quad 
+	\ad(e_3) = \begin{pmatrix}
+		0 & 0 & 0 \\
+		0 & 0 & 0 \\
+		0 & 0 & 0
+	\end{pmatrix}
+\]
+Es gilt
+\[
+	\ad(e_i) \cdot \ad(e_j) = \begin{pmatrix}
+		0 & 0 & 0 \\
+		0 & 0 & 0 \\
+		0 & 0 & 0
+	\end{pmatrix}
+\]
+für alle $1 \le i,j \le 3$ und somit ist $\mathcal{B}=0$.
+Die Gruppe $H$ heißt \Index{Heisenberggruppe}. 
+
+
+\begin{lemma}[label=lem:168]
+	Sei $\mathfrak{g}$ eine Liealgebra mit Killingform $\mathcal{B}$.
+	Dann gilt
+	\begin{enumerate}[1)]
+		\item $\mathcal{B}(Av,Aw) = \mathcal{B}(v,w)$ für alle $v,w \in \mathfrak{g}$ und jeden Automorphismus $A$ von $\mathfrak{g}$.
+		\item $\mathcal{B}(Lv,w) + \mathcal{B}(v,Lw) =0$ für alle $v,w \in \mathfrak{g}$ und jede Derivation $L$ von $\mathfrak{g}$.
+	\end{enumerate}
+\end{lemma}
+\begin{beweis}
+	\begin{enumerate}[1)]
+		\item Sei $A \in \Aut(\mathfrak{g})$.
+		Dann gilt 
+		\[
+			\ad_{Av}(w) = \benbrace*{Av,w} = \benbrace*{Av,A (A^{-1}w)} = A \benbrace*{v,A^{-1} w} = \enbrace*{A \circ \ad_v \circ A^{-1}}(w)
+		\]
+		Somit ist
+		\begin{align}
+			\tr \enbrace*{\ad_{Av} \circ \ad_{Aw}} &= \tr \enbrace*{A \circ \ad_v \circ A^{-1} \circ A \circ \ad_w \circ A^{-1}} \\
+			&= \tr \enbrace*{\ad_v \circ \ad_w} = \mathcal{B}(v,w)
+		\end{align}
+		\item ist $L$ eine Derivation von $\mathfrak{g}$, so ist $e^{tL} \in \Aut(\mathfrak{g})$ für alle $t \in \mathbb{R}$.
+		Nach 1) erhalten wir für alle $v,w \in \mathfrak{g}$
+		\[
+			\mathcal{B}(v,w) \equiv \mathcal{B}\enbrace*{e^{tL}v, e^{tL}w} 
+		\]
+		Differenzieren in $t=0$ liefert $0= \mathcal{B} \enbrace*{Lv,w} + \mathcal{B}(v,Lw)$.\qedhere
+	\end{enumerate}
+\end{beweis}
+
+\begin{lemma}[label=lem:169]
+	Sei $\mathfrak{g}$ eine Liealgebra mit Killingform $\mathcal{B}$.
+	Dann ist 
+	\[
+		\ker(\mathcal{B}) \coloneqq \set*{v \in \mathfrak{g} \given \mathcal{B}(v,w)=0 \,\forall w \in \mathfrak{g}}
+	\]
+	ein Ideal von $\mathfrak{g}$
+\end{lemma}
+\begin{beweis}
+	Sei $v \in \ker \mathcal{B}$ und $w \in \mathfrak{g}$.
+	Zu zeigen: $\benbrace*{v,w} \in \ker \mathcal{B}$.
+	Sei $z \in \mathfrak{g}$ beliebig.
+	Dann gilt 
+	\[
+		\mathcal{B} \enbrace*{\benbrace*{v,w},z} = - \mathcal{B} \enbrace*{\ad_w(v),z} \StackText{\ref{lem:168}}{=} \mathcal{B} \enbrace*{v, \ad_w(z)} =0 
+	\]
+	Somit ist $\benbrace*{v,w} \in \ker \mathcal{B}$.
+\end{beweis}
+
+Wir werden später jeder Lie-Algebra zwei weitere Ideale zuordnen: Das \Index{Radikal} $\Rad(\mathfrak{g})$ und das \Index{Nilradikal} $\Nil(\mathfrak{g})$ 
 % section 16 (end)
 % chapter 1 (end)
+
+\chapter{Strukturresultate} % (fold)
+\label{cha:2}
+\section{Nilpotente und auflösbare Liegruppen} % (fold)
+\label{sec:21}
+Sei $\mathfrak{g}$ eine Liealgebra über $\mathbb{R}$ (oder $\mathbb{C}$)
+
+\begin{definition}
+	Sei $k \in \mathbb{N}$.
+	Dann definieren wir
+	\[
+		\mathfrak{g}^k \coloneqq \benbrace*{\mathfrak{g},\mathfrak{g}^{k-1}} \qquad \quad \mathfrak{g}_k \coloneqq \benbrace[\big]{\mathfrak{g}_{k-1},\mathfrak{g}_{k-1}}
+	\] 
+	wobei $\mathfrak{g}^0 \coloneqq \mathfrak{g}$ und $\mathfrak{g}_0 \coloneqq \mathfrak{g}$.
+	Für Unterräume $V,W \subset \mathfrak{g}$ ist dabei $\benbrace*{V,W}$ die kleinste Unteralgebra von $\mathfrak{g}$, welche $\Span \set[\big]{\benbrace*{v,w} \given v \in V, w \in W}$ enthält.
+\end{definition}
+
+Sind $V,W$ Ideale von $\mathfrak{g}$, so gilt
+\[
+	\benbrace*{V,W} = \Span_\mathbb{K} \set[\big]{\benbrace*{v,w} \given v \in V, w \in W}
+\]
+denn $\benbrace*{\benbrace*{v_1,w_1}, \benbrace*{v_2,w_2}} \subset \Span_\mathbb{K} \set*{\benbrace*{v,w} \given v \in V, w \in W}$.
+
+Sind $V,W$ Ideale, so auch $\benbrace*{V,W}$, denn für alle $z \in \mathfrak{g}$ gilt
+\begin{align}
+	\benbrace*{z, \benbrace*{v,w}} = - \benbrace*{w, \benbrace*{z,v}} - \benbrace*{v,\benbrace*{w,z}} \in \benbrace*{V,W}
+\end{align}
+Damit sind auch $\mathfrak{g}^k$ und $\mathfrak{g}_k$ Ideale von $\mathfrak{g}$. Es gilt $\mathfrak{g}^1= \benbrace*{\mathfrak{g}, \mathfrak{g}} \subseteq \mathfrak{g}^0 = \mathfrak{g}$ und weiter $\mathfrak{g}^k = \benbrace*{\mathfrak{g},\mathfrak{g}^{k-1}} \subseteq \mathfrak{g}^{k-1}$ und somit
+\[
+	\mathfrak{g}^0 \supseteq \mathfrak{g}^1 \supseteq \mathfrak{g}^2 \supseteq \mathfrak{g}^3 \supseteq \ldots 
+\]
+Dies ist die \Index{absteigende Zentralreihe}. Analog erhält man die \Index{abgeleitete Reihe} (auch: \Index{derivierte Reihe})
+\[
+	\mathfrak{g}_0 \supseteq \mathfrak{g}_1 \supseteq \mathfrak{g}_2 \supseteq \mathfrak{g}_3 \supseteq \ldots 
+\]
+
+\begin{definition}
+	Eine Liealgebra $\mathfrak{g}$ nennt man
+	\begin{enumerate}[1)]
+		\item \Index{nilpotent}, falls $\mathfrak{g}^k=0$ und $\mathfrak{g}^{k-1}\neq 0$ für ein $k \in \mathbb{N}$
+		\item \Index{auflösbar}, falls $\mathfrak{g}_k=0$ und $\mathfrak{g}_{k-1} \neq 0$ für ein $k \in \mathbb{N}$  
+	\end{enumerate}
+	Die obigen $k$ sind eindeutig bestimmt. 
+	Man nennt $\mathfrak{g}$ dann $k$-Schritt nilpotent (auflösbar).
+	Eine Liegruppe $G$ nennt man nilpotent (auflösbar), falls $\Tmap_e G$ nilpotent (auflösbar) ist.
+\end{definition}
+
+Beispiel: Die Heisenberggruppe ist $2$-Schritt nilpotent:
+\[
+	\mathfrak{g}_1 = \mathfrak{g}^1 = \benbrace*{\mathfrak{g},\mathfrak{g}} = \set*{\begin{pmatrix}
+		0 & 0 & 0 \\
+		0 & 0 & 0 \\
+		w & 0 & 0
+	\end{pmatrix} \given w \in \mathbb{R}}
+\]
+Somit ist offenbar $\mathfrak{g}^2=0$.
+
+Sei 
+\[
+	S \coloneqq \set*{\begin{pmatrix}
+		w_{11} & 0 & 0 \\
+		w_{21} & w_{22} & 0 \\
+		w_{31} & w_{32} & w_{33}
+	\end{pmatrix} \given w_{ij} \in \mathbb{R}}
+\]
+Dann gilt $S_1= \benbrace*{S,S}\stackrel{!}{=} \mathfrak{g}$ und weiter
+$S_2 = \benbrace*{S_1,S_1} = \benbrace*{\mathfrak{g},\mathfrak{g}} = \mathfrak{g}^1$ und somit $S_3 = \benbrace*{\mathfrak{g}^1,\mathfrak{g}^1} =0$.
+Somit ist $S$ $3$-Schritt auflösbar.
+Man zeigt aber leicht, dass $S$ \emph{nicht} nilpotent ist.
+
+\begin{lemma}
+	Sei $\mathfrak{g}$ eine Liealgebra mit entweder 
+	\begin{itemize}
+		\item $\mathfrak{g}^k=0$, $\mathfrak{g}^{k-1} \neq 0$ (nilpontent), oder
+		\item $\mathfrak{g}_k=0$, $\mathfrak{g}_{k-1} \neq 0$ (auflösbar)
+	\end{itemize}
+	Dann gilt:
+	\begin{enumerate}[1)]
+		\item Für alle $i$ gilt $\mathfrak{g}_i \subseteq \mathfrak{g}^i$, also impliziert nilpotent auflösbar.
+		\item Für alle $i$ gilt: $\mathfrak{g}^i$, $\mathfrak{g}_i$ sind Ideale
+		\item Ist $\mathfrak{g}$ nilpotent, so gilt $\mathfrak{g}^{k-1} \subset Z(\mathfrak{g})$.
+		Ist $\mathfrak{g}$ auflösbar, so ist $\mathfrak{g}_{k-1}$ abelsch.
+		\item Unteralgebren von nilpotenten (auflösbaren) Liealgebren sind nilpotent (auflösbar)
+		\item Ist $\mathfrak{h}$ ein Ideal in $\mathfrak{g}$, so ist $\mathfrak{k} \coloneqq \sfrac{\mathfrak{g}}{\mathfrak{h}}$ nilpotent (auflösbar), falls $\mathfrak{g}$ nilpotent (auflösbar) ist.
+		\item Sei 
+		\[
+			\begin{tikzcd}
+				0 \rar & \mathfrak{h} \rar["\Psi"] & \mathfrak{k} \rar["\Phi"] & \mathfrak{g} \rar & 0
+			\end{tikzcd}
+		\]
+		eine kurze exakte Sequenz von Liealgebren.
+		Sind $\mathfrak{h}$ und $\mathfrak{g}$ auflösbar, so auch $\mathfrak{k}$.
+		\item Sind $\mathfrak{h}, \mathfrak{k}$ nilpotente (auflösbare) Ideale von $\mathfrak{g}$, so ist $\mathfrak{h} + \mathfrak{k}$ ein nilpotentes (auflösbares) Ideal von $\mathfrak{g}$.
+	\end{enumerate}
+\end{lemma}
+\begin{beweis}
+	\begin{enumerate}[1)]
+		\item $\mathfrak{g}_0 = \mathfrak{g} = \mathfrak{g}^0$.
+		Annahme $\mathfrak{g}_{i-1} \subseteq \mathfrak{g}^{i-1}$. Induktionsschritt:
+		\[
+			\mathfrak{g}_i = \benbrace[\Big]{\Underbrace{\mathfrak{g}_{i-1}}{\subseteq \mathfrak{g}}, \Underbrace{\mathfrak{g}_{i-1}}{\subseteq \mathfrak{g}^{i-1}}} \subset \benbrace*{\mathfrak{g},\mathfrak{g}^{i-1}} = \mathfrak{g}^i
+		\]
+		\item schon gezeigt
+		\item Es ist $0 = \mathfrak{g}^k = \benbrace*{\mathfrak{g}, \mathfrak{g}^{k-1}}$, also $\mathfrak{g}^{k-1} \subset Z(\mathfrak{g})$.
+		\item Auch klar: Da $\mathfrak{g}$ nilpotent ist, existiert $k$ mit $\mathfrak{g}^k =0$.
+		Für ein Ideal $0 \neq \mathfrak{h}$ ist stets $\mathfrak{h}^i \subseteq \mathfrak{g}^i$ für alle $i$.
+		\item Auf der Quotientenliealgebra $\mathfrak{k} = \sfrac{\mathfrak{g}}{\mathfrak{h}}$ hatten wir die Lieklammer definiert durch
+		\[
+			\benbrace[\big]{v +\mathfrak{h}, w + \mathfrak{h}}_{\mathfrak{k}} \coloneqq \benbrace*{v,w}_{\mathfrak{g}} + \mathfrak{h} 
+		\]
+		Damit folgt die Behauptung.
+		\item Es seien $\mathfrak{h}$ und $\mathfrak{g}$ auflösbar. Per Idnuktion:
+		Es gilt $\Phi(\mathfrak{k}) \subseteq \mathfrak{g}$ und\marginnote{da $\Phi$ surjektiv, ist $\Phi(\mathfrak{k}_i)$ ein Ideal} 
+		\[
+			\Phi(\mathfrak{k}_i) = \Phi \enbrace*{\benbrace*{\mathfrak{k}_{i-1}, \mathfrak{k}_{i-1}}} = \benbrace*{\Phi(\mathfrak{k}_{i-1}), \Phi(\mathfrak{k}_{i-1})}\StackText{I.V.}{\subseteq} \benbrace*{\mathfrak{g}_{i-1}, \mathfrak{g}_{i-1}} = \mathfrak{g}_i
+		\]
+		Somit $\Phi(\mathfrak{k}_{i_0})=0$ für ein $i_0 \in \mathbb{N}$ ($\mathfrak{g}$ auflösbar)
+		Damit ist $\mathfrak{k}_{i_0} \subset \ker \Phi = \im \Psi$. 
+		Es gilt
+		\[
+			\mathfrak{k}_{i_0 +1} = \benbrace*{\mathfrak{k}_{i_0}, \mathfrak{k}_{i_0}} \subseteq \benbrace*{\Psi(\mathfrak{h}), \Psi(\mathfrak{h})} \subseteq \Psi \benbrace*{\mathfrak{h},\mathfrak{h}} \subseteq \Psi(\mathfrak{h}_1)
+		\]
+		und 
+		\[
+			\mathfrak{k}_{i_0+2} = \benbrace*{\mathfrak{k}_{i_0}, \mathfrak{k}_{i_0}} \subseteq \benbrace*{\Psi(\mathfrak{h}_1), \Psi(\mathfrak{h}_1)} \subseteq \Psi \benbrace*{\mathfrak{h}_1, \mathfrak{h}_1} = \Psi(\mathfrak{h}_2)
+		\]
+		Da $\mathfrak{h}$ auflösbar ist, folgt die Behauptung.
+		\item Seien $\mathfrak{h}$, $\mathfrak{k}$ auflösbare Ideale.
+		Die Sequenz
+		\[
+			\begin{tikzcd}
+				0 \rar & \mathfrak{h} \rar & \mathfrak{h} + \mathfrak{k} \rar & \sfrac{\mathfrak{h} + \mathfrak{k}}{\mathfrak{h}} \rar & 0
+			\end{tikzcd}
+		\]
+		ist exakt.
+		Nach 6) reicht es zu zeigen, dass $\sfrac{\mathfrak{h} + \mathfrak{k}}{\mathfrak{h}}$ auflösbar ist: 
+		Es ist $\sfrac{\mathfrak{h}+ \mathfrak{k}}{\mathfrak{h}} = \sfrac{\mathfrak{k}}{\mathfrak{k} \cap \mathfrak{k}}$ und $\mathfrak{h} \cap \mathfrak{k}$ ist ein Ideal von $\mathfrak{g}$ und $\mathfrak{k}$.
+		Aus 5) folgt, dass $\sfrac{\mathfrak{k}}{\mathfrak{h} \cap \mathfrak{k}}$ auflösbar ist.
+		
+		Seien nun $\mathfrak{h}, \mathfrak{k}$ nilpotente Ideale von $\mathfrak{g}$.
+		Dann sind auch $\mathfrak{h}^i$ und $\mathfrak{k}^i$ nilpotente Ideale von $\mathfrak{g}$.
+		Es gilt
+		\[
+			\benbrace*{\mathfrak{g}, \mathfrak{h}^1} = \benbrace*{\mathfrak{g}, \benbrace*{\mathfrak{h}, \mathfrak{h}}} \equiv \benbrace*{\mathfrak{h}, \benbrace*{\mathfrak{g},\mathfrak{h}}} \subset \mathfrak{h}^1
+		\]
+		Nun gilt \marginnote{mit $\mathfrak{h}^0=\mathfrak{g}$ und $\mathfrak{k}^0=\mathfrak{g}$}
+		\[
+			(\mathfrak{h} + \mathfrak{k})^1 = \benbrace*{\mathfrak{h} + \mathfrak{k}} \subseteq \benbrace*{\mathfrak{g},\mathfrak{h} + \mathfrak{k}} \subseteq \mathfrak{h} + \mathfrak{k} \subseteq \sum_{i=0}^{1} \mathfrak{h}^i \cap \mathfrak{k}^{1-i}
+		\]
+		Weiter ist 
+		\begin{align}
+			(\mathfrak{h} + \mathfrak{k})^2 \subseteq \benbrace*{\mathfrak{h} + \mathfrak{k},(\mathfrak{h} + \mathfrak{k})^1} &\subseteq \benbrace*{\mathfrak{h} + \mathfrak{k}, \sum_{i=0}^{1} \mathfrak{h}^1 \cap \mathfrak{k}^{1-i} } \\
+			&\subseteq \sum_{i=0}^{2} \mathfrak{h}^i \cap \mathfrak{k}^{2-i}
+		\end{align}
+		Induktiv folgt
+		\[
+			(\mathfrak{h} + \mathfrak{k})^l \subset \sum_{i=0}^{l} \mathfrak{h}^i \cap \mathfrak{k}^{l-i}
+		\]
+		Die Behauptung folgt für ausreichend großes $l$.
+	\end{enumerate}
+\end{beweis}
+ 
+% section 21 (end)
+% chapter 2 (end)
 
 \cleardoubleoddemptypage
 \pagenumbering{Alph}

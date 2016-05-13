@@ -356,7 +356,7 @@ Insbesondere ist $[P]=0 \in K_0(R)$ genau dann, wenn es $n \in \mathbb{N}$ gibt 
 	Jedes nichttriviale Ideal von $R$ ist auch ein gebrochenes Ideal.
 	Zur besseren Unterscheidung nennt man dann Ideale von $R$ auch \bet{ganze Ideale}\index{Ideal!ganzes}.
 	
-	Für $\frac{a}{b} \in Q$, $a,b\neq 0$ ist $\frac{a R}{b}$ ein bebrochenes Ideal.
+	Für $\frac{a}{b} \in Q$, $a,b\neq 0$ ist $\frac{a R}{b}$ ein gebrochenes Ideal.
 	Wir nennen solche gebrochenen Ideale \Index{gebrochene Hauptideale}.
 \end{definition}
 
@@ -1043,6 +1043,7 @@ In diesem Abschnitt sind Kettenkomplexe immer $\mathbb{N}$-graduiert. (Allgemein
 \section{\textsc{Wall}s Endlichkeitshindernis für topologische Räume} % (fold)
 \label{sec:4}
 
+\todo[inline]{Wer ist dieser Wall?}
 \begin{definition}[{name=[{endlicher CW-Komplex}]}]
 	Ein CW-Komplex $E$ heißt \bet{endlich}\index{endlicher CW-Komplex}, wenn er aus endlich vielen Zellen besteht. 
 	Ein topologischer Raum $X$ heißt \bet{endlich dominiert}\index{endlich dominiert!topologischer Raum}, wenn es einen endlichen CW-Komplex $E$ gibt und stetige Abbildungen
@@ -1058,7 +1059,7 @@ In diesem Abschnitt sind Kettenkomplexe immer $\mathbb{N}$-graduiert. (Allgemein
 	Ist jeder endlich dominierte Raum homotopieäquivalent zu einem endlichen CW-Komplex?
 \end{frage}
 
-\begin{satz}
+\begin{satz}[label=satz:endl_dom_endl_cw]
 	Ist $X$ endlich dominiert, so ist $X$ homotopieäquivalent zu einem endlich dimensionalen CW-Komplex.
 \end{satz}
 
@@ -1090,7 +1091,6 @@ In diesem Abschnitt sind Kettenkomplexe immer $\mathbb{N}$-graduiert. (Allgemein
 	\[
 		\Tel(f) \coloneqq \nicefrac{X \times [0,1] \times \mathbb{N}}{(x,1,n) \sim \enbrace*{f(x),0,n+1}}
 	\]
-	\missingfigure{das könnte man mal malen …}
 	Für Abbildungen $f \colon X \to Y$, $g \colon Y \to X$ definieren wir genauso 
 	\[
 		\Tel(f,g) \coloneqq \nicefrac{(X \amalg Y) \times [0,1] \times \mathbb{N}}{
@@ -1100,8 +1100,9 @@ In diesem Abschnitt sind Kettenkomplexe immer $\mathbb{N}$-graduiert. (Allgemein
 			\end{array}
 		} 
 	\]
-	\missingfigure{auch hier ein Bild …}
 \end{definition}
+\missingfigure{das könnte man mal malen …}
+\missingfigure{auch hier ein Bild …}
 
 \begin{bemerkung}
 	\begin{enumerate}[(i)]
@@ -1111,6 +1112,141 @@ In diesem Abschnitt sind Kettenkomplexe immer $\mathbb{N}$-graduiert. (Allgemein
 	\end{enumerate}
 \end{bemerkung}
 
+\begin{definition}
+	Sei
+	\[
+		\begin{tikzcd}
+			X_1 \rar["f_1"] & X_2 \rar["f_2"] & X_3 \rar["f_3"] & X_4 \rar & \ldots 
+		\end{tikzcd}
+	\]
+	ein Diagramm von stetigen Abbildungen.
+	Dann definieren wir das Teleskop dieses Diagramms als 
+	\[
+		\Tel(f_1,f_2,\ldots ) \coloneqq \nicefrac{\coprod X_i \times [0,1]}{
+			\substack{(x,1) \sim \enbrace*{f_i(x),0} \\ \text{für } x \in X_i }}
+	\]
+	Dann ist $\Tel(f) := \Tel(f,f,\ldots )$ und $\Tel(f,g) := \Tel(f,g,f,g, \ldots )$.
+\end{definition}
+
+\begin{bemerkung}
+	$\Tel(f_1,f_2, \ldots )$ ist ein Modell für den Homotopie-Kolimes des obigen Diagramms und hat folgende Eigenschaft:
+	\begin{enumerate}[1)]
+		\item Für jedes $j$ erhalten wir eine Abbildung $i_j \colon X_j \to \Tel(f_1, f_2, \ldots)$ durch $i_j(x) = (x,0)$ und $i_j$ ist (kanonisch) homotop zu $i_{j+1} \circ f_j$.
+		\item Ist $Y$ ein weiterer topologischer Raum und sind $g_j \colon X_j \to Y$ stetige Abbildungen für die $g_j$ homotop zu $g_{j+1} \circ f_j$ so erhalten wir eine Abbildung $F \colon \Tel(f_1,f_2,\ldots ) \to Y$ mit $g_j = F \circ i_j$.
+	\end{enumerate}
+\end{bemerkung}
+
+\begin{bemerkung}
+	Sei
+	\[
+		\begin{tikzcd}
+			X_1 \dar["\alpha_1"] \rar["f_1"] & X_2 \rar["f_2"] \dar["\alpha_2"] & X_3 \dar["\alpha_3"] \rar["f_3"] & X_4 \dar["\alpha_4"] \rar["f_4"] & \ldots  \\
+			Y_1 \rar["g_1"] & Y_2 \rar["g_2"] & Y_3 \rar["g_3"] & Y_4 \rar & \ldots 
+		\end{tikzcd}
+	\]
+	ein kommutatives Diagramm, bei dem die $\alpha_i$ Homotopieäquivalenzen sind.
+	Dann sind die Teleskope $\Tel(f_1, f_2, \ldots )$ und $\Tel(g_1, g_2, \ldots )$ homotopieäquivalent.
+\end{bemerkung}
+
+\begin{bemerkung}
+	Es gilt 
+	\begin{enumerate}[(i)]
+		\item $\Tel(f,g) \simeq \Tel(g,f) \simeq \Tel(g \circ f)$
+		\item Falls $f \simeq g$ ist, so ist $\Tel(f) \simeq \Tel(g)$
+		\item $\Tel(\id_X) \simeq X$
+	\end{enumerate}
+\end{bemerkung}
+
+\begin{beweis}[{name={von \autoref{satz:endl_dom_endl_cw}}}]
+	Sei $\begin{tikzcd}[cramped]
+		X \rar["i"] & E \rar["p"] & X
+	\end{tikzcd}$
+	eine endliche Dominierung von $X$.
+	Sei $\pi = i \circ p \colon E \to E$ und $\pi' \colon E \to E$ eine zelluläre Approximation.\todo{Ref?}
+	Dann ist $\Tel(\pi')$ ein endlichdimensionaler CW-Komplex und es gilt 
+	\[
+		\Tel(\pi') \simeq \Tel(\pi) \simeq \Tel(i \circ p) \simeq \Tel(i,p) \simeq \Tel(p,i) \simeq \Tel(p \circ i) \simeq \Tel(\id_X) \simeq X \qedhere
+	\]
+\end{beweis}
+
+\begin{definition}[{name=[Gruppenring]}]
+	Sei $\pi$ eine Gruppe.
+	Der \Index{Gruppenring} $\mathbb{Z}\pi$  ist der Ring aller formalen $\mathbb{Z}$-Linearkombinationen mit endlichem Träger
+	\[
+		\sum_{g \in \pi} \lambda_g \cdot g
+	\]
+	mit $\lambda_g \in \mathbb{Z}$.
+	Das Produkt auf $\mathbb{Z}\pi$ ist 
+	\[
+		\enbrace*{\sum\nolimits_g \lambda_g \cdot g} \enbrace*{\sum\nolimits_g \mu_g \cdot g} = \sum\nolimits_g \enbrace*{\sum\nolimits_{g= a b} \lambda_a \cdot \mu_b} \cdot g
+	\]
+	Insbesondere ist $g \cdot h = gh \in \mathbb{Z}\pi$.
+\end{definition}
+
+\begin{bemerkung}
+	Sei $X$ ein zusammenhängender Raum mit universeller Überlagerung $\tilde{X} \to X$.
+	Dann wirkt $\pi \coloneqq \pi_1(X)$ auf $\tilde{X}$.
+	Durch diese Wirkung wird $C^\sing_*(\tilde{X})$ zu einem Kettenkomplex von $\mathbb{Z}\pi$-Moduln.
+\end{bemerkung}
+
+\begin{bemerkung}
+	Achtung: Betrachtet man die Überlagerung $\tilde{X}=\mathbb{R} \to S^1 = X$.
+	Dann ist die Homologie von $C_*^\sing(\tilde{X})$ einfach $H_*(\mathbb{R})$. Andererseits liefert $C_*^\sing(X) \otimes_\mathbb{Z} \mathbb{Z}\pi$ in Homologie
+	$H_*(S^1) \otimes \mathbb{Z}\pi$.
+	Es ist gilt also
+	\[
+		C_*^\sing(\tilde{X}) \not\simeq C_*^\sing(X) \otimes_\mathbb{Z} \mathbb{Z}\pi
+	\]
+\end{bemerkung}
+
+\begin{bemerkung}
+	Sei $E$ ein zusammenhängender CW-Komplex.
+	Sei $p \colon \tilde{E} \to E$ die universelle Überlagerung von $E$.
+	Dann ist auch $\tilde{E}$ ein CW-Komplex (mit $\tilde{E}^\ssbrace{k} \coloneqq \pi^{-1}(E^\ssbrace{k})$).
+	Die Wirkung von $\pi = \pi_1(E)$ auf $\tilde{E}$ ist zellulär.
+	Die induzierte Wirkung von $\pi$ auf der Menge der $k$-Zellen ist frei.
+	Die Projektion $p \colon \tilde{E} \to E$ identifiziert 
+	\(
+		\nicefrac{\set*{\text{$k$-Zellen von } \tilde{E}}}{\pi}
+	\)
+	mit den $k$-Zellen von $E$.
+	Insbesondere ist der zelluläre Kettenkomplex von $\tilde{E}$ ein Komplex von freien $\mathbb{Z}\pi$-Moduln.
+	Ist $E$ ein endlicher CW-Komplex, so ist $C^\cell_*(\tilde{E})$ als $\mathbb{Z}\pi$-Kettenkomplex von endlichem Typ.
+\end{bemerkung}
+
+\begin{definition}
+	Sei $X$ ein endlich dominierter Raum mit universeller Überlagerung $\tilde{X}\to X$.
+	Sei $\pi \coloneqq \pi_1(X)$ die Fundamentalgruppe.
+	Dann ist $C_*^\sing(\tilde{X})$ ein endlich dominierter $\mathbb{Z}\pi$-Kettenkomplex, wie wir gleich zeigen werden, und wir definieren
+	\[
+		\tilde{\chi}(X) \coloneqq \tilde{\chi} \enbrace*{C^\sing_*(\tilde{X})} \in \tilde{K}_0(\mathbb{Z}\pi)
+	\]
+\end{definition}
+\todo{ref}
+
+\begin{lemma}
+	Sei $E$ ein CW-Komplex mit universeller Überlagerung $\tilde{E} \to E$.
+	Sei $\pi \coloneqq \pi_1(E)$ die Fundamentalgruppe.
+	Dann sind $C_*^\sing(\tilde{E})$ und $C_*^\cell(\tilde{E})$ als $\mathbb{Z}\pi$-Kettenkomplexe kettenhomotopieäquivalent.
+\end{lemma}
+\begin{beweis}
+	Wir wissen schon, dass die Homologie der beiden Kettenkomplexe übereinstimmt.
+	Sei 
+	\[
+		D_k \coloneqq \set*{\sigma \in C_k^\sing(\tilde{E}^\ssbrace{k}) \given \partial \sigma \in C^\sing_{k-1} \enbrace*{\tilde{E}^\ssbrace{k-1}}}
+	\]
+	Dann ist $\partial(D_k) \subseteq D_{k-1}$ und wir erhalten einen Unterkomplex $D_* \subseteq C_*^\sing(E)$.
+	Weiter betrachten wir die Projektion 
+	\[
+		D_k \longrightarrow \ker \enbrace*{\partial \colon C_k^\sing \enbrace*{\tilde{E}^\ssbrace{k}, \tilde{E}^\ssbrace{k-1}} \to C^\sing_{k-1} \enbrace*{\tilde{E}^\ssbrace{k}, \tilde{E}^\ssbrace{k-1}}} \longrightarrow H_k \enbrace*{\tilde{E}^\ssbrace{k}, \tilde{E}^\ssbrace{k-1}} = C_k^\cell(\tilde{E})
+	\]
+	Es bleibt zu zeigen:
+	\begin{enumerate}[(1)]
+		\item $D_k$ ist projektiv für jedes $k$ (über $\mathbb{Z}\pi$)
+		\item Die Inklusion $D_* \to C_*^\sing(\tilde{E})$ induziert einen Isomorphismus in Homologie.
+		\item Die Projektion $D_* \to C_*^\cell(\tilde{E})$ induziert einen Isomorphismus in Homologie.
+	\end{enumerate}
+\end{beweis}
 % section 4 (end)
 
 \cleardoubleoddemptypage

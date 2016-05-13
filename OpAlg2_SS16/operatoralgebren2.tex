@@ -472,7 +472,7 @@ Wir erhalten:
 	(Tatsächlich genügt es reine Zustände zu betrachten.)
 \end{satz}
 \begin{beweis}
-	Es gilt\marginnote{nach Zorn ist jede Darstellung Summe zyklischer Darstellungen}
+	Es gilt für $x \in A \odot B$\marginnote{nach Zorn ist jede Darstellung Summe zyklischer Darstellungen}
 	\begin{align}
 		\norm*{x}_{\min}^2 &= \sup \set*{\norm*{(\pi_A \otimes \pi_B)(x)}^2 \given \pi_A, \pi_B \text{ Darstell.} } \\
 		&= \sup \set*{ \norm*{(\pi_A \otimes \pi_B)(x)}^2 \given (\pi_A,\xi_A), (\pi_B,\xi_B) \text{ zykl. Darstell.}} \\
@@ -841,7 +841,7 @@ Wir erhalten:
 \end{beweis}
 
 \todo[inline]{Hier fehlt noch eine gesamte Vorlesung!}
-
+% section 2 (end)
 \newpage
 
 \section{Vollständig positive Abbildungen} % (fold)
@@ -1021,20 +1021,156 @@ Wir erhalten:
 
 \begin{definition}[{name=[{Pedersen-Ideal}]}]
 	\[
-		\Ped(A) \coloneqq A \mathcal{F}(A) A \stackrel[\text{dicht}]{}{\subset} A
+		\Ped(A) \coloneqq A \, \mathcal{F}(A)\, A \stackrel[\text{dicht}]{}{\subset} A
 	\]
 	ist das (eindeutig bestimmte) minimale dichte Ideal von $A$.\marginnote{$A$ unital $\Rightarrow$ $\Ped(A)=A$}
 	$\Ped(A)$ heißt das \Index{Pedersen-Ideal}. 
 \end{definition}
 
-\begin{proposition}
+\begin{proposition}[label=prop:313]
 	Seien $A,B$ beides $C^*$-Algebren, $\varphi \colon A \to B$ vollständig positiv und $\mu \ge \norm*{\varphi}$.
 	Sei $\varphi^+ \colon A^+ \to B^+$ (bzw. $B^\simm$) die durch $\varphi^*(\ind_{A^+}) \coloneqq \mu \cdot \ind_{B^+}$ definierte lineare Fortsetzung.
 	Dann ist $\varphi^+$ vollständig positiv und es gilt $\norm*{\varphi^+}= \mu$.
 \end{proposition}
+\begin{beweis}
+	Wir müssen zeigen, dass $(\varphi^+)^\ssbrace{n}$ positiv ist: 
+	Sei $\pi \colon A^+ \to \mathbb{C}$ der kanonische $^*$"=Homomorphismus.
+	Dann ist auch $\pi^\ssbrace{n} \colon M_n(A^+) \to M_n$ ein $^*$-Homomorphismus, also insbesondere positiv.
+	Sei $0 \le a + x  \otimes \ind_{A^+} \in M_n(A^+) = M_n \otimes A^+$ mit $a=a^* \in M_n(A)$, $x \ge 0 \in M_n$.\footnote{$\sum y_i \otimes a_i= \sum y_i \otimes (b_i + \lambda \cdot \ind_{A^+})$}
+	Zu zeigen: 
+	\[
+		0 \le (\varphi^+)^\ssbrace{n} \enbrace*{a + x \otimes \ind_{A^+}} = \varphi^\ssbrace{n}(a) + \mu x \otimes \ind_{B^+}
+	\]
+	Es genügt dies für $a \in \mathcal{F}(M_n(A))_\sa$ zu zeigen, da $\mathcal{F}(M_n(A))_\sa \subset M_n(A)_\sa$ dicht, $\varphi^\ssbrace{n}$ beschränkt und $M_n(B^+)_+ \subset M_n(B_+)$ abgeschlossen ist (Warum genau?).
+	Wir dürfen sogar annehmen, dass $e \in A_+$ existiert mit $\norm*{e}\le 1$ und $\overline{e}a = a \overline{e} =a$, wo $\overline{e}= \diag(e,\ldots ,e)=\ind_n \otimes e$.
+	Dann ist
+	\begin{align}
+		(\varphi^+)^\ssbrace{n} (a + x \otimes \ind_{A^+}) &= (\varphi^+)^\ssbrace{n} \enbrace[\big]{\overline{e} \enbrace*{a + x \otimes \ind_{A^+}}\overline{e} + (1- \overline{e}^2) \enbrace*{ a + x \otimes \ind_{A^+}}} \\
+		&= (\varphi^+)^\ssbrace{n} \enbrace[\Big]{\Underbracket{\overline{e} \enbrace*{a + x \otimes \ind_{A^+}} \overline{e}}{\ge 0 \in M_n(A)}} + (\varphi^+)^\ssbrace{n} \enbrace*{\Underbracket{x \otimes (1 - e^2)}{\ge 0 }} \\
+		&\ge 0
+	\end{align}
+\end{beweis}
 
+\begin{proposition}[label=prop:314]
+	Seien $A,B$ $C^*$-Algebren und $\varphi \colon A \to B$ vollständig positiv.
+	Dann ist $\varphi$ vollständig beschränkt und es gilt für eine approximative Eins $(u_\lambda)_\Lambda \subset A$
+	\[
+		\norm*{\varphi}_\vb = \norm*{\varphi} = \sup_\lambda \norm*{\varphi(u_\lambda)}
+	\]
+\end{proposition}
+\begin{beweis}
+	Es gilt offenbar $\norm*{\varphi(u_\lambda)} \le \norm*{\varphi} \le \norm*{\varphi}_\vb$.
+	Zu zeigen bleibt $\norm*{\varphi}_\vb \le \sup_\lambda \norm*{\varphi(u_\lambda)}$.
+	Sei also $a \in M_n(A)$ mit $\norm*{a} \le 1$ und $\overline{u}_\lambda = \diag (u_\lambda,\ldots ,u_\lambda)$.
+	Dann ist
+	\[
+		0 \StackText{\ref{lem:38}(i)}{\le} \begin{pmatrix}
+			\ind_{M_n(A)^\simm} & a \\ a^* & \ind_{M_n(A)^\simm}
+		\end{pmatrix}
+		\implies
+		0 \le \begin{pmatrix}
+			\overline{u}_\lambda^{\sfrac{1}{2}} & 0 \\ 0 & \overline{u}_\lambda^{\sfrac{1}{2}}
+		\end{pmatrix}
+		\begin{pmatrix}
+			\ind & a \\ a^* & \ind
+		\end{pmatrix}
+		\begin{pmatrix}
+			\overline{u}_\lambda^{\sfrac{1}{2}} & 0 \\ 0 & \overline{u}_\lambda^{\sfrac{1}{2}}
+		\end{pmatrix}
+	\]
+	also gilt da $\varphi$ vollständig positiv ist
+	\[
+		0 \le \begin{pmatrix}
+			\varphi^\ssbrace{n}(\overline{u}_\lambda) & \varphi^\ssbrace{n} \enbrace*{\overline{u}_\lambda^{\sfrac{1}{2}} a \overline{u}_\lambda^{\sfrac{1}{2}}} \\
+			\varphi^\ssbrace{n}\enbrace*{\overline{u}_\lambda^{\sfrac{1}{2}} a^* \overline{u}_\lambda^{\sfrac{1}{2}}} & \varphi^\ssbrace{n}(\overline{u}_\lambda)
+		\end{pmatrix}
+	\]
+	Mit \autoref{lem:38} (iii) folgt nun 
+	\[
+		\Underbracket{\norm*{\varphi^\ssbrace{n} \enbrace*{\overline{u}_\lambda^{\sfrac{1}{2}} a \overline{u}_\lambda^{\sfrac{1}{2}}}}}{\grenzw{} \norm*{\varphi^\ssbrace{n} (a)}} \le \norm*{\varphi^\ssbrace{n} (\overline{u}_\lambda)} = \norm*{\varphi(u_\lambda)} \grenzw{\lambda} \sup_\lambda \norm*{\varphi(u_\lambda)} \qedhere
+	\]
+\end{beweis}
+
+\begin{bemerkung}[label=bem:315]
+	Die Aussage gilt entsprechend, falls $A$ ein Operatorsystem ist.
+\end{bemerkung}
+
+\begin{proposition}[label=prop:316]
+	Sei $A$ eine $C^*$-Algebra und $\varphi \colon A \to \mathbb{C}$ positiv.
+	Dann ist $\varphi$ vollständig positiv und es gilt.
+	Ebenso für $\varphi \colon X \to \mathbb{C}$ positiv, falls $X$ ein Operatorsystem ist.
+\end{proposition}
+\begin{beweis}
+	Betrachte $0 \le (a_{ij})_{ij} \in M_n(A)$ und $\xi= (\xi_1, \ldots ,\xi_n)^T \in \mathbb{C}^n$.
+	Dann gilt
+	\begin{align}
+		\skal[\big]{\xi}{\varphi^\ssbrace{n} \enbrace*{(a_{ij})_{ij}}} = \sum_{i,j=1}^n \varphi(a_{ij}) \overline{\xi}_i \xi_j &= \varphi \enbrace*{\sum_{i,j=1}^n \overline{\xi}_i \xi_j a_{ij}} \ge 0 \\
+		&= 
+	\end{align}
+	Dann ist 
+	\[
+		M_n(A) \ni \begin{pmatrix}
+					\overline{\xi}_1 \ind_{A^\simm} & \cdots & \overline{\xi}_n \ind_{A^\simm} \\
+					& &  \\
+					& 0 & 
+				\end{pmatrix}\enbrace[\big]{a_{ij}}_{ij} 
+				\begin{pmatrix}
+					\xi_1 \ind_{A^\simm} & & \\
+					\vdots & & 0 \\
+					\xi_n \ind_{A^\simm}  & & 
+				\end{pmatrix} \ge 0
+	\]
+\end{beweis}
+
+\begin{korollar}[label=kor:317]
+	Sei $\varphi \colon A \to C_0(\Omega)$ positiv, wobei $\Omega$ lokal kompakt und Hausdorff.
+	Dann ist $\varphi$ vollständig positiv.
+	Ebenso für $\varphi \colon X \to C_0(\Omega)$, wobei $X$ ein Operatorsystem ist.
+\end{korollar}
+\begin{beweis}
+	Es gilt
+	\[
+		\varphi^\ssbrace{n} \enbrace[\big]{(a_{ij})_{ij}} \ge 0 \iff \varphi^\ssbrace{n} \enbrace[\big]{(a_{ij})_{ij}}(t) \ge 0 , \enspace t \in \Omega
+	\]
+	Aber $\varphi^\ssbrace{n}(\cdot )(t) = \enbrace*{\varphi(\cdot )(t)}^\ssbrace{n}$ ist vollständig positiv nach \autoref{prop:316}.
+\end{beweis}
+
+\begin{proposition}[label=prop:318]
+	Sei $\Omega$ ein lokalkompakter Hausdorffraum und $B$ eine $C^*$-Algebra.
+	Falls $\varphi \colon C_0(\Omega) \to B$ positiv ist, so ist $\varphi$ vollständig positiv.
+\end{proposition}
+\begin{beweis}
+	Wähle $0 \le a \in M_n(C_0(\Omega))\cong M_n \otimes C_0(\Omega) \cong C_0(\Omega,M_n)$.
+	Zu zeigen ist nun, dass $M_n(B) \ni \varphi^\ssbrace{n}(a) \ge 0$.
+	Zu $\varepsilon>0$ existieren $0 \le f_1, \ldots ,f_k \in  C_0(\Omega)$ und $0 \le a_1, \ldots ,a_k \in M_n(A)$ mit
+	\[
+		\norm*{a - \sum\nolimits_{i=1}^{k} a_i \otimes f_i} < \varepsilon
+	\]
+	(warum?)
+	Dann gilt 
+	\begin{align}
+		\varphi^\ssbrace{n}(a) \ge \varphi^\ssbrace{n} \enbrace*{\sum_{i=1}^k a_i \otimes f_i} - \varepsilon \cdot \norm*{\varphi} \cdot \ind_{M_n \otimes B^\simm} &= \sum_{i=1}^{k} \Underbracket{a_i}{\ge 0} \otimes  \Underbracket{\varphi(f_i)}{\ge 0} - \varepsilon \cdot \norm*{\varphi^\ssbrace{n}} \cdot \ind_{M_n \otimes B^\simm} \\
+		&\ge 0 - \varepsilon \cdot \norm*{\varphi^\ssbrace{n}} \cdot \ind
+	\end{align}
+	Damit ist $\varphi^\ssbrace{n}(a) \ge 0$, da $\varepsilon$ beliebig war und $M_n(B)_+ \subset M_n(B)$ abgeschlossen.
+\end{beweis}
+
+\begin{satz}[label=satz:319,name={Stanespring}]
+	Sei $A$ eine $C^*$-Algebra, $\varphi \colon A \to \mathcal{B}(\mathcal{H})$ vollständig positiv.
+	Dann existieren ein Hilbertraum $\tilde{\mathcal{H}}$, ein $^*$-Homomorphismus $\pi \colon A \to \mathcal{B}(\tilde{\mathcal{H}})$ und ein $v \in \mathcal{B}(\mathcal{H},\tilde{\mathcal{H}})$ mit $\norm*{\varphi} = \norm*{v}^2$ und für $a \in A$\marginnote{$\begin{psmallmatrix}
+		0 & 0 \\ v & 0
+	\end{psmallmatrix} \in \mathcal{B}(\mathcal{H} \oplus \tilde{\mathcal{H}})$}
+	\[
+		\varphi(a) = v^* \pi(a) v
+	\]
+	Das heißt $v$ ist Kompression eines $^*$-Homomorphismus.
+	Falls $A,\varphi$ unital sind, so ist $v$ eine Isometrie.
+\end{satz}
+\begin{beweis}
+	GNS-Konstruktion
+\end{beweis}
 % section 3 (end)
-% section 2 (end)
+
 
 
 
