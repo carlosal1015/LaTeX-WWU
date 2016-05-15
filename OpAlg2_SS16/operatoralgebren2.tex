@@ -711,8 +711,10 @@ Wir erhalten:
 \section{Nuklearität und Exaktheit} % (fold)
 \label{sec:2}
 
+\emph{\textenglish{Nucular. It's pronounced, \enquote{nucular}.}} -- Homer \textsc{Simpson}
+
 \begin{definition}[{name=[{nukleare C*-Algebra}]}]
-	Eine $C^*$-Algebra $A$ heißt \Index{nuklear},\marginnote{\enquote{nuklear} -- das Wort heißt \enquote{nuklear}} falls für jede $C^*$-Algebra $B$ nur eine $C^*$-Norm auf $A \odot B$ existiert, das heißt $A \tensormax B = A \tensormin B$. 
+	Eine $C^*$-Algebra $A$ heißt \Index{nuklear}, falls für jede $C^*$-Algebra $B$ nur eine $C^*$-Norm auf $A \odot B$ existiert, das heißt $A \tensormax B = A \tensormin B$. 
 \end{definition}
 
 \begin{proposition}[{name=[{Nuklearität und Summen, Tensorprodukte, direkte Limiten und Quotienten}]},label=prop:22]
@@ -727,10 +729,11 @@ Wir erhalten:
 		\) ist $A$ nuklear genau dann, wenn $J$ und $\sfrac{A}{J}$ nuklear sind.
 	\end{enumerate}
 \end{proposition}
-\begin{beweis}
+\begin{beweis}[{name={mit \autoref{prop:24}}}]
+	\leavevmode
 	\begin{enumerate}[(i)]
 		\item Für direkte Summen, ist die Aussage klar.
-		Für Tensorprodukte benutzt man die Assoziativität von $\tensormax$ und $\tensormin$.
+		Für Tensorprodukte auch wegen der Assoziativität von $\tensormax$ und $\tensormin$.\todo{RevChap 2}
 		\item \enquote{klar} für injektive Verbindungsabbildungen. 
 		Für den allgemeinen Fall benutzte (iii).
 		\item Für die erste Implikation zeigen wir, dass $J$ nuklear ist.
@@ -756,9 +759,28 @@ Wir erhalten:
 		\end{align} 
 		Damit ist $\rho$ isometrisch und $J \tensormax B = J \tensormin B$ für $B$ beliebig.
 		Also ist $J$ nuklear.
-		$\sfrac{A}{J}$ zeigen wir später.
+		$\sfrac{A}{J}$ zeigen wir später.\todo{referenzieren bzw. hier einfügen}
 		
-		Die umgekehrte Implikation kommt auch später.\todo{referenzieren, wenn soweit}\qedhere
+		Es seien nun $J$ und $\sfrac{A}{J}$ nuklear. 
+		Wir müssen zeigen, dass auch $A$ nuklear ist.
+		Betrachte dazu das folgende kommutative Diagramm
+		\[
+			\begin{tikzcd}
+				0 \rar & B \tensormax J \rar \dar["\varphi_J","\cong"'] & B \tensormax A \rar \dar["\varphi_A"] & B \tensormax \sfrac{A}{J} \dar["\varphi_{\sfrac{A}{J}}","\cong"'] \rar & 0 \\
+				0 \rar & B \tensormin J \rar & B \tensormin A \rar & B \tensormin \sfrac{A}{J} \rar & 0
+			\end{tikzcd}
+		\]
+		Die obere Zeile ist exakt nach \autoref{prop:24}.
+		Wir wollen zeigen, dass auch die untere Zeile exakt ist.
+		Wir haben $B \odot A \cap B \tensormin J = B \odot J$ und damit folgt
+		\[
+			B \odot \faktor{A}{J} = \faktor{B \odot A}{B \odot J} = \faktor{B \odot A}{B \odot A \cap B \tensormin J} \,\,\stackrel[\text{dicht}]{}{\subset}\,\, \faktor{B \tensormin A}{B \tensormin J}
+		\]
+		Damit induziert $\norm*{\cdot}_{\min}$ eine $C^*$-Norm $\gamma$ auf $B \odot \sfrac{A}{J}$ mit $B \mathop{\otimes_\gamma} \sfrac{A}{J} = \sfrac{B \tensormin A}{B \tensormin J}$.
+		Da $\sfrac{A}{J}$ nuklear ist, muss also $\gamma(\cdot) = \norm*{\cdot}_{\min, B \odot \sfrac{A}{J}}$ sein und damit $B \otimes_\gamma \sfrac{A}{J} = B \tensormin \sfrac{A}{J}$.
+		Damit ist auch die untere Zeile exakt.
+		Nach dem 5er-Lemma ist $\varphi_A$ dann auch ein Isomorphismus.
+		\qedhere
 	\end{enumerate}
 \end{beweis}
 
@@ -799,7 +821,7 @@ Wir erhalten:
 	\end{enumerate}
 \end{beweis}
 
-\begin{proposition}
+\begin{proposition}[label=prop:24,{name=[{das maximale Tensorprodukt ist exakt}]}]
 	$A \tensormax -$ ist ein exakter Funktor für jede $C^*$-Algebra $A$
 \end{proposition}
 \begin{beweis}
@@ -832,7 +854,7 @@ Wir erhalten:
 	Weiter haben wir $A \odot B \cap A \tensormax J = A \odot J$.
 	Damit gilt
 	\[
-		A \odot \sfrac{B}{J} = \sfrac{A \odot B}{A \odot J} = \sfrac{A \odot B}{A \odot B \cap A \tensormax J} \stackrel[\text{dicht}]{}{\subset} \sfrac{A \tensormax B}{A \tensormax J}
+		A \odot \faktor{B}{J} = \faktor{A \odot B}{A \odot J} = \faktor{A \odot B}{A \odot B \cap A \tensormax J} \,\,\stackrel[\text{dicht}]{}{\subset}\, \, \faktor{A \tensormax B}{A \tensormax J}
 	\]
 	Also erhalten wir $\rho \colon A \tensormax \sfrac{B}{J} \twoheadrightarrow \sfrac{A \tensormax B}{A \tensormax J}$ mit $\sigma \colon \circ \rho \big|_{A \odot \sfrac{B}{J}} = \id_{A \odot \sfrac{B}{J}}$.
 	$\sigma \circ \rho$ ist also isometrisch auf $A \odot \sfrac{B}{J}$ und wegen Stetigkeit damit überall.
@@ -840,19 +862,139 @@ Wir erhalten:
 	Also gilt $A \tensormax J = \ker \enbrace*{{\id_A} \otimes \pi}$ und damit Exaktheit.
 \end{beweis}
 
-\todo[inline]{Hier fehlt noch eine gesamte Vorlesung!}
+\begin{definition}[{name=[exakte C^*-Algebra]}]
+	Eine $C^*$-Algebra $A$ heißt \bet{exakt}\index{exakte $C^*$-Algebra}, falls $A \tensormin -$ ein exakter Funktor ist, das heißt falls \(
+		\begin{tikzcd}[cramped,sep=small]
+			0 \rar & J \rar["\iota"] & B \rar["\pi"] & \sfrac{B}{J} \rar & 0
+		\end{tikzcd}
+	\)
+	exakt ist, so ist auch die folgende Sequenz exakt
+	\[
+		\begin{tikzcd}
+			0 \rar & A \tensormin J \rar["{\id_A} \otimes \iota"] & A \tensormin B \rar["{\id_A} \otimes \pi"] & A \tensormin \sfrac{B}{J} \rar & 0
+		\end{tikzcd}
+	\]
+\end{definition}
+
+\begin{bemerkung}[{name=[{nukleare $C^*$-Algebren sind exakt}]}]
+	Nach \autoref{prop:24} ist jede nukleare $C^*$-Algebra exakt.
+\end{bemerkung}
+
+\begin{satz}[{name={Kirchberg, Wassermann}}]
+	Eine $C^*$-Unteralgebra einer exakten $C^*$-Algebra ist exakt.
+	Insbesondere sind $C^*$-Unteralgebren von nuklearen $C^*$-Algebren exakt.
+\end{satz}
+\begin{beweis}[Idee]
+	Es seien $A \subset C$ $C^*$-Algebren und $C$ exakt.
+	Sei \(
+		\begin{tikzcd}[cramped,sep=small]
+			0 \rar & J \rar["\iota"] & B \rar["\pi"] & \sfrac{B}{J} \rar & 0
+		\end{tikzcd}
+	\) eine beliebige exakte Sequenz.
+	Es genügt zu zeigen: 
+	\[
+		A \tensormin J = \ker \enbrace*{{\id_A} \tensormin \pi}
+	\]
+	Dabei ist die Inklusion \enquote{$\subseteq$} klar.
+	Die andere zeigt man in mehereren Schritten:
+	\begin{enumerate}[1.]
+		\item Es gilt $C \tensormin J \cap A \tensormin B = A \tensormin J$.
+		
+		Dabei ist \enquote{$\supseteq$} klar. 
+		Die andere Inklusion zeigt man mit Hilfe einer approximativen Eins.
+		\item Sei $\varphi \in S(A)$. 
+		Man benutzt die \emph{slice map}
+		\mapdef{\varphi \otimes {\id_B} \colon A \odot B}{\mathbb{C} \odot B = B}{a \otimes b}{\varphi(a) \cdot b}{}
+		$\varphi \otimes {\id_B}$ ist stetig bezüglich $\norm*{\cdot}_{{\min}, A \odot B}$ und wir erhalten eine stetige Fortsetzung $\varphi \tensormin  {\id_B} \colon A \tensormin B \to B$. (Übung)\todo{\TeX{}en?}
+		\item Betrachte 
+		\[
+			K_J \coloneqq \set[\big]{x \in A \tensormin B \given (\varphi \otimes {\id_B})(x^* x) \in J \, \forall \varphi \in S(A)}
+		\]
+		und zeige $K_J = \ker \enbrace*{{\id_A} \tensormin \pi_n}$ (benutze \autoref{satz:120}).
+		\item Es gilt $K_J \subset A \tensormin J$:
+		Sei $x_0 \in K_J$.
+		Falls $\psi \in S(C)$, so ist $\varphi \coloneqq \psi|_A$ bis auf Normierung ein Zustand auf $A$ und es gilt $(\psi \otimes {\id_B})(x_0^*x_0) = (\varphi \otimes {\id_B})(x_0^* x_0) \in J$.
+		Also gilt
+		\[
+			x_0 \in \set*{x \in C \tensormin B \given (\rho \otimes {\id_B})(x^*x) \in J \, \forall \rho \in S(C)} \StackText{3.}{=} \ker \enbrace*{{\id_C} \tensormin \pi_n} = C \tensormin J
+		\]
+		Damit ist $x_0 \in \enbrace*{A \tensormin B} \cap \enbrace*{C \tensormin J} \StackText{1.}{=} A \tensormin J$.\qedhere
+	\end{enumerate}
+\end{beweis}
 % section 2 (end)
 \newpage
 
 \section{Vollständig positive Abbildungen} % (fold)
 \label{sec:3}
-\todo[inline]{Hier fehlt noch einiges}
+\todo[inline]{RevChap 3}
 
-\begin{beispiel}
+\begin{erinnerungA}
+	Eine Abbildung $\varphi\colon A \to B$ induziert eine Abbildung $\varphi^\ssbrace{n} \colon M_n(A) \to M_n(B)$ durch $(a_{ij})_{ij} \mapsto \enbrace*{\varphi(a_{ij})}_{ij}$.
+	Dabei müssen $A$ und $B$ keine $C^*$-Algebren sein.
+	Sind $A$ und $B$ Vektorräume, so ist $\varphi^\ssbrace{n} = \varphi \otimes \id_{M_n}$ und aus der Linearität von $\varphi$ folgt die Linearität von $\varphi^\ssbrace{n}$.
+	Ist $\varphi$ ein $^*$-Homomorphismus, so ist auch $\varphi^\ssbrace{n}$ ein $^*$-Homomorphismus.
+	Wir wir in \autoref{bsp:35} sehen werden, muss $\varphi^\ssbrace{n}$ aber nicht positiv sein, wenn $\varphi$ positiv ist!
+\end{erinnerungA}
+
+\begin{definition}[{name=[positiv und vollständig positiv]},label=def:32]
+	Seien $A,B$ $C^*$-Algebren und $\varphi \colon A \to B$ linear
 	\begin{enumerate}[(i)]
-		\item 
-		\item 
-		\item 
+		\item $\varphi$ heißt \bet{positiv}, falls $\varphi(A_+) \subset B_+$.\index{positive Abbildung}
+		\item $\varphi$ heißt $\mathbold n$\bet{-positiv}, falls $\varphi^\ssbrace{n}$ positiv ist.\index{n-positive Abbildung@$n$-positive Abbildung}
+		\item $\varphi$ heißt \bet{vollständig positiv}, falls $\varphi$ $n$-positiv ist für alle $n \in \mathbb{N}$.\index{vollständig positive Abbildung}
+		\item $\varphi$ heißt \bet{vollständig beschränkt}, falls 
+		\[
+			\norm*{\varphi}_\vb \coloneqq \sup_{n \in \mathbb{N}} \norm*{\varphi^\ssbrace{n}} < \infty
+		\]
+ 	\end{enumerate}
+\end{definition}
+
+\begin{definition}[{name=[Operatorsystem]}]
+	Sei $A$ eine unitale $C^*$-Algebra. 
+	Ein unitaler selbstadjungierter Untervektorraum von $X$ heißt \Index{Operatorsystem}. 
+\end{definition}
+
+\begin{bemerkung}
+	\leavevmode
+	\begin{enumerate}[(i)]
+		\item Sei $X$ ein Operatorsystem.
+		Dann gilt $X = \Span X_+$: 
+		
+		Ist $x \in X$, so ist $x+x^*, i(x-x^*) \in X_\sa$ und es folgt
+		\[
+			x = \sfrac{1}{2}\enbrace[\big]{x + x^* - i \cdot i (x-x^*)} \implies x \in \Span X_\sa
+		\]
+		Ist $y \in X_\sa$, so sind $\norm*{y} \cdot \ind -y, \norm*{y} \cdot \ind \in X_+$ und es folgt
+		\[
+			y = \norm*{y} \cdot \ind - \enbrace[\big]{\norm*{y} \cdot \ind -y} \implies X_\sa = \Span X_+
+		\]
+		\item \autoref{def:32} ist auch sinnvoll für $\varphi \colon X \to Y$ linear, wobei $X$, $Y$ Operatorsysteme sind.
+	\end{enumerate}
+\end{bemerkung}
+
+\begin{beispiel}[label=bsp:35]
+	\leavevmode
+	\begin{enumerate}[(i)]
+		\item Ist $\varphi \colon A \to B$ ein $^*$-Homomorphismus, so ist $\varphi$ vollständig positiv.
+		Die Positivität folgt mit
+		\[
+			\varphi(x^*x) = \varphi(x)^* \varphi(x) \ge 0
+		\]
+		Da $\varphi^\ssbrace{n}$ auch ein $^*$-Homorphismus ist, ist auch $\varphi^\ssbrace{n}$ positiv für alle $n \in \mathbb{N}$.
+		\item Sei $\varphi \colon A \to B$ $n$-positiv und $v \in B$.
+		Dann ist die \Index{Kompression}
+		\mapdef{\varphi_v \colon A}{B}{a}{v^* \varphi(a) v}{}
+		$n$-positiv:
+		Es ist $(\varphi_v)^\ssbrace{n} = \enbrace*{\varphi^\ssbrace{n}}_{v \otimes \ind_{M_n}}$ und
+		\[
+			(\varphi_v)^\ssbrace{n}(x^* x) = \Underbracket{\enbrace*{v^* \otimes \ind_{M_n}} \Underbracket{\varphi^\ssbrace{n}(x^*x)}{\ge 0} \enbrace*{v \otimes \ind_{M_n}}}{\ge 0}
+		\]
+		Insbesondere gilt: Ist $\varphi$ vollständig positiv, so ist $\varphi_v$ vollständig positiv. Ebenso wenn $\varphi$ ein $^*$-Homomorphismus ist.
+		
+		Wir werden sehen: Jede vollständig positive Abbildung ist von dieser Form.
+		\item $\varphi \colon \mathbb{C}^k \to B$ ist positiv genau dann, wenn $b_i \coloneqq \varphi(e_i) \ge 0$ für $i=1,\ldots ,k$.
+		
+		$\varphi \colon \mathbb{C}^k \to C(X)$ ist unital und positiv genau dann, wenn $(b_i)_{i=1,\ldots ,k}$ Zerlegung der Eins ist.
 		\item $\tau \colon M_2 \to M_2$, $\tau(a)=a*$ ist positiv, aber nicht $2$-positiv.
 		
 		$\tau(a^*a)= a^*a \ge 0$ also positiv. Betrachtet man
