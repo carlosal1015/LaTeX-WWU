@@ -1,7 +1,7 @@
 %!TEX TS-program = xelatex
 %!TEX TS-options = -shell-escape
 \input{../!config/mitschrift3_report.tex}
-\newcommand{\fach}{Lie-Gruppen}
+\newcommand{\fach}{Liegruppen}
 \newcommand{\semester}{Sose 2016}
 \newcommand{\homepage}{http://wwwmath.uni-muenster.de/42/arbeitsgruppen/ag-differentialgeometrie/prof-dr-christoph-boehm/vorlesung-liegruppen/}
 
@@ -31,8 +31,6 @@
 \chapter{Grundlagen} % (fold)
 \label{cha:grundlagen}
 
-% chapter grundlagen (end)
-
 \section{Liegruppen und Liealgebren} % (fold)
 \label{sec:1}
 \begin{definition}[label=def:111,{name=[Liegruppe]}]
@@ -40,54 +38,59 @@
 	$m \colon G \times G \to G$, $(g,h) \mapsto g \cdot h$ und $^{-1} \colon G \to G$, $g \mapsto g^{-1}$ differenzierbar sind.
 \end{definition}
 
-Beispiele für Liegruppen: 
-\begin{itemize}
-	\item Die $1$-Sphäre $S^1 = \set*{e^{i \varphi} \in \mathbb{C} \given \varphi \in \mathbb{R}} = \set[\big]{z \in \mathbb{C} \given \abs*{z}=1} \simeq \set*{\begin{psmallmatrix*}[r]
-		\cos \varphi & - \sin \varphi \\
-		\sin \varphi & \cos \varphi
-	\end{psmallmatrix*} \given \varphi \in \mathbb{R}} = \SO(\mathbb{R})$
-	\item Der $n$-Torus $T^n = S^1 \times \ldots \times S^1 $ ($n$-mal)
-	\item Sei $r \in \mathbb{R}$ und $S^1_r := \set*{\enbrace{e^{i \varphi}, e^{i r \varphi}} \in S^1 \times S^1 \given \varphi \in \mathbb{R}}$.
-	Für $r \in \mathbb{Q}$ ist $S^1_r$ eine $1$-dimensionale Untermannigfaltigkeit des Torus $T^2= S^1 \times S^1$.
-	Für $r \in \mathbb{R} \setminus \mathbb{Q}$ ist $S^1_r$ \emph{keine} eingebettete Untermannigfaltigkeit, denn es gilt 
-	\[
-		\overline{S^1_r} = T^2
-	\]
-	\item Die $3$-Sphäre $S^3 = \set[\big]{q \in \mathbb{H} \given \abs*{q}=1}$, wobei $\mathbb{H}$ der Schiefkörper der \Index{Quaternionen}\footnote{siehe \url{https://de.wikipedia.org/wiki/Quaternion}} ist.
+\begin{beispiel*}[{name=[{Liegruppen}]}]
+	Es gibt zahlreiche Liegruppen: 
+	\begin{itemize}
+		\item Die $1$-Sphäre $S^1 = \set*{e^{i \varphi} \in \mathbb{C} \given \varphi \in \mathbb{R}} = \set[\big]{z \in \mathbb{C} \given \abs*{z}=1} \simeq \set*{\begin{psmallmatrix*}[r]
+			\cos \varphi & - \sin \varphi \\
+			\sin \varphi & \cos \varphi
+		\end{psmallmatrix*} \given \varphi \in \mathbb{R}} = \SO_\mathbb{R}(2)$
+		\item Der $n$-Torus $T^n = S^1 \times \ldots \times S^1 $ ($n$-faches karthesisches Produkt)
+		\item Sei $r \in \mathbb{R}$ und $S^1_r := \set*{\enbrace{e^{i \varphi}, e^{i r \varphi}} \in S^1 \times S^1 \given \varphi \in \mathbb{R}}$.
+		Für $r \in \mathbb{Q}$ ist $S^1_r$ eine $1$-dimensionale Untermannigfaltigkeit des Torus $T^2= S^1 \times S^1$.
+		Für $r \in \mathbb{R} \setminus \mathbb{Q}$ ist $S^1_r$ \emph{keine} eingebettete Untermannigfaltigkeit, denn es gilt 
+		\[
+			\overline{S^1_r} = T^2
+		\]
+		\emph{Diese Gruppe wird in Aufgabe 8 der Übungen genauer behandelt.}\todo{in den Anhang?}
+		\item Die $3$-Sphäre $S^3 = \set[\big]{q \in \mathbb{H} \given \abs*{q}=1}$, wobei $\mathbb{H}$ der Schiefkörper der \Index{Quaternionen}\footnote{siehe \url{https://de.wikipedia.org/wiki/Quaternion}} ist.
 	
-	Wir setzen $\mathbb{R}^3 := \im \mathbb{H} = \Span_\mathbb{R} (i,j,k)$.
-	Dann ist $\mathbb{R}^3$ invariant unter der adjungierten Darstellung von $S^3$, das heißt für alle $x \in \im \mathbb{H}$ und alle $q \in S^3$ gilt:
-	\[
-		\Ad(q)(x) := q \cdot x \cdot \Underbrace{q^{-1}}{=\overline{q}} \stackrel{!}{\in} \mathbb{R}^3 \qquad \text{ für } x \in \mathbb{R}^3 
-	\]
-	Man kann ferner zeigen, dass $\Ad(q)|_{\mathbb{R}^3} \subset SO(3)$.
-	Es gilt sogar $\Ad(S^3) = SO(3)$ und $\pi \colon S^3 \to SO(3)$, $q \mapsto \Ad(q)|_{\mathbb{R}^3}$ ist eine $2$-fache Überlagerung.
-	Dies folgt mit $\Ad(q)=\Ad(-q)$.
-	\item \Index{Orthogonale Gruppe} $\On(n) = \set*{A \in \Mat(n,\mathbb{R}) \given A A^T = E_n}$, $\SO(n) = \set[\big]{A \in \On(n) \given \det A=1}$
-	\item \Index{Unitäre Gruppe} $\Un(n) = \set[\big]{A \in \Mat (n,\mathbb{C}) \given A A^* =E_n}$, $\SU(n) = \set[\big]{A \in \Un(n) \given \det A=1}$
-	\item \Index{Allgemeine lineare Gruppe}: $\GL(n,\mathbb{K}) = \set[\big]{A \in \Mat(n,\mathbb{K}) \given A \text{ invertierbar}}$. \Index{Spezielle lineare Gruppe}:
-	$\SL(n,\mathbb{K}) = \set[\big]{A \in \GL(n,\mathbb{K}) \given \det A =1}$
-	\item Sind $G_1$ und $G_2$ Liegruppen, so ist auch $G_1 \times G_2$ eine Liegruppe.
-	\item Ist $G$ eine Liegruppe, so ist 
-	\[
-		G_0 :=  \set[\big]{g \in G \given \exists c \colon [0,1] \to G \text{ stetig mit } c(0)=e, c(1)=g}
-	\]
-	ein Liegruppe, die Zusammenhangskomponente der Eins.
-	Beispiel: $\On(n)=\SO(n) \mathbin{\dot{\cup}} I \cdot \SO(n)$, wobei $I$ eine Spiegelung ist.
-	Tatsächlich hat $\On(n)$ genau zwei Zusammenhangskomponenten, für $n=2$:
-	\[
-		\On(2) = \SO(2) \mathbin{\dot{\cup}} \set*{\begin{pmatrix*}[r]
-			\cos \varphi & \sin \varphi \\
-			\sin \varphi & - \cos \varphi
-		\end{pmatrix*} \given \varphi \in \mathbb{R}}
-	\]
-\end{itemize}
+		Wir setzen $\mathbb{R}^3 := \im \mathbb{H} = \Span_\mathbb{R} \set{i,j,k}$.
+		Dann ist $\mathbb{R}^3$ invariant unter der adjungierten Darstellung von $S^3$, das heißt für alle $x \in \im \mathbb{H}$ und alle $q \in S^3$ gilt:
+		\[
+			\Ad(q)(x) := q \cdot x \cdot \Underbrace{q^{-1}}{=\overline{q}} \stackrel{!}{\in} \mathbb{R}^3 \qquad \text{ für } x \in \mathbb{R}^3 
+		\]
+		Man kann ferner zeigen, dass $\Ad(q)|_{\mathbb{R}^3} \subset SO(3)$.
+		Es gilt sogar $\Ad(S^3) = SO(3)$ und $\pi \colon S^3 \to SO(3)$, $q \mapsto \Ad(q)|_{\mathbb{R}^3}$ ist eine $2$-fache Überlagerung.
+		Dies folgt mit $\Ad(q)=\Ad(-q)$.
+		
+		\emph{In Übungsaufgabe 3 werden diese Behauptungen bewiesen.}\todo{in den Anhang?}
+		\item \Index{Orthogonale Gruppe} $\On(n) = \set*{A \in \Mat(n,\mathbb{R}) \given A A^T = E_n}$, $\SO(n) = \set[\big]{A \in \On(n) \given \det A=1}$
+		\item \Index{Unitäre Gruppe} $\Un(n) = \set[\big]{A \in \Mat (n,\mathbb{C}) \given A A^* =E_n}$, $\SU(n) = \set[\big]{A \in \Un(n) \given \det A=1}$
+		\item \Index{Allgemeine lineare Gruppe} $\GL(n,\mathbb{K}) = \set[\big]{A \in \Mat(n,\mathbb{K}) \given A \text{ invertierbar}}$ für $\mathbb{K} \in  \set*{\mathbb{R},\mathbb{C},\mathbb{H}}$ und die \Index{Spezielle lineare Gruppe}
+		$\SL(n,\mathbb{K}) = \set[\big]{A \in \GL(n,\mathbb{K}) \given \det A =1}$
+		\item Sind $G_1$ und $G_2$ Liegruppen, so ist auch $G_1 \times G_2$ eine Liegruppe.
+		\item Ist $G$ eine Liegruppe, so ist 
+		\[
+			G_0 :=  \set[\big]{g \in G \given \exists c \colon [0,1] \to G \text{ stetig mit } c(0)=e, c(1)=g}
+		\]
+		ein Liegruppe, die Zusammenhangskomponente der Eins.
+		Beispiel: $\On(n)=\SO(n) \mathbin{\dot{\cup}} I \cdot \SO(n)$, wobei $I$ eine Spiegelung ist.
+		Tatsächlich hat $\On(n)$ genau zwei Zusammenhangskomponenten; im Fall $n=2$:
+		\[
+			\On(2) = \SO(2) \mathbin{\dot{\cup}} \set*{\begin{pmatrix*}[r]
+				\cos \varphi & \sin \varphi \\
+				\sin \varphi & - \cos \varphi
+			\end{pmatrix*} \given \varphi \in \mathbb{R}}
+		\]
+	\end{itemize}
+\end{beispiel*}
 
-\begin{definition}[{name=[Lieklammer]}]
+\begin{definition}[{name=[Liealgebra und Lieklammer]}]
 	Eine \Index{Liealgebra} über $\mathbb{R}$ oder $\mathbb{C}$ ist ein $\mathbb{K}$-Vektorraum $V$ zusammen mit einer bilinearen, schiefsymmetrischen Abbildung 
 	\(
 		[\cdot ,\cdot ] \colon V \times V \to V
-	\)
+	\),
 	welche die Jacobi-Identität 
 	\[
 		\benbrace[\big]{X, \benbrace*{Y,Z}} + \benbrace[\big]{Z, \benbrace*{X,Y}} + \benbrace[\big]{Y, \benbrace*{Z,X}} =0
@@ -96,14 +99,14 @@ Beispiele für Liegruppen:
 	Man nennt $\benbrace*{\cdot ,\cdot }$ eine \Index{Lieklammer}. 
 \end{definition}
 
-Wir werden zeigen, dass für eine Liegruppe $G$ der Tangentialraum $\Tmap_e G$ auf natürliche Art und Weise eine Liealgebra ist.
-Dazu ein wenig Notation: Für $g \in G$ betrachten wir Links- und Rechtsmultiplikation
+Wir werden zeigen, dass für eine Liegruppe $G$ der Tangentialraum am neutralen Element $\Tmap_e G$ auf natürliche Art und Weise eine Liealgebra ist.
+Dazu ein wenig Notation: Für $g \in G$ betrachten wir \bet{Links}- und \Index{Rechtsmultiplikation}\index{Linksmultiplikation}
 \begin{align}
 	\SwapAboveDisplaySkip
 	L_g \colon G \longrightarrow G \quad , \qquad &h \longmapsto g \cdot h \\
 	R_g \colon G \longrightarrow G \quad , \qquad &h \longmapsto h \cdot g
 \end{align}
-Die Links-, sowie die Rechtsmultiplikation sind Diffeomorphismen. 
+$L_g$ und $R_g$ sind nach Definition einer Liegruppe offensichtlich Diffeomorphismen.
 
 \begin{definition}[{name=[linksinvariantes Vektorfeld]}]
 	Ein Vektorfeld $X$ auf $G$ nennt man \Index{linksinvariant}, falls für alle $g,h \in G$ gilt
@@ -112,7 +115,7 @@ Die Links-, sowie die Rechtsmultiplikation sind Diffeomorphismen.
 	\]
 \end{definition}
 
-Offenbar ist ein linksinvariantes Vektorfeld $X$ schon eindeutig durch seinen Wert $X(e)$ bestimmt, denn 
+Offenbar ist ein solches Vektorfeld $X$ schon eindeutig durch seinen Wert $X(e)$ bestimmt, denn 
 \[
 	X(g) = X(g \cdot e) = \mathd(L_g)_e \cdot X(e)
 \]
@@ -124,36 +127,39 @@ Wir schreiben daher auch $X=X_v$ mit $X(e)=v \in \Tmap_e G$.
 \begin{beweis}
 	Nach \autoref{def:111} ist die Multiplikation $m \colon G \times G \to G$ differenzierbar, somit auch $\mathd m \colon \Tmap G \times \Tmap G \to\Tmap G$ und damit für alle $v \in \Tmap_e G$ auch $\tilde{X}_v \colon G \to \Tmap G$, $g \mapsto (\mathd m)_{(g,e)}(0,v)$.
 	Wir zeigen nun $\tilde{X}_v=X_v$.
-	Sei $\enbrace[\big]{g(t)}_{t \in (-1,1)}$ eine differenzierbare Kurve in $G$ mit $g(0)=e$ und $g'(0)=v$.
+	Sei dazu $\enbrace[\big]{g(t)}_{t \in (-1,1)}$ eine differenzierbare Kurve in $G$ mit $g(0)=e$ und $g'(0)=v$.
 	Dann gilt 
 	\[
-		(\mathd m)_{(g,e)}(0,v) = \diffd{}{t}\Big|_{t=0} m \enbrace[\big]{g,g(t)} = \diffd{}{t}\Big|_{t=0} L_g\enbrace[\big]{g(t)} = \mathd(L_g)_{g(0)} g'(0)
+		\tilde{X}_v(g)=(\mathd m)_{(g,e)}(0,v) = \diffd{}{t}\Big|_{t=0} m \enbrace[\big]{g,g(t)} = \diffd{}{t}\Big|_{t=0} L_g\enbrace[\big]{g(t)} = \mathd(L_g)_{g(0)} \cdot g'(0)
 		 =\mathd(L_g)_e v = X_v(g) \qedhere
 	\]
 \end{beweis}
 
-Sei $\mathfrak{g}$ die Menge der linksinvarianten Vektorfelder auf $G$.
+Wir bezeichnen mit $\mathfrak{g}$ (\enquote{g} in Frakturschrift) die Menge der linksinvarianten Vektorfelder auf $G$.
 
-\begin{korollar}
+\begin{korollar}[{name=[{Isomorphismus linkinv. Vektorfelder und Tangentialraum an $e$}]}]
 	Die Abbildung $L \colon \mathfrak{g} \to \Tmap_e G, X \mapsto X(e)$ ist ein linearer Isomorphismus.
 \end{korollar}
 \begin{beweis}
-	Die Injektivität ist klar.
+	Die Injektivität und Linearität sind klar.
 	Für die Surjektivität sei $v \in \Tmap_e G$ ein Tangentialvektor.
-	Nach \autoref{lem:114} ist $X_v$ ein glattes Vektorfeld auf $G$, es ist weiter linksinvariant, da
-	\begin{align}
-		X_v(g \cdot h) = \mathd(L_{g \cdot h})_e v = \mathd(L_g)_h \cdot (\mathd L_h)_e \cdot v = \mathd (L_g)_h \cdot X_v(h)
-	\end{align}
-	Ein Vektorfeld ist linksinvariant genau dann, wenn $X$ für alle $g \in G$ $L_g$-verwandt zu sich selbst ist, das heißt
+	Nach \autoref{lem:114} ist $X_v$ ein glattes Vektorfeld auf $G$. 
+	Es ist außerdem linksinvariant, da
 	\[
-		X \enbrace[\big]{L_g(h)} = (\mathd L_g)_h X(h) \qquad  \forall h \in G
+		X_v(g \cdot h) = \mathd(L_{g \cdot h})_e v = \mathd(L_g)_h \cdot (\mathd L_h)_e \cdot v = \mathd (L_g)_h \cdot X_v(h)
 	\]
-	Nach Diffgeo I ist die Lieklammer von $L_g$-verwandten Vektorfeldern wieder $L_g$-verwandt.
-	Die Lieklammer linksinvarianter Vektorfelder ist also wieder ein linksinvariantes Vektorfeld
+	Damit ist die Surjektivität gezeigt.
 \end{beweis}
 
-\begin{definition}[{name=[Lieklammer der Liealgebra]}]
-	Wir bezeichnen mit 
+Ein Vektorfeld $X$ ist linksinvariant genau dann, wenn $X$ für alle $g \in G$ $L_g$-verwandt zu sich selbst ist, das heißt
+\[
+	X \enbrace[\big]{L_g(h)} = (\mathd L_g)_h X(h) \qquad  \forall h \in G
+\]
+Nach Differentialgeometrie \RM{1}. ist die Lieklammer von $L_g$-verwandten Vektorfeldern auch wieder $L_g$-verwandt, also ist die Lieklammer linksinvarianter Vektorfelder wieder ein linksinvariantes Vektorfeld.
+Dies führt uns zu folgender Definition:
+
+\begin{definition}[{name=[Liealgebra einer Liegruppe]}]
+	Wir bezeichnen mit\marginnote{wir übertragen also die Liealgebra-Struktur von $\mathfrak{g}$ auf $\Tmap_e G$}
 	\[
 		\benbrace*{\cdot ,\cdot } \colon \Tmap_e G \times \Tmap_e G \to \Tmap_e G \quad ,\quad  (v,w) \longmapsto \benbrace*{X_v,X_w}(e)
 	\] 
@@ -161,27 +167,32 @@ Sei $\mathfrak{g}$ die Menge der linksinvarianten Vektorfelder auf $G$.
 	Da die Lieklammer differenzierbarer Vektorfelder die Jacobi-Identität erfüllt, ist $\benbrace*{\cdot ,\cdot }$ eine Lieklammer auf $\Tmap_e G$.
 \end{definition}
 
-Sei $G=\GL(n,\mathbb{K})$, $\mathbb{K}=\mathbb{R}$ ($\mathbb{K}=\mathbb{C}$).
-Da die Determinante $\det \colon G \to \mathbb{K}$ stetig ist, ist 
-\[
-	{\det}^{-1} \enbrace[\big]{\mathbb{R}\setminus \set*{0}} = \GL(n,\mathbb{K}) 
-\]
-eine offene Teilmenge des euklidischen Vektorraums $\Mat(n,\mathbb{K})$ und somit eine differenzierbare Mannigfaltigkeit.
-Wir bezeichnen mit $x_{ij} \colon G \to \mathbb{K}$ die Abbildung $(a_{kl})_{k,l} \mapsto a_{ij}$ für festes $(i,j)$ mit $1\le i,j\le n$.
-Da $x_{ij}$ linear ist, gilt für $A \in G$
-\[
-	(X_v)(x_{ij})(A) = (\mathd x_{ij})_A X_v(A) = x_{ij}(A \cdot v) = (A v)_{ij}
-\]
-Somit ist
-\begin{align}
-	\benbrace[\big]{X_v,X_w}(x_{ij})(e) = X_v(e) \enbrace[\big]{X_w(x_{ij})} - X_w(e) \enbrace[\big]{X_v(x_{ij})} &= v \enbrace[\Big]{\Underbrace{X_w(x_{ij})}{\mathclap{A \mapsto (A \cdot w)_{ij}}}} - w \enbrace*{X_v(x_{ij})} \\
-	&= (v w- w v)_{ij}
-\end{align}
-Für alle differenzierbaren Vektorfelder $X$ und Koordinaten $(x_1, \ldots ,x_n)=x$  gilt in einem Kartengebiet $U$
-\[
-	X = \sum_{i=1}^{n} X(x_i) \cdot \diff{}{x_i}
-\]
-Somit gilt $\benbrace*{X_v,X_w} =X(vw -wv)$ und daher $\benbrace*{v,w}_{\mathfrak{gl}(n,\mathbb{R})}=vw -wv$
+\begin{beispiel*}[{name=[{Lieklammer für allgemeine lineare Gruppe}]}]
+	Wir wollen die Lieklammer der Liegruppe $G=\GL(n,\mathbb{K})$ mit $\mathbb{K}=\mathbb{R}$ ausrechnen (für $\mathbb{K}=\mathbb{C}$ analog):
+	
+	Da die Determinante $\det \colon G \to \mathbb{K}$ stetig ist, ist 
+	\(
+		{\det}^{-1} \enbrace[\big]{\mathbb{K}\setminus \set*{0}} = \GL(n,\mathbb{K}) 
+	\)
+	eine offene Teilmenge des euklidischen Vektorraums $\Mat(n,\mathbb{K})$ und somit eine differenzierbare Mannigfaltigkeit.
+	Wir bezeichnen mit $x_{ij} \colon G \to \mathbb{K}$ die Abbildung $(a_{kl})_{k,l} \mapsto a_{ij}$ für festes $(i,j)$ mit $1\le i,j\le n$.
+	Da $x_{ij}$ linear ist, gilt für $A \in G$
+	\[
+		(X_v)(x_{ij})(A) = (\mathd x_{ij})_A X_v(A) = x_{ij}(A \cdot v) = (A v)_{ij}
+	\]
+	Somit ist
+	\begin{align}
+		\benbrace[\big]{X_v,X_w}(x_{ij})(e) = X_v(e) \enbrace[\big]{X_w(x_{ij})} - X_w(e) \enbrace[\big]{X_v(x_{ij})} &= v \enbrace[\Big]{\Underbrace{X_w(x_{ij})}{\mathclap{A \mapsto (A \cdot w)_{ij}}}} - w \enbrace[\big]{X_v(x_{ij})} \\
+		&= \diffd{}{t} \enbrace[\big]{(ew + t \cdot vw)_{ij} - (ev + t \cdot wv)_{ij}} \Big|_{t=0} \\
+		&= (v w- w v)_{ij}
+	\end{align}
+	Für ein beliebiges differenzierbares Vektorfeld $X$ und lokale Koordinaten $(x_1, \ldots ,x_n)=x$ gilt in einem Kartengebiet $U$
+	\[
+		X = \sum_{i=1}^{n} X(x_i) \cdot \diff{}{x_i}
+	\]
+	Somit gilt $\benbrace*{X_v,X_w} =X(vw -wv)$ und daher $\benbrace*{v,w}_{\mathfrak{gl}(n,\mathbb{R})}=vw -wv$.
+	Die Lieklammer auf der Liealgebra von $\GL_n(\mathbb{K})$ ist also durch den \Index{Matrix-Kommutator gegeben}.\todo{RevChap 1}
+\end{beispiel*}
 % subsection 11 (end)
 
 \section{Lieuntergruppen und Homomorphismen von Liegruppen} % (fold)
