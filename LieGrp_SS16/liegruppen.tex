@@ -191,7 +191,7 @@ Dies führt uns zu folgender Definition:
 		X = \sum_{i=1}^{n} X(x_i) \cdot \diff{}{x_i}
 	\]
 	Somit gilt $\benbrace*{X_v,X_w} =X(vw -wv)$ und daher $\benbrace*{v,w}_{\mathfrak{gl}(n,\mathbb{R})}=vw -wv$.
-	Die Lieklammer auf der Liealgebra von $\GL_n(\mathbb{K})$ ist also durch den \Index{Matrix-Kommutator gegeben}.\todo{RevChap 1}
+	Die Lieklammer auf der Liealgebra von $\GL_n(\mathbb{K})$ ist also durch den \Index{Matrix-Kommutator gegeben}.
 \end{beispiel*}
 % subsection 11 (end)
 
@@ -201,11 +201,11 @@ Dies führt uns zu folgender Definition:
 \begin{definition}[{name=[Liegruppen- und Liealgebrenhomomorphismen]}]
 	Seien $H,G$ Liegruppen.
 	\begin{enumerate}[1)]
-		\item Eine Abbildung $\Phi \colon H \to G$ nennt man \Index{Liegruppenhomomorphismus}, falls $\Phi$ differenzierbar ist und falls $\Phi$ ein Gruppenhomomorphismus ist.
+		\item Eine Abbildung $\Phi \colon H \to G$ nennt man \Index{Liegruppenhomomorphismus}, falls $\Phi$ differenzierbar und ein Gruppenhomomorphismus ist.
 		\item Einen Liegruppenhomomorphismus $\Phi \colon H \to G$ nennt man \Index{Liegruppenisomorphismus}, falls $\Phi$ bijektiv und $\Phi^{-1}$ differenzierbar ist. ($\Phi^{-1}$ ist auch Gruppenhomomorphismus)
-		\item \bet{Liealgebrenhomomorphismen}\index{Liealgebrenhomomorphismus} und Liealgebrenisomorphismen werden entsprechend definiert:  $L \colon \mathfrak{h} \to \mathfrak{g}$ linear mit
+		\item \bet{Liealgebrenhomomorphismen}\index{Liealgebrenhomomorphismus} und Liealgebrenisomorphismen werden entsprechend definiert:  $L \colon \mathfrak{h} \to \mathfrak{g}$ linear heißt \Index{Liealgebrahomomorphismus}, falls für alle $v,w \in \mathfrak{h}$ gilt:
 		\[
-			L \cdot \benbrace*{v,w}_{\mathfrak{h}} = \benbrace[\big]{L \cdot v, L \cdot w}_\mathfrak{g}
+			L \benbrace[\big]{v,w}_{\mathfrak{h}} = \benbrace[\big]{L v, L w}_\mathfrak{g}
 		\]
 	\end{enumerate}
 \end{definition}
@@ -217,11 +217,12 @@ Ist $\Phi \colon H \to G$ ein Liegruppenhomomorphismus, so kommutiert das folgen
 		H \rar["\Phi"] & G
 	\end{tikzcd}
 \]
-da
+denn es gilt
 \begin{align}
 	(\Phi \circ L_h)(\tilde{h}) = \Phi \enbrace*{L_h(\tilde{h})} = \Phi(h \cdot \tilde{h}) = \Phi(h) \cdot \Phi(\tilde{h}) = \enbrace*{L_{\Phi(h)} \circ \Phi}(\tilde{h})
 \end{align}
-Einen Homomorphismus $\Phi \colon G \to \GL(n,\mathbb{K})$ nennt man \bet{reelle}\index{reelle Darstellung} bzw. \Index{komplexe Darstellung} von $G$. ($\Phi_0(G)\equiv E_n$)
+Einen Homomorphismus $\Phi \colon G \to \GL(n,\mathbb{K})$ nennt man \bet{reelle}\index{Darstellung!reelle} bzw. \bet{komplexe Darstellung}\index{Darstellung!komplexe} von $G$.\todo{RevChap 1} 
+($\Phi_0(G)\equiv E_n$)
 Ist $\Phi \colon G \to \GL(n,\mathbb{K})$ injektiv, so besitzt die Gruppe $G$ die \Index{treue Darstellung} $\Phi(G)$ in $\GL(n,\mathbb{K})$.
 
 \begin{lemma}[label=lem:122]
