@@ -221,92 +221,101 @@ denn es gilt
 \begin{align}
 	(\Phi \circ L_h)(\tilde{h}) = \Phi \enbrace*{L_h(\tilde{h})} = \Phi(h \cdot \tilde{h}) = \Phi(h) \cdot \Phi(\tilde{h}) = \enbrace*{L_{\Phi(h)} \circ \Phi}(\tilde{h})
 \end{align}
-Einen Homomorphismus $\Phi \colon G \to \GL(n,\mathbb{K})$ nennt man \bet{reelle}\index{Darstellung!reelle} bzw. \bet{komplexe Darstellung}\index{Darstellung!komplexe} von $G$.\todo{RevChap 1} 
-($\Phi_0(G)\equiv E_n$)
+Einen Homomorphismus $\Phi \colon G \to \GL(n,\mathbb{K})$ nennt man \bet{reelle}\index{Darstellung!reelle} bzw. \bet{komplexe Darstellung}\index{Darstellung!komplexe} von $G$.\marginnote{$\Phi_0(G)\equiv E_n$}
 Ist $\Phi \colon G \to \GL(n,\mathbb{K})$ injektiv, so besitzt die Gruppe $G$ die \Index{treue Darstellung} $\Phi(G)$ in $\GL(n,\mathbb{K})$.
 
-\begin{lemma}[label=lem:122]
-	Sei $\Phi \colon H \to G$ ein Liegruppenhomomorphismus.
+\begin{lemma}[label=lem:122,{name=[{Differntial von Liegruppenhom. ist Liealgebrenhom.}]}]
+	Sei $\Phi \colon H \to G$ ein Liegruppenhomomorphismus.\marginnote{es folgt, dass man die Liealgebra einer Liegruppe als Funktor auffassen kann}
 	Dann ist $(\mathd\Phi)_e \colon \Tmap_e H \to \Tmap_e G$ ein Liealgebrenhomomorphismus.
 \end{lemma}
 \begin{beweis}
-	Seien $v_1,v_2 \in \Tmap_e H$ und $w_i := (\mathd \Phi)_e \cdot v_i$ für $i=1,2$.\marginnote{$\mathd \Phi=: L$}
+	Seien $v_1,v_2 \in \Tmap_e H$ und $w_i := (\mathd \Phi)_e \, v_i$ für $i=1,2$.
 	Zu zeigen
 	\[
-		(\mathd \Phi)_e \benbrace*{X_{v_1}, X_{v_2}} (e) = \benbrace*{X_{w_1},X_{w_2}}(e)
+		(\mathd \Phi)_e \benbrace[\big]{X_{v_1}, X_{v_2}} (e) = \benbrace[\big]{X_{w_1},X_{w_2}}(e)
 	\]
 	Wir zeigen, dass $X_{v_1}$ und $X_{w_1}$ $\Phi$-verwandt sind:
 	\begin{align}
-		(\mathd \Phi)_h X_{v_1}(h) = \enbrace*{\mathd \Phi}_h \cdot (\mathd L)_e \cdot v_1 &= \mathd \enbrace*{\Phi \circ L_h}_e \cdot v_1 \\
+		(\mathd \Phi)_h X_{v_1}(h) = \enbrace*{\mathd \Phi}_h (\mathd L_h)_e \cdot v_1 = \mathd \enbrace*{\Phi \circ L_h}_e \cdot v_1 
 		&= \mathd \enbrace*{L_{\Phi(h)} \circ \Phi}_e \cdot v_1 \\
-		&= \mathd \enbrace*{L_{L_{\Phi(h)}}} \cdot \enbrace*{\mathd \Phi}_e \cdot v_1 \\
-		&= \mathd \enbrace*{L_{\Phi(h)}} \cdot w_1 \\
+		&= \mathd \enbrace*{L_{\Phi(h)}}_e \cdot \enbrace*{\mathd \Phi}_e \cdot v_1 \\
+		&= \mathd \enbrace*{L_{\Phi(h)}}_e \cdot w_1 \\
 		&= X_{w_1}(\Phi(h))
 	\end{align}
-	Somit sind $X_{v_1}$ und $X_{w_1}$ $\Phi$-verwandt , analog für $v_2$ und $w_2$.
-	Mit DiffGeo \RM{1} sind dann auch $\benbrace*{X_{v_1}, X_{v_2}}$ und $\benbrace*{X_{w_1},X_{w_2}}$ $\Phi$-verwandt, das heißt
+	Somit sind $X_{v_1}$ und $X_{w_1}$ $\Phi$-verwandt und analog auch $X_{v_2}$ und $X_{w_2}$.
+	Nach Differentialgeometrie \RM{1}. sind dann auch $\benbrace*{X_{v_1}, X_{v_2}}$ und $\benbrace*{X_{w_1},X_{w_2}}$ $\Phi$-verwandt, das heißt es gilt
 	\[
-		(\mathd \Phi)_h \benbrace*{X_{v_1},X_{v_2}}(h) = \benbrace*{X_{w_1}, X_{w_2}} \enbrace*{\Phi(h)}
+		(\mathd \Phi)_h \benbrace[\big]{X_{v_1},X_{v_2}}(h) = \benbrace[\big]{X_{w_1}, X_{w_2}} \enbrace*{\Phi(h)}
 	\]
-	Mit $h=e$ folgt die Behauptung.
+	Mit $h=e$ folgt nun die Behauptung.
 \end{beweis}
 
-Sei $G$ eine Liegruppe und $i_g \colon G \to G$ gegeben durch $h \mapsto g \cdot h \cdot g^{-1}$ die \Index{Konjugation} mit $g$.
-Dann ist $i_g$ ein Liegruppenisomorphismus
-\begin{itemize}
-	\item $i_g(h) = \enbrace*{l_g \circ R_{g^{-1}}}(h) \Rightarrow$ differenzierbar
-	\item Die Gruppenhomomorphismuseigenschaft ist klar. 
-	\item $(i_g)^{-1}= i_{g^{-1}}$
-\end{itemize}
-Somit ist $\Ad(g) := \enbrace*{\mathd i_g}_e \colon \mathfrak{g} \to \mathfrak{g}$ ein Liealgebrenisomorphismus.
-Ist $G = \GL(n,\mathbb{K})$, so kann man $\Ad(g)$ einfach berechnen:
-Sei $(h(t))_{t \in (-\varepsilon,\varepsilon)}$ eine differenzierbare Kurve in $G$ mit $h(0)= E_n$, $h'(0)=v$.
-Dann gilt
-\begin{align}
-	\Ad(g)(v)= (\mathd i_g)_e \cdot h'(0) = \diffd{}{t}\Big|_{t=0} i_g (h(t)) = \diffd{}{t}\Big|_{t=0} g \cdot h(t) \cdot g^{-1}
-	&= g \cdot \diffd{}{t}\Big|_{t=0} h(t) \cdot g^{-1}\\
-	&= g \cdot v \cdot g^{-1}
-\end{align}
-Ferner ist $\Ad \colon G \to \GL\enbrace*{\Tmap_e G}$, $g \mapsto \Ad(g)$ ein Liegruppenhomomorphismus:
-\begin{align}
-	\Ad(g_1 \cdot g_2) = (\mathd i_{g_1 \cdot g_2})(e) = (\mathd i_{g_1})_e \cdot (\mathd i_{g_2})_e = \Ad(g_1) \circ \Ad(g_2)
-\end{align}
-$\Ad \colon G \to \GL(\mathfrak{g})$ heißt die \Index{adjungierte Darstellung} von $G$.
+\begin{beispiel*}[{name=[Konjugation und adjungierte Darstellung]}]
+	Sei $G$ eine Liegruppe und $i_g \colon G \to G$ gegeben durch $h \mapsto g \cdot h \cdot g^{-1}$ die \Index{Konjugation} mit $g$.
+	Dann ist $i_g$ ein Liegruppenisomorphismus:
+	\begin{itemize}[itemsep=0pt]
+		\item $i_g(h) = \enbrace*{l_g \circ R_{g^{-1}}}(h)$, also ist $i_g$ differenzierbar.
+		\item Die Gruppenhomomorphismuseigenschaft ist klar. 
+		\item Die inverese Abbildung ist offenbar gegeben durch $(i_g)^{-1}= i_{g^{-1}}$.
+	\end{itemize}
+	Somit ist $\Ad(g) := \enbrace*{\mathd i_g}_e \colon \mathfrak{g} \to \mathfrak{g}$ ein Liealgebrenisomorphismus.
+	
+	Ist $G = \GL(n,\mathbb{K})$, so kann man $\Ad(g)$ einfach berechnen:
+	Sei $(h(t))_{t \in (-\varepsilon,\varepsilon)}$ eine differenzierbare Kurve in $G$ mit $h(0)= E_n$ und $h'(0)=v$.
+	Dann gilt
+	\begin{align}
+		\Ad(g)(v)= (\mathd i_g)_e \cdot h'(0) = \diffd{}{t}\Big|_{t=0} i_g \enbrace[\big]{h(t)} = \diffd{}{t}\Big|_{t=0} g \cdot h(t) \cdot g^{-1}
+		&= g \cdot \diffd{}{t}\Big|_{t=0} h(t) \cdot g^{-1}\\
+		&= g \cdot v \cdot g^{-1}
+	\end{align}
+	Ferner ist für eine beliebige Liegruppe $G$ die Abbildung $\Ad \colon G \to \GL\enbrace*{\Tmap_e G}$, $g \mapsto \Ad(g)$ ein Liegruppenhomomorphismus:
+	\begin{align}
+		\Ad(g_1 \cdot g_2) = (\mathd i_{g_1 \cdot g_2})(e) = (\mathd i_{g_1})_e \cdot (\mathd i_{g_2})_e = \Ad(g_1) \circ \Ad(g_2)
+	\end{align}
+	$\Ad \colon G \to \GL(\mathfrak{g})$ heißt die \Index{adjungierte Darstellung} von $G$.
+\end{beispiel*}
 
-\begin{definition}[{name=[{Lieuntergruppe}]}]
+\begin{definition}[{name=[{Lieuntergruppe und Lieunteralgebra}]}]
 	Sei $G$ eine Liegruppe.
 	\begin{enumerate}[1)]
 		\item Mann nennt eine Teilmenge $H \subseteq G$ eine \Index{Lieuntergruppe}, falls 
 		\begin{itemize}
-			\item $H$ eine Untergruppe von $G$ ist
-			\item $H$ ist Liegruppe, wenn $H$ mit der von $G$ induzierten Multiplikation und Inversenbildung versehen wird.
-			\item Die Inklusionsabbildung $i \colon H \hookrightarrow G$ ist eine Immersion \marginnote{Immersion: injektives Differential}\\ 
+			\item $H$ eine Untergruppe von $G$ ist,
+			\item $H$ eine Liegruppe ist, wenn $H$ mit der von $G$ induzierten Multiplikation und Inversenbildung versehen wird und
+			\item die Inklusionsabbildung $i \colon H \hookrightarrow G$ eine Immersion ist \marginnote{Immersion: injektives Differential}\\ 
 			(nicht notwendigerweise eine Einbettung!).
 		\end{itemize}
-		\item Mann nennt einen Teilraum $\mathfrak{h} \subseteq \mathfrak{g}$ Lieunteralgebra, falls $\benbrace*{x,y}_\mathfrak{g} \in H$ für alle $x,y \in \mathfrak{h}$ gilt.
+		\item Mann nennt einen Teilraum $\mathfrak{h} \subseteq \mathfrak{g}$ \Index{Lieunteralgebra}, falls $\benbrace*{X,Y}_\mathfrak{g} \in \mathfrak{h}$ für alle $X,Y \in \mathfrak{h}$ gilt.
 	\end{enumerate}
 \end{definition}
- 
-Die Gruppe $S^1_r = \set*{\enbrace*{e^{i \varphi}, e^{i r \varphi}} \given \varphi \in \mathbb{R}}$ ist eine Lieuntergruppe von $T^2=S^1 \times S^1$.
-Für $r \in \mathbb{Q}$ ist $S^1_r$ eine (eingebettete) Untermannigfaltigkeit; für $r \in \mathbb{R}\setminus \mathbb{Q}$ ist $S^1_r$ \enquote{nur} eine immersierte Untermannigfaltigkeit, jedoch nicht eingebettet.
 
-$\SO(n) \subset \GL(n,\mathbb{R})$ ist eine Lieuntergruppe mit Liealgebra 
-\[
-	\mathfrak{so}(n) := \Tmap_e \SO(n) = \set*{X \in \Mat(n,\mathbb{R}) \given X^T=-X}
-\]
-Sei dazu $(A(t))_{t \in (-\varepsilon,\varepsilon)}$ eine differenzierbare Kurve mit $A(0)=E_n$ und $A'(0)=X$.
-Aus $A(t)^T \cdot A(t) \equiv E_n$ folgt durch Differenzieren $X^T + X =0$.
-Sei umgekehrt $X$ eine schiefsymmetrische Matrix.
-Setze dann 
-\[
-	A(t) =\exp(t X) = \sum_{k=0}^{\infty} \frac{(tX)^k}{k!} 
-\]
-Behauptung: $A(t) \in \SO(n)$.
-\begin{align}
-	A(t)^T \cdot A(t) = \enbrace*{\sum_{k=0}^{\infty} \frac{(tX)^k}{k!} }^T \cdot \sum_{k=0}^{\infty} \frac{(tX)^k}{k!} &\stackrel{X^T=-X}{= }\sum_{k=0}^{\infty} \frac{(-tX)^k}{k!}  \cdot \sum_{k=0}^{\infty} \frac{(tX)^k}{k!} \\
-	&= \exp(x-x) = \exp(0) =E_n
-\end{align}
-die folgt mit $\exp(x+y)= \exp(x) \exp(y)$, da $[x,y]=0$.
+\begin{beispiel*}[{name=[Lieuntergruppen]}]
+	\leavevmode
+	\begin{itemize}
+		\item Die Gruppe $S^1_r = \set*{\enbrace*{e^{i \varphi}, e^{i r \varphi}} \given \varphi \in \mathbb{R}}$ ist eine Lieuntergruppe von $T^2=S^1 \times S^1$.
+		Für $r \in \mathbb{Q}$ ist $S^1_r$ eine (eingebettete) Untermannigfaltigkeit; für $r \in \mathbb{R}\setminus \mathbb{Q}$ ist $S^1_r$ \enquote{nur} eine immersierte Untermannigfaltigkeit, jedoch nicht eingebettet.
+		
+		\emph{Diese Gruppe wird in Aufgabe 8 der Übungen genauer behandelt.}\todo{in den Anhang?}
+		\item $\SO(n) \subset \GL(n,\mathbb{R})$ ist eine Lieuntergruppe mit Liealgebra 
+		\[
+			\mathfrak{so}(n) := \Tmap_e \SO(n) = \set*{X \in \Mat(n,\mathbb{R}) \given X^T=-X}
+		\]
+		Sei dazu $(A(t))_{t \in (-\varepsilon,\varepsilon)}$ eine differenzierbare Kurve in $\SO(n)$ mit $A(0)=E_n$ und $A'(0)=X$.
+		Aus $A(t)^T \cdot A(t) \equiv E_n$ folgt durch Differenzieren $X^T + X =0$.
+		Sei umgekehrt $X$ eine schiefsymmetrische Matrix.
+		Setze dann 
+		\[
+			A(t) =\exp(t X) = \sum_{k=0}^{\infty} \frac{(tX)^k}{k!} 
+		\]
+		Behauptung: Es gilt $A(t) \in \SO(n)$.
+		\begin{align}
+			A(t)^T \cdot A(t) = \enbrace*{\sum_{k=0}^{\infty} \frac{(tX)^k}{k!} }^T \cdot \sum_{k=0}^{\infty} \frac{(tX)^k}{k!} \stackrel{X^T=-X}{=\joinrel=\joinrel=\joinrel=}\sum_{k=0}^{\infty} \frac{(-tX)^k}{k!}  \cdot \sum_{k=0}^{\infty} \frac{(tX)^k}{k!} 
+			&= \exp(tX-tX) \\[-3pt]
+			&= \exp(0) =E_n
+		\end{align}
+		Dies folgt mit $\exp(X+Y)= \exp(X) \exp(Y)$, falls $[X,Y]=0$.\todo{RevChap 1}
+	\end{itemize}
+\end{beispiel*}
 
 \begin{lemma}
 	Sei $G$ eine Liegruppe und $H \subset G$ eine Lieuntergruppe.
