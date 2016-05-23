@@ -1,0 +1,195 @@
+%%%% 23.05.2016 %%%%
+
+Falls das Definitionsgebiet und die Funktion $u$ invariant unter der entsprechenden Operation sind, so ergeben sich Lösungen mit Symmetrien, die eine einfache
+Differentialgleichung lösen.
+
+\begin{enumerate}[(i)]
+	\item Falls $u(t,x)=u(t-r,x)$ für alle $r \in \mathbb{R}$, dann $u(t,x)=v(x)$ für $v : \Omega \to \mathbb{R}$ und $ \Delta u = 0$.
+	\item Falls $u(t,x)= u(t,x-x_0)$ für alle $x_0 \in \mathbb{R}^n$, dann $u(t,x)= w(t)$ mit $w_t(t)=0$. Also ist $w$ konstant.
+	\item Falls $u(t,x)=u(t,kx)$ für alle $k \in \text{SO}(n)$, 
+	dann $u(t,x)=v(t,\abs{x})$ für ein $v : \mathbb{R}^+ \times \mathbb{R}^+ \to \mathbb{R}$ und $v$ erfüllt für $r= \abs{x} >0$ und $t >0$
+	\[
+		v_t(t,r) - \underset{=\Delta u(t,r)}{\underbrace{\left( \partial^2_r v(t,r)+ \frac{n-1}{r} \partial_r v(t,r) \right)}}=0.
+	\]
+
+	\item Falls $u(t,x)= \lambda^n u(\lambda^2 t, \lambda x)$ für alle $\lambda > 0$ (mit der speziellen Wahl $\lambda = t^{- \frac{1}{2}}$), so existiert $\tilde v : \mathbb{R}^n \to \mathbb{R}$ mit
+	\[
+		u(t,x) = t^{- \frac{1}{2}} \tilde v ( t^{- \frac{1}{2}}x) \qquad \forall\, t>0, x \in \mathbb{R}^n.
+	\]
+	Also
+	\[
+		- \frac{n}{2} \tilde v(y) - \frac{1}{2} y \cdot  \nabla \tilde v(y)- \Delta \tilde v(y) = 0 \qquad \text{ in } \mathbb{R}^n
+	\]
+	Mit $\lambda = t^{- \frac{1}{2}}$ gilt
+	\begin{align*}
+		u(t,x) &= \lambda^n u(\lambda^2 t, \lambda x) \\
+		&= t^{- \frac{1}{2}} u(t^{-1}t, t^{- \frac{1}{2}} x) \\
+		&= t^{- \frac{n}{2}} u(1, t^{- \frac{1}{2}} x) \\
+		&= t^{- \frac{n}{2}} \tilde v(t^{- \frac{1}{2}} x)
+	\end{align*}
+	\[
+		u_t(t,x) = - \frac{n}{2} t^{- \frac{n}{2} - 1} \tilde v(t^{- \frac{1}{2}} x) + t^{- \frac{n}{2}}  \nabla \tilde v(t^{- \frac{1}{2}} x) \cdot x 
+		\left( - \frac{1}{2} t^{- \frac{1}{2}-1} \right)
+	\]
+	Damit gilt
+	\[
+		\Delta_x u(t,x) = t^{- \frac{n}{2}} \Delta \tilde v(t^{- \frac{1}{2}} x) \cdot t^{-1}
+	\]
+	und somit mit $y = t^{- \frac{1}{2}} x \in \mathbb{R}^n$
+	\begin{align*}
+		u_t(t,x) - \Delta u(t,x) &= 0 \\
+		-\frac{n}{2} t^{- \frac{n}{2}-1} \tilde v(t^{- \frac{1}{2}} x) + t^{- \frac{n}{2}-1}  
+		\nabla  \tilde v(t^{- \frac{1}{2}} x) \cdot (-\frac{1}{2} x t^{- \frac{1}{2}}) - t^{- \frac{n}{2}-1}  \Delta \tilde v(t^{- \frac{1}{2}}x) &= 0 \\
+		-\frac{n}{2} \tilde v(t^{- \frac{1}{2}}x)+  \nabla \tilde v(t^{- \frac{1}{2}} x) \cdot \left( - \frac{1}{2} x t^{- \frac{1}{2}} \right)- \Delta \tilde v(t^{- \frac{1}{2}}x) &=0 .
+	\end{align*}
+	
+	\item Falls $u$ sowohl unter Rotationen im Raum als auch unter inhomogenen Dilatationen (wie in (iv)) ist, so existiert eine Funktion $w: \mathbb{R}^+ \to \mathbb{R}$ mit
+	\[
+		u(t,x)= t^{- \frac{n}{2}} w(t^{- \frac{1}{2}} \abs{x})
+	\]
+	für alle $t >0$ und $x \in \mathbb{R}^n$. $w$ erfüllt die folgende ODE:
+	\[
+		\underset{u_t}{\underbrace{-\frac{n}{2} w(s)- \frac{1}{2} s w'(s)}} - \underset{\Delta u}{\underbrace{\left( w''(s) + \frac{n-1}{s} w'(s) \right)}} 
+		= 0 \qquad \forall\, s >0 
+	\]
+	mit $s = t^{- \frac{1}{2}} \abs{x}$. Multipliziere diese nun mit $s^{n-1}$ so ergibt sich
+	\begin{align*}
+		- \frac{n}{2} w(s) s^{n-1} + \frac{1}{2} s^n w'(s) + w''(s) s^{n-1} + (n-1) s^{n-2} w'(s) &= 0 \\
+		\frac{1}{2} \left( w(s) s^n \right) + \left( w'(s) s^{n-1} \right)' &=0  \\
+		\frac{1}{2} w(s) s^n + w'(s) s^{n-1} = \text{Konstante} = 0
+	\end{align*}
+	und wir erhalten eine ODE
+	\[
+		w'(s) = \frac{1}{2}w(s)s \qquad \Rightarrow \qquad w(s) = c e^{-\frac{s^2}{4}} \qquad c \in \mathbb{R}
+	\]
+	und somit
+	\[
+		u(t,x) = t^{- \frac{n}{2}} w(t^{- \frac{1}{2}} \abs{x}) = c t^{- \frac{n}{2}} e^{- \frac{\abs{x}}{4t}}
+	\]
+\end{enumerate}
+
+\begin{definition}
+	Die Funktion $\Psi : \mathbb{R}^+ \times \mathbb{R}^n \to \mathbb{R}$ definiert als 
+	\[
+		\Psi(t,x) = \frac{1}{(4 \pi t)^{\frac{n}{2}}} e^{-\frac{\abs{x}^2}{4t}}
+	\]
+	heißt die Fundamentallösung der Wärmeleitungsgleichung
+\end{definition}
+\begin{bemerkung}
+	\item $ \Psi_t(t,x) = \Delta \Psi(t,x) = 0$ für alle $t>0$ und $x \in \mathbb{R}^n$.
+	\item Für die Anfangswerte gilt
+	\[
+		\lim_{t \to 0} \Psi(t,0) = \infty \qquad , \qquad \lim_{t \to 0} \Psi(t,x) = 0 \qquad \forall\, x \neq 0, x \in \mathbb{R}^n
+	\]
+	\item \[
+		\int_{\mathbb{R}^n}^{} \Psi(t,x) \,\mathrm{d}x = 1,
+	\]
+	denn mit Transformationssatz ($ y = \frac{x}{2 \sqrt{t}}$) gilt
+	\begin{align*}
+		\int_{\mathbb{R}^n}^{}\Psi(t,x) \,\mathrm{d}x &= \frac{1}{(4 \pi t)^{\frac{n}{2}}} \int_{\mathbb{R}^n}^{}e^{-\frac{\abs{x}^2}{4t}} \,\mathrm{d}x \\
+		&= \frac{1}{(\pi)^{\frac{n}{2}}} \int_{\mathbb{R}^n}^{} e^{- \abs{y}^2} \,\mathrm{d}y \\
+		&= (\pi)^{- \frac{n}{2}} \int_{\mathbb{R}^n}^{} e^{-(y_1^2 + \dots + y_n^2)} \,\mathrm{d}y_1 \dots \mathrm{d}y_n \\
+		&= (\pi)^{- \frac{n}{2}} \left( \underset{= \sqrt{\pi}}{\underbrace{\int_{\mathbb{R}}^{} e^{y_1^2} \,\mathrm{d}y_1}} \right)^n = 1
+	\end{align*}
+\end{bemerkung}
+Wir haben schon gesehen, dass wenn $u$ harmonisch auf $\Omega$ ist, dann gilt
+\[
+	u(x_0) = \fint_{B_r(x_0)}^{} u(x) \,\mathrm{d}x \qquad \forall\, B_r(x_0) \subset \subset \Omega.
+\]
+Wir wollen nun eine ähnliche Eigenschaft für kalorische Funktionenb beweisen. Dafür definieren wir
+\[
+	B_r(x_0) = \set[x \in \mathbb{R}^n]{\abs{x-x_0}< r} = \set[x \in \mathbb{R}^n]{\Psi(x-x_0) > \Phi(re_1)},
+\]
+wobei $\Phi$ die Fundamentallösung der WLG ist. Für $n \geq 3$ gilt in dieser Menge
+\[
+	\frac{1}{n(n-2)\omega_n} \abs{x- x_0}^{2-n} > \frac{1}{n(n-2)\omega_n} r ^{2-n}
+\]
+und dies ist äquivalent zu $\abs{x-x_0}<r$.\\
+$B_r(x_0)$ stellt genau die $\Phi(re_1)$- Superniveaumenge.
+
+\begin{definition}[Wärmeleitungskugel]
+	Sei $t_0 \in \mathbb{R}, x_0 \in \mathbb{R}^n$ und $r >0$. Wir definieren die Wärmeleitungskugel $W_r(t_0,x_0)$ an $(t_0,x_0)$ (nicht das Zentrum) als
+	\[
+		W_r(t_0,x_0) := \set[(t,x) \in \mathbb{R}^{n+1}]{ t<t_0 \text{ und } \Psi(t_0-t, x_0-x)> r^{-n}}
+	\]
+\end{definition}
+\begin{bemerkung}
+	\begin{enumerate}[(i)]
+		\item $(t_0,x_0)$ gehört nicht zu der offenen Menge $W_t(t_0,x_0)$, sondern zu $\partial W_r(t_0,x_0)$.
+		\item Monotonie: Für $r < \tilde r$ gilt $ W_r(t_0,x_0) \subset W_{\tilde r}(t_0,x_0)$.
+		\item Translationsverhalten: $W_k(t_0,x_0) = (t_0,x_0)+ W_r(0,0)$.
+		\item Parabolische Reskalierung: $(t,x) \in W_r(0,0)$ ist äquivalent zu $( r^{-2}t, r^{-1}x) \in W_1(0,0)$.
+		%% Begrüundung fehlt.
+		\item Explizite Darstellung von $W_r(0,0)$:
+		\[
+			W_r(0,0) = \set[(t,x) \in \mathbb{R}^{n+1}]{t<0, \Psi(-t,x)> r^{-n}}
+		\] 
+		\begin{align*}
+			& \qquad \Psi(-t,x) = \left( -4 \pi t \right)^{- \frac{1}{2}} e^{\frac{\abs{x}^2}{4t}} > r^{-n} \\
+			\Leftrightarrow & \qquad e^{\frac{\abs{x}^2}{4t}} > (-4 \pi t)^{\frac{n}{2}} \\
+			\Leftrightarrow & \qquad \frac{\abs{x}^2}{4t} > \lg \left( (-4 \pi t)^{\frac{n}{2}} r^{-n} \right) \\
+			\Leftrightarrow & \qquad \frac{\abs{x}^2}{4t} > \lg (-4 \pi t)^{\frac{n}{2}} + \lg (r^{-n}) = \frac{n}{2} \lg (-4 \pi t)- n \lg ( r)
+		\end{align*}
+		Definiere nun $b_r: \mathbb{R}^- \times \mathbb{R}^n \to \mathbb{R}$ mit
+		\[
+			b_r(t,x):= \frac{\abs{x}^2}{4t} + n \lg r - \frac{n}{2} \lg(-4 \pi t)
+		\]
+		Damit
+		\begin{align*}
+			W_r(0,0) &= \set[(t,x) \in \mathbb{R}^{n+1}]{b_r(t,x)>0} \\
+			&= \set[(t,x) \in \mathbb{R}^{n+1}]{- \frac{r^2}{4 \pi} < t < 0 , \abs{x}^2 < 2nt \lg \left( - \frac{r^2}{4 \pi t} \right)}
+		\end{align*}
+		$W_r(0,0)$ ist beschränkt ($W_r(x_0,t_0)= (x_0,t_0)+ W_r(0,0)$). Außerdem gilt
+		\[
+			\partial W_r(0,0) = \set{(0,0)} \cup \set[(t,x) \in \mathbb{R}^{n+1}]{b_r(t,x)=0}.
+		\]
+		\item Gewichtetes Volumen: $W_r(0,0)$ hat bezüglich des gewichteten Maßes $\abs{x}^2 t^{-2} \, \mathrm{d}t \, \mathrm{d}x$ ein Volumen von $4 r^n$ also
+		\[
+			\int_{W_r(0,0)}^{} \frac{\abs{x}^2}{t^2} \,\mathrm{d}t \, \mathrm{d}x = 4 r^n
+		\]
+	\end{enumerate}
+\end{bemerkung}
+
+\begin{lemma}
+	Sei $R >0$ und $u \in C^2_1(W_R(0,0))$. Definiert man $\psi : (0,R) \to \mathbb{R}$ mittels
+	\[
+		\psi(r) := \frac{1}{4 r^n} \int_{W_r(0,0)}^{} u(t,x) \frac{\abs{x}^2}{t^2} \,\mathrm{d}t \,\mathrm{d}x \qquad \text{ für } r \in (0,R)
+	\]
+	so gelten
+	\begin{enumerate}[(i)]
+		\item \[
+			\lim_{k \to 0^+} \psi(r) = u(0,0)
+		\]
+		\item \[
+			\psi'(r) = \frac{n}{r^{n+1}} \int_{W_r(0,0)}^{} (-u_t(t,x)+ \Delta u(t,x))b_r(t,x) \,\mathrm{d}t \,\mathrm{d}x,
+		\] wobei $b_r$ die Funktion aus der obigen Bemerkung (v) ist.
+	\end{enumerate}
+\end{lemma}
+\begin{beweis}
+	\begin{enumerate}[(i)]
+		\item Es gilt
+		\begin{align*}
+			\abs{ \psi(r) - w(0,0)} &= \abs{ \frac{1}{4r^n} \int_{W_r(0,0)}^{} (u(t,x)- u(0,0)) \frac{\abs{x}^2}{t^2} \,\mathrm{d}t \, \mathrm{d}x} \\
+			& \leq \frac{1}{4 r^n} \int_{W_r(0,0)}^{} \abs{u(t,x)-u(0,0)} \frac{\abs{x}^2}{t^2} \,\mathrm{d}t \, \mathrm{d}x \\
+			& \leq \sup_{W_r(0,0)} \abs{u(t,x)-u(0,0)} \to 0 \qquad \text{ für } r \to 0^+, \text{ da } u \text{ stetig ist.}
+		\end{align*}
+		\item Mit Transformation $t= r^2 s$ und $x = ry$ gilt
+		\begin{align*}
+			\psi(r) = \frac{1}{4 r^n} \int_{W_1(0,0)}^{}u(r^2s,ry) \frac{r \abs{y}^2}{r^4 s^2} r^2 r^n \,\mathrm{d}s \,\mathrm{d}y \\
+			&= \frac{1}{4} \int_{W_1(0,0)}^{} u(r^2s,ry) \frac{\abs{y}^2}{s^2} \,\mathrm{d}s \,\mathrm{d}y.
+		\end{align*}
+		Wegen $u \in C^2_1(W_R(0,0))$ ist die Funktion $r \mapsto  u(r^2s,ry)$ ist differenzierbar für alle $(s,y) \in W_1(0,0)$. Außerdem sind
+		$u(r^2s,ry)$ und $\diffd{}{r}u$ integrierbar über $W_1(0,0)$ und daraus folgt, dass die Ableitung von $\psi$ existiert mit
+		\[
+			\diffd{\psi}{r} = \frac{1}{4} \int_{W_1(0,0)}^{} \diffd{}{r} u(r^2s,ry) \frac{\abs{y}^2}{s^2} \,\mathrm{d}s \,\mathrm{d}y
+		\]
+		Berechne dazu nun
+		\begin{align*}
+			\diffd{}{r}u(r^2s,ry) = u_t(r^2s,ry)2rs+  \nabla u(r^2s,ry)\cdot y.
+		\end{align*}
+		und erhalte
+		\begin{align*}
+			\diffd{\psi}{r} = \frac{1}{4} \int_{W_1(0,0)}^{} ( u_t(r^2s,ry)2rs +  \nabla u(r^2s,ry) \cdot y) \frac{\abs{y}^2}{s^2} \,\mathrm{d}s \,\mathrm{d}y
+		\end{align*}
+	\end{enumerate}
+\end{beweis}
