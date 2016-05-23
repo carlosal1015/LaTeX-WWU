@@ -1211,7 +1211,7 @@ In diesem Abschnitt sind Kettenkomplexe immer $\mathbb{N}$-graduiert. (Allgemein
 	\)
 	mit den $k$-Zellen von $E$.
 	Insbesondere ist der zelluläre Kettenkomplex von $\tilde{E}$ ein Komplex von freien $\mathbb{Z}\pi$-Moduln.
-	Ist $E$ ein endlicher CW-Komplex, so ist $C^\cell_*(\tilde{E})$ als $\mathbb{Z}\pi$-Kettenkomplex von endlichem Typ.
+	Ist $E$ ein endlicher CW-Komplex, so ist $C^{\cell}_*(\tilde{E})$ als $\mathbb{Z}\pi$-Kettenkomplex von endlichem Typ.
 \end{bemerkung}
 
 \begin{definition}
@@ -1223,11 +1223,11 @@ In diesem Abschnitt sind Kettenkomplexe immer $\mathbb{N}$-graduiert. (Allgemein
 	\]
 \end{definition}
 \todo{ref}
-
+\todo[inline]{cell und sing aneinander anpassen!}
 \begin{lemma}
 	Sei $E$ ein CW-Komplex mit universeller Überlagerung $\tilde{E} \to E$.
 	Sei $\pi \coloneqq \pi_1(E)$ die Fundamentalgruppe.
-	Dann sind $C_*^\sing(\tilde{E})$ und $C_*^\cell(\tilde{E})$ als $\mathbb{Z}\pi$-Kettenkomplexe kettenhomotopieäquivalent.
+	Dann sind $C_*^\sing(\tilde{E})$ und $C_*^{\cell}(\tilde{E})$ als $\mathbb{Z}\pi$-Kettenkomplexe kettenhomotopieäquivalent.
 \end{lemma}
 \begin{beweis}
 	Wir wissen schon, dass die Homologie der beiden Kettenkomplexe übereinstimmt.
@@ -1238,15 +1238,113 @@ In diesem Abschnitt sind Kettenkomplexe immer $\mathbb{N}$-graduiert. (Allgemein
 	Dann ist $\partial(D_k) \subseteq D_{k-1}$ und wir erhalten einen Unterkomplex $D_* \subseteq C_*^\sing(E)$.
 	Weiter betrachten wir die Projektion 
 	\[
-		D_k \longrightarrow \ker \enbrace*{\partial \colon C_k^\sing \enbrace*{\tilde{E}^\ssbrace{k}, \tilde{E}^\ssbrace{k-1}} \to C^\sing_{k-1} \enbrace*{\tilde{E}^\ssbrace{k}, \tilde{E}^\ssbrace{k-1}}} \longrightarrow H_k \enbrace*{\tilde{E}^\ssbrace{k}, \tilde{E}^\ssbrace{k-1}} = C_k^\cell(\tilde{E})
+		D_k \longrightarrow \ker \enbrace*{\partial \colon C_k^\sing \enbrace{\tilde{E}^\ssbrace{k}, \tilde{E}^\ssbrace{k-1}} \to C^\sing_{k-1} \enbrace{\tilde{E}^\ssbrace{k}, \tilde{E}^\ssbrace{k-1}}} \longrightarrow H_k \enbrace*{\tilde{E}^\ssbrace{k}, \tilde{E}^\ssbrace{k-1}} = C_k^{\cell}(\tilde{E})
 	\]
+	Wir erhalten eine Kettenabbildung $p \colon D_* \to C_*^{\cell}(\tilde{E})$.
 	Es bleibt zu zeigen:
-	\begin{enumerate}[(1)]
-		\item $D_k$ ist projektiv für jedes $k$ (über $\mathbb{Z}\pi$)
-		\item Die Inklusion $D_* \to C_*^\sing(\tilde{E})$ induziert einen Isomorphismus in Homologie.
-		\item Die Projektion $D_* \to C_*^\cell(\tilde{E})$ induziert einen Isomorphismus in Homologie.
+	\begin{enumerate}[(1),itemsep=1pt]
+		\item $D_k$ ist projektiv für jedes $k$ über $\mathbb{Z}\pi$,
+		\item die Inklusion $D_* \to C_*^\sing(\tilde{E})$ induziert einen Isomorphismus in Homologie und
+		\item die Projektion $D_* \to C_*^{\cell}(\tilde{E})$ induziert einen Isomorphismus in Homologie.
 	\end{enumerate}
+	Wir zeigen an dieser Stelle nur (1): 
+	Der Komplex $C^\sing_* \enbrace*{\tilde{E}^\ssbrace{k}, \tilde{E}^\ssbrace{k-1}}$ hat keine Homologie in Grad kleiner als $k$.
+	Es folgt, dass $Z_k = \ker \partial \colon C^\sing_k\enbrace*{\tilde{E}^\ssbrace{k}, \tilde{E}^\ssbrace{k-1}} \to C^\sing_k \enbrace*{\tilde{E}^\ssbrace{k}, \tilde{E}^\ssbrace{k-1}}$ projektiv ist:
+	\[
+		\begin{tikzcd}[sep=1.9em]
+			0 & C_0^\sing \enbrace*{\tilde{E}^\ssbrace{k},\tilde{E}^\ssbrace{k-1}} \lar & C_1^\sing\enbrace*{\tilde{E}^\ssbrace{k},\tilde{E}^\ssbrace{k-1}} \lar[two heads]& \ldots \lar & C_k^\sing \enbrace*{\tilde{E}^\ssbrace{k},\tilde{E}^\ssbrace{k-1}} \lar & Z_K \lar & 0 \lar 
+		\end{tikzcd}
+	\]
+	Induktiv können wir diese exakte Folge verkürzen (indem wir die Surjektion in einem projektiven Moduln spalten) und erhalten, dass $Z_k$ ein direkter Summand in $C^\sing_k \enbrace*{\tilde{E}^\ssbrace{k},\tilde{E}^\ssbrace{k-1}}$ und damit projektiv ist.
+	Die Projektivität von $D_k$ folgt nun aus der kurzen exakten Folge
+	\[
+		\begin{tikzcd}
+			0 \rar & C^\sing_k \enbrace*{\tilde{E}^\ssbrace{k-1}}\rar & D_k \rar[two heads] & Z_k \rar & 0 
+		\end{tikzcd} \qedhere
+	\]
 \end{beweis}
+
+\begin{lemma}[label=lem:endl_dom_iso_fundamental]
+	Sei $X$ endlich dominiert und wegzusammenhängend.
+	Dann gibt es eine endliche Dominierung 
+	\(
+		\begin{tikzcd}[cramped,sep=small] 
+			X \rar["i"] & E \rar["p"] & X 
+		\end{tikzcd}
+	\)
+	mit $E$ wegzusammenhängend, so dass $p$ und $i$ Isomorphismen von Fundamentalgruppen induzieren.
+\end{lemma}
+\begin{beweis}
+	Offenbar ist $p_* \colon \pi_1(E) \to \pi_1(X)$ surjektiv.
+	Ist $\benbrace*{\alpha \colon S^1 \to E}$ im Kern von $p_*$, so gibt es eine stetige Fortsetzung $\beta \colon D^2 \to X$ von $p \circ \alpha$ und wir können dann $p$ auf $E \cup_\alpha D^2$ fortsetzen.
+	Es ist dann $\pi_1(E \cup_\alpha D^2) \cong \sfrac{\pi_1(E)}{\langle\langle \alpha\rangle\rangle}$.
+	Es bleibt zu zeigen: $\ker p_*$ ist normal endlich erzeugt.
+	
+	Da $p_*$ durch $i_*$ gespalten wird, ist $\pi_1(E) \cong \ker p_* \rtimes \pi_1(X)$.
+	Da $E$ ein endlicher CW-Komplex ist, ist $\pi_1(E)$ endlich erzeugt.
+	Wir finden dann auch ein endliches Erzeugendensystem 
+	\[
+		S = S_K \cup S_X
+	\]
+	mit $S_K \subseteq \ker p_*$ und $S_X \subseteq \pi_1(X)$.
+	Jedes Element von $G$ lässt sich schreiben als Produkt von Elementen in $S_K$ und $S_X$.
+	Da für $a \in S_X$ und $b \in S_K$ gilt $a \cdot b = b^a \cdot a$, lässt sich jedes $g \in \pi_1(E)$ schreiben als $g = \tilde{b} \cdot \tilde{a}$ mit $\tilde{b} \in \langle\langle S_K \rangle\rangle$, $\tilde{a} \in \langle S_X \rangle$.
+	Ist $g \in \ker p_*$, so folgt $g \in \langle\langle S_K \rangle\rangle$.
+	Also wird $\ker p_*$ normal von $S_K$ erzeugt.
+\end{beweis}
+
+\begin{bemerkung}
+	Sei $X$ endlich dominiert mit universeller Überlagerung $\tilde{X} \to X$.
+	Sei $\pi = \pi_1(X)$.
+	Dann ist $C^\sing_*(\tilde{X})$ als $\mathbb{Z}\pi$-Kettenkomplex endlich dominiert.
+	Sei \(
+		\begin{tikzcd}[cramped,sep=small] 
+			X \rar["i"] & E \rar["p"] & X 
+		\end{tikzcd}
+	\) wie in \autoref{lem:endl_dom_iso_fundamental}.
+	Dann wird $C^\sing_*(\tilde{X})$ durch $C^\sing_*(\tilde{E})$ dominiert.
+	Nun ist $C^\sing_*(\tilde{E}) \cong C^{\cell}_*(\tilde{E})$ und daher wird $C^\sing_*(\tilde{X})$ durch den Kettenkomplex $C^{\cell}_*(\tilde{E})$ von endlichem Typ von freien $\mathbb{Z}\pi$-Moduln dominiert.
+\end{bemerkung}
+
+\begin{definition}[{name=[{Walls Endlichkeitshindernis}]}]
+	Sei $X$ ein endlich dominiert wegzusammenhängender Raum.
+	Sei $\pi \coloneqq \pi_1 X$.
+	\Index{Walls Endlichkeitshindernis} ist definiert als 
+	\[
+		\tilde{\chi}(X) \coloneqq \tilde{\chi} \enbrace*{C^\sing_*(\tilde{X})} \in \tilde{K}_0(\mathbb{Z} \pi)
+	\]
+\end{definition}
+
+\begin{satz}[name={Wall}]
+	Sei $X$ endlich dominiert und wegzusammenhängend.
+	Dann ist $X$ genau dann homotopieäquivalent zu einem endlichen CW-Komplex, wenn $\tilde{\chi}(X)=0 \in \tilde{K}_0(\mathbb{Z}\pi)$ ist.
+\end{satz}
+\begin{beweis}[{name={der einfachen Richtung}}]
+	Ist $X$ homotopieäquivalent zu einem endlichen CW-Komplex $E$, so ist $C^\sing_*(\tilde{X}) \simeq C^{\cell}_*(\tilde{E})$ und 
+	\[
+		\tilde{\chi} \enbrace*{C^\sing_*(\tilde{X})} = \tilde{\chi} \enbrace*{C^{\cell}_*(\tilde{E})} = 0 \in \tilde{K}_0(\mathbb{Z}\pi) \qedhere
+	\]
+\end{beweis}
+
+\begin{definition}
+	Eine stetige Abbildung $f \colon X \to Y$ heißt \bet{$r$-zusammenhängend}\index{r-zusammenhängend@$r$-zusammenhängend}, falls $f_* \colon \pi_k \to \pi_k(Y)$ bijektiv ist für $k < r$ und surjektiv für $k =r$.
+\end{definition}
+
+\begin{definition}
+	Für $f \colon X \to Y$ stetig definieren wir 
+	\[
+		\pi_k(f) \coloneqq \pi_k \enbrace*{\Zyl(f),X} \qquad \quad H_k(f) \coloneqq H_k \enbrace*{\Zyl(f),X}
+	\]
+\end{definition}
+
+\begin{bemerkung}
+	\begin{enumerate}[1)]
+		\item Für $(X,A)$ ist $\pi_k(X,A)$ definiert als Homotopieklassen von punktierten Abbildungen $(D^k,S^{k-1}) \to (X,A)$.
+	\end{enumerate}
+\end{bemerkung}
+
+
+
 % section 4 (end)
 
 \cleardoubleoddemptypage
