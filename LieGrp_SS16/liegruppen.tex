@@ -1451,7 +1451,7 @@ $S_2 = \benbrace*{S_1,S_1} = \benbrace*{\mathfrak{g},\mathfrak{g}} = \mathfrak{g
 Somit ist $S$ $3$-Schritt auflösbar.
 Man zeigt aber leicht, dass $S$ \emph{nicht} nilpotent ist.
 
-\begin{lemma}
+\begin{lemma}[label=lem:213]
 	Sei $\mathfrak{g}$ eine Liealgebra mit entweder 
 	\begin{itemize}
 		\item $\mathfrak{g}^k=0$, $\mathfrak{g}^{k-1} \neq 0$ (nilpontent), oder
@@ -1542,7 +1542,190 @@ Man zeigt aber leicht, dass $S$ \emph{nicht} nilpotent ist.
 		Die Behauptung folgt für ausreichend großes $l$.
 	\end{enumerate}
 \end{beweis}
- 
+
+\begin{beispiel*}
+	\begin{itemize}
+		\item \[
+			\mathrm{o}(n,\mathbb{K}) = \set*{A \in \Mat(n,\mathbb{K}) \given A_{ij}=0 \, \forall 1 \le i<j \le n}
+		\]
+		ist eine auflösbare Liealgebra mit $\mathrm{o}(n,\mathbb{K})_n =0$, die \emph{nicht} nilpotent ist.
+		\item $\mathrm{n}(n,\mathbb{K}) = \set*{A \in \mathrm{o}(n,\mathbb{K}) \given A_{ii}=0 \enspace i=1, \ldots ,n}$ ist eine nilpotente Liealgebra mit $\mathrm{n}(n,\mathbb{K})_{n-1}=0$
+		\item Die Liealgebra 
+		\[
+			\mathfrak{g} = \set*{\begin{pmatrix}
+				\alpha & \beta \\ 0 & 0
+			\end{pmatrix} \given \alpha, \beta \in \mathbb{R}}
+		\]
+		ist auflösbar, aber nicht nilpotent(!).
+		Ferner ist die Sequenz
+		\[
+			\begin{tikzcd}
+				0 \rar & wird stressig
+			\end{tikzcd}
+		\]
+		\todo{Sequenz fertig machen mit Matrizen in tikzcd}
+		exakt.
+		Ferner sind $1$-dimensionale Liealgebren abelsch, somit nilpotent.
+		Somit ist \autoref{lem:213} 6) nicht richtig für nilpotente Algebren.
+	\end{itemize}
+\end{beispiel*}
+
+\begin{definition}
+	Sei $\mathfrak{g}$ eine Liealgebra.
+	\begin{enumerate}[1),itemsep=0pt]
+		\item Das \Index{Radikal} $\rad (\mathfrak{g})$ von $\mathfrak{g}$ ist das eindeutig bestimmte maximale auflösbare Ideal von $\mathfrak{g}$.
+		\item Das \Index{Nilideal} $\nil (\mathfrak{g})$ von $\mathfrak{g}$ ist das eindeutig bestimmte maximale nilpotente Ideal von $\mathfrak{g}$.
+		\item Man nennt $\mathfrak{g}$ \Index{halbeinfach}, falls $\rad(\mathfrak{g}) = \set*{0}$ ist.
+		\item Man nennt $\mathfrak{g}$ reduktiv, falls $\nil(\mathfrak{g})= \set*{0}$ ist.
+		\item Man nennt $\mathfrak{g}$ \Index{einfach}, falls $\set*{0}$ und $\mathfrak{g}$ die einzigen Ideale von $\mathfrak{g}$ sind und $\dim \gamma > 1$ ist.
+	\end{enumerate}
+\end{definition}
+
+\begin{bemerkung*}
+	\begin{itemize}
+		\item Es ist $\nil(\mathfrak{g}) \subseteq \rad(\mathfrak{g}) \subseteq \mathfrak{g}$
+		\item Eine Liealgebra $\mathfrak{g}$ ist genau dann halbeinfach, wenn $\mathfrak{g}$ keine abelschen Ideale besitzt:
+		
+		Wenn $0\neq\mathfrak{k}$ ein abelsches Ideal ist, so ist $\rad(\mathfrak{g}) \neq 0$.
+		Ist andersrum $\rad(\mathfrak{g})\neq 0$, so ist $\rad(\mathfrak{g})_{k-1}$ ein abelsches Ideal.
+	\end{itemize}
+\end{bemerkung*}
+
+\begin{proposition}
+	Sei $\mathfrak{g}$ eine Liealgebra.
+	Dann ist $\overline{\mathfrak{g}} \coloneqq \sfrac{\mathfrak{g}}{\rad(\mathfrak{g})}$ halbeinfach.
+\end{proposition}
+\begin{beweis}
+	Die Quotientenabbildung $\pi \colon \mathfrak{g} \to \overline{\mathfrak{g}}$ ist ein Liealgebrenhomomorphismus.
+	Somit ist für jedes Ideal $\overline{\mathfrak{i}} \subset \overline{\mathfrak{g}}$ das Urbild $\mathfrak{i} = \pi^{-1}(\overline{\mathfrak{i}})$ ebenfalls ein Ideal:
+	\[
+		\benbrace*{\pi^{-1}(\overline{\mathfrak{i}}), \mathfrak{g}} \subset \pi^{-1}(\overline{\mathfrak{i}}) \iff \pi \enbrace*{\benbrace*{\pi^{-1}(\overline{\mathfrak{i}}), \mathfrak{g}}} \subset \overline{\mathfrak{i}}
+	\]
+	Weiter ist $\benbrace*{\overline{\mathfrak{i}}, \overline{\mathfrak{g}}} \subset \overline{\mathfrak{i}}$ ein Ideal und somit ist die Sequenz
+	\[
+		\begin{tikzcd}
+			0 \rar & \rad(\mathfrak{g}) \rar & \pi^{-1}(\overline{\mathfrak{i}}) \rar &\overline{\mathfrak{i}} \rar & 0
+		\end{tikzcd}
+	\] 
+	exakt.
+	Ist also $\overline{\mathfrak{i}}$ ein auflösbares Ideal von $\overline{\mathfrak{g}}$, so ist nach \autoref{lem:213} 6) auch $\pi^{-1}(\overline{\mathfrak{i}})$ ein auflösbares Ideal von $\mathfrak{g}$.
+	Aus der Maximalität von $\rad(\mathfrak{g})$ folgt $\overline{\mathfrak{i}}=0$.
+\end{beweis}
+
+\begin{satz}[{name={Levi-Mallev}},label=satz:216]
+	Sei $\mathfrak{g}$ eine Liealgebra.
+	Dann existiert eine bis auf innere Automorphismen eindeutige halbeinfache Liealgebra $\mathfrak{h} \subset \mathfrak{g}$ mit 
+	\[
+		\mathfrak{g} = \mathfrak{h} \oplus  \rad(\mathfrak{g})
+	\]
+\end{satz}
+
+\begin{lemma}[label=lem:217]
+	Sei $\mathfrak{g} \subset \mathfrak{gl}(V)$ eine Lieunteralgebra bestehend aus nilpotenten Elementen, das heißt für alle $A \in \mathfrak{g}$ existiert ein $k \in \mathbb{N}$ mit $A^k=0$.
+	Dann existiert ein Vektor $v \in V \setminus \set*{0}$ mit $A \cdot v = 0$ für alle $A \in \mathfrak{g}$.
+\end{lemma}
+\begin{beweis}
+	\emph{Vorüberlegung:} Sei $X \in \mathfrak{g}$. Dann ist $\ad_X(Y) = X Y -Y X$ und es gilt
+	\begin{align}
+		(\ad_X)^2(Y) &= X \enbrace*{X Y -YX} - \enbrace*{XY -YX}X = X^2 Y - 2XYX+ YX^2 \\
+		(\ad_X)^3(Y) &= X \enbrace*{X^2 Y - 2XYX+ YX^2}- \enbrace*{X^2 Y - 2XYX+ YX^2}X \\
+		&= X^3 y - 3 X^2YX+3 XYX^2 - YX^3
+	\end{align}
+	Induktiv zeigt man: Gilt $X^k=0$, so folgt $(\ad_X)^{2k}=0$ (!).
+	
+	Nur zur eigentlichen Behauptung: Per Induktion nach $n=\dim \mathfrak{g}$. 
+	Für $n=1$ sei $A \in \mathfrak{g} \setminus \set*{0}$.
+	Ist $A$ invertierbar, so auch $A^k$ für alle $k \in \mathbb{N}$, was im Widerspruch zur Nilpotenz von $A$ steht.
+	Für den Induktionsschritt sei $\dim \mathfrak{g} = n+1$.
+	Sei $\mathfrak{h}$ eine Unteralgebra maximaler Dimension ($\le n$) von $\mathfrak{g}$ (1-dimensionlae Unterräume sind Unteralgebren).
+	Wir werden zeigen, dass $\dim \mathfrak{h}=n$ ist.
+	
+	Wegen $\ad_X(\mathfrak{h}) \subset \mathfrak{h}$ für alle $X \in \mathfrak{h}$ gilt nach der Zerlegung aus \autoref{satz:216}
+	\[
+		\End(\mathfrak{g}) \ni \ad_X = \begin{pmatrix}
+			A_{11} & A_{12} \\ 0 & A_{22}
+		\end{pmatrix}
+	\]
+	Beobachtung:
+	\[
+		\begin{pmatrix}
+			A_{11} & A_{12} \\ 0 & A_{22}
+		\end{pmatrix}^2 = \begin{pmatrix}
+			A_{11}^2 & * \\ 0 & A_{22}^2
+		\end{pmatrix}
+	\]
+	und so weiter. 
+	Damit ist $\ad_X$ nilpotent und somit auch $\ad_X|_{\sfrac{\mathfrak{g}}{\mathfrak{h}}}$.
+	Ferner gilt
+	\[
+		\benbrace*{\begin{pmatrix}
+			A_{11} & A_{12} \\ 0 & A_{22}
+		\end{pmatrix}, \begin{pmatrix}
+			B_{11} & B_{12} \\ 0 & B_{22}
+		\end{pmatrix}} = \begin{pmatrix}
+			\benbrace*{A_{11},B_{11}} & * \\ 0 & \benbrace*{A_{22},B_{22}}
+		\end{pmatrix}
+	\]
+	Somit ist 
+	\[
+		\ad(\mathfrak{g}) = \set*{(\ad_X)\big|_{\sfrac{\mathfrak{g}}{\mathfrak{h}}} \given X \in \mathfrak{h}}
+	\]
+	eine nilpotente Unteralgebra von $\mathfrak{gl}(\sfrac{\mathfrak{g}}{\mathfrak{h}})$.
+	Wegen $\dim \sfrac{\mathfrak{g}}{\mathfrak{h}} \le n$ existiert nach Induktionsvorraussetzung $\overline{A} \in \sfrac{\mathfrak{g}}{\mathfrak{h}}$ mit $(\ad_X)|_{\sfrac{\mathfrak{g}}{\mathfrak{h}}}(\overline{A})=0$ für alle $X \in \mathfrak{h}$.
+	Somit existiert $A \in \mathfrak{g}$ mit 
+	\begin{equation}
+		\ad_X(A) \subset \mathfrak{h} \label{eq:217} \tag{*}
+	\end{equation}
+	für alle $X \in \mathfrak{h}$.
+	Somit ist $\mathfrak{h} \oplus \langle A \rangle_\mathbb{R}$ eine Unteralgebra von $\mathfrak{g}$ (mit \eqref{eq:217} folgt $\benbrace*{\mathfrak{h},A}\subset \mathfrak{h}$).
+	Da $\dim \mathfrak{h}$ maximal war, folgt $h \oplus \langle A \rangle_\mathbb{R} = \mathfrak{g}$ und somit auch $\dim \mathfrak{h}=n$.
+	Obige Behauptung folgt.
+	
+	Zurück zur Induktion:
+	Wir setzen
+	\[
+		W \coloneqq \set*{v \in V \given A(v)=0 \, \forall A \in \mathfrak{h}}
+	\]
+	mit $\mathfrak{h} \subsetneq \mathfrak{g}$, $\dim \mathfrak{h}=n$ Unteralgebra.
+	Da $\mathfrak{h}$ als Teilmenge von $\mathfrak{g}$ aus nilpotenten Elementen besteht, gilt nach Induktionsvorraussetzung $W \neq \set*{0}$.
+	Der Endomorphismus $A \in \mathfrak{g} \subset \mathfrak{gl}(V)$ lässt $W$ invariant:
+	\[
+		0 = \Underbracket{\benbrace*{X,A}}{\StackText{\eqref{eq:217}}{\in} \mathfrak{h}}(w) = X \enbrace*{A(w)} - A \enbrace*{X(w)} = X (A(w))
+	\]
+	für alle $X \in \mathfrak{h}$ und $w \in W$. Damit ist $A(W)\subset W \subset V$.
+	Wir schreiben nun mit $V= W \oplus W^\bot$
+	\[
+		A = \begin{pmatrix}
+			A|_W & * \\ 0 & A|_{W^\bot}
+		\end{pmatrix}
+	\]
+	Da $A|_W$ nilpotent ist, existiert ein Vektor $w \in W$ mit $A(w)=0$ und nach Definition von $W$ gilt $X(w)=0$ für alle $X \in \mathfrak{h}$.
+	Wegen $\mathfrak{g} = \mathfrak{h} \oplus \langle A \rangle_\mathbb{R}$ folgt die Behauptung.
+\end{beweis}
+
+\begin{satz}[name={Engel}]
+	Sei $\mathfrak{g} \subset \mathfrak{gl}(V)$ eine Unteralgebra bestehend aus nilpotenten Elementen.
+	Dann existiert eine Basis von $V$, sodass 
+	\[
+		\mathfrak{g} \subset N(n,\mathbb{K})  
+	\]
+	gilt mit $n = \dim V$.
+\end{satz}
+\begin{beweis}
+	Sei $v \in V \setminus \set*{0}$ mit $X(v)=0$ für alle $X \in \mathfrak{g}$ nach \autoref{lem:217}.
+	Sei $\overline{V} \coloneqq \sfrac{V}{\langle v \rangle_\mathbb{R}}$.
+	Wir setzen $X(\overline{w}) \coloneqq X(w) + \langle v \rangle_\mathbb{R}$.
+	Dies ist wohldefiniert, wie man sich leicht überlegt.
+	Wir erhalten eine Liealgebra $\overline{\mathfrak{g}} \subset \mathfrak{gl}(V)$ von nilpotenten Elementen(!).
+	
+	Nach Induktionsvoraussetzung existieren Vektoren $\overline{v}_2, \ldots , \overline{v}_n \in \overline{V}$ mit $\overline{\mathfrak{g}} \subset \mathrm{n}(n-1,\mathbb{K})$.
+	Wir setzen $v_1 \coloneqq v$ und wählen Urbilder $v_2, \ldots ,v_n \in V$ von $\overline{v}_1, \ldots ,\overline{v}_n$.
+	Es gilt für alle $X \in \mathfrak{g}$
+	\[
+		X(v_1) =0 \quad \text{ und } \quad X(v_2) \in \langle v_1 \rangle_\mathbb{R}
+	\]
+	denn sonst $X(v_2) = \alpha \cdot v_1 + w$ und $X(\overline{v}_2)=\overline{w}\neq 0$. USW \ldots 
+\end{beweis}
 % section 21 (end)
 % chapter 2 (end)
 
