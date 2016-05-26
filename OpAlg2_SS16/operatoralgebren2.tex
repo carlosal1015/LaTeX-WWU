@@ -926,19 +926,19 @@ Wir erhalten:
 
 \section{Vollständig positive Abbildungen} % (fold)
 \label{sec:3}
-\todo[inline]{RevChap 3}
 
-\begin{erinnerungA}
+\begin{erinnerungA}[{name=[{induzierte Abbildung auf Matrizen}]}]
 	Eine Abbildung $\varphi\colon A \to B$ induziert eine Abbildung $\varphi^\ssbrace{n} \colon M_n(A) \to M_n(B)$ durch $(a_{ij})_{ij} \mapsto \enbrace*{\varphi(a_{ij})}_{ij}$.
 	Dabei müssen $A$ und $B$ keine $C^*$-Algebren sein.
-	Sind $A$ und $B$ Vektorräume, so ist $\varphi^\ssbrace{n} = \varphi \otimes \id_{M_n}$ und aus der Linearität von $\varphi$ folgt die Linearität von $\varphi^\ssbrace{n}$.
+	Sind $A$ und $B$ Vektorräume, so ist $\varphi^\ssbrace{n} = \varphi \otimes \id_{M_n}$ und aus Linearität von $\varphi$ folgt Linearität von $\varphi^\ssbrace{n}$.
 	Ist $\varphi$ ein $^*$-Homomorphismus, so ist auch $\varphi^\ssbrace{n}$ ein $^*$-Homomorphismus.
 	Wir wir in \autoref{bsp:35} sehen werden, muss $\varphi^\ssbrace{n}$ aber nicht positiv sein, wenn $\varphi$ positiv ist!
+	Dies führt uns zu folgender Definition:
 \end{erinnerungA}
 
-\begin{definition}[{name=[positiv und vollständig positiv]},label=def:32]
+\begin{definition}[{name=[positiv, vollständig positiv und beschränkt]},label=def:32]
 	Seien $A,B$ $C^*$-Algebren und $\varphi \colon A \to B$ linear
-	\begin{enumerate}[(i)]
+	\begin{enumerate}[(i),itemsep=1pt]
 		\item $\varphi$ heißt \bet{positiv}, falls $\varphi(A_+) \subset B_+$.\index{positive Abbildung}
 		\item $\varphi$ heißt $\mathbold n$\bet{-positiv}, falls $\varphi^\ssbrace{n}$ positiv ist.\index{n-positive Abbildung@$n$-positive Abbildung}
 		\item $\varphi$ heißt \bet{vollständig positiv}, falls $\varphi$ $n$-positiv ist für alle $n \in \mathbb{N}$.\index{vollständig positive Abbildung}
@@ -954,13 +954,13 @@ Wir erhalten:
 	Ein unitaler selbstadjungierter Untervektorraum von $X$ heißt \Index{Operatorsystem}. 
 \end{definition}
 
-\begin{bemerkung}
+\begin{bemerkung}[{name=[grundlegende Eigenschaften von Operatorsystemen]}]
 	\leavevmode
 	\begin{enumerate}[(i)]
 		\item Sei $X$ ein Operatorsystem.
-		Dann gilt $X = \Span X_+$: 
+		Dann gilt $X = \Span X_+$:
 		
-		Ist $x \in X$, so ist $x+x^*, i(x-x^*) \in X_\sa$ und es folgt
+		Ist $x \in X$, so sind $x+x^*$ sowie $ i(x-x^*)$ in $X_\sa$ enthalten und es folgt
 		\[
 			x = \sfrac{1}{2}\enbrace[\big]{x + x^* - i \cdot i (x-x^*)} \implies x \in \Span X_\sa
 		\]
@@ -968,11 +968,11 @@ Wir erhalten:
 		\[
 			y = \norm*{y} \cdot \ind - \enbrace[\big]{\norm*{y} \cdot \ind -y} \implies X_\sa = \Span X_+
 		\]
-		\item \autoref{def:32} ist auch sinnvoll für $\varphi \colon X \to Y$ linear, wobei $X$, $Y$ Operatorsysteme sind.
+		\item \autoref{def:32} ist auch sinnvoll für $\varphi \colon X \to Y$ linear, wobei $X$ und $Y$ Operatorsysteme sind.
 	\end{enumerate}
 \end{bemerkung}
 
-\begin{beispiel}[label=bsp:35]
+\begin{beispiel}[label=bsp:35,{name=[{n-positive und vollständig positive Abbildungen}]}]
 	\leavevmode
 	\begin{enumerate}[(i)]
 		\item Ist $\varphi \colon A \to B$ ein $^*$-Homomorphismus, so ist $\varphi$ vollständig positiv.
@@ -981,23 +981,21 @@ Wir erhalten:
 			\varphi(x^*x) = \varphi(x)^* \varphi(x) \ge 0
 		\]
 		Da $\varphi^\ssbrace{n}$ auch ein $^*$-Homorphismus ist, ist auch $\varphi^\ssbrace{n}$ positiv für alle $n \in \mathbb{N}$.
-		\item Sei $\varphi \colon A \to B$ $n$-positiv und $v \in B$.
+		\item Sei $\varphi \colon A \to B$ $n$-positiv und $v \in B$ fest gewählt.
 		Dann ist die \Index{Kompression}
 		\mapdef{\varphi_v \colon A}{B}{a}{v^* \varphi(a) v}{}
-		$n$-positiv:
-		Es ist $(\varphi_v)^\ssbrace{n} = \enbrace*{\varphi^\ssbrace{n}}_{v \otimes \ind_{M_n}}$ und
+		ebenfalls $n$-positiv:
+		Es ist $(\varphi_v)^\ssbrace{n} = \enbrace*{\varphi^\ssbrace{n}}_{v \otimes \ind_{M_n}}$ und nach \cite[Satz~3.7 (v)]{OpAlg} gilt
 		\[
 			(\varphi_v)^\ssbrace{n}(x^* x) = \Underbracket{\enbrace*{v^* \otimes \ind_{M_n}} \Underbracket{\varphi^\ssbrace{n}(x^*x)}{\ge 0} \enbrace*{v \otimes \ind_{M_n}}}{\ge 0}
 		\]
 		Insbesondere gilt: Ist $\varphi$ vollständig positiv, so ist $\varphi_v$ vollständig positiv. Ebenso wenn $\varphi$ ein $^*$-Homomorphismus ist.
-		
-		Wir werden sehen: Jede vollständig positive Abbildung ist von dieser Form.
+		Wir werden weiter sehen: \emph{Jede vollständig positive Abbildung ist von dieser Form!}\todo{referenzieren!}
 		\item $\varphi \colon \mathbb{C}^k \to B$ ist positiv genau dann, wenn $b_i \coloneqq \varphi(e_i) \ge 0$ für $i=1,\ldots ,k$.
 		
 		$\varphi \colon \mathbb{C}^k \to C(X)$ ist unital und positiv genau dann, wenn $(b_i)_{i=1,\ldots ,k}$ Zerlegung der Eins ist.
-		\item $\tau \colon M_2 \to M_2$, $\tau(a)=a*$ ist positiv, aber nicht $2$-positiv.
-		
-		$\tau(a^*a)= a^*a \ge 0$ also positiv. Betrachtet man
+		\item Die Involution $\tau \colon M_2 \to M_2$, $\tau(a)=a^*$ ist positiv, aber nicht $2$-positiv:
+		Die Positivität folgt sofort mit $\tau(a^*a)= a^*a \ge 0$. Betrachtet man die Matrix von Matrizen\todo{RevChap 3}
 		\[
 			x \coloneqq \begin{pmatrix}
 				1 & 0 & 0 & 1 \\
@@ -1006,7 +1004,7 @@ Wir erhalten:
 				1 & 0 & 0 & 1
 			\end{pmatrix} \in M_2(M_2)
 		\]
-		Es gilt $x \ge 0$ (warum?), aber 
+		so gilt $x \ge 0$ (warum?), aber 
 		\[
 			\tau^\ssbrace{2}(x) = \begin{pmatrix}
 				1 & 0 & 0 & 0 \\
@@ -1297,7 +1295,7 @@ Wir erhalten:
 	Damit ist $\varphi^\ssbrace{n}(a) \ge 0$, da $\varepsilon$ beliebig war und $M_n(B)_+ \subset M_n(B)$ abgeschlossen.
 \end{beweis}
 
-\begin{satz}[label=satz:319,name={Stanespring}]
+\begin{satz}[label=satz:319,name={Stinespring}]
 	Sei $A$ eine $C^*$-Algebra, $\varphi \colon A \to \mathcal{B}(\mathcal{H})$ vollständig positiv.
 	Dann existieren ein Hilbertraum $\tilde{\mathcal{H}}$, ein $^*$-Homomorphismus $\pi \colon A \to \mathcal{B}(\tilde{\mathcal{H}})$ und ein $v \in \mathcal{B}(\mathcal{H},\tilde{\mathcal{H}})$ mit $\norm*{\varphi} = \norm*{v}^2$ und für $a \in A$\marginnote{$\begin{psmallmatrix}
 		0 & 0 \\ v & 0
@@ -1311,6 +1309,7 @@ Wir erhalten:
 \begin{beweis}
 	GNS-Konstruktion
 \end{beweis}
+\todo[inline]{Hier fehlt leider noch eine komplette Vorlesung!}
 % section 3 (end)
 
 
