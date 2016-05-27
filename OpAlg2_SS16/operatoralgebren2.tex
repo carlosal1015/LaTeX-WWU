@@ -1310,6 +1310,121 @@ Wir erhalten:
 	GNS-Konstruktion
 \end{beweis}
 \todo[inline]{Hier fehlt leider noch eine komplette Vorlesung!}
+
+\begin{proposition}[label=prop:323]
+	\emph{Hier entsteht Proposition 3.23}
+\end{proposition}
+
+\begin{bemerkung}[label=bem:324]
+	Sei $M$ ein Operatorraum, das heißt ein linearer Unterraum einer $C^*$-Algebra.
+	Zu $\varphi \colon M \to M_n$ lineare assoziiere $s_\varphi \colon M_n(M) \to \mathbb{C}$ linear durch
+	\[
+		s_\varphi\enbrace[\big]{(a_{ij})_{ij}} = \frac{1}{n} \sum_{i,j} \varphi(a_{ij})_{ij}
+	\]
+	Zu $s \colon M_n(M) \to \mathbb{C}$ linear assoziiere $\varphi_s \colon M \to M_n$ linear durch
+	\(
+		\varphi_s (a)_{ij} = n \cdot s \enbrace*{a \otimes e_{ij}}
+	\).
+	Die Abbildungen 
+	\[
+		\begin{tikzcd}[sep=large]
+			\mathcal{L}(M,M_n) \rar["\varphi \mapsto s_\varphi",yshift=.7ex] & \mathcal{L} \enbrace*{M_n(M),\mathbb{C}} \lar["\varphi_s \reflectbox{$\mapsto$}s",yshift=-.7ex]
+		\end{tikzcd}
+	\]
+	sind invers zueinander (warum?).
+	Wenn $\varphi$ unital ist, so ist auch $s_\varphi$ unital, die Umkehrung gilt allerdings nicht (warum?).
+\end{bemerkung}
+
+\begin{satz}[label=satz:325]
+	Sei $A$ eine $C^*$-Algebra und $\varphi \colon A \to M_n$ linear.
+	Dann sind äquivalent:
+	\begin{enumerate}[(i)]
+		\item $\varphi$ ist vollständig positiv
+		\item $\varphi$ ist $n$-positiv
+		\item $s_\varphi$ ist positiv
+	\end{enumerate}
+\end{satz}
+\begin{beweis}
+	Die Implikation (i) $\Rightarrow $ (ii) ist trivial. Für die nächste Implikation betrachte $\eta = \eta_1 \oplus \ldots \oplus \eta_n \in \mathbb{C}^n \oplus \ldots \oplus \mathbb{C}^n \cong \mathbb{C}^{n^2}$, wobei $\eta_i$ der $i$-te Einheitsvektor ist.
+	Es gilt
+	\[
+		\sfrac{1}{n} \cdot \skal[\big]{\eta}{\varphi^\ssbrace{n} \enbrace*{(a_{ij})_{ij}} \,\eta} = s_\varphi \enbrace[\big]{(a_{ij})_{ij}}
+	\]
+	Also gilt weiter
+	\[
+		M_n(A) \ni (a_{ij})_{ij} \ge 0 \implies \varphi^\ssbrace{n} \enbrace*{(a_{ij})_{ij}} \ge 0 \implies s_\varphi \enbrace*{(a_{ih})_{ij}} \ge 0
+	\] 
+	Für die verbleibende Implikation (iii) $\Rightarrow $ (i) ist zu zeigen, dass $\varphi^\ssbrace{m} \colon M_m(A) \to M_m(M_n)$ positiv ist für $n \in \mathbb{N}$.
+	Es ist $M_m(M_n) = M_m \otimes M_n = \mathcal{B} \enbrace*{\bigoplus_{i=1}^m \mathbb{C}^n}$.
+	Wegen \autoref{prop:323} genügt es, 
+	\[
+		\varphi^\ssbrace{m} \enbrace[\big]{(a_i^* a_j)_{i,j=1, \ldots ,m}} \ge 0 
+	\]
+	zu zeigen.
+	Betrachte $\xi = \xi_1 \oplus \ldots \oplus \xi_m \in \mathbb{C}^n \oplus  \ldots \oplus \mathbb{C}^n$ mit $\xi_j = \sum_{k=1}^n \lambda_{jk} \eta_k$ (wobei die $\eta_i$ wieder die Standardbasis von $\mathbb{C}^n$ sind).
+	Es gilt
+	\begin{align}
+		\skal*{\xi}{\varphi^\ssbrace{m} \enbrace[\big]{ \enbrace*{a_i^* a_j}_{ij}}} = \sum_{i,j=1}^{m} \skal*{\xi_i}{\varphi \enbrace*{a_i^* a_j}_{ij} \xi_j} 
+		&= \sum_{i,j=1}^{m} \sum_{k,l=1}^{n} \overline{\lambda_{ik}}\cdot \lambda_{jl} \cdot \Underbracket{\skal[\big]{\eta_k}{\varphi(a_i^* a_j) \eta_l}}{\text{$kl$-Eintrag von $\varphi(a_i^*a_j)$}} \\
+		&= \sum_{i,j=1}^{m} \sum_{k,l=1}^{n} \overline{\lambda_{ik}} \cdot \lambda_{jl} \cdot n \cdot s_\varphi \enbrace*{a_i^* a_j \otimes e_{kl}} \\
+		&= n \cdot \sum_{i,j=1}^{m} s_\varphi \enbrace*{\sum_{k,l=1}^{n} \overline{\lambda_{ij}} \lambda_{jl} \cdot a_i^* a_j \otimes e_{kl}} \\
+		\shortintertext{mit $A_j = \begin{psmallmatrix}
+			\lambda_{j1} & \cdots & \lambda_{jn} \\
+			& & \\
+			 & 0 & 
+		\end{psmallmatrix}$ sodass $A_i^*A_j = \sum_{k,l=1}^{n} \overline{\lambda_{ik}} \lambda_{jl} e_{kl}$}
+		&= n \cdot \sum_{i,j=1}^{m}  s_\varphi \enbrace*{a_i^*a_j \otimes A_i^* A_j} \ge 0 \qedhere
+	\end{align}
+\end{beweis}
+
+\begin{satz}[label=satz:326]
+	Sei $B \subset A $ eine $C^*$-Unteralgebra und $\varphi \colon B \to M_n$ vollständig positiv und kontraktiv.
+	Dann besitzt $\varphi$ eine vollständig positive, kontraktive Fortsetzung $\overline{\varphi} \colon A \to M_n$.
+	
+	Ebenso für ein Operatorsystem $X \subset A$ und $\varphi \colon X \to M_n$.
+\end{satz}
+\begin{beweis}
+	Ohne Einschränkungen können wir annehmen, dass $\ind \in B \subset A$ und $\varphi$ unital ist.
+	Dann ist $s_\varphi \in S(M_n(B))$ und $s_\varphi$ besitzt eine Fortsetzung $\overline{s} \in S(M_n(A))$.
+	$\overline{\varphi} \coloneqq \varphi_{\overline{s}} \colon A \to M_n$ setzt nun $\varphi$ fort und die Behauptung ist gezeigt.
+\end{beweis}
+
+\begin{satz}[label=satz:327,name={Auveson}]
+	Sei $B \subset A$ ein $C^*$-Unteralgebra und $\varphi \colon B \to \mathcal{B}(\mathcal{H})$ vollständig positiv und kontraktiv.
+	Dann besitzt $\varphi$ eine vollständig positive, kontraktive Fortsetzung $\overline{\varphi} \colon A \to \mathcal{B}(\mathcal{H})$.
+	
+	Ebenso für ein Operatorsystem $X \subset A$ und $\varphi \colon X \to \mathcal{B}(\mathcal{H})$.
+\end{satz}
+\begin{beweis}[name=Idee]
+	Für zwei Banachräume $E,F$ betrachtet man $\varepsilon \colon E \odot F \to \mathcal{B} \enbrace*{E,F^*}^*$ definiert durch $e \otimes f \mapsto  \enbrace*{T \mapsto  T(e)(f)}$.
+	Setze $Z \coloneqq \varepsilon(E \odot F)$.
+	Man überlegt sich nun, dass $\mathcal{B} \enbrace*{E,F^*} \to Z^*$, $T \mapsto \ev_T$ ein isometrischer Isomorphismus ist.
+	Weiter ist
+	\[
+		\mathcal{B}(\mathcal{H}) = \mathcal{B}(\mathcal{H},\mathcal{H}) \cong \mathcal{B}(\mathcal{H},\mathcal{H}^*) \cong Y^*
+	\]
+	also ein Dualraum; ebenso wie $\mathcal{B} \enbrace*{A, \mathcal{B}(\mathcal{H})} \cong \mathcal{B}\enbrace*{A,Y^*}\cong V^*$.
+	Folglich lässt sich $\mathcal{B} \enbrace*{A, \mathcal{B}(\mathcal{H})}$ mit einer $\w^*$-Topologie austatten, BW-Topologie\todo{?}.
+	Man zeigt nun
+	\[
+		\mathrm{CPC} \enbrace*{A, \mathcal{B}(\mathcal{H})} \coloneqq \set*{\psi \colon A \to \mathcal{B}(\mathcal{H}) \given \text{vollst. pos. \& kontraktiv}} \stackrel[\text{BW abg.}]{}{\subset} \mathcal{B} \enbrace*{A,\mathcal{B}(\mathcal{H})}^1
+	\]
+	Also ist $\mathrm{CPC}(A,\mathcal{B}(\mathcal{H}))$ BW-kompakt nach Banach-Alaoglu.
+	Sei nun $\mathbb{C}^n \cong \mathcal{F} \subset \mathcal{H}$ ein endlich-dimensionaler Unterraum.
+	Setze $\varphi_{\mathcal{F}} \coloneqq \pr_{\mathcal{F}} \circ \varphi \colon B \to \pr_{\mathcal{F}} \mathcal{B}(\mathcal{H}) \pr_{\mathcal{F}} = \mathcal{B}(\mathcal{F}) = M_n$.
+	Nach \autoref{satz:326} besitzt $\varphi_{\mathcal{F}}$ eine vollständig positive, kontraktive Fortsetzung $\overline{\varphi_{\mathcal{F}}} \colon A \to \mathcal{B}(\mathcal{F}) \hookrightarrow \mathcal{B}(\mathcal{H})$.
+	\[
+		\enbrace*{\overline{\varphi_{\mathcal{F}}}}_{\mathcal{F} \subset \mathcal{H} \text{ endl.dim.}} \subset \mathrm{CPC} \enbrace*{A,\mathcal{B}(\mathcal{H})} 
+	\]
+	ist ein durch Inklusion gerichtetes Netz.
+	Mit der eben gezeigten Kompaktheit folgt, dass $\enbrace*{\overline{\varphi_{\mathcal{F}}}}_{\mathcal{F}}$ ein konvergentes Teilnetz besitzt mit Limes $\overline{\varphi}$.
+	$\overline{\varphi}$ setzt dann $\varphi$ fort (warum?).
+\end{beweis}
+
+\begin{definition}[{name=[injektive C*-Algebra]}]
+	Eine unitale $C^*$-Algebra $C$ heißt \Index{injektiv}, falls folgendes gilt:
+	Für ein Operatorsystem $X \subset A$ und eine vollständig positive, kontraktive Abbildung $\varphi \colon X \to C$ existiert eine vollständig positive, kontraktive Fortsetzung $\overline{\varphi} \colon A \to C$.
+\end{definition}
 % section 3 (end)
 
 
