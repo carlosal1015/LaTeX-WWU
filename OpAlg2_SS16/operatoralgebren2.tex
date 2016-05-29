@@ -995,7 +995,7 @@ Wir erhalten:
 		
 		$\varphi \colon \mathbb{C}^k \to C(X)$ ist unital und positiv genau dann, wenn $(b_i)_{i=1,\ldots ,k}$ Zerlegung der Eins ist.
 		\item Die Involution $\tau \colon M_2 \to M_2$, $\tau(a)=a^*$ ist positiv, aber nicht $2$-positiv:
-		Die Positivität folgt sofort mit $\tau(a^*a)= a^*a \ge 0$. Betrachtet man die Matrix von Matrizen\todo{RevChap 3}
+		Die Positivität folgt sofort mit $\tau(a^*a)= a^*a \ge 0$. Betrachtet man die Matrix von Matrizen
 		\[
 			x \coloneqq \begin{pmatrix}
 				1 & 0 & 0 & 1 \\
@@ -1004,7 +1004,7 @@ Wir erhalten:
 				1 & 0 & 0 & 1
 			\end{pmatrix} \in M_2(M_2)
 		\]
-		so gilt $x \ge 0$ (warum?), aber 
+		so gilt $x \ge 0$, da die Eigenwerte positiv sind. Es gilt aber 
 		\[
 			\tau^\ssbrace{2}(x) = \begin{pmatrix}
 				1 & 0 & 0 & 0 \\
@@ -1013,40 +1013,42 @@ Wir erhalten:
 				0 & 0 & 0 & 1
 			\end{pmatrix} \not\ge 0
 		\]
-		(warum?)
 	\end{enumerate}
 \end{beispiel}
 
-\begin{proposition}[label=prop:36]
-	Seien $A,B$ $C^*$-Algebren und $\varphi \colon A \to B$ positiv.
+\begin{proposition}[label=prop:36,{name=[positive Abbildungen sind beschränkt]}]
+	Es seien $A,B$ $C^*$-Algebren und $\varphi \colon A \to B$ positiv.
 	Dann ist $\varphi$ beschränkt.
 \end{proposition}
 \begin{beweis}
 	Falls $\varphi$ unbeschränkt auf $A$ ist, so auch auf $A_+$.
 	Folglich existiert $(a_n)_{\mathbb{N}} \subset A_+^1$ mit $\norm*{\varphi(a_n)} \ge n^3$ für $n \in \mathbb{N}$.
-	Dann ist $a \coloneqq \sum_{n=0}^{\infty} \sfrac{1}{n^2} a_n \in A$ und $\sfrac{1}{n^2} a_n \le a$ für $n \in \mathbb{N}$.
+	Dann ist $a \coloneqq \sum_{n=0}^{\infty} \sfrac{1}{n^2} \cdot a_n \in A$ und $\sfrac{1}{n^2} \cdot a_n \le a$ für $n \in \mathbb{N}$.
 	Damit haben wir für alle $n \in \mathbb{N}$
 	\[
-		n \le \sfrac{1}{n^2} \cdot \norm*{\varphi(a_n)} = \norm*{\varphi \enbrace*{\sfrac{1}{n^2} \cdot a_n}} \le \norm*{\varphi(a)} 
+		n \le \sfrac{1}{n^2} \cdot \norm*{\varphi(a_n)} = \norm[\big]{\varphi \enbrace*{\sfrac{1}{n^2} \cdot a_n}} \le \norm*{\varphi(a)} 
 	\]
 	Dies ist ein Widerspruch.
 \end{beweis}
 
-\begin{bemerkung}[label=bem:37]
+\begin{bemerkung}[label=bem:37,{name=[{positive Abbildungen auf Operatorsystemen}]}]
 	\leavevmode
-	\begin{enumerate}[(i)]
+	\begin{enumerate}[(i),itemsep=1pt]
 		\item Sei $X$ ein Operatorsystem und $\varphi \colon X \to B$ positiv.
-		Dann gilt $\norm*{\varphi} \le 2 \cdot \norm*{\varphi(\ind)}$ (warum?)
+		Dann gilt $\norm*{\varphi} \le 2 \cdot \norm*{\varphi(\ind)}$ (warum?)\todo{Beweis in den Anhang}
 		\item In (i) kann Gleichheit auftreten: 
-		Betrachte dazu $X \coloneqq \Span \set*{1,z,\overline{z}} \subset C(\mathbb{T})$ und $\varphi \colon X \to M_2$ mit
+		Betrachte dazu $X \coloneqq \Span \set[\big]{\ind,z,\overline{z}} \subset C(\mathbb{T})$ und $\varphi \colon X \to M_2$ definiert durch
 		\[
-			\varphi \enbrace*{a \cdot 1 + b \cdot z + c \cdot \overline{z}} = \begin{pmatrix}
+			\varphi \enbrace*{a \cdot \ind + b \cdot z + c \cdot \overline{z}} = \begin{pmatrix}
 				a & 2 b \\
 				2 c & a
 			\end{pmatrix}
 		\]
-		$\varphi$ ist positiv (warum?).
-		Es gilt nach (i) $2 \cdot \norm*{\varphi(1)} = 2 = \norm*{\varphi(z)} \le \norm*{\varphi} \le 2 \cdot \norm*{\varphi(1)}$.
+		$\varphi$ ist positiv, wie man leicht nachrechnet (generisches positives Element hinschreiben).
+		Es gilt dann nach (i) \todo{RevChap 3}
+		\[
+			2 \cdot \norm*{\varphi(\ind)} = 2 = \norm*{\varphi(z)} \le \norm*{\varphi} \le 2 \cdot \norm*{\varphi(\ind)}
+		\]
 	\end{enumerate}
 \end{bemerkung}
 
