@@ -1703,7 +1703,7 @@ Man zeigt aber leicht, dass $S$ \emph{nicht} nilpotent ist.
 	Wegen $\mathfrak{g} = \mathfrak{h} \oplus \langle A \rangle_\mathbb{R}$ folgt die Behauptung.
 \end{beweis}
 
-\begin{satz}[name={Engel}]
+\begin{satz}[name={Engel},label=satz:218]
 	Sei $\mathfrak{g} \subset \mathfrak{gl}(V)$ eine Unteralgebra bestehend aus nilpotenten Elementen.
 	Dann existiert eine Basis von $V$, sodass 
 	\[
@@ -1726,7 +1726,201 @@ Man zeigt aber leicht, dass $S$ \emph{nicht} nilpotent ist.
 	\]
 	denn sonst $X(v_2) = \alpha \cdot v_1 + w$ und $X(\overline{v}_2)=\overline{w}\neq 0$. USW \ldots 
 \end{beweis}
+
+\begin{korollar}[label=korr:219]
+	Eine Liealgebra $\mathfrak{g}$ ist genau dann nilpotent, wenn 
+	\[
+		\ad(\mathfrak{g}) = \set*{\ad_X \given X \in \mathfrak{g}} \subset \End(\mathfrak{g})
+	\]
+	eine nilpotente Unteralgebra von $\End(\mathfrak{g})$ ist.
+\end{korollar}
+\begin{beweis}
+	Sei zunächst $\mathfrak{g}$ nilpotent und $X \in \mathfrak{g}$.
+	Dann gilt $\ad_X(\mathfrak{g}^k) \subset \mathfrak{g}^{k+1}$.
+	Somit ist $\ad_X$ nilpotent.
+	
+	Ist umgekehrt $\ad(\mathfrak{g}) \subset \End(\mathfrak{g})$ nilpotent, so existiert nach \autoref{satz:218} eine Basis $v_1, \ldots ,v_n$ von $\mathfrak{g}=V$ mit $\ad_X(v_i) \in V_{i-1} = \langle v_1 ,\ldots ,v_{i-1}\rangle_\mathbb{R}$ für alle $i=1,\ldots ,n$ und alle $X \in \mathfrak{g}$, $V_0 \coloneqq \set*{0}$.
+	Für $X_1, \ldots ,X_s \in \mathfrak{g}$ erhalten wir 
+	\[
+		 \benbrace*{X_1, \benbrace*{X_2, \benbrace*{\ldots ,X_s}}}=\enbrace*{\ad_{X_1} \circ \ldots \circ \ad_{X_s}}(\mathfrak{g}) \in V_{n-2}
+	\]
+	Da $V_0=0$ ist, ist $\mathfrak{g}$ nilpotent.
+\end{beweis}
+
+Weitere Folgerung aus \autoref{satz:218}:
+
+\begin{korollar}
+	Eine nilpotente Liealgebra ist isomorph zu einer Unteralgebra von $\mathfrak{n}(n,\mathbb{K})$.
+\end{korollar}
+\begin{beweis}
+	Aus dem Satz von Ado folgt, dass wir $\mathfrak{g} \subset \mathfrak{gl}(n,\mathbb{K})$ annehmen können. 
+	Mit \autoref{satz:218} folgt dann die Behauptung.
+\end{beweis}
+
+Wir kommen nun zu auflösbaren Liealgebra und notieren die folgenden Aussagen ohene Beweise; diese sind ähnlich wie im nilpotenten Fall (Procesi Liegroups)\todo{Ref}.
+
+\begin{satz}[{name={Lie}},label=satz:2111]
+	Sei $\mathfrak{g}$ eine komplexe Lieunteralgebra von $\mathfrak{gl}(V,\mathbb{C})=\End(V,\mathbb{C})$.
+	ist $\mathfrak{g}$ auflösbar, so existiert eine 1-Form $\lambda \colon \mathfrak{g} \to \mathbb{C}$ und ein Vektor $v \in V\setminus \set*{0}$ mit $A(v)= \lambda(A) \cdot v$ für alle $A \in \mathfrak{g} \subset \mathfrak{gl}(V,\mathbb{C})$ ($\mathfrak{g}$ nilpotent $\implies \lambda=0$).
+\end{satz}
+
+\begin{bemerkung*}
+	Die Aussage ist nicht richtig im reellen Fall. 
+\end{bemerkung*}
+
+\begin{korollar}
+	Sei $\mathfrak{g} \subset \mathfrak{gl}(V,\mathbb{C})$ eine komplexe, auflösbare Liealgebra.
+	Dann gilt $\mathfrak{g} \subset \mathfrak{o}(V,\mathbb{C})$.
+\end{korollar}
+
+Aus Ado's Satz folgt wieder:
+\begin{korollar}[label=korr:2113]
+	Jede komplexe auflösbare Liealgebra ist Unteralgebra von $\mathfrak{o}(n,\mathbb{C})$ für ein $n \in \mathbb{N}$.
+\end{korollar}
+
+\begin{korollar}[label=korr:2114]
+	Sei $\mathfrak{g}$ eine komplexe Liealgebra.
+	Dann ist $\mathfrak{g}$ genau dann auflösbar, wenn $\benbrace*{\mathfrak{g},\mathfrak{g}}$ nilpotent ist.
+\end{korollar}
+\begin{beweis}
+	Sei zunächst $\mathfrak{g}$ auflösbar.
+	Nach \autoref{korr:2113} können wir $\mathfrak{g} \subset \mathfrak{o}(n,\mathbb{C})$ annehmen.
+	Wegen $\benbrace*{\mathfrak{o}(n,\mathbb{C}), \mathfrak{o}(n,\mathbb{C})} \subset \mathfrak{n}(n,\mathbb{C})$ folgt die Behauptung.
+	\[
+		hier fehlt noch was
+	\]
+	Ist andersrum $\benbrace*{\mathfrak{g},\mathfrak{g}}$ nilpotent, so ist nach \autoref{korr:2113} $\benbrace*{\mathfrak{g},\mathfrak{g}}$ auflösbar und somit auch $\mathfrak{g}$.
+\end{beweis}
+
+Kleiner Exkurs: Komplexifizierung
+
+Sei $\mathfrak{g}$ eine reelle Liealgebra, das heißt $\mathfrak{g}$ ist ein $\mathbb{R}$-Vektorraum versehen mit Lieklammer $\benbrace*{\cdot ,\cdot }_\mathbb{R} \colon \mathfrak{g} \times \mathfrak{g} \to \mathfrak{g}$.
+Dann ist 
+\[
+	\mathfrak{g}_\mathbb{C} \coloneqq \mathfrak{g} \otimes_\mathbb{R} \mathbb{C} = \set[\big]{v \otimes 1 + \tilde{v} \otimes i \given v , \tilde{v} \in \mathfrak{g}}
+\]
+ein komplexer Vektorraum mit $\dim_\mathbb{R} \mathfrak{g} = \dim_\mathbb{C} \mathfrak{g}_\mathbb{C}$.
+Wir setzen die Lieklammer komplex linear auf $\mathfrak{g}_\mathbb{C}$ fort mittels
+\[
+	\benbrace*{v_1 \otimes \lambda_1, v_2 \otimes \lambda_2}_\mathbb{C} \coloneqq \benbrace*{v_1,v_2}_\mathbb{R} \otimes (\lambda_1 \lambda_2)
+\]
+Man nennt $\enbrace*{\mathfrak{g}_\mathbb{C}, \benbrace*{\cdot ,\cdot }_\mathbb{C}}$ \Index{Komplexifizierung} von $\enbrace*{\mathfrak{g}, \benbrace*{\cdot ,\cdot }}$.
+Man beachte, dass unterschiedliche reelle Liealgebren die gleiche Komplexifizierung besitzen können. 
+Man nennt alle diese reellen Liealgebren dann \Index{reelle Formen} von $\mathfrak{g}_\mathbb{C}$.
+
+\begin{beispiel*}
+	\begin{itemize}
+		\item Es gilt $\SL(2,\mathbb{R}) \otimes \mathbb{C} = \SU(2,\mathbb{C}) \otimes \mathbb{C} = \SL(2,\mathbb{C})$.
+		\item $\SU(2) = \set*{A \in \GL(2,\mathbb{C}) \given A^* A = \begin{pmatrix}
+			1 & 0 \\ 0 & 1
+		\end{pmatrix}, \det A = 1}$ ist kompakte Liegruppe.
+		\item $\SL(2,\mathbb{R})$ ist nicht kompakte Liegruppe.
+	\end{itemize}
+\end{beispiel*}
+
+Dazu ein kleines Lemma: Sei $\mathfrak{g}$ eine reelle Liealgebra.
+Dann gilt
+\begin{enumerate}[1)]
+	\item $\mathfrak{h}$ ist Unteralgebra von $\mathfrak{g}$ genau dann, wenn $\mathfrak{h}_\mathbb{C}$ Unteralgebra von $\mathfrak{g}_\mathbb{C}$ ist.
+	\item Es gilt
+	\[
+		\enbrace*{\mathfrak{g}î}_\mathbb{C} = \enbrace*{\mathfrak{g}_\mathbb{C}}^i \qquad \enbrace*{\mathfrak{g}_i}_\mathbb{C} = \enbrace*{\mathfrak{g}_\mathbb{C}}_i
+	\]
+	\item Killingform: $\mathcal{B}_\mathbb{C} \enbrace*{v_1 \otimes \lambda_1, v_2 \otimes \lambda_2} = \mathcal{B}_\mathbb{R}(v_1,v_2) \cdot \lambda_1 \lambda_2 \in \mathbb{C}$
+\end{enumerate}
+Somit entsprechen sich nilpotente, auflösbare und halbeinfache reelle Liealgebren und ihre Komplexifizierung.
+
+\begin{satz}[name={Cartan},label=satz:2115]
+	Sei $\mathfrak{g}$ eine Liealgebra.
+	Dann ist $\mathfrak{g}$ genau dann auflösbar, wenn die Killingform $\mathcal{B}$ von $\mathfrak{g}$ auf $\benbrace*{\mathfrak{g},\mathfrak{g}}$ Null ist.
+\end{satz}
+\begin{beweis}
+	Sei zunächst $\mathfrak{g}$ auflösbar.
+	Dann ist nach \autoref{korr:2114} $\benbrace*{\mathfrak{g},\mathfrak{g}}$ nilpotent.
+	Somit ist $\mathcal{B}_{\mathfrak{g},\mathfrak{g}}=0$ nach \autoref{korr:219} ($\benbrace*{\mathfrak{g},\mathfrak{g}} \subset \mathfrak{n}(n,\mathbb{\mathbb{K}})$).
+	Da $\benbrace*{\mathfrak{g},\mathfrak{g}}$ ein Ideal von $\mathfrak{g}$ ist, gilt 
+	\[
+		\mathcal{B}_{\mathfrak{g}}\big|_{\benbrace*{\mathfrak{g},\mathfrak{g}}} = \mathcal{B}_{\benbrace*{\mathfrak{g},\mathfrak{g}}} =0
+	\]
+	(Komplexifiziere zuerst! zunächst ins Reelle).
+	
+	Die andere Implikation findet man in Procesi S. 95-97.
+\end{beweis}
+
+Wir erhalten $\rad(\mathfrak{g}) \supseteq \ker \mathcal{B} \supseteq \nil(\mathfrak{g})$, dabei ist $\ker \mathcal{B}$ auflösbar.
+Ist die Killingform $0$, so ist $\mathfrak{g}$ auflösbar, aber nicht notwendig nilpotent.
 % section 21 (end)
+
+\section{Halbeinfache Liealgebren} % (fold)
+\label{sec:22}
+
+\begin{erinnerung}
+	Eine Liealgebra $\mathfrak{g}$ ist halbeinfach, genau dann, wenn $\mathfrak{g}$ kein abelsches Ideal hat.
+\end{erinnerung}
+
+\begin{satz}[{name={Cartan}}]
+	Eine Liealgebra $\mathfrak{g}$ ist halbeinfach genau dann, wenn die Killingform $\mathcal{B}$ nicht degeneriert ist.
+\end{satz}
+\begin{beweis}
+	Sei zunächst $\mathfrak{g}$ halbeinfach.
+	Zu zeigen ist, dass $\ker \mathcal{B}= 0$ ist.
+	Angenommen dies gilt nicht, so $\ker \mathcal{B}$ nach \autoref{satz:2115} ein auflösbares Ideal und es folgt $\rad(\mathfrak{g}) \neq 0$, was einen Widerspruch darstellt.
+	
+	Ist umgekehrt $\mathcal{B}$ nicht degeneriert, so nehmen wir an, dass $\mathfrak{a}$ ein abelsches Ideal von $\mathfrak{g}$ ist.
+	Wir wählen eine Basis $a_1, \ldots ,a_k, b_1, \ldots ,b_s$ von $\mathfrak{g}$ mit $a = \langle a_1, \ldots , a_k\rangle_\mathbb{K}$.
+	Dann gilt $(\ad_Y \circ \ad_X)(a_i) = \benbrace[\big]{Y,\benbrace*{X,a_i}} = 0$ und weiter
+	\[
+		\enbrace*{\ad_Y \circ \ad_X}(b_i) = \benbrace*{Y, \benbrace*{X,b_i}} \in  \mathfrak{a}
+	\]
+	Also ist für $X \in \mathfrak{a}$ und $Y \in \mathfrak{g}$ obige Verknüpfung eine strikte obere Dreiecksmatrix.
+	Damit ist $\mathcal{B}(Y,X)= \Span (\ad_Y \circ \ad_X)=0$ und somit $\ker \mathcal{B} \neq 0$, ein Widerspruch!
+\end{beweis}
+
+Halbeinfache Liegruppen sind $\SL(n,\mathbb{R}), \SL(n,\mathbb{C}), \SO(n), \SU(n), \Sp(n), \ldots $\marginnote{$\mathfrak{g} = \mathfrak{g}_{SS} \oplus \rad(\mathfrak{g})$}
+
+Man kann zeigen, dass 
+\[
+	\mathcal{B}_{\mathfrak{g}} \enbrace*{x,y} = \Underbracket{\alpha_\mathfrak{g}}{\neq 0} \cdot \tr(x \cdot y)
+\]
+Folglich hat die Killingform auf $\SL(n,\mathbb{R})$ positive und negative \enquote{Eigenwerte}.
+
+In allen Beispielen gilt
+\[
+	X \in \mathfrak{g} \implies X^T \in \mathfrak{g}
+\]
+Somit ist $\mathcal{B}(X,X^T) = \alpha_\mathfrak{g} \cdot \sum X_{ii}^2 \neq 0$ für $x\neq 0$.
+Ist etwa $G$ kompakt, so ist $\mathcal{B}_\mathfrak{g}$ negativ definit!
+
+\begin{satz}
+	Sei $\mathfrak{g}$ eine halbeinfache Liealgebra.
+	Dann gilt
+	\begin{enumerate}[1)]
+		\item $\mathfrak{g} = \mathfrak{g}_1 \oplus  \ldots \oplus \mathfrak{g}_s$, wobei die $\mathfrak{g}_i$ einfache Ideale sind, $\benbrace*{\mathfrak{g}_i,\mathfrak{g}_j}=0$ für $i \neq j$
+		\item Ist $\mathfrak{a} \subset \mathfrak{g}$ ein Ideal, so folgt $\mathfrak{a} = \mathfrak{g}_{i_1} \oplus  \ldots \oplus \mathfrak{g}_{i_k}$
+		\item $\benbrace*{\mathfrak{g},\mathfrak{g}}=\mathfrak{g}$
+		\item $\sfrac{\Aut(\mathfrak{g})}{\Int(\mathfrak{g})}$ ist diskret (fast nur innere Automorphismen $\leadsto$ Konjugation).
+	\end{enumerate}
+\end{satz}
+\begin{beweis}
+	Vorüberlegungen:
+	\begin{enumerate}[i)]
+		\item Ist $\mathfrak{a}$ ein Ideal von $\mathfrak{g}$, so auch 
+		\[
+			\mathfrak{a}^\perp \coloneqq \set[\big]{x \in \mathfrak{g} \given \mathcal{B}(x,y) =0 \,\forall y \in \mathfrak{a}}
+		\]
+		Sei $x \in \mathfrak{a}^\perp$ und $y \in \mathfrak{g}$. Zu zeigen: $\benbrace*{x,y} \in \mathfrak{a}^\perp$.
+		Für $z \in \mathfrak{a}$ gilt
+		\[
+			\mathcal{B} \enbrace*{\benbrace*{x,y},z} = - \mathcal{B} \enbrace*{\ad_y(x), z} = \mathcal{B} \enbrace*{x, \ad_y(z)} =0
+		\]
+		\item Ist $\mathfrak{a}$ ein Ideal, so ist $\mathfrak{a} \cap \mathfrak{a}^\bot = \set*{0}$.
+		Angenommen dies wäre nicht so, so wissen wir dass der Schnitt ein Ideal von $\mathfrak{g}$ ist, auf dem die Killingform verschwindet.
+		Mit einer kleinen Rechnung folgt, dass der Schnitt dan auflösbar ist.
+		Also ist $\rad(\mathfrak{g}) \neq 0$, was einen Widerspruch darstellt.
+		\item $\mathfrak{g} = \mathfrak{a} \oplus \mathfrak{a}^\perp$ (gilt viel allgemeiner!)
+	\end{enumerate} 
+\end{beweis}
+% section 22 (end)
 % chapter 2 (end)
 
 \cleardoubleoddemptypage
