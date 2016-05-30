@@ -1,0 +1,142 @@
+%%% 30.05.2016 %%%
+
+\begin{satz}[Mittelwerteigenschaft]
+	Sei $\Omega$ eine offene Teilmenge des $\mathbb{R}^n$, $T >0$, \\ $W_r(t_0,x_0) \subset \subset \Omega_T$ und $u \in C^2_1(\Omega_T)$.
+	\begin{enumerate}[(i)]
+		\item Falls $u_t - \Delta u = 0$ in $\Omega_T$ gilt, so folgt 
+		\[
+			u(t_0,x_0) = \frac{1}{4r^n} \int_{W_r(t_0,x_0)}^{} u(t,x) \frac{\abs{x-x_0}^2}{(t-t_0)^2} \,\mathrm{d}t \,\mathrm{d}x
+		\]
+		\item Falls $u_t - \Delta u \leq 0$ in $\Omega_T$ gilt, so folgt \[
+			u(t_0,x_0) \leq \frac{1}{4r^n} \int_{W_r(t_0,x_0)}^{} u(t,x) \frac{\abs{x-x_0}^2}{(t-t_0)^2} \,\mathrm{d}t \,\mathrm{d}x
+		\] 
+		\item Falls $u_t - \Delta u < 0$ in $\Omega_T$ gilt, so folgt 
+		\[
+			u(t_0,x_0) < \frac{1}{4r^n} \int_{W_r(t_0,x_0)}^{} u(t,x) \frac{\abs{x-x_0}^2}{(t-t_0)^2} \,\mathrm{d}t \,\mathrm{d}x
+		\]
+	\end{enumerate}
+\end{satz}
+\begin{beweis}
+	\begin{enumerate}[(i)]
+		\item folgt aus (ii) angewandt auf $u$ und $-u$.
+		\item Sei $v(t,x) := u(t+ t_0 , x +x_0)$. Wenn $u$ subkalorisch ist, so auch $v$. Dieses ist äquivalent zu 
+		\[
+			v_t - \Delta v \leq 0 \qquad , \qquad \psi(r) = \frac{1}{4r^n} \int_{W_r(0,0)}^{} v(t,x) \frac{\abs{x}^2}{t^2} \,\mathrm{d}t \,\mathrm{d}x. 
+		\]
+		Wegen $\psi'(r)>0$ ist $\psi(r)$ monoton wachsend. Damit gilt für alle $r >0$
+		\[
+			\lim_{\rho \to \infty} \psi(\rho) \leq \psi(r).
+		\]
+		Mit Lemma $3.5$ folgt dann $v(0,0) \leq \psi(r)$ also
+		\[
+			v(0,0) = u(t_0,x_0) \leq \frac{1}{r^n} \int_{W_r(0,0)}^{} u(t+t_0,x+ x_0) \frac{\abs{x}^2}{t^2} \,\mathrm{d}t \,\mathrm{d}x
+		\]
+		Mit $s = t+t_0$ und $y = x + x_0$ folgt die Aussage.
+		\item Analog zu (ii).
+	\end{enumerate}
+\end{beweis}
+
+\begin{korollar}
+	Sei $\Omega$ eine offene Teilmenge des $\mathbb{R}^n$, $T>0$ und $u \in C^2_1(\Omega_T)$. Dann sind äquivalent:
+	\begin{enumerate}[(i)]
+		\item $u$ ist kalorisch.
+		\item $u$ erfüllt die Mittelwerteigenschaft auf Wärmeleitungskugeln, d.h für alle $W_t(t_0,x_0) \subset \subset \Omega_T$ gilt
+		\[
+			u(t_0,x_0) = \frac{1}{4r^n} \int_{W_r(t_0,x_0)}^{} u(t,x) \frac{\abs{x-x_0}^2}{(t-t_0)^2} \,\mathrm{d}t \,\mathrm{d}x.
+		\]
+	\end{enumerate}
+\end{korollar}
+
+\begin{beweis}
+	Dieser Beweis geht analog zu Satz $2.5$.
+\end{beweis}
+
+\subsubsection{Folgerungen aus der Mittelwerteigenschaft} 
+\label{sub:folgerungen_aus_der_mittelwerteigenschaft}
+Nun werden wir Maximumsprinzipien formulieren.
+
+\begin{satz}[Maximumsprinzipien]
+	Sei $\Omega$ eine beschränkte, offene Teilmenge des $\mathbb{R}^n$ und $ u \in C^2_1(\Omega_T) \cap C^0( \bar{\Omega_T})$ eine subkalorische Funktion
+	( $ u_t - \Delta u \leq 0$ in $\Omega_T$) Dann gilt:
+	\begin{enumerate}[(i)]
+		\item das schwache Maximumsprinzip:
+		\[
+			\max_{\bar{\Omega_T}} u = \max_{\partial_p \Omega_T} u
+		\]
+		$\partial_p \Omega_T$ bezeichnet sozusagen den Mantel von $\Omega_T$.
+		\item das starke Maximumsprinzip: \\
+		Ist $\Omega$ zusammenhängend und existiert $(t_0,x_0) \in \Omega_T$ mit 
+		\[
+			u(t_0,x_0) = \max_{\overline{\Omega_T}}u,
+		\]
+		so ist $u$ konstant auf $\Omega_{t_0}= [0,t_0] \times \Omega$
+	\end{enumerate}
+\end{satz}
+\begin{bemerkung}
+	Die Aussage des starken Maximumsprinzips besagt lediglich, dass $u$ Konstant zu jedem früheren Zeitpunkt sein muss.
+\end{bemerkung}
+
+\begin{beweis}
+	\begin{description}
+		\item[(ii) $\Rightarrow$ (i):]Wir zeigen dies mit einem Wiederspruchsargument. Wäre (i) falsch, so gäbe es $(t_0,x_0)$ mit 
+		\[
+			u(t_0,x_0) = \max_{\bar{\Omega_T}} u > \max_{\partial_p \Omega_T}
+		\]  
+		Wir nennen $\Omega(x_0)$ die Zusammenhangskomponente von $x_0$ in $\Omega$. Setze
+		\[
+			\Omega(x_0)_{t_0} := [0,t_0] \times \Omega(x_0)
+		\]
+		Wir erhalten wegen $\partial \Omega(x_0) \subseteq  \partial \Omega$
+		\[
+			\max_{\overline{\Omega(x_0)_{t_0}}}u = \max_{\overline{\Omega_T}}u > \max_{\partial_p \Omega_T} u \geq \max_{\partial_p \Omega(x_0)_{t_0}}u 
+		\]
+		einen Widerspruch, da $u$ nach (ii) konstant auf $\Omega(x_0)_{t_0}$ sein müsste.
+		\item[(i) $\Rightarrow$ (ii)] Sei $(t_0,x_0) \subseteq \Omega_T$ mit 
+		\[
+			u(t_0,x_0) = \max_{\overline{\Omega_T}}u =: M.
+		\]
+		Sei $r >0$ mit $W_r(t_0,x_0) \subset \subset \Omega_T$.
+		\[
+			M = u(t_0,x_0) \leq  \frac{1}{4r^n} \int_{W_r(t_0,x_0)}^{}u(t,x) \frac{\abs{x-x_0}^2}{(t-t_0)^2} \,\mathrm{d}t \,\mathrm{d}x \leq M
+		\]
+		wegen $u \leq M$ und weil das Integral $1$ ergibt. Weiter erhalten wir
+		\[
+			\frac{1}{4r^n} \int_{W_r(t_0,x_0)}^{} (u(t,x)-M) \frac{\abs{x-x_0}^2}{(t-t_0)^2} \,\mathrm{d}t \,\mathrm{d}x =0
+		\]
+		und weil $u-M \leq 0$ auf $W_r(t_0,x_0)$ folgt somit $u-M \equiv 0$ auf $W_r(t_0,x_0)$. 
+		Da außerdem $u(t_0,x_0)=M$ gilt $u \equiv M$ auf $W_r(t_0,x_0) \subset \subset \Omega_T$.
+		Wir wollen zeigen, dass $u \equiv M$ auf $\Omega_{t_0}$ ist. Dafür gehen wir in zwei Schritten vor.
+		\begin{description}
+			\item[$1$. Schritt:] Wir betrachten $(t_1,x_1)$ so dass $t_1 < t_0$ und die gesamte Linie, 
+			die $(t_0,x_0)$ mit $(t_1,x_1)$ verbindet in $\Omega_{t_0}$ liegt. 
+			\[
+				L((t_0,x_0),(t_1,x_1)) : = \set[\tau (t_1,x_1) + (1- \tau) (t_0,x_0)]{\tau \in [0,1]} \subseteq \Omega_{t_0}.
+			\]
+			Die Behauptung ist nun: 
+			\[
+				u \equiv M \qquad \text{ auf } L((t_0,x_0),(t_1,x_1))
+			\]
+			Setze dafür $f : [0,1] \to \mathbb{R}$ stetig mit
+			\[
+				f(\tau) := u(\tau (t_1,x_1) + (1- \tau) (t_0,x_0).
+			\]
+			Dann ist 
+			\[
+				f^{-1}(\set{M}) = \set[\tau \in [0,1]]{f(\tau) = M}.
+			\]
+			$f^{-1}(\set{M})$ ist abgeschlossen und nichtleer (da $f(0)= u(t_0,x_0) = M$). 
+			Außerdem ist $f^{-1}(\set{M})$ relativ offen (mithilfe der Mittelwerteigenschaft wie oben). Damit gilt
+			\[
+				f^{-1}(\set{M}) = [0,1] \qquad \Leftrightarrow \qquad u \equiv M \text{ auf } L.
+			\]
+			\item[$2$. Schritt] Wir betrachten einen beliebigen Punkt $(t^{*},x^{*}) \in \Omega_{t_0}$. 
+			In diesem Fall kann $(t_0,x_0)$ mit $(t^{*},x^{*})$ über endlich viele Punkte $(t_1,x_1), \dots, (t_m,x_m)$ verbunden werden 
+			(da $\Omega$ zusammenhängend ist). Wir setzen $t_{m+1}:= t^{*}$ und $x_{m+1}:= x^{*}$, so dass $t_{k+1} < t_k$ für alle $k \in \set{1,\dots,m}$ gilt
+			und alle Linien $L((t_k,x_k),(t_{k+1},x_{k+1})) \subset \Omega_{t_k}$ liegen. Nach dem $1$. Schritt gilt $u \equiv M$ auf $L_k$ für alle $k$ und somit 
+			$u(t^{*},x^{*}) = M$. Wegen der Stetigkeit von $u$ gilt dies auch für alle Punkte in $\set{t_0} \times \Omega$ und somit 
+			\[
+				u \equiv M \qquad \text{ auf } \Omega_{t_0}.
+ 			\] 
+		\end{description}
+	\end{description}
+\end{beweis}

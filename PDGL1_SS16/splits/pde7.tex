@@ -175,7 +175,7 @@ $B_r(x_0)$ stellt genau die $\Phi(re_1)$- Superniveaumenge.
 		\end{align*}
 		\item Mit Transformation $t= r^2 s$ und $x = ry$ gilt
 		\begin{align*}
-			\psi(r) = \frac{1}{4 r^n} \int_{W_1(0,0)}^{}u(r^2s,ry) \frac{r \abs{y}^2}{r^4 s^2} r^2 r^n \,\mathrm{d}s \,\mathrm{d}y \\
+			\psi(r) &= \frac{1}{4 r^n} \int_{W_1(0,0)}^{}u(r^2s,ry) \frac{r^2 \abs{y}^2}{r^4 s^2} r^2 r^n \,\mathrm{d}s \,\mathrm{d}y \\
 			&= \frac{1}{4} \int_{W_1(0,0)}^{} u(r^2s,ry) \frac{\abs{y}^2}{s^2} \,\mathrm{d}s \,\mathrm{d}y.
 		\end{align*}
 		Wegen $u \in C^2_1(W_R(0,0))$ ist die Funktion $r \mapsto  u(r^2s,ry)$ ist differenzierbar für alle $(s,y) \in W_1(0,0)$. Außerdem sind
@@ -189,7 +189,36 @@ $B_r(x_0)$ stellt genau die $\Phi(re_1)$- Superniveaumenge.
 		\end{align*}
 		und erhalte
 		\begin{align*}
-			\diffd{\psi}{r} = \frac{1}{4} \int_{W_1(0,0)}^{} ( u_t(r^2s,ry)2rs +  \nabla u(r^2s,ry) \cdot y) \frac{\abs{y}^2}{s^2} \,\mathrm{d}s \,\mathrm{d}y
+			\diffd{\psi}{r} &= \frac{1}{4} \int_{W_1(0,0)}^{} ( u_t(r^2s,ry)2rs +  \nabla u(r^2s,ry) \cdot y) \frac{\abs{y}^2}{s^2} \,\mathrm{d}s \,\mathrm{d}y \\
+			&= \frac{1}{4} \int_{W_r(0,0)}^{} (u_t(t,x)2 \frac{t}{r} + 
+			\nabla u(t,x) \cdot \frac{x}{r}) \frac{\abs{x}}{r^2} \frac{r^4}{t^2} \frac{\mathrm{d}t \, \mathrm{d}x}{r^2r^n}  \\
+			&= \frac{1}{4r^{n+1}} \int_{W_r(0,0)}^{} ( u_t(t,x)2t +  \nabla u(t,x) \cdot x) \frac{\abs{x}}{t^2} \,\mathrm{d}t \,\mathrm{d}x \\
+			&= \frac{1}{r^{n+1}} \int_{W_r(0,0)}^{} \left( u_t(t,x) \frac{\abs{x}^2}{2t}
+			+  \nabla u(t,x) \cdot \frac{\abs{x}^2 x}{4t^2} \right) \,\mathrm{d}t  \, \mathrm{d}x
 		\end{align*}
+		Es gilt
+		\begin{align*}
+			\diff{b_r}{t}(t,x) = - \frac{\abs{x}^2}{4t^2} - \frac{n}{2} \frac{1}{t} \qquad , \qquad  \nabla b_r(t,x) = \frac{x}{2t}
+		\end{align*}
+		Und wegen \[
+			\frac{\abs{x}^2}{2t} = \frac{x \cdot x}{2t} =  \nabla b_r(t,x) \cdot x
+		\]
+		und 
+		\[
+			\frac{\abs{x}^2 x}{4t^2} = - \partial_tb_r(t,x)x -n \frac{x}{2t} = - \partial_t b_r(t,x) \cdot x - n  \nabla b_r(t,x)
+		\]
+		es gilt somit insgesamt 
+		\begin{align*}
+			\diffd{\psi}{r} &= \frac{1}{r^{n+1}} \int_{W_r(0,0)}^{} u_t(t,x)  \nabla b_r(t,x) \cdot x 
+			+  \nabla u(t,x) \left( - \partial_t b_r(t,x) \cdot x - n  \nabla b_r(t,x) \right) \,\mathrm{d}t \,\mathrm{d}x \\
+			&= \frac{1}{r^{n+1}} \int_{W_r(0,0)}^{}- b_r(t,x) \diver(u_t(t,x)x) 
+			+  \nabla u(t,x) \left( - \partial_t b_r(t,x) \cdot x - n  \nabla b_r(t,x) \right) \,\mathrm{d}t \,\mathrm{d}x \\
+			&= \frac{1}{r^{n+1}} \int_{W_r(0,0)}^{} \left( -b_r(t,x)  \nabla u_t(t,x) \cdot x - b_r(t,x)u_t(t,x)n \right)
+			+ \left( \partial_t  \nabla u(t,x) x - n  \nabla u(t,x) \cdot  \nabla b_r(t,x) \right) \,\mathrm{d}t \,\mathrm{d}x \\
+			&= \frac{1}{r^{n+1}} \int_{W_r(0,0)}^{} \left( - u_t(t,x)n b_r(t,x) + n \Delta u(t,x) b_r(t,x) \right) \,\mathrm{d}t \,\mathrm{d}x.
+		\end{align*}
+		Die Randintegrale verschwinden jeweils wegen $b_r(t,x) = 0$ auf $\partial W_r(0,0)$.
+		%%%% 30.05.2016 %%%%
+		
 	\end{enumerate}
 \end{beweis}
