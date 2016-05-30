@@ -1315,7 +1315,7 @@ In diesem Abschnitt sind Kettenkomplexe immer $\mathbb{N}$-graduiert. (Allgemein
 	\]
 \end{definition}
 
-\begin{satz}[name={Wall}]
+\begin{satz}[name={Wall},label=satz:wall]
 	Sei $X$ endlich dominiert und wegzusammenhängend.
 	Dann ist $X$ genau dann homotopieäquivalent zu einem endlichen CW-Komplex, wenn $\tilde{\chi}(X)=0 \in \tilde{K}_0(\mathbb{Z}\pi)$ ist.
 \end{satz}
@@ -1340,8 +1340,84 @@ In diesem Abschnitt sind Kettenkomplexe immer $\mathbb{N}$-graduiert. (Allgemein
 \begin{bemerkung}
 	\begin{enumerate}[1)]
 		\item Für $(X,A)$ ist $\pi_k(X,A)$ definiert als Homotopieklassen von punktierten Abbildungen $(D^k,S^{k-1}) \to (X,A)$.
+		\item Der Satz von \textsc{Hurewicz} besagt, dass für einfach zusammenhängendes $X$ und $A$ die Hurewicz-Abbildung $\pi_r (X,A) \to H_r(X,A)$, $f \mapsto f_* (\mu_{D^r,S^{r-1}})$ ein Isomorphismus ist, falls $\pi_k(X,A)=0$ für $k < r$.
+		\item Es gibt eine lange exakte Folge
+		\[
+			\begin{tikzcd}
+				\ldots \rar & \pi_k(A) \rar & \pi_k(X) \rar & \pi_k(X,A) \rar & \pi_{k-1}(A) \rar & \ldots 
+			\end{tikzcd}
+		\]
+		Insbesondere ist $f$ genau dann $r$-zusammenhängend, wenn $\pi_k(f)=0$ für $k <r$.
+		\item Ist $f$ $r$-zusammenhängend und $r \ge 2$, so gilt $\pi_{r+1}(f) \cong \pi_{r+1}(\tilde{f}) \cong H_{r+1}(\tilde{f})$ nach Hurewicz.
+		\[
+			\begin{tikzcd}
+				\tilde{X} \rar["\tilde{f}"] \dar & \tilde{Y} \dar \\
+				X \rar["f"] & Y
+			\end{tikzcd}
+		\]
+		\item Alternativ können wir $\pi_k(f)$ beschreiben als Homotopieklassen von Paaren von punktierten Abbildungen $\enbrace*{\phi \colon D^k \to Y, \varphi \colon S^{k-1} \to X}$ mit $\phi|_{S^{k-1}} = f \circ \varphi$
+		\[
+			\begin{tikzcd}
+				S^{k-1} \dar[hook] \rar["\varphi"] & X \dar["f"] \\
+				D^k \rar["\phi"] & Y
+			\end{tikzcd}
+		\]
 	\end{enumerate}
 \end{bemerkung}
+
+\begin{lemma}
+	Sei $f \colon X \to Y$ $r$-zusammenhängend und $r \ge 2$, $\benbrace*{\phi \colon D^{r+1} \to Y, \varphi \colon S^{r} \to X} \in \pi_{r+1}(f) \cong H_{r+1}(\tilde{f})$ und $X_\varphi \coloneqq X \cup_{\varphi} D^{r+1}$ und $f_\varphi \coloneqq f \cup_\varphi \phi \colon X_\varphi \to Y$.
+	Weiter sei $\pi \coloneqq \pi_1 X = \pi_1 Y$ und $\mathbb{Z}\pi \benbrace*{\phi,\varphi} \subseteq \pi_{r+1}(f)$ der von $\benbrace*{\phi,\varphi} \in \pi_{r+1}(f)$ erzeugte $\mathbb{Z}\pi$-Untermodul.
+	Dann induziert die Inklusion $X \hookrightarrow X_\varphi$ einen Isomorphismus 
+	\[
+		\pi_{r+1}(f_\varphi) \cong \nicefrac{\pi_{r+1}(f)}{\mathbb{Z}\pi \benbrace*{\phi,\varphi}}
+	\]
+\end{lemma}
+\begin{beweis}
+	Nachdem wir $Y$ durch $\Zyl(f)$ ersetzen, können wir annehmen, dass $f \colon X \hookrightarrow Y$ eine Inklusion ist. 
+	Weiter ersetzen wir $X$ durch $\Zyl(\varphi)$ und $Y$ durch $\Zyl(\phi)$.
+	Wir können nun annehmen, dass $X \subseteq X_\varphi \subseteq Y$ und $\tilde{X} \subseteq \tilde{X_\varphi} \subseteq \tilde{Y}$.
+	Nach Voraussetzung ist 
+	\[
+		H_*(\widetilde{X_\varphi},\widetilde{X}) \cong H_*(\pi \times D^{r+1}, \pi \times S^r) \cong \bigoplus_\pi H_*(D^{r+1},S^r) \cong \begin{cases}
+			\mathbb{Z}\pi &\text{ falls }*=r+1\\
+			0 &\text{ sonst}
+		\end{cases}
+	\]
+	Nun benutzen wir die lange exakte Folge zu $\enbrace*{\tilde{X} \subseteq \tilde{X_\varphi} \subseteq \tilde{Y}}$ und erhalten
+	\[
+		\begin{tikzcd}
+			\mathbb{Z}\pi \cong H_{r+1} \enbrace*{\widetilde{X_\varphi}, \widetilde{X}} \rar H_{r+1} \enbrace*{\tilde{Y},\tilde{X}} \rar & H_{r+1} \enbrace*{\tilde{Y},\tilde{X_\varphi}} \rar & H_{r} \enbrace*{\tilde{X_\varphi},\tilde{X}}
+		\end{tikzcd}
+	\]
+	Nach Konstruktion wird das Bild von $H_{r+1}(\tilde{X_\varphi},\tilde{X})$ in $H_{r+1} \enbrace*{\tilde{Y},\tilde{X_\varphi}}$ von $\benbrace*{\phi,\varphi}$ als $\mathbb{Z}\pi$-Modul erzeugt und die Behauptung folgt.
+\end{beweis}
+
+\begin{beweis}[{name={zweite Richtung von \autoref{satz:wall}}}]
+	Ohne Einschränkungen sei $X$ ein CW-Komplex.
+	Da nach Voraussetzung $\tilde{\chi} \enbrace*{C^\sing_*(\tilde{X})}=0$ ist, gibt es einen Kettenkomplex $D_*$ von endlichem Typ von freien $\mathbb{Z}\pi$-Moduln, der kettenhomotopieäquivalent zu $C_*^\sing(\tilde{X})$ und damit zu $C^\cell_*(\tilde{X})$ ist.
+	Sei $f \colon D_* \to C_*^\cell(\tilde{X})$ eine solche Kettenhomotopieäquivalenz.
+	
+	Nun zeigen wir induktiv für alle $r \ge 2$.
+	Es gibt einen $r$-dimensionalen endlichen CW-Komplex $E$ und eine $r$-zusammenhängende zelluläre Abbildung $g \colon E \to X$, so dass 
+	\begin{enumerate}[(i)]
+		\item $C_*^\cell(\tilde{E}) = D_{* \le r}$
+		\item $C_*^\cell(\tilde{g}) = f_{* \le r}$
+	\end{enumerate}
+	Induktionsanfang $r=2$ (Skizze): Wir wissen, dass es eine endliche Dominierung $\begin{tikzcd}[cramped,sep=small] X \rar["i"] & E \rar["p"] & Y \end{tikzcd}$ gibt, sodass $p_* \colon \pi_1 E \to \pi_1 X$ ein Isomorphismus ist.
+	Indem wir $E$ durch $E \cup \bigvee_{i=1}^r S^2$ ersetzen, können wir erreichen, dass $p_* \colon \pi_2 E \to \pi_2 X$ surjektiv ist (da $i_* \colon \pi_2 X \to \pi_2 E$ ein Spalt ist).
+	Nun man $f_*$ so ändern, dass (i) und (ii) gelten.
+	
+	Induktionsschritt $r \mapsto r+1$: Sei $g \colon E \to X$ durch die Induktionsvoraussetzung gegeben.
+	Wir ersetzen $X$ durch $\Zyl(g)$ und nehmen an, dass $E$ ein Unterkomplex von $X$ ist und dass $g$ die Inklusion $E\hookrightarrow X$ ist.
+	Wir betrachten den Kegel $\tilde{g}_* \colon C^\cell_*(\tilde{E}) \to C^\cell_*(\tilde{X})$.
+	Die Projektion $\Keg(\tilde{g}_*) \to C^\cell_*(\tilde{X})$ induziert eine Kettenabbildung $\Keg(\tilde{g}_*) \to C^\cell_*(\tilde{X},\tilde{E})$ und mit Hilfe der langen exakten Folge in Homologie sehen wir, dass diese einen Isomorphismus in Homologie induziert.
+	Wegen $C^\cell_*(\tilde{E}) = D_{* \le r}$ ist $\Keg(\tilde{g}_*)$ ein Unterkomplex der zyklischen Kettenkomplexes $\Keg(\tilde{f}_*)$.
+	\missingfigure{Diagramm mit direktem Summer übereinander}
+	Es folgt, dass $\binom{f_*}{-\partial}\colon D_{r+1} \to \ker \enbrace*{\partial_{r+1}^{\Keg(\tilde{g}_*)}} \to H_{r+1}(\tilde{g}_*)$ surjektiv ist.
+	Wähle nun eine $\mathbb{Z}\pi$-Basis $b_1, \ldots ,b_l$ von $D_{r+1}$ und realisiere die Bilder in $H_{r+1}(\tilde{g}_*)=\pi_{r+1}(g_*)$ durch  $(\phi_1,\varphi_1), \ldots , (\phi_l,\varphi_l) \colon (D^{r+1},S^r) \to \tilde{X},\tilde{E}$.
+	Nun liefert die $l$-fache Anwendung der Konstruktion aus dem Lemma die gesuchte $(r+1)$-zusammenhängende Abbildung $g \cup \phi_1 \coprod \ldots \coprod \phi_l \colon E \cup_{\varphi_1 \coprod \ldots \coprod \varphi_l} \enbrace*{D^{r+1} \coprod \ldots \coprod D^{r+1}} \to X$.
+\end{beweis}
 
 
 
