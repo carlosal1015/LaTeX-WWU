@@ -2,14 +2,15 @@ sudo: required
 
 language: go
 
+go:
+  - tip
+
 services:
   - docker
 
-before_install:
-  - sudo docker build -t texlive \!deploy
+install:
   - go get github.com/aktau/github-release
-
-install: true
+  - sudo docker build -t texlive \!deploy
 
   
 script:
