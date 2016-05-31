@@ -153,4 +153,85 @@ Wir wollen dieses nutzen, um auch die reelle Situation zu verstehen.
 	Ist $A \in M(n \times n,\RR)$ und $F_A\colon \RR^n \rightarrow \RR^n, x \mapsto Ax$, so ist $(F_A)_{\CC}(z) = Az$, wenn wir $A$ als komplexe Matrix auffassen.
 \end{beispiel}
 
+\begin{lemma}
+	\label{lemma:7.7}
+	Sei $(V,\sk{\cdot,\cdot})$ ein endlich dimensionaler euklidischer $\RR$-Vektorraum und sei $F \in \End(V)$.
+	Dann sind äquivalent:
+	\begin{enumerate}[(i)]
+		\item $F$ ist normal (bzw. orthogonal bzw. selbstadjungiert)
+		\item $F_{\CC}$ ist normal (bzw. unitär bzw. selbstadjungiert)
+	\end{enumerate}
+	Ferner gilt $F_{\CC}^* = (F^*)_{\CC}$.
+\end{lemma}
+
+\begin{beweis}
+	Wir zeigen nur $F_{\CC}^* = (F^*)_{\CC}$.
+	Die Äquivalenz der beiden Aussagen folgt dann leicht.
+	Für alle $v_1+iw_1, v_2+iw_2 \in V_{\CC}$ gilt:
+	\newpage
+	\vspace*{-1.3cm}
+	\begin{align*}
+	\sk{F_{\CC}(v_1+iw_1),v_2+iw_2} &= \sk{F(v_1) + i F(w_1),v_2+iw_2} \\
+	&= \sk{F(v_1),v_2} + \sk{F(w_1),w_2} + i( \sk{F(w_1),v_2} - \sk{F(v_1),w_2}) \\
+	&= \sk{v_1,F^*(v_2)} + \sk{w_1,F^*(w_2)} + i(\sk{w_1,F^*(v_2)} - \sk{v_1,F^*(w_2)}) \\
+	&= \sk{v_1 + iw_2,F^*(v_2) + iF^*(w_2)} \\
+	&= \sk{v_1 + iw_1, (F^*)_{\CC}(v_2+iw_2)} \qedhere
+	\end{align*}
+\end{beweis}
+
+\begin{bemerkung}
+	\label{bem:7.8}
+	Ist $(V,\sk{\cdot,\cdot})$ ein euklidischer $\RR$-Vektorraum und ist $B := \{v_1,\dots,v_n\}$ eine Orthonormalbasis von $V$, so ist $B$ auch eine Orthonormalbasis von $V_{\CC}$ (wir fassen $V$ als Teilmenge von $V_{\CC}$ auf via $v \mapsto v + i \cdot 0$).
+	Denn es gilt $\sk{v_i,v_j}_{\CC} = \sk{v_i,v_j} = \delta_{ij}$ und $\dim(V_{\CC}) = \dim(V) = n$.
+	
+	Ist $F \in \End(V)$, so erhält man für die zugehörige Darstellungsmatrix $A^B_{F_{\CC}} = A^B_F$, denn ist $A^B_{F_{\CC}} = (\wt{a}_{ij}), A^B_F = (a_{ij})$, so gilt nach \autoref{kor:5.4}:
+	\[
+		\wt{a}_{ij} = \sk{F_{\CC}(v_j + i0),v_i + i0}_{\CC} = \sk{F(v_j)+i0,v_i+i0} = \sk{F(v_j),v_i} = a_{ij}.
+	\]
+\end{bemerkung}
+
+Wir wollen aber nun umgekehrt aus einer Orthonormalbasis von $V_{\CC}$ aus Eigenvektoren von $F_{\CC}$ eine \enquote{schöne} Orthonormalbasis für $V$ basteln.
+Dazu benutzen wir zunächst, dass jedes reelle Polynom $p(\lambda) = \sum_{k=0}^{n} a_k \lambda^k$ durch Einsetzen von $\lambda \in \CC$ auch als komplexes Polynom aufgefasst werden kann.
+
+\begin{lemma}
+	\label{lemma:7.9}
+	Sei $(V,\sk{\cdot,\cdot})$ ein endlich dimensionaler euklidischer $\RR$-Vektorraum und sei $F \in \End(V)$.
+	Dann gilt $\chi_{F_{\CC}}(\lambda) = \chi_F(\lambda)$ für alle $\lambda \in \CC$, das heißt das charakteristische Polynom von $F_{\CC}$ ist gleich dem charakteristischen Polynom von $F$ (fortgesetzt auf $\CC$).
+\end{lemma}
+
+\begin{beweis}
+	Wähle eine Orthonormalbasis $B = \{v_1,\dots,v_n\}$ von $V$ wie in \autoref{lemma:7.7}.
+	Dann folgt mit \autoref{bem:7.8}:
+	$\chi_{F_{\CC}}(\lambda) = \det(\lambda E_n - A^B_{F_{\CC}}) = \det(\lambda E_n - A^B_F) = \chi_F(\lambda)$. \qedhere
+\end{beweis}
+
+\begin{lemma}
+	\label{lemma:7.10}
+	Sei $p(\lambda) = \sum_{k=0}^{n} a_k \lambda^k$ ein reelles Polynom.
+	Dann gilt:
+	Ist $\mu \in \CC$ eine $k$-fache komplexe Nullstelle von $p$, so ist auch $\ol{\mu} \in \CC$ eine $k$-fache komplexe Nullstelle von $p$.
+	Damit besitzt $p$ eine Faktorisierung 
+	\[
+		p(\lambda) = a(\lambda-\lambda_1)^{n_1} \cdots (\lambda-\lambda_l)^{n_l}(\lambda-\mu_1)^{m_1} (\lambda-\ol{\mu}_1)^{m_1} \cdots (\lambda-\mu_k)^{m_k}(\lambda-\ol{\mu}_k)^{m_k},
+	\]
+	wobei $\lambda_1,\dots,\lambda_l$ die paarweise verschiedenen reellen Nullstellen mit Vielfachheiten $n_1,\dots,n_l$ und \linebreak $\mu_1,\ol{\mu}_1,\dots,\mu_l,\ol{\mu}_l$ die paarweise verschiedenen konjugiert komplexen Paare nicht-reller Nullstellen mit Vielfachheiten $m_1,\dots,m_k$ von $p$ sind.
+\end{lemma}
+
+\begin{beweis}
+	Sei $\mu \in \CC$ Nullstelle von $p$.
+	Dann gilt
+	\[
+		p(\ol{\mu}) = \sum_{k=0}^{n} a_k \ol{\mu}^k = \sum_{k=0}^{n} \ol{a_k} \ol{\mu}^k = \ol{\sum_{k=0}^{n} a_k \mu^k} = \ol{p(\mu)} = 0,
+	\]
+	also ist auch $\ol{\mu}$ Nullstelle von $p$.
+	Ist $\mu \notin \RR$, so ist $\ol{\mu} \neq \mu$.
+	Ferner gilt mit $\mu = \alpha + i \beta$:
+	\[
+		(\lambda-\mu)(\lambda-\ol{\mu}) = (\lambda - (\alpha-i\beta))(\lambda-(\alpha-i\beta)) = \lambda^2 + 2\alpha \lambda + (\alpha^2 + \beta^2),
+	\]
+	also ist $(\lambda-\mu)(\lambda-\ol{\mu})$ ein reelles Polynom.
+	Damit existiert ein reelles Polynom mit $\grad(q) = \grad(p) - 2$ und $p(\lambda) = q(\lambda)(\lambda-\mu)(\lambda-\ol{\mu})$.
+	Die Behauptung folgt dann per Induktion nach $\grad(p)$. \qedhere
+\end{beweis}
+
 % \newpage
