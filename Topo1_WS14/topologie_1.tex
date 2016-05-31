@@ -2805,11 +2805,11 @@ Zitat von \hrefsymX{https://en.wikipedia.org/wiki/CW_complex}{Wikipedia} zum Nam
 \begin{definition}[{name=[{$n$-ter zellulärer Kettenmodul und zelluläre Randabbildung}]}]
 	Sei $X$ ein CW-Komplex. Dann heißt 
 	\[
-		C_n^{\cell}(X;R) := H_n \enbrace*{X^\ssbrace{n}, X^\ssbrace{n-1};R} 
+		C_n^\cell(X;R) := H_n \enbrace*{X^\ssbrace{n}, X^\ssbrace{n-1};R} 
 	\]
 	der \bet{$\mathbf{n}$-te zelluläre Kettenmodul}\index{n-ter zellulärer Kettenmodul@$n$-ter zelluläre Kettenmodul} von $X$ mit Koeffizienten in $R$. Wir definieren die 
 	\bet{$\mathbf{n}$-te Randabbildung}\index{n-te Randabbildung@$n$-te Randabbildung!zellulär}
-	$\partial^{\cell}_n \colon C_n^{\cell}(X;R) \to C_{n-1}^{\cell}(X;R)$ durch die Komposition 
+	$\partial^\cell_n \colon C_n^\cell(X;R) \to C_{n-1}^\cell(X;R)$ durch die Komposition 
 	\[
 		\begin{tikzcd}[column sep=huge, row sep=large]
 			H_n \enbrace*{X^\ssbrace{n}, X^\ssbrace{n-1};R} \rar["\partial_n^{\enbrace{X^\ssbrace{n}, X^\ssbrace{n-1}}}"] & H_{n-1} \enbrace*{X^\ssbrace{n-1};R} \dar["\enbrace*{j^{(n-1)}}_*"] \\
@@ -2820,10 +2820,10 @@ Zitat von \hrefsymX{https://en.wikipedia.org/wiki/CW_complex}{Wikipedia} zum Nam
 	$\enbrace*{X^\ssbrace{n-1},\emptyset} \hookrightarrow \enbrace*{X^\ssbrace{n-1}, X^\ssbrace{n-2}}$.
 \end{definition}
 
-\begin{lemma}[{name=[{es gilt $\partial_{n-1}^{\cell} \circ \partial_n^{\cell} =0$}]}]
+\begin{lemma}[{name=[{die zelluläre Randabbildung hat die Komplexeigenschaft}]}]
 	Es gilt
 	\[
-		\partial_{n-1}^{\cell} \circ \partial_n^{\cell} =0
+		\partial_{n-1}^\cell \circ \partial_n^\cell =0
 	\]
 \end{lemma}
 \begin{beweis}
@@ -2833,21 +2833,21 @@ Zitat von \hrefsymX{https://en.wikipedia.org/wiki/CW_complex}{Wikipedia} zum Nam
 		\begin{tikzpicture}[baseline= (a).base]
 		\node[scale=0.81] (a) at (0,0){
 		\begin{tikzcd}[font=\normalsize,column sep=2.4em,arrows={line width=1.23*rule_thickness}]
-			H_n \enbrace*{X^\ssbrace{n}, X^\ssbrace{n-1}} \rar["\partial_n"] \arrow[rrd, bend right,"\partial_n^{\cell}"',Firebrick3]& H_{n-1}(X^\ssbrace{n-1}) \dar[equal] \rar & \cdots\\
+			H_n \enbrace*{X^\ssbrace{n}, X^\ssbrace{n-1}} \rar["\partial_n"] \arrow[rrd, bend right,"\partial_n^\cell"',Firebrick3]& H_{n-1}(X^\ssbrace{n-1}) \dar[equal] \rar & \cdots\\
 			& H_{n-1}\enbrace*{X^\ssbrace{n-1}} \rar["j^{(n-1)}_*"] & H_{n-1} \enbrace*{X^\ssbrace{n-1}, X^\ssbrace{n-2}} \rar["\partial_{n-1}"] 
-			\arrow[rrd, bend right,"\partial_{n-1}^{\cell}"',Firebrick3] & H_{n-2} \enbrace*{X^\ssbrace{n-2}} \dar[equal] \rar & \cdots \\ 
+			\arrow[rrd, bend right,"\partial_{n-1}^\cell"',Firebrick3] & H_{n-2} \enbrace*{X^\ssbrace{n-2}} \dar[equal] \rar & \cdots \\ 
 			& & & H_{n-2} \enbrace*{X^\ssbrace{n-2}}  \rar["j^{(n-2)}_*"] & H_{n-2} \enbrace*{X^\ssbrace{n-2}, X^{(n-3)}} 
 		\end{tikzcd}
 		};
 		\end{tikzpicture}
 		\tikzexternalenable\marginnote{\enquote{$R$} aus Platzgründen weggelassen}
 	\]
-	Also $\partial^{\cell}_{n-1} \circ \partial^{\cell}_n =0$, da wegen der Exaktheit der Paarfolge schon $\partial_{n-1} \circ j^{(n-1)}_* =0$ ist.
+	Also $\partial^\cell_{n-1} \circ \partial^\cell_n =0$, da wegen der Exaktheit der Paarfolge schon $\partial_{n-1} \circ j^{(n-1)}_* =0$ ist.
 \end{beweis}
 
 \begin{definition}[{name=[{Zellulärer Kettenkomplex und zelluläre Homologie}]}]
-	$\enbrace*{C_*^{\cell}(X;R),\partial_*^{\cell}}$ heißt der \bet{zelluläre Kettenkomplex}\index{zellulärer Kettenkomplex} von $X$ über $R$. 
-	Seine Homologie $H_*^{\cell}(X;R)$ heißt die \Index{zelluläre Homologie} von $X$.
+	$\enbrace*{C_*^\cell(X;R),\partial_*^\cell}$ heißt der \bet{zelluläre Kettenkomplex}\index{zellulärer Kettenkomplex} von $X$ über $R$. 
+	Seine Homologie $H_*^\cell(X;R)$ heißt die \Index{zelluläre Homologie} von $X$.
 \end{definition}
 
 Der zelluläre Kettenkomplex und die zelluläre Homologie sind Funktoren auf der Kategorie der CW-Komplexe und zellulären Abbildungen.
@@ -2911,13 +2911,13 @@ Der zelluläre Kettenkomplex und die zelluläre Homologie sind Funktoren auf der
 	Wir haben soeben gezeigt, dass die folgenden Isomorphismen existieren:
 	\[
 		\begin{tikzcd}[row sep=tiny]
-			C_n^{\cell}(X;R) \arrow[draw=none]{d}[sloped,auto=false]{=} \rar["\partial_n^{\cell}"] & C_{n-1}^{\cell}(X;R) \arrow[draw=none]{d}[sloped,auto=false]{=}\\
+			C_n^\cell(X;R) \arrow[draw=none]{d}[sloped,auto=false]{=} \rar["\partial_n^\cell"] & C_{n-1}^\cell(X;R) \arrow[draw=none]{d}[sloped,auto=false]{=}\\
 			H_n \enbrace*{X^\ssbrace{n},X^\ssbrace{n-1};R} \rar \arrow[draw=none]{d}[sloped,auto=false]{\cong}
 			& H_{n-1} \enbrace*{X^\ssbrace{n-1},X^\ssbrace{n-2};R} \arrow[draw=none]{d}[sloped,auto=false]{\cong}\\
 			R[I^{(n)}] \rar & R[I^{(n-1)}]  
 		\end{tikzcd}
 	\]
-	Die Randabbildung $\partial_n^{\cell}$ wird unter diesen Isomorphismen zu einer $I^{(n-1)} \times I^{(n)}$-Matrix. Für $j \in I^{(n-1)}$ und $k \in I^{(n)}$ ist der 
+	Die Randabbildung $\partial_n^\cell$ wird unter diesen Isomorphismen zu einer $I^{(n-1)} \times I^{(n)}$-Matrix. Für $j \in I^{(n-1)}$ und $k \in I^{(n)}$ ist der 
 	$(j,k)$-Eintrag dieser Matrix genau der Abbildungsgrad einer Selbstabbildung der $(n-1)$-Sphäre: 
 
 	Die $\enbrace{Q_i^\ssbrace{n-1}, q_i^\ssbrace{n-1}}$ induzieren einen Homöomorphismus
@@ -2941,7 +2941,7 @@ Der zelluläre Kettenkomplex und die zelluläre Homologie sind Funktoren auf der
 \end{definition}
 
 \begin{satz}[{name=[Natürlicher Isomorphismus zwischen zellulärer und singulärer Homologie]}]
-	Für CW-Komplexe gibt es einen natürlichen Isomorphismus $\tau_X \colon H_*^{\cell}(X;R) \xrightarrow{\cong} H_*(X;R)$.
+	Für CW-Komplexe gibt es einen natürlichen Isomorphismus $\tau_X \colon H_*^\cell(X;R) \xrightarrow{\cong} H_*(X;R)$.
 \end{satz}
 \begin{beweis}[{name={mit \autoref{lem:128}}}]
 	Betrachte folgendes Diagramm; die diagonalen Folgen sind Ausschnitte aus den Paarsequenzen: 
@@ -2951,22 +2951,22 @@ Der zelluläre Kettenkomplex und die zelluläre Homologie sind Funktoren auf der
 			0 \stackrel{\mbox{\scriptsize\ref{lem:128} a)}}{=} H_n \enbrace*{X^\ssbrace{n-1}} \arrow[dr,Firebrick3] & 
 			& H_n \enbrace*{X^\ssbrace{n+1}} \rar["\cong","\mbox{\scriptsize\ref{lem:128} b)}"']  \arrow[ur, Goldenrod2] & H_n(X)\\  
 			& H_n \enbrace*{X^\ssbrace{n}} \arrow[ur, two heads, Goldenrod2] \arrow[dr, hook,"j^{(n)}_*", Firebrick3]\\
-			H_{n+1} \enbrace*{X^\ssbrace{n+1},X^\ssbrace{n}} \arrow[ur, Goldenrod2,"\partial_{n+1}^{X^\ssbrace{n+1},X^\ssbrace{n}}"]\arrow[rr,"\partial_{n+1}^{\cell}"] 
-			& & H_n \enbrace*{X^\ssbrace{n},X^\ssbrace{n-1}} \arrow[rr,"\partial_n^{\cell}"] \arrow[dr,"\partial_n^{X^\ssbrace{n},X^\ssbrace{n-1}}", Firebrick3]
+			H_{n+1} \enbrace*{X^\ssbrace{n+1},X^\ssbrace{n}} \arrow[ur, Goldenrod2,"\partial_{n+1}^{X^\ssbrace{n+1},X^\ssbrace{n}}"]\arrow[rr,"\partial_{n+1}^\cell"] 
+			& & H_n \enbrace*{X^\ssbrace{n},X^\ssbrace{n-1}} \arrow[rr,"\partial_n^\cell"] \arrow[dr,"\partial_n^{X^\ssbrace{n},X^\ssbrace{n-1}}", Firebrick3]
 			& & H_{n-1}  \enbrace*{X^\ssbrace{n-1},X^\ssbrace{n-2}}  \\
 			& & & H_{n-1} \enbrace*{X^\ssbrace{n-1}} \arrow[ur, hook, DodgerBlue3, "j^{(n-1)}_*"'] \\
 			& & \underset{=0}{H_{n-1}\enbrace*{X^\ssbrace{n-2}} } \arrow[ur, DodgerBlue3]
 		\end{tikzcd}}
 		\marginnote{\enquote{$R$} aus Platzgründen weggelassen}
 	\]
-	Es folgt, dass $j_*^{(n)}$ wegen Exaktheit einen Isomorphismus $H_n(X^\ssbrace{n};R) \xrightarrow{\cong} \ker\partial_n^{\cell}$ induziert. Da $j_*^{(n)}$ injektiv ist,
-	induziert $j_*^{(n)}$ außerdem einen Isomorphismus $\im \partial_{n+1}^{X^\ssbrace{n+1}, X^\ssbrace{n}} \xrightarrow{\cong} \im \partial_{n+1}^{\cell}$.
-	% Es folgt, dass $j_*^{(n)}$ Isomorphismen $H_n(X^\ssbrace{n};R) \xrightarrow{\cong} \ker \partial_n^{\cell}$ und
-	% $\im \partial_{n+1}^{X^\ssbrace{n+1}, X^\ssbrace{n}} \xrightarrow{\cong} \im \partial_{n+1}^{\cell}$ induziert.
+	Es folgt, dass $j_*^{(n)}$ wegen Exaktheit einen Isomorphismus $H_n(X^\ssbrace{n};R) \xrightarrow{\cong} \ker\partial_n^\cell$ induziert. Da $j_*^{(n)}$ injektiv ist,
+	induziert $j_*^{(n)}$ außerdem einen Isomorphismus $\im \partial_{n+1}^{X^\ssbrace{n+1}, X^\ssbrace{n}} \xrightarrow{\cong} \im \partial_{n+1}^\cell$.
+	% Es folgt, dass $j_*^{(n)}$ Isomorphismen $H_n(X^\ssbrace{n};R) \xrightarrow{\cong} \ker \partial_n^\cell$ und
+	% $\im \partial_{n+1}^{X^\ssbrace{n+1}, X^\ssbrace{n}} \xrightarrow{\cong} \im \partial_{n+1}^\cell$ induziert.
 	Insgesamt erhalten wir natürliche Isomorphismen
 	\[
 		H_n(X;R) \cong H_n \enbrace*{X^\ssbrace{n+1};R} \cong \nicefrac{H_n(X^\ssbrace{n};R)}{ \im \partial_{n+1}^{X^\ssbrace{n+1}, X^\ssbrace{n}}}
-		\cong \nicefrac{\ker \partial_n^{\cell}}{\im \partial_{n+1}^{\cell}} \cong H_n^{\cell}(X;R) \qedhere
+		\cong \nicefrac{\ker \partial_n^\cell}{\im \partial_{n+1}^\cell} \cong H_n^\cell(X;R) \qedhere
 	\]
 \end{beweis}
 
@@ -3022,9 +3022,9 @@ Der zelluläre Kettenkomplex und die zelluläre Homologie sind Funktoren auf der
 	Sei $a_n$ die Anzahl der $n$-Simplizes von $K$. 
 	Dann gibt es eine CW-Struktur auf $\abs*{K}$, die für jedes $n$ genau $a_n$ Zellen hat.\marginnote{Man beachte, dass \ref{satz:410} für beliebige $\mathbb{Z}$-Kettenkomplexe und deren Homologie gilt}
 	\[
-		\chi(K) = \sum_{i=0}^{\infty} (-1)^i a_i \StackText{\ref{lem:124}}{=} \sum_{i=0}^{\infty} (-1)^i \Rg C_i^{\cell} \enbrace[\big]{\abs*{K}} 
+		\chi(K) = \sum_{i=0}^{\infty} (-1)^i a_i \StackText{\ref{lem:124}}{=} \sum_{i=0}^{\infty} (-1)^i \Rg C_i^\cell \enbrace[\big]{\abs*{K}} 
 		\StackText{\ref{satz:410}}{=}
-		\sum_{i=0}^{\infty} (-1)^i \Rg H_i^{\cell} \enbrace[\big]{\abs*{K}} = \sum_{i=0}^{\infty} (-1)^i \Rg H_i \enbrace[\big]{\abs*{K} }    
+		\sum_{i=0}^{\infty} (-1)^i \Rg H_i^\cell \enbrace[\big]{\abs*{K}} = \sum_{i=0}^{\infty} (-1)^i \Rg H_i \enbrace[\big]{\abs*{K} }    
 	\]
 	Da die $H_i \enbrace[\big]{\abs*{K}}$ eine topologische Invariante sind, ist auch $\chi(K)$ eine topologische Invariante.
 \end{beweis}
@@ -3075,8 +3075,8 @@ Der zelluläre Kettenkomplex und die zelluläre Homologie sind Funktoren auf der
 	Der zelluläre Kettenkomplex von $\mathbb{R}P^n$ (über $\mathbb{Z}$) hat also die Form:
 	\[
 		\begin{tikzcd}[column sep=large]
-			\mathbb{Z} & \mathbb{Z} \lar["\partial_1^{\cell}"'] & \mathbb{Z} \lar["\partial_2^{\cell}"'] & \cdots \lar & \mathbb{Z} \lar & \mathbb{Z} 
-			\lar["\partial_n^{\cell}"'] & 0 \lar
+			\mathbb{Z} & \mathbb{Z} \lar["\partial_1^\cell"'] & \mathbb{Z} \lar["\partial_2^\cell"'] & \cdots \lar & \mathbb{Z} \lar & \mathbb{Z} 
+			\lar["\partial_n^\cell"'] & 0 \lar
 		\end{tikzcd}
 	\]
 	Wir müssen die Randabbildung verstehen. 
@@ -3089,14 +3089,14 @@ Der zelluläre Kettenkomplex und die zelluläre Homologie sind Funktoren auf der
 	Betrachte folgendes kommutatives Diagramm:\marginnote{Das linke untere Quadrat kommutiert, da die Randabbildung aus der Paarfolge eine natürliche Transformation ist. Das rechte, da die zugrunde liegenden Abbildungen kommutieren.}
 	\[
 		\begin{tikzcd}[column sep=huge, row sep=large]
-			C_{k+1}^{\cell}(\mathbb{R}P^n) \arrow[rr,"\partial_{k+1}^{\cell}"] \dar[equal] & & C_k^{\cell}(\mathbb{R}P^n) \dar[equal]\\
+			C_{k+1}^\cell(\mathbb{R}P^n) \arrow[rr,"\partial_{k+1}^\cell"] \dar[equal] & & C_k^\cell(\mathbb{R}P^n) \dar[equal]\\
 			H_{k+1} \enbrace*{\mathbb{R}P^{k+1},\mathbb{R}P^k} \rar["\partial^{\mathbb{R}P^{k+1},\mathbb{R}P^k}"] & H_k(\mathbb{R}P^k) \rar
 			& H_k \enbrace*{\mathbb{R}P^k,\mathbb{R}P^{k-1}} \\
 			H_{k+1}(D^{k+1},S^k) \uar["\enbrace*{Q^\ssbrace{k+1},q^\ssbrace{k+1}}_*","\cong"'] \rar["\partial^{D^{k+1},S^k}","\cong"'] & \tilde{H}_k(S^k) \uar["\enbrace*{q^\ssbrace{k+1}}_*"] \rar["j_*"] 
 			& H_k(S^k,S^{k-1}) \uar["\enbrace*{q^\ssbrace{k+1},q^\ssbrace{k}}_*"']
 		\end{tikzcd}
 	\]
-	Das Bild von $\partial_{k+1}^{\cell}$ stimmt also mit dem Bild der Komposition 
+	Das Bild von $\partial_{k+1}^\cell$ stimmt also mit dem Bild der Komposition 
 	\[
 		\begin{tikzcd}[column sep=5.5em]
 			H_k(S^k) \rar["j_*"] & H_k(S^k,S^{k-1}) \rar["\enbrace*{q^\ssbrace{k+1},q^\ssbrace{k}}_*"] & H_k \enbrace*{\mathbb{R}P^k, \mathbb{R}P^{k-1}} 
@@ -3159,8 +3159,8 @@ Der zelluläre Kettenkomplex und die zelluläre Homologie sind Funktoren auf der
 	\end{align*}
 	Es folgt 
 	\[
-		\im  \partial_{k+1}^{\cell} = \begin{cases}
-		2 \cdot C^{\cell}_k(X), &\text{ falls } k \text{ ungerade}\\
+		\im  \partial_{k+1}^\cell = \begin{cases}
+		2 \cdot C^\cell_k(X), &\text{ falls } k \text{ ungerade}\\
 		0 , &\text{ sonst}
 	\end{cases}
 	\]
@@ -3181,16 +3181,16 @@ Für $R=\nicefrac{\mathbb{Z}}{2 \mathbb{Z}}$ ist
 	\end{cases}
 \]
 
-\begin{satz}[{name=[{Isomorphie zwischen $C_*(K;R)$ und $C^{\cell}_n \enbrace*{\abs*{K};R}$}]}]
+\begin{satz}[{name=[{Isomorphie zwischen simplizialem und zellulärem Kettenkomplex}]}]
 	Sei $K$ ein geordneter simplizialer Komplex. 
 	Für $\sigma = \set{v_0, \ldots ,v_n} \in \Sigma_n$ mit $v_0 < v_1 < \ldots  < v_n$ sei $f_\sigma \colon \abs*{\Delta^n} \to \abs*{K}$ gegeben durch $f_\sigma \enbrace*{\sum_{i=0}^{n} t_i e_i} = \sum_{i=0}^{n} t_i v_i$. 
 	Wir erhalten 
 	\[
-		[f_\sigma] \in H_n \enbrace*{\abs*{K}^{(n)}, \abs*{K}^{(n-1)};R} = C^{\cell}_n \enbrace*{\abs*{K};R}. 
+		[f_\sigma] \in H_n \enbrace*{\abs*{K}^{(n)}, \abs*{K}^{(n-1)};R} = C^\cell_n \enbrace*{\abs*{K};R}. 
 	\]
 	Diese Zuordnung definiert einen Isomorphismus zwischen dem simplizialen Kettenkomplex von $K$ und dem zellulären Kettenkomplex von $\abs*{K}$
 	\[
-		\tau \colon C_*(K;R) \longrightarrow C_*^{\cell}\enbrace*{\abs*{K},R } 
+		\tau \colon C_*(K;R) \longrightarrow C_*^\cell\enbrace*{\abs*{K},R } 
 	\]
 	Insbesondere ist $H_*(K;R) \cong H_*(\abs*{K};R)$ eine topologische Invariante von $K$.
 \end{satz}
