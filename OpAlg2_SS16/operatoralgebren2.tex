@@ -1299,19 +1299,110 @@ Wir erhalten:
 
 \begin{satz}[label=satz:319,name={Stinespring}]
 	Sei $A$ eine $C^*$-Algebra, $\varphi \colon A \to \mathcal{B}(\mathcal{H})$ vollständig positiv.
-	Dann existieren ein Hilbertraum $\tilde{\mathcal{H}}$, ein $^*$-Homomorphismus $\pi \colon A \to \mathcal{B}(\tilde{\mathcal{H}})$ und ein $v \in \mathcal{B}(\mathcal{H},\tilde{\mathcal{H}})$ mit $\norm*{\varphi} = \norm*{v}^2$ und für $a \in A$\marginnote{$\begin{psmallmatrix}
+	Dann existieren ein Hilbertraum $\tilde{\mathcal{H}}$, ein $^*$-Homomorphismus $\pi \colon A \to \mathcal{B}(\tilde{\mathcal{H}})$ und ein $v \in \mathcal{B}(\mathcal{H},\tilde{\mathcal{H}})$ mit $\norm*{\varphi} = \norm*{v}^2$ und für $a \in A$ gilt \marginnote{$\begin{psmallmatrix}
 		0 & 0 \\ v & 0
 	\end{psmallmatrix} \in \mathcal{B}(\mathcal{H} \oplus \tilde{\mathcal{H}})$}
 	\[
 		\varphi(a) = v^* \pi(a) v
 	\]
-	Das heißt $v$ ist Kompression eines $^*$-Homomorphismus.
+	Das heißt $v$ ist \Index{Kompression} eines $^*$-Homomorphismus.
 	Falls $A,\varphi$ unital sind, so ist $v$ eine Isometrie.
 \end{satz}
 \begin{beweis}
-	GNS-Konstruktion
+	Ohne Beschränkung der Allgemeinheit können wir $\norm*{\varphi} =1$ annehmen.
+	Nach \autoref{prop:313} können wir $\varphi$ zu $\varphi^+ \colon A^+ \to \mathcal{B}(\mathcal{H})$ unital und vollständig positiv fortsetzen.
+	Wir dürfen also auch $A$ und $\varphi$ als unital annehmen.
+	
+	Definiere $\mathcal{H}' \coloneqq A \odot \mathcal{H}$ und eine symmetrische Bilinearform auf $\mathcal{H}'$ durch\marginnote{man beachte die Ähnlichkeiten zur GNS-Konstruktion}
+	\[
+		\skal*{a \otimes \xi}{b \otimes \eta}_{\mathcal{H}'} \coloneqq \skal*{\xi}{\varphi(a^* b) \eta}_{\mathcal{H}} \qquad a,b \in A, \enspace \xi, \eta \in \mathcal{H}
+	\]
+	Wir rechnen nach, dass diese Bilinearform positiv definit ist, da $\varphi$ vollständig positiv ist:
+	\[
+		\skal*{\sum_{i=1}^{n} a_i \otimes \xi_i}{\sum_{i=1}^{n} a_i \otimes \xi_i}_{\mathcal{H}'}\hspace{-1em} = \skal*{\begin{pmatrix} \xi_1 \\ \vdots \\ \xi_n \end{pmatrix}}{\varphi^\ssbrace{n} \enbrace[\big]{(a_i^*a_j)_{ij}}\begin{pmatrix} \xi_1 \\ \vdots \\ \xi_n \end{pmatrix}}_{\mathcal{H}^{\oplus n}} \hspace{-1em}\ge 0
+	\]
+	Setze nun $N \coloneqq \set*{x \in \mathcal{H}' \given \skal*{x}{x}_{\mathcal{H}'} =0}$.
+	Wegen $\abs*{\skal*{x}{y}_{\mathcal{H}'}}^2 \le \skal*{x}{x}_{\mathcal{H}'} \cdot \skal*{y}{y}_{\mathcal{H}'} $ gilt 
+	\[
+		N = \set*{x \in \mathcal{H}' \given \skal*{x}{y}_{\mathcal{H}'}=0 \text{ für } y \in \mathcal{H}'}
+	\]
+	Daher ist $N \subset \mathcal{H}'$ ein abgeschlossener Unterraum und wir setzen $\tilde{\mathcal{H}} \coloneqq \overline{\sfrac{\mathcal{H}'}{N}}^{\skal*{\cdot}{\cdot}_{\mathcal{H}'}}$.
+	Dies ist offenbar ein Hilbertraum.
+	Definiere nun $\pi' \colon A \to \mathcal{L}(\tilde{\mathcal{H}})$ durch
+	\[
+		\pi'(a) \enbrace*{\sum_{i=1}^{n} a_i \otimes \xi_i} \coloneqq \sum_{i=1}^{n} a a_i \otimes \xi_i
+	\]
+	Es gilt dann
+	\begin{align}
+		\enbrace*{a_i^* a^* aa_j}_{ij} &= \begin{pmatrix}
+			a_1^* & & \\
+			\vdots & & 0 \\
+			a_n^* & & 
+		\end{pmatrix} \cdot \begin{pmatrix}
+			a^*a & & 0 \\
+			& \ddots & \\
+			0 & & a^*a
+		\end{pmatrix} \cdot \begin{pmatrix}
+			a_1 & \cdots & a_n \\
+			& \rule{0cm}{1.6em} & \\
+			& 0 & 
+		\end{pmatrix} \\
+		&\le \norm*{a^*a} \cdot \begin{pmatrix}
+			a_1^* & & \\
+			\vdots & & 0 \\
+			a_n^* & & 
+		\end{pmatrix} \cdot \begin{pmatrix}
+			a_1 & \cdots & a_n \\
+			& \rule{0cm}{1.6em} & \\
+			& 0 & 
+		\end{pmatrix} = \norm*{a}^2 \cdot (a_i^*a_i)_{ij}
+	\end{align}
+	Damit können wir zeigen, dass $\pi'$ kontraktiv ist:
+	\begin{align}
+		\skal*{\pi'(a) \enbrace*{\sum_{i=1}^{n} a_i \otimes \xi_i}}{\pi'(a) \enbrace*{\sum_{i=1}^{n} a_i \otimes \xi_i}}_{\mathcal{H}'} &= \skal*{\begin{pmatrix} \xi_1 \\ \vdots \\ \xi_n \end{pmatrix}}{\varphi^\ssbrace{n} \enbrace[\big]{(a_i^*a^*a a_j)_{ij}}\begin{pmatrix} \xi_1 \\ \vdots \\ \xi_n \end{pmatrix}}_{\mathcal{H}^{\oplus n}} \\
+		&\le \norm*{a}^2_A \cdot \skal*{\sum_{i=1}^{n} a_i \otimes \xi_i}{\sum_{i=1}^{n} a_i \otimes \xi_i}
+	\end{align}
+	Damit folgt $\norm*{\pi'(a)}_{\mathcal{H}'} \le \norm*{a}_A$ und $\pi'$ induziert einen unitalen $^*$-Homomorphismus $\pi \colon A \to \mathcal{B}(\tilde{\mathcal{H}})$.
+	Definiere $v \in \mathcal{B}(\mathcal{H},\tilde{\mathcal{H}})$ durch $v(\xi) \coloneqq \ind_A \otimes \xi + N$.
+	Dann sind $\tilde{\mathcal{H}}$, $\pi$ und $v$ wie gewünscht.
 \end{beweis}
-\todo[inline]{Hier fehlt leider noch eine komplette Vorlesung!}
+
+\begin{lemma}
+	Seien $A,B$ beide $C^*$-Algebren und $\varphi \colon A \to B$ vollständig positiv und kontraktiv.
+	Dann gilt:
+	\begin{enumerate}[a)]
+		\item Für $x,y \in A$ gilt
+		\[
+			\norm[\big]{\varphi(xy) -\varphi(x) \varphi(y)}_B \le \norm[\big]{\varphi(xx^*) -\varphi(x) \varphi(x^*)}_B^{\sfrac{1}{2}} \cdot \norm*{y}_A
+		\]
+		\item Für den \emph{\enquote{multiplikativen Bereich}} 
+		\[
+			M \coloneqq \set[\big]{a \in A \given \varphi(a^*a) = \varphi(a)^* \varphi(a), \varphi(aa^*)= \varphi(a)\varphi(a)^*} \subseteq A
+		\]
+		von $\varphi$ gilt
+		\begin{enumerate}[i)]
+			\item $M= \set[\big]{a \in A \given \varphi(ax)=\varphi(a)\varphi(x), \varphi(xa)=\varphi(x) \varphi(a) , x \in A}$
+			\item $M \subseteq A$ ist eine $C^*$-Unteralgebra
+			\item $\varphi\big|_M$ ist ein $^*$-Homomorphismus
+		\end{enumerate}
+	\end{enumerate}
+\end{lemma}
+\begin{beweis}
+	\begin{enumerate}[a)]
+		\item Ohne Beschränkung der Allgemeinheit können wir $A,B,\varphi$ als unital annehmen.
+		Nach \hyperref[satz:319]{\textsc{Stinespring}} dürfen wir annehmen, dass $\varphi$ von der Form $\varphi(.) = v^* \pi(.)v$ für einen $^*$-Homomorphismus $\pi$ und eine Isometrie $v$ ist.
+		Dann gilt
+		\begin{align}
+			\norm[\big]{\varphi(xy) -\varphi(x) \varphi(y)}_B = \norm[\big]{v^*\pi(xy)v - v^*\pi(x)vv^*\pi(y)v} &\le \norm*{v^* \pi(x) - v^*\pi(x)vv^*} \cdot \norm*{\pi(y)v} \\
+			&\le \norm*{v^* \pi(x)(\ind -vv^*)} \cdot \norm*{y} \marginnote{$\ind- vv^*$ ist Projektion, $C^*$-Gleichung} \\
+			&= \norm*{v^* \pi(x) (\ind -vv^*) \pi(x^*) v}^{\sfrac{1}{2}} \cdot \norm*{y} \\
+			&= \norm*{\varphi(xx^*) - \varphi(x)\varphi(x)^*}^{\sfrac{1}{2}} \cdot \norm*{y}
+		\end{align}
+		\item Folgt direkt aus a). \qedhere
+	\end{enumerate}
+\end{beweis}
+\newpage
+\todo[inline]{Hier fehlt leider noch eine halbe Vorlesung!}
 
 \begin{proposition}[label=prop:323]
 	\emph{Hier entsteht Proposition 3.23}
