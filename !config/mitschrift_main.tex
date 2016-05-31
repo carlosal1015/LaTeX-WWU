@@ -351,6 +351,7 @@
 \newcommand{\subher}{\subset_{\her}}
 \newcommand{\grenzw}[1]{\xrightarrow{\minwidthbox{#1}{1.4em}}}
 \newcommand{\grenzwl}[1]{\xleftarrow{\minwidthbox{#1}{1.4em}}}
+\newcommand{\grenzwIn}[1]{\grenzw{\raisemath{-2pt}{#1}}}
 \newcommand{\MyTo}[1]{\tikzexternaldisable\mathbin{\tikz[baseline] \draw[-to,line width=.4pt] (0ex,0.94ex) -- (#1,0.94ex);}\tikzexternalenable}
 \newcommand{\dlim}{%
     \mathchoice
@@ -373,7 +374,9 @@
 \newcommand{\tensormin}{\mathbin{\otimes_{\min}}}
 \DeclareMathOperator{\Ped}{Ped}
 \newcommand{\alg}{\mathrm{alg}}
-
+\DeclareMathOperator{\CPC}{CPC}
+\DeclareMathOperator{\CP}{CP}
+\DeclareMathOperator{\UPC}{UPC}
 
 
 % -- Kategorien

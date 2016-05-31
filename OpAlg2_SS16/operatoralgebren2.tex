@@ -1428,6 +1428,113 @@ Wir erhalten:
 	Für ein Operatorsystem $X \subset A$ und eine vollständig positive, kontraktive Abbildung $\varphi \colon X \to C$ existiert eine vollständig positive, kontraktive Fortsetzung $\overline{\varphi} \colon A \to C$.
 \end{definition}
 % section 3 (end)
+\newpage
+
+\section{Die Sätze von Choi-Effros} % (fold)
+\label{sec:4}
+
+\begin{proposition}
+	Sei $B$ eine $C^*$-Algebra und $J \lhd B$ ein Ideal.
+	Sei $\varphi \colon M_n \to \sfrac{B}{J}$ vollständig positiv  unital (bzw. kontraktiv).
+	Dann hat $\varphi$ einen vollständig positiv unitalen (bzw. kontraktiven) Lift $\overline{\varphi} \colon M_n \to B$, das heißt $\pi \circ \overline{\varphi} = \varphi$, wobei $\pi$ die Quotientenabbildung ist.
+\end{proposition}
+\begin{beweis}
+	Es ist 
+	\[
+		0 \le \varphi^\ssbrace{n}\enbrace[\bigg]{\Underbracket{\sum_{i,j=1}^{n} e_{ij} \otimes e_{ij}}{\ge 0}} = \sum_{i,j} \varphi(e_{ij}) \otimes e_{ij} \in \sfrac{B}{J} \otimes M_n = \sfrac{B \otimes M_n}{J \otimes M_n}
+	\]
+	und somit existiert $0 \le \sum_{i,j=1}^{n} b_{ij} \otimes e_{ij} \in B \otimes M_n$ mit $\sum_{i,j} \varphi(e_{ij}) \otimes e_{ij} = \sum_{i,j} \pi(b_{ij}) \otimes e_{ij}$.
+	Dann muss bereits $\varphi(e_{ij})=b_{ij}$ für alle $i,j=1,\ldots,n$ gelten.
+	Definiere nun $\varphi' \colon M_n \to B$ linear durch $(\alpha_{ij})_{ij} \mapsto \sum_{i,j=1}^{n} \alpha_{ij} \cdot b_{ij}$.
+	Dann gilt $\pi \circ \varphi' = \varphi$, das heißt $\varphi'$ ist ein Lift.
+	Mit 
+	\[
+		\enbrace[\big]{\varphi'(e_{ij})}_{ij} = \sum_{i,j} \varphi'(e_{ij}) \otimes e_{ij} = \sum_{ij} b_{ij} \otimes e_{ij} \ge 0
+	\]
+	folgt aus \autoref{prop:323} (iii) $\Rightarrow$ (i), dass $\varphi'$ ein vollständig positiver Lift ist.
+	$\varphi'$ ist aber nicht notwendig unital.
+	
+	Seien nun $B$ und $\varphi$ unital.
+	Setze $h \coloneqq \varphi' (\ind_n) - \ind_B$, dann ist $h \in J = \ker \pi$.
+	Wähle $\rho \in S(M_n)$ beliebig und definiere $\overline{\varphi} \colon M_n \to B$ durch
+	\[
+		\overline{\varphi}(x) \coloneqq (\ind_B + h_+)^{-\sfrac{1}{2}}\enbrace[\big]{\varphi'(x)+ \rho(x) \cdot h_-} \enbrace*{\ind_B + h_+}^{-\sfrac{1}{2}} \in \varphi'(x) + J
+	\]
+	Dann ist $\overline{\varphi}$ ein vollständig positiver Lift und es gilt $\overline{\varphi}(\ind_n) = \ind_B$, denn
+	\[
+		\varphi(\ind_n) + \ind \cdot h_- = \ind_B + h_+ \qedhere
+	\]
+\end{beweis}
+
+Sei $A$ eine separable $C^*$-Algebra und $\set*{a_1, a_2, \ldots } \subset A^1$ dicht.
+Für $\varphi,\psi \colon A \to B$ vollständig positiv und kontraktiv setze 
+\[
+	d_B(\varphi,\psi) \coloneqq \sum_{k=1}^{\infty} \frac{1}{2^k} \norm[\big]{\varphi(a_k) - \psi(a_k)}
+\]
+Dann ist $d_B$ eine Metrik auf $\CPC(A,B)$ (bzw. $\CP(A,B)$ und $\UPC(A,B)$).
+Es gilt 
+\[
+	d_B(\varphi_\lambda,\varphi) \grenzw{\lambda} 0 \iff \norm*{\varphi_\lambda(a) - \varphi(a)} \grenzw{\lambda} 0, \qquad a \in A
+\]
+$(\varphi_\lambda)_\Lambda$ ist also genau dann Cauchy bezüglich $d_B$, wenn $(\varphi_\lambda(a))_\Lambda$ Cauchy ist für $a \in A$ für beschränkte Netze $(\varphi_\lambda)_\Lambda$ (warum?) 
+
+\begin{proposition}[label=prop:42]
+	Für $J \lhd B$ und $\pi \colon B \to \sfrac{B}{J}$ gilt
+	\[
+		d_{\sfrac{B}{J}} \enbrace*{\pi \varphi, \pi \psi} \le d_B(\varphi,\psi)
+	\]
+	und $d_{\sfrac{B}{J}} \enbrace*{\pi \varphi, \pi \psi} = \inf \set[\big]{d_B(\varphi,\psi') \given \psi \colon A \to B \text{ v.p. kontraktiv und } \pi \psi' = \pi \psi}$
+\end{proposition}
+\begin{beweis}
+	Wir müssen nur die zweite Gleichung beweisen.
+	Dazu zeigen wir zunächst \enquote{$\le$}: 
+	\[
+		d_{\sfrac{B}{J}} \enbrace*{\pi \varphi, \pi \psi} = \sum_{k} 2^{-k} \norm[\big]{\pi \varphi(a_k) - \pi \psi(a_k)} \le \sum_k 2^{-k} \norm[\big]{\varphi(a_k) - \psi(a_k)} = d_B(\varphi,\psi)
+	\]
+	Für \enquote{$\ge$} sei $(h_\lambda)_\Lambda \subset J$ eine \Index{quasizentrale approximative Eins}, das heißt $(h_\lambda)_\Lambda$ ist approximative Eins für $J$ und $\benbrace*{h_\lambda,b} \grenzwIn{\lambda} 0$ für alle $b \in B$.\footnote{Sei $(e_\gamma)_\Gamma$ eine approximative Eins für $J$, dann existiert $(h_\lambda)_\Lambda$ quasizentral in $\conv\set*{e_\gamma \given \gamma \in  \Gamma}$ im Wesentlichen nach Hahn-Banach.}
+	Für $b \in B$ gilt 
+	\begin{equation}
+		\norm*{\pi(b)} = \lim_\lambda \norm*{b(\ind_B - h_\lambda)} = \lim_\lambda \norm*{\enbrace*{\ind_B -h_\lambda}^{\sfrac{1}{2}} b \enbrace*{\ind_B - h_\lambda}^{\sfrac{1}{2}}} \label{eq:42:1} \tag{\#}
+	\end{equation}
+	Wir setzen $\varphi_\lambda(.) = \enbrace*{\ind_B - h_\lambda}^{\sfrac{1}{2}}\varphi(.) \enbrace*{\ind_B - h_\lambda}^{\sfrac{1}{2}}$, $\psi_\lambda$ analog und
+	\[
+		\overline{\varphi}_\lambda(.)  \coloneqq \varphi_\lambda(.) + h_\lambda^{\sfrac{1}{2}} \varphi(.) h_\lambda^{\sfrac{1}{2}} \qquad \overline{\psi}_\lambda \coloneqq \psi_\lambda(.) + h_\lambda^{\sfrac{1}{2}} \varphi(.) h_\lambda^{\sfrac{1}{2}}
+	\]
+	Dann sind $\varphi_\lambda, \psi_\lambda, \overline{\varphi}_\lambda, \overline{\psi}_\lambda$ sind vollständig positiv und kontraktiv.
+	Weiter gilt $\pi \varphi_\lambda= \pi \overline{\varphi}_\lambda = \pi \varphi$, $\pi \psi_\lambda = \pi \overline{\psi}_\lambda = \pi \psi$ sowie $d_B(\overline{\varphi}_\lambda,\varphi) \grenzw{\lambda} 0$.
+	Es gilt nun
+	\begin{align}
+		d_{\sfrac{B}{J}} \enbrace*{\pi \varphi, \pi \psi} = \lim_\lambda d_B(\varphi_\lambda,\psi_\lambda) &= \lim_\lambda d_B \enbrace*{\overline{\varphi}_\lambda, \overline{\psi}_\lambda} \\
+		&\le \inf \set[\big]{d_B(\varphi,\psi') \given \psi' \colon A \to B \text{v.p. kontraktiv, } \pi \psi' = \pi \psi}
+	\end{align}
+	wegen \eqref{eq:42:1}.
+\end{beweis}
+
+\begin{proposition}
+	Seien $A$ und $J \lhd B$ wie oben.
+	$\varphi_n \colon A \to \sfrac{B}{J}$ vollständig positiv und kontraktiv (unital) für $n \in \mathbb{N}$ mit vollständig positiven kontraktiven (unitalen) Lifts $\Theta_n \colon A \to B$ für $n \in \mathbb{N}$.
+	Falls $\varphi \colon A \to \sfrac{B}{J}$ vollständig positiv kontraktiv (unital) ist mit $d_{\sfrac{B}{J}}(\varphi_n,\varphi) \grenzwIn{n \to \infty} 0$, so existiert ein vollständig positiver kontraktiver (unitaler) Lift $\overline{\varphi} \colon A \to B$ für $\varphi$.
+	
+	Anders ausgedrückt:
+	\[
+		\set[\big]{\psi \in \CPC(A,\sfrac{B}{J}) \given \psi \text{ hat v.p. kontraktiven Lift}} \stackrel[\text{$d_{\sfrac{B}{J}}$-abg.}]{}{\subset} \CPC(A,\sfrac{B}{J})
+	\]
+\end{proposition}
+\begin{beweis}
+	Wir dürfen $d_{\sfrac{B}{J}}(\varphi_n, \varphi) < \frac{1}{2^{n+1}}$ annehmen.
+	Setze $\psi_0 \coloneqq 0$ und $\psi_1 \coloneqq \Theta_1$.
+	Es seien nun $\psi_0, \ldots , \psi_n \colon A \to B$ vollständig positiv kontraktiv bereits konstruiert mit $\pi \psi_k = \varphi_k$ und $d(\psi_{k-1}, \psi_k) \le \frac{1}{2^{k-1}}$ für $k =1,\ldots ,n$.
+	Es gilt
+	\begin{align}
+		\inf \set[\big]{d_B(\psi_n,\Theta) \given \Theta \colon A \to B \text{ v.p. kontraktiv, } \pi \Theta = \varphi_{n+1}} &\StackTextClap{\ref{prop:42}}{=}d_{\sfrac{B}{J}} \enbrace*{\pi \psi_n, \pi \Theta_{n+1}} \\
+		&= d_{\sfrac{B}{J}} \enbrace*{\varphi_n,\varphi_{n+1}} < \frac{1}{2^n} 
+	\end{align}
+	Es existiert also ein $\psi \colon A \to B$ vollständig positiv und kontraktiv, mit $\pi \psi = \varphi_{n+1}$ und $d_{B} \enbrace*{\psi_n,\psi} < \sfrac{1}{2^n}$.
+	Setze $\psi_{n+1} \coloneqq \psi$.
+	Induktiv erhalten wir eine Cauchy-Folge $(\psi_n)_\mathbb{N} \subset \CPC(A,B)$.
+	Dann ist weiter auch $\enbrace*{\psi_n(a)}_\mathbb{N}$ Cauchy für jedes $a \in A$ und somit definiert $\overline{\varphi}(a) \coloneqq \lim_n \psi_n(a)$ ein vollständig positive kontraktive Abbildung $\overline{\varphi} \colon A \to B$ mit $\pi \overline{\varphi} = \varphi$ (warum?).
+\end{beweis}
+% section 4 (end)
 
 
 
