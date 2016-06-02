@@ -1367,7 +1367,7 @@ Wir erhalten:
 	Dann sind $\tilde{\mathcal{H}}$, $\pi$ und $v$ wie gewünscht.
 \end{beweis}
 
-\begin{lemma}
+\begin{lemma}[label=lem:320]
 	Seien $A,B$ beide $C^*$-Algebren und $\varphi \colon A \to B$ vollständig positiv und kontraktiv.
 	Dann gilt:
 	\begin{enumerate}[a)]
@@ -1401,12 +1401,69 @@ Wir erhalten:
 		\item Folgt direkt aus a). \qedhere
 	\end{enumerate}
 \end{beweis}
-\newpage
-\todo[inline]{Hier fehlt leider noch eine halbe Vorlesung!}
 
-\begin{proposition}[label=prop:323]
-	\emph{Hier entsteht Proposition 3.23}
+\begin{lemma}
+	Es seien $A,B$ $C^*$-Algebren und $\begin{tikzcd}[cramped,sep=small] A \rar["\psi"] & B \rar["\varphi"] & A \end{tikzcd}$ vollständig positiv und kontraktiv.
+	Dann gilt für $a \in A^1_+$ und $b \in B$
+	\[
+		\norm[\big]{\varphi \enbrace*{\psi(a) \cdot b} - \varphi \enbrace*{\psi(a)} \varphi(b)} \le 3^{\sfrac{1}{2}} \cdot  \norm*{b} \cdot \Underbracket{\max \set[\Big]{\norm[\big]{\varphi \enbrace*{\psi(a)}-a}, \norm*{\varphi \enbrace*{\psi(a^2)} -a^2}}}{=: \eta}^{\sfrac{1}{2}}
+	\]
+\end{lemma}
+\begin{beweis}
+	Nach \autoref{prop:310} gilt
+	\[
+		0 \le \varphi \enbrace*{\psi(a)^2} - \varphi \enbrace[\big]{\psi(a)}^2 \le \varphi \enbrace*{\psi(a^2)} - \varphi \enbrace[\big]{\psi(a)}^2 \le (\eta + \eta +\eta) \cdot \ind
+	\]
+	Damit erhalten wir
+	\[
+		\norm[\big]{\varphi \enbrace*{\psi(a)b} - \varphi \enbrace*{\psi(a)} \varphi(b)} \StackText{\ref{lem:320}}{\le} \norm*{\varphi \enbrace*{\psi(a)^2} - \varphi \enbrace[\big]{\psi(a)}^2}^{\sfrac{1}{2}} \cdot \norm*{b} \le (3 \eta)^{\sfrac{1}{2}} \cdot \norm*{b} \qedhere
+	\]
+\end{beweis}
+
+\begin{proposition}
+	Sei $A$ eine $C^*$-Algebra.
+	Für $(a_1,\ldots ,a_n)$ mit $a_i \in A$ ist $(a_i^* a_j)_{i,j} \in M_n(A)_+$.
+	Jedes $h \in M_n(A)_+$ lässt sich als Summe von $n$ solchen Elementen schreiben.
 \end{proposition}
+\begin{beweis}
+	Sei $h=x^*x$ mit $x \in M_n(A)$.
+	Wir schreiben $x = x_1 + \ldots + x_n$, wobei $x_i$ die Matrix ist, die nur aus der $i$-ten Zeile von $x$ (und sonst Nullen) besteht.
+	Dann gilt
+	\[
+		h = x^* x = \sum_{i,j} x_i^* x_j = \sum_{k=1}^{n} x_k^* x_k = \sum_{k=1}^{n} \enbrace*{x_{ki}^* x_{kj}}_{ij} \qedhere
+	\]
+\end{beweis}
+
+\begin{satz}[label=satz:323]
+	Sei $B$ eine $C^*$-Algebra und $\varphi \colon M_n \to B$ linear.
+	Dann sind äquivalent:
+	\begin{enumerate}[(i)]
+		\item $\varphi$ ist vollständig positiv
+		\item $\varphi$ ist $n$-positiv
+		\item $\enbrace*{\varphi(e_{ij})}_{ij} \in M_n(B)$ ist positiv
+	\end{enumerate}
+\end{satz}
+\begin{beweis}
+	Die Implikation (i) $\Rightarrow $ (ii) ist trivial.
+	Für die zweite Implikation stellen wir zunächst fest, dass\marginnote{$e_{ik} e_{lj} = e_{ij}$}
+	\[
+		0 \neq (e_{ij})_{ij} = \begin{pmatrix}
+			e_{11} & \hphantom{\cdots} & \\
+			\vdots & & 0 \\
+			e_{n1} & &
+		\end{pmatrix} \begin{pmatrix}
+			e_{11} & \cdots & e_{1n} \\
+			\rule{0cm}{1.6em} & & \\
+			& 0 &
+		\end{pmatrix} \in M_n(M_n)
+	\]
+	gilt.
+	Da $\varphi$ $n$-positiv ist, folgt
+	\[
+		0 \le \varphi^\ssbrace{n} \enbrace[\big]{(e_{ij})_{ij}} = \enbrace[\big]{\varphi(e_{ij})}_{ij} \in M_n(B)
+	\]
+	Die verbleibe ist die erste Aufgabe von Übungsblatt 5.\todo{eventuell \TeX{}en}
+\end{beweis}
 
 \begin{bemerkung}[label=bem:324]
 	Sei $M$ ein Operatorraum, das heißt ein linearer Unterraum einer $C^*$-Algebra.
@@ -1449,7 +1506,7 @@ Wir erhalten:
 	\] 
 	Für die verbleibende Implikation (iii) $\Rightarrow $ (i) ist zu zeigen, dass $\varphi^\ssbrace{m} \colon M_m(A) \to M_m(M_n)$ positiv ist für $n \in \mathbb{N}$.
 	Es ist $M_m(M_n) = M_m \otimes M_n = \mathcal{B} \enbrace*{\bigoplus_{i=1}^m \mathbb{C}^n}$.
-	Wegen \autoref{prop:323} genügt es, 
+	Wegen \autoref{satz:323} genügt es, 
 	\[
 		\varphi^\ssbrace{m} \enbrace[\big]{(a_i^* a_j)_{i,j=1, \ldots ,m}} \ge 0 
 	\]
@@ -1542,7 +1599,7 @@ Wir erhalten:
 	\[
 		\enbrace[\big]{\varphi'(e_{ij})}_{ij} = \sum_{i,j} \varphi'(e_{ij}) \otimes e_{ij} = \sum_{ij} b_{ij} \otimes e_{ij} \ge 0
 	\]
-	folgt aus \autoref{prop:323} (iii) $\Rightarrow$ (i), dass $\varphi'$ ein vollständig positiver Lift ist.
+	folgt aus \autoref{satz:323} (iii) $\Rightarrow$ (i), dass $\varphi'$ ein vollständig positiver Lift ist.
 	$\varphi'$ ist aber nicht notwendig unital.
 	
 	Seien nun $B$ und $\varphi$ unital.
