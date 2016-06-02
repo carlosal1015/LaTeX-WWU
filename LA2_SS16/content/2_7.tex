@@ -234,4 +234,97 @@ Dazu benutzen wir zunächst, dass jedes reelle Polynom $p(\lambda) = \sum_{k=0}^
 	Die Behauptung folgt dann per Induktion nach $\grad(p)$. \qedhere
 \end{beweis}
 
+\begin{korollar}
+	\label{lemma:7.11}
+	Ist $p(\lambda) = \sum_{k=0}^{n} a_k \lambda^k$ ein reelles Polynom, so besitzt $p$ eine Faktorzerlegung
+	\[
+		p(\lambda) = a(\lambda-\lambda_1)^{n_1} \cdots (a-\lambda_l)^{n_l} (\lambda^2 + a_1 \lambda + b_1)^{m_1} \cdots (\lambda^2 + a_k \lambda + b_k)^{m_k}
+	\]
+	mit $a,\lambda_1,\dots,\lambda_l \in \RR$ und $\lambda^2 + a_i \lambda + b_i$ ist quadratisches reelles Polynom, das keine reelle Nullstelle besitzt.
+\end{korollar}
+
+\begin{beweis}
+	Ist $\mu_i, \ol{\mu}_i$ ein konjugiert komplexes Nullstellenpaar von $p$, so gilt mit $\mu_i = \alpha_i + i \beta_i$:
+	\[
+		(\lambda - \mu_i)(\lambda - \ol{\mu}_i) = \lambda^2 - 2 \alpha_i \lambda + (\alpha_i^2 + \beta_i^2),
+	\]
+	wobei die rechte Seite keine Nullstellen in $\RR$ hat, da beide Nullstellen in $\CC \setminus \RR$ sind.
+	Damit ist $(\lambda - \mu_i)^{m_i} (\lambda - \ol{\mu}_i)^{m_i} = (\lambda^2 - 2 \alpha_i \lambda + (\alpha_i^2 + \beta_i^2))^{m_i}$, also $a_i = -2\alpha_i, b_i = (\alpha_i + \beta_i)^2$. \qedhere
+\end{beweis}
+
+\begin{lemma}
+	\label{lemma:7.12}
+	Seien $(V,\sk{\cdot,\cdot})$ ein endlich dimensionaler euklidischer $\RR$-Vektorraum und $F \in \End(V)$ normal.
+	Für $u = v + iw \in V_{\CC}$ setze $\ol{u} = v - iw \in V_{\CC}$.
+	Dann gelten:
+	\begin{enumerate}[(i)]
+		\item Ist $\lambda = \alpha + i \beta$ ein Eigenwert von $F_{\CC}$ und $u = v+iw \in V_{\CC}$ ein Eigenvektor zu $\lambda$, so gilt $F(v) = \alpha v - \beta w, F(w) = \beta v + \alpha w$ und $F_{\CC}(\ol{u}) = \ol{\lambda} \ol{u}$.
+		\item Ist $\{u_1,\dots,u_l\}$ eine Orthonormalbasis für $E_\lambda(F_{\CC}) \subseteq V_{\CC}$, so ist $\{\ol{u_1},\dots,\ol{u_l}\}$ eine Orthonormalbasis für $E_{\ol{\lambda}}(F_{\CC})$.
+		\item Ist $\lambda = \alpha + i\beta$ wie in (i) mit $\beta \neq 0$ und ist $\{u_1,\dots,u_l\}$ eine Orthonormalbasis für $E_\lambda(F_{\CC})$ mit $u_j = v_j + iw_j$, so ist
+		\[
+			\penb{\sqrt{2} v_1, \sqrt{2} w_2, \dots, \sqrt{2} v_l,\sqrt{2} w_l}
+		\]
+		eine Orthonormalbasis von $E_{\lambda}(F_{\CC}) \oplus E_{\ol{\lambda}}(F_{\CC})$.
+	\end{enumerate}
+\end{lemma}
+
+\begin{beweis}
+	\mbox{} \\[-.9cm]
+	\begin{enumerate}[(i)]
+		\item Sei $\lambda = \alpha + i \beta$ ein Eigenwert von $F_{\CC}$ und $u = v+iw$ ein Eigenvektor zu $\lambda$.
+		Dann gilt:
+		\[
+			F(v) + i F(w) = F_{\CC}(v+iw) = (\alpha + i\beta)(v+iw) = \alpha v - \beta w +i(\beta v + \alpha w).
+		\]
+		Damit folgt $F(v) = \alpha v - \beta w$ und $F(w) = \beta v + \alpha w$.
+		\newpage
+		Dann folgt auch
+		\[
+			F_{\CC}(v-iw) = F(v) - iF(w) = (\alpha v - \beta w)-i(\beta v + \alpha w) = (\alpha - i\beta)(v-iw),
+		\]
+		also $F_{\CC}(\ol{u}) = \ol{\lambda} \ol{u}$.
+		\item Ist $\{u_1,\dots,u_l\}$ ein Orthonormalsystem, so auch $\{\ol{u_1},\dots,\ol{u_l}\}$, denn man rechnet schnell nach, dass $\sk{\ol{u_i},\ol{u_j}} = \ol{\sk{u_i,u_j}} = \ol{\delta_{ij}} = \delta_{ij}$ gilt.
+		Die Aussage folgt dann mit (i).
+		\item Sei $u_j = v_j + iw_j$ für $1 \leq j \leq l$.
+		Da $\lambda \neq \ol{\lambda}$ Eigenwert von $F_{\CC}$ und $F_{\CC}$ normal ist, gilt $E_{\lambda}(F_{\CC}) \perp E_{\ol{\lambda}}(F_{\CC})$ nach \autoref{lemma:7.2}.
+		Damit folgt für $i \neq j$, dass $\sk{u_i,u_j} = 0 = \sk{u_i,\ol{u_j}}$ und $\sk{u_i,\ol{u_i}} = 0$.
+		Wegen $v_j = \frac{1}{2}(u_j + \ol{u_j}), w_j = \frac{1}{2i}(u_j - \ol{u_j})$ folgt für $i \neq j$:
+		\begin{align*}
+			\sk{v_i,v_j} &= \sk{\frac{1}{2}(u_i+\ol{u_i}),\frac{1}{2}(u_j+\ol{u_j})} \\
+			\sk{w_i,w_j} &= \sk{\frac{1}{2i}(u_i-\ol{u_i}),\frac{1}{2i}(u_j-\ol{u_j})} \\
+			\sk{v_i,w_j} &= \sk{\frac{1}{2}(u_i+\ol{u_i}),\frac{1}{2i}(u_j-\ol{u_j})}.
+		\end{align*}
+		Ferner folgt wegen $E_{\lambda}(F_{\CC}) \perp E_{\ol{\lambda}}(F_{\CC})$ für alle $1 \leq j \leq l$:
+		\begin{align*}
+			0 = \sk{u_j,\ol{u_j}} &= \sk{v_j + iw_j,v_j -iw_j} \\
+			&= \sk{v_j,v_j} - \sk{w_j,w_j} + i(\sk{w_j,v_j} + \sk{v_j,w_j}) \\
+			&= \no{v_j}^2 - \no{w_j}^2 + 2i \sk{v_j,w_j}.
+		\end{align*}
+		Damit folgt $\no{w_j}^2 = \no{v_j}^2$ und $\sk{v_j,w_j} = 0$.
+		Wegen $1 = \no{u_j}^2 = \no{v_j+iw_j}^2 \stackrel{\ref{satz:4.7}}{=} \no{v_j}^2 + \no{w_j}^2$ folgt dann $\no{v_j} = \no{w_j} \cdot \frac{1}{\sqrt{2}}$.
+		Somit ist $\penb{\sqrt{2} v_1, \sqrt{2} w_2, \dots, \sqrt{2} v_l,\sqrt{2} w_l}$ ein Orthonormalsystem in $E_{\lambda}(F_{\CC}) \oplus E_{\ol{\lambda}}(F_{\CC})$ mit $2l$ Elementen, und damit eine Orthonormalbasis von $E_{\lambda}(F_{\CC}) \oplus E_{\ol{\lambda}}(F_{\CC})$. \qedhere
+	\end{enumerate}
+\end{beweis}
+
+\begin{satz}[reelle normale Endomorphismen]
+	\label{satz:7.13}
+	Sei $(V,\sk{\cdot,\cdot})$ ein endlich dimensionaler euklidischer $\RR$-Vektorraum und sei $F \in \End(V)$ normal.
+	Dann existiert eine Orthonormalbasis $B:= \{u_1,\dots,u_k,v_1,w_1,\dots,v_m,w_m\}$ von $V$ mit
+	\[
+		A^B_F = \enb{\begin{BMAT}(b){cccccccc}{cccccccc}
+		\lambda_1 &  &  &  &  &  &  &  \\ 
+		& \ddots &  &  &  &  &  &  \\ 
+		&  & \lambda_k &  &  &  &  &  \\ 
+		&  &  & \alpha_1 & \beta_1 &  &  &  \\ 
+		&  &  & -\beta_1 & \alpha_1 &  &  &  \\ 
+		&  &  &  &  & \ddots &  &  \\ 
+		&  &  &  &  &  & \alpha_m & \beta_m \\ 
+		&  &  &  &  &  & -\beta_m & \alpha_m
+		\addpath{(6,0,|)uurrddll}
+		\addpath{(3,3,|)uurrddll}
+		\end{BMAT}}.
+	\]
+	Hierbei sind $\lambda_1,\dots,\lambda_k$ die reellen Eigenwerte von $F$ und $\mu_j = \alpha_j + i\beta$, $\ol{\mu_j} = \alpha_j - i\beta$ sind die komplexen Eigenwerte von $F_{\CC}$, $1\leq j \leq m$ (jeweils mit Vielfachheiten).
+\end{satz}
+
 % \newpage
