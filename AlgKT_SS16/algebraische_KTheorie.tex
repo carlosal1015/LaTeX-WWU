@@ -684,7 +684,7 @@ Dies leistet der folgende Satz:
 
 \section{Endlichkeit von Kettenkomplexen} % (fold)
 \label{sec:3}
-In diesem Abschnitt sind Kettenkomplexe immer $\mathbb{N}$-graduiert. (Allgemeiner könnten wir nach unten beschränkte Kettenkomplexe betrachten)
+In diesem Abschnitt sind Kettenkomplexe immer $\mathbb{N}$-graduiert. (Allgemeiner könnten wir nach unten beschränkte Kettenkomplexe betrachten)\todo{RevChap 3}
 
 \begin{definition}
     Ein Kettenkomplex $C_*$ von $R$-Moduln heißt \bet{beschränkt}\index{Kettenkomplex!beschränkter}, wenn $C_j \neq 0$ nur für endlich viele $j$.
@@ -1042,7 +1042,7 @@ In diesem Abschnitt sind Kettenkomplexe immer $\mathbb{N}$-graduiert. (Allgemein
 
 \section{\textsc{Wall}s Endlichkeitshindernis für topologische Räume} % (fold)
 \label{sec:4}
-
+\todo[inline]{RevChap 4}
 \todo[inline]{Wer ist dieser Wall?}
 \begin{definition}[{name=[{endlicher CW-Komplex}]}]
 	Ein CW-Komplex $E$ heißt \bet{endlich}\index{endlicher CW-Komplex}, wenn er aus endlich vielen Zellen besteht. 
@@ -1419,9 +1419,111 @@ In diesem Abschnitt sind Kettenkomplexe immer $\mathbb{N}$-graduiert. (Allgemein
 	Nun liefert die $l$-fache Anwendung der Konstruktion aus dem Lemma die gesuchte $(r+1)$-zusammenhängende Abbildung $g \cup \phi_1 \coprod \ldots \coprod \phi_l \colon E \cup_{\varphi_1 \coprod \ldots \coprod \varphi_l} \enbrace*{D^{r+1} \coprod \ldots \coprod D^{r+1}} \to X$.
 \end{beweis}
 
+\begin{bemerkung}
+	Nach dem Satz von \textsc{Whitehead} ist eine Abbildung $f \colon X \to Y$ zwischen CW-Komplexen genau dann eine Homotopieäquivalenz, wenn sie (für alle Basispunkte in $X$ und) alle $k$ Isomorphismen $f_* \colon \pi_k(X) \to \pi_k(Y)$ induziert.
+	
+	Zum Beweis von Walls Satz: Sei $X$ endlich dominiert.
+	Ohne Einschränkungen sei $X$ ein CW-Komplex.
+	Wir haben einen endlichen CW-Komplex $E$ konstant in $f$ (?) und eine Abbildung $g \colon E \to X$ die $r$-zusammenhängend ist für alle $r$.
+	Nach Whitehead ist $g$ dann eine Homotopieäquivalenz.
+\end{bemerkung}
 
+\begin{bemerkung}
+	Es gelten folgende Aussagen, die allerdings nicht trivial zu zeigen sind:
+	\begin{enumerate}[1)]
+		\item Für eine endliche Gruppe $G$ ist auch $\tilde{K}_0(\mathbb{Z}[G])$ endlich.
+		\item Für endliches $G$ ist $\tilde{K}_0(\mathbb{Z}[G]) \to \tilde{K}_0(\mathbb{Q}[G])$ immer die Nullabbildung.
+		\item Sei $p$ eine Primzahl, $C_p = \sfrac{\mathbb{Z}}{p \mathbb{Z}}$ und $\xi = \exp(\sfrac{2 \pi i}{p}) \in \mathbb{C}$.
+		Dann ist $\mathbb{Z}[\xi] \subseteq \mathbb{Q}(\xi)$ ein Dedekindring. 
+		Der Ringhomomorphismus $\mathbb{Z}[C_p] \to \mathbb{Z}[\xi]$, der den Erzeugern von $C_p$ die Einheitswurzel $\xi$ zuordnet, induziert einen Isomorphismus auf $\tilde{K}_0$. Also
+		\[
+			\tilde{K}_0 \enbrace[\big]{\mathbb{Z}[C_p]} = \mathrm{Cl} \enbrace*{\mathbb{Z}[\xi]}
+		\]
+		Aber $\mathrm{Cl}(\mathbb{Z}[\xi])$ ist nur für endlich viele $p$ explizit bekannt:
+		\begin{table}[htb!]
+			\caption{$\mathrm{Cl}(\mathbb{Z}[\xi])$ für einige bekannte $p$}
+			\label{table:bem:cyclo_p}
+			\centering
+			\begin{tabular}{p{2cm}cccccc}
+				\toprule
+				$p$ & $\le 19$ & $23$ & $29$ & $31$ & $37$ & $41$\\
+				\midrule
+				$\mathrm{Cl}(\mathbb{Z}[\xi])$ & $0$ &  $\sfrac{\mathbb{Z}}{3 \mathbb{Z}}$ & $\enbrace*{\sfrac{\mathbb{Z}}{3 \mathbb{Z}}}^3$ & $\sfrac{\mathbb{Z}}{9 \mathbb{Z}}$ & $\sfrac{\mathbb{Z}}{37 \mathbb{Z}}$ &  $\sfrac{\mathbb{Z}}{11 \mathbb{Z}} \oplus \sfrac{\mathbb{Z}}{11 \mathbb{Z}}$\\
+				\bottomrule
+			\end{tabular}
+		\end{table}
 
+	\end{enumerate}
+\end{bemerkung}
 % section 4 (end)
+\newpage
+
+\section{Waldhausen Kategorien} % (fold)
+\label{sec:5}
+
+\begin{definition}[{name=[{Waldhausen Kategorie}]}]
+	Sei $\mathcal{C}$ eine Kategorie zusammen mit zwei ausgezeichneten Familien von Morphismen, den \bet{Kofaserungen}\index{Kofaserung} $\co \mathcal{C}$ und den \bet{schwachen Äquivalenzen}\index{schwache Äquivalenz} $\wOp \mathcal{C}$.
+	Beide Familien sollten die Isomorphismen enthalten und abgeschlossen sein unter Komposition.
+	Dann heißt $\mathcal{C}$ -- oder genauer $(\mathcal{C},\co \mathcal{C},\wOp \mathcal{C})$ -- eine \Index{Waldhausen-Kategorie}, falls folgende Axiome erfüllt sind:
+	\begin{enumerate}[(i)]
+		\item[(W1)] Es gibt ein \Index{Nullobjekt} $0 \in \mathbb{C}$, also ein Objekt $0$, dass sowohl initial als auch terminal ist, das heißt zu jedem Objekt $C$ in $\mathcal{C}$ gibt es jeweils genau einen Morphismus $0 \to C$ und $C \to 0$. 
+		Wir verlangen weiter, dass $0 \hookrightarrow C$ immer eine Kofaserung ist.
+		\item[(W2)] Sei $\!\begin{tikzcd}[sep=small] C & A \lar \rar[hook] & B \end{tikzcd}\!$ ein Diagramm in $\mathcal{C}$, sodass $A \hookrightarrow B$ eine Kofaserung ist.
+		Dann existiert der Pushout
+		\[
+			\begin{tikzcd}
+				A \rar[hook] \dar & B \dar  \\
+				C \rar[hook] & C \cup_A B
+			\end{tikzcd}
+		\]
+		und $C \hookrightarrow C \cup_A B$ ist eine Kofaserung.
+		\item[(W3)] [Verkleben von schwachen Äquivalenzen] Sei 
+		\[
+			\begin{tikzcd}
+				C \dar["\sim"] & A \lar \dar["\sim"] \rar[hook] & B \dar["\sim"] \\
+				C' & A' \lar \rar[hook] & B'
+			\end{tikzcd}
+		\] 
+		sodass $A \hookrightarrow B$, $A' \hookrightarrow B'$ Kofaserungen sind und die vertikalen Abbildungen schwache Äquivalenzen sind.
+		Dann ist auch die induzierte Abbildung $B \cup_A C \xrightarrow{\sim} B' \cup_{A'} C'$ eine schwache Äquivalenz.
+	\end{enumerate}
+	Eine Waldhausen-Kategorie heißt \bet{saturiert}\index{Waldhausen-Kategorie!saturierte}, falls für komponierbare Morphismen $f \colon A \to B$, $g \colon B \to C$ gilt:
+	Sind zwei der drei Morphismen $f$, $g$ und $ g \circ f$ schwache Äquivalenzen, so sind auch alle drei schwache Äquivalenzen.
+\end{definition}
+
+\begin{bemerkung}
+	W1 und W2 haben die folgenden Konsequenzen:
+	\begin{enumerate}[1)]
+		\item Für $A,B \in \mathcal{C}$ existiert das Koprodukt $A \amalg B$ mittels
+		\(
+			\begin{tikzcd}
+				0 \rar \dar & A \dar \\
+				B \rar & A \amalg B
+			\end{tikzcd}
+		\)
+		\item Für jede Kofaserung $A \hookrightarrow B$ existiert der Kokern $\sfrac{B}{A}$ mittels
+		\(
+			\begin{tikzcd}
+				A \rar \dar & B \dar \\
+				0 \rar & \sfrac{B}{A}
+			\end{tikzcd}
+		\)
+		
+		Wir nennen dann $A \hookrightarrow B \twoheadrightarrow \sfrac{B}{A}$ eine Kofaserfolge.
+	\end{enumerate}
+\end{bemerkung}
+
+\begin{beispiel}
+	\leavevmode
+	\begin{enumerate}[(i)]
+		\item Sei $R$ ein Ring, $\mathcal{P}_R$ die Kategorie der endlich erzeugten projektiven $R$-Moduln.
+		Dann wird $\mathcal{P}_R$ zu einer Waldhausen-Kategorie, in der die Kofaserungen die Inklusionen von direktn Summanden sind und die schwachen Äquivalenzen die Isomorphismen. (Alternativ andere Kategorien von $R$-Moduln)
+		\item Sei $R$ ein Ring.
+		Die Kategorie $\ch_f \mathcal{P}_R$ der $R$-Kettenkomplexe von endlichem Typ von projektiven $R$-Moduln wird zu einer Waldhausen-Kategorie, in der die Kofaserungen die Kettenabbildungen sind, die in jedem Grad die Inklusion eines direkten Summanden sind, und die schwachen Äquivalenzen die Kettenhomotopieäquivalenzen sind. 
+	\end{enumerate}
+\end{beispiel}
+
+% section 5 (end)
 
 \cleardoubleoddemptypage
 \pagenumbering{Alph}
