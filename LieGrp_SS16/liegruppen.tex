@@ -1188,7 +1188,7 @@ Innere Automorphismen existieren in diesem auch nicht.
 	\]
 \end{lemma}
 
-\begin{lemma}
+\begin{lemma}[label=lem:165]
 	Sei $G$ eine zusammenhängende Liegruppe.
 	Dann ist $\Int(\mathfrak{g})$ ein Normalteiler von $\Aut(\mathfrak{g})_e$.
 \end{lemma}
@@ -1891,20 +1891,20 @@ In allen Beispielen gilt
 Somit ist $\mathcal{B}(X,X^T) = \alpha_\mathfrak{g} \cdot \sum X_{ii}^2 \neq 0$ für $x\neq 0$.
 Ist etwa $G$ kompakt, so ist $\mathcal{B}_\mathfrak{g}$ negativ definit!
 
-\begin{satz}
+\begin{satz}[label=satz:222]
 	Sei $\mathfrak{g}$ eine halbeinfache Liealgebra.
 	Dann gilt
 	\begin{enumerate}[1)]
 		\item $\mathfrak{g} = \mathfrak{g}_1 \oplus  \ldots \oplus \mathfrak{g}_s$, wobei die $\mathfrak{g}_i$ einfache Ideale sind, $\benbrace*{\mathfrak{g}_i,\mathfrak{g}_j}=0$ für $i \neq j$
 		\item Ist $\mathfrak{a} \subset \mathfrak{g}$ ein Ideal, so folgt $\mathfrak{a} = \mathfrak{g}_{i_1} \oplus  \ldots \oplus \mathfrak{g}_{i_k}$
 		\item $\benbrace*{\mathfrak{g},\mathfrak{g}}=\mathfrak{g}$
-		\item $\sfrac{\Aut(\mathfrak{g})}{\Int(\mathfrak{g})}$ ist diskret (fast nur innere Automorphismen $\leadsto$ Konjugation).
+		\item $\sfrac{\Aut(\mathfrak{g})}{\Int(\mathfrak{g})}$ ist diskret.
 	\end{enumerate}
 \end{satz}
 \begin{beweis}
 	Vorüberlegungen:
 	\begin{enumerate}[i)]
-		\item Ist $\mathfrak{a}$ ein Ideal von $\mathfrak{g}$, so auch 
+		\item \label{enum:222:1} Ist $\mathfrak{a}$ ein Ideal von $\mathfrak{g}$, so auch 
 		\[
 			\mathfrak{a}^\perp \coloneqq \set[\big]{x \in \mathfrak{g} \given \mathcal{B}(x,y) =0 \,\forall y \in \mathfrak{a}}
 		\]
@@ -1913,14 +1913,207 @@ Ist etwa $G$ kompakt, so ist $\mathcal{B}_\mathfrak{g}$ negativ definit!
 		\[
 			\mathcal{B} \enbrace*{\benbrace*{x,y},z} = - \mathcal{B} \enbrace*{\ad_y(x), z} = \mathcal{B} \enbrace*{x, \ad_y(z)} =0
 		\]
-		\item Ist $\mathfrak{a}$ ein Ideal, so ist $\mathfrak{a} \cap \mathfrak{a}^\bot = \set*{0}$.
+		\item \label{enum:222:2} Ist $\mathfrak{a}$ ein Ideal, so ist $\mathfrak{a} \cap \mathfrak{a}^\bot = \set*{0}$.
 		Angenommen dies wäre nicht so, so wissen wir dass der Schnitt ein Ideal von $\mathfrak{g}$ ist, auf dem die Killingform verschwindet.
 		Mit einer kleinen Rechnung folgt, dass der Schnitt dan auflösbar ist.
 		Also ist $\rad(\mathfrak{g}) \neq 0$, was einen Widerspruch darstellt.
-		\item $\mathfrak{g} = \mathfrak{a} \oplus \mathfrak{a}^\perp$ (gilt viel allgemeiner!)
-	\end{enumerate} 
+		\item \label{enum:222:3} $\mathfrak{g} = \mathfrak{a} \oplus \mathfrak{a}^\perp$ (gilt viel allgemeiner!)
+	\end{enumerate}
+	Beginnen wir nun mit den eigentlichen Aussagen:
+	\begin{enumerate}[1)]
+		\item Sei $\mathfrak{a}$ ein Ideal von $\mathfrak{g}$ mit $\mathfrak{a} \neq \set*{0}, \mathfrak{g}$.
+		Nach \ref{enum:222:1}, \ref{enum:222:2} und \ref{enum:222:3} gilt $\mathfrak{g} = \mathfrak{a} \oplus \mathfrak{a}^\perp$.
+		Induktiv folgt dann die Behauptung.
+		\item Sei $\mathfrak{a}$ ein Ideal von $\mathfrak{g}$.
+		Dann ist 
+		\[
+			\mathfrak{a} \cap \mathfrak{g}_1 = \begin{cases}
+				0 \\
+				\mathfrak{g}_i 
+			\end{cases}
+		\]
+		mit $\mathfrak{g}_1, \ldots ,\mathfrak{g}_s$ wie in 1).
+		Da $\mathfrak{g}$ kein Zentrum hat existiert $x \in \mathfrak{a}$ und $y \in \mathfrak{g}$ mit $\benbrace*{x,y} \neq 0$.
+		Wir schreiben $y = y_1 + \ldots + y_s$ bezüglich $\mathfrak{g} = \mathfrak{g}_1 \oplus  \ldots \oplus \mathfrak{g}_s$.
+		Dann gilt 
+		\[
+			0 \neq\benbrace*{x,y} = \sum_{i=1}^{s} \benbrace*{x,y_i} \implies \benbrace*{x,y_{i_0}} \neq 0
+		\]
+		für ein $i_0 \in \set*{1,\ldots ,s}$. Aber $\benbrace*{x,y_{i_0}} \in \mathfrak{g}_{i_0} \cap \mathfrak{a}$.
+		\item Ist $\mathfrak{g}$ einfach, so gilt 
+		\[
+			\benbrace*{\mathfrak{g},\mathfrak{g}} = \begin{cases}
+				0 \\
+				\mathfrak{g}
+			\end{cases}
+		\]
+		Aus ersterem würde folgen, dass $\mathfrak{g}$ abelsch ist, also die Killlingform trivial ist, was ein Widerspruch ist.
+		Mit 1) folgt nun die Behauptung.
+		\item Nach \autoref{lem:165} ist $\Int(\mathfrak{g})$ ein Ideal von $\Der(\mathfrak{g}) = \Tmap_e \Aut(\mathfrak{g})$.
+		Da $\mathfrak{g}$ halbeinfach ist, gilt $Z(\mathfrak{g}) =0$ und somit ist
+		\[
+			\Int(\mathfrak{g}) \cong \ad(\mathfrak{g}) \cong \mathfrak{g}
+		\]
+		Damit ist $\int(\mathfrak{g})$ halbeinfach.
+		Wir bezeichnen nun mit $\mathcal{B}$ die Killingform von $\Der(\mathfrak{g})$.
+		Dann gilt
+		\[
+			\mathcal{B}\big|_{\Int(\mathfrak{g})} = \mathcal{B}_{\Int(\mathfrak{g})}
+		\]
+		Die Vorüberlegungen \ref{enum:222:1}, \ref{enum:222:2} und \ref{enum:222:3} gelten auch, wenn nur $\mathcal{B}|_{\mathfrak{a}}$ nicht degeneriert ist.
+		Somit folgt
+		\[
+			\Der(\mathfrak{g}) = \Int(\mathfrak{g}) \oplus  \Int(\mathfrak{g})^\perp
+		\]
+		Sei nun $D \in \Int(\mathfrak{g})^\bot$.
+		Dann gilt wieder nach \autoref{lem:165} $0= \benbrace*{D,\ad_X} = \ad_{D(x)}$ und somit $D(x) \in Z(\mathfrak{g}) = \set*{0}$.
+		Da dies für alle $x \in \mathfrak{g}$ gilt, folgt $D=0$ und damit $\Der(\mathfrak{g}) = \Int(\mathfrak{g})$.\qedhere
+	\end{enumerate}
 \end{beweis}
+
+\begin{bemerkung*}
+	Einfache komplexe Liealgebren sind von Cartan klassifiziert worden.
+	Diese treten in vir unendlichen Familien $A_n$, $B_n$, $C_n$, $D_n$ auf und 5 Ausnahmealgebren: $G_2$, $F_4$, $E_6$, $E_7$, $E_8$.
+\end{bemerkung*}
 % section 22 (end)
+
+\section{Kompakte Liealgebren} % (fold)
+\label{sec:23}
+
+\begin{definition}[{name=[{kompakte Liealgebra}]}]
+	Eine reelle Liealgebra $\mathfrak{g}$ nennt man \Index{kompakt}, falls es eine kompakte Liegruppe $G$ gibt $\Tmap_e G \cong \mathfrak{g}$. 
+\end{definition}
+
+\begin{lemma}
+	Sei $\mathfrak{g}$ eine kompakte Liealgebra.
+	Dann gilt:
+	\begin{enumerate}[1)]
+		\item Es existiert ein Skalarprodukt $\skal*{\cdot}{\cdot}$ auf $\mathfrak{g}$, sodass $\ad_X \colon \mathfrak{g} \to \mathfrak{g}$ \enquote{schiefsymmetrisch} bezüglich $\skal*{\cdot}{\cdot}$ ist für alle $x \in \mathfrak{g}$.\marginnote{$\skal*{Ax}{y} = - \skal*{x}{Ay}$}
+		\item $G$ besitzt eine biinvariante Riemannsche Metrik\footnote{siehe \url{https://de.wikipedia.org/wiki/Riemannsche_Mannigfaltigkeit}} $g_\bi$, das heißt die Diffeomorphismen $L_g,R_g \colon G \to G$ sind alle für alle $g \in G$ Isometrien.
+	\end{enumerate}
+\end{lemma}
+\begin{beweis}
+	\begin{enumerate}[1)]
+		\item Sei $\skal*{\cdot}{\cdot}_0$ \emph{ein} Skalarprodukt auf $\mathfrak{g}$.
+		Wir setzen 
+		\[
+			\skal*{x}{y} \coloneqq \int_G \skal*{\Ad(g)x}{\Ad(g)y}_0 \,\omega
+		\]
+		wobei $\omega$ eine biinvariante Volumenform uf $G$ ist (wir können $G$ als zusammenhängend annehmen). 
+		Die Existenz von $\omega$ zu beweisen, ist eine Übung.
+		Sei $h \in G$.
+		Dann gilt 
+		\begin{align}
+			\skal*{\Ad(h) x}{\Ad(h)y} = \int_G \skal*{\Ad(g) \Ad(h)(x)}{ \cdots}_0 \, \omega &= \int_G \skal*{\Ad(gh)x}{\Ad(gh)y} \, R_h^* \enbrace*{R^*_{h^{-1}} \omega} \\
+			&\StackTextClap{Trafo}{=} \int_G \skal*{\Ad(g) x}{ \Ad(g)y}_0 \, \Underbracket{R^*_{h^{-1}} \omega}{=\omega} \\
+			&= \skal*{x}{y}
+		\end{align}
+		Somit ist $\skal*{\cdot}{\cdot}$ $\Ad(G)$-invariantes Skalarprodukt, das heißt $\Ad(G) \subset \On(\mathfrak{g},\skal*{\cdot}{\cdot})$.
+		Da $\enbrace*{\mathd \Ad}_e = \ad$ folgt die Behauptung.
+		\item Sei $\skal*{\cdot}{\cdot}$ ein $\Ad(G)$-invariantes Skalarprodukt auf $\mathfrak{g}$.
+		Wir definieren $(g_\bi)_g \colon \Tmap_g G \times \Tmap_g G \to \mathbb{R}$ durch
+		\[
+			(g_\bi)(x,y) \coloneqq \skal*{\enbrace*{\mathd L_{g^{-1}}}_g x}{ \enbrace*{\mathd L_{g^{-1}}}_gy}
+		\]
+		Dies ist eine glatte(!) Riemannsche Metrik (Übung).
+		Klar ist: Die Diffeomorphismen $L_h$ sind Isometrien!
+		Zu zeigen $(\mathd R_h)_g \colon \Tmap_g G \to \Tmap_{R_h(g)} G $ ist eine Isometrie:
+		Wegen $R_{gh} = R_h \circ R_g$, folgt mit der Kettenregel
+		\[
+			\enbrace*{\mathd R_{gh}}_e = \enbrace*{\mathd R_h}_g \cdot \enbrace*{\mathd R_g}_e
+		\]
+		Somit genügt es zu zeigen, dass $(\mathd R_g)_e \colon \Tmap_e G \to \Tmap_g G$ eine Isometrie ist für alle $g \in G$.
+		Es seien $x,y \in \mathfrak{g} = \Tmap_e G$.
+		Dann gilt
+		\begin{align}
+			g_\bi \enbrace*{(\mathd R_g)_e \cdot x, \enbrace*{\mathd R_g}_e \cdot y}_g = \skal*{ \enbrace*{\mathd L_{g^{-1}}}_g \enbrace*{\mathd R_g}_e \cdot x}{\cdots}
+			&= \skal*{\Ad(g^{-1}) x}{ \Ad(g^{-1})y} \\
+			&= \skal*{x}{y} = g_\bi(x,y)_e
+		\end{align}
+		da $\skal*{\cdot }{\cdot}$ $\Ad(G)$-invariant ist.
+		Dies zeigt die Behauptung.\qedhere
+	\end{enumerate}
+\end{beweis}
+
+\begin{lemma}
+	Sei $\mathfrak{g}$ eine reelle Liealgebra.
+	Dann gilt 
+	\begin{enumerate}[1)]
+		\item $\mathcal{B} < 0 \iff \mathfrak{g}$ ist kompakt mit $Z(\mathfrak{g})=0$.
+		\item Wenn $\mathfrak{g}$ kompakt ist, dann gilt 
+		\[
+			\mathfrak{g} = \benbrace*{\mathfrak{g},\mathfrak{g}} \oplus Z(\mathfrak{g})
+		\]
+		und $\benbrace*{\mathfrak{g},\mathfrak{g}}$ ist halbeinfach.
+	\end{enumerate}
+\end{lemma}
+\begin{beweis}
+	\begin{enumerate}[1)]
+		\item Sei zunächst $\mathcal{B} < 0$.
+		Dann ist $\mathfrak{g}$ halbeinfach mit trivialem Zentrum.
+		Da die Killingform invariant unter Automorphismen ist, gilt $\Aut(\mathfrak{g}) \subset \On(\mathfrak{g},-\mathcal{B})$.
+		Ferner ist nach \autoref{prop:162} $\Aut(g)$ abgeschlossen in $\End(\mathfrak{g})$.
+		Somit ist $\Aut(\mathfrak{g})$ kompakt.
+		Nach \autoref{satz:222} 4) ist $\sfrac{\Aut(\mathfrak{g})}{\Int(\mathfrak{g})}$ diskret, also endlich.
+		Somit ist
+		\[
+			\enbrace*{\Aut(\mathfrak{g})}_e = \Int(\mathfrak{g})
+		\]
+		$\Int(\mathfrak{g})$ ist kompakt und wegen $\Int(\mathfrak{g}) \cong \mathfrak{g}$ folgt, dass $\mathfrak{g}$ eine kompakte Liealgebra mit $Z(\mathfrak{g})= \set*{0}$ ist.
+		
+		Sei nun $\mathfrak{g}$ eine kompakte Liealgebra mit trivialem Zentrum.
+		Wähle ein $\Ad(G)$-invariantes Skalarprodukt $\skal*{\cdot}{\cdot}$ auf $\mathfrak{g}$.
+		Dann gilt 
+		\[
+			- \mathcal{B}(x,x) = - \Sp \enbrace*{\ad_x \circ \ad_x} = \Sp \enbrace*{\ad_x \circ \ad_x^T} = \norm*{\ad_x}^2 \ge 0
+		\]
+		Somit ist $\mathcal{B} \le 0$ und $\mathcal{B}(x,x)=0 \iff x \in Z(\mathfrak{g})$.
+		\item Wie im Beweis von \autoref{satz:222} 1) zeigt man, dass $\mathfrak{g} = Z(\mathfrak{g}) + \mathfrak{b}$ für ein Ideal $\mathfrak{b}$.\footnote{$\skal*{\cdot}{\cdot}$ $\Ad(G)$-invariantes Skalarprodukt, $\mathfrak{b} \coloneqq Z(\mathfrak{g})^\perp \implies \ad_x$ schiefsymmetrisch}
+		Wir wissen $\mathcal{B} \le 0$ und $\mathcal{B}(x,x) =0 \iff x \in Z(\mathfrak{g})$.
+		Somit $\mathcal{B}_\mathfrak{b} = \mathcal{B}_{\mathfrak{g}}|_{\mathfrak{b}} < 0$ und daher, da $\mathfrak{b}$ halbeinfach ist:
+		\[
+			\benbrace*{\mathfrak{g},\mathfrak{g}} = \benbrace*{\mathfrak{b},\mathfrak{b}} = \mathfrak{b}
+		\]
+		Dies zeigt $\mathfrak{g} = Z(\mathfrak{g}) \oplus \benbrace*{\mathfrak{g},\mathfrak{g}}$.\qedhere
+	\end{enumerate}
+\end{beweis}
+
+\begin{korollarB}
+	Eine kompakte Liegruppe mit endlichem Zentrum ist halbeinfach.
+\end{korollarB}
+
+\begin{lemma}[{name={Weyl}}]
+	Sei $G$ eine kompakte Liegruppe mit endlichem Zentrum.\marginnote{$\SO(n)$, $\SU(n)$, $\Sp(n)$ aber $\cancel{\Un(n)}$}
+	Dann ist 
+	\[
+		\abs*{\pi_1(G)} < \infty
+	\]
+\end{lemma}
+\begin{beweis}
+	\emph{Kommt noch. Wir werden zeigen, dass auf $G$ eine Riemannsche Metrik mit $\Ric >0$ existiert. Mit Bonnet-Myers folgt dann die Behauptung.}
+\end{beweis}
+
+\begin{korollar}
+	Jede kompakte Liegruppe $G$ ist isomorph zu 
+	\[
+		\faktor{T^k \times G_1 \times \ldots \times G_s}{\Gamma}
+	\]
+	wobei $G_1, \ldots ,G_s$ kompakte, zusammenhängende, einfach zusammenhängende Liegruppen sind und $\Gamma \subset Z(T^k \times G_1 \times \ldots \times G_s)$ eine endliche Untergruppe ist.
+\end{korollar}
+\begin{beweis}
+	\emph{Übung.}
+\end{beweis}
+
+\begin{lemma}
+	Sei $G$ kompakte zusammenhängende Liegruppe.
+	Dann ist $\exp\colon \mathfrak{g} = \Tmap_e G \to G$ surjektiv.
+\end{lemma}
+\begin{beweis}
+	Wir werden zeigen, dass Einparametergruppen genau die Geodätischen von $(G,g_\bi)$ sind. 
+	$G$ ist kompakt und damit vollständig bezüglich der von $g_\bi$ induzierten Metrik.
+	Mit Hopf-Rinow folgt, dass die geometrische (=algebraische) Exponentialabbildung surjektiv ist.
+\end{beweis}
+% section 23 (end)
 % chapter 2 (end)
 
 \cleardoubleoddemptypage
