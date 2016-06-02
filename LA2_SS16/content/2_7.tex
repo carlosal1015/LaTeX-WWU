@@ -327,4 +327,106 @@ Dazu benutzen wir zunächst, dass jedes reelle Polynom $p(\lambda) = \sum_{k=0}^
 	Hierbei sind $\lambda_1,\dots,\lambda_k$ die reellen Eigenwerte von $F$ und $\mu_j = \alpha_j + i\beta$, $\ol{\mu_j} = \alpha_j - i\beta$ sind die komplexen Eigenwerte von $F_{\CC}$, $1\leq j \leq m$ (jeweils mit Vielfachheiten).
 \end{satz}
 
+\begin{beweis}
+	Sei $F_{\CC} \in \End(V_{\CC})$ die Komplexifizierung von $F$.
+	Wähle zu jedem Eigenwert $\lambda$ von $F_{\CC}$ eine Orthonormalbasis $\{u_1,\dots,u_l\}$ von $E_{\lambda}(F_{\CC})$ und wähle zu $E_{\ol{\lambda}}(F_{\CC})$ die Orthonormalbasis $\{\ol{u_1},\dots,\ol{u_l}\}$.
+	\begin{description}
+		\item[1. Fall:] Ist $\lambda \in \RR$, so können wir o.B.d.A. $u_i \in V$ annehmen, denn ist $u_i = v_i + iw_i$ ein komplexer Eigenvektor zu $\lambda$, so ist auch $\ol{u_i} = v_i - iw_i$ ein Eigenvektor zu $\ol{\lambda} = \lambda$, und dann sind auch $v_i = \frac{1}{2}(u_i + \ol{u_i})$ und $w_i = \frac{1}{2i}(u_i + \ol{u_i})$ Eigenvektoren zu $\lambda$.
+		Da $u_i \in \LH\{v_i,w_i\}$, ist $\{v_1,w_1,\dots, v_l,w_l\}$ ein Erzeugendensystem von $E_{\lambda}(F_{\CC})$.
+		Nach Basisauswahlsatz erhält dieses eine Basis $\{\wt{u_1},\dots,\wt{u_l}\}$ von $E_{\lambda}(F_{\CC})$.
+		Wenden wir hierauf das Schmidtsche Orthonormalisierungsverfahren (\autoref{satz:4.13}) an, erhalten wir eine Orthonormalbasis $\{u_1',\dots,u_l'\}$ von $E_\lambda(F_{\CC})$ mit $u_i'$ reell (also $u_i' \in V$) für alle $1 \leq i \leq l$.
+		
+		Beachte: Die Anwendung des Schmidtschen Orthonormalisierungsverfahrens auf reelle Vektoren führt wieder zu reellen Vektoren!
+		\item[2. Fall:] Ist $\mu, \ol{\mu} \in \CC \setminus \RR$ ein Paar komplexer Eigenwerte von $F_{\CC}$, so gilt nach \autoref{lemma:7.12}(iii):
+		Ist $u_i = \wt{v_i} + i \wt{w_i}$ und $v_i = \sqrt{2} \wt{v_i}$ sowie $w_i = \sqrt{2} \wt{w_i}$, so ist $\{v_1,w_1,\dots,v_l,w_l\}$ eine Orthonormalbasis von $E_\mu(F_{\CC}) \oplus E_{\ol{\mu}}(F_{\CC})$ und es gilt nach \autoref{lemma:7.12}(i): 
+		\[
+			F(v_i) = \alpha v_i - \beta w_i, \qquad F(w_i) = \beta v_i - \alpha w_i,
+		\]
+		wenn $\lambda = \alpha + i \beta$.
+	\end{description}
+	Ist $B = \{u_1,\dots,u_k,v_1,w_1,\dots,v_m,w_m\}$, wobei $\{u_1,\dots,u_k\}$ die Vereinigung der im Fall 1 konstruierten Orthonormalbasen für die reellen Eigenvektoren $\lambda_i$ und $\{v_1,w_1,\dots,v_m,w_m\}$ die Vereinigung der in Fall 2 konstruierten Orthonormalbasen für $E_{\mu_j}(F_{\CC}) \oplus E_{\ol{\mu_j}}(F_{\CC})$, so erhalten wir eine Orthonormalbasis von $V_{\CC}$ mit Elementen in $V$, und damit eine Orthonormalbasis von $V$ mit $A_F^B$ wie im Satz:
+		
+	Da $F(u_i) = \lambda_i u_i$, hat $A_F^B$ in der $i$-ten Spalte $\lambda_i$ als Diagonaleintrag und sonst nur Nullen.
+	Da $F(v_j) = \alpha v_j - \beta w_j$ und $F(w_j) = \beta_j v_j + \alpha_j w_j$, erhalten wir (da $v_j$ an der $k+2j-1$-ten Stelle in $B$ und $w_j$ an $k+2j$-ter Stelle in $B$ steht) in der $k+2j-1$-ten Spalte $\alpha_j$ in Zeile $k+2j-1$ und $-\beta_j$ an Stelle $k+2j$, und in der $k+2j$-ten Spalte $\beta_j$ in Zeile $k+2j-1$ und $\alpha_j$ an Stelle $k+2j$ und sonst nur Nullen. \qedhere	
+\end{beweis}
+
+\begin{korollar}
+	\label{kor:7.14}
+	Sei $A \in M(n \times n,\RR)$ normal.
+	Dann existiert eine orthogonale Matrix $O \in \oh(n)$ mit
+	
+	\[
+		O^*AO = O^TAO = \enb{\begin{BMAT}(b){cccccccc}{cccccccc}
+			\lambda_1 &  &  &  &  &  &  &  \\ 
+			& \ddots &  &  &  &  &  &  \\ 
+			&  & \lambda_k &  &  &  &  &  \\ 
+			&  &  & \alpha_1 & \beta_1 &  &  &  \\ 
+			&  &  & -\beta_1 & \alpha_1 &  &  &  \\ 
+			&  &  &  &  & \ddots &  &  \\ 
+			&  &  &  &  &  & \alpha_m & \beta_m \\ 
+			&  &  &  &  &  & -\beta_m & \alpha_m
+			\addpath{(6,0,|)uurrddll}
+			\addpath{(3,3,|)uurrddll}
+			\end{BMAT}}.
+	\]
+\end{korollar}
+
+\begin{beweis}
+	Wende \autoref{satz:7.13} an auf $F_A \colon \RR^n \rightarrow \RR^n, x \mapsto Ax$ und setze $O = (u_1,\dots,u_k,v_1,w_1,\dots,v_m,w_m)$, wenn $B = \{u_1,\dots,u_k,v_1,w_1,\dots,v_m,w_m\}$ die in \autoref{satz:7.13} konstruierte Orthonormalbasis von $\RR^n$ ist. \qedhere
+\end{beweis}
+
+Wir wollen dieses Resultat nutzen, um insbesondere orthogonale Endomorphismen bzw. Matrizen besser zu verstehen.
+Wir benötigen:
+
+\begin{lemma}
+	\label{lemma:7.15}
+	Sei $(V,\sk{\cdot,\cdot})$ ein endlich dimensionaler unitärer oder euklidischer $\KK$-Vektorraum und sei $F \in \End(V)$.
+	\begin{enumerate}[(i)]
+		\item Ist $F$ selbstadjungiert, also $F = F^*$, so ist jeder Eigenwert von $F$ reell.
+		\item Ist $F$ unitär oder orthogonal, so gilt für jeden Eigenwert $\lambda$ von $F$:
+		$\abs{\lambda}=1$.
+	\end{enumerate}
+\end{lemma}
+
+\begin{beweis}
+	\mbox{} \\[-.9cm]
+	\begin{enumerate}[(i)]
+		\item Sei $\lambda$ ein Eigenwert von $F$ mit $F = F^*$ und sei $v \neq 0$ ein Eigenvektor zu $\lambda$.
+		Nach \autoref{lemma:7.2} ist dann $v$ auch Eigenvektor zu $F^*$ zum Eigenwert $\ol{\lambda}$.
+		Damit folgt $\lambda v = F(v) = F^*(v) = \ol{\lambda} v$, also $\lambda = \ol{\lambda}$.
+		\item Da $F$ unitär bzw. orthogonal ist, gilt $\sk{F(v),F(v)} = \sk{v,v}$ für alle $v \in V$.
+		Ist dann $v \in V \setminus \setzero$ ein Eigenvektor zum Eigenwert $\lambda$, so folgt $0 \neq \sk{v,v} = \sk{F(v),F(v)} = \sk{\lambda v,\lambda v} = \abs{\lambda}^2 \sk{v,v}$, also $\abs{\lambda}^2 = 1$, und dann auch $\abs{\lambda} = 1$. \qedhere
+	\end{enumerate}
+\end{beweis}
+
+Wir kommen nun zu sehr wichtigen Folgerungen von \autoref{satz:7.13}:
+
+\begin{korollar}
+	\label{kor:7.16}
+	Sei $(V,\sk{\cdot,\cdot})$ ein endlich dimensionaler euklidischer $\RR$-Vektorraum und sei $F \in \End(V)$ selbstadjungiert, also $F = F^*$.
+	Dann existiert eine Orthonormalbasis $B = \{v_1,\dots,v_n\}$ von $V$ mit
+	\[
+		A_B^F = \begin{pmatrix}
+		\lambda_1 & & \\
+		& \ddots & \\
+		& & \lambda_n
+		\end{pmatrix}.
+	\]
+	Insbesondere ist $F$ reell diagonalisierbar.
+	
+	Analog: Ist $A \in M(n \times n,\RR)$ mit $A = A^T$, so existiert eine orthogonale Matrix $O \in \oh(n)$ mit
+	\[
+		O^TAO = \begin{pmatrix}
+		\lambda_1 & & \\
+		& \ddots & \\
+		& & \lambda_n
+		\end{pmatrix}.
+	\]
+	Insbesondere ist $A$ reell diagonalisierbar.
+\end{korollar}
+
+\begin{beweis}
+	Der Beweis folgt sofort aus \autoref{satz:7.13}, \autoref{kor:7.14} und \autoref{lemma:7.15}. \qedhere
+\end{beweis}
+
 % \newpage
