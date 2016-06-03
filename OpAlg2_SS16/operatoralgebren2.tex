@@ -344,7 +344,7 @@ animieren sollen. Oftmals sind dies schon aus vorherigen Semestern bekannte Sach
 	\end{enumerate}
 \end{bemerkung}
 
-\begin{definition}[{name=[{Zustände auf dem algebraischen Tensorprodukt}]}]
+\begin{definition}[{name=[{Zustände auf dem algebraischen Tensorprodukt}]},label=def:116]
 	Für $C^*$-Algebren $A$, $B$ setzen wir 
 	\[
 		(A \odot B)^* := \set[\big]{f \colon A \odot B \to \mathbb{C} \text{ linear}}
@@ -1581,7 +1581,7 @@ Wir erhalten:
 \section{Die Sätze von Choi-Effros} % (fold)
 \label{sec:4}
 
-\begin{proposition}
+\begin{proposition}[label=prop:41]
 	Sei $B$ eine $C^*$-Algebra und $J \lhd B$ ein Ideal.
 	Sei $\varphi \colon M_n \to \sfrac{B}{J}$ vollständig positiv  unital (bzw. kontraktiv).
 	Dann hat $\varphi$ einen vollständig positiv unitalen (bzw. kontraktiven) Lift $\overline{\varphi} \colon M_n \to B$, das heißt $\pi \circ \overline{\varphi} = \varphi$, wobei $\pi$ die Quotientenabbildung ist.
@@ -1658,7 +1658,7 @@ $(\varphi_\lambda)_\Lambda$ ist also genau dann Cauchy bezüglich $d_B$, wenn $(
 	wegen \eqref{eq:42:1}.
 \end{beweis}
 
-\begin{proposition}
+\begin{proposition}[label=prop:43]
 	Seien $A$ und $J \lhd B$ wie oben.
 	$\varphi_n \colon A \to \sfrac{B}{J}$ vollständig positiv und kontraktiv (unital) für $n \in \mathbb{N}$ mit vollständig positiven kontraktiven (unitalen) Lifts $\Theta_n \colon A \to B$ für $n \in \mathbb{N}$.
 	Falls $\varphi \colon A \to \sfrac{B}{J}$ vollständig positiv kontraktiv (unital) ist mit $d_{\sfrac{B}{J}}(\varphi_n,\varphi) \grenzwIn{n \to \infty} 0$, so existiert ein vollständig positiver kontraktiver (unitaler) Lift $\overline{\varphi} \colon A \to B$ für $\varphi$.
@@ -1674,7 +1674,7 @@ $(\varphi_\lambda)_\Lambda$ ist also genau dann Cauchy bezüglich $d_B$, wenn $(
 	Es seien nun $\psi_0, \ldots , \psi_n \colon A \to B$ vollständig positiv kontraktiv bereits konstruiert mit $\pi \psi_k = \varphi_k$ und $d(\psi_{k-1}, \psi_k) \le \frac{1}{2^{k-1}}$ für $k =1,\ldots ,n$.
 	Es gilt
 	\begin{align}
-		\inf \set[\big]{d_B(\psi_n,\Theta) \given \Theta \colon A \to B \text{ v.p. kontraktiv, } \pi \Theta = \varphi_{n+1}} &\StackTextClap{\ref{prop:42}}{=}d_{\sfrac{B}{J}} \enbrace*{\pi \psi_n, \pi \Theta_{n+1}} \\
+		\inf \set[\big]{d_B(\psi_n,\Theta) \given \Theta \colon A \to B \text{ v.p. kontraktiv, } \pi \circ \Theta = \varphi_{n+1}} &\StackTextClap{\ref{prop:42}}{=}d_{\sfrac{B}{J}} \enbrace*{\pi \circ \psi_n, \pi \circ \Theta_{n+1}} \\
 		&= d_{\sfrac{B}{J}} \enbrace*{\varphi_n,\varphi_{n+1}} < \frac{1}{2^n} 
 	\end{align}
 	Es existiert also ein $\psi \colon A \to B$ vollständig positiv und kontraktiv, mit $\pi \psi = \varphi_{n+1}$ und $d_{B} \enbrace*{\psi_n,\psi} < \sfrac{1}{2^n}$.
@@ -1682,6 +1682,115 @@ $(\varphi_\lambda)_\Lambda$ ist also genau dann Cauchy bezüglich $d_B$, wenn $(
 	Induktiv erhalten wir eine Cauchy-Folge $(\psi_n)_\mathbb{N} \subset \CPC(A,B)$.
 	Dann ist weiter auch $\enbrace*{\psi_n(a)}_\mathbb{N}$ Cauchy für jedes $a \in A$ und somit definiert $\overline{\varphi}(a) \coloneqq \lim_n \psi_n(a)$ ein vollständig positive kontraktive Abbildung $\overline{\varphi} \colon A \to B$ mit $\pi \overline{\varphi} = \varphi$ (warum?).
 \end{beweis}
+
+\begin{definition}
+	Seien $A,B$ $C^*$-Algebren und $\varphi \colon A \to B$ vollständig positiv und kontraktiv.
+	Dann heißt $\varphi$ \Index{nuklear}, falls gilt: 
+	$\forall \varepsilon >0, \mathcal{F} \finSub A$ endlich existiert eine endlichdimensionale $C^*$-Algebra $F$ und 
+	\[
+		\begin{tikzcd}
+			A \rar["\rho"] & F \rar["\sigma"] & B
+		\end{tikzcd}
+	\]
+	vollständig positiv und kontraktiv mit $\norm*{\sigma \rho (a )- \varphi(a) } < \varepsilon$ für $a \in \mathcal{F}$.
+	\begin{itemize}
+		\item Mit anderen Worten: Es existiert ein Netz
+		\[
+			\enbrace*{A \xrightarrow{\rho_\lambda} F_\lambda \xrightarrow{\sigma_\lambda} B}_{\lambda \in \Lambda} \text{ mit } \sigma_\lambda \circ \rho_\lambda \grenzw{\lambda} \varphi \text{ punktweise}  
+		\]
+		\item Man kann stets $F_\lambda$ durch $M_{r_\lambda}$ ersetzen.
+		\item Für $A$ separabel kann man $\Lambda = \mathbb{N}$ wählen.
+	\end{itemize}
+\end{definition}
+
+\begin{satz}[{name={Choi-Effros}}]
+	Sei $A$ eine separable $C^*$-Algebra, $J \lhd B$ ein Ideal und $\varphi\colon A \to \sfrac{B}{J}$ vollständig positiv kontraktiv.
+	Falls $\varphi$ nuklear ist, so existiert ein vollständig positiver kontraktiver Lift $\overline{\varphi} \colon A \to B$ für $\varphi$.
+	
+	Ebenso für $\varphi \colon X \to \sfrac{B}{J}$, wobei $X$ ein Operatorsystem ist.
+\end{satz}
+\begin{beweis}
+	Wähle $\big(\begin{tikzcd}[cramped,sep=small] A \rar["\rho_n"] & M_{r_n} \rar["\sigma_n"] & \sfrac{B}{J}\end{tikzcd}\big)_\mathbb{N}$ ein System von vollständig positiven kontraktiven Approximationen mit $\sigma_n \rho_n \grenzwIn{n \to \infty} \varphi$ punktweise.
+	Dann gilt $d_{\sfrac{B}{J}}(\sigma_n \rho_n,\varphi) \grenzwIn{n \to \infty} 0$.
+	Nach \autoref{prop:41} existiert für jedes $\sigma_n$ vollständig positiv kontraktiv ein Lift $\overline{\sigma}_n \colon M_{r_n} \to B$ für $n \in \mathbb{N}$.
+	Damit besitzt auch $\sigma_n \rho_n$ einen vollständig positiven kontraktiven Lift und mit \autoref{prop:43} folgt, dass auch $\varphi$ einen vollständig positiven Lift $\overline{\varphi}$ besitzt.
+\end{beweis}
+
+\begin{definition}[{name=[{vollständig positive Approximationseigenschaft}]}]
+	Eine $C^*$-Algebra $A$ hat die \Index{vollständig positive Approximationseigenschaft} (CPAP), falls $\id_A$ nuklear ist.
+\end{definition}
+
+\begin{satz}[{name={Choi-Effros; Kirchberg}}]
+	Eine $C^*$-Algebra $A$ ist nuklear genau dann, wenn sie die vollständig positive Approximationseigenschaft besitzt.
+\end{satz}
+\begin{beweis}
+	Angenommen $A$ hat die CPAP.
+	Sei $B$ eine weitere $C^*$-Algebra und 
+	\[
+		\big(\begin{tikzcd}
+			A \rar["\psi_\lambda"] & F_\lambda \rar["\varphi_\lambda"] & B
+		\end{tikzcd}\big)_{\lambda \in \Lambda}
+	\]
+	ein System von vollständig positiven kontraktiven Approximationen mit $F_\lambda$ endlichdimensional.
+	Die Abbildungen $\psi_\lambda \otimes {\id_B} \colon A \odot B \to F_\lambda \odot B$ und $\varphi_\lambda \otimes {\id_B} \colon F_\lambda \odot B \to A \odot B$ haben vollständig positive kontraktive Fortsetzungen $\psi_\lambda \tensormin {\id_B} \colon A \tensormin B \to F_\lambda \tensormin B$ und $\varphi_\lambda \tensormax  {\id_B} \colon F_\lambda \tensormax B \to A \tensormax B$ (Übung).
+	
+	Wir erhalten eine vollständig positive kontraktive Abbildung
+	\[
+		\rho_\lambda \coloneqq \enbrace*{\varphi_\lambda \tensormax {\id_B}} \enbrace*{\psi_\lambda \tensormin {\id_B}} \colon A \tensormin B \longrightarrow F_\lambda \tensormin B = F_\lambda \tensormax B \longrightarrow A \tensormax B
+	\]
+	Für $x = \sum_{i=1}^{n} a_i \otimes b_i \in  A \odot B$ gilt
+	\[
+		\norm*{\rho_\lambda(x) -x}_{\max} = \norm*{\sum_{i=1}^{n} \enbrace[\big]{\varphi_\lambda \psi_\lambda(a_i) - a_i} \otimes b_i}_{\max} \le \sum_{i=1}^{n} \norm*{\varphi_\lambda \psi_\lambda(a_i) - a_i}_A \cdot \norm*{b_i}_B \grenzw{\lambda} 0 
+	\]
+	$\rho_\lambda$ ist kontraktiv und damit ist $\norm*{\rho_\lambda(x)}_{\max} \le \norm*{x}_{\min}$. 
+	Weiter gilt
+	\[
+		\norm*{x}_{\max} \le \norm*{x - \rho_\lambda(x)}_{\max} + \norm*{\rho_\lambda(x)}_{\max} \le \norm*{x}_{\min} + \varepsilon
+	\]
+	also ist $\norm*{x}_{\max} = \norm*{x}_{\min}$.
+	
+	Für die andere Implikation geben wir nur die Idee sowie die nötigen Schritte an: 
+	\begin{enumerate}[1.]
+		\item $(A \odot B)^*_+ \coloneqq \set*{f \colon A \odot B \to \mathbb{C} \text{ linear } \given f(x^*x)\ge 0, x \in A \odot B}$ (vergleiche \autoref{def:116}).
+		Weiter definiere:
+		\[
+			(A \odot B)^*_{++} \coloneqq \set*{f \colon A \odot B \to \mathbb{C} \text{ linear }  \given f =  \rho \otimes \sigma, \rho \colon A \to \mathbb{C}, \sigma\colon B \to \mathbb{C}}
+		\]
+		Nach \autoref{satz:120} gilt $(A \odot B)^*_{++} \subset (A \odot B)^*_{+}$.
+		Zusammen mit \autoref{satz:119} folgt weiter
+		\begin{align}
+			\norm*{x}_{\max}^2 &= \sup \set*{\frac{f(y^*x^*xy)}{f(y^*y)} \given f \in (A \odot B)^*_+, y \in A \odot B, f(y^*y)\neq 0} \\
+			\norm*{x}_{\min}^2 &= \sup \set*{\frac{f(y^*x^*xy)}{f(y^*y)} \given f \in (A \odot B)^*_{++}, y \in A \odot B, f(y^*y)\neq 0} \\
+		\end{align}
+		Zeige nun, dass aus der Nuklearität von $A$ folgt, dass $\conv (A \odot B)_{++}^* \subset (A \odot B)_+^*$ $\w^*$-dicht ist für alle $B$.
+		\item Ist $\sigma \colon B \to \mathbb{C}$ positiv, so ist auch $\sigma^\ssbrace{n} \colon M_n(B)\to M_n$ positiv und man kann folgern, dass $B^*$ ein Matrix-geordneter Raum ist und man kann von vollständig positiven Abbildungen $A \to B^*$ sprechen.
+		Zeige 
+		\mapdef{(A \odot B)^*_+}{\CP(A,B^*)}{f}{T_f, \quad T_f(a)(b) = f(a \otimes b)}{\approx}
+		Man stellt nun fest, dass $\conv(A \odot B)^*_{++} \approx \set*{T \in \CP(A,B^*) \given T \text{ hat endl. Rang}} =: \CP_f(A,B^*)$.
+		Dies überlegt man sich, indem man aus $\rho \otimes \sigma$ normiert einen Vektorzustand bezüglich $\xi \coloneqq \xi_{\pi_\rho} \otimes \xi_{\pi_\sigma} \in \mathcal{H}_{\pi_\rho} \otimes \mathcal{H}_{\pi_\sigma}$ konstruiert.
+		
+		Aus $A$ nuklear folgt also $\CP_f(A,B^*) \subset \CP(A,B^*)$ dicht ist bezüglich der punktweisen $w^*$-Topologie.
+		\item Sei $\enbrace*{\pi \colon A \to \mathcal{B}(\mathcal{H}),f}$ eine zyklische Darstellung.
+		Betrachte nun $\phi \colon \pi(A)'' \to \enbrace*{\pi(A)'}^*$ gegeben durch $\phi(x)(y) \coloneqq \skal*{\xi}{xy \xi}$.
+		$\phi$ ist vollständig positiv und aus 2. folgt, dass\marginnote{$B = \pi(A)'$}
+		\[
+			\begin{tikzcd}
+				A \rar["\pi"] & \pi(A) \rar[hook] & \pi(A)'' \rar["\phi"] & \enbrace*{\pi(A)'}^*
+			\end{tikzcd}
+		\]
+		nuklear ist.
+		Zeige nun, dass dann auch die Komposition der ersten beiden Abbildungen nuklear ist.
+		Damit kann man nun folgern, dass für die universelle Darstellung $\pi_u$ auch
+		\[
+			\begin{tikzcd}
+				A \rar["\cong"] & \pi_u(A) \rar[hook] & \pi_u(A)'' \cong A^{**}
+			\end{tikzcd}
+		\]
+		nuklear ist.
+		Man zeigt dann, dass auch der Isomorphismus alleine nuklear ist (Konvexität und Kaplanskys Dichtesatz).\qedhere
+	\end{enumerate}
+\end{beweis}
+
 % section 4 (end)
 
 
