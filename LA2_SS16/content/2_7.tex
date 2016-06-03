@@ -429,4 +429,85 @@ Wir kommen nun zu sehr wichtigen Folgerungen von \autoref{satz:7.13}:
 	Der Beweis folgt sofort aus \autoref{satz:7.13}, \autoref{kor:7.14} und \autoref{lemma:7.15}. \qedhere
 \end{beweis}
 
-% \newpage
+\begin{korollar}
+	\label{kor:7.17}
+	Sei $(V,\sk{\cdot,\cdot})$ ein endlich dimensionaler euklidischer $\RR$-Vektorraum und sei $F \in \oh(V)$ ein ortogonaler Endomorphismus.
+	Dann existiert eine Orthonormalbasis $B = \{v_1,\dots,v_n\}$ von $V$ mit
+	\[
+		A_F^B = \enb{\begin{BMAT}(@)[6pt]{ccccccccccc}{ccccccccccc}
+   	 -1 &        &    &   &        &   &               &                &        &               &  \\
+		& \ddots &    &   &        &   &               &                &        &               &  \\
+		&        & -1 &   &        &   &               &                &        &               &  \\
+		&        &    & 1 &        &   &               &                &        &               &  \\
+		&        &    &   & \ddots &   &               &                &        &               &  \\
+		&        &    &   &        & 1 &               &                &        &               &  \\
+		&        &    &   &        &   & \cos \alpha_1 & -\sin \alpha_1 &        &               &  \\
+		&        &    &   &        &   & \sin \alpha_1 & \cos \alpha_1  &        &               &  \\
+		&        &    &   &        &   &               &                & \ddots &               &  \\
+		&        &    &   &        &   &               &                &        & \cos \alpha_m & -\sin \alpha_m \\
+		&        &    &   &        &   &               &                &        & \sin \alpha_m & \cos \alpha_m
+			\addpath{(9,0,|)uurrddll}
+			\addpath{(6,3,|)uurrddll}
+			\end{BMAT}} = (*).
+	\]
+	
+	Analog: Ist $A \in \oh(n)$ orthogonal, so existiert eine orthogonale Matrix $O \in \oh(n)$ mit $O^TAO = (*)$.
+\end{korollar}
+
+\begin{beweis}
+	Nach \autoref{lemma:7.15}(ii) ist jeder reelle Eigenwert von $F$ (bzw. $A$) $1$ oder $-1$, und jeder komplexe Eigenwert $\mu$ erfüllt $\abs{\mu}=1$.
+	Dann gilt $\mu = \cos(\alpha) - i \sin(\alpha)$ für ein $\alpha \in [0,2\pi)$, und der Satz folgt sofort aus \autoref{satz:7.13} und \autoref{kor:7.14}. \qedhere
+\end{beweis}
+
+Wir sehen also, dass jede orthogonale lineare Abbildung sich aus Drehungen geeigneter Teilebenen und Spiegelungen an geeigneten Achsen zusammensetzt (Beachte, dass die Matrix $-E_2$ eine Drehung um den Winkel $\pi$ ist).
+\newpage
+\begin{anwendung}[Der Fall $n=3$]
+	\label{anw:7.18}
+	Ist $A \in M(3 \times 3,\RR)$ orthogonal, so existiert eine Orthonormalbasis $B = \{u,v,w\}$ von $\RR^3$, so dass die orthogonale Abbildung $F_A \colon \RR^3 \rightarrow \RR^3, x \mapsto Ax$ bezüglich $B$ eine Darstellungsmatrix der Form
+	\[
+		A_F^B = \begin{pmatrix}
+			\pm 1 & 0 & 0 \\
+		0 & \cos \alpha & -\sin \alpha \\
+		0 & \sin \alpha & \cos \alpha
+		\end{pmatrix} = O^T A O
+	\]
+	mit $\alpha \in [0,2\pi)$ und $O = (u,v,w)$ besitzt.
+	
+	Im Fall $+1$ ist $F_A$ eine Drehung mit dem Winkel $\alpha$ um die durch $u$ aufgespannte Drehachse.
+	Im FAll $-1$ ist $F_A$ die Drehung mit Winkel $\alpha$ um die $u$-Achse, gefolgt von einer Spiegelung an der $v$-$w$-Ebene.
+	Es gilt $\det(A) = 1$ genau dann, wenn $A$ eine reine Drehung ist, das heißt die Gruppe $\SO(3)$ besteht aus genau den Drehungen des $\RR^3$ durch geeignete Achsen durch den Nullpunkt.
+\end{anwendung}
+
+Wir schließen den Abschnitt mit einer geeigneten Anwendung von \autoref{satz:7.3} und \autoref{satz:7.13} für positiv definite Endomorphismen bzw. Matrizen.
+
+\begin{satz}
+	\label{satz:7.19}
+	Sei $(V,\sk{\cdot,\cdot})$ ein endlich dimensionaler unitärer oder euklidischer $\KK$-Vektorraum und sei $F \in \End(V)$ selbstadjungiert.
+	Dann gilt
+	\[
+		F \text{ ist positiv definit} \quad \Leftrightarrow \quad \text{Alle Eigenwerte von } F \text{sind positiv}
+	\]
+	Analoges gilt für eine selbstadjungierte Matrix $A \in M(n \times n, \KK)$.
+\end{satz}
+
+\begin{beweis}
+	Da $F = F^*$, sind alle Eigenwerte von $F$ reell und es existiert eine Orthonormalbasis $B = \{v_1,\dots,v_n\}$ von $V$ mit $A^B_F = \begin{pmatrix}
+	\lambda_1 & & \\ & \ddots & \\ & & \lambda_n \end{pmatrix}$.
+	\begin{description}
+		\item[\bewrueck] Es gelte $\lambda_i > 0$ für alle $1 \leq i \leq n$.
+		Ist dann $v \in V \setminus \setzero$ beliebig, so existiert  $x = (x_1,\dots,x_n) \in \KK^n$ mit $v = \sum_{i=1}^{n} x_i v_i$, und dann gilt
+		\[
+			\sk{F(v),v} = \sk{A_F^B x,x} = \sum_{i=1}^{n} \lambda_i x_i \ol{x_i} = \sum_{i=1}^{n} \lambda_i \abs{x_i}^2 > 0,
+		\]
+		da mindestens ein $x_i \neq 0$.
+		Also ist $F$ positiv definit.
+		\item[\bewhin] Sei $F$ positiv definit.
+		Angenommen, es gäbe ein Eigenwert $\lambda$ von $F$ mit $\lambda \leq 0$.
+		Ist dann $0 \in v \setminus \setzero$ ein Eigenvektor zu $\lambda$, so gilt
+		\[
+			\sk{F(v),v} = \sk{\lambda v,v} = \lambda \Underbrace{\sk{v,v}}{\geq 0} \leq 0.
+		\]
+		Widerspruch zu $F$ positiv definit. \qedhere
+	\end{description}
+\end{beweis}
+\newpage
