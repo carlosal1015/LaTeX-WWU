@@ -1504,7 +1504,7 @@ In diesem Abschnitt sind Kettenkomplexe immer $\mathbb{N}$-graduiert. (Allgemein
 		\item Für jede Kofaserung $A \hookrightarrow B$ existiert der Kokern $\sfrac{B}{A}$ mittels
 		\(
 			\begin{tikzcd}
-				A \rar \dar & B \dar \\
+				A \rar[hook] \dar & B \dar \\
 				0 \rar & \sfrac{B}{A}
 			\end{tikzcd}
 		\)
@@ -1520,8 +1520,59 @@ In diesem Abschnitt sind Kettenkomplexe immer $\mathbb{N}$-graduiert. (Allgemein
 		Dann wird $\mathcal{P}_R$ zu einer Waldhausen-Kategorie, in der die Kofaserungen die Inklusionen von direktn Summanden sind und die schwachen Äquivalenzen die Isomorphismen. (Alternativ andere Kategorien von $R$-Moduln)
 		\item Sei $R$ ein Ring.
 		Die Kategorie $\ch_f \mathcal{P}_R$ der $R$-Kettenkomplexe von endlichem Typ von projektiven $R$-Moduln wird zu einer Waldhausen-Kategorie, in der die Kofaserungen die Kettenabbildungen sind, die in jedem Grad die Inklusion eines direkten Summanden sind, und die schwachen Äquivalenzen die Kettenhomotopieäquivalenzen sind. 
+		\item Sei $\mathcal{R}$ die Kategorie der punktierten CW-Komplexe (mit zellulären punktierten Abbildungen).
+		Dann wir $\mathcal{R}$ zu einer Waldhausen-Kategorie in der die Kofaserungen die Inklusionen von Unterkomplexen und die schwachen Äquivalenzen die Homotopieäquivalenzen sind.
+		
+		Genauso wird die Kategorie der endlichen punktierten CW-Komplexe zu einer Waldhausen-Kategorie.
 	\end{enumerate}
 \end{beispiel}
+
+\begin{definition}[{name=[{schwache Äquivalenz von Objekten einer Waldhausen-Kategorie}]}]
+	Wir sagen, dass Objekte $C$ und $C'$ einer Waldhausen-Kategorie $\mathcal{C}$ \Index{schwach äquivalent} sind, falls es ein \Index{Zick-Zack} von schwachen Äquivalenzen in $\mathcal{C}$ zwischen $C$ und $C'$ gilt:
+	\[
+		\begin{tikzcd}[row sep=small]
+			& C_1 \dlar["\sim"'] \drar["\sim"] & & C_2 \dlar["\sim"'] \drar["\sim"] && \ldots \dlar["\sim"'] \drar["\sim"] && C_n \dlar["\sim"'] \drar["\sim"]\\
+			C && C_1' && C_2'&& C_{n-1}' && C'
+		\end{tikzcd}
+	\]
+\end{definition}
+
+\begin{definition}[{name=[K-Theorie einer Waldhausen-Kategorie]}]
+	Sei $\mathcal{C}$ eine Waldhausen-Kategorie, in der die schwachen Äquivalenzklassen eine Menge bilden.
+	Dann definieren wir $K_0 \mathcal{C}$ als die abelsche Gruppe, die von schwachen Äquivalenzklassen $[C]_\sim$ in $\mathcal{C}$ erzeugt wird und die folgenden Relationen erfüllt: 
+	Für jede Kofaserfolge $\begin{tikzcd}[cramped,sep=small] B \rar[hook] & C \rar & \sfrac{C}{B} \end{tikzcd}$ in $\mathcal{C}$ gilt
+	\[
+		[B]_\sim + \benbrace*{\sfrac{C}{B}}_\sim = \benbrace*{C}_\sim \in K_0 \mathcal{C}
+	\]
+	Ab sofort: Wann immer nötig betrachten wir nur Waldhausen-Kategorien, deren schwache Äquivalenzklassen von Objekten eine Menge sind.
+\end{definition}
+
+\begin{bemerkung}
+	Ein Funktor $F \colon \mathcal{C} \to \mathcal{C}'$ zwischen Waldhausen-Kategorien heißt \Index{exakt}, wenn er Kofaserungen, schwache Äquivalenzen und Pushouts von Kofaserungen erhält.
+	Die letzte Bedingung bedeutet: Ist 
+	\[
+		\begin{tikzcd}
+			A \rar[hook] \dar & B \dar \\
+			C \rar[hook] & B \cup_A C
+		\end{tikzcd}
+	\] 
+	ein Pushoutdiagramm in $\mathcal{C}$, sodass $A \hookrightarrow B$ eine Kofaserung ist, so ist
+	\[
+		\begin{tikzcd}
+			F(A) \rar[hook] \dar & F(C) \dar\\
+			F(B) \rar[hook] & F(B \cup_A C)
+		\end{tikzcd}
+	\]
+	ein Pushoutdiagramm in $\mathcal{C}'$.
+	Insbesondere erhält $F$ dann Koprodukte und Kofaserungen und induziert einen Homomorphismus $F_* \colon K_0(\mathcal{C}) \to K_=(\mathcal{C}')$.
+\end{bemerkung}
+
+\begin{proposition}
+	Sei $R$ ein Ring.
+	Dann ist $K_0(R) \cong K_0(\mathcal{P}_R) \cong K_0 (\ch_f \mathcal{P}_R)$.
+\end{proposition}
+
+\todo[inline]{hier fehlt noch eine halbe Vorlesung!}
 
 % section 5 (end)
 
