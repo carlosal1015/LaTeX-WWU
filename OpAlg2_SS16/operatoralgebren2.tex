@@ -1790,9 +1790,124 @@ $(\varphi_\lambda)_\Lambda$ ist also genau dann Cauchy bezüglich $d_B$, wenn $(
 		Man zeigt dann, dass auch der Isomorphismus alleine nuklear ist (Konvexität und Kaplanskys Dichtesatz).\qedhere
 	\end{enumerate}
 \end{beweis}
-
 % section 4 (end)
+\newpage
 
+\section{Amenabilität} % (fold)
+\label{sec:5}
+
+\begin{definition}[{name=[amenabel]{von Neumann}}]
+	Eine diskrete Gruppe $G$ heißt \Index{amenabel} (oder mittelbar), falls ein Zustand $\mu \in S \enbrace*{\ell^\infty(G)}$ existiert mit $\mu(f) = \mu(s \cdot f)$ wo $s \cdot f(.) = f(s^{-1} .)$ für $s \in G$, $f \in \ell^\infty(G)$.
+	$\mu$ heißt \Index{linksinvariantes Mittel}. 
+\end{definition}
+
+\begin{definition}[{name=[Følner-Bedingung]}]
+	Eine diskrete Gruppe $G$ erfüllt die \Index{Følner-Bedingung}, falls für jede endliche Teilmenge $E \finSub G$ und $\varepsilon>0$ eine Teilmenge $F \finSub G$ existiert mit 
+	\[
+		\max_{s \in E} \frac{\abs*{F \DeltaOp sF} }{\abs*{F}} < \varepsilon  
+	\]
+	wo $sF = \set*{st \given t \in F} \subset G$ und $F \DeltaOp sF = (F \cup sF) \setminus F \cap sF$.
+	$F$ heißt \Index{Følnermenge} zu $E,\varepsilon$.
+\end{definition}
+
+\begin{satz}[label=satz:53]
+	Für eine diskrete Gruppe $G$ sind äquivalent:
+	\begin{enumerate}[(i)]
+		\item $G$ ist amenabel
+		\item $G$ erfüllt die Følner-Bedingung
+		\item $C^*_r(G)$ ist nuklear
+	\end{enumerate}
+\end{satz}
+
+\begin{erinnerung}
+	Es ist $C^*_r(G) = C^*(\lambda(G)) \subset \mathcal{B}(\ell^2(G))$, wo $\lambda \colon G \to \mathcal{U}(\mathcal{B}(\ell^2(G)))$ gegeben ist durch $\lambda_g(\eta_h) \coloneqq \eta_{gh}$ (linksreguläre Darstellung; $\eta_g(t)= \delta_{gt}$ Basisvektoren).
+	Wir haben $\ell^\infty(G) \hookrightarrow \mathcal{B} \enbrace*{\ell^2(G)}$ mittels $f \mapsto m_f$.
+	Weiter ist $m_{s \cdot f} = \lambda_s m_f \lambda_{s^{-1}}$ (warum?).
+\end{erinnerung}
+
+\begin{beweis}[name={von \autoref{satz:53}}]
+	Zunächst die Idee für (i) $\Rightarrow $ (ii):
+	Sei $E \finSub G$ endlich und $\varepsilon>0$.
+	Nach Voraussetzung existiert ein linksinvariantes Mittel $\mu \in S(\ell^\infty(G))$.
+	Es gilt $\ell^\infty(G) = \ell^1(G)^*$ und $\ell^1(G) \subset \ell^1(G)^{**}=\ell^\infty(G)^*$ $\w^*$-dicht.
+	Also existiert ein Netz $(\mu_\gamma)_{\Gamma} \subset \ell^1(G)$ mit $\mu_\gamma \grenzwIn{\w^*} \mu$.
+	Man kann sogar $(\mu_\gamma)_\Gamma \subset \ell^1(G)^1_+ =: \mathrm{Prob}(G)$ annehmen.\marginnote{Wahrscheinlichkeitsmaße auf $G$}
+	Für jedes $s \in E$ gilt 
+	\[
+		s \cdot \mu_\gamma - \mu_g \grenzw{\w^*} 0 \implies s \cdot \mu_ga - \mu_g \grenzw{\w} 0 \marginnote{warum?}
+	\]
+	Damit ist 
+	\begin{align}
+		0 \in \bigcap_{s \in E} \overline{\set[\big]{s \cdot \mu' -\mu' \given \mu' \in \mathrm{Prob}(G)}}^{\w} &= \Underbracket{\overline{\bigcap_{s \in E} \Underbracket{\set[\big]{s \cdot \mu' -\mu' \given \mu' \in \mathrm{Prob}(G)}}{\text{konvex}}}^{\w}}{\text{konvex}} \\
+		&\stackrel[\mathclap{\text{Banach}}]{\mathclap{\text{Hahn}}}{= }\enspace \,\overline{\bigcap_{s \in E} \set[\big]{s \cdot \mu' -\mu' \given \mu' \in \mathrm{Prob}(G)}}^{\norm*{\cdot}_1}
+	\end{align}
+	Damit existiert $\overline{\mu} \in  \mathrm{Prob}(G)$ mit $\sum_{s \in E} \norm*{s \cdot \overline{\mu}- \overline{\mu}}_1 < \varepsilon$.
+	Setze $F_r \coloneqq \set*{g \in G \given \overline{\mu}(g) >r}$ für $r >0$.
+	Für genügend kleines $r$ ist $F_r$ Følnermenge zu $E,\varepsilon$.
+	
+	Kommen wir nun zu (ii) $\Rightarrow $ (iii):
+	Sei $E \finSub G$ endlich, $\varepsilon>0$ und $F \finSub G$ die Følnermenge zu $E,\varepsilon$.
+	Sei $p_F \in \mathcal{B} \enbrace*{\ell^2(G)}$ die Projektion auf $\Span \set*{\eta_g \given g \in F} \subset \ell^2(G)$.
+	Es ist nun
+	\[
+		p_F \mathcal{B} \enbrace*{\ell^2(G)} p_F \cong M_F \cong C^* \enbrace*{e_{g,h} \mid g,h \in F, e_{g,h}^* = e_{h,g}, e_{g,h} e_{k,l} = \delta_{h,k} \cdot e_{g,l}}
+	\]
+	Für $s \in G$ gilt $e_{g,g} \lambda_s e_{h,h} = \delta_{g,sh} e_{g,h}$.
+	Wegen $p_F = \sum_{g \in F}e_{g,g}$ gilt
+	\[
+		p_F \lambda_s p_F ) = \sum_{g,h \in F} e_{g,g} \lambda_s e_{h,h} = \sum_{g,h \in F} \delta_{g,sh} \cdot e_{g,h} = \sum_{g \in F \cap sF} e_{g,s^{-1}g}
+	\]
+	Definiere $\psi_F \colon C^*_r(G) \to M_F$ als die Kompression $x \mapsto p_F x p_F$ und $\varphi_F \colon M_f \to C^*_r(G)$ durch $e_{g,h} \mapsto \sfrac{1}{\abs{F}}\cdot \lambda_g \lambda_{h^{-1}}$.
+	Dann sind $\psi_F$ und $\varphi_F$ unital (klar) und vollständig positiv: Für $\psi_F$ ist dies als Kompression nach \autoref{bsp:35} klar.
+	Für $\varphi_F$ betrachte:
+	\[
+		\varphi_F^\ssbrace{F} \enbrace*{(e_8{g,h})_{g,h \in F}} = \frac{1}{\abs{F}} \begin{pmatrix}
+			\vdots & \hphantom{\lambda_g^*}& \\
+			\lambda_g & & 0 \\
+			\vdots & & 
+		\end{pmatrix}
+		\begin{pmatrix}
+			\cdots & \lambda_g^* & \cdots \\
+			& & \vphantom{\vdots}\\
+			& 0 & \vphantom{\vdots}
+		\end{pmatrix} \ge 0 \StackText{\ref{satz:323}}{\implies} \varphi_F \text{ v.p.} 
+	\]
+	Es gilt für $s \in E$
+	\[
+		1 \ge \frac{\abs*{F \cap sF}}{\abs*{F}} = \frac{\abs*{F \cup sF}}{\abs*{F} } - \frac{\abs*{F \DeltaOp sF}}{\abs*{F}} \ge 1 - \varepsilon
+	\]
+	Für $s \in E$ gilt nun 
+	\[
+		\varphi_F \psi_F (\lambda_s) = \varphi_F \enbrace*{\sum_{g \in F \cap sF} e_{g,s^{-1}g}} = \sum_{g \in F\cap sF} \frac{1}{\abs*{F}} \lambda_g \lambda_{(s^{-1}g)^{-1}} = \sum_{g \in F \cap sF} \frac{1}{\abs*{F}} \lambda_s 
+		= \frac{\abs*{F \cap sF}}{\abs*{F} }  \cdot \lambda_s \approx_\varepsilon \lambda_s
+	\]
+	Da $\Span \set*{\lambda_s}$ dicht in $C^*_r(G)$ ist, folgt die Behauptung.
+	
+	Zu guter Letzt (iii) $\Rightarrow$ (i):
+	Betrachte
+	\[
+		\Big(  
+		\begin{tikzcd}
+			C_r^*(G) \rar["\psi_\gamma"] & F_\gamma \rar["\varphi_\gamma"] & C_r^*(G)
+		\end{tikzcd}
+		\Big)_{\Gamma}
+	\]
+	mit $\varphi_r$, $\psi_r$ vollständig positiv kontraktiv und $\varphi_\gamma \psi_\gamma \to \id_{C^*_r(G)}$ punktweise.
+	Nach Averson erhalten wir Abbildungen $C_r^*(G) \subset \mathcal{B} \enbrace*{\ell^2(G)} \to F_\gamma$, die wir mit $\overline{\psi}_\gamma$ bezeichnen.
+	Damit folgt $\varphi_\gamma \overline{\psi}_\gamma \in \mathcal{B} \enbrace[\big]{ \mathcal{B}(\ell^2(G)), C_r^*(G)}^1 \subset \mathcal{B} \enbrace*{\mathcal{B}(\ell^2(G)), W^*(G)}^1$.
+	Letzteres können wir als Dualraum auffassen (vgl. \autoref{satz:327}).
+	Damit besitzt $(\varphi_\gamma \overline{\psi}_\gamma)_\Gamma$ besitzt einen $\w^*$-Häufungspunkt und wir erhalten $\Phi \colon \mathcal{B} \enbrace*{\ell^2(G)} \to W^*(G)$.
+	$W^*(G)$ besitzt einen kanonischen Spurzustand $\tau$ mit $\tau(\sum \alpha_g \cdot \lambda_g) = \alpha_e$ und es gilt $\Phi|_{C^*_r(G)} = \id_{C_r^*(G)}$.
+	Also ist $C^*_r(G)$ im multiplikativen Bereich von $\Phi$.
+	Damit erhalten wir für $f \in \ell^\infty(G)$ und $s \in G$ 
+	\[
+		\tau \circ \Phi(m_{s \cdot f}) = \tau \circ \Phi(\lambda_s m_f \lambda_{s^{-1}}) = \tau \enbrace*{\lambda_s \Phi(m_f) \lambda_{s^{-1}}} =\tau \circ \Phi(m_f)
+	\]
+	Also ist die Zuordnung $f \mapsto \tau \circ \Phi(m_f)$ ein linksinvariantes Mittel auf $\ell^\infty(G)$. 
+\end{beweis}
+
+
+% section 5 (end)
 
 
 
