@@ -1,0 +1,100 @@
+%!TEX root = ../LA2.tex
+\section{Quadratische Polynome und Quadriken}
+\label{sec:2.8}
+
+Wir wollen die Diagonalisierbarkeit von selbstadjungierten Matrizen ausnutzen, um in diesem Abschnitt quadratische Polynome auf $\RR^n$ zu untersuchen.
+
+\begin{definition}[Quadratisches Polynom]
+	\label{def:8.1}
+	Eine Abbildung $p \colon \RR^n \rightarrow \RR$ heißt \Index{quadratisches Polynom}, wenn $b_{ij}, \alpha_j, \alpha \in \RR, 1 \leq i,j \leq n$ existieren, sodass für alle $x = (x_1,\dots,x_n)^T \in \RR^n$ gilt:
+	\[
+		p((x_1,\dots,x_n)^T) = \sum_{i,j=1}^{n} b_{ij} x_i x_j + \sum_{j=1}^{n} \alpha_j x_j + \alpha.
+	\]
+\end{definition}
+
+Die $x_ix_j = x_jx_i$, können wir in der Formel die $b_{ij}$ durch $a_{ij} := \frac{1}{2}(b_{ij} + b_{ji})$ ersetzen, und erhalten dann $a_{ij} = a_{ji}$.
+Ist dann $A = (a_{ij})_{ij} \in M(n \times n, \RR)$, so ist $A = A^T$ und wir erhalten
+\[
+	p((x_1,\dots,x_n)^T) = \sum_{i,j=1}^{n} a_{ij} x_i x_j + \sum_{j=1}^{n} \alpha_j x_j + \alpha.
+\]
+
+\begin{lemma}
+	\label{lemma:8.2}
+	Ist $A = A^T$ wie oben und ist $a := \frac{1}{2} \cdot (\alpha_1,\dots,\alpha_n) \in \RR^n$, so gilt für alle $x \in \RR^n$:
+	\[
+		p(x) = \sk{Ax,x} + 2 \sk{a,x} + \alpha = x^T A x + 2 a^T x + \alpha.
+	\]
+\end{lemma}
+
+\begin{beweis}
+	Die erste Gleichung folgt direkt durch einsetzen.
+	Die zweite Gleichung folgt aus $\sk{y,x} = y^Tx$ für alle $x,y \in \RR^n$ und $\sk{Ax,x} = \sk{x,A^Tx} = \sk{x,Ax} = x^T Ax$. \qedhere
+\end{beweis}
+
+Unser Ziel: Wir wollen durch geeignete Wahl von Koordinaten in $\RR^n$ und durch Verschiebung des Ursprungs erreichen, dass $p$ eine besonders schöne Gestalt annimmt (vgl. mit Blatt 6, Aufgabe 1).
+Beachte: Der Faktor $2$ vor dem Term $\sk{a,x}$ bzw. $a^Tx$ vereinfacht einige Umformungen!
+
+\begin{lemma}
+	\label{lemma:8.3}
+	Sei $A \in M(n \times n,\RR)$ mit $A = A^T$.
+	Dann gilt $\Bild(A) = \Bild(A^2)$.
+	Insbesondere existiert zu jedem $a \in \RR^n$ ein $c \in \RR^n$ mit $A^2c = -Aa$.
+\end{lemma}
+
+\begin{beweis}
+	Sei $\{v_1,\dots,v_n\}$ eine Orthonormalbasis aus Eigenvektoren von $A$ mit zugehörigen Eigenwerten $\lambda_1,\dots,\lambda_n$.
+	Die Reihenfolge der Eigenvektoren und Eigenwerte sei so gewählt, dass $\lambda_1,\dots,\lambda_k \neq 0$ und (falls $k \leq n$) $\lambda_{k+1}, \dots, \lambda_n = 0$.
+	Dann folgt für ein $v = \sum_{i=1}^{n} \mu_i v_i$:
+	\[
+		Av = \sum_{i=1}^{n} \mu_i Av_i = \sum_{i=1}^{n} \mu_i \lambda_i v_i = \sum_{i=1}^{k} \mu_i \lambda_i v_i.
+	\]
+	Setzen wir dann $w := \sum_{i=1}^{k} \frac{\mu_i}{\lambda_i} v_i$, so folgt
+	\[
+		A^2w = A \enb{\sum_{k=1}^{n} \frac{\mu_i}{\lambda_i} Av_i} = A \enb{\sum_{i=1}^{k} \mu_i v_i} = \sum_{i=1}^{n} \mu_i \lambda_i v_i = Av.
+	\]
+	Damit folgt $\Bild(A) \subseteq \Bild(A^2)$.
+	Die Umkehrung ist trivial. \qedhere
+\end{beweis}
+
+\begin{lemma}[Reduktion durch Translation]
+	\label{lemma:8.4}
+	Sei $p(x) = x^T A x + 2a^Tx + \alpha$ mit $A = A^T \in M(n \times n, \RR), a \in \RR^n$ und $\alpha \in \RR$.
+	Ferner sei $c \in \RR^n$ mit $A^2c = -Aa$ (existiert nach \autoref{lemma:8.3}) und sei $b := Ac + a$.
+	Dann gelten:
+	\begin{enumerate}[(i)]
+		\item $p(x+c) = x^T Ax + 2b^Tx + p(c)$ und $Ab = 0$.
+		\item Ist $b = 0$, so folgt $p(x+c) = x^TAx + p(c)$ (kein linearer Term).
+		\item Ist $b \neq 0$, so gilt für $d := c+\delta b$ mit $\delta := - \frac{p(c)}{2 \no{b}^2}$: $p(x+d) = x^TAx + 2b^Tx$ (kein konstanter Term).
+	\end{enumerate}
+\end{lemma}
+
+\begin{beweis}
+	Zunächst gilt für alle $x,y\in \RR^n$:
+	\begin{align*}
+		p(x+y) &\stack{}{=} (x+y)^T A (x+y) = 2a^T(x+y) + \alpha \\
+		&\stack{}{=} x^T Ax + 2y^T Ax + y^T Ay + 2a^Tx + 2a^Ty + \alpha \\
+		&\stack{A=A^T}{=} x^TAx + 2(Ay + a)^Tx + p(y).
+	\end{align*}
+	\begin{enumerate}[(i)]
+		\item Die Gleichung $p(x+c) = x^TAx + 2b^Tx + p(c)$ folgt auch obiger Rechnung mit $b = Ac+a$.
+		Da $A^2c = -Aa$, folgt $Ab = A(Ac + a) = A^2c + Aa = 0$.
+		\item folgt sofort aus (i).
+		\item Sei $d = c + \delta b$ wie in (iii).
+		Dann gilt
+		\begin{align*}
+			p(x+d)& \stack{}{=} x^TAx + 2(Ad+a)^T x + p(d) \\
+			&\stack{}{=} x^TAx + 2(A(c+\delta b) + a)^T x + p(d) \\
+			&\stack{Ab=0}{=} x^TAx + 2\Underbrace{(Ac+a)}{=b}^Tx + p(d) = x^TAx + 2b^Tx + p(d).
+		\end{align*}
+	\end{enumerate}
+	Zeige nun $p(d) = 0$.
+	Es gilt
+	\begin{align*}
+		p(d) &= p(c+\delta b) = c^TAc + 2(\overbrace{A\delta b}^{\mathclap{=0}}+a)^T c + p(\delta b) \\
+		&= p(c) - \alpha + p(\delta b) = p(c) - \alpha + \delta^2 b^TAb + \delta 2 a^T b + \alpha \\
+		&= p(c) - p(c) \enb{\frac{1}{2 \no{b}^2}} 2a^Tb = 0,
+	\end{align*}
+	denn $\no{b}^2 = b^Tb = (Ac+a)^Tb = c^T\Underbrace{Ab}{=0} + a^Tb = a^Tb$. \qedhere
+\end{beweis}
+
+\newpage
