@@ -1458,7 +1458,7 @@ In diesem Abschnitt sind Kettenkomplexe immer $\mathbb{N}$-graduiert. (Allgemein
 % section 4 (end)
 \newpage
 
-\section{Waldhausen Kategorien} % (fold)
+\section{Waldhausen-Kategorien} % (fold)
 \label{sec:5}
 
 \begin{definition}[{name=[{Waldhausen Kategorie}]}]
@@ -1573,6 +1573,110 @@ In diesem Abschnitt sind Kettenkomplexe immer $\mathbb{N}$-graduiert. (Allgemein
 \end{proposition}
 
 \todo[inline]{hier fehlt noch eine halbe Vorlesung!}
+\newpage
+
+\begin{beispiel}
+	Sei $\mathcal{R}_f$ die Kategorie der endlichen punktierten CW-Komplexe.
+\end{beispiel}
+
+\begin{proposition}
+	Es gilt $K_0(\mathcal{R}_f) \cong \mathbb{Z}$.
+\end{proposition}
+\begin{beweis}
+	Wegen $[D^n]_\sim = \benbrace*{*}_\sim =0$ und der Kofaserfolge $S^{n-1} \hookrightarrow D^n \to S^n$ gilt $\benbrace*{S^n}_\sim = - \benbrace*{S^{n-1}}_\sim$ und $\benbrace*{S^n}_\sim = (-1)^n \benbrace*{S^0}_\sim$ in $K_0(\mathcal{R}_f)$.
+	Für $X,Y \in \mathcal{R}_f$ haben wir eine Kofaserfolge $X \hookrightarrow X \vee Y \to Y$.
+	Daher 
+	\[
+		\benbrace*{X \vee Y}_\sim = \benbrace*{X}_\sim + \benbrace*{Y}_\sim \in K_0(\mathcal{R}_f)
+	\]
+	Geht $Y$ aus $X$ durch Ankleben von $k$-vielen $n$-Zellen hervor, so erhalten wir eine Kofaserfolge
+	\[
+		\begin{tikzcd}
+			X \rar[hook] & Y \rar[two heads] & \sfrac{Y}{X} \cong \bigvee_k S^n
+		\end{tikzcd}
+	\]
+	Also $\benbrace*{Y}_\sim = \benbrace*{X}_\sim + k \cdot \benbrace*{S^n}_\sim = \benbrace*{X}_\sim + (-1)^n \benbrace*{S^0}_\sim$.
+	Induktiv folgt, dass $\benbrace*{S^0}_\sim$ ein Erzeuger von $K_0(\mathcal{R}_f)$ ist.
+	Andererseits definiert die Eulercharakteristik für punktierte CW-Komplexe $\chi(X,x_0) = \chi(X)-1$ eine surjektive Abbildung $\chi \colon K_0(\mathcal{R}_f) \to \mathbb{Z}$ und es folgt $K_0(\mathcal{R}_f) \cong \mathbb{Z}$. 
+\end{beweis}
+
+\begin{definition}
+	Eine \Index{Waldhausen-Unterkategorie} $\mathcal{U}$ einer Waldhausen-Kategorie $\mathcal{C}$ ist eine Unterkategorie von $\mathcal{C}$ die auch eine Waldhausen-Kategorie ist, so dass gilt:
+	\begin{enumerate}[i)]
+		\item Die Inklusion $\mathcal{U} \hookrightarrow \mathcal{C}$ ist ein exakter Funktor.
+		\item Kofaserungen in $\mathcal{U}$ sind genau die Kofaserungen in $\mathcal{C}$, die in $\mathcal{U}$ liegen und deren Kokern in $\mathcal{U}$ liegt.
+		\item Die schwachen Äquivalenzen in $\mathcal{U}$ sind die schwachen Äquivalenzen in $\mathcal{C}$, die in $\mathcal{U}$ liegen.
+	\end{enumerate} 
+\end{definition}
+
+\begin{bemerkung}
+	Sei $F \colon \mathcal{C} \to \mathcal{C}'$ exakt und $0_{\mathcal{C}} \in \mathcal{C}$ ein Nullobjekt.
+	Dann ist $F(0_{\mathcal{C}}) \in \mathcal{C}'$ ein Nullobjekt.
+	In $\mathcal{C}$ ist $0_{\mathcal{C}} \to 0_{\mathcal{C}} \twoheadrightarrow 0_\mathcal{C}$ eine Kofaserfolge.
+	Also ist dies auch nach Anwendung von $F$ eine Kofaserfolge.
+	Andererseits ist auch
+	\[
+		\begin{tikzcd}
+			F(0_{\mathcal{C}}) \rar["\id"] & F(0_{\mathcal{C}}) \rar & 0_{\mathcal{C}'}
+		\end{tikzcd}
+	\]
+	eine Kofaserfolge. 
+	Also $F(0_{\mathcal{C}}) \cong 0_{\mathcal{C}'}$.
+\end{bemerkung}
+
+\begin{definition}
+	Sei $\mathcal{U}$ eine Waldhausen-Unterkategorie von $\mathcal{C}$.
+	\begin{enumerate}[(i)]
+		\item $\mathcal{U}$ heißt \Index{kofinal} in $\mathcal{C}$, falls es zu jedem $C \in \mathcal{C}$ ein $C' \in \mathcal{C}$ gibt, sodass $C \amalg C'$ in $\mathcal{U}$ liegt.
+		\item $\mathcal{U}$ heißt \Index{abgeschlossen unter Erweiterungen} in $\mathcal{C}$, falls gilt: Ist $U \hookrightarrow C \to V$ eine Kofaserfolge in $\mathcal{C}$ mit $U,V \in \mathcal{U}$, so ist $C$ isomorph zu einem Objekt aus $\mathcal{U}$.
+	\end{enumerate}
+\end{definition}
+
+\begin{beispiel}
+	$\mathcal{F}_R = \set*{\text{freie endlich erzeugte Moduln}} \subseteq \mathcal{P}_R$ ist kofinal.
+\end{beispiel}
+
+\begin{satz}[name={{Kofinalitätssatz für $K_0$}}]
+	Sei $\mathcal{U} \subseteq \mathcal{C}$ eine Waldhausen-Unterkategorie, die kofinal und abgeschlossen unter Erweiterungen in $\mathcal{C}$ ist.
+	Dann induziert die Inklusion $\mathcal{U}\hookrightarrow \mathcal{C}$ eine injektive Abbildung in $K_0$.
+\end{satz}
+
+\begin{bemerkung}
+	Sei $\mathcal{C}$ eine Waldhausen-Kategorie.
+	Dann ist die Menge der schwachen Äquivalenzklassen eine Halbgruppe bezüglich $\amalg$ und wir schreiben $K^\amalg_0(\mathcal{C})$ für ihr Gruppenvervollständigung.
+\end{bemerkung}
+
+\begin{bemerkung}
+	\begin{enumerate}[(i)]
+		\item Elemente von $K_0^\amalg(\mathcal{C})$ lassen sich als formale Differenzen $\benbrace*{C}_\sim = \benbrace*{C'}_\sim$ von schwachen Äquivalenzklassen schreiben.
+		\item Es gilt $\benbrace*{C}_\sim - \benbrace*{C'}_\sim =0 \in K^\amalg_0(\mathcal{C})$ genau dann, wenn es $B \in \mathcal{C}$ gibt mit $\benbrace*{C \amalg B}_\sim = \benbrace*{C' \amalg B}_\sim $ (Gleicheit von schwachen Äquivalenzklassen)
+		\item Es gibt einen kanonischen surjektiven Homomorphismus $K_0^\amalg(\mathcal{C}) \to K_0(\mathcal{C})$.
+		Sein Kern wird erzeugt von $\benbrace*{B}_\sim - \benbrace*{C}_\sim  + \benbrace*{\sfrac{C}{B}}_\sim$ für alle Kofaserfolgen $B \hookrightarrow C \to \sfrac{C}{B}$.
+	\end{enumerate}
+\end{bemerkung}
+
+
+
+\begin{lemma}
+	Sei $\mathcal{U} \subseteq \mathcal{C}$ eine kofinale Waldhausen-Unterkategorie.
+	Seien $U, U' \in \mathcal{U}$ genau dann schwach äquivalent in $\mathcal{U}$, wenn sie schwach äquivalent in $\mathcal{C}$ sind.
+	Dann induziert die Inklusion $\mathcal{U} \hookrightarrow \mathcal{C}$ eine surjektive Abbildung $K_0^\amalg(\mathcal{U}) \to K_0^\amalg(\mathcal{C})$.
+\end{lemma}
+\begin{beweis}
+	Seien $U,U' \in \mathcal{U}$.
+	Ist $\benbrace*{U}_\sim - \benbrace*{U'}_\sim =0 \in K_0^\amalg(\mathcal{C})$, so gibt es $C \in \mathcal{C}$ mit $\benbrace*{U \amalg C}_\sim = \benbrace*{U' \amalg C}_\sim$ (Gleichheit von Äquivalenzklassen).
+	Da $\mathcal{U} \subseteq \mathcal{C}$ kofinal ist, gibt es $C' \in \mathcal{C}$ mit $C \amalg C' \in \mathcal{U}$.
+	Mit
+	\[
+		\benbrace[\big]{U \amalg (C \amalg C')}_\sim = \benbrace[\big]{U' \amalg (C \amalg C')}_\sim
+	\]
+	folgt $\benbrace*{U}_\sim - \benbrace*{U'}_\sim =0 \in K_0^\amalg(\mathcal{U})$.
+		%
+	% Behauptung. Sei $\mathcal{U} \subseteq \mathcal{C}$ eine Waldhausen-Unterkategorie, kofinal.
+	% Sei $U,U' \in \mathcal{U}$, deren schwache Äquivalenzklassen in $\mathcal{C}$ gleich sind.
+	% Dann sind auch die schwachen Äquivalenzklassen von $U$ und $U'$ in $\mathcal{U}$ gleich.
+\end{beweis}
+
 
 % section 5 (end)
 
