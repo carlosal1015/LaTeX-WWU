@@ -2113,8 +2113,192 @@ Ist etwa $G$ kompakt, so ist $\mathcal{B}_\mathfrak{g}$ negativ definit!
 	$G$ ist kompakt und damit vollständig bezüglich der von $g_\bi$ induzierten Metrik.
 	Mit Hopf-Rinow folgt, dass die geometrische (=algebraische) Exponentialabbildung surjektiv ist.
 \end{beweis}
+\todo[inline]{Hier fehlt noch eine gesamte Vorlesung!}
+\newpage
+
+Kompakte zusammenhängende, einfach zusammenhängende Liegruppen kann man klassifizieren: 
+\begin{itemize}
+	\item $\operatorname{Spin}(n)$, $n \ge 3$, $\sfrac{\operatorname{Spin}}{\mathbb{Z}_2} = \SO(n)$
+	\item $\SU(n)$, $n \ge 2$
+	\item $\Sp(n)$, $n \ge 1$
+	\item $G_2$, $F_4$, $E_6$, $E_7$, $E_8$ mit Dimension $14,52,78,133,248$.
+\end{itemize}
+Maximale Tori in $\SU(n)$: 
+\[
+	T = \set*{\begin{pmatrix}
+		e^{i \varphi_1} & & \\
+		& \ddots & \\
+		& & e^{i \varphi_n}
+	\end{pmatrix} \given \sum_{i=1}^{n} \varphi_i \in 2 \pi \mathbb{Z}}
+\]
+Weylgruppe $W = \operatorname{Sym}(n)$. Somit Rang $\SU(n)=n-1$.
+Es gilt 
+\[
+	t = \Tmap_e T = \set*{ \begin{pmatrix}
+		i \alpha_1 & & \\
+		& \ddots & \\
+		& & i \alpha_n
+	\end{pmatrix} \given \sum_{i=1}^{n} \alpha_i = 0}
+\]
+Alle adjungierten Orbiten sind von der Form $\sfrac{\SU/n}{\SU(n_1) \times \ldots \times \Un(n_k)}$ mit
+\[
+	\sum_{j=1}^{1n} n_j = n \quad , \quad \alpha_1 = \ldots = \alpha_{n-1}, \alpha_{n_1 +1} = \ldots = \alpha_{n_1 +n_2}
+\]
+Isotropiegruppe
 % section 23 (end)
 % chapter 2 (end)
+
+\chapter{Homogene Räume} % (fold)
+\label{cha:3}
+
+\section{Definition und Beispiele} % (fold)
+\label{sec:31}
+
+\begin{definition}[{name=[homogener Raum]}]
+	Sei $G$ eine reelle Liegruppe und $H$ eine abgeschlossene Untergruppe von $G$.
+	Dann nennt man den Raum $\sfrac{G}{H} \coloneqq \set*{g H \given g \in G}$ der Linksnebenklassen von $H$ auch \Index{homogener Raum}. 
+	Wir bezeichnen mit $\pi \colon G \to \sfrac{G}{H}$, $g \mapsto gH$ die Projektionsabbildung und versehen $\sfrac{G}{H}$ mit der Quotiententopologie.
+	Das heißt $U \subseteq \sfrac{G}{H}$ ist offen genau dann, wenn $\pi^{-1}(U)$ offen in $G$ ist.
+\end{definition}
+
+\begin{satz}
+	Sei $G$ eine Liegruppe und $H$ eine abgeschlossene Untergruppe von $G$.
+	Dann ist der homogene Raum eine differenzierbare Mannigfaltigkeit der Dimension $n = \dim G - \dim H$.
+	Ferner ist die Projektionsabbildung $\pi \colon G \to \sfrac{G}{H}$ eine differenzierbare Submersion, das heißt für alle $g \in G$ ist $(\mathd \pi)_g \colon \Tmap_g G \to \Tmap_{gH} \sfrac{G}{H}$ surjektiv.
+\end{satz}
+\begin{beweis}
+	\begin{enumerate}[(i)]
+		\item $\pi$ ist offen und $\sfrac{G}{H}$ erfüllt das zweite Abzählbarkeitsaxiom.
+		Aus $U \subseteq G $ offen, folgt dass auch $\pi^{-1}(\pi(U)) = \bigcup_{h \in H} R_h(U)$ offen ist und somit $\pi(U)$ offen ist.
+		
+		Ist $(B_n)_n$ eine Basis der Topologie auf $G$, so ist $\enbrace*{\pi(B_n)}_n$ eine Basis der Topologie auf $\sfrac{G}{H}$.
+		\item $\sfrac{G}{H}$ ist ein $T_2$-Raum:
+		
+		Seien $g_1 H, g_2 H \in \sfrac{G}{H}$ mit $g_1 H \neq g_2 H$.
+		Dann gilt $g_1 \notin g_2 H$.
+		Da $H$ abgeschlossen ist und $L_{g_2}$ ein Diffeomorphismus ist, ist auch $g_i H$ abgeschlossen in $G$.
+		Somit existiert eine offene Umgebung $U$ von $e$ in $G$ mit $U g_1 \cap g_2 H = \emptyset$.
+		Da die Multiplikation $m \colon G \times G \to G$ stetig ist, existieren offene Mengen $A,B \subseteq G$ mit $e \in A,B$ und $A \times B \subseteq m^{-1}(U)$.
+		Sei $V \coloneqq A \cap B$.
+		Dann ist $V$ offen und es gilt $V^2= \set*{g \tilde{g} \in V} \subseteq U$ ist offen und $V^2 g_1 \cap g_2 H = \emptyset$.
+		Damit folgt $V g:1 \cap V^{-1} g_2 H = \emptyset$, also auch $V g_1 H \cap V^{-1} g_2 H = \emptyset$.
+		Insgesamt also $\pi(V g_1 H) \cap \pi(V g_1 H) = \emptyset$.
+		\item Sei $\skal*{\cdot }{\cdot }$ ein Skalarprodukt auf $\mathfrak{g}$ und $\mathfrak{p} \coloneqq \mathfrak{h}^\bot$.
+		Wir setzen 
+		\[
+			V_\varepsilon \coloneqq \set*{v \in \mathfrak{p} \given \norm*{v} < \varepsilon} \quad \text{und} \quad D_\varepsilon \coloneqq \exp_G(V_\varepsilon) \subseteq G 
+		\] 
+		Behauptung: Für $\varepsilon>0$ klein genug ist 
+		\mapdef{F\colon D_\varepsilon \times H}{G}{(g,h)}{g \cdot h}{}
+		eine offene Einbettung. 
+		Um dies zu zeigen, können wir annehmen, dass $\exp|_{V_2} \colon V_\varepsilon \to D_\varepsilon$ ist Diffeomorphismus.
+		Da $(\mathd F)_{e,e} \colon \Tmap_e D_\varepsilon \times \Tmap_e H \to \Tmap_e G$, $(v,w) \mapsto v+w$ invertierbar ist, existiert eine offene Umgebung $U_\varepsilon$ von $e$ in $H$, sodass 
+		\begin{equation}
+			F \colon D_\varepsilon \times U_\varepsilon \to D_\varepsilon H \label{ep:32:1}\tag{*}
+		\end{equation}
+		für kleine $\varepsilon>0$ ein lokaler Diffeomorphismus nahe $(e,e)$ ist.
+		Wegen
+		\begin{align}
+			F\big|_{D_\varepsilon \times U_\varepsilon h_0} = R_{h_0} \circ F\big|_{D_\varepsilon \times U_\varepsilon} \circ R_{h_0^{-1}}
+		\end{align}
+		für $h_0 \in H$, ist $F$ ein lokaler Diffeomorphismus.
+		Es bleibt zu zeigen, dass $F$ injektiv für $\varepsilon$ klein.
+		Sei $Z_e$ eine offene Umgebung von $e$ in $G$ mit $Z_e \cap H \subseteq U_\varepsilon$.
+		Ferner sei $\tilde{Z}_e$ eine offene Umgebung von $e$ in $G$ mit $\tilde{Z}_e^{-1} \cdot \tilde{Z}_e \subseteq Z_e$.
+		Wähle nun $\varepsilon' < \varepsilon$ so klein, dass $D_{\varepsilon'} \subseteq \tilde{Z}_e$.
+		Seien nun $g_1, g_2 \in D_{\varepsilon'}$ und $h_1,h_2 \in H$ mit $g_1 h_1 = g_2 h_2$.
+		Dann gilt $d_1 \coloneqq g_1^{-1} g_2 = h h_2^{-1} \in H \cap Z_e \subseteq U_\varepsilon$.
+		Nach \eqref{ep:32:1} gilt $F(g_1,h) = F(g_2,e)$ und es foglt $g_1 =g_2$, $h=e$ und somit $h_1 =h_2$.
+		Dies zeigt die Behauptung
+		\item $\sfrac{G}{H}$ ist eine differenzierbare Mannigfaltigkeit.
+		
+		Wir betrachten die offenen Mengen $U_g \coloneqq (g \cdot D_\varepsilon)H \subseteq G$.
+		Dann ist $\sfrac{G}{H} = \bigcup_{g \in G} \sfrac{U_g}{H}$ eine offene Überdeckung von $\sfrac{G}{H}$.
+		Die Karten $\varphi_g \colon \sfrac{U_g}{H} \to D_\varepsilon \cong V_\varepsilon \subseteq \mathbb{R}^n$ sind gegeben durch 
+		\[
+			\begin{tikzcd}
+				\varphi_g^{-1} \colon D_\varepsilon = D_\varepsilon \times \set*{e}  \rar["F"] & D_\varepsilon H \rar["L_g"] & g D_\varepsilon H \rar["\pi"] & \sfrac{U_g}{H}
+			\end{tikzcd}
+		\]
+		also $d \mapsto gdH$.
+		Das heißt $\varphi_g^{-1} = \pi \circ L_g \circ F|_{D_\varepsilon \times \set*{e}}$ ist bijektiv stetig und offen.
+		Sei nun $\tilde{g} \in G$ mit
+		\[
+			\sfrac{U_{\tilde{g}}}{H} \cap \sfrac{U_g}{H} \neq \emptyset
+		\]
+		das heißt $U_{\tilde{g}} \cap U_{g} \neq \emptyset$.
+		Dann gilt
+		\mapdef{\varphi_g \circ \varphi_g^{-1} \coloneqq \varphi \enbrace*{\sfrac{U_{\tilde{g}}}{H} \cap \sfrac{U_g}{H}}}{\varphi_{\tilde{g}} \enbrace*{\sfrac{U_{\tilde{g}}}{H} \cap \sfrac{U_g}{H}}}{d}{\tilde{g}^{-1}g h_d}{}
+		für ein $h_d \in H$, da $g d H = \tilde{g} \enbrace*{\tilde{g}^{-1} g d}H$.
+		Da $g D_\varepsilon, \tilde{g}D_\varepsilon$ von allen Linksnebenklassen $g' H$ transversal geschnitten werden, hängt $h_d$ differenzierbar von $d$ ab(!).
+		\item $\pi$ ist differenzierbare Submersion
+		
+		$\pi$ ist surjektiv und stetig. Ferner ist $\pi$ differenzierbar mit $(\mathd \pi)_g$ surjektiv für alle $g \in G$, denn
+		\[
+			\begin{tikzcd}
+				U_g \dar["F^{-1} \circ L_{g^{-1}}"'] \rar["\pi"] & \sfrac{G}{H} \\
+				D_\varepsilon \times H \rar["\pr_1"] & D_\varepsilon \uar["\varphi_g^{-1}"]
+			\end{tikzcd}
+		\]
+		Dies schließt den Beweis ab.\qedhere
+	\end{enumerate}
+\end{beweis}
+
+\begin{bemerkung*}
+	\begin{enumerate}[1)]
+		\item Die differenzierbare Struktur ist eindeutig bestimmt, wenn man $\pi \colon G \to \sfrac{G}{H}$ differenzierbar fordert.
+		\item Man kann $G$ mit einer analytischen Struktur versehen, welche $\sfrac{G}{H}$ erbt.
+		Somit ist jeder homogene Raum in natürlicher Weise eine analytische Mannigfaltigkeit (Kartenwechsel sind analytische Diffeomorphismen).
+		\item Ist $H$ eine nicht abgeschlossene Untergruppe, so ist $\sfrac{G}{H}$ \emph{nicht} hausdorffsch.
+		Man kann aber immer noch lokale Quotienten betrachten.
+		\item $\pi \colon G \to \sfrac{G}{H}$ ist ein differenzierbares Faserbündel mit Fasertyp $H \cong \pi^{-1}(gH) = gH$.
+		Die Karten des Faserbündels sind gegeben durch
+		\[
+			\begin{tikzcd}
+				\psi_g^{-1} \colon \sfrac{U_g}{H} \times H \rar["\varphi_g \times {\id}"] & D_\varepsilon \times H \rar["F"] & D_\varepsilon H \rar["L_g"] & g D_\varepsilon H = U_g
+			\end{tikzcd}
+		\]
+	\end{enumerate}
+\end{bemerkung*}
+
+Sei nun $M^k$ eine differenzierbare Mannigfaltigkeit und 
+\[
+	C^\infty(G,M^k)^H \coloneqq \set[\big]{f \in C^\infty(G,M) \given \forall h \in H : f \circ R_h = f}
+\]
+Offenbar ist $f \in C^\infty(G,M)^H$ konstant auf den Linksnebenklassen $g H$.
+Somit ist $\overline{f} \coloneqq f \circ \pi^{-1} \colon \sfrac{G}{H} \to M^k$, $gH \mapsto f(g)$ wohldefiniert.
+
+\begin{lemma}
+	Die Abbildung $\Phi \colon C^\infty(\sfrac{G}{H}, M^k) \to C^\infty(G,M^k)^H$ definiert durch $\overline{f} \mapsto f \coloneqq \overline{f} \circ \pi$ ist bijektiv. 
+\end{lemma}
+\begin{beweis}
+	Injektivität: Seien $\overline{f},\overline{g} \in C^\infty(\sfrac{G}{H},M^k)$ mit $f=\overline{f} \circ \pi = \overline{g} \circ \pi = g$.
+	Da $\pi$ surjektiv ist, folgt $\overline{f} = \overline{g}$.
+	
+	Surjektivität: Sei $f \colon G \to M^k$ glatt mit $f \circ R_h = f$ für alle $h \in H$.
+	Wir setzen $\overline{f} \colon \sfrac{G}{H} \to M^k$, $gH \mapsto f(g)$.
+	$\overline{f}$ ist wohldefiniert und da $f$ konstant auf Linksnebenklassen ist, ist $f \circ F$ konstant auf dem $H$-Faktor.
+	Somit hängt $f \circ F$ nicht von der $H$-Variablen ab und die Funktion $D_\varepsilon \ni d \mapsto (f \circ L_g \circ F)(d) = \enbrace*{\overline{f} \circ \varphi_g^{-1}}(d)$ ist differenzierbar.
+\end{beweis}
+
+\begin{korollar}
+	Sei $\sfrac{G}{H}$ ein homogener Raum.
+	Dann ist für alle $g \in G$ die Abbildung $\overline{L}_g \colon \sfrac{G}{H} \to \sfrac{G}{H}$, $\overline{g}H \mapsto g \overline{g}H$ ein Diffeomorphismus.
+\end{korollar}
+\begin{beweis}
+	Es gilt: $f \coloneqq \pi \circ L_g \colon G \to \sfrac{G}{G}$ ist differenzierbar mit $f \circ R_h = f$ für alle $h \in H$ und somit ist $\overline{f} \colon \sfrac{G}{H} \to \sfrac{G}{H}$, $\overline{g}H \mapsto f(g) = g \overline{g}H$ differenzierbar mit $\overline{f} = \overline{L}_g$.
+	Wegen $\enbrace*{\overline{L}_g}^{-1} = \overline{L}_{g^{-1}}$  folgt die Behauptung.
+\end{beweis}
+
+\begin{definition}
+	Sei $G$ eine Liegruppe und $M$ eine differenzierbare Mannigfaltigkeit.
+	Eine \Index{Liegruppenwirkung} von $G$ auf $M$ ist eine differenzierbare Gruppenwirkung $\Phi \colon G \times M \to M$, $(g,p) \mapsto g.p$.
+	Insbesondere ist $\psi \colon G\to \operatorname{Diff}(M)$, $g \mapsto  \enbrace*{p \mapsto g.p}$ ein Homomorphismus.
+	Die Mannigfaltigkeit $M$ nennt man \bet{$G$-homogenen Raum}, falls $M$ eine transitive Gruppenwirkung $\Phi$ besitzt, das heißt für alle $p,q \in M$ existiert ein $g \in G$ mit $g.p=q$.
+\end{definition}
+
+% section 31 (end)
+% chapter 3 (end)
 
 \cleardoubleoddemptypage
 \pagenumbering{Alph}
