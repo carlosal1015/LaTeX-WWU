@@ -1,6 +1,3 @@
-## Bilderordner
-!**/img/*.pdf
-
 ## Core latex/pdflatex auxiliary files:
 *.aux
 *.lof
@@ -18,6 +15,9 @@
 # *.ps
 # *.eps
 *.pdf
+
+## Bilderordner einschließen
+!**/img/*.pdf
 
 ## Bibliography auxiliary files (bibtex/biblatex/biber):
 *.bbl
