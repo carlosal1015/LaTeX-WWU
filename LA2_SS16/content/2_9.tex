@@ -1,0 +1,161 @@
+%!TEX root = ../LA2.tex
+\section{Die Jordan-Normalform}
+\label{sec:2.9}
+
+In diesem Abschnitt wollen wir Endomorphismen untersuchen, die nicht unbedingt diagonalisierbar sind.
+Wir werden sehen, dass in vielen Fällen eine etwas schwächere Normalform der Darstellungsmatrix von $F$ möglich ist, die zum Beispiel immer noch ermöglicht, den Endomorphismus $\exp(F)$ für $F \in \End_{\CC}(V)$ bzw. $\exp(A)$ für $A \in M(n \times n, \CC)$ zu berechnen.
+Wir werden diese Normalform dann später benutzen, um Differentialgleichungen zu lösen.
+Wir starten mit:
+
+\begin{definition}[trigonalisierbar]
+	\mbox{} \\[-1.4cm]
+	\label{def:9.1}
+	\begin{enumerate}[(i)]
+		\item Sei $V$ ein endlich dimensionaler $K$-Vektorraum und sei $F \in \End_K(V)$.
+		Dann heißt $F$ \Index{trigonalisierbar}, falls eine Basis $B = \{v_1,\dots,v_n\}$ von $V$ existiert, sodass die Darstellungsmatrix $A_F^B$ von $F$ bezüglich $B$ eine obere Dreiecksmatrix ist, das heißt für geeignete $\lambda_1,\dots,\lambda_n \in K$ gilt
+		\[
+			A_F^B = \begin{pmatrix}
+			\lambda_1 & * & \cdots & * \\ 
+			0 & \lambda_2 & \cdots & * \\ 
+			\vdots &  & \ddots & \vdots \\ 
+			0 & \cdots & 0 & \lambda_n
+			\end{pmatrix}. 
+		\]
+		\item Ist $A \in M(n \times n, K)$, so heißt $A$ \Index{trigonalisierbar}, falls ein $S \in \GL(n,K)$ existiert, sodass $S^{-1}AS$ eine obere Dreiecksmatrix ist.
+	\end{enumerate}
+\end{definition}
+
+\begin{bemerkung}
+	\mbox{} \\[-1.4cm]
+	\label{bem:9.2}
+	\begin{enumerate}[(i)]
+		\item Ist $F \in \End_K(V)$ und $A \in M(n \times n,K)$ eine beliebige Darstellungsmatrix von $F$, so gilt:
+		\[
+			F \text{ ist trigonalisierbar} \quad \Leftrightarrow \quad A \text{ ist trigonalisierbar.}
+		\]
+		\item Ist $F$ (bzw. $A$) trigonalisierbar, so folgt für das charakteristische Polynom $\chi_F$ (und ähnlich für $\chi_A$), dass
+		\[
+			\chi_F(T) = \det(TE_n-A_F^B) = \det \begin{pmatrix}
+			T-\lambda_1 & * & \cdots & * \\ 
+			0 & T-\lambda_2 & \cdots & * \\ 
+			\vdots &  & \ddots & \vdots \\ 
+			0 & \cdots & 0 & T-\lambda_n
+			\end{pmatrix} = \prod\limits_{i=1}^{n} (T-\lambda_i).
+		\]
+		Wir sehen also, dass $\chi_F$ in Linearfaktoren zerfällt und die Diagonalelemente $\lambda_i$ von $A^B_F$ sind gerade die Eigenwerte von $F$.
+		\item Aus (ii) folgt:
+		Die Matrix $A = \begin{pmatrix}
+			0 & 1 \\ -1 & 0
+		\end{pmatrix} \in M(2 \times 2,\RR)$ ist nicht trigonalisierbar, da $\chi_A(T) = T^2 +1$ über $\RR$ nicht in Linearfaktoren zerfällt.
+		Fassen wir $A$ aber als komplexe Matrix auf, so ist $A$ sogar diagonalisierbar.
+		Wir sehen, dass es für diese Fragen ganz wichtig ist, über welchem Körper $K$ wir arbeiten!
+	\end{enumerate}
+\end{bemerkung}
+\newpage
+Die Beobachtung in (ii) besitzt auch eine Umkehrung:
+
+\begin{satz}
+	\label{satz:9.3}
+	Sei $V$ ein endlich dimensionaler $K$-Vektorraum und sei $F \in \End_K(V)$.
+	Dann sind äquivalent:
+	\begin{enumerate}[(i)]
+		\item	$F$ ist diagonalisierbar.
+		\item Das charakteristische Polynom $\chi_F$ von $F$ zerfällt in Linearfaktoren.
+	\end{enumerate}
+\end{satz}
+
+\begin{bemerkung}
+	\label{bem:9.4}
+	Nach dem Fundamentalsatz der Algebra (\autoref{satz:1.11}) zerfällt jedes komplexe Polynom in Linearfaktoren.
+	Aus \autoref{satz:9.3} folgt also insbesondere, dass jedes $F \in \End_{\CC}(V)$ trigonalisierbar ist, wenn $V$ ein endlich dimensionaler $\CC$-Vektorraum ist.
+	Allgemeiner gilt:
+	Ist $K$ ein \textbf{algebraisch abgeschlossener} Körper (das heißt, dass jedes Polynom über $K$ in Linearfaktoren zerfällt), und ist $V$ ein endlich dimensionaler $K$-Vektorraum, so ist jedes $F \in \End_K(V)$ trigonalisierbar. \index{algebraisch abgeschlossen}
+\end{bemerkung}
+
+Die Richtung (i) $\Rightarrow$ (ii) des Satzes folgt aus \autoref{bem:9.2}(ii).
+Die andere Richtung werden wir in \autoref{satz:9.6} beweisen, wobei wir auch zeigen werden, dass die gesuche obere Dreiecksmatrix in einer besonderen Form gewählt werden kann.
+Wir starten mit:
+
+\begin{definition}[Jordan-Normalform]
+	\mbox{} \\[-1.4cm]
+	\label{def:9.5}
+	\begin{enumerate}[(i)]
+		\item Eine Matrix $J \in M(m \times m, K)$ heißt \Index{Jordan-Kasten}, falls ein $\lambda \in K$ existiert mit
+		\[
+			J = \begin{pmatrix}
+			\lambda & 1 & 0 & \cdots & 0 \\ 
+			0 & \lambda & 1 & \cdots & 0 \\ 
+			\vdots &  & \ddots & \ddots & \vdots \\ 
+			0 & \cdots & 0 & \lambda & 1 \\ 
+			0 & \cdots & \cdots & 0 & \lambda
+			\end{pmatrix}.
+		\]
+		Wir sagen dann auch, dass $J$ ein $\lambda$-Jordan-Kasten der Länge $m$ ist.
+		\item Eine Matrix $A \in M(n \times n,K)$ heißt \textbf{in Jordan-Normalform} (oder einfach nur \Index{Jordan-Matrix}), falls \index{Jordan-Normalform}
+		\[
+			A = \begin{pmatrix}
+			J_1 & 0 & \cdots & 0 \\ 
+			0 & J_2 & \cdots & 0 \\ 
+			\vdots &  & \ddots & \vdots \\ 
+			0 & \cdots & 0 & J_r
+			\end{pmatrix}, \text{ sodass }
+			J_i = \begin{pmatrix}
+			\lambda_i & 1 & 0 & \cdots & 0 \\ 
+			0 & \lambda_i & 1 & \cdots & 0 \\ 
+			\vdots &  & \ddots & \ddots & \vdots \\ 
+			0 & \cdots & 0 & \lambda_i & 1 \\ 
+			0 & \cdots & \cdots & 0 & \lambda_i
+			\end{pmatrix} \in M(k_i \times k_i,K)
+		\]
+		für alle $1 \leq i \leq r$ ein Jordan-Kasten ist.
+	\end{enumerate}
+\end{definition}
+
+Beachte:
+\begin{enumerate}[(i)]
+	\item Jede $1 \times 1$-Matrix ist ein Jordan-Kasten der Länge $1$, und damit ist auch jede Diagonalmatrix eine Jordan-Matrix.
+	\item Die Eigenwerte $\lambda_i$ der Jordan-Kästen $J_i$ von $A$ müssen nicht paarweise verschieden sein!
+	Ein konkretes Beispiel für eine Jordan-Matrix ist gegeben durch
+	\[ 
+	a = \enb{\begin{BMAT}(b){cccccccc}{cccccccc}
+	2 & 1 & 0 & 0 & 0 & 0 & 0 & 0 \\ 
+	0 & 2 & 1 & 0 & 0 & 0 & 0 & 0 \\ 
+	0 & 0 & 2 & 0 & 0 & 0 & 0 & 0 \\ 
+	0 & 0 & 0 & 2 & 1 & 0 & 0 & 0 \\ 
+	0 & 0 & 0 & 0 & 2 & 0 & 0 & 0 \\ 
+	0 & 0 & 0 & 0 & 0 & 3 & 0 & 0 \\ 
+	0 & 0 & 0 & 0 & 0 & 0 & 3 & 1 \\ 
+	0 & 0 & 0 & 0 & 0 & 0 & 0 & 3 
+	\addpath{(0,8,|)rrrdddllluuu}
+	\addpath{(3,5,|)rrddlluu}
+	\addpath{(5,3,|)rdlu}
+	\addpath{(6,2,|)rrddlluu}
+	\end{BMAT}} = \begin{pmatrix}
+		J_1 & 0 & 0 & 0 \\
+		0 & J_2 & 0 & 0 \\
+		0 & 0 & J_3 & 0 \\
+		0 & 0 & 0 & J_4
+	\end{pmatrix}
+	\]
+	mit den Jordan-Kästen
+	\[
+		J_1 = \begin{pmatrix}
+			2 & 1 & 0 \\
+			0 & 2 & 1 \\
+			0 & 0 & 2
+		\end{pmatrix}, J_2 = \begin{pmatrix}
+			2 & 1 \\
+			0 & 2
+		\end{pmatrix}, J_3 = \begin{pmatrix}
+		 3
+		\end{pmatrix}, J_4 = \begin{pmatrix}
+			3 & 1 \\
+			0 & 3
+		\end{pmatrix}.
+	\]
+\end{enumerate}
+
+Im Rest dieses Abschnitts werden wir den folgenden Satz beweisen.
+Als direkte Folgerung erhalten wir dann auch einen Beweis von \autoref{satz:9.3}.
+
+\newpage
