@@ -158,4 +158,48 @@ Beachte:
 Im Rest dieses Abschnitts werden wir den folgenden Satz beweisen.
 Als direkte Folgerung erhalten wir dann auch einen Beweis von \autoref{satz:9.3}.
 
+\begin{satz}[Jordan-Normalform]
+	\label{satz:9.6}
+	Sei $V$ ein endlich dimensionaler $K$-Vektorraum und sei $F \in \End_K(V)$ so, dass das charakteristische Polynom $\chi_F$ von $F$ in Linearfaktoren zerfällt.
+	Dann existiert eine Basis $B = \{v_1,\dots,v_n\}$ von $V$, sodass $A_F^B$ eine Jordan-Matrix ist.
+	
+	Analog: Ist $A \in M(n \times n, K)$ so, dass $\chi_A$ in Linearfaktoren zerfällt, dann existiert ein $S \in \GL(n,K)$, sodass $S^{-1}AS$ eine Jordan-Matrix ist.
+\end{satz}
+
+Wie üblich folgt der zweite Teil des Satzes direkt aus dem ersten Teil, wenn wir den Endomorphismus $F_A \colon K^n \rightarrow K^n, x \mapsto Ax$ betrachten und die Elemente der Basis $B$ von $K^n$ wie im ersten Teil des Satzes als Spalten der Matrix $S$ nehmen.
+
+Für den Beweis des Satzes benötigen wir einige Vorbereitungen.
+
+\begin{lemma}[Direkte Summen von Endomorphismen und Blockmatrizen]
+	\label{def:9.7}
+	Sei $V$ ein endlich dimensionaler $K$-Vektorraum und sei $F \in \End_K(V)$.
+	Ist $V_1 \subseteq V$ mit $F(V_1) = V_1$, so können wir einen Endomorphismus $F_1 \in \End_K(V_1)$ durch $F_1(v) := F(v)$ für $v \in V_1$ definieren (also $F_1 = F \big|_{V_1} \colon V_1 \rightarrow V_1$).
+	Besitzt $V$ eine direkte Summenzerlegung $V = V_1 \oplus V_2$ mit $F(V_1) \subseteq V_1$ und $F(V_2) \subseteq V_2$, so erhalten wir zwei Endomorphismen $F_1 \in \End_K(V_1)$ und $F_2 \in \End_K(V_2)$, und für jedes $v = v_1 + v_2 \in V$ mit $v_1 \in V_1, v_2 \in V_2$ gilt dann
+	\[
+		F(v) = F_1(v_1) + F_2(v_2).
+	\]
+	Wir sagen dann: $F$ ist die \Index{direkte Summe} von $F_1$ und $F_2$ und wir schreiben $F = F_1 \oplus F_2$.
+	Sei nun $B_1 = \{v_1,\dots,v_r\}$ eine Basis von $V_1$ und $B_2 = \{v_{r+1},\dots,v_n\}$ eine Basis von $V_2$.
+	Dann ist \linebreak $B := \{v_1,\dots,v_r,v_{r+1},\dots,v_n\}$ eine Basis von $V$ und für jedes $v_j$ aus dieser Basis gilt
+	\[
+	F(v_j) = \begin{cases}
+	F_1(v_j) = \sum_{i=1}^{r} a_{ij} v_i, & \text{ falls } j \leq r \\
+	F_2(v_j) = \sum_{i=r+1}^{n} a_{ij} v_i, & \text{ falls } r < j.
+	\end{cases}
+	\]
+	Dann hat die Darstellungsmatrix $A := A_F^B$ von $F$ die Gestalt
+	\[
+	A = \begin{pmatrix}
+	A_1 & 0 \\
+	0 & A_2
+	\end{pmatrix}, \text{ mit } A_1 = A_{F_1}^{B_1} \text{ und } A_2 = A_{F_2}^{B_2}.
+	\]
+	Sei umgekehrt $F$ ein beliebiger Endomorphismus von $V$, sodass eine Basis $B = \{v_1,\dots, v_r,v_{r+1},\dots,v_n\}$ von $V$ existiert mit $A_F^B = \begin{pmatrix}
+	A_1 & 0 \\
+	0 & A_2
+	\end{pmatrix}$.
+	Setzen wir dann $V_1 := \LH\{v_1,\dots,v_r\}$ und $V_2 := \{v_{r+1},\dots,v_n\}$, so folgt $V = V_1 \oplus V_2$ mit $F(V_i) \subseteq V_i$, also $F = F_1 \oplus F_2$ mit $F_i := F\big|_{V_i} \colon V_i \rightarrow V_i$ wie oben.
+\end{lemma}
+
+Wir benötigen:
 \newpage
