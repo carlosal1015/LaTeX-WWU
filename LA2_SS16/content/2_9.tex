@@ -117,7 +117,7 @@ Beachte:
 	\item Die Eigenwerte $\lambda_i$ der Jordan-Kästen $J_i$ von $A$ müssen nicht paarweise verschieden sein!
 	Ein konkretes Beispiel für eine Jordan-Matrix ist gegeben durch
 	\[ 
-	a = \enb{\begin{BMAT}(b){cccccccc}{cccccccc}
+	a = \enb{\begin{BMAT}(e)[4.3pt]{cccccccc}{cccccccc}
 	2 & 1 & 0 & 0 & 0 & 0 & 0 & 0 \\ 
 	0 & 2 & 1 & 0 & 0 & 0 & 0 & 0 \\ 
 	0 & 0 & 2 & 0 & 0 & 0 & 0 & 0 \\ 
@@ -234,7 +234,7 @@ Wir benötigen:
 		A_{1,i} & * \\
 		0 & A_2
 	\end{pmatrix}$ für alle $1 \leq i \leq r$.
-	Da alle Einträge der ersten Spalte von $A$ unterhalb der $l$-ten Zeile verschwinden, erhalten wir durch Entwicklung der Determinante von $A$ (bzw. $A_1$) nach der ersten Spalte:
+	Da alle Einträge der ersten Spalte von $A$ unterhalb der $l$-ten Zeile verschwinden, erhalten wir durch Entwicklung der Determinante von $A$ (bzw. $A_1$) nach der ersten Spalte: \newpage
 	\begin{align*}
 		\det(A) &\stack{}{=} (-1)^{i+1} a_{i1} \det(A_i) = \sum_{i=1}^{l} (-1)^{i+1} a_{i1} \det \begin{pmatrix}
 			A_{1,i} & * \\ 0 & A_2
@@ -350,7 +350,7 @@ Wir wollen zunächst untersuchen, wann $F \in \End_K(V)$ eine Basis $B$ besitzt,
 	also auch $(F-\lambda \id)^k = 0$.
 	Endomorphismen mit einer solchen Eigenschaft verdienen einen eigenen Namen!
 \end{bemerkung}
-
+\newpage
 \begin{definition}[nilpotent]
 	\label{def:9.11}
 	Sei $V$ ein $K$-Vektorraum.
@@ -365,7 +365,6 @@ Die Idee im Beweis der Existenz einer Jordan-Normalform für $F \in \End_K(V)$ b
 \[
 	V = V_{\lambda_1} \oplus V_{\lambda_2} \oplus \cdots \oplus V_{\lambda_m}
 \]
-\newpage
 zu zerlegen, und entsprechend $F$ in eine direkte Summe $F = F_{\lambda_1} \oplus \cdots \oplus F_{\lambda_m}$ mit $F_{\lambda_i} := F\big|_{V_{\lambda_i}} \colon V_{\lambda_i} \rightarrow V_{\lambda_i}$, wobei $\lambda_1, \dots, \lambda_m$ die paarweise verschiedenen Eigenwerte von $F$ sind und alle $F_i - \lambda_i \id \in \End_K(V_{\lambda_i})$ nilpotent sind.
 Gelingt es uns dann, geeignete Basen $B_i$ für $V_{\lambda_i}$ anzugeben, sodass $A_{F_i}^{B_i}$ aus lauter $\lambda_i$-Jordan-Kästen besteht, so wird $B = B_1 \cup \cdots \cup B_m$ zu einer Jordan-Basis von $V$, das heißt $A_F^B$ ist in Jordan-Normalform.
 Wir benötigen:
@@ -406,6 +405,7 @@ Wir benötigen:
 	\[
 		\setzero = V_{0,\lambda} \subsetneq V_{1,\lambda} \subsetneq V_{2.\lambda} \subsetneq \cdots \subsetneq V_{k,\lambda} = V_{k+1,\lambda} =: V_\lambda.
 	\]
+	\newpage
 	Dann heißt $V_\lambda$ der bet{verallgemeinerte Eigenraum} oder \Index{Hauptraum} von $F$ zum Eigenwert $\lambda$. \index{verallgemeinerter Eigenraum}
 	Ist $v \in V_\lambda \setminus \setzero$, so heißt $v$ \Index{verallgemeinerter Eigenvektor} von $F$ zum Eigenwert $\lambda$.
 	Ist $v \in V_{l,\lambda} \setminus V_{l-1,\lambda}$ für $1 \leq l \leq k$, so heißt $v$ \textbf{verallgemeinerter Eigenvektor der Ordnung} l.
@@ -455,7 +455,8 @@ Wir benötigen:
 		\end{pmatrix} \in M(k_j \times k_j,K)
 	\]
 	invertierbar für alle $r < j < s$, da $\lambda \neq \lambda_j$ und daher $\det(I_j) = (\lambda_j - \lambda)^{k_j} \neq 0$.
-	Ist nun $k = \max\{k_1,\dots,k_r\}$, so folgt
+	Ist nun $k = \max\{k_1,\dots,k_r\}$, so folgt:
+	
 	\[
 		(A-\lambda E_n)^k = \begin{pmatrix}
 		N_1^k &        &               &         &        &  \\
@@ -475,6 +476,7 @@ Wir benötigen:
 			0 & 0 \\ 0 & A_2
 		\end{pmatrix}
 	\]
+	
 	mit $A_2 := \begin{pmatrix}
 		I^k_{r+1} & & \\
 		 & \ddots & \\
@@ -601,5 +603,215 @@ Diese Beobachtung gibt den entscheidenden Schritt im Beweis von:
 Wir kommen nun zum Abschluss des Beweises von \autoref{satz:9.6}.
 Wir erinnern daran (siehe \autoref{bem:9.16}), dass es genügt, den Fall $V = V_\lambda$ und $F = F_\lambda$ zu betrachten.
 Dann ist $F- \lambda \id$ nilpotent!
+
+\begin{satz}
+	\label{satz:9.18}
+	Sei $V$ ein endlich dimensionaler $K$-Vektorraum und sei $F \in \End_K(V)$ mit $V = V_\lambda$ für einen Eigenwert $\lambda$ von $F$.
+	Setze $G := F - \lambda \id$ und $V_l := \Kern(G^{l})$ für ein $l \in \NN_0$.
+	Sei $k \in \NN$ mit $\setzero = V_0 \subsetneq V_1 \subsetneq \cdots \subsetneq V_k = V$,	und setze $d_l := \dim(V_l) - \dim(V_{l-1})$ für $1 \leq l \leq k$.
+	Dann gilt $d_l \leq d_{l-1}$ für alle $2 \leq l \leq k$, und wir finden eine Basis $B$ von $V$ nach dem folgenden Schema:
+	
+	\[ \begin{array}{ccccccccc}
+		v_{1,1} & v_{1,2} & \cdots & \cdots & v_{1,l} & \cdots & \cdots & v_{1,k-1} & v_{1,k} \\ 
+		v_{2,1} & v_{2,2} & \cdots & \cdots & v_{2_l} & \cdots & \cdots & v_{2,k-1} & v_{2,k} \\ 
+		\vdots & \vdots &  &  & \vdots &  &  & \vdots & \vdots \\ 
+		v_{d_k,1} & v_{d_k,2} & \cdots & \cdots & v_{d_k,l} & \cdots & \cdots & v_{d_k,k-1} & v_{d_k,k} \\ 
+		\vdots & \vdots &  &  & \vdots &  &  & \vdots &  \\ 
+		v_{d_{k-1},1} & v_{d_{k-1},2} & \cdots & \cdots & v_{d_{k-1},l} & \cdots & \cdots & v_{d_{k-1},k-1} &  \\ 
+		\vdots & \vdots &  &  & \vdots & \vdots &  &  &  \\ 
+		v_{d_l,1} & v_{d_l,2} & \cdots & \cdots & v_{d_l,l} &  &  &  &  \\ 
+		\vdots & \vdots & \vdots &  &  &  &  &  &  \\ 
+		v_{d_2,1} & v_{d_2,2} &  &  &  &  &  &  &  \\
+		\vdots & & & & & & & & \\ 
+		v_{d_1,1} &  &  &  &  &  &  &  & 
+	\end{array}
+	\]
+	
+	Hierbei gelten:
+	\begin{enumerate}[(i)]
+		\item Die Vektoren in den ersten $l$ Spalten ergeben zusammen genommen eine Basis von $V_l$.
+		Insbesondere bilden alle Bektoren des Schemas eine Basis von $V$.
+		\item Ist $1 \leq i \leq d_1$ ein beliebiger Zeilenindex, so gilt $v_{i,l-1} = G(v_i,l)$ für alle $2 \leq l \leq k_i$, wobei $k_i$ der Index derjenigen Spalte ist, in der die $i$-te Zeile endet.
+	\end{enumerate}
+	Ist dann $B_i$ die $i$-te Zeile des Schemas und setzen wir $B := B_1 \cup \dots \cup B_{d_1}$, so ist $B$ eine Basis von $V$ und $A^B_F$ ist in Jordan-Normalform.
+\end{satz}
+
+\begin{beweis}
+	Die Beziehung $d_l \leq d_{l-1}$ für $2 \leq l \leq k$ ist eine direkte Konsequenz aus \autoref{lemma:9.17}.
+	Zur Konstruktion des Schemas mit den gewünschten Eigenschaften wählen wir zunächst eine Basis $U_1$ von $V_1$, ergänzen diese zu einer Basis $U_2$ von $V_2$ und fahren induktiv fort, bis wir ein Schema
+	
+	\[
+		\begin{array}{ccccccccc}
+		u_{1,1} & u_{1,2} & \cdots & \cdots & u_{1,l} & \cdots & \cdots & u_{1,k-1} & u_{1,k} \\ 
+		u_{2,1} & u_{2,2} & \cdots & \cdots & u_{2_l} & \cdots & \cdots & u_{2,k-1} & u_{2,k} \\ 
+		\vdots & \vdots &  &  & \vdots &  &  & \vdots & \vdots \\ 
+		u_{d_k,1} & u_{d_k,2} & \cdots & \cdots & u_{d_k,l} & \cdots & \cdots & u_{d_k,k-1} & u_{d_k,k} \\ 
+		\vdots & \vdots &  &  & \vdots &  &  & \vdots &  \\ 
+		u_{d_{k-1},1} & u_{d_{k-1},2} & \cdots & \cdots & u_{d_{k-1},l} & \cdots & \cdots & u_{d_{k-1},k-1} &  \\ 
+		\vdots & \vdots &  &  & \vdots & \vdots &  &  &  \\ 
+		u_{d_l,1} & u_{d_l,2} & \cdots & \cdots & u_{d_l,l} &  &  &  &  \\ 
+		\vdots & \vdots & \vdots &  &  &  &  &  &  \\ 
+		u_{d_2,1} & u_{d_2,2} &  &  &  &  &  &  &  \\
+		\vdots & & & & & & & & \\ 
+		u_{d_1,1} &  &  &  &  &  &  &  & 
+		\end{array}
+	\]
+	
+	erhalten, indem die ersten $l$ Spalten zusammen jeweils eine Basis von $V_l$ bilden (die Vektoren aus $U_1$ finden wir also in der ersten Spalte, etc.).
+	Wir setzen zunächst $v_{i,k} := u_{i,k}$ für $1 \leq i \leq d_k$.
+	Durch Anwenden von \autoref{lemma:9.17} auf die vorletzte Spalte können wir dann die Vektoren $u_{1,k-1},\dots,u_{d_{k-1},k-1}$ durch geeignete Vektoren $v_{1,k-1},\dots,v_{d_{k-1},k-1}$ ersetzen, sodass $v_{i,k-1} = G(v_{i,k})$ für $1 \leq i \leq d_{k-1}$ gilt.
+	Nach $k$ Schritten erhalten wir dann das gesuchte Schema.
+	
+	Setzen wir $v_i := v_{i,k_i}$, so folgt aus (ii), dass die $i$-te Zeile $B_i$ des Schemas wie folgt aussieht:
+	\[
+		B_i = \{G^{k_i-1}(v_i), G^{k_i-2}(v_i), G^{k_i-3}(v_i),\dots,G(v_i),v_i\}.
+	\]
+	Setzen wir dann $\wt{V_i} := \LH(B_i)$, so folgt $G(\wt{V_i}) \subseteq \wt{V_i}$, und dann auch $F(\wt{V_i}) \subseteq \wt{V_i}$, da $F = G + \lambda \id$.
+	\autoref{lemma:9.9} liefert dann, dass $F_i := F\big|_{\wt{V_i}} \colon \wt{V_i} \rightarrow \wt{V_i}$ die Darstellungsmatrix
+	\[
+		A_{F_i}^{B_i} = J_i = \begin{pmatrix}
+		\lambda & 1 & 0 & \cdots & 0 \\ 
+		0 & \lambda & 1 & \cdots & 0 \\ 
+		\vdots &  & \ddots & \ddots & \vdots \\ 
+		0 & \cdots & 0 & \lambda & 1 \\ 
+		0 & \cdots & \cdots & 0 & \lambda
+		\end{pmatrix} \in M(k_i \times k_i,K)
+	\]
+	besitzt.
+	Setzen wir dann $B := B_1 \cup \dots \cup B_{d_1}$, so erhalten wir eine Basis $B$ von $V$ mit
+	\[
+	A_F^B = \begin{pmatrix}
+	J_1 & & \\
+	& \ddots & \\
+	& & J_{d_1}
+	\end{pmatrix}. \qedhere
+	\]
+\end{beweis}
+
+\begin{bemerkung}
+	\label{bem:9.19}
+	Die verschiedenen Schritte im Beweis von \autoref{satz:9.6} liefern auch ein Verfahren zur Berechnung der Jordan-Normalform und einer zugehörigen Jordan-Basis.
+	Konkret gehen wir wie folgt vor:
+	\begin{enumerate}[(i)]
+		\item Berechne alle paarweise verschiedenen Eigenwerte $\lambda_1,\dots,\lambda_m$ von $F$.
+		\item Sei $\lambda := \lambda_j$ der $j$-te Eigenwert von $F$.
+		Bestimme zunächst das minimale $k \in \NN$ mit $\Kern(F-\lambda \id)^{k+1} = \Kern(F-\lambda \id)^k = V_\lambda$.
+		Für alle $1 \leq l \leq k$ bestimme eine Familie $C_l = \{u_{1,l},\dots,u_{d_l,l}\}$ von Vektoren in $V$, sodass $C_1 \cup \dots \cup C_l$ eine Basis von $V_{l,\lambda} = \Kern(F-\lambda \id)^l$ ist.
+		Hierfür bestimmen wir zunächst eine beliebige Basis $C_1$ von $V_{1,\lambda}$, ergänzen diese durch geeignete Wahl von $C_2$ zu einer Basis von $V_{2,\lambda}$ und fahren entsprechend fort, bis wir $C = C_1 \cup \dots \cup C_k$ bestimmt haben.
+		\item Sei $\lambda = \lambda_j$ wie in (ii).
+		Setze zunächst $v_{1,k} := u_{1,k}, \dots, v_{d_k,k} := u_{d_k,k}$, und setze dann
+		\[
+			v_{1,{k-1}} := (F-  \lambda \id)(v_{1,k}), \dots, v_{d_k,k-1} := (F-\lambda \id)(v_{d_k},k).
+		\]
+		Wähle dann beliebige Vektoren $v_{d_k+1,k-1}, \dots, v_{d_{k-1},k-1}$ aus $C_{k-1}$ so, dass die Vektoren $v_{1,k-1},\dots,$ \linebreak $v_{d_{k-1},k-1}$ linear abhängig sind.
+		Haben wir dann nach $l-1$ Schritten die Vektoren $v_{1,l},\dots,v_{d_l,l}$ konstruiert, so setzen wir wieder
+		
+		\[
+			v_{1,l-1} := (F-\lambda \id)(v_{1,l}), \dots, v_{d_l,l-1} := (F-\lambda\id)(v_{d_l},l)
+		\]
+		
+		und wählen weitere Vektoren $v_{d_l+1,l-1}, \dots, v_{d_{l-1},l-1} \in C_{l-1}$ mit $v_{1,l-1},\dots,v_{d_{l-1},l-1}$ linear unabhängig.
+		
+		Auf diese Weise erhalten wir ein Schema von Vektoren $v_{i,l}$ wie in \autoref{satz:9.18}, das alle im Satz erwähnten Anforderungen erfüllt.
+		Wie im Satz beschrieben erhalten wir dann eine Jordan-Basis $B_\lambda$ von $V_\lambda$ für $F_\lambda = F \big|_{V_\lambda}$.
+		Genauer: Ist $B_i$ die $i$-te Zeile des Schemas, so setzen wir $B_\lambda := B_1 \cup \dots \cup B_{d_1}$.
+		Zu jeder Zeile $B_i$ erhalten wir dann einen $\lambda$-Jordan-Kasten der Länge $k_i$, wenn $k_i$ die Länge der Zeile $B_i$ bezeichnet.
+		\item Ist zu jedem $\lambda_j$ wie in (iii) die Basis $B_{\lambda_j}$ von $V_{\lambda_j}$ konstruiert, so ist $B:= B_{\lambda_1} \cup \dots \cup B_{\lambda_m}$ eine Jordan-Basis für $F$.
+		Die zugehörige Darstellungsmatrix hat dann die Blockstruktur
+		\[
+			A_F^B = \begin{pmatrix}
+			A_1 & & \\
+			& \ddots & \\
+			& & A_m
+			\end{pmatrix},
+		\]
+		wobei $A_j$ die in (iii) konstruierte Jordan-Matrix von $F_{\lambda_j}$ ist.
+		Beachte: $A_j$ enthält alle Jordan-Kösten zum Eigenwert $\lambda_j$!
+	\end{enumerate}
+\end{bemerkung}
+
+Beachte: Ist $A \in M(n \times n,K)$, $F \colon K^n \rightarrow K^n, v \mapsto Av$ der zugehörige Endomorphismus und $B = \{c_1,\dots,c_n\}$ eine Jordan-Basis für $F$, so ist $S := (c_1,\dots,c_n)$ eine invertierbare Matrix, sodass $A_F^B = S^{-1}AS$ die zu $B$ gehörende Jordan-Normalform ist.
+
+\begin{beispiel}
+	\label{bsp:9.20}
+	Sei $F\colon \RR^5 \rightarrow \RR^5, v \mapsto Av$ mit
+	\[
+		A := \begin{pmatrix}
+			1 & 0 & 2 & 3 & 4 \\
+			0 & 1 & 0 & -2 & -3 \\
+			0 & 0 & 1 & 0 & 2 \\
+			0 & 0 & 0 & 1 & -1 \\
+			0 & 0 & 0 & 0 & 1
+		\end{pmatrix}.
+	\]
+	Man sieht sofort, dass $\chi_F(T) = \det(TE_5-A) = (T-1)^5$.
+	Also ist $1$ der einzige Eigenwert von $F$.
+	Nachrechnen ergibt
+	\[
+		B - E_5 = \begin{pmatrix}
+		0 & 0 & 2 & 3 & 4 \\
+		0 & 0 & 0 & -2 & -3 \\
+		0 & 0 & 0 & 0 & 2 \\
+		0 & 0 & 0 & 0 & -1 \\
+		0 & 0 & 0 & 0 & 0
+		\end{pmatrix}, \quad (B-E_5)^2 = \begin{pmatrix}
+		0 & 0 & 0 & 0 & 1 \\
+		0 & 0 & 0 & 0 & 2 \\
+		0 & 0 & 0 & 0 & 0 \\
+		0 & 0 & 0 & 0 & 0 \\
+		0 & 0 & 0 & 0 & 0
+		\end{pmatrix}, \quad (B-E_5)^3 = 0.
+	\]
+	Damit erhalten wir
+	\[
+		V_1 := \Kern(B-E_5) = \LH\{e_1,e_2\}, \quad V_2 := \Kern(B-E_5)^2 = \LH\{e_1,e_2,e_3,e_3\}, \quad V_3 := \Kern(B-E_5)^3 = \RR^5
+	\]
+	und
+	\[
+		d_1 = \dim(V_1) = 2,  \quad d_2 = \dim(V_2) - \dim(V_1) = 2, \quad d_3 = \dim(V_3) - \dim(V_2) = 1.
+	\]
+	Hieraus folgt, dass die Jordan-Normalform $J$ von $F$ zwei Jordan-Kösten zum Eigenwert $1$ besitzt, und zwar einen der Länge $3$ und einen der Länge $2$.
+	Zur Konstruktion einer Jordan-Basis für $F$ setze
+	\[
+		v_{1,3} := e_5, \quad v_{1,2} = (B-E_5)e_5 = (4,-3,2,-1,0)^T, \quad v_{1,1} = (B-E_5)^2 e_5 = (1,2,0,0,0)^T.
+	\]
+	Ferner setze $v_{2,2} = e_4$ und $v_{2,1} = (B-E_5)e_4 = (3,-2,0,0,0)^T$.
+	Dann ist
+	\[
+		\begin{array}{ccc}
+			v_{1,1} & v_{1,2} & v_{1,3} \\
+			v_{2,1} & v_{2,2}
+		\end{array}
+	\]
+	ein Schema wie in \autoref{satz:9.18} und
+	\[
+		B = \{v_{1,1},v_{1,2},v_{1,3},v_{2,1},v_{2,2}\} = \penb{
+			\begin{pmatrix} 1 \\ 2 \\ 0 \\ 0 \\ 0 \end{pmatrix},
+			\begin{pmatrix} 4 \\ -3 \\ 2 \\ -1 \\ 0 \end{pmatrix},
+			\begin{pmatrix} 0 \\ 0 \\ 0 \\ 0 \\ 1 \end{pmatrix},
+			\begin{pmatrix} 3 \\ -2 \\ 0 \\ 0 \\ 0 \end{pmatrix},
+			\begin{pmatrix} 0 \\ 0 \\ 0 \\ 1 \\ 0 \end{pmatrix}
+			}
+	\]
+	ist eine Jordan-Basis für $F$ mit zugehöriger Jordan-Normalform
+	\[
+		J := A^B_F = \enb{\begin{BMAT}(e)[4.3pt]{ccccc}{ccccc}
+			1 & 1 & 0 & 0 & 0 \\
+			0 & 1 & 1 & 0 & 0 \\
+			0 & 0 & 1 & 0 & 0 \\
+			0 & 0 & 0 & 1 & 1 \\
+			0 & 0 & 0 & 0 & 1
+			\addpath{(0,2,|)uuurrrdddlll}
+			\addpath{(3,0,|)uurrddll}
+			\end{BMAT}}.
+	\]
+	Setzen wir $S := \begin{pmatrix}
+		1 & 4 & 0 & 3 & 0 \\
+		2 & -3 & 0 & -2 & 0 \\
+		0 & 2 & 0 & 0 & 0 \\
+		0 & -1 & 0 & 0 & 1 \\
+		0 & 0 & 1 & 0 & 0
+	\end{pmatrix}$, so folgt $J = S^{-1}AS$.
+\end{beispiel}
 
 \newpage
