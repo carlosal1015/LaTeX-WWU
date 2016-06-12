@@ -1,0 +1,134 @@
+%!TEX root = ../LA2.tex
+\section{Eine Anwendung der Jordan-Normalform in der Analysis}
+\label{sec:2.10}
+
+In vielen physikalischen Anwendungen ist es notwendig, System von \Index{Differentialgleichungen} der Form
+\begin{align*}
+	y_1'(t) &= b_{11} \cdot y_1(t) + b_{12} \cdot y_2(t) + \cdots + b_{1n} \cdot y_n(t) \\
+	y_2'(t) &= b_{21} \cdot y_1(t) + b_{22} \cdot y_2(t) + \cdots + b_{2n} \cdot y_n(t) \\
+	 & \qquad \qquad \qquad \vdots \\
+	y_n'(t) &= b_{n1} \cdot y_1(t) + b_{n2} \cdot y_2(t) + \cdots + b_{nn} \cdot y_n(t)
+\end{align*}
+zu betrachten, wobei $y_1,\dots,y_n\colon \RR \rightarrow \RR$ differenzierbare reelle Funktionen sind und $b_{ij} \in \RR$ für alle $1 \leq i,j \leq n$.
+Ist dann $B = (b_{ij}) \in M(n \times n, \RR)$, so können wir das System auch in der Kurzschreibweise
+\[
+	y'(t) = B \cdot y(t), y(t) := (y_1(t),y_2(t),\dots,y_n(t))^T
+\]
+formulieren, wobei dann $y'(t) := (y_1'(t),\dots,y_n'(t))^T$ die komponentenweise Ableitung von $y\colon \RR \rightarrow \RR^n$ bezeichnet.
+Definieren wir die Konvergenz von Vektoren durch die Konvergenz der Komponenten, so ist $y \colon \RR \rightarrow \RR^n$ differenzierbar in $t$ genau dann, wenn
+\[
+	y'(t) = \lim\limits_{h \rightarrow 0} \frac{1}{h} (y(t+h)-y(t))
+\]
+existiert.
+In der Regel wird zusätzlich zum oben gegebenen System von Differentialgleichungen noch eine Anfangsbedingung
+\[
+	y(t_0) = y_0 = (y_{10},\dots,y_{n0})^T
+\]
+vorgegeben, wobei $t_0 \in \RR$ eine gegebene Anfangszeit ist.
+Gesucht sind also alle komponentenweise differenzierbaren Funktionen $y \colon \RR \rightarrow \RR^n$ mit $y' = B \cdot y$ und $y(t_0) = y_0$.
+Eine Gleichung der Form $y' = By$ heißt auch \textbf{(homogenes) System von linearen Differentialgleichungen erster Ordnung mit konstanten Koeffizienten}.
+
+\begin{beispiel}
+	\label{bsp:10.1}
+	Ein Zahlen-Beispiel:
+	Gesucht sind alle differenzierbaren Funktionen $y_1,y_2,y_3\colon \RR \rightarrow \RR$ mit
+	\begin{align*}
+		y_1'(t) &= y_1(t) + 2y_2(t) - y_3(t) \\
+		y_2'(t) &= -y_2(t) + y_3(t) \\
+		y_3'(t) &= 3y_1(t) + y_2(t)
+	\end{align*}
+	und der Anfangsbedingung $y_1(0) = 1, y_2(0) = 0, y_3(0)=2$.
+	Ist dann $B = \begin{pmatrix}
+		1 & 2 & -1 \\
+		0 & -1 & 1 \\
+		3 & 0 & 1
+	\end{pmatrix}$, so ist das obige System von Differentialgleichungen gegeben durch die Gleichung $y' = By$, $y(0) = (1,0,2)^T$, wobei $y = (y_1,y_2,y_3)^T \colon \RR \rightarrow \RR^3$ die gesuchte $\RR^3$-wertige Funktion ist.
+\end{beispiel}
+
+\begin{bemerkung}
+	\label{bem:}
+	\mbox{} \\[-1.4cm]
+	\begin{enumerate}[(i)]
+		\item Tatsächlich ist es nützlich, sich nicht auf den Fall reeller Funktionen zu beschränken, sondern auch komplexwertige Funktionen und komplexe Matrizen zuzulassen.
+		Ist dabei $f\colon \RR \rightarrow \CC$, so ist $f$ differenzierbar in $t \in \RR$, wenn $f'(t) := \lim\limits_{h \rightarrow 0} \frac{f(t+h) - f(t)}{h}$ existiert.
+		Ist $f = g + ih$ und $g,h \colon \RR \rightarrow \RR$, so ist $f$ genau dann differenzierbar in $t$, wenn $g$ und $h$ in $t$ differenzierbar sind, und dann gilt $f'(t) = g'(t) + ih'(t)$.
+		Mit diesem Verständnis für die Differenzierbarkeit komplexwertiger Funktionen auf $\RR$ können wir jetzt auch Systeme der Form
+		\[
+			y' = By, y(t_0)=y_0
+		\]
+		mit $B \in M(n \times n,\CC)$ und $y_0 \in \CC^n$ betrachten.
+		Die gesuchte Lösung ist dann eine Funktion $y\colon \RR \rightarrow \CC^n$.
+		Wir werden im Folgenden diesen allgemeineren Fall betrachten.
+		\item Durch die Substitution $t \mapsto t-t_0$ können wir uns immer auf den Fall $t_0 = 0$ beschränken:
+		Ist $\wt{y} \colon \RR \rightarrow \CC^n$ mit $\wt{y}' = B \wt{y}$ und $\wt{y}(0) = y_0$ und setzen wir $y(t) := \wt{y}(t-t_0)$, so folgt sofort aus den Ableitungsregeln, dass $y' = By$ mit $y(t_0) = y_0$.
+	\end{enumerate}
+\end{bemerkung}
+
+Im eindimensionalen Fall ist es sehr leicht, eine Lösung der Differentialgleichung $y'(t) = b \cdot y(t), y(0) = y_0$ anzugeben.
+Nachrechnen zeigt sofort, dass $y(t) = e^{tb} y_0$ eine Lösung dieser Gleichung ist.
+Mit etwas mehr Mühe sieht man dann sogar ein, dass dies die einzige Lösung der Gleichung ist.
+Wir werden gleich sehen, dass eine ähnliche Formel auch für Systeme gilt.
+
+\begin{definition}[Exponentialfunktion für Matrizen]
+	\label{def:10.3}
+	Für $B \in M(n \times n,\CC)$ definieren wir
+	\[
+		\exp(B) := \sum\limits_{k=0}^\infty \frac{1}{k!} B^k,
+	\]
+	mit $B^0 := E$. \index{Exponentialfunktion}
+\end{definition}
+
+\begin{bemerkung}
+	\label{bem:10.4}
+	\mbox{} \\[-1.4cm]
+	\begin{enumerate}[(i)]
+		\item Konvergenz der Reihe bedeutet, dass jede Komponente $b_{ij}(n)$ der entsprechenden Folge der Partialsummen $B(n) := \sum_{1}^{k!} B^{k} \in M(n \times n,\CC)$ konvergiert.
+		Man kann zeigen (wir werden dies später nachholen), dass die Reihe in \autoref{def:10.3} in diesem Sinne immer konvergiert!
+		\item Ist $B \in M(n \times n,\RR)$ eine reelle Matrix, so ist nach (i) jede Komponente von $\exp(B)$ ein Grenzwert einer rellen Folge, und damit ist auch $\exp(B) \in M(n \times n,\RR)$.
+		\item Ist $A = C^{-1} BC$ für ein $C \in \GL(n,\CC)$, so folgt
+		\begin{align*}
+			A^{k} &= (C^{-1}BC)\cdot (C^{-1}BC) \cdots (C^{-1}BC) \\
+			&= C^{-1} B (CC^{-1}) B (CC^{-1}) \cdots (CC^{-1})BC \\
+			&= C^{-1} B E B E \cdots E BC = C^{-1} B^k C
+		\end{align*}
+		für jedes $k \in \NN_0$, und damit folgt
+		
+		\[
+			\exp(A) = \sum\limits_{k=0}^{\infty} \frac{1}{k!} A^k = \sum_{k=0}^{\infty} \frac{1}{k!} C^{-1} B^{k} C = C^{-1} \enb{\sum_{k=0}^{\infty} \frac{1}{k!} B^{k}} C = C^{-1} \exp(B) C.
+		\]
+	\end{enumerate}
+\end{bemerkung}
+
+Ähnlich wie im Komplexen erhält man eine überaus nützliche Funktionalgleichung:
+
+\begin{lemma}
+	\label{lemma:10.5}
+	Seien $A,B \in M(n \times n,\CC)$ mit $AB = BA$.
+	Dann gilt $\exp(A+B) = \exp(A) + \exp(B)$.
+\end{lemma}
+
+\begin{beweis}[Skizze]
+	Sind $A,B \in M(n \times n,K)$ mit $AB = BA$, so folgt mit dem üblichen Induktionsbeweis \todo{komische Referenz} die Binomische Formel
+	\[
+		(A+B)^{k} = \sum_{j=0}^{k} \binom{k}{j} A^{j} \cdot B^{k-j}
+	\]
+	für alle $k \in \NN_0$.
+	Mit dem Cauchy-Produkt für absolut konvergente Reihen (in einer entsprechenden Version für Matrixreihen) folgt dann
+	\begin{align*}
+		\exp(A+B) &= \sum_{k=0}^{\infty} \frac{1}{k!} (A+B)^k = \sum_{k=0}^{\infty} \frac{1}{k!} \enb{\sum_{j=0}^{k} A^{j} B^{k-j}} \\
+		&= \sum_{k=0}^{\infty} \enb{\sum_{j=0}^{k} \enb{\frac{1}{j!} A^{j}} \cdot \enb{\frac{1}{(k-j)!} B^{k-j}}} = \enb{\sum_{j=0}^{\infty} \frac{1}{j!} A^{j}} \cdot \enb{\sum_{k=0}^{\infty} \frac{1}{k!} B^{k}} \\
+		&= \exp(A) \cdot \exp(B) \qedhere
+	\end{align*}
+\end{beweis}
+
+Ist $B \in M(n \times n,\CC)$, so wollen wir nun die matrixwertige Funktion
+\[
+	Y\colon \RR \rightarrow \CC^{n}, Y(t) := \exp(tB)
+\]
+betrachten.
+Wir definieren Differenzierbarkeit von matrixwertigen Funktionen wie für vektorwertige Funktionen durch die Differenzierbarkeit aller Komponenten.
+Dies ist wieder äquivalent zur komponentenweisen Existenz des Grenzwertes
+\[
+	Y'(t) = \lim\limits_{h \rightarrow 0} \frac{1}{h}(Y(t+h)-Y(t)).
+\]
+\newpage
