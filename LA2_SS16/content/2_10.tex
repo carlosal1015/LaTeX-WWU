@@ -91,7 +91,7 @@ Wir werden gleich sehen, dass eine ähnliche Formel auch für Systeme gilt.
 			&= C^{-1} B (CC^{-1}) B (CC^{-1}) \cdots (CC^{-1})BC \\
 			&= C^{-1} B E B E \cdots E BC = C^{-1} B^k C
 		\end{align*}
-		für jedes $k \in \NN_0$, und damit folgt
+		für jedes $k \in \NN_0$, und damit folgt:
 		
 		\[
 			\exp(A) = \sum\limits_{k=0}^{\infty} \frac{1}{k!} A^k = \sum_{k=0}^{\infty} \frac{1}{k!} C^{-1} B^{k} C = C^{-1} \enb{\sum_{k=0}^{\infty} \frac{1}{k!} B^{k}} C = C^{-1} \exp(B) C.
@@ -122,13 +122,191 @@ Wir werden gleich sehen, dass eine ähnliche Formel auch für Systeme gilt.
 \end{beweis}
 
 Ist $B \in M(n \times n,\CC)$, so wollen wir nun die matrixwertige Funktion
-\[
-	Y\colon \RR \rightarrow \CC^{n}, Y(t) := \exp(tB)
-\]
+\begin{align*}
+	Y\colon \RR &\longrightarrow \CC^{n} \\
+	t &\longmapsto \exp(tB)
+\end{align*}
 betrachten.
 Wir definieren Differenzierbarkeit von matrixwertigen Funktionen wie für vektorwertige Funktionen durch die Differenzierbarkeit aller Komponenten.
 Dies ist wieder äquivalent zur komponentenweisen Existenz des Grenzwertes
 \[
 	Y'(t) = \lim\limits_{h \rightarrow 0} \frac{1}{h}(Y(t+h)-Y(t)).
 \]
+
+\begin{satz}
+	\label{satz:10.6}
+	Seien $B \in M(n \times n,\CC)$, $Y(t) := \exp(tB)$ und $y_0 \in \CC^{n}$.
+	Dann gelten:
+	\begin{enumerate}[(i)]
+		\item $Y'(t) = B \cdot \exp(tB) = B \cdot Y(t)$.
+		\item $y\colon \RR \rightarrow \CC^{n}, y(t) := \exp(tB) \cdot y_0$ ist eine Lösung des Systems $y' = B \cdot y, y(0) = y_0$.
+	\end{enumerate}
+\end{satz}
+
+\begin{beweis}
+	Betrachten wir die Funktion $Y(t) = \exp(tB) = \sum_{k=0}^{\infty} \frac{1}{k!} t^{k} B^{k}$, so stellen wir fest, dass jede Komponente $Y(t)_{ij}$ von $Y(t)$ durch eine Potenzreihe $\sum_{k=0}^{\infty} d_{ij}(k)t^{k}$ gegeben ist, wobei $d_{ij}(k)$ die $i,j$-te Komponente der Matrix $\frac{1}{k!} B^{k}$ ist.
+	Da wir (bis jetzt ohne Beweis) davon ausgehen, dass die Exponentialreihe für alle $tB$ konvergiert, haben alle diese Reihen unendlichen Konvergenzradius, und wir dürfen auf ganz $\RR$ gliedweise differenzieren \todo{komische Referenz}.
+	Damit folgt:
+	
+	\[
+		Y'(t) = \sum_{k=1}^{\infty} \frac{1}{k!} kt^{k-1} B^{k} = B \cdot \enb{\sum_{k=1}^{\infty} \frac{1}{(k-1)!} t^{k-1} B^{k-1}} = B \cdot \enb{\sum_{k=0}^{\infty} \frac{1}{k!} t^{k} B^{k}} = B \cdot \exp(tB) = B \cdot Y(t).
+	\]
+	Mit (i) erhalten wir für $y(t) = Y(t) \cdot y_0$:
+	\begin{align*}
+		y'(t) &= \lim\limits_{h \rightarrow 0} \frac{1}{h} (y(t+h)-y(t)) = \lim\limits_{h \rightarrow 0} \frac{1}{h} (Y(t+h) \cdot y_0 - Y(t) \cdot y_0) \\
+		&= \enb{\lim\limits_{h \rightarrow \infty} \frac{1}{h}(Y(t+h)-Y(t))} \cdot y_0 = B \cdot Y(t) \cdot y_0 = B \cdot y(t)
+	\end{align*}
+	und $y(0) = \exp(0\cdot B) \cdot y_0 = E \cdot y_0 = y_0$. \qedhere
+\end{beweis}
+
+\begin{bemerkung}
+	\label{bem:10.7}
+	\mbox{} \\[-1.4cm]
+	\begin{enumerate}[(i)]
+		\item Man kann auch hier zeigen, dass die im Satz angegebene Lösung die einzige Lösung des Systems $y' = By$ mit der Anfangsbedingung $y(0) = y_0$ ist.
+		Wir werden dies später vielleicht noch tun.
+		\item Da $\exp(tB) \in M(n \times n,\RR)$, wenn $B \in M(n \times n,\RR)$ (siehe \autoref{bem:10.4}), folgt:
+		Sind $B$ und $y_0$ reell, so ist auch $y(t)$ für alle $t \in \RR$ reell.
+	\end{enumerate}
+\end{bemerkung}
+
+\begin{anwendung}[Berechnung der Funktion]
+	\label{anw:10.8}
+	Wir wollen nun überlegen, wie wir die Funktion $Y(t) = \exp(tB)$ für $B \in M(n \times n,\CC)$ mit Hilfe einer Jordan-Normalform von $B$ explizit berechnen können.
+	Da jedes Polynom über $\CC$ in Linearfaktoren zerfällt, können wir nach \autoref{satz:9.6} eine Matrix $C \in \GL(n,\CC)$ finden (und im Prinzip auch berechnen), sodass $A = C^{-1}BC$ eine Jordan-Matrix ist.
+	Dann folgt $tB = CtAC^{-1}$ und $\exp(tB) = C \exp(tA)C^{-1}$.
+	Es genügt also zu wissen, wie die Funktion $\exp(tA)$ für jede Jordan-Matrix $A$ berechnet werden kann.
+	
+	Sei nun $A = \begin{pmatrix}
+		J_1 & & \\
+		& \ddots & \\
+		& & J_m
+	\end{pmatrix}$ eine beliebige Jordan-Matrix mit den Jordan-Kästen $J_1,\dots,J_m$.
+	Nach den Rechenregeln für Blockmatrizen gilt dann
+	\[
+		A^{k} = \begin{pmatrix}
+			J_1^{k} & & \\
+			& \ddots & \\
+			& & J_m^{k}
+		\end{pmatrix} \quad \text{und} \quad \exp(tA) = \begin{pmatrix}
+			\exp(tJ_1) & & \\
+			& \ddots & \\
+			& & \exp(tJ_m)
+		\end{pmatrix}.
+	\]
+	Es genügt also zu wissen, wie die Matrix $\exp(tJ)$ zu berechnen ist, wenn $J$ ein Jordan-Kasten zum Eigenwert $\lambda$ ist.
+	Dann gilt:
+	
+	\[
+		J = \begin{pmatrix}
+		\lambda & 1 & 0 & \cdots & 0 \\ 
+		0 & \lambda & 1 & \cdots & 0 \\ 
+		\vdots &  & \ddots & \ddots & \vdots \\ 
+		0 & \cdots & 0 & \lambda & 1 \\ 
+		0 & \cdots & \cdots & 0 & \lambda
+		\end{pmatrix} = \lambda E + N \text{ mit } N:= \begin{pmatrix}
+		0 & 1 & 0 & \cdots & 0 \\ 
+		0 & 0 & 1 & \cdots & 0 \\ 
+		\vdots &  & \ddots & \ddots & \vdots \\ 
+		0 & \cdots & 0 & 0 & 1 \\ 
+		0 & \cdots & \cdots & 0 & 0
+		\end{pmatrix}.
+	\]
+	Da $\lambda E \cdot N = N \cdot \lambda E$, folgt mit \autoref{lemma:10.5}, dass
+	\[
+		\exp(tJ) = \exp(t\lambda E + tN) = \exp(t \lambda E) \cdot \exp(tN).
+	\]
+	Wegen $(t\lambda E)^{k} = (t\lambda)^{k}E$ folgt
+	\[
+		\exp(t\lambda E) = \sum_{k=0}^{\infty} \frac{1}{k!} (t \lambda E)^{k} = \enb{\sum_{k=0}^{\infty} \frac{1}{k!} (t\lambda)^{k}} E = e^{t\lambda} E.
+	\]
+	Eine leichte Rechnung (benutze \autoref{lemma:9.9}) ergibt ferner, dass $N^{l} = (0, \dots, 0,e_1,\dots,e_{k-l})$, wobei die ersten $l$ Einträge aus Nullspalten bestehen und dann die ersten $k-l$ Einheitsvektoren des $\CC^{k}$ als weitere Spalten der Matrix $N^{l}$ auftreten.
+	Insbesondere gilt $N^{k} = 0$.
+	Einsetzen in die Exponentialreihe ergibt (mit $N^0 = E$):
+	\[
+		\exp(tN) =
+		\begin{pmatrix}
+			1 & t      & \frac{t^2}{2} & \frac{t^3}{3!} & \cdots         & \frac{t^{k-1}}{(k-1)!} & \frac{t^{k}}{k!}       \\
+			0 & 1      & t             & \frac{t^2}{2}  & \frac{t^3}{3!} & \cdots                 & \frac{t^{k-1}}{(k-1)!} \\
+			  & \ddots & \ddots        & \ddots         &                &                        &  \\
+			  &        & \ddots        & \ddots         & \ddots         &                        &  \\
+			  &        &               & 0              & 1              & t                      & \frac{t^2}{2}          \\
+			  &        &               &                & 0              & 1                      & t                      \\
+			  &        &               &                &                & 0                      & 1
+		\end{pmatrix}.
+	\]
+	Zusammen folgt
+	\[
+		\exp(tJ) = e^{t\lambda} \exp(tN) =
+		\begin{pmatrix}
+			e^{t\lambda} & te^{t\lambda} & \frac{t^2e^{t\lambda}}{2} & \frac{t^3e^{t\lambda}}{3!} & \cdots                     & \frac{t^{k-1}e^{t\lambda}}{(k-1)!} & \frac{t^{k}e^{t\lambda}}{k!}       \\
+			0            & e^{t\lambda}  & te^{t\lambda}             & \frac{t^2e^{t\lambda}}{2}  & \frac{t^3e^{t\lambda}}{3!} & \cdots                             & \frac{t^{k-1}e^{t\lambda}}{(k-1)!} \\
+			             & \ddots        & \ddots                    & \ddots                     &                            &                                    &  \\
+			             &               & \ddots                    & \ddots                     & \ddots                     &                                    &  \\
+			             &               &                           & 0                          & e^{t\lambda}               & te^{t\lambda}                      & \frac{t^2e^{t\lambda}}{2}          \\
+			             &               &                           &                            & 0                          & e^{t\lambda}                       & te^{t\lambda}                      \\
+			             &               &                           &                            &                            & 0                                  & e^{t\lambda}
+		\end{pmatrix}
+	\]
+\end{anwendung}
+\newpage
+\begin{beispiel}
+	\label{bsp:10.9}
+	Sei $B := \begin{pmatrix}
+		0 & 1 & 0 & 1 & 1 \\
+		0 & 0 & 2 & 0 & 1 \\
+		0 & 0 & 0 & 2 & 1 \\
+		0 & 0 & 0 & 2 & 2 \\
+		0 & 0 & 0 & 0 & 2
+	\end{pmatrix}$.
+	Dann ist $C := \begin{pmatrix}
+	2 & 0 & 0 & 4 & -1 \\ 
+	0 & 2 & 0 & 4 & -1 \\ 
+	0 & 0 & 1 & 4 & 0 \\ 
+	0 & 0 & 0 & 4 & 1 \\ 
+	0 & 0 & 0 & 0 & 2
+	\end{pmatrix}$ eine Transformationsmatrix mit
+	
+	\[
+		A = C^{-1}BC = \enb{\begin{BMAT}(e)[4.3pt]{ccccc}{ccccc}
+		0 & 1 & 0 & 0 & 0 \\ 
+		0 & 0 & 1 & 0 & 0 \\ 
+		0 & 0 & 0 & 0 & 0 \\ 
+		0 & 0 & 0 & 2 & 1 \\ 
+		0 & 0 & 0 & 0 & 2
+		\addpath{(0,2,|)uuurrrdddlll}
+		\addpath{(3,0,|)uurrddll}
+		\end{BMAT}}. 
+	\]
+	Damit folgt $\exp(tB) = C \exp(tA)C^{-1}$ mit
+	\[
+		\exp(tA) = \begin{pmatrix}
+			1 & t & \frac{t^2}{2} & 0      & 0       \\
+			0 & 1 & t             & 0      & 0       \\
+			0 & 0 & 1             & 0      & 0       \\
+			0 & 0 & 0             & e^{2t} & te^{2t} \\
+			0 & 0 & 0             & 0      & e^{2t}
+		\end{pmatrix}.
+	\]
+	Nachrechnen ergibt:
+	\[
+		Y(t) := \exp(tB) = \begin{pmatrix}
+		1 & t & t^2 & -1-t-t^2+e^{2t} & 1+t+\frac{t^2}{2} -e^{2t} + 2te^{2t} \\ 
+		0 & 1 & 2t & -1-2t+e^{2t} & 1+t-e^{2t}+2te^{2t} \\ 
+		0 & 0 & 1 & -1+e^{2t} & \frac{1}{2} - \frac{e^{2t}}{2} + 2te^{2t} \\ 
+		0 & 0 & 0 & e^{2t} & 2te^{2t} \\ 
+		0 & 0 & 0 & 0 & e^{2t}
+		\end{pmatrix}. 
+	\]
+	Für das System $y' = By, y(0) = (1,0,2,0,1)^T$ ergibt sich die eindeutig bestimmte Lösung
+	\[
+		y(t) = Y(t) y_0 = \begin{pmatrix}
+		2+t+\frac{5t^2}{2} - e^{2t} + 2te^{2t} \\ 
+		1+3t-e^{2t}+2te^{2t} \\ 
+		\frac{5}{2} - \frac{e^{2t}}{2} + 2te^{2t} \\ 
+		2te^{2t} \\ 
+		e^{2t}
+		\end{pmatrix}.
+	\]
+\end{beispiel}
 \newpage
