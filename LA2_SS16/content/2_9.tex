@@ -365,6 +365,7 @@ Die Idee im Beweis der Existenz einer Jordan-Normalform für $F \in \End_K(V)$ b
 \[
 	V = V_{\lambda_1} \oplus V_{\lambda_2} \oplus \cdots \oplus V_{\lambda_m}
 \]
+\newpage
 zu zerlegen, und entsprechend $F$ in eine direkte Summe $F = F_{\lambda_1} \oplus \cdots \oplus F_{\lambda_m}$ mit $F_{\lambda_i} := F\big|_{V_{\lambda_i}} \colon V_{\lambda_i} \rightarrow V_{\lambda_i}$, wobei $\lambda_1, \dots, \lambda_m$ die paarweise verschiedenen Eigenwerte von $F$ sind und alle $F_i - \lambda_i \id \in \End_K(V_{\lambda_i})$ nilpotent sind.
 Gelingt es uns dann, geeignete Basen $B_i$ für $V_{\lambda_i}$ anzugeben, sodass $A_{F_i}^{B_i}$ aus lauter $\lambda_i$-Jordan-Kästen besteht, so wird $B = B_1 \cup \cdots \cup B_m$ zu einer Jordan-Basis von $V$, das heißt $A_F^B$ ist in Jordan-Normalform.
 Wir benötigen:
@@ -396,4 +397,209 @@ Wir benötigen:
 	Für $l \geq k$ gilt dann $V_{l+1} = V_l$, denn wäre $v \in V_{l+1} \setminus V_l$, so wäre $0 = G^{l+1}(v) = G^{k+1}(G^{l-k}(v))$, aber $0 \neq G^l(v) = G^k(G^{l-k}(v))$, also $G^{l-k}(v) \in V_{k+1} \setminus V_k = \emptyset$.
 	Dies ist unmöglich. \qedhere
 \end{beweis}
+
+\begin{definition}[verallgemeinerter Eigenraum und Eigenvektor]
+	\label{def:9.13}
+	Sei $V$ ein endlich dimensionaler $K$-Vektorraum, $F \in \End_K(V)$ und $\lambda$ ein Eigenwert von $F$.
+	Für jedes $l \in \NN_0$ setze $V_{l,\lambda} := \Kern(F-\lambda \id)^l$.
+	Nach \autoref{lemma:9.12} existiert ein $k \in \NN$ mit
+	\[
+		\setzero = V_{0,\lambda} \subsetneq V_{1,\lambda} \subsetneq V_{2.\lambda} \subsetneq \cdots \subsetneq V_{k,\lambda} = V_{k+1,\lambda} =: V_\lambda.
+	\]
+	Dann heißt $V_\lambda$ der bet{verallgemeinerte Eigenraum} oder \Index{Hauptraum} von $F$ zum Eigenwert $\lambda$. \index{verallgemeinerter Eigenraum}
+	Ist $v \in V_\lambda \setminus \setzero$, so heißt $v$ \Index{verallgemeinerter Eigenvektor} von $F$ zum Eigenwert $\lambda$.
+	Ist $v \in V_{l,\lambda} \setminus V_{l-1,\lambda}$ für $1 \leq l \leq k$, so heißt $v$ \textbf{verallgemeinerter Eigenvektor der Ordnung} l.
+\end{definition}
+
+\begin{bemerkung}
+	\label{bem:9.14}
+	Wir wollen nun noch einmal von unserem Ziel, der Jordan-Normalform, ausgehen und dabei die Lage des verallgemeinerten Eigenraums $V_\lambda$ genauer betrachten.
+	Sei dazu $B$ eine Basis von $V$, sodass $A := A_F^B$ eine Jordan-Matrix ist.
+	Durch Vertauschen der Basisvektoren können wir leicht erreichen, dass alle Jordan-Kästen zu einem fest gewählten Eigenwert $\lambda$ von $F$ zuerst auftauchen, also
+	\[
+		A:= \begin{pmatrix}
+			J_{1,\lambda} &        &               &         &        &  \\
+			              & \ddots &               &         &        &  \\
+			              &        & J_{r,\lambda} &         &        &  \\
+			              &        &               & J_{r+1} &        &  \\
+			              &        &               &         & \ddots &  \\
+			              &        &               &         &        & J_s
+		\end{pmatrix},
+	\]
+	wobei $J_{\lambda,1},\dots,J_{\lambda_r}$ genau die $\lambda$-Kästen von $A$ sind.
+	Die Matrix $A - \lambda E_n$ hat dann die Gestalt
+	\[
+		A - \lambda E_n = \begin{pmatrix}
+		N_1 &        &               &         &        &  \\
+		& \ddots &               &         &        &  \\
+		&        & N_r &         &        &  \\
+		&        &               & I_{r+1} &        &  \\
+		&        &               &         & \ddots &  \\
+		&        &               &         &        & I_s
+		\end{pmatrix} \text{ mit } N_i = \begin{pmatrix}
+		0 & 1 & 0 & \cdots & 0 \\ 
+		0 & 0 & 1 & \cdots & 0 \\ 
+		\vdots &  & \ddots & \ddots & \vdots \\ 
+		0 & \cdots & 0 & 0 & 1 \\ 
+		0 & \cdots & \cdots & 0 & 0
+		\end{pmatrix} \in M(k_i \times k_i,K)
+	\]
+	nilpotent der Länge $k_i, 1 \leq i \leq r$, und
+	\[
+		I_j = \begin{pmatrix}
+		\lambda_j - \lambda & 1 & 0 & \cdots & 0 \\ 
+		0 & \lambda_j - \lambda & 1 & \cdots & 0 \\ 
+		\vdots &  & \ddots & \ddots & \vdots \\ 
+		0 & \cdots & 0 & \lambda_j - \lambda & 1 \\ 
+		0 & \cdots & \cdots & 0 & \lambda_j - \lambda
+		\end{pmatrix} \in M(k_j \times k_j,K)
+	\]
+	invertierbar für alle $r < j < s$, da $\lambda \neq \lambda_j$ und daher $\det(I_j) = (\lambda_j - \lambda)^{k_j} \neq 0$.
+	Ist nun $k = \max\{k_1,\dots,k_r\}$, so folgt
+	\[
+		(A-\lambda E_n)^k = \begin{pmatrix}
+		N_1^k &        &               &         &        &  \\
+		& \ddots &               &         &        &  \\
+		&        & N_r^{k} &         &        &  \\
+		&        &               & I_{r+1}^{k} &        &  \\
+		&        &               &         & \ddots &  \\
+		&        &               &         &        & I_s^{k}
+		\end{pmatrix} = \begin{pmatrix}
+		0 &        &               &         &        &  \\
+		& \ddots &               &         &        &  \\
+		&        & 0 &         &        &  \\
+		&        &               & I_{r+1}^{k} &        &  \\
+		&        &               &         & \ddots &  \\
+		&        &               &         &        & I_s^{k}
+		\end{pmatrix} = \begin{pmatrix}
+			0 & 0 \\ 0 & A_2
+		\end{pmatrix}
+	\]
+	mit $A_2 := \begin{pmatrix}
+		I^k_{r+1} & & \\
+		 & \ddots & \\
+		 & & I_s^{k}
+	\end{pmatrix}$ invertierbar.
+	Zerlegen wir also unsere gegebene Basis in den zu den $\lambda$-Kästen gehörenden Teil $B_1$ und in den restlichen zu den Kästen $J_{r+1},\dots,J_s$ gehörenden Teil $B_2$, so sehen wir, dass $B_1$ den Raum  $V_\lambda = \Kern(F-\lambda \id)^k$ aufspannt, und $B_2$ ist eine Basis des Bildes $\Bild(F-\lambda \id)^k$ von $(F-\lambda \id)^k$.
+\end{bemerkung}
+
+Aus diesen Beobachtungen folgt:
+Ist der Satz über die Jordan-Normalform wahr, und ist $F \in \End_K(V)$ beliebig, so muss jeder Eigenwert $\lambda$ von $F$ eine Zerlegung $V = V_\lambda \oplus V_2$ induzieren, wobei $V_\lambda = \Kern(F - \lambda \id)^k$ und $V_2 = \Bild(F - \lambda \id)^k$ für ein genügend großes $k \in \NN$.
+Diese Beobachtung gibt den entscheidenden Schritt im Beweis von:
+
+\begin{satz}
+	\label{satz:9.15}
+	Sei $V$ ein endlich dimensionaler $K$-Vektorraum und sei $F \in \End_K(V)$ so, dass das charakteristische Polynom $\chi_F$ von $F$ in Linearfaktoren zerfällt.
+	Seien $\lambda_1,\dots,\lambda_m$ die paarweise verschiedenen Eigenwerte von $F$ und für jedes $\lambda_i$ sei $V_{\lambda_i}$ der Hauptraum zum Eigenwert $\lambda_i, i = 1, \dots, m$.
+	Dann gilt $V = V_{\lambda_1} \oplus V_{\lambda_2} \oplus \cdots \oplus V_{\lambda_m}$ und $F(V_{\lambda_i}) \subseteq V_{\lambda_i}$ für alle $1 \leq i \leq m$.
+	Insbesondere folgt $F = F_{\lambda_1} \oplus F_{\lambda_2} \oplus \cdots \oplus F_{\lambda_m}$ mit $F_{\lambda_i} := F\big|_{V_{\lambda_i}} \colon V_{\lambda_i} \rightarrow V_{\lambda_i}$.
+\end{satz}
+
+\begin{beweis}
+	Wir beweisen den Satz per Induktion nach der Dimension von $V$.
+	Ist $\dim(V) = 1$, so ist nichts zu zeigen.
+	Sei also nun $\dim(V) = n > 1$ und der Satz sei richtig für kleinere Dimensionen.
+	Da $\chi_F$ in Linearfaktoren zerfällt, besitzt $\chi_F$ mindestens eine Nullstelle.
+	Also besitzt $F$ mindestens einen Eigenwert $\lambda$.
+	Setze $V_1 := V_\lambda$, und wähle $k \in \NN$ wie in \autoref{lemma:9.12} mit $V_\lambda = \Kern(F - \lambda \id)^k$.
+	
+	Ist $V_\lambda = V$, so ist $\lambda$ der einzige Eigenwert von $F$, denn wäre $\lambda' \neq \lambda$ ein weiterer Eigenwert, so wäre
+	\[
+		(F-\lambda \id)(v) = F(v) - \lambda v = (\lambda - \lambda')(v)
+	\]
+	für jeden Eigenvektor $v \neq 0$ von $F$ bezüglich $\lambda'$.
+	Aber dann wäre $(F-\lambda \id)^k(v) = (\lambda - \lambda')^kv \neq 0$, da $v \neq 0$ und $\lambda \neq \lambda'$.
+	Dies ist aber ein Widerspruch zu $V = V_\lambda = \Kern(F - \lambda \id)^k$.
+	Wir erhalten also $F = F_\lambda$ für den einzigen Eigenwert $\lambda$ von $F$, und damit die gewünschte Struktur.
+	
+	Sei nun $V_\lambda \neq V$.
+	Setze $V_1 := V_\lambda$ und $V_2 := \Bild(F - \lambda \id)^k$.
+	Wir zeigen:
+	\begin{enumerate}[(i)]
+		\item $F(V_i) \subseteq V_i$ für $i = 1,2$.
+		\item $V = V_1 \oplus V_2$.
+	\end{enumerate}
+	Für (i) genügt es zu zeigen, dass $(F - \lambda \id)(V_i) \subseteq V_i$ (dann gilt auch $F(V_i) \subseteq (F-\lambda \id)(V_i) + \lambda V_i \subseteq V_i$).
+	Für $i = 1$ folgt dies aus $V_1 = \Kern(F - \lambda \id)^k$ und
+	\[
+		(F-\lambda \id)^k \circ (F-\lambda \id)(V_1) = (F - \lambda \id) \circ (F - \lambda \id)^k(V_1) = (F - \lambda \id)(\setzero) = \setzero.
+	\]
+	Für $i = 2$ erhalten wir die Rechnung
+	\[
+		(F-\lambda \id)(V_2) = (F-\lambda \id)((F-\lambda i)^k(V)) = (F - \lambda \id)^k((F - \lambda \id)(V)) \subseteq (F-\lambda \id)^k(V) = V_2.
+	\]
+	Wir beweisen nun (ii):
+	Zunächst folgt aus der Dimensionsformel für die lineare Abbildung $(F-\lambda \id)^k$, dass
+	\[
+		\dim(V) = \dim(\Kern(F - \lambda \id)^k) + \dim(\Bild(F - \lambda \id)^k) = \dim(V_1) + \dim(V_2).
+	\]
+	Für den Beweis von (ii) genügt es also zu zeigen, dass $V_1 \cap V_2 = \setzero$.
+	Ist aber $v \in V_1 \cap V_2$, so existiert wegen $v \in V_2$ ein $w \in V$ mit $v = (F-\lambda \id)^k(w)$, und da $v \in V_1$, folgt
+	\[
+		(F- \lambda \id)^k(v) = (F - \lambda \id)^{2k}(w) = 0.
+	\]
+	Es folgt $w \in V_{2k,\lambda} = \Kern(F - \lambda \id)^{2k}$.
+	Nach \autoref{lemma:9.12} und der Wahl von $k$ gilt aber
+	\[
+		V_\lambda = V_{k,\lambda} = V_{k+1,\lambda} = \cdots = V_{2k,\lambda}.
+	\]
+	Es folgt $w \in V_{\lambda}$ und $v = (F - \lambda \id)^{k}(w) = 0$.
+	
+	Aus (i) und (ii) folgt, dass $F = F_1 \oplus F_2$ mit $F_i = F\big|_{V_i} \colon V_i \rightarrow V_i$.
+	Nach \autoref{lemma:9.8} gilt $\chi_F = \chi_{F_1} \cdot \chi_{F_2}$, und daher zerfällt mit $\chi_F$ auch $\chi_{F_2}$ in Linearfaktoren.
+	Sind $\lambda_2,\dots,\lambda_m$ die paarweise verschiedenen Eigenwerte von $F_2$, so besitzt $F_2$ nach Induktionsvoraussetzung eine Zerlegung $F_2 = F_{\lambda_2} \oplus \cdots \oplus F_{\lambda_m}$, und setzen wir $\lambda_1 := \lambda$, so erhalten wir mit $F_{\lambda_1} = F_1$ die gewünschte Zerlegung $F = F_{\lambda_1} \oplus \cdots \oplus F_{\lambda_m}$. \qedhere
+\end{beweis}
+
+\begin{bemerkung}
+	\label{bem:9.16}
+	Wir sind leider immer noch nicht fertig mit dem Beweis der Existenz der Jordan-Normalform.
+	\autoref{satz:9.15} reduziert das Problem aber auf den Fall, dass $F = F_\lambda$ für einen (und dann den einzigen) Eigenwert $\lambda$ von $F$.
+	Geligt es uns, für solche Endomorphismen eine Jordan-Basis zu konstruieren, so können wir für jeden Summanden $F_{\lambda_i}$ in der Zerlegung $F = F_{\lambda_1} \oplus \cdots \oplus F_{\lambda_m}$ von \autoref{satz:9.15} eine Basis $B_i$ von $V_{\lambda_i}$ angeben, sodass die zugehörige Darstellungsmatrix $A_i = A^{B_i}_{F_{\lambda_i}}$ eine Jordan-Matrix ist.
+	Ist dann $B = B_1 \cup \dots \cup B_l$ die entsprechend zusammengesetzte Basis von $V$, so ist auch
+	\[
+		A_F^B = \begin{pmatrix}
+			A_1 & & \\
+			 & \ddots & \\
+			 & & A_m
+		\end{pmatrix}
+	\]
+	eine Jordan-Matrix.
+	Wir wollen also nun in einem letzten Schritt eine Jordan-Basis für $F_\lambda$ konstruieren! Wir benötigen:
+\end{bemerkung}
+
+\begin{lemma}
+	\label{lemma:9.17}
+	Sei $V$ ein endlich dimensionaler $K$-Vektorraum und sei $G \in \End_K(V)$ nilpotent.
+	Für $l \in \NN_0$ setze $V_l := \Kern(G^l)$.
+	Nach \autoref{lemma:9.12} existiert dann ein $k \in \NN$ mit
+	\[
+		\setzero = V_0 \subsetneq V_1 \subsetneq \cdots \subsetneq V_{k-1} \subsetneq V_k = V.
+	\]
+	Sei nun $2 \leq l \leq k$ und sei
+	\[
+		B = \{u_1,\dots,u_r,w_1,\dots,w_s,v_1,\dots,v_t\}
+	\]
+	eine Basis von $V_l$ so, dass $\{u_1,\dots,u_r\}$ eine Basis für $V_{l-2}$ und $\{u_1,\dots,u_r,w_1,\dots,w_s\}$ eine Basis für $V_{l-1}$ ist.
+	Dann gilt $t \leq s$, und wir können die Vektoren $w_1,\dots,w_s \in V_{l-1} \setminus V_{l-2}$ so abändern, dass zusätzlich $G(v_i) = w_i$ für alle $1 \leq i \leq t$ gilt.
+\end{lemma}
+
+\begin{beweis}
+	Sei $V' = \LH\{v_1,\dots,v_t\}$.
+	Dann gilt $V_l = V_{l-1} \oplus V'$, also insbesondere $V' \cap V_{l-1} = \setzero$.
+	Wir zeigen zunächst, dass die Vektoren $u_1,\dots,u_r,G(v_1),\dots,G(v_t) \in V_{l-1}$ linear unabhängig sind.
+	Sei dazu $0 = \sum_{i=1}^{r} \mu_i u_i + \sum_{j=1}^{t} \nu_j G(v_j)$.
+	Setze $u := \sum_{i=1}^{r} \mu_i u_i \in V_{l-2}$ und $v := \sum_{j=1}^{t} \nu_j v_j \in V'$.
+	Dann folgt $0 = u+ G(v)$, also $G(v) = -u \in V_{l+2} = \Kern(G^{l-2})$ und damit $v \in \Kern(G^{l-1}) = V_{l-1}$.
+	Damit folgt $v \in V' \cap V_{l-1} = \setzero$, also $v = 0$ und dann auch $u = 0$.
+	Da $u_1,\dots,u_r$ und $v_1,\dots,v_t$ linear unabhängig sind, erhalten wir $0 = \mu_1 = \cdots = \mu_r = \nu_1 = \dots = \nu_t$.
+	Insbesondere folgt $r+t \leq \dim(V_{l-1}) = r+s$, also $t \leq s$.
+	
+	Setzen wir nun $\wt{w_i} := G(v_i)$ für $1 \leq i \leq t$, so existieren nach dem Basisergänzungssatz weitere Vektoren $\wt{w_{r+1}},\dots,\wt{w_s} \in V_{l-1}$, sodass $\{u_1,\dots,u_r,\wt{w_1},\dots,\wt{w_s}\}$ eine Basis von $V_{l-1}$ ergibt.
+	Das System $\{u_1,\dots,u_r,$ \linebreak $\wt{w_1},\dots,\wt{w_s},v_1,\dots,v_t\}$ hat dann alle gewünschten Eigenschaften. \qedhere
+\end{beweis}
+
+Wir kommen nun zum Abschluss des Beweises von \autoref{satz:9.6}.
+Wir erinnern daran (siehe \autoref{bem:9.16}), dass es genügt, den Fall $V = V_\lambda$ und $F = F_\lambda$ zu betrachten.
+Dann ist $F- \lambda \id$ nilpotent!
+
 \newpage
