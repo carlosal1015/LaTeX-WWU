@@ -1655,8 +1655,6 @@ In diesem Abschnitt sind Kettenkomplexe immer $\mathbb{N}$-graduiert. (Allgemein
 	\end{enumerate}
 \end{bemerkung}
 
-
-
 \begin{lemma}
 	Sei $\mathcal{U} \subseteq \mathcal{C}$ eine kofinale Waldhausen-Unterkategorie.
 	Seien $U, U' \in \mathcal{U}$ genau dann schwach äquivalent in $\mathcal{U}$, wenn sie schwach äquivalent in $\mathcal{C}$ sind.
@@ -1676,9 +1674,138 @@ In diesem Abschnitt sind Kettenkomplexe immer $\mathbb{N}$-graduiert. (Allgemein
 	% Sei $U,U' \in \mathcal{U}$, deren schwache Äquivalenzklassen in $\mathcal{C}$ gleich sind.
 	% Dann sind auch die schwachen Äquivalenzklassen von $U$ und $U'$ in $\mathcal{U}$ gleich.
 \end{beweis}
-
-
 % section 5 (end)
+\newpage
+\section{Exkurs: Chirurgie} % (fold)
+\label{sec:6}
+
+\begin{frage}
+	Wie viele glatte Strukturen existieren auf einer gegebenen topologischen Mannigfaltigkeit?
+\end{frage}
+
+Milnor hat '57 gezeigt, dass $S^7$ mehr als eine glatte Struktur hat. 
+Artikel \emph{\enquote{Groups of homotopy spheres I.}} von Kervaire und Milnor '63 \todo{ref}: Systematische Untersuchung, wie viele glatte Strukturen auf hochdimensionalen ($\dim \ge 5$) Sphären existieren. 
+
+Ansatz: Bis auf eine \enquote{endliche Uneindeutigkeit} genügt es, sich \emph{exotische Sphären} anzuschauen, die Rand einer (stabil parallelisierbaren) Mannigfaltigkeit sind.
+Gegeben solch einen Nullbordismus $(W,\Sigma)$, so existiert eine Abbildung 
+\[
+	(W^{n+1},\Sigma^n) \longrightarrow (D^{n+1},S^n) 
+\]
+vom Grad 1. 
+Falls diese Abbildung zu einer Homotopieäquivalenz \enquote{deformiert} werden kann, so folgt aus dem $h$-Kobordismussatz, dass $W$ eine Scheibe ist.
+
+Vereinfachte Frage: Gegeben eine Grad 1 Abbildung $f \colon M \to N$ von geschlossenen orientierbaren zusammenhängenden glatten $n$-Mannigfaltigkeiten, kann $f$ in eine Homotopieäquivalenz \enquote{deformiert} werden?
+
+\begin{erinnerung}
+	Zum Begriff einer Grad 1 Abbildung: Eine Orientierung von $M$ ist ein Erzeuger $[M]$ von $H_n(M;\mathbb{Z})$. 
+	$f$ ist von Grad 1, falls $f_*[M]=[N]$.
+\end{erinnerung}
+
+\begin{lemma}[label=lem:ex:lem1]
+	\begin{enumerate}[(i)]
+		\item Folgendes Diagramm kommutiert
+		\[
+			\begin{tikzcd}
+				H_i(M) \rar["f_*"] & H_i(N) \\
+				H^{n-i}(M) \uar["\PD_M","\cong"'] & H^{n-i}(N) \lar["f^*"] \uar["\PD_N","\cong"']
+			\end{tikzcd}
+		\]
+		\item Die Abbildung $f_*$ ist split surjektiv.
+		\item Die Abbildung $f^*$ ist split injektiv.
+	\end{enumerate}
+\end{lemma}
+\begin{beweis}
+	Setze $f_! \coloneqq \PD_M \circ f^* \circ  \PD^{-1}_N \colon H_i(N) \to H^{n-i}(N) \to H^{n-i}(M) \to H_i(M)$.
+	Dann gilt 
+	\[
+		f_* \circ f_!(x) = f_* \enbrace[\big]{f^* (\PD^{-1}_N(x)) \capp [M]} = \PD_N^{-1}(x) \capp f_*[M] = \PD_N^{-1}(x) \capp [N] = x
+	\]
+	Also gilt (ii).
+	Damit folgt auch (i) und (iii).
+\end{beweis}
+
+\begin{proposition}
+	Sind $M,N$ einfach zusammenhängend und $f(\lfloor \frac{n}{2}\rfloor +1)$-zusammenhängend, so ist $f$ eine Homotopieäquivalenz.
+\end{proposition}
+\begin{beweis}
+	Zeige: $f$ ist eine Homologieäquivalenz (Hurewicz und Whitehead).
+	Aus $f(\lfloor \frac{n}{2}\rfloor +1)$"=zusammenhängend folgt, dass $f_* \colon H_i(M) \to H_i(N)$ ein Isomorphismus ist für $i \le \lfloor \frac{n}{2} \rfloor$.
+	Sei $i > \lfloor \frac{n}{2} \rfloor$.
+	Nach \autoref{lem:ex:lem1} kommutiert das dort angegeben Diagramm, also genügt es zu zeigen, dass $f^* \colon H^{n-i}(N) \to H^{n-i}(M)$ ein Isomorphismus ist.
+	Nach dem universellen Koeffizienten-Theorem kommutiert
+	\[
+		\begin{tikzcd}
+			0 \rar & \Ext^1_\mathbb{Z} \enbrace*{H_{n-i-1}(N,\mathbb{Z})} \rar \dar["{\Ext(f_*,\mathbb{Z})}"] & H^{n-i}(N) \dar["f^*"] \rar & \Hom \enbrace*{H_{n-i}(N),\mathbb{Z}} \rar \dar["{\Hom(f_*,\mathbb{Z})}"]& 0 \\
+			0 \rar & \Ext^1_\mathbb{Z} \enbrace*{H_{n-i-1}(M),\mathbb{Z}} \rar & H^{n-i}(M) \rar & \Hom \enbrace*{H_{n-i}(M),\mathbb{Z}} \rar & 0
+		\end{tikzcd}
+	\]
+	und hat exakte Zeilen.
+	Da $n-i \le \lfloor \frac{n}{2}\rfloor$, sind $\Ext(f_*,\mathbb{Z})$ und $\Hom(f_*,\mathbb{Z})$ Isomorphismen und es folgt die Behauptung.
+\end{beweis}
+
+\begin{definition}
+	Sei $M^n$ eine geschlossene, orientierte $n$-Mannigfaltigkeit und $\varphi \colon S^p \times D^{n-p} \hookrightarrow M$ eine orientierungserhaltende Einbettung.
+	Definiere 
+	\[
+		\chi(M,\varphi) \coloneqq M \setminus \varphi \enbrace*{S^p \times \mathring{D}^{n-p}} \cup_{\varphi|_{S^p\times S^{n-p-1}}} D^{p+1} \times S^{n-p-1}
+	\]
+	Ist $M' \cong \chi(M,\varphi)$, so sagen wir, dass $M'$ aus $M$ \bet{durch Chirurgie entlang $\varphi$ hervorgeht}\index{durch Chirurgie hervorgehen}.
+	Setze 
+	\[
+		W_\varphi \coloneqq M \times [0,1] \cup_\varphi D^{p+1} \times D^{n-p}
+	\]
+	$W_\varphi$ heißt \Index{Spur der Chirurgie} entlang $\varphi$.  
+\end{definition}
+
+\begin{lemma}
+	$M \hookrightarrow W_\varphi$ ist $p$-zusammenhängend und $\varphi_*[S^p] \in \ker \enbrace*{\pi_p M \to \pi_p W_\varphi}$
+\end{lemma}
+\begin{beweis}
+	Es gilt $W_\varphi \simeq M \cup_{\varphi|_{S^p \times 0}} D^p+1$.
+\end{beweis}
+
+\begin{lemma}
+	Sei $M^n$ geschlossen, orientiert und zusammenhängend.
+	Weiter sei $\varphi \colon S^p \times D^{n-p} \hookrightarrow M^n$ eine orientierungserhaltende Einbettung, $0 < p < \lfloor \frac{n}{2} \rfloor$.
+	\begin{enumerate}[(i)]
+		\item $\pi_i(M) \cong \pi_i \enbrace*{\chi(M,\varphi)}$ für $i<p$
+		\item $\pi_p \enbrace*{\chi(M,\varphi)} \cong \sfrac{\pi_p(M)}{U}$ mit $\varphi_*[S^p] \in U$.
+	\end{enumerate}
+\end{lemma}
+\begin{beweis}[Skizze]
+	$W_\varphi$ ist die Spur der Chirurgie entlang $\varphi$. 
+	Sei $\psi \colon D^{p+1} \times S^{n-p-1} \hookrightarrow \chi(M,\varphi)$ die kanonische Einbettung.
+	Behauptung: Es gilt $W_\varphi \cong W_\psi$
+	
+	\missingfigure{Hier fehlen noch ein paar Grafiken}
+\end{beweis}
+
+Beobachtung: $f \colon M \to N$ Grad 1-Abbildung von geschlossenen, orientierten, zusammenhängenden, glatten Mannigfaltigkeiten.
+Angenommen
+\[
+	\begin{tikzcd}
+		S^p \rar["\partial \phi"] \dar & M \dar["f"] \\
+		D^{p+1} \rar["\phi"] & N
+	\end{tikzcd}
+\]
+repräsentiert ein Element in $\pi_{p+1}(f)$.
+Nimm weiter an, dass es eine Einbettung $\varphi_0\colon S^p \hookrightarrow M$ gibt, sodass $\varphi_0 \simeq \partial \phi$ un dass $\varphi_0$ sich zu $\varphi \colon S^p \times D^{n-p} \hookrightarrow M$ fortsetzt.
+Dann können wir Chirurgie enthalt $\varphi$ durchführen.
+Betrachte eine Fortsetzung
+\[
+	\begin{tikzcd}[sep=large]
+		\enbrace*{W_\varphi,M,\chi(M,\varphi)} \rar["{(F,f,\psi)}"] & \enbrace*{N \times [0,1], N \times \set*{0}, N \times \set*{1}}
+	\end{tikzcd}
+\]
+von $f$.
+Folglich können wir induktiv relative Homotopiegruppen töten.
+
+Fragen:
+\begin{enumerate}[(i)]
+	\item Kann $\partial \phi$ durch eine Einbettung $\varphi_0$ repräsentiert werden?
+	\item Falls ja, kann $\varphi_0$ zu $\varphi \colon S^p \times D^{n-p} \hookrightarrow M$ fortgesetzt werden?
+\end{enumerate}
+% section exkurs_chirurgie (end)
 
 \cleardoubleoddemptypage
 \pagenumbering{Alph}
