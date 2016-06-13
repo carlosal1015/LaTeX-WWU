@@ -128,7 +128,7 @@ Beachte: Der Faktor $2$ vor dem Term $\sk{a,x}$ bzw. $a^Tx$ vereinfacht einige U
 		\item Sei $c \in \RR^n$ mit $A^2c = -Aa$.
 		Da $a \notin \Bild(A)$, ist dann $b := Ac + a \neq 0$.
 		Nach \autoref{lemma:8.4}(iii) gilt dann für $d := c + \delta b$ mit $\delta = - \frac{p(c)}{2 \no{b}^2}$, dass $p(x+d) = x^TAx + 2b^Tx$.
-		
+
 		Wähle (mit Hilfe des Schmidtschen Orthonormalisierungsverfahrens) eine Orthonormalbasis $\{v_1,\dots,v_n\}$ von $\RR^n$ mit $v_n = \no{b}^{-1} \cdot b$.
 		Ist dann $B := (v_1,\dots,v_n) \in \oh(n)$, so folgt
 		\[
@@ -226,7 +226,7 @@ Wenn wir die Koeffizienten $\lambda_i$ vor den quadratischen Termen in \autoref{
 		\item $\frac{x^2}{a^2} + \frac{y^2}{b^2} + 1 = 0$ (leere Menge)
 		\item $\frac{x^2}{a^2} + \frac{y^2}{b^2} = 0 \Leftrightarrow x= 0, y = 0$, \qquad $Q = \penb{\binom{0}{0}}$
 		\item $\frac{x^2}{a^2} + \frac{y^2}{b^2} - 1 = 0 \Leftrightarrow \frac{x^2}{a^2} + \frac{y^2}{b^2} = 1$ (Ellipse mit den Achsenabschnitten $a,b$)
-		
+
 		\begin{figure}[h]
 			\centering
 			\begin{tikzpicture}[scale=1.5,>=Latex]
@@ -240,36 +240,38 @@ Wenn wir die Koeffizienten $\lambda_i$ vor den quadratischen Termen in \autoref{
 				\draw [thick] (-.1,-1) -- (.1,-1) node[right]{$-b$};
 			\end{tikzpicture}
 		\end{figure}
-		
+
 		\item $\frac{x^2}{a^2} - \frac{y^2}{b^2} + 1 = 0 \Leftrightarrow x^2 = \frac{a^2}{b^2} (y^2-a^2) \xLeftrightarrow{x \neq 0} \enb{\frac{x}{y}}^2 = \frac{a^2}{b^2} \enb{1- \frac{a^2}{y^2}}$.
-		
+
 		Für $y \rightarrow \pm \infty$ folgt $\abs{\frac{x}{y}} \sim \frac{a}{b}$.
 		Wir erhalten zwei Hyperbeln mit den den Geraden $y = \pm \frac{b}{a}x$ als Asymptoten und dem Schnitt mit der $y$-Achse bei $\pm a$.
 		
-		\begin{figure}[h]
-			\centering
-		\begin{pspicture}(-4,-4)(4.5,4.5)
-			%\psaxes{->}(0,0)(-4,-4)(4,4)[$x$,0][$y$,90]
-			\psline[linewidth=1.25pt]{->}(-4,0)(4,0)
-			\psline[linewidth=1.25pt]{->}(0,-4)(0,4)
-			\psset{algebraic}
-			\psparametricplot[linecolor=red,linewidth=1.5pt]{-2}{2}{SINH(t)|COSH(t)}
-			\psparametricplot[linecolor=red,linewidth=1.5pt]{-2}{2}{SINH(t)|-COSH(t)}
-			\psline[linestyle=dashed]{-}(-3.5,-3.5)(3.5,3.5)
-			\psline[linestyle=dashed]{-}(-3.5,3.5)(3.5,-3.5)
-			
-			\psline[linewidth=1.5pt]{-}(-.15,1)(.15,1)
-			\psline[linewidth=1.5pt]{-}(-.15,-1)(.15,-1)
-			\rput(.2,1.2){$a$}
-			\rput(.2,-1.2){$-a$}
-			\rput[tl](3.1,3){$y = \frac{b}{a}x$}
-			\rput[bl](3.1,-3){$y = -\frac{b}{a}x$}
-			\rput[t](3.9,-.1){$x$}
-			\rput[Bl](.1,3.9){$y$}
-		\end{pspicture}
-		\end{figure}
+		\missingfigure{Hier fehlt noch eine Grafik, die bislang nur mit \texttt{pstricks} angefertigt wurde, was bei einem PDF-Treiber nicht wirklich gut funktioniert \ldots im Notfall konvertiert man die per Hand in eine PDF, schön wäre das allerdings nicht}
 
-		\newpage
+		% \begin{figure}[h]
+		% 	\centering
+		% \begin{pspicture}(-4,-4)(4.5,4.5)
+		% 	%\psaxes{->}(0,0)(-4,-4)(4,4)[$x$,0][$y$,90]
+		% 	\psline[linewidth=1.25pt]{->}(-4,0)(4,0)
+		% 	\psline[linewidth=1.25pt]{->}(0,-4)(0,4)
+		% 	\psset{algebraic}
+		% 	\psparametricplot[linecolor=red,linewidth=1.5pt]{-2}{2}{SINH(t)|COSH(t)}
+		% 	\psparametricplot[linecolor=red,linewidth=1.5pt]{-2}{2}{SINH(t)|-COSH(t)}
+		% 	\psline[linestyle=dashed]{-}(-3.5,-3.5)(3.5,3.5)
+		% 	\psline[linestyle=dashed]{-}(-3.5,3.5)(3.5,-3.5)
+		%
+		% 	\psline[linewidth=1.5pt]{-}(-.15,1)(.15,1)
+		% 	\psline[linewidth=1.5pt]{-}(-.15,-1)(.15,-1)
+		% 	\rput(.2,1.2){$a$}
+		% 	\rput(.2,-1.2){$-a$}
+		% 	\rput[tl](3.1,3){$y = \frac{b}{a}x$}
+		% 	\rput[bl](3.1,-3){$y = -\frac{b}{a}x$}
+		% 	\rput[t](3.9,-.1){$x$}
+		% 	\rput[Bl](.1,3.9){$y$}
+		% \end{pspicture}
+		% \end{figure}
+
+		% \newpage
 		\item $\frac{x^2}{a^2} - \frac{y^2}{b^2} = 0 \Leftrightarrow \frac{x^2}{y^2} = \frac{a^2}{b^2} \Leftrightarrow y = \pm \frac{b}{a}x$. (Geradenpaar wie in obiger Skizze)
 		\item $\frac{x^2}{a^2} - \frac{y^2}{b^2} - 1 = 0 \Leftrightarrow \frac{y^2}{b^2} - \frac{x^2}{a^2} + 1 = 0$ (analog zu (iv) mit Rolle von $x,y$ vertauscht)
 		\item $\frac{x^2}{a^2} + y = 0 \Leftrightarrow y = - \frac{x^2}{a^2}$ (nach unten geöffnete Parabel)
@@ -287,13 +289,13 @@ Wenn wir die Koeffizienten $\lambda_i$ vor den quadratischen Termen in \autoref{
 	Wir wollen die Schnitte von $K$ mit den zweidimensionalen Ebenen im $\RR^3$ untersuchen.
 	Welche Gebilde können hier entstehen?
 	\newpage
-	
+
 	\begin{figure}[h]
 		\centering
 		\includegraphics[keepaspectratio,width=10cm]{img/conic_sections.pdf}
 		\caption{Die drei Arten von Kegelschnitten, die entstehen, wenn $K$ mit einer Ebene geschnitten wird. \cite{conic}}
 	\end{figure}
-	
+
 	Eine Ebene im $\RR^3$ wird durch eine Gleichung der Form $ax + by + cz = d$ mit geeigneten Koeffizienten $a,b,c,d \in \RR$ beschrieben, wobei mindestens einer der Koeffizienten $a,b,c \neq 0$ sein muss.
 	Ist $c \neq 0$, so folgt $z = \frac{1}{c} (d-ax-by)$.
 	Einsetzen in die Kegelgleichung liefert
