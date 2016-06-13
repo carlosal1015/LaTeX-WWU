@@ -2268,7 +2268,7 @@ Sei nun $M^k$ eine differenzierbare Mannigfaltigkeit und
 Offenbar ist $f \in C^\infty(G,M)^H$ konstant auf den Linksnebenklassen $g H$.
 Somit ist $\overline{f} \coloneqq f \circ \pi^{-1} \colon \sfrac{G}{H} \to M^k$, $gH \mapsto f(g)$ wohldefiniert.
 
-\begin{lemma}
+\begin{lemma}[label=lem:313]
 	Die Abbildung $\Phi \colon C^\infty(\sfrac{G}{H}, M^k) \to C^\infty(G,M^k)^H$ definiert durch $\overline{f} \mapsto f \coloneqq \overline{f} \circ \pi$ ist bijektiv. 
 \end{lemma}
 \begin{beweis}
@@ -2297,6 +2297,163 @@ Somit ist $\overline{f} \coloneqq f \circ \pi^{-1} \colon \sfrac{G}{H} \to M^k$,
 	Die Mannigfaltigkeit $M$ nennt man \bet{$G$-homogenen Raum}, falls $M$ eine transitive Gruppenwirkung $\Phi$ besitzt, das heißt für alle $p,q \in M$ existiert ein $g \in G$ mit $g.p=q$.
 \end{definition}
 
+\begin{bemerkung*}
+	\begin{enumerate}[1)]
+		\item Ein homogener Raum $\sfrac{G}{H}$ ist $G$-homogener Raum mittels
+		\[
+			\Phi \colon G \times \sfrac{G}{H} \to \sfrac{G}{H} , (g,\overline{g}H) \mapsto (g \cdot \overline{g})H
+		\]
+		\item Ist $\Phi \colon G \times M^n \to M^n$ eine Liegruppenwirkung auf $M^n$, so ist $\ker \Phi \coloneqq \set*{g \in G \given \Phi(g) = \id_{M^n}}$ eine normale, abgeschlossene Untergruppe von $G$ und somit eine Lieuntergruppe.
+		Der Quotient $\sfrac{G}{\ker \Phi}$ ist somit eine Liegruppe, die effektiv auf $M^n$ operiert, das heißt $\Phi(g)= \id_{M} \iff g=e$.
+	\end{enumerate}
+\end{bemerkung*}
+
+\begin{lemma}
+	Sei $\Phi \colon G \times M \to M$ eine transitive Liegruppenwirkung, $p \in M^n$ und 
+	\[
+		H \coloneqq G_p = \set*{g \in G \given g.p=p}
+	\]
+	Dann ist die Abbildung $\varphi \colon \sfrac{G}{H} \to M^n$, $gH \mapsto g.p$ ein $G$-äquivarianter Diffeomorphismus, das heißt folgendes Diagramm kommutiert:
+	\[
+		\begin{tikzcd}
+			\sfrac{G}{H} \dar["\overline{L}_g"] \rar["\varphi"] & M \dar["\Phi(g)"] \\
+			\sfrac{G}{H} \rar["\varphi"] & M
+		\end{tikzcd}
+	\]
+\end{lemma}
+\begin{beweis}
+	\begin{itemize}
+		\item $\varphi$ ist wohldefiniert: Ist $gH = \tilde{g}H \iff \tilde{g}^{-1}g \in H \iff g = \tilde{g}h \iff g.p = \tilde{g}.p$.
+		\item $\varphi$ ist injektiv: $\varphi(gH) = \varphi(\tilde{g}H) \iff g.p = \tilde{g}.p \iff \tilde{g}^{-1}g \in H \iff gH = \tilde{g}H$
+		\item $\varphi$ ist surjektiv: Klar, da $\Phi$ transitiv ist.
+		\item Äquivarianz: 
+		\begin{align}
+			(\varphi \circ L_g)(\tilde{g}H) = \varphi \enbrace*{g \tilde{g}H} = g.\tilde{g}.p = \Phi(g) \enbrace*{\tilde{g}.p} = \enbrace*{\varphi(g) \circ \varphi}(\tilde{g}H)
+		\end{align}
+		\item Differenzierbarkeit von $\varphi$ und $\varphi^{-1}$:
+		Wir setzen $\hat{\varphi} \colon G \to M^n$, $g \mapsto g.p$.
+		Nach Vorraussetzung ist $\hat{\varphi}$ differenzierbar mit 
+		\[
+			\begin{tikzcd}
+				G \drar["\hat{\varphi}"] \dar["\pi"] & \\
+				\sfrac{G}{H} \rar["\varphi"] & M^n
+			\end{tikzcd}
+		\]
+		Dabei ist auch $\pi$ differenzierbar.
+		Ferner gilt $\hat{\varphi} \circ R_h = \hat{\varphi}$ für alle $h \in H$.
+		Somit ist nach \autoref{lem:313} die Abbildung $\varphi = \overline{\hat{\varphi}}$ differenzierbar.
+		Es gilt $\ker (\mathd \pi)_e = \Tmap_e H$.
+		Übung: Es gilt genauso $\ker (\mathd \hat{\varphi})_e = (\mathd \pi)_e = \Tmap_e H$.
+		
+		Ferner ist $(\mathd \pi)_e \colon \Tmap_e G \to \Tmap_{eH} \sfrac{G}{H}$ surjektiv.
+		Wegen $\mathd \hat{\varphi}_e = \mathd \varphi_{eH} \circ  \mathd \pi_e$ ist somit $\mathd \varphi_{eH}$ injektiv.
+		Aus der Äquivarianzeigenschaft, folgt 
+		\[
+			(\mathd \varphi)_{gH}\circ \mathd(\overline{L}_g)_H = \mathd(\Phi(g))_{p=\varphi(h)} \circ (\mathd \varphi)_H
+		\]
+		Da die Abbildungen direkt neben dem Gleichheitszeichen Isomorphismen sind und die rechte außerdem injektiv, muss auch $(\mathd \varphi)_{gH}$ injektiv sein.
+		Somit ist $\varphi \colon \sfrac{G}{H} \to M$ eine injektive Immersion.
+		Folglich ist $\dim \sfrac{G}{H} \le \dim M$.
+		Mit der Surjektivität folgt direkt die Gleichheit der Dimensionen.\footnote{Angenommen es gelte $k \coloneqq \dim \sfrac{G}{H} < \dim M^n$. Da $\varphi$ eine Immersion ist, ist $\varphi \enbrace*{B_\varepsilon(gH)}$ eine eingebettete $k$-dimensionele Untermannigfaltigkeit von $M^n$ und hat somit Volumen 0.
+		Damit hat auch das Bild $\varphi(\sfrac{G}{H})$ Volumen 0 und man hat einen Widerspruch zur Surjektivität}\qedhere
+	\end{itemize}
+\end{beweis}
+
+\begin{bemerkung*}
+	Standgruppen sind konjugiert, das heißt es gilt $G_{p.p} = g \circ G_p \circ g^{-1}$.
+\end{bemerkung*}
+
+\begin{beispiel*}
+	Es gibt viele homogene Räume:
+	\begin{enumerate}[1)]
+		\item Liegruppen selbst, da $\sfrac{G}{\set*{e}} =G$.
+		\item Sphären $S^n \coloneqq = \set*{x \in \mathbb{R}^{n+1} \given \norm*{x}_2=1}$, denn die Abbildung $\hat{\Phi} \colon \On(n+1) \times \mathbb{R}^{n+1} \to \mathbb{R}^{n+1}$, $(A,v) \mapsto A \cdot v$ ist eine differenzierbare Gruppenwirkung auf $R^{n+1}$ und somit auch die Einschränkung $\varphi \colon \On(n+1) \times S^n \to S^n$.
+		
+		Diese Wirkung ist transitiv: Sei $v_0 \in S^n$ beliebig.
+		Dann können wir $v_0$ zu einer Orthonormalbasis $v_0,v_1, \ldots ,v_n$ von $\mathbb{R}^{n+1}$ ergänzen und setzen $A_{v_0} \coloneqq (v_0,v_1, \ldots , v_n) \in \On(n+1)$.
+		Es gilt $A_{v_0}(e_1) = v_0$.
+		
+		Die Standgruppe von $e_1$:
+		\[
+			A e_1 = e_1 \iff A = \begin{pmatrix}
+				1 & 0 & \cdots & 0 \\
+				0 & & & \\
+				\vdots & & \tilde{A} & \\
+				0 & & & 
+			\end{pmatrix}, \tilde{A} \in \On(n)
+		\]
+		Somit $S^n = \sfrac{\On(n+1)}{\On(n)} = \sfrac{\SO(n+1)}{\SO(n)}$ (mit obiger Einbettung von $\SO(n) \hookrightarrow \SO(n+1)$ !).
+		\item Die unitäre Gruppe $\Un(n) = \SO(2n) \cap \Mat(n,\mathbb{C})$ operiert ebenfalls transitiv auf $S^{2n-1}$.
+		Somit ist $S^{2n-1} = \sfrac{\Un(n)}{\Un(n-1)} \stackrel{!}{=} \sfrac{\SU(n)}{\SU(n-1)}$.
+		\item Wie in 2), 3) zeigt man, dass
+		\(
+			S^{4n-1} = \sfrac{\Sp(n)}{\Sp(n-1)}
+		\) gilt.
+		\item Der reell projektive Raum $\mathbb{R}P^n = \sfrac{S^n}{\set*{\pm \id}}$ ist ebenfalls ein homogener Raum: $\Phi \colon \SO(n+1) \times \mathbb{R}P^n \to \mathbb{R}P^n$, $(A,[v]) \mapsto [Av]$.
+		
+		Zur Standgruppe: 
+		\[
+			A [e_1] = [e_1] \iff A= \begin{pmatrix}
+				\det \tilde{A} & 0 & \cdots & 0 \\
+				0 & & & \\
+				\vdots & & \tilde{A} & \\
+				0 & & & 
+			\end{pmatrix}\in \SO(n+1) , \tilde{A} \in \On(n)
+		\]
+		Somit ist die Standgruppe $\mathbb{R}P^n = \sfrac{\SO(n+1)}{O(n)}$ \enquote{größer} als $\SO(n)$.
+		\begin{itemize}
+			\item Achtung: Nicht alle Unterlagerungen von homogenen Räumen sind homogene Räume!
+			\item $\On(n)$ ist nicht zusammenhängend!
+		\end{itemize}
+		\item Die reellen Grassmannmannigfaltigkeiten: 
+		\begin{align}
+			G_k (\mathbb{R}^n) &\coloneqq \set*{\text{$k$-dimensionale reelle Unterräume von $\mathbb{R}^n$}} \\
+			G_k^0(\mathbb{R}^n) &\coloneqq \set*{(v,\sigma) \given v \in G_k(\mathbb{R}^n)} \text{ und $\sigma$ Orientierung auf $V$} 
+		\end{align}
+		Die Abbildung $\pi \colon G_k^0(\mathbb{R}^n) \to G_k(\mathbb{R}^n)$, $(v,\sigma) \mapsto v$ ist eine 2-fache Überlagerung.
+		Wie in 5) zeigt man, dass $\SO(n)$ transitiv operiert.
+		Stabilisator von $G_k(\mathbb{R}^n)\ni V_0 = \Span_\mathbb{R}(e_1, \ldots ,e_k)$:
+		Dann gilt 
+		\[
+			\SO(n)_{V_0} = \set*{ \begin{pmatrix}
+				A & 0 \\ 0 & B
+			\end{pmatrix} \given A \in \On(k), B \in \On(n-k), \det A \cdot \det B = 1} = S \enbrace*{\On(k) \times \On(n-k)}
+		\]
+		Somit $G_k(\mathbb{R}^n) = \sfrac{\SO(n)}{S \enbrace*{\On(k) \times \On(n-k)}} = \sfrac{\On(n)}{\On(k) \times \On(n-k)}$.
+		Analog:
+		\[
+			G_k^0(\mathbb{R}^n) = \sfrac{\SO(n)}{\SO(k) \times \SO(n-k)}
+		\]
+		\item Komplexe Grassmannmannigfaltigkeiten: 
+		\[
+			G_k(\mathbb{C}^n) \coloneqq \set*{\text{$k$-dimensionale kompakte Untermannigfaltigkeiten von $\mathbb{C}^n$} }
+		\]
+		Wie in 6) zeigt man, dass 
+		\[
+			G_k(\mathbb{C}^n) = \sfrac{\Un(n)}{\Un(k) \times \Un(n-k)} = \sfrac{\SU(n)}{S(\Un(k) \times \Un(n-k))}
+		\]
+		Im Fall $k=1$ nennt man $\mathbb{C}P^{n-1} \coloneqq G_1(\mathbb{C}^n)$ den \Index{komplex projektiven Raum}. ($\mathbb{C}P^1 = S^2$) 
+		\item Quaternionale Grassmannmannigfaltigkeiten:
+		\[
+			G_k(\mathbb{H}^n) = \sfrac{\Sp(n)}{\Sp(k) \Sp(n-k)}
+		\]
+		Man nennt $\mathbb{H}P^{n-1} = G_1(\mathbb{H}^n)$ wieder quaternionalen projektiven Raum. $\mathbb{H}P^1 = S^4$.
+		\item Stiefelmannigfaltigkeiten:
+		\[
+			V_k(\mathbb{R}^n) = \sfrac{\SO(n)}{\SO(k)} \quad V_k(\mathbb{C}^n) = \sfrac{\SU(n)}{\SU(k)} \quad V_k(\mathbb{H}^n) = \sfrac{\Sp(n)}{\Sp(k)}
+		\]
+		\item Fahnenmannigfaltigkeiten:
+		\[
+			V_{\overline{n}}(\mathbb{R}^n) = \set*{V_{n_1} < \ldots < V_{n_k}}
+		\]
+		wobei die $V_{n_i}$ $n_i$-dimensionale reelle Unterräume von $\mathbb{R}^n$ sind, $\overline{n} = n_1, \ldots ,n_k <n$.
+		Es ist
+		\[
+			V_{\overline{n}}(\mathbb{R}^n) = \sfrac{\On(n)}{\On(n_1) \On(n_2 - n_1) \cdots \On(n-n_k)}
+		\]
+		mit $n_1 + n_2 - n_1 + n_3 - n_2 + \ldots + n - n_k =n$ und die Obigen Kombinationen über $\ge 1$.
+ 	\end{enumerate}
+\end{beispiel*}
 % section 31 (end)
 % chapter 3 (end)
 
