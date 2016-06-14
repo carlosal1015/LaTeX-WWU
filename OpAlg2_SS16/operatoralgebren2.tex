@@ -1905,10 +1905,138 @@ $(\varphi_\lambda)_\Lambda$ ist also genau dann Cauchy bezüglich $d_B$, wenn $(
 	\]
 	Also ist die Zuordnung $f \mapsto \tau \circ \Phi(m_f)$ ein linksinvariantes Mittel auf $\ell^\infty(G)$. 
 \end{beweis}
-
+\todo[inline]{Hier fehlt noch eine komplette Vorlesung!}
+\newpage
 
 % section 5 (end)
 
+\section{Die $K_0$-Gruppe einer unitalen $C^*$-Algebra} % (fold)
+\label{sec:6}
+\todo[inline]{Hier fehlt noch einiges!}
+
+\begin{proposition}[label=prop:66]
+	Sei $A$ eine unitale $C^*$-Algebra.
+	Dann gilt
+	\begin{enumerate}[(i)]
+		\item $K_0(A) = \set*{[p]_0 - [q]_0 \given p,q \in \Pinfty(A)}$
+		\item $\benbrace*{p \oplus q}_0 = [p]_0 + [q]_0$ für $p,q \in \Pinfty(A)$
+		\item $\benbrace*{0_A}_0 = 0_{K_0(A)}$
+		\item Falls $p \perp q \in \Pinfty(A)$, so gilt $\benbrace*{p + q}_0 = \benbrace*{p}_0 + \benbrace*{q}_0$
+	\end{enumerate}
+	Außerdem erfüllt $K_0(A)$ folgende universelle Eigenschaft: Sei $G$ eine abelsche Grupe und $\nu \colon \Pinfty(A) \to G$ eine Abbildung mit
+	\begin{enumerate}[a)]
+		\item $\nu(p +q) = \nu(p) + \nu(q)$
+		\item $\nu(0_A) = 0_G$
+		\item $p \sim_0 q \implies \nu(p)=\nu(q)$
+	\end{enumerate}
+	Dann existiert genau ein Gruppenhomomorphismus $\alpha \colon K_0(A) \to G$, sodass folgendes Diagramm kommutiert
+	\[
+		\begin{tikzcd}
+			\Pinfty(A) \dar["{[\cdot]_0}"] \drar["\nu"] &\\
+			K_0(A) \rar[dashed,"\exists! \alpha"] & G
+		\end{tikzcd}
+	\]
+\end{proposition}
+\begin{beweis}
+	\emph{Folgt aus den bisherigen Erkenntnissen dieses Kapitels.}
+\end{beweis}
+
+\begin{definition}[label=def67,{name=[{stabil äquivalent, homotop, unitär äquivalent}]}]
+	Sei $A$ eine $C^*$-Algebra.
+	\begin{enumerate}[(i)]
+		\item $p,q \in \Pinfty(A)$ heißen \Index{stabil äquivalent}, $p \sim_s q$, falls $r \in \Pinfty(A)$ existiert mit $p \oplus r \sim_0 q \oplus r$.
+		\item $p,q \in \kernedP_n(A)$ heißen \Index{homotop}, $p \sim_h q$, falls $\Phi \colon [0,1] \to \mathcal{P}_n(A)$ stetig existiert mit $\Phi(0)=p$ und $\Phi(1)=q$. 
+		\item $p,q \in \kernedP_n(A)$ heißen \Index{unitär äquivalent}, $p \sim_u q$, falls $u \in \mathcal{U}(M_n(A)^\sim)$ existiert mit $u^* p u = q$.
+	\end{enumerate}
+	$\sim_s$, $\sim_n$ und $\sim_u$ sind Äquivalenzrelationen (warum?).
+\end{definition}
+
+\begin{proposition}[label=prop:68]
+	Sei $A$ eine unitale $C^*$-Algebra.
+	\begin{enumerate}[(i)]
+		\item Für $p,q \in \Pinfty(A)$ gilt: $p \sim_s q \iff p \oplus \ind_m \sim_0 q \oplus \ind_m \iff \benbrace*{p}_0 = \benbrace*{q}_0$ für ein $m \in \mathbb{N}$.
+		\item Für $p,q \in \kernedP_n(A)$ gilt: $p \sim_h q \implies \benbrace*{p}_0 = \benbrace*{q}_0$.
+		\item Für $p,q \in \kernedP_n(A)$ gilt: $p \sim_0 q \implies \begin{psmallmatrix} p &0 \\ 0 & 0 \end{psmallmatrix} \sim_h \begin{psmallmatrix} q &0 \\ 0 & 0 \end{psmallmatrix}$ in $M_{2n}(A)$.
+		\item Für $p,q \in \kernedP_n(A)$ gilt: $p \sim_h q \implies \begin{psmallmatrix} p &0 \\ 0 & 0 \end{psmallmatrix} \sim_h \begin{psmallmatrix} q &0 \\ 0 & 0 \end{psmallmatrix}$ in $M_{2n}(A)$
+	\end{enumerate}
+\end{proposition}
+\begin{beweis}
+	\begin{enumerate}[(i)]
+		\item Nach Definition folgt aus $p \sim_s q$ die Existenz von $r \in \kernedP_m(A)$ mit $p \oplus r \sim_0 q \oplus r$.
+		Damit erhalten nach \todo{ref 6.4}
+		\[
+			p \oplus \ind_m \StackText{\ref{prop:66}}{\sim_0} p \oplus r \oplus (\ind_m -r) \sim_0 q \oplus r \oplus (\ind_m -r) \StackText{\ref{prop:66}}{\sim_0} q \oplus \ind_m
+		\]
+		Wieder nach \todo{ref 6.4} folgt $\benbrace*{p}_0 = \benbrace*{q}_0$ und auch $\benbrace*{p}_D + \benbrace*{e}_D = \benbrace*{q}_D + \benbrace*{e}_D$ für ein $e \in \kernedP_k(A)$.
+		Dann gilt auch $p \oplus e \sim_0 q \oplus e$ und wir haben $p \sim_s q$.
+		\item Sind $p$ und $q$ homotop, so finden wir $p=p_0, p_1, \ldots , p_l=q \in \kernedP_n(A)$ mit $\norm*{p_i - p_{i+1}} < \sfrac{1}{2}$.
+		Wir dürfen also ohne Einschränkungen annehmen, dass $\norm*{p-q} < \sfrac{1}{2}$ ist.
+		Setze $z \coloneqq pq + (\ind_n -p)(\ind_n -q)$, dann gilt $pz = pq = zq$ und
+		\begin{align}
+			\norm*{z- \ind_n} = \norm*{p(q-p) + (\ind_n -p) \enbrace[\big]{(\ind_n -q) -(\ind_n -p)}} &= \norm*{p(q-p) + (\ind_n-p)(p-q)} \\
+			&\le \norm*{p(q-p)} +\norm*{(\ind_n-p)(p-q)} \\
+			&< 1 \norm*{p-q} < 1
+		\end{align}
+		Mit der von-Neumann-Reihe folgt, dass $z$ invertierbar ist und somit $z=u \cdot \abs*{z}$ für ein $u \in \mathcal{U}(M_n(A))$.
+		Also ist 
+		\[
+			q= z^{-1}zq = z^{-1}pz = \abs*{z}^{-1} u* p u \abs*{z}  \stackrel{q=q^*}{=\joinrel=} \abs*{z} u^* p u \abs*{z}^{-1}  
+		\]
+		Es folgt $\abs*{z}^2 u^* p u \abs*{z}^{-2} = u^+ p u$ und somit $\abs*{z}^2 u^* p u = u^* p u \abs*{z}^2$.
+		Daraus erhalten wir $\benbrace{\abs*{z}^2, u^*p u }=0$ und somit auch $\benbrace*{\abs*{z},u^*pu} =0$ (warum?).
+		Also git $q = u^* p u$, also $q \sim_u p \implies q \sim_0 p$.
+		\item Sei $v \in M_n(A)$ mit $p=v^*v$, $q=vv^*$.
+		Wir setzen 
+		\[
+			u \coloneqq \begin{pmatrix}
+				v & \ind - q \\
+				\ind -p & v
+			\end{pmatrix} \quad, \quad 
+			w \coloneqq \begin{pmatrix}
+				q & \ind -q \\
+				\ind -q & q
+			\end{pmatrix} \in \mathcal{U} \enbrace*{M_{2n}(A)}
+		\]
+		Die Eigenschaft unitär zu sein, rechnet man leicht nach.
+		Es gilt
+		\begin{align}
+			w u \begin{pmatrix} p & 0 \\ 0 & 0 \end{pmatrix} u^* w^* = w \begin{pmatrix} q & 0 \\ 0 & 0 \end{pmatrix}w^* = \begin{pmatrix} q & 0 \\ 0 & 0 \end{pmatrix}
+		\end{align}
+		Also gilt $\begin{psmallmatrix} p & 0 \\ 0 & 0 \end{psmallmatrix} \sim_u \begin{psmallmatrix} q & 0 \\ 0 & 0 \end{psmallmatrix}$.
+		\item Aus $u^*pu=q$ folgt 
+		\[
+			\Underbracket{\begin{pmatrix}
+				u^* & 0 \\ 0 & \ind
+			\end{pmatrix} \begin{pmatrix}
+				p & 0 \\ 0 & 0
+			\end{pmatrix} \begin{pmatrix}
+				u & 0 \\ 0 & \ind
+			\end{pmatrix}}{\sim_h \begin{psmallmatrix}
+				\ind & 0 \\ 0 & u^*
+			\end{psmallmatrix} \begin{psmallmatrix}
+				p & 0 \\ 0 & 0
+			\end{psmallmatrix} \begin{psmallmatrix}
+				\ind & 0 \\ 0 & u
+			\end{psmallmatrix}} = \begin{pmatrix}
+				q & 0 \\0 & 0
+			\end{pmatrix} \in M_{2n}(A) \qedhere
+		\]
+	\end{enumerate}
+\end{beweis}
+
+\begin{bemerkung}[label=bem:69]
+	\begin{enumerate}[a)]
+		\item Der Beweis von (ii) funktioniert auch mit $A^\simm$, falls $A$ nicht unital ist.
+		\item In (ii) kann man auch zeigen, dass $\sigma(p qp) \subset [0,\sfrac{1}{4}] \cup [\sfrac{3}{4},1]$, falls $\norm*{p-q} < \sfrac{1}{4}$ (?).
+		Es gilt: 
+		\[
+			\forall \varepsilon>0 : \exists \delta>0 : p,q \in \mathcal{P}(A), \norm*{p-q}<\delta \implies \exists u \in \mathcal{U}(A^\simm) : u^* pu = q , \norm*{u-\ind} < \varepsilon
+		\]
+		Die Abhängigkeit $\delta(\varepsilon)$ lässt sich explizit angeben.
+	\end{enumerate}
+\end{bemerkung}
+
+% section 6 (end)
 
 
 \cleardoubleoddemptypage
