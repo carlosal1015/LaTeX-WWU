@@ -1,0 +1,902 @@
+%%% Vorlesung 2.6.16 - 13.6.16
+
+Wir betrachten das Anfangswertproblem
+
+\[
+	\begin{cases}
+		u_t(t,x) - \Delta u(t,x) = f, &\text{ in }\Omega_T\\
+		u = g, &\text{ auf }\partial_p \Omega_T
+	\end{cases}
+\]
+
+\begin{korollar}[Eindeutigkeit]
+	Sei $\Omega$ eine beschränkte, offene Teilmenge des $\mathbb{R}^n$, $T>0$ und \\ $u,v \in C_1^2(\Omega_T) \cap C^0(\Omega_T)$ sodass
+	\[
+		\begin{cases}
+			u_t- \Delta u = v_t - \Delta \Delta v, &\text{ in }\Omega_T\\
+			u = v ,&\text{ auf } \partial_p \Omega_T
+		\end{cases}
+	\]
+	Dann gilt \[
+		u \equiv v
+	\]
+\end{korollar}
+\begin{beweis}
+	Sei $w:= v-u$. Dann gilt $w=0$ auf $ \partial_p \Omega_T$ damit gilt
+	\[
+		\max_{ \partial_p \Omega_T} w = \min_{ \partial_p \Omega_T} w = 0
+	\]
+	Damit ist $w$ kalorisch und mit dem Maximumsprinzip, angewandt auf $-w$ und $w$ folgt
+	\[
+		\max_{\bar{\Omega_T}} w = \min_{\bar{\Omega_T}} w = 0
+	\]
+	und somit
+	\[
+		w \equiv 0 \qquad \text{ in } \Omega_T.
+	\]
+\end{beweis}
+
+\subsection{Darstellungsformel von Lösungen im Ganzraumfall $\Omega_T = \mathbb{R}^{+} \times \mathbb{R}^n$} 
+\label{sub:darstellungsformel_von_losungen_im_ganzraumfall_omega_t_mathbb_r_times_mathbb_r_n}
+Wir betrachten nun das Anfangswertproblem 
+\[
+	\begin{cases}
+		u_t - \Delta u = f , &\text{ in }(0,\infty) \times \mathbb{R}^n,\\
+		u = g, &\text{ auf } \set{0} \times \mathbb{R}^n,
+	\end{cases}
+\]
+aufgeteilt mit $u = u_1 + u_2$ in 
+\[
+	(1)\begin{cases}
+		{u_1}_t - \Delta u_1 = 0, &\text{ in }\mathbb{R}^{+} \times \mathbb{R}^n\\
+		u_1 = g, &\text{ auf} \set{0} \times \mathbb{R}^n
+	\end{cases}
+\]
+\[
+	(2)\begin{cases}
+		{u_2}_t - \Delta u_2 = f, &\text{ in }\mathbb{R}^{+} \times \mathbb{R}^n\\
+		u_2 = 0, &\text{ auf} \set{0} \times \mathbb{R}^n
+	\end{cases}
+\]
+
+\begin{satz}
+	Sei $g \in L^p(\mathbb{R}^n)$ für ein $p \in [1, \infty]$. Dann ist die Funktion $u: \mathbb{R}^{+} \times \mathbb{R}^n \to \mathbb{R}$, die definiert ist durch
+	\[
+		u(t,x) := (\psi(t,\cdot)*g)(x) = \int_{\mathbb{R}^n}^{} \psi(t,x-y)g(y) \,\mathrm{d}y, 
+	\]
+	wobei $\psi$ die Fundamentallösung der Wärmeleitungsgleichung ist, von der Klasse \\ $C^{\infty}(\mathbb{R}^{+} \times \mathbb{R}^n)$ und erfüllt die Wärmeleitungsgleichung auf $\mathbb{R}^{+}\times \mathbb{R}^n$.
+\end{satz}
+\begin{beweis}
+	Betrachte
+	\[
+		y \mapsto \psi(t,x-y) \in L^q(\mathbb{R}^n) \qquad \forall\, t>0,\,\, y \in \mathbb{R}^n, \,\, \forall\, q \in [1,\infty].	
+	\]
+	Es gilt
+	\[
+		\int_{\mathbb{R}^n}^{} \abs{ \psi(t,x-y)g(y)} \,\mathrm{d}y \stackrel{\text{Hölder}}{\leq} \norm{\psi}_{L^q(\mathbb{R}^n)} \norm{g}_{L^p(\mathbb{R}^n)}
+	\]
+	und damit ist
+	\[
+		y \mapsto \psi(t,x-y)g(y)
+	\]
+	integrierbar auf $\mathbb{R}^n$, für alle $t>0$, $x \in \mathbb{R}^n$. Damit ist $u$ wohldefiniert. Nun beweisen wir, dass $u \in C^{\infty}(\mathbb{R}^{+} \times \mathbb{R}^n)$. Es gilt
+	\begin{itemize}
+		\item $\psi \in C^{\infty}(\mathbb{R}^+ \times \mathbb{R}^n)$
+		\item $\partial_t^k D_x^{\alpha}u(t,\cdot) \in L^q(\mathbb{R}^n), \qquad \forall\,  k \in \mathbb{N}, \alpha \in \mathbb{N}^n, \qquad \forall\,  q \in [1,\infty]$
+	\end{itemize}
+	Also ist
+	\[
+		y \mapsto \underset{\in L^q(\mathbb{R}^n)}{\underbrace{\partial_t^k D^{\alpha}_x \psi(t,x-y) }}\underset{\in L^p(\mathbb{R}^n)}{\underbrace{g(y)}}
+	\]
+	integrierbar auf $\mathbb{R}^n$, mit $\alpha \in \mathbb{N}^n, t>0, x \in \mathbb{R}^n$. Damit kann die Ableitung reingezogen werden und
+	\[
+		\partial_t^k D_x^{\alpha} u(t,x) = \int_{\mathbb{R}^n}^{} \partial_t^k D_x^{\alpha} \psi(t,x-y)g(y) \,\mathrm{d}y,
+		\qquad \forall\, k \in \mathbb{N},\, \alpha \in \mathbb{N}^n
+	\]
+	Und somit
+	\[
+		u_t(t,x) - \Delta u(t,x) = \int_{\mathbb{R}^n}^{} \underset{=0}{\underbrace{(\psi_t(t,x-y) - \Delta_x \psi(t,x-y))}}g(y) \,\mathrm{d}y.
+	\]
+	Damit ist $u$ eine Lösung der Wärmeleitungsgleichung.
+\end{beweis}
+
+\begin{satz}
+	Bezeichnet $u$ die Funktion aus Satz $3.10$ mit $g \in C^{\infty}(\mathbb{R}^n) \cap L^{\infty}(\mathbb{R}^n)$, so gilt die folgende Konvergenz:
+	\[
+		\lim_{(t,x) \to (0,x_0)} u(t,x)=g(x_0), 
+	\]
+	für alle $x_0 \in \mathbb{R}^n$.
+\end{satz}
+\begin{beweis}
+	Sei $x_0 \in \mathbb{R}^n$, $\varepsilon >0$, $\delta >0$:
+	\[
+		\abs{g(x_0)-g(y)} < \varepsilon, \qquad \forall\, y: \abs{y-x_0} < \delta 
+	\]
+	Wir wollen nun $\abs{u(t,x)-g(x_0)} \to 0$ für $(t,x) \to (0,x_0)$. \\
+	Für $x \in B_{\frac{\delta }{2}}$ gilt
+	\begin{align*}
+		\abs{u(t,x)-g(x_0)} &= \abs{\int_{\mathbb{R}^n}^{} \abs{\psi(t,x-y)(g(y)-g(x_0))} \,\mathrm{d}y} \\
+		&\leq \int_{\mathbb{R}^n}^{} \abs{\psi(t,x-y)(g(y)-g(x_0))} \,\mathrm{d}y \\
+		&\leq \int_{B_{\varepsilon}(x_0)}^{} \psi(t,x-y) \abs{g(y)-g(x_0)} \,\mathrm{d}y \\
+		& \qquad \qquad + \int_{\mathbb{R}^n \setminus B_{\delta }(x_0)}^{} \abs{ \psi(t,x-y) (g(y)-g(x_0))} \,\mathrm{d}y \\
+		& \leq \varepsilon \underset{=1}{\underbrace{\int_{\mathbb{R}^n}^{} \psi(t,x-y) \,\mathrm{d}y}} 
+		+ \int_{\mathbb{R}^n \setminus B_{\delta }(x_0)}^{} \psi(t,x-y)\abs{g(y)-g(x_0)} \,\mathrm{d}y \\
+		&\leq  \varepsilon + 2 \norm{g}_{L^{\infty}(\mathbb{R}^n)} \int_{\mathbb{R}^n \setminus B_{\delta }(x_0)}^{} \psi(t,x-y) \,\mathrm{d}y
+	\end{align*}
+	Betrachte nun, dass wegen $\abs{y-x_0} > \delta$ und \marginpar{???}
+	\[
+		\abs{y-x_0} \leq \abs{y-x} + \abs{x-x_0} \leq \abs{y-x}+ \frac{\delta }{2} < \abs{y-x} + \frac{1}{2}\abs{y-x}
+	\]
+	\[
+		\frac{1}{2} \abs{y-x_0}< \abs{y-x}
+	\]
+	Weiter gilt
+	\begin{align*}
+		\int_{\mathbb{R}^n \setminus B_{\delta }(x_0)}^{} \psi(t,x-y) \,\mathrm{d}y 
+		&= \frac{1}{(4 \pi t)^{\frac{n}{2}}} \int_{\mathbb{R}^n \setminus B_{\delta }(x_0)} e^{\frac{-\abs{x-y}^2}{4t^2}} \,\mathrm{d}y \\
+		&\leq \frac{1}{(4 \pi t)^{\frac{n}{2}}} \int_{\mathbb{R}^n \setminus B_{\delta }(x_0)}^{} e^{\frac{-\abs{y-x_0}^2}{16t^2}} \,\mathrm{d}y
+	\end{align*}
+	Wir wenden nun die Transformation $z:= \frac{y-x_0}{\sqrt{t}}$ an und erhalten
+	\[
+		\int_{\mathbb{R}^n \setminus B_{\delta }(x_0)}^{} \psi(t,x-y) \,\mathrm{d}y= \frac{1}{(4 \pi t)^{\frac{n}{2}}} 
+		\int_{\mathbb{R}^n \setminus B_{\frac{\delta }{\sqrt{t}}}(0)}^{} e^{- \frac{\abs{z}^2}{16}} \,\mathrm{d}z \, (t)^{\frac{n}{2}}.
+	\]
+	Da $e^{- \frac{\abs{z}^2}{16}}$ integrierbar über $\mathbb{R}^n$ ist, gilt 
+	\[
+		\int_{\mathbb{R}^n \setminus B_{\frac{\delta }{\sqrt{t}}}(0)}^{} e^{- \frac{\abs{z}^2}{16}} \,\mathrm{d}z \stackrel{t \to 0^+}{\to } 0
+	\]
+	Damit finden wir $\tilde \delta >0$, so dass 
+	\[
+		\int_{\mathbb{R}^n \setminus B_{\frac{\tilde \delta }{\sqrt{t}}}(0)}^{} e^{- \frac{\abs{z}^2}{16}} \,\mathrm{d}z < \varepsilon,
+		 \qquad \forall\, t \in (0,\tilde \delta ]
+	\]
+	Und somit
+	\[
+		\abs{u(t,x)-g(x_0)} \leq 2 \varepsilon, \qquad \forall\, x \in B_{\frac{\delta }{2}(x_0)}, \,t \in (0, \tilde \delta]
+	\]
+	\[
+		\Rightarrow \lim_{\substack{t \to 0^+ \\ x \to x_0}} \abs{u(t,x)-g(x_0)} = 0.
+	\]
+	Damit ist
+	\[
+		u(t,x)= \int_{\mathbb{R}^n}^{} \psi(t,x-y)g(y) \,\mathrm{d}y
+	\]
+	eine Lösung von dem Anfangswertproblem $(1)$.
+\end{beweis}
+\begin{satz}[Duhamelsches Prinzip]
+	Sei $f \in C_1^2(\mathbb{R}^{+} \times \mathbb{R}^n)$ mit $\supp(f) \subset \subset [0,\infty] \times \mathbb{R}^n$. Dann ist die Funktion $u : \mathbb{R}^{+} \times \mathbb{R}^n \to \mathbb{R}$, die definiert ist durch
+	\[
+		u(t,x)= \int_{0}^{t} \int_{\mathbb{R}^n}^{} \psi(t-s,x-y)f(s,y) \,\mathrm{d}y \,\mathrm{d}s
+	\]
+	von der Klasse $C_1^2(\mathbb{R}^{+} \times \mathbb{R}^n) \cap C^0([0,\infty)\times \mathbb{R}^n)$ und erfüllt
+	\begin{enumerate}[(i)]
+		\item $u_t- \Delta u =f$ in $\mathbb{R}^{+} \times \mathbb{R}^n$
+		\item $\lim\limits_{(x,t) \to (x_0,0)}=0$ für alle $x_0 \in \mathbb{R}^n$
+	\end{enumerate}
+	Dies bedeutet, dass $u$ eine Lösung von $(2)$ ist.
+\end{satz}
+\begin{beweis}
+	Es gilt
+	\[
+		u(t,x)= \int_{0}^{t} \int_{\mathbb{R}^n}^{} \psi(s,y)f(t-s,x-y) \,\mathrm{d}y \,\mathrm{d}s
+	\]
+	Die Leipnitzregel für Parameterintegrale besagt:
+	\[
+		\diffd{}{t} \int_{a(t)}^{b(t)} g(t,x) \,\mathrm{d}x = \int_{a(t)}^{b(t)} g_t(t,x) \,\mathrm{d}x + g(t,b(t))b(t) - g(t,a(t))a(t).
+	\]
+	Somit
+	\begin{align*}
+		u_t(t,x) &= \int_{0}^{t} \int_{\mathbb{R}^n}^{} \psi(s,y)f_t(t-s,x-y) \,\mathrm{d}y \,\mathrm{d}s +
+		\int_{\mathbb{R}^n}^{}\psi(t,y)f(0,x-y) \,\mathrm{d}y \\
+		\diff{^2u(t,x)}{x_i \partial x_j} &= \int_{0}^{t} \int_{\mathbb{R}^n}^{} \psi(s,y) \partial_{x_i} \partial_{x_j} f(t-s,x-y) \,\mathrm{d}y \,\mathrm{d}s
+	\end{align*}
+	und damit $u \in C^2_1(\mathbb{R}^{+} \times \mathbb{R}^n)$. 
+	Für die $C^0([0,\infty)\times \mathbb{R}^n)$-Regularität müssen wir die stetige Fortsetzbarkeit für $t \to 0^+$ durch $0$ nachweisen. \\
+	Es gilt
+	\[
+		\abs{u(t,x)} \leq  \int_{0}^{t} \underset{=1}{\underbrace{\int_{\mathbb{R}^n}^{} \psi(s,y) \,\mathrm{d}s}} \,\mathrm{d}y \, \norm{f}_{L^{\infty}(\mathbb{R}^n)} 
+		\leq t \norm{f}_{L^{\infty}(\mathbb{R}^n)} \stackrel{t \to 0}{\to} 0
+	\]
+	Damit folgt $u \in C^0([0,\infty) \times \mathbb{R}^n)$ und damit auch (ii). Wir beweisen nun noch (i). \\
+	Für $\varepsilon \in (0,t)$ gilt
+	\begin{align*}
+		u_t(t,x)- \Delta u(t,x) &= \int_{0}^{t} \int_{\mathbb{R}^n}^{} \psi(s,y)(\underset{=-f_s(t-s,x-y)}{\underbrace{f_t(t-s,x-y)}} 
+		+ \underset{=-\Delta_y f(t-s,x-y)}{\underbrace{ \Delta_x f(t-s,x-y))}} \,\mathrm{d}y \,\mathrm{d}s \\
+		& \qquad \qquad + \int_{\mathbb{R}^n}^{} \psi(t,y) f(0,x-y) \,\mathrm{d}y \\
+		&= \int_{0}^{\varepsilon} \int_{\mathbb{R}^n}^{} \psi(s,y) (-f_s(t-s,x-y) - \Delta_y f(t-s,x-y)) \,\mathrm{d}y \,\mathrm{d}s \\
+		& \qquad + \int_{\varepsilon}^{t} \int_{\mathbb{R}^n}^{} \psi(s,y) (-f_s(t-s,x-y) - \Delta_y f(t-s,x-y)) \,\mathrm{d}y \,\mathrm{d}s \\
+		& \qquad + \int_{\mathbb{R}^n}^{} \psi(t,y)f(0,x-y) \,\mathrm{d}y \\
+		&=: A_{\varepsilon} B _{\varepsilon} + C.
+	\end{align*}
+	Zunächst gilt 
+	\[
+		\abs{A _{\varepsilon}} \leq ( \underset{=:C'}{\underbrace{\norm{f_s}_{L^{\infty}(\mathbb{R}^{+} \times \mathbb{R}^n)} +
+		 \norm{D^{\alpha}f}_{L^{\infty}(\mathbb{R}^{+} \times \mathbb{R}^n)}}}) \cdot \int_{0}^{\varepsilon} \int_{\mathbb{R}^n}^{} 
+		 \psi(s,y) \,\mathrm{d}s \,\mathrm{d}y = \varepsilon C' \stackrel{\varepsilon \to 0}{\to } 0
+	\]
+	und außerdem mit partieller Integration und Leipnizregel
+	\begin{align*}
+			B _{\varepsilon} &= \int_{\varepsilon}^{t} \int_{\mathbb{R}^n}^{}
+		 (\underset{\substack{=0, \\ \text{da $u$ kalorisch}}}{\underbrace{ \partial_s \psi(s,y) - \Delta \psi(s,y)}})
+		 f(t-s,x-y) \,\mathrm{d}y \,\mathrm{d}s \\ & \qquad - \int_{\mathbb{R}^n}^{} \psi(t,y) f(0,x-y) \,\mathrm{d}y 
+		 + \int_{\mathbb{R}^n}^{} \psi(\varepsilon,y)f(t-\varepsilon,x-y) \,\mathrm{d}y \\
+		 &= -C + \int_{\mathbb{R}^n}^{} \psi(\varepsilon,y)(f(t-\varepsilon,x-y)-f(t,x-y)) \,\mathrm{d}y \\
+		 & \qquad + \int_{\mathbb{R}^n}^{} \psi(\varepsilon,y)(f(t,x-y)) \,\mathrm{d}y.
+	\end{align*}
+	Insgesamt erhalten wir
+	\begin{align*}
+		u_t - \Delta u &= \lim_{\varepsilon \to 0} ( \underset{=(I)}{\underbrace{\int_{\mathbb{R}^n}^{} \psi(\varepsilon,y)(f(t-\varepsilon,x-y)-f(t,x-y)) 
+		\,\mathrm{d}y}} \\ & \qquad \underset{=(II)}{\underbrace{\int_{\mathbb{R}^n}^{} \psi(\varepsilon,x-y) f(t,y) \,\mathrm{d}y}} ).
+	\end{align*}
+	\[
+		(I) \leq sup_{z \in \mathbb{R}^n} \abs{f(t-\varepsilon,z)-f(t,z)} \to 0
+	\]
+	für $\varepsilon \to 0$, da $f$ gleichmäßig stetig ist. Und wegen Satz $3.11$ gilt
+	\[
+		(II) \to f(t,x)
+	\]
+	Insgesamt ergibt dies die Behauptung
+\end{beweis}
+\begin{satz}[Allgemeine Lösungsformel]
+	Seien $g \in C^0(\mathbb{R}^n) \cap L^{\infty}(\mathbb{R}^n)$ und \\ $f \in C_1^2([0,\infty]\times \mathbb{R}^n)$ mit $\supp(f) \subset \subset [0,\infty) \times \mathbb{R}^n$. Dann ist die Funktion $u: \mathbb{R}^{+} \times \mathbb{R}^n \times \mathbb{R}^n \to \mathbb{R}$, definiert durch
+	\[
+		u(t,x)= \int_{\mathbb{R}^n}^{} \psi(t,x-y)g(y) \,\mathrm{d}y + \int_{0}^{t}\int_{\mathbb{R}^n}^{} \psi(t-s,x-y)f(s,y) \,\mathrm{d}y \,\mathrm{d}s
+	\]
+	von der Klasse $C_1^2(\mathbb{R}^{+} \times \mathbb{R}^n) \cap C^0(\mathbb{R}^{+} \times \mathbb{R}^n)$ und erfüllt das Anfangswertproblem
+	\[
+		\begin{cases}
+			u_t- \Delta u =f, &\text{ in }\mathbb{R}^{+} \times \mathbb{R}^n\\
+			u = g, &\text{ auf } \set{0} \times \mathbb{R}^n
+		\end{cases}
+	\]
+\end{satz}
+%%% neue Vorlesung
+
+Energiemethode 
+\[
+	\begin{cases}
+		u_t - \Delta u = f, &\text{ in }\Omega_T, f \in C^0(\Omega_T), g \in C^0(\partial_p \Omega_T), T >0\\
+		u = g ,&\text{ auf } \partial_p \Omega_T, \Omega \subseteq \mathbb{R}^n \text{ offen, beschränkt und mit $C^1$-Rand}
+	\end{cases}
+\]
+\begin{satz}
+	Seien $u,v$ zwei $C^2(\overline{\Omega_T})$ Lösungen von (P). Dann gilt $u \equiv v$.
+\end{satz}
+\begin{beweis}
+	$w:= u -v$. Dann gilt 
+	\[
+		(P)'\begin{cases}
+			w_t -\Delta w = 0, &\text{ in }\Omega_T\\
+			w = 0, &\text{ auf } \partial_p \Omega_T
+		\end{cases}
+	\]
+	Sei
+	\[
+		e(t):= \int_{\Omega}^{} w^2(t,x) \,\mathrm{d}x, \qquad \forall\, t \in [0,T].
+	\]
+	Betrachte
+	\begin{align*}
+		\diffd{e(t)}{t} & \stackrel{\hphantom{(P)'}}{=} \int_{\Omega}^{} 2 w(t,x) w_t(t,x) \,\mathrm{d}x  \\
+		&\stackrel{(P)'}{=} 2 \int_{\Omega}^{} w(t,x) \Delta w(t,x) \,\mathrm{d}x \\
+		&\stackrel{\text{P.I.\hphantom{...}}}{=} -2 \int_{\Omega}^{}  \nabla  w(t,x) \cdot  \nabla w(t,x) \,\mathrm{d}x \\
+		&\stackrel{\hphantom{(P)'}}{=} 2 \int_{\Omega}^{} \abs{ \nabla w(t,x)}^2 \,\mathrm{d}x \leq 0
+	\end{align*}
+	Damit ist $e(t)$ monoton fallend und so folgt
+	\[
+		e(t) \leq e(0), \qquad \forall\, t \in [0,T].
+	\]
+	\begin{align*}
+		& \qquad e(0) = \int_{\Omega}^{} w^2(0,x) \,\mathrm{d}x \stackrel{\substack{\text{Rand-}\\\text{bedingung}}}{=} 0 \\
+		\Rightarrow& \qquad 0 \leq e(t) \leq 0 \\
+		\Rightarrow & \qquad  e(t) = 0, \qquad \forall\, t \\
+		\Rightarrow & \qquad  w \equiv 0  
+	\end{align*}
+\end{beweis}
+
+\section{Die Wellengleichung (linear, hyperbolisch)} 
+\label{sec:die_wellengleichung_linear_hyperbolisch}
+
+Für $t>0$, $x \in \Omega$ und $\Omega \subseteq \mathbb{R}^n$ offen lautet die homogene Wellengleichung
+\[
+	u_{tt} - \Delta u = 0.
+\]
+Die inhomogene hingegen
+\[
+	u_{tt} - \Delta u = f,
+\]
+wobei $u = u(t,x)$ und $ \Delta u = \Delta_x u$. \\
+Betrachte das Problem
+
+\[
+	(P) \,\, \begin{cases}
+		u_{tt} - \Delta u = 0, &\text{ in }(0,\infty) \times \mathbb{R}^n\\
+		u = g, \,\, u_t = h ,&\text{ auf } \set{0} \times \mathbb{R}^n \\
+		u(0,x) = g(x), \,\, u_t(0,x) = h(x) ,&\text{ für } x \in \mathbb{R}^n
+	\end{cases}
+\]
+
+ \subsection{Darstellungsformel für die Lösung im Grenzfall $(0,\infty) \times \mathbb{R}^n$} 
+ \label{sub:darstellungsformel_fur_die_losung_im_grenzfall}
+
+Für $n=1$ betrachten wir
+\[
+	(P) \,\, \begin{cases}
+		u_{tt}- u_{xx} = 0, &\text{ in }(0,\infty) \times \mathbb{R}\\
+		u(0,x) = g(x), \,\,u_t(0,x) = h(x) ,&\text{ für } x \in \mathbb{R}
+	\end{cases}
+\]
+
+\begin{align*}
+u \text{ ist eine Lösung von (P)} &\Leftrightarrow u_{tt}-u_{xx}=0 + \text{RB} \\
+& \Leftrightarrow ( \partial_t + \partial_x)( \partial_t - \partial_x)u = 0 + \text{RB} \\
+& \Rightarrow \begin{cases}
+	\partial_t v + \partial_x v =0, &\text{ für }t>0, x \in \mathbb{R}\\
+	v(0,x)= (h-g')(x), &\text{ für }x \in \mathbb{R}
+\end{cases}(*)
+\end{align*} 
+Dies ist die homogene Transportgleichung in einer Raumdimension.
+
+\begin{satz}[Transportgleichung]
+	Seien $b \in \mathbb{R}^n$. $ \tilde f \in C^1( (0, \infty) \times \mathbb{R}^n)$ und \\ $ \tilde g \in C^1((0,\infty) \times \mathbb{R}^n)$. Das Anfangswertproblem für die inhomogene Transportgleichung
+	\[
+		\begin{cases}
+			u_t + b \cdot  \nabla u = \tilde f, &\text{ in }(0,\infty) \times \mathbb{R}^n\\
+			u = \tilde g, &\text{ auf } \set{0} \times \mathbb{R}^n
+			
+		\end{cases}
+	\]
+	bestitzt eine eindeutige Lösung in $C^1((0,\infty) \times \mathbb{R}^n)$ die gegeben ist durch
+	\[
+		u(t,x) = \tilde g(x-tb) + \int_{0}^{t} \tilde f(s,x+(s-t)b) \,\mathrm{d}s
+	\]
+\end{satz}
+\begin{beweis}
+	Blatt 2, Aufg 3.
+\end{beweis}
+Aus (*) und Satz $4.1$ folgt bei $b = 1$
+\[
+	v(t,x) = (h-g')(x-t) 
+\]
+für $t>0$ und $x \in \mathbb{R}^n$. Also
+\[
+	v(t,x) = \partial_t v(t,x) - \partial_x v(t,x) = h(x-t) - g'(x-t)
+\]
+für $t>0$, $x \in \mathbb{R}$, $u(0,x) = g(x)$ für $x \in \mathbb{R}$.
+Dies ist die inhomogene Transportgleichung in einer Raumdimension. \\
+Aus Satz $4.1$ folgt bei $b = -1$
+\begin{align*}
+	u(t,x) &= g(x+t) + \int_{0}^{t}(h(\underset{\tilde s := x -2s + t}{\underbrace{x-(s-t)-s}}) - g'(x-(s-t)-s)) \,\mathrm{d}s \\
+	&= g(x+t) - \frac{1}{2} \int_{x-t}^{x+t} h(\tilde s) \,\mathrm{d}\tilde s - \frac{1}{2} \int_{x-t}^{x+t} g'(\tilde s) \,\mathrm{d} \tilde s \\
+	&= g(x+t) + \frac{1}{2} \int_{x-t}^{x+t} h(\tilde s) \,\mathrm{d}\tilde s + \frac{1}{2} (g(x-t)-g(x+t))
+\end{align*}
+Es folgt
+\[
+	u(t,x) = \frac{1}{2} (g(x+t)+ g(x-t)) + \frac{1}{2} \int_{x-t}^{x+t}h(\tilde s) \,\mathrm{d}\tilde s
+\]
+Dies ist die d'Alembertsche Formel.
+\begin{satz}
+	Seien $g \in C^2(\mathbb{R})$, $h \in C^1(\mathbb{R})$ und $u: [0, \infty) \times \mathbb{R} \to  \mathbb{R}$ definiert durch
+	\[
+		u(t,x)= \frac{1}{2} (g(x+t)+ g(x-t))+ \frac{1}{2} \int_{x-t}^{x+t} h(s) \,\mathrm{d}s
+	\]
+	Dann gelten
+	\begin{enumerate}[(i)]
+		\item $u$ ist von der Klasse $C^2((0,\infty) \times \mathbb{R})$ 
+		\item $u$ löst die homogene Wellengleichung auf $(0,\infty) \times \mathbb{R}$
+		\item $u=g$ und $u_t = h$ auf $\set{0} \times \mathbb{R}$ (und $u$ ist damit die eindeutige Lösung von (P) für $n=1$)
+	\end{enumerate}
+\end{satz}
+\begin{bemerkung}
+	\begin{enumerate}[(i)]
+		\item Die Lösung $u$ ist von der Form
+		\[
+			u(t,x) = u_1(x+t) + u_2(x-t)
+		\]
+		für $u_1, u_2 \in C^2((0,\infty) \times \mathbb{R})$, besteht also aus eine nach links und einer nach rechts laufenden Welle. Jede Funktion $u$ dieser Form löst
+		die homogene Wellengleichung. Damit setzt sich die allgemeine Lösung der Wellengleichung für $n=1$ immer aus Lösungen der beiden Gleichungen erster Ordnung 
+		\begin{align*}
+			\partial_t u_1 + \partial_x u_1 &= 0 \\
+			\partial_t u_2 + \partial_x u_2 &= 0 
+		\end{align*}
+		zusammen.
+		\item Es gibt keinen Regularisierungseffekt der Wellengleichung (im Gegensatz zur Laplace- oder Wärmeleitungsgleichung). Für $g \in C^2$ und $h \in C^1$ ist 
+		$u$ lediglich von der Klasse $C^2([0, \infty] \times \mathbb{R})$, aber nicht "besser".
+	\end{enumerate}
+\end{bemerkung}
+\begin{korollar}
+	Seien $g \in C^2([0, \infty))$ mit $g''(0)=0 = g(0)$ und $h \in C^1([0,\infty))$ mit $h(0)=0$. Dann ist die Funktion $u$, definiert durch 
+	\[
+		u(t,x) = \begin{cases}
+			\frac{1}{2}(g(x+t)+g(x-t)) + \frac{1}{2} \int_{x-t}^{x+t}h(s) \,\mathrm{d}s, &\text{ falls } x \geq t \geq 0\\
+			\frac{1}{2}(g(x+t)-g(x-t)) + \frac{1}{2} \int_{t-x}^{x+t}h(s) \,\mathrm{d}s, &\text{ falls } t \geq x \geq 0
+		\end{cases}
+	\]
+	die eindeutige $C^2([0,\infty) \times \mathbb{R})$- Lösung von 
+	\[
+		u_{tt}- u_{xx} = 0 \text{ in } [0, \infty) \times (0,\infty), \qquad u(0,x) = g(x)
+	\]
+	\[
+		u_t(0,x) = h(x), \qquad x \in (0, \infty), \qquad u(t,0) = 0, \qquad t \geq 0
+	\]
+\end{korollar}
+\begin{beweis}
+
+Wir setzen $g$, $h$ durch ungerade Spiegelung fort, d.h wir definieren
+\[
+	\bar{g} (x) = \begin{cases}
+		g(x), &\text{ für }x > 0,\\
+		-g(-x), &\text{ für }x <0
+		
+	\end{cases}
+\]
+\[
+	\bar{h} (x) = \begin{cases}
+		h(x), &\text{ für }x \geq 0,\\
+		-h(-x), &\text{ für }x <0
+		
+	\end{cases}
+\]
+Es ist
+\[
+	\bar{g} (0) = \lim_{x \to 0^-} \bar{g} (x) = 0 \qquad \Rightarrow \qquad \bar{g} \in C^0(\mathbb{R})
+\]
+\[
+	\bar{g}'(x) = \begin{cases}
+		g'(x), &\text{ für }x \geq 0\\
+		g'(-x), &\text{ für }x <0
+		
+	\end{cases} \qquad \Rightarrow \qquad g' \in C^0(\mathbb{R}),
+\]	
+Es folgt
+\[
+	\bar{g}'' \in C^0(\mathbb{R}) \qquad \Rightarrow \qquad \bar{g} \in C^2(\mathbb{R}), \qquad h \in C^1(\mathbb{R}).
+\]
+\[
+	\Rightarrow u(t,x) = \frac{1}{2} (\bar{g} (x+t) + \bar{g}(x-t)) + \frac{1}{2} \int_{x-t}^{x+t} \bar{h}(s) \,\mathrm{d}s
+\]
+ist eine Lösung von $u_{tt}- u_{xx} =0$ in $(0,\infty) \times \mathbb{R}$ und somit auch in $(0, \infty) \times (0, \infty)$. \\
+Für $x \geq 0$ betrachten wir zwei Fälle
+\begin{align*}
+	x-t \geq 0 & \Leftrightarrow x \geq t \geq 0 \\
+	& \Rightarrow u(t,x)= \frac{1}{2} (g(x+t) + g(x-t)) + \frac{1}{2} \int_{x-t}^{x+t} h(s) \,\mathrm{d}s
+\end{align*}
+\begin{align*}
+	x-t \leq  0 & \Leftrightarrow t \geq x \geq 0 \\
+	& \Rightarrow u(t,x)= \frac{1}{2} (g(x+t) - g(x-t)) + \frac{1}{2} \int_{x-t}^{x+t} \bar{h}(s) \,\mathrm{d}s
+\end{align*}
+Außerdem gilt
+\begin{align*}
+	\frac{1}{2} \int_{x-t}^{x+t} \bar{h}(s) \,\mathrm{d}s &= \frac{1}{2} \left( \int_{0}^{x+t}\bar{h}(s) \,\mathrm{d}s + \int_{x-t}^{0} \bar{h} \,\mathrm{d}s \right)
+	\\ &= \frac{1}{2} \left( \int_{0}^{x+t}h(s) \,\mathrm{d}s + \int_{x-t}^{0}h(-s) \,\mathrm{d}s \right) \\ &= \frac{1}{2} \int_{t-x}^{x+t}h(s) \,\mathrm{d}s
+\end{align*}
+\[
+	u(t,0) = \frac{1}{2} (g(t) -g(t)) = 0
+\]
+\end{beweis}
+
+\subsubsection{Die Methode der sphärischen Mittelwerte für $n \geq 2$} 
+\label{ssub:die_methode_der_spharischen_mittelwerte_fur_n_geq_2}
+\[
+	(P) \begin{cases}
+		u_{tt}- \Delta u = 0, &\text{ in }(0,\infty) \times \mathbb{R}^n\\
+		u(0,x) = g(x), &\text{ für } x \in \mathbb{R}^n \\
+		u_t(0,x)=h(x), &\text{ für } x \in \mathbb{R}^n
+		\end{cases}
+\]
+Für $x \in \mathbb{R}^n$, $r>0$, $t>0$ definiere
+\begin{align*}
+	U_x(t,r) &:= \fint_{\partial B_r(x)}^{} u(t,y) \,\mathrm{d}S(y), \\
+	G_x(r) &:= \fint_{\partial B_r(x)}^{} g(y) \,\mathrm{d}S(y), \\
+	H_x(r) &:= \fint_{\partial B_r(x)}^{} h(y) \,\mathrm{d}S(y)
+\end{align*}
+
+\begin{lemma}[Euler-Poisson-Darbaux-Gleichung]
+	Sei $u \in C^m((0,\infty) \times \mathbb{R}^n)$ mit $m \geq 2$ eine Lösung von (P). Für alle $ x \in \mathbb{R}^n$ gilt dann $U_x \in C^m((0,\infty) \times [0,\infty)$ und $U_x$ erfüllt das Anfangswertproblem 
+	\begin{align*}
+		\partial_t^2 U_x(t,r)- \partial_r^2 U_x(t,r) - \frac{n-1}{r} \partial_r U_x(t,r) &= 0 \qquad \text{ in } \mathbb{R}^{+} \times \mathbb{R}^{+} \\
+		U_x(0,r)&= G_x(r), \qquad r>0 \\
+		\partial U_x(0,r) &= H_x(r), \qquad r>0
+	\end{align*}
+\end{lemma}
+\begin{beweis}
+Wir beweisen $U_x \in C^m((0,\infty) \times \mathbb{R}^n)$:
+\[
+	U_x(t,r) = \fint_{\partial B_r(0)}^{} u (t,x+r \tilde y) \,\mathrm{d}S(\tilde y)
+\]	
+$B_r(0)$ ist beschränkt
+\[
+	\Rightarrow \qquad \diff{^{k+l}}{t^k \partial r^l} U_x(t,r) = \fint_{\partial B_1(0)}^{} \diff{^{k+l}}{t^k \partial r^l} u(t,x+r \tilde y) \,\mathrm{d}S(\tilde y)
+\]
+ist stetig für $k+l \leq m$ und daraus folgt die Behauptung. \\
+Für den Beweis der Anfangsdaten gilt
+\[
+	U_x(0,r) = \fint_{\partial B_r(x)}^{} u(0,y) \,\mathrm{d}S(y) = \fint_{\partial B_r(x)}^{} g(y) \,\mathrm{d}S(y) = G_x(r)
+\]
+und
+\begin{align*}
+	\partial_r U_x(0,r)& = \fint_{\partial B_1(x)}^{} \partial_t u(0,x+ r \tilde y) \,\mathrm{d}S(\tilde y) \\ &= 
+	\fint_{\partial B_1(x)}^{} \partial_t h(x+ r \tilde y) \,\mathrm{d}S(\tilde y) \\ &= \fint_{\partial B_r(x)}^{} h(y) \,\mathrm{d}S(y) \\ &= H_x(r).
+\end{align*}
+Nun gilt
+\[
+	\partial_t^2U_x(t,x) = \fint_{\partial B_r(x)}^{} \partial_t^2 u(t,y) \,\mathrm{d}S(y)
+\]
+\begin{align*}
+	\partial_r U_x(t,r) &\stackrel{\text{Lemma }2.3}{=} \frac{r}{n} \fint_{B_r(x)}^{} \Delta u(t,y) \,\mathrm{d}y \\
+	& \stackrel{\hphantom{\text{Lemma }2.3}}{=} \frac{r}{n} \frac{1}{\omega_n r^n} \int_{0}^{r} \int_{\partial B_{\rho}(x)}^{} \Delta u(t,y) \,\mathrm{d}S(y) \,\mathrm{d}\rho \\
+	& \stackrel{\hphantom{\text{Lemma }2.3}}{=} \frac{r^{1-n}}{n \omega_n} \int_{0}^{r} \int_{\partial B_{\rho}(x)}^{} \Delta u(t,y) \,\mathrm{d}S(y) \,\mathrm{d}\rho
+\end{align*}
+
+\begin{align*}
+	\partial_r ( \partial_r U_x(t,r)) &= \frac{1-n}{n \omega_n r^n} \int_{B_r(x)}^{} \Delta u(t,y) \,\mathrm{d}y 
+	+ \frac{r^{1-n}}{n \omega_n} \int_{\partial B_r(x)}^{} \Delta u(t,y) \,\mathrm{d}S(y) \\
+	&= \frac{1-n}{n} \fint_{B_r(x)}^{} \Delta u(t,y) \,\mathrm{d}y + \fint_{\partial B_r(x)}^{} \Delta u(t,y) \,\mathrm{d}S(y) \\
+	&= \frac{1-n}{r} \partial_r U_x(t,r) + \fint_{\partial B_r(x)}^{} \Delta u(t,y) \,\mathrm{d}S(y) \\
+	&= \frac{1-n}{r} \partial_r U_x(t,r) + \partial_t^2 U_x(t,r)
+\end{align*}
+\end{beweis}
+Wir definieren nun eine Funktion $\tilde U_x$, so dass
+\[
+	\partial_t^2 \tilde U_x(t,r) - \partial_r^2 \tilde U_x(t,r) = 0 \qquad \text{ in } (0,\infty) \times (0,\infty)
+\]
+$n=3:$
+\begin{align*}
+	\tilde U_x(t,r) &:= r U_x(t,r), \\
+	\tilde G_x(r) &:= r G_x(r), \\
+	\tilde H_x(r) &:= r H_x(r).
+\end{align*}
+\begin{korollar}
+	Sei $u \in C^m([0,\infty)\times \mathbb{R}^3)$ mit $m \geq 2$ eine Lösung von (P). Für alle $x \in \mathbb{R}^3$ gilt dann $ \tilde U_x \in C^m([0,\infty) \times [0, \infty))$ und $\tilde U_x$ erfüllt das Anfangsrandwertproblem
+	\[
+		\begin{cases}
+			\partial_t^2 \tilde U_x(t,r) - \partial^2_t \tilde U_x(t,r)=0, &\text{ in }(0, \infty) \times (0, \infty)\\
+			\tilde U_x(0,r) = \tilde G_x(r), \, \partial \tilde U_x(0,r) = \tilde H_x(r), &\text{ für }r >0 \\
+			\tilde U_x(t,0) = 0 , &\text{ für }t>0
+		\end{cases}
+	\]
+\end{korollar}
+\begin{beweis}
+	$\tilde U_x \in C^m$ funktioniert wie in Lemma $4.4$ und die Anfangs und Randbedingungen sind klar.
+	\begin{align*}
+			\partial^2_t \tilde U_x(t,r) & \stackrel{\hphantom{\text{Lemma }4.4}}{=} r \partial_t^2 U_x(t,r) \\
+			&\stackrel{\text{Lemma }4.4}{=} r [ \partial_r^2 U_x(t,r) + \frac{2}{r} \partial_r U_x(t,r)] \\
+			& \stackrel{\hphantom{\text{Lemma }4.4}}{=} r \partial_r^2 U_x(t,r) + 2 \partial_rU_x(t,r) \\
+			& \stackrel{\hphantom{\text{Lemma }4.4}}{=} \partial_r(r \partial_t U_x(t,r)+ U_x(t,r)) \\
+			& \stackrel{\hphantom{\text{Lemma }4.4}}{=} \partial_r (\partial_r (\underset{= \tilde U_x(t,r)}{\underbrace{r U_x(t,r)}})) \\
+			& \stackrel{\hphantom{\text{Lemma }4.4}}{=} \partial_r^2 \tilde U_x(t,r)
+	\end{align*}
+\end{beweis}
+Wir bemerken, dass 
+\[
+	\lim_{r \to 0} \tilde G_x(r) = \lim_{r \to 0} \tilde G_x''(r) \qquad , \qquad \lim_{r \to 0} \tilde H_x(r) = 0
+\]
+
+Wir dürfen die Darstellungsformel für Lösungen der Wellengleichung auf $(0,\infty) \times (0,\infty)$ (Korollar 4.3) verwenden. \\
+Damit erhalten wir für $t \geq r > 0$
+\[
+	\tilde U_x(t,r) = \frac{1}{2} ( \tilde G_x(t-r)- \tilde G_x(t-r)) + \frac{1}{2} \int_{t-r}^{t+r} \tilde H_x(s) \,\mathrm{d}s
+\]
+Da $u$ stetig ist, gilt
+\[
+	u(t,x)= \lim_{r \to 0} \fint_{\partial B_r(x)}^{} u(t,y) \,\mathrm{d}S(y) = \lim_{r \to 0} U_x(t,r)
+\]
+\begin{align*}
+	u(t,x) &= \lim_{r \to 0} \left( \frac{\tilde G_x(t+r)- \tilde G_x(t-r)}{2 r} + \frac{1}{2r} \int_{t-r}^{t+r} \tilde H_x(s) \,\mathrm{d}s \right) \\
+	&= \lim_{r \to 0} \left( \frac{\tilde G_x(t+r) - \tilde G_x(t-r)}{2r} + \fint_{t-r}^{t+r} \tilde H_x(s) \,\mathrm{d}s \right) \\
+	&= \tilde G_x'(t) + \tilde H_x(t) \\
+	&= \partial_t ( t \fint_{\partial B_t(x)}^{} g(y) \,\mathrm{d}S(y)) + t \fint_{\partial B_t(x)}^{} h(y) \,\mathrm{d}S(y)
+\end{align*}
+Wir berechnen nun 
+\begin{align*}
+	\partial_t (t \fint_{\partial B_t(x)}^{} g(y) \,\mathrm{d}S(y))
+\end{align*}
+\begin{align*}
+ t \fint_{\partial B_t(x)}^{} g(y) \,\mathrm{d}S(y)
+	\stackrel{y= x+t \tilde y}{=} \fint_{\partial B_1(0)}^{} g(x + t \tilde y) \,\mathrm{d}S( \tilde y)
+\end{align*}
+Damit gilt
+\begin{align*}
+	\partial_t (t \fint_{\partial B_t(x)}^{} g(y) \,\mathrm{d}S(y)) & 
+	\stackrel{\hphantom{\tilde y = \frac{y-x}{t}}}{=} \fint_{\partial B_1(0)}^{} g(x+t \tilde y) \,\mathrm{d}S( \tilde y) 
+	+  t \fint_{\partial B_1(0)}^{}  \nabla g(x + t \tilde y) \cdot \tilde y \,\mathrm{d}S( \tilde y) \\
+	& \stackrel{\tilde y = \frac{y-x}{t}}{=} \fint_{B_t(x)}^{} g(y) \,\mathrm{d}S(y) + t \fint_{\partial B_t(x)}^{}  \nabla g(y) \frac{y-x}{t} \,\mathrm{d}S(y)
+\end{align*}
+\[
+	(K) \qquad u(t,x)= \fint_{\partial B_t(x)}^{} g(y) \,\mathrm{d}S(y) + \fint_{\partial B_t(x)}^{}  \nabla g(y) (y-x) \,\mathrm{d}S(y) + t \fint_{\partial B_t(x)}^{} h(y) \,\mathrm{d}S(y)
+\]
+Dies ist die Kirchhoffsche Formel für $n=3$.
+
+\begin{satz}
+	Seien $g \in C^3(\mathbb{R}^3)$, $h \in C^2(\mathbb{R}^3)$ und $u: (0,\infty) \times \mathbb{R}^3 \to \mathbb{R}$ definiert durch (K). Dann gelten
+	\begin{enumerate}[(i)]
+		\item $ u \in C^2([0, \infty) \times \mathbb{R}^3) $
+		\item $u(0,x)=g(x)$, $u_t(0,x) =h(x)$ für $x \in \mathbb{R}^3$
+		\item $u_{tt}(t,x)- \Delta u(t,x)=0$ für alle $(t,x) \in (0,\infty) \times \mathbb{R}^3$
+	\end{enumerate}
+\end{satz}
+\begin{beweis}
+	\begin{enumerate}[(i)]
+		\item $\surd$ 
+		\item +(iii) \begin{description}
+			\item[Schritt 1:] $g \equiv 0$. Dann gilt
+			\[
+				u(t,x)= t \fint_{\partial B_t(x)}^{} h(y) \,\mathrm{d}S(y) = t \fint_{\partial B_1(0)}^{} h(x+t \tilde y) \,\mathrm{d}S( \tilde y)
+			\] 
+			\[
+				\lim_{t \to 0} u(t,x) = 0 = g \qquad \surd
+			\]
+			\begin{align*}
+				\Delta u(t,x) &= t \fint_{\partial B_t(x)}^{} \Delta h(y) \,\mathrm{d}S(y), \\
+				\partial_t u(t,x) &= \fint_{\partial B_1(0)}^{} h(x+ t \tilde y) \,\mathrm{d}S( \tilde y) + t \fint_{\partial B_1(0)}^{}  \nabla h(x+t \tilde y)\cdot \tilde y \,\mathrm{d}S( \tilde y)
+			\end{align*}
+			\[
+				\Rightarrow \qquad \lim_{t \to 0} \partial_t u(t,x) = h(x) \qquad \surd
+			\]
+		Es gilt
+		\begin{align*}
+			\partial_t u(t,x)& \stackrel{\tilde y = \frac{y-x}{t}}{=} \frac{1}{4 \pi} \int_{\partial B_1(0)}^{} h(x+t \tilde y) \,\mathrm{d}S( \tilde y) + 
+			\frac{t}{4 \pi} \frac{1}{t^2} \int_{ \partial B_t(x)}^{}  \nabla  h(y) \frac{y-x}{t} \,\mathrm{d}S(y) \\
+			&\stackrel{\text{Gauß}}{=} \frac{1}{4 \pi} \int_{\partial B_1(0)}^{} h(x+ t \tilde y) \,\mathrm{d}S( \tilde y) 
+			+ \frac{1}{4 \pi t} \int_{B_t(x)}^{} \Delta h(y) \,\mathrm{d}y \\
+			&\stackrel{\hphantom{Gauß}}{=} \frac{1}{4 \pi} \int_{ \partial B_1(0)}^{} h(x+t \tilde y) \,\mathrm{d}S( \tilde y) +
+			\frac{1}{4 \pi t} \int_{0}^{t} \int_{\partial B_{\rho}}^{} \Delta h(y) \,\mathrm{d}S(y) \,\mathrm{d}\rho
+		\end{align*}
+		\begin{align*}
+			\partial_{tt} u(t,x) &= \frac{1}{4 \pi} \int_{ \partial B_1(0)}^{}  \nabla h(x+ t \tilde y) \cdot \tilde y \,\mathrm{d}S( \tilde y)
+			+ \frac{1}{4 \pi t} \int_{\partial B_t(x)}^{} \Delta h(y) \,\mathrm{d}S(y) \\
+			& \qquad + \frac{1}{4 \pi} \int_{B_t(x)}^{} \Delta h(y) \,\mathrm{d}y \\
+			&= \frac{1}{4 \pi t} \frac{t^2}{t^2} \int_{\partial B_t(x)}^{} \Delta h(y) \,\mathrm{d}S(y) \\
+			&= t \fint_{\partial B_t(x)}^{} \Delta h(y) \,\mathrm{d}S(y) \\
+			&= \Delta u(t,x)  
+		\end{align*}
+		für alle $(t,x) \in (0,\infty) \times \mathbb{R}^3$.
+		\item[Schritt $2$:] $h \equiv 0$. \\
+		Sei $v : [0,\infty) \times \mathbb{R}^3 \times \mathbb{R}$ definiert durch
+		\[
+			v(t,x) = t \fint_{\partial B_1(0)}^{} g(x+ t \tilde y) \,\mathrm{d}S( \tilde y)
+		\] 
+		Aus Schritt 1 folgt für alle $(t,x) \in (0,\infty) \times \mathbb{R}^3$ \[
+			v_{tt}(t,x) - \Delta v(t,x) = 0 
+		\]
+		Dann gilt
+		\begin{align*}
+			v_t(t,x) &= \fint_{\partial B_1(0)}^{} g(x+ t \tilde y) \,\mathrm{d}S(\tilde y) 
+			+ t \int_{\partial B_1(0)}^{}  \nabla g(x+t \tilde y) \cdot \tilde y \,\mathrm{d}S( \tilde y) \\
+			&= u(t,x)
+		\end{align*}
+		\begin{align*}
+			u_t(t,x) &= \partial_t^2 v(t,x) \\
+			&= \partial_t v_{tt}(t,x) \\
+			&= \partial_t \Delta v(t,x) \\
+			& \stackrel{v \in C^3}{=} \Delta v_t(t,x) \\
+			&= \Delta u(t,x)
+		\end{align*}
+		\[
+			\lim_{t \to 0} u(t,x) = g(x) \qquad \surd
+		\]
+		Wir erhalten 
+		\[
+			\lim_{t \to 0} v(t,x) = 0
+ 		\]
+		aus der Definition und $v_{tt}(t,x)  \Big|_{t=0}^{} = \Delta v(t,x)  \Big|_{t=0}^{}=0$, weil $v(0,x) \equiv 0$ ist.
+		\[
+			v_{tt}(t,x) = u_t(t,x) \qquad  \Rightarrow \qquad \lim_{t \to 0} u_t(t,x)=0 =h. 
+		\]
+		\end{description}
+		Der Beweis folgt aus der Linearität der Wellengleichung.
+	\end{enumerate}
+\end{beweis}
+\begin{bemerkung}
+	\begin{enumerate}[(i)]
+		\item Um eine Lösung $u \in L^2((0,\infty) \times \mathbb{R}^3)$ zu erhalten, braucht man Anfangsdaten $g \in C^3(\mathbb{R}^3)$, $h \in C^2(\mathbb{R}^3)$ \\
+		(Regularitätsverlust)
+		\item $u(t,x)$ hängt nur von den Anfangsdaten $g$, $ \nabla g$, $h$ auf $\partial B_t(x)$ ab.
+		\item Für $n>3$ ungerade gibt es eine analoge formel mit $g \in C^{\frac{n+3}{2}}(\mathbb{R}^n)$, $h \in C^{\frac{n+1}{2}}$. [Evans, S. 77].
+		\[
+			(P) \begin{cases}
+				u_{tt}(t,x)- \Delta u(t,x) = 0, &\text{ in }(0, \infty) \times \mathbb{R}^2\\
+				u(0,x) = g(x), \qquad u_t(0,x)= h(x), & \text{ für }x \in \mathbb{R}^2
+			\end{cases}
+		\]
+		Ist $u \in C^2([0,\infty) \times \mathbb{R}^2)$ eine Lösung von (P), so löst die Funktion
+		\[
+			\bar{u} (t,\underset{\in  \mathbb{R}^3}{\underbrace{\bar{x}}}) := u(t,\underset{\in \mathbb{R}^2}{\underbrace{x}})
+		\]
+		das Problem
+		\[
+			\begin{cases}
+				\overline{u_{tt}}(t,\bar{x})- \Delta \bar{u}(t,\bar{x}), &\text{ in }(0,\infty) \times \mathbb{R}^3\\
+				\bar{u}(0,\bar{x})= \bar{g}(\bar{x}), \qquad \overline{u_t}(0,\bar{x}) = \bar{h}(\bar{x}), &\text{ für } \bar{x} \in \mathbb{R}^3,
+			\end{cases}
+		\]
+		wobei $\bar{h}(\bar{x}):= g(x)$ und $\bar{h}(\bar{x}):= h(x)$. \\
+		Die Kirchhoffsche Formel zeigt daher
+		\[
+			\bar{u}(t,x,0) = \partial_t \left( t \fint_{\partial B_t(x,0)}^{} \bar{g}(\bar{y}) \,\mathrm{d}S(\bar{y}) \right)
+			+ t \fint_{\partial B_t(x,0)}^{} \bar{h}(\bar{y}) \,\mathrm{d}S(\bar{y}) 
+		\]
+		\[
+			(*) \qquad \fint_{B_t(x,0)}^{} \bar{g}(\bar{y}) \,\mathrm{d}S( \bar{ y}) 
+			= t \frac{1}{4 \pi t^2} \int_{\partial B_t(x,0)}^{} g( \bar{y}) \,\mathrm{d}S( \bar{y})
+		\]
+		Wir benutzen eine Parametrisierung 
+		\[
+			\varphi(y) = \sqrt{t^2 - \abs{y-x}^2}
+		\]
+		von $ \partial B_t(x,0) \cap \set{y_3 \geq 0}$ über $B_t(x)$. \\
+		Dann gilt wegen
+		\[
+			 \nabla \varphi = \frac{-2 (y-x)}{2 \sqrt{t^2-\abs{y-x}^2}} = - \frac{y-x}{\sqrt{t^2-\abs{y-x}^2}}
+		\]
+		\[
+			\Rightarrow \qquad \sqrt{1+ \abs{ \nabla \varphi}^2} = \sqrt{\frac{t^2}{t^2-\abs{y-x}^2}}
+		\]
+		und somit insgesamt
+		\begin{align*}
+			(*) &= 2 \frac{1}{4 \pi t} \int_{B_t(x)}^{} g(y) \sqrt{1+ \abs{ \nabla \varphi(y)}^2} \,\mathrm{d}y \\
+			&= \frac{1}{2 \pi t} \int_{B_t(x)}^{} g(y) \sqrt{\frac{t^2}{t^2-\abs{y-x}^2}} \,\mathrm{d}y 
+		\end{align*}
+		\[
+			t \fint_{B_t(x)}^{} h( \bar{y}) \,\mathrm{d}S(\bar{y}) 
+			= \frac{1}{2} \frac{1}{\pi t} \int_{B_t(x)}^{} h(y) \sqrt{\frac{t^2}{t^2 - \abs{y-x}^2}} \,\mathrm{d}y 
+			= \frac{1}{2} t^2 \fint_{B_t(x)}^{} \frac{h(y)}{t^2-\abs{y-x}^2} \,\mathrm{d}y
+		\]
+		\begin{align*}
+			\frac{1}{2} \partial_t \left( \frac{1}{\pi} \int_{B_t(x)}^{} \frac{g(y)}{t^2-\abs{y-x}^2} \,\mathrm{d}y \right) & \stackrel{y = x + t \tilde y}{=} 
+			\frac{1}{2} \partial_t \left( \frac{1}{\pi} \int_{B_1(0)}^{} \frac{g(x + t \tilde y)}{\sqrt{t^2 - t^2 \abs{\tilde y}^2}}t^2 \,\mathrm{d} \tilde y \right) \\
+			& \stackrel{\hphantom{y = x + t \tilde y}}{=} 
+			\frac{1}{2} \partial_t \left(  \frac{t}{ \pi} \int_{B_1(0)}^{} \frac{g(x+ t \tilde y)}{\sqrt{1- \abs{ \tilde y}^2}} \,\mathrm{d} \tilde y \right) \\
+			& \stackrel{\hphantom{y = x + t \tilde y}}{=} \frac{1}{2} \left( \frac{1}{\pi} \int_{B_1(0)}^{} \frac{g(x+ t \tilde y)}{\sqrt{1 - \abs{ \tilde y}^2}} 
+			\right. \,\mathrm{d}S( \tilde y) \\ & \qquad \qquad  \left .
+		+ \frac{t}{\pi} \int_{B_1(0)}^{} \frac{ \nabla  g(x+ t \tilde y) \cdot \tilde y}{\sqrt{1- \abs{ \tilde y}^2}} \,\mathrm{d} \tilde y \right) \\
+			 & \stackrel{\hat{y}= \frac{y-x}{t}}{=} \frac{1}{2} \left( \frac{1}{t^2 \pi} \int_{B_t(x)}^{} \frac{g(y)}{ \sqrt{1- \frac{\abs{y-x}^2}{t^2}}}
+		 \frac{\,\mathrm{d}y}{t^2} \right. \hphantom{)} \\ & \qquad \qquad  \left. + \frac{t}{\pi t^2} \int_{B_t(x)}^{} \frac{ \nabla g(y) \cdot \frac{y-x}{t}}{\sqrt{1-\frac{\abs{y-x}^2}{t^2}}} 
+			 \,\mathrm{d}y \right) \\
+			 & \stackrel{\hphantom{y = x + t \tilde y}}{=} \frac{1}{2} \fint_{B_t(x)}^{} \frac{t g(y)}{ \sqrt{t^2 - \abs{y-x}^2}} \,\mathrm{d}y \\
+			 & \qquad \qquad \frac{1}{2} \fint_{B_t(x)}^{} \frac{t  \nabla g \cdot (y-x)}{\sqrt{t^2 - \abs{y-x}^2}} \,\mathrm{d}y
+		\end{align*}
+		Damit gilt
+		\[
+			(1)\qquad u(t,x)= \frac{1}{2} \fint_{B_t(x)}^{} \frac{t g(y) p t  \nabla g(y) \cdot (y-x) + t^2 h(y)}{\sqrt{t^2 - \abs{y-x}^2}} \,\mathrm{d}y
+		\]
+		Dies ist die Poissonsche Formel für $n=2$
+	\end{enumerate}
+\end{bemerkung}
+
+\begin{satz}
+	Seien $ g \in C^3(\mathbb{R}^2)$, $h \in C^2(\mathbb{R}^2)$ und $u: (0,\infty) \times \mathbb{R}^2 \to \mathbb{R}$ definiert durch (1). Dann gelten:
+	\begin{enumerate}[(i)]
+		\item $u \in C^2([0,\infty) \times \mathbb{R}^2)$
+		\item $u_{tt} - \Delta u = 0$ in $[0,\infty) \times \mathbb{R}^2$
+		\item $u(0,x)=g(x)$, $u_t(0,x) = h(x)$, $x \in \mathbb{R}^2$
+	\end{enumerate} 
+\end{satz}
+\begin{beweis}
+	Folgt aus Satz $4.6$
+\end{beweis}
+\begin{bemerkung}
+	\begin{enumerate}[(i)]
+		\item Die Lösung hängt von den Anfangsdaten $g$, $ \nabla g$, $h$ in der ganzen Kugel $B_t(x)$ ab.
+		\item Für $n$ gerade gibt es eine analoge Formel mit $g \in C^{\frac{n+k}{2}}(\mathbb{R}^n)$, $h \in C^{\frac{n+2}{2}}(\mathbb{R}^n)$ [Evans, S.80]
+	\end{enumerate}
+\end{bemerkung}
+\subsubsection{Die inhomogene Wellengleichung} 
+\label{ssub:die_inhomogene_wellengleichung}
+
+\[
+	\begin{cases}
+		u_{tt}(x)- \Delta u(t,x) = f(t,x), &\text{ in }(0,\infty) \times \mathbb{R}^n\\
+		u(0,x) = g(x), \, u_t(0,x) = h(x), &\text{ für }x \in \mathbb{R}^n
+	\end{cases}
+\]
+Wegen der Linearität der Wellengleichung betrachten wir
+\[
+	(P)_f \qquad \begin{cases}
+		u_{tt}(t,x) - \Delta u(t,x) = f(t,x), &\text{ in }(0,\infty) \times \mathbb{R}^n\\
+		u(0,x) = u_t(0,x) = 0, \text{ für } x \in \mathbb{R}^n
+	\end{cases}
+\]
+Wir definieren eine Familie von Funktionen $(r(t,x;s))_{s >0}$ als Lösungen der Differentialgleichung
+\[
+	(P)_s \qquad \begin{cases}
+		v_{tt}(t,x;s)- \Delta v(t,x;s) = 0, &\text{ in }(s, \infty) \times \mathbb{R}^n\\ 
+		v(s,x;s) = 0 ,&\text{ für } x \in \mathbb{R}^n \\
+		v_t(s,x;s) = f(s,x) ,&\text{ für } x \in \mathbb{R}^n
+	\end{cases}
+\]
+
+\begin{satz}
+	Sei $f \in C^{\lfloor \frac{n}{2} \rfloor +1}([0,\infty) \times \mathbb{R}^n)$ und $u: (0, \infty) \times \mathbb{R}^n \to \mathbb{R}$ definiert durch
+	\[
+		u(t,x):= \int_{0}^{t} v(t,x;s) \,\mathrm{d}s 
+	\]
+	mit $v$ Lösung von $(P)_s$. Dann gilt $u \in C^2([0,\infty) \times \mathbb{R}^n)$ und $u$ löst $(P)_f$
+\end{satz}
+\begin{beweis}
+	$u \in C^2$ klar wegen Regularität von $v$. \\
+	\[
+		\lim_{t \to 0^+} u(t,x) = 0, \qquad u_t(t,x) = v(t,x;t) + \int_{0}^{t} v_t(t,x;s) \,\mathrm{d}s
+	\]
+	Aus der Leipnitzregel für die Ableitungen folgt dann
+	\[
+		 \qquad \lim_{t \to 0^+} u_t(t,x) = 0
+	\]
+	\begin{align*}
+		u_{tt}(t,x) &\leq v_t(t,x;t) + \int_{0}^{t} v_{tt}(t,x;s) \,\mathrm{d}s  \\
+		&= f(t,x) + \int_{0}^{t} \Delta_x v(t,x;s) \,\mathrm{d}s \\
+		&= f(t,x) + \Delta u(t,x)
+	\end{align*}
+\end{beweis}
+\minisec{Explizite Darstellungsformel für die Lösung von $(P)_f$}
+\begin{description}
+	\item[$n=1$:]
+	\[
+		v(t,x;s) = \frac{1}{2} \int_{x-(t-s)}^{x+(t-s)} f(s,y) \,\mathrm{d}y
+	\]
+	(Der Anfangszeitpunkt liegt nun bei $t=s$)
+	\begin{align*}
+		u(t,x)&= \int_{0}^{t}v(t,x;s) \,\mathrm{d}s \\ &= \frac{1}{2} \int_{0}^{t} \int_{x-(t-s)}^{x+(t-s)} f(s;y) \,\mathrm{d}y \,\mathrm{d}s \\
+		&= \frac{1}{2} \int_{0}^{t} \int_{x- \tilde s}^{x + \tilde s} f(t- \tilde s;y) \,\mathrm{d}y \,\mathrm{d} \tilde s
+	\end{align*}
+	\item[$n=3$:] 
+	\[
+		v(t,x;s) = (t-s) \fint_{\partial B_{(t-s)}(x)}^{} f(s;s) \,\mathrm{d}S(y)
+	\]
+	Dann gilt
+	\begin{align*}
+		u(t,x) & \stackrel{\hphantom{\tilde s = t-s}}{=} \int_{0}^{t} v(t,x;s) \,\mathrm{d}s \\
+		& \stackrel{\hphantom{\tilde s = t-s}}{=} \int_{0}^{t}(t-s) \fint_{\partial B_{(t-s)}(x)}^{} f(s;y) \,\mathrm{d}S(y) \,\mathrm{d}s \\
+		& \stackrel{\tilde s = t-s}{=} \frac{1}{4 \pi} \int_{0}^{t} \frac{1}{\tilde s} \int_{\partial B_{\tilde s}(x)}^{} f(t- \tilde s,y)
+		 \,\mathrm{d}S(y) \,\mathrm{d} \tilde s \\
+		& \stackrel{ \bar{s} = \abs{y-x}}{=} \frac{1}{4 \pi} \int_{0}^{t} \int_{\partial B_{\tilde s}(x)}^{} \frac{1}{\abs{y-x}} f(t-\abs{y-x};y) \,\mathrm{d}S(y) \,\mathrm{d} \bar{s} \\
+	&\stackrel{\hphantom{\tilde s = t-s}}{=}	\frac{1}{4 \pi} \int_{B_{\bar{s}}(x)}^{} \frac{f(t- \abs{y-x};y)}{\abs{y-x}} \,\mathrm{d}y
+	\end{align*}
+\end{description}
+
+\subsection{Die Wellengleichung auf allgemeinen Gebieten} 
+\label{sub:die_wellengleichung_auf_allgemeinen_gebieten}
+Betrachte für $\Omega \subseteq \mathbb{R}^n$ offen, beschränkt und mit $C^1$-Rand und für $T >0$
+\[
+	\begin{cases}
+		u_{tt}(t,x) - \Delta u(t,x) = f(t,x), &\text{ in }\Omega_T = (0,T] \times \Omega\\
+		u=g ,&\text{ auf} \partial_p \Omega_T, \\
+		u_t=h, &\text{ auf } \set{0} \times \Omega		
+	\end{cases}
+\]
+\begin{bemerkung}
+	Für $T= \infty$, $ \Omega = \mathbb{R}^n$ gilt $ \partial _p \Omega_T = \set{0} \times \mathbb{R}^n = \set{0} \times \Omega$.
+\end{bemerkung}
+Zu Der \underline{Energiemethode} gehört die \underline{Eindeutigkeit} und die \underline{Ausbreitungsgeschwindigkeit} 
+
+\minisec{Eindeutigkeit:}
+\begin{lemma}
+	Sei $\Omega$ eine offene, beschränkte Teilmenge des $\mathbb{R}^n$ mit $C^1$-Rand, $T>0$ und $u \in C^2(\overline{\Omega_T})$ eine Lösung von
+	\[
+		\begin{cases}
+			u_{tt}- \Delta u = 0, &\text{ in }\Omega_T\\
+			u=0, &\text{ auf }[0,T] \times \partial \Omega
+		\end{cases}
+	\]
+	Dann erfüllt 
+	\[
+		e(t) := \frac{1}{2} \int_{\Omega}^{} (u_t(t,x))^2 + ( \nabla u(t,x))^2 \,\mathrm{d}x
+	\]
+	für $t \in [0,T]$ die Identität
+	\[
+		e(t) = e(0) \qquad \forall\, t \in [0,t]
+	\]
+\end{lemma}
+\begin{beweis}
+	Es gilt
+	\begin{align*}
+		\diffd{}{}e(t) &= \int_{\Omega}^{}( u_t u_{tt} +  \nabla u \cdot \underset{=  \nabla u_t}{\underbrace{\partial_t (  \nabla u)}}) \,\mathrm{d}x \\
+		&= \int_{\Omega}^{}( u_t u_{tt} +  \nabla u \cdot  \nabla u_t) \,\mathrm{d}x \\ 
+		&= \underset{=0}{\underbrace{\int_{\Omega}^{} (u_t u_{tt} - \Delta u u_t) \,\mathrm{d}x}} 
+		+ \underset{=0}{\underbrace{ \int_{ \partial \Omega}^{} u_t  \nabla u \cdot \nu \,\mathrm{d}S(x)}} \\
+		&=0
+	\end{align*}
+	Damit ist $e$ konstant und damit
+	\[
+		e(t) = e(0) \qquad \forall\, t \in [0,t].
+	\]
+\end{beweis}
