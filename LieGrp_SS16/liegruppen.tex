@@ -2455,7 +2455,171 @@ Somit ist $\overline{f} \coloneqq f \circ \pi^{-1} \colon \sfrac{G}{H} \to M^k$,
 			V_{\overline{n}}(\mathbb{R}^n) = \sfrac{\On(n)}{\On(n_1) \On(n_2 - n_1) \cdots \On(n-n_k)}
 		\]
 		mit $n_1 + n_2 - n_1 + n_3 - n_2 + \ldots + n - n_k =n$ und die Obigen Kombinationen über $\ge 1$.
+		\item Komplexe Strukturen auf $\mathbb{R}^{2n}$:
+		\[
+			X = \set*{J \in  \On(2n) \given J^2 = - \id}
+		\]
+		Die Gruppe $\On(2n)$ operiert auf $X$ mittels Konjugation $J \mapsto A J A^T$, denn $(AJA^T)(AJA^T) = A J^2 A^T = - \id$.
+		Behauptung: Es gilt 
+		\[
+			X = \set*{A \in \On(2n) \given A^T = -A}
+		\]
+		Für \enquote{$\subseteq$} sei $J \in X$, also $J^2 = - \id$ und folglich $J J J^T = - J^T$, also $J= -J^T$.
+		Sei umgekehrt $A \in \On(2n)$ schiefsymmetrisch.
+		Dann gilt
+		\[
+			A = A A A^T = - A^2 A\implies A^2 = - \id
+		\]
+		Jede schieffsymmetrische Matrix kann mittels Konjugation (durch $\On(2n)$) auf die Form 
+		\[
+			\begin{pmatrix}
+				0 & - \alpha_1 & & & & \\
+				\alpha_1 & 0 & & & & \\
+				& & (\cdots) & & &  \\
+				& & & \ddots & & \\
+				& & & & 0 & -\alpha_n \\
+				& & & & \alpha_n & 0
+			\end{pmatrix}
+		\]
+		gebracht werden mit $\alpha_i \in \mathbb{R}$.
+		Ist $J \in \On(2n)$, so ist $\abs*{\alpha_i}=1 $ für alle $i$.
+		Beachte nun
+		\[
+			\begin{pmatrix}
+				0 & 1 \\ 1 & 0
+			\end{pmatrix} \cdot \begin{pmatrix}
+				0 & -1 \\ 1 & 0
+			\end{pmatrix} \cdot \begin{pmatrix}
+				0 & 1 \\
+				1 & 0
+			\end{pmatrix} = \begin{pmatrix}
+				0 & 1 \\ -1 & 0
+			\end{pmatrix}
+		\]
+		Somit existiert für alle $J \in X$ ein $A \in \On(2n)$ mit 
+		\[
+			A J A^T = \begin{pmatrix}
+				0 & -1 & & & \\
+				1 & 0 & & & \\
+				& & \ddots & & \\
+				& & & 0 & -1 \\
+				& & & 1 & 0
+			\end{pmatrix} \coloneqq J_0 = i \cdot \diag(1, \ldots ,1) \in \Mat(n,\mathbb{C})
+		\]
+		Somit operiert $\On(2n)$ transitiv auf $X$.
+		Isotropiegruppen von $J_0$:
+		\[
+			A J_0 A^T = J_0 \iff A J_0 = J_0 A \StackText{Übung}{\iff} A \in \Un(n) \subset \SO(2n)
+		\]
+		Somit gilt $X = \sfrac{\On(2n)}{\Un(n)}$.
  	\end{enumerate}
+\end{beispiel*}
+
+\begin{definition}
+	Eine vollständige Riemannsche Mannigfaltigkeit\footnote{$g= (g_p)_{p \in M^n}$ mit $g_p$ Skalarprodukt auf $\Tmap_p M^n$, welches differenzierbar vom Punkt $p$ abhängt.} $(M^n,g)$ nennt man \Index{$G$-homogenen Raum}, falls eine transitive und isometrische Liegruppenwirkung $\Phi \colon G\times M^n \to M^n$ existiert.
+	Man nennt dann die Metrik $g$ \bet{$G$-homogen} oder \bet{$G$-invariant}.
+\end{definition}
+
+\begin{beispiel*}
+	$M^2 \subset \mathbb{R}^3$ Untermannigfaltigkeit mit $g_p \coloneqq \skal*{\cdot }{\cdot }_{\mathrm{std}}^{\mathbb{R}^3}\big|_{\Tmap_p M^2 \times \Tmap_p M^2}$.
+\end{beispiel*}
+
+Sei $c \colon [0,1] \to M^n$ eine differenzierbare Kurve. 
+Wir definieren die Länge von $c$ als 
+\[
+	L(c) \coloneqq \int_0^1 \norm*{c'(t)}_{c(t)} \,\mathd t
+\]
+und den Abstand zweier Punkte, die \Index{Riemannsche Metrik}  durch 
+\[
+	d_g(p,q) \coloneqq \inf \set[\big]{L(c) \given c \text{ diffb. Kurve von $p$ nach $q$}}
+\]
+Man muss an dieser Stelle natürlich noch zeigen, dass dies tatsächlich eine Metrik auf $M^n$ definiert.
+Somit ist $(M^n,d_g)$ ein metrischer Raum.
+\enquote{vollständig} bezieht sich auf eben diese Metrik.
+
+\begin{beispiel*}
+	Betrachte $\mathbb{R}^2 \setminus \set[\big]{\binom{0}{0}}$ mit der Standardmetrik. 
+	Diese Riemannsche Mannigfaltigkeit ist \emph{nicht} vollständig.
+\end{beispiel*}
+
+\begin{bemerkung*}
+	Nach dem Einbettungssatz von \textsc{Nash} kann jede vollständige riemannsche Mannigfaltigkeit $(M^n,g)$ isometrisch in $(\mathbb{R}^{N(n)},g_{\mathrm{std}})$ eingebettet werden.
+\end{bemerkung*}
+
+\begin{satz}[{name={Myers-Steenrod}}]
+	Sei $(M^n,g)$ eine vollständige Riemannsche Mannigfaltigkeit.
+	Dann ist die Isometriegruppe $\Isom(M^n,g) = \set*{f \colon (M^n,g) \to (M^n,g) \given \text{bijektive Isometrie} }$ eine Liegruppe, welche differenzierbar auf $M^n$ operiert mittels Auswertung.
+\end{satz}
+
+Es gilt: Isometrien von $(M^n,g)$ sind Diffeomorphismen, welche die Riemannsche Metrik $g$ \enquote{respektieren}, das heißt für alle $p \in M^n$ und $v,w \in \Tmap_p M^n$ gilt
+\[
+	g_p(v,w) = g_{f(p)} \enbrace*{\mathd f_p \cdot v , \mathd f_p \cdot w}
+\]
+Wir kommen nun zur \emph{Riemannschen Exponentialabbildung}: 
+
+Sei $(M^n,g)$ eine vollständige Riemannsche Mannigfaltigkeit, $p \in M^n$.
+Dann kann man jedem Tangentialvektor $v \in \Tmap_p M^n$ eine differenzierbare Kurve $\gamma_v \colon \mathbb{R} \to M^n$ zuordnen mit
+\begin{enumerate}[1)]
+	\item $\gamma_v(g)=p$, $\gamma'(0)=v$
+	\item Für alle $t_0 \in \mathbb{R}$ existiert $\varepsilon_{t_0} >0$, sodass für alle $t_1,t_2 \in \benbrace*{t_0 - \varepsilon_{t_0}, t_0 + \varepsilon_{t_0}}$ gilt
+	\[
+		L \enbrace*{\gamma_v\big|_{\benbrace*{t_1,t_2}}} = d_g \enbrace*{\gamma_v(t_1), \gamma_v(t_2)}
+	\]
+	$\gamma_v$ ist die \emph{lokal Kürzeste}, $\gamma_v$ nennt man \Index{Geodätische} (\Index{Geodäte}).
+	\item $\norm*{\gamma_v'(t)} = \norm*{\gamma_v'(0)}$
+	
+	$\leadsto$ reguläre Kurve.
+\end{enumerate}
+Die \Index{Riemannsche Exponentialabbildung} $\exp_p = \exp_p^g \colon \Tmap_p M^n \to M^n$ ist definiert durch $v \mapsto \gamma_v(1)$.
+Es gilt:
+\begin{itemize}
+	\item $\exp_p$ ist differenzierbar.
+	\item surjektiv nach Hopf-Rinow
+	\item $\mathd(\exp_p)_{0_p} \colon \Tmap_p M^n \to \Tmap_p M^n$ ist gleich $\id_{\Tmap_p M^n}$ und nach dem Umkehrsatz ein lokaler Diffeomorphismus.
+\end{itemize} 
+
+\begin{lemma}
+	Sei $(M^n,g)$ ein effektiver, $G$-invarianter homogener Raum, $p \in M^n$ und $H = G_p = \set*{g \in G \given \Phi(g) .p = p}$.
+	Dann ist $H$ kompakt, falls $\Phi(G) \subset \Isom(M^n,g)$ abgeschlossen ist.
+\end{lemma}
+\begin{beweis}
+	Sei $(h_i)_{i \in \mathbb{N}}$ eine Folge in $H$, das heißt nach Definition $\Phi(h_i)(p)=p$ für alle $i$.
+	Somit ist $\mathd \enbrace*{\Phi(h_i)}_p \colon \Tmap_p M \to \Tmap_p M$ eine lineare Isometrie von $(\Tmap_p M, g_p)$ und somit gilt $\mathd  \enbrace*{\Phi(h_i)}_p \in \On \enbrace*{\Tmap_p M^n,g_p}$.
+	Wegen Kompaktheit können wir also annehmen, dass 
+	\[
+		\mathd \enbrace*{\Phi(h_i)}_p \grenzw{i \to \infty} A_\infty \in \On \enbrace*{\Tmap_p M^n,g_p}
+	\]
+	Konstruiere nun eine Isometrie \enquote{$\Phi(h_\infty)$} mit $\Phi(h_\infty)(p)=p$ und $\mathd \enbrace*{\Phi(h_\infty)}_p = A_\infty$.
+	Für $q \in M$ existiert ein $v_q \in \Tmap_p M^n$ mit $\exp_p(v_q) =q$.
+	Wir definieren
+	\[
+		\Phi(h_\infty)(q) \coloneqq \exp_p \enbrace*{A_\infty(v_q)}
+	\]
+	Nun gilt für alle $i \in \mathbb{N}$ 
+	\[
+		\Phi(h_i)(q) = \Phi(h_i) \enbrace*{\exp_p(v_q)} \stackrel{!}{=} \exp_p \enbrace*{\mathd (\Phi(h_i))_p (v_q)} \grenzw{i \to \infty} \Phi(h_\infty)(q)
+	\]
+	Wobei \enquote{!} folgt, da Isometrien Geodätische auf Geodätische abbilden und Geodätische eindeutig bestimmt  sind durch $\gamma_v(0)$ und $\gamma_v'(0)$.
+	Weiter gilt
+	\begin{align}
+		d_g \enbrace*{\Phi(h_\infty)(q_1), \Phi(h_\infty)(q_2)} = d_g \enbrace*{\lim_{i \to \infty} \Phi(h_i)(q_1), \ldots (q_2)} &= \lim_{i \to \infty} d_g \enbrace*{\Phi(h_i)(q_1), \Phi(h_i)(q_2)} \\
+		&\equiv d_g(q_1,q_2)
+	\end{align}
+	Somit ist $\Phi(h_\infty)$ eine Isometrie von $(M^n,g)$ und damit ein Diffeomorphismus von $M^n$.
+	Wir wissen, dass $\Phi(G) \subset \Isom(M^n,g)$ abgeschlossen ist.
+	Wegen $\Phi(h_i) \in \Phi(G)$ für alle $i \in \mathbb{N}$ folgt $\Phi(h_\infty) \in \Phi(G)$.
+	Da $\Phi$ effektiv ist, existiert genau ein $h_\infty \in G$ mit $\Phi(h_\infty) \mathrel{\text{\enquote{$=$}}} \Phi(h_\infty)$.
+	Also muss $h_\infty \in H$ gelten.
+\end{beweis}
+
+\begin{beispiel*}
+	Ist $G$ kompakt, so ist $\Phi(G)$ kompakt und der Satz gilt.
+	
+	Gegenbeispiel: $\enbrace*{S^3 \times S^3, g_{\mathrm{std}} \times g_{\mathrm{std}}}$. Dann operiert $G = S^3 \times S^3 \times \mathbb{R}$ symmetrisch auf $M^6=S^3 \times S^3$ wie folgt: 
+	\[
+		S^3 = \set*{q \in \mathbb{H} \given \norm*{q}=1} \supset S^1 = \set*{z \in \mathbb{C} \given \abs*{z}=1 }
+	\]
+	\emph{Übung!}
 \end{beispiel*}
 % section 31 (end)
 % chapter 3 (end)
