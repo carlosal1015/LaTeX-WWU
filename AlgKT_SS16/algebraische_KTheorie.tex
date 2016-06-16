@@ -1794,7 +1794,7 @@ Dann können wir Chirurgie enthalt $\varphi$ durchführen.
 Betrachte eine Fortsetzung
 \[
 	\begin{tikzcd}[sep=large]
-		\enbrace*{W_\varphi,M,\chi(M,\varphi)} \rar["{(F,f,\psi)}"] & \enbrace*{N \times [0,1], N \times \set*{0}, N \times \set*{1}}
+		\enbrace[\big]{W_\varphi,M,\chi(M,\varphi)} \rar["{(F,f,\psi)}"] & \enbrace[\big]{N \times [0,1], N \times \set*{0}, N \times \set*{1}}
 	\end{tikzcd}
 \]
 von $f$.
@@ -1805,6 +1805,121 @@ Fragen:
 	\item Kann $\partial \phi$ durch eine Einbettung $\varphi_0$ repräsentiert werden?
 	\item Falls ja, kann $\varphi_0$ zu $\varphi \colon S^p \times D^{n-p} \hookrightarrow M$ fortgesetzt werden?
 \end{enumerate}
+
+\subsection*{Differentialtopologischer Werkzeugkasten}
+
+\begin{definition}[{name=[{Normalenbündel}]}]
+	Sei $g \colon X \to Y$ eine Einbettung.
+	Definiere das \Index{Normalenbündel} von $g$
+	\[
+		\nu_g \coloneqq \sfrac{\Tmap Y|_X}{\Tmap X}
+	\] 
+\end{definition}
+
+\begin{satz}[{name={Existenz von Tubenumgebungen}}]
+	Sei $X \subseteq Y$ Untermannigfaltigkeit.
+	Dann existiert eine Abbildung $t \colon \nu_{X \subseteq Y} \to Y$, sodass $t$ auf einer Umgebung des Nullschnitts eine Einbettung ist.
+\end{satz}
+
+\begin{satz}[{name={Whitney}}]
+	Sei $g \colon X\to Y$ glatt, $X$ kompakt.
+	\begin{enumerate}[(i)]
+		\item Falls $2 \cdot \dim X < \dim Y$, dann ist $g$ homotop zu einer Einbettung $g' \colon X \hookrightarrow Y$
+		\item Falls $2 \cdot \dim X = \dim Y$, dann ist $g$ homotop zu einer Immersion $g' \colon X \looparrowright Y$.
+	\end{enumerate}
+\end{satz}
+
+\begin{satz}[{name={Glatte Approximation}}]
+	Sei $g \colon X \to Y$ stetig, $X$ kompakt, $A \subseteq X$ abgeschlossen und $g|_A$ glatt.
+	Dann ist $g$ homotop relativ $A$ zu einer glatten Abbildung.
+\end{satz}
+
+Wir können uns nun den obigen Fragen zuwenden. Zur ersten Frage:
+Falls $p < \lfloor \frac{n}{2}\rfloor$, dann kann $\partial \phi$ immer durch eine Einbettung $\varphi_0$ repräsentiert werden.
+Für $p = \lfloor \frac{n}{2}\rfloor$ ist die Situation komplizierter.
+Zur zweiten Frage: Ist $p < \lfloor \frac{n}{2}\rfloor$, so wähle eine Einbettung $\varphi_0 \colon S^p \hookrightarrow M$ mit $\varphi_0 \simeq \partial \phi$.
+Es gilt nun das folgende Lemma:
+
+\begin{lemma}
+	$\varphi_0$ setzt sich zu einer Einbettung $S^p \times D^{n-p} \hookrightarrow M$ genau dann fort, wenn $\nu_{\varphi_0}$ trivial ist.
+\end{lemma}
+\begin{beweis}
+	Sei $\nu_{\varphi_0}$ trivial.
+	Wähle eine Tubenabbildung $t \colon \nu_{\varphi_0} \to M$.
+	Wähle eine Metrik auf $\nu_{\varphi_0}$.
+	Dann wird ein hinreichend kleines Scheibenbündel ($\cong S^p \times D^{n-p}$) diffeomorph nach $M$ abgebildet.
+	
+	Angenommen eine solche Fortsetzung $\varphi \colon S^p \times D^{n-p} \hookrightarrow M$ existiert.
+	Wähle eine Tubenabbildung $t \colon \nu_{\varphi_0} \to M$.
+	Verkleinere gegebenenfalls $D^{n-p}$, sodass $\varphi \enbrace*{S^p \times D^{n-p}}$ in \enquote{der} Tubenumgebung liegt.
+	Dann induziert $\varphi$ $n-p$ linear unabhängige Schnitte im Normalenbündel.
+	Also ist $\nu_{\varphi_0}$ trivial.
+\end{beweis}
+
+\begin{definition}
+	Eine \Index{normale Grad 1-Abbildung} besteht aus folgenden Daten:
+	\begin{itemize}[itemsep=1pt]
+		\item $f \colon M \to N$ Grad 1-Abbildung wie bisher
+		\item $i \colon M \hookrightarrow \mathbb{R}^N$ Einbettung
+		\item $b \colon \nu_i \oplus \mathbb{R}^l \to \xi$ Bündelabbildung über $f$, $\xi$ Vektorbündel über $N$.
+	\end{itemize} 
+\end{definition}
+
+Sei nun wieder $p < \lfloor \frac{n}{2}\rfloor$, $\varphi_0 \colon S^p \hookrightarrow M$ homotop zu $\partial \phi$.
+Dann ist
+\begin{align}
+	\Tmap \mathbb{R}^N|_{S^p} \cong \Tmap S^p \oplus \nu_{i \circ \varphi_0} \cong \Tmap S^p \oplus \nu_i|_{S^p} \cong \Tmap S^p \oplus \nu_{\varphi_0} \oplus \varphi_0^* \nu_i &\cong \Tmap S^p \oplus \nu_{\varphi_0} \oplus \Underbracket{\varphi_0^* f^* \xi}{=(f \circ \varphi_0)^* \xi} \\
+	&\cong \Tmap S^p \oplus \nu_{\varphi_0} \oplus \mathbb{R}^l
+\end{align}
+Damit ist $\nu_{\varphi_0}$ stabil trivial.
+
+\begin{proposition}
+	Sei $E \to S^p$ ein Vektorbündel vom Rang $r > p$.
+	Ist $E \oplus \mathbb{R}$ trivial, so ist $E$ trivial.
+\end{proposition}
+\begin{beweis}
+	Es gilt $S^p \cong D^p_+ \cup_{S^{p-1}}  D^p_-$ und $E|_{D^p_\pm}$ ist trivialisierbar.
+	Wähle Trivialisierungen $\tau_\pm \colon E|_{D_\pm^p} \to D^p_\pm \times \mathbb{R}^r$.
+	Wir erhalten eine Abbildung 
+	\[
+		\begin{tikzcd}
+			S^{p-1} \times \mathbb{R}^r = \partial D^p_+ \times \mathbb{R}^r  \rar["\tau_+^{-1}|_{\partial D^p_+}","\cong"'] & E|_{\partial D^p_+} = E|_{\partial D^p_-} \rar["\tau_-|_{\partial D^p_-}","\cong"'] & \partial D^p_- \times \mathbb{R}^r = S^{p-1} \times \mathbb{R}^r
+		\end{tikzcd}
+	\]
+	über $S^{p-1}$.
+	Diese Abbildung liefert eine Abbildung $\alpha \colon S^{p-1} \to \GL_r(\mathbb{R})$ und damit ein Element in $\pi_{p-1} \enbrace*{\GL_r(\mathbb{R})}$.
+	Nach Voraussetzung $\pi_{p-1} \enbrace*{\GL_r(\mathbb{R})} \to \pi_{p-1} \enbrace*{\GL_{r+1}(\mathbb{R})}$ mit $\benbrace*{\alpha} \mapsto 0$.
+	
+	Betrachte 
+	\[
+		\begin{tikzcd}
+			\GL^+_r(\mathbb{R}) \rar[hook] & \GL^+_{r+1}(\mathbb{R}) \dar[sloped,phantom,"\supseteq"] \\
+			\SO(r) \rar[hook] \uar[sloped,phantom,"\subseteq"] & \SO(r+1)
+		\end{tikzcd}
+	\]
+	Wegen Gram-Schmidt sind $\SO(r) \subseteq \GL_r(\mathbb{R})$, $\SO(r+1) \subseteq \GL_{r+1}(\mathbb{R})$ Homotopieäquivalenzen.
+	Betrachte die Auswertungsabbildung $\ev_{e_{r+1}} \colon \SO(r+1) \to S^r$
+	\[
+		\begin{tikzcd}[sep=large]
+			\SO(r) \rar[hook] &   \SO(r+1) \rar["\ev_{e_{r+1}}"] & S^r
+		\end{tikzcd}
+	\]
+	$\ev_{e_{r+1}}$ ist eine Faserung.
+	Die lange exakte Folge von Homotopiegruppen liefert, dass $\pi_i(\SO(r)) \to \pi_i(\SO(r+1))$ ein Isomorphismus ist für $i+1 < r$.
+	Also ist $\benbrace*{\alpha}=0$.
+\end{beweis}
+
+\begin{korollar}
+	Für $p < \lfloor \frac{n}{2} \rfloor$ ist $\nu_{\varphi_0}$ trivial.
+\end{korollar}
+
+Beobachtung: Jede normale Grad 1-Abbildung kann $\lfloor \frac{n}{2}\rfloor$-zusammenhängend gemacht werden.
+
+\begin{bemerkung}
+	Chirurgie kann nicht immer dazu verwendet werden, aus einer normalen Grad 1-Abbildung eine Homotopiäquivalenz zu machen.
+	Zum Beispiel ist für $n=4k$ $\sig(M) - \sig(N)$ ein Hindernis.
+\end{bemerkung}
+
 % section exkurs_chirurgie (end)
 
 \cleardoubleoddemptypage
