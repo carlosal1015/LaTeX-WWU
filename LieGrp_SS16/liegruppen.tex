@@ -586,7 +586,7 @@ Wir wissen weiter, dass $I_{\max}$ offen in $\mathbb{R}$ ist.
 
 \begin{bemerkung*}[{name=[{Existenz von Liegruppen, die keine Matrixgruppe ist}]}]
 	Für $n \ge 3$ ist $\pi_1 \enbrace*{\SL(n,\mathbb{R})} = \mathbb{Z}_2$
-	Die universelle Überlagerung $\widetilde{\SL(n,\mathbb{R})}$ von $\SL(n,\mathbb{R})$ ist eine Liegruppe, welche in keine der Gruppen $\GL(N,\mathbb{R})$ eingebetten werden kann! Insbesondere ist sie keine Matrixgruppe!
+	Die universelle Überlagerung $\widetilde{\SL(n,\mathbb{R})}$ von $\SL(n,\mathbb{R})$ ist eine Liegruppe, welche in keine der Gruppen $\GL(N,\mathbb{R})$ eingebetten werden kann! Insbesondere ist sie keine Matrixgruppe! \emph{(siehe Aufgabe 17)}\todo{vlt \TeX{}en}
 \end{bemerkung*}
 
 \begin{lemma}[label=lem:1213,{name=[{Zusammenhängede Liegruppe von Umgebung der Eins erzeugt}]}]
@@ -609,50 +609,53 @@ Wir wissen weiter, dass $I_{\max}$ offen in $\mathbb{R}$ ist.
 \section{Überlagerungen von Liegruppen} % (fold)
 \label{sec:13}
 
-\todo[inline]{RevChap 1}
-
-\begin{definition}
+\begin{definition}[{name=[Überlagerung]}]
     Sei $M^n$ eine $n$-dimensionale, zusammenhängende, differenzierbare Mannigfaltigkeit.
-    Dann nennt man eine zusammenhängende, $n$-dimensionale, differenzierbare Mannigfaltigkeit $\tilde{M}^n$ \Index{Überlagerung} von $M^n$, falls eine surjektive differenzierbare Abbildung $\pi \colon \tilde{M} \to M$ existiert mit folgenden Eigenschaften:
+    Dann nennt man eine zusammenhängende, $n$-dimensionale, differenzierbare Mannigfaltigkeit $\widetilde{M}^n$ \Index{Überlagerung} von $M^n$, falls eine surjektive differenzierbare Abbildung $\pi \colon \widetilde{M} \to M$ existiert mit folgenden Eigenschaften:
     
-    Für alle $p \in M$ existierte eine offene Umgebung $U$ von $p$ in $M^n$ mit folgenden Eigenschaften:
-    \begin{enumerate}[1)]
-        \item $\pi^{-1}(U) = \bigcup_{i \in I} \tilde{U}_i$ mit $\tilde{U}_i \subset \tilde{M}$ offen und $\tilde{U}_i \cap \tilde{U}_j = \emptyset$ für $i \neq j$.\marginnote{Jeder Punkt wird \enquote{schlicht überlagert}}
-        \item $\pi\big|_{\tilde{U}_i} \colon \tilde{U}_i \to U$ ist ein Diffeomorphismus für alle $i \in I$.
+    Für alle $p \in M$ existiert eine offene Umgebung $U$ von $p$ in $M^n$ mit folgenden Eigenschaften:
+    \begin{enumerate}[1),itemsep=1pt]
+        \item $\pi^{-1}(U) = \bigcup_{i \in I} \widetilde{U}_i$ mit $\widetilde{U}_i \subset \widetilde{M}$ offen und $\widetilde{U}_i \cap \widetilde{U}_j = \emptyset$ für $i \neq j$.\marginnote{Jeder Punkt wird \enquote{schlicht überlagert}}
+        \item $\pi\big|_{\widetilde{U}_i} \colon \widetilde{U}_i \to U$ ist ein Diffeomorphismus für alle $i \in I$.
     \end{enumerate}
-    Die Abbildung $\pi \colon \tilde{M}^n \to M^n$ nennt man \Index{Überlagerungsabbildung} und $\abs*{I}$ die \Index{Blätterzahl} ($\abs*{I}= \infty$ ist möglich).
+    Die Abbildung $\pi \colon \widetilde{M}^n \to M^n$ nennt man \Index{Überlagerungsabbildung} und $\abs*{I}$ die \Index{Blätterzahl}, dabei ist $\abs*{I}= \infty$ möglich.
 \end{definition}
 
-Beispiele:
-\begin{itemize}
-    \item $M^n$ überlagert $M^n$.
-    \item $S^3$ ist 2-fache Überlagerung von $\SO(3) = \mathbb{R}P^3$
-    \item $S^n$ ist 2-fache Überlagerung von $\mathbb{R}P^n \coloneqq \set[\big]{\text{Menge der Geraden im }\mathbb{R}^{n+1}}$.
-    \item Ist $G$ eine Gruppe, die frei und eigentlich diskontinuierlich auf $\tilde{M}^n$ operiert, so ist der Bahnenraum 
-    \[
-        M^n \coloneqq \set*{[p] \given p \in M^n} = \sfrac{\tilde{M}^n}{G}
-    \]
-    eine $n$-dimensionale, differenzierbare Mannigfaltigkeit und $\pi \colon \tilde{M}^n \to M^n$, $p \mapsto [p]$ eine Überlagerung
-    \[
-        [p] = [\tilde{p}] :\Longleftrightarrow \exists g \in G : p = g \cdot \tilde{p}
-    \]
-    Ist $G$ endlich: Dann ist $G$ frei und diskontinuierlich äquivalent zu: $g$ wirkt trivial auf einem Punkt $p$ genau dann, wenn $g$ auf allen $p$ trivial operiert.
-    \item Für jede zusammenhängende Mannigfaltigkeit $M^n$ existiert eine bis auf Diffeomorphie einfach zusammenhängende Mannigfaltigkeit $\tilde{M}^n$, die $M^n$ überlagert (\Index{Universelle Überlagerung}).
-    Ferner gilt $M^n = \sfrac{\tilde{M}^n}{\pi_1(M^n)}$.
-\end{itemize}
+
+\begin{beispiel*}[{name=[Überlagerungen]}]
+	\leavevmode
+	\begin{itemize}[itemsep=2pt]
+	    \item $M^n$ überlagert $M^n$ auf triviale Weise.
+	    \item $S^3$ ist 2-fache Überlagerung von $\SO(3) = \mathbb{R}P^3$.
+	    \item $S^n$ ist 2-fache Überlagerung von $\mathbb{R}P^n \coloneqq \set[\big]{\text{Menge der Geraden im }\mathbb{R}^{n+1}}$.
+	    \item Ist $G$ eine Gruppe, die frei und eigentlich diskontinuierlich auf $\widetilde{M}^n$ operiert, so ist der Bahnenraum
+	    \[
+	        M^n \coloneqq \set[\big]{[p] \given p \in M^n} = \sfrac{\widetilde{M}^n}{G}
+	    \]
+	    eine $n$-dimensionale, differenzierbare Mannigfaltigkeit und $\pi \colon \widetilde{M}^n \to M^n$, $p \mapsto [p]$ eine Überlagerung.
+		Dabei gilt
+	    \[
+	        [p] = [\tilde{p}] :\Longleftrightarrow \exists g \in G : p = g . \tilde{p}
+	    \]
+	    Ist $G$ endlich, so ist $G$ frei und diskontinuierlich äquivalent zu: $g$ wirkt trivial auf einem Punkt $p$ genau dann, wenn $g$ auf allen $p$ trivial operiert.
+	    \item Für jede zusammenhängende Mannigfaltigkeit $M^n$ existiert eine bis auf Diffeomorphie eindeutige, einfach zusammenhängende Mannigfaltigkeit $\widetilde{M}^n$, die $M^n$ überlagert, diese bezeichnet man als \Index{universelle Überlagerung}.
+	    Ferner gilt $M^n = \sfrac{\widetilde{M}^n}{\pi_1(M^n)}$.\todo{RevChap 1}
+	\end{itemize}
+\end{beispiel*}
+
 
 \begin{lemma}[label=lem:132]
     Sei $G$ eine zusammenhängende Liegruppe.
     \begin{enumerate}[1)]
-        \item Ist $\tilde{G}$ eine zusammenhängede Mannigfaltigkeit und $\pi \colon \tilde{G} \to G$ eine Überlagerungsabbildung, so besitzt $\tilde{G}$ genau eine Liegruppenstruktur, sodass $\pi$ ein Liegruppenhomomorphismus ist.
-        \item Ein Liegruppenhomomorphismus $\Phi \colon \tilde{G} \to G$ mit $\tilde{G}$ zusammenhängend ist eine Überlagerung genau dann, wenn das Differential $(\mathd \Phi)_{\tilde{e}} \colon \Tmap_{\tilde{e}} \tilde{G} \to \Tmap_e G$ ein Isomorphismus ist.
+        \item Ist $\widetilde{G}$ eine zusammenhängede Mannigfaltigkeit und $\pi \colon \widetilde{G} \to G$ eine Überlagerungsabbildung, so besitzt $\widetilde{G}$ genau eine Liegruppenstruktur, sodass $\pi$ ein Liegruppenhomomorphismus ist.
+        \item Ein Liegruppenhomomorphismus $\Phi \colon \widetilde{G} \to G$ mit $\widetilde{G}$ zusammenhängend ist eine Überlagerung genau dann, wenn das Differential $(\mathd \Phi)_{\tilde{e}} \colon \Tmap_{\tilde{e}} \widetilde{G} \to \Tmap_e G$ ein Isomorphismus ist.
     \end{enumerate}
 \end{lemma}
 \begin{beweis}
     \begin{enumerate}[(1)]
-        \item Sei $\tilde{e} \in \pi^{-1}(e)$.
-        Überlagerungstheorie impliziert (Stöcker-Zischer, Algebraische Topologie, Abschnitt 6.2)\todo{ref}, dass die stetigen Funktionen $m \colon G \times G \to G$, $^{-1} \colon G \to G$ entsprechende Lifts besitzen.
-        Die Eindeutigkeit ist durch die Wahl von $\tilde{e}$ gegeben [Klar falls $\tilde{G}$ einfach zusammenhängend, sonst \enquote{kleines} Argument].
+        \item Sei $\tilde{e} \in \pi^{-1}(e)$ fest gewählt.
+        Überlagerungstheorie impliziert, dass die stetigen Funktionen $m \colon G \times G \to G$, $^{-1} \colon G \to G$ entsprechende Lifts besitzen.\footnote{siehe zum Beispiel \textsc{Stöcker-Zischer} \emph{Algebraische Topologie} \cite[Abschnitt 6.2]{stockerAlgTop}}
+        Die Eindeutigkeit ist durch die Wahl von $\tilde{e}$ gegeben [Klar, falls $\widetilde{G}$ einfach zusammenhängend, sonst \enquote{kleines} Argument].
         
         Die Abbildungen $\tilde{m},\tilde{{ }^{-1}}$ sind differenzierbare Abbildungen, welche die Gruppenaxiome erfüllen: $\tilde{m} (\tilde{e}, \tilde{g}) = \tilde{g}$ für alle $\tilde{g} \in \tilde{G}$.
         Dies ergibt sich daraus, dass man Wege eindeutig liften kann.
