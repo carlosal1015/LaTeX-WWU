@@ -56,6 +56,361 @@ Bitte durch persönliches Ansprechen oder per Mail an \href{mailto:keil.menden@w
 %%%% 02.06.2016- 13.06.2016
 \input{splits/pde9.tex}
 
+\begin{satz}
+	Sei $\Omega$ eine offene, beschränkte Teilmenge im $\mathbb{R}^n$ mit $C^1$-Rand. Sind $u,v \in C^2( \overline{\Omega_T})$ Lösungen von (P), so gilt $u=v$, $T>0$,
+	$f \in C^0(\Omega_T)$, $g \in C^2( \partial_p \Omega_T)$, $h \in C^1(\Omega)$.
+\end{satz}
+\begin{beweis}
+	Sei $w:= u-v \in C^2(\overline{\Omega_T})$. Dann gilt \[
+		\begin{cases}
+			w_{tt}- \Delta w = 0, &\text{ in }\Omega_T\\
+			w = 0,&\text{ auf } \partial_p \Omega_T \\
+			w_t=0 , &\text{ auf } \partial_p \Omega_T
+		\end{cases}
+	\]
+	\[
+		\stackrel{w \in C^2(\overline{\Omega_T})}{\Rightarrow} \qquad w =0 \text{ auf } [0,T] \times \partial \Omega
+	\]
+	\[
+		\stackrel{\text{Lemma }4.9}{\Rightarrow } \qquad e(t) = e(0) = \int_{\Omega}^{} ((\underset{=0}{\underbrace{w_t(0,x)}})^2 
+		+ \underset{=0}{\underbrace{(  \nabla w(0,x))^2}}) \,\mathrm{d}x = 0
+	\]
+	\[
+		\Rightarrow \qquad e(t)=0 \qquad \forall\, t \in [0,T]
+	\]
+	\[
+		0 = e(t) = \int_{\Omega}^{}((w_t(t,x))^2+ ( \nabla w(t,x))^2) \,\mathrm{d}x
+	\]
+	\[
+		\Rightarrow \qquad w_t=0, \qquad  \nabla w=0 \qquad \text{in }\Omega_T
+	\]
+	\[
+		\Rightarrow \qquad w = \text{konstante} = 0
+	\]
+\end{beweis}
+\minisec{Endliche Ausbreitungsgeschwindigkeit:}
+\begin{satz}
+	Sei $(t_0,x_0) \in (0, \infty) \times \mathbb{R}^n$ und 
+	\[
+		C(t_0,x_0) := \set[(t,x)]{0 \leq t \leq t_0,\,\abs{x-x_0} \leq t_0-t}
+	\]
+	der sogenannte Vergangenheitskegel/Einflusskegel. \\
+	Sei $u \in C^2((0,\infty) \times \mathbb{R}^n)$ eine Lösung von $u_{tt}-\Delta u =0$ in $(0,\infty) \times \mathbb{R}^n$ falls $u = u_t=0$ auf 
+	$\set{0} \times B_{t_0}(x_0)$, dann gilt $u \equiv 0$ in $C(t_0,x_0)$
+\end{satz}
+
+\begin{bemerkung}
+	Die Lösung der Wellengleichung hängt nicht von Störungen außerhalb des Einflusskegels ab. Damit haben Störungen endliche Ausbreitungsgeschwindigkeit.
+\end{bemerkung}
+\begin{beweis}
+	Sei
+	\begin{align*}
+		e(t) :=& \frac{1}{2} \int_{B_{t_0-t}(x_0)}^{} ((u_t(t,x))^2 + \abs{ \nabla  u(t,x)}^2) \,\mathrm{d}x \\
+		=& \frac{1}{2} \int_{0}^{t_0-t} \int_{\partial B_{\rho}(x_0)}^{} ((u_t(t,x))^2 + \abs{ \nabla u(t,x)}^2) \,\mathrm{d}S(x) \,\mathrm{d} \rho \\
+		=& \frac{1}{2} \int_{0}^{t_0-t} f(t,\rho) \,\mathrm{d}\rho
+	\end{align*}
+	wegen $0 \leq t \leq t_0$. \\
+	Es gilt
+	\begin{align*}
+		\diffd{e(t)}{t} &= \frac{1}{2} \int_{0}^{t_0-t} f_t(t,\rho)  \,\mathrm{d}\rho - \frac{1}{2}f(t,t_0-t) \\
+		&= \frac{1}{2} \int_{0}^{t_0-t} \int_{\partial B_\rho(x_0)}^{} ( 2 u_t u_{tt} + 2  \nabla u  \nabla u_t) \,\mathrm{d}S(x) \,\mathrm{d}\rho \\
+		& \qquad \qquad - \frac{1}{2}\int_{B_{t_0-t}(x_0)}^{}((u_t(t,x))^2 + \abs{ \nabla u(t,x)}^2) \,\mathrm{d}S(x) \\
+		&= \int_{B_{t_0-t}(x_0)}^{}(u_t u_{tt}+  \nabla u  \nabla u_t) \,\mathrm{d}x - \frac{1}{2} \int_{\partial B_{t_0-t}(x_0)}^{} 
+		((u_t)^2 + \abs{ \nabla u}^2) \,\mathrm{d}S(x)
+	\end{align*}
+	\begin{align*}
+		\diffd{e(t)}{t} &= \int_{B_{t_0-t}(x_0)}^{} u_t( u_{tt}- \Delta u) \,\mathrm{d}x + \int_{\partial B_{t_0-t}(x_0)}^{} u_t  \nabla u \cdot \omega
+		 \,\mathrm{d}S(x) \\ & \qquad \qquad - \frac{1}{2} \int_{\partial B_{t_0-t}(x_0)}^{}((u_t)^2 + \abs{  \nabla u}^2) \,\mathrm{d}S(x) \leq 0
+	\end{align*}
+	wegen
+	\[
+		u_t  \nabla \cdot \omega \leq \abs{u_t  \nabla u \cdot \omega} \leq \abs{u_t}\abs{ \nabla u} \stackrel{\text{Young}}{\leq } \frac{1}{2} ((u_t)^2 + \abs{ \nabla u}^2)
+	\]
+	Damit ist $e$ monoton fallend, also 
+	\[
+		e(t) \leq e(0) = \int_{B_{t_0}(x_0)}^{} ((u_t)^2 + \abs{ \nabla u}^2) \,\mathrm{d}x =0
+	\]
+	\[
+		\Rightarrow \qquad 0 \leq  e(t) \leq 0 \qquad \forall\, t \in [0,t_0)
+	\]
+	\[
+		\Rightarrow \qquad u_t=0, \, \nabla u=0 \qquad \text{in } C(t_0,x_0) \qquad \forall\, x \in B_{t_0-t}(x_0), \,t \in [0,t_0)
+	\]
+	\[
+		\Rightarrow \qquad u=0 \qquad \text{in }C(t_0,x_0)
+	\]
+\end{beweis}
+\[
+	(1) \begin{cases}
+		E(x,u(x), \nabla u(x))=0, &\text{ in }\Omega\\
+		u=g,&\text{ auf }\partial \Omega
+	\end{cases}
+\]
+Mit $E$ und $g$ "regulär", $\Omega \subseteq \mathbb{R}^n$ offen und mit $C^1$-Rand.
+
+\section{PDE's erster Ordnung} 
+\label{sec:pde_s_erster_ordnung}
+In diesem Kapitel werden wir die Methode der Charakteristiken kennenlernen. Dies bedeutet aus der Differentialgleichung (1) eine ODE zu machen. 
+\subsection{Vorbereitungen} 
+\label{sub:vorbereitungen}
+\subsubsection{ODE's} 
+\label{ssub:ode_s}
+Sei $G \subseteq \mathbb{R} \times \mathbb{R}^n$, $f: G \to  \mathbb{R}^n$ mit $f= (f_1,\dots,f_n)$ stetig.
+\[
+	(2) \qquad y' = f(x,y) \qquad \Leftrightarrow \qquad \begin{cases}
+		y_1'&=f_1(x,y_1,\dots,y_n)\\
+		&\vdots \\
+		y_n' &= f_n(x,y_1,\dots,y_n)
+	\end{cases}\qquad \text{System von ODE's}
+\]
+Eine Lösung von (2) ist eine Funktion $y \in C^1(I,\mathbb{R}^n)$ auf einem Intervall $I \subseteq \mathbb{R}$ mit folgenden Eigenschaften:
+\begin{enumerate}[(i)]
+	\item Der Graph von $y$ ist in $G$ enthalten also 
+	\[
+		(x,y(x)) \subseteq G \qquad \forall\, x \in I
+	\]
+	\item $y'=f(x,y(x))$ für alle $x \in I$
+\end{enumerate}
+\begin{satz}[Zurückführung auf Integralgleichung]
+	Sei $G \subseteq \mathbb{R}\times \mathbb{R}^n$, $f: G \to \mathbb{R}^n$ eine stetige Funktion und $(x_0,y_0) \subseteq G$ gegeben. Dann gilt: \\
+	Eine stetige Funktion $y: I \to \mathbb{R}^n$, die auf einem Intervall $I \subseteq \mathbb{R}$ mit $x_0 \in I$ definiert ist, und deren Graph in $G$ enthalten
+	 ist, ist genau dann Lösung von
+	\[
+		(3) \qquad  \begin{cases}
+			y' = f(x,y), &\text{ in }I\\
+			y(x_0) = y_0,
+		\end{cases}
+	\]wenn die folgende Integralgleichung gilt
+	\[
+		(4) \qquad y(x) = y_0 \int_{x_0}^{x} f(t,y(t)) \,\mathrm{d}t \qquad \forall\, x \in I
+	\]
+\end{satz}
+\begin{beweis}
+	\begin{description}
+		\item[$(4) \Rightarrow (3)$:]$y(x_0)=y_0$, $t \mapsto f(t,y(t))$ ist stetig in $I$. es gilt
+		\[
+			\diffd{}{x} \int_{x_0}^{x}f(t,y(t)) \,\mathrm{d}t = f(x,y(x)) = y'(x)
+		\] 
+		\item[$(3) \Rightarrow (4)$] \[
+			y'(x) = f(x,y) \qquad \Rightarrow \qquad \int_{x_0}^{x} f(t,y(t)) \,\mathrm{d}t = y(x) - y_0
+		\]
+	\end{description}
+\end{beweis}
+\begin{definition*}
+	Sei $G \subseteq \mathbb{R}\times \mathbb{R}^n$. Eine Funktion $f : G \to \mathbb{R}^n$ heißt Lipschitzstetig bzgl der zweiten Variablen mit der Lipschitzkonstante $L>0$, wenn
+	\[
+		\abs{f(x,y_1)-f(x,y_2)} \leq L \abs{y_1-y_2} \qquad \forall\, (x,y_1), \,(x,y_2) \in G.
+	\]
+	$f$ ist lokal Lipschitzstetig bzgl. der zweiten Variablen, falls jeder Punkt $(\bar{x},\bar{y}) \in G$ eine Umgebung $U$ besitzt, so dass $f$ in $G \cap U$ Lipschitzstetig bzgl. der zweiten Variablen ist.
+\end{definition*}
+
+\begin{bemerkung}
+	Sei $G \subseteq \mathbb{R} \times \mathbb{R}^n$ offen und $f: G \to  \mathbb{R}^n$ eine bzgl der Variablen $(y_1, \dots, y_n)$ stetig partiell differenzierbare Funktion. Dann ist $f$ lokal Lipschitzstetig in $G$.
+\end{bemerkung}
+
+\begin{satz}[lokaler Existenz- und Eindeutigkeitssatz von Picard-Lindelöf]
+	Sei $G \subseteq \mathbb{R} \times \mathbb{R}^n$ offen und $f: G \to \mathbb{R}^n$ eine stetige Funktion, die lokal Lipschitzstetig bzgl. der zweiten Variablen ist. Dann gibt es zu jedem $(x_0,y_0) \in G$ ein $\varepsilon >0$ und eine eindeutige Lösung $y : [x_0- \varepsilon, x_0 + \varepsilon] \to \mathbb{R}^n$ von
+	\[
+		\begin{cases}
+			y'(x)&=f(x,y)\\
+			y(x_0)&= y_0
+		\end{cases} \qquad \text{Cauchy-Problem}
+	\]
+\end{satz}
+\begin{beweis}
+	mithilfe des Banachschen Fixpunktsatzes. $C^0([x_0- \varepsilon, x_0 + \varepsilon];\mathbb{R}^n)$ ist ein Banachraum mit 
+	\[
+		\norm{\varphi}_{\infty} := \sup_{\abs{x-x_0} \leq \varepsilon} \abs{\varphi(x)} 
+	\]
+	(für ein noch zu bestimmtes $\varepsilon >0 $). Weil $G$ offen ist, existiert eine $\delta >0$ und $r >0$ sodass
+	\[
+		R_{\delta ,r} = \set[(x,y) \in \mathbb{R} \times \mathbb{R}^n]{\abs{x-x_0} \leq \delta , \abs{y-y_0} \leq r} \subseteq G
+	\]
+	und die Funktion $f$ in $R_{\delta ,r}$ Lipschitzstetig mit einer gewissen Konstante $L >0$ ist.
+	\[
+		\abs{f(x,y) \leq M} \qquad  \forall\, (x,y) \in R_{\delta ,r}
+	\]
+	Wir setzen $\varepsilon := \min \set{\delta , \frac{r}{M}, \frac{1}{2L}}$ und 
+	\[
+		B:= \set[\varphi \in C^0([x_0- \varepsilon, x_0 + \varepsilon);\mathbb{R}^n)]{\norm{\varphi-x_0}_{\infty} \leq r}
+	\]
+	$B$ ist eine abgeschlossene Teilmenge des Banachraums $C^0([x_0- \varepsilon, x_0 + \varepsilon]; \mathbb{R}^n)$. Damit ist $B$ ein vollständiger Raum.
+	Sei $ T:B \to B$ mit $T(\varphi) = \psi$ wobei
+	\[
+		\varphi(x) : = y_0 + \int_{x_0}^{x} f(t,\varphi(t)) \,\mathrm{d}t, \qquad x \in [x_0- \varepsilon, x_0 + \varepsilon]
+	\]
+	\begin{enumerate}[(i)]
+		\item $T$ ist wohldefiniert: $\norm{\varphi-y_0}_{\infty} \leq r$
+		\[
+			\Rightarrow \qquad (x,\varphi(x)) \subseteq R_{\varepsilon,r} \stackrel{\varepsilon \leq \delta }{\Rightarrow } R_{\delta ,r} \subseteq G
+		\]
+		Damit ist $f(t,\varphi(t))$ für alle $t \in [x_0- \varepsilon, x_0 + \varepsilon]$ definiert und als Funktion von $t$ stetig.
+		\[
+			\abs{y-y_0} = \abs{\int_{x_0}^{x} f(t,\varphi(t)) \,\mathrm{d}t} \leq M \underset{\leq \varepsilon}{\underbrace{\abs{x-x_0}}} \leq r
+		\]
+		Damit liegt $\psi$ in $B$.
+		\item $T$ ist eine Kontaktion: Es gilt für alle $x \in [x_0 - \varepsilon , x_0 + \varepsilon]$
+		\begin{align*}
+			\abs{T(\varphi_1)(x)-T(\varphi_2)(x)} &\leq \abs{\int_{x_0}^{x} \abs{f(t,\varphi_1(t))- f(t,\varphi_2(t))} \,\mathrm{d}t} \\
+			&\leq \abs{\int_{x_0}^{x} L \abs{ \varphi_1(t)-\varphi_2(t)} \,\mathrm{d}t} \\
+			&\leq  L \norm{\varphi_1- \varphi_2}_{\infty} \underset{\leq \varepsilon}{\underbrace{\abs{x-x_0}}} \\
+			\leq \frac{1}{2} \norm{\varphi_1- \varphi_2}_{\infty}
+		\end{align*}
+		\[
+			\Rightarrow \qquad \norm{T(\varphi_1)-T(\varphi_2)}_{\infty} \leq \frac{1}{2}\norm{ \varphi_1- \varphi_2}_{\infty}
+		\]
+		Damit ist $T$ eine Kontraktion.
+	\end{enumerate}
+	Aus dem Banachschen Fixpunktsatz folgt nun, dass genau ein $ y \in B$ existiert, mit
+	\[
+		Ty=y 
+	\] 
+	Also für alle $x \in [x_0 - \varepsilon , x_0 + \varepsilon]$
+	\[
+		y(x) = y_0 + \int_{x_0}^{x} f(t,y(t)) \,\mathrm{d}t \qquad \Leftrightarrow \qquad y'=f(x,y) \text{ und } y(x_0) = y_0
+	\]
+\end{beweis}
+\begin{beispiel}
+	Betrachte
+	\[
+		\begin{cases}
+			y'&=3y^{\frac{3}{2}} \\ 
+			y(0)&= 0
+		\end{cases}
+	\]
+	Dann ist $f(x,y) = 3 y^{\frac{3}{2}}$. Mit der Trennung der Variablen gilt
+	\begin{align*}
+		\diffd{y}{x} &= 3 y^{\frac{3}{2}} \\
+		\Rightarrow \qquad \int_{}^{} \frac{1}{3} y^{- \frac{2}{3}} \,\mathrm{d}y &= \int_{}^{} \,\mathrm{d}x \\
+		\Rightarrow \qquad \frac{1}{3} \frac{y^{- \frac{2}{3}+1}}{- \frac{2}{3}+1} &= x + c \\
+		\Rightarrow \qquad y^{\frac{1}{3}} &= x+ c \\
+		\Rightarrow \qquad y &= (x+c)^3 \\
+		\Rightarrow \qquad y(x) &= x^3
+	\end{align*}
+	Außerdem ist auch $y \equiv 0$ eine Lösung, also
+	\[
+		y_a(x) = \begin{cases}
+			(x+a)^3, &\text{ falls }x<-a\\
+			0, &\text{ falls }-a \leq x < a, \,a >0 \\
+			(x-a)^3, &\text{ falls }x \geq a
+		\end{cases}
+	\]
+	Der Eindeutigkeitssatz gilt nicht! Wäre $f$ lokal Lipschitzstetig, dann $\exists\, 0 \in U,\, L>0$, sodass
+	\[
+		\abs{f(y)-f(0)} \leq L \abs{y-0} \qquad \forall\, y \in U
+	\]
+	\[
+		3 \abs{y^{\frac{2}{3}}} \leq L \abs{y} \qquad \Rightarrow \qquad 3 \abs{y^{-\frac{1}{3}}} \leq  L \qquad \forall\, y \in U,
+	\]
+	Aber $\abs{y^{- \frac{1}{3}}} \to  \infty$ für $y \to 0$. Dies bedeutet, dass $f$ in keiner Umgebung von $0$ eine Lipschitzbedingung erfüllt.
+\end{beispiel}
+\begin{bemerkung}[globale Version von Picard-Lindelöf]
+	Ist $f: [a,b] \times \mathbb{R}^n \to \mathbb{R}^n$ stetig und Lipschitzstetig bzgl. der zweiten Variablen, sowie $x_0 \in [a,b]$, so bestizt das Cauchy-Problem
+	eine eindeutige globale Lösung $y \in C^1([a,b], \mathbb{R}^n)$
+\end{bemerkung}
+
+\begin{satz}[Satz über implizite Funktionen]
+	Sei $\Omega$ eine offene Menge in $\mathbb{R}^n \times \mathbb{R}^m$ und $f \in C^1(\Omega, \mathbb{R}^n)$ mit $f(x_1,\dots,x_n,y_1, \dots, y_n)$. Ist $(x_0,y_0) \in \Omega$ mit 
+	\[
+		\det  \nabla f(x_0,y_0) \neq 0,
+	\] 
+	so existieren offene Mengen $\Theta_1 \subseteq \mathbb{R}^n $, $ \Theta_2 \subseteq \mathbb{R}^m$ mit $(x_0,y_0) \in \Theta_1 \times \Theta_2$ sowie eine
+	Funktion $g \in C^1(\Theta_1, \Theta_2)$, so dass gilt:
+	\[
+		\set[(x,y) \in \Theta_1 \times \Theta_2]{f(x,y)=f(x_0,y_0)} = \set[(x,g(x))]{x \in \Theta_1}
+	\]
+\end{satz}
+
+\begin{satz}[Satz der lokalen Umkehrabbildung]
+	Sei $\Omega \subseteq \mathbb{R}^n$ offen und $f \in C^1(\Omega,\mathbb{R}^n)$. Ist $x_0 \in \Omega$ mit $\det  \nabla f(x_0) \neq 0$, so existieren offene Mengen
+	$\Theta_1, \, \Theta_2 \in \mathbb{R}^n$, so dass $x_0 \in \Theta_1$ gilt und $f: \Theta_1 \to \Theta_2$ ein Diffeomorphismus ist. Dies bedeutet, dass eine Funktion $f^{-1} \in C^1(\Theta_2, \Theta_1)$ existiert mit 
+	\[
+		f^{-1} \circ f = \id, \qquad f \circ f^{-1} = \id, \qquad \text{auf } \Theta_1 \text{ bzw } \Theta_2
+	\]
+	Es gilt außerdem 
+	\[
+		 \nabla f^{-1}(f(x)) = ( \nabla f(x))^{-1} \qquad \forall\, x \in \Theta_1.
+	\]
+	Falls zusätzlich $f \in C^k(\Omega; \mathbb{R}^n)$ für $k \geq 2$ gilt, so gilt auch $f ^{-1} \in C^k(\Theta_2,\Theta_1)$
+ \end{satz}
+Betrachte nun für $E \in C^2( \bar{\Omega} \times \mathbb{R}^ \times \mathbb{R}^n)$
+\[
+	(2) \qquad \begin{cases}
+		E(x,u(x), \nabla u(x))=0, &\text{ in }\Omega \subseteq \mathbb{R}^n \text{ offen und mit $C^1$-Rand}\\
+		u=g,&\text{ auf }\Gamma \subseteq \partial \Omega
+	\end{cases}
+\]
+\subsubsection{Lokale Existenz mittels Charakteristiken} 
+\label{ssub:lokale_existenz_mittels_charakteristiken}
+Wir nehmen an, dass $u \in C^2$ eine Lösung von $(2)$ ist; $\gamma$ verbindet hierbei $x_0$ und $x$. 
+\minisec{Aufstellung der charakteristischen Gleichung:}
+$u \in C^2 \cap C^1(\bar{\Omega})$, $E \in C^2(\bar{\Omega} \times \mathbb{R} \times \mathbb{R}^n)$ sei Lösung von $E(x,u(x), \nabla u(x)) = 0$ in $\Omega$. Sei $\gamma \in C^1(I;\Omega)$, $I \subseteq \mathbb{R}$ Intervallkurve in $\Omega$. \\
+\[
+	v(s) := u(\gamma) \qquad \text{Kurve in }\mathbb{R},
+\] 
+\[
+	z(s) :=  \nabla u(\gamma(s)) \qquad \text{Kurve in }\mathbb{R}^n.
+\]
+\begin{align*}
+	v'(s) &=  \nabla u(\gamma(s)) \cdot \gamma'(s), \\
+	z(s) &= (\partial_{x_1}u(\gamma(s)), \dots, \partial_{x_n}u(\gamma(s))), \\
+	z_i'(s) &=  \nabla (\partial_{x_i} u(\gamma(s))) \cdot \gamma'(s)
+\end{align*}
+Wir verwenden die Notation $E = E(x,v,z)$ und $ \nabla_x E$, $\partial_v E$, $ \nabla_z E$. Nun leiten wir \\$E(x,u(x), \nabla u(x))$ nach $x_i$ ab.
+\begin{align*}
+	0 &= \partial_{x_i} E(x, u(x),  \nabla u(x)) + \partial_{v} E(x,u(x), \nabla u(x))\partial_{x_i} u(x) \\
+	&\qquad +  \nabla_z E(x,u(x), \nabla u(x)) \cdot \underset{=  \nabla (\partial_{x_i}u(x))}{\underbrace{\partial_{x_i}( \nabla u(x))}}
+\end{align*}
+Die Auswertung auf der Kurve $\gamma$ ergibt:
+\[
+	0 = \partial_{x_i} E(\gamma,v,z) + \partial_v E(\gamma,v,z)z_i +  \nabla_z E(\gamma, v,z) \cdot  \underset{(*)}{\underbrace{\nabla (\partial_{x_i}u) \circ \gamma}}
+\]
+Wir wollen eine Gleichung erhalten, in der nur $\gamma$, $v$, $z$ und deren Ableitungen vorkommen. Dafür müssen wir den Term $(*)$ eliminieren. Dafür setzen wir
+\begin{description}
+	\item[(i)]$\gamma'(s)=  \nabla _z E(\gamma,v,z)$ und daraus folgt
+	\item[(iii)] \begin{align*}
+		z_i' &=  \nabla (\partial_{x_i} u(\gamma(s)))\cdot  \nabla _z E(\gamma,v,z) \\
+		&= - \partial_{x_i} E(\gamma,v,z) - \partial_v E(\gamma,v,z)z_i \qquad \forall\, i=1,\dots,n
+	\end{align*} 
+	\item[(ii)] $v'(s) = z(s) \cdot  \nabla_z E(\gamma,v,z)$
+\end{description}
+Es ergeben sich $2n+1$ Unbekannte und $2n+1$ gewöhnliche Differentialgleichungen.
+
+\begin{satz}[Struktur der charakteristischen Gleichungen]
+	Sei $u \in C^2(\Omega) \cap C^1(\bar{\Omega})$ eine Lösung von $E(x,u(x), \nabla u(x))= 0 $ in $\Omega$. Sei außerdem $I$ ein Intervall in $\mathbb{R}$, 
+	$\gamma \in C^1(I;\Omega)$, $v:= u \circ \gamma$, $z:=  \nabla u \circ \gamma$. Ist $\gamma$ eine Lösung von 
+	\begin{description}
+		\item[(i)] $\gamma'(s) =  \nabla _z E(\gamma,v,z)$ in $I$, so lösen $v$ und $z$ auf $I$ die Differentialgleichungen
+		\item[(ii)] $v'(s)=  \nabla_z E(\gamma,v,z) \cdot z$,
+		\item[(iii)] $z'(s) = -  \nabla_x E(\gamma,v,z) - \partial_v E(\gamma,v,z)z$
+	\end{description}
+\end{satz}
+\begin{bemerkung}
+	Das System (i)-(iii) ist geschlossen und besitzt nach dem Satz von Picard-Lindelöf eine eindeutige Lösung (zu gegebenen Anfangsdaten).
+\end{bemerkung}
+\begin{definition*}
+	Die Funktionen $\gamma = (\gamma_1, \dots, \gamma_n)$, $v$ und $z = (z_1, \dots, z_n)$ heißen die Charakteristiken zur Gleichung $E(x,u(x), \nabla u(x))$.
+\end{definition*}
+
+% \begin{beispiel}
+% 	\begin{enumerate}[1.]
+% 		\item Lineare Gleichung \[
+% 			b(x) \cdot  \nabla u(x) + c(x) u(x) = 0
+% 		\], also $E(x,v,z) = b(x) \cdot z + c(x) v$ und somit
+% 		\[
+% 			b(\gamma(s)) \cdot z(s) + c (\gamma(s))v(s) = 0
+% 		\]
+% 		\begin{enumerate}[(i)]
+% 			\item $\gamma'(s) = b(\gamma(s))$
+% 			\item $v'(s) = b(\gamma(s)) \cdot z(s) = -c (\gamma(s))v(s)$
+% 		\end{enumerate}
+% 		Hier haben wir nur $n+1$ Gleichungen für die $n+1$ Unbekannten $\gamma$ und $v$.
+% 		\item Die Transportlgleichung
+% 		\[
+% 			\partial_t u(t,x) + b  \nabla u(t,x) = 0, \qquad b \in \mathbb{R}^n,\, c=0
+% 		\]
+% 	\end{enumerate}
+% \end{beispiel}
 
 \cleardoubleoddemptypage
 \pagenumbering{Alph}
