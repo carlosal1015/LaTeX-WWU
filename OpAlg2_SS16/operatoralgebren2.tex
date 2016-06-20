@@ -1581,6 +1581,8 @@ Wir erhalten:
 \section{Die Sätze von Choi-Effros} % (fold)
 \label{sec:4}
 
+\todo[inline]{RevChap 4}
+
 \begin{proposition}[label=prop:41]
 	Sei $B$ eine $C^*$-Algebra und $J \lhd B$ ein Ideal.
 	Sei $\varphi \colon M_n \to \sfrac{B}{J}$ vollständig positiv  unital (bzw. kontraktiv).
@@ -1798,7 +1800,7 @@ $(\varphi_\lambda)_\Lambda$ ist also genau dann Cauchy bezüglich $d_B$, wenn $(
 
 \begin{definition}[{name=[amenabel]{von Neumann}}]
 	Eine diskrete Gruppe $G$ heißt \Index{amenabel} (oder mittelbar), falls ein Zustand $\mu \in S \enbrace*{\ell^\infty(G)}$ existiert mit $\mu(f) = \mu(s \cdot f)$ wo $s \cdot f(.) = f(s^{-1} .)$ für $s \in G$, $f \in \ell^\infty(G)$.
-	$\mu$ heißt \Index{linksinvariantes Mittel}. 
+	Ein solches $\mu$ heißt \Index{linksinvariantes Mittel}.
 \end{definition}
 
 \begin{definition}[{name=[Følner-Bedingung]}]
@@ -1807,10 +1809,10 @@ $(\varphi_\lambda)_\Lambda$ ist also genau dann Cauchy bezüglich $d_B$, wenn $(
 		\max_{s \in E} \frac{\abs*{F \DeltaOp sF} }{\abs*{F}} < \varepsilon  
 	\]
 	wo $sF = \set*{st \given t \in F} \subset G$ und $F \DeltaOp sF = (F \cup sF) \setminus F \cap sF$.
-	$F$ heißt \Index{Følnermenge} zu $E,\varepsilon$.
+	Eine solche Menge $F$ heißt \Index{Følnermenge} zu $E,\varepsilon$.
 \end{definition}
 
-\begin{satz}[label=satz:53]
+\begin{satz}[label=satz:53,{name=[{Zusammenhang von amenabel und nuklear}]}]
 	Für eine diskrete Gruppe $G$ sind äquivalent:
 	\begin{enumerate}[(i)]
 		\item $G$ ist amenabel
@@ -1818,6 +1820,8 @@ $(\varphi_\lambda)_\Lambda$ ist also genau dann Cauchy bezüglich $d_B$, wenn $(
 		\item $C^*_r(G)$ ist nuklear
 	\end{enumerate}
 \end{satz}
+
+\todo[inline]{RevChap 5}
 
 \begin{erinnerung}
 	Es ist $C^*_r(G) = C^*(\lambda(G)) \subset \mathcal{B}(\ell^2(G))$, wo $\lambda \colon G \to \mathcal{U}(\mathcal{B}(\ell^2(G)))$ gegeben ist durch $\lambda_g(\eta_h) \coloneqq \eta_{gh}$ (linksreguläre Darstellung; $\eta_g(t)= \delta_{gt}$ Basisvektoren).
@@ -1912,6 +1916,7 @@ $(\varphi_\lambda)_\Lambda$ ist also genau dann Cauchy bezüglich $d_B$, wenn $(
 
 \section{Die $K_0$-Gruppe einer unitalen $C^*$-Algebra} % (fold)
 \label{sec:6}
+\todo[inline]{RevChap 6}
 \todo[inline]{Hier fehlt noch einiges!}
 
 \begin{proposition}[label=prop:66]
@@ -1925,7 +1930,7 @@ $(\varphi_\lambda)_\Lambda$ ist also genau dann Cauchy bezüglich $d_B$, wenn $(
 	\end{enumerate}
 	Außerdem erfüllt $K_0(A)$ folgende universelle Eigenschaft: Sei $G$ eine abelsche Grupe und $\nu \colon \Pinfty(A) \to G$ eine Abbildung mit
 	\begin{enumerate}[a)]
-		\item $\nu(p +q) = \nu(p) + \nu(q)$
+		\item $\nu(p \oplus q) = \nu(p) + \nu(q)$
 		\item $\nu(0_A) = 0_G$
 		\item $p \sim_0 q \implies \nu(p)=\nu(q)$
 	\end{enumerate}
@@ -2035,6 +2040,126 @@ $(\varphi_\lambda)_\Lambda$ ist also genau dann Cauchy bezüglich $d_B$, wenn $(
 		Die Abhängigkeit $\delta(\varepsilon)$ lässt sich explizit angeben.
 	\end{enumerate}
 \end{bemerkung}
+
+\begin{korollar}[label=kor:610]
+	In der universellen Eigenschaft von \autoref{prop:66} kann man c) ersetzen durch
+	\begin{description}
+		\item[c')] $p,q \in \kernedP_n(A)$, $p \sim_h q \implies \nu(p) = \nu(q)$
+	\end{description}
+\end{korollar}
+\begin{beweis}
+	Falls $p,q \in \kernedP_\infty(A)$ mit $p \sim_0 q$, so existieren $k_1,k_2,k_3 \in \mathbb{N}$ mit 
+	\[
+		p' \coloneqq p \oplus 0_{k_1} \sim_0 p \sim_0 q \sim q \oplus 0_{k_2} =: q'
+	\]
+	und $p',q' \in \kernedP_{k_3}(A)$.
+	Dann ist $p' \oplus 0_{3 \cdot k_3} \sim_h q' \oplus 0_{3 \cdot k_3}$.
+	Mit der Bedingung c') folgt nun
+	\[
+		\nu(p) = \nu \enbrace*{p' \oplus 0_{3 \cdot k_3}} \StackText{c')}{=} \nu \enbrace*{q' \oplus 0_{3 \cdot k_3}} = \nu(q) \qedhere
+	\]
+\end{beweis}
+
+Seien $A,B$ unitale $C^*$-Algebren und $\varphi \colon A \to B$ ein $^*$-Homomorphismus.
+Dann induziert $\varphi$ eine Abbildung $\varphi^\ssbrace{\infty} \colon \Pinfty(A) \to \Pinfty(B)$ mit $\varphi^\ssbrace{\infty}|_{\kernedP_n(A) } = \varphi^\ssbrace{n}|_{\kernedP_n(A)}$.
+Für $p,q \in \kernedP_n(A)$ gilt $p \sim_h q \implies \varphi^\ssbrace{\infty}(p) \sim_h \varphi^\ssbrace{\infty}(q)$.
+
+Definiere $\nu \colon \Pinfty(A) \to K_0(B)$ durch $p \mapsto \benbrace*{\varphi^\ssbrace{\infty}(p)}_0$.
+Dann erfüllt $\nu$ die Punkte a) und b) aus \autoref{prop:66}, sowie c') aus \autoref{kor:610}.
+Folglich existiert genau ein Gruppenhomomorphismus $K_0(\varphi) \colon K_0(A) \to K_0(B)$, sodass
+\[
+	\begin{tikzcd}[column sep=3em]
+		\Pinfty(A) \dar["\benbrace*{\cdot}_0"] \rar["\varphi^\ssbrace{\infty}"] & \Pinfty(B) \dar["\benbrace*{\cdot}_0"] \\
+		K_0(A) \rar[dashed,"K_0(\varphi)"] & K_0(B)
+	\end{tikzcd}
+\]
+kommutiert.
+Man schreibt oft auch $\varphi_*$ oder $\varphi_0$ für $K_0(\varphi)$.
+
+\begin{proposition}[label=prop:611,{name=[{Funktorialität von K0}]}]
+	Seien $A,B,C$ unitale $C^*$-Algebren.
+	Seien $\varphi \colon A\to B$, $\psi \colon B \to C$  $^*$-Homomorphismen.
+	Dann gilt
+	\begin{enumerate}[(i)]
+		\item $K_0(\id_A) = \id_{K_0(A)}$
+		\item $K_0(\psi \circ \varphi) = K_0(\psi) \circ K_0(\varphi)$
+		\item $K_0(0_{A \to B}) = 0_{K_0(A) \to K_0(B)}$
+	\end{enumerate}
+	Insbesondere ist $K_0$ ein kovarianter Funktor $(\CSTARUN, {^*\Hom}) \to \enbrace*{\AB, {\Hom}}$.
+	Lässt man $\set*{0}$ in $\CSTARUN$ zu, so gilt $K_0(\set*{0}) = \set*{0}$.
+\end{proposition}
+\begin{beweis}
+	Wegen $K_0(\varphi) \enbrace*{\benbrace*{p}_0} = \benbrace*{\varphi^\ssbrace{\infty}(p)}_0$ für $p \in \Pinfty(A)$ gilt $K_0(\id_A) \enbrace*{\benbrace*{p}_0} = \benbrace*{p}_0 =\id_{K_0(A)}$ für alle $p \in \Pinfty(A)$.
+	Ebenso folgt 
+	\[
+		K_0(\psi \circ \varphi) \enbrace*{\benbrace*{p}_0} = \benbrace*{(\psi \circ \varphi)(p)}_0 = K_0(\psi) \circ K_0(\varphi) \enbrace*{\benbrace*{p}_0}
+	\]
+	Wegen $K_0(A) = \set[\big]{\benbrace*{p}_0 - \benbrace*{q}_0 \given p,q \in \Pinfty(A)}$ gilt dann (i) und (ii).
+	(iii) folgt mit $\benbrace*{0_B}_0 = 0_{K_0(B)}$.
+	
+	Es gilt außerdem $\kernedP_n( \set*{0}) = \set*{0_n}$, wobei $0_n \coloneqq 0_{M_n(\set*{0})}$.
+	Aber $0_n \sim_0 0_m$ und es folgt $\mathcal{D}(\set*{0}) = \set{\benbrace{0_1}_{\mathcal{D}}} = \set*{0}$ als abelsche Halbgruppe.
+	Mit $\Groth(\set*{0}) = \set*{0}$ folgt die Behauptung.
+\end{beweis}
+
+\begin{definition}[label=def:612,{name=[{homotope *-Homomorphismen}]}]
+	Es seien $A,B$ zwei $C^*$-Algebren. Zwei $^*$-Homomorphismen $\varphi,\psi \colon A \to B$ heißen \Index{homotop}, $\varphi \sim_h \psi$, falls es $^*$-Homomorphismen $\varphi_t \colon A \to B$ für $t \in [0,1]$ gibt mit $\varphi_0=\varphi$, $\varphi_1 = \psi$ und sodass $t \mapsto \varphi_t(a)$ stetig ist für jedes $a \in A$.
+	Äquivalent: Es existiert ein $^*$-Homomorphismus $\gamma \colon A \to C \enbrace*{[0,1],B}$ mit $\ev_0 \circ \gamma = \varphi$ und $\ev_1 \circ \gamma = \psi$.
+	
+	$A$ und $B$ heißen \Index{homotopieäquivalent}, fals $^*$-Homomorphismen $\rho \colon A \to B$ und $\sigma \colon B \to A$ existieren mit $\sigma \circ \rho \sim_h \id_A$ und $\rho \circ \sigma \sim_h \id_B$.
+	$A$ und $B$ heißen dann auch \Index{homotopieäquivalent} via $\begin{tikzcd}[cramped,sep=small] A \rar["\rho"] & B \rar["\sigma"] & A \end{tikzcd}$.
+\end{definition}
+
+\begin{proposition}
+	Seien $A,B$ unitale $C^*$-Algebren.
+	\begin{enumerate}[(i)]
+		\item Für $\varphi, \psi \colon A \to B$ $^*$-Homomorphismen gilt: $\varphi \sim_h \psi \implies K_0(\varphi) = K_0(\psi)$.
+		\item Falls $A,B$ homotopieäquivalent via $\begin{tikzcd}[cramped,sep=small] A \rar["\rho"] & B \rar["\sigma"] & A \end{tikzcd}$ sind, so sind $K_0(\rho)$ und $K_0(\sigma)$ zueinander inverse Isomorphismen.
+	\end{enumerate}
+\end{proposition}
+\begin{beweis}
+	\begin{enumerate}[(i)]
+		\item Sei $\varphi_t \colon A \to B$, $t \in [0,1]$ ein punktweise stetiger Pfad von $^*$-Homomorphismen mit $\varphi_0 = \varphi$ und $\varphi_1 = \psi$.
+		Dann ist auch $\varphi_t^\ssbrace{n} \colon M_n(A) \to M_n(B)$, $t \in [0,1]$ punktweise stetig für $n \in \mathbb{N}$.
+		Für $p \in \kernedP_n(A)$ ist dann $\varphi_t^\ssbrace{n}(p) \in \kernedP_n(B)$ stetig und es folgt
+		\[
+			\varphi^\ssbrace{n}(p) = \varphi^\ssbrace{n}(p) \sim_h \varphi^\ssbrace{n}(p) = \psi^\ssbrace{n}(p)
+		\]
+		Damit ist $K_0(\varphi) \enbrace*{\benbrace*{p}_0} = K_0(\psi) \enbrace*{\benbrace*{p}_0}$.
+		Mit \autoref{prop:66} folgt $K_0(\varphi) = K_0(\psi)$.
+		\item Folgt aus (i) mit \autoref{prop:611} (i) und (ii). \qedhere
+	\end{enumerate}
+\end{beweis}
+
+\begin{proposition}[label=prop:614]
+	Seien $A,B$ unitale $C^*$-Algebren und $\varphi,\psi \colon A \to B$ $^*$-Homomorphismen.
+	Falls $\varphi \perp \psi$, das heißt $\varphi(a) \psi(a') = 0$ für $a,a' \in A$ (äquivalent: $\varphi(\ind_A) \psi(\ind_A)=0$), so ist $\varphi +\psi \colon A \to B$ ein $^*$-Homomorphismus und es gilt $K_0(\varphi + \psi) = K_0(\varphi) + K_0(\varphi)$.
+\end{proposition}
+\begin{beweis}
+	Dass $\varphi +\psi$ unter den Voraussetzungen ein $^*$-Homomorphismus ist, ist klar, ebenso für $\varphi^\ssbrace{n} + \psi^\ssbrace{n}$.
+	Es folgt für $p \in \kernedP_n(A)$
+	\begin{align}
+		K_0(\varphi + \psi) \enbrace*{\benbrace*{p}_0} = \benbrace*{(\varphi + \psi)^\ssbrace{n} (p)}_0 = \benbrace*{\varphi^\ssbrace{n}(p) + \psi^\ssbrace{n}(p)}_0 &\StackTextClap{\ref{prop:66}}{=} \benbrace*{\varphi^\ssbrace{n}(p)}_0 + \benbrace*{\psi^\ssbrace{n}(p)}_0 \\
+		&= \benbrace*{K_0(\varphi) + K_0(\psi)} \enbrace*{\benbrace*{p}}_0 \qedhere
+	\end{align}
+\end{beweis}
+
+\begin{proposition}
+	Sei $A$ eine unitale $C^*$-Algebra.
+	Dann induziert die zerfallende exakte Sequenz\marginnote{wo $\sigma(\ind_\mathbb{C}) = \ind_{A^+}$}
+	\[
+		\begin{tikzcd}
+			0 \rar & A \rar["\iota"] & A^+ \rar["\pi"] & \mathbb{C} \lar["\sigma"',bend right] \rar & 0
+		\end{tikzcd}
+	\]
+	eine zerfallende exakte Sequenz
+	\[
+		\begin{tikzcd}
+			0 \rar & K_0(A) \rar[equal,"K_0(\iota)"] & K_0(A^+) \rar["K_0(\pi)"] & K_0(\mathbb{C}) \rar  \lar["K_0(\sigma)"', bend right] & 0
+		\end{tikzcd}
+	\]
+\end{proposition}
+
 
 % section 6 (end)
 
