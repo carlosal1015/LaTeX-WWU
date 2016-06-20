@@ -1461,6 +1461,8 @@ In diesem Abschnitt sind Kettenkomplexe immer $\mathbb{N}$-graduiert. (Allgemein
 \section{Waldhausen-Kategorien} % (fold)
 \label{sec:5}
 
+
+\todo[inline]{RevChap 5}
 \begin{definition}[{name=[{Waldhausen Kategorie}]}]
 	Sei $\mathcal{C}$ eine Kategorie zusammen mit zwei ausgezeichneten Familien von Morphismen, den \bet{Kofaserungen}\index{Kofaserung} $\co \mathcal{C}$ und den \bet{schwachen Äquivalenzen}\index{schwache Äquivalenz} $\wOp \mathcal{C}$.
 	Beide Familien sollten die Isomorphismen enthalten und abgeschlossen sein unter Komposition.
@@ -1601,7 +1603,7 @@ In diesem Abschnitt sind Kettenkomplexe immer $\mathbb{N}$-graduiert. (Allgemein
 \end{beweis}
 
 \begin{definition}
-	Eine \Index{Waldhausen-Unterkategorie} $\mathcal{U}$ einer Waldhausen-Kategorie $\mathcal{C}$ ist eine Unterkategorie von $\mathcal{C}$ die auch eine Waldhausen-Kategorie ist, so dass gilt:
+	Eine \Index{Waldhausen-Unterkategorie} $\mathcal{U}$ einer Waldhausen-Kategorie $\mathcal{C}$ ist eine volle Unterkategorie von $\mathcal{C}$, die auch eine Waldhausen-Kategorie ist, so dass gilt:
 	\begin{enumerate}[i)]
 		\item Die Inklusion $\mathcal{U} \hookrightarrow \mathcal{C}$ ist ein exakter Funktor.
 		\item Kofaserungen in $\mathcal{U}$ sind genau die Kofaserungen in $\mathcal{C}$, die in $\mathcal{U}$ liegen und deren Kokern in $\mathcal{U}$ liegt.
@@ -1629,15 +1631,30 @@ In diesem Abschnitt sind Kettenkomplexe immer $\mathbb{N}$-graduiert. (Allgemein
 	\begin{enumerate}[(i)]
 		\item $\mathcal{U}$ heißt \Index{kofinal} in $\mathcal{C}$, falls es zu jedem $C \in \mathcal{C}$ ein $C' \in \mathcal{C}$ gibt, sodass $C \amalg C'$ in $\mathcal{U}$ liegt.
 		\item $\mathcal{U}$ heißt \Index{abgeschlossen unter Erweiterungen} in $\mathcal{C}$, falls gilt: Ist $U \hookrightarrow C \to V$ eine Kofaserfolge in $\mathcal{C}$ mit $U,V \in \mathcal{U}$, so ist $C$ isomorph zu einem Objekt aus $\mathcal{U}$.
+		\item $\mathcal{U}$ heißt \Index{abgeschlossen unter schwachen Äquivalenzen}, falls gilt: Ist $U \in \mathcal{U}$ schwach äquivalent in $\mathcal{C}$ zu $C \in \mathcal{C}$, so ist $C$ isomorph zu einem Objekt aus $\mathcal{U}$.
 	\end{enumerate}
 \end{definition}
+
+\begin{bemerkung}
+	Sei $\mathcal{U} \subseteq \mathcal{C}$ eine schwach abgeschlossene Waldhausen-Unterkategorie.
+	Dann sind Objekte in $\mathcal{U}$ genau dann schwach äquivalent in $\mathcal{U}$, wenn sie es in $\mathcal{C}$ sind: 
+	Ist 
+	\[
+		\begin{tikzcd}[row sep=small]
+			& C_1 \dlar["\sim"'] \drar["\sim"] & & C_2 \dlar["\sim"'] \drar["\sim"] && \ldots \dlar["\sim"'] \drar["\sim"] && C_n \dlar["\sim"'] \drar["\sim"]\\
+			U && C_1' && C_2'&& C_{n-1}' && U'
+		\end{tikzcd}
+	\]
+	ein Zick-Zack von schwachen Äquivalenzen in $\mathcal{C}$ mit $U,U' \in \mathcal{U}$, so sind alle $C_i,C_i'$ schwach äquivalent zu Objekten in $\mathcal{U}$ (nämlich zu $U$ und $U'$) und daher isomorph zu Objekten in $\mathcal{U}$.
+	Wir können daher obigen Zick-Zack durch einen Zick-Zack in $\mathcal{U}$ ersetzen.
+\end{bemerkung}
 
 \begin{beispiel}
 	$\mathcal{F}_R = \set*{\text{freie endlich erzeugte Moduln}} \subseteq \mathcal{P}_R$ ist kofinal.
 \end{beispiel}
 
-\begin{satz}[name={{Kofinalitätssatz für $K_0$}}]
-	Sei $\mathcal{U} \subseteq \mathcal{C}$ eine Waldhausen-Unterkategorie, die kofinal und abgeschlossen unter Erweiterungen in $\mathcal{C}$ ist.
+\begin{satz}[name={Kofinalitätssatz für K0},label=kofinal_satz]
+	Sei $\mathcal{U} \subseteq \mathcal{C}$ eine Waldhausen-Unterkategorie, die kofinal, abgeschlossen unter Erweiterungen und abgeschlossen unter schwachen Äquivalenzen in $\mathcal{C}$ ist.
 	Dann induziert die Inklusion $\mathcal{U}\hookrightarrow \mathcal{C}$ eine injektive Abbildung in $K_0$.
 \end{satz}
 
@@ -1656,9 +1673,8 @@ In diesem Abschnitt sind Kettenkomplexe immer $\mathbb{N}$-graduiert. (Allgemein
 \end{bemerkung}
 
 \begin{lemma}
-	Sei $\mathcal{U} \subseteq \mathcal{C}$ eine kofinale Waldhausen-Unterkategorie.
-	Seien $U, U' \in \mathcal{U}$ genau dann schwach äquivalent in $\mathcal{U}$, wenn sie schwach äquivalent in $\mathcal{C}$ sind.
-	Dann induziert die Inklusion $\mathcal{U} \hookrightarrow \mathcal{C}$ eine surjektive Abbildung $K_0^\amalg(\mathcal{U}) \to K_0^\amalg(\mathcal{C})$.
+	Sei $\mathcal{U} \subseteq \mathcal{C}$ eine kofinale Waldhausen-Unterkategorie, die abgeschlossen unter schwachen Äquivalenzen ist.
+	Dann induziert die Inklusion $\mathcal{U} \hookrightarrow \mathcal{C}$ eine injektive Abbildung $K_0^\amalg(\mathcal{U}) \to K_0^\amalg(\mathcal{C})$.
 \end{lemma}
 \begin{beweis}
 	Seien $U,U' \in \mathcal{U}$.
@@ -1674,11 +1690,106 @@ In diesem Abschnitt sind Kettenkomplexe immer $\mathbb{N}$-graduiert. (Allgemein
 	% Sei $U,U' \in \mathcal{U}$, deren schwache Äquivalenzklassen in $\mathcal{C}$ gleich sind.
 	% Dann sind auch die schwachen Äquivalenzklassen von $U$ und $U'$ in $\mathcal{U}$ gleich.
 \end{beweis}
+
+\begin{beweis}[name={des Kofinalitätssatzes}]
+	Wir betrachten das kommutative Diagramm
+	\[
+		\begin{tikzcd}
+			\ker \pi_\mathcal{U} \rar[hook] \dar  &  K_0^\amalg \mathcal{U} \dar[hook] \rar["\pi_\mathcal{U}",two heads] & K_0 \mathcal{U} \dar \\
+			\ker \pi_\mathcal{C} \rar[hook] &  K_0^\amalg \mathcal{C} \rar["\pi_\mathcal{C}",two heads] & K_0 \mathcal{C}
+		\end{tikzcd}
+	\]
+	Da $K_0^\amalg \mathcal{U} \hookrightarrow K_0^\amalg \mathcal{C}$ injektiv ist, genügt es zu zeigen, dass die induzierte Abbildung $\ker \pi_\mathcal{U} \to \ker \pi_\mathcal{C}$ surjektiv ist.
+	Sei $B \hookrightarrow C \twoheadrightarrow \sfrac{C}{B}$ eine Kofaserfolge in $\mathcal{C}$.
+	Wir müssen zeigen, dass $\benbrace*{B}_\sim - \benbrace*{C}_\sim + \benbrace*{\sfrac{C}{B}}_\sim \in \ker \pi_\mathcal{C}$ im Bild von $\ker \pi_\mathcal{U} \to \ker \pi_\mathcal{C}$ liegt.
+	Da $\mathcal{U} \subseteq \mathcal{C}$ kofinal ist, gibt es $B' \in \mathcal{C}$ mit $B \amalg B' \in \mathcal{U}$.
+	Wir erhalten eine Kofaserfolge $B \amalg B' \hookrightarrow C \amalg B' \twoheadrightarrow \sfrac{C}{B}$.
+	Wegen 
+	\[
+		\benbrace*{B}_\sim - \benbrace*{C}_\sim + \benbrace*{\sfrac{C}{B}}_\sim = \benbrace*{B}_\sim + \benbrace*{B'}_\sim - \benbrace*{C}_\sim - \benbrace*{B'}_\sim + \benbrace*{\sfrac{C}{B}}_\sim = \benbrace*{B \amalg B'}_\sim - \benbrace*{C \amalg B'}_\sim + \benbrace*{\sfrac{C}{B}}_\sim
+	\]
+	können wir annehmen, dass $B$ in $\mathcal{U}$ liegt.
+	Da $\mathcal{U} \subseteq \mathcal{C}$ kofinal ist, gibt es $Q' \in \mathcal{C}$ mit $\sfrac{C}{B} \amalg Q' \in \mathcal{U}$.
+	Wir erhalten eine Kofaserfolge $B \hookrightarrow C \amalg Q' \twoheadrightarrow \sfrac{C}{B} \amalg Q'$.
+	Da $\mathcal{U}$ unter Erweiterungen abgeschlossen ist, können wir $C \amalg Q' \in \mathcal{U}$ annehmen.
+	Mit 
+	\[
+		\benbrace*{B}_\sim - \benbrace*{C}_\sim + \benbrace*{\sfrac{C}{B}}_\sim = \benbrace*{B}_\sim - \benbrace*{C}_\sim - \benbrace*{Q'}_\sim + \benbrace*{\sfrac{C}{B}}_\sim + \benbrace*{Q'}_\sim = \benbrace*{B}_\sim - \benbrace*{C \amalg Q'}_\sim + \benbrace*{\sfrac{C}{B} \amalg Q'} 
+	\]
+	folgt die Behauptung.
+\end{beweis}
+
+\begin{bemerkung}
+	Alternativ zur Abgeschlossenheit unter schwachen Äquivalenzen können wir für den Kofinalitätssatz auch vorraussetzen, dass es zwischen je zwei schwach äquivalenten Objekten in $\mathcal{C}$ auch eine schwache Äquivalenz gibt.
+	Auch dann sind Objekte in $\mathcal{U}$ wieder genau dann schwach äquivalent in $\mathcal{C}$, wenn sie schwach äquivalent in $\mathcal{U}$ sind.
+\end{bemerkung}
+
+\begin{definition}
+	Sei $\mathcal{C}=\enbrace*{\mathcal{C}, \co \mathcal{C}, \w \mathcal{C}}$ eine Waldhausen-Kategorie.
+	Sei $\mathop{\nu} \mathcal{C} \subseteq \w \mathcal{C}$, sodass auch $\enbrace*{\mathcal{C}, \co \mathcal{C}, \mathop{\nu} \mathcal{C}}$ eine Waldhausen-Kategorie ist.
+	Sei $\mathcal{C}^{\w} \subseteq \mathcal{C}$ die volle Unterkategorie auf allen $\w$-azyklischen Objekten in $\mathcal{C}$, das heißt auf allen $C \in \mathcal{C}$, für die $0 \hookrightarrow C$ in $\w \mathcal{C}$ liegt.
+	Dann ist auch $\enbrace*{\mathcal{C}^{\w}, \mathcal{C}^{\w} \cap \co \mathcal{C}, \mathcal{C}^{\w} \cap \mathop{\nu}\mathcal{C}}$ eine Waldhausen-Kategorie.
+	In dieser Situation schreiben wir $\mathop{\nu} \mathcal{C}^{\w}$, $\mathop{\nu}\mathcal{C}$ und $\w \mathcal{C}$ für die drei Waldhausen-Kategorien.
+	Wir erhalten exakte Funktoren $\mathop{\nu} \mathcal{C}^{\w} \to \mathop{\nu} \mathcal{C}$ und $\mathop{\nu} \mathcal{C} \to \w \mathcal{C}$.
+\end{definition}
+
+\begin{satz}[{name={Lokalisierungssatz für K0}}]
+	Sei $\mathcal{C}$ eine Waldhausen-Kategorie mit zwei Familien $\mathop{\nu} \mathcal{C} \subseteq \w \mathcal{C}$ von schwachen Äquivalenzen (wie eben).
+	Es gelte weiter:
+	\begin{enumerate}[(i)]
+		\item $\w \mathcal{C}$ ist \emph{saturiert}, das heißt für komponierbare $f,g \in \mathcal{C}$ gilt $f,g,f \circ g \in \w \mathcal{C}$ sobald zwei dieser drei Morphismen in $\w \mathcal{C}$ liegen.
+		\item Für jeden Morphismus $f \colon C \to C'$ in $\mathcal{C}$ gibt es eine Faktorisierung $C \hookrightarrow D \xrightarrow[\nu]{\sim} C'$ mit $C \hookrightarrow D \in \co \mathcal{C}$ und $D \xrightarrow[\nu]{\sim} C' \in \mathop{\nu} \mathcal{C}$.
+	\end{enumerate}
+	Dann induzieren die Inklusionen $\mathop{\nu} \mathcal{C}^{\w} \to \mathop{\nu} \mathcal{C} \to \w \mathcal{C}$ eine exakte Folge
+	\begin{equation}
+		\begin{tikzcd}
+			K_0(\mathcal{C}^{\w}) \rar & K_0(\mathop{\nu} \mathcal{C}) \rar & K_0(\w \mathcal{C}) \rar & 0 \label{eq:lokalisierung} \tag{*}
+		\end{tikzcd}
+	\end{equation}
+\end{satz}
+\begin{beweis}
+	Da die Objekte von $\mathop{\nu} \mathcal{C}$ und $\w \mathcal{C}$ übereinstimmen, ist $K_0(\mathop{\nu} \mathcal{C}) \to K_0(\w \mathcal{C})$ surjektiv.
+	Da jedes Objekt in $\mathop{\nu} \mathcal{C}^{\w}$ in $w \mathcal{C}$ schwach äquivalent zu Nullobjekt ist, ist die Komposition $K_0(\mathop{\nu} \mathcal{C}^{\w}) \to K_0(\w \mathcal{C}) \to K_0(\mathop{\nu} \mathcal{C})$ trivial und wir erhalten eine surjektive Abbildung
+	\[
+		\rho \colon L \coloneqq \coker \enbrace[\big]{K_0(\mathop{\nu} \mathcal{C}^{\w}) \to K_0(\mathop{\nu} \mathcal{C})} \longrightarrow K_0(\w \mathcal{C})
+	\]
+	Es ist $L = \sfrac{K_0(\mathop{\nu} \mathcal{C})}{\benbrace*{C}_\sim^\nu =0 \forall C \in \mathcal{C}^{\w}}$.
+	Wir behaupten, dass $\benbrace*{C}_\sim^{\w} \mapsto \benbrace*{C}_\sim^\nu \in L$ einen Homomorphismus $\lambda \colon K_0(\w \mathcal{C}) \to L$ induziert.
+	Dann ist $\lambda \circ \rho $ die Identität auf $L$ und die Exaktheit von \eqref{eq:lokalisierung} folgt.
+
+	Da $\mathop{\nu} \mathcal{C}$ und $\w \mathcal{C}$ die gleichen Kofaserungen benutzen, genügt es für die Wohldefiniertheit von $\lambda$ zu zeigen, dass $\benbrace*{C}^\nu_\sim = \benbrace*{C'}_\sim^\nu \in L$, falls die $\w$-schwachen Äquivalenzklassen von $C$ und $C'$ übereinstimmen.
+	Dazu können wir annehmen, dass es eine schwache Äquivalenz $f \colon C \xrightarrow[\w]{\sim} C' \in \w \mathcal{C}$ gibt.
+	Nun wenden wir (ii) an und erhalten
+	\(
+		\begin{tikzcd}[cramped,sep=small] C \rar[hook,"i"] & D \rar["p\,\, \sim","\nu"'] & C' \end{tikzcd}
+	\)
+	mit $f = p \circ i$.
+	Es ist $\benbrace*{C}_\sim^\nu + \benbrace*{\sfrac{D}{C}}_\sim^\nu = \benbrace*{D}^\nu_\sim = \benbrace*{C'}_\sim^\nu$ in $K_0(\mathop{\nu} \mathcal{C})$ und damit auch in $L$.
+	Es bleibt zu zeigen: $\benbrace*{\sfrac{D}{C}}^\nu_\sim =0 \in L$.
+	Wir zeigen $0 \to \sfrac{D}{C} \in \w \mathcal{C}$.
+	Da $f = p \circ i$ und $p$ in $\w \mathcal{C}$ liegen, gilt nach (i) auch $i \in \w \mathcal{C}$.
+	Nun betrachten wir
+	\[
+		\begin{tikzcd}
+			0 \dar & C \rar[equals] \lar \dar["i","w"'] & C \dar[hook,"\sim","i \w"']  \\
+			0 & C \lar \rar[hook] & D
+		\end{tikzcd}
+	\]
+	mit w3 folgt die Behauptung.
+\end{beweis}
+
+\begin{beispiel}
+	Sei $\mathcal{C} = \ch_f \mathcal{F}_\mathbb{Z}$ die Waldhausen-Kategorie der freien $\mathbb{Z}$-Kettenkomplexe vom endlichen Typ.
+	$\mathop{\nu} \mathcal{C} = \mathbb{Z}$-Kettenhomotopieäquivalenzen, $\w \mathcal{C} = \mathbb{Q}$-Kettenhomotopieäquivalenzen.
+\end{beispiel}
+
 % section 5 (end)
 \newpage
+
 \section{Exkurs: Chirurgie} % (fold)
 \label{sec:6}
 
+\todo[inline]{RevChap 6}
 \begin{frage}
 	Wie viele glatte Strukturen existieren auf einer gegebenen topologischen Mannigfaltigkeit?
 \end{frage}
@@ -1916,7 +2027,7 @@ Damit ist $\nu_{\varphi_0}$ stabil trivial.
 Beobachtung: Jede normale Grad 1-Abbildung kann $\lfloor \frac{n}{2}\rfloor$-zusammenhängend gemacht werden.
 
 \begin{bemerkung}
-	Chirurgie kann nicht immer dazu verwendet werden, aus einer normalen Grad 1-Abbildung eine Homotopiäquivalenz zu machen.
+	Chirurgie kann nicht immer dazu verwendet werden, aus einer normalen Grad 1-Abbildung eine Homotopieäquivalenz zu machen.
 	Zum Beispiel ist für $n=4k$ $\sig(M) - \sig(N)$ ein Hindernis.
 \end{bemerkung}
 
