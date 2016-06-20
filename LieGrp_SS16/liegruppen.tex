@@ -2311,7 +2311,7 @@ Somit ist $\overline{f} \coloneqq f \circ \pi^{-1} \colon \sfrac{G}{H} \to M^k$,
 	\end{enumerate}
 \end{bemerkung*}
 
-\begin{lemma}
+\begin{lemma}[label=lem:316]
 	Sei $\Phi \colon G \times M \to M$ eine transitive Liegruppenwirkung, $p \in M^n$ und 
 	\[
 		H \coloneqq G_p = \set*{g \in G \given g.p=p}
@@ -2620,6 +2620,196 @@ Es gilt:
 		S^3 = \set*{q \in \mathbb{H} \given \norm*{q}=1} \supset S^1 = \set*{z \in \mathbb{C} \given \abs*{z}=1 }
 	\]
 	\emph{Übung!}
+\end{beispiel*}
+
+\begin{definition}
+	Sei $(M^n,g)$ ein $G$-homogener Raum, $p \in M^n$ und $H= G_p$ die Isotropiegruppe eines Punktes $p \in M^n$.
+	Dann nennt man 
+	\[
+		\rho \colon H \to \On \enbrace*{\Tmap_p M^n, g_p} , h \mapsto \enbrace*{\mathd \Phi_h}_p
+	\]
+	die \Index{Isotropiedarstellung} von $M^n$ 
+\end{definition}
+
+\begin{beispiel*}
+	$M^n = S^n \subset \mathbb{R}^{n+1}$, $G = \SO(n+1)$, $p=e_1$, $H= G_p = \set*{\begin{pmatrix}
+		1 & 0 \\ 0 & A
+	\end{pmatrix} \given A \in \SO(n)}$.
+	
+	Die Gruppe $G = \SO(n+1)$ operiert linear auf $S^n$ mittels $(A,v) \mapsto A \cdot v = \Phi(A)(v)$.
+	Somit auch $H$, das heißt $\mathd \enbrace*{\Phi_h}_p \colon \Tmap_p S^n \to \Tmap_p S^n$, $\binom{0}{x} \mapsto \binom{0}{Ax}$ mit $A=h \in \SO(n)$.
+\end{beispiel*}
+
+\begin{lemma}
+	Sei $(M^n,g)$ ein $G$-homogener Raum, $p \in M^n$ und $H$ Isotropiegruppe von $p$.
+	Dann existiert eine Bijektion zwischen
+	\begin{enumerate}[1)]
+		\item $\set*{\text{$G$-invarianter Riemannschen Metriken auf $M^n$}}$
+		\item $\set*{\text{$\rho(h)$-invarianten Skalarprodukten auf $\Tmap_p M^n$} }$
+	\end{enumerate}
+\end{lemma}
+\begin{beweis}
+	Sei $\tilde{g}$ eine $G$-invariante Riemmannsche Metrik auf $M^n$.
+	Dann gilt $\Phi(h) \colon M^n \to M^n$ ist eine Isometrie mit $\Phi(h)(p)=p$ für alle $h \in H$.
+	Folglich ist $(\mathd \Phi(h))_p \colon \enbrace*{\Tmap_p m^n, g_p} \to \enbrace*{\Tmap_p M^n, g_p}$ eine Isometrie, das heißt für alle $v,w \in \Tmap_p M^n$ gilt
+	\[
+		g_p(v,w) = g_p \enbrace*{\rho(h)v, \rho(h)w}
+	\]
+	für alle $ \in H$.
+	
+	Sei umgekehrt $\skal*{\cdot}{\cdot}$ ein $\rho(H)$-invariantes Skalarprodukt auf $\Tmap_p M^n$.
+	Sei $q \in M^n$.
+	Da $M^n$ ein $G$-homogener Raum ist, existiert $g \in G$ mit $q = g.p = \Phi(g)(p)$.
+	Wir definieren $g_q \colon \Tmap_q M^n \times \Tmap_q M^n \to \mathbb{R}$ durch
+	\[
+		(x,y) \longmapsto \skal*{\mathd(\Phi(g^{-1}))_q \cdot x}{\mathd \enbrace*{\Phi(g^{-1})}_q \cdot y}
+	\]
+	Wohldefiniertheit: Sei $q = g' .p$.
+	Somit $g'.p = g.p \iff g^{-1} g' .p =p \iff g^{-1} g \in H \iff g' = g \cdot h$ für ein $h \in H$. 
+	Nun gilt:
+	\begin{align}
+		\skal*{\mathd \enbrace*{\Phi({g'}^{-1})}_q \cdot x}{\cdots} = \skal*{\mathd \enbrace*{\Phi(h^{-1}) \Phi(g^{-1})}x }{ \cdots} &= \skal*{ \enbrace*{\mathd \Phi(h)}_q \mathd \Phi(g^{-1})_q x}{ \cdots} \\
+		&= \skal*{\enbrace*{\mathd \Phi (g^{-1})}_q x}{ \cdots}
+	\end{align}
+	Somit ist die Definition unabhängig von der Wahl von $g \in G$ mit $q=g.p$!
+	In den Übungen wird gezeigt, dass $g=(g_q)_{q \in M^n}$ eine differenzierbare Metrik auf $M^n$ ist.
+\end{beweis}
+
+In \autoref{lem:316} hatten wir gezeigt, dass $\phi \colon \sfrac{G}{H} \to M^n$, $g H \mapsto g .p$ ein $G$-äquivarianter Diffeomorphismus ist.
+\[
+	\begin{tikzcd}
+		\sfrac{G}{H} \dar["\overline{L}_g"'] \rar["\varphi"] & M^n \dar["\Phi(g)"] \\
+		\sfrac{G}{H} \rar["\varphi"] & M^n
+	\end{tikzcd}
+\]
+Somit können wir die Isotropiedarstellung $\rho \colon H \to \On \enbrace*{\Tmap_p M^n, g_p}$, $h \mapsto \mathd \enbrace*{\Phi(h)}_p$ identifizieren mit $\rho \colon H \to o \enbrace*{\Tmap_{eH} \sfrac{G}{H},g_p}$, $h \mapsto \mathd (\overline{L}_h)_{eH}$
+
+\begin{lemma}
+	Das folgende Diagramm kommutiert
+	\[
+		\begin{tikzcd}[sep=large]
+			\Tmap_e G \rar["\Ad(h)"] \dar["\mathd \pi_e"'] & \Tmap_e G \dar["\mathd \pi_e"] \\
+			\Tmap_{eH} \sfrac{G}{H} \rar["(\mathd \overline{L}_g)_{eH}"] & \Tmap_{eH} \sfrac{G}{H}
+		\end{tikzcd}
+	\]
+\end{lemma}
+\begin{beweis}
+	Für $h \in H$ bezeichneten wir mit $i_h \colon G \to G$, $g \mapsto h g h^{-1}$ und mit $\Ad(h) \colon \Tmap_e G \to \Tmap_e G$, $v \mapsto \mathd (i_h)_e \cdot v$ die Konjugation bzw. adjungierte Darstellung.
+	Nun gilt
+	\begin{align}
+		\enbrace*{\overline{L}_h \circ \pi} (g) = h \cdot g \cdot H = h \cdot g \cdot h^{-1} \cdot H = i_h(g) \cdot H = (\pi \circ i_h)(g)
+	\end{align}
+	für alle $g \in G$, also $\overline{L}_h \circ \pi = \pi \circ i_h$.
+	Differenzieren in $g=e$ liefert
+	\[
+		\mathd \enbrace*{\overline{L}_h}_{\pi(e)} \cdot \mathd \pi_e = \mathd \pi_e \cdot \Underbracket{\mathd \enbrace*{i_h}_e}{= \Ad(h)} \qedhere
+	\]
+\end{beweis}
+
+\begin{bemerkung*}
+	Es ist $\ker \mathd \pi_e = \Tmap_e H =\mathfrak{h}$.
+	Somit ist $\mathd \pi_e$ \emph{kein} Isomorphismus, falls $\dim H > 0$.
+\end{bemerkung*}
+
+Wir nehmen nun an, dass auf $\Tmap_e G = \mathfrak{g}$ ein $\Ad(H)$-invariantes Skalarprodukt existiert $\iff$ $\Ad(H) \subset \Ad(G)$ kompakt. (Klar, falls $H$ kompakt, aber es gibt auch Beispiele von $\sfrac{G}{H}$ mit $\Ad(H)$-kompakt und $H$ nicht kompakt!)
+Da $\Ad(H)$ kompakt, existiert eine $\Ad(H)$-invariantes Skalarprodukt auf $\Tmap_e G$ (Beweis analog wie \enquote{früher}).
+
+Wir setzen nun $\mathfrak{m} \coloneqq \mathfrak{h}^\perp$.
+Dann ist $\mathfrak{m}$ ebenfalls $\Ad(H)$-invariant ($\mathfrak{h} = \Tmap_e H$ ist natürlich $\Ad(H)$-invariant). 
+Wegen $\mathfrak{h} = \ker \mathd \pi_e$ kommutiert folgendes Diagramm
+\[
+	\begin{tikzcd}
+		\mathfrak{m} \dar["\mathd \pi_e","\cong"'] \rar["\Ad(h)"] & \mathfrak{m} \dar["\mathd \pi_e","\cong"'] \\
+		\Tmap_{eH} \sfrac{G}{H} \rar["\mathd \overline{L}_h"] & \Tmap_{eH} \sfrac{G}{H}
+	\end{tikzcd}
+\]
+
+\begin{korollarB}
+	Sei $\sfrac{G}{H}$ ein homogener Raum.
+	Dann existiert eine Bijektion zwischen
+	\begin{enumerate}[1)]
+		\item $\set*{\text{$G$-invariante Metriken auf $\sfrac{G}{H}$}}$ und
+		\item $\set*{\text{$\Ad(H)$-invarianten Skalarprodukten auf einem $\Ad(H)$-invarianten Komplement $\mathfrak{M}$ von $\mathfrak{h}$ in $\mathfrak{g}$} }$
+	\end{enumerate}
+\end{korollarB}
+
+Rezept: $\sfrac{G}{H}$ gegeben, finde $\mathfrak{g} = \mathfrak{h} \oplus \mathfrak{m}$ mit $\mathfrak{m}$ $\Ad(H)$-invariant.
+$\Ad(H)$ operiert isometrisch bezüglich einem Skalarprodukt auf $\Tmap_e G$.
+
+\begin{bemerkung*}
+	Das Komplement $\mathfrak{m}$ ist im Allgemeinen \emph{nicht} eindeutig.
+	In den Übungen wird $\sfrac{G}{H}$ ein \enquote{kanonisches} Komplement zugeordnet.
+\end{bemerkung*}
+
+\begin{beispiel*}
+	$S^n = \sfrac{\SO(n+1)}{\SO(n)}$. Es gilt
+	\[
+		\mathfrak{so}(n+1) = \Tmap_e \SO(n+1) = \set*{V \in \Mat(n+1,\mathbb{R}) \given V^T = -V}
+	\]
+	Wir erhalten 
+	\[
+		\mathfrak{so}(n+1) = \mathfrak{so}(n) \oplus  \Underbracket{\set*{\begin{pmatrix}
+			0 & x_1 & \cdots & x_n \\
+			-x_1 & & & \\
+			\vdots & & 0 & \\
+			-x_n & & & 
+		\end{pmatrix} \given x_i \in \mathbb{R}}}{=: \mathfrak{m}}
+	\]
+	Sei $h \in H = \SO(n)$ und $\begin{psmallmatrix}
+		0 & -X^T \\ X & 0
+	\end{psmallmatrix} \in \mathfrak{m}$.
+	Dann gilt 
+	\begin{align}
+			\Ad(h) \begin{pmatrix}
+			0 & -X^T \\ X & 0
+		\end{pmatrix} = \begin{pmatrix}
+			1 & 0 \\ 0 & A
+		\end{pmatrix} \cdot \begin{pmatrix}
+			0 & -X^T \\ X & 0
+		\end{pmatrix} \cdot \begin{pmatrix}
+			1 & 0 \\
+			0 & A^T
+		\end{pmatrix} &= \begin{pmatrix}
+			0 & - X^T \\ AX & 0 
+		\end{pmatrix} \cdot \begin{pmatrix}
+			1 & 0 \\ 0 & A^T
+		\end{pmatrix} \\
+		&= \begin{pmatrix}
+			0 & -(AX)^T \\ AX & 0
+		\end{pmatrix} 
+		\stackrel{!}{\in } \mathfrak{m}
+	\end{align}
+	Wir identifizieren $\mathfrak{m}$ mit $\mathbb{R}^n$ mittels $X \mapsto \begin{psmallmatrix}
+		0 & -X^T \\ X & 0
+	\end{psmallmatrix}$.
+	Somit ist die Isotropiedarstellung von $S^n = \sfrac{\SO(n+1)}{\SO(n)}$ die Standarddarstellung von $\SO(n)$ auf $\mathbb{R}^n$ gegeben durch $(A,x) \mapsto A \cdot x$.
+	Diese Darstellung ist irreduzibel, das heißt falls $\mathfrak{m} = \mathfrak{m}_1 \oplus \mathfrak{m}_2$ schon $\mathfrak{m}_1= \set*{0}$ oder $\mathfrak{m}_2 =\set*{0}$ impliziert.
+\end{beispiel*}
+
+\begin{definition}[{name=[{isotropie-irreduzibel}]}]
+	Einen homogenen Raum $\sfrac{G}{H}$ nennt man \Index{isotropie-irreduzibel}, falls die Isotropiedarstellung irreduzibel ist. 
+\end{definition}
+
+\begin{beispiel*}
+	Betrachte $G= \SO(9)$ und $H = \SO(2) \SO(3) \SO(4)$.
+	Dann ist $\mathfrak{g} = \mathfrak{h} \oplus \mathfrak{m}$ mit
+	\[
+		\mathfrak{m} = \set*{\begin{pmatrix}
+			0  x_1 & x_2 \\
+			- x_1^T & 0 & x_3 \\
+			-x_2^T & -x_3^T & 0
+		\end{pmatrix} \given x_1 \in \Mat{2\times 3}, x_2 \in \Mat(2 \times 4), x_3 \in \Mat{3\times 4}} 
+	\]
+	und $h \in H$ gegeben durhc
+	\[
+		h = \begin{pmatrix}
+			A_1 & 0 & 0 \\
+			0 & A_2 & 0 \\
+			0 & 0 & A_3
+		\end{pmatrix}
+	\]
+	Mit $A_i$ aus $\SO(i+1)$
+	\todo[inline]{lange Rechnung, für die ich zu langsam \TeX{}e}
 \end{beispiel*}
 % section 31 (end)
 % chapter 3 (end)
