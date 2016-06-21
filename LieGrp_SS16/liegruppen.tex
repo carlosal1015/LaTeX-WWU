@@ -639,61 +639,60 @@ Wir wissen weiter, dass $I_{\max}$ offen in $\mathbb{R}$ ist.
 	    \]
 	    Ist $G$ endlich, so ist $G$ frei und diskontinuierlich äquivalent zu: $g$ wirkt trivial auf einem Punkt $p$ genau dann, wenn $g$ auf allen $p$ trivial operiert.
 	    \item Für jede zusammenhängende Mannigfaltigkeit $M^n$ existiert eine bis auf Diffeomorphie eindeutige, einfach zusammenhängende Mannigfaltigkeit $\widetilde{M}^n$, die $M^n$ überlagert, diese bezeichnet man als \Index{universelle Überlagerung}.
-	    Ferner gilt $M^n = \sfrac{\widetilde{M}^n}{\pi_1(M^n)}$.\todo{RevChap 1}
+	    Ferner gilt $M^n = \sfrac{\widetilde{M}^n}{\pi_1(M^n)}$.
 	\end{itemize}
 \end{beispiel*}
 
 
-\begin{lemma}[label=lem:132]
+\begin{lemma}[label=lem:132,{name=[{Liegruppenstruktur der Überlagerung einer Liegruppe}]}]
     Sei $G$ eine zusammenhängende Liegruppe.
     \begin{enumerate}[1)]
-        \item Ist $\widetilde{G}$ eine zusammenhängede Mannigfaltigkeit und $\pi \colon \widetilde{G} \to G$ eine Überlagerungsabbildung, so besitzt $\widetilde{G}$ genau eine Liegruppenstruktur, sodass $\pi$ ein Liegruppenhomomorphismus ist.
-        \item Ein Liegruppenhomomorphismus $\Phi \colon \widetilde{G} \to G$ mit $\widetilde{G}$ zusammenhängend ist eine Überlagerung genau dann, wenn das Differential $(\mathd \Phi)_{\tilde{e}} \colon \Tmap_{\tilde{e}} \widetilde{G} \to \Tmap_e G$ ein Isomorphismus ist.
+        \item Ist $\widetilde{G}$ eine zusammenhängende Mannigfaltigkeit und $\pi \colon \widetilde{G} \to G$ eine Überlagerungsabbildung, so besitzt $\widetilde{G}$ genau eine Liegruppenstruktur, sodass $\pi$ ein Liegruppenhomomorphismus ist.
+        \item Ein Liegruppenhomomorphismus $\Phi \colon \widetilde{G} \to G$ mit $\widetilde{G}$ zusammenhängend ist eine Überlagerung genau dann, wenn das Differential $(\mathd \Phi)_{\widetilde{e}} \colon \Tmap_{\widetilde{e}} \widetilde{G} \to \Tmap_e G$ ein Isomorphismus ist.
     \end{enumerate}
 \end{lemma}
 \begin{beweis}
     \begin{enumerate}[(1)]
-        \item Sei $\tilde{e} \in \pi^{-1}(e)$ fest gewählt.
-        Überlagerungstheorie impliziert, dass die stetigen Funktionen $m \colon G \times G \to G$, $^{-1} \colon G \to G$ entsprechende Lifts besitzen.\footnote{siehe zum Beispiel \textsc{Stöcker-Zischer} \emph{Algebraische Topologie} \cite[Abschnitt 6.2]{stockerAlgTop}}
-        Die Eindeutigkeit ist durch die Wahl von $\tilde{e}$ gegeben [Klar, falls $\widetilde{G}$ einfach zusammenhängend, sonst \enquote{kleines} Argument].
+        \item Sei $\widetilde{e} \in \pi^{-1}(e)$ fest gewählt.
+        Überlagerungstheorie impliziert, dass die stetigen Funktionen $m \colon G \times G \to G$, $^{-1} \colon G \to G$ entsprechende Lifts besitzen mit $\widetilde{m}(\widetilde{e},\widetilde{e})=\widetilde{e}$ bzw. $\widetilde{e}\widetilde{{}^{-1}} = \widetilde{e}$.\footnote{siehe zum Beispiel \textsc{Stöcker-Zischer} \emph{Algebraische Topologie} \cite[Abschnitt 6.2]{stockerAlgTop}}
+        Die Eindeutigkeit ist durch die Wahl von $\widetilde{e}$ gegeben [Klar, falls $\widetilde{G}$ einfach zusammenhängend, sonst \enquote{kleines} Argument].
         
-        Die Abbildungen $\tilde{m},\tilde{{ }^{-1}}$ sind differenzierbare Abbildungen, welche die Gruppenaxiome erfüllen: $\tilde{m} (\tilde{e}, \tilde{g}) = \tilde{g}$ für alle $\tilde{g} \in \tilde{G}$.
-        Dies ergibt sich daraus, dass man Wege eindeutig liften kann.
+        Die Abbildungen $\widetilde{m},\widetilde{{ }^{-1}}$ sind differenzierbare Abbildungen, welche die Gruppenaxiome erfüllen: $\widetilde{m} (\widetilde{e}, \widetilde{g}) = \widetilde{g}$ für alle $\widetilde{g} \in \widetilde{G}$.
+        Dies ergibt sich auch daraus, dass man Wege eindeutig liften kann.
         
-        Die Abbildung $\pi \colon \tilde{G} \to G$ ist somit ein Liegruppenhomomorphismus.
-        Die Eindeutigkeit der Liegruppenstruktur auf $\tilde{G}$, sodass $\pi \colon \tilde{G} \to G$ ein Liegruppenhomomorphismus, folgt wieder aus der Eindeutigkeit der Lifts.
+        Die Abbildung $\pi \colon \widetilde{G} \to G$ ist somit ein Liegruppenhomomorphismus.
+        Die Eindeutigkeit der Liegruppenstruktur auf $\widetilde{G}$, sodass $\pi \colon \widetilde{G} \to G$ ein Liegruppenhomomorphismus ist, folgt wieder aus der Eindeutigkeit der Lifts.
+		Bei einer anderen Wahl von $\widetilde{e}$ erhält man eine isomorphe Liegruppenstruktur.
         \item Die erste Implikation ist klar, denn Überlagerungsabbildungen sind lokale Diffeomorphismen.
         
-        Für die Umkehrung sei $(\mathd \Phi)_{\tilde{e}} \colon \Tmap_{\tilde{e}} \tilde{G} \to \Tmap_e G$ ein Isomorphismus.
+        Für die Umkehrung sei $(\mathd \Phi)_{\widetilde{e}} \colon \Tmap_{\widetilde{e}} \widetilde{G} \to \Tmap_e G$ ein Isomorphismus.
         Zu zeigen: Jedes $g \in G$ ist schlicht überlagert.
-        Sei $\tilde{U}$ eine offene Umgebung von $\tilde{e}$ in $\tilde{G}$, sodass $\Phi|_{\tilde{U}} \colon \tilde{U} \to \Phi(\tilde{U})$ ein Diffeomorphismus ist (Umkehrsatz).
-        Sei $\tilde{\Gamma} := \ker (\Phi)$.
-        Dann gilt $\tilde{\Gamma} \cap \tilde{U}= \tilde{e}$.
-        Sei nun $\tilde{V}$ eine offene Umgebung von $\tilde{e}$ mit $\tilde{V} \cdot \tilde{V}^{-1} \subset \tilde{U}$.
+        Sei $\widetilde{U}$ eine offene Umgebung von $\widetilde{e}$ in $\widetilde{G}$, sodass $\Phi|_{\widetilde{U}} \colon \widetilde{U} \to \Phi(\widetilde{U})$ ein Diffeomorphismus ist (eine solche Umgebung existiert nach dem Umkehrsatz).
+        Wir definieren nun $\widetilde{\Gamma} := \ker (\Phi)$.
+        Dann gilt $\widetilde{\Gamma} \cap \widetilde{U}= \set{\widetilde{e}}$.
+        Sei weiter $\widetilde{V}$ eine offene Umgebung von $\widetilde{e}$ mit $\widetilde{V} \cdot \widetilde{V}^{-1} \subset \widetilde{U}$.
         \begin{itemize}
-            \item  Seien $\tilde{\gamma}_1 \neq \tilde{\gamma}_2 \in \tilde{\Gamma}$ und $\tilde{v}_1, \tilde{v}_2 \in \tilde{V}$.
+            \item  Seien $\widetilde{\gamma}_1 \neq \widetilde{\gamma}_2 \in \widetilde{\Gamma}$ und $\widetilde{v}_1, \widetilde{v}_2 \in \widetilde{V}$.
             Annahme:
             \[
-                \tilde{\gamma}_1 \cdot \tilde{v}_1 = \tilde{\gamma}_2 \cdot \tilde{v}_2 \iff \tilde{\gamma}_2^{-1} \cdot \tilde{\gamma}_1 = \tilde{v}_2 \cdot \tilde{v}_1^{-1} \in \tilde{\Gamma} \cap \tilde{U}
+                \widetilde{\gamma}_1 \cdot \widetilde{v}_1 = \widetilde{\gamma}_2 \cdot \widetilde{v}_2 \iff \widetilde{\gamma}_2^{-1} \cdot \widetilde{\gamma}_1 = \widetilde{v}_2 \cdot \widetilde{v}_1^{-1} \in \widetilde{\Gamma} \cap \widetilde{U}
             \]
-            Mit obiger Eigenschaft des Schnitts folgt $\tilde{\gamma}_1 = \tilde{\gamma}_2$.
-            Damit folgt $\tilde{\gamma}_1 \tilde{V} \cap \tilde{\gamma}_2 \tilde{V} = \emptyset$.
-            \item Es gilt $\Phi^{-1}(V) = \bigcup_{\tilde{\gamma} \in \tilde{\Gamma}} \tilde{\gamma}(v)$:
-            
-            Sei $\tilde{v} \in  \tilde{V}$ und $\tilde{g} \in \tilde{G}$ mit $\Phi(\tilde{v}) = \Phi(\tilde{g})$.
+            Mit obiger Eigenschaft des Schnitts folgt $\widetilde{\gamma}_1 = \widetilde{\gamma}_2$ und da dies ein Widerspruch ist, muss $\widetilde{\gamma}_1 \widetilde{V} \cap \widetilde{\gamma}_2 \widetilde{V} = \emptyset$ gelten, also sind alle $\widetilde{\gamma} \widetilde{V}$ disjunkt.
+            \item Es gilt $\Phi^{-1}(\Phi(\widetilde{V})) = \bigcup_{\widetilde{\gamma} \in \widetilde{\Gamma}} \widetilde{\gamma}\widetilde{V}$:
+            Sei dazu $\widetilde{v} \in  \widetilde{V}$ und $\widetilde{g} \in \widetilde{G}$ mit $\Phi(\widetilde{v}) = \Phi(\widetilde{g})$.
             Dies ist äquivalent zu
             \[
-                \Phi(\tilde{g}^{-1} \tilde{v}) = \Phi(\tilde{g}^{-1}) \Phi(\tilde{v}) = e
+                \Phi(\widetilde{g}^{-1} \widetilde{v}) = \Phi(\widetilde{g}^{-1}) \Phi(\widetilde{v}) = e
             \]
-            Also ist $\tilde{g}^{-1} \tilde{v} = \tilde{\gamma} \in \tilde{\Gamma}$ und somit $\tilde{v} = \tilde{\gamma} \cdot \tilde{g}$.
-            \item Die Abbildung $\Phi|_{\tilde{\gamma} \tilde{V}} \colon \tilde{\gamma}(\tilde{V}) \to V$ ist ein Diffeomorphismus:
+            Also ist $\widetilde{g}^{-1} \widetilde{v} = \widetilde{\gamma} \in \widetilde{\Gamma}$ und somit $\widetilde{v} = \widetilde{\gamma} \cdot \widetilde{g}$.
+            \item Die Abbildung $\Phi|_{\widetilde{\gamma} \widetilde{V}} \colon \widetilde{\gamma}(\widetilde{V}) \to V$ ist ein Diffeomorphismus:
             
             \[
-                \Phi(\tilde{\gamma} \tilde{v}) = \Phi(\tilde{\gamma}) \cdot \Phi(\tilde{v}) = \Phi \enbrace*{\tilde{\gamma}^{-1} \tilde{\gamma} \tilde{v}} = \enbrace*{\Phi \circ L_{\tilde{\gamma}^{-1}}} (\tilde{\gamma} \tilde{v})
+                \Phi(\widetilde{\gamma} \widetilde{v}) = \Phi(\widetilde{\gamma}) \cdot \Phi(\widetilde{v}) = \Phi \enbrace*{\widetilde{\gamma}^{-1} \widetilde{\gamma} \widetilde{v}} = \enbrace*{\Phi \circ L_{\widetilde{\gamma}^{-1}}} (\widetilde{\gamma} \widetilde{v})
             \]
-            \item Alle $g \in G$ sind schlicht überlagert.
-            \item Die Abbildung $\Phi$ ist surjektiv nach \autoref{lem:1213}, denn eine offene Umgebung von $e$ liegt im Bild und $\Phi$ ist ein Homomorphismus.\qedhere
         \end{itemize}
+		Damit sind alle $g \in G$ sind schlicht überlagert.
+		Die Abbildung $\Phi$ ist außerdem surjektiv nach \autoref{lem:1213}, denn eine offene Umgebung von $e$ liegt im Bild und $\Phi$ ist ein Homomorphismus.\todo{RevChap 1}\qedhere
     \end{enumerate}
 \end{beweis}
 
