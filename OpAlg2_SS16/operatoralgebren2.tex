@@ -2110,7 +2110,7 @@ Man schreibt oft auch $\varphi_*$ oder $\varphi_0$ für $K_0(\varphi)$.
 	$A$ und $B$ heißen dann auch \Index{homotopieäquivalent} via $\begin{tikzcd}[cramped,sep=small] A \rar["\rho"] & B \rar["\sigma"] & A \end{tikzcd}$.
 \end{definition}
 
-\begin{proposition}
+\begin{proposition}[label=prop:613]
 	Seien $A,B$ unitale $C^*$-Algebren.
 	\begin{enumerate}[(i)]
 		\item Für $\varphi, \psi \colon A \to B$ $^*$-Homomorphismen gilt: $\varphi \sim_h \psi \implies K_0(\varphi) = K_0(\psi)$.
@@ -2149,19 +2149,134 @@ Man schreibt oft auch $\varphi_*$ oder $\varphi_0$ für $K_0(\varphi)$.
 	Dann induziert die zerfallende exakte Sequenz\marginnote{wo $\sigma(\ind_\mathbb{C}) = \ind_{A^+}$}
 	\[
 		\begin{tikzcd}
-			0 \rar & A \rar["\iota"] & A^+ \rar["\pi"] & \mathbb{C} \lar["\sigma"',bend right] \rar & 0
+			0 \rar & A \rar["\iota"] & A^+ \rar["\pi"] & \mathbb{C} \rar \lar["\sigma"', bend right] & 0
 		\end{tikzcd}
 	\]
 	eine zerfallende exakte Sequenz
 	\[
 		\begin{tikzcd}
-			0 \rar & K_0(A) \rar[equal,"K_0(\iota)"] & K_0(A^+) \rar["K_0(\pi)"] & K_0(\mathbb{C}) \rar  \lar["K_0(\sigma)"', bend right] & 0
+			0 \rar & K_0(A) \rar["K_0(\iota)"] & K_0(A^+) \rar["K_0(\pi)"] & K_0(\mathbb{C}) \rar  \lar["K_0(\sigma)"', bend right] & 0
 		\end{tikzcd}
 	\]
 \end{proposition}
+\begin{beweis}
+	Betrachte die $^*$-Homomorphismem $\mu \colon A^+ \to A$ gegeben durch $x \mapsto \ind_A x \ind_A$ und $\lambda \colon \mathbb{C} \to A^+$ mit $\ind_\mathbb{C} \mapsto \ind_{A^+} - \ind_A$.
+	Dann gilt $\mu \circ \iota = \id_A$ und $\iota \circ \mu + \lambda \circ \pi = \id_{A^+}$, sowie $\pi \circ \iota = 0_{A\to \mathbb{C}}$ und $\pi \circ \sigma = \id_\mathbb{C}$.
+	Mit der Funktorialität folgt
+	\[
+		0_{K_0(A) \to K_0(\mathbb{C})} = K_0(0_{A \to \mathbb{C}}) = K_0(\pi_n) \circ K_0(\iota) \implies \im K_0(\iota) \subset \ker K_0(\pi)
+	\]
+	und weiter $\id_{K_0(\mathbb{C})} = K_0(\id_\mathbb{C}) = K_0(\pi) K_0(\sigma) \implies K_0(\pi)$ surjektiv und die neue Sequenz zerfällt.
+	Aus $\id_{K_0(A)} = K_0(\mu) K_0(\iota)$ folgt die Injektivität von $K_0(\iota)$. Weiter gilt
+	\[
+		\id_{K_0(A^+)} = K_0(\id_{A^+}) = K_0(\iota \circ \mu) + K_0(\lambda \circ \pi) = K_0(\iota) K_0(\mu) + K_0(\lambda) K_0(\pi)
+	\]
+	Woraus $\ker K_0(\pi) \subset \im K_0(\iota)$ folgt.
+\end{beweis}
 
+\begin{proposition}[label=prop:616]
+	Sei $A$ eine unitale $C^*$-Algebra und $\tau$ ein positives Spurfunktional, das heißt $\tau \colon A \to \mathbb{C}$ ist linear, positiv mit $\tau(ab) =\tau(ba)$.
+	Dann definiert 
+	\mapdef{\tau_A \colon K_0(A)}{\mathbb{R}}{\benbrace*{p}_0}{\enbrace*{\Tr_{M_n} \otimes \tau}(p)}{}
+	einen Gruppenhomomorphismus mit $\tau_*\enbrace*{\gamma_D \enbrace*{\mathcal{D}(A)}} \subset \mathbb{R}_+$ und $\tau_* \enbrace*{\benbrace*{\ind_A}_0} = \norm*{\tau}$.
+\end{proposition}
+\begin{beweis}
+	$\Tr_{M_n} \otimes \tau$ ist ein positives Spurfunktional mit Norm $n \cdot \norm*{\tau}$ auf $M_n \otimes A$.
+	Nach \autoref{prop:68} (ii) gilt $p \sim_h q \implies p \sim_u q$ und damit
+	\[
+		\enbrace*{{\Tr_{M_n}} \otimes \pi}(p) = \enbrace*{{\Tr_{M_n}} \otimes \tau} (q)
+	\]
+	Betrachte nun $\nu \colon \Pinfty(A) \to \mathbb{R}$, $p \mapsto \enbrace*{{\Tr_{M_n}} \otimes \tau}(p)$ für $p \in M_n \otimes A$.
+	Diese Abbildung erfüllt \autoref{kor:610} c') und auch \autoref{prop:66} a), b).
+	Also kommutiert
+	\[
+		\begin{tikzcd}
+			\Pinfty(A) \dar["\benbrace*{\cdot}"] \drar["\nu"] \\
+			K_0(A) \rar[dashed,"\exists! \tau_A"] & \mathbb{R}
+		\end{tikzcd}
+	\]
+	Der Rest ist klar.
+\end{beweis}
 
+\begin{beispiel}[label=bsp:617]
+	Es gilt $K_0(M_n) \cong \mathbb{Z}$:
+	\begin{itemize}
+		\item Für $p,q \in \Pinfty(M_n)$ gilt $p \sim_0 q \iff \rk p = \rk q$.
+		\item $\forall r \in \mathbb{N} : \exists k \in \mathbb{N}, p \in M_k(M_n) : \rk p = r$. 
+	\end{itemize}
+	Definiere $\mathbb{N} \to \mathcal{D} \enbrace*{M_n}$ durch $0 \mapsto \benbrace*{0_{M_n}}_{\mathcal{D}}$, $1 \mapsto \benbrace*{e_{11}}_{\mathcal{D}}$ und setze dies entsprechend fort.
+	Dies ist ein Isomorphismus von Halbgruppen.
+	Mit $\Groth(\mathbb{N}) = \mathbb{Z}$ folgt dann die Behauptung.
+	
+	Es gilt außerdem
+	\[
+		\begin{tikzcd}
+			\mathbb{Z} \rar \ar[rr,bend left,"\id_\mathbb{Z}"] & K_0(M_n) \rar["\Tr_*"] & \mathbb{Z} \\[-2em]
+			1 \rar[mapsto] & \benbrace*{e_{11}}_0 & 
+		\end{tikzcd}
+	\]
+\end{beispiel}
+
+\begin{beispiel}[label=618]
+	Sei $\mathcal{H}$ ein unendlichdimensionaler Hilbertraum. 
+	Dann gilt $K_0 \enbrace*{\mathcal{B}(\mathcal{H})}=0$.
+\end{beispiel}
+\begin{beweis}
+	Für $\mathcal{H}$ separabel gilt $M_n(\mathcal{B}(\mathcal{H})) \cong \mathcal{B} \enbrace*{\mathcal{H}^{\oplus n}}$ und wir definieren $\gamma \colon \Pinfty(\mathcal{B}(\mathcal{H})) \to \mathbb{N} \cup \set*{\infty}$ durch $p \mapsto \dim p \enbrace*{\mathcal{H}^{\oplus n}}$.
+	$\mathbb{N} \cup \set*{\infty}$ ist eine abelsche Halbgruppe.
+	Für $p,q \in M_n(\mathcal{B}(\mathcal{H}))$ gilt: $\gamma(p) = \gamma(q) \iff p \sim_{\MvN} q$.\footnote{$p,q$ Projektionen in $C^*$-Algebra $B$, $p\sim_{\MvN} q : \Leftrightarrow \exists v \in B : v^*vp, vv^*=q$ (Murray-von-Neumann äquivalent)}
+	Für $p \in M_n(\mathcal{B}(\mathcal{H}))$, $q \in M_m(\mathcal{B}(\mathcal{H}))$ mit $m \le n$ gilt: 
+	\[
+		p \sim_0 q \iff p \sim_{\MvN} q \oplus 0_{m-n}
+	\]
+	Weiter gilt $\gamma(p \oplus q) = \gamma(p) + \gamma(q)$ (Dimension ist additiv) und $\gamma(0)=0$.
+	Damit ist $\gamma(p) = \gamma(q)$ genau dann, wenn $p\sim_0 q$ für $p,q \in \Pinfty(\mathcal{B}(\mathcal{H}))$.
+	Folglich induziert $\gamma$ einen Halbgruppenisomorphismus $\overline{\gamma} \colon \mathcal{D} \enbrace*{\mathcal{B}(\mathcal{H})} \to \mathbb{N} \cup \set*{\infty}$, $\benbrace*{p}_\mathcal{D} \mapsto \gamma(p)$.
+	Mit $\Groth(\mathbb{N} \cup \set*{\infty}) =0$ folgt nun die Behauptung für separabeles $\mathcal{H}$.
+	
+	Für ein beliebiges $\mathcal{H}$ benutzt man die Kardinalzahlen $\le \dim \mathcal{H}$.
+\end{beweis}
+
+\begin{beispiel}
+	Sei $X$ ein kontrahierbarer kompakter Hausdorffraum, das heißt es gibt $x_0 \in X$ und $h \colon [0,1] \times X \to X$ stetig mit $h(1,x)=x$ und $h(0,x)=x_0$ für $x \in X$.
+	Dann gilt $K_0 \enbrace*{C(X)} \cong \mathbb{Z}$:
+	
+	Weiter sind $C(X)$ und $\mathbb{C}$ homotopieäquivalent via \(
+		\begin{tikzcd}[cramped,sep=large]
+			C(X) \rar["\ev_{x_0}","\rho"'] & \mathbb{C} \rar["\ind_\mathbb{C} \mapsto \ind_{C(X)}","\sigma"'] & C(X)
+		\end{tikzcd}
+	\), denn $\rho \circ \sigma = \id_\mathbb{C}$ und $\sigma \circ \rho \sim_h \id_{C(X)}$ mittels $\varphi_t \colon C(X) \to C(X)$, $f(\cdot) \mapsto f(h(t,\cdot))$ für $t \in [0,1]$.
+	Mit \autoref{prop:613} folgt $K_0(C(X)) \cong K_0(\mathbb{C}) \cong \mathbb{Z}$.
+\end{beispiel}
 % section 6 (end)
+\newpage
+
+\section{Der Funktor $K_0$} % (fold)
+\label{sec:7}
+
+\begin{definition}
+	Sei $A$ eine nichtunitale $C^*$-Algebra.
+	Betrachte die zerfallende exakte Sequenz
+	\[
+		\begin{tikzcd}
+			0 \rar & A \rar["\iota"] & A^* \rar["\pi"] & \mathbb{C} \rar & 0
+		\end{tikzcd}
+	\]
+	und die induzierte Abbildung $K_0(\pi) \colon K_0(A^+) \to K_0(\mathbb{C})$.
+	Definiere $K_0(A) \coloneqq \ker \enbrace*{K_0(\pi)} \subset K_0(A^+)$.\marginnote{$K_0(A)$ ist abelsche Gruppe}
+\end{definition}
+
+\begin{bemerkung}
+	\begin{enumerate}[(i)]
+		\item Für $p \in \Pinfty(A) \stackrel{\iota}{\subset} \Pinfty(A^+)$ gilt für $\benbrace*{p}_0 \in K_0(A^+)$
+		\[
+			K_0(\pi) \enbrace*{\benbrace*{p}_0} = \benbrace*{\pi^\ssbrace{\infty}(p)}_0 =0
+		\]
+		Also ist $\benbrace*{p}_0 \in K_0(A)$ und wir definieren $\benbrace*{\cdot}_0 \colon \Pinfty(A) \to K_0(A)$.
+	\end{enumerate}
+\end{bemerkung}
+
+% section 7 (end)
 
 
 \cleardoubleoddemptypage
