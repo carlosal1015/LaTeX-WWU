@@ -1916,8 +1916,96 @@ $(\varphi_\lambda)_\Lambda$ ist also genau dann Cauchy bezüglich $d_B$, wenn $(
 
 \section{Die $K_0$-Gruppe einer unitalen $C^*$-Algebra} % (fold)
 \label{sec:6}
+
+\begin{definition}[{name=[{Projektionen in Matrizen über einer $C^*$-Algebra}]}]
+	Für eine $C^*$-Algebra $A$ und $n \in \mathbb{N}$ setzen wir
+	\[
+		\kernedP_n(A) \coloneqq \mathcal{P}(M_n(A)) = \set[\big]{\text{Projektionen in }M_n(A) }
+	\]
+	und $\Pinfty(A) = \bigcup_{n=1}^\infty \kernedP_n(A)$.
+	Für $p,q \in \Pinfty(A)$ mit $p \in \kernedP_n(A)$ und $q \in \kernedP_m(A)$ schreiben wir $p \sim_0 q$, falls $v = (v_{ij})_{ij} \in M_{m,n}(A)$ existiert mit $p=v^*v$ und $q = vv^*$.\marginnote{dabei ist $v^* = (v_{ji}^*)_{ij} \in M_{n,m}$}
+	Wir definieren eine Verknüpfung $\oplus  \colon \Pinfty(A) \times \Pinfty(A) \to \Pinfty(A)$ durch
+	\[
+		p \oplus q \coloneqq \diag(p,q) = \begin{pmatrix}
+			p & 0 \\
+			0 & q
+		\end{pmatrix} \in M_{n+m}(A)
+	\]
+\end{definition}
+
+\begin{proposition}[{name=[{grundlegende Eigenschaften der Relation $\sim_0$}]},label=prop:62]
+	\leavevmode
+	\begin{enumerate}[a)]
+		\item $\sim_0$ ist eine Äquivalenzrelation.
+		\item Für $p,q,v,p',q' \in \Pinfty(A)$ gilt
+		\begin{enumerate}[(i)]
+			\item $p \sim p \oplus 0_n$ für $n \in \mathbb{N}$
+			\item Falls $p \sim_0 p'$ und $q \sim_0 q'$ ist, so gilt $p \oplus q \sim_0 p' \oplus q'$
+			\item $p \oplus q \sim_0 q \oplus p$
+			\item Falls $p,q \in \kernedP_n(A)$ \emph{orthogonal} sind, also $pq=0$ gilt, so ist $p +q \in \kernedP_n(A)$ und es gilt $p + q \sim_0 p \oplus q$
+			\item $p \oplus (q \oplus v) \sim_0 (p \oplus q) \oplus v$
+		\end{enumerate}
+	\end{enumerate}
+\end{proposition}
+\begin{beweis}
+	\todo{kommt noch}
+\end{beweis}
+
+\begin{definitionP}
+	Für eine $C^*$-Algebra $A$ setzen wir $\mathcal{D}(A) \coloneqq \sfrac{\Pinfty(A)}{\sim_0}$ und schreiben $\benbrace*{p}_\mathcal{D}$ für die Äquivalenzklasse von $p \in \Pinfty(A)$.
+	Wir definieren eine Addition \enquote{$+$} auf $\mathcal{D}(A)$ durch
+	\[
+		\benbrace*{p}_\mathcal{D} + \benbrace*{q}_\mathcal{D} \coloneqq \benbrace*{p \oplus q}_\mathcal{D}
+	\]
+	Die Operation ist wohldefiniert und $(\mathcal{D}(A),+)$ ist eine abelsche Halbgruppe.
+\end{definitionP}
+\begin{beweis}
+	Folgt aus \autoref{prop:62}.
+\end{beweis}
+
+\begin{erinnerungA}[label=err:64]
+	Sei $(S,+)$ eine abelsche Halbgruppe.
+	Wir definieren eine Äquivalenzrelation $\sim$ auf $S \times S$ durch
+	\[
+		(x_1 , y_1 ) \sim (x_2,y_2) :\iff \exists z \in S : x_1 +y_2 + z  = x_2 + y_1 + z
+	\]
+	Wir schreiben $\skal*{x}{y}$ für die Klasse von $(x,y)$ in $\Groth(S) = \sfrac{S \times S}{\sim}$.
+	Definiere eine Addition  auf $\Groth(S)$ durch
+	\[
+		\skal*{x_1}{y_1} + \skal*{x_2}{y_2} :\iff \skal*{x_1 +x_2}{y_1 +y_2}
+	\]
+	$\Groth(S)$ ist dann eine abelsche Gruppe, die \Index{Grothendieck-Gruppe}\footnote{nach Alexander \textsc{Grothendieck}, * 28. März 1928; † 13. November 2014, deutschstämmiger französischer Mathematiker}.
+	Zu $\overline{y} \in S$ beliebig betrachten wir die Abbildung 
+	\mapdef{\gamma_S \colon S}{\Groth(S)}{x}{\skal*{x +\overline{y}}{\overline{y}}}{}
+	Dann hängt $\gamma_S$ nicht von der Wahl von $\overline{y}$ ab (warum?) und wir können die Grothendiekgruppe auch schreiben als $\Groth(S) = \set[\big]{\gamma_S(x) - \gamma_S(y) \given x,y \in S}$.
+	$\gamma_S$ ist injektiv genau dann, wenn $S$ die Kürzungseigenschaft besitzt, das heißt, falls $x+z = y+ z \implies x=y$.
+	$\Groth(\cdot)$ ist ein Funktor bezüglich additiver Abbildungen:
+	\[
+		\begin{tikzcd}[sep =large]
+			S \rar["\varphi"] \dar["\gamma_S"] & T \dar["\gamma_T"] \\
+			\Groth(S) \rar["\Groth(\varphi)"] & \Groth(T)
+		\end{tikzcd}
+	\]
+	Dabei ist $\Groth(\varphi)$ ein Gruppenhomomorphismus.
+	Es gilt folgende universelle Eigenschaft: Für eine abelsche Gruppe $G$  und $\varphi$ additiv existiert der folgende Gruppenhomomorphismus
+	\[
+		\begin{tikzcd}
+			S \dar["\gamma_S"] \rar["\varphi"] & G \\
+			\Groth(S) \urar[dashed,"\exists!"']
+		\end{tikzcd}
+	\]
+\end{erinnerungA}
+
+\begin{definition}[{name=[{$K_0$-Gruppe einer unitalen $C^*$-Algebra}]}]
+	Sei $A$ eine unitale $C^*$-Algebra.
+	Wir definieren
+	\[
+		K_0(A) \coloneqq \Groth \enbrace[\big]{\mathcal{D}(A)}
+	\]
+	Für $p \in \Pinfty(A)$ schreiben wir $\benbrace*{p}_0 \coloneqq \gamma_{\mathcal{D}(A)} \enbrace*{\benbrace*{p}_{\mathcal{D}}}$.
+\end{definition}
+
 \todo[inline]{RevChap 6}
-\todo[inline]{Hier fehlt noch einiges!}
 
 \begin{proposition}[label=prop:66]
 	Sei $A$ eine unitale $C^*$-Algebra.
@@ -1968,11 +2056,11 @@ $(\varphi_\lambda)_\Lambda$ ist also genau dann Cauchy bezüglich $d_B$, wenn $(
 \begin{beweis}
 	\begin{enumerate}[(i)]
 		\item Nach Definition folgt aus $p \sim_s q$ die Existenz von $r \in \kernedP_m(A)$ mit $p \oplus r \sim_0 q \oplus r$.
-		Damit erhalten nach \todo{ref 6.4}
+		Damit erhalten nach \autoref{err:64}
 		\[
 			p \oplus \ind_m \StackText{\ref{prop:66}}{\sim_0} p \oplus r \oplus (\ind_m -r) \sim_0 q \oplus r \oplus (\ind_m -r) \StackText{\ref{prop:66}}{\sim_0} q \oplus \ind_m
 		\]
-		Wieder nach \todo{ref 6.4} folgt $\benbrace*{p}_0 = \benbrace*{q}_0$ und auch $\benbrace*{p}_D + \benbrace*{e}_D = \benbrace*{q}_D + \benbrace*{e}_D$ für ein $e \in \kernedP_k(A)$.
+		Wieder nach \autoref{err:64} folgt $\benbrace*{p}_0 = \benbrace*{q}_0$ und auch $\benbrace*{p}_D + \benbrace*{e}_D = \benbrace*{q}_D + \benbrace*{e}_D$ für ein $e \in \kernedP_k(A)$.
 		Dann gilt auch $p \oplus e \sim_0 q \oplus e$ und wir haben $p \sim_s q$.
 		\item Sind $p$ und $q$ homotop, so finden wir $p=p_0, p_1, \ldots , p_l=q \in \kernedP_n(A)$ mit $\norm*{p_i - p_{i+1}} < \sfrac{1}{2}$.
 		Wir dürfen also ohne Einschränkungen annehmen, dass $\norm*{p-q} < \sfrac{1}{2}$ ist.
@@ -1985,10 +2073,10 @@ $(\varphi_\lambda)_\Lambda$ ist also genau dann Cauchy bezüglich $d_B$, wenn $(
 		Mit der von-Neumann-Reihe folgt, dass $z$ invertierbar ist und somit $z=u \cdot \abs*{z}$ für ein $u \in \mathcal{U}(M_n(A))$.
 		Also ist 
 		\[
-			q= z^{-1}zq = z^{-1}pz = \abs*{z}^{-1} u* p u \abs*{z}  \stackrel{q=q^*}{=\joinrel=} \abs*{z} u^* p u \abs*{z}^{-1}  
+			q= z^{-1}zq = z^{-1}pz = \abs*{z}^{-1} u* p u \abs*{z}  \stackrel{q=q^*}{=\joinrel=\joinrel=} \abs*{z} u^* p u \abs*{z}^{-1}  
 		\]
 		Es folgt $\abs*{z}^2 u^* p u \abs*{z}^{-2} = u^+ p u$ und somit $\abs*{z}^2 u^* p u = u^* p u \abs*{z}^2$.
-		Daraus erhalten wir $\benbrace{\abs*{z}^2, u^*p u }=0$ und somit auch $\benbrace*{\abs*{z},u^*pu} =0$ (warum?).
+		Daraus erhalten wir nun weiter $\benbrace[\big]{\abs*{z}^2, u^*p u }=0$ und somit auch $\benbrace*{\abs*{z},u^*pu} =0$ (warum?).
 		Also git $q = u^* p u$, also $q \sim_u p \implies q \sim_0 p$.
 		\item Sei $v \in M_n(A)$ mit $p=v^*v$, $q=vv^*$.
 		Wir setzen 
