@@ -1783,6 +1783,116 @@ In diesem Abschnitt sind Kettenkomplexe immer $\mathbb{N}$-graduiert. (Allgemein
 	$\mathop{\nu} \mathcal{C} = \mathbb{Z}$-Kettenhomotopieäquivalenzen, $\w \mathcal{C} = \mathbb{Q}$-Kettenhomotopieäquivalenzen.
 \end{beispiel}
 
+\begin{satz}[{name=[Approximationssatz]}]
+	Sei $F \colon \mathcal{A} \to \mathcal{B}$ ein exakter Funktor zwischen Waldhausen-Kategorien.
+	Dabei gelte:
+	\begin{enumerate}[(i)]
+		\item $(\alpha \colon A \to A') \in \mathcal{A}$ ist genau dann eine schwache Äquivalenz, wenn $F(\alpha) \in \mathcal{B}$ eine schwache Äquivalenz ist.
+		\item Für $A \in \mathcal{A}$ und $\beta \colon F(A) \to B$ in $\mathcal{B}$ gibt es eine Kofaserung $\alpha \colon A \hookrightarrow A'$ in $\mathcal{A}$ und eine schwache Äquivalenz $\beta' \colon F(A') \to B$ mit $\beta = \beta' \circ F(\alpha)$.
+		\item Ist $\beta$ in (ii) eine schwache Äquivalenz, so können wir $\alpha$ in (ii) als schwache Äquivalenz in $\mathcal{A}$ wählen.
+	\end{enumerate}
+	Dann induziert $F$ einen Isomorphismus $K_0(\mathcal{A}) \to K_0(\mathcal{B})$.
+\end{satz}
+\begin{beweis}
+	Wegen (ii) gibt es zu jedem $B \in \mathcal{B}$ ein $A \in \mathcal{A}$, sodass die schwache Äquivalenzklasse von $F(A)$ und $B$ übereinstimmen.
+	Daher ist $F_* \colon K_0(\mathcal{A}) \to K_0(\mathcal{B})$ surjektiv.
+	
+	\emph{Behauptung:} $F$ induziert sogar einen Isomorphismus zwischen der Menge der schwachen Äquivalenzklassen in $\mathcal{A}$ und der Menge der schwachen Äquivalenzklassen in $\mathcal{B}$.\todo{muss noch bewiesen werden}
+	
+	Für die Injektivität von $F_*$ müssen wir nun noch zeigen: Ist \(
+		\begin{tikzcd}[cramped,sep=small]
+			B \rar[hook] & B' \rar[two heads] & \sfrac{B'}{B}
+		\end{tikzcd}
+	\)
+	eine Kofaserfolge in $\mathcal{B}$, so gibt es eine Kofaserfolge \(
+		\begin{tikzcd}[cramped,sep=small]
+			A \rar[hook] & A' \rar[two heads] & \sfrac{A'}{A}
+		\end{tikzcd}
+	\)
+	in $\mathcal{A}$ und schwache Äquivalenzen $F(A) \to B$, $F(A') \to B'$ und $F \enbrace*{\sfrac{A'}{A}} \to \sfrac{B'}{B}$.
+	Wegen (ii) gibt es ein $A \in \mathcal{A}$ und eine schwache Äquivalenz $F(A) \to B$.
+	Nun wenden wir (ii) auf \(
+		\begin{tikzcd}[cramped,sep=small]
+			F(A) \rar & B \rar[hook] & B'
+		\end{tikzcd}
+	\)
+	 an und erhalten eine Kofaserung $A \hookrightarrow A'$ in $\mathcal{A}$ und eine schwache Äquivalenz $F(A') \to B'$, sodass 
+	 \[
+	 	\begin{tikzcd}
+	 		F(A) \rar[hook] \dar["\sim"] & F(A') \dar["\sim"] \\
+			B \rar[hook] & B'
+	 	\end{tikzcd}
+	 \]
+	 kommutiert.
+	 Da $F$ exakt ist, erhalten wir eine Kofaserfolge \(
+	 	\begin{tikzcd}[cramped,sep=small]
+	 		F(A) \rar[hook] & F(A') \rar[two heads] & F \enbrace*{\sfrac{A'}{A}}
+	 	\end{tikzcd}
+	 \)
+	 in $\mathcal{B}$.
+	 Die universelle Eigenschaft des Pushouts gibt uns eine Abbildung $F \enbrace*{\sfrac{A}{A'}} \to \sfrac{B'}{B}$ und wegen (W3) ist sie eine schwache Äquivalenz.
+\end{beweis}
+
+\begin{bemerkung}
+	Ist $\mathcal{B}$ saturiert, so folgt (iii) aus (i) und (ii) im Approximationssatz:
+	ist $\beta \colon F(A) \to B$ eine schwache Äquivalenz, so erhalten wir aus (ii) eine Kofaserung $\alpha \colon A \hookrightarrow A'$ und eine schwache Äquivalenz $\beta' \colon F(A') \to B$ und $\beta = \beta' \circ  F(\alpha)$.
+	Da $\mathcal{B}$ saturiert ist, ist mit $\beta$ und $\beta'$ auch $F(\alpha)$ eine schwache Äquivalenz.
+	Wegen (i) ist dann auch $\alpha$ eine schwache Äquivalenz (in $\mathcal{A}$).
+\end{bemerkung}
+
+\begin{bemerkung}
+	Sei $\mathcal{C}$ eine saturierte Waldhausen-Kategorie, in der sich jeder Morphismus $f \colon A \to C$ als eine Komposition \(
+		\begin{tikzcd}[cramped,sep=small]
+			A \rar[hook,"\alpha"] & B \rar["\sim"',"\beta"] & C
+		\end{tikzcd}
+	\)
+	schreiben lässt und $\alpha$ eine Kofaserung und $\beta$ eine schwache Äquivalenz ist.
+	Sei $\mathcal{U} \subseteq \mathcal{C}$ eine Waldhausen-Unterkategorie.
+	Sei $\hat{\mathcal{U}} \subseteq \mathcal{C}$ die volle Unterkategorie auf allen Objekten in $\mathcal{C}$, die schwach äquivalent zu einem Objekt in $\mathcal{U}$ sind.
+	Sei $\hat{\mathcal{U}}$ abgeschlossen unter Pushouts entlang Kofaserungen, das heißt ist 
+	\[
+		\begin{tikzcd}
+			A \dar \rar[hook] & C  \\
+			B
+		\end{tikzcd}
+	\]
+	ein Diagramm in $\mathcal{C}$ mit $A,B,C$ schwach äquivalent zu Objekten in $\mathcal{U}$, so sist auch $B \cup_A C$ schwach äquivalent zu einem Objekt in $\mathcal{U}$.
+	Dann ist $\hat{\mathcal{U}}$ eine Waldhausen-Kategorie und der Approximationssatz ist auf die Inklusion $\mathcal{U} \to \hat{\mathcal{U}}$ anwendbar, also $K_0 \mathcal{U} \cong K_0 \hat{\mathcal{U}}$.
+\end{bemerkung}
+
+\begin{beispiel}
+	Sei $R$ ein Ring und $\ch(\kernedP_R)$ die Kategorie aller $R$-Kettenkomplexe projektiver $R$-Moduln und Kettenabbildungen.
+	Dann wird $\ch(\kernedP_R)$ zu einer Waldhausen-Kategorie in der die Kofaserungen die gradweisen Inklusionen von direkten Summanden sind und die schwachen Äquivalenzen die Kettenhomotopieäquivalenzen sind.
+	
+	In $\ch(\kernedP_R)$ lässt sich jede Abbildung als Komposition einer Kofaserung mit einer schwachen Äquivalenz schreiben:
+	Zu $f_* \colon C_* \to D_*$ ist der Zylinder $\Zyl_*(f)$ von $f$ definiert durch
+	\[
+		\Zyl_n(f) = D_N \oplus C_{n-1} \oplus C_n
+	\]
+	mit dem Differential 
+	\[
+		\partial^{\Zyl_*(f)}_n = \begin{pmatrix}
+			\partial^D_n & f_{n-1} & \\
+			& -\partial^C_{n-1} & \\
+			& -\id_{C_{n-1}} & \partial^C_n
+		\end{pmatrix}
+	\]
+	Dann sind die Inklusionen $i_C \colon C_* \hookrightarrow \Zyl_*(f)$ und $i_D \colon D_* \hookrightarrow \Zyl_*(f)$ Kofaserungen.
+	Weiter ist $P_D \colon \Zyl_*(f) \to D_*$ ist $p_D(x,y,z) = x + f_n(z)$ eine Homotopieinverse für $i_D$.
+	Außerdem ist $f_* = p_D \circ i_C$.
+	
+	Wir betrachten nun die folgenden Waldhausen-Unterkategorien: 
+	\[
+		\begin{tikzcd}
+			\ch_f(\mathcal{F}_R) \dar[phantom,sloped,"\subseteq"] \rar[phantom,sloped,"\subseteq"] & \ch_{hf}(\mathcal{F}_R) \rar[phantom,sloped,"\subseteq"] \dar[phantom,sloped,"\subseteq"] & \ch(\mathcal{F}_R) \dar[phantom,sloped,"\subseteq"]\\
+			\ch_f(\kernedP_R) \rar[phantom,sloped,"\subseteq"] & \ch_{hf}(\kernedP_R)  \rar[phantom,sloped,"\subseteq"] & \ch(\kernedP_R)
+		\end{tikzcd}
+	\]
+	Hier ist $\ch_(\mathcal{F}_R)$ die Unterkategorie der Kettenkomplexe von freien Moduln, $\ch_{hf}(\mathcal{F}_R) \subseteq \ch(\mathcal{F}_R)$ und $\ch_f(\kernedP_R) \subseteq \ch(\kernedP_R)$ sind die Unterkategorien der Kettenkomplexe von endlichem Typ, $\ch_{hf}(\mathcal{F}_R) \subseteq \ch(\mathcal{F}_R)$   und $\ch_{hf}(\kernedP_R) \subseteq \ch(\kernedP_R)$ sind die Unterkategorien auf homotopieendlichen Kettenkomplexen.
+	Dann lässt sich der Approximationssatz auf die Inklusionen $\ch_f(\mathcal{F}_R) \subseteq \ch_{hf}(\mathcal{F}_R)$, $\ch_f(\kernedP_R) \subseteq \ch_{hf}(\kernedP_R)$ anwenden.
+	Der Kofinalitätssatz lässt sich auf die Inklusionen $\ch_{f}(\mathcal{F}_R) \subseteq \ch_f(\kernedP_R)$ anwenden.
+\end{beispiel}
+
 % section 5 (end)
 \newpage
 
