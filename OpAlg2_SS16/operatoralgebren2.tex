@@ -2016,7 +2016,7 @@ $(\varphi_\lambda)_\Lambda$ ist also genau dann Cauchy bezüglich $d_B$, wenn $(
 		\item $\benbrace*{0_A}_0 = 0_{K_0(A)}$
 		\item Falls $p \perp q \in \Pinfty(A)$, so gilt $\benbrace*{p + q}_0 = \benbrace*{p}_0 + \benbrace*{q}_0$
 	\end{enumerate}
-	Außerdem erfüllt $K_0(A)$ folgende universelle Eigenschaft: Sei $G$ eine abelsche Grupe und $\nu \colon \Pinfty(A) \to G$ eine Abbildung mit
+	Außerdem erfüllt $K_0(A)$ die folgende universelle Eigenschaft: Sei $G$ eine abelsche Grupe und $\nu \colon \Pinfty(A) \to G$ eine Abbildung mit
 	\begin{enumerate}[a)]
 		\item $\nu(p \oplus q) = \nu(p) + \nu(q)$
 		\item $\nu(0_A) = 0_G$
@@ -2050,7 +2050,7 @@ $(\varphi_\lambda)_\Lambda$ ist also genau dann Cauchy bezüglich $d_B$, wenn $(
 		\item Für $p,q \in \Pinfty(A)$ gilt: $p \sim_s q \iff p \oplus \ind_m \sim_0 q \oplus \ind_m \iff \benbrace*{p}_0 = \benbrace*{q}_0$ für ein $m \in \mathbb{N}$.
 		\item Für $p,q \in \kernedP_n(A)$ gilt: $p \sim_h q \implies \benbrace*{p}_0 = \benbrace*{q}_0$.
 		\item Für $p,q \in \kernedP_n(A)$ gilt: $p \sim_0 q \implies \begin{psmallmatrix} p &0 \\ 0 & 0 \end{psmallmatrix} \sim_h \begin{psmallmatrix} q &0 \\ 0 & 0 \end{psmallmatrix}$ in $M_{2n}(A)$.
-		\item Für $p,q \in \kernedP_n(A)$ gilt: $p \sim_h q \implies \begin{psmallmatrix} p &0 \\ 0 & 0 \end{psmallmatrix} \sim_h \begin{psmallmatrix} q &0 \\ 0 & 0 \end{psmallmatrix}$ in $M_{2n}(A)$
+		\item Für $p,q \in \kernedP_n(A)$ gilt: $p \sim_u q \implies \begin{psmallmatrix} p &0 \\ 0 & 0 \end{psmallmatrix} \sim_h \begin{psmallmatrix} q &0 \\ 0 & 0 \end{psmallmatrix}$ in $M_{2n}(A)$
 	\end{enumerate}
 \end{proposition}
 \begin{beweis}
@@ -2068,7 +2068,7 @@ $(\varphi_\lambda)_\Lambda$ ist also genau dann Cauchy bezüglich $d_B$, wenn $(
 		\begin{align}
 			\norm*{z- \ind_n} = \norm*{p(q-p) + (\ind_n -p) \enbrace[\big]{(\ind_n -q) -(\ind_n -p)}} &= \norm*{p(q-p) + (\ind_n-p)(p-q)} \\
 			&\le \norm*{p(q-p)} +\norm*{(\ind_n-p)(p-q)} \\
-			&< 1 \norm*{p-q} < 1
+			&< 2 \norm*{p-q} < 1
 		\end{align}
 		Mit der von-Neumann-Reihe folgt, dass $z$ invertierbar ist und somit $z=u \cdot \abs*{z}$ für ein $u \in \mathcal{U}(M_n(A))$.
 		Also ist 
@@ -2232,7 +2232,7 @@ Man schreibt oft auch $\varphi_*$ oder $\varphi_0$ für $K_0(\varphi)$.
 	\end{align}
 \end{beweis}
 
-\begin{proposition}
+\begin{proposition}[label=prop:615]
 	Sei $A$ eine unitale $C^*$-Algebra.
 	Dann induziert die zerfallende exakte Sequenz\marginnote{wo $\sigma(\ind_\mathbb{C}) = \ind_{A^+}$}
 	\[
@@ -2269,7 +2269,7 @@ Man schreibt oft auch $\varphi_*$ oder $\varphi_0$ für $K_0(\varphi)$.
 	einen Gruppenhomomorphismus mit $\tau_*\enbrace*{\gamma_D \enbrace*{\mathcal{D}(A)}} \subset \mathbb{R}_+$ und $\tau_* \enbrace*{\benbrace*{\ind_A}_0} = \norm*{\tau}$.
 \end{proposition}
 \begin{beweis}
-	$\Tr_{M_n} \otimes \tau$ ist ein positives Spurfunktional mit Norm $n \cdot \norm*{\tau}$ auf $M_n \otimes A$.
+	${\Tr_{M_n}} \otimes \tau$ ist ein positives Spurfunktional mit Norm $n \cdot \norm*{\tau}$ auf $M_n \otimes A$.
 	Nach \autoref{prop:68} (ii) gilt $p \sim_h q \implies p \sim_u q$ und damit
 	\[
 		\enbrace*{{\Tr_{M_n}} \otimes \pi}(p) = \enbrace*{{\Tr_{M_n}} \otimes \tau} (q)
@@ -2347,7 +2347,7 @@ Man schreibt oft auch $\varphi_*$ oder $\varphi_0$ für $K_0(\varphi)$.
 	Betrachte die zerfallende exakte Sequenz
 	\[
 		\begin{tikzcd}
-			0 \rar & A \rar["\iota"] & A^* \rar["\pi"] & \mathbb{C} \rar & 0
+			0 \rar & A \rar["\iota"] & A^+ \rar["\pi"] & \mathbb{C} \rar & 0
 		\end{tikzcd}
 	\]
 	und die induzierte Abbildung $K_0(\pi) \colon K_0(A^+) \to K_0(\mathbb{C})$.
@@ -2358,12 +2358,168 @@ Man schreibt oft auch $\varphi_*$ oder $\varphi_0$ für $K_0(\varphi)$.
 	\begin{enumerate}[(i)]
 		\item Für $p \in \Pinfty(A) \stackrel{\iota}{\subset} \Pinfty(A^+)$ gilt für $\benbrace*{p}_0 \in K_0(A^+)$
 		\[
-			K_0(\pi) \enbrace*{\benbrace*{p}_0} = \benbrace*{\pi^\ssbrace{\infty}(p)}_0 =0
+			K_0(\pi) \enbrace*{\benbrace*{p}_0} = \benbrace[\big]{\pi^\ssbrace{\infty}(p)}_0 =0
 		\]
 		Also ist $\benbrace*{p}_0 \in K_0(A)$ und wir definieren $\benbrace*{\cdot}_0 \colon \Pinfty(A) \to K_0(A)$.
+		\item Sei $A$ eine beliebige $C^*$-Algebra (unital oder nicht).
+		Wir erhalten folgende exakte Sequenz
+		\[
+			\begin{tikzcd}
+				0 \rar & K_0(A) \rar["\kappa"] & K_0(A^+) \rar["K_0(\pi)"] & K_0(\mathbb{C})  \rar & 0
+			\end{tikzcd}
+		\]
+		wobei $\kappa = K_0(\iota)$, falls $A$ unital ist (vgl. \autoref{prop:615}).
+		Wenn $A$ unital ist, gilt $K_0(A) \cong K_0(\iota) \enbrace*{K_0(A)} \subset K_0(A^+)$, wobei der Isomorphismus $\benbrace*{p}_0 \in K_0(A)$ auf $ \benbrace*{\iota(p)}_0 \in K_0(A^+)$ abbildet.
+		Da $\pi \circ \iota =0$ ist, folgt $K_0(A) = \ker K_0(\pi)$ auch im unitalen Fall.
 	\end{enumerate}
 \end{bemerkung}
 
+Seien $A,B$ $C^*$-Algebren, $\varphi \colon A \to B$ ein $^*$-Homomorphismus mit Unitaltisierung $\varphi^+ \colon A^+ \to B^+$.
+Wir erhalten folgendes Diagramm
+\begin{equation}
+	\begin{tikzcd}
+		0 \rar & A \rar["\iota_A"] \dar["\varphi"] & A^+ \rar["\pi_A"]  \dar["\varphi^+"] & \mathbb{C} \rar \dar[equal] & 0 \\
+		0 \rar & B \rar["\iota_B"] & B^+ \rar["\pi_B"] & \mathbb{C} \rar & 0
+	\end{tikzcd} \label{eq:73:1} \tag{*}
+\end{equation}
+In $K_0$ erhalten wir
+\begin{equation}
+	\begin{tikzcd}
+		0 \rar & K_0(A) \dar["\exists K_0(\varphi)"] \rar & K_0(A^+) \dar["K_0(\varphi^+)"] \rar & K_0(\mathbb{C}) \rar \dar[equal] & 0 \\
+		0 \rar & K_0(B) \rar & K_0(B^+) \rar & K_0(\mathbb{C}) \rar & 0
+	\end{tikzcd} \label{eq:73:2} \tag{**}
+\end{equation}
+Es gilt $K_0(\varphi) = K_0(\varphi^+)|_{K_0(A)}$.
+Falls $A,B$ unital sind, so gilt $\varphi^+ \circ \iota_A = \iota_B \circ \varphi \colon A \to B^+$ und diese Definition von $K_0(\varphi)$ stimmt mit der aus \autoref{prop:611} überein.
+Für $p \in \Pinfty(A)$ gilt $K_0(\varphi) \enbrace*{\benbrace*{p}_0} = \benbrace*{\varphi^\ssbrace{\infty}(p)}_0$
+
+\begin{proposition}[label=prop:73]
+	Seien $A,B,C$ $C^*$-Algebren, $\varphi \colon A \to B$, $\psi \colon B \to C$ $^*$-Homomorphismen.
+	Dann gilt
+	\begin{enumerate}[(i)]
+		\item $K_0(\id_A) = \id_{K_0(A)}$
+		\item $K_0(\psi \circ \varphi) = K_0(\psi) \circ K_0(\varphi)$
+		\item $K_0 \enbrace*{0_{A \to B}} = 0_{K_0(A) \to K_0(B)}$
+		\item $K_0(\set*{0}) = \set*{0}$.
+	\end{enumerate}
+	Insbesondere ist $K_0$ ein kovarianter Funktor 
+	\[
+		\enbrace*{C^*\text{-}\CSTAR, {^*\text{-}\Hom}} \longrightarrow \enbrace*{\AB, \Hom}
+	\]
+\end{proposition}
+\begin{beweis}
+	\begin{enumerate}[(i)]
+		\item Es gilt $(\id_A)^+ = \id_{A^+}$, also
+		\[
+			K_0(\id_A) = K_0 \enbrace*{(\id_A)^+} \big|_{K_0(A)} = K_0(\id_{A^+})\big|_{K_0(A)} = \id_{K_0(A^+)} \big|_{K_0(A)}  =\id_{K_0(A)}
+		\]
+		\item Ebenso mit $(\psi \circ \varphi)^+ = \psi^+ \circ \varphi^+$
+		\item Setze man $\varphi=0_{A\to B}$ in \eqref{eq:73:1}, so faktorisiert $\varphi^+$ durch $\pi_A$.
+		Damit faktorisiert $K_0(\varphi^+)$ auch durch $K_0(\pi_A)$ und es gilt 
+		\[
+			K_0(\varphi) = K_0(\varphi^+)|_{\ker K_0(\pi_A)} = K_0(\sigma_B) \circ K_0(\pi_A)|_{\ker K_0(\pi_A)} = 0
+		\]
+		\item Es ist $\set*{0}^+ = \mathbb{C}$ und somit ist $\pi$ in diesem Fall die Identität auf $\mathbb{C}$.
+		In $K_0$ erhalten wir
+		\[
+			\begin{tikzcd}
+				K_0(\set*{0}) \rar & K_0(\mathbb{C}) \rar["K_0(\id_\mathbb{C})","\id"'] & K_0(\mathbb{C})
+			\end{tikzcd}
+		\]
+		Es folgt $K_0(\set*{0}) = ker \id = \set*{0}$.\qedhere
+	\end{enumerate}
+\end{beweis}
+
+\begin{proposition}
+	Seien $A,B$ $C^*$-Algebren.
+	\begin{enumerate}[(i)]
+		\item Falls $\varphi \sim_h \psi \colon A \to B$ homotope $^*$-Homomorphismen sind, so gilt $K_0(\varphi) = K_0(\psi)$.
+		\item Falls $A$ und $B$ homotopieäquivalent sind via \(
+			\begin{tikzcd}[cramped,sep=small]
+				A \rar["\rho"] & B \rar["\sigma"] & A
+			\end{tikzcd}
+		\), so sind $K_0(\rho)$ und $K_0(\sigma)$ zueinander inverse Isomorphismen.
+	\end{enumerate}
+\end{proposition}
+\begin{beweis}
+	\begin{enumerate}[(i)]
+		\item Es seien $\varphi \sim_h \psi$ via $(\varphi_t)_{t \in [0,1]}$.
+		Dann gilt auch $\varphi^+ \sim_h \psi^+$ via $(\varphi^+_t)_{t \in [0,1]}$.
+		Mit \autoref{prop:613} folgt $K_0(\varphi^+) = K_0(\psi^+)$.
+		Damit erhalten wir $K_0(\varphi) = K_0(\varphi^+)|_{K_0(A)} = K_0(\psi^+)|_{K_0(A)} = K_0(\psi)$.
+		\item Folgt aus (i) mit \autoref{prop:73} (i) und (ii).\qedhere
+	\end{enumerate}
+\end{beweis}
+
+\begin{beispiel}
+	Sei $A$ eine $C^*$-Algebra.
+	Dann ist der \Index{Kegel} 
+	\[
+		CA \colon \set[\big]{f \in C([0,1],A) \given  f(0)=0} = C_0 \enbrace[\big]{(0,1],A}
+	\]
+	homotop zu $0$ via $CA \to 0 \to CA$:
+	Für $\varphi_t \colon CA \to CA$ $\varphi_t(f)(s) = f(t \cdot s)$ für $f \in CA$, $t,s \in [0,1]$.
+	Die Zuordnung $t \mapsto  \enbrace[\big]{s \mapsto \varphi_t(f)(s)}$ ist stetig (warum?) und es gilt $\varphi_0=0$, sowie $\varphi_1 = \id_{CA}$.
+	Damit ist $K_0(CA) =0$.
+	
+	Wir werden sehen, dass die \Index{Einhängung} 
+	\[
+		SA \coloneqq C_0 \enbrace*{(0,1),A}
+	\]
+	nichttriviale $K$-Theorie hat (im Allgemeinen).
+\end{beispiel}
+
+\begin{definitionP}
+	Betrachte \(
+		\begin{tikzcd}[cramped,sep=small]
+			0 \rar & A \rar & A^+ \rar["\pi"] & \mathbb{C} \lar[bend right,"\sigma"'] \rar & 0
+		\end{tikzcd}
+	\) und definiere $s_A \colon A^+ \to A^+$ durch $s_A \coloneqq \sigma \circ \pi$.
+	Dann gilt $\pi \circ s_A = \pi \circ \sigma \circ \pi= \pi$ und $a \in s_A(a) \in \ker \pi$ für alle $a \in A^+$.
+	$s_A$ induziert $s_A^\ssbrace{n} \colon M_n(A^+) \to M_n(A^+)$ mit $\im s_A^\ssbrace{n} = M_n(\mathbb{C} \cdot \ind_{A^+})$.
+	Falls $\varphi \colon A \to B$ ein $^*$-Homomorphismus ist, so kommutiert 
+	\[
+		\begin{tikzcd}
+			A^+ \rar["s_A"] \dar["\varphi^+"] & A^+ \dar["\varphi^+"] \\
+			B^+ \rar["s_B"] &  B^+
+		\end{tikzcd}
+	\]
+	Ebenso für $s_A^\ssbrace{n}$.
+	Wir schreiben oft auch $s$ für $s_A^\ssbrace{n}$.
+	Für jede $C^*$-Algebra $A$ gilt 
+	\begin{enumerate}[(i)]
+		\item $K_0(A) = \set[\big]{\benbrace*{p}_0 - \benbrace*{s(p)}_0 \given p \in \Pinfty(A^+)}$
+		\item Für $p,q \in \Pinfty(A^+)$ gilt 
+		\begin{enumerate}[a)]
+			\item $\benbrace*{p}_0 - \benbrace*{s(p)}_0 = \benbrace*{q}_0 - \benbrace*{s(q)}_0$
+			\item $\exists k,l \in \mathbb{N} : p \oplus \ind_{k} \sim_0 q \oplus \ind_l$
+			\item $\exists v_1,v_2 \in \kernedP_n(\mathbb{C} \cdot \ind_{A^+}) : p \oplus v_1 \sim_0 q \oplus v_2$ in $\Pinfty(A^+)$ 
+		\end{enumerate}
+		\item Für jedes $p \in \Pinfty(A^+)$ mit $\benbrace*{p}_0 = \benbrace*{s(p)}_0$ existiert $m \in \mathbb{N}$ mit $p \oplus \ind_m \sim_0 s(p) \oplus \ind_m$.
+	\end{enumerate}
+\end{definitionP}
+\begin{beweis}
+	\begin{enumerate}[(i)]
+		\item Zunächst zeigen wir \enquote{$\supset$}: Für $p \in \Pinfty(A^+)$ gilt 
+		\[
+			K_0(\pi)\enbrace*{\benbrace*{p}_0 - \benbrace*{s(p)}_0} = \benbrace*{\pi(p)}_0 - \benbrace*{\pi s(p)}_0 =0
+		\]
+		Damit folgt \enquote{$\supset$}.
+		Für die umgekehrte Inklusion sei $x \in K_0(A)$.
+		Dann existieren $n \in \mathbb{N}$, $e,f \in \kernedP_n(A^+)$ mit $x = \benbrace*{e}_0 - \benbrace*{f}_0$.
+		Setze $p \coloneqq e \oplus (\ind_n -f)$ und $q \coloneqq 0_n \oplus \ind_n \in \kernedP(A^+)$.
+		Dann gilt
+		\[
+			\benbrace*{p}_0 - \benbrace*{q}_0 = \benbrace*{e}_0 + \benbrace*{\ind_n -f} - \benbrace*{\ind_n} = \benbrace*{e}_0 -\benbrace*{f}_0 = x
+		\]
+		Es gilt $s(q)=q$ und $K_0(\pi)(a) =0$.
+		Deshalb gilt
+		\[
+			\benbrace*{s(p)}_0 - \benbrace*{q}_0 = \benbrace*{s(p)}_0 - \benbrace*{s(q)}_0 = K_0(s)(x) = K_0(\sigma) K_0(\pi_n)(x) =0
+		\]
+		Damit ist $x = \benbrace*{p}_0 - \benbrace*{q}_0 = \benbrace*{p}_0 - \benbrace*{s(p)}_0$ und die Gleichheit der Mengen folgt.
+	\end{enumerate}
+\end{beweis}
 % section 7 (end)
 
 
