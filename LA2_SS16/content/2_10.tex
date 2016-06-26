@@ -2,99 +2,158 @@
 \section{Eine Anwendung der Jordan-Normalform in der Analysis}
 \label{sec:2.10}
 
-In vielen physikalischen Anwendungen ist es notwendig, System von \textbf{Differentialgleichungen} der Form \index{Differentialgleichung}
-\begin{align*}
-	y_1'(t) &= b_{11} \cdot y_1(t) + b_{12} \cdot y_2(t) + \cdots + b_{1n} \cdot y_n(t) \\
-	y_2'(t) &= b_{21} \cdot y_1(t) + b_{22} \cdot y_2(t) + \cdots + b_{2n} \cdot y_n(t) \\
-	 & \qquad \qquad \qquad \vdots \\
-	y_n'(t) &= b_{n1} \cdot y_1(t) + b_{n2} \cdot y_2(t) + \cdots + b_{nn} \cdot y_n(t)
-\end{align*}
-zu betrachten, wobei $y_1,\dots,y_n\colon \RR \rightarrow \RR$ differenzierbare reelle Funktionen sind und $b_{ij} \in \RR$ für alle $1 \leq i,j \leq n$.
-Ist dann $B = (b_{ij}) \in M(n \times n, \RR)$, so können wir das System auch in der Kurzschreibweise
-\[
-	y'(t) = B \cdot y(t), y(t) := (y_1(t),y_2(t),\dots,y_n(t))^T
-\]
-formulieren, wobei dann $y'(t) := (y_1'(t),\dots,y_n'(t))^T$ die komponentenweise Ableitung von $y\colon \RR \rightarrow \RR^n$ bezeichnet.
-Definieren wir die Konvergenz von Vektoren durch die Konvergenz der Komponenten, so ist $y \colon \RR \rightarrow \RR^n$ differenzierbar in $t$ genau dann, wenn
-\[
-	y'(t) = \lim\limits_{h \rightarrow 0} \frac{1}{h} (y(t+h)-y(t))
-\]
-existiert.
-In der Regel wird zusätzlich zum oben gegebenen System von Differentialgleichungen noch eine Anfangsbedingung
-\[
-	y(t_0) = y_0 = (y_{10},\dots,y_{n0})^T
-\]
-vorgegeben, wobei $t_0 \in \RR$ eine gegebene Anfangszeit ist.
-Gesucht sind also alle komponentenweise differenzierbaren Funktionen $y \colon \RR \rightarrow \RR^n$ mit $y' = B \cdot y$ und $y(t_0) = y_0$.
-Eine Gleichung der Form $y' = By$ heißt auch \textbf{(homogenes) System von linearen Differentialgleichungen erster Ordnung mit konstanten Koeffizienten}.
+In der Analysis, insbesondere in der Theorie der linearen Differentialgleichungen, ist es wichtig, Matrizen in Potenzreihen einsetzen zu können.
+Insbesondere ist es wichtig, die matrixwertige Funktion
 
-\begin{beispiel}
-	\label{bsp:10.1}
-	Ein Zahlen-Beispiel:
-	Gesucht sind alle differenzierbaren Funktionen $y_1,y_2,y_3\colon \RR \rightarrow \RR$ mit
+\[
+	t \mapsto \exp(tB) \in M(n \times n, \CC)
+\]
+
+für eine Matrix $B \in M(n \times n, \CC)$ berechnen zu können.
+In der Analysis II werden Sie dies direkt benutzen.
+Wir starten mit:
+
+\begin{definition}
+	\label{def:10.1}
+	Sei $\sum_{k=0}^{\infty} A_k$ eine Reihe von Matrizen in $M(n \times n, \KK)$ mit $\KK = \RR$ oder $\KK= \CC$, das heißt $A_k \in M(n \times n,\KK)$ für alle $k \in \NN_0$.
+	Sei
+	\[
+		S_n := \sum_{k=0}^{n} A_k \in M(n \times n, \KK)
+	\]
+	die $n$-te \Index{Partialsumme} der Reihe.
+	Wir sagen dann, dass die Reihe $\sum_{k=0}^{\infty} A_k$ gegen eine Matrix $S \in M(n \times n, \KK)$ \textbf{konvergiert}, wenn $(S_n)_{i,j} \rightarrow S_{i,j}$ für alle $1 \leq i,j \leq n$ gilt, wobei $(S_n)_{i,j}$ bzw. $S_{i,j}$ den $i,j$-ten Eintrag von $S_n$ bzw. $S$ bezeichnet.
+	Wir schreiben dann $S := \sum_{k=0}^{\infty} A_k$. \index{Reihe} \index{Konvergenz}
+\end{definition}
+
+Wir wollen im Folgenden auch das Konzept der absoluten Konvergenz auf den Fall von Matrizenreihen übertragen.
+Dazu benötigen wir:
+
+\begin{definition}[Operatornorm]
+	\label{def:10.2}
+	Sei $\KK^n$ versehen mit dem Standard-Skalarprodukt $\sk{\cdot,\cdot}$ und der zugehörigen Norm $\no{\cdot}_2$.
+	Ist dann $A \in M(n \times n, \KK)$, so definieren wir die \Index{Operatornorm} $\opn{A}$ von $A$ durch
+	\[
+		\opn{A} := \sup \{ \no{Az}_2 : z \in \KK^n \text{ mit } \no{z}_2 \leq 1\}.
+	\]
+\end{definition}
+
+Da die Abbildung $z \mapsto \no{Az}_2$ stetig auf der kompakten Menge $B_1 = \{z \in \CC^n : \no{z}_2 \leq 1\}$ ist, nimmt sie auf $B_1$ ihr Maximum an.
+Die Abbildung $\opn{\cdot}$ ist daher wohldefiniert.
+
+\begin{lemma}
+	\label{lemma:10.3}
+	Die Abbildung $\opn{\cdot} \colon M(n \times n,\KK) \rightarrow [0,\infty), A \mapsto \opn{A}$ ist eine Norm auf dem $\KK$-Vektorraum $M(n \times n,\KK)$.
+	Ferner gelten:
+	\begin{enumerate}[(i)]
+		\item $\no{Az}_2 \leq \opn{A} \no{z}_2$ für alle $A \in M(n \times n,\KK), z \in \KK^n$,
+		\item $\opn{AB} \leq \opn{A} \opn{B}$ für alle $A,B \in M(n \times n, \KK)$ und
+		\item $\sqrt{\sum_{i=1}^k \abs{a_{ij}}^2} \leq \opn{A}$ für alle $A \in M(n \times n, \KK), 1 \leq i,j \leq n$.
+		Insbesondere folgt $\abs{a_{ij}} \leq \no{A}$ für alle $1 \leq i,j \leq n$.
+	\end{enumerate}
+\end{lemma}
+\newpage
+\begin{beweis}
+	Man rechnet leicht nach, dass $\no{\lambda A}_2 = \no{\lambda} \cdot \opn{A}$ und $\opn{A} = 0 \Rightarrow A = 0$ gelten.
+	Für die Dreiecksungleichung seien $A,B \in M(n \times n,\KK)$.
+	Da die Abbildung $z \mapsto \no{(A+B)z}_2$ auf der Einheitskugel $B_1 \subseteq \KK^n$ ihr Maximum annimmt, existiert ein $z_0 \in B_1$ mit $\opn{A+B} = \no{(A+B)z_0}_2$.
+	Dann folgt
 	\begin{align*}
-		y_1'(t) &= y_1(t) + 2y_2(t) - y_3(t) \\
-		y_2'(t) &= -y_2(t) + y_3(t) \\
-		y_3'(t) &= 3y_1(t) + y_2(t)
+		\opn{A+B} &= \no{(A+B)z_0}_2 = \no{Az_0 + Bz_0}_2 \leq \no{Az_0}_2 + \no{Bz_0}_2 \\
+		&\leq \sup_{\no{z}_2 \leq 1} \no{Az}_2 + \sup_{\no{z}_2 \leq 1} \no{B_z}_2 = \opn{A} + \opn{B}.
 	\end{align*}
-	und der Anfangsbedingung $y_1(0) = 1, y_2(0) = 0, y_3(0)=2$.
-	Ist dann $B = \begin{pmatrix}
-		1 & 2 & -1 \\
-		0 & -1 & 1 \\
-		3 & 0 & 1
-	\end{pmatrix}$, so ist das obige System von Differentialgleichungen gegeben durch die Gleichung $y' = By$, $y(0) = (1,0,2)^T$, wobei $y = (y_1,y_2,y_3)^T \colon \RR \rightarrow \RR^3$ die gesuchte $\RR^3$-wertige Funktion ist.
-\end{beispiel}
+	Damit ist gezeigt, dass $\opn{\cdot}$ eine Norm ist.
+	Die Aussage in (i) folgt direkt aus der Definition von $\opn{A}$:
+	Ist $z=0$, so ist auch $Az = 0$ und es folgt $0 = \no{A\cdot0}_2 = \opn{A} \no{0}_2$.
+	Ist $z \neq 0$, so ist $\frac{1}{\no{z}_2}\cdot z \in B_1$ und es folgt
+	\[
+		\no{Az}_2 = \no{A \enb{\frac{1}{\no{z}_2} \cdot z}}_2 \no{z}_2 \leq \opn{A} \no{z}_2.
+	\]
+	Für den Beweis von (ii) sei $z \in B_1$ beliebig.
+	Dann folgt mit (i):
+	\[
+		\no{ABz}_2 \stackrel{\text{(i)}}{\leq} \opn{A} \no{Bz}_2 \stackrel{\text{(i)}}{\leq} \opn{A} \opn{B} \no{z}_2 \stackrel{\no{z}_2 \leq 1}{\leq} \opn{A} \opn{B}.
+	\]
+	Dann folgt auch $\opn{AB} = \sup_{z \in B_1} \no{ABz}_2 \leq \opn{A} \opn{B}$.
+	
+	Für den Beweis von (iii) sei $j \in \{1,\dots,n\}$ fest und betrachte $z = e_j \in B_1$.
+	Dann folgt
+	\[
+		\sum_{i=1}^{n} \abs{a_{ij}}^2 = \no{Ae_j}_2^2 \leq \opn{A}^2.
+	\]
+	Es folgt $\sqrt{\sum_{i=1}^n \abs{a_{ij}}^2} \leq \opn{A}$.
+	Da $\abs{a_{ij}} \leq \sqrt{\sum_{i=1}^n \abs{a_{ij}}^2}$, folgt (iii).	\qedhere
+\end{beweis}
+
+\begin{definition}[absolute Konvergenz]
+	\label{def:10.4}
+	Eine Reihe von Matrizen $\sum_{k=0}^{\infty}$ heißt \textbf{absolut konvergent}, wenn $\sum_{k=0}^{\infty} \opn{A_k}$ in $\RR$ konvergiert. \index{absolute Konvergenz}
+\end{definition}
 
 \begin{bemerkung}
-	\label{bem:}
-	\mbox{} \\[-1.4cm]
-	\begin{enumerate}[(i)]
-		\item Tatsächlich ist es nützlich, sich nicht auf den Fall reeller Funktionen zu beschränken, sondern auch komplexwertige Funktionen und komplexe Matrizen zuzulassen.
-		Ist dabei $f\colon \RR \rightarrow \CC$, so ist $f$ differenzierbar in $t \in \RR$, wenn $f'(t) := \lim\limits_{h \rightarrow 0} \frac{f(t+h) - f(t)}{h}$ existiert.
-		Ist $f = g + ih$ und $g,h \colon \RR \rightarrow \RR$, so ist $f$ genau dann differenzierbar in $t$, wenn $g$ und $h$ in $t$ differenzierbar sind, und dann gilt $f'(t) = g'(t) + ih'(t)$.
-		Mit diesem Verständnis für die Differenzierbarkeit komplexwertiger Funktionen auf $\RR$ können wir jetzt auch Systeme der Form
-		\[
-			y' = By, y(t_0)=y_0
-		\]
-		mit $B \in M(n \times n,\CC)$ und $y_0 \in \CC^n$ betrachten.
-		Die gesuchte Lösung ist dann eine Funktion $y\colon \RR \rightarrow \CC^n$.
-		Wir werden im Folgenden diesen allgemeineren Fall betrachten.
-		\item Durch die Substitution $t \mapsto t-t_0$ können wir uns immer auf den Fall $t_0 = 0$ beschränken:
-		Ist $\wt{y} \colon \RR \rightarrow \CC^n$ mit $\wt{y}' = B \wt{y}$ und $\wt{y}(0) = y_0$ und setzen wir $y(t) := \wt{y}(t-t_0)$, so folgt sofort aus den Ableitungsregeln, dass $y' = By$ mit $y(t_0) = y_0$.
-	\end{enumerate}
+	\label{bem:10.5}
+	Anstelle von $\opn{\cdot}$ könnte man hier auch jede andere Norm auf $M(n \times n, \KK)$ einsetzen.
+	Da alle Normen auf endlich dimensionalen Räumen äquivalent sind, wäre der entsprechende Begriff von absoluter Konvergenz äquivalent zu dem obigen.
 \end{bemerkung}
 
-Im eindimensionalen Fall ist es sehr leicht, eine Lösung der Differentialgleichung $y'(t) = b \cdot y(t), y(0) = y_0$ anzugeben.
-Nachrechnen zeigt sofort, dass $y(t) = e^{tb} y_0$ eine Lösung dieser Gleichung ist.
-Mit etwas mehr Mühe sieht man dann sogar ein, dass dies die einzige Lösung der Gleichung ist.
-Wir werden gleich sehen, dass eine ähnliche Formel auch für Systeme gilt.
+\begin{satz}
+	\label{satz:10.6}
+	Jede absolut konvergente Reihe $\sum_{k=0}^{\infty} A_k$ ist konvergent.
+	Es gilt dann sogar, dass für jedes $1 \leq i,j \leq n$ die Reihe der $i,j$-ten Einträge $\sum_{k=0}^{\infty} (A_k)_{i,j}$ von $\sum_{k=0}^{\infty} A_k$ absolut konvergent ist.
+\end{satz}
+
+\begin{beweis}
+	Nach \autoref{lemma:10.3} gilt für alle $1 \leq i,j \leq n$:
+	\[
+		\sum_{k=0}^{\infty} \abs{(A_k)_{i,j}} \leq \sum_{k=0}^{\infty} \opn{A_k}.
+	\]
+	Damit ist $\sum_{k=0}^{\infty} \opn{A_k}$ eine konvergente Majorante von $\sum_{k=0}^{\infty} \abs{(A_k)_{i,j}}$.	\qedhere
+\end{beweis}
+
+\begin{korollar}
+	\label{kor:10.7}
+	Sei $f(z) = \sum_{k=0}^{\infty} a_kz^k$ eine Potenzreihe in $\KK$ mit Konvergenzradius $R > 0$, das heißt die Reihe konvergiert für alle $z \in \KK$ mit $\abs{z} < R$ absolut und sie divergiert, wenn $\abs{z} > R$. \index{Konvergenzradius}
+	Ist dann $A \in M(n \times n,\KK)$ mit $\opn{A} < R$, so konvergiert die Reihe $f(A) := \sum_{k=0}^{\infty} a_k A^k$ absolut in $M(n \times n,\KK)$.
+\end{korollar}
+
+\begin{beweis}
+	Nach \autoref{lemma:10.3}(ii) gilt $\opn{A^k} \leq \opn{A}^k$ für alle $k \in \NN_0$.
+	Damit folgt
+	\[
+		\sum_{k=0}^{\infty} \opn{a_k A^k} = \sum_{k=0}^{\infty} \abs{a_k} \opn{A^k} \leq \sum_{k=0}^{\infty} \abs{a_k} \opn{A}^k < \infty.
+	\]
+	Da $\opn{A} < R$, ist die Reihe auf der rechten Seite konvergent. \qedhere
+\end{beweis}
+
+Die Exponentialreihe $\exp(z) = \sum_{k=0}^{\infty} \frac{1}{k!} z^k$ hat bekanntlich den Konvergenzradius $R = \infty$.
+Wenden wir die Folgerung auf diese Reihe an, so können wir definieren:
 
 \begin{definition}[Exponentialfunktion für Matrizen]
-	\label{def:10.3}
+	\label{def:10.8}
 	Für $B \in M(n \times n,\CC)$ definieren wir
 	\[
-		\exp(B) := \sum\limits_{k=0}^\infty \frac{1}{k!} B^k,
+	\exp(B) := \sum\limits_{k=0}^\infty \frac{1}{k!} B^k,
 	\]
 	mit $B^0 := E$. \index{Exponentialfunktion}
 \end{definition}
 
 \begin{bemerkung}
-	\label{bem:10.4}
+	\label{bem:10.9}
 	\mbox{} \\[-1.4cm]
 	\begin{enumerate}[(i)]
-		\item Konvergenz der Reihe bedeutet, dass jede Komponente $b_{ij}(n)$ der entsprechenden Folge der Partialsummen $B(n) := \sum_{1}^{k!} B^{k} \in M(n \times n,\CC)$ konvergiert.
-		Man kann zeigen (wir werden dies später nachholen), dass die Reihe in \autoref{def:10.3} in diesem Sinne immer konvergiert!
-		\item Ist $B \in M(n \times n,\RR)$ eine reelle Matrix, so ist nach (i) jede Komponente von $\exp(B)$ ein Grenzwert einer rellen Folge, und damit ist auch $\exp(B) \in M(n \times n,\RR)$.
+		\item Ist $B \in M(n \times n,\RR)$ eine reelle Matrix, so ist nach (i) jede Komponente von $\exp(B)$ ein Grenzwert einer reellen Folge, und damit ist auch $\exp(B) \in M(n \times n,\RR)$.
 		\item Ist $A = C^{-1} BC$ für ein $C \in \GL(n,\CC)$, so folgt
 		\begin{align*}
-			A^{k} &= (C^{-1}BC)\cdot (C^{-1}BC) \cdots (C^{-1}BC) \\
-			&= C^{-1} B (CC^{-1}) B (CC^{-1}) \cdots (CC^{-1})BC \\
-			&= C^{-1} B E B E \cdots E BC = C^{-1} B^k C
+		A^{k} &= (C^{-1}BC)\cdot (C^{-1}BC) \cdots (C^{-1}BC) \\
+		&= C^{-1} B (CC^{-1}) B (CC^{-1}) \cdots (CC^{-1})BC \\
+		&= C^{-1} B E B E \cdots E BC = C^{-1} B^k C
 		\end{align*}
 		für jedes $k \in \NN_0$, und damit folgt:
-		
 		\[
-			\exp(A) = \sum\limits_{k=0}^{\infty} \frac{1}{k!} A^k = \sum_{k=0}^{\infty} \frac{1}{k!} C^{-1} B^{k} C = C^{-1} \enb{\sum_{k=0}^{\infty} \frac{1}{k!} B^{k}} C = C^{-1} \exp(B) C.
+			\exp(A) = \sum\limits_{k=0}^{\infty} \frac{1}{k!} A^k = \sum_{k=0}^{\infty} \frac{1}{k!} C^{-1} B^{k} C \stackrel{(*)}{=} C^{-1} \enb{\sum_{k=0}^{\infty} \frac{1}{k!} B^{k}} C = C^{-1} \exp(B) C.
+		\]
+		Hierbei folgt die Gleichung $(*)$ wegen der Stetigkeit der Abbildung $A \mapsto C^{-1} AC$ bezüglich $\opn{\cdot}$, denn für alle $A,B \in M(n \times n,\CC)$ gilt
+		\[
+			\opn{C^{-1}AC - C^{-1}BC} = \opn{C^{-1}(A-B)C} \leq \opn{C^{-1}} \opn{C} \opn{A-B}.
 		\]
 	\end{enumerate}
 \end{bemerkung}
@@ -102,26 +161,98 @@ Wir werden gleich sehen, dass eine ähnliche Formel auch für Systeme gilt.
 Ähnlich wie im Komplexen erhält man eine überaus nützliche Funktionalgleichung:
 
 \begin{lemma}
-	\label{lemma:10.5}
+	\label{lemma:10.10}
 	Seien $A,B \in M(n \times n,\CC)$ mit $AB = BA$.
 	Dann gilt $\exp(A+B) = \exp(A) + \exp(B)$.
 \end{lemma}
 
 \begin{beweis}[Skizze]
-	Sind $A,B \in M(n \times n,K)$ mit $AB = BA$, so folgt mit dem üblichen Induktionsbeweis \todo{komische Referenz} die Binomische Formel
+	Sind $A,B \in M(n \times n,K)$ mit $AB = BA$, so folgt mit dem üblichen Induktionsbeweis die Binomische Formel \index{binomische Formel}
 	\[
-		(A+B)^{k} = \sum_{j=0}^{k} \binom{k}{j} A^{j} \cdot B^{k-j}
-	\]
+	(A+B)^{k} = \sum_{j=0}^{k} \binom{k}{j} A^{j} \cdot B^{k-j}
+		\]
 	für alle $k \in \NN_0$.
 	Mit dem Cauchy-Produkt für absolut konvergente Reihen (in einer entsprechenden Version für Matrixreihen) folgt dann
 	\begin{align*}
-		\exp(A+B) &= \sum_{k=0}^{\infty} \frac{1}{k!} (A+B)^k = \sum_{k=0}^{\infty} \frac{1}{k!} \enb{\sum_{j=0}^{k} A^{j} B^{k-j}} \\
-		&= \sum_{k=0}^{\infty} \enb{\sum_{j=0}^{k} \enb{\frac{1}{j!} A^{j}} \cdot \enb{\frac{1}{(k-j)!} B^{k-j}}} = \enb{\sum_{j=0}^{\infty} \frac{1}{j!} A^{j}} \cdot \enb{\sum_{k=0}^{\infty} \frac{1}{k!} B^{k}} \\
-		&= \exp(A) \cdot \exp(B) \qedhere
+	\exp(A+B) &= \sum_{k=0}^{\infty} \frac{1}{k!} (A+B)^k = \sum_{k=0}^{\infty} \frac{1}{k!} \enb{\sum_{j=0}^{k} A^{j} B^{k-j}} \\
+	&= \sum_{k=0}^{\infty} \enb{\sum_{j=0}^{k} \enb{\frac{1}{j!} A^{j}} \cdot \enb{\frac{1}{(k-j)!} B^{k-j}}} = \enb{\sum_{j=0}^{\infty} \frac{1}{j!} A^{j}} \cdot \enb{\sum_{k=0}^{\infty} \frac{1}{k!} B^{k}} \\
+	&= \exp(A) \cdot \exp(B) \qedhere
 	\end{align*}
 \end{beweis}
 
-Ist $B \in M(n \times n,\CC)$, so wollen wir nun die matrixwertige Funktion
+\subsubsection*{Lineare Differentialgleichungen}
+In vielen physikalischen Anwendungen ist es notwendig, System von \textbf{Differentialgleichungen} der Form \index{Differentialgleichung}
+\begin{align*}
+	y_1'(t) &= b_{11} \cdot y_1(t) + b_{12} \cdot y_2(t) + \cdots + b_{1n} \cdot y_n(t) + f_1 (t) \\
+	y_2'(t) &= b_{21} \cdot y_1(t) + b_{22} \cdot y_2(t) + \cdots + b_{2n} \cdot y_n(t) + f_2 (t)\\
+	& \qquad \qquad \qquad \vdots \\
+	y_n'(t) &= b_{n1} \cdot y_1(t) + b_{n2} \cdot y_2(t) + \cdots + b_{nn} \cdot y_n(t) + f_n(t)
+\end{align*}
+zu betrachten, wobei $I \subseteq \RR$ ein Intervall, $y_1,\dots,y_n\colon I \rightarrow \RR$ differenzierbare reelle Funktionen, $b_{ij} \in \RR$ für alle $1 \leq i,j \leq n$ und $f_1,\dots,f_n \colon I \rightarrow \RR$ stetige Funktionen sind.
+Ist dann $B = (b_{ij}) \in M(n \times n, \RR)$, so können wir das System auch in der Kurzschreibweise
+\[
+	y'(t) = B \cdot y(t) + f(t), \quad y(t) := (y_1(t),\dots,y_n(t))^T, \quad f(t) := (f_1(t),\dots,f_n(t))^T
+\]
+formulieren, wobei dann $y'(t) := (y_1'(t),\dots,y_n'(t))^T$ die komponentenweise Ableitung von $y\colon I \rightarrow \RR^n$ bezeichnet.
+Definieren wir die Konvergenz von Vektoren durch die Konvergenz der Komponenten, so ist $y \colon \RR \rightarrow \RR^n$ differenzierbar in $t$ genau dann, wenn
+
+\[
+	y'(t) = \lim\limits_{h \rightarrow 0} \frac{1}{h} (y(t+h)-y(t))
+\]
+
+existiert.
+In der Regel wird zusätzlich zum oben gegebenen System von Differentialgleichungen noch eine Anfangsbedingung
+\[
+	y(t_0) = y_0 = (y_{10},\dots,y_{n0})^T
+\]
+vorgegeben, wobei $t_0 \in I$ eine gegebene Anfangszeit ist.
+Gesucht sind also alle komponentenweise differenzierbaren Funktionen $y \colon I \rightarrow \RR^n$ mit $y' = B \cdot y + f(t)$ und $y(t_0) = y_0$.
+Eine Gleichung dieser Form heißt \textbf{System von linearen Differentialgleichungen erster Ordnung mit konstanten Koeffizienten} mit der Anfangsbedingung $y(t_0) = y_0$.
+Ist $f \equiv 0$, so heißt $y' = By$ \textbf{homogenes System linearer Differentialgleichungen erster Ordnung}.
+
+\begin{beispiel}
+	\label{bsp:10.11}
+	Ein Zahlen-Beispiel:
+	Gesucht sind alle differenzierbaren Funktionen $y_1,y_2,y_3\colon \RR \rightarrow \RR$ mit
+	\begin{align*}
+	y_1'(t) &= y_1(t) + 2y_2(t) - y_3(t) + \sin(t) \\
+	y_2'(t) &= -y_2(t) + y_3(t) - \cos(t) \\
+	y_3'(t) &= 3y_1(t) + y_2(t) + t
+	\end{align*}
+	und der Anfangsbedingung $y_1(0) = 1, y_2(0) = 0, y_3(0)=2$.
+	Ist dann $B = \begin{pmatrix}
+		1 & 2  & -1 \\
+		0 & -1 & 1  \\
+		3 & 0  & 1
+	\end{pmatrix}$, so ist das obige System von Differentialgleichungen gegeben durch die Gleichung $y' = By(t) + f(t)$, $y(0) = (1,0,2)^T$, wobei $y = (y_1,y_2,y_3)^T \colon \RR \rightarrow \RR^3$ die gesuchte $\RR^3$-wertige Funktion ist.
+\end{beispiel}
+
+\begin{bemerkung}
+	\label{bem:10.12}
+	\mbox{} \\[-1.4cm]
+	\begin{enumerate}[(i)]
+		\item Tatsächlich ist es nützlich, sich nicht auf den Fall reeller Funktionen zu beschränken, sondern auch komplexwertige Funktionen und komplexe Matrizen zuzulassen.
+		Ist dabei $f\colon I \rightarrow \CC$, so ist $f$ differenzierbar in $t \in \RR$, wenn $f'(t) := \lim\limits_{h \rightarrow 0} \frac{f(t+h) - f(t)}{h}$ existiert.
+		Ist $f = g + ih$ und $g,h \colon \RR \rightarrow \RR$, so ist $f$ genau dann differenzierbar in $t$, wenn $g$ und $h$ in $t$ differenzierbar sind, und dann gilt $f'(t) = g'(t) + ih'(t)$.
+		Mit diesem Verständnis für die Differenzierbarkeit komplexwertiger Funktionen auf $\RR$ können wir jetzt auch Systeme der Form
+		\[
+			y' = By +f, \quad y(t_0)=y_0
+		\]
+		mit $B \in M(n \times n,\CC)$ und $y_0 \in \CC^n$ betrachten.
+		Die gesuchte Lösung ist dann eine Funktion $y\colon I \rightarrow \CC^n$.
+		Wir werden im Folgenden diesen allgemeineren Fall betrachten.
+		\item Durch die Substitution $t \mapsto t-t_0$ können wir uns immer auf den Fall $t_0 = 0$ beschränken:
+		Dazu setze $J := I-t_0 = \{t-t_0 : t \in I\}$ und $\wt{f} \colon J \rightarrow \CC^n, \wt{f}(t) := f(t+t_0)$.
+		Ist $\wt{y} \colon J \rightarrow \CC^n$ mit $\wt{y}' = B \wt{y} + \wt{f}$ und $\wt{y}(0) = y_0$ und setzen wir $y(t) := \wt{y}(t-t_0)$, so folgt sofort aus den Ableitungsregeln, dass $y' = By + f$ mit $y(t_0) = y_0$.
+	\end{enumerate}
+\end{bemerkung}
+
+Im eindimensionalen Fall ist es sehr leicht, eine Lösung der homogenen Differentialgleichung $y'(t) = b \cdot y(t), y(0) = y_0$ anzugeben.
+Nachrechnen zeigt sofort, dass $y(t) = e^{tb} y_0$ eine Lösung dieser Gleichung ist.
+Mit etwas mehr Mühe sieht man dann sogar ein, dass dies die einzige Lösung der Gleichung ist.
+Wir werden gleich sehen, dass eine ähnliche Formel auch für Systeme gilt.
+
+Ist $B \in M(n \times n,\CC)$, so wollen wir dafür die matrixwertige Funktion
 \begin{align*}
 	Y\colon \RR &\longrightarrow \CC^{n} \\
 	t &\longmapsto \exp(tB)
@@ -134,7 +265,7 @@ Dies ist wieder äquivalent zur komponentenweisen Existenz des Grenzwertes
 \]
 
 \begin{satz}
-	\label{satz:10.6}
+	\label{satz:10.13}
 	Seien $B \in M(n \times n,\CC)$, $Y(t) := \exp(tB)$ und $y_0 \in \CC^{n}$.
 	Dann gelten:
 	\begin{enumerate}[(i)]
@@ -145,9 +276,8 @@ Dies ist wieder äquivalent zur komponentenweisen Existenz des Grenzwertes
 
 \begin{beweis}
 	Betrachten wir die Funktion $Y(t) = \exp(tB) = \sum_{k=0}^{\infty} \frac{1}{k!} t^{k} B^{k}$, so stellen wir fest, dass jede Komponente $Y(t)_{ij}$ von $Y(t)$ durch eine Potenzreihe $\sum_{k=0}^{\infty} d_{ij}(k)t^{k}$ gegeben ist, wobei $d_{ij}(k)$ die $i,j$-te Komponente der Matrix $\frac{1}{k!} B^{k}$ ist.
-	Da wir (bis jetzt ohne Beweis) davon ausgehen, dass die Exponentialreihe für alle $tB$ konvergiert, haben alle diese Reihen unendlichen Konvergenzradius, und wir dürfen auf ganz $\RR$ gliedweise differenzieren \todo{komische Referenz}.
-	Damit folgt:
-	
+	Da die Exponentialreihe für alle $tB$ konvergiert, haben alle diese Reihen unendlichen Konvergenzradius, und wir dürfen auf ganz $\RR$ gliedweise differenzieren (siehe Analysis).
+	Damit folgt:	
 	\[
 		Y'(t) = \sum_{k=1}^{\infty} \frac{1}{k!} kt^{k-1} B^{k} = B \cdot \enb{\sum_{k=1}^{\infty} \frac{1}{(k-1)!} t^{k-1} B^{k-1}} = B \cdot \enb{\sum_{k=0}^{\infty} \frac{1}{k!} t^{k} B^{k}} = B \cdot \exp(tB) = B \cdot Y(t).
 	\]
@@ -160,104 +290,132 @@ Dies ist wieder äquivalent zur komponentenweisen Existenz des Grenzwertes
 \end{beweis}
 
 \begin{bemerkung}
-	\label{bem:10.7}
+	\label{bem:10.14}
 	\mbox{} \\[-1.4cm]
 	\begin{enumerate}[(i)]
-		\item Man kann auch hier zeigen, dass die im Satz angegebene Lösung die einzige Lösung des Systems $y' = By$ mit der Anfangsbedingung $y(0) = y_0$ ist.
-		Wir werden dies später vielleicht noch tun.
-		\item Da $\exp(tB) \in M(n \times n,\RR)$, wenn $B \in M(n \times n,\RR)$ (siehe \autoref{bem:10.4}), folgt:
+		\item Man kann auch hier zeigen, dass die im Satz angegebene Lösung die einzige Lösung des homogenen Anfangswertproblems $y' = By$ mit der Anfangsbedingung $y(0) = y_0$ ist.
+		\item Da $\exp(tB) \in M(n \times n,\RR)$, wenn $B \in M(n \times n,\RR)$ (siehe \autoref{bem:10.9}), folgt:
 		Sind $B$ und $y_0$ reell, so ist auch $y(t)$ für alle $t \in \RR$ reell.
 	\end{enumerate}
 \end{bemerkung}
 
+Wir wollen nun noch eine Lösungsformel für das inhomogene Anfangswertproblem
+\[
+	y' = By + f, \quad y(0) = y_0
+\]
+angeben.
+Hierfür betrachten wir den Ansatz $y(t) = Y(t)c(t)$ für eine stetig differenzierbare Funktion $c \colon I \rightarrow \CC^n$ und $Y(t) = \exp(tB)$.
+Einsetzen liefert wegen $y(0) = Y(0)c(0) = c(0)$ und $Y'(t) = BY(t)$:
+\begin{align*}
+	Y'(t) c(t) + Y(t) c'(t) &= BY(t)c(t) + f(t) \\
+	\Leftrightarrow \qquad Y(t) c'(t) &= f(t) \\
+	\Leftrightarrow \qquad c'(t) &= Y(t)^{-1} f(t) \\
+	\Leftrightarrow \qquad c(t) &= c(0) + \int_{0}^{t} Y(s)^{-1} f(x) ds \\
+	\Leftrightarrow \qquad c(t) &= y_0 + \int_{0}^{t} \exp(-sB)f(s)ds,
+\end{align*}
+wobei wir im letzten Schritt benutzt haben, dass $\exp(-tB) \exp(tB) = \exp((-t+t)B) = \exp(0) = E_n$ gilt, also $Y(t)^{-1} = \exp(tB)^{-1} = \exp(-tB)$ für alle $t \in \RR$.
+Zusammen erhalten wir nun:
+
+\begin{satz}
+	\label{satz:10.15}
+	Sei $A \in M(n \times n, \CC)$ und $f \colon I \rightarrow \CC$ stetig mit $0 \in I$.
+	Dann ist
+	\[
+		y(t) = \exp(tB) \enb{y_0 + \int_{0}^{t} \exp(-sB) f(s) ds}
+	\]
+	eine Lösung des Anfangswertproblems $y' = By + f, y(0) = y_0$.
+\end{satz}
+
 \begin{anwendung}[Berechnung der Funktion]
-	\label{anw:10.8}
+	\label{anw:10.16}
 	Wir wollen nun überlegen, wie wir die Funktion $Y(t) = \exp(tB)$ für $B \in M(n \times n,\CC)$ mit Hilfe einer Jordan-Normalform von $B$ explizit berechnen können.
 	Da jedes Polynom über $\CC$ in Linearfaktoren zerfällt, können wir nach \autoref{satz:9.6} eine Matrix $C \in \GL(n,\CC)$ finden (und im Prinzip auch berechnen), sodass $A = C^{-1}BC$ eine Jordan-Matrix ist.
 	Dann folgt $tB = CtAC^{-1}$ und $\exp(tB) = C \exp(tA)C^{-1}$.
 	Es genügt also zu wissen, wie die Funktion $\exp(tA)$ für jede Jordan-Matrix $A$ berechnet werden kann.
 	
 	Sei nun $A = \begin{pmatrix}
-		J_1 & & \\
-		& \ddots & \\
-		& & J_m
+	J_1 &        &  \\
+	& \ddots &  \\
+	&        & J_m
 	\end{pmatrix}$ eine beliebige Jordan-Matrix mit den Jordan-Kästen $J_1,\dots,J_m$.
 	Nach den Rechenregeln für Blockmatrizen gilt dann
 	\[
-		A^{k} = \begin{pmatrix}
-			J_1^{k} & & \\
-			& \ddots & \\
-			& & J_m^{k}
-		\end{pmatrix} \quad \text{und} \quad \exp(tA) = \begin{pmatrix}
-			\exp(tJ_1) & & \\
-			& \ddots & \\
-			& & \exp(tJ_m)
-		\end{pmatrix}.
+	A^{k} = \begin{pmatrix}
+	J_1^{k} &        &  \\
+	& \ddots &  \\
+	&        & J_m^{k}
+	\end{pmatrix} \quad \text{und} \quad \exp(tA) =
+	\begin{pmatrix}
+	\exp(tJ_1) &        &  \\
+	& \ddots &  \\
+	&        & \exp(tJ_m)
+	\end{pmatrix}.
 	\]
 	Es genügt also zu wissen, wie die Matrix $\exp(tJ)$ zu berechnen ist, wenn $J$ ein Jordan-Kasten zum Eigenwert $\lambda$ ist.
 	Dann gilt:
 	
 	\[
-		J = \begin{pmatrix}
-		\lambda & 1 & 0 & \cdots & 0 \\ 
-		0 & \lambda & 1 & \cdots & 0 \\ 
-		\vdots &  & \ddots & \ddots & \vdots \\ 
-		0 & \cdots & 0 & \lambda & 1 \\ 
-		0 & \cdots & \cdots & 0 & \lambda
-		\end{pmatrix} = \lambda E + N \text{ mit } N:= \begin{pmatrix}
-		0 & 1 & 0 & \cdots & 0 \\ 
-		0 & 0 & 1 & \cdots & 0 \\ 
-		\vdots &  & \ddots & \ddots & \vdots \\ 
-		0 & \cdots & 0 & 0 & 1 \\ 
-		0 & \cdots & \cdots & 0 & 0
-		\end{pmatrix}.
+	J = \begin{pmatrix}
+	\lambda & 1       & 0      & \cdots  & 0       \\
+	0       & \lambda & 1      & \cdots  & 0       \\
+	\vdots  &         & \ddots & \ddots  & \vdots  \\
+	0       & \cdots  & 0      & \lambda & 1       \\
+	0       & \cdots  & \cdots & 0       & \lambda
+	\end{pmatrix} = \lambda E + N \text{ mit } N:=
+	\begin{pmatrix}
+	0      & 1      & 0      & \cdots & 0      \\
+	0      & 0      & 1      & \cdots & 0      \\
+	\vdots &        & \ddots & \ddots & \vdots \\
+	0      & \cdots & 0      & 0      & 1      \\
+	0      & \cdots & \cdots & 0      & 0
+	\end{pmatrix}.
 	\]
-	Da $\lambda E \cdot N = N \cdot \lambda E$, folgt mit \autoref{lemma:10.5}, dass
+	Da $\lambda E \cdot N = N \cdot \lambda E$, folgt mit \autoref{lemma:10.10}, dass
 	\[
-		\exp(tJ) = \exp(t\lambda E + tN) = \exp(t \lambda E) \cdot \exp(tN).
+	\exp(tJ) = \exp(t\lambda E + tN) = \exp(t \lambda E) \cdot \exp(tN).
 	\]
 	Wegen $(t\lambda E)^{k} = (t\lambda)^{k}E$ folgt
 	\[
-		\exp(t\lambda E) = \sum_{k=0}^{\infty} \frac{1}{k!} (t \lambda E)^{k} = \enb{\sum_{k=0}^{\infty} \frac{1}{k!} (t\lambda)^{k}} E = e^{t\lambda} E.
+	\exp(t\lambda E) = \sum_{k=0}^{\infty} \frac{1}{k!} (t \lambda E)^{k} = \enb{\sum_{k=0}^{\infty} \frac{1}{k!} (t\lambda)^{k}} E = e^{t\lambda} E.
 	\]
 	Eine leichte Rechnung (benutze \autoref{lemma:9.9}) ergibt ferner, dass $N^{l} = (0, \dots, 0,e_1,\dots,e_{k-l})$, wobei die ersten $l$ Einträge aus Nullspalten bestehen und dann die ersten $k-l$ Einheitsvektoren des $\CC^{k}$ als weitere Spalten der Matrix $N^{l}$ auftreten.
 	Insbesondere gilt $N^{k} = 0$.
 	Einsetzen in die Exponentialreihe ergibt (mit $N^0 = E$):
 	\[
-		\exp(tN) =
-		\begin{pmatrix}
-			1 & t      & \frac{t^2}{2} & \frac{t^3}{3!} & \cdots         & \frac{t^{k-1}}{(k-1)!} & \frac{t^{k}}{k!}       \\
-			0 & 1      & t             & \frac{t^2}{2}  & \frac{t^3}{3!} & \cdots                 & \frac{t^{k-1}}{(k-1)!} \\
-			  & \ddots & \ddots        & \ddots         &                &                        &  \\
-			  &        & \ddots        & \ddots         & \ddots         &                        &  \\
-			  &        &               & 0              & 1              & t                      & \frac{t^2}{2}          \\
-			  &        &               &                & 0              & 1                      & t                      \\
-			  &        &               &                &                & 0                      & 1
-		\end{pmatrix}.
+	\exp(tN) =
+	\begin{pmatrix}
+	1 & t      & \frac{t^2}{2} & \frac{t^3}{3!} & \cdots         & \frac{t^{k-1}}{(k-1)!} & \frac{t^{k}}{k!}       \\
+	0 & 1      & t             & \frac{t^2}{2}  & \frac{t^3}{3!} & \cdots                 & \frac{t^{k-1}}{(k-1)!} \\
+	& \ddots & \ddots        & \ddots         &                &                        &  \\
+	&        & \ddots        & \ddots         & \ddots         &                        &  \\
+	&        &               & 0              & 1              & t                      & \frac{t^2}{2}          \\
+	&        &               &                & 0              & 1                      & t                      \\
+	&        &               &                &                & 0                      & 1
+	\end{pmatrix}.
 	\]
 	Zusammen folgt
 	\[
-		\exp(tJ) = e^{t\lambda} \exp(tN) =
-		\begin{pmatrix}
-			e^{t\lambda} & te^{t\lambda} & \frac{t^2e^{t\lambda}}{2} & \frac{t^3e^{t\lambda}}{3!} & \cdots                     & \frac{t^{k-1}e^{t\lambda}}{(k-1)!} & \frac{t^{k}e^{t\lambda}}{k!}       \\
-			0            & e^{t\lambda}  & te^{t\lambda}             & \frac{t^2e^{t\lambda}}{2}  & \frac{t^3e^{t\lambda}}{3!} & \cdots                             & \frac{t^{k-1}e^{t\lambda}}{(k-1)!} \\
-			             & \ddots        & \ddots                    & \ddots                     &                            &                                    &  \\
-			             &               & \ddots                    & \ddots                     & \ddots                     &                                    &  \\
-			             &               &                           & 0                          & e^{t\lambda}               & te^{t\lambda}                      & \frac{t^2e^{t\lambda}}{2}          \\
-			             &               &                           &                            & 0                          & e^{t\lambda}                       & te^{t\lambda}                      \\
-			             &               &                           &                            &                            & 0                                  & e^{t\lambda}
-		\end{pmatrix}
+	\exp(tJ) = e^{t\lambda} \exp(tN) =
+	\begin{pmatrix}
+	e^{t\lambda} & te^{t\lambda} & \frac{t^2e^{t\lambda}}{2} & \frac{t^3e^{t\lambda}}{3!} & \cdots                     & \frac{t^{k-1}e^{t\lambda}}{(k-1)!} & \frac{t^{k}e^{t\lambda}}{k!}       \\
+	0            & e^{t\lambda}  & te^{t\lambda}             & \frac{t^2e^{t\lambda}}{2}  & \frac{t^3e^{t\lambda}}{3!} & \cdots                             & \frac{t^{k-1}e^{t\lambda}}{(k-1)!} \\
+	& \ddots        & \ddots                    & \ddots                     &                            &                                    &  \\
+	&               & \ddots                    & \ddots                     & \ddots                     &                                    &  \\
+	&               &                           & 0                          & e^{t\lambda}               & te^{t\lambda}                      & \frac{t^2e^{t\lambda}}{2}          \\
+	&               &                           &                            & 0                          & e^{t\lambda}                       & te^{t\lambda}                      \\
+	&               &                           &                            &                            & 0                                  & e^{t\lambda}
+	\end{pmatrix}.
 	\]
 \end{anwendung}
 \newpage
 \begin{beispiel}
-	\label{bsp:10.9}
+	\label{bsp:10.17}
 	Sei $B := \begin{pmatrix}
-		0 & 1 & 0 & 1 & 1 \\
-		0 & 0 & 2 & 0 & 1 \\
-		0 & 0 & 0 & 2 & 1 \\
-		0 & 0 & 0 & 2 & 2 \\
-		0 & 0 & 0 & 0 & 2
+	0 & 1 & 0 & 1 & 1 \\
+	0 & 0 & 2 & 0 & 1 \\
+	0 & 0 & 0 & 2 & 1 \\
+	0 & 0 & 0 & 2 & 2 \\
+	0 & 0 & 0 & 0 & 2
 	\end{pmatrix}$.
 	Dann ist $C := \begin{pmatrix}
 	2 & 0 & 0 & 4 & -1 \\ 
@@ -268,7 +426,7 @@ Dies ist wieder äquivalent zur komponentenweisen Existenz des Grenzwertes
 	\end{pmatrix}$ eine Transformationsmatrix mit
 	
 	\[
-		A = C^{-1}BC = \enb{\begin{BMAT}(e)[4.3pt]{ccccc}{ccccc}
+	A = C^{-1}BC = \enb{\begin{BMAT}(e)[4.3pt]{ccccc}{ccccc}
 		0 & 1 & 0 & 0 & 0 \\ 
 		0 & 0 & 1 & 0 & 0 \\ 
 		0 & 0 & 0 & 0 & 0 \\ 
@@ -280,33 +438,59 @@ Dies ist wieder äquivalent zur komponentenweisen Existenz des Grenzwertes
 	\]
 	Damit folgt $\exp(tB) = C \exp(tA)C^{-1}$ mit
 	\[
-		\exp(tA) = \begin{pmatrix}
-			1 & t & \frac{t^2}{2} & 0      & 0       \\
-			0 & 1 & t             & 0      & 0       \\
-			0 & 0 & 1             & 0      & 0       \\
-			0 & 0 & 0             & e^{2t} & te^{2t} \\
-			0 & 0 & 0             & 0      & e^{2t}
-		\end{pmatrix}.
+	\exp(tA) = \begin{pmatrix}
+	1 & t & \frac{t^2}{2} & 0      & 0       \\
+	0 & 1 & t             & 0      & 0       \\
+	0 & 0 & 1             & 0      & 0       \\
+	0 & 0 & 0             & e^{2t} & te^{2t} \\
+	0 & 0 & 0             & 0      & e^{2t}
+	\end{pmatrix}.
 	\]
 	Nachrechnen ergibt:
 	\[
-		Y(t) := \exp(tB) = \begin{pmatrix}
-		1 & t & t^2 & -1-t-t^2+e^{2t} & 1+t+\frac{t^2}{2} -e^{2t} + 2te^{2t} \\ 
-		0 & 1 & 2t & -1-2t+e^{2t} & 1+t-e^{2t}+2te^{2t} \\ 
-		0 & 0 & 1 & -1+e^{2t} & \frac{1}{2} - \frac{e^{2t}}{2} + 2te^{2t} \\ 
-		0 & 0 & 0 & e^{2t} & 2te^{2t} \\ 
-		0 & 0 & 0 & 0 & e^{2t}
-		\end{pmatrix}. 
+	Y(t) := \exp(tB) = \begin{pmatrix}
+	1 & t & t^2 & -1-t-t^2+e^{2t} & 1+t+\frac{t^2}{2} -e^{2t} + 2te^{2t}      \\
+	0 & 1 & 2t  & -1-2t+e^{2t}    & 1+t-e^{2t}+2te^{2t}                       \\
+	0 & 0 & 1   & -1+e^{2t}       & \frac{1}{2} - \frac{e^{2t}}{2} + 2te^{2t} \\
+	0 & 0 & 0   & e^{2t}          & 2te^{2t}                                  \\
+	0 & 0 & 0   & 0               & e^{2t}
+	\end{pmatrix}. 
 	\]
 	Für das System $y' = By, y(0) = (1,0,2,0,1)^T$ ergibt sich die eindeutig bestimmte Lösung
 	\[
-		y(t) = Y(t) y_0 = \begin{pmatrix}
-		2+t+\frac{5t^2}{2} - e^{2t} + 2te^{2t} \\ 
-		1+3t-e^{2t}+2te^{2t} \\ 
-		\frac{5}{2} - \frac{e^{2t}}{2} + 2te^{2t} \\ 
-		2te^{2t} \\ 
-		e^{2t}
-		\end{pmatrix}.
+	y(t) = Y(t) y_0 = \begin{pmatrix}
+	2+t+\frac{5t^2}{2} - e^{2t} + 2te^{2t}    \\
+	1+3t-e^{2t}+2te^{2t}                      \\
+	\frac{5}{2} - \frac{e^{2t}}{2} + 2te^{2t} \\
+	2te^{2t}                                  \\
+	e^{2t}
+	\end{pmatrix}.
 	\]
 \end{beispiel}
+
+Wir wollen zum Abschluss noch eine weitere Anwendung einer Matrix-Reihe geben.
+Sie zeigt, dass für jede Matrix $A \in M(n \times n,\CC)$ mit $\no{A}_2 < 1$ die Matrix $E_n-A$ invertierbar ist:
+\newpage
+\begin{satz}[\textsc{Neumann}-Reihe]
+	\label{satz:10.18}
+	Sei $A \in M(n \times n,\CC)$ mit $\no{A}_2 < 1$.
+	Dann ist $E_n - A$ invertierbar und es gilt \index{Neumann-Reihe}
+	\[
+	\sum_{k=0}^{\infty} (E_n-A)^{-1} = \sum_{k=0}^{\infty} A^k.
+	\]
+\end{satz}
+
+\begin{beweis}
+	Sei $q := \opn{A} < 1$.
+	Dann gilt wegen $\opn{A^k} \leq \opn{A}^k = q^k$, dass
+	\[
+	\sum_{k=0}^{\infty} \opn{A^k} \leq \sum_{k=0}^{\infty} q^k = \frac{1}{1-q} < \infty.
+	\]
+	Damit ist die Neumann-Reihe $\sum_{k=0}^{\infty} A^k$ absolut konvergent.
+	Es folgt
+	\[
+	(E_n-A) \sum_{k=0}^{\infty} A^k = E_n \sum_{k=0}^{\infty} A^k - A \sum_{k=0}^{\infty} A^k = \sum_{k=0}^{\infty} A^k - \sum_{k=1}^{\infty} A^k = A^0 = E_n.
+	\]
+	Analog rechnet man $\sum_{k=0}^{\infty} A^k(E_n - A) = E_n$. \qedhere
+\end{beweis}
 \newpage
