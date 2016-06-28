@@ -2520,6 +2520,74 @@ Für $p \in \Pinfty(A)$ gilt $K_0(\varphi) \enbrace*{\benbrace*{p}_0} = \benbrac
 		Damit ist $x = \benbrace*{p}_0 - \benbrace*{q}_0 = \benbrace*{p}_0 - \benbrace*{s(p)}_0$ und die Gleichheit der Mengen folgt.
 	\end{enumerate}
 \end{beweis}
+
+\begin{proposition}[label=prop:77]
+	
+\end{proposition}
+
+\todo[inline]{Hier fehlt noch eine halbe Vorlesung}
+
+\begin{proposition}[label=prop:78]
+	Sei 
+	\begin{equation}
+		\begin{tikzcd}[cramped,sep=small]
+			0 \rar & J \rar["\iota"] & A \rar["\pi"]  & B \rar & 0
+		\end{tikzcd} \label{eq:78:1} \tag{\#}
+	\end{equation}
+	eine kurze exakte Sequenz von $C^*$-Algebren.
+	Dann ist 
+	\begin{equation}
+		\begin{tikzcd}
+			K_0(J) \rar["K_0(\iota)"] & K_0(A) \rar["K_0(\pi_n)"] & K_0(B)
+		\end{tikzcd} \label{eq:78:2} \tag{\#\#}
+	\end{equation}
+	exakt.
+	Falls \eqref{eq:78:2} zerfällt mit $\sigma \colon B \to A$, $\pi \circ \sigma = {\id_B}$, so ist 
+	\begin{equation}
+		\begin{tikzcd}
+			0 \rar & K_0(J) \rar & K_0(A) \rar & K_0(B) \rar & 0
+		\end{tikzcd} \label{eq:78:3} \tag{\#\#\#}
+	\end{equation}
+	exakt und zerfällt.
+\end{proposition}
+\begin{beweis}
+	\begin{enumerate}[(i)]
+		\item Es gilt $K_0(\pi) \circ K_0(\iota) = K_0(\pi \circ \iota) = K_0(0) =0$.
+		Folglich ist $\im K_0(\iota) \subset \ker K_0(\pi)$.
+		Sei nun $x \in \ker K_0(\pi)$.
+		Mit \autoref{prop:77} folgt die Existenz von $n \in \mathbb{N}$, $p \in \kernedP_n(A^+)$ mit $x = \benbrace*{p}_0 - \benbrace*{s_A(p)}_0$ und ${\pi^+}^\ssbrace{n}(p) = s_B^\ssbrace{n} {\pi^+}^\ssbrace{n}(p)$.
+		Es folgt
+		\[
+			\Underbracket{{\pi^+}^\ssbrace{n}(p)}{\in \sigma^\ssbrace{n}_B(M_n)} \in s_B^\ssbrace{n} \enbrace*{M_n(B^+)} 
+		\]
+		Damit ist $p \in \sigma_A^\ssbrace{n}(M_n) + \iota^\ssbrace{n}(M_n(J)) = {\iota^+}^\ssbrace{n} \enbrace*{M_n(J^+)}$.
+		Wegen Injektivität finden wir nun ein $e \in \kernedP_n(J^+)$ mit ${\iota^+}^\ssbrace{n}(e)=p$ und somit gilt 
+		\[
+			x = \benbrace*{{\iota^+}^\ssbrace{n}(e)}_0 - \benbrace*{s_A {\iota^+}^\ssbrace{n}(e)}_0 = \benbrace*{{\iota^+}^\ssbrace{n}(e)}_0 - \benbrace*{{\iota^+}^\ssbrace{n} s_J(e)}_0 = K_0(\iota) \enbrace*{\benbrace*{e}_0 - \benbrace*{s_J(e)}_0}
+		\]
+		Dies ist im Bild von $K_0(\iota)$ und es folgt, dass \eqref{eq:78:2} exakt ist.
+		\item \eqref{eq:78:3} ist exakt in der Mitte. Es gilt
+		\[
+			K_0(\pi)K_0(\sigma) = K_0(\pi \sigma) = K_0(\id_B) = {\id_{K_0(N)}}
+		\]
+		und damit ist $K_0(\pi)$ surjektiv. 
+		\eqref{eq:78:3} ist also exakt bei $K_0(B)$ und zerfällt.
+		Sei nun $x \in \ker K_0(\iota) \subset K_0(J)$.
+		Nach \autoref{prop:77} (ii) existieren $n \in \mathbb{N}$, $p \in \kernedP_n(J^+)$ und $u \in \mathcal{U} \enbrace*{M_n(A^+)}$ mit $x = \benbrace*{p}_0 - \benbrace*{s_J^\ssbrace{n}(p)}_0$ und $u{\iota^+}^\ssbrace{n}(p) u^* = s_A{\iota^+}^\ssbrace{n}(p)$.
+		Setze nun $v \coloneqq {\sigma^+}^\ssbrace{n} {\pi^+}^\ssbrace{n}(u^*)u \in \mathcal{U} \enbrace*{M_n(A^+)}$.
+		Dann gilt ${\pi^+}^\ssbrace{n}(v) = \ind_{M_n(B^+)} = s_B^\ssbrace{n} {\pi^+}^\ssbrace{n}(v)$.
+		Damit existiert wie in (i) ein $w \in \mathcal{U} \enbrace*{M_n(J^+)}$ mit ${\iota^+}^\ssbrace{n}(w)=v$.
+		Wir haben nun
+		\begin{align}
+			{\iota^+}^\ssbrace{n} (w pw^*) = v {\iota^+}^\ssbrace{n}(p) v^* = \sigma\pi(u^*) u \iota(p) u^* \sigma \pi(u) &= \sigma \pi (u^*) s_A\iota(p) \sigma \pi u \\
+			&= \sigma \pi \enbrace*{u^* s_A \iota(p) u} \\
+			&= \sigma \pi\enbrace*{\iota(p)} \\
+			&= s_A \iota(p) \\
+			&= {\iota^+}^\ssbrace{n} s_J^\ssbrace{n} (p)
+		\end{align}
+		Damit ist $p \sim_u s_J(p)$ und somit auch $\benbrace*{p}_0 = \benbrace*{s_J(p)} $, also $x=0$ und $K_0(\iota)$ ist injektiv.\qedhere
+	\end{enumerate}
+\end{beweis}
 % section 7 (end)
 
 
