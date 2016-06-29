@@ -340,7 +340,7 @@ Betrachte nun für $E \in C^2( \bar{\Omega} \times \mathbb{R}^ \times \mathbb{R}
 		u=g,&\text{ auf }\Gamma \subseteq \partial \Omega
 	\end{cases}
 \]
-\subsubsection{Lokale Existenz mittels Charakteristiken} 
+\subsection{Lokale Existenz mittels Charakteristiken} 
 \label{ssub:lokale_existenz_mittels_charakteristiken}
 Wir nehmen an, dass $u \in C^2$ eine Lösung von $(2)$ ist; $\gamma$ verbindet hierbei $x_0$ und $x$. 
 \minisec{Aufstellung der charakteristischen Gleichung:}
@@ -392,27 +392,134 @@ Es ergeben sich $2n+1$ Unbekannte und $2n+1$ gewöhnliche Differentialgleichunge
 	Die Funktionen $\gamma = (\gamma_1, \dots, \gamma_n)$, $v$ und $z = (z_1, \dots, z_n)$ heißen die Charakteristiken zur Gleichung $E(x,u(x), \nabla u(x))$.
 \end{definition*}
 
-% \begin{beispiel}
-% 	\begin{enumerate}[1.]
-% 		\item Lineare Gleichung \[
-% 			b(x) \cdot  \nabla u(x) + c(x) u(x) = 0
-% 		\], also $E(x,v,z) = b(x) \cdot z + c(x) v$ und somit
-% 		\[
-% 			b(\gamma(s)) \cdot z(s) + c (\gamma(s))v(s) = 0
-% 		\]
-% 		\begin{enumerate}[(i)]
-% 			\item $\gamma'(s) = b(\gamma(s))$
-% 			\item $v'(s) = b(\gamma(s)) \cdot z(s) = -c (\gamma(s))v(s)$
-% 		\end{enumerate}
-% 		Hier haben wir nur $n+1$ Gleichungen für die $n+1$ Unbekannten $\gamma$ und $v$.
-% 		\item Die Transportlgleichung
-% 		\[
-% 			\partial_t u(t,x) + b  \nabla u(t,x) = 0, \qquad b \in \mathbb{R}^n,\, c=0
-% 		\]
-% 	\end{enumerate}
-% \end{beispiel}
+\begin{beispiel}
+	\begin{enumerate}[1.]
+		\item Lineare Gleichung \[
+			b(x) \cdot  \nabla u(x) + c(x) u(x) = 0
+		\], also $E(x,v,z) = b(x) \cdot z + c(x) v$ und somit
+		\[
+			b(\gamma(s)) \cdot z(s) + c (\gamma(s))v(s) = 0
+		\]
+		\begin{enumerate}[(i)]
+			\item $\gamma'(s) = b(\gamma(s))$
+			\item $v'(s) = b(\gamma(s)) \cdot z(s) = -c (\gamma(s))v(s)$
+		\end{enumerate}
+		Hier haben wir nur $n+1$ Gleichungen für die $n+1$ Unbekannten $\gamma$ und $v$.
+		\item Die Transportlgleichung
+		\[
+			\partial_t u(t,x) + b  \nabla u(t,x) = 0, \qquad b \in \mathbb{R}^n,\, c=0
+		\]
+		mit $b \in \mathbb{R}^n$, $c=0$. Setze $\hat{b}:= (1,b)$ und $Du:= ( \partial_t u,  \nabla u)$. Wir haben also die Gleichung
+		\[
+			\hat{b} Du(t,x) = 0
+		\]
+		\begin{enumerate}[(i)]
+			\item $\gamma'(s) = \hat{b} = (1,b)$, mit $\gamma : [0,S] \to (0,\infty) \times \mathbb{R}^n$
+			\item $v'(s) = 0$, woraus folgt, dass $v$ konstant ist.
+		\end{enumerate}
+		Für $t>0$, $x \in \mathbb{R}^n$, Anfangsdaten $u(0,x) = g(x)$ für alle $x \in \mathbb{R}^n$ gilt dann
+		\[
+			\gamma(0) = (0,x_0), \qquad x_0 \in \mathbb{R}^n
+		\]
+		und damit
+		\[
+			v(0) = u(\gamma(0))= u(0,x_0) = g(x_0)
+		\]
+		\[
+			\Rightarrow v(s) = v(0) = g(x_0), \qquad \gamma(s) = (s, sb + x_0)
+		\]
+		\[
+			v(s) = u(\gamma(s)) = u(s, sb+x_0) = g(x_0)
+		\]
+		\[
+			u(s,sb+ x_0) = g(x_0).
+		\]
+		Setze $s:=t$, $x:= sb+x_0$ Dann $x_0 = x - tb$
+		\[
+			\Rightarrow u(t,x)= g(x-tb)
+		\]
+		\minisec{Übung:}$n=2$,
+		\[
+			\begin{cases}
+				u_x(x,y)+ u_y(x,y) =2,\\
+				u(x,0)= x^2
+			\end{cases}
+		\]
+		Dann
+		\[
+			E(x,v,z) = z_1+z_2 -2 = z \cdot (1,1) - 2
+		\]
+		\[
+			\gamma'(s) = (1,1), \qquad \gamma(0) = (x_0,0), \qquad x_0 \in \mathbb{R}
+		\]
+		und 
+		\[
+			v'(s) = b(\gamma(s)) \cdot z = 2, \qquad v(0) = x_0^2
+		\]
+		Es folgt
+		\[
+			\gamma(s) = (s+x_0,s), \qquad v(s) = 2s + x_0^2
+		\]
+		\[
+			\Rightarrow \qquad u(\gamma(s)) = u(s+x_0,s) = 2s+ x_0^2
+		\]
+		Setze $x:= s+ x_0$, $y:=s$. Dann folt $x_0= x-y$ und
+		\[
+			u(x,y) = 2+ (x-y)^2
+		\]
+		\item Quasilineare Gleichung 
+		\[
+			b(x,u(x)) \cdot  \nabla u(x) + c(x,u(x)) = 0,
+		\]
+		Dann \[
+			E(x,v,z) = b(x,v) \cdot z + c(x,v)
+		\]
+		Die charakteristischen Gleichungen sind dann
+		\begin{enumerate}[(i)]
+			\item $\gamma'(s) = b(\gamma(s),v(s))$
+			\item $v'(s) = b(\gamma(s),v(s)) \cdot z(s) = -c (\gamma(s),v(s))$
+		\end{enumerate}
+		Auch hier werden nun die Gleichungen für $\gamma$ und $v$ benötigt.
+	\end{enumerate}
+\end{beispiel}
 
+%%%neue Vorlesung
 
+\[
+	(1) \qquad E(x,u(x), \nabla u(x)) = 0 \qquad \text{in }\Omega
+\]
+Suche charakteristische Gleichungen zu (1):
+\[
+	(S) \qquad \begin{cases}
+		\gamma'(s) &=  \nabla_z E(\gamma,v,z) \\
+		v'(s) &=  \nabla_z E(\gamma,v,z) \cdot z \\
+		z'(s) &= -  \nabla_x E(\gamma,v,z) - \partial_v E(\gamma,v,z) \cdot z
+	\end{cases}
+\]
+Damit erhält man $2n+1$ Gleichungen. Mit $\Omega = \mathbb{R}^n_+$
+\[
+(2) \qquad 	\begin{cases}
+		E(x,u(x), \nabla u(x)) = 0, &\text{ in }\Omega\\
+		u=g, &\text{ auf } \Gamma \subseteq \partial \Omega
+	\end{cases}
+\]
+\[
+	u(x_0) = g(x_0) \qquad \forall\, x_0 \in  \partial \mathbb{R}^n_+
+\]
+\[
+	I:= [0,s], \qquad \gamma(0) = x_0, \qquad v(0) = u(\gamma(0)) = u(x_0) = g(x_0)
+\]
+\[
+	z_i(0) = \partial_{x_i} g(x_0), \qquad i=1,\dots,n
+\]
+Das sind $2n$ Anfangsbedindungen und $2n+1$ Gleichungen. Wir brauchen auch $z_n(0)$
+\[
+	E(x,u(x), \nabla u(x)) = 0 \qquad \forall\, x \in \mathbb{R}^n_+ \qquad \Rightarrow \qquad E(x_0,u(x_0), \nabla u(x_0)) = 0,
+\]
+da $E$ stetig bis zum Rand ist. Daher sollte $z_n(0)$ zu den bereits fixierten Anfangsbedingungen so bestimmt sein, dass
+\[
+	E(\gamma(0),v(0),z(0))=0.
+\]
 %%%% Vorlesung 24.6
 
 \begin{definition*}
@@ -563,6 +670,249 @@ für eine lokale Lösung von (2).
 		\end{cases}.
 	\]
 \end{satz}
+
+%%%% neue Vorlesung
+
+	\[
+		\begin{cases}
+			E(x,u(x), \nabla u(x)) = 0 , &\text{ in }\mathbb{R}^n_+\\
+			u(x) = g(x), & \text{ auf } \partial \mathbb{R}^n_+ \cap V
+		\end{cases}.
+	\]
+$\partial_{z_n} E(x_0,v_0,z_0) \neq 0$ für $(x_0,v_0,z_0) \in \partial \mathbb{R}^n_+ \times \mathbb{R} \times \mathbb{R}^n$.
+
+\begin{beispiele}
+	\begin{enumerate}[1.]
+		\item \[
+			\begin{cases}
+				u_{x_2} + u = 0, &\text{ in }\mathbb{R}^2_+\\
+				u=g , & \text{ auf } \partial \mathbb{R}^2_+
+			\end{cases}
+		\]
+		Dann gilt $E(x,v,z) = z_2 +v$
+		\[
+			x_0 \in \partial \mathbb{R}^2_+, \qquad v_0 = g(x_0), \qquad (z_0)_1 = g'(x_0), \qquad \partial \mathbb{R}^2_+ = \set{x_2 = 0}
+		\]
+		\[
+			(z_0)_2 + v_0 = 0
+		\]
+		Damit sind alle Vektoren $(x_0,v_0,z_0)$ zulässig. Außerdem gilt $\partial_{z_2}E(x_0,v_0,z_0) = 1 \neq 0$. Alle Vektoren $(x_0,v_0,z_0) \in \partial \mathbb{R}^2_+ \times \mathbb{R} \times \mathbb{R}^2$ sind nichtcharakteristisch.
+		\[
+			x_0 \in \partial \mathbb{R}^2_+, \qquad x_0 = (x_1,0), \qquad x_1 \in \mathbb{R}
+		\]
+		\[
+			\gamma'(s) =  \nabla_z E = (0,1), \qquad \gamma(0) = (x_1,0) 
+		\]
+		\[
+			v'(s) =  \nabla_z E \cdot z = (0,1) \cdot z = z_2 = -v , \qquad v(0)= g(x_1)
+		\]
+		\[
+			\Rightarrow \qquad \gamma(s) = (x_1,s), \qquad v(s) = c e^{-s}, \qquad v(0) = g(x_1)
+		\]
+		\[
+			\Rightarrow \qquad v(s) = g(x_1) e^{-s}
+		\]
+		Also gilt $(x_1,x_2) = x \in \mathbb{R}^2_+$ und damit folgt $x= \gamma(x_2)$. Wir erhalten
+		\[
+			u(x_1,x_2) = u(\gamma(x_2)) = v(x_2) = g(x_1) e^{-x_2}
+		\]für $g \in C^1(\partial \mathbb{R}^2_+)$. 
+		\[
+			u(x_1,x_2) = g(x_1)e^{-x_2} 
+		\]
+		ist also die globale klassische Lösung.
+		\item
+		\[
+		(2) \qquad 	\begin{cases}
+				u_{x_1}+u =0, &\text{ in }\mathbb{R}^2_+\\
+				u=g, &\text{ auf } \partial \mathbb{R}^2_+
+				
+			\end{cases}
+		\]
+		Wie gewohnt erhalten wir $E(x,v,z) = z_1 + v$. Es gilt somit $\partial_{z_2}E \equiv = 0$. Damit sind alle Vektoren $(x_0,v_0,z_0) \in \partial \mathbb{R}^2_+ \times \mathbb{R} \times \mathbb{R}^2$ charakteristisch.
+		\[
+			\begin{cases}
+				\gamma'(s) &= (1,0) \\
+				\gamma(0) &= (x_1,0) \\
+				v'(s) = -v(s) \\
+				v(0) =g(x_1)
+			\end{cases} \qquad (x_1,0)= x_0 \in \partial \mathbb{R}^2_+
+		\]
+		Es gilt
+		\[
+			\gamma(s) = (s+ x_1,0),
+		\]
+		was bedeutet, dass $\gamma$ komplett am Rand verläuft. 
+		\[
+			v(s) = g(x_1) e^{-s}, \qquad u(\gamma(s)) = v(s), \qquad u(s+x_1,0) = g(x_1) e^{-s}
+		\]
+		Es gilt
+		\[
+			u(\bar{x_1},0) \stackrel{s = \bar{x_1}-x_1}{=} u((s+x_1),0) \stackrel{s = \bar{x_1}-x_1}{=} g(x_1)e^{-(\bar{x_1}-x_1)}
+		\]
+		und somit
+		\[
+			u(\bar{x_1},0) = g(x_1) e^{-(\bar{x_1}-x_1)} 
+		\]
+		für $x_1 < \bar{x_1}$. 
+		\[
+			u(\bar{x_1},0) = g(\bar{x_1}) \qquad \Rightarrow \qquad g(x_1) e^{-(\bar{x_1}-x_1)} = g(\bar{x_1}) \qquad (*)
+		\]
+		Möglich für $g(x_1) = e^{-x_1}$ und daraus folgt
+		\[
+			e^{-x_1}e^{-(\bar{x_1}-x_1)} = e^{-\bar{x_1}} = g(\bar{x_1})
+		\]
+		für die Anfangsdaten $g(x_1) = e^{-x_1}$ ist $(*)$ erfüllt und eine globale Lösung von $(2)$ ist gegeben durch
+		\[
+			u(x_1,x_2) = h(x_2) e^{-x_1} 
+		\]
+		für eine beliebige $C^1$-Funktion $h$: $h(0)=1$. Es folgt
+		\[
+			u(x,0) = e^{-x_1}
+		\]
+		Dies bedeutet, dass wir unendlich viele globale Lösungen erhalten. Für $g \equiv c \in \mathbb{R}$ gilt	
+		\[
+			c e^{-(\bar{x_1}-x_1)} = c \qquad \Rightarrow \qquad e^{-(\bar{x_1}-x_1)} =1
+		\]
+		aber $\bar{x_1} \neq x_1$.
+	\end{enumerate}
+\end{beispiele}
+
+\subsection{Skalare Erhaltungsgleichungen} 
+\label{sub:skalare_erhaltungsgleichungen}
+\[
+	(1) \qquad u_t(t,x) + (F(u))_x = 0
+\] für $t >0$, $x \in \mathbb{R}$ und $F \in C^1(\mathbb{R})$.
+Für $u \in C^1(\mathbb{R}_+ \times \mathbb{R})$ Lösung von $(1)$ gilt 
+\begin{align*}
+	\int_{a}^{b} u_t(t,x) \,\mathrm{d}x &= - \int_{a}^{b} (F(u))_x \,\mathrm{d}x \\
+	&= F(u(t,a))- F(v(t,b)) \\ &= \diffd{}{t} \int_{a}^{b} u  \,\mathrm{d}x \qquad \forall\, [a,b] \subseteq \mathbb{R}
+\end{align*}
+Die Änderung der Gesamtmasse in einem beliebigen Intervall $[a,b]$ ist nur gegeben durch den Fluss $F$ von $u$ durch die Randpunkte $a$ und $b$. (= Erhaltungsgleichung).
+\[
+	(2) \qquad \begin{cases}
+		u_t + (F(u))_x = 0, &\text{ in }\mathbb{R}_+ \times \mathbb{R}\\
+		u=g , &\text{ auf } \set{0} \times \mathbb{R}
+	\end{cases}
+\]
+Falls $u \in C^1(\mathbb{R}_+ \times \mathbb{R})$ eine Lösung von $(2)$ ist, so gilt
+\[
+	(3) \qquad u_t + (F(u))_x = u_t +F'(u) u_x  = 0 \qquad \text{ in } \mathbb{R}_+ \times \mathbb{R}
+\]
+und somit können wir schreiben 
+\[
+	E(x,v,z) = z_1 + F'(v) z_2
+\]
+Wir erhalten die Charakteristiken
+\[
+	\begin{cases}
+		\gamma(s) &= (1, F'(v(s)))\\
+		\gamma(0) &= (0,x_0) \\
+		v'(s) &=  \nabla _t E \cdot z = (1, F'(v(s))) \cdot z(s) = 0, \qquad v(s) = v(0) = g(x_0) \\
+		v(0) &= g(x_0)
+ 	\end{cases}
+\]
+es folgt
+\[
+	\gamma(s) = (s, F'(g(x_0))s + x_0).
+\]
+Damit ist 
+\[
+	u(s,F'(g(x_0))s + x_0) = g(x_0) 
+\]
+eine Lösungsformel für eine klassische Lösung.
+\begin{bemerkung}
+	\begin{enumerate}[(i)]
+		\item Die Charakteristiken sind Geraden
+		\item Die Lösung ist konstant entlang von $\gamma(s)$.
+	\end{enumerate}
+\end{bemerkung}
+\begin{enumerate}[1.)]
+	\item $F$ Linear: $F(u) = au$ mit $a \in \mathbb{R}$. Dann ist $F'(u) = a$.
+	$\gamma(s)=(s,as+x_0)$ sind dann parallel zueinander mit konstanter Steigung.
+	\[
+		v(s,as+x_0) = g(x_0), \qquad t=s, \, x=at+x_0 \qquad \Rightarrow \qquad u(t,x) = g(x-at)
+	\]
+	globale klassische Lösung von $(2)$. ($g \in C^1$ $\Rightarrow$ $u \in C^1$ ). \\
+	\[
+		u_t + F'(u) u_x =0 \qquad \Rightarrow \qquad u_t+ a u_x =0 
+	\]
+	die Transportgleichung.
+	\item $F$ Nichtlinear: $F(u)= \frac{1}{2} u^2$, also $u_t + u u_x = 0$ die Bewegungsgleichung. $F'(u)=u$. Es folgt
+	\[
+		\gamma(s) = s(g(x_0)s+x_0),
+	\]
+ 	das heißt die Steitung der Charakteristiken hängt von $g$ ab.
+	\[
+		u(s,g(x_0)s+x_0) = g(x_0)
+	\]
+	Es existieren $x_0$,$\bar{x_0}$ sodass $g(x_0) \neq g(\bar{x_0})$ und $g(x_0)s+ x_0 = g(\bar{x_0})s + \bar{x_0}$. In diesem Fall gibt es (mindestens) zwei unterschiedliche Vorschriften $(g(x_0),g(\bar{x_0}))$ für den Wert von $u$ am Schnittpunkt, sodass keine globale klassische Lösung existieren kann. Wir berechnen den ersten Zeitpunkt, an dem die Charakteristiken sich schneiden:
+	\[
+		g(x_0)t + x_0 = g(\bar{x_0}t)+ x_0
+	\]
+	\[
+		\Leftrightarrow \qquad t(g(x_0)-g(\bar{x_0})) = \bar{x_0}-x_0 \qquad \Rightarrow \qquad t = \frac{\bar{x_0}-x_0}{g(x_0)-g(\bar{x_0})}
+	\]
+	\begin{align*}
+		T:&= \inf_{x_0 \neq \bar{x_0}} \left( \frac{\bar{x_0}-x_0}{g(x_0)-g(\bar{x_0})} \right) \\
+		&= \inf_{x_0 \neq \bar{x_0}} \left( - \frac{1}{\frac{g(x_0)- g(\bar{x_0})}{x_0-\bar{x_0}}} \right) \\
+		& = - \sup_{x_0 \neq \bar{x_0}} \left( \frac{1}{\frac{g(x_0)-g(\bar{x_0})}{x_0-\bar{x_0}}} \right) \\
+		&= - \frac{1}{\inf_{x_0 \neq \bar{x_0}}\left( \frac{g(x_0)-g(\bar{x_0})}{x_0-\bar{x_0}} \right)}
+	\end{align*}
+	Falls $0 < T < \infty$ folgt, dass eine klassische Lösung nur für $t < T$ existiert. Für $t=T$ ist die Lösung unstetig.
+	\begin{beispiel}
+		\[
+			\begin{cases}
+				u_t + uu_x = 0, &\text{ in }\mathbb{R}_+ \times \mathbb{R}\\
+				u(0,x) = g(x), & \text{ für } x \in \mathbb{R}
+			\end{cases}
+		\]
+		mit
+		\[
+			g(x) = \begin{cases}
+				1, &\text{ falls }x \leq 0\\
+				1-x, &\text{ falls } 0 \leq x \leq 1 \\
+				0, &\text{ falls }x >1
+			\end{cases}
+		\]
+		Für $x \in (0,1)$ gilt $g(x_0) - g(\bar{x_0}) = 1 - x_0 - 1+ \bar{x_0}$.
+		Es folgt
+		\[
+			\frac{g(x_0)-g(\bar{x_0})}{x_0- \bar{x_0}} = \frac{\bar{x_0}-x_0}{x_0-\bar{x_0}} = -1
+		\]
+		und somit
+		\[
+			T=1
+		\]
+		Hier fehlt eine hilfreiche Skizze.  \\
+		Wir haben eine Lösung nur für $t<1:$
+		\[
+			u(t,x) = \begin{cases}
+				1, &\text{ für }x \leq t, \, t \in [0,1)\\
+				0, &\text{ für }x \geq 1, \, t \in [0,1)\\
+				\frac{1-x}{1-t},& \text{ für }t \leq x \leq 1, \, t \in [0,1),
+			\end{cases}
+		\]
+		da 
+		\[
+			u(t,(1-x_0)t+x_0) = g(x_0) = 1-x_0
+		\]
+		\[
+			x = (1-x_0)t + x_0 = t + x_0 (1-t)
+		\]
+		\[
+			\Rightarrow x_0 = \frac{x-t}{1-t}
+		\]
+		\[
+			u(t,x)= 1- \frac{x-t}{1-t} = \frac{1-t-x+t}{1-t} = \frac{1-x}{1-x}
+		\]
+	\end{beispiel}
+	\begin{bemerkung}
+		\begin{itemize}
+			\item Auch für $g \in C^{\infty}(\mathbb{R})$ haben wir keine klassische Lösung.
+			\item Auch eine Lösung, die zum Zeitpunkt glatt war, entwickeltin endlicher Zeit Unstetigkeiten.
+		\end{itemize}
+	\end{bemerkung}
+\end{enumerate}
 
 \cleardoubleoddemptypage
 \pagenumbering{Alph}

@@ -696,11 +696,11 @@ Wir wissen weiter, dass $I_{\max}$ offen in $\mathbb{R}$ ist.
     \end{enumerate}
 \end{beweis}
 
-\begin{korollar}[label=lem:133]
-    Seien $\tilde{G}$, $G$ zusammenhängende Liegruppen. 
+\begin{korollar}[label=lem:133,{name=[{Kern einer Überlagerung ist diskrete Untergruppe des Zentrums}]}]
+    Seien $\widetilde{G}$, $G$ zusammenhängende Liegruppen. 
     \begin{enumerate}[1)]
-        \item Ist $\Phi \colon \tilde{G} \to G$ eine Überlagerung von Liegruppen, so ist $\tilde{\Gamma} = \ker \Phi$ eine diskrete Untergruppe von $Z(G)$.\marginnote{Zentrum von $\tilde{G}$}
-        \item Ist $\tilde{\Gamma}$ eine diskrete Untergruppe von $Z(\tilde{G})$, so ist $G \coloneqq \sfrac{\tilde{G}}{\tilde{\Gamma}}$ eine Liegruppe und $\Phi \colon \tilde{G} \to G$, $\tilde{g} \mapsto [\tilde{g}]$ eine Überlagerung.
+        \item Ist $\Phi \colon \widetilde{G} \to G$ eine Überlagerung von Liegruppen, so ist $\widetilde{\Gamma} = \ker \Phi$ eine diskrete Untergruppe von $Z(G)$.\marginnote{Zentrum von $\widetilde{G}$}
+        \item Ist $\widetilde{\Gamma}$ eine diskrete Untergruppe von $Z(\widetilde{G})$, so ist $G \coloneqq \sfrac{\widetilde{G}}{\widetilde{\Gamma}}$ eine Liegruppe und $\Phi \colon \widetilde{G} \to G$, $\widetilde{g} \mapsto [\widetilde{g}]$ eine Überlagerung.
     \end{enumerate}
 \end{korollar}
 \begin{beweis}
@@ -738,7 +738,7 @@ Es gilt $\pi_1(\SO(n))= \mathbb{Z}_2$.
 Die universelle Überlagerung ist $\mathrm{Spin}(n)$.
 Für $n\ge 2$ $\pi \enbrace*{\SU(n)} = \set*{e}$ und $\SU(2) = S^3$.
 
-\begin{lemma}[label=lem:134]
+\begin{lemma}[label=lem:134,{name=[{Liegruppenhomomorphismus aus Liealgebrenhomomorphismus wenn einfach zusammenhängend}]}]
 	Seien $H,G$ zusammenhängende Liegruppen.
 	Ist $H$ einfach zusammenhängend und $\psi \colon \Tmap_e H \to \Tmap_e G$ ein Liealgebrenhomomorphismus, so existiert ein eindeutiger Liegruppenhomomorphismus $\Phi \colon H \to G$ mit $(\mathd \Phi)_e = \psi$.
 \end{lemma}
@@ -768,7 +768,7 @@ So kann man zum Beispiel den durch die Identität gegeben Liealgebrenisomorphism
 Dann ist die induzierte Abbildung $\tilde{\Phi} \colon \tilde{H} \to \tilde{H}$ injektiv, aber $\pi \tilde{H} \to H$ muss nicht injektiv sein.
 Ein konkretes Beispiel wäre die universelle Überlagerung von $\SL(n,\mathbb{R})$.
 
-\begin{satz}
+\begin{satz}[{name=[{Liegruppen-Liealgebren-Zusammenhang im einfach zusammenhängenden Fall}]}]
 	Es gilt
 	\begin{enumerate}[1)]
 		\item Zwei zusammenhängende, einfach zusammenhängenden Liegruppen mit isomorphen Liealgebren sind isomorph.
@@ -2978,6 +2978,149 @@ Man setzt $R_{XYZW} \coloneqq \skal*{R_{XY} Z}{W} \in \mathbb{R}$. Es gilt
 \[
 	R_{XYZW} = - R_{YXZW} = -R_{XYWZ} = R_{ZWXY}
 \]
+
+\begin{satz}[label=satz:324]
+	Sei $\enbrace*{\sfrac{G}{H},g}$ ein homogener Raum und $\mathfrak{g} = \mathfrak{h} \oplus \mathfrak{m}$ eine $\Ad(H)$-invariante Zerlegung von $\mathfrak{g}$.
+	Dann gilt für $X,Y \in \mathfrak{m}$ die folgende Identität:
+	\[
+		\enbrace*{R_{X^*Y^*Y^*X^*}}(eH) = -\frac{3}{4} \norm*{\benbrace*{X,Y}_{\mathfrak{m}}}^2 - \frac{1}{2} \skal*{\benbrace*{X, \benbrace*{X,Y}}_{\mathfrak{m}}}{Y} - \frac{1}{2} \skal*{\benbrace*{Y, \benbrace*{Y,X}}_{\mathfrak{m}}}{X} + \norm*{u(X,Y)}^2 - \skal*{u(X,X)}{u(Y,Y)}
+	\]
+	wobei $g_{eH}$ auf $\Tmap_{eH} \sfrac{G}{H}$ mit $\skal*{\cdot}{\cdot }$ auf $\mathfrak{m}$ identifiziert wird.
+\end{satz}
+\begin{beweis}
+	Es gilt
+	\begin{align}
+		R_{X^*Y^*Y^*X^*} = - R_{X^*Y^*X^*Y^*} &= - \skal*{\nabla_{X^*} \nabla_{Y^*} X^* - \nabla_{Y^*} \nabla_{X^*} X^* - \nabla_{\benbrace*{X^*,Y^*}}X^*}{Y^*} \\
+		&= - X^* \skal*{\nabla_{Y^*} X^*}{Y^*} + \skal*{\nabla_{Y^*} X^*}{\nabla_{X^*} Y^*} + Y^* \skal*{\nabla_{X^*} X^*}{Y^*} \\
+		& - \skal*{\nabla_{X^*} X^*}{\nabla_{Y^*} Y^*} - \skal*{\benbrace*{X^*,Y^*}}{\nabla_{Y^*} X^*} \\
+		&= - X^* \enbrace*{\skal*{\benbrace*{Y^*,X^*}}{Y^*} - 0+ \skal*{\benbrace*{X^*,Y^*}}{Y^*}} \cdot \frac{1}{2} + Y^* \enbrace*{0- \skal*{\benbrace*{Y^*,X^*}}{X^*} + \skal*{\benbrace*{X^*,Y^*}}{X^*}}  \cdot \frac{1}{2} \\
+		& -\skal*{\nabla_{X^*} X^*}{\nabla_{Y^*} Y^*} + \norm*{\nabla_{Y^*} X^*}^2 \\
+		&= \norm*{\nabla_{Y^*} X^*}^2 + Y^* \skal*{ \benbrace*{X^*,Y^*}}{X^*} - \skal*{\nabla_{X^*} Y^*}{\nabla_{Y^*} Y^*} \\
+		&= \frac{1}{4} \norm*{\benbrace*{X,Y}_{\mathfrak{m}}}^2 - \skal*{\benbrace*{Y,X}_{\mathfrak{m}}}{u(x,y)} + \norm*{u(X,Y)}^2 \\
+		& + \skal*{\benbrace*{Y^*, \benbrace*{X^*,Y^*}}}{X^*} + \Underbracket{\skal*{\benbrace*{X^*,Y^*}}{\benbrace*{Y^*,X^*}}}{=\norm*{\benbrace*{X,Y}_\mathfrak{m}}^2} - \skal*{u(X,X)}{u(Y,Y)} \\
+		&= - \frac{3}{4} \norm*{\benbrace*{X,Y}_\mathfrak{m}}^2  + \norm*{u(X,Y)}^2 - \skal*{u(X,X)}{u(Y,Y)} - \skal*{\benbrace*{Y,X}_\mathfrak{m}}{u(X,Y)} + \Underbracket{\skal*{\benbrace*{Y^*, \benbrace*{X^*,Y^*}}}{X^*}}{= \skal*{\benbrace*{Y, \benbrace*{X,Y}}_\mathfrak{m}}{X}} 
+	\end{align}
+	Ferner gilt
+	\begin{align}
+		\skal*{\benbrace*{X,Y}_\mathfrak{m}}{u(X,Y)} &= \enbrace*{\skal*{\benbrace*{\benbrace*{X,Y}_\mathfrak{m},X}}{Y} + \skal*{\benbrace*{\benbrace*{X,Y}_\mathfrak{m},Y}}{X}} \cdot \frac{1}{2}  \\
+		&= \frac{1}{2} \enbrace*{\skal*{\benbrace*{\benbrace*{X,Y},X}}{Y} - \skal*{\benbrace*{\benbrace*{X,Y}_\mathfrak{h},X}}{Y} + \skal*{\benbrace*{\benbrace*{X,Y},Y}}{X} + \skal*{\benbrace*{\benbrace*{X,Y}_\mathfrak{h},X}}{Y}}   \\
+		&= \frac{1}{2} \enbrace*{\skal*{\benbrace*{\benbrace*{X,Y},X}_\mathfrak{m}}{Y} + \skal*{\benbrace*{\benbrace*{X,Y},Y}_\mathfrak{m}}{X}} \\
+		&= -\frac{1}{2}  \skal*{\benbrace*{X,\benbrace*{X,Y}_\mathfrak{m}}}{Y} + \frac{1}{2} \skal*{\benbrace*{Y,\benbrace*{Y,X}}_\mathfrak{m}}{X} 
+	\end{align}
+	Die Behauptung folgt.
+\end{beweis}
+
+\begin{korollar}
+	Sei $G$ eine kompakte Liegruppe, versehen mit einer biinvarianten Metrik $g_{e_i}$.
+	Dann gilt
+	\[
+		R_{XYYX} = \frac{1}{4} \norm*{\benbrace*{X,Y}}^2 
+	\]
+\end{korollar}
+\begin{beweis}
+	Da $G$ kompakt ist, besitzt $\mathfrak{g} = \Tmap_e G$ eine $\Ad(G)$-invariantes Skalarprodukt $\skal*{\cdot }{\cdot }$.
+	Wir bezeichnen mit $g_{b_i}$ die entsprechende linksinvariante Riemannsche Metrik auf $G$ ($L_g,R_g$ beides(!) Isometrien).
+	Da $\skal*{\cdot}{\cdot }$ $\Ad(G)$-invariant ist, ist $\ad(X) \colon \mathfrak{g} \to \mathfrak{g}$ schiefsymmetrisch bezüglich $\skal*{\cdot}{\cdot}$.
+	Es folgt 
+	\[
+		2\skal*{u(X,Y)}{Z} = \skal*{ \benbrace*{Z,X}}{Y} + \skal*{\benbrace*{Z,Y}}{X} = \skal*{X}{\benbrace*{Z,Y}} + \skal*{\benbrace*{Z,Y}}{X} =0
+	\]
+	Ferner gilt 
+	\[
+		\skal*{\benbrace*{X,\benbrace*{X,Y}}}{Y} = - \skal*{\benbrace*{X,Y}}{\benbrace*{X,Y}} = - \norm*{\benbrace*{X,Y}}^2
+	\]
+	Die Behauptung folgt.
+\end{beweis}
+
+\begin{erinnerung}
+	$(M^n,g)$ Riemannsche Mannigfaltigkeit, $p \in M^n$, $X_p,Y_p \in \Tmap_p M^n$ mit $\norm*{X_p} = \norm*{Y_p} = 1$ sowie $X_p \perp Y_p$.
+	Dann nennt man $K(\Sigma_\alpha) \coloneqq R_{XYYX}$ die \Index{Schnittkrümmung der Ebene $\Sigma_\alpha$}, welche von $X,Y$ aufgespannt wird (ist wohldefiniert!).
+	Mittelung über die Schnittkrümmung gibt die Ricci-Krümmung
+	\[
+		\operatorname{ric}_p(X,Y) \coloneqq \sum_{i=1}^{n} R_{Xe_i e_i Y}
+	\]
+	wobei $(X_1, \ldots ,X_n)$ eine ONB von $\enbrace*{\Tmap_p M^n,g_p}$ ist
+	\[
+		\operatorname{ric}(e_1,e_2) = 0 + R_{1221} + R_{1331} + \ldots + R_{1nn1} = 0 + K(1,2) + K(1,3) + \ldots + K(1,n)
+	\]
+	Analog wie die Riemannsche Metrik $g$ selbst ist $\operatorname{ric}(g)$ ebenfalls eine symmetrische Bilinearform auf $\Tmap M^n$.
+\end{erinnerung}
+
+\begin{lemma}
+	Sei $\enbrace*{\sfrac{G}{H},g}$ eine Riemannscher homogener Raum mit $\Ad(H)$-invarianter Zerlegung $\mathfrak{g} = \mathfrak{h} \oplus \mathfrak{m}$.
+	Sei $(X_1,\ldots X_n)$ eine ONB von $\enbrace*{\mathfrak{m},\skal*{\cdot }{\cdot}}$ und $Z \coloneqq \sum_{i=1}^{n} u(X_i,X_i)$.
+	Dann gilt für alle $X \in \mathfrak{m}$:
+	\[
+		\operatorname{Spur} (\ad(X)) = \skal*{Z}{X}
+	\]
+	Insbesondere ist $Z$ wohldefiniert.
+\end{lemma}
+\begin{beweis}
+	Es gilt $\benbrace*{\mathfrak{h},\mathfrak{m}} \subset \mathfrak{m}$, da $\mathfrak{m}$ $\Ad(H)$-invariant ist und $\ad(.) = \D \Ad|_e$ ist (Übung).
+	Somit gilt für $X \in \mathfrak{m}$
+	\[
+		\ad(X) = \begin{pmatrix}
+			0 & A \\ B & C
+		\end{pmatrix}
+	\]
+	und $\operatorname{Spur} (\ad(X)) = \operatorname{Spur}(\ad(X))|_\mathfrak{m}$.
+	Wir erhalten 
+	\begin{align}
+		\skal*{Z}{X} = \skal*{\sum_{i=1}^{n} u(X_i,X_i)}{X} = \sum \skal*{\benbrace*{X,X_i}|_\mathfrak{m}}{X_i} = \sum \skal*{\ad(X)(X_i)}{X_i} = \operatorname{Spur}(\ad(X)|_\mathfrak{m})
+	\end{align}
+	Die Behauptung folgt.
+\end{beweis}
+
+Man nennt eine Liegruppe $G$ \Index{unimodular}, falls $Z=0$ ist.
+Im Allgemeinen ist  $\Phi \colon \mathfrak{g} \to \mathbb{R}$, $X \mapsto \operatorname{Spur} (\ad(X))$  eine $\Ad(G)$-invariante Linearform, denn
+\begin{align}
+	\ad \enbrace*{\Ad(g)(X)}(Y) = \benbrace*{\Ad(g)(X),\Ad(g)(\Ad(g^{-1})(Y))} &= \Ad(g) \benbrace*{X, \Ad(g^{-1})(Y)} \\
+	&= \enbrace*{\Ad(g) \circ \ad(X) \circ \Ad(g^{-1})}(Y)
+\end{align}
+Somit 
+\[
+	\Phi \enbrace*{\Ad(g) X} = \operatorname{Spur} \enbrace*{\ad \enbrace*{\Ad(g) X}} = \operatorname{Spur} \enbrace*{\Ad(g) \circ \ad(e) \circ \Ad(g)^{-1}} = \operatorname{Spur} \ad(X) = \Phi(X)
+\]
+Somit ist $\mathfrak{g}_\mathrm{uni} \coloneq \ker \Phi$ $\Ad(G)$-invariantes Ideal von $\mathfrak{g}$ mit Kodimension 1.
+Die entsprechende Lieuntergruppe $G_\mathrm{uni} \subsetneq G$ ist also unimodular (und Normalteiler von $G$).
+
+\begin{satz}
+	Sei $\enbrace*{\sfrac{G}{H},g}$ ein Riemannscher homogener Raum und $\mathfrak{g} = \mathfrak{h} \oplus \mathfrak{m}$ eine $\Ad(H)$-invariante Zerlegung von $\mathfrak{g}$.
+	Dann gilt für $X \in \mathfrak{m}$:
+	\[
+		\operatorname{ric}_g(X,X) = - \frac{1}{2} \mathcal{B}_\mathfrak{g}(X,X) + \frac{1}{4} \sum_{i,j=1}^n \skal*{\benbrace*{X_i,X_i}_\mathfrak{m}}{X}^2 - \frac{1}{2} \sum_{i=1}^{n} \norm*{\benbrace*{X,X_i}_\mathfrak{m}}^2 - \skal*{\ad(Z)(X)|_\mathfrak{m}}{X}
+	\]
+\end{satz}
+\begin{beweis}
+	Nach \autoref{satz:324} gilt 
+	\begin{align}
+		\operatorname{ric}(X,X) = \sum_{i=1}^{n} R_{XX_iY_iY} &= - \frac{3}{4} \norm*{\benbrace*{X,X_i}|_\mathfrak{m}}^2 - \frac{1}{2} \sum_{i} \skal*{\benbrace*{X,\benbrace*{X,X_i}}}{X} - \frac{1}{2} \sum_i \skal*{\benbrace*{X_i,\benbrace*{X_i,X}}}{X} \\
+		& \quad + \sum_i \norm*{u(X_i,X_i)}^2 - \skal*{u(X,X)}{Z}
+	\end{align}
+	Erinnerung: FÜr $X \in \mathfrak{m}$ gilt $\ad(X) = \begin{psmallmatrix}
+		0 & A \\ B & C
+	\end{psmallmatrix}$.
+	Somit
+	\begin{align}
+		\mathcal{B}_\mathfrak{g}(X,X) = \operatorname{Spur} \enbrace*{\ad(X) \circ \ad(X)} = \sum_{i=1}^{n} \skal*{\benbrace*{X,\benbrace*{X,X_i}}}{X_i} + \sum_{j=1}^{k} \skal*{\benbrace*{X, \benbrace*{X,k_j}}}{k_j}
+	\end{align}
+	für eine ONB $(Z_1, \ldots ,Z_k)$ von $\mathfrak{h}$, versehen mit einem $\Ad(H)$-invarianter Skalarprodukt $\skal*{\cdot }{\cdot }_\mathfrak{h}$ (Existenz wie in der Übung).
+	Wegen 
+	\begin{align}
+		\sum_{j=1}^{k} \skal*{\enbrace*{\ad(X) \circ \ad(X)}(k_j)}{k_j}_\mathfrak{h} = \operatorname{Spur}(A \cdot B) = \operatorname{Spur}(B \cdot A) &= \sum_i \skal*{\benbrace*{X, \benbrace*{X,X_i}_\mathfrak{h}}}{X_i} \\
+		&\StackText{$\ad(k_i)$ schiefsym.}{= }\sum_i \skal*{\benbrace*{X_i , \benbrace*{X_i,X}_\mathfrak{h}}}{X}
+	\end{align}
+	Somit 
+	\begin{align}
+		\operatorname{ric}_g(X,X) = -\frac{3}{4}  \sum \norm*{\benbrace*{X_i,X_i}}^2 - \frac{1}{2} \mathcal{B}_\mathfrak{g}(X,X) - \frac{1}{2} \sum \skal*{\benbrace*{X_i , \benbrace*{X_i,X}_\mathfrak{m}}}{X} + \sum \norm*{u(X_i,X_i)}^2 - \skal*{\benbrace*{Z,X}_\mathfrak{m}}{X}
+	\end{align}
+	Ferner
+	\begin{align}
+		\sum_i \norm*{u(X,X_i)}^2 = \sum_{i,j} \skal*{u(X,X_i)}{X_i}^2 &= \frac{1}{4} \sum_{i,j} \enbrace*{\skal*{\benbrace*{X_i,X}}{X_i} + \skal*{\benbrace*{X_i,X_i}}{X}}^2 \\
+		& \quad + \frac{1}{4} \sum_j \norm*{\benbrace*{X_j,X}_\mathfrak{m}}^2  + \frac{1}{2} \sum_j \skal*{\benbrace*{X_j, \sum_i X_i \skal*{\benbrace*{X_j,X}}{X_i}}}{X} \\
+		& \quad + \frac{1}{4}  \sum_{i,j} \skal*{\benbrace*{X_i,X_j}}{X}^2 \qedhere 
+	\end{align}
+\end{beweis}
 % section 32 (end)
 % chapter 3 (end)
 

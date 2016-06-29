@@ -1785,19 +1785,61 @@ In diesem Abschnitt sind Kettenkomplexe immer $\mathbb{N}$-graduiert. (Allgemein
 
 \begin{satz}[{name=[Approximationssatz]}]
 	Sei $F \colon \mathcal{A} \to \mathcal{B}$ ein exakter Funktor zwischen Waldhausen-Kategorien.
+	Sei $\mathcal{B}$ saturiert und weiter gelte
 	Dabei gelte:
 	\begin{enumerate}[(i)]
 		\item $(\alpha \colon A \to A') \in \mathcal{A}$ ist genau dann eine schwache Äquivalenz, wenn $F(\alpha) \in \mathcal{B}$ eine schwache Äquivalenz ist.
 		\item Für $A \in \mathcal{A}$ und $\beta \colon F(A) \to B$ in $\mathcal{B}$ gibt es eine Kofaserung $\alpha \colon A \hookrightarrow A'$ in $\mathcal{A}$ und eine schwache Äquivalenz $\beta' \colon F(A') \to B$ mit $\beta = \beta' \circ F(\alpha)$.
-		\item Ist $\beta$ in (ii) eine schwache Äquivalenz, so können wir $\alpha$ in (ii) als schwache Äquivalenz in $\mathcal{A}$ wählen.
 	\end{enumerate}
 	Dann induziert $F$ einen Isomorphismus $K_0(\mathcal{A}) \to K_0(\mathcal{B})$.
 \end{satz}
+
+\begin{lemma}
+	Sei $F \colon \mathcal{A} \to \mathcal{B}$ wie im Approximationssatz.
+	Sind $A,A' \in \mathcal{A}$, sodass $F(A), F(A')$ in $\mathcal{B}$ schwach äquivalent sind, so sind $A$ und $A'$ schon in $\mathcal{A}$ schwach äquivalent.
+\end{lemma}
 \begin{beweis}
+	Es gibt ein Zick-Zack von schwachen Äquivalenzen in $\mathcal{B}$.
+	\[
+		\begin{tikzcd}
+			& B_1 & & B_2 & & \cdots & & B_n \\
+			F(A) \urar["\sim"] & & B_1' \ular["\sim"] \urar["\sim"] & &  B_2' \ular["\sim"] \urar["\sim"] & & & & F(A') \ular["\sim"]
+		\end{tikzcd}
+	\]
+	Wegen (ii) können wir annehmen, dass es zu jedem $B_i'$ ein $A_i' \in \mathcal{A}$ gibt mit $F(A_i') = B_i'$.
+	Dager genügt es den Fall
+	\[
+		\begin{tikzcd}
+			& B & \\
+			F(A)\urar["f","\sim"'] & & F(A')\ular["f'","\sim"']
+		\end{tikzcd}
+	\]
+	zu betrachten.
+	Wir weden (ii) auf $f\amalg f' \colon F(A \amalg A') \cong F(A) \amalg F(A') \to B$ an und erhalten 
+	\[
+		\begin{tikzcd}
+			F(A \amalg A') \rar[hook,"F(\alpha)"] & F(\tilde{A}) \rar["\beta","\sim"'] & B
+		\end{tikzcd}
+	\]
+	mit $\beta \circ F(\alpha) = f \amalg f'$.
+	Seien $i_A \colon A \to A \amalg A'$ und $i_{A'} \colon A' \to A \amalg A'$ die Inklusionen.
+	Es folgt $\beta \circ F(\alpha) \circ F(i_A)=f$.
+	Da $\beta$ und $f$ schwache Äquivalenzen sind und $\mathcal{B}$ saturiert ist, ist auch $F(\alpha) \circ F(i_A) = F(\alpha \circ i_A)$ eine schwache Äquivalenz und wegen (i) ist $\alpha \circ i_A$ dann auch eine schwache Äquivalenz.
+	Ebenso ist $\alpha \circ i_{A'}$ eine schwache Äquivalenz und wir erhalten
+	\[
+		\begin{tikzcd}
+			& \tilde{A} \\
+			A \urar["\alpha \circ i","\sim"'] && A' \ular["\alpha \circ i_{A'}","\sim"']
+		\end{tikzcd}
+	\]
+	Also sind $A$ und $A'$ schwach äquivalent in $\mathcal{A}$.
+\end{beweis}
+
+\begin{beweis}[name={Approximationssatz}]
 	Wegen (ii) gibt es zu jedem $B \in \mathcal{B}$ ein $A \in \mathcal{A}$, sodass die schwache Äquivalenzklasse von $F(A)$ und $B$ übereinstimmen.
 	Daher ist $F_* \colon K_0(\mathcal{A}) \to K_0(\mathcal{B})$ surjektiv.
 	
-	\emph{Behauptung:} $F$ induziert sogar einen Isomorphismus zwischen der Menge der schwachen Äquivalenzklassen in $\mathcal{A}$ und der Menge der schwachen Äquivalenzklassen in $\mathcal{B}$.\todo{muss noch bewiesen werden}
+	\emph{Behauptung:} $F$ induziert sogar einen Isomorphismus zwischen der Menge der schwachen Äquivalenzklassen in $\mathcal{A}$ und der Menge der schwachen Äquivalenzklassen in $\mathcal{B}$.\todo{siehe Lemma}
 	
 	Für die Injektivität von $F_*$ müssen wir nun noch zeigen: Ist \(
 		\begin{tikzcd}[cramped,sep=small]
@@ -1896,10 +1938,172 @@ In diesem Abschnitt sind Kettenkomplexe immer $\mathbb{N}$-graduiert. (Allgemein
 % section 5 (end)
 \newpage
 
-\section{Exkurs: Chirurgie} % (fold)
+\section{Höhere $K$-Theorie} % (fold)
 \label{sec:6}
 
-\todo[inline]{RevChap 6}
+\textsc{Waldhausen} hat einen Funktor $\mathcal{C} \mapsto \abs*{\w S_\circ  \mathcal{C}}$ von der Kategorie der Waldhausen-Kategorien und exakten Funktoren in die Kategorie der (punktierten) topologischen Räume definiert.
+\textsc{Waldhausen} definierte dann $K_*(\mathcal{C}) \coloneqq \pi_* \enbrace*{\Omega \abs*{\w S_\circ \mathcal{C}}}$.
+
+\begin{bemerkung}
+	\begin{enumerate}[(i)]
+		\item Für einen punktierten topologischen Raum $X$ ist $\Omega X = \operatorname{Map}_*(S^1,X)$ der Raum aller Schleifen am Basispunkt von $X$.
+		Es gilt $\pi_k(\Omega X) = \pi_{k+1} X$ für $k \ge 0$.
+		Insbesondere ist $\pi_0 \enbrace*{\Omega \abs*{\w S_\circ \mathcal{C}} }$ eine Gruppe.
+		\item \textsc{Waldhausen} hat gezeigt, dass $\Omega \abs*{\w S_\circ \mathcal{C}} $ ein unendlicher Schleifenraum ist, das heißt es gibt Räume $X_1 = \abs*{\w S_\circ  \mathcal{C}}, X_2, \ldots  $ mit schwachen Homotopieäquivalenzen
+		\[
+			\begin{tikzcd}
+				\Omega \abs*{\w S_\circ  \mathcal{C}} & \Omega X_1 \lar["\sim"'] & \Omega^2 X_2 \lar["\sim"'] & \Omega^3 X_3 \lar["\sim"'] & \ldots \lar["\sim"']
+			\end{tikzcd}
+		\]
+		Insbesondere ist $\pi_* \enbrace*{\Omega \abs*{\w S_\circ  \mathcal{C}}}$ abelsch.
+	\end{enumerate}
+\end{bemerkung}
+
+\begin{definition}
+	Für eine Kategorie $\mathcal{C}$ sei $\Ar(\mathcal{C})$ die Kategorie der Pfeile in $\mathcal{C}$: Objekte sind Morphismen $f \colon B \to C$ in $\mathcal{C}$ und Morphismen in $\Ar(\mathcal{C})$ zwischen $f \colon B \to C$ und $f' \colon B' \to C'$ sind kommutative Diagramme der Form
+	\[
+		\begin{tikzcd}
+			B \rar["f"] \dar["\beta"] & C \dar["\gamma"] \\
+			B' \rar["f'"] & C'
+		\end{tikzcd}
+	\]
+	in $\mathcal{C}$.
+	Seien $s,t \colon \Ar(\mathcal{C}) \to \mathcal{C}$ die Funktoren $s \enbrace*{f \colon B \to C} = B$ und $t \enbrace*{f \colon B \to C} =C$.
+\end{definition}
+
+\begin{definition}
+	Sei $\mathcal{C}$ eine Waldhausen-Kategorie.
+	Ein \Index{Zylinder-Funktor} auf $\mathcal{C}$ ist ein Funktor $T \colon \Ar(\mathcal{C}) \to \mathcal{C}$ zusammen mit einer natürlichen Transformation $j_1 \colon s \to T$,
+	$j_2 \colon t \to T$ und $p \colon T \to t$ sodass für jedes $f \colon B \to C$
+	\[
+		\begin{tikzcd}
+			B \drar["f"] \rar["j_1"] & T(f)  \dar["p"] & C \lar["j_2"'] \dlar["="]   \\
+			& C
+		\end{tikzcd}
+	\]
+	in $\mathcal{C}$ kommutiert.
+	Weiter fordern wir:
+	\begin{enumerate}[(i)]
+		\item $T(0 \hookrightarrow C) = C$ mit $p = j_2 = \id_C$.
+		\item $j_1 \amalg j_2 \colon B \amalg C \hookrightarrow T(f)$ ist eine Kofaserung.
+		\item Sind in 
+		\[
+			\begin{tikzcd}
+				B \rar["f"]  \dar["\beta","\sim"'] & C \dar["\gamma","\sim"'] \\
+				B' \rar["f'"] & C'
+			\end{tikzcd}
+		\]
+		$\beta$ und $\gamma$ schwache Äquivalenzen, so ist auch $T(\beta,\gamma) \colon T(f) \xrightarrow{\sim} T(f')$ eine schwache Äquivalenz.
+		\item Sind in 
+		\[
+			\begin{tikzcd}
+				B \rar["f"]  \dar["\beta",hook] & C \dar["\gamma",hook] \\
+				B' \rar["f'"] & C'
+			\end{tikzcd}
+		\]
+		$\beta$ und $\gamma$ Kofaserungen, so sind auch $T(\beta,\gamma) \colon T(f) \to T(f')$ und die induzierte Abbildung $B' \amalg_B T(f) \amalg_C C' \to T(f')$ Kofaserungen.
+		\item \Index{Zylinder-Axiom}: $p \colon T(f) \xrightarrow{\sim} C$ ist eine schwache Äquivalenz.
+	\end{enumerate}
+\end{definition}
+
+\begin{beispiel}
+	Für Kettenkomplexe oder topologische Räume erfüllt der Abbildungszyklinder die obigen Axiome.
+\end{beispiel}
+
+\begin{satz}[{name={Kofinalitätssatz}}]
+	Sei $\beta \subseteq \mathcal{C}$ eine kofinale Waldhausen-Unterkategorie, die unter schwachen Äquivalenzen und Erweiterungen abgeschlossen ist.
+	Dann ist
+	\[
+		\begin{tikzcd}
+			\Omega \abs*{\w S_\circ \mathcal{B}} \rar & \Omega \abs*{\w S_\circ \mathcal{C}} \rar & \sfrac{K_0(\mathcal{C})}{K_0(\mathcal{B})}
+		\end{tikzcd}
+	\]
+	eine \emph{Homotopiefaserung}.
+	Insbesondere induziert für $n \ge 1$ die Inklusion $\beta \hookrightarrow \mathcal{C}$ einen Isomorphismus $K_n(\mathcal{B}) \to K_n(\mathcal{C})$.
+\end{satz}
+
+\begin{definition}
+	Seien $\mathcal{B}$ und $\mathcal{C}$ Waldhausen-Kategorien.
+	\begin{equation}
+		\begin{tikzcd}
+			F \rar["\tau"] & F' \rar["\tau'"] & F''
+		\end{tikzcd}
+		\label{eq:def_kofinal}\tag{\#}
+	\end{equation}
+	eine Folge in der Kategorie der exakten Funktoren und natürlichen Transformationen von $\mathcal{B}$ nach $\mathcal{C}$.
+	Dann heißt \eqref{eq:def_kofinal} \Index{kurz exakt}, falls für jedes $B \in \mathcal{B}$ 
+	\[
+		\begin{tikzcd}
+			F(B) \rar["\tau_B"] & F'(B) \rar["\tau_{B'}"] & F''(B)
+		\end{tikzcd}
+	\]
+	eine Kofaserfolge in $\mathcal{C}$ ist.
+\end{definition}
+
+\begin{satz}[name={Additivitätssatz}]
+	Sei \(
+		\begin{tikzcd}[cramped,sep=small]
+			F \rar & F' \rar & F''
+		\end{tikzcd}
+	\) eine kurze exakte Folge wie oben.
+	Dann gilt für die induzierten Abbildungen in $K$-Theorie
+	\[
+		K_n(F') = K_n(F) + K_n(F'') \colon K_n(\mathcal{B}) \longrightarrow K_n(\mathcal{C})
+	\]
+\end{satz}
+
+\begin{definition}
+	Sei $\mathcal{C}$ eine Waldhausen-Kategorie.
+	Dann sagen wir, dass $\mathcal{C}$ (oder die schwachen Äquivalenzen in $\mathcal{C}$) die \Index{Erweiterungseigenschaft} hat, falls für kommutative Diagramme 
+	\[
+		\begin{tikzcd}
+			B \rar[hook] \dar["f"] & C \rar[hook] \dar["g"] & \sfrac{C}{B} \dar["h"] \\
+			B' \rar[hook] & C' \rar[hook] & \sfrac{C'}{B'}
+		\end{tikzcd}
+	\]
+	deren Zeilen Kofaserfolgen sind, gilt:
+	Sind $f$ und $h$ schwache Äquivalenzen, so ist auch $j$ eine schwache Äquivalenz.
+\end{definition}
+
+\begin{satz}[name={Lokalisierungssatz}]
+	Sei $\mathcal{C}$ eine Waldhausen-Kategorie bezüglich zwei Familien $V \subseteq W$ von schwachen Äquivalenzen (wie schon im Lokalisierungssatz für $K_0$).
+	Weiter nehmen wir an, dass $\mathcal{C}$ bezüglich $\wOp \mathcal{C}$ einen Zylinderfunktor besitzt, saturiert ist und die Erweiterungseigenschaft hat.
+	Dann gibt es eine lange exakte Folge
+	\[
+		\begin{tikzcd}
+			\ldots \rar & K_{i+1}(\wOp \mathcal{C}) \rar & K_i (v \mathcal{C}^w) \rar & K_i(v \mathcal{C}) \rar & K_i(\wOp \mathcal{C}) \rar & \ldots 
+		\end{tikzcd}
+	\]
+\end{satz}
+
+\section*{Zwischenspiel: $K_1$ von Ringen}
+Sei $R$ ein Ring.
+Dann definieren wir 
+\begin{align}
+	K_1(R) &\coloneqq \frac{\mathbb{Z} \benbrace[\big]{\text{Isomorphieklassen $[M,\varphi]$ von Automorphismen von endlich erz. freien $R$-Moduln} }}{[M,\varphi] + [M,\psi] = \benbrace*{M, \varphi \circ \psi}, [M,\varphi] + [M',\varphi'] = \benbrace*{M \oplus M', \varphi \oplus \varphi'}}  \\
+	&\cong \GL(R)_{\ab} = \sfrac{\GL(R)}{\benbrace*{\GL(R), \GL(R)}} = \sfrac{\GL(R)}{E(R)}
+\end{align}
+\[
+	\begin{tikzcd}
+		E(R) & \operatorname{St}(R) \lar[two heads] & K_i(R) \lar
+	\end{tikzcd}
+\]
+\marginnote{Elementarmatrizen}
+
+
+
+
+
+% section 6 (end)
+\newpage
+
+
+
+
+\section{Exkurs: Chirurgie} % (fold)
+\label{sec:7}
+
+\todo[inline]{RevChap z}
 \begin{frage}
 	Wie viele glatte Strukturen existieren auf einer gegebenen topologischen Mannigfaltigkeit?
 \end{frage}
