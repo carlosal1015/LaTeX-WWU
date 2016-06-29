@@ -1,0 +1,386 @@
+%!TEX root = ../LA2.tex
+\chapter{Lineare Algebra I (Zusammenfassung)} % (fold)
+\label{cha:1}
+\section{Aussagenlogik und vollständige Induktion}
+\label{sec:1.1}
+	Das Herz der Mathematik bilden Beweise:
+	Jede Aussage, jeder Lehrsatz muss \enquote{bewiesen} werden, das heißt durch logische Verknüpfungen aus einigen Grundaxiomen hergeleitet werden.
+	Leider ist eine Darstellung des Axiomensystems sehr aufwendig und an dieser Stelle nicht durchführbar (mehr dazu in der Vorlesung Logische Grundlagen).
+	Daher werden wir uns hier auf Aussagen stützen, die etwa aus dem Schulunterricht bekannt sind, und werden diese, wenn nötig, ergänzen.
+	
+	Frage: Was ist ein mathematischer Beweis?
+	
+	Sei $B$ eine mathematische Aussage (wie etwa $\sqrt{2} > 1$ oder $\sqrt{2} \in \QQ = \penb{\frac{m}{l} : m \in \ZZ, n \in \NN}$).
+	Wir wollen beweisen, dass $B$ wahr ist.
+	Zum Beweis von $B$ finde eine bereits als wahr bekannte Aussage $A$ und zeige $A \Rightarrow B$ (aus $A$ folgt $B$).
+	Oft gelingt dies nicht in einem Schritt, sondern wir zeigen eine Kette von Folgerungen:
+	\[
+		A_1 \Rightarrow A_2 \Rightarrow A_3 \Rightarrow \cdots \Rightarrow A_l \Rightarrow B
+	\]
+	Die Aussagen $A_1,\dots,A_l$ sind hierbei in der Regel logische Verknüpfungen einer Vielzahl anderer Aussagen.
+	
+	Wichtig: Eine mathematische Aussage ist entweder wahr oder unwahr -- niemals beides!
+	
+\begin{definition}[Logische Verknüfung von Aussagen]
+	\label{def:I.1.1}
+	Es seien $A,B$ mathematische Aussagen. \index{logische Verknüpfung}
+	Wir definieren:
+	\begin{enumerate}[(i)]
+		\item Und: $A \wedge B$ ist genau dann wahr, wenn beide Aussagen $A$ und $B$ wahr sind.
+		\item Oder: $A \vee B$ ist genau dann wahr, wenn mindestens eine der Aussagen $A,B$ wahr ist.
+		\item Nicht: $\neg A$ ist genau dann wahr, wenn $A$ nicht wahr ist.
+		\item Folgt: $A \Rightarrow B$ ist genau dann wahr, wenn eine der Aussagen $A \wedge B, \neg A$ wahr ist (also genau dann, wenn $(A \wedge B) \vee \neg A$ wahr ist).
+		\item Äquivalent: $A \Leftrightarrow B$ ist genau dann wahr, wenn $A \wedge B$ wahr oder $\neg A \wedge \neg B$ wahr ist (also genau dann, wenn beide Aussagen wahr oder beide Aussagen unwahr sind).
+	\end{enumerate}
+\end{definition}
+
+Es gilt: $[A \Leftrightarrow B] \Leftrightarrow [(A \Rightarrow B) \wedge (B \Rightarrow A)] \Leftrightarrow [(A \wedge B) \vee (\neg A \wedge \neg B)]$.
+Die Verknüpfungen $\wedge,\vee,\neg,\Rightarrow,\Leftrightarrow$ lassen sich gut in einer \Index{Wahrheitstafel} veranschaulichen:
+
+\begin{center}
+	\begin{tabular}{ccccccc}
+	$\bm{A}$ & $\bm{B}$ & $\bm{A \wedge B}$ & $\bm{A \vee B}$ & $\bm{A \Rightarrow B}$ & $\bm{A \Leftrightarrow B}$ & $\bm{\neg A}$ \\ 
+	\hline w & w & w & w & w & w & f \\ 
+	\hline w & f & f & w & f & f & f \\ 
+	\hline f & w & f & w & w & f & w \\ 
+	\hline f & f & f & f & w & w & w \\ 
+\end{tabular} 
+\end{center}
+
+Wir werden später fast nie die Zeichen $\wedge, \vee, \neg$ benutzen, sondern die entsprechenden Worte \enquote{und}, \enquote{oder}, \enquote{nicht}.
+Wir benötigen auch Versionen von \enquote{und} und \enquote{oder} für Systeme von Aussagen:
+
+\begin{definition}[Allquantor, Existenzquantor]
+	\label{def:I.1.2}
+	Sei $\{A_i : i \in I\}$ ein System von Aussagen ($I$ ist beliebige Indexmenge).
+	Wir setzen: \index{Allquantor} \index{Existenzquantor}
+	\begin{enumerate}[(i)]
+		\item Für alle: Die Aussage $[\forall i \in I \text{ gilt } A_i]$ ist genau dann wahr, wenn alle Aussagen $A_i$ wahr sind.
+		\item Es gibt: Die Aussage $[\exists i \in I \text{ mit } A_i]$ ist genau dann wahr, wenn mindestens eine der Aussagen $A_i$ wahr ist.
+	\end{enumerate}
+\end{definition}
+
+Beachte: $\forall$ ist eine Form von $\wedge$ für \enquote{viele} Aussagen und $\exists$ ist eine Form von $\vee$ für viele Aussagen.
+Manchmal findet man auch die Quantoren
+\[
+	\bigwedge_{i \in I} A_i \ (\Leftrightarrow \ \forall i \in I \text{ gilt } A_i) \qquad \text{bzw.} \qquad \bigvee_{i \in I} A_i \ (\Leftrightarrow \ \exists i \in I \text{ mit } A_i).
+\]
+Ich benutze diese aber eher selten!
+
+Allein aus den Definitionen von $\wedge$, $\vee$, etc. kann man schon neue wahre Aussagen herleiten, zum Beispiel:
+\[
+	A \wedge B \Rightarrow A \vee B \qquad \text{und} \qquad (A \Leftrightarrow B) \Rightarrow (A \rightarrow B).
+\]
+Ebenso gelten
+\[
+	A \wedge (B \vee c) \Leftrightarrow (A \wedge B) \vee (B \wedge C) \quad \text{und} \quad A \vee (B \wedge C) \Leftrightarrow (A \vee B) \wedge (A \vee C)
+\]
+Beachte: $\wedge, \vee, \neg$ haben Vorrang vor $\Rightarrow$ und $\Leftrightarrow$ (ähnlich wie Punktrechnung vor Strichrechnung)
+Wir überprüfen zum Beispiel die erste Aussage mit Hilfe einer Wahrheitstafel:
+
+\begin{center}
+	\begin{tabular}{cccccccc}
+	$A$ & $B$ & $C$ & $A \wedge B$ & $A \wedge C$ & $B \wedge C$ & $A \wedge (B \vee C)$ & $(A \wedge B) \vee (A \wedge C)$ \\ 
+	\hline 
+	w & w & w & w & w & w & w & w \\ 
+	\hline 
+	w & w & f & w & f & w & w & w \\ 
+	\hline 
+	w & f & w & f & w & w & w & w \\ 
+	\hline 
+	w & f & f & f & f & f & f & f \\ 
+	\hline 
+	f & w & w & f & f & w & f & f \\ 
+	\hline 
+	f & w & f & f & f & w & f & f \\ 
+	\hline 
+	f & f & w & f & f & w & f & f \\ 
+	\hline 
+	f & f & f & f & f & f & f & f \\ 
+\end{tabular} 
+\end{center}
+
+Aus den letzten beiden Spalten folgt dann, dass $A \wedge (B \vee C)$ genau dann wahr ist, wenn $(A \wedge B) \vee (A \wedge C)$ wahr ist. 
+Die Aussage $A \vee (B \wedge C) \Leftrightarrow (A \vee B) \wedge (A \vee C)$ prüft man analog.
+Im Allgemeinen sind aber die zu beweisenden Aussagen wesentlich komplexer und nicht oder nur schwer mit Wahrheitstafeln zu beweisen!
+
+\begin{beispiel}
+	\label{bsp:I.1.3}
+	Sei $\NN:= \{1,2,3,\dots\}$ die Menge der natürlichen Zahlen.
+	Für $n,m \in \NN$ sagen wir $n > m$, falls ein $k \in \NN$ existiert mit $n = m+k$.
+	Wir behaupten nun die folgende Aussage:
+	Sind $n,m,l,r \in \NN$, so gelten:
+	\begin{enumerate}[(i)]
+		\item Gilt $n > l$ und $m > r$, so folgt $n+m > l+r$ \\
+		$[\forall n,m,l,r \in \NN \text{ gilt: } (n > l) \wedge (m > r) \Rightarrow n+m > l+r]$
+		\item Gilt $n > l$ und $m > r$, so folgt $n \cdot m > l \cdot r$ \\
+		$[\forall n,m,l,r \in \NN \text{ gilt: } (n > l) \wedge (m > r) \Rightarrow n \cdot m > l \cdot r]$
+	\end{enumerate}
+\end{beispiel}
+
+\begin{beweis}
+	\mbox{}[-.9cm]
+	\begin{enumerate}[(i)]
+		\item Da $n > l$ und $m > r$, folgt nach Definition von \enquote{$>$}, dass $k_1, k_2 \in \NN$ existieren mit $n = l+k_1, m = r+k_2$.
+		Aus den Rechenregeln in $\NN$ folgt hieraus mit $k = k_1 + k_2$:
+		\[
+			n+m = (l+k_1) + (r+k_2) = (l+r)+(k_1+k_2) = (l+r) + k.
+		\]
+		Nach Definition von \enquote{$>$} folgt also $n+m > l+r$.
+		\item Übungsaufgabe. \qedhere
+	\end{enumerate}
+\end{beweis}
+
+Frage: Auf welche \enquote{wahren Aussagen} haben wir uns im obigen Beweis gestützt?
+
+\begin{satz}[Methode des indirekten Beweises]
+	\label{satz:I.1.4}
+	Sei wieder $B$ eine Aussage, die wir beweisen wollen.
+	Beim indirekten Beweis suchen wir eine unwahre Aussage $A$ und zeigen, dass $\neg B \Rightarrow A$ wahr ist.
+	Wenn dies gelingt, so ist $B$ eine wahre Aussage, denn wir haben die Äquivalenz
+	\begin{equation}
+		(\neg B \Rightarrow A) \Leftrightarrow (\neg A \Rightarrow B) \label{eq:I.1.4}
+	\end{equation}
+	und nach Voraussetzung ist $\neg A$ wahr.
+\end{satz}
+
+\begin{beweis}
+	Wir beweisen \eqref{eq:I.1.4} durch Wahrheitstafel:
+	\begin{center}
+		\begin{tabular}{cccccc}
+			$A$ & $B$ & $\neg A$ & $\neg B$ & $\neg B \Rightarrow A$ & $\neg A \Rightarrow B$ \\ 
+			\hline 
+			w & w & f & f & w & w \\ 
+			\hline 
+			w & f & f & w & w & w \\ 
+			\hline 
+			f & w & w & f & w & w \\ 
+			\hline 
+			f & f & w & w & f & f \\ 
+		\end{tabular} \\
+		\qedhere
+	\end{center}
+\end{beweis}
+
+\begin{beispiel}
+	\label{bsp:I.1.5}
+	Es gilt die Aussage $\sqrt{2} \notin \QQ$, das heißt, $\sqrt{2}$ lässt sich nicht als Bruch $\frac{n}{m}$ schreiben mit $n \in \ZZ, m \in \NN$.
+\end{beispiel}
+
+\begin{beweis}
+	Sei $B$ die Aussage $\sqrt{2} \notin \QQ$.
+	Wir zeigen, dass aus $\neg B$ eine absurde Aussage folgt.
+	Dann ist $B$ wahr.
+	Wir nehmen an, dass $\neg B$ wahr ist, also $\sqrt{2} \in \QQ$.
+	Dann existiert ein $n \in \ZZ$ und $m \in \NN$ mit $\sqrt{2} = \frac{n}{m}$.
+	Durch Kürzen des Bruchs $\frac{n}{m}$ können wir erreichen, dass $n$ oder $m$ ungerade sind (genau genommen müsste man dies getrennt beweisen).
+	Dann folgt $2 = (\sqrt{2})^2 = \enb{\frac{n}{m}}^2 = \frac{n^2}{m^2}$, also $2m^2 = n^2$.
+	Insbesondere folgt: $n^2$ ist eine gerade Zahl.
+	Dann ist auch $n$ eine gerade Zahl (sonst wäre $n^2$ als Produkt ungerader Zahlen ungerade).
+	Damit existiert ein $l \in \NN$ mit $n = 2l$.
+	Es folgt $m$ ungerade und $2 = \frac{n^2}{m^2} = \frac{4l^2}{m^2}$, also $m^2 = 2l^2$.
+	Wie oben folgt, dass auch $m$ gerade ist.
+	Wir haben nun gezeigt:
+	\[
+		\sqrt{2} \in \QQ \Rightarrow \Underbrace{[\exists m \in \NN \text{ mit } m \text{ gerade } \wedge m \text{ ungerade}]}{\text{unwahre Aussage!}} \qedhere
+	\]
+\end{beweis}
+
+Für die Durchführung indirekter Beweise ist es wichtig, Aussagen korrekt zu verneinen.
+Hier einige Grundregeln:
+
+\begin{lemma}
+	\label{lemma:I.1.6}
+	Es gelten:
+	\begin{enumerate}[(i)]
+		\item $\neg(A \wedge B) \Leftrightarrow \neg A \vee \neg B$
+		\item $\neg(A \vee B) \Leftrightarrow \neg A \wedge \neg B$
+		\item $\neg(\forall i \in I \text{ gilt } A_i) \Leftrightarrow \exists i \in I \text{ mit } \neg A_i$
+		\item $\neg(\exists i \in I \text{ mit } A_i) \Leftrightarrow \forall i \in I \text{ gilt } \neg A_i$
+	\end{enumerate}
+\end{lemma}
+
+\begin{beispiel}
+	\label{bsp:I.1.7}
+	\begin{enumerate}[(i)]
+		\item Die Verneinung der Aussage \enquote{Franz ist mutig und reich} ist \enquote{Frank ist nicht mutig oder nicht reich}.
+		\item Die Verneinung von \enquote{Alle Menschen sind dumm} wäre \enquote{Es gibt einen Menschen, der nicht dumm ist}.
+	\end{enumerate}
+\end{beispiel}
+
+Wir kommen nun zu einem wichtigen Beweisprinzip, das es un in guten Fällen erlaubt, unendlich viele Aussagen gleichzeitig zu beweisen. Wir setzen voraus, dass die natürlichen Zahlen $\NN = \{1,2,3,\dots\}$ und $\NN_0 = \{0,1,2,\dots\}$ und die Rechenregeln für die Addition auf $\NN$ bekannt sind.
+Wichtigste Eigenschaft von $\NN$ ist, dass für jede Zahl $n \in \NN$ genau ein Nachfolger $n+1 \in \NN$ existiert, und wenn wir mit $1$ starten, so durchlaufen wir mit $1,2,3,\dots, n, n+1, \dots$ jede natürliche Zahl genau ein mal! (\Index{Peano-Axiom})
+
+\newpage
+
+\begin{satz}[Prinzip der vollständigen Induktion]
+	\label{satz:I.1.8}
+	Für alle $n \in \NN$ sei $A_n$ eine Aussage. \index{vollständige Induktion}
+	Ferner gelte:
+	\begin{description}
+		\item[I.A.:] $A_1$ ist wahr (Induktionsanfang)
+		\item[I.S.:] Für jedes $n \in \NN$ gilt: $A_n \Rightarrow A_{n+1}$ (Induktionsschluss).
+	\end{description}
+	Dann ist jede Aussage $A_n$ wahr.
+\end{satz}
+
+Die Idee ist natürlich klar:
+Um zu sehen, dass $A_n$ wahr ist, betrachten wir die Schlusskette
+\[
+	A_1 \Rightarrow A_2 \Rightarrow A_3 \Rightarrow \dots \Rightarrow A_{n-1} \Rightarrow A_n.
+\]
+Nach Induktionsanfang ist $A_1$ wahr und nach Induktionsschluss ist jede Folgerung $A_j \Rightarrow A_{j+1}$ in der Kette wahr.
+Damit ist auch $A_n$ wahr.
+
+Alternatives Argument:
+Angenommen, es existiert ein $n \in \NN$ mit $A_n$ nicht wahr.
+Dann existiert ein kleinstes $j \in \{1,\dots,n\}$ mit $A_j$ nicht wahr.
+Dann ist $j > 1 $ und $A_{j-1}$ ist wahr.
+Da $A_{j-1} \Rightarrow A_j$ gilt, ist auch $A_j$ wahr.
+Dann gilt $\neg A_j \wedge A_j$, was nicht geht.
+
+\begin{beispiel}[Gaußsche Summenformel]
+	\label{bsp:I.1.9}
+	Sind $a_1,\dots,a_n$ Zahlen, so setzen wir
+	\[
+		\sum_{i=1}^{n} a_i = a_1 + a_2 + \dots a_l.
+	\]
+	Mit dieser Notation gilt für alle $n \in \NN$ und $a_i = i$ die folgende Aussage $A_n$:
+	\[
+		\sum_{i=1}^{n} = \frac{n(n+1)}{2}
+	\]
+\end{beispiel}
+
+\begin{beweis}
+	\mbox{} \\[-.9cm]
+	\begin{description}
+		\item[I.A.:] Sei $n=1$.
+		Dann gilt $\sum_{i=1}^{1} = 1 = \frac{1(1+1)}{2}$, also ist $A_1$ wahr.
+		\item[I.S.:] Sei $n \in \NN$ fest gewählt und $A_n$ wahr.
+		Dann folgt
+		\begin{align*}
+			\sum_{i=1}^{n+1} i &= \sum_{i=1}^{n} + (n+1) \stackrel{A_n}{=} \frac{n(n+1)}{2} + n+1 = \frac{n(n+1)+2(n+1)}{2} \\
+			&= \frac{n^2 +n +2n +2}{2} = \frac{(n+1)(n+2)}{2} = \frac{(n+1)((n+1)+1)}{2},
+		\end{align*}
+		und damit ist dann auch die Aussage $A_{n+1}$ wahr, das heißt $A_n \Rightarrow A_{n+1}$ ist bewiesen. \qedhere
+	\end{description}
+\end{beweis}
+
+Die Annahme \enquote{$A_n$ ist wahr} im Induktionsschritt nennt man auch Induktionsannahme.
+Es ist nützlich, im Beweis stets zu kennzeichnen, wo die Annahme eingeht!
+
+\begin{bemerkung}
+	\label{bem:I.1.10}
+	Das Induktionsprinzip funktioniert auch, wenn wir ein $n_0 \in \ZZ$ und Aussagen $A_{n_0}, A_{n_0+1}, A_{n_0+2},\dots$ haben.
+	Dann müssen wir zeigen:
+	\begin{description}
+		\item[I.A.:] $A_{n_0}$ ist wahr.
+		\item[I.S.:] Für alle $n \geq n_0$ gilt $A_n \Rightarrow A_{n+1}$.
+	\end{description}
+	Wir erhalten dann die Schlusskette
+	\[
+		A_{n_0} \Rightarrow A_{n_0+1} \Rightarrow A_{n_0+2} \Rightarrow \dots \Rightarrow A_{n-1} \Rightarrow A_n.
+	\]
+	Ferner kann auch der Induktionsschluss
+	\[
+		\text{Für alle } n \geq n_0 \text{ gilt } A_{n_0} \wedge \dots \wedge A_n \Rightarrow A_{n+1}
+	\]
+	gesetzt werden.
+	Wie sieht dann die Schlusskette für $A_n$ aus?
+\end{bemerkung}
+
+\begin{beispiel}
+	\label{bsp:I.1.11}
+	Das Induktionsprinzip wird oft auch für rekursive Definitionen genutzt, um zum Beispiel so etwas wie $x^n := x \cdot x \cdots x$ zu vermeiden!
+	
+	Beispiel: Wir definieren $x^0 := 1$, und ist $x^n$ bereits definiert für $n \geq 0$, so definieren wir $x^{n+1} := (x^n) \cdot x$.
+	
+	Wir definieren $0! = 1$, und ist $n!$ für $n \in \NN_0$ bereits definiert, so setzen wir $(n+1)! := n! \cdot (n+1)$.
+	Damit ist $n! = 1 \cdot 2 \cdot 3 \cdot \dots \cdot n$.
+\end{beispiel}
+
+\begin{definition}[Binomialkoeffizient]
+	\label{def:I.1.12}
+	Für $k,n \in \NN_0$ setze
+	\[
+		\binom{n}{k} := \begin{cases}
+			\frac{n!}{k!(n-k)!}, & \text{ falls } k \leq n \\
+			0, & \text{ falls } k > n.
+		\end{cases}
+	\]
+	Die Zahlen $\binom{n}{k}$ heißen \textbf{Binomialkoeffizienten}. \index{Binomialkoeffizient}
+\end{definition}
+
+\begin{lemma}
+	\label{lemma:I.1.13}
+	Für alle $1 \leq k \leq n$ gilt
+	\[
+		\binom{n}{k} = \binom{n-1}{k-1} + \binom{n-1}{k}.
+	\]
+	Das bedeutet, dass die Binomialkoeffizienten im so genannten Pascalschen Dreieck angeordnet werden können. \index{Pascalsches Dreieck}
+	
+	\begin{center}
+			\begin{tabular}{ccccccccc}
+			               &                &                &                & $\binom{0}{0}$ &                &                &                &  \\
+			               &                &                & $\binom{1}{0}$ &                & $\binom{1}{1}$ &                &                &  \\
+			               &                & $\binom{2}{0}$ &                & $\binom{2}{1}$ &                & $\binom{2}{2}$ &                &  \\
+			               & $\binom{3}{0}$ &                & $\binom{3}{1}$ &                & $\binom{3}{2}$ &                & $\binom{3}{3}$ &  \\
+			$\binom{4}{0}$ &                & $\binom{4}{1}$ &                & $\binom{4}{2}$ &                & $\binom{4}{3}$ &                & $\binom{4}{4}$
+		\end{tabular} \hspace{1cm}
+		\begin{tabular}{ccccccccc}
+			  &   &   &   & 1 &   &   &   &  \\
+			  &   &   & 1 &   & 1 &   &   &  \\
+			  &   & 1 &   & 2 &   & 1 &   &  \\
+			  & 1 &   & 3 &   & 3 &   & 1 &  \\
+			1 &   & 4 &   & 6 &   & 4 &   & 1
+		\end{tabular} 
+	\end{center}
+	
+\end{lemma}
+
+\begin{beweis}
+	Ist $k = n$, so gilt
+	\[
+		\binom{n}{n} = \frac{n!}{n! 0!} = \frac{n!}{n!} = 1 \quad \text{und} \quad \binom{n-1}{n-1} + \binom{n-1}{n} = 1 + 0 = 1.
+	\]
+	In diesem Fall gilt die Formel also.
+	
+	Sei nun $1 \leq k < n$.
+	Dann gilt
+	\begin{align*}
+		\binom{n-1}{k-1} + \binom{n-1}{k} &= \frac{(n-1)!}{(k-1)!(n-k)!} + \frac{(n-1)!}{k!(n-1-k)!} \\
+		&= \frac{k(n-1)! + (n-k)(n-1)!}{k!(n-k)!} = \frac{n(n-1)!}{k!(n-k)!} = \frac{n!}{k!(n-k)!} = \binom{n}{k}. \qedhere
+	\end{align*}
+\end{beweis}
+
+Frage: War dies in Induktionsbeweis?
+
+\begin{satz}[Binomische Formel]
+	\label{satz:1.14}
+	Für alle $x,y \in \RR$ und $n \in \NN_0$ gilt
+	\[
+		(x+y)^n = \sum_{k=0}^{n} \binom{n}{k} x^k y^{n-k}.
+	\]
+\end{satz}
+
+\begin{beweis}[(vollständige Induktion)]
+	\mbox{} \\[-.9cm]
+	\begin{description}
+		\item[I.A.:] Sei $n=0$.
+		Dann gilt $(x+y)^0 = 1$ und $\sum_{k=0}^{0} \binom{0}{k} x^k y^{0-k} = \binom{0}{0} x^0 y^0 = 1$.
+		\item[I.S.:] Die Formel sei wahr für ein $n \geq 0$.
+		Dann folgt
+		\begin{align*}
+			(x+y)^{n+1} &\stack{}{=} (x+y)^n (x+y) \stackrel{\text{Ann.}}{=} \enb{\sum_{k=0}^{n} \binom{n}{k} x^k y^{n-k}}(x+y) \\
+			&\stack{}{=} \sum_{k=0}^{n} \binom{n}{k} x^{k+1}y^{n-k} + \sum_{k=0}^{n} x^k y^{n+1-k} \\
+			&\stack{}{=} \sum_{k=1}^{n+1} \binom{n}{k-1} x^{k}y^{n-(k-1)} + \sum_{k=0}^{n} x^k y^{n+1-k} \\
+			&\stack{}{=} \binom{n}{n} x^{n+1} y^0 + \sum_{k=1}^{n} \benb{\binom{n}{k-1} + \binom{n}{k}} x^k y^{n+1-k} + \binom{n}{0} x^0 y^{n+1} \\
+			&\stack{\text{\ref{lemma:I.1.13}}}{=} \binom{n+1}{n+1} x^{n+1} y^0 + \sum_{k=1}^{n} \binom{n+1}{k} x^k y^{n+1-k} + \binom{n+1}{0} x^0 y^{n+1} \\
+			&\stack{}{=} \sum_{k=0}^{n+1} \binom{n+1}{k} x^k y^{n+1-k},
+		\end{align*}
+		also gilt die Formel für $n+1$. \qedhere
+	\end{description}
+	\qedhere
+\end{beweis}
+
+\newpage
