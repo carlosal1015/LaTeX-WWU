@@ -133,7 +133,7 @@ Beachte: Nach \autoref{lemma:11.1} sind zwei Elemente $v_1+U, v_2 +U \in V \diag
 \begin{satz}[Homomorphiesatz]
 	\label{satz:11.6}
 	Sei $U$ ein Untervektorraum des $K$-Vektorraums $V$ und sei $F \colon V \rightarrow W$ linear.
-	Dann sind äquivalent:
+	Dann sind äquivalent: \index{Homomorphiesatz}
 	\begin{enumerate}[(i)]
 		\item Es existiert eine eindeutig bestimmte lineare Abbildung $\wt{F} \colon V \diagup U \rightarrow W$ mit $F = \wt{F} \circ q$
 		\item Es gilt $U \subseteq \Kern(F)$.
@@ -170,3 +170,103 @@ Beachte: Nach \autoref{lemma:11.1} sind zwei Elemente $v_1+U, v_2 +U \in V \diag
 	\]
 	also ist $\wt{F}$ injektiv. \qedhere
 \end{beweis}
+
+\begin{bemerkung}
+	\label{bem:11.7}
+	Im Allgemeinen gilt $\Kern(\wt{F}) = \Kern(F) \diagup U \subseteq V \diagup U$, wenn $F \colon V \rightarrow W$ linearen mit $U \subseteq \Kern(F)$ und $\wt{F}\colon V \diagup U \rightarrow W$ wie im Satz, denn
+	\[
+		0 = \wt{F}(v+U) \Leftrightarrow 0 = F(v) \Leftrightarrow v \in \Kern(F) \Leftrightarrow v + U \in \Kern(F) \diagup U.
+	\]
+\end{bemerkung}
+
+\begin{korollar}[Isomorphiesatz]
+	\label{kor:11.8}
+	Sei $F\colon V \rightarrow W$ eine surjektive lineare Abbildung zwischen den $K$-Vektorräumen $V$ und $W$.
+	Ist dann $U = \Kern(F)$, so ist $\wt{F} \colon V \diagup U \rightarrow W$ ein Isomorphismus. \index{Isomorphiesatz}
+\end{korollar}
+
+\begin{beweis}
+	Nach \autoref{satz:11.6} ist $\wt{F}$ injektiv, und wegen $\wt{F}(V \diagup U) = F(V) = W$ ist $\wt{F}$ auch surjektiv. \qedhere
+\end{beweis}
+
+\begin{satz}
+	\label{satz:11.9}
+	Sei $V$ ein $K$-Vektorraum mit $\dim(V) = n < \infty$.
+	Ist dann $U \subseteq V$ ein Untervektorraum, so gilt
+	\[
+		\dim(V) = \dim(U) + \dim(V \diagup U)
+	\]
+	Genauer: Ist $\{v_1+U,\dots,v_l + U\}$ eine Basis von $V \diagup U$ und ist $\{u_1,\dots,u_m\}$ eine Basis von $U$, so ist $\{v_1,\dots,v_l,u_1,\dots,u_m\}$ eine Basis von $V$.
+\end{satz}
+
+\begin{beweis}
+	Sei $q \colon V \rightarrow V \diagup U$ die Quotientenabbildung.
+	Dann gilt $\Bild(q) = V \diagup U$ und $\Kern(q) = U$, also liefert die Dimensionsformel:
+	\begin{align*}
+		\dim(V) &= \dim(\Kern(q)) + \dim(\Bild(q)) \\
+		&= \dim(U) + \dim(V\diagup U).
+	\end{align*}
+	\newpage
+	Zum Zusatz: Wegen der Dimensionsformel genügt es zu zeigen, dass $v_1,\dots,v_l,u_1,\dots,u_m$ linear unabhängig sind.
+	Seien dazu $\mu_1,\dots,\mu_l,\lambda_1,\dots,\lambda_m \in K$ mit
+	\[
+		0 = \Underbrace{\sum_{i=1}^{l} \mu_i v_i}{:= v} + \Underbrace{\sum_{j=1}^{m} \lambda_j u_j}{:= u}  = v + u.
+	\]
+	Dann folgt $0 = q(0) = q(v+u) = q(v) = q \enb{\sum_{i=1}^{l} \mu_i v_i} = \sum_{i=1}^{l} \mu_i (v_i+U)$.
+	Da $v_1+U, \dots, v_l+U$ linear unabhängig in $V \diagup U$ sind, folgt $\mu_1,\dots,\mu_l = 0$.
+	Dann folgt $v = 0$ und dann auch $u = 0$, also $\sum_{j=1}^{m} \lambda_j u_j$.
+	Da $u_1,\dots,u_m$ linear unabhängig sind, folgt dann auch $\lambda_1,\dots,\lambda_m = 0$.
+	Also folgt $\mu_1,\dots,\mu_l,\lambda_1,\dots,\lambda_m = 0$. \qedhere
+\end{beweis}
+
+\begin{bemerkung}
+	\label{bem:11.10}
+	Der hier vorgestellte Homomorphiesatz (bzw. Isomorphiesatz) ist ein Prototyp für viele ähnliche Sätze für algebraische Objekte.
+	Es existieren ähnliche Sätze für Gruppen, Ringe, Algebren, etc.
+	Der Beweis ist eigentlich immer gleich, man muss nur aufpassen, was die richtigen \enquote{Unterräume} in den jeweiligen Situationen sind.
+	Im Fall einer Gruppe $G$ sind dies \Index{Normalteiler} -- das sind Untergruppen $N \subseteq G$ mit $gN = Ng$ für alle $g \in G$.
+	Im Fall eines Rings $R$ sind dies \textbf{Ideale} -- das sind Unterringe $I \subseteq R$ mit $aI, Ia \in I$ für alle $a \in R$. \index{Ideal}
+\end{bemerkung}
+
+\begin{definition}[Sequenzen]
+	\label{def:11.11}
+	Für alle $n \in \ZZ$ sei $V_n$ ein $K$-Vektorraum und sei $d_n \colon V_n \rightarrow V_{n-1}$ eine lineare Abbildung, sodass $d_{n-1} \circ d_n = 0$ für alle $n \in \NN$.
+	Dann heißt
+	\[
+		\dots V_n \xrightarrow{d_n} V_{n-1} \xrightarrow{d_{n-1}} V_{n-2} \xrightarrow{d_{n-2}} V_{n-3} \dots
+	\]
+	eine \Index{Sequenz} (bzw. \Index{Kette}) von $K$-Vektorräumen.
+	Eine Sequenz heißt \textbf{exakt}, wenn für alle $n \in \NN$ gilt: \index{Sequenz!exakt}
+	\[
+		\Bild(d_n) = \Kern(d_{n-1}).
+	\]
+	In diesem Fall induziert jedes $d_n$ einen Isomorphismus
+	\begin{align*}
+		\wt{d}_n \colon V_n \diagup \Kern(d_n) \xrightarrow{\simeq} \Bild(d_n)
+	\end{align*}
+	bzw.
+	\begin{align*}
+		\wt{d}_n \colon V_n \diagup \Kern(d_{n+1}) \xrightarrow{\simeq} \Bild(d_{n-1}).
+	\end{align*}
+	Für jede Sequenz gilt $\Bild(d_n) \subseteq \Kern(d_{n-1})$, da $d_{n-1} \circ d_n = 0$, und die Sequenz ist genau dann exakt, wenn die Quotientenräume
+	\[
+		H_n := \Kern(d_{n-1}) \diagup \Bild(d_n)
+	\]
+	alle trivial sind.
+	Man nennt $H_n$ die $n$-te \Index{Homologie} der Sequenz $(V_n,d_n)$.
+\end{definition}
+
+Solche Sequenzen spielen eine ganz wichtige Rolle in der modernen Mathematik, insbesondere in der algebraischen Topologie, wo man etwa jedem topologischen Raum auf bestimmte Weise solche Sequenzen zuordnet, und die Homologien dieser Ketten dann wichtige Invarianten der topologischen Räume liefern.
+Ist zum Beispiel $H_n(X) \neq H_n(Y)$ für zwei topologische Räume, so sind $X$ und $Y$ nicht homöomorph.
+
+Wichtiger Spezialfall:
+Eine \textbf{kurze Sequenz} ist eine Sequenz der Form \index{Sequenz!kurz}
+\[
+	0 \rightarrow U \xrightarrow{\varphi} V \xrightarrow{\psi} W \rightarrow 0,
+\]
+das heißt $\varphi, \psi$ sind linear mit $\psi \circ \phi = 0$.
+Eine kurze Sequenz ist exakt, falls $\Kern(\varphi) = \setzero, \Bild(\Phi) = \Kern(\Psi), \Bild(\Psi) = W$.
+Wir erhalten dann mit dem Isomorphiesatz via $\varphi \colon U \rightarrow \varphi(U)$, da $\varphi$ injektiv und $\psi$ surjektiv ist:
+\[
+	U \simeq \varphi(U) \quad \text{und} \quad V \diagup \varphi(U) \xrightarrow[\simeq]{\wt{\varphi}} W.
+\]
