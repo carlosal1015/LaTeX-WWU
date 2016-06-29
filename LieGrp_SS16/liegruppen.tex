@@ -696,11 +696,11 @@ Wir wissen weiter, dass $I_{\max}$ offen in $\mathbb{R}$ ist.
     \end{enumerate}
 \end{beweis}
 
-\begin{korollar}[label=lem:133]
-    Seien $\tilde{G}$, $G$ zusammenhängende Liegruppen. 
+\begin{korollar}[label=lem:133,{name=[{Kern einer Überlagerung ist diskrete Untergruppe des Zentrums}]}]
+    Seien $\widetilde{G}$, $G$ zusammenhängende Liegruppen. 
     \begin{enumerate}[1)]
-        \item Ist $\Phi \colon \tilde{G} \to G$ eine Überlagerung von Liegruppen, so ist $\tilde{\Gamma} = \ker \Phi$ eine diskrete Untergruppe von $Z(G)$.\marginnote{Zentrum von $\tilde{G}$}
-        \item Ist $\tilde{\Gamma}$ eine diskrete Untergruppe von $Z(\tilde{G})$, so ist $G \coloneqq \sfrac{\tilde{G}}{\tilde{\Gamma}}$ eine Liegruppe und $\Phi \colon \tilde{G} \to G$, $\tilde{g} \mapsto [\tilde{g}]$ eine Überlagerung.
+        \item Ist $\Phi \colon \widetilde{G} \to G$ eine Überlagerung von Liegruppen, so ist $\widetilde{\Gamma} = \ker \Phi$ eine diskrete Untergruppe von $Z(G)$.\marginnote{Zentrum von $\widetilde{G}$}
+        \item Ist $\widetilde{\Gamma}$ eine diskrete Untergruppe von $Z(\widetilde{G})$, so ist $G \coloneqq \sfrac{\widetilde{G}}{\widetilde{\Gamma}}$ eine Liegruppe und $\Phi \colon \widetilde{G} \to G$, $\widetilde{g} \mapsto [\widetilde{g}]$ eine Überlagerung.
     \end{enumerate}
 \end{korollar}
 \begin{beweis}
@@ -738,7 +738,7 @@ Es gilt $\pi_1(\SO(n))= \mathbb{Z}_2$.
 Die universelle Überlagerung ist $\mathrm{Spin}(n)$.
 Für $n\ge 2$ $\pi \enbrace*{\SU(n)} = \set*{e}$ und $\SU(2) = S^3$.
 
-\begin{lemma}[label=lem:134]
+\begin{lemma}[label=lem:134,{name=[{Liegruppenhomomorphismus aus Liealgebrenhomomorphismus wenn einfach zusammenhängend}]}]
 	Seien $H,G$ zusammenhängende Liegruppen.
 	Ist $H$ einfach zusammenhängend und $\psi \colon \Tmap_e H \to \Tmap_e G$ ein Liealgebrenhomomorphismus, so existiert ein eindeutiger Liegruppenhomomorphismus $\Phi \colon H \to G$ mit $(\mathd \Phi)_e = \psi$.
 \end{lemma}
@@ -768,7 +768,7 @@ So kann man zum Beispiel den durch die Identität gegeben Liealgebrenisomorphism
 Dann ist die induzierte Abbildung $\tilde{\Phi} \colon \tilde{H} \to \tilde{H}$ injektiv, aber $\pi \tilde{H} \to H$ muss nicht injektiv sein.
 Ein konkretes Beispiel wäre die universelle Überlagerung von $\SL(n,\mathbb{R})$.
 
-\begin{satz}
+\begin{satz}[{name=[{Liegruppen-Liealgebren-Zusammenhang im einfach zusammenhängenden Fall}]}]
 	Es gilt
 	\begin{enumerate}[1)]
 		\item Zwei zusammenhängende, einfach zusammenhängenden Liegruppen mit isomorphen Liealgebren sind isomorph.
