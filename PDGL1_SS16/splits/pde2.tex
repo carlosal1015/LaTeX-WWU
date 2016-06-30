@@ -13,7 +13,7 @@
 
 \begin{bemerkung}[Eigenschaften von $\varepsilon$-Glättungen]
 	\begin{enumerate}[1)]
-		\item $f_{\varepsilon} \in C^{\infty}(\Omega _{\varepsilon})$ mit 
+		\item $f_{\varepsilon} \in C^{\infty}(\Omega _{\varepsilon})$ mit \\
 		$D^{\alpha}f _{\varepsilon}(x)= \int_{\Omega}^{}D^{\alpha} \eta_{\varepsilon}(x-y)f(y) \,\mathrm{d}y$ für beliebige Multiindizes $\alpha \in \mathbb{N}_0^n$.
 		\item $f_{\varepsilon} \to f$ fast überall in $\Omega$.
 		\item $f_{\varepsilon} \to f$ in $L^1_{\text{loc}}(\Omega)$
@@ -45,7 +45,7 @@
 		\underset{=u(x_0)}{\underbrace{\fint_{\partial B_r(x_0)}^{}u(y) \,\mathrm{d}S(y)}} \right) \,\mathrm{d}r \\
 		& \stackrel{\substack{\text{Mittelwert-} \\ \text{Eigenschaft}}}{=} \int_{0}^{\varepsilon}u(x_0) \cdot \int_{\partial B_r(x_0)}^{} \eta_{\varepsilon}(x_0-y)
 		\,\mathrm{d}S(y) \,\mathrm{d}r \\
-		&\stackrel{\hphantom{\substack{\text{Mittelwert-} \\ \text{Eigenschaft}}}}{=} 
+		&\stackrel{\hphantom{\substack{\text{Mittelwert-} \\ \text{Eigenschaft}}}}{=} u(x_0)
 		\underset{=1}{\underbrace{\int_{B_{\varepsilon}(x_0)}^{} \eta_{\varepsilon}(x_0-x) \,\mathrm{d}x}} \\
 		&\stackrel{\hphantom{\substack{\text{Mittelwert-} \\ \text{Eigenschaft}}}}{=} u(x_0)
 	\end{align*}
@@ -117,7 +117,7 @@ Eine einfache Folgerung ist nun, dass Harmonizität unter gleichmäßiger Konver
 		&\stackrel{\hphantom{x_0 \in V}}{\leq} c(V) \varepsilon
 	\end{align*}
 	Da $(u_k(x_0))_{k \in \mathbb{N}}$ nach Voraussetzung eine Cauchy-Folge ist folgt, dass $(u_k)$ eine Cauchy-Folge bezüglich der Supremumsnorm auf $V$ ist. 
-	Damit ist sie gleichmäßig konvergent auf $V$. Nach Korollar 2.12 ihr Limes eine harmonische Funktion. \\
+	Damit ist sie gleichmäßig konvergent auf $V$. Nach Korollar 2.12 ist ihr Limes eine harmonische Funktion. \\
 	Wähle $V = B_r(x_0) \subset \subset \Omega$, dann folgt
 	\begin{equation}
 		u_k(x_0) = \fint_{B_r(x_0)}^{}u_k \,\mathrm{d}x 
@@ -168,5 +168,5 @@ Eine einfache Folgerung ist nun, dass Harmonizität unter gleichmäßiger Konver
 	fast überall in $\Omega$. Wegen der Absolutstetigkeit der Integrale ist $\tilde u$ stetig und erfüllt die Mittelwerteigenschaft (auf Kugeln) überall in $\Omega$.
 	Damit folgt die Harmonizität von $\tilde u$ aus Korollar 2.11.
 \end{beweis}
-Nun werden wir lokale Abschätzungen für höhere Ableitungen harmnoischer Funktionen beweisen.
+Nun werden wir lokale Abschätzungen für höhere Ableitungen harmonischer Funktionen beweisen.
 

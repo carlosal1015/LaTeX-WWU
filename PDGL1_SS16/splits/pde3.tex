@@ -29,7 +29,7 @@
 		\begin{align*}
 			\abs{D_i u(x_0)} & \stackrel{\hphantom{\text{P.I.}}}{=} \abs{ \fint_{B_{\frac{r}{2}}(x_0)}^{} D_iu(x) \,\mathrm{d}x} \\
 			& \stackrel{\hphantom{\text{P.I.}}}{=} \frac{2^n}{\omega_n r^n} \abs{\int_{B_{\frac{r}{2}}(x_0)}^{}D_i u(x) \,\mathrm{d}x} \\
-			& \stackrel{\text{P.I.}}{=} \abs{\int_{ \partial B_{\frac{r}{2}}(x_0)}^{} u \nu_i\,\mathrm{d}S} \\
+			& \stackrel{\text{P.I.}}{=}  \frac{2^n}{\omega_n r^n} \abs{\int_{ \partial B_{\frac{r}{2}}(x_0)}^{} u \nu_i\,\mathrm{d}S} \\
 			& \stackrel{\hphantom{\text{P.I.}}}{\leq} \frac{2^n}{\omega_n r^n} \left( \frac{r}{2} \right)^{n-1}S_n \sup_{\partial B_{\frac{r}{2}}(x_0)}\abs{u} \\
 			& \stackrel{\hphantom{\text{P.I.}}}{=} \frac{2n}{r} \sup_{\partial B_{\frac{r}{2}}(x_0)}\abs{u}
 		\end{align*}
@@ -51,7 +51,7 @@
 		kleinere Kugel abschätzen.
 		So erhalten wir
 		\[
-			\abs{D^{\alpha}(x_0)} \leq  \frac{kn}{r} \sup_{\partial B_{\frac{r}{k}}(x_0)} \abs{D^{\beta}u}
+			\abs{D^{\alpha}u(x_0)} \leq  \frac{kn}{r} \sup_{\partial B_{\frac{r}{k}}(x_0)} \abs{D^{\beta}u}
 		\]
 		für einen Multiindex $\beta$ mit $\beta_j = \alpha_{j-1}$ für ein $j=1,\dots,n$ und $\beta_i = \alpha_i$ für $i \neq j$. Damit gilt $\abs{\beta}= k-1$. \\
 		Nach Induktionsannahme gilt ähnlich wie im Fall $k=1$
@@ -104,7 +104,7 @@
 Für $\Omega \subseteq \mathbb{R}^n$ offen, beschränkt und regulär betrachten wir für gegebene $f,g$ das Poisson-Problem
 \begin{align}
 	- \Delta u &= f \qquad \text{in }\Omega \\
-	u &= g \qquad \text{auf }\Omega
+	u &= g \qquad \text{auf }\partial \Omega
 \end{align}
 
 \subsection{Darstellungsformel für Lösungen der Poissongleichung} 
@@ -133,7 +133,7 @@ Für $\Omega \subseteq \mathbb{R}^n$ offen, beschränkt und regulär betrachten 
 	\end{align*}
 	Wir zeigen $\abs{A _{\varepsilon}}\to 0$ für $\varepsilon \to 0$ mit
 	\begin{equation}
-		\abs{A_{\varepsilon}} \leq c \norm{\Delta^2 h}_{L^{\infty}(B_{\varepsilon}(x))} \int_{B_{\varepsilon}(x)}^{}\Phi(x-y) \,\mathrm{d}y
+		\abs{A_{\varepsilon}} \leq c \norm{\Delta h}_{L^{\infty}(B_{\varepsilon}(x))} \int_{B_{\varepsilon}(x)}^{}\Phi(x-y) \,\mathrm{d}y
 	\end{equation}
 	und mit $\abs{y} \leq \varepsilon$ gilt
 	\begin{align}
