@@ -960,8 +960,8 @@ Betrachten
 		F(u_l)-F(u_r) = \lambda (u_l-u_r) \qquad \text{ auf }C
 	\]
 	an.
-\end{bemerkung} \todo{hier ist was falsch}
-Diese einfache Darstellung wollen wir nun nutzen, um eine schwache Lösung für (2) zu konstruieren, wobei nun
+ 
+Diese einfache Darstellung wollen wir nun nutzen, um die lokale Lösung der Burgers-Gleichung mit Anfangsdaten
 \[
 	g(x) = \begin{cases}
 		1, &\text{ falls }x \leq 0\\
@@ -970,9 +970,10 @@ Diese einfache Darstellung wollen wir nun nutzen, um eine schwache Lösung für 
 	\end{cases}
 \]
 und \[
-	F(u) = \frac{1}{2} u^2.
+	F(u) = \frac{1}{2} u^2
 \]
-Wir wissen bereits, dass für $t>1$ eine klassische Lösung gegeben ist durch
+zu einer globalen schwachen Lösung fortzusetzen. \\
+Idee: Wir wissen bereits, dass für $t \in [0,1)$ eine klassische Lösung gegeben ist durch
 \[
 	u_1(t,x) = \begin{cases}
 		1, &\text{ falls }x \leq t, \,t \in [0,1)\\
@@ -980,27 +981,43 @@ Wir wissen bereits, dass für $t>1$ eine klassische Lösung gegeben ist durch
 		0, &\text{ falls }x \geq  1, \,t \in [0,1)
 		\end{cases}
 \]
-Setze $u_1$ fort durch $u_2$, dass in $t=1$ das AWP (im schwachen Sinne) löst.
+das heißt bis zum Zeitpunkt $t=1$ (welches der früheste Zeitpunkt ist, an dem sich die Charakteristiken schneiden) gibt es keine Probleme, jeder Punkt $(t,x)$ liegt auf einer eindeutig bestimmten Charakteristik und wir ordnen dann den Wert zu, den $g$ auf dieser Charakteristik für $t=0$ annimmt. Für $t=1$ können wir nun ein neues AWP betrachten, genauer suchen wir nach einer schwachen Lösung $u_2$ von $u_t+F(u)_x = 0$ mit Anfangsdaten
 \[
 	u_2(1,x) = \begin{cases}
 		1, &\text{ falls }x \leq 0\\
 		0, &\text{ falls }x \geq 0
 	\end{cases} 
 \]
-Einfache Idee: $u_2$ ist stückweise konstant und spingt entlang einer geeigneten Kurve von $1$ nach $0$. Mit der R-H Sprungbedingung muss gelten:
+Einfache Idee: $u_2$ ist stückweise konstant und spingt entlang einer geeigneten Kurve $C$ von $1$ nach $0$. Mit der R-H Sprungbedingung muss gelten:
 \[
-	F(u_l)- F(u_r) = \frac{1}{2} \stackrel{!}{=} \lambda ( u_l - u_r) = \lambda.
+	F(1)- F(0) = \frac{1}{2} \stackrel{!}{=} \frac{1}{2} ( 1 - 0) = \lambda.
 \]
-Setze also
-\[
-	u_l(t,x) = \begin{cases}
-		1, &\text{ falls }x \leq \frac{t}{2}, \,t \geq 1\\
-		0, &\text{ falls }x > \frac{t}{2}, \,t \geq 1
-	\end{cases}
-\]
+Deshalb muss diese Kurve mit der Sprungbedingung die konstante Steigung $\frac{1}{2}$ haben. In Formeln:
 \[
 	u(t,x) = \begin{cases}
-		u_1(t,x), &\text{ falls }t<1\\
+		u_1(t,x), &\text{ falls }0 \leq t<1\\
 		u_2(t,x), &\text{ falls }t \geq 1
+	\end{cases},
+\]
+wobei
+\[
+	u_1(t,x) = \begin{cases}
+		1, &\text{ falls }x \leq t, \,t \in [0,1)\\
+		\frac{1-x}{1-t} , &\text{ falls }t \leq x \leq 1, \, t \in [0,1) \\
+		0, &\text{ falls }x \geq  1, \,t \in [0,1)
+		\end{cases}
+\]
+\[
+	u_2(t,x) = \begin{cases}
+		1, &\text{ falls }x \leq \frac{t}{2}+ \frac{1}{2}, \,t \geq 1\\
+		0, &\text{ falls }x > \frac{t}{2} + \frac{1}{2}, \,t \geq 1
 	\end{cases}
 \]
+Es gilt dann:
+\[
+	u_2(1,x) = \begin{cases}
+		1, &\text{ falls }x \leq 0\\
+		0, &\text{ falls }x \geq 0
+	\end{cases} 
+\]
+\end{bemerkung}
