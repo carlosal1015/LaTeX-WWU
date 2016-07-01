@@ -14,7 +14,7 @@ Differentialgleichung lösen.
 
 	\item Falls $u(t,x)= \lambda^n u(\lambda^2 t, \lambda x)$ für alle $\lambda > 0$ (mit der speziellen Wahl $\lambda = t^{- \frac{1}{2}}$), so existiert $\tilde v : \mathbb{R}^n \to \mathbb{R}$ mit
 	\[
-		u(t,x) = t^{- \frac{1}{2}} \tilde v ( t^{- \frac{1}{2}}x) \qquad \forall\, t>0, x \in \mathbb{R}^n.
+		u(t,x) = t^{- \frac{n}{2}} \tilde v ( t^{- \frac{1}{2}}x) \qquad \forall\, t>0, x \in \mathbb{R}^n.
 	\]
 	Also
 	\[
@@ -23,7 +23,7 @@ Differentialgleichung lösen.
 	Mit $\lambda = t^{- \frac{1}{2}}$ gilt
 	\begin{align*}
 		u(t,x) &= \lambda^n u(\lambda^2 t, \lambda x) \\
-		&= t^{- \frac{1}{2}} u(t^{-1}t, t^{- \frac{1}{2}} x) \\
+		&= t^{- \frac{n}{2}} u(t^{-1}t, t^{- \frac{1}{2}} x) \\
 		&= t^{- \frac{n}{2}} u(1, t^{- \frac{1}{2}} x) \\
 		&= t^{- \frac{n}{2}} \tilde v(t^{- \frac{1}{2}} x)
 	\end{align*}

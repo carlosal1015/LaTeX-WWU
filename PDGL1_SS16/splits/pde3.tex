@@ -19,7 +19,7 @@
 	\begin{description}
 		\item[Der Fall $k=0$:] Die Behauptung folgt sofort aus der Mittelwerteigenschaft auf Kugeln:
 		\begin{equation}
-			u(x_0) = \frac{1}{r^n \omega_n} \int_{B_r(x_0)}^{}u \,\mathrm{d}
+			u(x_0) = \frac{1}{r^n \omega_n} \int_{B_r(x_0)}^{}u \,\mathrm{d}x
 		\end{equation} 
 		Also 
 		\begin{equation}
@@ -45,7 +45,7 @@
 		Insgesamt folgt die Behauptung mit
 		\begin{equation}
 			\abs{D_iu(x_0)}
-			 = \underset{\frac{2^{n+1}n}{\omega_n}= c(n,1)}{\underbrace{\frac{2n}{r} \frac{\left( \frac{r}{2} \right)^{-n}}{\omega_n}}} \norm{u}_{L^1(B_r(x_0))}
+			 = \underset{\frac{2^{n+1}n}{\omega_n}r^{-n-1}= c(n,1)r^{-n-1}}{\underbrace{\frac{2n}{r} \frac{\left( \frac{r}{2} \right)^{-n}}{\omega_n}}} \norm{u}_{L^1(B_r(x_0))}
 		\end{equation}
 		\item[Der Fall $k \geq 2$:]Ähnlich wie im Fall $k=1$ kann man die Ableitung der Ordnung $k$ durch das Supremum einer Ableitung der Ordnung $k-1$ auf einer
 		kleinere Kugel abschätzen.
@@ -66,7 +66,7 @@
 	Sei $u \in C^2(\mathbb{R}^n)$ harmonisch. Ist $u$ beschränkt, so ist $u$ konstant.
 \end{satz}
 \begin{beweis}
-	Sei $x_0 \in \mathbb{R}^n$ und $r >0$. Wie oben gilt für alle $k > 0$
+	Sei $x_0 \in \mathbb{R}^n$ und $r >0$. Wie oben gilt für alle $r > 0$
 	\begin{align*}
 		\abs{D_iu(x_0)} &\leq c(n,1) \frac{1}{r^{n+1}} \norm{u}_{L^1(B_r(x_0))} \\
 		& \leq \frac{1}{r^{n+1}} \int_{B_r(x_0)}^{} \sup_{\mathbb{R}^n} \abs{u} \,\mathrm{d}x \\
@@ -75,7 +75,7 @@
 	\end{align*}
 	Also gilt für alle $x_0 \in \mathbb{R}^n$ und für alle $i=1,\dots,n$
 	\[
-		\lim_{k \to \infty}\abs{D_iu(x_0)} = 0
+		\lim_{r \to \infty}\abs{D_iu(x_0)} = 0
 	\]
 	Damit gilt 
 	\[

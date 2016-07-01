@@ -252,9 +252,10 @@ Dann gilt
 \end{align*}
 Aus $\Delta u = 0$ in $\mathbb{R}^n$ erhalten wir eine ODE:
 \begin{equation}
-	v''(r) + v'(r)\left( \frac{n-1}{r} \right) = 0  \label{(5)}
+	v''(r) + v'(r)\left( \frac{n-1}{r} \right) = 0  \label{aa}
 \end{equation}
-Wenn $v' \neq 0$, kann man \eqref{(5)} für $v'$ lösen
+Wenn $v' \neq 0$, kann man %\eqref{aa}
+die obige Gleichung für $v'$ lösen
 \begin{align}
 	\frac{v''(r)}{v'(r)} &= \frac{1-n}{r} \\
 	\diffd{}{r}\left( \lg(\abs{v'(r)}) \right) &= \diffd{}{r} \left( (1-n) \lg(r) \right)
@@ -265,7 +266,7 @@ Integration liefert
 \end{equation}
 mit Integrationskonstante $\alpha$.
 \begin{align*}
-	&\hphantom{\Rightarrow} e^{\lg \abs{v'(r)}} = e^{\lg(r^{1-n})+2}, \\
+	&\hphantom{\Rightarrow} e^{\lg \abs{v'(r)}} = e^{\lg(r^{1-n})+\alpha}, \\
 	&\Rightarrow \abs{v'(r)} = e^{\alpha} r^{1-n}, \\
 	&\Rightarrow v'(r) = \beta r^{1-n},
 \end{align*}
@@ -395,7 +396,7 @@ für $u$ harmonisch, wobei
 			\end{align*}
 		\item Es gilt
 		\begin{equation}
-			\varphi(r) = \frac{1}{r^{n-1}S_n} \int_{\partial B_r(x_0)}^{}u(x) \,\mathrm{d}S(x) \stackrel{x=x_0 + r y}{=} \frac{1}{S_n} \int_{\partial B_r(x_0)}^{} u(x_0 + ry) \,\mathrm{d}S(y).
+			\varphi(r) = \frac{1}{r^{n-1}S_n} \int_{\partial B_r(x_0)}^{}u(x) \,\mathrm{d}S(x) \stackrel{x=x_0 + r y}{=} \frac{1}{S_n} \int_{\partial B_r(0)}^{} u(x_0 + ry) \,\mathrm{d}S(y).
 		\end{equation}
 		$u(x_0 + ry)$ ist differenzierbar nach $r$ für alle $y \in \partial B_1(0)$. \\
 		$\diffd{}{r}u(x_0 + ry) =  \nabla u(x_0+ry) \cdot y$ ist integrierbar auf $ \partial B_1(0)$.
@@ -524,7 +525,7 @@ für $u$ harmonisch, wobei
 	\end{enumerate}
 \end{satz}
 \begin{bemerkung}
-	Entsprechend gelten Minimumsprinzipien für subharmonische Funktionen.
+	Entsprechend gelten Minimumsprinzipien für superharmonische Funktionen.
 \end{bemerkung}
 \begin{definition*}
 	Eine Teilmenge $\Omega$ in $\mathbb{R}^n$ heißt zusammenhängend,
@@ -535,7 +536,7 @@ für $u$ harmonisch, wobei
 \begin{bemerkung}
 	Diese Definition ist äquivalent zu: \\
 	\\
-	$\Omega$ und $\emptyset$ sind die beiden einzigen Mengen, die zugleich $\Omega$-offen und $\Omega$-abgeschlossen.
+	$\Omega$ und $\emptyset$ sind die beiden einzigen Mengen, die zugleich $\Omega$-offen und $\Omega$-abgeschlossen sind.
 \end{bemerkung}
 
 \begin{beweis}
@@ -546,7 +547,7 @@ für $u$ harmonisch, wobei
 			\max_{\bar{\Omega}}u > \max_{\partial \Omega} u.
 		\end{equation}
 		($\geq$ ist trivial, da $\partial \Omega \subseteq \bar{\Omega}$). \\
-		Dann gäbe es ein Punkt $x_0 \in \Omega$ mit $u(x_0) = \max_{\bar{\Omega}}u$ auf die Zusammenhangskomponente von $\Omega(x_0)$, wäre also
+		Dann gäbe es ein Punkt $x_0 \in \Omega$ mit $u(x_0) = \max_{\bar{\Omega}}u$ auf der Zusammenhangskomponente von $\Omega(x_0)$, wäre also
 		\begin{align*}
 			\max_{\overline{\Omega(x_0)}}u &= \max_{\bar{\Omega}}u \\
 			&> \max_{\partial \Omega}u \\
@@ -566,7 +567,7 @@ für $u$ harmonisch, wobei
 		\[
 			\Omega_M := \set[x \in \Omega]{u(x)=M}.
 		\]
-		Dann ist $\Omega_M$ offen also findet man für jedes $x_0 \in \Omega_M$ eine offene Kugel $B_r(x_0) \subseteq \Omega_M$ finden. \\
+		Dann ist $\Omega_M$ offen also findet man für jedes $x_0 \in \Omega_M$ eine offene Kugel $B_r(x_0) \subseteq \Omega_M$. \\
 		Für $x_0 \in \Omega_M$ existiert $r>0$, so dass auf $B_r(x_0)$ $u(x) \equiv M$ gilt. 
 		Daraus folgt $B_r(x_0) \subseteq  \Omega_M$ und somit ist $\Omega_M$ offen. \\
 		Da $u$ stetig ist, ist $\Omega_M$ relativ abgeschlossen in $\Omega$. 
@@ -590,7 +591,7 @@ für $u$ harmonisch, wobei
 	Sei $w := u_1 - u_2$. Dann gilt
 	\begin{align}
 		\Delta w &= 0 \qquad \text{in }\Omega, \\
-		w &= 0 \qquad \text{auf }\partial. \Omega
+		w &= 0 \qquad \text{auf }\partial \Omega
 	\end{align}
 	Da $w$ subharmonisch ist, gilt
 	\begin{equation}
@@ -610,7 +611,7 @@ für $u$ harmonisch, wobei
 		\Rightarrow u_1 \equiv u_2.
 	\]
 	\end{beweis}
-Stetig Abhängigkeit von Randbedingungen in der $C^0-Norm$:
+Stetig Abhängigkeit von Randbedingungen in der $C^0$-Norm:
 \begin{align*}
 	\norm{u_1-u_2}_{C^0(\bar{\Omega})} &= \max_{\bar{\Omega}} \abs{u_1-u_2} \\
 	&= \max \set{ \max_{\bar{\Omega}} (u_1-u_2), \max_{\bar{\Omega}}(u_2-u_1) } \\
@@ -645,7 +646,7 @@ Es folgt
 			B_{2r}(x_1) \subset \subset \Omega ,
 		\end{equation}
 		\begin{equation}
-			B_r(x_1) \subseteq B_{2r}(x_1).
+			B_r(x_0) \subseteq B_{2r}(x_1).
 		\end{equation}
 		Es gilt
 		\begin{equation}
@@ -654,7 +655,7 @@ Es folgt
 		Da $u$ harmonisch ist, gilt
 		\begin{align*}
 			u(x_0) = \fint_{B_r(x_0)}^{} u \,\mathrm{d}x &= \frac{1}{\omega_n r^n} \int_{B_r(x_0)}^{}u\,\mathrm{d}x \stackrel{u \geq 0}{=} \frac{2^n}{2^n \omega_n r^n}
-			\int_{B_{2r}(x_0)}^{}u \,\mathrm{d}x \\ &= 2^n \fint_{B_{2r}(x_0)}^{}u \,\mathrm{d}x = 2^n u(x_1),
+			\int_{B_{2r}(x_1)}^{}u \,\mathrm{d}x \\ &= 2^n \fint_{B_{2r}(x_1)}^{}u \,\mathrm{d}x = 2^n u(x_1),
 		\end{align*}
 		wobei die letzte Gleichheit aus der Mittelwerteigenschaft auf $B_{2r}(x_1)$ folgt. Insgesamt gilt somit
 		\[
@@ -662,7 +663,7 @@ Es folgt
 		\]
 		\item[$\underline{\text{Schritt }2:}$] $x,y \in V$. 
 		Da $\bar{V}$ kompakt ist und $V$ zusammenhängend ist, existiert eine \underline{endliche} Überdeckung von $V$ 
-		durch eine Kette von offenen Kugeln $B_j := B_{\frac{k}{2}}(x_j)$ für $j=1,\dots,N$, so dass $B_j \cap B_{j+1} \neq \emptyset$ für $j=1,\dots,N-1$.
+		durch eine Kette von offenen Kugeln $B_j := B_{\frac{r}{2}}(x_j)$ für $j=1,\dots,N$, so dass $B_j \cap B_{j+1} \neq \emptyset$ für $j=1,\dots,N-1$.
 		\begin{equation}
 			\abs{x_j - x_{j+1}} < r \qquad \stackrel{\text{Schritt }1}{\Rightarrow } \qquad u(x_j) \leq 2^n u(x_{j+1}).
 		\end{equation}
@@ -737,7 +738,7 @@ Außerdem sei $b=(b_1,\dots,b_n)$ stetig und beschränkt.
 		\begin{align*}
 			Lu_{\varepsilon}(x) &= Lu(x) + L \varepsilon e^{\lambda x_1} \leq \varepsilon L e^{\lambda x_1} \\ 
 			&= - \varepsilon \lambda^2 a_{11}(x) e^{\lambda x_1} + \varepsilon \lambda b_1(x) e^{\lambda x_1} \\
-			&= e \lambda e^{\lambda x_1} ( - \lambda a_{11}(x)+ b_1(x)).
+			&= \varepsilon \lambda e^{\lambda x_1} ( - \lambda a_{11}(x)+ b_1(x)).
 		\end{align*}
 		Aus \begin{equation}
 			a_{11}(x)= A(x)e_1 \cdot e_1 \geq \alpha \abs{e_1}^2 = \alpha

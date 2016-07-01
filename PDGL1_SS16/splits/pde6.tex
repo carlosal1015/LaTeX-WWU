@@ -188,9 +188,9 @@ Für eine Teilmenge $P \subseteq \mathbb{R}^{n+1}$ definieren wir für $i,j=1,\d
 \label{sub:kalorische_funktionen}
 
 \begin{definition}
-	Sei $\Omega$ eine offene Teilmenge in $\mathbb{R}^n$, $T >0$ und $u \in C^2_1(\Omega_T)$. Man bezeichnet $u$ als kalorisch, falls $\partial_t - \Delta u =0$ in 
-	$\Omega_T$ gilt. Falls ledigleich die Ungleichung $\partial_t - \Delta u \leq 0$ gilt, so nennt man sie subkalorisch und falls $\partial_t - \Delta u \geq 0$ gilt, 
-	superkalorisch.
+	Sei $\Omega$ eine offene Teilmenge in $\mathbb{R}^n$, $T >0$ und $u \in C^2_1(\Omega_T)$. Man bezeichnet $u$ als kalorisch, falls $\partial_t u - \Delta u =0$ in 
+	$\Omega_T$ gilt. Falls ledigleich die Ungleichung $\partial_t u - \Delta u \leq 0$ gilt, so nennt man sie subkalorisch und falls $\partial_t u - \Delta u \geq 0$
+	gilt, superkalorisch.
 \end{definition}
 
 \begin{bemerkung}[Invarianzen der Lösungseigenschaften]
@@ -199,7 +199,7 @@ Für eine Teilmenge $P \subseteq \mathbb{R}^{n+1}$ definieren wir für $i,j=1,\d
 	\begin{enumerate}[(i)]
 		\item Translationen in Zeit und Ort für $\eta >0$, $x_0 \in \mathbb{R}^n$.
 		\[
-			u_{0,x_0}(t,x): = u(t,x-x_0) \qquad , \qquad u_{(\eta,0)}(t,x) := u(t-\eta,x).
+			u_{(0,x_0)}(t,x): = u(t,x-x_0) \qquad , \qquad u_{(\eta,0)}(t,x) := u(t-\eta,x).
 		\]
 		\item Rotationen bezüglich der Raumvariablen für $R \in \text{SO}(n)$
 		\[
@@ -207,9 +207,9 @@ Für eine Teilmenge $P \subseteq \mathbb{R}^{n+1}$ definieren wir für $i,j=1,\d
 		\]
 		\item Inhomogene Dilatation für $\lambda >0$.
 		\[
-			u_{\lambda}(t,x) := \lambda^n u ( \lambda^2, \lambda x)
+			u_{\lambda}(t,x) := \lambda^n u ( \lambda^2 t, \lambda x)
 		\]
-		(Das ist auch wahrt ohne $\lambda^n$. mit der angegebenen Skalierung bleibt das Integral
+		(Das ist auch wahr ohne $\lambda^n$. mit der angegebenen Skalierung bleibt das Integral
 		\[
 			\int_{\mathbb{R}^n}^{} u _{\lambda}(t,x) \,\mathrm{d}x = \int_{\mathbb{R}^n}^{} u(\lambda^2t,y) \,\mathrm{d}y
 		\] erhalten, zum skalierten Zeitpunkt.)
@@ -223,7 +223,7 @@ Für eine Teilmenge $P \subseteq \mathbb{R}^{n+1}$ definieren wir für $i,j=1,\d
 		%% noch nicht fertig.
 		\[
 			\int_{\Omega}^{}f \,\mathrm{d}x = \sum^{n}_{i=1} 
-		\]
+		\] \todo{fehlend}
 		$u \in C^2(\Omega) \cap C^0(\bar{\Omega})$
 	\end{enumerate}
 \end{beispiele}
