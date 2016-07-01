@@ -2588,6 +2588,164 @@ Für $p \in \Pinfty(A)$ gilt $K_0(\varphi) \enbrace*{\benbrace*{p}_0} = \benbrac
 		Damit ist $p \sim_u s_J(p)$ und somit auch $\benbrace*{p}_0 = \benbrace*{s_J(p)} $, also $x=0$ und $K_0(\iota)$ ist injektiv.\qedhere
 	\end{enumerate}
 \end{beweis}
+
+\begin{korollar}[{name=[{$K_0$ von der direkten Summe}]}]
+	Für $C^*$-Algebren $A,B$ gilt $K_0(A \oplus B) = K_0(A) \oplus K_0(B)$.
+\end{korollar}
+\begin{beweis}
+	Betrachte \(
+		\begin{tikzcd}[cramped,sep=2em]
+			0 \rar & A \rar["\iota_A"] & A \oplus B \rar["\pi_B"] & B \lar[bend right,"\iota_B"'] \rar & 0
+		\end{tikzcd}
+	\).
+	Wir erhalten folgendes Diagramm in $K$-Theorie
+	\[
+		\begin{tikzcd}
+			0 \rar & K_0(A)\dar[equal]  \rar & K_0(A \oplus B) \rar & K_0(B) \dar[equal] \rar & 0 \\
+			0 \rar & K_0(A) \rar & K_0(A) \oplus K_0(B) \uar["K_0(\iota_A) + K_0(\iota_B)","\cong"'] \rar & K_0(B) \rar & 0
+		\end{tikzcd}
+	\]
+	Den Isomorphismus erhalten wir durch das Fünfer-Lemma.
+\end{beweis}
+
+\begin{beispiel}
+	\begin{enumerate}[(i)]
+		\item Betrachte \(
+			\begin{tikzcd}
+				0 \rar & A \rar & A^+ \rar & \mathbb{C} \lar[bend right] \rar & 0
+			\end{tikzcd}
+		\). Dann erhalten wir auch
+		\[
+			\begin{tikzcd}
+				0 \rar & K_0(A) \rar & K_0(A^+) \rar & K_0(\mathbb{C}) \rar \lar[bend right] & 0
+			\end{tikzcd}
+		\]
+		Damit ist $K_0(A^+) \cong K_0(A) \oplus K_0(\mathbb{C})$.
+		\item 
+		\[
+			\begin{tikzcd}[column sep=large,row sep =small]
+				K_0\enbrace*{C_0 \enbrace*{(0,1)}} \rar & K_0 \enbrace*{C \enbrace*{[0,1]}} \rar["K_0(\ev_0 \oplus \ev_1)"] & K_0(\mathbb{C} \oplus \mathbb{C}) \\
+				& K_0(\mathbb{C}) \uar[phantom,sloped,"\cong"'] & K_0(\mathbb{C}) \oplus K_0(\mathbb{C}) \uar[phantom,sloped,"\cong"']\\
+				& \mathbb{Z}  \uar[phantom,sloped,"\cong"']& \mathbb{Z}\oplus \mathbb{Z} \uar[phantom,sloped,"\cong"']
+			\end{tikzcd}
+		\]
+		\item Betrachte den Hilbertraum $\mathcal{H} = \ell^2(\mathbb{N})$.
+		\[
+			\begin{tikzcd}[row sep=small]
+				K_0(\mathcal{K}) \rar["K_0(\iota)"] & K_0(\mathcal{B}(\mathcal{H})) \rar & K_0 \enbrace*{\sfrac{\mathcal{B}(\mathcal{H})}{\mathcal{K}}} \\
+				\mathbb{Z} \uar[phantom,sloped,"\cong"'] & 0 \uar[phantom,sloped,"="']
+			\end{tikzcd}
+		\]
+		Also ist $K_0(\iota)$ im Allgemeinen nicht injektiv.
+	\end{enumerate}
+\end{beispiel}
+
+\begin{proposition}
+	Sei $A$ eine $C^*$-Algebra und $\iota_{nA} \colon A \to M_n(A)$ die Einbettung, die $a \in A$ auf die Matrix mit $a_{11}= a$ und $a_{ij}=0$ sonst abbildet.
+	Dann ist $K_0(\iota_{nA}) \colon K_0(A) \to K_0(M_n(A))$ ein Isomorphismus.
+\end{proposition}
+\begin{beweis}
+	Betrachte 
+	\[
+		\begin{tikzcd}
+			0 \rar & K_0(A) \rar \dar["K_0(\iota_{nA})"] & K_0(A^+) \rar \dar["K_0(\tilde{\iota}_{nA})"] & K_0(\mathbb{C}) \rar \dar["K_0(\iota_{n \mathbb{C}})"] & 0 \\
+			0 \rar & K_0(M_n(A)) \rar & K_0(M_n(A^+)) \rar & K_0(M_n) \rar & 0
+		\end{tikzcd}
+	\]
+	Nach dem Fünfer-Lemma genügt es also die Proposition für unitale $C^*$-Algebren zu beweisen.
+	Für $k \in \mathbb{N}$ wähle $\gamma_{n,k} \colon M_k(M_n(A)) \xrightarrow{\cong} M_{kn}(A)$.
+	Dies liefert uns $\gamma_{n,\infty} \colon \Pinfty(M_n(A)) \to \Pinfty(A)$, wobei $\gamma_{n,\infty} \big|_{\kernedP_k(M_n(A))} \coloneqq \gamma_{n,k}\big|_{\kernedP(M_n(A))}$.
+	Wir erhalten
+	\mapdef{\gamma_n \colon \Pinfty(M_n(A))}{K_0(A)}{p}{\benbrace[\big]{\gamma_{n,\infty}(p)}}{}
+	$\leadsto$ universelle Eigenschaft für $K_0(\cdot)$. 
+	Damit erhält man $\gamma \colon K_0(M_n(A)) \to K_0(A)$.
+	Überprüfe nun, dass $\gamma$ und $K_0(\iota_{nA})$ zueinander invers sind.
+\end{beweis}
+
+Wir haben in \autoref{prop:68} gesehen: Für $p,q \in \mathcal{P}(A)$ gilt $\norm*{p-q} < \sfrac{1}{2} \implies p \sim_h q$.\marginnote{tatsächlich genügt $\norm*{p-q}<1$}
+Wir wollen nun einige ähnliche Aussagen beweisen:
+
+\begin{lemma}[label=lem:712]
+	Sei $A$ eine $C^*$-Algebra.
+	\begin{enumerate}[(i)]
+		\item Falls $a \in A_\sa$ mit $\delta \coloneqq \norm*{a-a^2}< \sfrac{1}{4}$, so existiert $p \in \mathcal{P}(A)$ mit $\norm*{a-p} \le 2 \cdot \delta$.
+		\item Falls $p,q \in \mathcal{P}(A)$ und $x \in A$ mit $\norm*{x^*x -p}, \norm*{xx^* -q} < \sfrac{1}{4}$, so gilt $p \sim_{\MvN} q$.\marginnote{tatsächlich reicht $< \sfrac{1}{2}$}
+	\end{enumerate}
+\end{lemma}
+\begin{beweis}
+	\begin{enumerate}[(i)]
+		\item Nach dem Spektralsatz ist $\sigma(a) \subset \set*{t \in \mathbb{R} \given \abs*{t-t^2} \le \delta } \subset \benbrace*{-2 \delta, 2 \delta} \cup \benbrace*{1- 2 \delta, 1+ 2 \delta}$.
+		Da $\delta < \sfrac{1}{4}$  ist, ist $\sfrac{1}{2}$ nicht im Spektrum enthalten. Also definiert 
+		\[
+			f(t) \coloneqq \begin{cases}
+				0 &\text{ falls }t \le 2 \delta\\
+				1 &\text{ falls } t \ge 1- 2 \delta
+			\end{cases}
+		\]
+		eine stetige Funktion auf $\sigma(a)$.
+		Dann ist $p \coloneqq f(a)$ eine Projektion, für die wie gewünscht $\norm*{p-a} = \norm*{{\id_{\sigma(a)}} -f}_{\sigma(a)} \le 2 \delta$ gilt.
+		\item Setze $\delta \coloneqq \sfrac{1}{2} \max \set*{\norm*{x^*x -p}, \norm*{xx^* -q}} < \sfrac{1}{8}$.
+		Überprüfe, dass $\sigma(x^*), \sigma(xx^*) \subset \benbrace*{-2 \delta, 2 \delta} \cup \benbrace*{1- 2 \delta, 1+2\delta}$.
+		Sei $f$ wie in (i).
+		Definiere Projektionen $p_0 \coloneqq f(x^*x)$, $q_0 \coloneqq f(xx^*)$.
+		Dann gilt $\norm*{p-p_0} \le 3 \delta< \sfrac{3}{8} < \sfrac{1}{2}$ und somit $p \sim_{\MvN} p_0$ und ebenso $q \sim_{\MvN} q_0$.
+		Definiere nun 
+		\[
+			g(t) \coloneqq \begin{cases}
+				0 &\text{ falls }t \le 2 \delta\\
+				t^{-\sfrac{1}{2}} &\text{ falls } t \ge 1 - 2 \delta
+			\end{cases}
+		\]
+		Dann ist $g$ stetig auf $\sigma(x^*x)$, $\sigma(xx^*)$ und es gilt $t g(t)^2 = f(t)$.
+		Setze $v \coloneqq x g(x^*x)$.
+		Dann gilt 
+		\[
+			v^* v = g(x^*x) x^*x g(x^*x) = f(x^*x) = p_0 \quad \text{und} \quad  vv^* = x g(x^*x)^2 x^* = g(xx^*)^2 xx^* = f(xx^*) = q_0
+		\]
+		Damit ist $p \sim_{\MvN} p_0 \sim_{\MvN} q_0 \sim_{\MvN} f$.\qedhere
+	\end{enumerate}
+\end{beweis}
+
+\begin{satz}
+	Sei 
+	\[
+		\begin{tikzcd}[sep=3em]
+			A_1 \rar & \ldots \rar & A_n \rar["\varphi_{n,n+1}"'] \ar[rrr,bend left=20,"\varphi_{n,\infty}"] & A_{n+1} \rar & \ldots  \rar & A \coloneqq \Dlim (A_n,\varphi_{n,n+1}) 
+		\end{tikzcd}
+	\]
+	ein induktives System von $C^*$-Algebren mit Limes $A$.
+	Dann gilt
+	\[
+		K_0(A) = K_0(\Dlim A_n) \cong \Dlim K_0(A_n)
+	\]
+	Mit anderen Worten: $K_0(\cdot)$ ist stetig.
+\end{satz}
+\begin{beweis}
+	\begin{enumerate}[(i)]
+		\item Es gilt $K_0(A) = \bigcup_{n=1}^\infty K_0(\varphi_{n,\infty}) \enbrace*{K_0(A_n)}$:
+		Die Inklusion \enquote{$\supset$} ist trivial.
+		Für die andere sei $x \in K_0(A)$.
+		Dann existieren $k \in \mathbb{N}$, $p \in \kernedP_k(A^+)$ mit $x = \benbrace*{p}_0 - \benbrace*{s(p)}_0$.
+		Das induktive System induziert
+		\[
+			\begin{tikzcd}
+				M_k(A_1^+) \rar & \ldots \rar & M_k(A_n^+) \rar & \ldots  \rar & M_k{A^+}
+			\end{tikzcd}
+		\]
+		Es gibt also $n_0 \in \mathbb{N}$, $a \in M_k(A^+_{n_0})_\sa$ mit $\norm*{{\varphi_{n_0, \infty}^+}^\ssbrace{k}(a)  -p } < \sfrac{1}{8}$ und $\norm*{{\varphi_{n_0, \infty}^+}^\ssbrace{k}(a -a^2)} < \sfrac{1}{8}$.
+		Daraus erhalten wir die Existenz von $n_1 \in \mathbb{N}$, $\overline{a} \in M_k \enbrace*{A_{n_1}^+}_\sa^1$ mit 
+		\[
+			\norm*{\varphi_{n_1,\infty}(\overline{a}) -p} < \sfrac{1}{8} \qquad \norm*{\overline{a} - \overline{a}^2} < \sfrac{1}{8}
+		\]
+		Mit \autoref{lem:712} folgt, dass $p \in $ existiert mit.
+		Also gilt $\norm*{p - \varphi_{n_1,\infty}(q)} < \sfrac{1}{2}$ und somit $p \sim_0 \varphi_{n_1,\infty}(q)$.
+		Damit können wir $x$ auch schreiben als
+		\begin{align}
+			x = \benbrace*{p}_0 - \benbrace*{s(p)}_0 &= \benbrace*{\varphi_{n_1,\infty}(q)}_0 - \benbrace*{s_A \enbrace*{ \varphi_{n_1,\infty}(q)}}_0 \\
+			&= K_0 \enbrace*{\varphi_{n_1,\infty}} \enbrace*{\benbrace*{q}_0 - \benbrace[\big]{s_{A_{n_1}}(q)}_0} \in K_0(\varphi_{n_1,\infty}) \enbrace*{K_0(A_{n_1})}
+		\end{align}
+	\end{enumerate}
+\end{beweis}
 % section 7 (end)
 
 
