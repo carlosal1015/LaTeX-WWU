@@ -10,10 +10,10 @@ Wir betrachten das Anfangswertproblem
 \]
 
 \begin{korollar}[Eindeutigkeit]
-	Sei $\Omega$ eine beschränkte, offene Teilmenge des $\mathbb{R}^n$, $T>0$ und \\ $u,v \in C_1^2(\Omega_T) \cap C^0(\Omega_T)$ sodass
+	Sei $\Omega$ eine beschränkte, offene Teilmenge des $\mathbb{R}^n$, $T>0$ und $u,v \in C_1^2(\Omega_T) \cap C^0(\Omega_T)$ sodass
 	\[
 		\begin{cases}
-			u_t- \Delta u = v_t - \Delta \Delta v, &\text{ in }\Omega_T\\
+			u_t- \Delta u = v_t - \Delta v, &\text{ in }\Omega_T\\
 			u = v ,&\text{ auf } \partial_p \Omega_T
 		\end{cases}
 	\]
@@ -117,13 +117,13 @@ aufgeteilt mit $u = u_1 + u_2$ in
 	\begin{align*}
 		\abs{u(t,x)-g(x_0)} &= \abs{\int_{\mathbb{R}^n}^{} \abs{\psi(t,x-y)(g(y)-g(x_0))} \,\mathrm{d}y} \\
 		&\leq \int_{\mathbb{R}^n}^{} \abs{\psi(t,x-y)(g(y)-g(x_0))} \,\mathrm{d}y \\
-		&\leq \int_{B_{\varepsilon}(x_0)}^{} \psi(t,x-y) \abs{g(y)-g(x_0)} \,\mathrm{d}y \\
+		&\leq \int_{B_{\delta}(x_0)}^{} \psi(t,x-y) \abs{g(y)-g(x_0)} \,\mathrm{d}y \\
 		& \qquad \qquad + \int_{\mathbb{R}^n \setminus B_{\delta }(x_0)}^{} \abs{ \psi(t,x-y) (g(y)-g(x_0))} \,\mathrm{d}y \\
 		& \leq \varepsilon \underset{=1}{\underbrace{\int_{\mathbb{R}^n}^{} \psi(t,x-y) \,\mathrm{d}y}} 
 		+ \int_{\mathbb{R}^n \setminus B_{\delta }(x_0)}^{} \psi(t,x-y)\abs{g(y)-g(x_0)} \,\mathrm{d}y \\
 		&\leq  \varepsilon + 2 \norm{g}_{L^{\infty}(\mathbb{R}^n)} \int_{\mathbb{R}^n \setminus B_{\delta }(x_0)}^{} \psi(t,x-y) \,\mathrm{d}y
 	\end{align*}
-	Betrachte nun, dass wegen $\abs{y-x_0} > \delta$ und \marginpar{???}
+	Betrachte nun, dass wegen $\abs{y-x_0} < \delta$ und 
 	\[
 		\abs{y-x_0} \leq \abs{y-x} + \abs{x-x_0} \leq \abs{y-x}+ \frac{\delta }{2} < \abs{y-x} + \frac{1}{2}\abs{y-x}
 	\]
@@ -182,7 +182,7 @@ aufgeteilt mit $u = u_1 + u_2$ in
 	\]
 	Die Leipnitzregel für Parameterintegrale besagt:
 	\[
-		\diffd{}{t} \int_{a(t)}^{b(t)} g(t,x) \,\mathrm{d}x = \int_{a(t)}^{b(t)} g_t(t,x) \,\mathrm{d}x + g(t,b(t))b(t) - g(t,a(t))a(t).
+		\diffd{}{t} \int_{a(t)}^{b(t)} g(t,x) \,\mathrm{d}x = \int_{a(t)}^{b(t)} g_t(t,x) \,\mathrm{d}x + g(t,b(t))b'(t) - g(t,a(t))a'(t).
 	\]
 	Somit
 	\begin{align*}
@@ -206,7 +206,7 @@ aufgeteilt mit $u = u_1 + u_2$ in
 		&= \int_{0}^{\varepsilon} \int_{\mathbb{R}^n}^{} \psi(s,y) (-f_s(t-s,x-y) - \Delta_y f(t-s,x-y)) \,\mathrm{d}y \,\mathrm{d}s \\
 		& \qquad + \int_{\varepsilon}^{t} \int_{\mathbb{R}^n}^{} \psi(s,y) (-f_s(t-s,x-y) - \Delta_y f(t-s,x-y)) \,\mathrm{d}y \,\mathrm{d}s \\
 		& \qquad + \int_{\mathbb{R}^n}^{} \psi(t,y)f(0,x-y) \,\mathrm{d}y \\
-		&=: A_{\varepsilon} B _{\varepsilon} + C.
+		&=: A_{\varepsilon}+ B _{\varepsilon} + C.
 	\end{align*}
 	Zunächst gilt 
 	\[
@@ -217,7 +217,7 @@ aufgeteilt mit $u = u_1 + u_2$ in
 	und außerdem mit partieller Integration und Leipnizregel
 	\begin{align*}
 			B _{\varepsilon} &= \int_{\varepsilon}^{t} \int_{\mathbb{R}^n}^{}
-		 (\underset{\substack{=0, \\ \text{da $u$ kalorisch}}}{\underbrace{ \partial_s \psi(s,y) - \Delta \psi(s,y)}})
+		 (\underset{\substack{=0, \\ \text{da $\psi$ kalorisch}}}{\underbrace{ \partial_s \psi(s,y) - \Delta \psi(s,y)}})
 		 f(t-s,x-y) \,\mathrm{d}y \,\mathrm{d}s \\ & \qquad - \int_{\mathbb{R}^n}^{} \psi(t,y) f(0,x-y) \,\mathrm{d}y 
 		 + \int_{\mathbb{R}^n}^{} \psi(\varepsilon,y)f(t-\varepsilon,x-y) \,\mathrm{d}y \\
 		 &= -C + \int_{\mathbb{R}^n}^{} \psi(\varepsilon,y)(f(t-\varepsilon,x-y)-f(t,x-y)) \,\mathrm{d}y \\
@@ -229,7 +229,7 @@ aufgeteilt mit $u = u_1 + u_2$ in
 		\,\mathrm{d}y}} \\ & \qquad \underset{=(II)}{\underbrace{\int_{\mathbb{R}^n}^{} \psi(\varepsilon,x-y) f(t,y) \,\mathrm{d}y}} ).
 	\end{align*}
 	\[
-		(I) \leq sup_{z \in \mathbb{R}^n} \abs{f(t-\varepsilon,z)-f(t,z)} \to 0
+		(I) \leq \sup_{z \in \mathbb{R}^n} \abs{f(t-\varepsilon,z)-f(t,z)} \to 0
 	\]
 	für $\varepsilon \to 0$, da $f$ gleichmäßig stetig ist. Und wegen Satz $3.11$ gilt
 	\[
@@ -279,7 +279,7 @@ Energiemethode
 		\diffd{e(t)}{t} & \stackrel{\hphantom{(P)'}}{=} \int_{\Omega}^{} 2 w(t,x) w_t(t,x) \,\mathrm{d}x  \\
 		&\stackrel{(P)'}{=} 2 \int_{\Omega}^{} w(t,x) \Delta w(t,x) \,\mathrm{d}x \\
 		&\stackrel{\text{P.I.\hphantom{...}}}{=} -2 \int_{\Omega}^{}  \nabla  w(t,x) \cdot  \nabla w(t,x) \,\mathrm{d}x \\
-		&\stackrel{\hphantom{(P)'}}{=} 2 \int_{\Omega}^{} \abs{ \nabla w(t,x)}^2 \,\mathrm{d}x \leq 0
+		&\stackrel{\hphantom{(P)'}}{=} -2 \int_{\Omega}^{} \abs{ \nabla w(t,x)}^2 \,\mathrm{d}x \leq 0
 	\end{align*}
 	Damit ist $e(t)$ monoton fallend und so folgt
 	\[
@@ -408,7 +408,7 @@ Dies ist die d'Alembertsche Formel.
 	\[
 		u(t,x) = \begin{cases}
 			\frac{1}{2}(g(x+t)+g(x-t)) + \frac{1}{2} \int_{x-t}^{x+t}h(s) \,\mathrm{d}s, &\text{ falls } x \geq t \geq 0\\
-			\frac{1}{2}(g(x+t)-g(x-t)) + \frac{1}{2} \int_{t-x}^{x+t}h(s) \,\mathrm{d}s, &\text{ falls } t \geq x \geq 0
+			\frac{1}{2}(g(x+t)-g(t-x)) + \frac{1}{2} \int_{t-x}^{x+t}h(s) \,\mathrm{d}s, &\text{ falls } t \geq x \geq 0
 		\end{cases}
 	\]
 	die eindeutige $C^2([0,\infty) \times \mathbb{R})$- Lösung von 
@@ -462,12 +462,12 @@ Für $x \geq 0$ betrachten wir zwei Fälle
 \end{align*}
 \begin{align*}
 	x-t \leq  0 & \Leftrightarrow t \geq x \geq 0 \\
-	& \Rightarrow u(t,x)= \frac{1}{2} (g(x+t) - g(x-t)) + \frac{1}{2} \int_{x-t}^{x+t} \bar{h}(s) \,\mathrm{d}s
+	& \Rightarrow u(t,x)= \frac{1}{2} (g(x+t) - g(t-x)) + \frac{1}{2} \int_{x-t}^{x+t} \bar{h}(s) \,\mathrm{d}s
 \end{align*}
 Außerdem gilt
 \begin{align*}
 	\frac{1}{2} \int_{x-t}^{x+t} \bar{h}(s) \,\mathrm{d}s &= \frac{1}{2} \left( \int_{0}^{x+t}\bar{h}(s) \,\mathrm{d}s + \int_{x-t}^{0} \bar{h} \,\mathrm{d}s \right)
-	\\ &= \frac{1}{2} \left( \int_{0}^{x+t}h(s) \,\mathrm{d}s + \int_{x-t}^{0}h(-s) \,\mathrm{d}s \right) \\ &= \frac{1}{2} \int_{t-x}^{x+t}h(s) \,\mathrm{d}s
+	\\ &= \frac{1}{2} \left( \int_{0}^{x+t}h(s) \,\mathrm{d}s + \int_{x-t}^{0}-h(-s) \,\mathrm{d}s \right) \\ &= \frac{1}{2} \int_{t-x}^{x+t}h(s) \,\mathrm{d}s
 \end{align*}
 \[
 	u(t,0) = \frac{1}{2} (g(t) -g(t)) = 0
@@ -491,7 +491,7 @@ Für $x \in \mathbb{R}^n$, $r>0$, $t>0$ definiere
 \end{align*}
 
 \begin{lemma}[Euler-Poisson-Darbaux-Gleichung]
-	Sei $u \in C^m((0,\infty) \times \mathbb{R}^n)$ mit $m \geq 2$ eine Lösung von (P). Für alle $ x \in \mathbb{R}^n$ gilt dann $U_x \in C^m((0,\infty) \times [0,\infty)$ und $U_x$ erfüllt das Anfangswertproblem 
+	Sei $u \in C^m((0,\infty) \times \mathbb{R}^n)$ mit $m \geq 2$ eine Lösung von (P). Für alle $ x \in \mathbb{R}^n$ gilt dann $U_x \in C^m((0,\infty) \times [0,\infty))$ und $U_x$ erfüllt das Anfangswertproblem 
 	\begin{align*}
 		\partial_t^2 U_x(t,r)- \partial_r^2 U_x(t,r) - \frac{n-1}{r} \partial_r U_x(t,r) &= 0 \qquad \text{ in } \mathbb{R}^{+} \times \mathbb{R}^{+} \\
 		U_x(0,r)&= G_x(r), \qquad r>0 \\
@@ -501,9 +501,9 @@ Für $x \in \mathbb{R}^n$, $r>0$, $t>0$ definiere
 \begin{beweis}
 Wir beweisen $U_x \in C^m((0,\infty) \times \mathbb{R}^n)$:
 \[
-	U_x(t,r) = \fint_{\partial B_r(0)}^{} u (t,x+r \tilde y) \,\mathrm{d}S(\tilde y)
+	U_x(t,r) = \fint_{\partial B_1(0)}^{} u (t,x+r \tilde y) \,\mathrm{d}S(\tilde y)
 \]	
-$B_r(0)$ ist beschränkt
+$B_1(0)$ ist beschränkt
 \[
 	\Rightarrow \qquad \diff{^{k+l}}{t^k \partial r^l} U_x(t,r) = \fint_{\partial B_1(0)}^{} \diff{^{k+l}}{t^k \partial r^l} u(t,x+r \tilde y) \,\mathrm{d}S(\tilde y)
 \]
@@ -584,11 +584,11 @@ Da $u$ stetig ist, gilt
 	u(t,x) &= \lim_{r \to 0} \left( \frac{\tilde G_x(t+r)- \tilde G_x(t-r)}{2 r} + \frac{1}{2r} \int_{t-r}^{t+r} \tilde H_x(s) \,\mathrm{d}s \right) \\
 	&= \lim_{r \to 0} \left( \frac{\tilde G_x(t+r) - \tilde G_x(t-r)}{2r} + \fint_{t-r}^{t+r} \tilde H_x(s) \,\mathrm{d}s \right) \\
 	&= \tilde G_x'(t) + \tilde H_x(t) \\
-	&= \partial_t ( t \fint_{\partial B_t(x)}^{} g(y) \,\mathrm{d}S(y)) + t \fint_{\partial B_t(x)}^{} h(y) \,\mathrm{d}S(y)
+	&= \partial_t \left( t \fint_{\partial B_t(x)}^{} g(y) \,\mathrm{d}S(y) \right) + t \fint_{\partial B_t(x)}^{} h(y) \,\mathrm{d}S(y)
 \end{align*}
 Wir berechnen nun 
 \begin{align*}
-	\partial_t (t \fint_{\partial B_t(x)}^{} g(y) \,\mathrm{d}S(y))
+	\partial_t \left(t \fint_{\partial B_t(x)}^{} g(y) \,\mathrm{d}S(y) \right)
 \end{align*}
 \begin{align*}
  t \fint_{\partial B_t(x)}^{} g(y) \,\mathrm{d}S(y)
@@ -651,7 +651,7 @@ Dies ist die Kirchhoffsche Formel für $n=3$.
 		\end{align*}
 		für alle $(t,x) \in (0,\infty) \times \mathbb{R}^3$.
 		\item[Schritt $2$:] $h \equiv 0$. \\
-		Sei $v : [0,\infty) \times \mathbb{R}^3 \times \mathbb{R}$ definiert durch
+		Sei $v : [0,\infty) \times \mathbb{R}^3 \to \mathbb{R}$ definiert durch
 		\[
 			v(t,x) = t \fint_{\partial B_1(0)}^{} g(x+ t \tilde y) \,\mathrm{d}S( \tilde y)
 		\] 
@@ -889,7 +889,7 @@ Zu Der \underline{Energiemethode} gehört die \underline{Eindeutigkeit} und die 
 \begin{beweis}
 	Es gilt
 	\begin{align*}
-		\diffd{}{}e(t) &= \int_{\Omega}^{}( u_t u_{tt} +  \nabla u \cdot \underset{=  \nabla u_t}{\underbrace{\partial_t (  \nabla u)}}) \,\mathrm{d}x \\
+		\diffd{}{t}e(t) &= \int_{\Omega}^{}( u_t u_{tt} +  \nabla u \cdot \underset{=  \nabla u_t}{\underbrace{\partial_t (  \nabla u)}}) \,\mathrm{d}x \\
 		&= \int_{\Omega}^{}( u_t u_{tt} +  \nabla u \cdot  \nabla u_t) \,\mathrm{d}x \\ 
 		&= \underset{=0}{\underbrace{\int_{\Omega}^{} (u_t u_{tt} - \Delta u u_t) \,\mathrm{d}x}} 
 		+ \underset{=0}{\underbrace{ \int_{ \partial \Omega}^{} u_t  \nabla u \cdot \nu \,\mathrm{d}S(x)}} \\

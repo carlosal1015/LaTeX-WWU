@@ -54,13 +54,13 @@ Differentialgleichung lösen.
 	\]
 	mit $s = t^{- \frac{1}{2}} \abs{x}$. Multipliziere diese nun mit $s^{n-1}$ so ergibt sich
 	\begin{align*}
-		- \frac{n}{2} w(s) s^{n-1} + \frac{1}{2} s^n w'(s) + w''(s) s^{n-1} + (n-1) s^{n-2} w'(s) &= 0 \\
-		\frac{1}{2} \left( w(s) s^n \right) + \left( w'(s) s^{n-1} \right)' &=0  \\
+		 \frac{n}{2} w(s) s^{n-1} + \frac{1}{2} s^n w'(s) + w''(s) s^{n-1} + (n-1) s^{n-2} w'(s) &= 0 \\
+		\frac{1}{2} \left( w(s) s^n \right)' + \left( w'(s) s^{n-1} \right)' &=0  \\
 		\frac{1}{2} w(s) s^n + w'(s) s^{n-1} = \text{Konstante} = 0
 	\end{align*}
 	und wir erhalten eine ODE
 	\[
-		w'(s) = \frac{1}{2}w(s)s \qquad \Rightarrow \qquad w(s) = c e^{-\frac{s^2}{4}} \qquad c \in \mathbb{R}
+		w'(s) = -\frac{1}{2}w(s)s \qquad \Rightarrow \qquad w(s) = c e^{-\frac{s^2}{4}} \qquad c \in \mathbb{R}
 	\]
 	und somit
 	\[
@@ -76,7 +76,7 @@ Differentialgleichung lösen.
 	heißt die Fundamentallösung der Wärmeleitungsgleichung
 \end{definition}
 \begin{bemerkung}
-	\item $ \Psi_t(t,x) = \Delta \Psi(t,x) = 0$ für alle $t>0$ und $x \in \mathbb{R}^n$.
+	\item $ \Psi_t(t,x) - \Delta \Psi(t,x) = 0$ für alle $t>0$ und $x \in \mathbb{R}^n$.
 	\item Für die Anfangswerte gilt
 	\[
 		\lim_{t \to 0} \Psi(t,0) = \infty \qquad , \qquad \lim_{t \to 0} \Psi(t,x) = 0 \qquad \forall\, x \neq 0, x \in \mathbb{R}^n
@@ -98,14 +98,14 @@ Wir haben schon gesehen, dass wenn $u$ harmonisch auf $\Omega$ ist, dann gilt
 \]
 Wir wollen nun eine ähnliche Eigenschaft für kalorische Funktionenb beweisen. Dafür definieren wir
 \[
-	B_r(x_0) = \set[x \in \mathbb{R}^n]{\abs{x-x_0}< r} = \set[x \in \mathbb{R}^n]{\Psi(x-x_0) > \Phi(re_1)},
+	B_r(x_0) = \set[x \in \mathbb{R}^n]{\abs{x-x_0}< r} = \set[x \in \mathbb{R}^n]{\Psi(x-x_0) > \Psi(re_1)},
 \]
-wobei $\Phi$ die Fundamentallösung der WLG ist. Für $n \geq 3$ gilt in dieser Menge
+wobei $\Psi$ die Fundamentallösung der WLG ist. Für $n \geq 3$ gilt in dieser Menge
 \[
 	\frac{1}{n(n-2)\omega_n} \abs{x- x_0}^{2-n} > \frac{1}{n(n-2)\omega_n} r ^{2-n}
 \]
 und dies ist äquivalent zu $\abs{x-x_0}<r$.\\
-$B_r(x_0)$ stellt genau die $\Phi(re_1)$- Superniveaumenge.
+$B_r(x_0)$ stellt genau die $\Psi(re_1)$- Superniveaumenge.
 
 \begin{definition}[Wärmeleitungskugel]
 	Sei $t_0 \in \mathbb{R}, x_0 \in \mathbb{R}^n$ und $r >0$. Wir definieren die Wärmeleitungskugel $W_r(t_0,x_0)$ an $(t_0,x_0)$ (nicht das Zentrum) als
@@ -117,16 +117,16 @@ $B_r(x_0)$ stellt genau die $\Phi(re_1)$- Superniveaumenge.
 	\begin{enumerate}[(i)]
 		\item $(t_0,x_0)$ gehört nicht zu der offenen Menge $W_t(t_0,x_0)$, sondern zu \\ $\partial W_r(t_0,x_0)$.
 		\item Monotonie: Für $r < \tilde r$ gilt $ W_r(t_0,x_0) \subset W_{\tilde r}(t_0,x_0)$.
-		\item Translationsverhalten: $W_k(t_0,x_0) = (t_0,x_0)+ W_r(0,0)$.
+		\item Translationsverhalten: $W_r(t_0,x_0) = (t_0,x_0)+ W_r(0,0)$.
 		\item Parabolische Reskalierung: $(t,x) \in W_r(0,0)$ ist äquivalent zu $( r^{-2}t, r^{-1}x) \in W_1(0,0)$.
 		%% Begrüundung fehlt.
 		\item Explizite Darstellung von $W_r(0,0)$:
 		\[
-			W_r(0,0) = \set[(t,x) \in \mathbb{R}^{n+1}]{t<0, \Psi(-t,x)> r^{-n}}
+			W_r(0,0) = \set[(t,x) \in \mathbb{R}^{n+1}]{t<0, \Psi(-t,-x)> r^{-n}}
 		\] 
 		\begin{align*}
-			& \qquad \Psi(-t,x) = \left( -4 \pi t \right)^{- \frac{1}{2}} e^{\frac{\abs{x}^2}{4t}} > r^{-n} \\
-			\Leftrightarrow & \qquad e^{\frac{\abs{x}^2}{4t}} > (-4 \pi t)^{\frac{n}{2}} \\
+			& \qquad \Psi(-t,-x) = \left( -4 \pi t \right)^{- \frac{n}{2}} e^{\frac{\abs{x}^2}{4t}} > r^{-n} \\
+			\Leftrightarrow & \qquad e^{\frac{\abs{x}^2}{4t}} > (-4 \pi t)^{\frac{n}{2}} r^{-n}\\
 			\Leftrightarrow & \qquad \frac{\abs{x}^2}{4t} > \lg \left( (-4 \pi t)^{\frac{n}{2}} r^{-n} \right) \\
 			\Leftrightarrow & \qquad \frac{\abs{x}^2}{4t} > \lg (-4 \pi t)^{\frac{n}{2}} + \lg (r^{-n}) = \frac{n}{2} \lg (-4 \pi t)- n \lg ( r)
 		\end{align*}
@@ -169,7 +169,7 @@ $B_r(x_0)$ stellt genau die $\Phi(re_1)$- Superniveaumenge.
 	\begin{enumerate}[(i)]
 		\item Es gilt
 		\begin{align*}
-			\abs{ \psi(r) - w(0,0)} &= \abs{ \frac{1}{4r^n} \int_{W_r(0,0)}^{} (u(t,x)- u(0,0)) \frac{\abs{x}^2}{t^2} \,\mathrm{d}t \, \mathrm{d}x} \\
+			\abs{ \psi(r) - u(0,0)} &= \abs{ \frac{1}{4r^n} \int_{W_r(0,0)}^{} (u(t,x)- u(0,0)) \frac{\abs{x}^2}{t^2} \,\mathrm{d}t \, \mathrm{d}x} \\
 			& \leq \frac{1}{4 r^n} \int_{W_r(0,0)}^{} \abs{u(t,x)-u(0,0)} \frac{\abs{x}^2}{t^2} \,\mathrm{d}t \, \mathrm{d}x \\
 			& \leq \sup_{W_r(0,0)} \abs{u(t,x)-u(0,0)} \to 0 \qquad \text{ für } r \to 0^+, \text{ da } u \text{ stetig ist.}
 		\end{align*}
