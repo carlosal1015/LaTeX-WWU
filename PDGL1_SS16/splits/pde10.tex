@@ -124,7 +124,7 @@ Eine Lösung von (2) ist eine Funktion $y \in C^1(I,\mathbb{R}^n)$ auf einem Int
 		\end{cases}
 	\]wenn die folgende Integralgleichung gilt
 	\[
-		(4) \qquad y(x) = y_0 \int_{x_0}^{x} f(t,y(t)) \,\mathrm{d}t \qquad \forall\, x \in I
+		(4) \qquad y(x) = y_0 + \int_{x_0}^{x} f(t,y(t)) \,\mathrm{d}t \qquad \forall\, x \in I
 	\]
 \end{satz}
 \begin{beweis}
@@ -265,7 +265,7 @@ Eine Lösung von (2) ist eine Funktion $y \in C^1(I,\mathbb{R}^n)$ auf einem Int
 
 \begin{satz}[Satz der lokalen Umkehrabbildung]
 	Sei $\Omega \subseteq \mathbb{R}^n$ offen und $f \in C^1(\Omega,\mathbb{R}^n)$. Ist $x_0 \in \Omega$ mit $\det  \nabla f(x_0) \neq 0$, so existieren offene Mengen
-	$\Theta_1, \, \Theta_2 \in \mathbb{R}^n$, so dass $x_0 \in \Theta_1$ gilt und $f: \Theta_1 \to \Theta_2$ ein Diffeomorphismus ist. Dies bedeutet, dass eine Funktion $f^{-1} \in C^1(\Theta_2, \Theta_1)$ existiert mit 
+	$\Theta_1, \, \Theta_2 \subseteq  \mathbb{R}^n$, so dass $x_0 \in \Theta_1$ gilt und $f: \Theta_1 \to \Theta_2$ ein Diffeomorphismus ist. Dies bedeutet, dass eine Funktion $f^{-1} \in C^1(\Theta_2, \Theta_1)$ existiert mit 
 	\[
 		f^{-1} \circ f = \id, \qquad f \circ f^{-1} = \id, \qquad \text{auf } \Theta_1 \text{ bzw } \Theta_2
 	\]
@@ -275,7 +275,7 @@ Eine Lösung von (2) ist eine Funktion $y \in C^1(I,\mathbb{R}^n)$ auf einem Int
 	\]
 	Falls zusätzlich $f \in C^k(\Omega; \mathbb{R}^n)$ für $k \geq 2$ gilt, so gilt auch $f ^{-1} \in C^k(\Theta_2,\Theta_1)$
  \end{satz}
-Betrachte nun für $E \in C^2( \bar{\Omega} \times \mathbb{R}^ \times \mathbb{R}^n)$
+Betrachte nun für $E \in C^2( \bar{\Omega} \times \mathbb{R} \times \mathbb{R}^n)$
 \[
 	(2) \qquad \begin{cases}
 		E(x,u(x), \nabla u(x))=0, &\text{ in }\Omega \subseteq \mathbb{R}^n \text{ offen und mit $C^1$-Rand}\\
@@ -287,12 +287,10 @@ Betrachte nun für $E \in C^2( \bar{\Omega} \times \mathbb{R}^ \times \mathbb{R}
 Wir nehmen an, dass $u \in C^2$ eine Lösung von $(2)$ ist; $\gamma$ verbindet hierbei $x_0$ und $x$. 
 \minisec{Aufstellung der charakteristischen Gleichung:}
 $u \in C^2 \cap C^1(\bar{\Omega})$, $E \in C^2(\bar{\Omega} \times \mathbb{R} \times \mathbb{R}^n)$ sei Lösung von $E(x,u(x), \nabla u(x)) = 0$ in $\Omega$. Sei $\gamma \in C^1(I;\Omega)$, $I \subseteq \mathbb{R}$ Intervallkurve in $\Omega$. \\
-\[
-	v(s) := u(\gamma) \qquad \text{Kurve in }\mathbb{R},
-\] 
-\[
-	z(s) :=  \nabla u(\gamma(s)) \qquad \text{Kurve in }\mathbb{R}^n.
-\]
+\begin{align*}
+	v(s) &:= u(\gamma) \qquad \text{Kurve in }\mathbb{R}, \\
+	z(s) &:=  \nabla u(\gamma(s)) \qquad \text{Kurve in }\mathbb{R}^n.	
+\end{align*}
 \begin{align*}
 	v'(s) &=  \nabla u(\gamma(s)) \cdot \gamma'(s), \\
 	z(s) &= (\partial_{x_1}u(\gamma(s)), \dots, \partial_{x_n}u(\gamma(s))), \\
@@ -405,9 +403,9 @@ Es ergeben sich $2n+1$ Unbekannte und $2n+1$ gewöhnliche Differentialgleichunge
 		\[
 			\Rightarrow \qquad u(\gamma(s)) = u(s+x_0,s) = 2s+ x_0^2
 		\]
-		Setze $x:= s+ x_0$, $y:=s$. Dann folt $x_0= x-y$ und
+		Setze $x:= s+ x_0$, $y:=s$. Dann folgt $x_0= x-y$ und
 		\[
-			u(x,y) = 2+ (x-y)^2
+			u(x,y) = 2y+ (x-y)^2
 		\]
 		\item Quasilineare Gleichung 
 		\[
@@ -670,7 +668,7 @@ $\partial_{z_n} E(x_0,v_0,z_0) \neq 0$ für $(x_0,v_0,z_0) \in \partial \mathbb{
 				
 			\end{cases}
 		\]
-		Wie gewohnt erhalten wir $E(x,v,z) = z_1 + v$. Es gilt somit $\partial_{z_2}E \equiv = 0$. Damit sind alle Vektoren $(x_0,v_0,z_0) \in \partial \mathbb{R}^2_+ \times \mathbb{R} \times \mathbb{R}^2$ charakteristisch.
+		Wie gewohnt erhalten wir $E(x,v,z) = z_1 + v$. Es gilt somit $\partial_{z_2}E \equiv  0$. Damit sind alle Vektoren $(x_0,v_0,z_0) \in \partial \mathbb{R}^2_+ \times \mathbb{R} \times \mathbb{R}^2$ charakteristisch.
 		\[
 			\begin{cases}
 				\gamma'(s) &= (1,0) \\
@@ -749,7 +747,7 @@ Wir erhalten die Charakteristiken
 	\begin{cases}
 		\gamma(s) &= (1, F'(v(s)))\\
 		\gamma(0) &= (0,x_0) \\
-		v'(s) &=  \nabla _t E \cdot z = (1, F'(v(s))) \cdot z(s) = 0, \qquad v(s) = v(0) = g(x_0) \\
+		v'(s) &=  \nabla _z E \cdot z = (1, F'(v(s))) \cdot z(s) = 0, \qquad v(s) = v(0) = g(x_0) \\
 		v(0) &= g(x_0)
  	\end{cases}
 \]
@@ -783,7 +781,7 @@ eine Lösungsformel für eine klassische Lösung.
 	\[
 		\gamma(s) = s(g(x_0)s+x_0),
 	\]
- 	das heißt die Steitung der Charakteristiken hängt von $g$ ab.
+ 	das heißt die Steigung der Charakteristiken hängt von $g$ ab.
 	\[
 		u(s,g(x_0)s+x_0) = g(x_0)
 	\]
@@ -851,7 +849,7 @@ eine Lösungsformel für eine klassische Lösung.
 	\begin{bemerkung}
 		\begin{itemize}
 			\item Auch für $g \in C^{\infty}(\mathbb{R})$ haben wir keine klassische Lösung.
-			\item Auch eine Lösung, die zum Zeitpunkt glatt war, entwickeltin endlicher Zeit Unstetigkeiten.
+			\item Auch eine Lösung, die zum Zeitpunkt glatt war, entwickelt in endlicher Zeit Unstetigkeiten.
 		\end{itemize}
 	\end{bemerkung}
 \end{enumerate}
@@ -908,7 +906,7 @@ Betrachten
 	Sei $u \in L^{\infty}(\mathbb{R}^+ \times \mathbb{R})$ schwache Lösung von (2). Sei $O \subseteq \mathbb{R}^+ \times \mathbb{R}$ offen und $C$ eine $C^1$-Kurve, 
 	die $O$ in zwei disjunkte offene Teilmengen $O_l$ und $O_r$ zerlegt, d.h 
 	\[
-	 	O = O_l \cup C \cup O_r
+	 	O = O_l \, \dot\cup \, C \, \dot\cup \, O_r
 	\]
 	Seien weiter $u_l \in C^1(O_l) \cap C^0(O_l \cup C)$ und $u_r \in C^1(O_r) \cap C^0(O_r \cup C)$ mit $u = u_l$ in $O_l$ und $u= u_r$ in $O_r$. Dann muss gelten
 	\[
@@ -925,7 +923,7 @@ Betrachten
 		\partial_t u_l + F(u_l)_x &= 0 \qquad \text{ in }O_l \\
 		\partial_t u_r + F(u_r)_x &= 0 \qquad \text{ in }O_r
 	\end{align*}
-	Weiter gilt für alle $\varphi_0^{\infty}(O)$
+	Weiter gilt für alle $\varphi \in C_0^{\infty}(O)$
 	\begin{align*}
 		0 &= \int_{O}^{} u \varphi_t + F(u) \varphi_x \,\mathrm{d}x\,\mathrm{d}t \\
 		&= \int_{O_l}^{} u_l \varphi_t + F(u_l) \varphi_x \,\mathrm{d}x\,\mathrm{d}t  +  \int_{O_r}^{} u_r \varphi_t + F(u_r) \varphi_x \,\mathrm{d}x\,\mathrm{d}t \\
