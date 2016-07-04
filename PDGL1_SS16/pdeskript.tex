@@ -137,6 +137,263 @@ Literatur:
 	\]
 	Das Resultat gilt nicht für $p=\infty$!
 \end{satz}
+
+\begin{satz}[Hauptsatz der Variationsrechnung]
+	Sei $\Omega \subseteq \mathbb{R}^n$ offen, $u \in L^1_{\text{loc}}(\Omega)$ mit 
+	\[
+		\int_{\Omega}^{} u \varphi \,\mathrm{d}x = 0 \qquad \forall\, \varphi \in C^{\infty}_0(\Omega)
+	\]
+	Dann gilt $u=0$ fast überall in $\Omega$.
+\end{satz}
+\begin{beweis}[Für $u \in L^2(\Omega) \subseteq L^1_{\text{loc}}$]
+	Sei $u \in L^2(\Omega)$ mit
+	\[
+		\int_{\Omega}^{} u \varphi \,\mathrm{d}x = 0 \qquad \forall\, \varphi \in C^{\infty}_0(\Omega)
+	\]
+	Wähle $\varepsilon >0$ beliebig. Dann existiert nach $6.2$ ein $\varphi \in C^{\infty}_0(\Omega)$ mit $\norm{u-\varphi}_{L^2(\Omega)} < \varepsilon$. Dann 
+	\[
+		\norm{u}^2_{L^2(\Omega)} = \int_{\Omega}^{} u^2 \,\mathrm{d}x = \int_{u}^{}u (u-\varphi) \,\mathrm{d}x \stackrel{\text{Hölder}}{\leq } \norm{u}_{L^2(\Omega)} \underset{< \varepsilon}{\underbrace{\norm{u-\varphi}_{L^2(\Omega)}}}
+	\]
+\end{beweis}
+\subsection{Schwache Ableitungen} 
+\label{sub:schwache_ableitungen}
+\minisec{Motivation:} Sei $u \in C^1(\Omega)$, $\varphi \in C^{\infty}_0(\Omega)$. Dann gilt
+\[
+	\int_{\Omega}^{}u_{x_i}\varphi \,\mathrm{d}x = - \int_{\Omega}^{}u \varphi_{x_i} \,\mathrm{d}x \qquad \forall\,  i=1,\dots,n.
+\]
+Das rechte Integral ist definiert für $u \in L^1_{\text{loc}}(\Omega)$.
+\begin{definition*}[Schwache Ableitung]
+	Sei $\Omega \subseteq \mathbb{R}^n$, $u \in L^1_{\text{loc}}(\Omega)$. Dann zeigen wir, dass $u$ schwach differenzierbar ist, falls für alle $i \in \set{1,\dots,n}$ ein $v_i \in L^1_{\text{loc}}(\Omega)$ existiert mit
+	\[
+		\int_{\Omega}^{}u \varphi_{x_i} \,\mathrm{d}x = - \int_{\Omega}^{}v_i \varphi \,\mathrm{d}x \qquad \forall\, \varphi \in C^{\infty}_0(\Omega).
+	\]
+	$v_i \in L^1_{\text{loc}}(\Omega)$ ist durch die obige Gleichung eindeutig estimmt und wir setzten $\diff{}{x_i}u = v_i$ und nennen $v_i$ die schwache Ableitung von $u$ nach $x_i$. Weiter setzen wir
+	\[
+		 \nabla u := ( \diff{}{x_1}u, \dots , \diff{}{x_n} u).
+	\]
+\end{definition*}
+
+\begin{bemerkung}
+	\begin{enumerate}[(i)]
+		\item Die schwache Ableitung ist eindeutig. (Konsequenz aus $6.3$)
+		\item Ist $u \in C^1(\Omega)$, so stimmt die klassische Ableitung mit der schwachen Ableitung überein.
+	\end{enumerate}
+\end{bemerkung}
+\begin{beispiel}
+	\begin{enumerate}[(i)]
+		\item Sei $\Omega = (-1,1) \subseteq \mathbb{R}^n$, $u(x) = \abs{x}$, $u \in L^1(\Omega)$. Wähle $\varphi \in C^{\infty}_0(\Omega)$. Dann gilt
+		\begin{align*}
+			\int_{-1}^{1} \abs{x} \varphi'(x) \,\mathrm{d}x &= - \int_{-1}^{0} x \varphi'(x) \,\mathrm{d}x + \int_{0}^{1} x \varphi'(x) \,\mathrm{d}x \\
+			&= \underset{=0}{\underbrace{\varphi(-1)}} + \int_{-1}^{0} \varphi(x) \,\mathrm{d}x + \underset{=0}{\underbrace{\varphi(1)}} - \int_{0}^{1} \varphi(x) \,\mathrm{d}x \\
+			&= - \int_{-1}^{0} - \varphi(x) \,\mathrm{d}x - \int_{0}^{1} \varphi(x) \,\mathrm{d}x \\
+			&= - \int_{-1}^{1} \sign(x) \varphi(x) \,\mathrm{d}x
+		\end{align*}
+		Nun ist also $x \mapsto \sign(x)$ in $L^1_{\text{loc}}(\Omega)$ und somit ist $u'(x) = \sign(x)$ die schwache Ableitung der Betragsfunktion.
+		\item Sei wieder $\Omega = (-1,1)$ und setze
+		\[
+			H(x) := \begin{cases}
+				1, &\text{ falls }x \geq 0\\
+				0, &\text{ falls }x < 0
+			\end{cases}
+		\]
+		Wir behaupten, dass $H$ keine schwache Ableitung besitzt. \\
+		\underline{Annahme:} Es existiert $\delta \in L^1_{\text{loc}}(\Omega)$ und 
+		\[
+			\int_{-1}^{1} H(x)\varphi'(x) \,\mathrm{d}x = - \int_{-1}^{1} \delta (x) \varphi(x) \,\mathrm{d}x \qquad \forall\, \varphi \in C^{\infty}_0(\Omega)
+		\]
+		Sei nun $\psi \in C^{\infty}_0(0,1)$. Setze 
+		\[
+			\tilde \psi(x) := \begin{cases}
+				\psi(x), &\text{ falls }x \geq 0\\
+				0, &\text{ falls } -1 \leq x \leq 0
+			\end{cases}
+		\]
+		Dann gilt $\tilde \psi \in C^{\infty}_0(\Omega)$. Nach Annahme muss gelten
+		\[
+			- \int_{-1}^{1} \delta (x) \tilde \psi(x) \,\mathrm{d}x = \int_{-1}^{1} H(x) \tilde \psi'(x) \,\mathrm{d}x = \int_{0}^{1} \psi'(x) \,\mathrm{d}x = \psi(1)-\psi(0) = 0
+		\]
+		Damit folgt aber auch
+		\[
+			- \int_{0}^{1}\delta (x) \psi(x) \,\mathrm{d}x = 0
+		\]
+		Mit dem Hauptsatz der Variationsrechnung gilt dann $\delta =0$ fast überall in $(0,1)$. \\
+		Analog sei $\psi in C^{\infty}_0(-1,0)$ beliebig. Setze
+		\[
+			\tilde \psi(x) := \begin{cases}
+				\psi(x), &\text{ falls }x \leq 0\\
+				0, &\text{ falls } 0 \leq x \leq 1
+			\end{cases}
+		\]
+		Dann folgt wieder $ \tilde \psi \in C^{\infty}_0(\Omega)$ und es gilt
+		\[
+			- \int_{-1}^{0}\delta (x) \psi(x) \,\mathrm{d}x = - \int_{-1}^{1} \delta (x)  \tilde \psi(x) \,\mathrm{d}x = \int_{-1}^{1} H(x) \tilde \psi'(x) \,\mathrm{d}x = 0
+		\]
+		Damit gilt wieder $\delta  =0$ fast überall in $(-1,0)$. Starten wir nun mit einem beliebigen $\varphi \in C^{\infty}_0(\Omega)$, so gilt
+		\[
+			0 = \int_{-1}^{1} \delta (x) \varphi(x) \,\mathrm{d}x = - \int_{-1}^{1}H(x) \psi'(x) \,\mathrm{d}x = - \int_{0}^{1} \varphi'(x) \,\mathrm{d}x = \varphi(0).
+		\]
+		Und dies ist ein Widerspruch. 
+	\end{enumerate}
+\end{beispiel}
+
+\subsection{Definition und Eigenschaften von Sobolevräumen} 
+\label{sub:definition_und_eigenschaften_von_sobolevraumen}
+Wir wollen nun die Sobolevräume einführen. Diese sind Unterräume von Lebesgueräumen.
+\begin{definition*}
+	Sei $\Omega \subseteq \mathbb{R}^n$ und $ p \in [1, + \infty]$. Wir setzen
+	\begin{align*}
+		W^{1,p}(\Omega) :=& \set[u \in L^p(\Omega)]{ \diff{}{x_i}u \text{ existiert in }L^p(\Omega), \forall\, 1 \leq i \leq n} \\
+		=& \set[u \in L^p(\Omega)]{ \nabla u \text{ existiert in }L^p(\Omega, \mathbb{R}^n)}
+	\end{align*}
+	Weiter setzen wir:
+	\[
+		\norm{u}_{W^{1,p}(\Omega)} := \begin{cases}
+			\left( \norm{u}_{L^p}^p + \sum^{n}_{i=1}\norm{ \diff{}{x_i}u}_{L^p}^p \right)^{\frac{1}{p}}, &\text{ falls }1 \leq p < \infty\\
+			\norm{u}_{L^{\infty}} + \sum^{n}_{i=1}\norm{\diff{}{x_i}u}_{L^{\infty}}, &\text{ falls }p = \infty
+		\end{cases}
+	\]
+	$W^{1,p}(\Omega)$ heißt Sobolevraum.
+\end{definition*}
+\begin{satz}[Vollständigkeit]
+	Sei $\Omega \subseteq \mathbb{R}^n$, $1 \leq p \leq  \infty$. Dann ist $(W^{1,p}(\Omega), \norm{.}_{W^{1,p}})$ ein Banachraum.
+\end{satz}
+\begin{beweis}
+	Es ist klar, dass $(W^{1,p}(\Omega), \norm{.}_{W^{1,p}(\Omega)})$ ein normierter Vektorraum ist. Zu zeigen bleibt also die Vollständigkeit. Dazu sei $(u_k)_k$ eine 
+	Cauchyfolge in $W^{1,p}(\Omega)$ bzgl. $\norm{.}_{W^{1,p}(\Omega)}$. Dann sind $(u_k)_k$ und $(\diff{}{x_i}u_k)_k$ für alle $i=1,\dots,n$ Cauchy-Folgen in $L^p(\Omega)$ bzgl. $\norm{.}_{L^p(\Omega)}$. Denn:
+	\begin{align*}
+		\norm{u_k-u_m}_{L^p(\Omega)} \leq  \norm{u_k-u_m}_{W^{1,p}(\Omega)} < \varepsilon
+	\end{align*}
+	für $k,m$ hinreichend groß. Außerdem gilt
+	\[
+		\norm{\diff{}{x_i}u_k- \diff{}{x_i}u_m}_{L^p(\Omega)} \leq \norm{u_k - u_m}_{W^{1,p}} < \varepsilon
+	\]
+	für hinreichend große $k$ und $m$. Mit Satz $6.1$ (Vollständigkeit von $L^p$) existiert $u \in L^p(\Omega)$ und $v_1, \dots , v_n$ in $L^p(\Omega)$ mit
+	\[
+		\norm{u_k-u}_{L^p(\Omega)} \to 0, \qquad \norm{\diff{}{x_i}u_k-v_i}_{L^p(\Omega)} \to 0 \qquad \forall\, i=1,\dots,n.
+	\]
+	Wir zeigen dazu
+	\[
+		\int_{\Omega}^{} u \diff{}{x_i}\varphi \,\mathrm{d}x = - \int_{\Omega}^{}v_i \varphi \,\mathrm{d}x \qquad \forall\, \varphi \in C^{\infty}_0(\Omega).
+	\]
+	Es gilt wegen
+	\[
+		u_k \to u \qquad \text{ in }L^p(\Omega).
+	\]
+	\begin{align*}
+		\int_{\Omega}^{} u \diff{}{x_i}\varphi \,\mathrm{d}x &= \lim_{k \to \infty} \int_{\Omega}^{}u_k \diff{}{x_i}\varphi \,\mathrm{d}x \\
+		&= \lim_{k \to \infty} - \int_{\Omega}^{} \diff{}{x_i}u_k \varphi \,\mathrm{d}x , \qquad \text{da }u_k \in W^{1,p}(\Omega) \\
+		&= - \int_{\Omega}^{}v_i \varphi \,\mathrm{d}x, \qquad \text{da }\diff{}{x_i}u_k \to v_i \text{ in } L^p(\Omega)
+	\end{align*}
+	Daraus folgt dann
+	\[
+		u \in W^{1,p}(\Omega) \qquad \text{ und } \qquad \norm{u_k-u}_{W^{1,p}(\Omega)} \to 0.
+	\]
+\end{beweis}
+\begin{bemerkung}
+	\begin{enumerate}[(i)]
+		\item Der Raum $W^{1,2}(\Omega)$ ist ein Hilbertraum, dessen Norm durch das folgende Skalarprodukt induziert wird:
+		\begin{align*}
+			\skal{u}{v}_{W^{1,2}(\Omega)} &= \int_{\Omega}^{}u v \,\mathrm{d}x + \sum^{n}_{i=1} \int_{\Omega}^{} \diff{}{x_i} u \diff{}{x_i}v \,\mathrm{d}x \\
+			&= \int_{\Omega}^{} uv \,\mathrm{d}x+ \int_{\Omega}^{}  \nabla u \cdot  \nabla v \,\mathrm{d}x \qquad \forall\, u,v \in W^{1,2}(\Omega).
+		\end{align*}
+		Man findet häufig die Notation 
+		\[
+			H^1(\Omega) = W^{1,2}(\Omega).
+		\]
+		\item Wir haben die folgenden Inklusionen für ein beschränktes $\Omega$.
+		\[
+			C^1(\Omega) \subseteq W^{1,\infty}(\Omega) \subseteq  W^{1,p}(\Omega) \subseteq L^p(\Omega) \qquad \forall\, 1 \leq p <\infty.
+		\]
+	\end{enumerate}
+\end{bemerkung}
+Wir wollen zeigen, dass für $n=1$ alle $W^{1,p}(\Omega)$ Funktionen einen stetigen Repräsentanten haben. Das heißt, wenn $u \in W^{1,p}((a,b))$, dann existiert ein 
+$ \tilde u \in C^0([a,b])$ und $\tilde u = u$ fast überall in $(a,b)$. Um das zu beweisen, benötigen wir das folgende Lemma, welches eine Folgerung aus dem Hauptsatz der Variationsrechnung ist.
+\begin{lemma}
+	Sei $u \in L^1_{\text{loc}}((a,b))$ und gelte
+	\[
+		\int_{a}^{b} u \varphi' \,\mathrm{d}x = 0, \qquad \forall\, \varphi \in C^{\infty}_0((a,b)),
+	\]
+	dann gilt $u(x)= c$ fast überall in $(a,b)$ für eine Konstante $c \in \mathbb{R}$.
+	
+\end{lemma}
+\begin{beweis}
+	Zeige zunächst: Ist $u \in L^1_{\text{loc}}((a,b))$ und 
+	\[
+		\int_{a}^{b} u \psi \,\mathrm{d}x = 0 \qquad \forall\, \psi \in C^{\infty}_0((a,b))  \qquad (**)
+	\]
+	mit
+	\[
+		\int_{a}^{b}\psi(x) \,\mathrm{d}x = 0,
+	\]
+	so ist $u$ konstant fast überall in $(a,b)$. Sei dazu $w \in C^{\infty}_0((a,b))$ und $f \in C^{\infty}_0((a,b))$ mit 
+	\[
+		\int_{a}^{b}f(x) \,\mathrm{d}x =1.
+	\]
+	Setze \[
+		\psi(x) := w(x) - \int_{a}^{b} w(y) \,\mathrm{d}y f(x).
+	\]
+	Dann ist $\psi \in C^{\infty}_0((a,b))$ mit 
+	\begin{align*}
+		\int_{a}^{b} \psi(x) \,\mathrm{d}x &= \int_{a}^{b}w(x) \,\mathrm{d}x - \int_{a}^{b} \left( \int_{a}^{b} w(y) \,\mathrm{d}y  \right) f(x) \,\mathrm{d}x \\
+		&= \int_{a}^{b}w(x) \,\mathrm{d}x - \int_{a}^{b} w(y) \,\mathrm{d}y \underset{=1}{\underbrace{\int_{a}^{b} f(x) \,\mathrm{d}x}} =0
+	\end{align*}
+	Nach Voraussetzung gilt dann:
+	\begin{align*}
+		0 &= \int_{a}^{b}u(x)\psi(x) \,\mathrm{d}x  \\ 
+		&= \int_{a}^{b} u(x)w(x) \,\mathrm{d}x - \int_{a}^{b}\left( \int_{a}^{b}w(y) \,\mathrm{d}y \right) u(x)f(x) \,\mathrm{d}x \\
+		&= \int_{a}^{b}u(x)w(x) \,\mathrm{d}x - \int_{a}^{b} \left( \int_{a}^{b}u(x)f(x) \,\mathrm{d}x \right) w(y) \,\mathrm{d}y 
+	\end{align*}
+	Somit
+	\[
+		\int_{a}^{b}\left( u(y)- \int_{a}^{b} u(x)f(x) \,\mathrm{d}x \right) w(y) \,\mathrm{d}y = 0 \qquad \forall\, w \in C^{\infty}_0((a,b))
+	\]
+	und es folgt weiter mit dem Hauptsatz der Variationsrechnung
+	\[
+		u = \underset{\text{Konstante}}{\underbrace{\int_{a}^{b}u(x)f(x) \,\mathrm{d}x}} \qquad \text{fast überall in }(a,b).
+	\]
+	Sei nun $u \in L^1_{\text{loc}}((a,b))$ wie im Lemma. Zeige $u$ erfüllt $(**)$. Sei dazu $ \psi \in C^{\infty}_0((a,b))$ mit $\int_{a}^{b}\psi(x) \,\mathrm{d}x =0$.
+	Setze
+	\[
+		\phi(x):= \int_{a}^{x}\psi(t) \,\mathrm{d}t.
+	\]
+	Dann ist $\varphi \in C^{\infty}_0((a,b))$ und 
+	\[
+		\varphi'(x) = \psi(x) - \underset{=0}{\underbrace{\psi(a)}} = \psi(x)
+	\]
+	Es folgt
+	\[
+		\int_{a}^{b} u(x) \psi(x) \,\mathrm{d}x = \int_{a}^{b} u(x)\psi'(x) \,\mathrm{d}x =0.
+	\]
+\end{beweis}
+
+\begin{satz}[Stetiger Repräsentant]
+	Sei $1 \leq p \leq \infty$, $u \in W^{1,p}((a,b))$, wobei $(a,b) \subseteq \mathbb{R}$. Dann existiert ein $\tilde u \in C^0([a,b])$ mit $u = \tilde u$ fast überall in $(a,b)$ und 
+	\[
+		\tilde u(x) - \tilde u(y) = \int_{x}^{y}u'(t) \,\mathrm{d}t \qquad \forall\, x,y \in [a,b]
+	\]
+\end{satz}
+\begin{beweis}
+	Sei $u \in W^{1,p}((a,b))$, $c \in (a,b)$. Setze
+	\[
+		v(x):= \int_{c}^{x}u'(t) \,\mathrm{d}t.
+	\]
+	Dann ist $v \in C^0([a,b])$ auf Grund der gleichmäßigen Stetigkeit des Lebesque-Integrals. Zeige
+	\[
+		\int_{a}^{b} v(x) \varphi(x) \,\mathrm{d}x = - \int_{a}^{b}u'(x) \varphi(x) \,\mathrm{d}x
+	\]
+	also $u'$ ist die schwache Ableitung von $v$. Es gilt
+	\begin{align*}
+		\int_{a}^{b}v(x) \varphi'(x) \,\mathrm{d}x &= \int_{a}^{b} \left( \int_{c}^{x} u'(t) \,\mathrm{d}t \right) \varphi'(x) \,\mathrm{d}x \\
+		&= \int_{a}^{c} \left( \int_{c}^{x} u'(t) \,\mathrm{d}t \right) \varphi'(x) \,\mathrm{d}x + \int_{c}^{b} \left( \int_{c}^{x} u'(t) \,\mathrm{d}t \right) \varphi'(x) \,\mathrm{d}x
+	\end{align*}
+	Mit Fubini erhalten wir
+	\begin{align*}
+		\int_{a}^{c} \left( \int_{c}^{x}u'(t) \,\mathrm{d}t \right) \varphi'(x) \,\mathrm{d}x &= - \int_{a}^{c}\left( \int_{x}^{c}u'(t) \,\mathrm{d}t \right) \varphi'(x) \,\mathrm{d}x \\ 
+		&= - \int_{a}^{c} \left( \int_{a}^{t} \varphi'(x) \,\mathrm{d}x \right)u'(t) \,\mathrm{d}t \\
+		&= - \int_{a}^{c} \left( \varphi(t) - \underset{=0}{\underbrace{\varphi(a)}} \right) u'(t) \,\mathrm{d}t \\
+		&= - \int_{a}^{c} \varphi(t) u'(t) \,\mathrm{d}t
+	\end{align*}
+\end{beweis}
 \cleardoubleoddemptypage
 \pagenumbering{Alph}
 \setcounter{page}{1}
