@@ -202,8 +202,8 @@ wobei $\Omega \subseteq \mathbb{R}^n$, offen, $n \geq 2$ und $\Delta u = \sum^{n
 	
 \begin{beispiele}
 	\begin{enumerate}[1.]
-		\item Jede affine Funktion ($u(x) = b \cdot x + x, b \in \mathbb{R}^n , c \in \mathbb{R}$) ist harmnoisch in $\mathbb{R}^n$.
-		\item Sei $A \in \mathbb{R}^{n \times n}$. Die Matrix $u(x) = Ax \cdot x$ ist genau dann harmonisch / subharmonich / superharmonisch, falls $ \Tr(A)= 0$ / $ \Tr(A) \geq  0 $ / $ \Tr(A) \geq  0 $ gilt. (weil in diesem Fall $\Delta u = \Tr(A)$).
+		\item Jede affine Funktion ($u(x) = b \cdot x + x, b \in \mathbb{R}^n , c \in \mathbb{R}$) ist harmonisch in $\mathbb{R}^n$.
+		\item Sei $A \in \mathbb{R}^{n \times n}$. Die Matrix $u(x) = Ax \cdot x$ ist genau dann harmonisch / subharmonisch / superharmonisch, falls $ \Tr(A)= 0$ / $ \Tr(A) \geq  0 $ / $ \Tr(A) \geq  0 $ gilt. (weil in diesem Fall $\Delta u = \Tr(A)$).
 		\item Die Funktionen $u(x_1,x_2)= e^{ax_1}\sin(ax_2)$, $u(x_1,x_2)= e^{ax_1} \cos(ax_2)$ für alle $a \in \mathbb{R}$ sind harmonisch in $\mathbb{R}^2$.
 		\begin{align}
 			\diff{^2u}{x_1^2} = a^2 e^{ax_1} \sin(ax_2) \qquad \text{,} \qquad \diff{u}{x_2} &= a e^{ax_1} \cos(ax_2) 
@@ -242,12 +242,12 @@ Wir betrachten die Laplacegleichung in $\mathbb{R}^n$ mit ($n \geq 2$) und suche
 für alle $i=1,\dots,n$ und für $x \neq 0$.
 \begin{align}
 	\diff{u}{x_i} = \diff{v(r)}{x_i} &= v'(r) \diff{r}{x_i} = v'(r) \frac{x_i}{r}, \\
-	\diff{^2u}{x_i^2} = \diff{}{x_i} \left( v'(r) \frac{x_i}{r} \right) = v''(r) \frac{x_i^2}{r^2} + &v'(r) \left( r - \frac{x_i^2}{r} \right) \frac{1}{r^2} = v''(r) \frac{x_i^2}{r^2} + v'(r) \left( \frac{1}{r} - \frac{x_i^2}{r^2} \right)
+	\diff{^2u}{x_i^2} = \diff{}{x_i} \left( v'(r) \frac{x_i}{r} \right) = v''(r) \frac{x_i^2}{r^2} + &v'(r) \left( r - \frac{x_i^2}{r} \right) \frac{1}{r^2} = v''(r) \frac{x_i^2}{r^2} + v'(r) \left( \frac{1}{r} - \frac{x_i^2}{r^3} \right)
 \end{align}
 Dann gilt
 
 \begin{align*}
-	\Delta u = \sum^{n}_{i=1} \diff{^2u}{x_i^2} &= \sum^{n}_{i=1} \left( v''(r) \frac{x_i^2}{r^2} + v'(r) \left( \frac{1}{r} - \frac{x_i^2}{r^2} \right) \right) \\
+	\Delta u = \sum^{n}_{i=1} \diff{^2u}{x_i^2} &= \sum^{n}_{i=1} \left( v''(r) \frac{x_i^2}{r^2} + v'(r) \left( \frac{1}{r} - \frac{x_i^2}{r^3} \right) \right) \\
 	&= v''(r) + v'(r) \left( \frac{n-1}{r} \right)
 \end{align*}
 Aus $\Delta u = 0$ in $\mathbb{R}^n$ erhalten wir eine ODE:
@@ -281,17 +281,17 @@ und daraus folgt
 \begin{equation}
 	v(r) = \begin{cases}
 		\beta \lg(r)+ \gamma, &\text{ falls } n = 2,\\
-		\beta r^{2-n} + \gamma , &\text{ falls } n \geq 3,		
+		\beta (2-n) r^{2-n} + \gamma , &\text{ falls } n \geq 3,		
 	\end{cases}
 \end{equation}
 wobei $\beta,\gamma \in \mathbb{R}$. \\
 Wir setzen $ \gamma = 0$ (für $n \geq 3$ gilt $v(r) \to 0$ für $r \to +\infty$). Um $\beta$ zu bestimmen, verwendet man 
 \begin{equation}
-	-1 = \int_{\partial B_k(0)}^{} \Delta u \cdot \nu \,\mathrm{d}S. \label{(6)}
+	-1 = \int_{\partial B_k(0)}^{}  \nabla  u \cdot \nu \,\mathrm{d}S. \label{(6)}
 \end{equation}
-$\nu$ ist der äußere Einheitsnormalenvektor an $\partial B_r(0)$ und das Integral ist ein Oberflächenintegral. ( $ \Delta = D$). \\
+$\nu$ ist der äußere Einheitsnormalenvektor an $\partial B_r(0)$ und das Integral ist ein Oberflächenintegral. ( $  \nabla  = D$). \\
 \[
-	\nu = \frac{x}{\abs{x}} \qquad \text{,} \qquad \Delta u = \nu'(\abs{x}) \frac{x}{\abs{x}}.
+	\nu = \frac{x}{\abs{x}} \qquad \text{,} \qquad  \nabla  u = \nu'(\abs{x}) \frac{x}{\abs{x}}.
 \]
 Aus \eqref{(6)} folgt 
 \begin{equation}
@@ -396,7 +396,7 @@ für $u$ harmonisch, wobei
 			\end{align*}
 		\item Es gilt
 		\begin{equation}
-			\varphi(r) = \frac{1}{r^{n-1}S_n} \int_{\partial B_r(x_0)}^{}u(x) \,\mathrm{d}S(x) \stackrel{x=x_0 + r y}{=} \frac{1}{S_n} \int_{\partial B_r(0)}^{} u(x_0 + ry) \,\mathrm{d}S(y).
+			\varphi(r) = \frac{1}{r^{n-1}S_n} \int_{\partial B_r(x_0)}^{}u(x) \,\mathrm{d}S(x) \stackrel{x=x_0 + r y}{=} \frac{1}{S_n} \int_{\partial B_1(0)}^{} u(x_0 + ry) \,\mathrm{d}S(y).
 		\end{equation}
 		$u(x_0 + ry)$ ist differenzierbar nach $r$ für alle $y \in \partial B_1(0)$. \\
 		$\diffd{}{r}u(x_0 + ry) =  \nabla u(x_0+ry) \cdot y$ ist integrierbar auf $ \partial B_1(0)$.
@@ -412,7 +412,7 @@ für $u$ harmonisch, wobei
 		Es gilt außerdem $\diver(  \nabla u) = \Delta u$ und somit
 		\begin{equation}
 			\varphi'(r) \stackrel{\text{Gauß}}{=} \frac{r}{S_n r^n} \int_{B_k(x_0)}^{} \Delta u \,\mathrm{d}x 
-			\stackrel{\omega_n = S_n n}{=} \frac{r}{n} \fint_{B_k(x_0)}^{} \Delta u \,\mathrm{d}x.
+			\stackrel{S_n = \omega_n n}{=} \frac{r}{n} \fint_{B_k(x_0)}^{} \Delta u \,\mathrm{d}x.
 		\end{equation}
 		\end{enumerate}
 		

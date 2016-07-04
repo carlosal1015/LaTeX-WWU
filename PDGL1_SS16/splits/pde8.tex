@@ -19,7 +19,7 @@
 \begin{beweis}
 	\begin{enumerate}[(i)]
 		\item folgt aus (ii) angewandt auf $u$ und $-u$.
-		\item Sei $v(t,x) := u(t+ t_0 , x +x_0)$. Wenn $u$ subkalorisch ist, so auch $v$. Dieses ist äquivalent zu 
+		\item Sei $v(t,x) := u(t+ t_0 , x +x_0)$. Wenn $u$ subKalonisch ist, so auch $v$. Dieses ist äquivalent zu 
 		\[
 			v_t - \Delta v \leq 0 \qquad , \qquad \psi(r) = \frac{1}{4r^n} \int_{W_r(0,0)}^{} v(t,x) \frac{\abs{x}^2}{t^2} \,\mathrm{d}t \,\mathrm{d}x. 
 		\]
@@ -39,7 +39,7 @@
 \begin{korollar}
 	Sei $\Omega$ eine offene Teilmenge des $\mathbb{R}^n$, $T>0$ und $u \in C^2_1(\Omega_T)$. Dann sind äquivalent:
 	\begin{enumerate}[(i)]
-		\item $u$ ist kalorisch.
+		\item $u$ ist Kalonisch.
 		\item $u$ erfüllt die Mittelwerteigenschaft auf Wärmeleitungskugeln, d.h für alle \\ $W_t(t_0,x_0) \subset \subset \Omega_T$ gilt
 		\[
 			u(t_0,x_0) = \frac{1}{4r^n} \int_{W_r(t_0,x_0)}^{} u(t,x) \frac{\abs{x-x_0}^2}{(t-t_0)^2} \,\mathrm{d}t \,\mathrm{d}x.
@@ -56,7 +56,7 @@
 Nun werden wir Maximumsprinzipien formulieren.
 
 \begin{satz}[Maximumsprinzipien]
-	Sei $\Omega$ eine beschränkte, offene Teilmenge des $\mathbb{R}^n$ und $ u \in C^2_1(\Omega_T) \cap C^0( \bar{\Omega_T})$ eine subkalorische Funktion
+	Sei $\Omega$ eine beschränkte, offene Teilmenge des $\mathbb{R}^n$ und $ u \in C^2_1(\Omega_T) \cap C^0( \bar{\Omega_T})$ eine subKalonische Funktion
 	( $ u_t - \Delta u \leq 0$ in $\Omega_T$) Dann gilt:
 	\begin{enumerate}[(i)]
 		\item das schwache Maximumsprinzip:
