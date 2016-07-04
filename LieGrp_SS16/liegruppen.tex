@@ -3121,6 +3121,237 @@ Die entsprechende Lieuntergruppe $G_\mathrm{uni} \subsetneq G$ ist also unimodul
 		& \quad + \frac{1}{4}  \sum_{i,j} \skal*{\benbrace*{X_i,X_j}}{X}^2 \qedhere 
 	\end{align}
 \end{beweis}
+\todo[inline]{hier fehlt mal wieder eine Vorlesung}
+
+\begin{satz}[label=satz:3210]
+	Sei $\enbrace*{\sfrac{G}{H},g}$ ein homogener Raum mit $\Ad(H)$-invarianter Zerlegung $\mathfrak{g} = \mathfrak{h} \oplus \mathfrak{m}$.
+	Dann gilt
+	\[
+		M_g = \set*{\exp(V) \given V \in \Sym(\mathfrak{m}), \Ad(H)|_\mathfrak{m} V = V \Ad(H)|_{\mathfrak{m}}}
+	\]
+\end{satz}
+\begin{beweis}
+	Sei $P \in M_G$.
+	Dann gilt $\Ad(H)P = = \Ad(H)$.
+	Wir schreiben nun $P = A \cdot \exp(D) \cdot A^T$, wobei $A \in \SO(n)$ und
+	\[
+		D = \begin{pmatrix}
+			d_1 & & \\
+			& \ddots & \\
+			& & d_n
+		\end{pmatrix} \Big|_{\mathfrak{m}}
+	\]
+	mit $d_i \in \mathbb{R}$ und $n = \dim_\mathbb{R} \mathfrak{m}$.
+	Somit gilt $\Ad(H) A \exp(D) A^T = A \exp(D)A^T \Ad(H)$, woraus
+	\[
+		\enbrace*{A^T \Ad(H)|_\mathfrak{m} A} \exp(D) = \exp(D) \enbrace*{A^T \Ad(H)|_\mathfrak{m} A}
+	\]
+	folgt. Wir schreiben 
+	\[
+		D = \begin{pmatrix}
+			d_1 I_{i_1} & & \\
+			& \ddots & \\
+			& & d_k I_{i_k}
+		\end{pmatrix}
+	\]
+	mit $d_i \neq d_j$ für $i \neq j$.
+	Mit einem kleinen Argument folgt
+	\[
+		\benbrace*{A^T \Ad(H)|_\mathfrak{m} A} = \begin{pmatrix}
+			* & 0 & \cdots & 0 \\
+			0 & \ddots & & \vdots \\
+			\vdots & & \ddots & 0 \\
+			0 & & *
+		\end{pmatrix}
+	\]
+	indiziert über $i_1, \ldots , i_k$.
+	Es folgt $\enbrace*{A^T \Ad(H)|_\mathfrak{m} A} D = D \enbrace*{A^T \Ad(H)|_\mathfrak{m} A}$ und somit
+	\[
+		\Ad(H)|_\mathfrak{m} A D A^T = A DA^T \Ad(H)|_\mathfrak{m}
+	\]
+	Also $\Ad(H)|_\mathfrak{m} \exp(t ADA^T) = \exp(t A D A^T) \Ad(H)|_{\mathfrak{m}}$.
+	Folglich ist $\exp(t A DA^T) \in  M_G$.
+	Somit ist $P = \exp(A D A^T)$ und $V= A DA^T$ ist $\Ad(H)|_\mathfrak{m}$-äquivariant.
+\end{beweis}
+
+\begin{korollar}[label=korr:3211]
+	Sei $\enbrace*{\sfrac{G}{H}, g}$ ein Riemannscher homogener Raum und 
+	\[
+		M_G^1 = \set*{\exp(V) \given V \in \Sym(\mathfrak{m}), \operatorname{Spur} V =0, \Ad(H)|_\mathfrak{m} V = V \Ad(H)|_\mathfrak{m}}
+	\]
+	Das $\Ad(H)$-Modul $\mathfrak{m}$ kann in irreduzible $\Ad(H)$-Module zerlegt werden:
+	\[
+		\mathfrak{m} = \mathfrak{m}_1 \oplus \ldots \oplus \mathfrak{m}_r
+	\]
+	Diese Zerlegung ist im Allgemeinen \emph{nicht} eindeutig.
+\end{korollar}
+
+Man nennt $\Ad(H)$-Module $\mathfrak{m}_i, \mathfrak{m}_j$ äquivalent, falls es Isomorphismus $J \colon \mathfrak{m}_i \to \mathfrak{m}_j$ existiert mit 
+\[
+	\begin{tikzcd}
+		\mathfrak{m}_i\rar["J"] \dar["\Ad(H)"] & \mathfrak{m}_j \dar["\Ad(H)"] \\
+		\mathfrak{m}_i \rar["J"] & \mathfrak{m}_j
+ 	\end{tikzcd}
+\]
+Wir setzen $P_i \coloneqq \bigoplus_{j \in I_i} \mathfrak{m}_j$, wobei für $j, \overline{j}$ die Module $\mathfrak{m}_j, \mathfrak{m}_{\overline{j}}$ äquivalent sind. 
+Es folgt $\mathfrak{m} = P_1 \oplus \ldots \oplus P_S$.
+Die Zerlegung in die \Index{isotypischen} Summanden $P_1, \ldots , P_s$ ist eindeutig(!).
+Im Allgemeinen sind die $P_i$ aber nicht mehr irreduzibel (Beispiel $\sfrac{G}{H} = \sfrac{G}{\set*{e}}$, $H = \set*{e}$).
+Irreduzible Unterräume sind alle $1$-dimensional $\mathfrak{m} = \mathfrak{g} = P_0$.
+Ein irreduzibler Modul $V$ einer linearen Darstellung einer kompakten Liegruppe $K$ (bei uns $K = \Ad(H)$ operiert auf dem Modul $\mathfrak{m}$) ist vom \bet{reellen}, \bet{komplexen}, \bet{quaternionalen} Typ, falls 
+\[
+	\Hom_K (V,V) = \begin{cases}
+		\mathbb{R} &\\
+		\mathbb{C} & \\
+		\mathbb{H} &
+	\end{cases}
+\]
+(siehe \cite{BrotD}).
+\begin{beispiel*}
+	\begin{itemize}
+		\item $n \ge 3$, $V= \mathbb{R}^n$, $K= \SO(n)$, $(A,v) \mapsto A \cdot v$.
+		Annahme: $J \colon \mathbb{R}^n \to \mathbb{R}^n$ existiert mit $J \cdot A = A \cdot J$ für alle $A \in \SO(n)$.
+		Folglich ist $J = \lambda \cdot {\id}$. Also ist $\Hom_{\SO(n)} \enbrace*{\mathbb{R}^n,\mathbb{R}^n} \cong \mathbb{R}$.
+		\item $n=2$, $V=\mathbb{R}^2 =\mathbb{C} $, $K=\SO(2)$.
+		\[
+			J_1 = {\id} \qquad J_2 = \begin{pmatrix}
+				0 & -1 \\
+				1 & 0
+			\end{pmatrix}
+		\]
+		Wegen $J_2 \in  \SO(2) + \SO(2)$ abelsch gilt $J_2 \SO(2) = \SO(2) J_2$. Es folgt(!)
+		\[
+			\Hom_{\SO(2)} \enbrace*{\mathbb{R}^2,\mathbb{R}^2} \cong \mathbb{C}
+		\]
+	\end{itemize}
+\end{beispiel*}
+
+Es gilt $\mathfrak{m} = P_1 \oplus  \ldots \oplus P_s$. Schurs Lemma besagt nun, dass jedes $\Ad(H)$-invariante Skalarprodukt $\skal*{\cdot }{\cdot }$ diese Zerlegung respektiert, das heißt für $i\neq j$ gilt $\skal*{P_i}{P_j}=0$.
+
+\begin{bemerkung*}
+	Falsch für die $\mathfrak{m}_i$s!!!
+	Somit hat jeder $\Ad(H)$-äquivarianter Endomorphismus von $\mathfrak{m}$ \enquote{Blockgestalt} bezüglich der Zerlegung in die $P_i$, das heißt $V(P_i) \subset P_i$ für alel $i=1,\ldots ,s$.
+	Falls $P_i$ $\Ad(H)$-irreduzibel ist, gilt nach Schurs Lemma für jeden $\Ad(H)|_{P_i}$-äquivarianten Isomorphismus $Q_i \colon P_i \to P_i$ die Identität $Q_i = \alpha \cdot {\id_{P_i}}$ mit $\alpha \in \mathbb{R}\setminus \set*{0}$.
+\end{bemerkung*}
+
+Schurs Lemma: Sei $K$ eine kompakte Liegruppe und $\rho \colon K \to \GL(V)$ eine irreduzible Darstellung von $K$ (auf Vektorraum $V$).
+Dann existiert bis auf Skalierung genau ein $\rho(K)$-invariantes Skalarprodukt auf $V$.
+\begin{beweis}
+	Existenz: $K$ ist kompakt also erhalten wir $\skal*{\cdot }{\cdot }_0$ $\rho(K)$-invariant.
+	
+	Sei $\skal*{\cdot }{\cdot }$ ein weiteres $\rho(K)$-invariantes Skalarprodukt auf $V$.
+	Wir setzen 
+	\[
+		\skal*{v_1}{v_2} = \skal*{p \cdot v_1}{v_2}_0
+	\]
+	mit $P \colon V\to V$ positiv definit und $\rho(K)$-äquivariant.
+	Wir zeigen $P = \alpha \cdot {\id_V}$.
+	Falls dem nicht so ist, zerlegen wir $V = E_1 \oplus  \ldots E_\ell$ in Eigenräume von $P$ zu Eigenwerten $\alpha_1 < \lambda_2 < \ldots < \lambda_\ell$, $\ell \ge 2$.
+	$P$ ist $\rho(K)$-invariant, also $P \rho(K) = \rho(K) P$, womit für $v_1 \in  E_1$ gilt
+	\[
+		P \cdot \enbrace*{\rho(K) v_1} = \rho(K) \cdot P \cdot v_1 = \rho(K) \cdot \lambda_1 \cdot v_1 = \lambda_1 \enbrace*{\rho(K) v_1}
+	\]
+	Somit ist $\rho(K)(v_1) \in E_1$, das heißt $E_1$ ist $\rho(K)$-invariant und damit auch $E_1^\perp$, folglich kann $V =E_1 \oplus E_1^\perp$ nicht irreduzibel sein.
+\end{beweis}
+
+\begin{korollar}
+	Jedes $\Ad(H)$-invariante Skalarprodukt auf $\mathfrak{m} = P_1 \oplus \ldots \oplus P_s$ erfüllt $\skal*{P_i}{P_j}=0$ für $i\neq j$.
+\end{korollar}
+
+Sei nun $P_1$ ein isotypischer Summand vom reellen Typ.
+Dann kann jeder $\Ad(H)$-invarianten Isomorphismus $P \colon P_1 \to P_1$ geschrieben werden als
+\[
+	P= \begin{pmatrix}
+		\alpha_1 I_k & \cdots &  \alpha_{1,\abs*{i_1} }I_k \\
+		\vdots & \ddots & \vdots \\
+		\alpha_{1,\abs*{i_1}} I_k & \cdots & \alpha_{\abs{i_1}} I_k
+	\end{pmatrix}
+\]
+wobei $P_1 = \mathfrak{m}_1 \oplus  \ldots \oplus \mathfrak{m}_{i_1}$ (Summanden äquivalent) mit $\dim_\mathbb{R} \mathfrak{m}_1 = k$.
+
+\begin{beispiel*}
+	$\mathfrak{m} = \mathfrak{m} \oplus \mathfrak{m}'$ $\dim \mathfrak{m} = k$.
+	\[
+		P = \begin{pmatrix}
+			\alpha_1 {\id_k} & \alpha_{1,2} {\id_k} \\
+			\alpha_{1,2} {\id_k} & \alpha_2 (\id_k)
+		\end{pmatrix}
+		\text{ \enquote{$\in$} } \Mat(2,\mathbb{R})
+	\]
+\end{beispiel*}
+
+Linksinvariante Metriken auf Liegruppe $H=\set*{e}$. $\mathfrak{m} = \mathfrak{g} = P_0 = \mathfrak{m}_1 \oplus \ldots \oplus \mathfrak{m}_n$ (alle 1-dimensional)
+\[
+	\begin{pmatrix}
+		\alpha_{1,1} & \cdots & \alpha_{1,m} \\
+		\vdots & & \\
+		\alpha_{1,n} & \cdots & \alpha_{n,n}
+	\end{pmatrix} > 0
+\]
+Im komplexen Fal: $\mathfrak{m}_1$ vom komplexen Typ $\Rightarrow \dim_\mathbb{R} \mathfrak{m}_1 = k = 2 \cdot \ell$.
+Es gilt: Diagonale wie oben ($= \alpha_i \cdot {\id_k}$ Schurs Lemma). 
+Nebendiagonalelemente gegeben durch 
+\[
+	P_{ij} = \alpha_{i,j} \cdot \begin{pmatrix}
+		Z_{ij} & & \\
+		& \ddots & \\
+		& & Z_{ij}
+	\end{pmatrix}
+\]
+wobei
+\[
+	Z_{i,j} = \begin{pmatrix}
+		a_{i,1}  & -b_{i,j} \\
+		b_{i,1} & a_{i,j}
+	\end{pmatrix} \longleftrightarrow a_{i,j} + i \cdot b_{i,j}
+\]
+Im quaternionalen Fall ($k=4 \ell$)
+\[
+	P_{ij} = \alpha_{ij} \cdot \begin{pmatrix}
+		q_{i,j} & & \\
+		& \ddots & \\
+		& & q_{i,j}
+	\end{pmatrix}
+\]
+\[
+	q_{i,j} = \begin{pmatrix}
+		\alpha & -\beta & - \gamma & - \delta \\
+		\beta & \alpha & - \delta & + \gamma \\
+		\gamma & \delta & \alpha & - \beta \\
+		\delta & -\gamma & \beta & \alpha
+	\end{pmatrix}
+\]
+
+Für den fall von linksinvarianter Metriken auf Liegruppen wollen wir nun die Formel für die Riccikrümmung noch besser verstehen.
+Wir wählen eine Skalarprodukt $\skal*{\cdot }{\cdot }_0 \colon \mathfrak{g} \times \mathfrak{g} \to \mathbb{R}$.
+Jedes weitere Skalarprodukt $\skal*{\cdot }{\cdot}$ auf $\mathfrak{g}$ können wir schreiben als
+\[
+	\skal*{\cdot }{\cdot } = \skal*{P \cdot }{\cdot }_0 = \skal*{h \cdot }{h \cdot }_0
+\]
+($h \in \GL(n,\mathbb{R})$, $\mathfrak{g} \cong \mathbb{R}^n$).
+Die linksinvarianten Vektorfelder auf $G$ definieren Lieklammern $\mu_0 \coloneqq \benbrace*{\cdot,\cdot} \colon \mathfrak{g} \times \mathfrak{g} \to \mathfrak{g}$.
+Es gilt 
+\[
+	\ric(g) (X,Y) = - \frac{1}{2} \mathcal{B}_\mathfrak{g}(X,Y) + \frac{1}{4} \sum_{i,j} \skal*{\benbrace*{X_i,X_j}}{X}^2 - \frac{1}{2} \sum_{i} \norm*{\benbrace*{X_i,X}}^2 - \skal*{\ad(Z)(X)}{X}
+\]
+$(X_1, \ldots ,X_n)$ $\skal*{\cdot }{\cdot }$-ONB.
+Ist $(\overline{X}_1, \ldots ,\overline{X}_n)$ $\skal*{\cdot }{\cdot }_0$-ONB, so ist $\enbrace*{h^{-1} \overline{X}_1, \ldots , h^{-1} \overline{X}_n}$ eine $\skal*{\cdot }{\cdot }$-ONB, denn 
+\[
+	\skal*{h^{-1} \overline{X}_i}{h^{-1}\overline{X}_j} = \skal*{h \enbrace*{h^{-1} \overline{X}_i}}{h \enbrace*{h^{-1} \overline{X}_j}}_0 = \skal*{\overline{X}_i}{\overline{X}_j}_0 = \delta_{ij}
+\]
+Somit folgt für $X= h^{-1} \overline{X}$
+\begin{align}
+	\frac{1}{4}  \sum_{i,j} \skal*{\benbrace*{X_i,X_j}}{h^{-1} \overline{X}} - \frac{1}{2} \sum_i \norm*{\benbrace*{X_i, h^{-1} \overline{X}}}^2 &= \frac{1}{4} \sum_{i,j} \skal*{ \benbrace*{h^{-1} \overline{X_i}, h^{-1} \overline{X}_j}}{h^{-1} \overline{X}} - \frac{1}{2} \sum_i \skal*{\benbrace*{h^{-1} \overline{X}_i, h^{-1} \overline{X}}}{\benbrace*{h^{-1} \overline{X}_i, h^{-1} \overline{X}}}   \\
+	&= \frac{1}{4} \sum_{i,j} \skal*{ h \benbrace*{h^{-1} \overline{X}_i, h^{-1} \overline{X}_j}}{\overline{X}}_0 - \frac{1}{2} \sum_i \skal*{h \benbrace*{h^{-1} \overline{X}_i, h^{-1} \overline{X}_j}}{\ldots }_0 
+\end{align}
+Für $h \in \GL(n,\mathbb{R})$ definieren wir eine \enquote{Lieklammer}
+\mapdef{h \cdot \mu_0 \colon \mathfrak{g} \times \mathfrak{g}}{\mathfrak{g}}{\enbrace*{\overline{X}, \overline{Y}}}{h \benbrace*{h^{-1} \overline{X}, h^{-1} \overline{Y}}}{}
+wobei $\benbrace*{\cdot ,\cdot }= \mu_0$ \enquote{die} Lieklammer auf $\mathfrak{g}$ ist.
+Beobachtung
+\begin{itemize}
+	\item $h \cdot \mu_0 (\overline{X},\overline{Y}) = - (h \mu_0) \enbrace*{\overline{Y},\overline{X}}$
+	\item Jacobi-Identität ist erfüllt.
+\end{itemize}
 % section 32 (end)
 % chapter 3 (end)
 
