@@ -2469,7 +2469,7 @@ Für $p \in \Pinfty(A)$ gilt $K_0(\varphi) \enbrace*{\benbrace*{p}_0} = \benbrac
 	nichttriviale $K$-Theorie hat (im Allgemeinen).
 \end{beispiel}
 
-\begin{definitionP}
+\begin{definitionP}[label=prop:76]
 	Betrachte \(
 		\begin{tikzcd}[cramped,sep=small]
 			0 \rar & A \rar & A^+ \rar["\pi"] & \mathbb{C} \lar[bend right,"\sigma"'] \rar & 0
@@ -2640,7 +2640,7 @@ Für $p \in \Pinfty(A)$ gilt $K_0(\varphi) \enbrace*{\benbrace*{p}_0} = \benbrac
 	\end{enumerate}
 \end{beispiel}
 
-\begin{proposition}
+\begin{proposition}[label=prop:711]
 	Sei $A$ eine $C^*$-Algebra und $\iota_{nA} \colon A \to M_n(A)$ die Einbettung, die $a \in A$ auf die Matrix mit $a_{11}= a$ und $a_{ij}=0$ sonst abbildet.
 	Dann ist $K_0(\iota_{nA}) \colon K_0(A) \to K_0(M_n(A))$ ein Isomorphismus.
 \end{proposition}
@@ -2706,7 +2706,7 @@ Wir wollen nun einige ähnliche Aussagen beweisen:
 	\end{enumerate}
 \end{beweis}
 
-\begin{satz}
+\begin{satz}[label=satz:713]
 	Sei 
 	\[
 		\begin{tikzcd}[sep=3em]
@@ -2744,9 +2744,233 @@ Wir wollen nun einige ähnliche Aussagen beweisen:
 			x = \benbrace*{p}_0 - \benbrace*{s(p)}_0 &= \benbrace*{\varphi_{n_1,\infty}(q)}_0 - \benbrace*{s_A \enbrace*{ \varphi_{n_1,\infty}(q)}}_0 \\
 			&= K_0 \enbrace*{\varphi_{n_1,\infty}} \enbrace*{\benbrace*{q}_0 - \benbrace[\big]{s_{A_{n_1}}(q)}_0} \in K_0(\varphi_{n_1,\infty}) \enbrace*{K_0(A_{n_1})}
 		\end{align}
+		\item Es gilt $\ker \enbrace*{K_0(\varphi_{n,\infty})} = \bigcup_{mm=n+1}^\infty \ker \enbrace*{K_0(\varphi_{n,m})}$ für alle $n \in \mathbb{N}$.
+		
+		\enquote{$\supset$} ist klar. Sei umgekehrt $x \in \ker \enbrace*{K_0(\varphi_{n,\infty})} \in K_0(A_n)$.
+		Mit \autoref{prop:76} (i),(iii) folgt, dass ein $k \in \mathbb{N}$ und ein $p \in \kernedP_k(A^+_n)$ existieren mit $x=\benbrace*{p}_0 - \benbrace*{s(p)}_0$ und 
+		\[
+			{\varphi_{n,\infty}^+}^\ssbrace{k}(p) \sim {\varphi_{n,\infty}^+}^\ssbrace{k} \enbrace*{s(p)} 
+		\]
+		in $M_k(A^+)$.
+		Das heißt es existiert $v \in M_k(A^+)$ mit $v^*v = \varphi_{n,\infty}$ und $vv^* = \varphi_{n,\infty}(s(p))$.
+		Damit gilt für ein $m \ge n$, $w \in M_k(A_m^+)$ mit
+		\[
+			\norm*{w^*w - {\varphi_{n,m}^+}^\ssbrace{k}(p)} , \quad \norm*{ww^* - {\varphi_{n,m}^+}^\ssbrace{k}(s(p))} < \frac{1}{4} 
+		\]
+		mit \autoref{lem:712} (ii) folgt ${\varphi_{n,m}^+}^\ssbrace{k}(p) \sim_{\MvN} {\varphi_{n,m}^+}^\ssbrace{k}(s(p))$.
+		Folglich gilt dann auch
+		\[
+			K_0(\varphi_{n,m})(x) = \benbrace*{{\varphi_{n,m}^+}^\ssbrace{k}(p)}_0 - \benbrace*{{\varphi_{n,m}^+}^\ssbrace{k}(s(p))}_0 =0
+		\]
+		Also ist $x \in \ker K_0(\varphi_{n,m})$.
+		\item Betrachte
+		\[
+			\begin{tikzcd}
+				K_0(A_1) \rar & \ldots \rar & K_0(A_n)\ar[drr,"K_0(\varphi_{n,\infty})"]  \rar & \ldots \rar & \Dlim K_0(A_n) \dar["\mu"] \\
+				& & & & K_0(A)
+			\end{tikzcd}
+		\]
+		mit (i) folgt die Surjektivität und mit (ii) die Injektivität von $\mu$.\qedhere
 	\end{enumerate}
 \end{beweis}
+
+\begin{korollar}
+	Für jede $C^*$-Algebra $A$ induziert ${\id_A} \otimes e_{11} \colon A \to A \otimes \mathcal{K}$ einen Isomorphismus $K_0(A) = K_0(A \otimes \mathcal{K})$.
+\end{korollar}
+\begin{beweis}
+	Betrachte
+	\[
+		\begin{tikzcd}
+			A \otimes M_1 \rar & A \otimes M_2 \rar & \ldots \rar & A \otimes \mathcal{K} = \Dlim A \otimes M_n \\
+			A \uar["{\id} \otimes e_{11}"] \urar["{\id} \otimes e_{11}"'] \ar[urrr,"{\id} \otimes e_{11}"']
+		\end{tikzcd}
+	\]
+	Damit erhalten wir 
+	\[
+		\begin{tikzcd}
+			K_0(A \otimes M_1) \rar["\cong"] & K_0(A \otimes M_2) \rar & \ldots \rar & K_0(A \otimes \mathcal{K})  \\
+			K_0(A) \uar["\cong"',"\text{\ref{prop:711}}"] \urar["\cong"]  \ar[urrr,"\cong"] & & & \Dlim K_0(A \otimes M_n) \uar[equal,"\text{\ref{satz:713}}"]
+		\end{tikzcd}
+	\]
+\end{beweis}
 % section 7 (end)
+\newpage
+
+\section{Der Funktor $K_1$} % (fold)
+\label{sec:8}
+
+\begin{definitionP}[label=def:81]
+	Für eine unitale $C^*$-Algebra $A$ setzen wir $U_m(A) = \mathcal{U}(M_m(A))$ und
+	\[
+		U_\infty(A) \coloneqq \bigcup_{n=1}^\infty U_n(A)
+	\]
+	Dabei $U_n(A) \subseteq U_{n+1}(A)$ via $u \hat{=} \begin{psmallmatrix}
+		u & \\ & \ind 
+	\end{psmallmatrix} = u \oplus \ind$.
+	Für $u,v \in U_\infty(A)$ mit $u \in U_n(A)$ und $v \in U_m(A)$ setzen wir 
+	\[
+		u \oplus v = \begin{pmatrix}
+			u & 0 \\
+			0 & v
+		\end{pmatrix} \in U_{n+m}(A) \subseteq U_\infty(A)
+	\]
+	Für solche $u,v$ definieren wir
+	\[
+		u \sim_1 v :\Leftrightarrow \exists k \ge \max(n,m) : u \oplus \ind_{k-n} \sim_h v \oplus \ind_{k-m} \text{ in } U_k(A) 
+	\]
+	Dann ist $\sim_1$ eine Äquivalenzrelation auf $U_\infty(A)$ und es gilt 
+	\begin{itemize}
+		\item $u \sim_1 u \oplus \ind_\ell$ $\forall u \in U_\infty(A), \ell \in \mathbb{N}$
+		\item $u \oplus v \sim_1 v \oplus u$ $\forall u,v \in U_\infty(A)$ via
+		\[
+			\begin{pmatrix}
+				u & \\ & v
+			\end{pmatrix} = \Underbracket{\begin{pmatrix}
+				0 & \ind \\
+				\ind & 0
+			\end{pmatrix}}{\sim_h \ind}
+			\begin{pmatrix}
+				v & \\ & u
+			\end{pmatrix}
+			\begin{pmatrix}
+				0 & \ind \\ \ind & 0
+			\end{pmatrix}
+			\sim_h \begin{pmatrix}
+				v & \\ & u
+			\end{pmatrix}
+		\]
+		\item $u \sim_1 u' , v \sim_1 v' \implies u \oplus v \sim_1 u' \oplus v'$
+		\item $uv \sim_1 u \oplus v$ via
+		\[
+			\begin{pmatrix}
+				u & \\ & v
+			\end{pmatrix} = \begin{pmatrix}
+				u & \\ & \ind 
+			\end{pmatrix} \begin{pmatrix}
+				0 & \ind \\ \ind & 0
+			\end{pmatrix}
+			\begin{pmatrix}
+				v & \\ & \ind
+			\end{pmatrix}
+			\begin{pmatrix}
+				0 & \ind \\ \ind & 0
+			\end{pmatrix}
+			\sim_h \begin{pmatrix}
+				uv & \\ & \ind
+			\end{pmatrix}
+		\]
+		\item $(u \oplus v) \oplus w = u \oplus  (v \oplus w)$.
+	\end{itemize}
+\end{definitionP}
+
+\begin{definitionP}
+	Für eine $C^*$-Algebra $A$ definieren wir 
+	\[
+		K_1(A) \coloneqq \sfrac{\mathcal{U}_\infty(A^+)}{\sim_1}
+	\]
+	und schreiben $\benbrace*{u}_1$ für die Äquivalenzklasse von $u$.
+	$K_1(A)$ ist eine abelsche Gruppe via $\benbrace*{u}_1 + \benbrace*{v}_1 = \benbrace*{u \oplus v}_1$ für $u,v \in \mathcal{U}_\infty(A)$.
+	Man hat $- \benbrace*{u}_1 = \benbrace*{u^*}_1$ und $0_{K_1(A)} = \benbrace*{\ind}_1$
+\end{definitionP}
+
+\begin{proposition}[label=prop:83]
+	Sei $A$ eine $C^*$-Algebra, $G$ eine abelsche Gruppe und $\nu \colon \mathcal{U}_\infty(A^+) \to G$ eine Abbildung mit 
+	\begin{enumerate}[a)]
+		\item $\nu(u \oplus v) = \nu(u) + \nu(v)$
+		\item $\nu(\ind)=0$
+		\item $u,v \in \mathcal{U}_n(A^+)$, $u \sim_h v \implies \nu(u) = \nu(v)$
+	\end{enumerate}
+	Dann existiert genau ein Homomorphismus $\alpha \colon K_1(A) \to G$, sodass das folgende Diagramm kommutiert:
+	\[
+		\begin{tikzcd}
+			U_\infty(A^+) \dar["\benbrace*{-}_1"] \drar["\nu"] \\
+			K_1(A) \rar[dashed,"\exists ! \alpha"] & G
+		\end{tikzcd}
+	\]
+\end{proposition}
+
+\begin{bemerkung}
+	\begin{enumerate}[(i)]
+		\item Es gilt $K_1(A) = \set*{\benbrace*{u}_1 \given u \in \mathcal{U}_k(A^+), \pi^{+\ssbrace{k}}(u) =\ind_k}$
+		\item Falls $A$ unital ist, so ist $K_1(A) \cong \sfrac{\mathcal{U}_\infty(A)}{\sim_1}$
+	\end{enumerate}
+\end{bemerkung}
+\begin{beweis}
+	\emph{Übung!}
+\end{beweis}
+
+Seien $A,B$ $C^*$-Algebren und $\varphi \colon A \to B$ ein $^*$-Homomorphismus.
+Wir erhalten eine induzierte Abbildung $\varphi^{+\ssbrace{\infty}} \colon \mathcal{U}_\infty(A^+) \to \mathcal{U}_\infty(B^+)$.
+Man überprüft, dass $\nu \colon U_\infty(A^+) \to K_1(B)$, $u \mapsto \benbrace*{\varphi^{+\ssbrace{\infty}}(u)}_1$ die Bedingungen aus \autoref{prop:83} erfüllt.
+Dann erhält man $K_1(\varphi) \colon K_1(A) \to K_1(B)$.
+
+\begin{proposition}[label=prop:85]
+	Seien $A,B,C$ $C^*$-Algebren, $\varphi \colon A \to B$, $\psi \colon B \to C$ $^*$-Homomorphismen.
+	Dann gilt
+	\begin{enumerate}[(i)]
+		\item $K_1({\id_A}) = {\id_{K_1(A)}}$
+		\item $K_1(\psi \circ \varphi) = K_1(\psi) \circ K_1(\varphi)$
+	\end{enumerate}
+	Insbesondere ist auf diese Weise $K_1(-)$ ein kovarianter Funktor
+	\[
+		\enbrace*{\CSTAR, {^*}\text{-}\Hom} \longrightarrow \enbrace*{\AB, \Hom}
+	\]
+	Es gelten außerdem:\todo[inline]{Beginn ändern}
+	\begin{enumerate}[(i)]
+		\item $K_1(\set*{0}) = \set*{0}$
+		\item $K_1(0_{A\to B}) = 0_{K_1(A) \to K_1(B)}$
+		\item $\varphi_0 \sim \varphi_1 \colon A \to B \implies K_1(\varphi_0) = K_1(\varphi_1)$
+		\item Falls $A,B$ homotopieäquivalent via \(
+			\begin{tikzcd}[cramped,sep=small]
+				A \rar["\rho"] & B \rar["\sigma"] & A
+			\end{tikzcd}
+		\) sind, so sind $K_1(\rho)$, $K_1(\sigma)$ zueinander inverse Isomorphismen.
+		\item Falls $x \in \ker K_1(\varphi)$, so existiert $u \in \mathcal{U}_\infty(A^+)$ mit $x= \benbrace*{u}_1$ und $\varphi^{+\ssbrace{\infty}}(u) \sim_h \ind$.
+		Falls $\varphi$ surjektiv ist, so kann man $\varphi^{+\ssbrace{\infty}}(u)= \ind$ annehmen.
+	\end{enumerate}
+\end{proposition}
+\begin{beweis}
+	(i) -(iv) Im Wesentlichen wie für $K_0$: Klar mit $(\psi \circ \varphi)^{+\ssbrace{\infty}} = \psi^{+\ssbrace{\infty}} \circ \varphi^{+\ssbrace{\infty}}$ und $\varphi_0 \sim_h \varphi_1 \implies \varphi_0^{+\ssbrace{\infty}} \sim \varphi_1^{+\ssbrace{\infty}}$
+	\begin{enumerate}[(i)]
+		\item[vii] $x=\benbrace*{u}_1$ mit $u \in \mathcal{U}_m(A^+)$ und $\varphi^{+\ssbrace{\infty}}(u) \sim_1 \ind_m$.
+		Nach \autoref{def:81} existiert ein $k$ mit
+		\[
+			\Underbracket{\varphi^{+\ssbrace{m}}(n) \oplus \ind_k}{= \varphi^{+\ssbrace{m+k}}(u \oplus \ind_k)} \sim_h \ind_{m+k}
+		\]
+		Ersetze un $u$ durch $u \oplus \ind_k$.
+		Ist $\varphi$ surjektiv, so $\varphi^{+\ssbrace{n}}(u) = e^{ih_1} \cdots e^{i h_k}$ für $h_1, \ldots ,h_k \in  M_m(A^+)_\sa$.\footnote{Für $v \in \mathcal{u}(A^+)$ mit $v \sim_h \ind$ finde $v_1, \ldots ,v_n \in \mathcal{u}(A^+)$ mit $v_1 = \ind$, $v_n =v$, $2 > \norm*{v_i - v_{i+1}}$, Funktionalkalkül, $-1 \notin \Sp(v_i^* v_{i+1}) \implies v_i^* v_{i+1}= e^{ih}$ mit $h \in A_\sa^+$}
+		Lifte jedes $h_i$ zu $g_i \in M_m(A^+)_\sa$.
+		Dann ist $v= e^{ig_1} \cdots e^{i g_k} \in \mathcal{U}_m(A^+)$ mit $\varphi^{+\ssbrace{m}}(v) = \varphi^{+\ssbrace{m}}(u)$.
+		Dann ersetze $u$ durch $u v^*$ ($\varphi^{+ \ssbrace{m}}(uv^*)=\ind_m$ und $u \sim_h u v^*$, weil $v \sim_h \ind$)
+	\end{enumerate}
+\end{beweis}
+
+\begin{proposition}
+	$K_1(-)$ ist halbexakt, das heißt für eine kurze exakte Sequenz
+	\[
+		\begin{tikzcd}
+			0 \rar & J \rar["\iota"] & A \rar["\pi_n"] & B \rar & 0
+		\end{tikzcd}
+	\]
+	ist 
+	\[
+		\begin{tikzcd}
+			K_1(J) \rar["K_1(\iota)"] & K_1(A) \rar["K_1(\pi)"] & K_1(B)
+		\end{tikzcd}
+	\]
+	exakt.
+\end{proposition}
+\begin{beweis}
+	$\im K_1(\iota) \subseteq \ker K_1(\pi)$ ist klar mit \autoref{prop:85} (ii), (iv).
+	Sei $x \in \ker K_1(\pi)$.
+	Mit \autoref{prop:85} (vii) folgt $x=\benbrace*{u}_1$ mit $u \in \mathcal{U}_m(A^+)$, $\pi^{+ \ssbrace{m}}(u)=\ind_m$.
+	Also ist $\pi^{+\ssbrace{m}(u-1)}=0 \implies u - \ind_m \in \iota^{+\ssbrace{m}(M_m(J^+))}$.
+	Mit der Injektivität von $\iota$ folgt die Existenz eines $v \in \mathcal{U}_m(J^+)$ mit $\iota^{+\ssbrace{m}}(v)=u$.
+	Damit folgt $K_1(\iota)(v) = \benbrace*{u}_1= x$, also $x \in \im K_1(\iota)$.
+\end{beweis}
+
+
+% section 8 (end)
 
 
 \cleardoubleoddemptypage
