@@ -692,7 +692,7 @@ Wir wissen weiter, dass $I_{\max}$ offen in $\mathbb{R}$ ist.
             \]
         \end{itemize}
 		Damit sind alle $g \in G$ sind schlicht überlagert.
-		Die Abbildung $\Phi$ ist außerdem surjektiv nach \autoref{lem:1213}, denn eine offene Umgebung von $e$ liegt im Bild und $\Phi$ ist ein Homomorphismus.\todo{RevChap 1}\qedhere
+		Die Abbildung $\Phi$ ist außerdem surjektiv nach \autoref{lem:1213}, denn eine offene Umgebung von $e$ liegt im Bild und $\Phi$ ist ein Homomorphismus.\qedhere
     \end{enumerate}
 \end{beweis}
 
@@ -705,21 +705,20 @@ Wir wissen weiter, dass $I_{\max}$ offen in $\mathbb{R}$ ist.
 \end{korollar}
 \begin{beweis}
     \begin{enumerate}[1)]
-        \item Sei $\tilde{U}$ eine offene Umgebung von $\tilde{e}$, sodass $\Phi|_{\tilde{U}} \colon \tilde{U} \to \Phi(\tilde{U}) =: U$ ein Diffeomorphismus ist.
-        Dann folgt $\tilde{\Gamma} \cap \tilde{U} = \set*{\tilde{e}}$.
-        Somit ist $\tilde{\Gamma}$ eine diskrete Untergruppe von $\tilde{G}$.
-        Da $\tilde{\Gamma}$ der Kern eine Homomorphismus ist, ist $\tilde{\Gamma}$ ein Normalteiler in $\tilde{G}$.
-        Sei $\tilde{g} \in \tilde{G}$ und $\tilde{g}(t) \colon [0,1] \to \tilde{G}$ ein stetiger Weg mit $\tilde{g}(0)=\tilde{e}$, $\tilde{g}(1)=\tilde{g}$.
-        Dann gilt
+        \item Sei $\widetilde{U}$ eine offene Umgebung von $\widetilde{e}$, sodass $\Phi|_{\widetilde{U}} \colon \widetilde{U} \to \Phi(\widetilde{U}) =: U$ ein Diffeomorphismus ist.
+        Dann folgt $\widetilde{\Gamma} \cap \widetilde{U} = \set*{\widetilde{e}}$.
+        Somit ist $\widetilde{\Gamma}$ eine diskrete Untergruppe von $\widetilde{G}$.
+        Da $\widetilde{\Gamma}$ der Kern eines Homomorphismus ist, ist $\widetilde{\Gamma}$ außerdem ein Normalteiler in $\widetilde{G}$.
+        Sei $\widetilde{g} \in \widetilde{G}$ und $\widetilde{g}(t) \colon [0,1] \to \widetilde{G}$ ein stetiger Weg mit $\widetilde{g}(0)=\widetilde{e}$, $\widetilde{g}(1)=\widetilde{g}$.
+        Dann gilt für $\widetilde{\gamma} \in \widetilde{\Gamma}$
         \[
-            \tilde{g}(t) \tilde{\gamma} \tilde{g}^{-1}(t) \in \tilde{\Gamma}
+            \widetilde{g}(t) \,\widetilde{\gamma} \,\widetilde{g}^{-1}(t) \in \widetilde{\Gamma}
         \]
-        Es folgt -- da $\tilde{\Gamma}$ diskret ist -- $\tilde{g}(t) \tilde{\gamma} (\tilde{g}(t))^{-1} \equiv \tilde{\gamma}$.
-        Es folgt 
+        Da $\widetilde{\Gamma}$ diskret ist, folgt $\widetilde{g}(t)\, \widetilde{\gamma}\, (\widetilde{g}(t))^{-1} \equiv \widetilde{\gamma}$ und wir haben insgesamt
         \[
-            \tilde{g} \tilde{\gamma} \tilde{\gamma} \tilde{g} \forall \tilde{g} \in \tilde{G} \iff \tilde{\gamma} \in Z(\tilde{G})
+            \widetilde{g} \, \widetilde{\gamma}=  \widetilde{\gamma}\, \widetilde{g} \enspace \forall \widetilde{g} \in \widetilde{G} \iff \widetilde{\gamma} \in Z(\widetilde{G})
         \]
-        \item \emph{Übung!}
+        \item \emph{Übung!}\todo{RevChap 1}
     \end{enumerate}
 \end{beweis}
 
