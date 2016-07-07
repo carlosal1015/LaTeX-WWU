@@ -3344,13 +3344,181 @@ Somit folgt für $X= h^{-1} \overline{X}$
 	&= \frac{1}{4} \sum_{i,j} \skal*{ h \benbrace*{h^{-1} \overline{X}_i, h^{-1} \overline{X}_j}}{\overline{X}}_0 - \frac{1}{2} \sum_i \skal*{h \benbrace*{h^{-1} \overline{X}_i, h^{-1} \overline{X}_j}}{\ldots }_0 
 \end{align}
 Für $h \in \GL(n,\mathbb{R})$ definieren wir eine \enquote{Lieklammer}
-\mapdef{h \cdot \mu_0 \colon \mathfrak{g} \times \mathfrak{g}}{\mathfrak{g}}{\enbrace*{\overline{X}, \overline{Y}}}{h \benbrace*{h^{-1} \overline{X}, h^{-1} \overline{Y}}}{}
+\mapdef{h . \mu_0 \colon \mathfrak{g} \times \mathfrak{g}}{\mathfrak{g}}{\enbrace*{\overline{X}, \overline{Y}}}{h \benbrace*{h^{-1} \overline{X}, h^{-1} \overline{Y}}}{}
 wobei $\benbrace*{\cdot ,\cdot }= \mu_0$ \enquote{die} Lieklammer auf $\mathfrak{g}$ ist.
 Beobachtung
 \begin{itemize}
-	\item $h \cdot \mu_0 (\overline{X},\overline{Y}) = - (h \mu_0) \enbrace*{\overline{Y},\overline{X}}$
+	\item $h . \mu_0 (\overline{X},\overline{Y}) = - (h \mu_0) \enbrace*{\overline{Y},\overline{X}}$
 	\item Jacobi-Identität ist erfüllt.
+	\item Für $X = h^{-1} \overline{X}$ und eine $\skal*{\cdot }{\cdot }_0$-ONB $\enbrace*{\overline{X}_1,\ldots ,\overline{X}_n}$ gilt 
+	\begin{align}
+		\frac{1}{4} \sum_{i,j} \skal*{\benbrace*{h^{-1} \overline{X}_i, h^{-1} \overline{X}_j}}{h^{-1} \overline{X}} &= \frac{1}{4} \sum \skal*{h \benbrace*{h^{-1} \overline{X}_i, h^{-1} \overline{X}_j}}{\overline{X}}_0 \\
+		&= \frac{1}{4}\sum \skal*{(h.\mu_0) \enbrace*{\overline{X}_i, \overline{X}_j}}{\overline{X}}_0
+	\end{align}
 \end{itemize}
+Wie früher definieren wir\marginnote{zum Vergleich $\ad(X)(Y)= \benbrace*{X,Y}$}
+\mapdef{\ad_{h.\mu_0} \colon \mathbb{R}^n}{\End(\mathbb{R}^n)}{\overline{X}}{\enbrace*{\overline{Y} \mapsto (h.\mu_0)(\overline{X}, \overline{Y})}}{}
+Nun gilt
+\[
+	\mathcal{B}_\mathfrak{g} \enbrace*{h^{-1} \overline{X}, h^{-1} \overline{X}} = \Spur \enbrace*{\ad(h^{-1} \overline{X}) \circ \ad(h^{-1} \overline{X})}
+\]
+Es gilt $\ad_{h.\mu_0}(\overline{X}) = h \circ \ad(h^{-1} \overline{X}) \circ h^{-1}$ und somit
+\begin{align}
+	\mathcal{B}_\mathfrak{g} \enbrace*{h^{-1} \overline{X}, h^{-1} \overline{X}} &= \Spur \enbrace*{h \circ  \ad(h^{-1}\overline{X}) \circ h^{-1} \circ h \circ \ad(h^{-1} \overline{X}) \circ h^{-1}} \\
+	&= \Spur \enbrace*{\ad_{h.\mu_0}(\overline{X}) \circ \ad_{h.\mu_0}(\overline{X})} =: \mathcal{B}_{h.\mu_0}(\overline{X},\overline{X})
+\end{align}
+Weiter
+\begin{align}
+	\skal*{\benbrace*{Z, h^{-1} \overline{X}}}{h^{-1} \overline{X}} = \skal*{h \benbrace*{Z,h^{-1} \overline{X}}}{\overline{X}}_0 = \skal*{h \benbrace*{h^{-1}(hZ), h^{-1} \overline{X}}}{\overline{X}}_0 = \skal*{\ad_{h.\mu_0}(hZ)(X)}{\overline{X}}_0
+\end{align}
+
+\begin{satz}
+	Sei $G$ eine Liegruppe mit $\Tmap_e G = \mathbb{R}^n$ und Skalarprodukt $\skal*{\cdot }{\cdot }_0$.
+	Für $h \in \GL(n,\mathbb{R})$ sei $g = \skal*{\cdot }{\cdot } = \skal*{h \cdot }{h \cdot }_0$.
+	Dann gilt
+	\[
+		\ric(g) \enbrace*{h^{-1} \overline{X}, h^{-1} \overline{X}} = -\frac{1}{2} \mathcal{B}_{h.\mu_0} \enbrace*{\overline{X},\overline{X}} + \frac{1}{4} \sum_{i,j} \skal*{(h.\mu_0)(\overline{X}_i, \overline{X}_j)}{\overline{X}}_0^2 - \frac{1}{2} \sum_i \norm*{(h.\mu_0)(\overline{X}_i, X)}_0^2 - \skal*{\ad_{h.\mu_0}(Z_{h.\mu_0})(\overline{X})}{\overline{X}} _0
+	\]
+	wobei $\Spur \ad_{h.\mu_0}(\overline{X}) = \skal*{Z_{h.\mu_0}}{\overline{X}}_0$.
+\end{satz}
+\begin{beweis}
+	Es genügt zu zeigen, dass $Z_{h.\mu_0} = h \cdot Z$.
+	Dies gilt da
+	\begin{align}
+		\Spur \ad_{h.\mu_0} (\overline{X}) = \Spur h \circ \ad(h^{-1} \overline{X}) \circ h^{-1} = \skal*{Z}{h^{-1} \overline{X}} = \skal*{h Z}{\overline{X}}_0 
+	\end{align}
+	Also gilt $h \mathbb{Z} = Z_{h.\mu_0}$.
+\end{beweis}
+
+Wir bezeichnen mit $V(n) \coloneqq  \Lambda^2(\mathbb{R}^n)^* \otimes \mathbb{R}^n$ den Raum der bilinearen Abbildungen von $\mathbb{R}^n \times \mathbb{R}^n$ nach $\mathbb{R}^n$, die schiefsymmetrisch in den beiden ersten Argumenten sind.
+\[
+	\mu \in V(u) : \mu(x,y) = - \mu(y,x) \in \mathbb{R}^n
+\]
+Das \enquote{gegebene} Skalarprodukt $\skal*{\cdot }{\cdot }_0$ auf $\mathbb{R}^n$ induziert ein Skalarprodukt auf $V(n)$:
+\[
+	\skal*{\mu}{\lambda}_0 \coloneqq \sum_{i,j} \skal*{\mu(\overline{X}_i, \overline{X}_j)}{\lambda(\overline{X}_i, \overline{X}_j)}_0
+\]
+wobei $(\overline{X}_1, \ldots ,\overline{X}_n)$ eine $\skal*{\cdot }{\cdot }_0$-ONB ist. Dies ist wohldefiniert.
+Ferner operiert die Gruppe $\GL(n)$ auf $V(n)$:
+\[
+	\Phi \colon \GL(n) \times V(n) \to V(n) \qquad \mu \mapsto h.\mu
+\]
+mit $(h.\mu)(\overline{X},\overline{Y}) \coloneqq h \mu \enbrace*{h^{-1} \overline{X}, h^{-1} \overline{Y}}$.
+Man rechnet leicht nach, dass $(h_1 \cdot h_2).\mu = h_1.(h_2.\mu)$ ist.
+Die Gruppe $\GL(n)$ operiert \emph{nicht} isometrisch auf $V(n)$, aber $\On(n) \subset \GL(n)$ schon!
+
+\begin{bemerkung*}
+	\begin{itemize}
+		\item Die Orbiten sind nicht immer abgeschlossen!
+		\item $\sfrac{V(n)}{\GL(n)}$ ist \emph{nicht} Hausdorff!
+		\item Nichtkompaktheit von $\GL(n)$ ist \enquote{abelsch}:\marginnote{mit $T^n$ die Diagonalmatrizen}
+		\[
+			\GL(n) \StackText{diffeo}{=\joinrel=}\On(n) \cdot \sfrac{\GL(n)}{\On(n)} = \On(n) \cdot T^m \cdot \On(n)
+		\]
+		$\leadsto$ Geometrische Invariantentheorie.
+	\end{itemize}
+\end{bemerkung*}
+
+Wir berechnen nun die Linearisierungen obiger Wirkung von $\GL(n)$ auf $V(n)$:
+Sei $A \in \mathfrak{gl}(n,\mathbb{R}) = \Tmap_{\id} \GL(n) = \End(n)$ und $h(t)=\exp(t \cdot A)$.
+Dann gilt $h(0)= {\id}$ und $h'(0) =A$ und es gilt
+\[
+	\diffd{}{t}\Big|_{t=0} (h_t.\mu)(\overline{X},\overline{Y}) = \diffd{}{t}\Big|_{t=0} h_t.\mu \enbrace*{h_t^{-1} \cdot \overline{X}, h_t^{-1} \overline{Y}}
+	= A \mu(\overline{X},\overline{Y}) - \mu(A \overline{X}, \overline{Y}) - \mu(\overline{X}, A \overline{Y})
+\]
+
+\begin{definition}
+	Wir bezeichnen mit $\pi \colon \End(n) \times V(n) \to V(n)$, $(A,\mu) \mapsto \pi(A)\cdot \mu$ mit 
+	\[
+		\pi(A)\mu(\cdot ,\cdot ) \coloneqq A \mu(\cdot ,\cdot ) - \mu (A \cdot ,\cdot ) - \mu(\cdot ,A \cdot )
+	\]
+\end{definition}
+
+Die lineare Darstellung $\pi$ von $\End(n) = \mathfrak{gl}(n,\mathbb{R})$ ist eine Liealgebrendarstellung, das heißt
+\[
+	\pi \enbrace*{\benbrace*{A,B}} = \benbrace*{\pi(A), \pi(B)}
+\]
+
+\begin{lemma}
+	Sei $A \in \mathfrak{so}(n) = \Tmap_e \SO(n) \subset \End(V(n))$.
+	Dann gilt 
+	\[
+		\skal*{\pi(A) \mu}{\mu}_0 = 0 \enspace \forall \mu \in V(n)
+	\]
+	Damit ist $\pi(A)$ schiefsymmetrisch. Sei $S \in  \Sym(n) \subset \End(n)$.
+	Dann gilt für alle $\mu,\lambda \in V(n)$
+	\[
+		\skal*{\pi(S) \mu}{\lambda}_0 = \skal*{\mu}{\pi(S)\lambda}_0
+	\]
+	Das heißt $\pi(S)$ ist symmetrisch.
+\end{lemma}
+\begin{beweis}
+	Sei $A \in \mathfrak{so}(n)$.
+	Dann gilt $\exp(t A) \in \SO(n)$.
+	Somit gilt 
+	\[
+		\norm*{\mu}_0^2 \equiv \skal[\big]{\exp(t A). \mu}{ \exp(tA).\mu}_0
+	\]
+	Somit ist $0= \skal*{\pi(A).\mu}{\mu}_0$.
+	Dies zeigt die erste Behauptung.
+	Sei $S \in \Sym(n)$ und sei $\enbrace*{\overline{X}_1, \ldots , \overline{X}_n}$ eine Orthonormalbasis von Eigenvektoren bezüglich Eigenwerten $s_1, \ldots, s_n \in \mathbb{R}$.
+	Dann gilt
+	\begin{align}
+		\skal*{\pi(S).\mu}{\lambda}_0 &= \sum_{i,j} \skal*{\enbrace*{\pi(S).\mu}(\overline{X}_i, \overline{X}_j)}{\lambda \enbrace*{\overline{X}_i, \overline{X}_j}}_0 \\
+		&= \sum_{i,j,k} \skal*{S.\mu \enbrace*{\overline{X}_i, \overline{X}_j} - \mu \enbrace*{S \overline{X}_i, \overline{X}_j} - \mu \enbrace*{\overline{X}_i, S \overline{X}_j}}{\overline{X}_k}_0 \cdot \skal*{\lambda \enbrace*{\overline{X}_i, \overline{X}_j}}{\overline{X}_k}_0 \\
+		&= \sum_{i,j,k} \enbrace*{s_k - s_i - s_j} \skal*{\mu \enbrace*{\overline{X}_i, \overline{X_j}}}{\overline{X}_k}_0 \cdot \skal*{\lambda \enbrace*{\overline{X}_i, \overline{X}_j}}{\overline{X}_k}_0 \\
+		&= \skal*{\mu}{\pi(S) \lambda}_0 \qedhere
+	\end{align}
+\end{beweis}
+
+\begin{definition}[{name=[Momentenabbildung]}]
+	Die Abbildung $m \colon V(n) \setminus \set*{0} \to \Sym(n)$ implizit definiert mittels
+	\[
+		\skal*{m(\mu)}{S}_0 \coloneqq \sfrac{\skal*{\pi(S). \mu}{\mu}_0}{\norm*{\mu}^2}
+	\]
+	nennt man \Index{Momentenabbildung}. Wir setzen
+	\[
+		M_\mu \coloneqq \sfrac{1}{4} m(\mu) \cdot \norm*{\mu}^2
+	\]
+\end{definition}
+
+
+\begin{lemma}
+	Für $\overline{x}, \overline{y} \in \mathbb{R}^n$ gilt
+	\[
+		\skal*{M_\mu \overline{x}}{\overline{x}}_0 = \frac{1}{4} \sum_{i,j} \skal*{\mu(\overline{x}_i, \overline{x}_j)}{\overline{x}}_0^2 - \frac{1}{2} \sum_i \norm*{\mu(\overline{x}_i, \overline{x})}^2
+	\]
+	wobei $\enbrace*{\overline{x}_1, \ldots ,\overline{x}_n}$ eine Orthonormalbasis von $\mathbb{R}^n$ ist.
+\end{lemma}
+\begin{beweis}
+	Sei $S 0 \diag(0, \ldots ,0, 1,0,\ldots ,0)$ mit $1$ an der Stelle $k$.
+	Dann gilt
+	\begin{align}
+		\skal*{\pi(S) \mu}{\mu}_0 &= \sum_{i,j} \skal*{\enbrace*{\pi(S)\mu} \enbrace*{\overline{x}_i, \overline{x}_j}}{\mu \enbrace*{\overline{x}_i, \overline{x}_j}} \\
+		&= \sum_{i,j} \skal*{S \mu \enbrace*{\overline{x}_i, \overline{x}_j} - \mu(S \overline{x}_i, \overline{x}_j) - \mu(\overline{x}_i, S \overline{x_j})}{\overline{x}_k}_0 \cdot \skal*{\mu(\overline{x}_i, \overline{x}_j)}{\overline{x}_k}_0 \\
+		&= sum_{i,j} \skal*{\mu \enbrace*{\overline{x}_i, \overline{x}_j}}{x_k}_0^2 - 2 \sum_i \norm*{\mu(\overline{x}_i, \overline{x}_k)}_0^2
+	\end{align}
+	Für $S = \begin{psmallmatrix}
+		& & \\
+		& & 1 \\
+		& 1 &
+	\end{psmallmatrix}$ analog.
+\end{beweis}
+
+\begin{satz}
+	Unter den Vorraussetzungen von Satz 3.2.10 gilt
+	\begin{align}
+		\ric(g)\enbrace*{h^{-1} \overline{x},h^{-1} \overline{x}} &= -\frac{1}{2} \mathcal{B}_{h.\mu_0} (\overline{x},\overline{x}) + \skal*{M_{h.\mu_0}(\overline{x})}{\overline{x}}_0 - \skal*{\ad_{h.\mu_0}(Z_{h.\mu_0})(\overline{x})}{\overline{x}}_0 \\
+		&= \skal*{\enbrace*{- \frac{1}{2} \mathcal{B}_{h.\mu_0} + M_{h.\mu_0} - \ad_{h.\mu_0}(Z_h.\mu_0)}(\overline{x})}{\overline{x}}_0
+	\end{align}
+	wobei $\mathcal{B}_{h.\mu_0}(\cdot ,\cdot ) = \skal*{Z_{h.\mu_0} \cdot }{\cdot }_0$
+\end{satz}
+
+Bezeichnung $\Ric_\mu \coloneqq -\frac{1}{2} \mathcal{B}_\mu + M_\mu - \ad_\mu(Z_\mu)$ Ricci-Endomorphismus von $\mu \in V(n)$.
+
+\begin{bemerkung*}
+	$G$ nilpotent, also $\mathcal{B}_\mathfrak{g} =0$ und $Z_\mu =0$ und damit $\Ric_{h.\mu_0}=M_{h.\mu_0}$
+\end{bemerkung*}
 % section 32 (end)
 % chapter 3 (end)
 
