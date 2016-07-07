@@ -164,7 +164,7 @@ Eine Lösung von (2) ist eine Funktion $y \in C^1(I,\mathbb{R}^n)$ auf einem Int
 	\[
 		\norm{\varphi}_{\infty} := \sup_{\abs{x-x_0} \leq \varepsilon} \abs{\varphi(x)} 
 	\]
-	(für ein noch zu bestimmtes $\varepsilon >0 $). Weil $G$ offen ist, existiert eine $\delta >0$ und $r >0$ sodass
+	(für ein noch zu bestimmtes $\varepsilon >0 $). Weil $G$ offen ist, existieren $\delta >0$ und $r >0$ so dass
 	\[
 		R_{\delta ,r} = \set[(x,y) \in \mathbb{R} \times \mathbb{R}^n]{\abs{x-x_0} \leq \delta , \abs{y-y_0} \leq r} \subseteq G
 	\]
@@ -174,7 +174,7 @@ Eine Lösung von (2) ist eine Funktion $y \in C^1(I,\mathbb{R}^n)$ auf einem Int
 	\]
 	Wir setzen $\varepsilon := \min \set{\delta , \frac{r}{M}, \frac{1}{2L}}$ und 
 	\[
-		B:= \set[\varphi \in C^0([x_0- \varepsilon, x_0 + \varepsilon);\mathbb{R}^n)]{\norm{\varphi-x_0}_{\infty} \leq r}
+		B:= \set[\varphi \in C^0([x_0- \varepsilon, x_0 + \varepsilon];\mathbb{R}^n)]{\norm{\varphi-x_0}_{\infty} \leq r}
 	\]
 	$B$ ist eine abgeschlossene Teilmenge des Banachraums $C^0([x_0- \varepsilon, x_0 + \varepsilon]; \mathbb{R}^n)$. Damit ist $B$ ein vollständiger Raum.
 	Sei $ T:B \to B$ mit $T(\varphi) = \psi$ wobei

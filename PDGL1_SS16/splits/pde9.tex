@@ -501,21 +501,21 @@ Für $x \in \mathbb{R}^n$, $r>0$, $t>0$ definiere
 \begin{beweis}
 Wir beweisen $U_x \in C^m((0,\infty) \times \mathbb{R}^n)$:
 \[
-	U_x(t,r) = \fint_{\partial B_1(0)}^{} u (t,x+r \tilde y) \,\mathrm{d}S(\tilde y)
+	U_x(t,r) = \fint_{\partial B_1(0)}^{} u (t,x+r \tilde y)r^n \,\mathrm{d}S(\tilde y)
 \]	
 $B_1(0)$ ist beschränkt
 \[
 	\Rightarrow \qquad \diff{^{k+l}}{t^k \partial r^l} U_x(t,r) = \fint_{\partial B_1(0)}^{} \diff{^{k+l}}{t^k \partial r^l} u(t,x+r \tilde y) \,\mathrm{d}S(\tilde y)
 \]
-ist stetig für $k+l \leq m$ und daraus folgt die Behauptung. \\ \todo{noch zu korrigieren}
+ist stetig für $k+l \leq m$ und daraus folgt die Behauptung. \\ 
 Für den Beweis der Anfangsdaten gilt
 \[
 	U_x(0,r) = \fint_{\partial B_r(x)}^{} u(0,y) \,\mathrm{d}S(y) = \fint_{\partial B_r(x)}^{} g(y) \,\mathrm{d}S(y) = G_x(r)
 \]
 und
 \begin{align*}
-	\partial_r U_x(0,r)& = \fint_{\partial B_1(x)}^{} \partial_t u(0,x+ r \tilde y) \,\mathrm{d}S(\tilde y) \\ &= 
-	\fint_{\partial B_1(x)}^{} \partial_t h(x+ r \tilde y) \,\mathrm{d}S(\tilde y) \\ &= \fint_{\partial B_r(x)}^{} h(y) \,\mathrm{d}S(y) \\ &= H_x(r).
+	\partial_r U_x(0,r)& = \fint_{\partial B_1(0)}^{} \partial_t u(0,x+ r \tilde y) r^n \,\mathrm{d}S(\tilde y) \\ &= 
+	\fint_{\partial B_1(0)}^{} \partial_t h(x+ r \tilde y)r^n \,\mathrm{d}S(\tilde y) \\ &= \fint_{\partial B_r(x)}^{} h(y) \,\mathrm{d}S(y) \\ &= H_x(r).
 \end{align*}
 Nun gilt
 \[
