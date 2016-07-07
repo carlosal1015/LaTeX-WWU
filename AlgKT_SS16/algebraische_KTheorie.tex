@@ -2090,6 +2090,170 @@ Dann definieren wir
 \]
 \marginnote{Elementarmatrizen}
 
+\todo[inline]{Hier fehlen leider zwei komplette Vorlesungen}
+
+\minisec{unvollständige Wiederholung vom letzten Mal}
+\[
+	\begin{tikzcd}
+		\ldots \rar & K_{n+1} R[G] \rar & \bigoplus_{\sigma \in  E_n} K_n R[G_\sigma] \rar & \bigoplus_{v \in V_0} K_n R[G_v] \rar & K_n R[G] \rar & \ldots \\
+		& & \tilde{W} \Nil_n^R(G \acts T) \uar[phantom,sloped,"\oplus "]
+	\end{tikzcd}
+\]
+Objekte von $\mathcal{MV}$ sind kurze exakte Folgen von endlich erzeugten freien $R[E]$-Moduln
+\[
+	\begin{tikzcd}
+		0 \rar & M \rar["\iota"] & M^V \rar["p"] & M^E \rar & 0
+	\end{tikzcd}
+\]
+Übergang auf Kettenkomplexe
+
+\begin{definition}
+	Sei $(f_*,f_*^V,f_*^E)$ ein Morphismus in $\ch \mathcal{MV}$.
+	\begin{enumerate}[(i)]
+		\item $(f_*,f_*^V,f_*^E)$ ist eine Kofaserung, falls alle $f_n,f_n^E,f_n^V$ Inklusionen von direkten Summanden sind.
+		\item $(f_*,f_*^V,f_*^E)$ ist eine $\w$-schwache Äquivalenz, falls $f_*$ eine Kettenhomotopieäquivalenz ist.
+		\item $(f_*,f_*^V,f_*^E)$ ist eine $v$-schwache Äquivalenz, falls für alle $v \in V$ und $\sigma \in  E$ $(f^V_*)_*$ eine $R[G_v]$-Kettenhomotpieäquivalenz und $(f^E_*)_*$ eine $R[G_\sigma]$-Kettenhomotopieäquivalenz
+	\end{enumerate}
+\end{definition}
+
+\begin{bemerkung}
+	$v \subseteq \w$ und die Vorraussetzungen zum Lokalisierungssatz sind erfüllt: Wir erhalten also eine lange exakte Folge 
+	\[
+		\begin{tikzcd}
+			\ldots \rar & K_{n+1}(\w \ch \mathcal{MV}) \rar & K_n(v \ch \mathcal{MV}^{\w}) \rar & K_n( v \ch \mathcal{MV}) \rar & K_n(\w \ch \mathcal{MV}) \rar & \ldots 
+		\end{tikzcd}
+	\]
+	\[
+		\begin{tikzcd}
+			v \ch \mathcal{MV}^w \rar & v \ch \mathcal{MV} \rar  \dar \dlar& w \ch \mathcal{MV} \dar \\
+			\ch \mathcal{F}_{R[G_\sigma]} & \ch \mathcal{F}_{R[G_v]} & \ch \mathcal{F}_{R[G]}
+		\end{tikzcd}
+	\]
+\end{bemerkung}
+
+\begin{bemerkung}
+	Sei $S$ eine $G$-Menge.
+	Wir betrachten die Kategorie $\mathcal{F}_{R[G]}^S$, deren Objekte endlich erzeugte freie $R[G]$-Moduln $M$ mit Zerlegungen $M = \bigoplus_s M_s$ sind.
+	Die Morphismen sind $R[G]$-lineare $\Delta(S)$-Abbildungen.
+	
+	Für $s \in S$ können wir den Funktor $R[S] \otimes{ -} \colon \mathcal{F}_[{R[G_s]}] \to \mathcal{F}_{R[G]}$ wie folgt zu einem Funktor $I_{S,s} \colon \mathcal{F}_{R[G_s]} \to \mathcal{F}_{R[G]}^S$ verfeinern.
+	Dann ist $G_{s,t}$ eine Links-$G_t$-Menge und eine Rechts-$G_s$-Menge.
+	Insbesondere ist $R[G_{s,t}]$ ein $R[G_t]$-$R[G_s]$-Bimodul.
+	Es ist $G = \dot{\bigcup}_t G_{s,t}$ und $R[G] = \bigoplus_t R[G_{s,t}]$.
+	Wir erhalten eine kanonische $S$-Zerlegung von $R(G) \otimes_{R[G_s]}  N$.
+	\[
+		R(G) \otimes_{R[G_s]}  N = \bigoplus_{t \in S} R \benbrace*{G_{s,t}} \otimes_{R[G_s]} N
+	\]
+	Für $f \colon N \to N'$ $R[G_s]$-linear ist ${\id} \otimes f$ automatisch eine $\Delta(S)$-Abbildung.
+\end{bemerkung}
+
+\begin{bemerkung}
+	Ist $G \acts S$ transitiv, so ist $I_{S,s}$ eine Äquivalenz.
+\end{bemerkung}
+
+\begin{bemerkung}
+	Wir benutzen die folgenden exakten Funktoren
+	\begin{enumerate}[a)]
+		\item $U \colon w \ch \mathcal{MV} \to \ch_f \mathcal{F}_{R[G]}$, 
+		\[
+			\enbrace*{M \to M^V \to M^E} \longmapsto M
+		\]
+		\item Für $v \in V$
+		\mapdef{U_v \colon v \ch \mathcal{MV}}{\ch_f \mathcal{F}_{R[G_v]}}{\enbrace*{M \to M^V \to M^E}}{M^V_v}{}
+		\item[b')] Für $v \in V$
+		\mapdef{S_v \colon \ch_f R[G_v]}{v \ch \mathcal{MV}}{N}{\enbrace*{R[G] \otimes_{R[G_v]} N \xrightarrow{\cong} I_{V,v}(N) \to 0 }}{}
+		\item Für $\sigma \in E$
+		\mapdef{U_\sigma \colon v \ch \mathcal{MV}}{ \ch_f \mathcal{F}_{R[G_\sigma]}}{\enbrace*{M \to M^V \to M^E}}{M^E_\sigma}{}
+		\item[c')] Für $\sigma \in E$
+		\mapdef{S_\sigma \colon \ch_f \mathcal{F}_{R[G_\sigma]}}{v \ch \mathcal{MV}}{N}{S_\sigma(N)}{}
+		Mit 
+		\[
+			S_\sigma(N) = 
+			\bigg(\begin{tikzcd}[sep=large]
+				R[G] \otimes_{R[G_\sigma]} N \rar & \displaystyle\bigoplus_{I_{V,t} \enbrace*{R[G_t] \otimes_{R[G_\sigma]} N}}^{I_{V,s} \enbrace*{R[G_s] \otimes_{R[G_\sigma]} N}} \rar & I_{E,\sigma}(N)
+			\end{tikzcd} \bigg)
+		\]
+		\item Für $\sigma \in E$
+		\mapdef{\tilde{U}_\sigma \colon v \ch \mathcal{MV}^w}{\ch_f R[G_\sigma]}{\enbrace*{M \to M^V \to M^E}}{M^E_\sigma}{}
+		\item[d')] Für $\sigma \in E$ und $v \in \sigma$
+		\mapdef{\tilde{S}_{\sigma,v} \colon \ch_f \mathcal{F}_{R[G_\sigma]}}{v \ch \mathcal{MV}^w}{N}{\enbrace*{0 \to I_{V,v} \enbrace*{R[G_v]\otimes_{R[G_\sigma]} N}  \to I_{E,\sigma}(N)}}{}
+	\end{enumerate}
+\end{bemerkung}
+
+\begin{proposition}
+	Seien $V_0 \subseteq V, E_0 \subseteq E$ Vertretersysteme für die $G$-Bahnen.
+	\begin{enumerate}[(1)]
+		\item $U \colon w \ch \mathcal{MV} \to \mathcal{F}_{R[G]}$ induziert einen Isomorphismus in $K$-Theorie.
+		\item Die $U_v$, $v \in V_0$, $U_\sigma$, $\sigma \in E_0$ induzieren einen Isomorphismus
+		\[
+			K_n \enbrace*{v \ch \mathcal{MV}} \xrightarrow{\cong} \bigoplus_{\sigma \in  E_0} K_n \enbrace*{\ch_f \mathcal{F}_{R[G_\sigma]}} \oplus  \bigoplus_{v \in V_0} K_n \enbrace*{\ch_f \mathcal{F}_{R[G_v]}}
+		\]
+		\item Die $\tilde{S}_{\sigma,v}$ induzieren eine split injektive Abbildung
+		\[
+			\bigoplus_{\sigma \in E_0} \bigoplus_{v \in \sigma} K_n \enbrace*{\ch_f \mathcal{F}_{R[G_\sigma]}} \longrightarrow K_n \enbrace*{v \ch \mathcal{MV}^w}
+		\]
+	\end{enumerate}
+\end{proposition}
+
+\begin{lemma}
+	Sei \(
+		\begin{tikzcd}[cramped,sep=small]
+			M \rar["i"] & M^V \rar & M^E
+		\end{tikzcd}
+	\) ein Objekt in $\mathcal{MV}$ und $m \in M$.
+	Dann gibt es \(
+		\begin{tikzcd}
+			R G \rar & N^V \rar & N^E
+		\end{tikzcd}
+	\) in $\mathcal{MV}$ und 
+	\[
+		\enbrace*{f,f^E, f^V} \colon \big( \begin{tikzcd}
+			R G \rar & N^V \rar & N^E
+		\end{tikzcd}\big) \longrightarrow \big(\begin{tikzcd}
+			M \rar & M^V \rar & M^E
+		\end{tikzcd} \big)
+	\]
+	mit $f(1)=m$
+\end{lemma}
+\begin{beweis}
+	Wir orientieren zunächst alle Kanten in $T$.
+	Zu jeder Kante haben wir dann einen wohldefinierten Anfangsknoten $s(\sigma)$ und Endknoten $t(v)$.
+	Da $G \acts T$ zellular ist, können wir erreichen, dass $G$ die Orientierung erhält.
+	Sei $\Delta \subseteq T$ ein endlicher Unterbaum.
+	Dan erhalten wir eine kurze exakte Folge
+	\[
+		\begin{tikzcd}
+			\mathbb{Z} \rar & C^0_\cell(\Delta) \rar["\partial"] & C_\cell^1(\Delta) \rar & 0
+		\end{tikzcd}
+	\]
+	Durch $RG \otimes -$ erhalten wir ein Objekt in $\mathcal{MV}$:
+	\begin{equation}
+		\begin{tikzcd}
+			RG \rar & RG \otimes_\mathbb{Z} C_\cell^0(\Delta) \rar & RG \otimes_\mathbb{Z} C_\cell^1(\Delta) 
+		\end{tikzcd}
+		\label{eq:lem:MV} \tag{\#}
+	\end{equation}
+	wobei $\enbrace*{RG \otimes C_\cell^0(\Delta)}_v \coloneqq \sprod*{g \otimes w}{g w = v}$ und $\enbrace*{RG \otimes_\mathbb{Z} C_\cell^1(\Delta)}_\sigma \coloneqq \sprod*{g \otimes \tau }{g \tau = \sigma}$.
+	
+	Um $\enbrace*{f, f^E,f^V}$ zu finden, genügt es
+	\[
+		\begin{tikzcd}
+			\mathbb{Z} \dar["f'"] \rar & C^0_\cell(\Delta) \dar["f^E"] \rar & C^1_\cell(\Delta) \dar["f^V"] \\
+			M \rar & M^V \rar & M^E
+		\end{tikzcd}
+	\]
+	zu konstruieren, $\enbrace*{f,f^V,f^E}$ erhalten wir dann durch $RG \otimes -$.
+	Sei $m_v \in M^V_v$ das Bild von $m$ unter $M \to M^V \twoheadrightarrow M^V_v$.
+	Für $v \in \sigma \in R$ sei $m_{v,\sigma}$ das Bild von $m_v$ unter 
+	\[
+		\begin{tikzcd}
+			M^V_v \rar[hook] & M^V \rar["p"] &  M^E \rar & M^E_\sigma
+		\end{tikzcd}
+	\]
+	Dann ist $m_{s(\sigma),\sigma} = - m_{t(\sigma),\sigma}$ (da $p \circ  i = 0$ ist).
+	Nun wählen wir den endlichen Unterbaum $\Delta$ so, dass $v \in \Delta$ für alle $v$ mit $m_v\neq 0$.
+	Nun können wir $f',{f'}^V$ und ${f'}^E$ definieren durch $f'(1) = m$, ${f'}^V(v) = m_v $ für $v \in  \Delta \cap V$ und ${f'}^E(\sigma) = m_{t(\sigma),\sigma} = - m_{s(\sigma),\sigma}$ für $\sigma \in  \Delta \cap E$.
+\end{beweis}
 
 
 
