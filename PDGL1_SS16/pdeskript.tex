@@ -101,7 +101,7 @@ Literatur:
 	\end{enumerate}
 \end{bemerkung}
 \begin{satz}[Vollständigkeit]
-	Sei $\Omega \subseteq  \mathbb{R}^n$, $1 \leq p \leq \infty$. Dann ist $(L^p(\Omega),\norm{.}_{L^p(\Omega)})$ ein Banachraum. Insbesondere existiert für jede Cauchyfolge $(u_n)_{n \in \mathbb{N}}$ in $L^p(\Omega)$ bezüglich $\norm{.}_{L^p(\Omega)}$, so existiert ein $u \in L^p(\Omega)$ mit 
+	Sei $\Omega \subseteq  \mathbb{R}^n$, $1 \leq p \leq \infty$. Dann ist $(L^p(\Omega),\norm{.}_{L^p(\Omega)})$ ein Banachraum. Insbesondere existiert für jede Cauchyfolge $(u_n)_{n \in \mathbb{N}}$ in $L^p(\Omega)$ bezüglich $\norm{.}_{L^p(\Omega)}$, ein $u \in L^p(\Omega)$ mit 
 	\[
 		\norm{u_n - u}_{L^p(\Omega)} \to 0.
 	\]
@@ -393,6 +393,216 @@ $ \tilde u \in C^0([a,b])$ und $\tilde u = u$ fast überall in $(a,b)$. Um das z
 		&= - \int_{a}^{c} \left( \varphi(t) - \underset{=0}{\underbrace{\varphi(a)}} \right) u'(t) \,\mathrm{d}t \\
 		&= - \int_{a}^{c} \varphi(t) u'(t) \,\mathrm{d}t
 	\end{align*}
+	Weiter gilt
+	\begin{align*}
+		\int_{c}^{b} \left( \int_{c}^{x} u'(x) \,\mathrm{d}t \right) \varphi'(x) \,\mathrm{d}x &= \int_{c}^{b} \left( \int_{t}^{b} \varphi'(x) \,\mathrm{d}x \right) 
+		u'(t)\,\mathrm{d}t \\
+		&= \int_{c}^{b} \left( \underset{=0}{\underbrace{\varphi(b)}} - \varphi(t) \right) u'(t) \,\mathrm{d}t \\
+		&= - \int_{c}^{b} \varphi(t) u'(t) \,\mathrm{d}t
+	\end{align*}
+	Insgesamt folgt
+	\[
+		\int_{a}^{b} v(x) \varphi'(x) \,\mathrm{d}x = - \int_{a}^{b} u'(x)\varphi(x) \,\mathrm{d}x = \int_{a}^{b} u(x) \varphi'(x) \,\mathrm{d}x
+	\]
+	\[
+		\Rightarrow \qquad \int_{a}^{b}(u-v) \varphi' \,\mathrm{d}x = 0 \qquad \forall\, \varphi \in C^{\infty}_0((a,b))
+	\]
+	Also existiert $\gamma$ konstant, sodass $u = v+ \gamma =: \tilde u$ fast überall in $(a,b)$.
+\end{beweis}
+\begin{bemerkung}
+	Da Existenz eines stetigen Repräsentanten gilt im Allgemeinen nur für $n=1$. Für $n \geq 2$ zeigt das nächste Beispiel, dass es $W^{1,p}$-Funktionen gibt, die weder stetig noch beschränkt sind.
+\end{bemerkung}
+\begin{beispiel}
+	Sei $\Omega = B_1(0)$ und $ u (x) = \frac{1}{\abs{x}^\alpha}$ mit $\alpha >0$. Auf $\Omega \setminus \set{0}$ gilt
+	\[
+		 \nabla u (x) = \frac{\alpha}{\abs{x}^{\alpha + 1}} \cdot \frac{x}{\abs{x}} 
+	\]
+	\[
+		\Rightarrow \qquad \abs{ \nabla u(x)} = \frac{\alpha}{\abs{x}^{\alpha +1}}
+	\]
+	Wir schließen die Singularität in $0$ zunächst aus und schreiben für $0 < \varepsilon <1$:
+	\[
+		\int_{B_1(0) ohn}^{B_\varepsilon(0)} u  \nabla \varphi \,\mathrm{d}x = - \int_{B_1(0) \setminus B_\varepsilon(0)}^{}  \nabla u(x) \varphi(x) \,\mathrm{d}x
+		+ \int_{\partial B_\varepsilon(0)}^{} u \varphi \nu \,\mathrm{d}S \qquad \forall\, \varphi \in C^{\infty}_0(B_1(0))
+	\]
+	Es gilt
+	\begin{align*}
+		\abs{\int_{\partial B_\varepsilon(0)}^{}\abs{x}^{-\alpha} \varphi \nu \,\mathrm{d}S} &\leq \norm{\varphi}_{\infty} \int_{\partial B_\varepsilon(0)}^{}
+		\underset{= \varepsilon}{\underbrace{\abs{x}}}^{-\alpha} \,\mathrm{d}S \\
+		& = \norm{\varphi}_\infty \frac{\varepsilon^{n-1}}{\varepsilon^{\alpha}} \mathcal{O}\left(n \right) \to 0, \qquad \text{ falls }\alpha < n -1
+	\end{align*}
+	Für $\alpha < n-1$ und $u$, $ \nabla u$ in $L^1_{\text{loc}}(B_1(0))$ und wir können zum Grenzwert $\varepsilon \to  0$ übergehen und erhalten
+	\[
+		\int_{B_1(0)}^{} u  \nabla \varphi \,\mathrm{d}x = - \int_{B_1(0)}^{}  \nabla u \varphi \,\mathrm{d}x
+	\]
+	Wir benötigen noch $u \in L^p(\Omega)$ und $ \nabla u \in L^p(\Omega; \mathbb{R}^n)$. Dazu benutzen wir Polarkoordinaten und erhalten
+	\[
+		\int_{B_1(0)}^{} \abs{u}^p \,\mathrm{d}x = \int_{B_1(0)}^{} \abs{x}^{-\alpha p} \,\mathrm{d}x = r^{n-1} \int_{0}^{1} r^{- \alpha p} \,\mathrm{d}r = 
+		\int_{0}^{1} r^{n-1-\alpha p} \,\mathrm{d}r < \infty
+	\]
+	falls 
+	\[
+		n-1 - \alpha p > -1 \qquad \Leftrightarrow \qquad \alpha p > n \qquad \Leftrightarrow \qquad \alpha < \frac{n}{p}
+	\]
+	Weiter gilt
+	\[
+		\int_{B_1(0)}^{} \abs{  \nabla u}^p \,\mathrm{d}x = \alpha \int_{B_1(0)}^{} \abs{x}^{-(\alpha +1)p} \,\mathrm{d}x = \alpha \int_{0}^{1} r^{n-1} r^{-(\alpha+1)p} \,\mathrm{d}r = \alpha \int_{0}^{1} r^{n-1-(\alpha+1)p} \,\mathrm{d}r < \infty
+	\]
+	falls
+	\begin{align*}
+		n-1-(\alpha+1)p >-1 \, &\Leftrightarrow  \, n- (\alpha+1)p >0 \\ &\Leftrightarrow \, (\alpha +1)p < n \\
+		& \Leftrightarrow \, \alpha < \frac{n}{p}-1 
+	\end{align*}
+\end{beispiel}
+Da für $n \geq 2$ Sobolevfunktionen im Allgemeinen nicht stetig sind, benötgen wir eine alternative Definition von Randwerten.
+\begin{definition*}
+	Sei $\Omega \subseteq \mathbb{R}^n$, $1 \leq p < \infty$. Dazu sagen wir, dass $u \in W_0^{1,p}(\Omega)$ ist, falls eine Folge $(u_k)_k$ in $C_0^{\infty}(\Omega)$
+	existiert mit $\norm{u_k - u}_{W^{1,p}} \to 0$ also
+	\[
+		W_0^{1,p}(\Omega) := \overline{C_0^{\infty}(\Omega)}^{\norm{.}_{W^{1,p}}}
+	\]
+	Ist $g \in W^{1,p}(\Omega)$, so sagen wir, dass $u=g$ auf $\partial \Omega$ ist, falls $u-g \in W_0^{1,p}(\Omega)$.
+\end{definition*}
+FÜr $u \in W_0^{1,p}(\Omega)$ lässt sich $\norm{u}_{L^p(\Omega)}$ durch $\norm{ \nabla u}_{L^p(\Omega)}$ abschätzen.
+
+\begin{satz}[Poincaré Ungleichung]
+	Sei $\Omega \subseteq \mathbb{R}^n$ offen und beschränkt, $1 \leq p < \infty$. Dann existiert ein $C = (\Omega, p) >0$ mit 
+	\[
+		\norm{u}_{L^p(\Omega)} \leq C \norm{ \nabla u}_{L^p(\Omega)} \qquad \forall\, u \in W_0^{1,p}(\Omega)
+	\]
+\end{satz}
+\begin{bemerkung}
+	Für den Beweis des Satzes benötigen wir nicht, dass $\Omega$ bechränkt ist. Wir können die folgende allgemeine Form beweisen.
+\end{bemerkung}
+\begin{satz}
+	Sei $\Omega \subseteq  \mathbb{R}^n$ offen und liege zwischen zwei parallelen Ebenen. Sei $1 \leq p < \infty$. Bezeichne $d$ den Abstand der beiden Ebenen. Dann gilt
+	\[
+		\norm{u}_{L^p(\Omega)}^p \leq \frac{d^p}{p} \norm{ \nabla u}^p_{L^p(\Omega)}
+	\]
+\end{satz}
+\begin{beweis}
+	Wir können o.B.d.A annehmen, dass $\Omega$ zwischen den beiden Ebenen $\set{x_n=0}$ und $\set{x_n=d}$ liegt. Für $x \in \mathbb{R}^n$ schreiben wir $x = (x',x_n)$, d.h. $x'= (x_1,\dots,x_{n-1})$. Wir starten zunächst mit einem $u \in C_0^{\infty}(\Omega)$. Dann gilt für alle $x' \in \mathbb{R}^{n-1}$ 
+	\[
+		u(x',0)=0
+	\]
+	Damit 
+	\begin{align*}
+		\abs{u(x',x_n)} &= \abs{u(x',x_n)- u(x',0)} \\
+		&= \abs{\int_{0}^{x_n}\diff{}{x_n}u(x',t) \,\mathrm{d}t} \\
+		&= \abs{\int_{0}^{x_n} \diff{}{x_n}u(x',t) \cdot 1 \,\mathrm{d}t} \\
+		&\leq \abs{x_n}^{\frac{1}{p'}} \cdot \left( \int_{0}^{x_n}\abs{\diff{}{x_n}u(x',t)}^p \,\mathrm{d}t \right)^{\frac{1}{p}}
+	\end{align*}
+	Es folgt
+	\[
+		\abs{u(x',x_n)}^p \leq \underset{= \abs{x_n}^{p-1}}{\underbrace{\abs{x_n}^{\frac{p}{p'}}}} \int_{0}^{x_n} \abs{\diff{}{x_n}u(x',t)}^p \,\mathrm{d}t
+	\]
+	Aufintegrieren und Fubini liefert
+	\begin{align*}
+		\int_{\Omega}^{} \abs{u}^p \,\mathrm{d}x &\leq \int_{\mathbb{R}^{n-1} \times [0,d]}^{} \abs{u(x',x_n)}^p \,\mathrm{d}x' \,\mathrm{d}x_n \\
+		&\leq \int_{\mathbb{R}^{n-1} \times [0,d]}^{} \abs{x_n}^{p-1} \left( \int_{0}^{x_n} \abs{\diff{}{x_n}u(x',t)}^p \,\mathrm{d}t \right) \,\mathrm{d}x' \,\mathrm{d}x \\
+		& \leq \int_{\mathbb{R}^{n-1} \times [0,d]}^{} \abs{x_n}^{1-p} \left( \int_{0}^{d} \abs{\diff{}{x_n} u(x',t)}^p \,\mathrm{d}t \right) \,\mathrm{d}x'
+		\, \mathrm{d}x \\
+		&= \int_{0}^{d} \abs{x_n}^{p-1} \,\mathrm{d}x_n \int_{\mathbb{R}^{n-1} \times [0,d]}^{} \abs{\diff{}{x_n}u(x',t)^p} \,\mathrm{d}t \,\mathrm{d}x' \\
+		&\leq \frac{d^p}{p} \int_{\Omega}^{}\abs{ \nabla u}^p \,\mathrm{d}x  
+	\end{align*}
+	Hierbei haben wir ausgenutzt, dass $\supp u \subseteq \Omega$. Ist $u \in W_0^{1,p}(\Omega)$, so folgt die Behauptung wegen der Dichtheit von $C_0^{\infty}(\Omega)$
+	in $W_0^{1,p}(\Omega)$. \\
+	\underline{Genauer:} Ist $u \in W_0^{1,p}(\Omega)$ und $\varepsilon$ beliebig, so existiert $\varphi \in C^{\infty}_0(\Omega)$ mit $\norm{u-\varphi}_{L^p(\Omega)}^p < \varepsilon$ und $\norm{ \nabla u -  \nabla \varphi}_{L^p(\Omega)}^p < \varepsilon$. Dann folgt
+	\begin{align*}
+		\norm{u}_{L^p(\Omega)}^p & \leq \norm{u-\varphi}_{L^p(\Omega)}^p + \norm{\varphi}_{L^p(\Omega)}^p \\
+		& < \varepsilon + \frac{d^p}{p} \norm{ \nabla \varphi}_{L^p(\Omega)}^p \\
+		&< \varepsilon ü \frac{d^p}{p} \left( \norm{ \nabla \varphi}_{L^p(\Omega)}^p + \norm{ \nabla u -  \nabla \varphi}_{L^p(\Omega)}^p \right) \\
+		&< \frac{d^p}{p} \norm{  \nabla u}_{L^p(\Omega)}^p + (1+\frac{d^p}{p}) \varepsilon
+	\end{align*} 
+	Die Behauptung folgt für $\varepsilon \to 0$.
+\end{beweis}
+\begin{satz}[Dichtheit glatter Funktionen]
+	Sei $\Omega \subseteq \mathbb{R}^n$ offen und $1 \leq p < \infty$. Dann ist $C^{\infty}(\Omega) \cap W^{1,p}(\Omega) \subseteq W^{1,p}(\Omega)$ dicht. Ist 
+	$\Omega$ zusätzlich beschränkt und mit Lipschitz-Rand, so gilt 
+	\[
+		C^{\infty}(\bar{\Omega}) \subseteq W^{1,p}(\Omega).
+	\]
+\end{satz}
+\subsection{Schwache Konvergenz in $L^p(\Omega)$ und $W^{1,p}(\Omega)$} 
+\label{sub:schwache_konvergenz_in_l_p_und_w_1_p}
+
+\begin{definition*}[Schwache Konvergenz in $L^p(\Omega)$]
+	Sei $\Omega \subseteq \mathbb{R}^n$, $1 \leq p < \infty$. Ist $(u_k)_k$ eine Folge in $L^p(\Omega)$, so sagen wir, dass $u_k$ schwach in $L^p(\Omega)$ gegen ein 
+	$u \in L^p(\Omega)$ konvergiert ($u_k \rightharpoonup u$), falls
+	\[
+		\int_{\Omega}^{}(u_k-u)v \,\mathrm{d}x \to 0 \qquad \forall\, v \in L^{p'}(\Omega).
+	\]
+	Für $p = \infty$ sagen wir, dass $u_k$ schwach-* gegen $u$ konvergiert, falls
+	\[
+		\int_{\Omega}^{}(u_k-u)v \,\mathrm{d}x \to 0 \qquad \forall\, v \in L^1(\Omega).
+	\]
+\end{definition*}
+\begin{bemerkung}
+	\begin{enumerate}[(i)]
+		\item Der schwache Grenzwert ist eindeutig. Dies ist eine Konsequenz aus dem Hauptsatz der Variationsrechnung.
+		\item Es gilt: Konvergiert $u_k \to u$ stark in $L^p(\Omega)$, so gilt auch $u_k \to u$ schwach in $L^p(\Omega)$. Analog für schwach-* Konvergenz. Die Umkehrung gilt im Allgemeinen jedoch nicht. Es gilt zum Beispiel für $u_n(x) := \sin(nx)$
+		\[
+			u_n \rightharpoonup 0 \qquad 
+		\]
+		aber
+		\[
+			u_n \not \to
+		\]
+	\end{enumerate}
+\end{bemerkung}
+\begin{satz}[Riemann-Lebesgue]
+	Sei $p \in [1,\infty]$, $u \in L^p(0,1)$. Sei $u$ 1-periodisch fortgesetzt auf $\mathbb{R}$ und sei $u_n$ definiert durch 
+	\[
+		u_n(x) := u(nx)
+	\]
+	Setze $\bar{u}:= \int_{0}^{1}u(x) \,\mathrm{d}x$. Dann gilt $u_n \stackrel{L^p(0,1)}{\rightharpoonup} \bar{u}$, (bzw. $u_n \stackrel{* L^p(0,1)}{\rightharpoonup} \bar{u}$).
+\end{satz}
+\begin{beweis}[Für $p >1$]
+	Wir können o.B.d.A annehmen, dass $\bar{u}=0$ (Andernfalls ersetze $u$ durch $u-\bar{u}$).
+	\begin{enumerate}[(1)]
+		\item $u_n$ ist $\frac{1}{n}$- periodisch, denn
+		\[
+			u_n(x+\frac{1}{n})= u(nx+1) = u(nx) = u_n(x)
+		\]
+		\item \[
+			\norm{u_n}_{L^{\infty}(0,1)} = \norm{u}_{L^{\infty}(0,1)} \qquad \forall\, n \in \mathbb{N}
+		\]und 
+		\[
+			\norm{u_n}_{L^p(0,1)} = \norm{u}_{L^p(0,1)}
+		\] denn
+		\[
+			\int_{0}^{1} \abs{u_n(x)}^p \,\mathrm{d}x = \int_{0}^{1} \abs{u(nx)}^p \,\mathrm{d}x = \frac{1}{n} \int_{0}^{n} \abs{u(y)}^p \,\mathrm{d}y  
+		= \frac{1}{n}n \int_{0}^{1}\abs{u}^p \,\mathrm{d}y
+		\]
+		\item Wir wollen zeigen, dass 
+		\[
+			\int_{0}^{1}u_n v \,\mathrm{d}x \to 0 \qquad \forall\, v \in L^{p'}(0,1)
+		\]
+		Zeige dazu zunächst
+		\[
+			\int_{0}^{1}u_n \varphi \,\mathrm{d}x \to 0 \qquad \forall\, \varphi \in C_0^{\infty}(0,1).
+		\]
+		\item Dazu setze:
+		\[
+			G_n(x) := \int_{0}^{x}u_n(t) \,\mathrm{d}t
+		\]
+		Dann
+		\[
+			\int_{0}^{1}u_n \varphi \,\mathrm{d}x = - \int_{0}^{1} G_n \varphi' \,\mathrm{d}x \qquad (*)
+		\]
+		Zeige nun: $\norm{G_n}_{L^{\infty}} \to 0$. Dann folgt mit $(*)$
+		\[
+			\abs{\int_{0}^{1} u_n \varphi \,\mathrm{d}x} = \abs{\int_{0}^{1} G_n \varphi' \,\mathrm{d}x } \leq \norm{G_n}_{L^{\infty}} \norm{\varphi}_{L^{\infty}} \to 0
+		\]
+		Es gilt
+		\begin{align*}
+			\abs{G_n(x)} &= \abs{\int_{0}^{x}u_n(t) \,\mathrm{d}t} = \abs{\int_{0}^{x} u(nt) \,\mathrm{d}t} \\
+			&= \abs{\frac{1}{n} \int_{0}^{nx} u(s) \,\mathrm{d}s} \\
+			&= \abs{ \frac{1}{n} \int_{0}^{[nx]} u(s) \,\mathrm{d}s + \frac{1}{n} \int_{[nx]}^{nx} u(s) \,\mathrm{d}s} \\
+			&= \abs{\frac{1}{n} [nx] \int_{0}^{1} u(s) \,\mathrm{d}s + \frac{1}{n} \int_{0}^{xn -[xn]} u(s+ [xn]) \,\mathrm{d}s} \\
+			&\leq \frac{1}{n} \underset{\leq C}{\underbrace{\int_{0}^{1} \abs{u(s)} \,\mathrm{d}s}} \to 0
+		\end{align*}
+	\end{enumerate}
 \end{beweis}
 \cleardoubleoddemptypage
 \pagenumbering{Alph}

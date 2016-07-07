@@ -411,8 +411,8 @@ für $u$ harmonisch, wobei
 		Wegen $u \in C^2(\Omega)$ gilt $ \nabla u \in C^1( \overline{B_k(x_0)})$ wobei $\overline{B_k(x_0)} \subseteq \Omega$. \\
 		Es gilt außerdem $\diver(  \nabla u) = \Delta u$ und somit
 		\begin{equation}
-			\varphi'(r) \stackrel{\text{Gauß}}{=} \frac{r}{S_n r^n} \int_{B_k(x_0)}^{} \Delta u \,\mathrm{d}x 
-			\stackrel{S_n = \omega_n n}{=} \frac{r}{n} \fint_{B_k(x_0)}^{} \Delta u \,\mathrm{d}x.
+			\varphi'(r) \stackrel{\text{Gauß}}{=} \frac{r}{S_n r^n} \int_{B_r(x_0)}^{} \Delta u \,\mathrm{d}x 
+			\stackrel{S_n = \omega_n n}{=} \frac{r}{n} \fint_{B_r(x_0)}^{} \Delta u \,\mathrm{d}x.
 		\end{equation}
 		\end{enumerate}
 		
@@ -439,7 +439,7 @@ für $u$ harmonisch, wobei
 			\item folgt aus (ii) angewandt auf $u$ und $-u$.
 			\item Aus $\Delta u \geq 0$ folgt, dass $\varphi$ monoton wachsend ist.
 			\begin{equation}
-				u(x_0) = \lim_{S \to 0^+} \varphi(s) \leq \varphi(\rho) = \fint_{\partial B_{\rho}(x_0)}^{}u \,\mathrm{d}S \qquad \forall\, \rho \in (0,r].
+				u(x_0) = \lim_{s \to 0^+} \varphi(s) \leq \varphi(\rho) = \fint_{\partial B_{\rho}(x_0)}^{}u \,\mathrm{d}S \qquad \forall\, \rho \in (0,r].
 			\end{equation}
 			Insbesondere folgt direkt
 			\[
@@ -450,8 +450,8 @@ für $u$ harmonisch, wobei
 				u(x_0)\abs{B_r(x_0)} &= u(x_0) \omega_n r^n \\ &= u(x_0) \omega_n \int_{0}^{r}n \rho^{n-1} \,\mathrm{d}\rho \\ 
 				&= n\omega_n \int_{0}^{r}u(x_0)\rho^{n-1} \,\mathrm{d}\rho  \\
 				&\leq n \omega_n \int_{0}^{r}\fint_{\partial B_{\rho}(x_0)}^{} u \,\mathrm{d}S \rho^{n-1} \,\mathrm{d}\rho \\
-				&= n \omega_n \int_{0}^{r} \frac{1}{S_n} \int_{B_{\rho}(x_0)}^{} u \,\mathrm{d}S \,\mathrm{d}\rho \\
-				&= \int_{0}^{r} \int_{B_{\rho}(x_0)}^{}u \,\mathrm{d}S \,\mathrm{d}\rho \\
+				&= n \omega_n \int_{0}^{r} \frac{1}{S_n} \int_{\partial B_{\rho}(x_0)}^{} u \,\mathrm{d}S \,\mathrm{d}\rho \\
+				&= \int_{0}^{r} \int_{\partial B_{\rho}(x_0)}^{}u \,\mathrm{d}S \,\mathrm{d}\rho \\
 				&= \int_{B_{r}(x_0)}^{}u \,\mathrm{d}x,
 			\end{align*}
 			wobei der letzte Schritt die Anwendung von Polarkoordinaten beinhaltet. (iii) folgt analog. In diesem Fall ist $\varphi$ streng monoton wachsend.
@@ -486,7 +486,7 @@ für $u$ harmonisch, wobei
 		\item[\underline{(i) $\Rightarrow$ (ii)}:] War gerade die Aussage (i) von Korrolar $2.4$.
 		\item[\underline{(ii) $\Rightarrow$ (iii)}:] folgt mittels der Polarkoordinaten:
 		\begin{align*}
-			\int_{B_r(x_0)}^{}u \,\mathrm{d}x &= \int_{0}^{r} \int_{\partial B_r(x_0)}^{} u \,\mathrm{d}S \,\mathrm{d}\rho  \\
+			\int_{B_r(x_0)}^{}u \,\mathrm{d}x &= \int_{0}^{r} \int_{\partial B_\rho(x_0)}^{} u \,\mathrm{d}S \,\mathrm{d}\rho  \\
 			&= \int_{0}^{r} \rho^{n-1}S_n \underset{=u(x_0)}{\underbrace{\fint_{\partial B_{\rho}(x_0)}^{} u \,\mathrm{d}S}} \,\mathrm{d} \rho \\
 			&= \int_{0}^{r}S_n \rho^{n-1} u(x_0)\,\mathrm{d}\rho \\
 			&= S_n \frac{r^n}{n} u(x_0).
@@ -503,7 +503,7 @@ für $u$ harmonisch, wobei
 		\]
 		Außerdem folgt dann aus Korollar $2.4$, dass 
 		\[
-			u(x_0)< \fint_{\partial B_r(x_0)}^{} u \,\mathrm{d}S.
+			u(x_0)< \fint_{B_r(x_0)}^{} u \,\mathrm{d}S.
 		\]
 		Dies ist ein Widerspruch.
 	\end{description}
@@ -577,8 +577,10 @@ für $u$ harmonisch, wobei
 \end{beweis}
 
 \begin{align}\label{poi}\tag{p}
-	\Delta u &= f \qquad \text{in }\Omega \qquad \quad \text{(Poisson-Gleichung),}\\
-	u&=g \qquad \text{auf }\partial \Omega \qquad \text{(Dirichlet-Randbedingungen).}
+	[p] \qquad \begin{cases}
+		\Delta u &= f \qquad \text{in }\Omega \qquad \quad \text{(Poisson-Gleichung),}\\
+		u&=g \qquad \text{auf }\partial \Omega \qquad \text{(Dirichlet-Randbedingungen).}
+	\end{cases}
  \end{align}
 
 \begin{korollar}[Eindeutigkeit von Lösungen von (p)]
@@ -602,7 +604,7 @@ für $u$ harmonisch, wobei
 		\max_{\bar{\Omega}}(-w) = \max_{\partial \Omega}(-w)
 	\end{equation}
 	und \begin{equation}
-		\max_{\bar{\Omega}}(-w) = \min_{\bar{\Omega}}(w) = \min_{\partial \Omega}(w) = 0,
+		\max_{\bar{\Omega}}(-w) = - \min_{\bar{\Omega}}(w) = - \min_{\partial \Omega}(w) = 0,
 	\end{equation}
 	\begin{equation}
 		\Rightarrow w \equiv 0 \qquad \text{in }\Omega,
@@ -618,8 +620,8 @@ Stetig Abhängigkeit von Randbedingungen in der $C^0$-Norm:
 	&= \max \set{ \max_{\bar{\Omega}} (u_1-u_2), -\min_{\bar{\Omega}}(u_1-u_2) } \\
 	&= \max \set{ \max_{\partial \Omega} (u_1-u_2), -\min_{\partial \Omega}(u_1-u_2) } \\
 	&= \max \set{ \max_{\partial \Omega} (g_1-g_2), -\min_{\partial \Omega}(g_1-g_2) } \\
-	&= \max \abs{g_1-g_2} \\
-	&= \norm{g_1-g_2}_{C^0(\Omega)}.
+	&= \max_{\partial \Omega} \abs{g_1-g_2} \\
+	&= \norm{g_1-g_2}_{C^0(\partial \Omega)}.
 \end{align*}
 Es folgt
 \[
@@ -641,7 +643,7 @@ Es folgt
 \end{satz}
 \begin{beweis}
 	\begin{description}
-		\item[$\underline{\text{Schritt }1:}$] Wir setzen $r:= \frac{\dist(V,\partial \Omega)}{4} > 0$. $V \subset \subset \Omega$. Dann folgt für $x_0,x_1 \in V$, dass $\abs{x_1-x_0}< r$ und somit
+		\item[$\underline{\text{Schritt }1:}$] Wir setzen $r:= \frac{\dist(V,\partial \Omega)}{4} > 0$. $V \subset \subset \Omega$. Dann folgt für $x_0,x_1 \in V$ mit $\abs{x_1-x_0}< r$, dass
 		\begin{equation}
 			B_{2r}(x_1) \subset \subset \Omega ,
 		\end{equation}
@@ -654,7 +656,7 @@ Es folgt
 		\end{equation}
 		Da $u$ harmonisch ist, gilt
 		\begin{align*}
-			u(x_0) = \fint_{B_r(x_0)}^{} u \,\mathrm{d}x &= \frac{1}{\omega_n r^n} \int_{B_r(x_0)}^{}u\,\mathrm{d}x \stackrel{u \geq 0}{=} \frac{2^n}{2^n \omega_n r^n}
+			u(x_0) = \fint_{B_r(x_0)}^{} u \,\mathrm{d}x &= \frac{1}{\omega_n r^n} \int_{B_r(x_0)}^{}u\,\mathrm{d}x \stackrel{u \geq 0}{\leq } \frac{2^n}{2^n \omega_n r^n}
 			\int_{B_{2r}(x_1)}^{}u \,\mathrm{d}x \\ &= 2^n \fint_{B_{2r}(x_1)}^{}u \,\mathrm{d}x = 2^n u(x_1),
 		\end{align*}
 		wobei die letzte Gleichheit aus der Mittelwerteigenschaft auf $B_{2r}(x_1)$ folgt. Insgesamt gilt somit
@@ -697,7 +699,7 @@ Außerdem sei $b=(b_1,\dots,b_n)$ stetig und beschränkt.
 	\begin{equation}
 		\max_{\bar \Omega}u = \max_{ \partial \Omega}u.
 	\end{equation}
-	Entsprechend gilt ein schwaches Maximumsprinzip, falls $Lu \geq 0$ gilt.
+	Entsprechend gilt ein schwaches Minimumsprinzip, falls $Lu \geq 0$ gilt.
 \end{satz}
 \begin{beweis}
 	Wir nehmen an, dass $x_0 \in \Omega$ existiert mit $u(x_0)= \max_{\bar{\Omega}}u > \max_{ \partial \Omega}u$.

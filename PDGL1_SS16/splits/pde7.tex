@@ -105,7 +105,7 @@ wobei $\Psi$ die Fundamentallösung der WLG ist. Für $n \geq 3$ gilt in dieser 
 	\frac{1}{n(n-2)\omega_n} \abs{x- x_0}^{2-n} > \frac{1}{n(n-2)\omega_n} r ^{2-n}
 \]
 und dies ist äquivalent zu $\abs{x-x_0}<r$.\\
-$B_r(x_0)$ stellt genau die $\Psi(re_1)$- Superniveaumenge.
+$B_r(x_0)$ stellt genau die $\Psi(re_1)$- Superniveaumenge dar.
 
 \begin{definition}[Wärmeleitungskugel]
 	Sei $t_0 \in \mathbb{R}, x_0 \in \mathbb{R}^n$ und $r >0$. Wir definieren die Wärmeleitungskugel $W_r(t_0,x_0)$ an $(t_0,x_0)$ (nicht das Zentrum) als
@@ -158,7 +158,7 @@ $B_r(x_0)$ stellt genau die $\Psi(re_1)$- Superniveaumenge.
 	so gelten
 	\begin{enumerate}[(i)]
 		\item \[
-			\lim_{k \to 0^+} \psi(r) = u(0,0)
+			\lim_{r \to 0^+} \psi(r) = u(0,0)
 		\]
 		\item \[
 			\psi'(r) = \frac{n}{r^{n+1}} \int_{W_r(0,0)}^{} (-u_t(t,x)+ \Delta u(t,x))b_r(t,x) \,\mathrm{d}t \,\mathrm{d}x,
@@ -190,9 +190,9 @@ $B_r(x_0)$ stellt genau die $\Psi(re_1)$- Superniveaumenge.
 		und erhalte
 		\begin{align*}
 			\diffd{\psi}{r} &= \frac{1}{4} \int_{W_1(0,0)}^{} ( u_t(r^2s,ry)2rs +  \nabla u(r^2s,ry) \cdot y) \frac{\abs{y}^2}{s^2} \,\mathrm{d}s \,\mathrm{d}y \\
-			&= \frac{1}{4} \int_{W_r(0,0)}^{} (u_t(t,x)2 \frac{t}{r} + 
-			\nabla u(t,x) \cdot \frac{x}{r}) \frac{\abs{x}}{r^2} \frac{r^4}{t^2} \frac{\mathrm{d}t \, \mathrm{d}x}{r^2r^n}  \\
-			&= \frac{1}{4r^{n+1}} \int_{W_r(0,0)}^{} ( u_t(t,x)2t +  \nabla u(t,x) \cdot x) \frac{\abs{x}}{t^2} \,\mathrm{d}t \,\mathrm{d}x \\
+			&= \frac{1}{4} \int_{W_r(0,0)}^{} \left(u_t(t,x)2 \frac{t}{r} + 
+			\nabla u(t,x) \cdot \frac{x}{r} \right) \frac{\abs{x}}{r^2} \frac{r^4}{t^2} \frac{\mathrm{d}t \, \mathrm{d}x}{r^2r^n}  \\
+			&= \frac{1}{4r^{n+1}} \int_{W_r(0,0)}^{} \left( u_t(t,x)2t +  \nabla u(t,x) \cdot x \right) \frac{\abs{x}}{t^2} \,\mathrm{d}t \,\mathrm{d}x \\
 			&= \frac{1}{r^{n+1}} \int_{W_r(0,0)}^{} \left( u_t(t,x) \frac{\abs{x}^2}{2t}
 			+  \nabla u(t,x) \cdot \frac{\abs{x}^2 x}{4t^2} \right) \,\mathrm{d}t  \, \mathrm{d}x
 		\end{align*}

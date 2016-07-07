@@ -489,7 +489,7 @@ da $E$ stetig bis zum Rand ist. Daher sollte $z_n(0)$ zu den bereits fixierten A
 Haben wir einen zulässigen Vektor $(x_0,v_0,z_0)$ so können wir mithilfe von Picard-Lindelöf die Lösung der Charakteristischen Gleichungen zu diesen Anfangswerten bestimmen. Wir wollen allerdings eine Lösung von (2) konstruieren, also benötigen wir zulässige Vektoren für alle Randpunkte auf $\partial \mathbb{R}^n_+$.
 
 \begin{lemma}
-	Ist $(x_0,v_0,z_0)$ ein zulässiger Vektor für die das Anfangswertproblem (2), so existiert ein $\delta >0$ und eine eindeutige Lösung $\bar{z}$ von 
+	Ist $(x_0,v_0,z_0)$ ein zulässiger Vektor für das Anfangswertproblem (2), so existiert ein $\delta >0$ und eine eindeutige Lösung $\bar{z}$ von 
 	$\bar{z_i}(y) = \partial_{x_i}g(y)$ für $i=1,\dots,n-1$ und $E(y,g(y),\bar{z}(y))=0$ für alle $y \in B_{\delta }(x_0) \cap \partial \mathbb{R}^n_+$, falls 
 	$\partial_{z_n} E(x_0,v_0,z_0) \neq 0$ gilt. \\
 	In diesem Fall heißt der Vektor $(x_0,v_0,z_0)$ nichtcharakteristisch.
@@ -497,7 +497,7 @@ Haben wir einen zulässigen Vektor $(x_0,v_0,z_0)$ so können wir mithilfe von P
 \begin{beweis}
 	Sei
 	\[
-		G: \mathbb{R}^{n-1} \times \mathbb{R}^n \to \mathbb{R}^n, \qquad G(\hat{y},z)= (G_1(\hat{y},z), \dots, G_n(\hat{y})) 
+		G: \mathbb{R}^{n-1} \times \mathbb{R}^n \to \mathbb{R}^n, \qquad G(\hat{y},z)= (G_1(\hat{y},z), \dots, G_n(\hat{y},z)) 
 	\]
 	\begin{align*}
 		G_1(\hat{y},z) &:= z_i - \partial g(\hat{y},0), \qquad i=1,\dots,n \\

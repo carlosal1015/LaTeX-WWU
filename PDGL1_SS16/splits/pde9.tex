@@ -28,7 +28,7 @@ Wir betrachten das Anfangswertproblem
 	\]
 	Damit ist $w$ kalonisch und mit dem Maximumsprinzip, angewandt auf $-w$ und $w$ folgt
 	\[
-		\max_{\bar{\Omega_T}} w = \min_{\bar{\Omega_T}} w = 0
+		\max_{\bar{\Omega}_T} w = \min_{\bar{\Omega}_T} w = 0
 	\]
 	und somit
 	\[
@@ -49,13 +49,13 @@ aufgeteilt mit $u = u_1 + u_2$ in
 \[
 	(1)\begin{cases}
 		{u_1}_t - \Delta u_1 = 0, &\text{ in }\mathbb{R}^{+} \times \mathbb{R}^n\\
-		u_1 = g, &\text{ auf} \set{0} \times \mathbb{R}^n
+		u_1 = g, &\text{ auf } \set{0} \times \mathbb{R}^n
 	\end{cases}
 \]
 \[
 	(2)\begin{cases}
 		{u_2}_t - \Delta u_2 = f, &\text{ in }\mathbb{R}^{+} \times \mathbb{R}^n\\
-		u_2 = 0, &\text{ auf} \set{0} \times \mathbb{R}^n
+		u_2 = 0, &\text{ auf } \set{0} \times \mathbb{R}^n
 	\end{cases}
 \]
 
@@ -238,7 +238,7 @@ aufgeteilt mit $u = u_1 + u_2$ in
 	Insgesamt ergibt dies die Behauptung
 \end{beweis}
 \begin{satz}[Allgemeine Lösungsformel]
-	Seien $g \in C^0(\mathbb{R}^n) \cap L^{\infty}(\mathbb{R}^n)$ und \\ $f \in C_1^2([0,\infty]\times \mathbb{R}^n)$ mit $\supp(f) \subset \subset [0,\infty) \times \mathbb{R}^n$. Dann ist die Funktion $u: \mathbb{R}^{+} \times \mathbb{R}^n \times \mathbb{R}^n \to \mathbb{R}$, definiert durch
+	Seien $g \in C^0(\mathbb{R}^n) \cap L^{\infty}(\mathbb{R}^n)$ und \\ $f \in C_1^2([0,\infty]\times \mathbb{R}^n)$ mit $\supp(f) \subset \subset [0,\infty) \times \mathbb{R}^n$. Dann ist die Funktion $u: \mathbb{R}^{+} \times \mathbb{R}^n \to \mathbb{R}$, definiert durch
 	\[
 		u(t,x)= \int_{\mathbb{R}^n}^{} \psi(t,x-y)g(y) \,\mathrm{d}y + \int_{0}^{t}\int_{\mathbb{R}^n}^{} \psi(t-s,x-y)f(s,y) \,\mathrm{d}y \,\mathrm{d}s
 	\]
@@ -466,7 +466,7 @@ Für $x \geq 0$ betrachten wir zwei Fälle
 \end{align*}
 Außerdem gilt
 \begin{align*}
-	\frac{1}{2} \int_{x-t}^{x+t} \bar{h}(s) \,\mathrm{d}s &= \frac{1}{2} \left( \int_{0}^{x+t}\bar{h}(s) \,\mathrm{d}s + \int_{x-t}^{0} \bar{h} \,\mathrm{d}s \right)
+	\frac{1}{2} \int_{x-t}^{x+t} \bar{h}(s) \,\mathrm{d}s &= \frac{1}{2} \left( \int_{0}^{x+t}\bar{h}(s) \,\mathrm{d}s + \int_{x-t}^{0} \bar{h}(s) \,\mathrm{d}s \right)
 	\\ &= \frac{1}{2} \left( \int_{0}^{x+t}h(s) \,\mathrm{d}s + \int_{x-t}^{0}-h(-s) \,\mathrm{d}s \right) \\ &= \frac{1}{2} \int_{t-x}^{x+t}h(s) \,\mathrm{d}s
 \end{align*}
 \[
@@ -507,7 +507,7 @@ $B_1(0)$ ist beschränkt
 \[
 	\Rightarrow \qquad \diff{^{k+l}}{t^k \partial r^l} U_x(t,r) = \fint_{\partial B_1(0)}^{} \diff{^{k+l}}{t^k \partial r^l} u(t,x+r \tilde y) \,\mathrm{d}S(\tilde y)
 \]
-ist stetig für $k+l \leq m$ und daraus folgt die Behauptung. \\
+ist stetig für $k+l \leq m$ und daraus folgt die Behauptung. \\ \todo{noch zu korrigieren}
 Für den Beweis der Anfangsdaten gilt
 \[
 	U_x(0,r) = \fint_{\partial B_r(x)}^{} u(0,y) \,\mathrm{d}S(y) = \fint_{\partial B_r(x)}^{} g(y) \,\mathrm{d}S(y) = G_x(r)

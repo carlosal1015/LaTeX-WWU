@@ -92,10 +92,10 @@ und
 		\begin{align*}
 			I_f(v) &= \frac{1}{2} \int_{\Omega}^{} \abs{ \nabla  u}^2 \,\mathrm{d}x + \frac{1}{2} \int_{ \Omega}^{} \abs{  \nabla (v-u)}^2 \,\mathrm{d}x 
 			+ \int_{ \Omega}^{}  \nabla u  \nabla (v-u) \,\mathrm{d}x - \int_{\Omega}^{}fu \,\mathrm{d}x - \int_{\Omega}^{}f(v-u) \,\mathrm{d}x \\
-			&= I_f(u) + \frac{1}{2} \int_{\Omega}^{} \abs{  \nabla (v-u)} \,\mathrm{d}x 
+			&= I_f(u) + \frac{1}{2} \int_{\Omega}^{} \abs{  \nabla (v-u)}^2 \,\mathrm{d}x 
 			+ \int_{\partial \Omega}^{} \underset{\substack{=0, \\ \text{auf } \partial \Omega, \\\text{weil }v,u \in A_g}}{\underbrace{(v-u)}} 
-			\nabla u \cdot \nu \,\mathrm{d}S - \int_{\Omega}^{}f(v-u) \,\mathrm{d}x \\
-			&= I_f(u) + \frac{1}{2} \int_{\Omega}^{} \abs{  \nabla (v-u)}^2 \,\mathrm{d}x - \int_{\Omega}^{} ( \nabla u + f)(v-u) \,\mathrm{d}x
+			\nabla u \cdot \nu \,\mathrm{d}S - \int_{\Omega}^{}(\Delta u +f)(v-u) \,\mathrm{d}x \\
+			&= I_f(u) + \frac{1}{2} \int_{\Omega}^{} \abs{  \nabla (v-u)}^2 \,\mathrm{d}x - \int_{\Omega}^{} (\underset{=0}{\underbrace{ \Delta u + f}})(v-u) \,\mathrm{d}x
 		\end{align*}
 		und insgesamt folgt 
 		\[
@@ -170,7 +170,7 @@ mit $u = u(t,x)$, wobei $t>0$ eine Zeitkonstante ist und $x \in \Omega \subseteq
 		\[
 			\partial_p \Omega_T = ( \set{0} \times \Omega) \cup ( [0,T] \times \partial \Omega) \subset \partial \Omega .
 		\]
-		$\Omega_p \Omega_T$ ist abgeschlossen und falls $T < \infty$, 
+		$\partial_p \Omega_T$ ist abgeschlossen und falls $T < \infty$, 
 		so unterscheidet sich $\partial_p \Omega_T$ von $\partial \Omega_T$ genau um die Menge $\set{T} \times \Omega$.
 	\end{enumerate}
 \end{definition}
