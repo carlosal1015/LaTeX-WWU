@@ -2889,7 +2889,7 @@ Wir wollen nun einige ähnliche Aussagen beweisen:
 	\]
 \end{proposition}
 
-\begin{bemerkung}
+\begin{bemerkung}[label=bem:84]
 	\begin{enumerate}[(i)]
 		\item Es gilt $K_1(A) = \set*{\benbrace*{u}_1 \given u \in \mathcal{U}_k(A^+), \pi^{+\ssbrace{k}}(u) =\ind_k}$
 		\item Falls $A$ unital ist, so ist $K_1(A) \cong \sfrac{\mathcal{U}_\infty(A)}{\sim_1}$
@@ -2969,8 +2969,277 @@ Dann erhält man $K_1(\varphi) \colon K_1(A) \to K_1(B)$.
 	Damit folgt $K_1(\iota)(v) = \benbrace*{u}_1= x$, also $x \in \im K_1(\iota)$.
 \end{beweis}
 
+Im Wesentlichen wie bei $K_0$:
 
+\begin{proposition}
+	$K_1(-)$ ist split-exakt, das heißt für \(
+		\begin{tikzcd}[cramped,sep=small]
+			0 \rar & J \rar & A \rar & B \lar[bend right] \rar & 0
+		\end{tikzcd}
+	\)
+	exakt und zerfallend ist auch
+	\[
+		\begin{tikzcd}
+			0 \rar & K_1(J) \rar & K_1(A) \rar & K_1(B) \lar[bend right] \rar & 0
+		\end{tikzcd}
+	\]
+	exakt und zerfallend.
+	Insbesondere gilt für jede zwei $C^*$-Algebren $A$ und $B$
+	\[
+		K_1(A \oplus B) \cong K_1(A) \oplus K_1(B)
+	\]
+\end{proposition}
+
+\begin{proposition}
+	$K_1(-)$ ist stetig, das heißt
+	\[
+		K_1 \enbrace*{\Dlim A_i} \cong \Dlim K_1(A_i)
+	\]
+	für jedes induktive System $A_1 \to A_2 \to A_2 \to \ldots $.
+\end{proposition}
+\begin{beweis}
+	Wie für $K_1$ mit Blatt 11, Aufgabe 1 anstelle von \autoref{lem:712}.
+\end{beweis}
+
+\begin{proposition}
+	$K_1(-)$ ist stabil, das heißt $e_{11} \otimes {\id_A}$ induziert einen Isomorphismus
+	\[
+		K_1(A) \cong K_1(M_n(A))
+	\]
+	für $n \ge 2$ und $K_1(A) \cong K_1(\mathcal{K} \otimes A)$.
+\end{proposition}
 % section 8 (end)
+\newpage
+
+\section{Die 6-Term Sequenz} % (fold)
+\label{sec:9}
+
+\begin{satz}[label=satz:91]
+	Sei \(
+		\begin{tikzcd}[cramped,sep=small]
+			0 \rar & J \rar["\iota"] & A \rar["\pi"] & B \rar & 0
+		\end{tikzcd}
+	\) eine kurze exakte Sequenz von $C^*$-Algebren.
+	Dann existiert ein Homomorphismus $\delta_1$, sodass
+	\begin{equation}
+		\begin{tikzcd}
+			K_0(J) \rar["K_0(\iota)"] & K_0(A) \rar["K_0(\pi)"] & K_0(B)  \\
+			K_1(B) \uar["\delta_1"] & K_1(A) \lar["K_0(\pi)"'] & K_1(J) \lar["K_1(\iota)"']
+		\end{tikzcd} \label{eq:91}\tag{\#}
+	\end{equation}
+	exakt ist.
+	Für $u \in \mathcal{U}_n(B^+)$ ist $\delta_1 \enbrace*{\benbrace*{u}_1} = \benbrace*{p}_0 - \benbrace*{s(p)}_0$ für $p \in \kernedP_{2n}(J^+)$ mit $\iota^{+\ssbbrace{2n}}(p) = v \begin{psmallmatrix}
+		\ind_n & \\
+		& 0
+	\end{psmallmatrix} v^*$ und $v \in \mathcal{U}_{2n}(A^+)$ mit $\pi^{+\ssbrace{2n}}(v) = \begin{psmallmatrix}
+		u & \\
+		& u^*
+	\end{psmallmatrix}$.
+	$\delta_1$ ist \Index{natürlich}, das heißt für 
+	\[
+		\begin{tikzcd}
+			0 \rar & J \rar \dar["\gamma"] & A \rar\dar["\alpha"] & B \rar \dar["\beta"] & 0 \\
+			0 \rar & J' \rar & A' \rar & B' \rar & 0
+		\end{tikzcd}
+	\]
+	kommutiert auch
+	\[
+		\begin{tikzcd}
+			K_1(B) \dar["K_1(\beta)"] \rar["\delta_1"] & K_0(J)  \dar["K_0(\gamma)"] \\
+			K_1(B') \rar["\delta_1"] & K_0(J')
+		\end{tikzcd}
+	\]
+\end{satz}
+\begin{beweis}[Idee]
+	Es ist $\begin{psmallmatrix}u & \\ & u^* \end{psmallmatrix} \sim_h \ind_{2n}$ in $U_{2n}(B^+)$.
+	Wie letztes Mal existiert ein $v \in \mathcal{U}_{2n}(A^+)$ mit $\pi^+(v)= \begin{psmallmatrix} u & \\ & u^* \end{psmallmatrix}$.
+	Es gilt 
+	\[
+		\pi^+ \enbrace*{v \begin{pmatrix}
+			\ind_{n} & \\ & 0
+		\end{pmatrix} v^*} = \begin{pmatrix}
+			\ind_n 6 \\ & 0
+		\end{pmatrix}
+	\]
+	also erhält man $v \begin{psmallmatrix}
+			\ind_{n} & \\ & 0
+		\end{psmallmatrix} v^* - \begin{psmallmatrix}
+			\ind_{n} & \\ & 0
+		\end{psmallmatrix} \in \ker (\pi^+) = M_{2n}(J)$.
+	Damit folgt
+	\(
+		p = v \begin{psmallmatrix}
+			\ind_{n} & \\ & 0
+		\end{psmallmatrix} v^* \in \kernedP_{2n}(J^+)
+	\).
+	Setze dann 
+	\[
+		\delta_1 \enbrace*{[u]_1} = \benbrace*{p}_0 - \benbrace*{\begin{pmatrix}
+			1 & \\ & 0
+		\end{pmatrix}}_0 \in K_0(J)
+	\]
+	Zur Wohldefiniertheit von $\delta_1$: 
+	\begin{description}
+		\item[Unabhängigkeit von $n$:] Falls wir $u$ durch $u \oplus \ind$ ersetzen und $v= \begin{psmallmatrix} v_1 & v_2 \\ v_3 & v_4 \end{psmallmatrix} \in \mathcal{U}_{2n}(A^+)$ schreiben, so gilt für 
+		\(
+			v' = \begin{psmallmatrix}
+				v_1 \oplus \ind & v_2 \oplus 0\\
+				v_3 \oplus 0 & v_4 \oplus \ind
+			\end{psmallmatrix} \in \mathcal{U}_{2(n+1)}(A)
+		\)
+		\[
+			\pi^+(v') = \begin{pmatrix}
+				u \oplus \ind & \\
+				& u^* \oplus \ind
+			\end{pmatrix} \quad \text{ und } \quad 
+			p' = v' \begin{pmatrix}
+				\ind_{n+1} & \\ & 0
+			\end{pmatrix} v'^* = p \oplus \ind
+		\]
+		Dann gilt $\benbrace*{p'}_0 - \benbrace*{s(p')}_0 = \benbrace*{p}_0 - \benbrace*{s(p)}_0$.
+		\item[Unabhängigkeit von $v$:] Ist $v' \in \mathcal{U}_{2n}(A^+)$ ein anderen Lift von $\begin{psmallmatrix} u & // & u^* \end{psmallmatrix} \in \mathcal{U}_{2n}(B^+)$, so gilt $\pi^+(v'v^*) = \ind_{2n}$, also $v'v^* = \iota^+(w)$ für ein $w \in \mathcal{U}_{2n}(J^+)$.
+		Also ist
+		\[
+			\iota^+(p') = v' \begin{pmatrix}
+				\ind_n & \\ & 0
+			\end{pmatrix} v'^* = \iota^+(w) v \begin{pmatrix}
+				\ind_n & \\ & 0
+			\end{pmatrix} v^* \iota^+(w) = \iota^+(w p w^*)
+		\]
+		Mit der Injektivität von $\iota$ folgt $p \sim_u p'$, also $\benbrace*{p}_0 - \benbrace*{s(p)}_0 = \benbrace*{p'}_0 - \benbrace*{s(p')}_0$.
+		\item[label] Ist $u \sim_h u_1$ in $\mathcal{U}_n(B^+)$, so ist $u^* u_1 \sim_h \ind \sim u u_1^*$.
+		Folglich existieren $w_1, w_2 \in \mathcal{U}_n(A^+)$ mit $\pi^+(w_1) = u^* u_1$ und $\pi^+(w_2)= uu_1^*$.
+		Dann erfüllt $v_1 \coloneqq v \begin{psmallmatrix} w_1 & \\ & w_2 \end{psmallmatrix} \in \mathcal{U}_{2n}(A^+)$ 
+		\[
+			\pi^+(v_1) = \begin{pmatrix}
+				u_1 & \\ & u_1^*
+			\end{pmatrix}
+		\]
+		und $v_1 \begin{psmallmatrix}
+			\ind_n & \\ & 0
+		\end{psmallmatrix} v_1^* = v \begin{psmallmatrix}
+			\ind_n & \\ & 0
+		\end{psmallmatrix} v^*$.
+	\end{description}
+	$\delta_1$ ist ein Homomorphismus: Seien $u_1,u_2 \in \mathcal{U}_n(B^+)$.
+	Wähle $v_1, v_2 \in \mathcal{U}_{2n}(A^+)$ mit $\pi^+(v_i) = \begin{psmallmatrix} u_i & \\ & u_i^* \end{psmallmatrix}$ für $i=1,2$.
+	Falls $v_i = \begin{psmallmatrix}
+		v_1^\ssbrace{i} & v_2^\ssbrace{i} \\ v_3^\ssbrace{i} & v_4^\ssbrace{i}
+	\end{psmallmatrix}$, so folgt für
+	\[
+		v \coloneqq \begin{pmatrix}
+			v_1^\ssbrace{0} \oplus v_1^\ssbrace{1} & v_2^\ssbrace{0} \oplus v_2^\ssbrace{1} \\
+			v_3^\ssbrace{0} \oplus v_3^\ssbrace{1} & v_4^\ssbrace{0} \oplus v_4^\ssbrace{1}
+		\end{pmatrix} \in \mathcal{U}_{2(2n)}(A^+)
+	\]
+	Dann gilt $\pi^+ = \begin{psmallmatrix}
+		u_1 \oplus u_2 & \\ & u_1^* \oplus u_2^*
+	\end{psmallmatrix}$.
+	Es gilt $\ind_{2n} = \ind_n \oplus \ind_n$, also
+	\[
+		p = v \begin{pmatrix}
+			\ind_{2n} & \\ & 0
+		\end{pmatrix} v^* \sim_{\MvN} \Underbracket{v_1 \begin{pmatrix}
+			\ind_n & \\ & 0
+		\end{pmatrix} v_1^*}{=p_1} \oplus \Underbracket{v_2 \begin{pmatrix}
+			\ind_n & \\ & 0
+		\end{pmatrix}v_2^*}{= p_2}
+	\]
+	Also ist 
+	\[
+		\delta_1 \enbrace*{\benbrace*{u_1}_1 + \benbrace*{u_2}_1} = \delta_1 \enbrace*{\benbrace*{u_1 \oplus u_2}_1} = \benbrace*{p}_0 - \benbrace*{s(p)}_0 = \benbrace*{p_1}_0 - \benbrace*{s(p_1)}_0 + \benbrace*{p_2}_0 - \benbrace*{s(p_2)}_0 = \delta_1 \enbrace*{\benbrace*{u_1}_1} + \delta_1 \enbrace*{\benbrace*{u_2}_1}
+	\]
+	Natürlichkeit von $\delta_1$:
+	Für $v \in \mathcal{U}_{2n}(A^+)$ Lift für $\begin{psmallmatrix} u & \\ & u^* \end{psmallmatrix}$, $u \in \mathcal{U}_n(B^+)$ wie oben, dann ist $\alpha(v)$ Lift für $\begin{psmallmatrix} \beta(u) & \\ & \beta(u^*) \end{psmallmatrix}$.
+	$x= \benbrace*{u}_1 \in K_1(B)$
+	\begin{align}
+		\delta_1 \circ K_1(\beta)(x) = \delta_1 \enbrace*{\benbrace*{\beta(u)}_1} = \benbrace*{\alpha(v) \begin{pmatrix}
+			\ind_n & \\ & 0
+		\end{pmatrix} \alpha(v)^*}_0 - \benbrace*{s(\cdots)}_0 &= K_0(\alpha) \enbrace*{\benbrace*{v \begin{pmatrix}
+			\ind_n & \\ & 0
+		\end{pmatrix} v^*}_0 - \benbrace*{s(\cdots)}_0} \\
+		&= K_0(\alpha) \circ \delta_1(x).
+	\end{align}
+	Überprüfe nun noch, dass \eqref{eq:91} exakt ist.
+\end{beweis}
+
+Wir schreiben $SA$ für die \Index{Einhängung}
+\[
+	SA = C_0(0,1) \otimes A
+\]
+und $S^n A = S \enbrace*{S^{n-1}A}$ für $n \ge 2$.
+Wir wissen aus \cref{sec:2}, dass $S(-)$ ein exakter Funktor ist ($C_0(0,1)$ ist nuklear nach \autoref{satz:121} und $C_0(0,1) \otimes -$ ist exakt nach \autoref{prop:24}). 
+
+\begin{satz}[label=satz:92]
+	Sei $A$ eine $C^*$-Algebra.
+	Dann gibt es einen natürlichen Isomorphismus $\vartheta_A \colon K_1(A) \to K_0(SA)$.
+	Für $u \in \mathcal{U}_n(A^+)$ mit $s_A(u)= \ind_n$ (vergleiche \autoref{bem:84} (i)) ist $\vartheta_A \enbrace*{\benbrace*{u}_1} = \benbrace*{p}_0 - \benbrace*{s_A(p)}_0$, wobei $p \in \kernedP_{2n} \enbrace*{(SA)^+}$ mit $p = v\begin{psmallmatrix} \ind_n & \\ & 0 \end{psmallmatrix} v^*$ und $v \in \mathcal{U}_{2n} \enbrace*{C[0,1], A^+}$, $v(0)= \ind_{2n}$, $v(1) = \begin{psmallmatrix} u & \\ & u^* \end{psmallmatrix}$ und $s_A(v(t)) = \ind_{2n}$ für $t \in [0,1]$.
+\end{satz}
+\begin{beweis}
+	Betrachte die kurze exakte Sequenz mit dem Kegel
+	\[
+		\begin{tikzcd}
+			0 \rar & SA \rar & CA \rar["\ev_1"] & A \rar & 0
+		\end{tikzcd}
+	\]
+	Mit \autoref{satz:91} erhält man nun
+	\[
+		\begin{tikzcd}
+			K_0(SA) \rar & K_0(CA) \rar & K_0(A) \\
+			K_1(A) \uar["\delta_1","\cong"'] & K_1(CA) \lar & K_1(SA) \lar
+		\end{tikzcd}
+	\]
+	Setze $\vartheta_A = \delta_1$. Rest: Übung!
+\end{beweis}
+
+\begin{definitionP}[label=def:93]
+	Für $n \ge 2$ definieren wir induktiv $K_n(_) \coloneqq K_{n-1}(S_)$.
+	Dann ist für jedes $n \in \mathbb{N}$ $K_n$ ein halbexakter Funktor
+	\[
+		\enbrace*{\CSTAR, {^*}\text{-}\Hom} \longrightarrow \enbrace*{\AB, \Hom}
+	\]
+\end{definitionP}
+\begin{beweis}
+	$S-$ ist ein exakter Funktor und somit ist $K_n(-)$ halbexakt, falls $K_{n-1}(-)$ halbexakt.
+	Dies stimmt für $n=0$.
+\end{beweis}
+
+Für \(
+	\begin{tikzcd}[cramped,sep=small]
+		0 \rar & J \rar["\iota"] & A \rar["\pi"] & B \rar & 0
+	\end{tikzcd}
+\) betrachte 
+\[
+	\begin{tikzcd}
+		0 \rar & S^n J \rar["S^n \iota"] & S^n A \rar["S^n \pi"] & S^n B \rar & 0
+	\end{tikzcd}
+\]
+mit Indexabbildung $\delta_1 \colon K_1(S^n B) \to K_0(S^n J)$.
+Mit \autoref{satz:92} folgt die Existenz eines Isomorphismus $\vartheta_{S^{n-1}J} \colon K_n(J) = K_1(S^{n-1}J) \to K_0(S^n J)$.
+Dies liefert
+\[
+	\begin{tikzcd}
+		K_{n+1}(B) \rar[dashed,"\exists! \delta_{n+1}"] & K_n(J) \dar["\cong"',"\vartheta_{S^{n-1}J}"] \\
+		K_1(S^n B) \uar[equal] \rar["\delta_1"] & K_0(S^n J)
+	\end{tikzcd}
+\]
+Die Indexabbildungen $\delta_n$, $n \ge 1$ sind natürlich, denn die Abbildungen aus \autoref{satz:91} und \autoref{satz:92} sind natürlich.
+Wier erhalten mit \autoref{satz:91} und \autoref{def:93}:
+
+\begin{proposition}
+	Eine kurze exakte Sequenz \(
+		\begin{tikzcd}[cramped,sep=small]
+			0 \rar & J \rar & A \rar & B \rar & 0
+		\end{tikzcd}
+	\)
+	von $C^*$-Algebren induziert eine lange exakte Sequenz von $K$-Gruppen
+	\[
+		\begin{tikzcd}
+			\ldots \rar K_{n+1}(B) \rar["\delta_{n+1}"] & K_n(J) \rar & \ldots \rar & K_1(B) \rar["\delta_1"] & K_0(J) \rar & K_0(A) \rar & K_0(B)
+		\end{tikzcd}
+	\]
+\end{proposition}
+% section 9 (end)
 
 
 \cleardoubleoddemptypage
