@@ -1,0 +1,129 @@
+%!TEX root = ../LA2.tex
+\section{Dualräume}
+\label{sec:2.12}
+	Weitere wichtige Beispiele von Räumen, die wir bisher vernachlässigt haben, sind die Dualräume von Vektorräumen.
+	
+\begin{definition}[Dualraum]
+	\label{def:12.1}
+	Sei $V$ ein $K$-Vektorraum.
+	Dann heißt $V^* := \Hom_K(V,K)$ der \Index{Dualraum} von $V$, das heißt $V^*$ ist der $K$-Vektorraum aller linearen Abbildungen $\varphi\colon V \rightarrow K$ ($K$ ist unser Grundkörper aufgefasst als $K$-Vektorraum).
+\end{definition}
+
+\begin{bemerkung}
+	\label{bem:12.2}
+	Ist $\dim(V) < \infty$ und ist $B = \{v_1,\dots,v_n\}$ eine Basis von $V$ (und wählen wir $\{1\}$ als Basis von $K$, so erhalten wir den üblichen Isomorphismus
+	\begin{align*}
+		V^* = \Hom(V,K) &\longrightarrow M(1 \times n, K) \\
+		\varphi &\longmapsto \mat{A}{\{1\}}{B}{\varphi}.
+	\end{align*}
+	Die Einträge der Matrix $A_\varphi := \mat{A}{\{1\}}{B}{\varphi}$ sind gegeben durch
+	\[
+		A_\varphi = (\varphi(v_1),\dots,\varphi(v_n)).
+	\]
+	Eine Basis von $M(1\times n,K)$ erhalten wir durch die (Einheits-)Vektoren $(e_1^T,\dots,e_n^T)$ mit $e_i^T = (0,\dots,0,1,0,\dots,0)$ (die $1$ steht an $i$-ter Stelle).
+	
+	Sind dann $\varphi_1 \in \varphi_n \in V^*$ mit $A_{\varphi_i} = e_i^T$, so ist $\{\varphi_1,\dots,\varphi_n\}$ eine Basis von $V^*$ (da $V^* \simeq M(1 \times n,K)$ vermöge $\varphi \mapsto A_\varphi$).
+	Für $\varphi_i$ muss dann gelten:
+	\[
+		\varphi_i(v_j) = \delta_{ij} = \begin{cases}
+			0, & \text{falls } i \neq j \\
+			1, & \text{falls } i = j
+		\end{cases}
+	\]
+\end{bemerkung}
+
+\begin{definition}[duale Basis]
+	\label{def:12.3}
+	Sei $B = \{v_1,\dots,v_n\}$ eine Basis des $K$-Vektorraumes $V$ und sei $B^* = \{\varphi_1,\dots,\varphi_n\}$ wie in \autoref{bem:12.2}.
+	Dann heißt $B^*$ die zu $B$ \Index{duale Basis} von $V^*$.
+\end{definition}
+
+Beachte: Wir erhalten insbesondere $\dim(V^*) = \dim(V)$ und die Wahl der Basis $B = \{v_1,\dots,v_n\}$ induziert einen Isomorphismus
+\begin{align*}
+	\Phi\colon V &\longrightarrow V^* \\
+	\sum_{i=1}^{n} x_i v_i &\longmapsto \sum_{i=1}^{n} x_i \varphi_i.
+\end{align*}
+
+\begin{beispiel}
+	\label{bsp:12.4}
+	Sei $V = K^n$ mit Standardbasis $\{e_1,\dots,e_n\}$.
+	Dann ist jede lineare Abbildung $\varphi \colon K^n \rightarrow K$ gegeben durch Multiplikation mit der Matrix $A_\varphi = (\varphi(e_1),\dots,\varphi(e_n)) \in M(1 \times n,K)$.
+	
+	Identifizieren wir $K^n$ mit $M(1 \times n, K)$ via $y \mapsto y^T$, so erhalten wir einen Isomorphismus
+	\begin{align*}
+		\Phi\colon K^n &\longrightarrow (K^n)^* \\
+		y &\longmapsto \varphi_y \text{ mit } \varphi_y(x) = y^T \cdot x.
+	\end{align*}
+	Die zu $\{e_1,\dots,e_n\}$ duale Basis ist dann gerade $\{\varphi_{e_1},\dots,\varphi_{e_n}\}$, denn $\varphi_{e_i}(e_j) = e_i^T = e_j = \delta_{ij}$.
+\end{beispiel}
+
+Allgemeiner: Ist $B = \{v_1,\dots,v_n\}$ Basis von $V$ und ist $B^* = \{\varphi_1,\dots,\varphi_n\}$ die zugehörige duale Basis, so erhalten wir zugehörige Isomorphismen
+\begin{align*}
+	&\Phi_B\colon V \rightarrow K^n; \sum_{i=1}^{n} x_iv_i \mapsto (x_1,\dots,x_n)^T \\
+	&\Phi_{B^*}\colon V^* \rightarrow K^n; \sum_{i=1}^{n} y_i\varphi_i \mapsto (y_1,\dots,y_n)^T
+\end{align*}
+Dann folgt für $\varphi = \sum_{j=1}^{n} y_j \varphi_j$ und $v = \sum_{i=1}^{n} x_i v_i$:
+\begin{align*}
+	\varphi(v) &= \sum_{j=1}^{n} y_j \varphi_j(v) = \sum_{j=1}^{n} \varphi_j \enb{\sum_{i=1}^{n} x_i v_i} = \sum_{i,j=1}^{n} y_j x_i \Underbrace{\varphi_j(v_i)}{=\delta_{ij}} \\
+	&= \sum_{i=1}^{n} y_i x_i = y^Tx
+\end{align*}
+
+Beachte: Im Fall $K = \RR^n$ gilt $y^Tx = \sk{y,x}$ mit $\sk{\cdot,\cdot}$ Standard-Skalarprodukt.
+Wir erhalten also einen Isomorphismus
+\begin{align*}
+	\Phi \colon \RR^n &\longrightarrow (\RR^n)^* \\
+	y &\longmapsto \Phi(y) = [x \mapsto \sk{y,x}]
+\end{align*}
+
+\begin{satz}
+	\label{satz:12.5}
+	Sei $(V,\sk{\cdot,\cdot})$ ein endlich dimensionaler euklidischer $\RR$-Vektorraum.
+	Dann wird durch
+	\begin{align*}
+		\Phi \colon V &\longrightarrow (V)^* \\
+		v &\longmapsto \Phi(v) = [w \mapsto \sk{v,w}]
+	\end{align*}
+	ein Isomorphismus von $\RR$-Vektorräumen definiert.
+\end{satz}
+
+\begin{beweis}
+	Da $\sk{\cdot,\cdot}$ linear in beiden Variablen ist, ist für alle $v \in V$ die Abbildung $w \mapsto \Phi(v)(w) = \sk{v,w}$ linear, also gilt $\Phi(v) \in V^*$.
+	Da $\sk{\cdot,\cdot}$ linear in der ersten Variablen ist, ist $\Phi \colon V \rightarrow V^*$ auch linear.
+	Da $\dim(V) = \dim(V^*)$, genügt es nun zu zeigen, dass $\Phi$ injektiv ist.
+	Mit der Dimensionsformel folgt dann die Bijektivität.
+	
+	Sei dazu $v \in V$ mit $\Phi(v) = 0$.
+	Dann folgt $0 = \Phi(v)(v) = \sk{v,v} = \no{v}_2^2$, also $v = 0$. \qedhere
+	\qedhere
+\end{beweis}
+
+\begin{bemerkung}
+	\label{bem:12.6}
+	\mbox{} \\[-1.4cm]
+	\begin{enumerate}[(i)]
+		\item Ist $(V,\sk{\cdot,\cdot})$ ein endlich dimensionaler unitärer $\CC$-Vektorraum, so wird ähnlich wie in \autoref{satz:12.5} ein konjugiert linearer Isomorphismus $\Phi \colon V \rightarrow V^*, \Phi(v)(w) = \sk{v,w}$ definiert.
+		Der Beweis geht völlig analog.
+		\item Ist $(V,\sk{\cdot,\cdot})$ wie in \autoref{satz:12.5} und ist $B = \{v_1,\dots,v_n\}$ eine Orthonormalbasis von $V$ und $\Phi \colon V \rightarrow V^*$ wie in \autoref{satz:12.5}, so ist $\{\Phi_(v_1),\dots,\Phi_(v_n)\}$ gerade die duale Basis von $V^*$ bezüglich $\{v_1,\dots,v_n\}$, denn $\Phi(v_i)(v_j) = \sk{v_i,v_j} = \delta_{ij}$.
+	\end{enumerate}
+\end{bemerkung}
+
+Wir wollen nun duale lineare Abbildungen betrachten.
+
+\begin{definition}[duale Abbildung]
+	\label{def:12.7}
+	Seien $V,W$ zwei $K$-Vektorräume und sei $F \colon V \rightarrow W$ linear.
+	Dann heißt
+	\begin{align*}
+		F^*\colon W^* &\longrightarrow V^* \\
+		\varphi &\longmapsto \varphi \circ F
+	\end{align*}
+	die zu $F$ \Index{duale Abbildung}.
+\end{definition}
+
+Beachte: Als Komposition der linearen Abbildungen $F$ und $\varphi$  ist $F^*(\varphi) = \varphi \circ F$ eine lineare Abbildung von $V$ nach $K$.
+Die Abbildung $F^*$ ist linear, denn sind $\varphi, \psi \in W^*, \lambda \in K$ und $v \in V$, so gilt
+\begin{align*}
+	F^*(\varphi + \psi)(v) &= (\varphi + \psi) \circ F(v) = (\varphi + \psi)(F(v)) = \varphi(F(v)) + \psi(F(v)) = F^*(\varphi)(v) + F^*(\psi)(v), \\
+	F^*(\lambda \varphi)(v) &= (\lambda \varphi)(F(v)) = \lambda(\varphi(F(v))) = \lambda F^*(\varphi)(v),
+\end{align*}
+also $F^*(\varphi + \psi) = F^*(\varphi) + F^*(\psi)$ und $F^*(\lambda \varphi) = \lambda F^*(\varphi)$.
