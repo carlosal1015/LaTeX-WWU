@@ -127,3 +127,122 @@ Die Abbildung $F^*$ ist linear, denn sind $\varphi, \psi \in W^*, \lambda \in K$
 	F^*(\lambda \varphi)(v) &= (\lambda \varphi)(F(v)) = \lambda(\varphi(F(v))) = \lambda F^*(\varphi)(v),
 \end{align*}
 also $F^*(\varphi + \psi) = F^*(\varphi) + F^*(\psi)$ und $F^*(\lambda \varphi) = \lambda F^*(\varphi)$.
+
+Wir wollen als nächstes die Darstellungsmatrix von $F^*$ bezüglich dualer Basen mit Hilfe der Darstellungsmatrix von $F$ berechnen:
+
+\begin{satz}
+	\label{satz:12.8}
+	Seien $V,W$ endlich dimensionale $K$-Vektorräume und seien $B = \{v_1,\dots,v_n\}$ und $\wt{B} = \{w_1,\dots,w_m\}$ Basen von $V$ und $W$.
+	Ist dann $F \colon V \rightarrow W$ linear, so gilt
+	\[
+		\mat{A}{B^*}{\wt{B}^*}{F^*} = \enb{\mat{A}{\wt{B}}{B}{F}}^T,
+	\]
+	wobei $B^*$ und $\wt{B}^*$ die zu $B$ bzw. $\wt{B}$ dualen Basen von $V^*$ bzw. $W^*$ bezeichnen.
+\end{satz}
+
+\begin{beweis}
+	Sei $\mat{A}{\wt{B}}{B}{F} =: A = (a_{ij})$.
+	Wir müssen zeigen:
+	Sind $B^* = \{\varphi_1,\dots,\varphi_n\}$ und $\wt{B}^* = \{\psi_1,\dots,\psi_m\}$, so gilt
+	\[
+		F^*(\psi_j) = \sum_{i=1}^{n} (a_{ij})^T \varphi_i = \sum_{i=1}^{n} a_{ji} \varphi_i
+	\]
+	Für $v = \sum_{l=1}^{n} \lambda_l v_l$ gilt
+	\begin{align*}
+		F^*(\psi_j)(v) &= \psi_j (F(v)) = \psi_j\enb{\sum_{l=1}^{n} \lambda_l F(v_l)} \\
+		&= \sum_{l=1}^{n} \lambda_l \psi_j \enb{ \sum_{i=1}^{m} a_{il} w_i} = \sum_{l=1}^{n} \sum_{i=1}^{m} \lambda_l a_{il} \Underbrace{\psi_j(w_i)}{=\delta_{ji}} = \sum_{l=1}^{n} \lambda_l a_{jl}.
+	\end{align*}
+	Andererseits gilt
+	\[
+		\sum_{i=1}^{n} a_{ji} \varphi_i(v) = \sum_{i=1}^{n} \sum_{l=1}^{n} \lambda_l a_{ji} \Underbrace{\varphi_i(v_l)}{=\delta_{il}} = \sum_{l=1}^{n} \lambda_l a_{jl}. \qedhere
+	\]
+\end{beweis}
+
+Insbesondere erhalten wir eine Formel für die Basiswechselmatrix von einer dualen Basis zu einer anderen:
+
+\begin{korollar}
+	\label{kor:12.9}
+	Sei $V$ ein endlich dimensionaler $K$-Vektorraum und seien $B = \{v_1,\dots,v_n\}$ und $\wt{B} = \{\wt{v}_1,\dots,\wt{v}_n\}$ zwei Basen von $V$.
+	Ist dann $A = \mat{A}{\wt{B}}{B}{\id_V}$ die Basiswechselmatrix von $B$ nach $\wt{B}$, so ist die Basiswechselmatrix für die Basen $B^*$ und $\wt{B}^*$ von $V^*$ gegeben durch $\mat{A}{\wt{B}^*}{B^*}{\id_{V^*}} = (A^T)^{-1}$.
+\end{korollar}
+
+\begin{beweis}
+	Es gilt $\mat{A}{\wt{B}^*}{B^*}{\id_{V^*}} = \enb{\mat{A}{B^*}{\wt{B}^*}{\id}}^{-1} \stack{\ref{satz:12.8}}{=} (A^T)^{-1}$. \qedhere
+\end{beweis}
+
+\begin{anwendung}
+	\label{anw:12.10}
+	Sei $B = \{v_1,\dots,v_n\}$ eine Basis von $K^n$.
+	Identifizieren wir $K^n$ mit $(K^n)^*$ via $y \mapsto \varphi_y(x) := y^Tx$, so wollen wir die duale Basis $\{\varphi_1,\dots,\varphi_n\}$ von $B$ als Vektoren in $K^n$ berechnen, das heißt wir suchen $y_1,\dots,y_n \in K^n$ mit $\varphi_i = \varphi_{y_i}$.
+	
+	Beachte: Die duale Basis der Standardbasis in diesem Bild ist wieder die Standard-Basis (\autoref{bsp:12.4}).
+	Sei nun $S = (v_1,\dots,v_n) = \mat{A}{\mathcal{S}}{B}{\id_V}$.
+	Nach \autoref{kor:12.9} gilt $\mat{A}{\mathcal{S}^*}{B^*}{\id_{V^*}} = (S^T)^{-1} = (S^{-1})^T$ und die Spalten dieser Matrix geben genau die Koeffizienten zur Darstellung von $y_j$ in der Basis $\mathcal{S}^*$, also folgt
+	\[
+		(S^T)^{-1} = (y_1,\dots,y_n).
+	\]
+\end{anwendung}
+
+Wir wollen nun den doppelten Dualraum $V^{**} = (V^*)^*$ betrachten.
+
+\begin{satz}[kanonischer Isomorphismus]
+	\label{satz:12.11}
+	Sei $V$ ein endlich dimensionaler $K$-Vektorraum.
+	Dann ist
+	\[
+		\iota_V \colon V \rightarrow V^{**}, \iota(v)(\varphi) := \varphi(v)
+	\]
+	ein Isomorphismus.
+	Ist $B = \{v_1,\dots,v_n\}$ Basis von $V$ und $\{\varphi_1,\dots,\varphi_n\}$ duale Basis von $V^*$ bezüglich $B$, so ist $\{\iota_V(v_1),\dots,\iota_V(v_n)\}$ duale Basis von $V^{**}$ bezüglich $B^*$.
+\end{satz}
+\newpage
+Fazit: $\iota_V \colon V \rightarrow V^{**}$ überträgt die Stuktur eins zu eins von $V$ auf $V^{**}$.
+Wir können daher $V$ mit $V^{**}$ in kanonischer Weise identifizieren.
+
+Kanonisch heißt hier, dass $\iota_V \colon V \rightarrow V^{**}$ nicht von der Wahl von irgendwelchen Basen abhängt.
+Im Vergleich dazu hängt der Isomorphismus $\Phi\colon V \rightarrow V^*$, $\Phi(v_i) = \varphi_i$ von der Wahl der Basis $B$ ab, ist also \textit{nicht} kanonisch. 
+
+\begin{beweis}
+	Es ist leicht nachzurechnen, dass $\iota\colon V \rightarrow V^{**}$ linear ist.
+	Wegen
+	\[
+		\iota_V(v_j)(\varphi_i) = \varphi_i(v_j) = \delta_{ij}
+	\]
+	ist $\{\iota(v_1),\dots,\iota(v_j)\}$ duale Basis von $V^{**}$ bezüglich $B^*$.
+	Damit folgt $\iota_V(V) = V^{**}$, also ist $\iota_V$ surjektiv.
+	Wegen $\dim(V^{**}) = \dim(V^*) = \dim(V)$ ist $\iota_V$ dann auch injektiv, also ein Isomorphismus. \qedhere
+\end{beweis}
+
+Bemerkung: Die Abbildung $\iota_V \colon V \rightarrow V^{**}$ ist auch ein wohldefinierter injektiver Homomorphismus, wenn $\dim(V) = \infty$.
+In diesem Fall ist $\iota_V \colon V \rightarrow V^{**}$ aber niemals bijektiv!
+
+\begin{satz}
+	\label{satz:12.12}
+	Es seien $V,W$ endlich dimensionaler $K$-Vektorräume und sei $F \colon V \rightarrow W$ linear.
+	Dann ist das folgende Diagramm kommutativ:
+	\[
+		\begin{tikzcd}
+			V \arrow[r,"F"] \arrow[d,"\iota_V"'] & W \arrow[d,"\iota_W"] \\
+			V^{**} \arrow[r,"F^{**}"] & W^{**}
+		\end{tikzcd}
+	\]
+	Identifizieren wir $V$ mit $V^{**}$ und $W$ mit $W^{**}$ vermöge $\iota_V$ bzw. $\iota_W$, so folgt $F^{**} = F$.
+\end{satz}
+
+\begin{beweis}
+	Wir müssen zeigen:
+	Ist $v \in V$, so gilt $\iota_W(F(V)) = F^*(\iota_V(v))$.
+	
+	Für jedes $\psi \in W^*$ gilt zunächst
+	\[
+		\iota_W(F(v))(\psi) = \psi(F(v)).
+	\]
+	Auf der anderen Seite gilt
+	\begin{align*}
+		F^{**}(\iota_V(v))(\psi) &= (\iota_V(v) \circ F^*)(\psi) = \iota_V(v)(\psi \circ F) \\
+		&= \psi \circ F(v) = \psi(F(v)). \qedhere
+	\end{align*}
+\end{beweis}
+
+Wir wollen nun noch den Dualraum von Untervektorräumen und Quotienten $V$ mit $V^*$ in Zusammenhang bringen.
+Wir starten mit:
