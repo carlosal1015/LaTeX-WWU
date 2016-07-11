@@ -171,7 +171,7 @@ aufgeteilt mit $u = u_1 + u_2$ in
 	von der Klasse $C_1^2(\mathbb{R}^{+} \times \mathbb{R}^n) \cap C^0([0,\infty)\times \mathbb{R}^n)$ und erfüllt
 	\begin{enumerate}[(i)]
 		\item $u_t- \Delta u =f$ in $\mathbb{R}^{+} \times \mathbb{R}^n$
-		\item $\lim\limits_{(x,t) \to (x_0,0)}=0$ für alle $x_0 \in \mathbb{R}^n$
+		\item $\lim\limits_{(x,t) \to (x_0,0)} u(t,x) =0$ für alle $x_0 \in \mathbb{R}^n$
 	\end{enumerate}
 	Dies bedeutet, dass $u$ eine Lösung von $(2)$ ist.
 \end{satz}
@@ -515,7 +515,7 @@ Für den Beweis der Anfangsdaten gilt
 und
 \begin{align*}
 	\partial_r U_x(0,r)& = \fint_{\partial B_1(0)}^{} \partial_t u(0,x+ r \tilde y) r^n \,\mathrm{d}S(\tilde y) \\ &= 
-	\fint_{\partial B_1(0)}^{} \partial_t h(x+ r \tilde y)r^n \,\mathrm{d}S(\tilde y) \\ &= \fint_{\partial B_r(x)}^{} h(y) \,\mathrm{d}S(y) \\ &= H_x(r).
+	\fint_{\partial B_1(0)}^{} h(x+ r \tilde y)r^n \,\mathrm{d}S(\tilde y) \\ &= \fint_{\partial B_r(x)}^{} h(y) \,\mathrm{d}S(y) \\ &= H_x(r).
 \end{align*}
 Nun gilt
 \[
@@ -549,7 +549,7 @@ $n=3:$
 	Sei $u \in C^m([0,\infty)\times \mathbb{R}^3)$ mit $m \geq 2$ eine Lösung von (P). Für alle $x \in \mathbb{R}^3$ gilt dann $ \tilde U_x \in C^m([0,\infty) \times [0, \infty))$ und $\tilde U_x$ erfüllt das Anfangsrandwertproblem
 	\[
 		\begin{cases}
-			\partial_t^2 \tilde U_x(t,r) - \partial^2_t \tilde U_x(t,r)=0, &\text{ in }(0, \infty) \times (0, \infty)\\
+			\partial_t^2 \tilde U_x(t,r) - \partial^2_r \tilde U_x(t,r)=0, &\text{ in }(0, \infty) \times (0, \infty)\\
 			\tilde U_x(0,r) = \tilde G_x(r), \, \partial \tilde U_x(0,r) = \tilde H_x(r), &\text{ für }r >0 \\
 			\tilde U_x(t,0) = 0 , &\text{ für }t>0
 		\end{cases}
@@ -561,7 +561,7 @@ $n=3:$
 			\partial^2_t \tilde U_x(t,r) & \stackrel{\hphantom{\text{Lemma }4.4}}{=} r \partial_t^2 U_x(t,r) \\
 			&\stackrel{\text{Lemma }4.4}{=} r [ \partial_r^2 U_x(t,r) + \frac{2}{r} \partial_r U_x(t,r)] \\
 			& \stackrel{\hphantom{\text{Lemma }4.4}}{=} r \partial_r^2 U_x(t,r) + 2 \partial_rU_x(t,r) \\
-			& \stackrel{\hphantom{\text{Lemma }4.4}}{=} \partial_r(r \partial_t U_x(t,r)+ U_x(t,r)) \\
+			& \stackrel{\hphantom{\text{Lemma }4.4}}{=} \partial_r(r \partial_r U_x(t,r)+ U_x(t,r)) \\
 			& \stackrel{\hphantom{\text{Lemma }4.4}}{=} \partial_r (\partial_r (\underset{= \tilde U_x(t,r)}{\underbrace{r U_x(t,r)}})) \\
 			& \stackrel{\hphantom{\text{Lemma }4.4}}{=} \partial_r^2 \tilde U_x(t,r)
 	\end{align*}
@@ -796,7 +796,7 @@ Wegen der Linearität der Wellengleichung betrachten wir
 		u(0,x) = u_t(0,x) = 0, \text{ für } x \in \mathbb{R}^n
 	\end{cases}
 \]
-Wir definieren eine Familie von Funktionen $(r(t,x;s))_{s >0}$ als Lösungen der Differentialgleichung
+Wir definieren eine Familie von Funktionen $(v(t,x;s))_{s >0}$ als Lösungen der Differentialgleichung
 \[
 	(P)_s \qquad \begin{cases}
 		v_{tt}(t,x;s)- \Delta v(t,x;s) = 0, &\text{ in }(s, \infty) \times \mathbb{R}^n\\ 
@@ -881,9 +881,9 @@ Zu Der \underline{Energiemethode} gehört die \underline{Eindeutigkeit} und die 
 	\[
 		e(t) := \frac{1}{2} \int_{\Omega}^{} (u_t(t,x))^2 + ( \nabla u(t,x))^2 \,\mathrm{d}x
 	\]
-	für $t \in [0,T]$ die Identität
+	für alle $t \in [0,T]$ die Identität
 	\[
-		e(t) = e(0) \qquad \forall\, t \in [0,t]
+		e(t) = e(0) 
 	\]
 \end{lemma}
 \begin{beweis}
@@ -897,6 +897,6 @@ Zu Der \underline{Energiemethode} gehört die \underline{Eindeutigkeit} und die 
 	\end{align*}
 	Damit ist $e$ konstant und damit
 	\[
-		e(t) = e(0) \qquad \forall\, t \in [0,t].
+		e(t) = e(0) \qquad \forall\, t \in [0,T].
 	\]
 \end{beweis}

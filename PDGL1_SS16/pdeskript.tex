@@ -603,6 +603,215 @@ FÜr $u \in W_0^{1,p}(\Omega)$ lässt sich $\norm{u}_{L^p(\Omega)}$ durch $\norm
 			&\leq \frac{1}{n} \underset{\leq C}{\underbrace{\int_{0}^{1} \abs{u(s)} \,\mathrm{d}s}} \to 0
 		\end{align*}
 	\end{enumerate}
+	%%%neue Vorlesung
+	Sei $v \in L^{p'}(0,1)$ beliebig. Wegen $p>1$ gilt $p'<\infty$ und somit ist $C^{\infty}_0(0,1)$ dicht in $L^{p'}(0,1)$. Weiter existiert für alle $\varepsilon >0$ ein $\varphi _{\varepsilon} \in C^{\infty}_0(0,1)$, so dass $\norm{ \varphi _{\varepsilon} - v}_{L^{p'}(0,1)} \leq \varepsilon$
+	\begin{align*}
+		\abs{\int_{0}^{1} u_nv \,\mathrm{d}x} &= \abs{\int_{0}^{1} u_n (\varphi _{\varepsilon} + v - \varphi _{\varepsilon}) \,\mathrm{d}x} \\
+		&\leq \abs{\int_{0}^{1} u_n \varphi _{\varepsilon} \,\mathrm{d}x} + \int_{0}^{1} \abs{u_n}\abs{v- \varphi _{\varepsilon}} \,\mathrm{d}x \\
+		&\leq \abs{\int_{0}^{1} u_n \varphi _{\varepsilon} \,\mathrm{d}}x + \norm{u_n}_{L^{p'}(0,1)} + \norm{v - \varphi _{\varepsilon}}_{L^{p'}(0,1)} \\
+		&\leq  \abs{ \int_{0}^{1} u_n \varphi _{\varepsilon} \,\mathrm{d}x} + \varepsilon \norm{u}_{L^{p'}(0,1)}
+	\end{align*}
+	\[
+		\forall\, \varepsilon >0 \,\, \exists\, n _{\varepsilon} \in \mathbb{N}: \qquad \forall\, n>n u_{\varepsilon} \qquad \abs{ \int_{0}^{1}u_n \varphi _{\varepsilon} \,\mathrm{d}x} \leq \varepsilon.
+	\]
+	\[
+		\Rightarrow \qquad  \abs{\int_{0}^{1}u_nv \,\mathrm{d}x} \leq \varepsilon + \norm{u}_{L^p(0,1)} \varepsilon \qquad \forall\, n> n_{\varepsilon}
+	\]
+\end{beweis}
+\begin{beispiel}
+	Es gilt 
+	\begin{align*}
+		u_n(x) &= \sin(2 \pi n x) \rightharpoonup 0 \qquad \text{in }L^p(0,1) \qquad \forall\, p \in [1,\infty] \\
+		v_n(x) &= \cos(2 \pi n x) \rightharpoonup 0 \qquad \text{in }L^p(0,1) \qquad \forall\, p \in [1,\infty]
+	\end{align*}
+	aber 
+	\[
+		u_n, \,v_n \not \stackrel{L^p}{\to} \qquad \forall\, p
+	\]
+\end{beispiel}
+\begin{satz}
+	\begin{enumerate}[1)]
+		\item (Schwache Folgenkompaktheit): Sei $1 < p < \infty$ und sei $(u_k)$ eine Folge in $L^p(\Omega)$ mit $\norm{u_k}_{L^p(\Omega)} \leq C$ für alle $k \in \mathbb{N}$ für ein $C>0$. Dann existiert ein $u \in L^p(\Omega)$ und eine Teilfolge $(u_{k_j})$ von $(u_k)$ mit $u_{k_j} \stackrel{L^p(\Omega)}{\rightharpoonup} u$. 
+		\\Analog für $p = \infty$ und $u_{k_j} \stackrel{*}{\rightharpoonup} u$ in $L^{\infty}(\Omega)$.
+		\item Umgekehrt gilt für $1 \leq p \leq \infty$: Falls $u_k \rightharpoonup u$ in $L^p(\Omega)$ (bzw. $u_k \stackrel{*}{\rightharpoonup}$ in $L^\infty(\Omega)$),
+		so existiert ein $C>0$ mit $\norm{u_k}_{L^p(\Omega)} \leq C$ für alle $k \in \mathbb{N}$ und 
+		\[
+			\norm{u}_{L^p(\Omega)} \leq \liminf_{k \to \infty} \norm{u_k}_{L^p(\Omega)}
+		\]
+		Dies bedeutet, dass die $L^p(\Omega)$- Norm schwach unterhalb stetig ist.
+	\end{enumerate}
+\end{satz}
+\begin{bemerkung}
+	\begin{enumerate}[(i)]
+		\item Sei $\Omega \subseteq \mathbb{R}^n$ beschränkt. Dann gilt
+		\[
+			u_k \stackrel{*}{\rightharpoonup} u \qquad \text{in }L^{\infty}(\Omega) \qquad \Rightarrow \qquad  u_k \rightharpoonup u \qquad \text{in }L^p(\Omega) \qquad \forall\, p \geq 1
+		\]
+		\[
+			u_k \stackrel{*}{\rightharpoonup} u \qquad \text{in }L^{\infty}(\Omega) \qquad \Leftrightarrow \qquad \int_{\Omega}^{}(u_k - u)v \,\mathrm{d}x \to 0 \qquad \forall\, v \in L^1(\Omega).
+		\]
+		Dies gilt insbesondere auch für alle $v \in L^{p'}(\Omega) \subset L^1(\Omega)$.
+		\[
+			\Rightarrow \int_{\Omega}^{} (u_k-u)v \,\mathrm{d}x \to 0 \qquad \forall\, v \in L^{p'}(\Omega)
+		\]
+		\[
+			\Rightarrow u_k \rightharpoonup u \qquad \text{in }L^p(\Omega).
+		\]
+		\item 
+		\[
+			\begin{cases}
+				u_k \rightharpoonup u, &\text{ in }L^p(\Omega)\\
+				v_k \to v, &\text{ in }L^{p'}(\Omega)
+			\end{cases} \qquad \Rightarrow \qquad  u_k v_k \rightharpoonup uv \qquad \text{in }L^1(\Omega).
+		\]
+		Es gilt wegen der Hölder-Ungleichung $u_kv_k \in L^1(\Omega)$. Wir müssen zeigen, dass 
+		\[
+			\int_{\Omega}^{}(u_kv_k-uk)\varphi \,\mathrm{d}x \to 0 \qquad \forall\, \varphi \in L^{\infty}(\Omega).
+		\]
+		\begin{align*}
+			\abs{\int_{0}^{1}(u_kv_k-uv)\varphi \,\mathrm{d}x} &\stackrel{\hphantom{\text{Hölder}}}{=} \abs{\int_{\Omega}^{}(u_k v_k - u_k v+ u_k v - uv)\varphi \,\mathrm{d}x} \\
+			&\stackrel{\hphantom{\text{Hölder}}}{\leq } \int_{\Omega}^{}\abs{u_k (v_k-v)} \,\mathrm{d}x + \abs{\int_{\Omega}^{}(u_k-u)v \varphi \,\mathrm{d}x} \\
+			&\stackrel{\text{Hölder}}{\leq} \underset{\substack{\to 0, \\\text{da }v_k \to v \text{ in }L^{p'}(\Omega)}}{\underbrace{\underset{\substack{\leq C, \\\text{Satz }6.11}}{\underbrace{\norm{u_k}_{L^p(\Omega)}}} \norm{v_k-v}_{L^{p'}(\Omega)}}} + \underset{\substack{\to 0, \\\text{da }u_k \rightharpoonup u \text{ in }L^{p}(\Omega)}}{\underbrace{\abs{\int_{\Omega}^{} ( u_k - u )v \varphi \,\mathrm{d}x}}} \to 0 
+		\end{align*}
+		Beachte hierfür auch 
+		\[
+			u_k \rightharpoonup u \qquad \text{in }L^p(\Omega) \qquad \Leftrightarrow  \int_{\Omega}^{}(u_k - u)w \,\mathrm{d}x \to 0 \qquad \forall\, w \in L^{p'}(\Omega).
+		\]
+		Andererseits gilt aber
+		\[
+			\begin{cases}
+				u_k \rightharpoonup u, &\text{ in }L^p(\Omega)\\
+				v_k \rightharpoonup v, &\text{ in }L^{p'}(\Omega)
+			\end{cases} \qquad \not \Rightarrow \qquad  u_k v_k \rightharpoonup uv \qquad \text{in }L^1(\Omega)
+		\]
+		Zum Beispiel für 
+		\[
+			u_k(x) = v_k(x) = \sin(2 \pi k x) 
+		\]
+		Dann gilt $u_k \rightharpoonup 0$ in $L^2(0,1)$ Allerdings gilt nach Riemann-Lebesgue.
+		\[
+			u_k v_k = u_k^2 = \sin^2(2 \pi k x) \rightharpoonup \frac{1}{2}
+		\]
+		\item Satz $6.11$, $1)$ ist falsch für $p =1$!
+		\\ Sei $\varphi \in C^0_0(-1,1)$. Weil $\varphi$ stetig ist, gilt dann
+		\[
+			\int_{-1}^{1} u_k \varphi \,\mathrm{d}x = -k \int_{- \frac{1}{k}}^{0} \varphi \,\mathrm{d}x + k \int_{0}^{\frac{1}{k}} \varphi \,\mathrm{d}x 
+			\stackrel{\text{für }k \to \infty}{\to } - \varphi(0) + \varphi(0)= 0
+		\]
+		\[
+			\Rightarrow \int_{-1}^{1}u_k \varphi \,\mathrm{d}x \to 0 \qquad \forall\, \varphi \in C^0_0(-1,1)
+		\]
+		Würde also $(u_k)$ schwach in $L^1(-1,1)$ konvergieren, so müsste 
+		\[
+			\int_{-1}^{1}u_k v \,\mathrm{d}x \to 0 \qquad \forall\, v \in L^{\infty}(-1,1)
+		\]
+		gelten (da $C^0_0(-1,1) \subset L^{\infty}(-1,1)$).
+		\[
+			v(x) = \begin{cases}
+				0, &\text{ falls }x \leq 0\\
+				1, &\text{ falls }x > 0
+			\end{cases}
+		\]
+		\[
+			\int_{-1}^{1}u_k v \,\mathrm{d}x = k \int_{0}^{\frac{1}{k}}1 \,\mathrm{d}x = 1 \neq 0
+		\]
+		\[
+			\Rightarrow \qquad u_k \not \rightharpoonup \qquad \text{in }L^1(-1,1).
+		\]
+	\end{enumerate}
+\end{bemerkung}
+\begin{definition*}[(Schwache Konvergenz in $W^{1,p}(\Omega)$)] Sei $\Omega \subseteq \mathbb{R}^n$ offen.
+	\begin{enumerate}[(i)]
+		\item Sei $1 \leq p < \infty$ und $(u_k)$ eine Folge in $W^{1,p}(\Omega)$. Dann sagen wir, dass $(u_k)$ schwach in $W^{1,p}(\Omega)$ gegen $u \in W^{1,p}(\Omega)$ konvergiert ($u_k \rightharpoonup u$ in $W^{1,p}(\Omega)$) falls gilt:
+		\begin{align*}
+			u_k \rightharpoonup& u \text{ in } L^p(\Omega) \\
+			\diff{u_k}{x_i} \rightharpoonup& \diff{u}{x_i} \text{ in }L^p(\Omega) \, \forall\, i=1,\dots,n
+		\end{align*}
+		Eine äquivalente Definition ist
+		
+			\begin{align*}
+				u_k \rightharpoonup& u \text{ in } L^p(\Omega) \\
+				 \nabla u_k \rightharpoonup&  \nabla u \text{ in }L^p(\Omega;\mathbb{R}^n) 
+			\end{align*}
+
+		\item Für $p= \infty$ sagen wir analog, dass eine Folge $(u_k)$ in $W^{1,\infty}(\Omega)$ schwach-$*$ in $W^{1,\infty}(\Omega)$ gegen $u \in W^{1,\infty}(\Omega)$ konvergiert ($u_k \stackrel{*}{\rightharpoonup} u$ in $W^{1,\infty}(\Omega)$) falls gilt:
+		\[
+			\begin{cases}
+				u_k \stackrel{*}{\rightharpoonup}u, &\text{ in }L^{\infty}(\Omega)\\
+				 \nabla u_k \stackrel{*}{\rightharpoonup}  \nabla u, &\text{ in }L^{\infty}(\Omega;\mathbb{R}^n)
+			\end{cases}
+		\]
+	\end{enumerate}
+\end{definition*}
+\begin{satz}
+	\begin{enumerate}[1)]
+		\item Sei $1 < p < \infty$ und sie $(u_k) \subseteq W^{1,p}(\Omega)$ mit $\norm{u_k}_{W^{1,p}(\Omega)} \leq C$ für alle $k \in \mathbb{N}$, für ein $C>0$. 
+		Dann existiert $u \in W^{1,p}(\Omega)$ und eine Teilfolge $(u_{k_j})$ von $(u_k)$ mit $u_{k_j} \rightharpoonup u$ in $W^{1,p}(\Omega)$. \\
+		(Analog für $p = \infty$ und $u_{k_j} \stackrel{*}{\rightharpoonup} u$ in $W^{1,\infty}(\Omega)$)
+		\item Sei $1 \leq p \leq \infty$, $u_k,u \in W^{1,p}(\Omega)$ mit $u_k \to u$ in $W^{1,p}(\Omega)$ (bzw. $u_k \stackrel{*}{\rightharpoonup} u$ in $W^{1,p}(\Omega)$). Dann existeirt $C>0$ mit $\norm{u_k}_{W^{1,p}(\Omega)} \leq C$ für alle $k \in \mathbb{N}$ und 
+		\[
+			\norm{u}_{W^{1,p}(\Omega)} \leq \liminf_{k \to \infty} \norm{u_k}_{W^{1,p}(\Omega)}.
+		\]
+	\end{enumerate}
+\end{satz}
+\begin{bemerkung}
+	Satz $6.12$, $1)$ ist falsch für $p=1$!
+\end{bemerkung}
+\begin{satz}[Rellich]
+	Sei $\Omega \subseteq \mathbb{R}^n$ offen, beschränkt mit $C^1$-Rand. Sei $1 \leq p < \infty$ und seien $u_k,u \in W^{1,p}(\Omega)$ mit $u_k \rightharpoonup u$ in $W^{1,p}(\Omega)$. Dann gilt $u_k \to u$ in $L^p(\Omega)$. \\
+	Analog: ist $(u_k)$ eine Folge in $W^{1,\infty}(\Omega)$ mit $u_k \stackrel{*}{\rightharpoonup}u $ in $W^{1,\infty}(\Omega)$ so folgt $u_k \to u$ in $L^{\infty}(\Omega)$.
+\end{satz}
+\begin{beweis}
+	Idee für $n=1$, $p>1$: \\
+	Wir wissen bereits, dass
+	\[
+		u_k \in W^1,p(a,b) \qquad \Rightarrow \qquad u_k \in C^0([a,b]) \text{ und } u_k(x)-u_k(y) = \int_{x}^{y} u_k'(t) \,\mathrm{d}t
+	\]
+	Für $y \leq x$ gilt
+	\[
+		\abs{u_k(x)-u_k(y)} \leq \int_{x}^{y}\abs{u_k'(t)} \,\mathrm{d}t \leq \abs{x-y}^{\frac{1}{p'}}\norm{u'_k}_{L^p(a,b)}
+	\]
+	Nun gilt
+	\[
+		u_k \rightharpoonup u \text{ in } W^{1,p}(a,b) \qquad \Rightarrow \qquad u_k' \rightharpoonup u' \text{ in }L^p(a,b) 
+	\]
+	und nach Satz $6.11$, $2)$
+	\[
+	 \norm{u'_k}_{L^p(a,b)} \leq C \,\,\forall\,  k \in \mathbb{N}.
+	\]
+	Somit insgesamt
+	\[
+		\abs{u_k(x)-u_k(y)} \leq C \abs{x-y}^{\frac{1}{p'}}	
+	\]
+	Weiter gilt
+	\[
+		\abs{u_k(a)} \leq \abs{u_k(x)} + \int_{a}^{b}\abs{u'_k(t)} \,\mathrm{d}t
+	\]
+	und daraus folgt
+	\begin{align*}
+		(b-a)\abs{u_k(a)} &\leq \int_{a}^{b} \abs{u_k(x)} \,\mathrm{d}x + (b-a) \int_{a}^{b} \abs{u_k'(x)} \,\mathrm{d}x \\
+		&\leq \max \set{1,(b-a)} \norm{u_k}_{W^{1,p}(a,b)} \\
+		&\leq C' \norm{u_k}_{W^{1,p}(a,b)} 
+	\end{align*}
+	Da $u_k \to u$ in $W^{1,p}(a,b)$ folgt aus Satz $6.12$, dass $\norm{u_k}_{W^{1,p}(\Omega)} \leq C''$ für alle $k \in \mathbb{N}$. Somit
+	$\abs{u_k(a)} \leq M \qquad \forall\, k \in \mathbb{N}$. Wir erhalten insgesamt mit oben
+	\[
+		\norm{u_k}_{L^\infty(a,b)} \leq M' \qquad \forall\, k \in \mathbb{N},
+	\]
+	denn sei $x \in [a,b]$, dann gilt
+	\begin{align*}
+		\abs{u_k(x)} &= \abs{u_k(x)-u_k(a) + u_k(a)} \\
+		&\leq \abs{u_k(x)- u_k(a)}+ \abs{u_k(a)} \\
+		&\leq c \abs{x-a}^{\frac{1}{p'}} + M \\
+		c (b-a)^{\frac{1}{p'}}+ M = M'
+	\end{align*}
+	
+\begin{centering}
+	\begin{Large}
+		Achtung !! Der Beweis und das Skript wird erst nach dem 19.7 weitergeführt!! 
+	\end{Large}
+\end{centering}
+	
 \end{beweis}
 \cleardoubleoddemptypage
 \pagenumbering{Alph}

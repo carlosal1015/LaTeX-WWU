@@ -779,7 +779,7 @@ eine Lösungsformel für eine klassische Lösung.
 	die Transportgleichung.
 	\item $F$ Nichtlinear: $F(u)= \frac{1}{2} u^2$, also $u_t + u u_x = 0$ die Bewegungsgleichung. $F'(u)=u$. Es folgt
 	\[
-		\gamma(s) = s(g(x_0)s+x_0),
+		\gamma(s) = (s,g(x_0)s+x_0)
 	\]
  	das heißt die Steigung der Charakteristiken hängt von $g$ ab.
 	\[
@@ -787,7 +787,7 @@ eine Lösungsformel für eine klassische Lösung.
 	\]
 	Es existieren $x_0$,$\bar{x_0}$ sodass $g(x_0) \neq g(\bar{x_0})$ und $g(x_0)s+ x_0 = g(\bar{x_0})s + \bar{x_0}$. In diesem Fall gibt es (mindestens) zwei unterschiedliche Vorschriften $(g(x_0),g(\bar{x_0}))$ für den Wert von $u$ am Schnittpunkt, sodass keine globale klassische Lösung existieren kann. Wir berechnen den ersten Zeitpunkt, an dem die Charakteristiken sich schneiden:
 	\[
-		g(x_0)t + x_0 = g(\bar{x_0}t)+ x_0
+		g(x_0)t + x_0 = g(\bar{x_0})t+ x_0
 	\]
 	\[
 		\Leftrightarrow \qquad t(g(x_0)-g(\bar{x_0})) = \bar{x_0}-x_0 \qquad \Rightarrow \qquad t = \frac{\bar{x_0}-x_0}{g(x_0)-g(\bar{x_0})}
@@ -843,7 +843,7 @@ eine Lösungsformel für eine klassische Lösung.
 			\Rightarrow x_0 = \frac{x-t}{1-t}
 		\]
 		\[
-			u(t,x)= 1- \frac{x-t}{1-t} = \frac{1-t-x+t}{1-t} = \frac{1-x}{1-x}
+			u(t,x)= 1- \frac{x-t}{1-t} = \frac{1-t-x+t}{1-t} = \frac{1-x}{1-t}
 		\]
 	\end{beispiel}
 	\begin{bemerkung}
