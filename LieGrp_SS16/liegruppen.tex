@@ -3520,6 +3520,218 @@ Bezeichnung $\Ric_\mu \coloneqq -\frac{1}{2} \mathcal{B}_\mu + M_\mu - \ad_\mu(Z
 	$G$ nilpotent, also $\mathcal{B}_\mathfrak{g} =0$ und $Z_\mu =0$ und damit $\Ric_{h.\mu_0}=M_{h.\mu_0}$
 \end{bemerkung*}
 % section 32 (end)
+
+\newpage
+\section{Topologie homogener Räume} % (fold)
+\label{sec:33}
+
+\begin{definition}
+	Seien $X,B,F$ differenzierbare Mannigfaltigkeiten und $\pi \colon X \to B$ differenzierbar.
+	Dann nennt man $(X,B,F,\pi)$ ein \Index{Faserbündel} mit \Index{Faser}  $F$, \Index{Totalraum} $X$  und \Index{Basis} $B$, falls gilt 
+	\begin{enumerate}[1)]
+		\item $\pi$ ist surjektiv
+		\item Für alle $b \in B$ existiert eine offene Umgebung $U \subseteq B$ von $b$, sowie ein Diffeomorphismus $\varphi_U \colon U \times F \to \pi^{-1}(U) \subseteq X$, sodass $\pr_1 = \pi \circ \varphi_U$ (\Index{lokale Trivialität}).
+	\end{enumerate}
+	Man schreibt 
+	\(
+		\begin{tikzcd}[cramped,sep=small]
+			F^k \rar & X^n \rar & B^{n-k}
+		\end{tikzcd}
+	\)
+\end{definition}
+
+\begin{beispiel*}
+	\begin{enumerate}[(i)]
+		\item \(
+			\begin{tikzcd}[cramped,sep=small]
+				F \rar & F \times B \rar & B
+			\end{tikzcd} 
+		\)
+		ist das triviale Faserbündel.
+		\item $K \le H \le G$ abgeschlossene Untergruppen von $G$, so ist 
+		\(
+			\begin{tikzcd}[cramped,sep=small]
+				\sfrac{H}{K} \rar & \sfrac{G}{K} \rar & \sfrac{G}{H}
+			\end{tikzcd}
+		\)
+		ein Faserbündel.
+		\item Für $k=0$: Ein Faserbündel mit diskreter Faser nennt man \Index{Überlagerung}.
+	\end{enumerate}
+\end{beispiel*}
+
+\begin{definition}
+	Ist $H$ eine Liegruppe, so ist ein $H$-\Index{Prinzipialbündel} ein differenzierbares Faserbündel \(
+		\begin{tikzcd}[cramped,sep=small]
+			H \rar & X \rar & B
+		\end{tikzcd}
+	\)
+	zusammen mit einer freien transitiven differenzierbaren Rechtsliegruppenwirkung $\Phi \colon X \times H \to X$ mit $\pi(p.h) = \varphi(p)$.
+\end{definition}
+
+\begin{beispiel*}
+	\begin{enumerate}[(i)]
+		\item Ist $H$ eine abgeschlossene Lieuntergruppe von $G$, so ist \(
+			\begin{tikzcd}[cramped,sep=small]
+				H \rar & G \rar & \sfrac{G}{H}
+			\end{tikzcd}
+		\) ein $H$-Prinzipialbündel.
+		\item Hopf-Faserung: $\SU(n) \subseteq \Un(n) \subseteq \SU(n+1)$.
+		\[
+			\begin{tikzcd}
+				\sfrac{\Un(n)}{\SU(n)} \dar[phantom,sloped,"\cong"] \rar & \sfrac{\SU(n+1)}{\SU(n)} \dar[phantom,sloped,"\cong"] \rar &  \sfrac{\SU(n+1)}{\Un(n)} \dar[phantom,sloped,"\cong"] \\[-1em]
+				S^1 & S^{2n+1} & \mathbb{C}P^n
+			\end{tikzcd}
+		\] 
+		$\Phi \colon S^{2n+1} \times S^1 \to S^{2n+1}$ ist gegeben durch
+		\[
+			\enbrace*{\begin{pmatrix}
+				z_1 \\ \vdots \\ z_{n+1}
+			\end{pmatrix}, e^{i \varphi}} \longmapsto
+			\begin{pmatrix}
+				z_1 \\ \vdots \\ z_{n+1} \cdot e^{i \varphi}
+			\end{pmatrix}
+		\]
+	\end{enumerate}
+\end{beispiel*}
+
+\begin{definition}
+	Sei $X$ ein topologischer Raum, $p \in X$ und $v \in S^n$.
+	Dann heißt 
+	\[
+		\pi_n(X,p) \coloneqq \benbrace[\big]{(S^n,v) , (X,p)} = \set[\big]{\benbrace*{f} \given f \colon S^n \to X \text{ stetig  mit } f(p)=v }
+	\]
+	\Index{n-te Homotopiegruppe von $X$} zum Basispunkt $p$ (punktierte Homotopieklassen).
+	
+	Analoge Definition: Betrachte den Einheitswürfel $I^n = \benbrace*{0,1}^n$. Dann ist $\pi_n(X,p) = \benbrace[\big]{(I^n,\partial I^n), (X,p)}$ und die Multiplikation gegeben durch $\benbrace*{f} \cdot \benbrace*{g} = \benbrace*{f g}$ mit
+	\[
+		f g (t ) = \begin{cases}
+			f(2t_1, t_2, \ldots ,t_n) &\text{ falls }0 \le t_1 \le \sfrac{1}{2}\\
+			g(2t_1 -1, t_2, \ldots , t_n) &\text{ falls } \sfrac{1}{2} \le t_1 \le 1
+		\end{cases}
+	\]
+\end{definition}
+
+Eigenschaften: 
+\begin{enumerate}[(i)]
+	\item $X$ wegzusammenhängend $\implies \pi_k(X,p) \cong \pi_n(X,\tilde{p})$ für alle $p, \tilde{p} \in X$. 
+	Man schreibt dann $\pi_k(X)$
+	\item $\pi_k(X)$ ist eine Gruppe für $n \ge 1$ und abelsch für $n \ge 2$.
+	\item $f \colon X \to Y$ stetig induziert einen Homomorphismus $f_* \colon \pi_n(X) \to \pi_n(Y)$ durch $\benbrace*{g} \mapsto \benbrace*{f \circ g}$.
+	\item Sind $f, \tilde{f} \colon X \to Y$ homotop, so ist $f_* = \tilde{f}_*$.
+	\item Für $f \colon X \to Y$, $g \colon Y \to Z$ gilt $(g \circ f)_* = g_* \circ f_*$.
+\end{enumerate}
+
+Ist $M$ eine differenzierbare Mannigfaltigkeit, so setzen wir $C_k(M) \coloneqq \set*{\sum_{i=1}^N r_i s_i \given N \in \mathbb{N}, r_i \in \mathbb{Z}, s_i \text{ $k$-Simplex in }M  }$.
+
+\begin{satz}[name={Hurewicz, siehe Hatcher}]
+	Sei $M^n$ eine $m$-zusammenhängende, glatte Mannigfaltigkeit mit $m>0$, das heißt $\pi_k(M^n)= \set*{e}$ für $0 \le k \le m$.
+	Dann gilt
+	\begin{enumerate}[(i)]
+		\item $H_k(M^n) =0$ für $1 \le k \le m$
+		\item $\pi_{m+1}(M^n) \to H_{m+1}(M^n)$, $\benbrace*{\varphi} \mapsto \varphi_* \benbrace*{S^{m+1}}$ ist ein Isomorphismus, wobei $\benbrace*{S^{m+1}}$ ein Erzeuger von $H_{m+1}(S^{m+1}) \cong \mathbb{Z}$ ist.
+	\end{enumerate}
+\end{satz}
+
+\begin{bemerkung*}
+	Für $n \ge 1$ ist $S^n$ $(n-1)$-zusammenhängend mit $\pi_n(S^n) = \mathbb{Z} = H_n(S^n)$.
+	Höhere Homotopiegruppen von $S^n$ zu bestimmen ist schwierig; höhere Homologiegruppen verschwinden.
+\end{bemerkung*}
+
+\begin{satz}[{name={Homotopiesequenz, Hatcher}}]
+	Sei \(
+		\begin{tikzcd}[cramped,sep=small]
+			F \rar["\iota"] & X \rar["\pi"] & B
+		\end{tikzcd}
+	\)
+	ein Faserbündel, $b \in B$, $x \in \pi^{-1}(b)=F$.
+	Dann gibt es eine lange exakte Sequenz
+	\[
+		\begin{tikzcd}
+			\ldots  \rar & \pi_n(F,x) \rar["\iota_*"] & \pi_n(X,x) \rar["\pi_*"] & \pi_n(B,b) \rar["\partial"] & \pi_{n-1}(F,x) \rar & \ldots \rar & \pi_0(B,b)
+		\end{tikzcd}
+	\]
+\end{satz}
+
+\begin{beispiel}
+	Betrachte \(
+		\begin{tikzcd}[cramped,sep=small]
+			H \rar & G \rar & \sfrac{G}{H}
+		\end{tikzcd}
+	\) mit $\sfrac{G}{H}$ $1$-zusammenhängend.
+	Dann ist die Sequenz \(
+		\begin{tikzcd}[cramped,sep = small]
+			0 \rar & \pi_0(H) \rar & \pi_0(G) \rar &  0
+		\end{tikzcd}
+	\) exakt, das heißt $H,G$ haben gleich viele Zusammenhangskomponenten ($\sfrac{G}{H} \cong \sfrac{G_e}{H \cap G_e}$ falls $\sfrac{G}{H}$ zusammenhängend).
+\end{beispiel}
+
+Sei $H^*(M^n)$ die Kohomologiegruppe bezüglich der de-Rham-Kohomologie.
+Das $\cupp$-Produkt liefert zusätzlich eine Ringstruktur auf $H^*(M^n)$
+\mapdef{\cupp \colon H^a(M^n) \times H^b(M^n)}{H^{a+b}(M^n)}{(\omega,\mu)}{\omega \wedge \mu}{}
+Kohomologie kann man allgemeiner mit Koeffizienten in einem Ring $R$ betrachten ($R$ kommutativ mit Eins).
+
+\begin{satz}[name={Serre-Sequenz, Spanier}]
+	Sei \(
+		\begin{tikzcd}[cramped,sep=small]
+			F \rar["i"] & X \rar["\pi"] & B
+		\end{tikzcd}
+	\) ein differenzierbares Faserbündel, $F$ zusammenhängend, $B$ einfach-zusammenhängend, $k, l > 0$ mit
+	\begin{enumerate}[1)]
+		\item $H^i(F)=0$ für $0 < i < k$
+		\item $H^j(B)=0$ für $0 < j< l$
+	\end{enumerate}
+	Dann ist die folgende Sequenz exakt
+	\[
+		\begin{tikzcd}[sep=small]
+			0 \rar & H^1(X) \rar["\iota_*"] & H^1(F) \rar["\partial"] & H^2(X) \rar & \ldots \rar & H^{k+l-1}(B) \rar & H^{k+l-1}(X) \rar & H^{k+l-1} (F)
+ 		\end{tikzcd}
+	\]
+\end{satz}
+
+\begin{satz}[name={Leray-Hirsch}]
+	Sei \(
+		\begin{tikzcd}[cramped,sep=small]
+			F \rar["i"] & X \rar["\pi"] & B
+		\end{tikzcd}
+	\) ein differenzierbares Faserbündel mit
+	\begin{enumerate}[1)]
+		\item $H^j(F,R)$ ist ein endlich erzeugter freier $R$-Modul für alle $j$
+		\item Es existiert $C_j^\alpha \in H^j(X;R)$, sodass die Bilder $\iota^*(c^\alpha_j)^{k_j}_{\alpha=1}$ in $H^j(F;R)$ eine Basis von $H^j(F;R)$ bilden
+	\end{enumerate}
+	Dann ist $\varphi \colon H^*(B) \otimes_R H^*(F;R) \to H^*(X;R)$, $\sum_{k,j} b_k \otimes \iota^*(c_j) \mapsto \sum_{k,j} \pi^*(b_k) \cup c_j$ ein Isomorphismus von $R$-Moduln.
+\end{satz}
+
+\begin{definition}
+	Seien $a_1, \ldots ,a_k$ formale Variablen.
+	Dann ist die \Index{äußere Algebra} 
+	\[
+		\Lambda_R \benbrace*{a_1, \ldots ,a_k}
+	\]
+	definiert vermittels der Relationen 
+	\begin{enumerate}[(i)]
+		\item $a_i a_j = - a_j a_i$
+		\item $a_1, \cdot \ldots \cdot a_k \neq 0$
+	\end{enumerate}
+	Es gilt $\Lambda_R \benbrace*{a_1, \ldots ,a_k} = \Span_R \set*{1, a_1, \ldots ,a_k, a_1 a_2, \ldots , a_1 \cdots a_k}$ mit $\Rg \enbrace*{\Lambda_R \benbrace*{a_1, \ldots ,a_k}} = 2^k$.
+\end{definition}
+
+Es gilt $\Lambda_R \benbrace*{a_1, \ldots ,a_{k+1}} = \Lambda_R \benbrace*{a_1, \ldots ,a_k} \hat{\otimes}_R \Lambda \benbrace*{a_{k+1}}$ (graduiertes Tensorprodukt) mit 
+\[
+	a \hat{\otimes} b \cdot \benbrace*{c \hat{\otimes} d} = (-1)^{\abs*{c} \cdot \abs*{b}} (a \cdot c) \hat{\otimes} (b \cdot d)
+\]
+und $\abs*{\overline{a}} \in \set*{0,1} $ $\mathbb{Z}_2$-graduiert, das heißt $\abs*{a_i}=1$, $\abs*{a_i a_j}=0 $
+
+\begin{satz}
+	Es gibt einen $R$-Algebraisomorphismus 
+	\[
+		H^*(\Un(n);R) \cong \Lambda_R \benbrace*{x_1, x_3, \ldots , x_{2n-1}}
+	\]
+	Unter diesem gilt $x_i \in H^i(\Un(n);R)$.
+\end{satz}
+\begin{beweis}
+	Per Induktion
+\end{beweis}
+% section 33 (end)
 % chapter 3 (end)
 
 \cleardoubleoddemptypage
