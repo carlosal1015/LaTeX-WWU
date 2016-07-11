@@ -2508,8 +2508,201 @@ Beobachtung: Jede normale Grad 1-Abbildung kann $\lfloor \frac{n}{2}\rfloor$-zus
 	Chirurgie kann nicht immer dazu verwendet werden, aus einer normalen Grad 1-Abbildung eine Homotopieäquivalenz zu machen.
 	Zum Beispiel ist für $n=4k$ $\sig(M) - \sig(N)$ ein Hindernis.
 \end{bemerkung}
-
 % section exkurs_chirurgie (end)
+\newpage
+
+\section{Waldhausens S-Konstruktion} % (fold)
+\label{sec:waldhausens}
+\emph{Habilitationsvorlesung von Dr. Ulrich Pennig}
+
+Ziel: Definiere höhere $K$-Gruppen einer Waldhausen-Kategorie $\mathcal{C}$ als Homotopiegruppen eines topologischen Raumes $\Omega \abs*{w S \mathcal{C}}$.
+
+\subsection{Simpliziale Mengen, Räume und Kategorien} % (fold)
+\label{sub:1}
+Sei $\Delta$ die folgende Kategorie: Objekte sind $\benbrace*{n} \coloneqq \set*{0, \ldots ,n}$ für $n \in \mathbb{N}$.
+Die Homomorphismen $\Hom_\Delta(\benbrace*{n}, \benbrace*{m})$ sind ordnungserhaltende Abbildungen $f \colon \benbrace*{n} \to \benbrace*{m}$ ($i\le j \implies f(i) \le f(j)$).
+Der Standardsimplex liefert einen Funktor $\DDelta \colon \Delta \to \TOP$ mittels
+\[
+	\DDelta \enbrace*{\benbrace*{n}} \coloneqq \set*{\enbrace*{t_0, \ldots ,t_n} \in \benbrace*{0,1}^{n+1} \given \sum_{i=0}^n t_i = 1}
+\]
+und für $f \in \Hom_\Delta( \benbrace*{n}, \benbrace*{m})$ definieren wir $\DDelta(f) \colon \DDelta^n \to \DDelta^m$ durch 
+\[
+	\enbrace*{t_0, \ldots ,t_n} \longmapsto (s_0, \ldots ,s_m) \text{ mit } s_i = \sum_{f(j)=i} t_j 
+\]
+Sei $d^i \colon \benbrace*{n-1} \to \benbrace*{n}$ gegeben durch $d^i(k) = k$ für $k < i$ und $k+1$ für $k \ge i$.
+Sei weiter $s^i \colon \benbrace*{n+1} \to \benbrace*{n}$ gegeben durch $s^i(k) = k$ für $k \le i$ und $k-1$ für $k > i$.
+
+\begin{definition}
+	Eine \Index{simpliziale Menge} $X$ ist ein Funktor $\Delta^\op \to \SET$.
+	$X_n = X \enbrace*{[n]}$  heißt \Index{Menge der $n$-Simplizes}.
+	$d_i = X(d^i) \colon X_n \to X_{n-1}$ ist die Randabbildung von $X$.
+	$s_i = X(s^i) \colon X_n \to X_{n+1}$ ist die Entartungsabbildung von $X$.
+\end{definition}
+
+Nebenbemerkung: $\Delta^\op$ ist die folgende Kategorie: Die Objekte sind die gleichen und für die Homomorphismen gilt $\Hom_\Delta(\benbrace*{n}, \benbrace*{m}) = \Hom_\Delta(\benbrace*{m}, \benbrace*{n})$ sowie $f \circ_\op g \coloneqq g \circ f$.
+
+Morphismen zwischen simplizialen Mengen $X$ und $Y$ sind natürliche Transformationen $\phi \colon X\to Y$, das heißt Familien von $\varphi_n \colon X_n \to Y_n$, sodass 
+\[
+	\begin{tikzcd}
+		X_m \rar["\varphi_m"] \dar["X(f)"] & Y_m \dar["Y(f)"] \\
+		X_n \rar["\varphi_n"] & Y_n
+	\end{tikzcd}
+\]
+für $f \in \Hom_\Delta(\benbrace*{n}, \benbrace*{m})$ kommutiert.
+
+Allgemeiner: Simpliziale Objekte in einer Kategorie $\mathcal{C}$ sind Funktoren $\Delta^\op \to \mathcal{C}$.
+
+\begin{beispiel}
+	\Index{Nerv einer Kategorie}: Sei $\textsc{Cat}$ die Kategorie der (kleinen) Kategorien.
+	Definiere zu jedem $\benbrace*{n} \in \Obj(\Delta)$ eine Kategorie $\iota(\benbrace*{n})$ mit $\Obj \enbrace*{\iota(\benbrace*{n})} = \set*{0, \ldots ,n}$ und genau einem Morphismus $i \to j$ falls $i \le j$ und sonst keinem.
+	Ein Morphismus $f \in \Hom_\Delta(\benbrace*{n}, \benbrace*{m})$ induziert einen Funktor 
+	\[
+		\iota(f) \colon i \enbrace*{\benbrace*{n}} \longrightarrow \iota \enbrace*{\benbrace*{m}}
+	\]
+	durch $\iota(f)(i) = f(i)$, $\iota({\id}) = {\id}$, $\iota(f \circ g) = \iota(f) \circ \iota(g)$.
+	Damit ist $\iota \colon \Delta \to \textsc{Cat}$ ein Funktor $\benbrace*{n} \mapsto \iota(\benbrace*{n})$, $f \mapsto \iota(f)$.
+	
+	Sei nun $\mathcal{C}$ eine kleine Kategorie. Betrachte 
+	\[
+		\begin{array}{rcl}
+			\textstyle N \mathcal{C} \colon \Delta^\op &\xrightarrow{\minwidthbox{}{2em}} & \textstyle \SET \\[0.5ex]
+			\textstyle \benbrace*{n} &\xmapsto{\minwidthbox{\mbox{ }}{2em}} & \textstyle \FUN \enbrace*{\iota(\benbrace*{n}), \mathcal{C}} \\[0.5ex]
+			\textstyle f &\xmapsto{\minwidthbox{\mbox{ }}{2em}} & \textstyle \iota(f)^*
+		\end{array}
+	\]
+	mit $\iota(f)^*(F) = F \circ \iota(f)$ für $F \colon \iota(\benbrace*{n}) \to \mathcal{C}$ und $f \colon \benbrace*{m} \to \benbrace*{n}$.
+	$N \mathcal{C}$ ist eine simpliziale Menge, die auch \Index{Nerv von $\mathcal{C}$} heißt.
+	\[
+		\begin{tikzcd}
+			N \mathcal{C}_2 & N \mathcal{C}_1 & N \mathcal{C}_0 \\
+			\text{Paare von komponierbaren Morphismen} & \text{Morphismenmenge von $\mathcal{C}$}  & \text{Objekte in $\mathcal{C}$} 
+		\end{tikzcd}
+	\]
+	Wir haben nun $N \colon \textsc{Cat} \to \textsc{Simpmengen}$, $\mathcal{C} \mapsto N \mathcal{C}$ und $(G \colon \mathcal{C} \to \mathcal{D}) \mapsto N G$ mit $NG(F) = G \circ F$ für $F \colon \iota(\benbrace*{n}) \to \mathcal{C}$.
+\end{beispiel}
+% subsection 1 (end)
+
+\subsection{Geometrische Realisierung} % (fold)
+\label{sub:geometrische_realisierung}
+
+\begin{definition}
+	Sei $X \colon \Delta^\op \to \SET$ eine simpliziale Menge, dann heißt
+	\[
+		\abs*{X} = \sfrac{\coprod_{n \in \mathbb{N}_0} X_n \times \DDelta^n}{\sim}
+	\]
+	mit $\enbrace*{X(f)(y),t} \sim \enbrace*{y, \DDelta(f)(t)}$ die \Index{geometrische Realisierung} von $X$. 
+\end{definition}
+
+\begin{satz}
+	Die geometrische Realisierung liefert einen Funktor $\abs*{\cdot} \colon \textsc{Simpmengen} \to \TOP$ durch $\abs*{\varphi} \enbrace*{\benbrace*{x,t}} = \benbrace*{\varphi_n(x),t}$ für $\varphi \in \Hom_(X,Y)$, $x \in X$, $t \in \Delta^n$.
+\end{satz}
+Zu zeigen ist, dass $\abs*{\varphi}$ wohldefiniert ist:
+\begin{align}
+	\abs*{\varphi} \enbrace*{\benbrace*{X(f)(x),t}}  = \benbrace*{\varphi_n(X(f)(x)),t} = \benbrace*{Y(f) \enbrace*{\varphi_m(x)},t} &= \benbrace*{\varphi_m(x), \DDelta(f)(t)} \\
+	&= \abs*{\varphi} \enbrace*{\benbrace*{x, \DDelta(f)(t)}} \qedhere
+\end{align}
+
+\begin{definition}
+	\begin{itemize}
+		\item $X \colon \Delta^\op \to \TOP$ simplizialer Raum.
+		Dies liefert eine Kategorie \textsc{Simptop}.
+		\item $X \colon \Delta^\op \to \textsc{Cat}$ simpliziale Kategorie. 
+		Dies liefert die Kategorie \textsc{Simpcat}
+	\end{itemize}
+\end{definition}
+
+Die Geometrische Realisierung lässt sich zu einem Funktor $\abs*{\cdot} \colon \textsc{Simptop} \to \TOP$ erweitern.
+Sei $\mathbb{X}$ eine simpliziale Kategorie. 
+Dann ist 
+\[
+	\benbrace*{n} \longmapsto \benbrace*{N \mathbb{X}_n} \quad = \abs*{ \cdot } \circ N \circ \mathbb{X} \to \Delta^\op \to \TOP
+\]
+ein simplizialer Raum.
+Dessen geometrische Realisierung heißt geometrische Realisierung von $\mathbb{X}$.
+% subsection geometrische_realisierung (end)
+
+\subsection{Die S-Konstruktion} % (fold)
+\label{sub:die_s_konstruktion}
+Benutze eine andere Diagramm-Kategorie:
+\[
+	\begin{array}{rcl}
+		\textstyle \mathrm{Pfeil} \colon \Delta &\xrightarrow{\minwidthbox{}{2em}} & \textstyle \textsc{Cat} \\[0.5ex]
+		\textstyle \benbrace*{n} &\xmapsto{\minwidthbox{\mbox{ }}{2em}} & \textstyle \set*{(i,j) \in \benbrace*{n} \times \benbrace*{n} \given  i \le j} \\[0.5ex]
+		\textstyle (f \colon \benbrace*{n} \to \benbrace*{m}) &\xmapsto{\minwidthbox{\mbox{ }}{2em}} & \textstyle \operatorname{Pfeil}(f) \colon \operatorname{Pfeil}(\benbrace*{n}) \to \operatorname{Pfeil}(\benbrace*{m})
+	\end{array}
+\]
+Wobei die Kategorie genau einen Morphismus $(i,j) \to (i',j')$ besitzt, falls $i \le i'$ \emph{und} $j \le j'$ ist und sonst keinen. Der Morphismus ist definiert durch $\operatorname{Pfeil}(f)(i,j) = \enbrace*{f(i),f(j)}$.
+
+Als Beispiel betrachten wir $\operatorname{Pfeil}(\benbrace*{2})$:
+\[
+	\begin{tikzcd}
+		(0,0) \rar & (0,1) \rar \dar & (0,2) \dar \\
+		& (1,1) \rar & (1,2) \dar \\
+		& & (2,2)
+	\end{tikzcd}
+\]
+
+\begin{definition}
+	Sei $\mathcal{C}$ eine Waldhausen-Kategorie.
+	Definere $S_n \mathcal{C} \subseteq \FUN \enbrace*{\operatorname{Pfeil}([n]),\mathcal{C}}$ als diejenige Unterkategorie, deren Objekte $X$ folgenden Bedingungen erfüllen: 
+	\begin{enumerate}[(a)]
+		\item $X_\ssbrace{j,j} = 0$ für alle $j \in \mathbb{N}$.\marginnote{$X_{\ssbrace{i,j}} \coloneqq X \enbrace*{(i,j)}$}
+		\item für $i < j< k$ in $\benbrace*{n}$ ist $X_\ssbrace{i,j} \hookrightarrow X_\ssbrace{i,k} \twoheadrightarrow X_{j,k}$ eine Kofaserfolge.
+	\end{enumerate}
+	Ein Morphismus in $S_n \mathcal{C}$ ist eine Familie $\varphi_\ssbrace{i,j} \colon X_\ssbrace{i,j} \to Y_\ssbrace{i,j}$ von Morphismen in $\mathcal{C}$ für alle $(i,j) \in \Obj(\operatorname{Pfeil}(\benbrace*{n}))$, sodass
+	\[
+		\begin{tikzcd}
+			X_\ssbrace{i,j} \dar \rar["\varphi_\ssbrace{i,j}"] & Y_\ssbrace{i,j} \dar \\
+			X_\ssbrace{i',j'} \rar["\varphi_\ssbrace{i',j'}"] & Y_\ssbrace{i',j'}
+		\end{tikzcd}
+	\]
+	kommutiert.
+	Für $f \in \Hom_\Delta \enbrace*{\benbrace*{m},\benbrace*{n}}$ definiere $S \mathcal{C}(f) \colon S_n \mathcal{C} \to S_m \mathcal{C}$ durch $S \mathcal{C}(f)(X)= X \circ \operatorname{Pfeil}(f) \colon \operatorname{Pfeil}(\enbrace*{m}) \to \operatorname([n]) \to \mathcal{C}$.
+	Dabei ist $\enbrace*{S \mathcal{C}(f)(X)}_\ssbrace{i,j} = X_{\enbrace*{f(i),f(j)}}$.
+	Wir erhalten hierdurch eine simpliziale Kategorie 
+	\[
+		S \mathcal{C} \colon \Delta^\op \longrightarrow \textsc{Cat}
+	\]
+	die auch \Index{$S_i$-Konstruktion von $\mathcal{C}$} heißt.
+\end{definition}
+
+\begin{itemize}
+	\item $S_0 \mathcal{C}$ ist die triviale Kategorie auf dem Nullobjekt.
+	\item $S_1 \mathcal{C}$ hat die folgende Struktur
+	\[
+		\begin{tikzcd}
+			0 \rar & X_\ssbrace{0,1} \dar \\
+			& 0
+		\end{tikzcd}
+	\]
+	und ist damit natürlich isomorph zu $\mathcal{C}$.
+	\item $S_2 \mathcal{C}$ hat folgende Struktur
+	\[
+		\begin{tikzcd}
+			0 \rar & X_\ssbrace{0,1} \rar[hook] \dar & X_\ssbrace{0,2} \dar[two heads] \\
+			& 0 \rar & X_\ssbrace{1,2} \dar \\
+			& & 0
+		\end{tikzcd}
+	\]
+	Hier tritt eine Kofaserfolge auf
+	\item $S_3 \mathcal{C}$ hat die folgende Struktur
+	\[
+		\begin{tikzcd}
+			0 \rar & X_\ssbrace{0,1} \dar \rar[hook] & X_\ssbrace{0,2} \dar[two heads] \rar[hook] & X_\ssbrace{0,3} \dar \\
+			& 0 \rar & X_\ssbrace{1,2} \rar \dar & X_\ssbrace{1,3} \dar \\
+			& & 0 \rar & X_\ssbrace{2,3} \dar \\
+			& & & 0
+		\end{tikzcd}
+	\]
+	\item Wir können Kofaserungen und schwache Äquivalenzen in $S_n \mathcal{C}$ definieren, sodass $S_n \mathcal{C}$ zu einer Waldhausen-Kategorie wird.
+	Setze nun
+	\[
+		\boxed{K_i(\mathcal{C}) \coloneqq \pi_{i+1} \enbrace*{\abs*{w S_\cdot \mathcal{C}} }}
+	\]
+\end{itemize}
+
+% subsection die_s_konstruktion (end)
+% section habi (end)
 
 \cleardoubleoddemptypage
 \pagenumbering{Alph}
