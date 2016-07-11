@@ -246,3 +246,221 @@ In diesem Fall ist $\iota_V \colon V \rightarrow V^{**}$ aber niemals bijektiv!
 
 Wir wollen nun noch den Dualraum von Untervektorräumen und Quotienten $V$ mit $V^*$ in Zusammenhang bringen.
 Wir starten mit:
+
+\begin{definition}
+	\label{def:12.13}
+	Sei $V$ ein $K$-Vektorraum und seien $M \subseteq V$ und $N \subseteq V^*$.
+	Dann definieren wir
+	\begin{enumerate}[(i)]
+		\item $M^\perp = \{ \varphi \in V^* : \varphi(m) = 0 \text{ für alle } m \in M\}$
+		\item $N^\perp = \{ v \in V : \psi(v) = 0 \text{ für alle } \psi \in N\}$
+	\end{enumerate}
+\end{definition}
+
+Beachte: Ist $N^\perp \subseteq V$ wie in (ii), so gilt $\iota_V(N^\perp) = N^\perp \subseteq V^{**}$ wie in (i) bezüglich der Dualität $(V^*,V^{**})$.
+
+\begin{satz}
+	\label{satz:12.14}
+	Es gilt: $M^\perp$ ist Untervektorraum von $V^*$ und $N^\perp$ ist Untervektorraum von $V$.
+	Ferner gilt $(M^\perp)^\perp = \LH\{M\} \subseteq V$ und $(N^\perp)^\perp = \LH\{N\} \subseteq V^*$.
+\end{satz}
+
+Für den Beweis benötigen wir ein Lemma:
+
+\begin{lemma}
+	\label{lemma:12.15}
+	Sei $V$ ein endlich dimensionaler $K$-Vektorraum und sei $U \subseteq V$ ein Untervektorraum von $V$.
+	Ist dann $v \in V \setminus U$, so existiert ein $\varphi \in V^*$ mit $\varphi(v) =1$ und $\varphi(U) = \setzero$.
+\end{lemma}
+
+\begin{beweis}
+	Wähle eine Basis $\{u_1,\dots,u_l\}$ von $U$.
+	Da $v \notin U$, ist dann auch $u_1,\dots,u_l,v$ ein linear unahängiges System in $V$ und es existiert eine Basis $\{v_1,\dots,v_l,v,w_1,\dots,w_m\}$ von $V$.
+	Dann existiert $\varphi \colon V \rightarrow K$ linear mit $\varphi(v) = 1$ und $\varphi(u_i) = 0 = \varphi(w_j)$ für alle $1 \leq i \leq l$ und $1 \leq j \leq m$.
+	Dann folgt $\varphi(v) = 1$ und $\varphi(U) = \setzero$. \qedhere
+\end{beweis}
+
+\begin{beweis}[\autoref{satz:12.14}]
+	Sind $\varphi, \psi \in M^\perp$ und $\lambda, \mu \in K$, so folgt für alle $m \in M$
+	\[
+	(\lambda \varphi + \mu \psi)(m) = \lambda \varphi(m) + \mu \psi(m) = 0,
+	\]
+	also gilt $\lambda \varphi + \mu \psi \in M^\perp$.
+	Damit ist $M^\perp$ Untervektorraum von $V^*$ und analog folgt auch, dass $N^\perp$ Untervektorraum von $V$ ist.
+	
+	Wir zeigen nun, dass $(M^\perp)^\perp = \LH\{M\}$.
+	Zunächst gilt $M \subseteq (M^\perp)^\perp$, da $\varphi(m) = 0$ für alle $m \in M$ und $\varphi \in M^\perp$ gilt, also $m \in (M^\perp)^\perp$.
+	Da $(M^\perp)^\perp$ Untervektorraum von $V$, folgt auch $\LH\{M\} \subseteq (M^\perp)^\perp$.
+	
+	Es bleibt zu zeigen, dass $(M^\perp)^\perp \subseteq \LH\{M\} := U$ gilt.
+	Angenommen, $v \in (M^\perp)^\perp \setzero U$.
+	Nach \autoref{lemma:12.15} existiert dann ein $\varphi \in V^*$ mit $\varphi(v) = 1$ und $\varphi(U)=\setzero$.
+	Da $M \subseteq U$, folgt $\varphi \in M^\perp$.
+	Da $v \in (M^\perp)^\perp$, folgt dann $0 = \varphi(v) = 1$, ein Widerspruch!
+	
+	Der Beweis, dass $(N^\perp)^\perp = \LH \{N\}$, folgt analog (bzw. mit Identifikation $V \simeq V^{**}$ vermöge $\iota_V$). \qedhere
+\end{beweis}
+
+\begin{satz}
+	\label{satz:12.16}
+	Sei $V$ ein endlich dimensionaler $K$-Vektorraum und $U \subseteq V$ ein Untervektorraum von $V$.
+	Sei $q \colon V \rightarrow V \diagup U$ die Quotientenabbildung und sei $\iota \colon U \rightarrow V$ die Inklusionsabbildung.
+	Dann gelten:
+	\begin{enumerate}[(i)]
+		\item Ist $q^*\colon (V \diagup U)^* \colon V^*$ die duale Abbildung von $q$, so ist $\Bild(q^*) = U^\perp \subseteq V^*$, und $q^*\colon (V \diagup U)^* \rightarrow U^\perp$ ist ein Isomorphismus.
+		\item Die Abbildung $\iota^*\colon V^* \rightarrow U^*$ ist surjektiv mit $\Kern(i^*) = U^\perp$ und faktorisiert daher zu einem Isomorphismus $\iota^* \colon V^* \diagup U^\perp \rightarrow U^*$.
+	\end{enumerate}
+\end{satz}
+
+\begin{beweis}
+	\mbox{} \\[-.9cm]
+	\begin{enumerate}[(i)]
+		\item Sei $\varphi \in (V \diagup U)^*$.
+		Dann gilt $q^*(\varphi) = \varphi \circ q \in U^\perp$, da $U = \Kern(q) \subseteq \Kern(\varphi \circ q)$.
+		Ist umgekehrt $\psi \in U^\perp$, so gilt $U \subseteq \Kern(\psi)$ und es existiert nach dem Homomorphiesatz \ref{satz:11.6} genau eine lineare Abbildung $\wt{\psi} \colon V \diagup U \rightarrow K$ mit $\psi = \wt{\psi} \circ q = q^*(\wt{\psi})$.
+		Damit folgt $\Bild(q^*) = U^\perp$.
+		
+		Wir zeigen nun $\Kern(q^*) = \setzero$.
+		Sei $\psi \in (V \diagup U)^*$ mit $q^*(\psi) = 0$.
+		Dann folgt $\psi \circ q = 0$, also $\psi(q(v))=0$ für alle $v \in V$.
+		Da $q \colon V \rightarrow V \diagup U$ surjektiv, folgt $\psi = 0$.
+		\item Zunächst gilt: Ist $u \in U$ und $\varphi \in V^*$, so gilt $\iota^*(\varphi)(u) = \varphi(\iota(u)) = \varphi(u) = \varphi \big|_{U}(u)$.
+		Die Abbildung $\iota^* \colon V^* \rightarrow U^*$ ist also gerade die Einschränkungsabbildung $\varphi \mapsto \varphi \big|_U$.
+		
+		Sei $\psi \in U^*$.
+		Dann existiert ein $\varphi \in V^*$ mit $\varphi \big|_U = \psi$:
+		Dazu wähle Basis $\{u_1,\dots,u_l\}$ von $U$ und ergänze diese zu einer Basis $\{u_1,\dots,u_l,v_1,\dots,v_m\}$ von $V$.
+		Dann existiert ein $\varphi \in V^*$ mit $\varphi(u_i) = \psi(u_i)$ für alle $1 \leq i \leq l$ und $\varphi(v_j) = 0$ für alle $1 \leq j \leq m$.
+		Für dieses $\varphi$ gilt dann $\iota^*(\varphi) = \varphi \big|_U = \psi$.
+		Ferner gilt $\varphi \big|_U = 0 \Leftrightarrow U \subseteq \Kern(\varphi) \Leftrightarrow \varphi \in U^\perp$, und damit folgt $\Kern(\iota^*) = U^\perp$.
+		Mit dem Isomorphiesatz \ref{kor:11.8} folgt nun, dass $\iota^*\colon V^* \diagup U^\perp \rightarrow U^*$ ein Isomorphismus ist. \qedhere
+	\end{enumerate}
+\end{beweis}
+
+\begin{bemerkung}
+	\label{bem:12.17}
+	\autoref{satz:12.16} kann man auch schön mit kurzen exakten Sequenzen deuten:
+	Ist
+	\[
+		0 \rightarrow U \xrightarrow{\iota} V \xrightarrow{q} W \rightarrow 0
+	\]
+	eine kurze exakte Sequenz von $K$-Vektorräumen (dann folgt $W \simeq V \diagup U$), so ist die duale Sequenz
+	\[
+		0 \rightarrow W^* \xrightarrow{q^*} V^* \xrightarrow{\iota^*} U^* \rightarrow 0
+	\]
+	wieder eine kurze exakte Sequenz von $K$-Vektorräumen (und dann folgt $W^* \simeq \Kern(\iota^*) = U^\perp$ via $q^*$).
+\end{bemerkung}
+
+Mit Hilfe von \autoref{satz:12.16} erhalten wir insbesondere die folgende Dimensionsformel:
+
+\begin{korollar}
+	\label{kor:12.18}
+	Sei $V$ ein endlich dimensionaler $K$-Vektorraum und sei $U \subseteq V$ ein Untervektorraum von $V$.
+	Dann gilt
+	\[
+		\dim(V) = \dim(U) + \dim(U^\perp).
+	\]
+\end{korollar}
+
+\begin{beweis}
+	Nach \autoref{satz:12.16} (i) gilt
+	\[
+		\dim(U^\perp) = \dim((V\diagup U)^*) = \dim(V/U) = \dim(V) - \dim(U). \qedhere
+	\]
+\end{beweis}
+
+Wir wollen nun die bisherigen Ergebnisse nutzen, um noch etwas Geometrie zu betreiben:
+
+\begin{satz}
+	\label{satz:12.19}
+	Sei $V$ ein $n$-dimensionaler $K$-Vektorraum und sei $U \subseteq V$ ein $l$-dimensionaler Untervektorraum von $V$ mit $l < n$.
+	Sei $E = v_0 + U$ ein affiner Unterraum mit zugehörigem Untervektorraum $U$ und Aufhängepunkt $v_0$.
+	Sei $m := n -l$.
+	Dann existieren linear unabhängige Funktionale $\varphi_1, \dots, \varphi_m \in V^*$ und ein $b = (b_1,\dots,b_m)^T \in K^m$ mit
+	\[
+		E = \{v \in V : \varphi_i(v) = b_i \text{ für alle } 1 \leq i \leq m\}
+	\]
+\end{satz}
+\newpage
+\begin{beweis}
+	Nach \autoref{kor:12.18} gilt $\dim(U^\perp) = m$.
+	Sei $\{\varphi_1,\dots,\varphi_m\}$ eine Basis von $U^\perp$ und setze $b_i := \varphi_i(v_0)$ für alle $1 \leq i \leq m$.
+	Dann gilt für alle $w = v_0 + u \in E$:
+	\[
+		\varphi_i(w) = \varphi_i(v_0) + \Underbrace{\varphi_i(u)}{\mathclap{=0\text{, da } \varphi_i \in U^\perp}} = \varphi_i(v_0) = b_i.
+	\]
+	Damit folgt $E \subseteq \{v \in V : \varphi_i(v) = b_i \text{ für alle }1 \leq i \leq m\} =: \wt{E}$.
+	
+	Sei umgekehrt $w \in \wt{E}$.
+	Dann gilt
+	\[
+		\varphi_i(w - v_0) = \varphi_i(w) - \varphi_i(v_0) = b_i - b_i = 0
+	\]
+	für alle $1 \leq i \leq n$, also folgt $w - v_0 \in \{\varphi_1,\dots,\varphi_m\}^\perp = \LH\{\varphi_1,\dots,\varphi_m\}^\perp = (U^\perp)^\perp = U$ und damit $w \in v_0 + U = E$. \qedhere
+\end{beweis}
+
+\begin{korollar}
+	\label{kor:12.20}
+	Seien $V$ und $E = v_0 + U$ wie in \autoref{satz:12.19}.
+	Dann existiert eine surjektive lienare Abbildung $F \colon V \rightarrow K^m$ und ein $b \in K^m$ mit $\Kern(F) = U$ und
+	\[
+		E = \{v \in V : F(v) = b\} = F^{-1}(\{b\}).
+	\]
+\end{korollar}
+
+\begin{beweis}
+	Seien $\varphi_1,\dots,\varphi_m$ und $b \in K^m$ wie in \autoref{satz:12.19}.
+	Dann definieren wir $F \colon V \rightarrow K^m$ durch $F(v) = (\varphi_1(v),\dots,\varphi_m(v)) \in K^m$.
+	Dann folgt
+	\[
+		F^{-1}(\{b\}) = \{v \in V : \varphi_i(v) = b_i \text{ für alle } 1 \leq i \leq m\} = E. \qedhere
+	\]
+\end{beweis}
+
+\begin{bemerkung}
+	\label{bem:12.21}
+	Ist $F \colon V \rightarrow W$ eine lineare Abbildung mit $\Kern(F) = U$ und ist $b \in W$ fest, so ist $F^{-1}(\{b\}) = \emptyset$ oder $F^{-1}(\{b\}) = v_0 + U$ für $v_0 \in V$ mit $F(v_0) = b$, denn dann folgt für $w \in W$:
+	\begin{align*}
+		F(w) = b &\Leftrightarrow F(w-v_0) = F(w) - F(v_0) = b \\
+		&\Leftrightarrow w-v_0 \in \Kern(F) = U \\
+		&\Leftrightarrow w \in v_0 + U.
+	\end{align*}
+	Ist $F$ surjektiv, so tritt nur der zweite Fall auf.
+\end{bemerkung}
+
+\begin{korollar}
+	\label{kor:12.22}
+	Sei $E = v_0 + U$ ein affiner Unterraum von $K^n$ mit $\dim(U) = l < n$.
+	Ist dann $m = n-l$, so existiert ein $A \in M(m \times n,K)$ mit $\Rang(A) = m$ und ein $b \in K^n$ mit $E = \{x \in K^n : Ax = b\}$.
+\end{korollar}
+
+\begin{beweis}
+	Nach \autoref{kor:12.20} existiert eine surjektive lineare Abbildung $F \colon K^n \rightarrow K^m$ und $b \in K^m$ mit $E = \{x \in K^n : F(x) = b\}$.
+	Ist dann $A = (F(e_1),\dots,F(e_n))$, so gilt $F(x) = Ax$. \qedhere
+\end{beweis}
+
+\begin{bemerkung}
+	\label{bem:12.23}
+	Ein wichtiger Spezialfall von affinen Unterräumen bilden die Hyperebenen:
+	Ist $\dim(V) = n$ und $U$ Untervektorraum von $V$, so heißt $E = v_0 + U$ Hyperebene, wenn $\dim(U) = n-1$ gilt.
+	Im $\RR^3$ sind also gerade die zweidimensionalen Ebenen die Hyperebenen.
+	Im $\RR^2$ sind die Geraden di Hyperebenen.
+	
+	Es folgt sofort aus \autoref{satz:12.19}, dass die Hyperebenen gerade die Mengen der Form
+	\[
+		E = \{v \in V : \varphi(v) = b\} = \varphi^{-1}(\{b\})
+	\]
+	für ein $\varphi \in V^*, b \in K$ sind.
+	Ist $(V,\sk{\cdot,\cdot})$ ein euklidischer $\RR$-Vektorraum, so erhalten wir die Darstellung
+	\[
+		E = \{v \in V : \sk{v,w} = b\}
+	\]
+	für ein $w \in V$, da jedes $\varphi \in V^*$ von der Form $v \mapsto \varphi_w(v) := \sk{v,w}$ ist.
+	
+	Ist $E = v_0 + U$, so ist $0 \neq w \in U^\perp$ ($\Leftrightarrow U = w^\perp$) und wählen wir $w \in U^\perp$ mit $\no{w}=1$ und $b > 0$ (durch die Wahl eines geeigneten Vorzeichens), so ist $b$ genau der Abstand von $E$ zu $0$, was man sich an folgender Skizze klarmacht: \todo{Skizze einfügen}
+	
+	Eine Hyperebene teilt $V$ in zwei Hälften:
+	\[
+		H^+ := \{v \in V : \sk{v,w} \geq b\} \qquad \text{und} \qquad H^- := \{v \in V : \sk{v,w} \leq b\}
+	\]
+\end{bemerkung}
