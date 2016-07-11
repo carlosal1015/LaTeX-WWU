@@ -56,7 +56,7 @@
 	\begin{align*}
 		\diffd{e(t)}{t} &= \frac{1}{2} \int_{0}^{t_0-t} f_t(t,\rho)  \,\mathrm{d}\rho - \frac{1}{2}f(t,t_0-t) \\
 		&= \frac{1}{2} \int_{0}^{t_0-t} \int_{\partial B_\rho(x_0)}^{} ( 2 u_t u_{tt} + 2  \nabla u  \nabla u_t) \,\mathrm{d}S(x) \,\mathrm{d}\rho \\
-		& \qquad \qquad - \frac{1}{2}\int_{B_{t_0-t}(x_0)}^{}((u_t(t,x))^2 + \abs{ \nabla u(t,x)}^2) \,\mathrm{d}S(x) \\
+		& \qquad \qquad - \frac{1}{2}\int_{\partial B_{t_0-t}(x_0)}^{}((u_t(t,x))^2 + \abs{ \nabla u(t,x)}^2) \,\mathrm{d}S(x) \\
 		&= \int_{B_{t_0-t}(x_0)}^{}(u_t u_{tt}+  \nabla u  \nabla u_t) \,\mathrm{d}x - \frac{1}{2} \int_{\partial B_{t_0-t}(x_0)}^{} 
 		((u_t)^2 + \abs{ \nabla u}^2) \,\mathrm{d}S(x)
 	\end{align*}
@@ -288,7 +288,7 @@ Wir nehmen an, dass $u \in C^2$ eine Lösung von $(2)$ ist; $\gamma$ verbindet h
 \minisec{Aufstellung der charakteristischen Gleichung:}
 $u \in C^2 \cap C^1(\bar{\Omega})$, $E \in C^2(\bar{\Omega} \times \mathbb{R} \times \mathbb{R}^n)$ sei Lösung von $E(x,u(x), \nabla u(x)) = 0$ in $\Omega$. Sei $\gamma \in C^1(I;\Omega)$, $I \subseteq \mathbb{R}$ Intervallkurve in $\Omega$. \\
 \begin{align*}
-	v(s) &:= u(\gamma) \qquad \text{Kurve in }\mathbb{R}, \\
+	v(s) &:= u(\gamma) \qquad \text{    Kurve in }\mathbb{R}, \\
 	z(s) &:=  \nabla u(\gamma(s)) \qquad \text{Kurve in }\mathbb{R}^n.	
 \end{align*}
 \begin{align*}

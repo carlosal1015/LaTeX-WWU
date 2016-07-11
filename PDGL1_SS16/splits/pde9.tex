@@ -739,7 +739,7 @@ Dies ist die Kirchhoffsche Formel für $n=3$.
 		\[
 			t \fint_{B_t(x)}^{} h( \bar{y}) \,\mathrm{d}S(\bar{y}) 
 			= \frac{1}{2} \frac{1}{\pi t} \int_{B_t(x)}^{} h(y) \sqrt{\frac{t^2}{t^2 - \abs{y-x}^2}} \,\mathrm{d}y 
-			= \frac{1}{2} t^2 \fint_{B_t(x)}^{} \frac{h(y)}{t^2-\abs{y-x}^2} \,\mathrm{d}y
+			= \frac{1}{2} t^2 \fint_{B_t(x)}^{} \frac{h(y)}{\sqrt{t^2-\abs{y-x}^2}} \,\mathrm{d}y
 		\]
 		\begin{align*}
 			\frac{1}{2} \partial_t \left( \frac{1}{\pi} \int_{B_t(x)}^{} \frac{g(y)}{t^2-\abs{y-x}^2} \,\mathrm{d}y \right) & \stackrel{y = x + t \tilde y}{=} 
@@ -757,7 +757,7 @@ Dies ist die Kirchhoffsche Formel für $n=3$.
 		\end{align*}
 		Damit gilt
 		\[
-			(1)\qquad u(t,x)= \frac{1}{2} \fint_{B_t(x)}^{} \frac{t g(y) p t  \nabla g(y) \cdot (y-x) + t^2 h(y)}{\sqrt{t^2 - \abs{y-x}^2}} \,\mathrm{d}y
+			(1)\qquad u(t,x)= \frac{1}{2} \fint_{B_t(x)}^{} \frac{t g(y) + t  \nabla g(y) \cdot (y-x) + t^2 h(y)}{\sqrt{t^2 - \abs{y-x}^2}} \,\mathrm{d}y
 		\]
 		Dies ist die Poissonsche Formel für $n=2$
 	\end{enumerate}
