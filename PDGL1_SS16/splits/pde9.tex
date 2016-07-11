@@ -596,7 +596,7 @@ Wir berechnen nun
 \end{align*}
 Damit gilt
 \begin{align*}
-	\partial_t (t \fint_{\partial B_t(x)}^{} g(y) \,\mathrm{d}S(y)) & 
+	\partial_t \left(t \fint_{\partial B_t(x)}^{} g(y) \,\mathrm{d}S(y) \right) & 
 	\stackrel{\hphantom{\tilde y = \frac{y-x}{t}}}{=} \fint_{\partial B_1(0)}^{} g(x+t \tilde y) \,\mathrm{d}S( \tilde y) 
 	+  t \fint_{\partial B_1(0)}^{}  \nabla g(x + t \tilde y) \cdot \tilde y \,\mathrm{d}S( \tilde y) \\
 	& \stackrel{\tilde y = \frac{y-x}{t}}{=} \fint_{B_t(x)}^{} g(y) \,\mathrm{d}S(y) + t \fint_{\partial B_t(x)}^{}  \nabla g(y) \frac{y-x}{t} \,\mathrm{d}S(y)
