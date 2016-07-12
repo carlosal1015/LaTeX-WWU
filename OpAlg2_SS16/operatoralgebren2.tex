@@ -3235,10 +3235,127 @@ Wier erhalten mit \autoref{satz:91} und \autoref{def:93}:
 	von $C^*$-Algebren induziert eine lange exakte Sequenz von $K$-Gruppen
 	\[
 		\begin{tikzcd}
-			\ldots \rar K_{n+1}(B) \rar["\delta_{n+1}"] & K_n(J) \rar & \ldots \rar & K_1(B) \rar["\delta_1"] & K_0(J) \rar & K_0(A) \rar & K_0(B)
+			\ldots \rar & K_{n+1}(B) \rar["\delta_{n+1}"] & K_n(J) \rar & \ldots \rar & K_1(B) \rar["\delta_1"] & K_0(J) \rar & K_0(A) \rar & K_0(B)
 		\end{tikzcd}
 	\]
 \end{proposition}
+
+Sei $\mathcal{T}$ die Toeplitz-Algebra\footnote{oder von Isometrie, also $S^*S=\ind$}, mit $\mathcal{T} = C^*(S) \subset \mathcal{B}(\ell^2(\mathbb{N}))$ und 
+\[
+	\begin{tikzcd}
+		0 \rar & \mathcal{K} \rar & \mathcal{T} \rar \drar["\tau"] & C(S^1) \dar["\ev_1"] \rar & 0 \\
+		& & & \mathbb{C}
+	\end{tikzcd}\marginnote{mit $\tau(S)=1$ und $\tau$ Spurzustand}
+\]
+Damit erhalten wir 
+\[
+	\begin{tikzcd}
+		0 \rar & \mathcal{T}_0 \rar & \mathcal{T} \rar["\tau"] & \mathbb{C} \lar[bend right,"\sigma"'] \rar & 0
+	\end{tikzcd}
+\]
+
+\begin{satz}[name={Cuntz},label=satz:95]
+	Für jede unitale $C^*$-Algebra $D$ ist 
+	\[
+		K_0(\tau \otimes {\id}) \colon  K_0 \enbrace*{\mathcal{T} \otimes D} \longrightarrow K_0(\mathbb{C} \otimes D) = K_0(D)
+	\]
+	ein Isomorphismus. Insbesondere gilt $K_0(\mathcal{T})=K_0(\mathbb{C}) = \mathbb{Z}$.
+\end{satz}
+\begin{beweis}
+	Wir betrachten den Fall $D=\mathbb{C}$, das heißt es ist zu zeigen, dass $K_0(\tau)$ ein Isomorphismus ist.
+	Für beliebiges $D$ tensoriere \enquote{den Beweis} mit $D$ bzw. $\id_D$.
+	
+	Es gilt $K_0(\tau) K_0(\sigma) = K_0({\id_\mathbb{C}}) = {\id_{K_0(\mathbb{C})}}$.
+	Wir müssen also $K_0(\sigma) K_0(\tau) = {\id_{K_0(\mathcal{T})}}$ zeigen.
+	Sei $\varepsilon \colon \mathcal{T} \to \mathcal{K} \otimes \mathcal{T}$ gegeben durch $\varepsilon = e_{00} \otimes {\id_{\mathcal{T}}}$.
+	Dann ist $K_0(\varepsilon)$ ein Isomorphismus.
+	Setze $B \coloneqq \mathcal{T} \otimes \ind_{\mathcal{T}} + \mathcal{K} \otimes \mathcal{T}$.
+	Dann ist $B \subset \mathcal{T} \otimes \mathcal{T}$ eine $C^*$-Unteralgebra und $\mathcal{K} \otimes \mathcal{T} \lhd B$ ist ein Ideal.
+	Sei nun $\pi \colon B \to \sfrac{B}{\mathcal{K} \otimes \mathcal{T}}$ die Quotientenabbildungen und $\Theta \colon \mathcal{T} \to B$ gegeben durch $\Theta(a) \coloneqq a \otimes \ind_{\mathcal{T}}$ die Inklusion.
+	Betrachte den \emph{Pullback}
+	\[
+		\begin{tikzcd}
+			C \dar \rar & \mathcal{T} \dar["\pi \Theta"] \\
+			B \rar["\pi"] & \sfrac{B}{\mathcal{K} \otimes \mathcal{T}}
+		\end{tikzcd}
+	\]
+	mit $C= \set[\big]{(a,b) \in \mathcal{T} \oplus B \given \pi \Theta(a)= \pi(b)}$ sowie die $^*$-Homomorphismen 
+	\[
+		\begin{array}{rcl}
+			\textstyle \gamma \colon \mathcal{K} \otimes \mathcal{T} &\xhookrightarrow{\minwidthbox{}{2em}} & \textstyle C \\[0.5ex]
+			\textstyle b &\xmapsto{\minwidthbox{\mbox{ }}{2em}} & \textstyle (0,b)
+		\end{array}
+	\]
+	$\rho \colon C \twoheadrightarrow \mathcal{T}$, $(a,b) \mapsto a$ und $\kappa \colon \mathcal{T} \hookrightarrow C$, $a \mapsto (a, a \otimes \ind_\mathcal{T})$.
+	Damit haben wir die folgende kurze split-exakte Sequenz
+	\[
+		\begin{tikzcd}
+			0 \rar & \mathcal{K} \otimes \mathcal{T} \rar["\gamma"] & C \rar["\rho"] & \mathcal{T} \lar[bend right,"\kappa"'] \rar & 0
+		\end{tikzcd}
+	\]
+	Damit ist $K_0(\gamma)$ injektiv.
+	Setze $\lambda \coloneqq \gamma \varepsilon \colon \mathcal{T} \to C$.
+	Dann ist $K_0(\lambda) = K_0(\gamma) K_0(\varepsilon)$ injektiv.
+	Es genügt also $K_0(\lambda) K_0(\sigma) K_0(\tau) = K_0(\lambda)$ zu zeigen.
+	Setze 
+	\begin{align}
+		z_0 &\coloneqq S^2 \enbrace{S^*}^2 \otimes \ind + e_{00}S^* \otimes S + Se_{00} \otimes S^* + e_{00} \otimes e_{00} \\
+		z_1 &\coloneqq S^2 \enbrace*{S^*}^2 \otimes \ind + e_{00} S^* \otimes \ind + S e_{00} \otimes \ind
+	\end{align}
+	\missingfigure{riiiiieeeeesige Matrizen}
+	Dann sind $z_0,z_1$ Symmetrien in $B$ und für $t \in (0,1)$ definiert
+	\[
+		z_t \coloneqq -i \cdot e^{\sfrac{1}{2} i \pi (1-t) z_0} \cdot e^{ \sfrac{1}{2} i \pi t z_1}
+	\]
+	eine Homotopie $z \colon [0,1] \to \mathcal{U}(B)$.
+	Es gilt $\pi(z_0) = \pi(z_1) = \ind_{\sfrac{B}{\mathcal{K} \otimes \mathcal{T}}}$, also auch $\pi(z_t) = \ind_{\sfrac{B}{\mathcal{K} \otimes \mathcal{T}}}$ für $t \in (0,1)$.
+	$\mathcal{T}$ ist (isomorph zur) universelle $C^*$-Algebra, die von einer Isometrie erzeugt wird.
+	Damit dürfen wir $\varphi_t \colon \mathcal{T} \to C$ für $t \in [0,1]$ definieren durch 
+	\[
+		\varphi_t(S) \coloneqq \enbrace*{S,z_t \enbrace*{S \otimes \ind_\mathcal{T}}} \in C \marginnote{denn $\pi(z_t)=\ind$}
+	\]
+	Ebenso existiert ein $^*$-Homomorphismus 
+	\[
+		\mu \colon \mathcal{T} \longrightarrow \set[\Big]{(a,b) \in \mathcal{T} \oplus \Theta \enbrace[\big]{(\ind -e_{00}) \mathcal{T}(\ind - e_{00})} \given \pi \Theta(a)= \pi(b)}  \subset C 
+	\]
+	mit $\mu(S) = \enbrace*{S, S^2 S^* \otimes \ind} \in C$. 
+	$\lambda$ und $\mu$ haben orthogonale Bilder in $C$, $\lambda(x) \mu(y)=0$ für $x,y \in \mathcal{T}$.
+	Damit haben auch $\lambda \circ \sigma \circ \tau$ und $\mu$ orthogonale Bilder.
+	Weiter gilt $\varphi_0 = \mu + \lambda$ sowie $\varphi_1 = \mu + \lambda \circ \sigma \circ \tau$ (warum?).
+	Damit erhalten wir
+	\[
+		K_0(\mu) + K_0(\lambda) = K_0(\mu + \lambda) = K_0(\varphi_0) = K_0(\varphi_1) = K_0(\mu + \lambda \circ \sigma \circ \tau) = K_0(\mu) + K_0(\lambda \circ \sigma \circ \tau)
+	\]
+	Kürzen ergibt $K_0(\lambda) = K_0(\lambda) \circ K_0(\sigma) \circ K_0(\tau)$.
+\end{beweis}
+
+\begin{korollar}
+	Für jede $C^*$-Algebra $D$ gilt $K_0(\mathcal{T}_0 \otimes D) = K_1(\mathcal{T}_0 \otimes D) = 0$.
+\end{korollar}
+\begin{beweis}
+	Zunächst für $D$ unital.
+	Die folgende Sequenz zerfällt
+	\[
+		\begin{tikzcd}
+			0 \rar & \mathcal{T}_0 \otimes D \rar & \mathcal{T} \otimes D \rar["\tau \otimes {\id}"] & \mathbb{C} \otimes D \rar \lar[bend right,"\sigma \otimes {\id_D}"'] & 0
+		\end{tikzcd}
+	\]
+	und somit zerfällt sich auch in $K_0$
+	\[
+		\begin{tikzcd}
+			0 \rar & K_0(\mathcal{T}_0 \otimes D) \rar & K_0(\mathcal{T} \otimes D) \rar["K_0(\tau \otimes {\id_D})"] & K_0(\mathbb{C} \otimes D) \lar[bend right] \rar & 0
+		\end{tikzcd}
+	\]
+	Mit \autoref{satz:95} folgt $K_0(\mathcal{T}_0 \otimes D)=0$.
+	Ist $D$ nicht unital, so betrachte
+	\[
+		\begin{tikzcd}[row sep=small]
+			0 \rar & K_0(\mathcal{T}_0 \otimes D) \rar & K_0 \enbrace*{\mathcal{T}_0 \otimes D^+} \rar & K_0(\mathcal{T}_0 \otimes \mathbb{C}) \rar & 0 \\[-1em]
+			& 0 \uar[equal] & \uar[equal]0  & \uar[equal] 0
+		\end{tikzcd}
+	\]
+	Für $K_1$ stellen wir fest, dass $K_1(\mathcal{T}_0 \otimes D) \cong K_0 \enbrace*{\mathcal{T}_0 \otimes D \otimes C_0(0,1)} = 0$, wobei der Isomorphismus nach \autoref{satz:92} existiert.
+\end{beweis}
 % section 9 (end)
 
 
