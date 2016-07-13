@@ -457,7 +457,38 @@ Wir wollen nun die bisherigen Ergebnisse nutzen, um noch etwas Geometrie zu betr
 	\]
 	für ein $w \in V$, da jedes $\varphi \in V^*$ von der Form $v \mapsto \varphi_w(v) := \sk{v,w}$ ist.
 	
-	Ist $E = v_0 + U$, so ist $0 \neq w \in U^\perp$ ($\Leftrightarrow U = w^\perp$) und wählen wir $w \in U^\perp$ mit $\no{w}=1$ und $b > 0$ (durch die Wahl eines geeigneten Vorzeichens), so ist $b$ genau der Abstand von $E$ zu $0$, was man sich an folgender Skizze klarmacht: \todo{Skizze einfügen}
+	Ist $E = v_0 + U$, so ist $0 \neq w \in U^\perp$ ($\Leftrightarrow U = w^\perp$) und wählen wir $w \in U^\perp$ mit $\no{w}=1$ und $b > 0$ (durch die Wahl eines geeigneten Vorzeichens), so ist $b$ genau der Abstand von $E$ zu $0$, was man sich an folgender Skizze klarmacht:
+	
+	\begin{figure}[h]
+		\centering
+		\begin{turn}{15}
+			\begin{tikzpicture}[>=Latex]
+			\coordinate (O) at (0,0);
+			\coordinate (v) at (2,0);
+			\coordinate (wL) at (0,3);
+			\coordinate (w) at (-1.5,3);
+			\coordinate (L) at (-1.5,0);
+			
+			\draw (-3,0) -- (3.5,0) node[right]{$E$};
+			\draw (O) node[below]{$L$};
+			\draw (v) node[below]{$v_0$};
+			\draw [dashed] (O) node[fill,circle,inner sep=1pt]{};
+
+			\draw (wL) node[above]{$0$};
+			\draw [dashed] (wL) node[fill,circle,inner sep=1pt]{} -- (O);
+			\draw [->] (wL) -- (0,1.5);
+			\draw (0,2.25) node[left]{$w$};
+			\draw [->] (wL) -- (v) node[fill,circle,inner sep=1pt]{};
+			
+			\draw pic["$\bullet$",draw=black,angle eccentricity=.5,angle radius=.5cm]{angle=v--O--wL};
+			
+			\draw [dashed] (-3,3) -- (3.5,3) node[right]{$U$};
+			\draw (-2,-1) node{$H^+$};
+			\draw (-2,1) node{$H^-$};
+			\end{tikzpicture}
+		\end{turn}
+		\caption{$L = \sk{v_0,w}w = bw$ und $d(0,E) = \no{L} = b$.}
+	\end{figure}
 	
 	Eine Hyperebene teilt $V$ in zwei Hälften:
 	\[
