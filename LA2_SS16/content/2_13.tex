@@ -235,3 +235,186 @@ In der Literatur wird häufig der Wert $c = 0.85$ als gute Wahl angegeben!
 \end{beispiel}
 
 Die Lösung des Problems der Existenz und Eindeutigkeit einer Lösung für \eqref{eq:13.2.PR} für $A_c$ folgt nun aus:
+
+\begin{satz}[\textsc{Perron} 1907, \textsc{Frobenius} 1915]
+	\label{satz:13.10}
+	Sei $A \in M(n \times n, \RR$ eine spaltenstochastische Matrix mit $a_{ij} > 0$ für alle $1 \leq i,j n$.
+	Dann existiert genau ein $x \in \RR^n$, das die Bedingungen \eqref{eq:13.2.PR} erfüllt.
+	Für dieses gilt sogar $x_1,\dots,x_n > 0$.
+	
+	Ferner gilt: Ist $y \in \RR^n$ beliebig mit $y_i \geq 0$ und $\sum_{i=1}^{n} y_i = 1$, so gilt
+	\[
+		x = \lim\limits_{k \rightarrow \infty} A^k y.
+	\]
+\end{satz}
+
+\begin{bemerkung}
+	\label{bem:13.11}
+	Es ist die letzte Aussage, die ein effektives Verfahren zur Berechnung von $x$ liefert:
+	Im Allgemeinen wählt man $y = \frac{1}{n} (1,1,\dots,1)^T$ und berechnet dann $A^ky$ für ein geeignetes $k \in \NN$.
+	Die Konvergenzgeschwindigkeit ist hierbei recht gut (sie hängt maßgeblich von $c$ ab), sodass für eine gute Approximation schon relativ kleine Werte von $k$ genügen (z.B. $k \approx 20$).
+\end{bemerkung}
+
+Wir wollen nun noch einen Beweis für \autoref{satz:13.10} angeben.
+Unser Beweis benutzt Methoden aus der Analysis.
+Zunächst benötigen wir eine schwache Version des Banachschen Fixpunktsatzes.
+
+\begin{satz}[Fixpunktsatz von \textsc{Banach}]
+	\label{satz:13.12}
+	Sei $(X,d)$ ein kompakter metrischer Raum und sei $f \colon X \rightarrow X$ eine Abbildung mit
+	\begin{equation}
+		d(f(x),f(y)) < d(x,y) \text{ für alle } x,y \in X \text{ mit } x \neq y. \label{eq:13.12}
+	\end{equation}
+	Dann existiert genau ein $\ol{x} \in X$ mit $f(\ol{x}) = \ol{x}$.
+	Ferner gilt: Ist $x_0 \in X$ beliebig, so gilt
+	\[
+		\lim\limits_{k \rightarrow \infty} f^k(x_0) = \ol{x}.
+	\]
+\end{satz}
+
+\begin{beweis}
+	Mit \eqref{eq:13.12} folgt insbesondere, dass $f \colon X \rightarrow X$ stetig ist.
+	Dann ist auch $F\colon X \rightarrow [0,\infty), F(x) := d(f(x),x)$ stetig.
+	Da $X$ kompakt, existiert dann ein $\ol{x} \in X$ mit $F(\ol{x}) = \min\limits_{x \in X} F(x)$.
+	Dann gilt $f(\ol{x})= \ol{x}$:
+	
+	Angenommen, es wäre $f(\ol{x}) \neq \ol{x}$.
+	Dann wäre
+	\[
+		F(\ol{x}) \leq F(f(\ol{x})) = d(f(f(\ol{x})),f(\ol{x})) \stackrel{\eqref{eq:13.12}}{<} d(f(\ol{x}),\ol{x}) = F(\ol{x}),
+	\]
+	also $F(\ol{x}) < F(\ol{x})$, was nicht möglich ist.
+	
+	Zur Eindeutigkeit: Wären $\ol{x}, \ol{y} \in X$ mit $f(\ol{x})=\ol{x}$, $f(\ol{y}) = \ol{y}$ und $\ol{x} \neq \ol{y}$, so wäre
+	\[
+		d(\ol{x},\ol{y}) = d(f(\ol{x},\ol{y})) \stackrel{\eqref{eq:13.12}}{<} d(\ol{x},\ol{y}).
+	\]
+	Widerspruch!
+	
+	Zur Konvergenz: Sei $(a_k)_k$ mit $a_k := d(f^k(x_0),\ol{x})$.
+	Zeige $a_k \rightarrow 0$ für $k \rightarrow \infty$.
+	Zunächst gilt $a_{k+1} < a_k$ für alle $k \in \NN$, denn
+	\[
+		a_{k+1} = d(f^{k+1}(x_0),\ol{x}) = d(f(f^k(x_0)),f(\ol{x})) \stackrel{\eqref{eq:13.12}}{\leq} d(f^k(x_0),\ol{x}) = a_k.
+	\]
+	Da $a_k \geq 0$ für alle $n \in \NN$, existiert ein $a \geq 0$ mit $a_k \rightarrow a$.
+	
+	Bleibt zu zeigen: $a = 0$.
+	Da $X$ kompakt ist, existiert eine Teilfolge $(f^{k_n}(x_0))_n$ von $(f^k(x_0))_k$ in $X$ mit $f^{k_n}(x_0) \rightarrow y_0$ für ein $y_0 \in X$.
+	Dann folgt auch
+	\[
+		a_{k_n} = d(f^{k_n}(x_0),\ol{x}) \rightarrow d(y_0,\ol{x}),
+	\]
+	und da $a_k \rightarrow a$, folgt $a = d(y_0,\ol{x})$.
+	Ist $y_0 \neq \ol{x}$, so folgt
+	\begin{align*}
+		a &= \lim\limits_{n \rightarrow \infty} a_{k_n+1} = \lim\limits_{n \rightarrow \infty} d(f(\overbrace{f^{k_n}(x_0)}^{\rightarrow y_0}),\ol{x_0}) = d(f(y_0),\ol{x}) \\
+		&= d(f(y_0),f(\ol{x})) \stackrel{\eqref{eq:13.12}}{<} d(y_0,\ol{x}) = a,
+	\end{align*}
+	also $a < a$, und wir erhalten wieder einen Widerspruch. \qedhere
+\end{beweis}
+
+Es geht nun darum, den passenden metrischen Raum für den Beweis des Perron-Frobenius-Satzes zu basteln.
+Dazu definieren wir
+\begin{align*}
+	Y &:= \penb{x \in \RR^n : x_i \geq 0, \sum_{i=1}^{n} x_i = 1} \\
+	Y^+ &:= \penb{x \in \RR^n : x_i > 0, \sum_{i=1}^{n} x_i = 1}
+\end{align*}
+Auf $Y^+$ definieren wir eine Metrik $d$ durch
+\begin{equation}
+	d(x,y) := \ln(M(x,y) \cdot M(y,x)) \text{ mit } M(x,y) := \max_{1 \leq i \leq n} \enb{\frac{x_i}{y_i}}. \label{eq:13.D}
+\end{equation}
+
+\begin{lemma}
+	\label{lemma:13.12}
+	$d$ ist Metrik auf $Y^+$.
+\end{lemma}
+
+\begin{beweis}
+	Zunächst gilt $d(x,y) = d(y,x)$ nach Definition von $d$.
+	Ist $d(x,y) = 0$, so folgt $M(x,y)M(y,x) = 1$.
+	
+	Angenommen, $x \neq y$.
+	Dann existiert ein $i_0 \in \{1,\dots,n\}$ mit $x_{i_0} \neq y_{i_0}$.
+	Ist $x_{i_0} > y_{i_0}$, so existiert wegen $\sum_{i=1}^{n} x_i = 1 = \sum_{i=1}^{n} y_i$ ein $j_0 \neq i_0$ mit $y_{j_0} > x_{j_0}$, und dann folgt $M(x,y) > 1$ und $M(y,x) > 1$, also $M(x,y)M(y,x) > 1$.
+	Widerspruch!
+	
+	Es bleibt die Dreiecksungleichung:
+	Seien dazu $x,y,z \in Y^+$.
+	Dann gilt $M(x,z) \leq M(x,y) \cdot M(y,z)$, denn ist $i_0 \in \{1,\dots,n\}$ mit $M(x,z) = \frac{x_{i_0}}{z_{i_0}}$, so folgt
+	\[
+		M(x,z) = \frac{x_{i_0}}{z_{i_0}} = \frac{x_{i_0}}{y_{i_0}} \cdot \frac{y_{i_0}}{z_{i_0}} \leq M(x,y) \cdot M(y,z).
+	\]
+	Analog folgt $M(x,z) \leq M(z,y) \cdot M(y,x)$.
+	Damit erhalten wir mit der Monotonie von $\ln$:
+	\begin{align*}
+		d(x,z) &= \ln(M(x,z) \cdot M(z,x)) \leq \ln(M(x,y)\cdot M(y,z) \cdot M(z,y) \cdot M(y,x) \\
+		&= \ln(M(x,y) \cdot M(y,x)) + ln(M(y,z) \cdot M(z,y)) = d(x,y) + d(y,z). \qedhere
+	\end{align*}
+\end{beweis}
+
+Wir haben auf $Y^+$ nun zwei Metriken:
+Zum einen die Standard-Metrik $d_{\no{\cdot}}$ auf $\RR^n$ gegeben durch eine beliebige Norm (eingeschränkt auf $Y^+$) und die oben eingeführte Metrix $d$.
+Es gilt dann:
+\newpage
+\begin{lemma}
+	\label{lemma:13.14}
+	Die Abbildung $\id\colon (Y^+,d_{\no{\cdot}}) \rightarrow (Y^+,d)$ ist stetig.
+\end{lemma}
+
+\begin{beweis}
+	Sei $(y_n)$ Folge in $Y^+$ mit $y_n \rightarrow y_0$ in $Y^+$ bezüglich $\no{\cdot}$.
+	Dann gilt $y_{n,i} \rightarrow y_{0,i}$ für alle $1 \leq i \leq n$, und damit $\frac{y_{n,i}}{y_{0,i}} \rightarrow 1$.
+	Es folgt $M(y_n,y_0) \rightarrow 1$ und analog $M(y_0,y_n) \rightarrow 1$, und dann auch
+	\[
+		d(y_n,y_0) = \ln(M(y_n,y_0) \cdot M(y_0,y_n)) \rightarrow \ln(1) = 0. \qedhere
+	\]
+\end{beweis}
+
+\begin{beweis}[\autoref{satz:13.10}]
+	Sei $A = (a_{ij}) \in M(n \times n,\RR)$ mit $a_{ij} > 0$ für alle $i,j$ und $\sum_{i=1}^{n} a_{ij} = 1$ für alle $1 \leq j \leq n$.
+	Wir wollen zeigen:
+	Es existiert genau ein $\ol{x} \in Y := \{x \in \RR^n : x_i \geq 0, \sum_{i=1}^{n} x_i = 1\}$ mit $A\ol{x} = \ol{x}$.
+	
+	Zunächst ist klar, dass jeder Fixpunkt $\ol{x}$ mit $A\ol{x} = \ol{x}$ in $AY = \{Ax : x \in Y\}$ liegt.
+	\begin{enumerate}[(i)]
+		\item Es gilt $AY \subseteq Y^+$:
+		Sei dazu $x \in Y$ beliebig.
+		Dann gilt $(Ax)_i = \sum_{j=1}^{n} a_{ij} x_j > 0$ für alle $1 \leq i \leq n$, da $a_{ij} > 0, x_j > 0$ für alle $j$ und $x_j \neq 0$ für mindestens ein $j$.
+		Ferner gilt
+		\[
+			\sum_{i=1}^{n} (Ax)_i = \sum_{i=1}^{n} \sum_{j=1}^{n} a_{ij} x_j = \sum_{j=1}^{n} \Underbrace{\enb{\sum_{i=1}^{n} a_{ij}}}{=1} x_j = \sum_{j=1}^{n} x_j = 1
+		\]
+		\item Setze $X := AY \subseteq Y^+$.
+		Wir zeigen:
+		Ist dann $d$ wie in \eqref{eq:13.D}, so ist $(X,d)$ kompakt und $\id\colon (X,d_{\no{\cdot}}) \rightarrow (X,d)$ ist ein Homöomorphismus. \index{Homöomorphismus}
+		Insbesondere gilt:
+		Eine Folge $(x_n)_n$ in $X$ konvergiert gegen $x \in X$ bezüglich $d_{\no{\cdot}}$ genau dann, wenn sie bezüglich $d$ gegen $X$ konvergiert.
+		
+		Da $Y = \{x \in \RR^n : x_i \geq 0, \sum_{i=1}^{n} x_i = 1\}$ abgeschlossen und beschränkt im $\RR^n$ ist, ist $Y$ kompakt bezüglich $\no{\cdot}$.
+		Da $x \mapsto Ax$ stetig, ist dann auch $X = AY \subseteq \RR^n$ kompakt bezüglich $\no{\cdot}$.
+		Da $\id\colon (X,d_{\no{\cdot}}) \rightarrow (X,d)$ stetig und bijektiv, ist dann auch $(X,d)$ kompakt und $\id$ ist ein Homöomorphismus.
+		\item Finaler Schritt:
+		Wir betrachten nun $f \colon X \rightarrow X, f(x) = Ax$.
+		Sind dann $x,y \in X$ mit $x \neq y$, so gilt $M(Ax,Ay) < M(x,y)$, denn ist $i_0 \in \{1,\dots,n\}$ mit $M(x,y) = \frac{x_{i_0}}{y_{i_0}}$, so folgt $x_{i_0} = M(x,y) y_{i_0}$ und $x_i \leq M(x,y) y_i$ für alle $1 \leq i \leq n$.
+		Damit folgt
+		\[
+			M(x,y) = \inf \{s \geq 0 : x \leq sy\} = \inf \{s \geq 0 : sy-x \geq 0\},
+		\]
+		also $sy_i - x_i \geq 0$ für alle $i$.
+		Analog folgt $M(Ax,Ay) = \inf\{s \geq 0 : sAy - Ax \geq 0\}$.
+		Für $s = M(x,y)$ folgt $sY-x \geq 0$, und dann $sAy - Ax = A(sy-x) > 0$, denn für alle $1 \leq i \leq n$ gilt $(A(sy-x))_i = \sum_{j=1}^{n} a_{ij} (sy-x)_i > 0$, da $a_{ij} > 0$ für alle $i,j$ und $(sy-x)_i \geq 0$, aber $(sy-x)_i \neq 0$ für mindestens ein $i \in \{1,\dots,n\}$, denn sonst wäre $sy = x$ und dann $s = s\enb{\sum_{i=1}^{n} y_i} = \sum_{i=1}^{n} sy_i = \sum_{i=1}^{n} x_i = 1$, also $s = M(x,y) = 1$ und dann wäre $x=y$ (vgl. Beweis zu \autoref{lemma:13.14}).
+		
+		Da $sAy-Ax > 0$, folgt dann aber
+		\[
+			M(Ax,Ay) = \inf\{t \geq 0 : tAy-Ax \geq 0\} < S = M(x,y).
+		\]
+		Analog folgt $M(Ay,Ax) < M(y,x)$ und dann folgt
+		\[
+			d(Ax,Ay) = \ln(M(Ax,Ay) \cdot M(Ay,Ax)) < \ln(M(x,y) \cdot M(y,x)) = d(x,y).
+		\]
+	
+		Damit sind wir nun in der Situation von \autoref{satz:13.12} und es existiert genau ein $\ol{x} \in X = AY$ mit $A\ol{x} = f(\ol{x}) = \ol{x}$, und es gilt $\ol{x} = \lim\limits_{k\rightarrow \infty} A^k x_0$ für jedes $x_0 \in Y$ (denn $Ax_0 \in X$).
+		Diese Konvergenz ist wegen (ii) sowohl bezüglich $d$, als auch bezüglich $\no{\cdot}$ für jede beliebige Norm auf $\RR^n$. \qedhere
+	\end{enumerate}
+\end{beweis}
