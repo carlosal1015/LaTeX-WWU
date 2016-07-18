@@ -2116,7 +2116,7 @@ Objekte von $\mathcal{MV}$ sind kurze exakte Folgen von endlich erzeugten freien
 	\end{enumerate}
 \end{definition}
 
-\begin{bemerkung}
+\begin{bemerkung}[label=bem:diagramm_beweis]
 	$v \subseteq \w$ und die Vorraussetzungen zum Lokalisierungssatz sind erfüllt: Wir erhalten also eine lange exakte Folge 
 	\[
 		\begin{tikzcd}
@@ -2195,14 +2195,14 @@ Objekte von $\mathcal{MV}$ sind kurze exakte Folgen von endlich erzeugten freien
 	\end{enumerate}
 \end{proposition}
 
-\begin{lemma}
+\begin{lemma}[label=lem:RG_MV]
 	Sei \(
 		\begin{tikzcd}[cramped,sep=small]
 			M \rar["i"] & M^V \rar & M^E
 		\end{tikzcd}
 	\) ein Objekt in $\mathcal{MV}$ und $m \in M$.
 	Dann gibt es \(
-		\begin{tikzcd}
+		\begin{tikzcd}[cramped,sep=small]
 			R G \rar & N^V \rar & N^E
 		\end{tikzcd}
 	\) in $\mathcal{MV}$ und 
@@ -2255,6 +2255,86 @@ Objekte von $\mathcal{MV}$ sind kurze exakte Folgen von endlich erzeugten freien
 	Nun können wir $f',{f'}^V$ und ${f'}^E$ definieren durch $f'(1) = m$, ${f'}^V(v) = m_v $ für $v \in  \Delta \cap V$ und ${f'}^E(\sigma) = m_{t(\sigma),\sigma} = - m_{s(\sigma),\sigma}$ für $\sigma \in  \Delta \cap E$.
 \end{beweis}
 
+\minisec{Zum Beweis von (1) -- leider noch im fehlenden Teil, siehe Diagramm in \autoref{bem:diagramm_beweis}}
+\begin{beweis}
+	Wir wenden den Approximationssatz an.
+	Sei \(
+		\begin{tikzcd}[cramped,sep=small]
+			M_* \rar & M_*^V \rar & M_*^E
+		\end{tikzcd}
+	\) in $\ch \mathcal{MV}$, $N_* \in \ch_f \mathcal{F}_{R[G]}$ und $\varphi\colon M_* \to N_*$ eine $R[G]$-Kettenabbildung.
+	Wir müssen
+	\[
+		\begin{tikzcd}
+			M_* \rar  \dar["f_*"] & M_*^V \rar \dar["f_*^V"] & M_*^E \dar["f_*^E"] \\
+			M'_* \rar & {M'}_*^V \rar & {M'}_*^E
+		\end{tikzcd}
+	\]
+	in $\ch \mathcal{MV}$ und $\varphi'_* \colon M'_* \xrightarrow{\sim} N_*$ in $w \enbrace*{\ch_f \mathcal{F}_{R[G]}}$ finden mit $\varphi = \varphi' \circ f$.
+	Per Induktion können wir annehmen, dass wir schon
+	\[
+		\begin{tikzcd}
+			& M_* \rar  \dar["f_*"] & M_*^V \rar \dar["f_*^V"] & M_*^E \dar["f_*^E"] \\
+			& M'_* \dlar["\varphi'"] \rar & {M'}_*^V \rar & {M'}_*^E \\
+			N_* \ar[uur,bend left,"\varphi"]
+		\end{tikzcd}
+	\]
+	gefunden haben, sodass $\varphi'$ $k$-zusammenhängend sei (Iso für $H_n$, $n < k$ und surjektiv für $n=k$).
+	Wir ersetzen $N_*$ durch den Abbildungszylinder von $\varphi'$ und nehmen an, dass $\varphi'$ gradweise eine Inklusion von direkten Summanden ist.
+	Es ist nach Induktionsannahme $H_n \enbrace*{\sfrac{N_*}{M'_*}}=0$ für $n \le k$ und im Induktionsschritt müssen wir auch $H_n \enbrace*{\sfrac{N_*}{M'_*}}=0$ für $n=k+1$ erreichen.
+	Da für alle $l$ $\sfrac{N_l}{M'_l}$ endlich erzeugt und frei ist, ist wegen der Exaktheit von
+	\[
+		\begin{tikzcd}
+			\ker \partial_{k+1}^{\sfrac{N}{M}} \rar[hook] & \sfrac{N_{k+1}}{M'_{k+1}} \rar["\partial"] & \sfrac{N_k}{M'_k} \rar["\partial"] & \sfrac{N_{k-1}}{M'_{k-1}} \rar & \ldots \rar & \sfrac{N_0}{M'_0}
+		\end{tikzcd}
+	\]
+	auch $\ker \partial_{k+1}^{\sfrac{N}{M}}$ und damit $H_{k+1} \enbrace*{\sfrac{N_*}{M'_*}}$ endlich erzeugt (sogar stabil frei).
+	Wir finden also einen endlich erzeugten freien $R[G]$-Modul $X$ und $\alpha \colon X \to N_{k+1} \cap \partial^{-1}_{k+1}(M'_k)$, sodass die induzierte Abbildung $X \to H_{k+1} \enbrace*{\sfrac{N_*}{M'_*}}$ surjektiv ist.
+	Wir definieren nun $M_*''$ durch  
+	\[
+		M''_k \coloneqq \begin{cases}
+			M_l' &\text{ falls } l \neq k+1\\
+			M_l' \oplus X &\text{ falls } l=k+1
+		\end{cases}
+	\]
+	und $\partial_{k+1}^{M'} \colon M_{k+1}' \to M_k'$  setzen wir durch $\partial^N_{k+1} \circ \alpha$ auf $M''$ fort, $\varphi' \colon M_*' \to N_*$ setzen wir durch $\alpha$ zu $\varphi'' \colon M_*'' \to N_*$ fort.
+	Durch Anwendung von \autoref{lem:RG_MV} (auf einen Erzeuger von $\lambda$) können wir $M''_*$ zu einem Kettenkomplex in $\ch \mathcal{MV}$ erweitern.
+	
+	Es bleibt zu zeigen, dass diese induktive Konstruktion nach endlich vielen Schritten abbricht. 
+	Dazu wählen wir zunächst $l \gg 0$, sodass $M_*,M_*^V,M_*^E$ und $N_*$ in Graden $* > l$ trivial ist.
+	Dann erhalten wir vom $l$-ten Schritt der Konstruktion Kettenkomplexe $M_*', {M'}_*^V, {M'}_*^E$ und $N_*$, sodass $M_*',{M'}_*^E, {M'}_*^V$ in Graden $* > l$ trivial sind und $N_*$ in Graden $> l+1$ trivial ist.
+	Es ist dann $H_{l+1} \enbrace*{\sfrac{N_*}{M_*'}} = \ker \partial^{\sfrac{N}{M'}}_{l+1}$ stabil frei und man fährt mit einer Variation der obigen Konstruktion fort.
+\end{beweis}
+
+\todo[inline]{Auch hier fehlt die zu beweisende Aussage noch \ldots}
+\begin{beweis}[name={von (2)}]
+	Betrachte
+	\[
+		\begin{tikzcd}[sep=large]
+			K_n \enbrace*{v \ch \mathcal{MV}} \rar["u=\binom{u_v}{u_\sigma}",yshift=1ex] & \bigoplus_{v \in V_0} K_n \enbrace*{\mathcal{F}_{R[G_v]}} \oplus \bigoplus_{\sigma \in E_0} K_n \enbrace*{\mathcal{F}_{R[G_\sigma]}} \lar["{s=(s_v,s_\sigma)}",yshift=-1ex]
+		\end{tikzcd}
+	\]
+	Dann ist $u \circ s = \begin{psmallmatrix}
+		\id & * \\ 0 & \id
+	\end{psmallmatrix}$ ein Isomorphismus.
+	Insbesondere ist $u$ surjektiv und $s$ injektiv.
+	Umgekehrt wird $s \circ u$ von einem exakten Funktor $F \colon v \ch \mathcal{MV} \to v \ch \mathcal{MV}$ induziert.
+	\missingfigure{Diagramm mit vielen direkten Summen}
+	Nach dem Additivitätssatz ist $F_* = {\id_*} + F_*'$ und wegen $(F')^2=0$ ist $F_*$ ein Isomorphismus.
+\end{beweis}
+
+\begin{definition}
+	Sei $\mathcal{SM} \subseteq \mathcal{MV}$ die volle Unterkategorie auf Objekten, für die $M=0$ ist (und $M^V \to M^E$ ein Isomorphismus ist). 
+\end{definition}
+
+\begin{bemerkung}
+	Approximationssatz: $v \ch \mathcal{SM} \hookrightarrow v \ch \mathcal{MV}^w$ induziert eine Kettenhomotopie.
+\end{bemerkung}
+
+\begin{beweis}[{name={von (3)}}]
+	\missingfigure{mal wieder ein Bild}
+\end{beweis}
+
 
 
 
@@ -2267,7 +2347,7 @@ Objekte von $\mathcal{MV}$ sind kurze exakte Folgen von endlich erzeugten freien
 \section{Exkurs: Chirurgie} % (fold)
 \label{sec:7}
 
-\todo[inline]{RevChap z}
+\todo[inline]{RevChap 7}
 \begin{frage}
 	Wie viele glatte Strukturen existieren auf einer gegebenen topologischen Mannigfaltigkeit?
 \end{frage}
@@ -2513,7 +2593,7 @@ Beobachtung: Jede normale Grad 1-Abbildung kann $\lfloor \frac{n}{2}\rfloor$-zus
 
 \section{Waldhausens S-Konstruktion} % (fold)
 \label{sec:waldhausens}
-\emph{Habilitationsvorlesung von Dr. Ulrich Pennig}
+\emph{Vorlesung gehalten von Dr.~Ulrich Pennig}
 
 Ziel: Definiere höhere $K$-Gruppen einer Waldhausen-Kategorie $\mathcal{C}$ als Homotopiegruppen eines topologischen Raumes $\Omega \abs*{w S \mathcal{C}}$.
 
