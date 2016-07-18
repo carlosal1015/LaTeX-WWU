@@ -495,7 +495,7 @@ Für $x \in \mathbb{R}^n$, $r>0$, $t>0$ definiere
 	\begin{align*}
 		\partial_t^2 U_x(t,r)- \partial_r^2 U_x(t,r) - \frac{n-1}{r} \partial_r U_x(t,r) &= 0 \qquad \text{ in } \mathbb{R}^{+} \times \mathbb{R}^{+} \\
 		U_x(0,r)&= G_x(r), \qquad r>0 \\
-		\partial U_x(0,r) &= H_x(r), \qquad r>0
+		\partial_t U_x(0,r) &= H_x(r), \qquad r>0
 	\end{align*}
 \end{lemma}
 \begin{beweis}
@@ -514,7 +514,7 @@ Für den Beweis der Anfangsdaten gilt
 \]
 und
 \begin{align*}
-	\partial_r U_x(0,r)& = \fint_{\partial B_1(0)}^{} \partial_t u(0,x+ r \tilde y) r^n \,\mathrm{d}S(\tilde y) \\ &= 
+	\partial_t U_x(0,r)& = \fint_{\partial B_1(0)}^{} \partial_t u(0,x+ r \tilde y) r^n \,\mathrm{d}S(\tilde y) \\ &= 
 	\fint_{\partial B_1(0)}^{} h(x+ r \tilde y)r^n \,\mathrm{d}S(\tilde y) \\ &= \fint_{\partial B_r(x)}^{} h(y) \,\mathrm{d}S(y) \\ &= H_x(r).
 \end{align*}
 Nun gilt

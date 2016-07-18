@@ -116,9 +116,12 @@ Wir wollen eine Darstellungsformel für die Lösung finden. Wir haben bereits be
 	\begin{align*}
 		\int_{\Omega}^{}(G(x,y)-\Phi(x-y)) \Delta u \,\mathrm{d}y 
 		&= \int_{\partial \Omega}^{} \left[ (G(x,y)- \Phi(x-y))  \nabla u - u  \nabla_y (G(x,y)-\Phi(x-y)) \right] \cdot \nu(y)  \,\mathrm{d}S(y) \\
-		& \qquad \qquad - \int_{\Omega}^{} G(x,y)f(y) \,\mathrm{d}y - \int_{\Omega}^{} \Phi(x-y) \Delta u(y) \,\mathrm{d}y  \\
-		& = - \int_{\partial \Omega}^{} \left[ \Phi(x-y)  \nabla u(y) + u(y)  \nabla_y \Phi(x-y) \right] \cdot \nu(y)  \,\mathrm{d}S(y) \\
-		& \qquad \qquad -\int_{\partial \Omega}^{} g(y)  \nabla_y G(x,y) \cdot \nu(y)  \,\mathrm{d}S(y).		
+	\end{align*}
+	Dies ist äquivalent zu
+	\begin{align*}
+	 - \int_{\Omega}^{} G(x,y)f(y) \,\mathrm{d}y - \int_{\Omega}^{} \Phi(x-y) \Delta u(y) \,\mathrm{d}y 
+		& = - \int_{\partial \Omega}^{} \left[ \Phi(x-y)  \nabla u(y) - u(y)  \nabla_y \Phi(x-y) \right] \cdot \nu(y)  \,\mathrm{d}S(y) \\
+		& \qquad \qquad -\int_{\partial \Omega}^{} g(y)  \nabla_y G(x,y) \cdot \nu(y)  \,\mathrm{d}S(y).				
 	\end{align*}
 	Insgesamt folgt die Behauptung.
 \end{beweis}

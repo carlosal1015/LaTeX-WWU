@@ -419,7 +419,7 @@ Es ergeben sich $2n+1$ Unbekannte und $2n+1$ gewöhnliche Differentialgleichunge
 			\item $\gamma'(s) = b(\gamma(s),v(s))$
 			\item $v'(s) = b(\gamma(s),v(s)) \cdot z(s) = -c (\gamma(s),v(s))$
 		\end{enumerate}
-		Auch hier werden nun die Gleichungen für $\gamma$ und $v$ benötigt.
+		Auch hier werden nur die Gleichungen für $\gamma$ und $v$ benötigt.
 	\end{enumerate}
 \end{beispiel}
 
@@ -450,7 +450,7 @@ Damit erhält man $2n+1$ Gleichungen. Mit $\Omega = \mathbb{R}^n_+$
 	I:= [0,s], \qquad \gamma(0) = x_0, \qquad v(0) = u(\gamma(0)) = u(x_0) = g(x_0)
 \]
 \[
-	z_i(0) = \partial_{x_i} g(x_0), \qquad i=1,\dots,n
+	z_i(0) = \partial_{x_i} g(x_0), \qquad i=1,\dots,n-1
 \]
 Das sind $2n$ Anfangsbedindungen und $2n+1$ Gleichungen. Wir brauchen auch $z_n(0)$
 \[
@@ -463,7 +463,7 @@ da $E$ stetig bis zum Rand ist. Daher sollte $z_n(0)$ zu den bereits fixierten A
 %%%% Vorlesung 24.6
 
 \begin{definition*}
-	Ein Vektor $(x_0,v_0,z_0) \in \mathbb{R}^{2n+1}$ heißt zulässig für das Anfangswertproblem (2) (wird noch nachgeliefert), falls \[
+	Ein Vektor $(x_0,v_0,z_0) \in \mathbb{R}^{2n+1}$ heißt zulässig für das Anfangswertproblem (2), falls \[
 		g(x_0)=v_0, \qquad (z_0)_i = \partial_{x_i}g(x_0), \qquad \text{für }i=1,\dots,n-1
 	\]
 	und
