@@ -1,0 +1,13 @@
+stages:
+  - build
+build_all:
+  script:
+    - make
+  tags:
+    - latex
+  stage: build
+
+# cache all auxilliary files to speed up compilation
+cache:
+  untracked: true
+  key: "$CI_BUILD_NAME"
