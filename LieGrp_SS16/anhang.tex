@@ -1,10 +1,44 @@
-%!TEX root = topologie_2.tex
-% Hier findet man einige ausgewählte Beweise und Ergänzungen, auf die der Vorlesung hingewiesen wurde und die teilweise im Rahmen von Übungsaufgaben bearbeitet wurden.
-% Sie stammen also auch hauptsächlich aus den Übungen und deswegen sei hier noch einmal darauf hingewiesen, dass für die Richtigkeit keine Garantie übernommen wird!
-%
-% Die Reihenfolge richtet sich nach dem Auftreten der Verweise in der Vorlesung.
+%!TEX root = liegruppen.tex
+Hier findet man einige ausgewählte Beweise und Ergänzungen, auf die der Vorlesung hingewiesen wurde und die teilweise im Rahmen von Übungsaufgaben bearbeitet wurden.
+Sie stammen also auch hauptsächlich aus den Übungen und deswegen sei hier noch einmal darauf hingewiesen, dass für die Richtigkeit keine Garantie übernommen wird!
+
+Die Reihenfolge richtet sich nach dem Auftreten der Verweise in der Vorlesung.
 
 
+\section{Aufgabe 3 -- Über Quaternionen} % (fold)
+\label{sec:aufg3}
+Wir bezeichnen mit $\mathbb{H} \coloneqq \set*{q = \alpha \cdot 1 + \beta \cdot i + \gamma \cdot j + \delta k \given \alpha, \beta, \gamma, \delta \in \mathbb{R}}$ den Schiefkörper der \Index{Quaternionen}.
+Seien weiter
+\[
+	\mathbb{R}^3 \coloneqq \Im \mathbb{H} \coloneqq \set[\big]{q = \beta \cdot i + \gamma \cdot j + \delta \cdot k \given \beta,\gamma,\delta \in \mathbb{R}}
+\]
+die rein imaginären Quaternionen, das heißt $q \notin \mathbb{R}^3$ genau dann, wenn $q = \overline{q}$.
+Ferner bezeichnen wir mit $S^3 \coloneqq \set*{q \in \mathbb{H} \given \norm*{q}=1}$ die \Index{Einheitsquaternionen}.
+Es gilt
+\begin{enumerate}[(1)]
+	\item Ist $q \in S^3$, so sind die Linksmultiplikation $L_q \colon \mathbb{H} \to \mathbb{H}$, $p \mapsto q \cdot p$ und die Rechtsmultiplikation $R_q \colon \mathbb{H} \to \mathbb{H}$, $p \mapsto p \cdot q$ Isometrien von $\mathbb{H}=\mathbb{R}^4$ versehen mit dem Standardskalarprodukt.
+	\item Für $q \in S^3$ ist $\Ad(q) \colon \mathbb{H} \to \mathbb{H}$, $p \mapsto q \cdot p \cdot \overline{q}$ eine Isometrie von $\mathbb{H}$, die $\mathbb{R}^3$ invariant lässt.
+	\item $\SO(3) = \set*{\Ad(q)|_{\mathbb{R}^3} \given q \in S^3}$ und $S^3$ ist eine zweifache Überlagerung von $\SO(3)$.
+	\item $\SO(4) = \set*{L_q \circ R_{\overline{q}} \given q,\overline{q} \in S^3}$ und $S^3 \times S^3$ ist eine zweifache Überlagerung von $\SO(4)$.
+\end{enumerate}
+\begin{beweis}
+	\todo{fertig machen}
+\end{beweis}
+% section aufg3 (end)
+
+\section{Aufgabe 8 -- Lieuntergruppen von $T^2$} % (fold)
+\label{sec:aufg8}
+Betrachte $T^2= S^1 \times S^1$ und $S^1_r = \set*{(e^{i \varphi}, e^{i r \varphi}) \given \varphi \in \mathbb{R}} \subseteq T^2$.
+Es gilt dann
+\begin{enumerate}[a)]
+	\item $S^1_r \subset T^2$ ist eine Lieuntergruppe
+	\item Für $r \in \mathbb{Q}$ ist $S^1_r$ kompakt
+	\item Für $r \in \mathbb{R} \setminus \mathbb{Q}$ ist $S^1_r$ dicht in $T^2$.
+\end{enumerate}
+\begin{beweis}
+	\todo{fertig machen}
+\end{beweis}
+% subsection aufg8 (end)
 
 
 
