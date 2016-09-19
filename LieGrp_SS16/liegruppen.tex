@@ -52,10 +52,10 @@
 		\[
 			\overline{S^1_r} = T^2
 		\]
-		\emph{Diese Gruppe wird in Aufgabe 8 der Übungen genauer behandelt. Siehe \cref{sec:aufg8}}
+		\emph{Diese Gruppe wird in Aufgabe 8 der Übungen genauer behandelt. Siehe \cref{sec:aufg8}.}
 		\item Die $3$-Sphäre $S^3 = \set[\big]{q \in \mathbb{H} \given \abs*{q}=1}$, wobei $\mathbb{H}$ der Schiefkörper der \Index{Quaternionen}\footnote{siehe \url{https://de.wikipedia.org/wiki/Quaternion}} ist.
 	
-		Wir setzen $\mathbb{R}^3 := \im \mathbb{H} = \Span_\mathbb{R} \set{i,j,k}$.
+		Wir setzen $\mathbb{R}^3 := \Im \mathbb{H} = \Span_\mathbb{R} \set{i,j,k}$.
 		Dann ist $\mathbb{R}^3$ invariant unter der adjungierten Darstellung von $S^3$, das heißt für alle $x \in \im \mathbb{H}$ und alle $q \in S^3$ gilt:
 		\[
 			\Ad(q)(x) := q \cdot x \cdot \Underbrace{q^{-1}}{=\overline{q}} \stackrel{!}{\in} \mathbb{R}^3 \qquad \text{ für } x \in \mathbb{R}^3 
@@ -64,7 +64,7 @@
 		Es gilt sogar $\Ad(S^3) = SO(3)$ und $\pi \colon S^3 \to SO(3)$, $q \mapsto \Ad(q)|_{\mathbb{R}^3}$ ist eine $2$-fache Überlagerung.
 		Dies folgt mit $\Ad(q)=\Ad(-q)$.
 		
-		\emph{In Übungsaufgabe 3 werden diese Behauptungen bewiesen. Siehe \cref{sec:aufg3}}
+		\emph{In Übungsaufgabe 3 werden diese Behauptungen bewiesen. Siehe \cref{sec:aufg3}.}
 		\item \Index{Orthogonale Gruppe} $\On(n) = \set*{A \in \Mat(n,\mathbb{R}) \given A A^T = E_n}$, $\SO(n) = \set[\big]{A \in \On(n) \given \det A=1}$
 		\item \Index{Unitäre Gruppe} $\Un(n) = \set[\big]{A \in \Mat (n,\mathbb{C}) \given A A^* =E_n}$, $\SU(n) = \set[\big]{A \in \Un(n) \given \det A=1}$
 		\item \Index{Allgemeine lineare Gruppe} $\GL(n,\mathbb{K}) = \set[\big]{A \in \Mat(n,\mathbb{K}) \given A \text{ invertierbar}}$ für $\mathbb{K} \in  \set*{\mathbb{R},\mathbb{C},\mathbb{H}}$ und die \Index{Spezielle lineare Gruppe}
@@ -72,7 +72,7 @@
 		\item Sind $G_1$ und $G_2$ Liegruppen, so ist auch $G_1 \times G_2$ eine Liegruppe.
 		\item Ist $G$ eine Liegruppe, so ist\marginnote{die Abgeschlossenheit bzgl. der Gruppenoperationen folgt aus der Stetigkeit selbiger}
 		\[
-			G_0 :=  \set[\big]{g \in G \given \exists c \colon [0,1] \to G \text{ stetig mit } c(0)=e, c(1)=g}
+			G_0 :=  \set[\big]{g \in G \given \exists\, c \colon [0,1] \to G \text{ stetig mit } c(0)=e, c(1)=g}
 		\]
 		ein Liegruppe, die Zusammenhangskomponente der Eins.
 		Beispiel: $\On(n)=\SO(n) \mathbin{\dot{\cup}} I \cdot \SO(n)$, wobei $I$ eine Spiegelung ist.
@@ -109,7 +109,7 @@ Dazu ein wenig Notation: Für $g \in G$ betrachten wir \bet{Links}- und \Index{R
 $L_g$ und $R_g$ sind nach Definition einer Liegruppe offensichtlich Diffeomorphismen.
 
 \begin{definition}[{name=[linksinvariantes Vektorfeld]}]
-	Ein Vektorfeld $X$ auf $G$ nennt man \Index{linksinvariant}, falls für alle $g,h \in G$ gilt
+	Ein Vektorfeld\index{Vektorfeld} $X$ auf $G$ nennt man \bet{linksinvariant}\index{Vektorfeld!linksinvariant}, falls für alle $g,h \in G$ gilt
 	\[
 		X(g \cdot h) = \mathd(L_g)_h \cdot X(h)
 	\]
@@ -127,10 +127,10 @@ Wir schreiben daher auch $X=X_v$ mit $X(e)=v \in \Tmap_e G$.
 \begin{beweis}
 	Nach \autoref{def:111} ist die Multiplikation $m \colon G \times G \to G$ differenzierbar, somit auch $\mathd m \colon \Tmap G \times \Tmap G \to\Tmap G$ und damit für alle $v \in \Tmap_e G$ auch $\tilde{X}_v \colon G \to \Tmap G$, $g \mapsto (\mathd m)_{(g,e)}(0,v)$.
 	Wir zeigen nun $\tilde{X}_v=X_v$.
-	Sei dazu $\enbrace[\big]{g(t)}_{t \in (-1,1)}$ eine differenzierbare Kurve in $G$ mit $g(0)=e$ und $g'(0)=v$.
-	Dann gilt 
+	Sei dazu $\enbrace[\big]{\gamma(t)}_{t \in (-1,1)}$ eine differenzierbare Kurve in $G$ mit $\gamma(0)=e$ und $\gamma'(0)=v$.
+	Dann gilt für $g \in G$ beliebig
 	\[
-		\tilde{X}_v(g)=(\mathd m)_{(g,e)}(0,v) = \diffd{}{t}\Big|_{t=0} m \enbrace[\big]{g,g(t)} = \diffd{}{t}\Big|_{t=0} L_g\enbrace[\big]{g(t)} = \mathd(L_g)_{g(0)} \cdot g'(0)
+		\tilde{X}_v(g)=(\mathd m)_{(g,e)}(0,v) = \diffd{}{t}\Big|_{t=0} \! m \enbrace[\big]{g,\gamma(t)} = \diffd{}{t}\Big|_{t=0}\! L_g\enbrace[\big]{\gamma(t)} = \mathd(L_g)_{\gamma(0)} \cdot \gamma'(0)
 		 =\mathd(L_g)_e v = X_v(g) \qedhere
 	\]
 \end{beweis}
@@ -151,7 +151,7 @@ Wir bezeichnen mit $\mathfrak{g}$ (\enquote{g} in Frakturschrift) die Menge der 
 	Damit ist die Surjektivität gezeigt.
 \end{beweis}
 
-Ein Vektorfeld $X$ ist linksinvariant genau dann, wenn $X$ für alle $g \in G$ $L_g$-verwandt zu sich selbst ist, das heißt
+Ein Vektorfeld $X$ ist linksinvariant genau dann, wenn $X$ für alle $g \in G$ \bet{$L_g$-verwandt}\index{Vektorfeld!verwandt} zu sich selbst ist, das heißt
 \[
 	X \enbrace[\big]{L_g(h)} = (\mathd L_g)_h X(h) \qquad  \forall h \in G
 \]
@@ -175,7 +175,7 @@ Dies führt uns zu folgender Definition:
 		{\det}^{-1} \enbrace[\big]{\mathbb{K}\setminus \set*{0}} = \GL(n,\mathbb{K}) 
 	\)
 	eine offene Teilmenge des euklidischen Vektorraums $\Mat(n,\mathbb{K})$ und somit eine differenzierbare Mannigfaltigkeit.
-	Wir bezeichnen mit $x_{ij} \colon G \to \mathbb{K}$ die Abbildung $(a_{kl})_{k,l} \mapsto a_{ij}$ für festes $(i,j)$ mit $1\le i,j\le n$.
+	Wir bezeichnen mit $x_{ij} \colon G \to \mathbb{K}$ die Abbildung $(a_{kl})_{kl} \mapsto a_{ij}$ für festes $(i,j)$ mit $1\le i,j\le n$.
 	Da $x_{ij}$ linear ist, gilt für $A \in G$
 	\[
 		(X_v)(x_{ij})(A) = (\mathd x_{ij})_A X_v(A) = x_{ij}(A \cdot v) = (A v)_{ij}
