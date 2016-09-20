@@ -226,7 +226,7 @@ Ist $\Phi \colon G \to \GL(n,\mathbb{K})$ injektiv, so besitzt die Gruppe $G$ di
 
 \begin{lemma}[label=lem:122,{name=[{Differntial von Liegruppenhom. ist Liealgebrenhom.}]}]
 	Sei $\Phi \colon H \to G$ ein Liegruppenhomomorphismus.\marginnote{es folgt, dass man die Liealgebra einer Liegruppe als Funktor auffassen kann}
-	Dann ist $(\mathd\Phi)_e \colon \Tmap_e H \to \Tmap_e G$ ein Liealgebrenhomomorphismus.
+	Dann ist das Differential am neutralen Element $(\mathd\Phi)_e \colon \Tmap_e H \to \Tmap_e G$ ein Liealgebrenhomomorphismus.
 \end{lemma}
 \begin{beweis}
 	Seien $v_1,v_2 \in \Tmap_e H$ und $w_i := (\mathd \Phi)_e \, v_i$ für $i=1,2$.
@@ -234,18 +234,18 @@ Ist $\Phi \colon G \to \GL(n,\mathbb{K})$ injektiv, so besitzt die Gruppe $G$ di
 	\[
 		(\mathd \Phi)_e \benbrace[\big]{X_{v_1}, X_{v_2}} (e) = \benbrace[\big]{X_{w_1},X_{w_2}}(e)
 	\]
-	Wir zeigen, dass $X_{v_1}$ und $X_{w_1}$ $\Phi$-verwandt sind:
+	Wir zeigen, dass $X_{v_1}$ und $X_{w_1}$ $\Phi$-verwandt sind: Für $h \in H$ gilt
 	\begin{align}
 		(\mathd \Phi)_h X_{v_1}(h) = \enbrace*{\mathd \Phi}_h (\mathd L_h)_e \cdot v_1 = \mathd \enbrace*{\Phi \circ L_h}_e \cdot v_1 
-		&= \mathd \enbrace*{L_{\Phi(h)} \circ \Phi}_e \cdot v_1 \\
+		= \mathd \enbrace*{L_{\Phi(h)} \circ \Phi}_e \cdot v_1 
 		&= \mathd \enbrace*{L_{\Phi(h)}}_e \cdot \enbrace*{\mathd \Phi}_e \cdot v_1 \\
 		&= \mathd \enbrace*{L_{\Phi(h)}}_e \cdot w_1 \\
-		&= X_{w_1}(\Phi(h))
+		&= X_{w_1}\enbrace[\big]{\Phi(h)}
 	\end{align}
 	Somit sind $X_{v_1}$ und $X_{w_1}$ $\Phi$-verwandt und analog auch $X_{v_2}$ und $X_{w_2}$.
 	Nach Differentialgeometrie \RM{1}. sind dann auch $\benbrace*{X_{v_1}, X_{v_2}}$ und $\benbrace*{X_{w_1},X_{w_2}}$ $\Phi$-verwandt, das heißt es gilt
 	\[
-		(\mathd \Phi)_h \benbrace[\big]{X_{v_1},X_{v_2}}(h) = \benbrace[\big]{X_{w_1}, X_{w_2}} \enbrace*{\Phi(h)}
+		(\mathd \Phi)_h \benbrace[\big]{X_{v_1},X_{v_2}}(h) = \benbrace[\big]{X_{w_1}, X_{w_2}} \enbrace[\big]{\Phi(h)}
 	\]
 	Mit $h=e$ folgt nun die Behauptung.
 \end{beweis}
@@ -258,14 +258,14 @@ Ist $\Phi \colon G \to \GL(n,\mathbb{K})$ injektiv, so besitzt die Gruppe $G$ di
 		\item Die Gruppenhomomorphismuseigenschaft ist klar. 
 		\item Die inverese Abbildung ist offenbar gegeben durch $(i_g)^{-1}= i_{g^{-1}}$.
 	\end{itemize}
-	Somit ist $\Ad(g) := \enbrace*{\mathd i_g}_e \colon \mathfrak{g} \to \mathfrak{g}$ ein Liealgebrenisomorphismus.
+	Somit ist $\Ad(g) := \enbrace*{\mathd i_g}_e \colon \mathfrak{g} \to \mathfrak{g}$ ein Liealgebrenisomorphismus aufgrund der Funktoreigenschaft aus \autoref{lem:122}.
 	
 	Ist $G = \GL(n,\mathbb{K})$, so kann man $\Ad(g)$ einfach berechnen:
 	Sei $(h(t))_{t \in (-\varepsilon,\varepsilon)}$ eine differenzierbare Kurve in $G$ mit $h(0)= E_n$ und $h'(0)=v$.
 	Dann gilt
 	\begin{align}
 		\Ad(g)(v)= (\mathd i_g)_e \cdot h'(0) = \diffd{}{t}\Big|_{t=0} i_g \enbrace[\big]{h(t)} = \diffd{}{t}\Big|_{t=0} g \cdot h(t) \cdot g^{-1}
-		&= g \cdot \diffd{}{t}\Big|_{t=0} h(t) \cdot g^{-1}\\
+		&= g \cdot \enbrace*{\diffd{}{t}\Big|_{t=0} h(t)} \cdot g^{-1}\\
 		&= g \cdot v \cdot g^{-1}
 	\end{align}
 	Ferner ist für eine beliebige Liegruppe $G$ die Abbildung $\Ad \colon G \to \GL\enbrace*{\Tmap_e G}$, $g \mapsto \Ad(g)$ ein Liegruppenhomomorphismus:
@@ -295,14 +295,14 @@ Ist $\Phi \colon G \to \GL(n,\mathbb{K})$ injektiv, so besitzt die Gruppe $G$ di
 		\item Die Gruppe $S^1_r = \set*{\enbrace*{e^{i \varphi}, e^{i r \varphi}} \given \varphi \in \mathbb{R}}$ ist eine Lieuntergruppe von $T^2=S^1 \times S^1$.
 		Für $r \in \mathbb{Q}$ ist $S^1_r$ eine (eingebettete) Untermannigfaltigkeit; für $r \in \mathbb{R}\setminus \mathbb{Q}$ ist $S^1_r$ \enquote{nur} eine immersierte Untermannigfaltigkeit, jedoch nicht eingebettet.
 		
-		\emph{Diese Gruppe wird in Aufgabe 8 der Übungen genauer behandelt.}\todo{in den Anhang?}
+		\emph{Diese Gruppe wird in Aufgabe 8 der Übungen genauer behandelt. Siehe \cref{sec:aufg8}.}
 		\item $\SO(n) \subset \GL(n,\mathbb{R})$ ist eine Lieuntergruppe mit Liealgebra 
 		\[
 			\mathfrak{so}(n) := \Tmap_e \SO(n) = \set*{X \in \Mat(n,\mathbb{R}) \given X^T=-X}
 		\]
 		Sei dazu $(A(t))_{t \in (-\varepsilon,\varepsilon)}$ eine differenzierbare Kurve in $\SO(n)$ mit $A(0)=E_n$ und $A'(0)=X$.
 		Aus $A(t)^T \cdot A(t) \equiv E_n$ folgt durch Differenzieren $X^T + X =0$.
-		Sei umgekehrt $X$ eine schiefsymmetrische Matrix.
+		Sei nun umgekehrt $X$ eine schiefsymmetrische Matrix.
 		Setze dann 
 		\[
 			A(t) =\exp(t X) = \sum_{k=0}^{\infty} \frac{(tX)^k}{k!} 
@@ -386,7 +386,7 @@ Beispiel:
 \end{korollar}
 \begin{beweis}
 	$H \times G$ ist eine Liegruppe mit Liealgebra $\mathfrak{h} \oplus \mathfrak{g}= \Tmap_e H \oplus \Tmap_e G$ (komponentenweise).
-	Dann ist eine differenzierbare Abbildung $\Phi \colon H \to G$ genau dann ein Liegruppenhomomorphismus, wenn der Graph von $\Phi$, also $\set[\big]{(h,\Phi(h)) \given h \in H}$ eine Untergruppe von $H \times G $ ist (!).
+	Dann ist eine differenzierbare Abbildung $\Phi \colon H \to G$ genau dann ein Liegruppenhomomorphismus, wenn der Graph von $\Phi$, also $\set[\big]{(h,\Phi(h)) \given h \in H}$, eine Untergruppe von $H \times G $ ist (!).
 	Ist dies der Fall, so ist 
 	\[
 		\Graph \enbrace[\big]{(\mathd \Phi)_e} = \set[\big]{ \enbrace*{v, (\mathd \Phi)_e \cdot v} \given v \in \mathfrak{h}}
@@ -405,8 +405,8 @@ Wir wissen weiter, dass $I_{\max}$ offen in $\mathbb{R}$ ist.
 	Wie gehabt ist $X_v(A) = (\mathd L_A)_e \cdot v = A \cdot v$ und es gilt $c_v(t)= \exp(t \cdot v) = \sum_{k=0}^{\infty} \frac{(tv)^k}{k!}$, denn
 	\begin{align}
 		\diffd{}{t}\Big|_{t=t_0} c_v(t) = \diffd{}{t}\Big|_{t=t_0} \Underbrace{\exp(t v)}{=\exp(t_0 v) \cdot \exp((t-t_0) \cdot v)} 
-		&= \exp(t_0 v) \cdot \diffd{}{s}\Big|_{s=0} \exp(s v) \\[-1em]
-		&= \exp(t_0 v) \cdot v \\
+		= \exp(t_0 v) \cdot \diffd{}{s}\Big|_{s=0} \exp(s v)
+		&= \exp(t_0 v) \cdot v \\[-1em]
 		&= c_v(t_0) \cdot v = X_v \enbrace[\big]{c_v(t_0)}
 	\end{align}
 \end{beispiel*}
@@ -456,7 +456,8 @@ Wir wissen weiter, dass $I_{\max}$ offen in $\mathbb{R}$ ist.
 	\begin{align}
 		\diffd{}{t}\Big|_{t=t_0} \psi_t (g,v) = \diffd{}{t}\Big|_{t=t_0} \enbrace[\big]{g \cdot \exp(tv),v} = \enbrace*{\diffd{}{t}\Big|_{t=t_0} g \cdot \exp(tv),0} &= (\mathd L_g)_{c_{t_0 v}(1)} \cdot \diffd{}{t}\Big|_{t=t_0} c_{tv}(1) \\[-9pt]
 		&= \enbrace*{\mathd L_{g \cdot c_v(t_0)}}_e \cdot v \\
-		&= X_v \enbrace[\big]{g \cdot c_v(t_0)} = \exp(t_0 v)
+		&= X_v \enbrace[\big]{g \cdot c_v(t_0)} \\
+		&= X_v\enbrace[\big]{g \cdot \exp(t_0 v)}
 	\end{align}
 	Somit ist $\psi_t \colon G \times \mathfrak{g} \to G \times \mathfrak{g}$ differenzierbar für alle $t \in \mathbb{R}$.
 	Insbesondere ist $\psi_1$ differenzierbar.
