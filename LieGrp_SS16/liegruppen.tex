@@ -438,7 +438,7 @@ Wir wissen weiter, dass $I_{\max}$ offen in $\mathbb{R}$ ist.
 	die \Index{Exponentialabbildung} von $G$. 
 \end{definition}
 
-\begin{lemma}[{name=[{Differenzierbarkeit der Exponentialabbildung}]}]
+\begin{lemma}[label=lem:129,{name=[{Differenzierbarkeit der Exponentialabbildung}]}]
 	Sei $G$ eine Liegruppe.
 	Dann ist die Exponentialabbildung $\exp \colon \mathfrak{g} \to G$ differenzierbar und es gilt 
 	\[
@@ -454,7 +454,7 @@ Wir wissen weiter, dass $I_{\max}$ offen in $\mathbb{R}$ ist.
 	\]
 	denn\marginnote{man muss sich hier klarmachen, dass $c_{tv}(1)=c_{v}(t)$ gilt}
 	\begin{align}
-		\diffd{}{t}\Big|_{t=t_0} \psi_t (g,v) = \diffd{}{t}\Big|_{t=t_0} \enbrace[\big]{g \cdot \exp(tv),v} = \enbrace*{\diffd{}{t}\Big|_{t=t_0} g \cdot \exp(tv),0} &= (\mathd L_g)_{c_{t_0 v}(1)} \cdot \diffd{}{t}\Big|_{t=t_0} c_{tv}(1) \\[-9pt]
+		\diffd{}{t}\Big|_{t=t_0} \psi_t (g,v) = \diffd{}{t}\Big|_{t=t_0} \enbrace[\big]{g \cdot \exp(tv),v} = \enbrace*{\diffd{}{t}\Big|_{t=t_0} g \cdot \exp(tv),0} &= (\mathd L_g)_{c_{t_0 v}(1)} \cdot \diffd{}{t}\Big|_{t=t_0} c_{tv}(1) \\[-11pt]
 		&= \enbrace*{\mathd L_{g \cdot c_v(t_0)}}_e \cdot v \\
 		&= X_v \enbrace[\big]{g \cdot c_v(t_0)} \\
 		&= X_v\enbrace[\big]{g \cdot \exp(t_0 v)}
@@ -482,7 +482,7 @@ Wir wissen weiter, dass $I_{\max}$ offen in $\mathbb{R}$ ist.
 		Da $L_g$ ein Diffeomorphismus ist, ist $L_g(U)$ eine offene Umgebung von $g$.
 		Somit existiert $i_0$ mit $h_i \in L_g(U)$ für alle $i \ge i_0$.
 		Wegen $h_i \to g$ können wir $h_{i_0}^{-1} \cdot g \in U$ annehmen.
-		Es gilt $h_{i_0}^{-1} \cdot g \notin H \cap U$, denn sonst folgt $g \in H$.
+		Es gilt $h_{i_0}^{-1} \cdot g \notin H \cap U$, denn sonst folgt $g \in H$, da $H$ eine Untergruppe ist.
 		Wegen $h_i \to g$ folgt
 		\[
 			\Underbracket{h_{i_0}^{-1}\cdot h_i}{\in H}  \grenzw{i \to \infty} h_{i_0}^{-1} \cdot g
@@ -493,14 +493,15 @@ Wir wissen weiter, dass $I_{\max}$ offen in $\mathbb{R}$ ist.
 		Zu zeigen ist, dass $H$ eine eingebettete Untermannigfaltigkeit ist, das heißt es existiert eine offene Umgebung $U$ von $e$ in $G$, sodass $H \cap U$ eine zusammenhängende Untermannigfaltigkeit von $U$ ist. 
 		Annahme: Es existiert eine Umgebung $U$ von $e$, sowie eine Folge $(h_i)_{i \in \mathbb{N}}$ in $H$ mit
 		\begin{itemize}
-			\item $h_i \to e$
+			\item $h_i \to e$ und
 			\item $h_i \notin (H \cap U)_e$ (Zusammenhangskomponente der Eins)
 		\end{itemize}
-		Die Exponentialabbildung $\exp \colon \Tmap_e G \to G$ ist nahe bei $e$ ein lokaler Diffeomorphismus (Umkehrsatz auf Mannigfaltigkeiten) mit 
+		Die Exponentialabbildung $\exp \colon \Tmap_e G \to G$ ist nahe bei $e$ ein lokaler Diffeomorphismus (\autoref{lem:129} und Umkehrsatz auf Mannigfaltigkeiten) mit 
 		\[
-			\enbrace*{\mathd \exp^{-1}}_e = \id_{\Tmap_p M^n}
+			\enbrace*{\mathd \exp^{-1}}_e = \id_{\Tmap_e G}
 		\]
-		Somit ist $h_i = \exp(v_i)$ für alle $i \in \mathbb{N}$ und $v_i \in \mathfrak{g}$ mit $v_i \to 0$ für $i \to \infty$.
+		Für alle $i \in \mathbb{N}$ finden wir also $v_i \in \mathfrak{g}$ mit $h_i = \exp(v_i)$ und $v_i \to 0$ für $i \to \infty$.
+		% Somit ist $h_i = \exp(v_i)$ für alle $i \in \mathbb{N}$ und $v_i \in \mathfrak{g}$ mit $v_i \to 0$ für $i \to \infty$.
 		Wir wählen nun eine reelle Folge $(s_i)_{i \in \mathbb{N}}$ in $\mathbb{R}$ mit 
 		\begin{equation}
 			s_i \cdot v_i \grenzw{i \to \infty} v \label{eq:1210:1} \tag{\#}
@@ -521,10 +522,10 @@ Wir wissen weiter, dass $I_{\max}$ offen in $\mathbb{R}$ ist.
 		da $H$ abgeschlossen ist!
 		Dies gilt für alle $t \in \mathbb{R}$ und somit ist $v \in \Tmap_e H$.
 		Nächster Schritt: $\skal*{\cdot }{\cdot }$ sei ein Skalarprodukt auf $\Tmap_e G$.
-		Dann gilt $\Tmap_e G = \mathfrak{h} \oplus_{\bot} \mathfrak{h}^{\bot}$.
+		Dann gilt $\Tmap_e G = \mathfrak{h} \mathop{\oplus_{\bot}} \mathfrak{h}^{\bot}$.
 		Mit dieser Zerlegung schreiben wir $v_i =x_i + y_i$.
 		Die Abbildung 
-		\mapdef{\Phi \colon \mathfrak{h} \oplus_{\bot} \mathfrak{h}^\bot}{G}{(x,y)}{\exp(x) \cdot \exp(y)}{}
+		\mapdef{\Phi \colon \mathfrak{h} \mathop{\oplus_{\bot}} \mathfrak{h}^\bot}{G}{(x,y)}{\exp(x) \cdot \exp(y)}{}
 		ist nahe $(0,0)$ ein lokaler Diffeomorphismus.
 		Wir haben
 		\[
@@ -572,7 +573,7 @@ Wir wissen weiter, dass $I_{\max}$ offen in $\mathbb{R}$ ist.
 \end{beweis}
 
 \begin{satz}[name={Ado},label=satz:1211]
-	Jede endlichdimensionale Liealgebra $(V,\benbrace*{\cdot,\cdot})$ ist isomorph zu einer Unteralgebra von $\mathfrak{gl}(n,\mathbb{R}) = \Tmap_e \GL(n,\mathbb{R})$.
+	Jede endlichdimensionale Liealgebra $(V,\benbrace*{\cdot,\cdot})$ ist isomorph zu einer Unteralgebra von $\mathfrak{gl}(n,\mathbb{R}) = \Tmap_e \mkern-2mu\GL(n,\mathbb{R})$.
 \end{satz}
 \begin{beweis}
 	\emph{Siehe zum Beispiel \cite[S. 199]{JacobsonLieAlg}.}
@@ -586,8 +587,8 @@ Wir wissen weiter, dass $I_{\max}$ offen in $\mathbb{R}$ ist.
 \end{beweis}
 
 \begin{bemerkung*}[{name=[{Existenz von Liegruppen, die keine Matrixgruppe ist}]}]
-	Für $n \ge 3$ ist $\pi_1 \enbrace*{\SL(n,\mathbb{R})} = \mathbb{Z}_2$
-	Die universelle Überlagerung $\widetilde{\SL(n,\mathbb{R})}$ von $\SL(n,\mathbb{R})$ ist eine Liegruppe, welche in keine der Gruppen $\GL(N,\mathbb{R})$ eingebetten werden kann! Insbesondere ist sie keine Matrixgruppe! \emph{(siehe Aufgabe 17)}\todo{vlt \TeX{}en}
+	Für $n \ge 3$ gilt $\pi_1 \enbrace[\big]{\SL(n,\mathbb{R})} = \mathbb{Z}_2$.
+	Die universelle Überlagerung $\widetilde{\SL(n,\mathbb{R})}$ von $\SL(n,\mathbb{R})$ ist eine Liegruppe, welche in keine der Gruppen $\GL(N,\mathbb{R})$ eingebetten werden kann! Insbesondere ist sie keine Matrixgruppe! \emph{(siehe Aufgabe 17, \cref{sec:aufg17})}
 \end{bemerkung*}
 
 \begin{lemma}[label=lem:1213,{name=[{Zusammenhängede Liegruppe von Umgebung der Eins erzeugt}]}]
@@ -604,6 +605,11 @@ Wir wissen weiter, dass $I_{\max}$ offen in $\mathbb{R}$ ist.
     $H$ ist eine offene Untergruppe von $G$.
     Zu zeigen bleibt, dass $H$ abgeschlossen ist.
     Die Abgeschlossenheit folgt wie im Beweis von \autoref{satz:125}.
+	
+	Alternativ: Sei $x \in \overline{H}$ beliebig.
+	Dann ist $x V$ eine Umgebung von $x$ und wir finden ein $h \in H$ mit $h \in xV$.
+	Also muss wiederum ein $v \in V \subset H$ existieren mit $h = xv \iff x = hv^{-1}$. 
+	Dann muss aber bereits $x \in H$ gelten.
 \end{beweis}
 % subsection 12 (end)
 
