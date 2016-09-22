@@ -713,7 +713,7 @@ Wir wissen weiter, dass $I_{\max}$ offen in $\mathbb{R}$ ist.
     Es seien $\widetilde{G}$, $G$ zusammenhängende Liegruppen. 
     \begin{enumerate}[1)]
         \item Ist $\Phi \colon \widetilde{G} \to G$ eine Überlagerung von Liegruppen, so ist $\widetilde{\Gamma} = \ker \Phi$ eine diskrete Untergruppe von $Z(\widetilde{G})$, dem Zentrum von $\widetilde{G}$.
-        \item Ist $\widetilde{\Gamma}$ eine diskrete Untergruppe von $Z(\widetilde{G})$, so ist $G \coloneqq \sfrac{\widetilde{G}}{\widetilde{\Gamma}}$ eine Liegruppe und $\Phi \colon \widetilde{G} \to G$, $\widetilde{g} \mapsto [\widetilde{g}]$ eine Überlagerung.
+        \item Ist $\Gamma$ eine diskrete Untergruppe von $Z(G)$, so ist $\sfrac{G}{\Gamma}$ eine Liegruppe und $\Phi \colon G \to \sfrac{G}{\Gamma}$, $g \mapsto [g]$ eine Überlagerung.
     \end{enumerate}
 \end{korollar}
 \begin{beweis}
@@ -730,24 +730,51 @@ Wir wissen weiter, dass $I_{\max}$ offen in $\mathbb{R}$ ist.
         \[
             \widetilde{g} \, \widetilde{\gamma}=  \widetilde{\gamma}\, \widetilde{g} \enspace \forall \widetilde{g} \in \widetilde{G} \iff \widetilde{\gamma} \in Z(\widetilde{G})
         \]
-        \item \emph{Übung!}\todo{RevChap 1}
+        \item Wir zeigen dazu zunächst, dass $\Gamma$ frei und \emph{eigentlich diskontinuierlich}\marginnote{einige Autoren sprechen lieber über  \emph{eigentliche Wirkungen}, da eigentlich diskontinuierliche Wirkungen kontinuierlich sind (!)} auf $G$ operiert.
+		Dazu müssen wir zeigen:
+		\begin{enumerate}[(i)]
+			\item \label{enum:proper:1} Für jeden Punkt $g \in G$ existiert eine Umgebung $U$ von $g$, sodass $\gamma.U \cap U \neq \emptyset$ bereits $\gamma=e$ impliziert.
+			\item \label{enum:proper:2} Für beliebige $g_1,g_2 \in G$, die nicht im selben Orbit liegen, existieren Umgebung $U$ von $g_1$ und $V$ von $g_2$, sodass $\gamma.U \cap V = \emptyset$ für alle $\gamma \in \Gamma$ gilt.
+		\end{enumerate}
+		\Cref{enum:proper:1} sorgt dafür, dass $\Phi \colon G \to \sfrac{G}{\Gamma}$ tatsächlich eine Überlagerung ist. 
+		\Cref{enum:proper:2} garantiert, dass der Quotient wieder hausdorffsch ist und somit überhaupt die Chance hat, die Struktur einer Mannigfaltigkeit zu sein.
+		
+		Da $\Gamma$ diskret ist, finden wir eine Umgebung $U$ von $e$ mit $\Gamma \cap U = \set*{e}$.
+		Weiter finden wir wieder $V$ mit $e \in V \subset U$ und $V \cdot V^{-1} \subset U$.
+		Gilt nun $\gamma v_1 = v_2$ für $v_1, v_2 \in V$, so folgt $\gamma = v_2 \cdot v_1^{-1} \in U$, also $\gamma \in \Gamma \cap U = \set*{e}$.
+		Dies zeigt \cref{enum:proper:1}.
+		
+		Wähle $g_1, g_2 \in G$ mit $g_1 \notin \Gamma g_2$.
+		Seien $U$ und $V$ wie eben mit der zusätzlichen Forderungm dass $g_2^{-1} \Gamma g_1 \cap U = \emptyset$, was wir wegen $g_1 \notin \Gamma g_2$ annehmen dürfen.
+		Wegen dieser Bedinung und
+		\[
+			\gamma g_1 v_1 = g_2 v_2 \iff g_2^{-1} \gamma g_1 = v_2 v_1^{-1}
+		\]
+		folgt, dass $g_1 V$ und $g_2 V$ die gesuchten Umgebungen für \cref{enum:proper:2} sind.
+		$\Phi$ ist also tatsächlich eine Überlagerung und $\sfrac{G}{\Gamma}$ eine glatte Mannigfaltigkeit. 
+		$\sfrac{G}{\Gamma}$ ist eine Gruppe, da $\Gamma$ im Zentrum liegt und eine Liegruppe, da $\Phi$ ein lokaler Diffeomorphismus ist, wodurch die Gruppenoperationen glatt werden.\qedhere
     \end{enumerate}
 \end{beweis}
 
-Ein kleines Beispiel:
-\[
-    Z \enbrace*{\SO(n)} = \begin{cases}
-        \set*{\id_n} &\text{ falls } n \text{ ungerade} \\
-        \set*{\pm \id_n} &\text{ falls $n$ gerade}
-    \end{cases}
-\]
-Für $n \ge 2$
-\[
-    Z \enbrace*{\SU(n)} = \mathbb{Z}_n = \set*{e^{2 \pi i \sfrac{k}{n}} \cdot \id_n \given k=0,1,\ldots ,n-1 }
-\]
-Es gilt $\pi_1(\SO(n))= \mathbb{Z}_2$.
-Die universelle Überlagerung ist $\mathrm{Spin}(n)$.
-Für $n\ge 2$ $\pi \enbrace*{\SU(n)} = \set*{e}$ und $\SU(2) = S^3$.
+\begin{beispiel*}[{name=[Zentren der speziellen orthogonalen und unitären Gruppen]}]
+	Es gilt\todo{RevChap 1}
+	\[
+	    Z \enbrace[\big]{\SO(n)} = \begin{cases}
+			\SO(2) &\text{ falls } n=2 \\ 
+	        \set*{\id_n} &\text{ falls } n \text{ ungerade} \\
+	        \set*{\pm \id_n} &\text{ falls $n$ gerade}
+	    \end{cases}
+	\]
+	Für $n \ge 2$ gilt weiter
+	\[
+	    Z \enbrace[\big]{\SU(n)} = \mathbb{Z}_n = \set*{e^{2 \pi i \sfrac{k}{n}} \cdot \id_n \given k=0,1,\ldots ,n-1 }
+	\]
+	Die Fundamentalgruppe ist $\pi_1(\SO(n))= \mathbb{Z}_2$ und die universelle Überlagerung ist $\mathrm{Spin}(n)$.
+	Für $n\ge 2$ ist $\pi \enbrace*{\SU(n)} = \set*{e}$ und $\SU(2) = S^3$.
+\end{beispiel*}
+
+
+
 
 \begin{lemma}[label=lem:134,{name=[{Liegruppenhomomorphismus aus Liealgebrenhomomorphismus wenn einfach zusammenhängend}]}]
 	Seien $H,G$ zusammenhängende Liegruppen.
