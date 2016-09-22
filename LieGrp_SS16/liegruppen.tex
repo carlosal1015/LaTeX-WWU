@@ -635,17 +635,17 @@ Wir wissen weiter, dass $I_{\max}$ offen in $\mathbb{R}$ ist.
 	    \item $M^n$ überlagert $M^n$ auf triviale Weise.
 	    \item $S^3$ ist 2-fache Überlagerung von $\SO(3) = \mathbb{R}P^3$ (Antipoden miteinander identifizieren).
 	    \item $S^n$ ist 2-fache Überlagerung von $\mathbb{R}P^n \coloneqq \set[\big]{\text{Menge der Geraden im }\mathbb{R}^{n+1}}$.
-	    \item Ist $G$ eine Gruppe, die frei und eigentlich diskontinuierlich auf $\widetilde{M}^n$ operiert, so ist der Bahnenraum
+	    \item Ist $G$ eine Gruppe, die frei und eigentlich diskontinuierlich auf $\widetilde{M}^n$ operiert\footnote{siehe z.B. \url{https://de.wikipedia.org/wiki/G-Raum}}, so ist der Bahnenraum
 	    \[
 	        M^n \coloneqq \set[\big]{[p] \given p \in M^n} = \sfrac{\widetilde{M}^n}{G}
 	    \]
-	    eine $n$-dimensionale, differenzierbare Mannigfaltigkeit und $\pi \colon \widetilde{M}^n \to M^n$, $p \mapsto [p]$ eine Überlagerung.
+	    eine $n$-dimensionale, differenzierbare Mannigfaltigkeit und $\pi \colon \widetilde{M}^n \to M^n$, $p \mapsto [p]$ eine Überlagerung.\marginnote{in \cite[Th.~9.19]{LeeSmooth} nur für diskrete Gruppen bewiesen!}
 		Dabei gilt
 	    \[
 	        [p] = [\tilde{p}] :\Longleftrightarrow \exists g \in G : p = g . \tilde{p}
 	    \]
-	    Ist $G$ endlich, so ist $G$ frei und diskontinuierlich äquivalent zu: $g$ wirkt trivial auf einem Punkt $p$ genau dann, wenn $g$ auf allen $p$ trivial operiert.
-	    \item Für jede zusammenhängende Mannigfaltigkeit $M^n$ existiert eine bis auf Diffeomorphie eindeutige, einfach zusammenhängende Mannigfaltigkeit $\widetilde{M}^n$, die $M^n$ überlagert, diese bezeichnet man als \Index{universelle Überlagerung}.
+	    Ist $G$ endlich, so ist frei und diskontinuierlich äquivalent zu: $g$ wirkt trivial auf einem Punkt $p$ genau dann, wenn $g$ auf allen $p$ trivial operiert.
+	    \item Für jede zusammenhängende Mannigfaltigkeit $M^n$ existiert eine bis auf Diffeomorphie eindeutige, einfach zusammenhängende Mannigfaltigkeit $\widetilde{M}^n$, die $M^n$ überlagert, diese bezeichnet man als \Index{universelle Überlagerung}.\footnote{Existenz wie für topologische Räume: zusammenhängend, lokal wegzusammenhängend, semilokal einfachzusammenhängend. Universelle Eigenschaft: Überlagerung jeder weiteren Überlagerung. Überlagerungen von glatten Mannigfaltigkeiten haben stets eine glatte Struktur, sodass $\pi$ differenzierbar ist \cite[Prop.~2.12]{LeeSmooth}.}
 	    Ferner gilt $M^n = \sfrac{\widetilde{M}^n}{\pi_1(M^n)}$.
 	\end{itemize}
 \end{beispiel*}
@@ -661,7 +661,12 @@ Wir wissen weiter, dass $I_{\max}$ offen in $\mathbb{R}$ ist.
 \begin{beweis}
     \begin{enumerate}[(1)]
         \item Sei $\widetilde{e} \in \pi^{-1}(e)$ fest gewählt.
-        Überlagerungstheorie impliziert, dass die stetigen Funktionen $m \colon G \times G \to G$, $^{-1} \colon G \to G$ entsprechende Lifts besitzen mit $\widetilde{m}(\widetilde{e},\widetilde{e})=\widetilde{e}$ bzw. $\widetilde{e}\widetilde{{}^{-1}} = \widetilde{e}$.\footnote{siehe zum Beispiel \textsc{Stöcker-Zischer} \emph{Algebraische Topologie} \cite[Abschnitt 6.2]{stockerAlgTop}}
+        Überlagerungstheorie impliziert, dass die stetigen Funktionen $\begin{tikzcd}[cramped,sep=small]
+        	\widetilde{G} \times \widetilde{G} \rar["\pi \times \pi"] & G \times G \rar["m"] & G
+        \end{tikzcd}$ und $\begin{tikzcd}[cramped,sep=small]
+        	\widetilde{G} \rar["\pi"] & G \rar["^{-1}"] & G
+        \end{tikzcd}$
+		entsprechende Lifts besitzen mit $\widetilde{m}(\widetilde{e},\widetilde{e})=\widetilde{e}$ bzw. $\widetilde{e}\widetilde{{}^{-1}} = \widetilde{e}$.\footnote{siehe zum Beispiel \textsc{Stöcker-Zischer} \emph{Algebraische Topologie} \cite[Abschnitt 6.2]{stockerAlgTop}}
         Die Eindeutigkeit ist durch die Wahl von $\widetilde{e}$ gegeben [Klar, falls $\widetilde{G}$ einfach zusammenhängend, sonst \enquote{kleines} Argument].
         
         Die Abbildungen $\widetilde{m},\widetilde{{ }^{-1}}$ sind differenzierbare Abbildungen, welche die Gruppenaxiome erfüllen: $\widetilde{m} (\widetilde{e}, \widetilde{g}) = \widetilde{g}$ für alle $\widetilde{g} \in \widetilde{G}$.
@@ -698,28 +703,28 @@ Wir wissen weiter, dass $I_{\max}$ offen in $\mathbb{R}$ ist.
                 \Phi(\widetilde{\gamma} \widetilde{v}) = \Phi(\widetilde{\gamma}) \cdot \Phi(\widetilde{v}) = \Phi \enbrace*{\widetilde{\gamma}^{-1} \widetilde{\gamma} \widetilde{v}} = \enbrace*{\Phi \circ L_{\widetilde{\gamma}^{-1}}} (\widetilde{\gamma} \widetilde{v})
             \]
         \end{itemize}
-		Damit sind alle $g \in G$ sind schlicht überlagert.
+		Damit ist $e$ schlicht überlagert mittels $V$.
+		Für $g \in G$ ist dann $g V$ eine entsprechende Umgebung, sodass $g$ schlicht überlagert ist.
 		Die Abbildung $\Phi$ ist außerdem surjektiv nach \autoref{lem:1213}, denn eine offene Umgebung von $e$ liegt im Bild und $\Phi$ ist ein Homomorphismus.\qedhere
     \end{enumerate}
 \end{beweis}
 
 \begin{korollar}[label=lem:133,{name=[{Kern einer Überlagerung ist diskrete Untergruppe des Zentrums}]}]
-    Seien $\widetilde{G}$, $G$ zusammenhängende Liegruppen. 
+    Es seien $\widetilde{G}$, $G$ zusammenhängende Liegruppen. 
     \begin{enumerate}[1)]
-        \item Ist $\Phi \colon \widetilde{G} \to G$ eine Überlagerung von Liegruppen, so ist $\widetilde{\Gamma} = \ker \Phi$ eine diskrete Untergruppe von $Z(G)$.\marginnote{Zentrum von $\widetilde{G}$}
+        \item Ist $\Phi \colon \widetilde{G} \to G$ eine Überlagerung von Liegruppen, so ist $\widetilde{\Gamma} = \ker \Phi$ eine diskrete Untergruppe von $Z(\widetilde{G})$, dem Zentrum von $\widetilde{G}$.
         \item Ist $\widetilde{\Gamma}$ eine diskrete Untergruppe von $Z(\widetilde{G})$, so ist $G \coloneqq \sfrac{\widetilde{G}}{\widetilde{\Gamma}}$ eine Liegruppe und $\Phi \colon \widetilde{G} \to G$, $\widetilde{g} \mapsto [\widetilde{g}]$ eine Überlagerung.
     \end{enumerate}
 \end{korollar}
 \begin{beweis}
     \begin{enumerate}[1)]
         \item Sei $\widetilde{U}$ eine offene Umgebung von $\widetilde{e}$, sodass $\Phi|_{\widetilde{U}} \colon \widetilde{U} \to \Phi(\widetilde{U}) =: U$ ein Diffeomorphismus ist.
-        Dann folgt $\widetilde{\Gamma} \cap \widetilde{U} = \set*{\widetilde{e}}$.
-        Somit ist $\widetilde{\Gamma}$ eine diskrete Untergruppe von $\widetilde{G}$.
+        Dann folgt $\widetilde{\Gamma} \cap \widetilde{U} = \set*{\widetilde{e}}$ und somit ist $\widetilde{\Gamma}$ eine diskrete Untergruppe von $\widetilde{G}$.
         Da $\widetilde{\Gamma}$ der Kern eines Homomorphismus ist, ist $\widetilde{\Gamma}$ außerdem ein Normalteiler in $\widetilde{G}$.
         Sei $\widetilde{g} \in \widetilde{G}$ und $\widetilde{g}(t) \colon [0,1] \to \widetilde{G}$ ein stetiger Weg mit $\widetilde{g}(0)=\widetilde{e}$, $\widetilde{g}(1)=\widetilde{g}$.
         Dann gilt für $\widetilde{\gamma} \in \widetilde{\Gamma}$
         \[
-            \widetilde{g}(t) \,\widetilde{\gamma} \,\widetilde{g}^{-1}(t) \in \widetilde{\Gamma}
+            \widetilde{g}(t) \,\widetilde{\gamma} \,\enbrace{\widetilde{g}(t)}^{-1} \in \widetilde{\Gamma}
         \]
         Da $\widetilde{\Gamma}$ diskret ist, folgt $\widetilde{g}(t)\, \widetilde{\gamma}\, (\widetilde{g}(t))^{-1} \equiv \widetilde{\gamma}$ und wir haben insgesamt
         \[
