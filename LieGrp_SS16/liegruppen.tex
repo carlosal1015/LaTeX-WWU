@@ -91,7 +91,7 @@
 	\(
 		[\cdot ,\cdot ] \colon V \times V \to V
 	\),
-	welche die Jacobi-Identität 
+	welche die \Index{Jacobi-Identität} 
 	\[
 		\benbrace[\big]{X, \benbrace*{Y,Z}} + \benbrace[\big]{Z, \benbrace*{X,Y}} + \benbrace[\big]{Y, \benbrace*{Z,X}} =0
 	\]
@@ -979,7 +979,7 @@ mit $(\mathd \Phi_v)_0 = \psi_v$ und $\Phi_v'(0)= v$.
 		\item Die Exponentialabbildung $\exp \colon \Tmap_e G \to G$ ist nicht immer surjektiv; dies ist allerdings richtig für kompakte zusammenhängende Liegruppen.
 		Es gilt aber $\im \enbrace*{\exp (\Tmap_e G)} \supset U \supset \set*{e}$ für eine offene Umgebung von $e$ wegen dem Umkehrsatz und \cref{lem:129}.
 		\item Es gilt $\exp(x)^{-1} = \exp(-x)$.
-		\item Der Fluss eines linksinvarianten Vektorfeldes $X_v$ mit $X_v(g) = \enbrace*{\mathd L_g}_e \cdot v$ ist gegeben durch\todo{RevChap 1}
+		\item Der Fluss eines linksinvarianten Vektorfeldes $X_v$ mit $X_v(g) = \enbrace*{\mathd L_g}_e \cdot v$ ist gegeben durch
 		\[
 			\enbrace*{R_{\exp(tv)}}_{t \in \mathbb{R}}
 		\]
@@ -1005,50 +1005,50 @@ Wir hatten auch gezeigt, dass aus $i(g_1 \cdot g_2) = i(g_1) \cdot i(g_2)$ die I
 \]
 folgt (Beispiel nach \cref{lem:122}).
 
-\begin{definition}[{name=[adjungierte Darstellung]}]
-	Sei $G$ eine Liegruppe,
+\begin{definition}[{name=[adjungierte Darstellung der Liegruppe]}]
+	Sei $G$ eine Liegruppe.
 	Dann nennt man 
 	\[
 		\Ad \colon G \to \GL(\mathfrak{g}) \qquad g \longmapsto \Ad(g)
 	\]
-	die \Index{adjungierte Darstellung} von $G$.
+	die \Index{adjungierte Darstellung} der Liegruppe $G$.
 \end{definition}
 
 Ist zum Beispiel $G$ abelsch, so ist $i_g = \id_G$ und es folgt ${\Ad(g)} = \id_{\mathfrak{g}}$ für alle $g \in G$.
-Ist $G=S^3$, so wurde in den Übungen die adjungierte Darstellung von $G$ bestimmt:
+Ist $G=S^3$, so wurde in den Übungen (Aufgabe 3)\todo{eventuell \TeX{}en?} die adjungierte Darstellung von $G$ bestimmt:
 \[
 	\Tmap_e S^3 = \im \mathbb{H} = \Span_\mathbb{R} (i,j,k) =: \mathbb{R}^3
 \]
 Es gilt $\Ad(g)(x) = g \cdot x \cdot g^{-1} \in \mathbb{R}^3$.
 Es wurde auch $\Im \enbrace*{\Ad_{S^3}} = \SO(3)$ gezeigt.
 
-\begin{definition}
+\begin{definition}[{name=[adjungierte Darstellung der Liealgebra]}]
 	Sei $G$ eine Liegruppe mit Liealgebra $\mathfrak{g}$.
 	Dann bezeichnen wir mit 
 	\[
 		\ad_v \colon \mathfrak{g} \to \mathfrak{g} \qquad w \longmapsto \benbrace*{v,w}
 	\]
-	\emph{hier fehlt noch ein Satz irgendwie}
+	die \Index{adjungierte Darstellung} der Liealgebra $\mathfrak{g}$.
 \end{definition}
 
-Die Jacobi-Identität 
+Die Jacobi-Identität\index{Jacobi-Identität} 
 \[
-	\benbrace*{X,\benbrace*{Y,Z}} + \benbrace*{Z, \benbrace*{X,Y}} + \benbrace*{Y, \benbrace*{Z,X}} =0
+	\benbrace[\big]{X,\benbrace*{Y,Z}} + \benbrace[\big]{Z, \benbrace*{X,Y}} + \benbrace[\big]{Y, \benbrace*{Z,X}} =0
 \]
-für alle $X,Y,Z$ kann nun folgendermaßen beschrieben werden:\marginnote{Kommutator}
+für alle $X,Y,Z$ kann nun folgendermaßen beschrieben werden:
 \[
-	\ad_{\benbrace*{X,Y}} = \ad_X \circ \ad_Y - \ad_Y \circ \ad_X = \benbrace*{\ad_X, \ad_Y}_0
+	\ad_{\benbrace*{X,Y}} = \ad_X \circ \ad_Y - \ad_Y \circ \ad_X = \benbrace[\big]{\ad_X, \ad_Y}_0 \marginnote{Kommutator}
 \]
-Folglich ist $\ad \colon \enbrace*{\mathfrak{g}, \benbrace*{\cdot ,\cdot }} \to \enbrace*{\mathfrak{gl}(\mathfrak{g}), \benbrace*{\cdot ,\cdot }_0}$
+Folglich ist $\ad \colon \enbrace*{\mathfrak{g}, \benbrace*{\cdot ,\cdot }} \to \enbrace[\big]{\mathfrak{gl}(\mathfrak{g}), \benbrace*{\cdot ,\cdot }_0}$
 ein Liealgebrenhomomorphismus.
 
-\begin{lemma}
+\begin{lemma}[{name=[Eigenschaften von $\Ad$ und $\ad$]}]
 	Sei $G$ eine Liegruppe.
 	Dann gilt
 	\begin{enumerate}[(1)]
-		\item $\enbrace*{\mathd \Ad}_{\id_{\mathfrak{g}}} = \ad$
-		\item $i_g \enbrace*{\exp(v)} = \exp \enbrace*{\Ad(g)v}$
-		\item $\Ad \enbrace*{\exp(v)} = e^{\ad_v} = \sum_{k=0}^{\infty} \frac{(\ad_v)^k}{k!} \colon \mathfrak{g} \to \mathfrak{g}$
+		\item $\enbrace*{\mathd \Ad}_{e} = \ad$
+		\item $i_g \enbrace[\big]{\exp(v)} = \exp \enbrace[\big]{\Ad(g)v}$
+		\item $\Ad \enbrace[\big]{\exp(v)} = e^{\ad_v} = \sum_{k=0}^{\infty} \frac{(\ad_v)^k}{k!} \colon \mathfrak{g} \to \mathfrak{g}$
 		\item Ist $G$ zusammenhängend, so gilt $Z(G) = \ker (\Ad)$
 	\end{enumerate}
 \end{lemma}
@@ -1057,34 +1057,38 @@ ein Liealgebrenhomomorphismus.
 		\item Erinnerung: Ist $M^n$ eine differenzierbare Mannigfaltigkeit, $p \in M^n$ ein Punkt, $X,Y$ glatte Vektorfelder und $\enbrace*{\psi_t}_{\abs*{t}<\varepsilon}$ lokaler Fluss von $X$ in einer Umgebung von $p$.
 		Dann gilt
 		\[
-			\benbrace*{X,Y}(p) = \diffd{}{t}\Big|_{t=0} \enbrace*{\mathd \psi_{-t}}_{\psi_t(p)} Y \enbrace*{\psi_t(p)}
+			\benbrace*{X,Y}(p) = \diffd{}{t}\Big|_{t=0} \enbrace*{\mathd \psi_{-t}}_{\psi_t(p)} Y \enbrace[\big]{\psi_t(p)}
 		\]
-		Es folgt für alle $w \in \mathfrak{g}$.
+		Dies ist die \Index{Lie-Ableitung} von $Y$ entlang $X$. 
+		Es folgt für alle $v,w \in \mathfrak{g}$
 		\begin{align}
-			\enbrace*{\mathd \enbrace*{\Ad(g)}_{\id_{\mathfrak{g}}} \cdot v} (w) = \diffd{}{t}\Big|_{t=0} \Ad \enbrace*{\exp(tv)}(w) &= \diffd{}{t}\Big|_{t=0} \enbrace*{\mathd R_{\exp(-tv)}}_{\exp{tv}} \cdot  \enbrace*{\mathd L_{\exp(tv)}}_{e} \cdot w \\
-			&= \diffd{}{t}\Big|_{t=0} \enbrace*{\mathd\enbrace*{R_{\exp(-tv)}}}_{\exp{tv}} X_w \enbrace*{\exp(tv)} \\
+			\enbrace[\big]{\mathd \enbrace*{\Ad}_{e} \cdot v} (w) = \diffd{}{t}\Big|_{t=0} \!\Ad \enbrace[\big]{\exp(tv)}(w) &= \diffd{}{t}\Big|_{t=0} \enbrace*{\mathd R_{\exp(-tv)}}_{\exp{tv}} \cdot  \enbrace*{\mathd L_{\exp tv}}_{e} \cdot w \\
+			&= \diffd{}{t}\Big|_{t=0} \enbrace*{\mathd R_{\exp(-tv)}}_{\exp{tv}} \cdot X_w \enbrace[\big]{\exp(tv)} \\
 			&= \benbrace*{X_v,X_w}(e)  = \benbrace*{v,w}_{\mathfrak{g}} \\
 			&= \ad_v(w)
 		\end{align}
-		\item Folgt direkt aus \autoref{lem:143}.
-		\item Folgt direkt aus \autoref{lem:143}.
-		\item Zur Inklusion $Z(G) \subseteq ker (\Ad)$: Ist $g \in Z(g)$, so ist $i_g = {\id_G} $ und es folgt $\Ad(g)=\id$.
+		Dabei haben wir benutzt, dass der Fluß von $X_v$ gegeben ist durch $R_{\exp(tv)}$.
+		\item Folgt direkt aus \autoref{lem:143} (3).
+		\item Folgt ebenfalls direkt aus \autoref{lem:143} (3).
+		\item Zur Inklusion $Z(G) \subseteq ker (\Ad)$: Ist $g \in Z(g)$, so ist $i_g = {\id_G} $ und es folgt sofort $\Ad(g)=\id$.
 		
 		Es gelte andersrum $\Ad(g) = \id_{\mathfrak{g}}$.
-		Dann sind $i_g, \id_G \colon G \to G$ Liegruppenhomomorphismen mit $\enbrace*{\mathd i_g}_e = \mathd(\id_G)$.
-		Da $G$ zusammenhängend ist, folgt aus \autoref{kor:126} $i_g=\id_G$ und es folgt $g \in Z(G)$.
+		Dann sind $i_g, \id_G \colon G \to G$ Liegruppenhomomorphismen mit $\enbrace*{\mathd i_g}_e = (\mathd\id_G)_e$.
+		Da $G$ zusammenhängend ist, folgt aus \autoref{kor:126} $i_g=\id_G$ und es folgt $g \in Z(G)$.\qedhere 
 	\end{enumerate}
 \end{beweis}
 
-Beispiel: Betrachte $G= \GL(n,\mathbb{R})$.
-Dann gilt
-\[
-	\begin{array}{ll}
-		i_A(\tilde{A}) = A \cdot \tilde{A} \cdot A^{-1} \quad & \tilde{A} \in \GL(n,\mathbb{R}) \\
-		\Ad(A)(B) = A \cdot B \cdot A^{-1} & B \in \Mat(n,\mathbb{R}) \\
-		\ad_v(W) = V \cdot W + W (-V) = \benbrace*{V,W}_0
-	\end{array}
-\]
+\begin{beispiel*}[{name=[Adjungierte Darstellung der allgemeinen linearen Gruppe]}]
+	Betrachte $G= \GL(n,\mathbb{R})$.
+	Dann gilt
+	\[
+		\begin{array}{ll}
+			i_A(\tilde{A}) = A \cdot \tilde{A} \cdot A^{-1} \quad & \tilde{A} \in \GL(n,\mathbb{R}) \\
+			\Ad(A)(B) = A \cdot B \cdot A^{-1} & B \in \Mat(n,\mathbb{R}) \\
+			\ad_v(W) = V \cdot W + W (-V) = \benbrace*{V,W}_0 \quad 
+		\end{array}
+	\]
+\end{beispiel*}
 
 \begin{lemma}[label=lem:154]
 	Sei $G$ eine zusammenhängende Liegruppe. Dann gilt
@@ -1103,12 +1107,11 @@ Dann gilt
 	\begin{enumerate}[1)]
 		\item Sei $G$ abelsch. Dann gilt $i_g=\id_G$, also $\Ad(g) = \id_{\mathfrak{g}}$ für alle $g \in G$ und es folgt $\ad_v=0$. Damit ist auch die Lieklammer trivial und $\mathfrak{g}$ ist abelsch.
 		
-		Sei andersrum $\mathfrak{g}$ abelsch: Dann ist $\ad_v=0$ für alle $v \in \mathfrak{g}$. Es gilt $\id_{\mathfrak{g}} = e^{\ad_v} = \Ad \enbrace*{\exp(v)}$
-		Es folgt $\Ad(g) = \id_{\mathfrak{g}} $ für alle $g \in G$.
+		Sei andersrum $\mathfrak{g}$ abelsch: Dann ist $\ad_v=0$ für alle $v \in \mathfrak{g}$. Es gilt $\id_{\mathfrak{g}} = e^{\ad_v} = \Ad \enbrace*{\exp(v)}$ und es folgt $\Ad(g) = \id_{\mathfrak{g}} $ für alle $g \in G$.
 		\[
-			i_g \enbrace*{\exp(v)} =  g \exp(v) g^{-1} = \exp \enbrace*{\Ad(g)v} = \exp(v)
+			i_g \enbrace[\big]{\exp(v)} =  g \exp(v) g^{-1} = \exp \enbrace[\big]{\Ad(g)v} = \exp(v)
 		\]
-		Somit ist $G$ abelsch.
+		Somit ist $G$ abelsch.\todo{RevChap 1}
 		\item Da $G$ abelsch ist, ist $\mathfrak{g}$ abelsch und somit ist $\exp \colon (\Tmap_eG,+) \to (G,\cdot )$ ein Liegruppenhomomorphismus (wenn der Kommutator verschwindet gilt die Funktionalgleichung).
 		Somit ist $\exp \colon \Tmap_e G \to G$ eine Überlagerung und $\Gamma := \exp^{-1}(e)$ eine diskrete Untergruppe von $(\Tmap_e G,+)$.\marginnote{Gitter}
 		Somit existieren $v_1, \ldots, v_k \in \mathfrak{g}$ mit
