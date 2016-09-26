@@ -765,12 +765,12 @@ Wir wissen weiter, dass $I_{\max}$ offen in $\mathbb{R}$ ist.
 	        \set*{\pm \id_n} &\text{ falls $n$ gerade}
 	    \end{cases}
 	\]
-	Für $n \ge 2$ ist das Zentrum der speziellen unitären Gruppe zyklisch:\todo{RevChap 1}
+	Für $n \ge 2$ ist das Zentrum der speziellen unitären Gruppe zyklisch:
 	\[
 	    Z \enbrace[\big]{\SU(n)} = \mathbb{Z}_n = \set*{e^{2 \pi i \sfrac{k}{n}} \cdot \id_n \given k=0,1,\ldots ,n-1 }
 	\]
 	Die Fundamentalgruppe ist $\pi_1(\SO(n))= \mathbb{Z}_2$ und die universelle Überlagerung ist $\mathrm{Spin}(n)$.
-	Für $n\ge 2$ ist $\pi \enbrace*{\SU(n)} = \set*{e}$ und $\SU(2) = S^3$.
+	Für $n\ge 2$ ist $\pi_1 \enbrace*{\SU(n)} = \set*{e}$ und es gilt $\SU(2) = S^3$.
 \end{beispiel*}
 
 \begin{lemma}[label=lem:134,{name=[{Liegruppenhomomorphismus aus Liealgebrenhomomorphismus wenn einfach zusammenhängend}]}]
@@ -796,17 +796,17 @@ Wir wissen weiter, dass $I_{\max}$ offen in $\mathbb{R}$ ist.
 \end{beweis}
 
 Ist in obiger Situation $H$ \emph{nicht} einfach zusammenhängend, so erhält man einen Homomorphismus $\tilde{\Phi} \colon \tilde{H} \to G$, wobei $\tilde{H}$ eine universelle Überlagerung von $H$ ist.
-Dies liefert genau dann einen Homomorphismus $\Phi \colon H \to G$, wenn $\ker \pi \subset \ker \tilde{\Phi}$ ist, wobei $\pi \colon \tilde{H} \to H$ die Überlagerungsabbildung ist.
+Dies liefert genau dann einen Homomorphismus $\Phi \colon H \to G$, wenn $\ker \pi \subset \ker \tilde{\Phi}$ ist, wobei $\pi \colon \tilde{H} \to H$ die Überlagerungsabbildung bezeichnet.
 
 Dies ist aber nicht immer richtig:
 So kann man zum Beispiel den durch die Identität gegeben Liealgebrenisomorphismus $\psi \colon \mathfrak{h} \to \mathfrak{h}$ betrachten.
-Dann ist die induzierte Abbildung $\tilde{\Phi} \colon \tilde{H} \to \tilde{H}$ injektiv, aber $\pi \tilde{H} \to H$ muss nicht injektiv sein.
+Dann ist die induzierte Abbildung $\tilde{\Phi} \colon \tilde{H} \to \tilde{H}$ injektiv, aber $\pi \colon \tilde{H} \to H$ muss nicht injektiv sein.
 Ein konkretes Beispiel wäre die universelle Überlagerung von $\SL(n,\mathbb{R})$.
 
 \begin{satz}[{name=[{Liegruppen-Liealgebren-Zusammenhang im einfach zusammenhängenden Fall}]}]
 	Es gilt
 	\begin{enumerate}[1)]
-		\item Zwei zusammenhängende, einfach zusammenhängenden Liegruppen mit isomorphen Liealgebren sind isomorph.
+		\item Zwei zusammenhängende, einfach zusammenhängende Liegruppen mit isomorphen Liealgebren sind isomorph.
 		\item Für jede endlich dimensionale Liealgebra $(V, \benbrace*{\cdot,\cdot })$ existiert genau eine zusammenhängende, einfach zusammenhängende Liegruppe $\tilde{G}$ mit Liealgebra $\tilde{\mathfrak{g}}=V$.
 		\item Jede zusammenhängende Liegruppe $G$ ist isomorph zu $\sfrac{\tilde{G}}{\tilde{\Gamma}}$, wobei $\tilde{G}$ eine zusammenhängende, einfach zusammenhängende Liegruppe und $\tilde{\Gamma} \subset Z(\tilde{G})$ eine diskrete Untergruppe ist.
 	\end{enumerate}
@@ -818,71 +818,74 @@ Ein konkretes Beispiel wäre die universelle Überlagerung von $\SL(n,\mathbb{R}
 		\[
 			(\mathd \Phi_1)_e = \psi \qquad (\mathd \Phi_2)_e = \psi^{-1}
 		\]
-		Somit ist $\Phi_2 \circ  \Phi_1 \colon H \to G$ ein Liegruppenhomomorphismus mit $(\mathd \Phi_2 \circ \Phi_1)_e = \id_{\Tmap_e H}$.
-		Nach \autoref{kor:126} gilt $\Phi_2 \circ \Phi_1= \id_H$ und somit $\Phi_2 = \Phi_1^{-1}$.
+		Somit ist $\Phi_2 \circ  \Phi_1 \colon H \to G$ ein Liegruppenhomomorphismus mit $\enbrace*{\mathd (\Phi_2 \circ \Phi_1)}_e = \id_{\Tmap_e H}$.
+		Nach \autoref{kor:126} folgt nun $\Phi_2 \circ \Phi_1= \id_H$ und somit $\Phi_2 = \Phi_1^{-1}$.
 		\item Nach dem Satz von Ado existiert eine Liegruppe $G$ mit Liealgebra $\mathfrak{g}=V$.
 		Die universelle Überlagerung $\tilde{G}$ von $G$ ist die gesuchte Liegruppe.
-		Eindeutigkeit folgt aus 1).
-		\item \autoref{lem:133}\qedhere
+		Die Eindeutigkeit folgt aus 1).
+		\item Mit $\widetilde{G}$ als universelle Überlagerung folgt dies direkt aus \autoref{lem:133}.\qedhere
 	\end{enumerate}
 \end{beweis}
 
-Beispiel: 
-\[
-	\SL(2,\mathbb{R}) = \set*{\begin{pmatrix}
-		a & b \\ c & d
-	\end{pmatrix} \given ad - bc =1}
-\]
-ist eine 3-dimensionale Untergruppe von $\GL(n,\mathbb{R})$.
-Es gilt $\SL(2,\mathbb{R}) = \SO(2) \times \mathbb{R}^2$.
-Somit ist $\pi_1 \enbrace*{\SL(2,\mathbb{R})} = \pi_1 (\SO(2)) = \mathbb{Z}$.
-Es sei $M^3 := D^2 \times \mathbb{R} \cong \mathbb{R}^3$ (diffeomorph) mit
-\[
-	D^2 := \set*{z \in \mathbb{C} \given \abs*{z} <1} = \set*{\begin{pmatrix}
-		x \\ y
-	\end{pmatrix} \in \mathbb{R}^2 \given x^2 +y^2 <1}
-\]
-Wir führen folgende Multiplikation auf $M^3$ ein:
-\[
-	(\alpha,\varphi) \cdot (\beta, \psi) := \enbrace*{ \frac{\beta + \alpha \cdot e^{-i \psi}}{1 + \alpha \tilde{\beta} e^{-i \psi}}, \varphi + \psi + 2 \mathrm{Arg} \enbrace*{1 + \alpha \overline{\beta} e^{-i \psi}} }
-\]
-Es gilt zum Beispiel $(\alpha,\varphi) \cdot (0,0) = \enbrace*{\alpha,\varphi} = (0,0) \cdot (\alpha,\varphi)$.
-Das heißt das neutrale Element ist $e=(0,0)$.
-Ferner gilt
-\[
-	(\alpha,\varphi) \cdot \enbrace*{- \alpha e^{i \varphi}, -\varphi} = (0,0) = e
-\]
-Somit ist $M^3$ eine einfach zusammenhängende Liegruppe (!).
-Man rechnet leicht nach, dass 
-\begin{align}
-	E_1(\alpha,\varphi) &= \enbrace*{\frac{1}{2}  (1- \alpha^2), \Im \alpha} = \enbrace*{\frac{1}{2} (1 -x^2 +y^2), -xy,y} \\
-	E_2(\alpha,\varphi) &= \enbrace*{\frac{1}{2} i (1+ \alpha^2), - \Re(\alpha) } = \enbrace*{-xy, \frac{1}{2} \enbrace*{1+x^2 -y^2}, -x} \\
-	E_3(\alpha,\varphi) &= \enbrace*{-i \alpha,1} = (y,-x,1)
-\end{align}
-linksinvariante Vektorfelder mit
-\[
-	E_1(0,0) = \enbrace*{\sfrac{1}{2},0,0 } \qquad E_2(0,0) = \enbrace*{0, \sfrac{1}{2}, 0 } \qquad E_3(0,0) = (0,0,1)
-\]
-Dies erhält man zum Beispiel durch
-\[
-	E_1(\alpha,\varphi) = \mathd L_{(\alpha,\varphi)} \cdot \enbrace*{\sfrac{1}{2},0,0} = \diffd{}{t}\big|_{t=0} (\alpha,\varphi) \cdot \enbrace*{\sfrac{1}{2},0,0} = \ldots 
-\]
-Es gilt
-\[
-	\benbrace*{E_1,E_2} = - E_3 \quad \benbrace*{E_3,E_1} = E_2 \quad \benbrace*{E_2,E_3} =E_1
-\]
-Auf $\SL(2,\mathbb{R})$
-\[
-	\overline{E}_1 := \frac{1}{2} \begin{pmatrix}
-		1 & 0 \\ 0 & -1
-	\end{pmatrix} \quad 
-	\overline{E}_2 := \frac{1}{2}  \begin{pmatrix}
-		0 & 1 \\ 1 & 0
-	\end{pmatrix} \quad 
-	\overline{E}_3 := \frac{1}{2} \begin{pmatrix}
-		0 & -1 \\ 1 & 0
-	\end{pmatrix} 
-\]
+\begin{beispiel*}[{name=[Überlagerung der speziellen linearen Gruppe]}]
+	Wir betrachten die spezielle lineare Gruppe in Dimension $2$:\todo{hier könnte man noch die Übungen komplett einarbeiten \ldots}
+	\[
+		\SL(2,\mathbb{R}) = \set*{\begin{pmatrix}
+			a & b \\ c & d
+		\end{pmatrix} \given ad - bc =1}
+	\]
+	ist eine 3-dimensionale Untergruppe von $\GL(n,\mathbb{R})$.
+	Es gilt $\SL(2,\mathbb{R}) = \SO(2) \times \mathbb{R}^2$.\marginnote{$\SL(2,\mathbb{R})$ ist homöomorph zum inneren eines soliden Torus, Iwasawa-Zerlegung}
+	Somit ist $\pi_1 \enbrace*{\SL(2,\mathbb{R})} = \pi_1 (\SO(2)) = \mathbb{Z}$.
+	Es sei $M^3 := D^2 \times \mathbb{R} \cong \mathbb{R}^3$ (diffeomorph) mit
+	\[
+		D^2 := \set[\big]{z \in \mathbb{C} \given \abs*{z} <1} = \set*{\begin{pmatrix}
+			x \\ y
+		\end{pmatrix} \in \mathbb{R}^2 \given x^2 +y^2 <1}
+	\]
+	Wir führen folgende Multiplikation auf $M^3$ ein:
+	\[
+		(\alpha,\varphi) \cdot (\beta, \psi) := \enbrace*{ \frac{\beta + \alpha \cdot e^{-i \psi}}{1 + \alpha \overline{\beta} e^{-i \psi}}, \varphi + \psi + 2 \cdot \Arg \enbrace*{1 + \alpha \overline{\beta} e^{-i \psi}} }
+	\]
+	Man prüft leicht nach, dass dies wohldefiniert ist.
+	Es gilt zum Beispiel $(\alpha,\varphi) \cdot (0,0) = \enbrace*{\alpha,\varphi} = (0,0) \cdot (\alpha,\varphi)$.
+	Das heißt das neutrale Element ist $e=(0,0)$.
+	Ferner gilt
+	\[
+		(\alpha,\varphi) \cdot \enbrace*{- \alpha e^{i \varphi}, -\varphi} = (0,0) = e
+	\]
+	Somit ist $M^3$ eine einfach zusammenhängende Liegruppe (!).
+	Man rechnet leicht nach, dass 
+	\begin{align}
+		E_1(\alpha,\varphi) &= \enbrace*{\frac{1}{2}  (1- \alpha^2), \Im \alpha} = \enbrace*{\frac{1}{2} (1 -x^2 +y^2), -xy,y} \\
+		E_2(\alpha,\varphi) &= \enbrace*{\frac{1}{2} i (1+ \alpha^2), - \Re(\alpha) } = \enbrace*{-xy, \frac{1}{2} \enbrace*{1+x^2 -y^2}, -x} \\
+		E_3(\alpha,\varphi) &= \enbrace*{-i \alpha,1} = (y,-x,1)
+	\end{align}
+	linksinvariante Vektorfelder auf $M^3$ sind mit
+	\[
+		E_1(0,0) = \enbrace*{\sfrac{1}{2},0,0 } \qquad E_2(0,0) = \enbrace*{0, \sfrac{1}{2}, 0 } \qquad E_3(0,0) = (0,0,1)
+	\]
+	Dies erhält man zum Beispiel durch
+	\[
+		E_1(\alpha,\varphi) = \mathd L_{(\alpha,\varphi)} \cdot \enbrace*{\sfrac{1}{2},0,0} = \diffd{}{t}\Big|_{t=0} (\alpha,\varphi) \cdot \enbrace*{\sfrac{1}{2}\cdot t,0,0} = \ldots 
+	\]
+	Für die Lieklammer gilt
+	\[
+		\benbrace*{E_1,E_2} = - E_3 \quad \benbrace*{E_3,E_1} = E_2 \quad \benbrace*{E_2,E_3} =E_1
+	\]
+	Man erhält nun einen Liealgebrenisomorphismus zur Liealgebra von $\SL(2,\mathbb{R})$ 
+	\[
+		\overline{E}_1 := \frac{1}{2} \begin{pmatrix}
+			1 & 0 \\ 0 & -1
+		\end{pmatrix} \quad 
+		\overline{E}_2 := \frac{1}{2}  \begin{pmatrix}
+			0 & 1 \\ 1 & 0
+		\end{pmatrix} \quad 
+		\overline{E}_3 := \frac{1}{2} \begin{pmatrix}
+			0 & -1 \\ 1 & 0
+		\end{pmatrix} 
+	\]
+\end{beispiel*}
 % section 13 (end)
 
 \section{Die Exponentialabbildung} % (fold)
@@ -893,11 +896,13 @@ Auf $\SL(2,\mathbb{R})$
 	Dann nennt man einen Homomorphismus $\Phi \colon (\mathbb{R},+) \to G$ eine \Index{Einparameteruntergruppe} (von $G$).
 \end{definition}
 
-Beispiel: $G = \GL(n;\mathbb{R})$, $v \in \Tmap_e \GL(n,\mathbb{R}) = \Mat(n,\mathbb{R})$.
-\[
-	\Phi_v \colon \mathbb{R} \longrightarrow G \qquad t \longmapsto \exp(t \cdot v) = \sum_{k=0}^{\infty}  \frac{(tv)^k}{k!} 
-\]
-Es gilt $\Phi_v(s+t) = \Phi_v(s) \cdot \Phi_v(t) = \Phi_v(t) \cdot \Phi_v(s)$ für alle $s,t \in \mathbb{R}$, wie man sich leicht überlegt.
+\begin{beispiel*}[{name=[Einparametergruppe der allgemeinen linearen Gruppe]}]
+	$G = \GL(n;\mathbb{R})$, $v \in \Tmap_e \GL(n,\mathbb{R}) = \Mat(n,\mathbb{R})$.
+	\[
+		\Phi_v \colon \mathbb{R} \longrightarrow G \qquad t \longmapsto \exp(t \cdot v) = \sum_{k=0}^{\infty}  \frac{(tv)^k}{k!} 
+	\]
+	Es gilt $\Phi_v(s+t) = \Phi_v(s) \cdot \Phi_v(t) = \Phi_v(t) \cdot \Phi_v(s)$ für alle $s,t \in \mathbb{R}$, wie man sich leicht überlegt.
+\end{beispiel*}
 
 Zurück zum allgemeinen Fall: Sei $v \in \Tmap_e G \setminus \set*{0}$.
 Wegen $\Tmap_0 \mathbb{R} \cong \mathbb{R}$ ist
@@ -909,7 +914,7 @@ Da $\mathbb{R}$ einfach zusammenhängend ist, existiert nach \autoref{lem:134} e
 \(
 	\Phi_v \colon \mathbb{R} \to G
 \)
-mit $\Phi_v'(0)= (\mathd \Phi_v)_0 = \psi_v$.
+mit $\Phi_v'(0)= (\mathd \Phi_v)_0 = \psi_v$.\todo{RevChap 1}
 
 \begin{lemma}[label=lem:142]
 	Sei $G$ eine Liegruppe mit Exponentialabbildung $\exp \colon \Tmap_e G \to G$.
