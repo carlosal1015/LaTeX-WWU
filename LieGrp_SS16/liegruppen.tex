@@ -429,7 +429,7 @@ Wir wissen weiter, dass $I_{\max}$ offen in $\mathbb{R}$ ist.
 	Man nennt die Kurve $(c_v(t))_{t \in \mathbb{R}}$ auch \Index{Einparameteruntergruppe} von $G$.
 \end{beweis}
 
-\begin{definition}[{name=[Exponentialabbildung]}]
+\begin{definition}[label=def:exp,{name=[Exponentialabbildung]}]
 	Sei $G$ eine Liegruppe.
 	Dann nennt man 
 	\[
@@ -914,31 +914,31 @@ Da $\mathbb{R}$ einfach zusammenhängend ist, existiert nach \autoref{lem:134} e
 \(
 	\Phi_v \colon \mathbb{R} \to G
 \)
-mit $\Phi_v'(0)= (\mathd \Phi_v)_0 = \psi_v$.\todo{RevChap 1}
+mit $(\mathd \Phi_v)_0 = \psi_v$ und $\Phi_v'(0)= v$.
 
-\begin{lemma}[label=lem:142]
-	Sei $G$ eine Liegruppe mit Exponentialabbildung $\exp \colon \Tmap_e G \to G$.
+\begin{lemma}[label=lem:142,{name=[Verträglichkeit mit \cref{lem:127}]}]
+	Sei $G$ eine Liegruppe mit Exponentialabbildung\index{Exponentialabbildung} $\exp \colon \Tmap_e G \to G$.
 	Dann gilt $\Phi_v(1) = \exp(v)$ für alle $v \in \Tmap_e G$.
 \end{lemma}
 \begin{beweis}
 	Wir hatten in \autoref{lem:127} gezeigt, dass $c_v(s +t) = c_v(s) \cdot c_v(t)$ für alle $t,s \in \mathbb{R}$ gilt, wobei $c_v$ die Integralkurve von $X_v$ ist mit $X_v(e)=v$.
 	Somit gilt
 	\[
-		\exp \enbrace*{(s+t) v} = c_{(s+t)v}(1) = c_v(s+t) = c_v(s) \cdot c_v(t) = c_{sv}(1) \cdot c_{tv}(1) = \exp(sv) \cdot \exp(tv)
+		\exp \enbrace[\big]{(s+t) v} = c_{(s+t)v}(1) = c_v(s+t) = c_v(s) \cdot c_v(t) = c_{sv}(1) \cdot c_{tv}(1) = \exp(sv) \cdot \exp(tv)
 	\]
 	Damit ist $t \mapsto \exp(tv)$ eine Einparametergruppe mit $\diffd{}{t}\big|_{t=0} \exp(tv)=v$.
-	Die Eindeutigkeit impliziert $\Phi_v(t)=\exp(tv)$.
+	Die Eindeutigkeit von $\Phi_v$ impliziert $\Phi_v(t)=\exp(tv)$.
 \end{beweis}
 
-\begin{lemma}[label=lem:143]
+\begin{lemma}[label=lem:143,{name=[Eigenschaften der Exponentialabbildung]}]
 	Es gilt
 	\begin{enumerate}[(1),itemsep=0pt]
 		\item Für alle $v \in \Tmap_eG$ ist $\Phi_v(t)=\exp(tv)$ eine Einparamtergruppe von $G$ mit $\Phi'_v(0)=v$.
 		\item Sei $g \in G$ und $v \in \Tmap_eG$.
 		Dann ist $L_g(\Phi_v(t))$ Integralkurve von $X_v$.
-		\item Ist $\Phi \colon H \to G$ ein Homomorphismus, so gilt für alle $w \in \Tmap_eW$ für alle $t \in \mathbb{R}$
+		\item Ist $\Phi \colon H \to G$ ein Homomorphismus, so gilt für alle $w \in \mathfrak{h}$ für alle $t \in \mathbb{R}$\marginnote{$\exp$ ist natürlich!}
 		\[
-			\Phi \enbrace*{\exp_H(tw)} = \exp_G \enbrace*{t \enbrace*{\mathd \Phi}_e \cdot w}
+			\Phi \enbrace*{\exp_H(tw)} = \exp_G \enbrace[\big]{t \enbrace*{\mathd \Phi}_e \cdot w}
 		\]
 		\item Ist $H$ eine Lieuntergruppe von $G$, so gilt
 		\[
@@ -948,47 +948,51 @@ mit $\Phi_v'(0)= (\mathd \Phi_v)_0 = \psi_v$.\todo{RevChap 1}
 \end{lemma}
 \begin{beweis}
 	\begin{enumerate}[(1),itemsep=0pt]
-		\item siehe \autoref{lem:142}
+		\item Bereits in \autoref{lem:142} gezeigt.
 		\item Klar, denn $\exp(tv)=c_v(t)$.
 		\item Homomorphismen bilden Einparametergruppen auf Einparametergruppen ab:
 		\[
-			\Phi \enbrace*{h(s+t)} = \Phi \enbrace*{h(s) \cdot h(t)} = \Phi \enbrace*{h(s)} \Phi \enbrace*{h(t)}
+			\Phi \enbrace[\big]{h(s+t)} = \Phi\enbrace[\big]{h(s) \cdot h(t)} = \Phi \enbrace[\big]{h(s)} \cdot \Phi \enbrace[\big]{h(t)}
 		\]
-		mit $\diffd{}{t}\big|_{t=0} (\Phi \circ h)(t) = \enbrace*{\mathd\Phi}_e \cdot h'(0)$.
-		Aus der Eindeutigkeit folgt die Behauptung.
+		Also definiert $\psi(t) = \Phi \enbrace*{\exp_H(tw)}$ eine Einparametergruppe mit $\psi'(0) = (\mathd \Phi)_e (w)$.
+		Wegen der Eindeutigkeit muss somit $\psi(t) = \exp_G \enbrace*{t (\mathd \Phi)_e w}$ gelten.
 		\item Sei $i \colon H \to G$ die Inklusion.
-		Dann ist $\exp_H(tw) = i \enbrace*{\exp_H(tw)} = \exp_G \enbrace*{(\mathd i)_e \cdot w \cdot t} = \exp_G(tw)$.\qedhere
+		Dann ist 
+		\[
+			\exp_H(tw) = i \enbrace*{\exp_H(tw)} \StackText{(3)}{=} \exp_G \enbrace[\big]{(\mathd i)_e \cdot tw} = \exp_G(tw)\qedhere
+		\]
 	\end{enumerate}
 \end{beweis}
 
-Beispiel: Es gilt $\Tmap_e\SO(n) = \set*{V \in \Mat_n(\mathbb{R}) \given V^T =-V}$
-\[
-	\benbrace*{V_1,V_2}^T = \enbrace*{V_1 V_2 - V_2 V_1}^T = V_2 V_1 - V_1 V_2 = -\benbrace*{V_1,V_2}
-\]
-Aus (4) folgt $\exp(tv) \in \SO(n)$ für alle $t \in \mathbb{R}$. Anders: $\exp_H = \exp_G\big|_{\Tmap_e H} \colon \Tmap_e H \to H$.
-
-Bemerkung: 
-\begin{enumerate}[1)]
-	\item ist $H$ eine Lieuntergruppe von $G$, so gilt $\exp_H  = \exp_B\big|_{\Tmap_e H} \colon \Tmap_e H \to H$
-	\item Die Exponentialabbildung $\exp \colon \Tmap_e G \to G$ ist nicht immer surjektiv; richtig für kompakte zusammenhängende Liegruppen.
-	Es gilt $\im \enbrace*{\exp (\Tmap_e G)} \supset U \supset \set*{e}$ für eine offene Umgebung von $e$.
-	\item Es gilt $\exp(x)^{-1} = \exp(-x)$.
-	\item Der Fluss eines linksinvarianten Vektorfeldes $X_v$ ist gegeben durch
+\begin{beispiel*}[{name=[Liealgebra von $\SO(n)$]}]
+	Es gilt $\Tmap_e\SO(n) = \set*{V \in \Mat_n(\mathbb{R}) \given V^T =-V}$; die Abgeschlossenheit folgt mit
 	\[
-		\enbrace*{R_{\exp(tv)}}_{t \in \mathbb{R}} \qquad X_v(g) = \enbrace*{\mathd L_g}_e \cdot v
+		\benbrace*{V_1,V_2}^T = \enbrace*{V_1 V_2 - V_2 V_1}^T = V_2 V_1 - V_1 V_2 = -\benbrace*{V_1,V_2}
 	\]
-\end{enumerate}
+	Aus (4) folgt nun $\exp(tv) \in \SO(n)$ für alle $t \in \mathbb{R}$.
+\end{beispiel*}
+
+\begin{bemerkung*}[{name=[weitere Eigenschaften der Exponentialabbildung]}]
+	Weitere zentrale Eigenschaften der Exponentialabbildung:
+	\begin{enumerate}[1)]
+		\item Aus (4) folgt: Ist $H$ eine Lieuntergruppe von $G$, so gilt $\exp_H  = \exp_B\!\big|_{\Tmap_e H} \colon \Tmap_e H \to H$.
+		\item Die Exponentialabbildung $\exp \colon \Tmap_e G \to G$ ist nicht immer surjektiv; dies ist allerdings richtig für kompakte zusammenhängende Liegruppen.
+		Es gilt aber $\im \enbrace*{\exp (\Tmap_e G)} \supset U \supset \set*{e}$ für eine offene Umgebung von $e$ wegen dem Umkehrsatz und \cref{lem:129}.
+		\item Es gilt $\exp(x)^{-1} = \exp(-x)$.
+		\item Der Fluss eines linksinvarianten Vektorfeldes $X_v$ mit $X_v(g) = \enbrace*{\mathd L_g}_e \cdot v$ ist gegeben durch\todo{RevChap 1}
+		\[
+			\enbrace*{R_{\exp(tv)}}_{t \in \mathbb{R}}
+		\]
+	\end{enumerate}
+\end{bemerkung*}
 % section 14 (end)
 
 \section{Die adjungierte Darstellung} % (fold)
 \label{sec:15}
-Sei $G$ eine Liegruppe und $g \in G$ ein festes Gruppenelement. Betrachte die Konjugation
+Sei $G$ eine Liegruppe und $g \in G$ ein festes Gruppenelement. Betrachte die \Index{Konjugation}
 \mapdef{i_g \colon G}{G}{\tilde{g}}{m \enbrace[\big]{m \enbrace*{g,\tilde{g}}, I(g)}= g \cdot \tilde{g} \cdot g^{-1}}{}
 wobei bekanntermaßen $m(g,\tilde{g})= g \cdot \tilde{g}$ und $I(g)=g^{-1}$. 
-Somit gilt
-\[
-	i_g = L_g \circ R_{g^{-1}} = R_{g^{-1}} \circ L_g
-\]
+Somit gilt $i_g = L_g \circ R_{g^{-1}} = R_{g^{-1}} \circ L_g$.
 Wir hatten bereits gesehen, dass $i_g \colon G \to G$ ein Liegruppenhomomorphismus ist.
 Folglich ist 
 \[
@@ -999,7 +1003,7 @@ Wir hatten auch gezeigt, dass aus $i(g_1 \cdot g_2) = i(g_1) \cdot i(g_2)$ die I
 \[
 	\Ad(g_1 \cdot g_2) = \Ad(g_1) \circ \Ad(g_2)
 \]
-folgt.
+folgt (Beispiel nach \cref{lem:122}).
 
 \begin{definition}[{name=[adjungierte Darstellung]}]
 	Sei $G$ eine Liegruppe,
@@ -1010,13 +1014,13 @@ folgt.
 	die \Index{adjungierte Darstellung} von $G$.
 \end{definition}
 
-Ist zum Beispiel $G$ abelsch, so ist $i_g = \id_G$ und es folgt ${\Ad(g)} = \id_{\mathfrak{g}}$.
+Ist zum Beispiel $G$ abelsch, so ist $i_g = \id_G$ und es folgt ${\Ad(g)} = \id_{\mathfrak{g}}$ für alle $g \in G$.
 Ist $G=S^3$, so wurde in den Übungen die adjungierte Darstellung von $G$ bestimmt:
 \[
 	\Tmap_e S^3 = \im \mathbb{H} = \Span_\mathbb{R} (i,j,k) =: \mathbb{R}^3
 \]
 Es gilt $\Ad(g)(x) = g \cdot x \cdot g^{-1} \in \mathbb{R}^3$.
-Es wurde auch $\Im \enbrace*{\Ad(S^3)} = \S0(3)$ gezeigt.
+Es wurde auch $\Im \enbrace*{\Ad_{S^3}} = \SO(3)$ gezeigt.
 
 \begin{definition}
 	Sei $G$ eine Liegruppe mit Liealgebra $\mathfrak{g}$.
@@ -3839,6 +3843,5 @@ und $\abs*{\overline{a}} \in \set*{0,1} $ $\mathbb{Z}_2$-graduiert, das heißt $
 \printindex
 \printbibliography
 \listoffigures
-\todototoc
-\listoftodos[To-do's und andere Baustellen]
+\listoftodos[To-do's und andere Baustellen]\todototoc
 \end{document}
