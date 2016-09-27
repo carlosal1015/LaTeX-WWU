@@ -909,7 +909,7 @@ Wegen $\Tmap_0 \mathbb{R} \cong \mathbb{R}$ ist
 \[
 	\psi_v \colon \mathbb{R} \to \Tmap_e G \quad t \mapsto t \cdot v
 \]
-ein Liealgebrenhomomorphismus. 
+ein Liealgebrenhomomorphismus.
 Da $\mathbb{R}$ einfach zusammenhängend ist, existiert nach \autoref{lem:134} ein eindeutig bestimmter Homomorphismus
 \(
 	\Phi_v \colon \mathbb{R} \to G
@@ -975,7 +975,7 @@ mit $(\mathd \Phi_v)_0 = \psi_v$ und $\Phi_v'(0)= v$.
 \begin{bemerkung*}[{name=[weitere Eigenschaften der Exponentialabbildung]}]
 	Weitere zentrale Eigenschaften der Exponentialabbildung:
 	\begin{enumerate}[1)]
-		\item Aus (4) folgt: Ist $H$ eine Lieuntergruppe von $G$, so gilt $\exp_H  = \exp_B\!\big|_{\Tmap_e H} \colon \Tmap_e H \to H$.
+		\item Aus (4) folgt: Ist $H$ eine Lieuntergruppe von $G$, so gilt $\exp_H  = \exp_G\!\big|_{\Tmap_e H} \colon \Tmap_e H \to H$.
 		\item Die Exponentialabbildung $\exp \colon \Tmap_e G \to G$ ist nicht immer surjektiv; dies ist allerdings richtig für kompakte zusammenhängende Liegruppen.
 		Es gilt aber $\im \enbrace*{\exp (\Tmap_e G)} \supset U \supset \set*{e}$ für eine offene Umgebung von $e$ wegen dem Umkehrsatz und \cref{lem:129}.
 		\item Es gilt $\exp(x)^{-1} = \exp(-x)$.
@@ -1090,7 +1090,7 @@ ein Liealgebrenhomomorphismus.
 	\]
 \end{beispiel*}
 
-\begin{lemma}[label=lem:154]
+\begin{lemma}[label=lem:154,{name=[über abelsche Liegruppen, Normalteiler und das Zentrum]}]
 	Sei $G$ eine zusammenhängende Liegruppe. Dann gilt
 	\begin{enumerate}[1)]
 		\item $G$ ist abelsch genau dann, wenn $\Tmap_e G = \mathfrak{g}$ abelsch ist.
@@ -1098,7 +1098,7 @@ ein Liealgebrenhomomorphismus.
 		\item Ist $H$ eine zusammenhängende Untergruppe von $G$, so ist $H$ Normalteiler genau dann, wenn $\mathfrak{h} = \Tmap_e H$ Ideal von $\mathfrak{g}$ ist, das heißt wenn $\benbrace*{\mathfrak{g},\mathfrak{h}} \subset \mathfrak{h}$ gilt.
 		\item Das Zentrum $Z(G)$ ist Lieuntergruppe von $G$ mit 
 		\[
-			Z(\mathfrak{g}) = \Tmap_e Z(G) = \set*{v \in \mathfrak{g} \given \ad_v =0}
+			\Tmap_e Z(G) = Z(\mathfrak{g}) = \set*{v \in \mathfrak{g} \given \ad_v =0}
 		\]
 		\item Ist $H$ eine Lieuntergruppe von $G$, so ist die Einschränkung der adjungierten Darstellung von $G$ auf $H$ gerade die adjungierte Darstellung von $H$.
 	\end{enumerate}
@@ -1137,25 +1137,44 @@ ein Liealgebrenhomomorphismus.
 			H \ni \exp_G \enbrace[\big]{\Ad(g)(w)} \StackText{\ref{lem:153}}{=} i_g \enbrace[\big]{\exp(w)}= g \cdot \exp(w) \cdot g^{-1} 
 		\end{align}
 		für alle $g \in G$ und $w \in \mathfrak{h}$.
-		Damit ist $H$ ein Normalteiler.\todo{RevChap 1}
-		\item \emph{Übung!}
-		\item \emph{Übung!}\qedhere
+		Damit ist $H$ ein Normalteiler.
+		\item Nach \autoref{satz:1210} genügt es zu zeigen, dass $Z(G)$ abgeschlossen ist, um zu beweisen, dass $Z(G)$ eine Lieuntergruppe ist.
+		Betrachte $\varphi \colon G \to G$, $g \mapsto g h g^{-1}$ für ein festes $h \in G$. 
+		Dann ist $Z(\set*{h}) = \varphi^{-1}(\set*{h})$, also sind Zentralisatoren\index{Zentralisator} als Schnitte von Mengen der Form $Z(\set*{h})$ abgeschlossen. 
+		Insbesondere ist das Zentrum abgeschlossen.
+		
+		$Z(\mathfrak{g}) = \set*{v \in \mathfrak{g} \given \ad_v =0}$ gilt per Definition.
+		Nach \autoref{lem:153} (4) gilt $Z(G) = \ker \Ad$.
+		Nach \autoref{lem:143} (4) enthält $\Tmap_e Z(G)$ genau die Elemente aus $\mathfrak{g}$ mit $\exp(tv) \in Z(G)$ für alle $t \in \mathbb{R}$.
+		Damit folgt
+		\[
+			 \id_{\mathfrak{g}}=\Ad (\exp tv) =  e^{\ad_{tv}}
+		\]
+		was äquivalent zu $\ad_{tv}=0$ ist.
+		\item Sei $\iota \colon H \hookrightarrow G$ die Inklusion.
+		Für $h \in H$ und $v \in \mathfrak{h}$ gilt
+		\[
+			(\mathd \iota)_{e_H} \enbrace[\big]{\Ad_H(h)v} = \enbrace[\big]{\mathd(\iota \circ i_h)}_{e_H} v=\enbrace[\big]{\mathd(i_h \circ \iota)}_{e_H} = (\mathd i_h)_{e_G} v = \Ad_G(h) v
+		\]
+		Hier fließt ein, dass $\mathd \iota$ injektiv ist.\qedhere
 	\end{enumerate}
 \end{beweis}
 
-Frage: Wann sind Normalteiler abgeschlossene Untergruppen?
-Für $r$ irrational ist
-\[
-	S^1_r = \set*{\enbrace*{e^{i \varphi}, e^{i r \varphi}} \in T^2}
-\]
-ist Normalteiler, aber $\overline{S^1_r}=T^2$.
+\begin{frage}[{name=[Sind Normalteiler abgeschlossen?]}]
+	Wann sind Normalteiler abgeschlossene Untergruppen?
+	Beispielsweise ist für $r$ irrational
+	\[
+		S^1_r = \set*{\enbrace*{e^{i \varphi}, e^{i r \varphi}} \in T^2}
+	\]
+	ein Normalteiler, aber $\overline{S^1_r}=T^2$ und $S^1_r$ damit nicht abgeschlossen.
+\end{frage}
 % section 15 (end)
 
 \section{Automorphismen von Liegruppen} % (fold)
 \label{sec:16}
-
-\begin{definition}
-	Sei $G$ eine Liegruppe mit Liealgebra $\mathfrak{g}$.
+\todo{RevChap 1}
+\begin{definition}[{name=[Automorphismen und Derivationen]}]
+	Sei $\mathfrak{g}$ eine Liealgebra.
 	\begin{enumerate}[(i)]
 		\item Dann nennt man einen linearen Isomorphismus $A \colon \mathfrak{g} \to \mathfrak{g}$ einen Liealgebra-Isomorphismus, falls 
 	\[
