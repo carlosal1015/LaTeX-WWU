@@ -4,6 +4,26 @@ Sie stammen also auch hauptsächlich aus den Übungen und deswegen sei hier noch
 
 Die Reihenfolge richtet sich nach der Reihenfolge der Übungsaufgaben.
 
+\section{Funktionalgleichung} % (fold)
+\label{sec:funktionalgleichung}
+Für $X,Y \in \mathfrak{g}$ gilt
+\[
+	\benbrace*{X,Y} = 0 \implies \exp(X+Y) = \exp(X) \exp(Y)
+\]
+\begin{beweis}
+	Die von $X$ und $Y$ aufgespannte Unteralgebra von $\mathfrak{g}$ ist abelsch und somit auch die zugehörige zusammenhängende Lieuntergruppe $A$ von $G$.
+	Betrachte nun
+	\[
+		\alpha(t) = \exp(t X) \exp(t Y)
+	\]
+	$\alpha \colon \mathbb{R} \to G$ ist ein Liegruppenhomomorphismus, da $A$ abelsch ist.
+	Es gilt\footnote{mittels $(d m)_{(a,b)}(v,w) = (d R_b)_a \cdot v + (d L_a)_b \cdot w$} $\alpha'(0) = X(e) + Y(e)$ und es folgt
+	\[
+		\exp(t X) \exp(tY) = \exp t (X+Y)
+	\]
+	für alle $t$.
+\end{beweis}
+% section funktionalgleichung (end)
 
 \section{Aufgabe 3 -- Über Quaternionen} % (fold)
 \label{sec:aufg3}

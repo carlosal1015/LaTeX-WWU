@@ -1042,7 +1042,7 @@ für alle $X,Y,Z$ kann nun folgendermaßen beschrieben werden:
 Folglich ist $\ad \colon \enbrace*{\mathfrak{g}, \benbrace*{\cdot ,\cdot }} \to \enbrace[\big]{\mathfrak{gl}(\mathfrak{g}), \benbrace*{\cdot ,\cdot }_0}$
 ein Liealgebrenhomomorphismus.
 
-\begin{lemma}[{name=[Eigenschaften von $\Ad$ und $\ad$]}]
+\begin{lemma}[{name=[Eigenschaften von $\Ad$ und $\ad$]},label=lem:153]
 	Sei $G$ eine Liegruppe.
 	Dann gilt
 	\begin{enumerate}[(1)]
@@ -1095,7 +1095,7 @@ ein Liealgebrenhomomorphismus.
 	\begin{enumerate}[1)]
 		\item $G$ ist abelsch genau dann, wenn $\Tmap_e G = \mathfrak{g}$ abelsch ist.
 		\item $G$ ist genau dann abelsch, wenn $G \cong T^k \times \mathbb{R}^{n-k}$.
-		\item Ist $H$ eine zusammenhängende Untergruppe von $G$, so ist $H$ Normalteiler genau dann, wenn $\mathfrak{h} = \Tmap_e H$ Ideal von $\mathfrak{g}$ ist, das heißt wenn $\benbrace*{\mathfrak{h},\mathfrak{h}} \subset \mathfrak{h}$ gilt.
+		\item Ist $H$ eine zusammenhängende Untergruppe von $G$, so ist $H$ Normalteiler genau dann, wenn $\mathfrak{h} = \Tmap_e H$ Ideal von $\mathfrak{g}$ ist, das heißt wenn $\benbrace*{\mathfrak{g},\mathfrak{h}} \subset \mathfrak{h}$ gilt.
 		\item Das Zentrum $Z(G)$ ist Lieuntergruppe von $G$ mit 
 		\[
 			Z(\mathfrak{g}) = \Tmap_e Z(G) = \set*{v \in \mathfrak{g} \given \ad_v =0}
@@ -1111,8 +1111,8 @@ ein Liealgebrenhomomorphismus.
 		\[
 			i_g \enbrace[\big]{\exp(v)} =  g \exp(v) g^{-1} = \exp \enbrace[\big]{\Ad(g)v} = \exp(v)
 		\]
-		Somit ist $G$ abelsch.\todo{RevChap 1}
-		\item Da $G$ abelsch ist, ist $\mathfrak{g}$ abelsch und somit ist $\exp \colon (\Tmap_eG,+) \to (G,\cdot )$ ein Liegruppenhomomorphismus (wenn der Kommutator verschwindet gilt die Funktionalgleichung).
+		Somit ist $G$ abelsch.
+		\item Da $G$ abelsch ist, ist $\mathfrak{g}$ abelsch und somit ist $\exp \colon (\Tmap_eG,+) \to (G,\cdot )$ ein Liegruppenhomomorphismus (wenn die Lieklammer verschwindet gilt die Funktionalgleichung, siehe \cref{sec:funktionalgleichung}).
 		Somit ist $\exp \colon \Tmap_e G \to G$ eine Überlagerung und $\Gamma := \exp^{-1}(e)$ eine diskrete Untergruppe von $(\Tmap_e G,+)$.\marginnote{Gitter}
 		Somit existieren $v_1, \ldots, v_k \in \mathfrak{g}$ mit
 		\[
@@ -1122,22 +1122,22 @@ ein Liealgebrenhomomorphismus.
 		Es gilt also $\mathfrak{g} = V \oplus V^\bot$ (beide Grenzfälle sind möglich).
 		Es ist nun \enquote{klar}, dass 
 		\[
-			\im \enbrace*{\exp(V)} = T^k
+			\exp(V) = T^k
 		\]
-		und $\im \enbrace*{\exp(V^\bot)} = \mathbb{R}^{n-k}$ gilt. 
-		Die Behauptung folgt.
+		und $\exp(V^\bot) = \mathbb{R}^{n-k}$ gilt. 
+		Damit folgt die Behauptung.
 		\item Sei $H$ ein zusammenhängender Normalteiler von $G$, das heißt es gilt $g H g^{-1} \subset H$ für alle $g \in G$.
 		Es folgt $i_g(H) \subset H$ und damit auch $\Ad(g)(\Tmap_eH) \subset \Tmap_eH$ für alle $g \in G$.
 		Damit gilt auch $\ad_v(\Tmap_e H) \subset \Tmap_e H$, also $\benbrace*{\mathfrak{g},\mathfrak{h}}\subset \mathfrak{h}$.
 		
 		Ist umgekehrt $\mathfrak{h} = \Tmap_e H$ ein Ideal von $\mathfrak{g}$, so gilt $\ad_v(\mathfrak{h}) \subset \mathfrak{h}$ für alle $v \in \mathfrak{g}$.
-		Dann gilt auch $\Ad \enbrace*{\exp (v)} = e^{\ad_v}(\mathfrak{h}) \subset \mathfrak{h}$.
+		Dann gilt auch $\Ad \enbrace*{\exp (v)}(\mathfrak{h}) = e^{\ad_v}(\mathfrak{h}) \subset \mathfrak{h}$.
 		Damit gilt auch $\Ad(g)(\mathfrak{h}) \subset \mathfrak{h}$ für alle $g \in G$.
 		\begin{align}
-			H \ni \exp_G \enbrace*{\Ad(g)(w)} = i_g \enbrace*{\exp(w)}= g \cdot \exp(w) \cdot g^{-1} 
+			H \ni \exp_G \enbrace[\big]{\Ad(g)(w)} \StackText{\ref{lem:153}}{=} i_g \enbrace[\big]{\exp(w)}= g \cdot \exp(w) \cdot g^{-1} 
 		\end{align}
-		für alle $g \in G$ und $w \in \mathfrak{g}$.
-		Damit ist $H$ ein Normalteiler.
+		für alle $g \in G$ und $w \in \mathfrak{h}$.
+		Damit ist $H$ ein Normalteiler.\todo{RevChap 1}
 		\item \emph{Übung!}
 		\item \emph{Übung!}\qedhere
 	\end{enumerate}
