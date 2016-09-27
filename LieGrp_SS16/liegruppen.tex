@@ -1186,13 +1186,12 @@ ein Liealgebrenhomomorphismus.
 			A \benbrace*{x,y} = \benbrace*{Ax,y} + \benbrace*{x,Ay}
 		\] 
 		für alle $x,y \in \mathfrak{g}$ gilt. Bezeichnung: $\Der(\mathfrak{g}) \subset \End(\mathfrak{g})$.
-	\end{enumerate}	
-	Automorphismen sind Untergruppe von $\GL(\mathfrak{g})$
+	\end{enumerate}
 \end{definition}
 
 \begin{proposition}[label=prop:162,{name=[Automorphismen sind Liegruppe, Derivationen die zugehörige Liealgebra]}]
 	Sei $\mathfrak{g}$ eine Liealgebra.
-	Dann ist $\Aut(\mathfrak{g})$ eine abgeschlossene Untergruppe von $\GL(\mathfrak{g})$ mit Liealgebra $\Der(\mathfrak{g})$
+	Dann ist $\Aut(\mathfrak{g})$ eine abgeschlossene Lieuntergruppe von $\GL(\mathfrak{g})$ mit Liealgebra $\Der(\mathfrak{g})$
 \end{proposition}
 \begin{beweis}
 	Ist $A$ ein Automorphismus von $(\mathfrak{g},[\cdot ,\cdot ])$, so gilt für alle $x,y \in  \mathfrak{g}$
@@ -1214,7 +1213,7 @@ ein Liealgebrenhomomorphismus.
 	Wir müssen zeigen, dass die Integralkurve $e^{t V}$, die a priori in $\GL(\mathfrak{g})$ liegt, tatsächlich in $\Aut(\mathfrak{g})$ liegt.
 	Dann gilt\marginnote{$V \in \Der(\mathfrak{g}) \Rightarrow e^{tV} \in \GL(\mathfrak{g})$}
 	\begin{align}
-		\diffd{}{t}\Big|_{t=t_0} e^{-tV} \benbrace*{e^{tV}x, e^{tV}y} &= - e^{t_0 V} V \benbrace*{e^{t_0 V} x, e^{t_0 V} y} + e^{t_0 V} \benbrace*{V e^{t_0 V} x, e^{t_0 V} y} + e^{t_0 V} \benbrace*{e^{t_0 V} x , V e^{t_0 V} y} \\
+		\diffd{}{t}\Big|_{t=t_0} e^{-tV} \benbrace*{e^{tV}x, e^{tV}y} &= - e^{t_0 V} V \benbrace*{e^{t_0 V} x, e^{t_0 V} y} + e^{t_0 V} \benbrace*{V e^{t_0 V} x, e^{t_0 V} y} + e^{t_0 V} \benbrace*{e^{t_0 V} x , V e^{t_0 V} y} \\[-1em]
 		\shortintertext{mit $z := e^{t_0 V} x$ und $w := e^{t_0 V}y$}
 		&= - e^{t_0 V} \enbrace[\big]{V \benbrace*{z,w} - \benbrace*{Vz,w} - \benbrace*{z,Vw}} \stackrel{V \in \Der(\mathfrak{g})}{=\joinrel=\joinrel=} 0
 	\end{align}
@@ -1248,60 +1247,73 @@ Ist $G$ eine zusammenhängende Liegruppe, so gilt $\Ad(G) = \Int(\mathfrak{g})$,
 
 \begin{beispiel*}[{name=[Automorphismen einer abelsche Liealgebra]}]
 	Ist $\mathfrak{t}$ eine abelsche Liealgebra, so ist jeder Isomorphismus $A \colon \mathfrak{t} \to \mathfrak{t}$ ein Automorphismus.
-	Nichttriviale innere Automorphismen existieren in diesem auch nicht.\todo{RevChap 1}
+	Nichttriviale innere Automorphismen existieren in diesem auch nicht.
 \end{beispiel*}
 
-\begin{lemma}
+\begin{lemma}[{name=[Adjungierte Darstellung surjektiv auf innere Automorphismen (zusammenhängend)]}]
 	Sie $G$ eine zusammenhängende Liegruppe mit Liealgebra $\mathfrak{g}$.
-	Dann ist $\Ad \colon G \to \Aut(\mathfrak{g})$ ein surjektiver Gruppenhomomorphismus mit Kern $Z(G)$.
+	Dann ist $\Ad \colon G \to \Int(\mathfrak{g})$ ein surjektiver Gruppenhomomorphismus mit Kern $Z(G)$.
 	Es gilt also
 	\[
 		\Int(\mathfrak{g}) \cong \sfrac{G}{Z(G)} \quad \text{ und } \quad \intAlg(\mathfrak{g}) = \mathfrak{g} \ominus Z(\mathfrak{g})
 	\]
 \end{lemma}
+\begin{beweis}
+	Zur Surjektivität: Sei $V \in \Int(\mathfrak{g})$.
+	Wir können $V= e^W$ für ein $W \in \intAlg(\mathfrak{g})$ annehmen.
+	Weiter existiert nach Definition ein $w \in \mathfrak{g}$ mit $\ad_w = W$.
+	Es folgt
+	\[
+		V = e^{\ad_w} \StackText{\ref{lem:153} (3)}{=\joinrel=\joinrel=} \Ad(\exp w)
+	\]
+	Weiter gilt $Z(G)= \ker \Ad$ bereits nach \autoref{lem:153} (4).
+\end{beweis}
 
-\begin{lemma}[label=lem:165]
+\begin{lemma}[label=lem:165,{name=[Menge der inneren Automorphismen ist Normalteiler]}]
 	Sei $G$ eine zusammenhängende Liegruppe.
-	Dann ist $\Int(\mathfrak{g})$ ein Normalteiler von $\Aut(\mathfrak{g})_e$.
+	Dann ist $\Int(\mathfrak{g})$ ein Normalteiler von $\Aut(\mathfrak{g})$.
 \end{lemma}
 \begin{beweis}
-	Nach Definition ist $\Int(\mathfrak{g})$ zusammenhängend und nach \autoref{lem:154} 3) ist somit $\Int(\mathfrak{g})$ genau dann Normalteiler, wenn $\Tmap_e \Int(\mathfrak{g}) = \intAlg{\mathfrak{g}}$ ein Ideal von $\aut(\mathfrak{g}) = \Tmap_e \Aut(\mathfrak{g})$ ist.
-	Sei $L \in \aut(\mathfrak{g})$, $\ad_v \in \intAlg(\mathfrak{g})$.
+	Nach Definition ist $\Int(\mathfrak{g})$ zusammenhängend und nach \autoref{lem:154} (3) ist somit $\Int(\mathfrak{g})$ genau dann Normalteiler, wenn $\Tmap_e \Int(\mathfrak{g}) = \intAlg(\mathfrak{g})$ ein Ideal von $\Der(\mathfrak{g})= \aut(\mathfrak{g}) = \Tmap_e \Aut(\mathfrak{g})$ ist.
+	Sei $L$ eine Derivation und $\ad_v \in \intAlg(\mathfrak{g})$.
 	Dann gilt
 	\begin{align}
-		\benbrace*{L,\ad_v}_0 (w) = \enbrace*{L \circ \ad_v - \ad_v \circ L}(w) = L \benbrace*{v,w}- \benbrace*{v,Lw} \StackText{\ref{prop:162}}{=} \benbrace*{Lv, w} + \benbrace*{v,Lw} - \benbrace*{v,Lw} 
+		\benbrace[\big]{L,\ad_v}_0 (w) = \enbrace[\big]{L \circ \ad_v - \ad_v \circ L}(w) = L \benbrace*{v,w}- \benbrace*{v,Lw} \StackText{\ref{prop:162}}{=} \benbrace*{Lv, w} + \benbrace*{v,Lw} - \benbrace*{v,Lw} 
 		= \ad_{Lv}(w)
 	\end{align}
 	Somit ist $\benbrace*{L, \ad_v} = \ad_{Lv} \in \intAlg(\mathfrak{g})$ für alle $L \in \Der(\mathfrak{g})$.
 \end{beweis}
 
-\begin{lemma}
+\begin{lemma}[{name=[zusammenhängender Normalteiler]}]
 	Sei $G$ eine zusammenhängende, einfach zusammenhängende Liegruppe.
 	Dann gilt: Ist $H$ ein zusammenhängender Normalteiler von $G$, so ist $H$ eine abgeschlossene Untergruppe.
 \end{lemma}
 \begin{beweis}
-	Nach \autoref{lem:154} 3) ist $\mathfrak{h} \coloneqq \Tmap_e H$ ein Ideal von $\mathfrak{g}$.
-	Wir bezeichnen mit $\mathfrak{k} \coloneqq \sfrac{\mathfrak{g}}{\mathfrak{h}}$ die Quotientenliealgebra (!) und mit $K$ die einfach zusammenhängende Liegruppe mit Liealgebra $\mathfrak{k}$.
-	Der Liealgebrenhomomorphismus $\psi \colon \mathfrak{g} \to \mathfrak{k}$, $v \mapsto [v]$ kann zu einem Liegruppenhomomorphismus $\phi$ \enquote{fortgesetzt} werden (da $G$ einfach zusammenhängend).
+	Nach \autoref{lem:154} (3) ist $\mathfrak{h} \coloneqq \Tmap_e H$ ein Ideal von $\mathfrak{g}$.
+	Wir bezeichnen mit $\mathfrak{k} \coloneqq \sfrac{\mathfrak{g}}{\mathfrak{h}}$ die Quotientenliealgebra(!) und mit $K$ die einfach zusammenhängende Liegruppe mit Liealgebra $\mathfrak{k}$.
+	Der Liealgebrenhomomorphismus $\psi \colon \mathfrak{g} \to \mathfrak{k}$, $v \mapsto [v]$ kann zu einem Liegruppenhomomorphismus $\phi$ \enquote{fortgesetzt} werden (nach \autoref{lem:134}, da $G$ einfach zusammenhängend).
 	Somit ist $\ker \phi$ eine abgeschlossene Untergruppe von $G$ mit Liealgebra $\ker \psi= \mathfrak{h}= \Tmap_e H$.
-	Es folgt $H= \ker (\phi)_e$, das heißt $H$ ist abgeschlossen.
+	Es folgt $H= \ker (\phi)$, das heißt $H$ ist abgeschlossen.
 \end{beweis}
 
-Achtung! $S^1_r \subset T^2 = S^1 \times S^1$ ist Normalteiler mit $\overline{S^1_r}= T^2$.
+Achtung! $S^1_r \subset T^2 = S^1 \times S^1$ ist Normalteiler mit $\overline{S^1_r}= T^2$, die Eigenschaft einfach zusammenhängend zu sein, ist also von zentraler Wichtigkeit.
 
 \begin{definition}[{name=[Killingform]}]
 	Sei $\mathfrak{g}$ eine Liealgebra (über $\mathbb{R}$ oder $\mathbb{C}$).
 	Dann nennt man 
-	\mapdef{\mathcal{B} \colon \mathfrak{g} \times \mathfrak{g}}{\mathbb{K}}{(v,w)}{\tr_{\mathfrak{g}} \enbrace*{\ad_v \circ \ad_w}}{}
+	\mapdef{\mathcal{B} \colon \mathfrak{g} \times \mathfrak{g}}{\mathbb{K}}{(v,w)}{\tr_{\mathfrak{g}} \enbrace*{{\ad_v} \circ {\ad_w}}}{}
 	die \Index{Killingform} von $\mathfrak{g}$.
 \end{definition}
 
-Beispiel: $G=\SO(n)$.
-Dann ist 
-\[
-	\mathfrak{so}(n) = \Tmap_e\SO(n) = \set*{V \in \Mat(n,\mathbb{R}) \given V^T=-V}
-\]
-Wir identifizieren nun 
+\begin{beispiel*}[{name=[spezielle orthogonale Gruppe]}]
+	Wir betrachten $G=\SO(n)$.
+	Dann ist 
+	\[
+		\mathfrak{so}(n) = \Tmap_e\SO(n) = \set*{V \in \Mat(n,\mathbb{R}) \given V^T=-V}
+	\]
+\end{beispiel*}
+
+Wir identifizieren nun\todo{RevChap 1}
 \[
 	\begin{pmatrix}
 		0 & & 1 \\
@@ -1312,11 +1324,11 @@ Wir identifizieren nun
 wobei $i > j$ und $-1$ an der Stelle $(i,j)$ steht, $1$ an der Stelle $(j,i)$.
 Versieht man $\mathfrak{g} = \mathfrak{so}(n)$ mit dem Skalarprodukt
 \[
-	\skal*{v}{w} = - \frac{1}{2}  \cdot \tr{V \cdot W} = \tr(V \cdot W^T)
+	\skal*{v}{w} = - \frac{1}{2}  \cdot \tr(V \cdot W) = \tr(V \cdot W^T)
 \]
-und $\Lambda^2(\mathbb{R}^n)$ mit dem Standardskalarprodukt ($(e_1,\ldots ,e_n)$ ONB von $\enbrace*{\mathbb{R}^n, \skal*{\cdot}{\cdot}_{\mathrm{std}}}$), so ist
+und $\Lambda^2(\mathbb{R}^n)$ mit dem Standardskalarprodukt\marginnote{$(e_1,\ldots ,e_n)$ ONB von $\enbrace*{\mathbb{R}^n, \skal*{\cdot}{\cdot}_{\mathrm{std}}}$}, so ist
 \[
-	e_1 \wedge e_2, e_1 \wedge e_3, \ldots , e_1 \wedge e_n, e_2 \wedge e_3, \ldots , e_{n-1} \wedge e_n
+	e_1 \wedge e_2, e_1 \wedge e_3, \ldots , e_1 \wedge e_n, \quad  e_2 \wedge e_3, \ldots , e_{n-1} \wedge e_n
 \]
 ONB von $\benbrace*{\Lambda^2(\mathbb{R}^n), \skal*{\cdot}{\cdot}_{\mathrm{std}}}$, so ist obiger Isomorphismus eine Isometrie (!).
 Es gilt\marginnote{jeweils wenn alle Indizes verschieden sind}
@@ -1402,7 +1414,7 @@ für alle $1 \le i,j \le 3$ und somit ist $\mathcal{B}=0$.
 Die Gruppe $H$ heißt \Index{Heisenberggruppe}. 
 
 
-\begin{lemma}[label=lem:168]
+\begin{lemma}[label=lem:168,{name=[Verhalten Killingform mit Automorphismen]}]
 	Sei $\mathfrak{g}$ eine Liealgebra mit Killingform $\mathcal{B}$.
 	Dann gilt
 	\begin{enumerate}[1)]
@@ -1411,31 +1423,32 @@ Die Gruppe $H$ heißt \Index{Heisenberggruppe}.
 	\end{enumerate}
 \end{lemma}
 \begin{beweis}
+	Beide Formeln lassen sich leicht nachrechnen:
 	\begin{enumerate}[1)]
 		\item Sei $A \in \Aut(\mathfrak{g})$.
 		Dann gilt 
 		\[
-			\ad_{Av}(w) = \benbrace*{Av,w} = \benbrace*{Av,A (A^{-1}w)} = A \benbrace*{v,A^{-1} w} = \enbrace*{A \circ \ad_v \circ A^{-1}}(w)
+			\ad_{Av}(w) = \benbrace*{Av,w} = \benbrace*{Av,A (A^{-1}w)} = A \benbrace*{v,A^{-1} w} = \enbrace*{A \circ {\ad_v} \circ A^{-1}}(w)
 		\]
 		Somit ist
 		\begin{align}
-			\tr \enbrace*{\ad_{Av} \circ \ad_{Aw}} &= \tr \enbrace*{A \circ \ad_v \circ A^{-1} \circ A \circ \ad_w \circ A^{-1}} \\
-			&= \tr \enbrace*{\ad_v \circ \ad_w} = \mathcal{B}(v,w)
+			\mathcal{B}(Av,Aw) =\tr \enbrace*{\ad_{Av} \circ \ad_{Aw}} &= \tr \enbrace*{A \circ {\ad_v} \circ A^{-1} \circ A \circ {\ad_w} \circ A^{-1}} \\
+			&= \tr \enbrace*{{\ad_v} \circ {\ad_w}} = \mathcal{B}(v,w)
 		\end{align}
-		\item ist $L$ eine Derivation von $\mathfrak{g}$, so ist $e^{tL} \in \Aut(\mathfrak{g})$ für alle $t \in \mathbb{R}$.
+		\item Ist $L$ eine Derivation von $\mathfrak{g}$, so ist $e^{tL} \in \Aut(\mathfrak{g})$ für alle $t \in \mathbb{R}$.
 		Nach 1) erhalten wir für alle $v,w \in \mathfrak{g}$
 		\[
 			\mathcal{B}(v,w) \equiv \mathcal{B}\enbrace*{e^{tL}v, e^{tL}w} 
 		\]
-		Differenzieren in $t=0$ liefert $0= \mathcal{B} \enbrace*{Lv,w} + \mathcal{B}(v,Lw)$.\qedhere
+		Differenzieren in $t=0$ liefert $0= \mathcal{B} \enbrace*{Lv,w} + \mathcal{B}(v,Lw)$ wie gewünscht.\qedhere
 	\end{enumerate}
 \end{beweis}
 
-\begin{lemma}[label=lem:169]
+\begin{lemma}[label=lem:169,{name=[Kern der Killingform ist Ideal]}]
 	Sei $\mathfrak{g}$ eine Liealgebra mit Killingform $\mathcal{B}$.
 	Dann ist 
 	\[
-		\ker(\mathcal{B}) \coloneqq \set*{v \in \mathfrak{g} \given \mathcal{B}(v,w)=0 \,\forall w \in \mathfrak{g}}
+		\ker(\mathcal{B}) \coloneqq \set[\big]{v \in \mathfrak{g} \given \mathcal{B}(v,w)=0 \,\,\forall w \in \mathfrak{g}}
 	\]
 	ein Ideal von $\mathfrak{g}$
 \end{lemma}
@@ -1445,12 +1458,12 @@ Die Gruppe $H$ heißt \Index{Heisenberggruppe}.
 	Sei $z \in \mathfrak{g}$ beliebig.
 	Dann gilt 
 	\[
-		\mathcal{B} \enbrace*{\benbrace*{v,w},z} = - \mathcal{B} \enbrace*{\ad_w(v),z} \StackText{\ref{lem:168}}{=} \mathcal{B} \enbrace*{v, \ad_w(z)} =0 
+		\mathcal{B} \enbrace[\big]{\benbrace*{v,w},z} = - \mathcal{B} \enbrace[\big]{\ad_w(v),z} \StackText{\ref{lem:168} 2)}{=\joinrel=} \mathcal{B} \enbrace[\big]{v, \ad_w(z)} \stackrel{v \in \ker \mathcal{B}}{=\joinrel=\joinrel=}0 
 	\]
 	Somit ist $\benbrace*{v,w} \in \ker \mathcal{B}$.
 \end{beweis}
 
-Wir werden später jeder Lie-Algebra zwei weitere Ideale zuordnen: Das \Index{Radikal} $\Rad(\mathfrak{g})$ und das \Index{Nilradikal} $\Nil(\mathfrak{g})$ 
+Wir werden später jeder Lie-Algebra $\mathfrak{g}$ zwei weitere Ideale zuordnen: Das \Index{Radikal} $\Rad(\mathfrak{g})$ und das \Index{Nilradikal} $\Nil(\mathfrak{g})$.
 % section 16 (end)
 % chapter 1 (end)
 
