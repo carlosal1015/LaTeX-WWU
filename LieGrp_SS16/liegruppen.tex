@@ -1143,7 +1143,7 @@ ein Liealgebrenhomomorphismus.
 		Dann ist $Z(\set*{h}) = \varphi^{-1}(\set*{h})$, also sind Zentralisatoren\index{Zentralisator} als Schnitte von Mengen der Form $Z(\set*{h})$ abgeschlossen. 
 		Insbesondere ist das Zentrum abgeschlossen.
 		
-		$Z(\mathfrak{g}) = \set*{v \in \mathfrak{g} \given \ad_v =0}$ gilt per Definition.
+		Bezüglich der Gleichung: $Z(\mathfrak{g}) = \set*{v \in \mathfrak{g} \given \ad_v =0}$ gilt per Definition.
 		Nach \autoref{lem:153} (4) gilt $Z(G) = \ker \Ad$.
 		Nach \autoref{lem:143} (4) enthält $\Tmap_e Z(G)$ genau die Elemente aus $\mathfrak{g}$ mit $\exp(tv) \in Z(G)$ für alle $t \in \mathbb{R}$.
 		Damit folgt
@@ -1172,87 +1172,91 @@ ein Liealgebrenhomomorphismus.
 
 \section{Automorphismen von Liegruppen} % (fold)
 \label{sec:16}
-\todo{RevChap 1}
 \begin{definition}[{name=[Automorphismen und Derivationen]}]
 	Sei $\mathfrak{g}$ eine Liealgebra.
 	\begin{enumerate}[(i)]
-		\item Dann nennt man einen linearen Isomorphismus $A \colon \mathfrak{g} \to \mathfrak{g}$ einen Liealgebra-Isomorphismus, falls 
-	\[
-		A \benbrace*{X,Y} = \benbrace*{AX,AY}
-	\]
-	für alle $X,Y \in \mathfrak{g}$ gilt.
-	Diese Menge der Automorphismen bezeichnen wir mit $\Aut(\mathfrak{g}) \subset \GL(\mathfrak{g})$.
-	\item Eine lineare Abbildung $A \colon \mathfrak{g} \to \mathfrak{g}$ nennt man \Index{Derivation}, falls 
-	\[
-		A \benbrace*{X,Y} = \benbrace*{AX,Y} + \benbrace*{X,AY}
-	\] 
-	für alle $X,Y \in \mathfrak{g}$ gilt. Bezeichnung: $\Der(\mathfrak{g}) \subset \End(\mathfrak{g})$.
+		\item Man nennt einen linearen Isomorphismus $A \colon \mathfrak{g} \to \mathfrak{g}$, der gleichzeitig ein Liealgebrenhomomorphismus ist, also
+		\[
+			A \benbrace*{x,y} = \benbrace*{Ay,Ay}
+		\]
+		für alle $x,y \in \mathfrak{g}$ erfüllt, einen \Index{Automorphismus} der Liealgebra $\mathfrak{g}$.
+		Die Menge der Automorphismen bezeichnen wir mit $\Aut(\mathfrak{g}) \subset \GL(\mathfrak{g})$.
+		\item Eine lineare Abbildung $A \colon \mathfrak{g} \to \mathfrak{g}$ nennt man \Index{Derivation}, falls 
+		\[
+			A \benbrace*{x,y} = \benbrace*{Ax,y} + \benbrace*{x,Ay}
+		\] 
+		für alle $x,y \in \mathfrak{g}$ gilt. Bezeichnung: $\Der(\mathfrak{g}) \subset \End(\mathfrak{g})$.
 	\end{enumerate}	
 	Automorphismen sind Untergruppe von $\GL(\mathfrak{g})$
 \end{definition}
 
-\begin{proposition}[label=prop:162]
+\begin{proposition}[label=prop:162,{name=[Automorphismen sind Liegruppe, Derivationen die zugehörige Liealgebra]}]
 	Sei $\mathfrak{g}$ eine Liealgebra.
 	Dann ist $\Aut(\mathfrak{g})$ eine abgeschlossene Untergruppe von $\GL(\mathfrak{g})$ mit Liealgebra $\Der(\mathfrak{g})$
 \end{proposition}
 \begin{beweis}
 	Ist $A$ ein Automorphismus von $(\mathfrak{g},[\cdot ,\cdot ])$, so gilt für alle $x,y \in  \mathfrak{g}$
 	\[
-		A \benbrace*{x,y} = \benbrace*{A x, A y}
+		A \benbrace[\big]{x,y} = \benbrace[\big]{A x, A y}
 	\]
-	somit ist $\Aut(\mathfrak{g})$ eine abgeschlossene Untergruppe und daher eine Lieuntergruppe von $\GL(\mathfrak{g})$.
-	Sei $A(t)\big|_{t \in (-\varepsilon,\varepsilon)}$ eine differenzierbare Kurve von Automorphismen mit $A(0) = {\id_{\mathfrak{g}}}$.
+	Man überlegt sich nun leicht, dass $\Aut(\mathfrak{g})$ deshalb eine abgeschlossene Untergruppe und daher eine Lieuntergruppe von $\GL(\mathfrak{g})$ ist.
+	Sei nun $A(t)\big|_{t \in (-\varepsilon,\varepsilon)}$ eine differenzierbare Kurve von Automorphismen mit $A(0) = {\id_{\mathfrak{g}}}$.
 	Differenzieren der Identität
-	\[
+	\(
 		A(t) \benbrace*{x,y} = \benbrace*{A(t) x, A(t) y}
+	\)
+	in $t=0$ liefert wegen den Produktregel
+	\[
+		A'(0) \benbrace[\big]{x,y} = \benbrace[\big]{A'(0) x,y} + \benbrace[\big]{x, A'(0)y}
 	\]
-	 in $t=0$ liefert
-	 \[
-	 	A'(0) \benbrace*{x,y} = \benbrace*{A'(0) x , A'(0) y} + \benbrace*{x, A'(0)y}
-	 \]
-	 Also ist $A'(0) \in \Der(\mathfrak{g})$.
-	 Sei umgekehrt $V \in \Der(\mathfrak{g})$.
-	 Dann gilt\marginnote{$V \in \Der(\mathfrak{g}) \implies e^{tV} \in \End(\mathfrak{g})$}
-	 \begin{align}
-	 	\diffd{}{t}\Big|_{t=t_0} e^{-tV} \benbrace*{e^{tV}x, e^{tV}y} &= - e^{t_0 V} V \benbrace*{e^{t_0 V} x, e^{t_0 V} y} + e^{t_0 V} \benbrace*{V e^{t_0 V} x, e^{t_0 V} y} + e^{t_0 V} \benbrace*{e^{t_0 V} x , V e^{t_0 V} y} \\
-		\intertext{mit $z := e^{t_0 V} x$ und $w := e^{t_0 V}y$}
-		&= - e^{t_0 V} \enbrace[\big]{V \benbrace*{z,w} - \benbrace*{Vz,w} - \benbrace*{z,Vw}} =0
-	 \end{align}
-	 Somit ist wegen $e^{tV}={\id}$ für $t=0$
-	 \[
-	 	e^{tV} \benbrace*{e^{tV}x, e^{tV}y} \equiv \benbrace*{x,y}
-	 \]
-	 für alle $t \in (-\varepsilon,\varepsilon)$.
-	 Wir erhalten also $\benbrace*{e^{tV}x, e^{tV}y}= e^{tV}\benbrace*{x,y}$.
+	Also ist $A'(0) \in \Der(\mathfrak{g})$.
+	Sei umgekehrt $V \in \Der(\mathfrak{g})$.
+	Wir müssen zeigen, dass die Integralkurve $e^{t V}$, die a priori in $\GL(\mathfrak{g})$ liegt, tatsächlich in $\Aut(\mathfrak{g})$ liegt.
+	Dann gilt\marginnote{$V \in \Der(\mathfrak{g}) \Rightarrow e^{tV} \in \GL(\mathfrak{g})$}
+	\begin{align}
+		\diffd{}{t}\Big|_{t=t_0} e^{-tV} \benbrace*{e^{tV}x, e^{tV}y} &= - e^{t_0 V} V \benbrace*{e^{t_0 V} x, e^{t_0 V} y} + e^{t_0 V} \benbrace*{V e^{t_0 V} x, e^{t_0 V} y} + e^{t_0 V} \benbrace*{e^{t_0 V} x , V e^{t_0 V} y} \\
+		\shortintertext{mit $z := e^{t_0 V} x$ und $w := e^{t_0 V}y$}
+		&= - e^{t_0 V} \enbrace[\big]{V \benbrace*{z,w} - \benbrace*{Vz,w} - \benbrace*{z,Vw}} \stackrel{V \in \Der(\mathfrak{g})}{=\joinrel=\joinrel=} 0
+	\end{align}
+	Somit ist wegen $e^{tV}={\id}$ für $t_0=0$
+	\[
+		e^{-tV} \benbrace*{e^{tV}x, e^{tV}y} \equiv \benbrace[\big]{x,y}
+	\]
+	für alle $t \in (-\varepsilon,\varepsilon)$.
+	Wir erhalten also $\benbrace*{e^{tV}x, e^{tV}y}= e^{tV}\benbrace[\big]{x,y}$ und damit $e^{tV} \in \Aut(\mathfrak{g})$.
 \end{beweis}
 
-Da $\Ad \colon G  \to \Aut(\mathfrak{g})$, $g \mapsto \Ad(g)$ ein Liegruppenhomomorphismus ist, ist $\ad \colon \mathfrak{g} \to \Der(\mathfrak{g})$, $v \mapsto \ad_v$ ein Liealgebrenhomomorphismus.
-Insbesondere $\ad_v \in \Der(\mathfrak{g})$ für alle $v \in \mathfrak{g}$.
+Aus \autoref{prop:162} folgt, dass $\Ad \colon G  \to \Aut(\mathfrak{g})$, $g \mapsto \Ad(g)$ ein Liegruppenhomomorphismus ist. 
+Damit ist $\ad \colon \mathfrak{g} \to \Der(\mathfrak{g})$, $v \mapsto \ad_v$ ein Liealgebrenhomomorphismus.
+Insbesondere gilt sogar $\ad_v \in \Der(\mathfrak{g})$ für alle $v \in \mathfrak{g}$ aufgrund der Jacobi-Identität.
 
-\begin{definition}
+\begin{definition}[{name=[innere Derivationen und innere Automorphismen]}]
 	Sei $\mathfrak{g}$ eine Liealgebra
 	\begin{enumerate}[1)]
 		\item Eine Derivation $A \in \Der(\mathfrak{g})$ nennt man \Index{innere Derivation}, falls $v \in \mathfrak{g}$ existiert mit $A = \ad_v$.
 		Wir schreiben 
 		\[
-			\intAlg(\mathfrak{g}) \coloneqq \set*{\ad_v \given v \in \mathfrak{g}}
+			\intAlg(\mathfrak{g}) \coloneqq \set[\big]{\ad_v \given v \in \mathfrak{g}}
 		\] 
-		\item Wir bezeichnen mit $\Int(\mathfrak{g}) \subset \Aut(\mathfrak{g})$ die zusammenhängende Lieuntergruppe von $\Aut(\mathfrak{g})$ mit Liealgebra $\intAlg(\mathfrak{g})$.
+		\item Wir bezeichnen mit $\Int(\mathfrak{g}) \subset \Aut(\mathfrak{g})$ die zusammenhängende Lieuntergruppe\marginnote{nach \autoref{satz:125}} von $\Aut(\mathfrak{g})$ mit Liealgebra $\intAlg(\mathfrak{g})$.
 		Elemente in $\Int(\mathfrak{g})$ nennt man \Index{innere Automorphismen}.
 	\end{enumerate}
 \end{definition}
 
-Ist $G$ eine zusammenhängende Liegruppe, so gilt $\Ad(G) = \Int(\mathfrak{g})$, denn: Sowohl $\Ad(G)$ also auch $\Int(\mathfrak{g})$ sind Lieuntergruppen von $\Aut(\mathfrak{g})$ mit Liealgebra $\intAlg(\mathfrak{g})$.
+Ist $G$ eine zusammenhängende Liegruppe, so gilt $\Ad(G) = \Int(\mathfrak{g})$, denn $\Ad \enbrace*{\exp v} = e^{\ad_{v}}$ impliziert, dass beide in einer Umgebung von $e$ übereinstimmen und somit die gleiche Liealgebra $\intAlg(\mathfrak{g})$ haben.
+% sowohl $\Ad(G)$ also auch $\Int(\mathfrak{g})$ sind Lieuntergruppen von $\Aut(\mathfrak{g})$ mit Liealgebra $\intAlg(\mathfrak{g})$.
 
-Beispiel: Ist $\mathfrak{t}$ eine abelsche Liealgebra, so ist jeder Isomorphismus $A \colon \mathfrak{t} \to \mathfrak{t}$ ein Automorphismus.
-Innere Automorphismen existieren in diesem auch nicht.
+\begin{beispiel*}[{name=[Automorphismen einer abelsche Liealgebra]}]
+	Ist $\mathfrak{t}$ eine abelsche Liealgebra, so ist jeder Isomorphismus $A \colon \mathfrak{t} \to \mathfrak{t}$ ein Automorphismus.
+	Nichttriviale innere Automorphismen existieren in diesem auch nicht.\todo{RevChap 1}
+\end{beispiel*}
 
 \begin{lemma}
 	Sie $G$ eine zusammenhängende Liegruppe mit Liealgebra $\mathfrak{g}$.
 	Dann ist $\Ad \colon G \to \Aut(\mathfrak{g})$ ein surjektiver Gruppenhomomorphismus mit Kern $Z(G)$.
 	Es gilt also
 	\[
-		\Int(\mathfrak{g}) \cong \sfrac{G}{Z(G)} \quad \text{ und } \quad \intAlg(\mathfrak{g}) = \mathfrak(g) \ominus Z(\mathfrak{g})
+		\Int(\mathfrak{g}) \cong \sfrac{G}{Z(G)} \quad \text{ und } \quad \intAlg(\mathfrak{g}) = \mathfrak{g} \ominus Z(\mathfrak{g})
 	\]
 \end{lemma}
 
