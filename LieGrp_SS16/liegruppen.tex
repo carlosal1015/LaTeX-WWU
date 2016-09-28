@@ -1311,108 +1311,109 @@ Achtung! $S^1_r \subset T^2 = S^1 \times S^1$ ist Normalteiler mit $\overline{S^
 	\[
 		\mathfrak{so}(n) = \Tmap_e\SO(n) = \set*{V \in \Mat(n,\mathbb{R}) \given V^T=-V}
 	\]
+	Wir führen nun folgende Identifikation der Basisvektoren durch
+	\[
+		\begin{psmallmatrix}
+			0 & & 1 \\
+			& \ddots & \\
+			-1 & & 0
+		\end{psmallmatrix} \,\longleftrightarrow\, e_i \wedge e_j \in \Lambda^2(\mathbb{R}^n)
+	\]
+	wobei $i > j$ und $-1$ an der Stelle $(i,j)$ steht, $1$ an der Stelle $(j,i)$.
+	Versieht man $\mathfrak{g} = \mathfrak{so}(n)$ mit dem Skalarprodukt
+	\[
+		\skal*{v}{w} = - \frac{1}{2}  \cdot \tr(v \cdot w) = \frac{1}{2} \tr(v^T \cdot w)
+	\]
+	und $\Lambda^2(\mathbb{R}^n)$ mit dem Standardskalarprodukt\marginnote{$(e_1,\ldots ,e_n)$ ONB von $\enbrace*{\mathbb{R}^n, \skal*{\cdot}{\cdot}_{\mathrm{std}}}$}, so ist
+	\[
+		e_1 \wedge e_2, e_1 \wedge e_3, \ldots , e_1 \wedge e_n, \quad  e_2 \wedge e_3, \ldots , e_{n-1} \wedge e_n
+	\]
+	ONB von $\enbrace*{\Lambda^2(\mathbb{R}^n), \skal*{\cdot}{\cdot}_{\mathrm{std}}}$, so ist obiger Isomorphismus eine Isometrie (!).
+	Eine kurze Rechnung zeigt, dass\marginnote{jeweils wenn alle Indizes verschieden sind}
+	\[
+		\benbrace[\big]{e_i \wedge e_j , e_j \wedge e_k} = - e_i \wedge e_k \qquad \benbrace[\big]{e_i \wedge e_j, e_k \wedge e_l}= 0
+	\]
+	gilt.
+	Wir erhalten für eine ONB $\set*{b_1, \ldots ,b_N}$ von $\mathfrak{so}(n)$, $N=\frac{1}{2}(n-1)n$
 \end{beispiel*}
 
-Wir identifizieren nun\todo{RevChap 1}
-\[
-	\begin{pmatrix}
-		0 & & 1 \\
-		& \ddots & \\
-		-1 & & 0
-	\end{pmatrix} \longleftrightarrow e_i \wedge e_j \in \Lambda^2(\mathbb{R}^n)
-\]
-wobei $i > j$ und $-1$ an der Stelle $(i,j)$ steht, $1$ an der Stelle $(j,i)$.
-Versieht man $\mathfrak{g} = \mathfrak{so}(n)$ mit dem Skalarprodukt
-\[
-	\skal*{v}{w} = - \frac{1}{2}  \cdot \tr(V \cdot W) = \tr(V \cdot W^T)
-\]
-und $\Lambda^2(\mathbb{R}^n)$ mit dem Standardskalarprodukt\marginnote{$(e_1,\ldots ,e_n)$ ONB von $\enbrace*{\mathbb{R}^n, \skal*{\cdot}{\cdot}_{\mathrm{std}}}$}, so ist
-\[
-	e_1 \wedge e_2, e_1 \wedge e_3, \ldots , e_1 \wedge e_n, \quad  e_2 \wedge e_3, \ldots , e_{n-1} \wedge e_n
-\]
-ONB von $\benbrace*{\Lambda^2(\mathbb{R}^n), \skal*{\cdot}{\cdot}_{\mathrm{std}}}$, so ist obiger Isomorphismus eine Isometrie (!).
-Es gilt\marginnote{jeweils wenn alle Indizes verschieden sind}
-\[
-	\benbrace*{e_i \wedge e_j , e_j \wedge e_k} = e_i \wedge e_k \qquad \benbrace*{e_i \wedge e_j, e_k \wedge e_l}= 0
-\]
-(nachrechnen)
 
-Wir erhalten für eine ONB $\set*{b_1, \ldots ,b_N}$, $N=\frac{1}{2}(n-1)n$
+\todo{RevChap 1}
 \begin{align}
-	\mathcal{B}(v,w) = \tr \enbrace*{\ad_v \circ \ad_w} &= \sum_{i=1}^{N} \skal*{(\ad_v \circ \ad_w)(b_i)}{b_i}_{\SO(n)} \\
+	\mathcal{B}(v,w) = \tr \enbrace*{\ad_v \circ \ad_w} &= \sum_{i=1}^{N} \skal[\big]{(\ad_v \circ \ad_w)(b_i)}{b_i}_{\mathfrak{so}(n)} \\
 	&\stackrel{!}{=} -\sum_{i<j} \skal*{ \benbrace*{w,e_i \wedge e_j}}{ \benbrace*{v, e_i \wedge e_j}} = - \ad_v
 \end{align}
-Somit ist $\mathcal{B}(e_k \wedge e_l, e_k \wedge e_k)=-2(n-2)$ und
+Somit ist $\mathcal{B}(e_k \wedge e_l, e_k \wedge e_k)=-2(n-2)$ und für $\set*{k,l} \neq \set*{\tilde{k},\tilde{l}}$
 \[
 	\mathcal{B} \enbrace*{e_k \wedge e_l, e_{\tilde{k}} \wedge e_{\tilde{l}}} =0
 \]
-für $\set*{k,l} \neq \set*{\tilde{k},\tilde{l}}$.
 
-Die Killingform $\mathcal{B}$ einer Liealgebra $\mathfrak{g}$ kann aber auch Null sein, ohne dass $\mathfrak{g}$ abelsch ist: 
-\[
-	H \coloneqq \set*{\begin{pmatrix}
-		1 & 0 & 0 \\
-		\alpha & 1 & 0 \\
-		\beta & \gamma & 1
-	\end{pmatrix} \given \alpha,\beta,\gamma \in \mathbb{R}}
-\]
-ist eine Untergruppe von $\GL(3,\mathbb{R})$ mit Liealgebra
-\[
-	\mathfrak{h} = \set*{\begin{pmatrix}
-		0 & 0 & 0 \\
-		x & 0 & 0 \\
-		y & z & 0
-	\end{pmatrix} \given x,y,z \in \mathbb{R}}
-\]
-Wir setzen 
-\[
-	e_1 \coloneqq \begin{pmatrix}
-		0 & 0 & 0 \\
-		1 & 0 & 0 \\
-		0 & 0 & 0
-	\end{pmatrix} \quad 
-	e_2 \coloneqq \begin{pmatrix}
-		0 & 0 & 0 \\
-		0 & 0 & 0 \\
-		0 & 1 & 0
-	\end{pmatrix} \quad 
-	e_3 \coloneqq \begin{pmatrix}
-		0 & 0 & 0 \\
-		0 & 0 & 0 \\
-		1 & 0 & 0
-	\end{pmatrix}
-\]
-Dann gilt $\benbrace*{e_i,e_3} = 0$ für $i=1,2,3$.
-Aber $\benbrace*{e_1,e_2}=-e_3$.
-Somit ist (bezüglich der Basis $(e_1,e_2,e_3)$)
-\[
-	\ad(e_1) = \begin{pmatrix}
-		0 & 0 & 0 \\
-		0 & 0 & 0 \\
-		0 & 1 & 0
-	\end{pmatrix} \quad 
-	\ad(e_2) = \begin{pmatrix}
-		0 & 0 & 0 \\
-		0 & 0 & 0 \\
-		1 & 0 & 0 
-	\end{pmatrix} \quad 
-	\ad(e_3) = \begin{pmatrix}
-		0 & 0 & 0 \\
-		0 & 0 & 0 \\
-		0 & 0 & 0
-	\end{pmatrix}
-\]
-Es gilt
-\[
-	\ad(e_i) \cdot \ad(e_j) = \begin{pmatrix}
-		0 & 0 & 0 \\
-		0 & 0 & 0 \\
-		0 & 0 & 0
-	\end{pmatrix}
-\]
-für alle $1 \le i,j \le 3$ und somit ist $\mathcal{B}=0$.
-Die Gruppe $H$ heißt \Index{Heisenberggruppe}. 
-
+\begin{beispiel*}[{name=[triviale Killingform trotz nicht abelscher Liealgebra]}]
+	Die Killingform $\mathcal{B}$ einer Liealgebra $\mathfrak{g}$ kann aber auch Null sein, ohne dass $\mathfrak{g}$ abelsch ist: Betrachte
+	\[
+		H \coloneqq \set*{\begin{pmatrix}
+			1 & 0 & 0 \\
+			\alpha & 1 & 0 \\
+			\beta & \gamma & 1
+		\end{pmatrix} \given \alpha,\beta,\gamma \in \mathbb{R}}
+	\]
+	$H$ ist eine Untergruppe von $\GL(3,\mathbb{R})$ mit Liealgebra
+	\[
+		\mathfrak{h} = \set*{\begin{pmatrix}
+			0 & 0 & 0 \\
+			x & 0 & 0 \\
+			y & z & 0
+		\end{pmatrix} \given x,y,z \in \mathbb{R}}
+	\]
+	Wir setzen 
+	\[
+		e_1 \coloneqq \begin{pmatrix}
+			0 & 0 & 0 \\
+			1 & 0 & 0 \\
+			0 & 0 & 0
+		\end{pmatrix} \quad 
+		e_2 \coloneqq \begin{pmatrix}
+			0 & 0 & 0 \\
+			0 & 0 & 0 \\
+			0 & 1 & 0
+		\end{pmatrix} \quad 
+		e_3 \coloneqq \begin{pmatrix}
+			0 & 0 & 0 \\
+			0 & 0 & 0 \\
+			1 & 0 & 0
+		\end{pmatrix}
+	\]
+	Dann gilt $\benbrace*{e_i,e_3} = 0$ für $i=1,2,3$.
+	Aber $\benbrace*{e_1,e_2}=-e_3$.
+	Somit ist (bezüglich der Basis $(e_1,e_2,e_3)$)
+	\[
+		\ad_{e_1} = \begin{pmatrix}
+			0 & 0 & 0 \\
+			0 & 0 & 0 \\
+			0 & -1 & 0
+		\end{pmatrix} \quad 
+		\ad_{e_2} = \begin{pmatrix}
+			0 & 0 & 0 \\
+			0 & 0 & 0 \\
+			1 & 0 & 0 
+		\end{pmatrix} \quad 
+		\ad_{e_3} = \begin{pmatrix}
+			0 & 0 & 0 \\
+			0 & 0 & 0 \\
+			0 & 0 & 0
+		\end{pmatrix}
+	\]
+	Es gilt nun aber
+	\[
+		\ad(e_i) \cdot \ad(e_j) = \begin{pmatrix}
+			0 & 0 & 0 \\
+			0 & 0 & 0 \\
+			0 & 0 & 0
+		\end{pmatrix}
+	\]
+	für alle $1 \le i,j \le 3$ und somit ist $\mathcal{B}=0$.
+	Die Gruppe $H$ heißt \Index{Heisenberggruppe}.
+\end{beispiel*}
 
 \begin{lemma}[label=lem:168,{name=[Verhalten Killingform mit Automorphismen]}]
 	Sei $\mathfrak{g}$ eine Liealgebra mit Killingform $\mathcal{B}$.
