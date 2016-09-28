@@ -1474,7 +1474,7 @@ Wir werden später jeder Lie-Algebra $\mathfrak{g}$ zwei weitere Ideale zuordnen
 \label{sec:21}
 Sei $\mathfrak{g}$ eine Liealgebra über $\mathbb{R}$ (oder $\mathbb{C}$)
 
-\begin{definition}
+\begin{definition}[{name=[aufsteigende Zentralreihe und absteigende Reihe]}]
 	Sei $k \in \mathbb{N}$.
 	Dann definieren wir
 	\[
@@ -1488,13 +1488,12 @@ Sind $V,W$ Ideale von $\mathfrak{g}$, so gilt
 \[
 	\benbrace*{V,W} = \Span_\mathbb{K} \set[\big]{\benbrace*{v,w} \given v \in V, w \in W}
 \]
-denn $\benbrace*{\benbrace*{v_1,w_1}, \benbrace*{v_2,w_2}} \subset \Span_\mathbb{K} \set*{\benbrace*{v,w} \given v \in V, w \in W}$.
-
+denn $\benbrace[\big]{\benbrace*{v_1,w_1}, \benbrace*{v_2,w_2}} \in \Span_\mathbb{K} \set[\big]{\benbrace*{v,w} \given v \in V, w \in W}$ für $v_1,v_2 \in V$ und $w_1,w_2 \in W$.
 Sind $V,W$ Ideale, so auch $\benbrace*{V,W}$, denn für alle $z \in \mathfrak{g}$ gilt
 \begin{align}
-	\benbrace*{z, \benbrace*{v,w}} = - \benbrace*{w, \benbrace*{z,v}} - \benbrace*{v,\benbrace*{w,z}} \in \benbrace*{V,W}
+	\benbrace[\big]{z, \benbrace*{v,w}} = - \benbrace[\big]{w, \benbrace*{z,v}} - \benbrace[\big]{v,\benbrace*{w,z}} \in \benbrace*{V,W}
 \end{align}
-Damit sind auch $\mathfrak{g}^k$ und $\mathfrak{g}_k$ Ideale von $\mathfrak{g}$. Es gilt $\mathfrak{g}^1= \benbrace*{\mathfrak{g}, \mathfrak{g}} \subseteq \mathfrak{g}^0 = \mathfrak{g}$ und weiter $\mathfrak{g}^k = \benbrace*{\mathfrak{g},\mathfrak{g}^{k-1}} \subseteq \mathfrak{g}^{k-1}$ und somit
+Damit sind auch $\mathfrak{g}^k$ und $\mathfrak{g}_k$ Ideale von $\mathfrak{g}$. Es gilt $\mathfrak{g}^1= \benbrace*{\mathfrak{g}, \mathfrak{g}} \subseteq \mathfrak{g}^0 = \mathfrak{g}$ und weiter $\mathfrak{g}^k = \benbrace*{\mathfrak{g},\mathfrak{g}^{k-1}} \subseteq \mathfrak{g}^{k-1}$ und somit erhalten wir eine Kette von Idealen
 \[
 	\mathfrak{g}^0 \supseteq \mathfrak{g}^1 \supseteq \mathfrak{g}^2 \supseteq \mathfrak{g}^3 \supseteq \ldots 
 \]
@@ -1503,50 +1502,48 @@ Dies ist die \Index{absteigende Zentralreihe}. Analog erhält man die \Index{abg
 	\mathfrak{g}_0 \supseteq \mathfrak{g}_1 \supseteq \mathfrak{g}_2 \supseteq \mathfrak{g}_3 \supseteq \ldots 
 \]
 
-\begin{definition}
+\begin{definition}[{name=[nilpotent und auflösbar]}]
 	Eine Liealgebra $\mathfrak{g}$ nennt man
-	\begin{enumerate}[1)]
+	\begin{itemize}
 		\item \Index{nilpotent}, falls $\mathfrak{g}^k=0$ und $\mathfrak{g}^{k-1}\neq 0$ für ein $k \in \mathbb{N}$
 		\item \Index{auflösbar}, falls $\mathfrak{g}_k=0$ und $\mathfrak{g}_{k-1} \neq 0$ für ein $k \in \mathbb{N}$  
-	\end{enumerate}
+	\end{itemize}
 	Die obigen $k$ sind eindeutig bestimmt. 
 	Man nennt $\mathfrak{g}$ dann $k$-Schritt nilpotent (auflösbar).
-	Eine Liegruppe $G$ nennt man nilpotent (auflösbar), falls $\Tmap_e G$ nilpotent (auflösbar) ist.
+	Eine Liegruppe $G$ nennt man nilpotent (auflösbar), falls ihre Liealgebra $\Tmap_e G$ nilpotent (auflösbar) ist.
 \end{definition}
 
-Beispiel: Die Heisenberggruppe ist $2$-Schritt nilpotent:
-\[
-	\mathfrak{g}_1 = \mathfrak{g}^1 = \benbrace*{\mathfrak{g},\mathfrak{g}} = \set*{\begin{pmatrix}
-		0 & 0 & 0 \\
-		0 & 0 & 0 \\
-		w & 0 & 0
-	\end{pmatrix} \given w \in \mathbb{R}}
-\]
-Somit ist offenbar $\mathfrak{g}^2=0$.
+\begin{beispiel*}[{name=[Heisenberggruppe ist nilpotent und auflösbar]}]
+	Die Heisenberggruppe\index{Heisenberggruppe} ist $2$-Schritt nilpotent und auflösbar:
+	\[
+		\mathfrak{g}_1 = \mathfrak{g}^1 = \benbrace*{\mathfrak{g},\mathfrak{g}} = \set*{\begin{psmallmatrix}
+			0 & 0 & 0 \\
+			0 & 0 & 0 \\
+			w & 0 & 0
+		\end{psmallmatrix} \given w \in \mathbb{R}}
+	\]
+	Somit ist offenbar $\mathfrak{g}^2 =\mathfrak{g}_2=0$.
+	Nilpotenz und Auflösbarkeit müssen aber nicht immer übereinstimmen:
+	Sei 
+	\[
+		\mathfrak{S} \coloneqq \set*{\begin{psmallmatrix}
+			w_{11} & 0 & 0 \\
+			w_{21} & w_{22} & 0 \\
+			w_{31} & w_{32} & w_{33}
+		\end{psmallmatrix} \given w_{ij} \in \mathbb{R}}
+	\]
+	Dann gilt $\mathfrak{S}_1= \benbrace*{\mathfrak{S},\mathfrak{S}}\stackrel{!}{=} \mathfrak{g}$ und weiter
+	$\mathfrak{S}_2 = \benbrace*{\mathfrak{S}_1,\mathfrak{S}_1} = \benbrace*{\mathfrak{g},\mathfrak{g}} = \mathfrak{g}^1$ und somit $\mathfrak{S}_3 = \benbrace*{\mathfrak{g}^1,\mathfrak{g}^1} =0$.
+	Somit ist $\mathfrak{S}$ $3$-Schritt auflösbar.
+	Man zeigt aber leicht, dass $\mathfrak{S}$ \emph{nicht} nilpotent ist.
+\end{beispiel*}
 
-Sei 
-\[
-	S \coloneqq \set*{\begin{pmatrix}
-		w_{11} & 0 & 0 \\
-		w_{21} & w_{22} & 0 \\
-		w_{31} & w_{32} & w_{33}
-	\end{pmatrix} \given w_{ij} \in \mathbb{R}}
-\]
-Dann gilt $S_1= \benbrace*{S,S}\stackrel{!}{=} \mathfrak{g}$ und weiter
-$S_2 = \benbrace*{S_1,S_1} = \benbrace*{\mathfrak{g},\mathfrak{g}} = \mathfrak{g}^1$ und somit $S_3 = \benbrace*{\mathfrak{g}^1,\mathfrak{g}^1} =0$.
-Somit ist $S$ $3$-Schritt auflösbar.
-Man zeigt aber leicht, dass $S$ \emph{nicht} nilpotent ist.
-
-\begin{lemma}[label=lem:213]
-	Sei $\mathfrak{g}$ eine Liealgebra mit entweder 
-	\begin{itemize}
-		\item $\mathfrak{g}^k=0$, $\mathfrak{g}^{k-1} \neq 0$ (nilpontent), oder
-		\item $\mathfrak{g}_k=0$, $\mathfrak{g}_{k-1} \neq 0$ (auflösbar)
-	\end{itemize}
+\begin{lemma}[label=lem:213,{name=[Grundlegendes zu Nilpotenz und Auflösbarkeit]}]
+	Sei $\mathfrak{g}$ eine Liealgebra nilpontent bzw. auflösbar in $k$ Schritten ist.
 	Dann gilt:
-	\begin{enumerate}[1)]
-		\item Für alle $i$ gilt $\mathfrak{g}_i \subseteq \mathfrak{g}^i$, also impliziert nilpotent auflösbar.
-		\item Für alle $i$ gilt: $\mathfrak{g}^i$, $\mathfrak{g}_i$ sind Ideale
+	\begin{enumerate}[1),itemsep=0pt]
+		\item Für alle $i \in \mathbb{N}$ gilt $\mathfrak{g}_i \subseteq \mathfrak{g}^i$, also impliziert nilpotent auflösbar.
+		\item Für alle $i \in \mathbb{N}$ gilt: $\mathfrak{g}^i$ und $\mathfrak{g}_i$ sind Ideale.
 		\item Ist $\mathfrak{g}$ nilpotent, so gilt $\mathfrak{g}^{k-1} \subset Z(\mathfrak{g})$.
 		Ist $\mathfrak{g}$ auflösbar, so ist $\mathfrak{g}_{k-1}$ abelsch.
 		\item Unteralgebren von nilpotenten (auflösbaren) Liealgebren sind nilpotent (auflösbar)
@@ -1563,35 +1560,37 @@ Man zeigt aber leicht, dass $S$ \emph{nicht} nilpotent ist.
 	\end{enumerate}
 \end{lemma}
 \begin{beweis}
-	\begin{enumerate}[1)]
+	\begin{enumerate}[1),itemsep=0pt]
 		\item $\mathfrak{g}_0 = \mathfrak{g} = \mathfrak{g}^0$.
 		Annahme $\mathfrak{g}_{i-1} \subseteq \mathfrak{g}^{i-1}$. Induktionsschritt:
 		\[
-			\mathfrak{g}_i = \benbrace[\Big]{\Underbrace{\mathfrak{g}_{i-1}}{\subseteq \mathfrak{g}}, \Underbrace{\mathfrak{g}_{i-1}}{\subseteq \mathfrak{g}^{i-1}}} \subset \benbrace*{\mathfrak{g},\mathfrak{g}^{i-1}} = \mathfrak{g}^i
+			\mathfrak{g}_i = \benbrace[\Big]{\Underbrace{\mathfrak{g}_{i-1}}{\subseteq \mathfrak{g}}, \Underbrace{\mathfrak{g}_{i-1}}{\subseteq \mathfrak{g}^{i-1}}} \subseteq \benbrace*{\mathfrak{g},\mathfrak{g}^{i-1}} = \mathfrak{g}^i
 		\]
-		\item schon gezeigt
+		\item Schon am Anfang dieses Abschnitts gezeigt.
 		\item Es ist $0 = \mathfrak{g}^k = \benbrace*{\mathfrak{g}, \mathfrak{g}^{k-1}}$, also $\mathfrak{g}^{k-1} \subset Z(\mathfrak{g})$.
+		Dass $\mathfrak{g}_{k-1}$ abelsch ist, folgt auch direkt aus $\benbrace[\big]{\mathfrak{g}_{k-1}, \mathfrak{g}_{k-1}}=0$.
 		\item Auch klar: Da $\mathfrak{g}$ nilpotent ist, existiert $k$ mit $\mathfrak{g}^k =0$.
 		Für ein Ideal $0 \neq \mathfrak{h}$ ist stets $\mathfrak{h}^i \subseteq \mathfrak{g}^i$ für alle $i$.
+		Genauso ist $\benbrace*{\mathfrak{h}_{k-1}, \mathfrak{h}_{k-1}} \subseteq \benbrace*{\mathfrak{g}_{k-1}, \mathfrak{g}_{k-1}}$, also $\mathfrak{h}$ auch auflösbar, falls $\mathfrak{g}$ auflösbar ist.
 		\item Auf der Quotientenliealgebra $\mathfrak{k} = \sfrac{\mathfrak{g}}{\mathfrak{h}}$ hatten wir die Lieklammer definiert durch
 		\[
 			\benbrace[\big]{v +\mathfrak{h}, w + \mathfrak{h}}_{\mathfrak{k}} \coloneqq \benbrace*{v,w}_{\mathfrak{g}} + \mathfrak{h} 
 		\]
-		Damit folgt die Behauptung.
-		\item Es seien $\mathfrak{h}$ und $\mathfrak{g}$ auflösbar. Per Idnuktion:
-		Es gilt $\Phi(\mathfrak{k}) \subseteq \mathfrak{g}$ und\marginnote{da $\Phi$ surjektiv, ist $\Phi(\mathfrak{k}_i)$ ein Ideal} 
+		Damit folgt sofort die Behauptung.
+		\item Es seien $\mathfrak{h}$ und $\mathfrak{g}$ auflösbar. Per Induktion:
+		Es gilt $\Phi(\mathfrak{k}) = \mathfrak{g}$ und\marginnote{da $\Phi$ surjektiv, ist $\Phi(\mathfrak{k}_i)$ ein Ideal} 
 		\[
-			\Phi(\mathfrak{k}_i) = \Phi \enbrace*{\benbrace*{\mathfrak{k}_{i-1}, \mathfrak{k}_{i-1}}} = \benbrace*{\Phi(\mathfrak{k}_{i-1}), \Phi(\mathfrak{k}_{i-1})}\StackText{I.V.}{\subseteq} \benbrace*{\mathfrak{g}_{i-1}, \mathfrak{g}_{i-1}} = \mathfrak{g}_i
+			\Phi(\mathfrak{k}_i) = \Phi \enbrace[\big]{\benbrace*{\mathfrak{k}_{i-1}, \mathfrak{k}_{i-1}}} = \benbrace[\big]{\Phi(\mathfrak{k}_{i-1}), \Phi(\mathfrak{k}_{i-1})}\StackText{I.V.}{\subseteq} \benbrace[\big]{\mathfrak{g}_{i-1}, \mathfrak{g}_{i-1}} = \mathfrak{g}_i
 		\]
-		Somit $\Phi(\mathfrak{k}_{i_0})=0$ für ein $i_0 \in \mathbb{N}$ ($\mathfrak{g}$ auflösbar)
+		Somit $\Phi(\mathfrak{k}_{i_0})=0$ für ein $i_0 \in \mathbb{N}$, da $\mathfrak{g}$ auflösbar ist.
 		Damit ist $\mathfrak{k}_{i_0} \subset \ker \Phi = \im \Psi$. 
 		Es gilt
 		\[
-			\mathfrak{k}_{i_0 +1} = \benbrace*{\mathfrak{k}_{i_0}, \mathfrak{k}_{i_0}} \subseteq \benbrace*{\Psi(\mathfrak{h}), \Psi(\mathfrak{h})} \subseteq \Psi \benbrace*{\mathfrak{h},\mathfrak{h}} \subseteq \Psi(\mathfrak{h}_1)
+			\mathfrak{k}_{i_0 +1} = \benbrace[\big]{\mathfrak{k}_{i_0}, \mathfrak{k}_{i_0}} \subseteq \benbrace[\big]{\Psi(\mathfrak{h}), \Psi(\mathfrak{h})} \subseteq \Psi \benbrace[\big]{\mathfrak{h},\mathfrak{h}} \subseteq \Psi(\mathfrak{h}_1)
 		\]
 		und 
 		\[
-			\mathfrak{k}_{i_0+2} = \benbrace*{\mathfrak{k}_{i_0}, \mathfrak{k}_{i_0}} \subseteq \benbrace*{\Psi(\mathfrak{h}_1), \Psi(\mathfrak{h}_1)} \subseteq \Psi \benbrace*{\mathfrak{h}_1, \mathfrak{h}_1} = \Psi(\mathfrak{h}_2)
+			\mathfrak{k}_{i_0+2} = \benbrace[\big]{\mathfrak{k}_{i_0 +1}, \mathfrak{k}_{i_0 +1}} \subseteq \benbrace[\big]{\Psi(\mathfrak{h}_1), \Psi(\mathfrak{h}_1)} \subseteq \Psi \benbrace[\big]{\mathfrak{h}_1, \mathfrak{h}_1} = \Psi(\mathfrak{h}_2)
 		\]
 		Da $\mathfrak{h}$ auflösbar ist, folgt die Behauptung.
 		\item Seien $\mathfrak{h}$, $\mathfrak{k}$ auflösbare Ideale.
@@ -1603,56 +1602,66 @@ Man zeigt aber leicht, dass $S$ \emph{nicht} nilpotent ist.
 		\]
 		ist exakt.
 		Nach 6) reicht es zu zeigen, dass $\sfrac{\mathfrak{h} + \mathfrak{k}}{\mathfrak{h}}$ auflösbar ist: 
-		Es ist $\sfrac{\mathfrak{h}+ \mathfrak{k}}{\mathfrak{h}} = \sfrac{\mathfrak{k}}{\mathfrak{k} \cap \mathfrak{k}}$ und $\mathfrak{h} \cap \mathfrak{k}$ ist ein Ideal von $\mathfrak{g}$ und $\mathfrak{k}$.
-		Aus 5) folgt, dass $\sfrac{\mathfrak{k}}{\mathfrak{h} \cap \mathfrak{k}}$ auflösbar ist.
+		Es ist $\sfrac{\mathfrak{h}+ \mathfrak{k}}{\mathfrak{h}} = \sfrac{\mathfrak{k}}{\mathfrak{h} \cap \mathfrak{k}}$ und $\mathfrak{h} \cap \mathfrak{k}$ ist ein Ideal.
+		Da $\mathfrak{k}$ und $\mathfrak{h} \cap \mathfrak{k}$ auflösbare Ideale von $\mathfrak{g}$ sind, folgt aus 5), dass auch $\sfrac{\mathfrak{k}}{\mathfrak{h} \cap \mathfrak{k}}$ auflösbar ist.
+		%  von $\mathfrak{g}$ und $\mathfrak{k}$.
+		% Aus 5) folgt, dass $\sfrac{\mathfrak{k}}{\mathfrak{h} \cap \mathfrak{k}}$ auflösbar ist.
 		
 		Seien nun $\mathfrak{h}, \mathfrak{k}$ nilpotente Ideale von $\mathfrak{g}$.
 		Dann sind auch $\mathfrak{h}^i$ und $\mathfrak{k}^i$ nilpotente Ideale von $\mathfrak{g}$.
 		Es gilt
 		\[
-			\benbrace*{\mathfrak{g}, \mathfrak{h}^1} = \benbrace*{\mathfrak{g}, \benbrace*{\mathfrak{h}, \mathfrak{h}}} \equiv \benbrace*{\mathfrak{h}, \benbrace*{\mathfrak{g},\mathfrak{h}}} \subset \mathfrak{h}^1
+			\benbrace*{\mathfrak{g}, \mathfrak{h}^1} = \benbrace[\big]{\mathfrak{g}, \benbrace*{\mathfrak{h}, \mathfrak{h}}} \equiv \benbrace[\big]{\mathfrak{h}, \benbrace*{\mathfrak{g},\mathfrak{h}}} \subset \mathfrak{h}^1
 		\]
 		Nun gilt \marginnote{mit $\mathfrak{h}^0=\mathfrak{g}$ und $\mathfrak{k}^0=\mathfrak{g}$}
-		\[
-			(\mathfrak{h} + \mathfrak{k})^1 = \benbrace*{\mathfrak{h} + \mathfrak{k}} \subseteq \benbrace*{\mathfrak{g},\mathfrak{h} + \mathfrak{k}} \subseteq \mathfrak{h} + \mathfrak{k} \subseteq \sum_{i=0}^{1} \mathfrak{h}^i \cap \mathfrak{k}^{1-i}
-		\]
+		\(
+			(\mathfrak{h} + \mathfrak{k})^1 = \benbrace[\big]{\mathfrak{h} + \mathfrak{k}, \mathfrak{h} + \mathfrak{k}} \subseteq \benbrace[\big]{\mathfrak{g},\mathfrak{h} + \mathfrak{k}} \subseteq \mathfrak{h} + \mathfrak{k} \subseteq \sum_{i=0}^{1} \mathfrak{h}^i \cap \mathfrak{k}^{1-i}
+		\).
 		Weiter ist 
-		\begin{align}
-			(\mathfrak{h} + \mathfrak{k})^2 \subseteq \benbrace*{\mathfrak{h} + \mathfrak{k},(\mathfrak{h} + \mathfrak{k})^1} &\subseteq \benbrace*{\mathfrak{h} + \mathfrak{k}, \sum_{i=0}^{1} \mathfrak{h}^1 \cap \mathfrak{k}^{1-i} } \\
-			&\subseteq \sum_{i=0}^{2} \mathfrak{h}^i \cap \mathfrak{k}^{2-i}
-		\end{align}
+		\[
+			(\mathfrak{h} + \mathfrak{k})^2 = \benbrace*{\mathfrak{h} + \mathfrak{k},(\mathfrak{h} + \mathfrak{k})^1} \subseteq \benbrace*{\mathfrak{h} + \mathfrak{k}, \sum_{i=0}^{1} \mathfrak{h}^1 \cap \mathfrak{k}^{1-i} } \subseteq \sum_{i=0}^{2} \mathfrak{h}^i \cap \mathfrak{k}^{2-i}
+		\]
 		Induktiv folgt
 		\[
-			(\mathfrak{h} + \mathfrak{k})^l \subset \sum_{i=0}^{l} \mathfrak{h}^i \cap \mathfrak{k}^{l-i}
+			(\mathfrak{h} + \mathfrak{k})^\ell \subset \sum_{i=0}^{\ell} \mathfrak{h}^i \cap \mathfrak{k}^{\ell-i}
 		\]
-		Die Behauptung folgt für ausreichend großes $l$.
+		und somit auch die Behauptung für ausreichend großes $\ell$.\qedhere
 	\end{enumerate}
 \end{beweis}
 
-\begin{beispiel*}
+\begin{beispiel*}[{name=[exakte Sequenzen und Auflösbarkeit]}]
+	Hier ein paar weitere Beispiele zu Auflösbarkeit und Nilpotenz:
 	\begin{itemize}
-		\item \[
-			\mathrm{o}(n,\mathbb{K}) = \set*{A \in \Mat(n,\mathbb{K}) \given A_{ij}=0 \, \forall 1 \le i<j \le n}
+		\item Betrachte die Unteralgebra von $\mathfrak{gl}(n,\mathbb{K})$ der unteren Dreiecksmatrizen
+		\[
+			\mathrm{o}(n,\mathbb{K}) = \set[\big]{A \in \Mat(n,\mathbb{K}) \given A_{ij}=0 \,\, \forall 1 \le i<j \le n}
 		\]
 		ist eine auflösbare Liealgebra mit $\mathrm{o}(n,\mathbb{K})_n =0$, die \emph{nicht} nilpotent ist.
-		\item $\mathrm{n}(n,\mathbb{K}) = \set*{A \in \mathrm{o}(n,\mathbb{K}) \given A_{ii}=0 \enspace i=1, \ldots ,n}$ ist eine nilpotente Liealgebra mit $\mathrm{n}(n,\mathbb{K})_{n-1}=0$
+		\item Die Lieunteralgebra der strikten unteren Dreiecksmatrizen 
+		\[
+			\mathrm{n}(n,\mathbb{K}) = \set[\big]{A \in \mathrm{o}(n,\mathbb{K}) \given A_{ii}=0 \enspace i=1, \ldots ,n}
+		\]
+		ist eine nilpotente Liealgebra mit $\mathrm{n}(n,\mathbb{K})_{n-1}=0$.
 		\item Die Liealgebra 
 		\[
 			\mathfrak{g} = \set*{\begin{pmatrix}
 				\alpha & \beta \\ 0 & 0
 			\end{pmatrix} \given \alpha, \beta \in \mathbb{R}}
 		\]
-		ist auflösbar, aber nicht nilpotent(!).
-		Ferner ist die Sequenz
+		ist auflösbar, aber nicht nilpotent, wie man leicht nachrechnet.
+		Betrachte nun die exakte Sequenz
 		\[
-			\begin{tikzcd}
-				0 \rar & wird stressig
-			\end{tikzcd}
+			\begin{tikzcd}[ampersand replacement=\&]
+				0 \rar \& \lenbrace*{\begin{pmatrix}
+					1 & 0 \\ 0 & 0
+				\end{pmatrix}}_{\mathbb{R}} \rar \& \mathfrak{g} \rar \&
+				\lenbrace*{\begin{pmatrix}
+					0 & 1 \\ 0 & 0
+				\end{pmatrix}}_{\mathbb{R}} \rar \& 0
+			\end{tikzcd} 
 		\]
-		\todo{Sequenz fertig machen mit Matrizen in tikzcd}
-		exakt.
-		Ferner sind $1$-dimensionale Liealgebren abelsch, somit nilpotent.
-		Somit ist \autoref{lem:213} 6) nicht richtig für nilpotente Algebren.
+		$1$-dimensionale Liealgebren sind abelsch und somit nilpotent, also auch die beiden äußeren Ideale.
+		Damit ist \autoref{lem:213} 6) nicht richtig für nilpotente Algebren.\todo{RevChap 2}
 	\end{itemize}
 \end{beispiel*}
 
