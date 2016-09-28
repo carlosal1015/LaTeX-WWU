@@ -1660,33 +1660,33 @@ Dies ist die \Index{absteigende Zentralreihe}. Analog erhält man die \Index{abg
 				\end{pmatrix}}_{\mathbb{R}} \rar \& 0
 			\end{tikzcd} 
 		\]
-		$1$-dimensionale Liealgebren sind abelsch und somit nilpotent, also auch die beiden äußeren Ideale.
-		Damit ist \autoref{lem:213} 6) nicht richtig für nilpotente Algebren.\todo{RevChap 2}
+		$1$-dimensionale Liealgebren sind abelsch und somit nilpotent, also auch die beiden \enquote{äußeren} Ideale.
+		Damit ist \autoref{lem:213} 6) nicht richtig für nilpotente Algebren.
 	\end{itemize}
 \end{beispiel*}
 
-\begin{definition}
+\begin{definition}[{name=[Radikal und Nilradikal]}]
 	Sei $\mathfrak{g}$ eine Liealgebra.
 	\begin{enumerate}[1),itemsep=0pt]
-		\item Das \Index{Radikal} $\rad (\mathfrak{g})$ von $\mathfrak{g}$ ist das eindeutig bestimmte maximale auflösbare Ideal von $\mathfrak{g}$.
-		\item Das \Index{Nilideal} $\nil (\mathfrak{g})$ von $\mathfrak{g}$ ist das eindeutig bestimmte maximale nilpotente Ideal von $\mathfrak{g}$.
-		\item Man nennt $\mathfrak{g}$ \Index{halbeinfach}, falls $\rad(\mathfrak{g}) = \set*{0}$ ist.
-		\item Man nennt $\mathfrak{g}$ reduktiv, falls $\nil(\mathfrak{g})= \set*{0}$ ist.
-		\item Man nennt $\mathfrak{g}$ \Index{einfach}, falls $\set*{0}$ und $\mathfrak{g}$ die einzigen Ideale von $\mathfrak{g}$ sind und $\dim \gamma > 1$ ist.
+		\item Das \Index{Radikal} $\rad (\mathfrak{g})$ von $\mathfrak{g}$ ist das eindeutig bestimmte maximale auflösbare Ideal von $\mathfrak{g}$.\marginnote{für Existenz: Summen auflösbarer (nilpotenter) Ideale sind auflösbar (nilpotent)}
+		\item Das \Index{Nilradikal} (oder \Index{Nilideal})  $\nil (\mathfrak{g})$ von $\mathfrak{g}$ ist das eindeutig bestimmte maximale nilpotente Ideal von $\mathfrak{g}$.
+		\item Man nennt $\mathfrak{g}$ \bet{halbeinfach}\index{Liealgebra!halbeinfache}, falls $\rad(\mathfrak{g}) = \set*{0}$ ist.
+		\item Man nennt $\mathfrak{g}$ \bet{reduktiv}\index{Liealgebra!reduktive}, falls $\nil(\mathfrak{g})= \set*{0}$ ist.
+		\item Man nennt $\mathfrak{g}$ \bet{einfach}\index{Liealgebra!einfache}, falls $\set*{0}$ und $\mathfrak{g}$ die einzigen Ideale von $\mathfrak{g}$ sind und $\dim \mathfrak{g} > 1$ ist.
 	\end{enumerate}
 \end{definition}
 
-\begin{bemerkung*}
+\begin{bemerkung*}[{name=[Charakterisierung von halbeinfach]}]
 	\begin{itemize}
-		\item Es ist $\nil(\mathfrak{g}) \subseteq \rad(\mathfrak{g}) \subseteq \mathfrak{g}$
+		\item Es ist $\nil(\mathfrak{g}) \subseteq \rad(\mathfrak{g}) \subseteq \mathfrak{g}$, da nilpotent auflösbar impliziert.
 		\item Eine Liealgebra $\mathfrak{g}$ ist genau dann halbeinfach, wenn $\mathfrak{g}$ keine abelschen Ideale besitzt:
 		
 		Wenn $0\neq\mathfrak{k}$ ein abelsches Ideal ist, so ist $\rad(\mathfrak{g}) \neq 0$.
-		Ist andersrum $\rad(\mathfrak{g})\neq 0$, so ist $\rad(\mathfrak{g})_{k-1}$ ein abelsches Ideal.
+		Ist andersrum $\rad(\mathfrak{g})\neq 0$, so ist $\rad(\mathfrak{g})_{k-1}$ ein abelsches Ideal, falls $k$ die kleinste Zahl mit $\rad(\mathfrak{g})_k=0$ ist.
 	\end{itemize}
 \end{bemerkung*}
 
-\begin{proposition}
+\begin{proposition}[{name=[Quotient mit Radikal ist stets halbeinfach]}]
 	Sei $\mathfrak{g}$ eine Liealgebra.
 	Dann ist $\overline{\mathfrak{g}} \coloneqq \sfrac{\mathfrak{g}}{\rad(\mathfrak{g})}$ halbeinfach.
 \end{proposition}
@@ -1704,12 +1704,12 @@ Dies ist die \Index{absteigende Zentralreihe}. Analog erhält man die \Index{abg
 	\] 
 	exakt.
 	Ist also $\overline{\mathfrak{i}}$ ein auflösbares Ideal von $\overline{\mathfrak{g}}$, so ist nach \autoref{lem:213} 6) auch $\pi^{-1}(\overline{\mathfrak{i}})$ ein auflösbares Ideal von $\mathfrak{g}$.
-	Aus der Maximalität von $\rad(\mathfrak{g})$ folgt $\overline{\mathfrak{i}}=0$.
+	Aus der Maximalität von $\rad(\mathfrak{g})$ folgt $\overline{\mathfrak{i}}=0$.\todo{RevChap 2}
 \end{beweis}
 
-\begin{satz}[{name={Levi-Mallev}},label=satz:216]
+\begin{satz}[{name={Levi-Malcev}},label=satz:216]
 	Sei $\mathfrak{g}$ eine Liealgebra.
-	Dann existiert eine bis auf innere Automorphismen eindeutige halbeinfache Liealgebra $\mathfrak{h} \subset \mathfrak{g}$ mit 
+	Dann existiert eine bis auf innere Automorphismen eindeutige halbeinfache Liealgebra $\mathfrak{h} \subset \mathfrak{g}$ mit\marginnote{Vektorraumsumme, semidirektes Produkt von Liealgebren}
 	\[
 		\mathfrak{g} = \mathfrak{h} \oplus  \rad(\mathfrak{g})
 	\]
