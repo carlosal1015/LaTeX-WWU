@@ -1250,7 +1250,7 @@ Ist $G$ eine zusammenhängende Liegruppe, so gilt $\Ad(G) = \Int(\mathfrak{g})$,
 	Nichttriviale innere Automorphismen existieren in diesem auch nicht.
 \end{beispiel*}
 
-\begin{lemma}[{name=[Adjungierte Darstellung surjektiv auf innere Automorphismen (zusammenhängend)]}]
+\begin{lemma}[{name=[Adjungierte Darstellung surjektiv auf innere Automorphismen (zusammenhängend)]},label=lem:164]
 	Sie $G$ eine zusammenhängende Liegruppe mit Liealgebra $\mathfrak{g}$.
 	Dann ist $\Ad \colon G \to \Int(\mathfrak{g})$ ein surjektiver Gruppenhomomorphismus mit Kern $Z(G)$.
 	Es gilt also
@@ -1914,9 +1914,9 @@ Aus Ado's Satz folgt wieder:
 \begin{beispiel*}[{name=[Komplexifizierungen]}]
 	\begin{itemize}
 		\item Es gilt $\SL(2,\mathbb{R}) \otimes \mathbb{C} = \SU(2) \otimes \mathbb{C} = \SL(2,\mathbb{C})$.
-		\item $\SU(2) = \set*{A \in \GL(2,\mathbb{C}) \given A^* A = \begin{pmatrix}
+		\item $\SU(2) = \set*{A \in \GL(2,\mathbb{C}) \given A^* A = \begin{psmallmatrix}
 			1 & 0 \\ 0 & 1
-		\end{pmatrix}, \det A = 1}$ ist kompakte Liegruppe.
+		\end{psmallmatrix}, \det A = 1}$ ist kompakte Liegruppe.
 		\item $\SL(2,\mathbb{R})$ ist nicht kompakte Liegruppe.
 	\end{itemize}
 \end{beispiel*}
@@ -1947,7 +1947,7 @@ Somit entsprechen sich nilpotente, auflösbare und halbeinfache reelle Liealgebr
 	\]
 	nach \cref{sec:einschr_killing}.
 	% (Komplexifiziere zuerst! zunächst ins Reelle).
-	Die andere -- deutlich aufwendigere -- Implikation findet man in \cite[Sec.~4.6.4]{procesiLie}.
+	Die andere -- aufwendigere -- Implikation findet man in \cite[Sec.~4.6.4]{procesiLie}.
 \end{beweis}
 
 Nach \autoref{lem:169} ist $\ker \mathcal{B}$ ein Ideal.
@@ -1959,7 +1959,7 @@ Ist die Killingform $0$, so ist $\mathfrak{g}$ auflösbar, aber nicht notwendig 
 \label{sec:22}
 
 \begin{erinnerung}[{name=[halbeinfach]}]
-	Eine Liealgebra $\mathfrak{g}$ ist halbeinfach, genau dann, wenn $\mathfrak{g}$ kein abelsches Ideal hat (\ref{def:214}).\todo{RevChap 2}
+	Eine Liealgebra $\mathfrak{g}$ ist halbeinfach, genau dann, wenn $\mathfrak{g}$ kein abelsches Ideal hat (\ref{def:214}).
 \end{erinnerung}
 
 \begin{satz}[{name={Cartan}}]
@@ -1968,116 +1968,136 @@ Ist die Killingform $0$, so ist $\mathfrak{g}$ auflösbar, aber nicht notwendig 
 \begin{beweis}
 	Sei zunächst $\mathfrak{g}$ halbeinfach.
 	Zu zeigen ist, dass $\ker \mathcal{B}= 0$ ist.
-	Angenommen dies gilt nicht, so $\ker \mathcal{B}$ nach \autoref{satz:2115} ein auflösbares Ideal und es folgt $\rad(\mathfrak{g}) \neq 0$, was einen Widerspruch darstellt.
+	Angenommen dies gilt nicht, so ist $\ker \mathcal{B}$ nach \autoref{satz:2115} ein auflösbares Ideal und es folgt $\rad(\mathfrak{g}) \neq 0$, was einen Widerspruch darstellt.
 	
 	Ist umgekehrt $\mathcal{B}$ nicht degeneriert, so nehmen wir an, dass $\mathfrak{a}$ ein abelsches Ideal von $\mathfrak{g}$ ist.
 	Wir wählen eine Basis $a_1, \ldots ,a_k, b_1, \ldots ,b_s$ von $\mathfrak{g}$ mit $a = \langle a_1, \ldots , a_k\rangle_\mathbb{K}$.
-	Dann gilt $(\ad_Y \circ \ad_X)(a_i) = \benbrace[\big]{Y,\benbrace*{X,a_i}} = 0$ und weiter
+	Dann gilt für $X \in \mathfrak{a}$ und $Y \in \mathfrak{g}$ 
 	\[
-		\enbrace*{\ad_Y \circ \ad_X}(b_i) = \benbrace*{Y, \benbrace*{X,b_i}} \in  \mathfrak{a}
+		(\ad_Y \circ \ad_X)(a_i) = \benbrace[\big]{Y,\benbrace*{X,a_i}} = 0
+	\]
+	und weiter
+	\[
+		\enbrace*{\ad_Y \circ \ad_X}(b_i) = \benbrace[\big]{Y, \benbrace*{X,b_i}} \in  \mathfrak{a}
 	\]
 	Also ist für $X \in \mathfrak{a}$ und $Y \in \mathfrak{g}$ obige Verknüpfung eine strikte obere Dreiecksmatrix.
-	Damit ist $\mathcal{B}(Y,X)= \Span (\ad_Y \circ \ad_X)=0$ und somit $\ker \mathcal{B} \neq 0$, ein Widerspruch!
+	Damit ist $\mathcal{B}(Y,X)= \tr (\ad_Y \circ \ad_X)=0$ und somit $\ker \mathcal{B} \neq 0$, ein Widerspruch!
 \end{beweis}
 
-Halbeinfache Liegruppen sind $\SL(n,\mathbb{R}), \SL(n,\mathbb{C}), \SO(n), \SU(n), \Sp(n), \ldots $\marginnote{$\mathfrak{g} = \mathfrak{g}_{SS} \oplus \rad(\mathfrak{g})$}
+Wir haben insbesondere gezeigt, dass $\ker \mathcal{B}$ für jede Liealgebra ein auflösbares Ideal ist und jedes abelsche Ideal enthält.
 
-Man kann zeigen, dass 
-\[
-	\mathcal{B}_{\mathfrak{g}} \enbrace*{x,y} = \Underbracket{\alpha_\mathfrak{g}}{\neq 0} \cdot \tr(x \cdot y)
-\]
-Folglich hat die Killingform auf $\SL(n,\mathbb{R})$ positive und negative \enquote{Eigenwerte}.
+\begin{beispiel*}[{name=[halbeinfache Liealgebren/Liegruppen]}]
+	Halbeinfache Liealgebren sind zum Beispiel 
+	\[
+		\mathfrak{sl}(n,\mathbb{R}), \mathfrak{sl}(n,\mathbb{C}), \mathfrak{so}(n), \mathfrak{su}(n), \mathfrak{sp}(n) \text{ und } \mathfrak{o}(n,\mathbb{K})
+	\]
+	Um dies zu sehen, kann man zeigen, dass, falls $\mathfrak{g}$ eine der obigen Liealgebren ist,\marginnote{Levi-Zerlegung: $\mathfrak{g} = \mathfrak{g}_{SS} \oplus \rad(\mathfrak{g})$}
+	\[
+		\mathcal{B}_{\mathfrak{g}} \enbrace*{X,Y} = \alpha_\mathfrak{g} \cdot \tr(X Y)
+	\]
+	gilt für eine von der Liealgebra abhängige Konstante $\alpha_\mathfrak{g} \neq 0$.\todo{Übungen einarbeiten?}
+	In allen Beispielen rechnet man leicht nach, dass
+	\[
+		X \in \mathfrak{g} \implies X^T \in \mathfrak{g}
+	\]
+	Somit ist $\mathcal{B}(X,X^T) = \alpha_\mathfrak{g} \cdot \sum X_{ii}^2 \neq 0$ für $X\neq 0$ und damit nicht degeneriert.
+\end{beispiel*}
 
-In allen Beispielen gilt
-\[
-	X \in \mathfrak{g} \implies X^T \in \mathfrak{g}
-\]
-Somit ist $\mathcal{B}(X,X^T) = \alpha_\mathfrak{g} \cdot \sum X_{ii}^2 \neq 0$ für $x\neq 0$.
+% Folglich hat die Killingform auf $\mathfrak{sl}(n,\mathbb{R})$ positive und negative \enquote{Eigenwerte}.
 Ist etwa $G$ kompakt, so ist $\mathcal{B}_\mathfrak{g}$ negativ definit!
 
-\begin{satz}[label=satz:222]
+\begin{satz}[label=satz:222,{name=[Eigenschaften halbeinfacher Liealgebren]}]
 	Sei $\mathfrak{g}$ eine halbeinfache Liealgebra.
 	Dann gilt
 	\begin{enumerate}[1)]
-		\item $\mathfrak{g} = \mathfrak{g}_1 \oplus  \ldots \oplus \mathfrak{g}_s$, wobei die $\mathfrak{g}_i$ einfache Ideale sind, $\benbrace*{\mathfrak{g}_i,\mathfrak{g}_j}=0$ für $i \neq j$
-		\item Ist $\mathfrak{a} \subset \mathfrak{g}$ ein Ideal, so folgt $\mathfrak{a} = \mathfrak{g}_{i_1} \oplus  \ldots \oplus \mathfrak{g}_{i_k}$
-		\item $\benbrace*{\mathfrak{g},\mathfrak{g}}=\mathfrak{g}$
-		\item $\sfrac{\Aut(\mathfrak{g})}{\Int(\mathfrak{g})}$ ist diskret.
+		\item $\mathfrak{g} = \mathfrak{g}_1 \oplus  \ldots \oplus \mathfrak{g}_s$, wobei die $\mathfrak{g}_i$ einfache Ideale sind mit $\benbrace*{\mathfrak{g}_i,\mathfrak{g}_j}=0$ für $i \neq j$.
+		\item Ist $\mathfrak{a} \subset \mathfrak{g}$ ein Ideal, so folgt $\mathfrak{a} = \mathfrak{g}_{i_1} \oplus  \ldots \oplus \mathfrak{g}_{i_k}$, insbesondere ist die Zerlegung eindeutig bis Umordnung.
+		\item Es gilt $\benbrace*{\mathfrak{g},\mathfrak{g}}=\mathfrak{g}$.
+		\item $\sfrac{\Aut(\mathfrak{g})}{\Int(\mathfrak{g})}$ ist diskret bzw. $\Der(\mathfrak{g}) = \intAlg(\mathfrak{g})$.
 	\end{enumerate}
 \end{satz}
 \begin{beweis}
-	Vorüberlegungen:
-	\begin{enumerate}[i)]
+	Zunächst einige Vorüberlegungen:
+	\begin{enumerate}[i),itemsep=0pt]
 		\item \label{enum:222:1} Ist $\mathfrak{a}$ ein Ideal von $\mathfrak{g}$, so auch 
-		\[
-			\mathfrak{a}^\perp \coloneqq \set[\big]{x \in \mathfrak{g} \given \mathcal{B}(x,y) =0 \,\forall y \in \mathfrak{a}}
-		\]
+		\(
+			\mathfrak{a}^\perp \coloneqq \set*{x \in \mathfrak{g} \given \mathcal{B}(x,y) =0 \,\forall y \in \mathfrak{a}}
+		\), wie man sich leicht überlegt:
 		Sei $x \in \mathfrak{a}^\perp$ und $y \in \mathfrak{g}$. Zu zeigen: $\benbrace*{x,y} \in \mathfrak{a}^\perp$.
 		Für $z \in \mathfrak{a}$ gilt
 		\[
-			\mathcal{B} \enbrace*{\benbrace*{x,y},z} = - \mathcal{B} \enbrace*{\ad_y(x), z} = \mathcal{B} \enbrace*{x, \ad_y(z)} =0
+			\mathcal{B} \enbrace[\big]{\benbrace*{x,y},z} = - \mathcal{B} \enbrace[\big]{\ad_y(x), z} = \mathcal{B} \enbrace[\big]{x, \ad_y(z)} =0
 		\]
 		\item \label{enum:222:2} Ist $\mathfrak{a}$ ein Ideal, so ist $\mathfrak{a} \cap \mathfrak{a}^\bot = \set*{0}$.
 		Angenommen dies wäre nicht so, so wissen wir dass der Schnitt ein Ideal von $\mathfrak{g}$ ist, auf dem die Killingform verschwindet.
-		Mit einer kleinen Rechnung folgt, dass der Schnitt dan auflösbar ist.
+		Mit einer kleinen Rechnung folgt, dass der Schnitt dann auflösbar sein muss.
 		Also ist $\rad(\mathfrak{g}) \neq 0$, was einen Widerspruch darstellt.
-		\item \label{enum:222:3} $\mathfrak{g} = \mathfrak{a} \oplus \mathfrak{a}^\perp$ (gilt viel allgemeiner!)
+		\item \label{enum:222:3} Es gilt $\dim \mathfrak{g} = \dim \mathfrak{a} + \dim \mathfrak{a}^\perp$.
+		
+		Man wähle eine Basis $e_1,\ldots ,e_k$ von $\mathfrak{a}$.
+		Dann sind die Gleichungen $\mathcal{B}(e_i,X) =0$ linear unabhängig, da $\mathcal{B}$ nicht degeneriert ist (Cartans Kriterium).
+		Insbesondere hat der Lösungsraum Dimension $\dim \mathfrak{g} - \dim \mathfrak{a}$.
+		
+		%$\mathfrak{g} = \mathfrak{a} \oplus \mathfrak{a}^\perp$ (gilt viel allgemeiner!)
 	\end{enumerate}
 	Beginnen wir nun mit den eigentlichen Aussagen:
-	\begin{enumerate}[1)]
-		\item Sei $\mathfrak{a}$ ein Ideal von $\mathfrak{g}$ mit $\mathfrak{a} \neq \set*{0}, \mathfrak{g}$.
-		Nach \ref{enum:222:1}, \ref{enum:222:2} und \ref{enum:222:3} gilt $\mathfrak{g} = \mathfrak{a} \oplus \mathfrak{a}^\perp$.
+	\begin{enumerate}[1),itemsep=0pt]
+		\item Sei $\mathfrak{a}$ ein nichttriviales Ideal von $\mathfrak{g}$.
+		Die Vorüberlegungen \labelcref{enum:222:1,enum:222:2,enum:222:3} implizieren $\mathfrak{g} = \mathfrak{a} \oplus \mathfrak{a}^\perp$.
 		Induktiv folgt dann die Behauptung.
-		\item Sei $\mathfrak{a}$ ein Ideal von $\mathfrak{g}$.
-		Dann ist 
+		\item Sei $\mathfrak{a}$ ein \emph{einfaches} Ideal von $\mathfrak{g}$.
+		Dann ist $\mathfrak{a} \cap \mathfrak{g}_1$ entweder $0$ oder $\mathfrak{g}_i$.
+		Damit folgt direkt die Behauptung
+		% \[
+		% 	\mathfrak{a} \cap \mathfrak{g}_1 = \begin{cases}
+		% 		0 \\
+		% 		\mathfrak{g}_i
+		% 	\end{cases}
+		% \]
+		% mit $\mathfrak{g}_1, \ldots ,\mathfrak{g}_s$ wie in 1).
+		% Da $\mathfrak{g}$ kein Zentrum hat existiert $x \in \mathfrak{a}$ und $y \in \mathfrak{g}$ mit $\benbrace*{x,y} \neq 0$.
+		% Wir schreiben $y = y_1 + \ldots + y_s$ bezüglich $\mathfrak{g} = \mathfrak{g}_1 \oplus  \ldots \oplus \mathfrak{g}_s$.
+		% Dann gilt
+		% \[
+		% 	0 \neq\benbrace*{x,y} = \sum_{i=1}^{s} \benbrace*{x,y_i} \implies \benbrace*{x,y_{i_0}} \neq 0
+		% \]
+		% für ein $i_0 \in \set*{1,\ldots ,s}$. Aber $\benbrace*{x,y_{i_0}} \in \mathfrak{g}_{i_0} \cap \mathfrak{a}$.
+		\item Ist $\mathfrak{g}$ einfach, so gilt $\benbrace*{\mathfrak{g},\mathfrak{g}}=0$ oder $\benbrace*{\mathfrak{g},\mathfrak{g}}=\mathfrak{g}$.
+		Im ersten Fall würde dann $\mathfrak{g}$ abelsch sein, damit die Killingform trivial sein, was im Widerspruch zu Cartans Kriterium steht.
+		Mit der Bilinearität von $\benbrace*{\cdot,\cdot}$ und 1) folgt der allgemeine Fall.
+		% \[
+		% 	\benbrace*{\mathfrak{g},\mathfrak{g}} = \begin{cases}
+		% 		0 \\
+		% 		\mathfrak{g}
+		% 	\end{cases}
+		% \]
+		% Aus ersterem würde folgen, dass $\mathfrak{g}$ abelsch ist, also die Killlingform trivial ist, was ein Widerspruch ist.
+		% Mit 1) folgt nun die Behauptung.
+		\item Nach dem Beweis von \autoref{lem:165} ist $\intAlg(\mathfrak{g})$ ein Ideal von $\Der(\mathfrak{g}) = \Tmap_e\!\Aut(\mathfrak{g})$.
+		Da $\mathfrak{g}$ halbeinfach ist, gilt $Z(\mathfrak{g}) =0$ und somit ist nach \autoref{lem:164}
 		\[
-			\mathfrak{a} \cap \mathfrak{g}_1 = \begin{cases}
-				0 \\
-				\mathfrak{g}_i 
-			\end{cases}
+			\intAlg(\mathfrak{g}) \cong \ad(\mathfrak{g}) \cong \mathfrak{g}
 		\]
-		mit $\mathfrak{g}_1, \ldots ,\mathfrak{g}_s$ wie in 1).
-		Da $\mathfrak{g}$ kein Zentrum hat existiert $x \in \mathfrak{a}$ und $y \in \mathfrak{g}$ mit $\benbrace*{x,y} \neq 0$.
-		Wir schreiben $y = y_1 + \ldots + y_s$ bezüglich $\mathfrak{g} = \mathfrak{g}_1 \oplus  \ldots \oplus \mathfrak{g}_s$.
-		Dann gilt 
-		\[
-			0 \neq\benbrace*{x,y} = \sum_{i=1}^{s} \benbrace*{x,y_i} \implies \benbrace*{x,y_{i_0}} \neq 0
-		\]
-		für ein $i_0 \in \set*{1,\ldots ,s}$. Aber $\benbrace*{x,y_{i_0}} \in \mathfrak{g}_{i_0} \cap \mathfrak{a}$.
-		\item Ist $\mathfrak{g}$ einfach, so gilt 
-		\[
-			\benbrace*{\mathfrak{g},\mathfrak{g}} = \begin{cases}
-				0 \\
-				\mathfrak{g}
-			\end{cases}
-		\]
-		Aus ersterem würde folgen, dass $\mathfrak{g}$ abelsch ist, also die Killlingform trivial ist, was ein Widerspruch ist.
-		Mit 1) folgt nun die Behauptung.
-		\item Nach \autoref{lem:165} ist $\Int(\mathfrak{g})$ ein Ideal von $\Der(\mathfrak{g}) = \Tmap_e \Aut(\mathfrak{g})$.
-		Da $\mathfrak{g}$ halbeinfach ist, gilt $Z(\mathfrak{g}) =0$ und somit ist
-		\[
-			\Int(\mathfrak{g}) \cong \ad(\mathfrak{g}) \cong \mathfrak{g}
-		\]
-		Damit ist $\int(\mathfrak{g})$ halbeinfach.
+		Damit ist insbesondere $\intAlg(\mathfrak{g})$ halbeinfach.
 		Wir bezeichnen nun mit $\mathcal{B}$ die Killingform von $\Der(\mathfrak{g})$.
-		Dann gilt
+		Dann gilt nach \cref{sec:einschr_killing}
 		\[
-			\mathcal{B}\big|_{\Int(\mathfrak{g})} = \mathcal{B}_{\Int(\mathfrak{g})}
+			\mathcal{B}\big|_{\intAlg(\mathfrak{g})} = \mathcal{B}_{\intAlg(\mathfrak{g})}
 		\]
-		Die Vorüberlegungen \ref{enum:222:1}, \ref{enum:222:2} und \ref{enum:222:3} gelten auch, wenn nur $\mathcal{B}|_{\mathfrak{a}}$ nicht degeneriert ist.
+		Die Vorüberlegungen \labelcref{enum:222:1,enum:222:2,enum:222:3} gelten auch, wenn nur $\mathcal{B}|_{\mathfrak{a}}$ nicht degeneriert ist.
 		Somit folgt
 		\[
-			\Der(\mathfrak{g}) = \Int(\mathfrak{g}) \oplus  \Int(\mathfrak{g})^\perp
+			\Der(\mathfrak{g}) = \intAlg(\mathfrak{g}) \oplus \intAlg(\mathfrak{g})^\perp
 		\]
-		Sei nun $D \in \Int(\mathfrak{g})^\bot$.
-		Dann gilt wieder nach \autoref{lem:165} $0= \benbrace*{D,\ad_X} = \ad_{D(x)}$ und somit $D(x) \in Z(\mathfrak{g}) = \set*{0}$.
-		Da dies für alle $x \in \mathfrak{g}$ gilt, folgt $D=0$ und damit $\Der(\mathfrak{g}) = \Int(\mathfrak{g})$.\qedhere
+		Sei nun $D \in \intAlg(\mathfrak{g})^\bot$.
+		Dann gilt wieder nach \autoref{lem:165} $0= \benbrace*{D,\ad_x} = \ad_{D(x)}$ und somit $D(x) \in Z(\mathfrak{g}) = \set*{0}$.
+		Da dies für alle $x \in \mathfrak{g}$ gilt, folgt $D=0$ und damit $\Der(\mathfrak{g}) = \intAlg(\mathfrak{g})$.\qedhere
 	\end{enumerate}
 \end{beweis}
 
-\begin{bemerkung*}
-	Einfache komplexe Liealgebren sind von Cartan klassifiziert worden.
-	Diese treten in vir unendlichen Familien $A_n$, $B_n$, $C_n$, $D_n$ auf und 5 Ausnahmealgebren: $G_2$, $F_4$, $E_6$, $E_7$, $E_8$.
+\begin{bemerkung*}[{name=[Klassifikation der komplexen halbeinfachen Liealgebren]}]
+	Halbeinfache komplexe Liealgebren sind von \textsc{Cartan} klassifiziert worden.
+	Diese treten in vier unendlichen Familien $A_n$, $B_n$, $C_n$, $D_n$ und fünf sogenannten Ausnahmealgebren $G_2$, $F_4$, $E_6$, $E_7$, $E_8$ auf.\todo{RevChap 2}
 \end{bemerkung*}
 % section 22 (end)
 
