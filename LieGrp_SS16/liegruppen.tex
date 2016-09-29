@@ -1634,12 +1634,12 @@ Dies ist die \Index{absteigende Zentralreihe}. Analog erhält man die \Index{abg
 	\begin{itemize}[itemsep=1pt]
 		\item Betrachte die Unteralgebra von $\mathfrak{gl}(n,\mathbb{K})$ der unteren Dreiecksmatrizen
 		\[
-			\mathrm{o}(n,\mathbb{K}) = \set[\big]{A \in \Mat(n,\mathbb{K}) \given A_{ij}=0 \,\, \forall 1 \le i<j \le n}
+			\mathfrak{0}(n,\mathbb{K}) = \set[\big]{A \in \Mat(n,\mathbb{K}) \given A_{ij}=0 \,\, \forall 1 \le i<j \le n}
 		\]
-		ist eine auflösbare Liealgebra mit $\mathrm{o}(n,\mathbb{K})_n =0$, die \emph{nicht} nilpotent ist.
+		ist eine auflösbare Liealgebra mit $\mathfrak{0}(n,\mathbb{K})_n =0$, die \emph{nicht} nilpotent ist.
 		\item Die Lieunteralgebra der strikten unteren Dreiecksmatrizen 
 		\[
-			\mathfrak{n}(n,\mathbb{K}) = \set[\big]{A \in \mathrm{o}(n,\mathbb{K}) \given A_{ii}=0 \enspace i=1, \ldots ,n}
+			\mathfrak{n}(n,\mathbb{K}) = \set[\big]{A \in \mathfrak{0}(n,\mathbb{K}) \given A_{ii}=0 \enspace i=1, \ldots ,n}
 		\]
 		ist eine nilpotente Liealgebra mit $\mathfrak{n}(n,\mathbb{K})_{n-1}=0$.
 		\item Die Liealgebra 
@@ -1665,7 +1665,7 @@ Dies ist die \Index{absteigende Zentralreihe}. Analog erhält man die \Index{abg
 	\end{itemize}
 \end{beispiel*}
 
-\begin{definition}[{name=[Radikal und Nilradikal]}]
+\begin{definition}[{name=[Radikal und Nilradikal]},label=def:214]
 	Sei $\mathfrak{g}$ eine Liealgebra.
 	\begin{enumerate}[1),itemsep=0pt]
 		\item Das \Index{Radikal} $\rad (\mathfrak{g})$ von $\mathfrak{g}$ ist das eindeutig bestimmte maximale auflösbare Ideal von $\mathfrak{g}$.\marginnote{für Existenz: Summen auflösbarer (nilpotenter) Ideale sind auflösbar (nilpotent)}
@@ -1858,63 +1858,62 @@ Hier noch eine weitere Folgerung aus dem Satz von Engel (\ref{satz:218}):
 \end{korollar}
 \begin{beweis}
 	Aus dem Satz von Ado folgt, dass wir $\mathfrak{g} \subset \mathfrak{gl}(n,\mathbb{K})$ annehmen können. 
-	Mit \autoref{satz:218} folgt dann die Behauptung.\todo{RevChap 2}
+	Mit \autoref{satz:218} folgt dann die Behauptung.
 \end{beweis}
 
-Wir kommen nun zu auflösbaren Liealgebra und notieren die folgenden Aussagen ohene Beweise; diese sind ähnlich wie im nilpotenten Fall (Procesi Liegroups)\todo{Ref}.
+Wir kommen nun zu auflösbaren Liealgebren und notieren die folgenden Aussagen ohne Beweise; diese sind ähnlich wie im nilpotenten Fall und in \citetitle{procesiLie} von \textcite{procesiLie} nachzuschlagen.
 
 \begin{satz}[{name={Lie}},label=satz:2111]
 	Sei $\mathfrak{g}$ eine komplexe Lieunteralgebra von $\mathfrak{gl}(V,\mathbb{C})=\End(V,\mathbb{C})$.
-	ist $\mathfrak{g}$ auflösbar, so existiert eine 1-Form $\lambda \colon \mathfrak{g} \to \mathbb{C}$ und ein Vektor $v \in V\setminus \set*{0}$ mit $A(v)= \lambda(A) \cdot v$ für alle $A \in \mathfrak{g} \subset \mathfrak{gl}(V,\mathbb{C})$ ($\mathfrak{g}$ nilpotent $\implies \lambda=0$).
+	Ist $\mathfrak{g}$ auflösbar, so existiert eine 1-Form $\lambda \colon \mathfrak{g} \to \mathbb{C}$ und ein Vektor $v \in V\setminus \set*{0}$ mit $A(v)= \lambda(A) \cdot v$ für alle $A \in \mathfrak{g} \subset \mathfrak{gl}(V,\mathbb{C})$ ($\mathfrak{g}$ nilpotent $\implies \lambda=0$).
 \end{satz}
 
-\begin{bemerkung*}
-	Die Aussage ist nicht richtig im reellen Fall. 
+\begin{bemerkung*}[{name=[Gültigkeit des Satzes von Lie]}]
+	Die Aussage ist nicht richtig im reellen Fall!
 \end{bemerkung*}
 
-\begin{korollar}
+\begin{korollar}[label=kor:2112,{name=[komplexe auflösbare Unteralgebra in Dreiecksmatrizen]}]
 	Sei $\mathfrak{g} \subset \mathfrak{gl}(V,\mathbb{C})$ eine komplexe, auflösbare Liealgebra.
 	Dann gilt $\mathfrak{g} \subset \mathfrak{o}(V,\mathbb{C})$.
 \end{korollar}
 
+\autoref{satz:2111} und \autoref{kor:2112} werden in \cite[Sec.~4.6.3]{procesiLie} bewiesen.
 Aus Ado's Satz folgt wieder:
-\begin{korollar}[label=korr:2113]
+\begin{korollar}[label=korr:2113,{name=[jede komplexe auflösbare Unteralgebra in Dreiecksmatrizen]}]
 	Jede komplexe auflösbare Liealgebra ist Unteralgebra von $\mathfrak{o}(n,\mathbb{C})$ für ein $n \in \mathbb{N}$.
 \end{korollar}
 
-\begin{korollar}[label=korr:2114]
+\begin{korollar}[label=korr:2114,{name=[Charakterisierung von Auflösbarkeit komplexer Liealgebren]}]
 	Sei $\mathfrak{g}$ eine komplexe Liealgebra.
 	Dann ist $\mathfrak{g}$ genau dann auflösbar, wenn $\benbrace*{\mathfrak{g},\mathfrak{g}}$ nilpotent ist.
 \end{korollar}
 \begin{beweis}
 	Sei zunächst $\mathfrak{g}$ auflösbar.
 	Nach \autoref{korr:2113} können wir $\mathfrak{g} \subset \mathfrak{o}(n,\mathbb{C})$ annehmen.
-	Wegen $\benbrace*{\mathfrak{o}(n,\mathbb{C}), \mathfrak{o}(n,\mathbb{C})} \subset \mathfrak{n}(n,\mathbb{C})$ folgt die Behauptung.
-	\[
-		hier fehlt noch was
-	\]
-	Ist andersrum $\benbrace*{\mathfrak{g},\mathfrak{g}}$ nilpotent, so ist nach \autoref{korr:2113} $\benbrace*{\mathfrak{g},\mathfrak{g}}$ auflösbar und somit auch $\mathfrak{g}$.
+	Wegen $\benbrace[\big]{\mathfrak{o}(n,\mathbb{C}), \mathfrak{o}(n,\mathbb{C})} \subset \mathfrak{n}(n,\mathbb{C})$ folgt die erste Richtung der Behauptung.
+	
+	Ist andersrum $\benbrace*{\mathfrak{g},\mathfrak{g}}$ nilpotent, so ist nach \autoref{lem:213} 1) $\benbrace*{\mathfrak{g},\mathfrak{g}}$ auflösbar und somit auch $\mathfrak{g}$.\marginnote{mit einem \enquote{Schritt} mehr}
 \end{beweis}
 
-Kleiner Exkurs: Komplexifizierung
+\begin{exkurs*}[name={Komplexifizierung}]
+	Sei $\mathfrak{g}$ eine reelle Liealgebra, das heißt $\mathfrak{g}$ ist ein $\mathbb{R}$-Vektorraum versehen mit einer Lieklammer $\benbrace*{\cdot ,\cdot }_\mathbb{R} \colon \mathfrak{g} \times \mathfrak{g} \to \mathfrak{g}$.
+	Dann ist 
+	\[
+		\mathfrak{g}_\mathbb{C} \coloneqq \mathfrak{g} \otimes_\mathbb{R} \mathbb{C} = \set[\big]{v \otimes 1 + \tilde{v} \otimes i \given v , \tilde{v} \in \mathfrak{g}}
+	\]
+	ein komplexer Vektorraum mit $\dim_\mathbb{R} \mathfrak{g} = \dim_\mathbb{C} \mathfrak{g}_\mathbb{C}$.
+	Wir setzen die Lieklammer komplex linear auf $\mathfrak{g}_\mathbb{C}$ fort mittels
+	\[
+		\benbrace[\big]{v_1 \otimes \lambda_1, v_2 \otimes \lambda_2}_\mathbb{C} \coloneqq \benbrace*{v_1,v_2}_\mathbb{R} \otimes (\lambda_1 \lambda_2)
+	\]
+	Man nennt $\enbrace*{\mathfrak{g}_\mathbb{C}, \benbrace*{\cdot ,\cdot }_\mathbb{C}}$ \Index{Komplexifizierung} von $\enbrace*{\mathfrak{g}, \benbrace*{\cdot ,\cdot }}$.
+	Man beachte, dass unterschiedliche reelle Liealgebren die gleiche Komplexifizierung besitzen können. 
+	Man nennt alle diese reellen Liealgebren dann \Index{reelle Formen} von $\mathfrak{g}_\mathbb{C}$.
+\end{exkurs*}
 
-Sei $\mathfrak{g}$ eine reelle Liealgebra, das heißt $\mathfrak{g}$ ist ein $\mathbb{R}$-Vektorraum versehen mit Lieklammer $\benbrace*{\cdot ,\cdot }_\mathbb{R} \colon \mathfrak{g} \times \mathfrak{g} \to \mathfrak{g}$.
-Dann ist 
-\[
-	\mathfrak{g}_\mathbb{C} \coloneqq \mathfrak{g} \otimes_\mathbb{R} \mathbb{C} = \set[\big]{v \otimes 1 + \tilde{v} \otimes i \given v , \tilde{v} \in \mathfrak{g}}
-\]
-ein komplexer Vektorraum mit $\dim_\mathbb{R} \mathfrak{g} = \dim_\mathbb{C} \mathfrak{g}_\mathbb{C}$.
-Wir setzen die Lieklammer komplex linear auf $\mathfrak{g}_\mathbb{C}$ fort mittels
-\[
-	\benbrace*{v_1 \otimes \lambda_1, v_2 \otimes \lambda_2}_\mathbb{C} \coloneqq \benbrace*{v_1,v_2}_\mathbb{R} \otimes (\lambda_1 \lambda_2)
-\]
-Man nennt $\enbrace*{\mathfrak{g}_\mathbb{C}, \benbrace*{\cdot ,\cdot }_\mathbb{C}}$ \Index{Komplexifizierung} von $\enbrace*{\mathfrak{g}, \benbrace*{\cdot ,\cdot }}$.
-Man beachte, dass unterschiedliche reelle Liealgebren die gleiche Komplexifizierung besitzen können. 
-Man nennt alle diese reellen Liealgebren dann \Index{reelle Formen} von $\mathfrak{g}_\mathbb{C}$.
-
-\begin{beispiel*}
+\begin{beispiel*}[{name=[Komplexifizierungen]}]
 	\begin{itemize}
-		\item Es gilt $\SL(2,\mathbb{R}) \otimes \mathbb{C} = \SU(2,\mathbb{C}) \otimes \mathbb{C} = \SL(2,\mathbb{C})$.
+		\item Es gilt $\SL(2,\mathbb{R}) \otimes \mathbb{C} = \SU(2) \otimes \mathbb{C} = \SL(2,\mathbb{C})$.
 		\item $\SU(2) = \set*{A \in \GL(2,\mathbb{C}) \given A^* A = \begin{pmatrix}
 			1 & 0 \\ 0 & 1
 		\end{pmatrix}, \det A = 1}$ ist kompakte Liegruppe.
@@ -1926,44 +1925,45 @@ Dazu ein kleines Lemma: Sei $\mathfrak{g}$ eine reelle Liealgebra.
 Dann gilt
 \begin{enumerate}[1)]
 	\item $\mathfrak{h}$ ist Unteralgebra von $\mathfrak{g}$ genau dann, wenn $\mathfrak{h}_\mathbb{C}$ Unteralgebra von $\mathfrak{g}_\mathbb{C}$ ist.
-	\item Es gilt
+	\item Es gilt für $i \in \mathbb{N}$
 	\[
-		\enbrace*{\mathfrak{g}î}_\mathbb{C} = \enbrace*{\mathfrak{g}_\mathbb{C}}^i \qquad \enbrace*{\mathfrak{g}_i}_\mathbb{C} = \enbrace*{\mathfrak{g}_\mathbb{C}}_i
+		\enbrace*{\mathfrak{g}^i}_\mathbb{C} = \enbrace*{\mathfrak{g}_\mathbb{C}}^i \qquad \enbrace*{\mathfrak{g}_i}_\mathbb{C} = \enbrace*{\mathfrak{g}_\mathbb{C}}_i
 	\]
 	\item Killingform: $\mathcal{B}_\mathbb{C} \enbrace*{v_1 \otimes \lambda_1, v_2 \otimes \lambda_2} = \mathcal{B}_\mathbb{R}(v_1,v_2) \cdot \lambda_1 \lambda_2 \in \mathbb{C}$
 \end{enumerate}
 Somit entsprechen sich nilpotente, auflösbare und halbeinfache reelle Liealgebren und ihre Komplexifizierung.
 
 \begin{satz}[name={Cartan},label=satz:2115]
-	Sei $\mathfrak{g}$ eine Liealgebra.
+	Sei $\mathfrak{g}$ eine Liealgebra.\marginnote{Cartans Kriterium für Auflösbarkeit}
 	Dann ist $\mathfrak{g}$ genau dann auflösbar, wenn die Killingform $\mathcal{B}$ von $\mathfrak{g}$ auf $\benbrace*{\mathfrak{g},\mathfrak{g}}$ Null ist.
 \end{satz}
 \begin{beweis}
 	Sei zunächst $\mathfrak{g}$ auflösbar.
 	Dann ist nach \autoref{korr:2114} $\benbrace*{\mathfrak{g},\mathfrak{g}}$ nilpotent.
-	Somit ist $\mathcal{B}_{\mathfrak{g},\mathfrak{g}}=0$ nach \autoref{korr:219} ($\benbrace*{\mathfrak{g},\mathfrak{g}} \subset \mathfrak{n}(n,\mathbb{\mathbb{K}})$).
+	Somit ist $\mathcal{B}_{\benbrace{\mathfrak{g},\mathfrak{g}}}=0$ nach \autoref{korr:219} ($\benbrace*{\mathfrak{g},\mathfrak{g}} \subset \mathfrak{n}(n,\mathbb{\mathbb{K}})$).
 	Da $\benbrace*{\mathfrak{g},\mathfrak{g}}$ ein Ideal von $\mathfrak{g}$ ist, gilt 
 	\[
 		\mathcal{B}_{\mathfrak{g}}\big|_{\benbrace*{\mathfrak{g},\mathfrak{g}}} = \mathcal{B}_{\benbrace*{\mathfrak{g},\mathfrak{g}}} =0
 	\]
-	(Komplexifiziere zuerst! zunächst ins Reelle).
-	
-	Die andere Implikation findet man in Procesi S. 95-97.
+	nach \cref{sec:einschr_killing}.
+	% (Komplexifiziere zuerst! zunächst ins Reelle).
+	Die andere -- deutlich aufwendigere -- Implikation findet man in \cite[Sec.~4.6.4]{procesiLie}.
 \end{beweis}
 
-Wir erhalten $\rad(\mathfrak{g}) \supseteq \ker \mathcal{B} \supseteq \nil(\mathfrak{g})$, dabei ist $\ker \mathcal{B}$ auflösbar.
-Ist die Killingform $0$, so ist $\mathfrak{g}$ auflösbar, aber nicht notwendig nilpotent.
+Nach \autoref{lem:169} ist $\ker \mathcal{B}$ ein Ideal.
+Wir erhalten aus obigem Kriterium für Auflösbarkeit $\rad(\mathfrak{g}) \supseteq \ker \mathcal{B} \supseteq \nil(\mathfrak{g})$, dabei ist $\ker \mathcal{B}$ auflösbar.
+Ist die Killingform $0$, so ist $\mathfrak{g}$ auflösbar, aber nicht notwendig nilpotent.\todo{Übungsaufgabe einarbeiten?}
 % section 21 (end)
 
 \section{Halbeinfache Liealgebren} % (fold)
 \label{sec:22}
 
-\begin{erinnerung}
-	Eine Liealgebra $\mathfrak{g}$ ist halbeinfach, genau dann, wenn $\mathfrak{g}$ kein abelsches Ideal hat.
+\begin{erinnerung}[{name=[halbeinfach]}]
+	Eine Liealgebra $\mathfrak{g}$ ist halbeinfach, genau dann, wenn $\mathfrak{g}$ kein abelsches Ideal hat (\ref{def:214}).\todo{RevChap 2}
 \end{erinnerung}
 
 \begin{satz}[{name={Cartan}}]
-	Eine Liealgebra $\mathfrak{g}$ ist halbeinfach genau dann, wenn die Killingform $\mathcal{B}$ nicht degeneriert ist.
+	Eine Liealgebra $\mathfrak{g}$ ist halbeinfach genau dann,\marginnote{Cartans Kriterium für Halbeinfachheit} wenn die Killingform $\mathcal{B}$ nicht degeneriert ist.
 \end{satz}
 \begin{beweis}
 	Sei zunächst $\mathfrak{g}$ halbeinfach.
