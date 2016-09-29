@@ -1631,7 +1631,7 @@ Dies ist die \Index{absteigende Zentralreihe}. Analog erhält man die \Index{abg
 
 \begin{beispiel*}[{name=[exakte Sequenzen und Auflösbarkeit]}]
 	Hier ein paar weitere Beispiele zu Auflösbarkeit und Nilpotenz:
-	\begin{itemize}
+	\begin{itemize}[itemsep=1pt]
 		\item Betrachte die Unteralgebra von $\mathfrak{gl}(n,\mathbb{K})$ der unteren Dreiecksmatrizen
 		\[
 			\mathrm{o}(n,\mathbb{K}) = \set[\big]{A \in \Mat(n,\mathbb{K}) \given A_{ij}=0 \,\, \forall 1 \le i<j \le n}
@@ -1639,9 +1639,9 @@ Dies ist die \Index{absteigende Zentralreihe}. Analog erhält man die \Index{abg
 		ist eine auflösbare Liealgebra mit $\mathrm{o}(n,\mathbb{K})_n =0$, die \emph{nicht} nilpotent ist.
 		\item Die Lieunteralgebra der strikten unteren Dreiecksmatrizen 
 		\[
-			\mathrm{n}(n,\mathbb{K}) = \set[\big]{A \in \mathrm{o}(n,\mathbb{K}) \given A_{ii}=0 \enspace i=1, \ldots ,n}
+			\mathfrak{n}(n,\mathbb{K}) = \set[\big]{A \in \mathrm{o}(n,\mathbb{K}) \given A_{ii}=0 \enspace i=1, \ldots ,n}
 		\]
-		ist eine nilpotente Liealgebra mit $\mathrm{n}(n,\mathbb{K})_{n-1}=0$.
+		ist eine nilpotente Liealgebra mit $\mathfrak{n}(n,\mathbb{K})_{n-1}=0$.
 		\item Die Liealgebra 
 		\[
 			\mathfrak{g} = \set*{\begin{pmatrix}
@@ -1704,7 +1704,7 @@ Dies ist die \Index{absteigende Zentralreihe}. Analog erhält man die \Index{abg
 	\] 
 	exakt.
 	Ist also $\overline{\mathfrak{i}}$ ein auflösbares Ideal von $\overline{\mathfrak{g}}$, so ist nach \autoref{lem:213} 6) auch $\pi^{-1}(\overline{\mathfrak{i}})$ ein auflösbares Ideal von $\mathfrak{g}$.
-	Aus der Maximalität von $\rad(\mathfrak{g})$ folgt $\overline{\mathfrak{i}}=0$.\todo{RevChap 2}
+	Aus der Maximalität von $\rad(\mathfrak{g})$ folgt $\overline{\mathfrak{i}}=0$.
 \end{beweis}
 
 \begin{satz}[{name={Levi-Malcev}},label=satz:216]
@@ -1715,58 +1715,65 @@ Dies ist die \Index{absteigende Zentralreihe}. Analog erhält man die \Index{abg
 	\]
 \end{satz}
 
-\begin{lemma}[label=lem:217]
+\begin{lemma}[label=lem:217,{name=[Lieunteralgebra als nilpotenten Elementen]}]
 	Sei $\mathfrak{g} \subset \mathfrak{gl}(V)$ eine Lieunteralgebra bestehend aus nilpotenten Elementen, das heißt für alle $A \in \mathfrak{g}$ existiert ein $k \in \mathbb{N}$ mit $A^k=0$.
 	Dann existiert ein Vektor $v \in V \setminus \set*{0}$ mit $A \cdot v = 0$ für alle $A \in \mathfrak{g}$.
 \end{lemma}
 \begin{beweis}
-	\emph{Vorüberlegung:} Sei $X \in \mathfrak{g}$. Dann ist $\ad_X(Y) = X Y -Y X$ und es gilt
+	Zunächst eine kurze Vorüberlegung: Sei $X \in \mathfrak{g}$. Dann ist $\ad_X(Y) = X Y -Y X$ und es gilt
 	\begin{align}
 		(\ad_X)^2(Y) &= X \enbrace*{X Y -YX} - \enbrace*{XY -YX}X = X^2 Y - 2XYX+ YX^2 \\
-		(\ad_X)^3(Y) &= X \enbrace*{X^2 Y - 2XYX+ YX^2}- \enbrace*{X^2 Y - 2XYX+ YX^2}X \\
-		&= X^3 y - 3 X^2YX+3 XYX^2 - YX^3
+		(\ad_X)^3(Y) &= X \enbrace*{X^2 Y - 2XYX+ YX^2}- \enbrace*{X^2 Y - 2XYX+ YX^2}X
+		= X^3 y - 3 X^2YX+3 XYX^2 - YX^3
 	\end{align}
 	Induktiv zeigt man: Gilt $X^k=0$, so folgt $(\ad_X)^{2k}=0$ (!).
+	Wir beweisen nun die eigentlich Behauptung per Induktion nach $n = \dim \mathfrak{g}$.
+	% Nur zur eigentlichen Behauptung: Per Induktion nach $n=\dim \mathfrak{g}$. 
 	
-	Nur zur eigentlichen Behauptung: Per Induktion nach $n=\dim \mathfrak{g}$. 
 	Für $n=1$ sei $A \in \mathfrak{g} \setminus \set*{0}$.
 	Ist $A$ invertierbar, so auch $A^k$ für alle $k \in \mathbb{N}$, was im Widerspruch zur Nilpotenz von $A$ steht.
 	Für den Induktionsschritt sei $\dim \mathfrak{g} = n+1$.
-	Sei $\mathfrak{h}$ eine Unteralgebra maximaler Dimension ($\le n$) von $\mathfrak{g}$ (1-dimensionlae Unterräume sind Unteralgebren).
-	Wir werden zeigen, dass $\dim \mathfrak{h}=n$ ist.
-	
-	Wegen $\ad_X(\mathfrak{h}) \subset \mathfrak{h}$ für alle $X \in \mathfrak{h}$ gilt nach der Zerlegung aus \autoref{satz:216}
+	Sei $\mathfrak{h}$ eine Unteralgebra maximaler Dimension (d.h. $\le n$) von $\mathfrak{g}$\marginnote{1-dimensionlae Unterräume sind Unteralgebren}.
+	Wir werden nun zeigen, dass $\dim \mathfrak{h}=n$ ist.
+	Wegen $\ad_X(\mathfrak{h}) \subset \mathfrak{h}$ für alle $X \in \mathfrak{h}$ können wir die adjungierte Darstellung auf dem Quotienten betrachten.
+	Damit ist 
 	\[
-		\End(\mathfrak{g}) \ni \ad_X = \begin{pmatrix}
-			A_{11} & A_{12} \\ 0 & A_{22}
-		\end{pmatrix}
+		\mathfrak{h}' = \set[\big]{\ad_X|_{\sfrac{\mathfrak{g}}{\mathfrak{h}}} \colon \sfrac{\mathfrak{g}}{\mathfrak{h}} \to \sfrac{\mathfrak{g}}{\mathfrak{h}} \given X \in \mathfrak{h}} \subset \mathfrak{gl}\enbrace*{\sfrac{\mathfrak{g}}{\mathfrak{h}}}
 	\]
-	Beobachtung:
-	\[
-		\begin{pmatrix}
-			A_{11} & A_{12} \\ 0 & A_{22}
-		\end{pmatrix}^2 = \begin{pmatrix}
-			A_{11}^2 & * \\ 0 & A_{22}^2
-		\end{pmatrix}
-	\]
-	und so weiter. 
-	Damit ist $\ad_X$ nilpotent und somit auch $\ad_X|_{\sfrac{\mathfrak{g}}{\mathfrak{h}}}$.
-	Ferner gilt
-	\[
-		\benbrace*{\begin{pmatrix}
-			A_{11} & A_{12} \\ 0 & A_{22}
-		\end{pmatrix}, \begin{pmatrix}
-			B_{11} & B_{12} \\ 0 & B_{22}
-		\end{pmatrix}} = \begin{pmatrix}
-			\benbrace*{A_{11},B_{11}} & * \\ 0 & \benbrace*{A_{22},B_{22}}
-		\end{pmatrix}
-	\]
-	Somit ist 
-	\[
-		\ad(\mathfrak{g}) = \set*{(\ad_X)\big|_{\sfrac{\mathfrak{g}}{\mathfrak{h}}} \given X \in \mathfrak{h}}
-	\]
-	eine nilpotente Unteralgebra von $\mathfrak{gl}(\sfrac{\mathfrak{g}}{\mathfrak{h}})$.
+	eine Unteralgebra.
+	Nach obiger Vorüberlegung sind die Elemente von $\mathfrak{h}'$ nilpotent.
 	Wegen $\dim \sfrac{\mathfrak{g}}{\mathfrak{h}} \le n$ existiert nach Induktionsvorraussetzung $\overline{A} \in \sfrac{\mathfrak{g}}{\mathfrak{h}}$ mit $(\ad_X)|_{\sfrac{\mathfrak{g}}{\mathfrak{h}}}(\overline{A})=0$ für alle $X \in \mathfrak{h}$.
+	% Wegen $\ad_X(\mathfrak{h}) \subset \mathfrak{h}$ für alle $X \in \mathfrak{h}$ gilt nach der Zerlegung aus \autoref{satz:216}
+	% \[
+	% 	\End(\mathfrak{g}) \ni \ad_X = \begin{pmatrix}
+	% 		A_{11} & A_{12} \\ 0 & A_{22}
+	% 	\end{pmatrix}
+	% \]
+	% Beobachtung: Es gilt
+	% \[
+	% 	\begin{pmatrix}
+	% 		A_{11} & A_{12} \\ 0 & A_{22}
+	% 	\end{pmatrix}^2 = \begin{pmatrix}
+	% 		A_{11}^2 & * \\ 0 & A_{22}^2
+	% 	\end{pmatrix}
+	% \]
+	% und so weiter.
+	% Damit ist $\ad_X$ nilpotent und somit auch $\ad_X|_{\sfrac{\mathfrak{g}}{\mathfrak{h}}}$, was wegen $\ad_X(\mathfrak{h}) \subset \mathfrak{h}$ wohldefiniert ist.
+	% Ferner gilt
+	% \[
+	% 	\benbrace*{\begin{pmatrix}
+	% 		A_{11} & A_{12} \\ 0 & A_{22}
+	% 	\end{pmatrix}, \begin{pmatrix}
+	% 		B_{11} & B_{12} \\ 0 & B_{22}
+	% 	\end{pmatrix}} = \begin{pmatrix}
+	% 		\benbrace*{A_{11},B_{11}} & * \\ 0 & \benbrace*{A_{22},B_{22}}
+	% 	\end{pmatrix}
+	% \]
+	% Somit ist
+	% \[
+	% 	\ad(\mathfrak{g}) = \set*{(\ad_X)\big|_{\sfrac{\mathfrak{g}}{\mathfrak{h}}} \given X \in \mathfrak{h}}
+	% \]
+	% eine nilpotente Unteralgebra von $\mathfrak{gl}(\sfrac{\mathfrak{g}}{\mathfrak{h}})$.\bigskip
 	Somit existiert $A \in \mathfrak{g}$ mit 
 	\begin{equation}
 		\ad_X(A) \subset \mathfrak{h} \label{eq:217} \tag{*}
@@ -1776,16 +1783,16 @@ Dies ist die \Index{absteigende Zentralreihe}. Analog erhält man die \Index{abg
 	Da $\dim \mathfrak{h}$ maximal war, folgt $h \oplus \langle A \rangle_\mathbb{R} = \mathfrak{g}$ und somit auch $\dim \mathfrak{h}=n$.
 	Obige Behauptung folgt.
 	
-	Zurück zur Induktion:
+	Zurück zur eigentlichen Induktion:
 	Wir setzen
 	\[
-		W \coloneqq \set*{v \in V \given A(v)=0 \, \forall A \in \mathfrak{h}}
+		W \coloneqq \set[\big]{v \in V \given X(v)=0 \,\, \forall\, X \in \mathfrak{h}}
 	\]
 	mit $\mathfrak{h} \subsetneq \mathfrak{g}$, $\dim \mathfrak{h}=n$ Unteralgebra.
 	Da $\mathfrak{h}$ als Teilmenge von $\mathfrak{g}$ aus nilpotenten Elementen besteht, gilt nach Induktionsvorraussetzung $W \neq \set*{0}$.
 	Der Endomorphismus $A \in \mathfrak{g} \subset \mathfrak{gl}(V)$ lässt $W$ invariant:
 	\[
-		0 = \Underbracket{\benbrace*{X,A}}{\StackText{\eqref{eq:217}}{\in} \mathfrak{h}}(w) = X \enbrace*{A(w)} - A \enbrace*{X(w)} = X (A(w))
+		0 = \Underbracket{\benbrace*{X,A}}{\mathclap{\in \mathfrak{h} \text{ nach \eqref{eq:217}}} }(w) = X \enbrace*{A(w)} - A \enbrace*{X(w)} = X (A(w))
 	\]
 	für alle $X \in \mathfrak{h}$ und $w \in W$. Damit ist $A(W)\subset W \subset V$.
 	Wir schreiben nun mit $V= W \oplus W^\bot$
@@ -1802,7 +1809,7 @@ Dies ist die \Index{absteigende Zentralreihe}. Analog erhält man die \Index{abg
 	Sei $\mathfrak{g} \subset \mathfrak{gl}(V)$ eine Unteralgebra bestehend aus nilpotenten Elementen.
 	Dann existiert eine Basis von $V$, sodass 
 	\[
-		\mathfrak{g} \subset N(n,\mathbb{K})  
+		\mathfrak{g} \subset \mathfrak{n}(n,\mathbb{K})  
 	\]
 	gilt mit $n = \dim V$.
 \end{satz}
@@ -1811,21 +1818,23 @@ Dies ist die \Index{absteigende Zentralreihe}. Analog erhält man die \Index{abg
 	Sei $\overline{V} \coloneqq \sfrac{V}{\langle v \rangle_\mathbb{R}}$.
 	Wir setzen $X(\overline{w}) \coloneqq X(w) + \langle v \rangle_\mathbb{R}$.
 	Dies ist wohldefiniert, wie man sich leicht überlegt.
-	Wir erhalten eine Liealgebra $\overline{\mathfrak{g}} \subset \mathfrak{gl}(V)$ von nilpotenten Elementen(!).
+	Wir erhalten eine Liealgebra $\overline{\mathfrak{g}} \subset \mathfrak{gl}(\overline{V})$ von nilpotenten Elementen(!).
+	Dies bildet den Induktionsanfang.
 	
-	Nach Induktionsvoraussetzung existieren Vektoren $\overline{v}_2, \ldots , \overline{v}_n \in \overline{V}$ mit $\overline{\mathfrak{g}} \subset \mathrm{n}(n-1,\mathbb{K})$.
+	Nach Induktionsvoraussetzung existiert nun eine Basis $\overline{v}_2, \ldots , \overline{v}_{n} \in \overline{V}$ sodass $\overline{\mathfrak{g}} \subset \mathfrak{n}(n-1,\mathbb{K})$.
 	Wir setzen $v_1 \coloneqq v$ und wählen Urbilder $v_2, \ldots ,v_n \in V$ von $\overline{v}_1, \ldots ,\overline{v}_n$.
 	Es gilt für alle $X \in \mathfrak{g}$
 	\[
 		X(v_1) =0 \quad \text{ und } \quad X(v_2) \in \langle v_1 \rangle_\mathbb{R}
 	\]
-	denn sonst $X(v_2) = \alpha \cdot v_1 + w$ und $X(\overline{v}_2)=\overline{w}\neq 0$. USW \ldots 
+	denn sonst $X(v_2) = \alpha \cdot v_1 + w$ und $X(\overline{v}_2)=\overline{w}\neq 0$.
+	So entsteht induktiv die gesuchte Basis.
 \end{beweis}
 
-\begin{korollar}[label=korr:219]
+\begin{korollar}[label=korr:219,{name=[Charakterisierung von Nilpotenz einer Liealgebra]}]
 	Eine Liealgebra $\mathfrak{g}$ ist genau dann nilpotent, wenn 
 	\[
-		\ad(\mathfrak{g}) = \set*{\ad_X \given X \in \mathfrak{g}} \subset \End(\mathfrak{g})
+		\ad(\mathfrak{g}) = \set[\big]{\ad_X \given X \in \mathfrak{g}} \subset \End(\mathfrak{g})
 	\]
 	eine nilpotente Unteralgebra von $\End(\mathfrak{g})$ ist.
 \end{korollar}
@@ -1834,22 +1843,22 @@ Dies ist die \Index{absteigende Zentralreihe}. Analog erhält man die \Index{abg
 	Dann gilt $\ad_X(\mathfrak{g}^k) \subset \mathfrak{g}^{k+1}$.
 	Somit ist $\ad_X$ nilpotent.
 	
-	Ist umgekehrt $\ad(\mathfrak{g}) \subset \End(\mathfrak{g})$ nilpotent, so existiert nach \autoref{satz:218} eine Basis $v_1, \ldots ,v_n$ von $\mathfrak{g}=V$ mit $\ad_X(v_i) \in V_{i-1} = \langle v_1 ,\ldots ,v_{i-1}\rangle_\mathbb{R}$ für alle $i=1,\ldots ,n$ und alle $X \in \mathfrak{g}$, $V_0 \coloneqq \set*{0}$.
-	Für $X_1, \ldots ,X_s \in \mathfrak{g}$ erhalten wir 
+	Ist umgekehrt $\ad(\mathfrak{g}) \subset \End(\mathfrak{g})$ nilpotent, so existiert nach \autoref{satz:218} eine Basis $v_1, \ldots ,v_n$ von $\mathfrak{g}=V$ mit $\ad_X(v_i) \in V_{i-1} = \langle v_1 ,\ldots ,v_{i-1}\rangle_\mathbb{R}$ für alle $i=1,\ldots ,n$ und alle $X \in \mathfrak{g}$, dabei ist $V_0 \coloneqq \set*{0}$.
+	Für $X_1, \ldots ,X_s, \tilde{X} \in \mathfrak{g}$ erhalten wir 
 	\[
-		 \benbrace*{X_1, \benbrace*{X_2, \benbrace*{\ldots ,X_s}}}=\enbrace*{\ad_{X_1} \circ \ldots \circ \ad_{X_s}}(\mathfrak{g}) \in V_{n-2}
+		 \benbrace[\Big]{X_1,  \benbrace[\big]{\ldots ,\benbrace*{X_s,\tilde{X}}}} \in \enbrace*{{\ad_{X_1}} \circ \ldots \circ {\ad_{X_s}}}(\mathfrak{g}) \subseteq V_{n-s}
 	\]
 	Da $V_0=0$ ist, ist $\mathfrak{g}$ nilpotent.
 \end{beweis}
 
-Weitere Folgerung aus \autoref{satz:218}:
+Hier noch eine weitere Folgerung aus dem Satz von Engel (\ref{satz:218}):
 
-\begin{korollar}
-	Eine nilpotente Liealgebra ist isomorph zu einer Unteralgebra von $\mathfrak{n}(n,\mathbb{K})$.
+\begin{korollar}[{name=[Nilpotente Liealgebren als Unteralgebra der strikt unteren Dreiecksmatrizen]}]
+	Eine nilpotente Liealgebra $\mathfrak{g}$ ist isomorph zu einer Unteralgebra von $\mathfrak{n}(n,\mathbb{K})$.
 \end{korollar}
 \begin{beweis}
 	Aus dem Satz von Ado folgt, dass wir $\mathfrak{g} \subset \mathfrak{gl}(n,\mathbb{K})$ annehmen können. 
-	Mit \autoref{satz:218} folgt dann die Behauptung.
+	Mit \autoref{satz:218} folgt dann die Behauptung.\todo{RevChap 2}
 \end{beweis}
 
 Wir kommen nun zu auflösbaren Liealgebra und notieren die folgenden Aussagen ohene Beweise; diese sind ähnlich wie im nilpotenten Fall (Procesi Liegroups)\todo{Ref}.
