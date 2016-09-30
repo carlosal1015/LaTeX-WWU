@@ -26,37 +26,6 @@ Für $X,Y \in \mathfrak{g}$ gilt
 \end{beweis}
 % section funktionalgleichung (end)
 
-\section{Einschränkung der Killingform} % (fold)
-\label{sec:einschr_killing}
-Sei $\mathfrak{g}$ eine Liealgebra und $\mathfrak{h} \subset \mathfrak{g}$ eine Unteralgebra.
-Dann entspricht die Killingform von $\mathfrak{h}$ nicht notwendigerweise der Einschränkung von $\mathcal{B}_{\mathfrak{g}}$: Betrachte dazu $\mathfrak{g} = \lenbrace{x,y}$ mit Lieklammer $\benbrace*{x,y} = y$ und die Lieunteralgebra $\mathfrak{h} = \lenbrace{x}$.  
-Dann ist $\mathcal{B}_{\mathfrak{h}}(x,x) = 0$, denn $\ad(x)_{\mathfrak{h}} =0$.
-Andererseits ist aber $\mathcal{B}_{\mathfrak{g}}(x,x) = 1$, denn $\ad(x)_\mathfrak{g} = \begin{psmallmatrix} 0 & 0 \\ 0 & 1 \end{psmallmatrix}$.
-
-Nimmt man zusätzlich an, dass $\mathfrak{h}$ ein Ideal ist, so stimmen die beiden Killingformen aber überein:
-\begin{lemma}
-	Sei $\mathfrak{g}$ eine endlichdimensionale Liealgebra und $\mathfrak{h} \subset \mathfrak{g}$ ein Ideal.
-	Dann gilt $\mathcal{B}_\mathfrak{g}\big|_{\mathfrak{h}} = \mathcal{B}_\mathfrak{h}$.
-\end{lemma}
-\begin{beweis}
-	Wähle eine Basis von $\mathfrak{h}$ und erweitere diese zu einer Basis von $\mathfrak{g}$.
-	Für $x \in \mathfrak{h}$ gilt dann
-	\[
-		\ad(x)_\mathfrak{g} = \begin{pmatrix}
-			\ad(x)_\mathfrak{h} & * \\ 0 & 0
-		\end{pmatrix}
-	\]
-	da $\mathfrak{h}$ ein Ideal ist.
-	Damit ist die Matrix von $\ad(x)_\mathfrak{g} \circ \ad(y)_\mathfrak{g}$ für $x,y \in \mathfrak{h}$
-	\[
-		\begin{pmatrix}
-			\ad(x)_\mathfrak{h} \circ \ad(y)_\mathfrak{h} & * \\ 0 & 0
-		\end{pmatrix}
-	\]
-	Damit folgt die Behauptung.
-\end{beweis}
-% section einschrankung_der_killingform (end)
-
 \section{Aufgabe 3 -- Über Quaternionen} % (fold)
 \label{sec:aufg3}
 Wir bezeichnen mit $\mathbb{H} \coloneqq \set*{q = \alpha \cdot 1 + \beta \cdot i + \gamma \cdot j + \delta k \given \alpha, \beta, \gamma, \delta \in \mathbb{R}}$ den Schiefkörper der \Index{Quaternionen}.
@@ -91,6 +60,37 @@ Es gilt dann
 	\todo{fertig machen}
 \end{beweis}
 % subsection aufg8 (end)
+
+\section{Aufgabe 16 -- Einschränkung der Killingform} % (fold)
+\label{sec:einschr_killing}
+Sei $\mathfrak{g}$ eine Liealgebra und $\mathfrak{h} \subset \mathfrak{g}$ eine Unteralgebra.
+Dann entspricht die Killingform von $\mathfrak{h}$ nicht notwendigerweise der Einschränkung von $\mathcal{B}_{\mathfrak{g}}$: Betrachte dazu $\mathfrak{g} = \lenbrace{x,y}$ mit Lieklammer $\benbrace*{x,y} = y$ und die Lieunteralgebra $\mathfrak{h} = \lenbrace{x}$.  
+Dann ist $\mathcal{B}_{\mathfrak{h}}(x,x) = 0$, denn $\ad(x)_{\mathfrak{h}} =0$.
+Andererseits ist aber $\mathcal{B}_{\mathfrak{g}}(x,x) = 1$, denn $\ad(x)_\mathfrak{g} = \begin{psmallmatrix} 0 & 0 \\ 0 & 1 \end{psmallmatrix}$.
+
+Nimmt man zusätzlich an, dass $\mathfrak{h}$ ein Ideal ist, so stimmen die beiden Killingformen aber überein:
+\begin{lemma}
+	Sei $\mathfrak{g}$ eine endlichdimensionale Liealgebra und $\mathfrak{h} \subset \mathfrak{g}$ ein Ideal.
+	Dann gilt $\mathcal{B}_\mathfrak{g}\big|_{\mathfrak{h}} = \mathcal{B}_\mathfrak{h}$.
+\end{lemma}
+\begin{beweis}
+	Wähle eine Basis von $\mathfrak{h}$ und erweitere diese zu einer Basis von $\mathfrak{g}$.
+	Für $x \in \mathfrak{h}$ gilt dann
+	\[
+		\ad(x)_\mathfrak{g} = \begin{pmatrix}
+			\ad(x)_\mathfrak{h} & * \\ 0 & 0
+		\end{pmatrix}
+	\]
+	da $\mathfrak{h}$ ein Ideal ist.
+	Damit ist die Matrix von $\ad(x)_\mathfrak{g} \circ \ad(y)_\mathfrak{g}$ für $x,y \in \mathfrak{h}$
+	\[
+		\begin{pmatrix}
+			\ad(x)_\mathfrak{h} \circ \ad(y)_\mathfrak{h} & * \\ 0 & 0
+		\end{pmatrix}
+	\]
+	Damit folgt die Behauptung.
+\end{beweis}
+% section einschrankung_der_killingform (end)
 
 \section{Aufgabe 17 -- Universelle Überlagerung der speziellen linearen Gruppe} % (fold)
 \label{sec:aufg17}
