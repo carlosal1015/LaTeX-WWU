@@ -2244,7 +2244,7 @@ Ist etwa $G$ kompakt, so ist $\mathcal{B}_\mathfrak{g}$ negativ definit!
 	Insgesamt wirkt die Gruppe $\Gamma = \sfrac{\widetilde{\Gamma}}{\overline{\Gamma}}$ auf $T^n \times G_1 \times \ldots \times G_m$ mit dem Quotienten $G$.
 \end{beweis}
 
-\begin{lemma}[{name=[Exponentialabbildung surjektiv für kompakte und zusammenhängend]}]
+\begin{lemma}[{name=[Exponentialabbildung surjektiv für kompakte und zusammenhängend]},label=lem:237]
 	Sei $G$ kompakte zusammenhängende Liegruppe.
 	Dann ist die Exponentialabbildung $\exp\colon \mathfrak{g} = \Tmap_e G \to G$ surjektiv.
 \end{lemma}
@@ -2291,7 +2291,7 @@ Ist etwa $G$ kompakt, so ist $\mathcal{B}_\mathfrak{g}$ negativ definit!
 	\end{itemize}
 \end{beispiel*}
 
-\begin{lemma}[{name=[Eindeutigkeit der maximalen abelschen Unteralgebra]}]
+\begin{lemma}[{name=[Eigenschaften einer maximalen abelschen Unteralgebra]},label=lem:242]
 	Sei $G$ eine kompakte Liegruppe und $\mathfrak{t} \subseteq \mathfrak{g}$ maximale abelsche Unteralgebra.
 	Dann gilt
 	\begin{enumerate}[(1)]
@@ -2342,43 +2342,200 @@ Ist etwa $G$ kompakt, so ist $\mathcal{B}_\mathfrak{g}$ negativ definit!
 	\]
 	Dies zeigt $\Ad(g^{-1})(\mathfrak{t}_2) \subset \mathfrak{t}_1$.
 	Vertauscht man die Rollen von $\mathfrak{t}_1$ und $\mathfrak{t}_2$, so folgt $\dim \mathfrak{t}_1 = \dim \mathfrak{t}_2$ und wir erhalten $\Ad(g^{-1})(\mathfrak{t}_2) = \mathfrak{t}_1$.
-	\todo{RevChap 2}
 \end{beweis}
 
+\begin{definition}[{name=[maximaler Torus einer Liegruppe]}]
+	Sei $\mathfrak{t}$ eine maximale abelsche Unteralgebra von $\mathfrak{g}$.
+	Dann nennt man $T= \exp(\mathfrak{t})$ einen \bet{maximalen Torus}\index{maximaler Torus} von $G$. 
+\end{definition}
+
+\begin{satz}[{name=[maximale Tori sind konjugiert]},label=satz:244]
+	Sei $G$ eine zusammenhängende, kompakte Liegruppe.
+	Dann gilt
+	\begin{enumerate}[(1)]
+		\item Sei $T$ ein maximaler Torus und $g_0 \in G$.
+		Dann existiert ein $g \in G$ mit $g g_0 g^{-1} \in T$.
+		\item Je zwei maximale Tori sind konjugiert.
+	\end{enumerate}
+\end{satz}
+\begin{beweis}
+	\begin{enumerate}[(1)]
+		\item Sei $g_0 \in G$.
+		Nach \autoref{lem:237} existiert ein $v_0 \in \mathfrak{g}$ mit $\exp(v_0)= g_0$.
+		Nach \autoref{lem:242} existiert wiederum ein $g \in G$ mit $\Ad(g)(v_0) \in \mathfrak{t} = \Tmap_e T$.
+		Es folgt nun
+		\[
+			g g_0 g^{-1} = g \exp(v_0) g^{-1} = \exp \enbrace*{\Ad(g) v_0} \in \exp(\mathfrak{t}) = T
+		\]
+		\item Man wähle $v_0 \in \mathfrak{t}_1$ mit $\overline{\set*{\exp(s v_0) \given s \in \mathbb{R}}} =T_1$ und $g \in G$ mit $\Ad(g)(v_0) \in \mathfrak{t}_2$, das heißt $\Ad(g)(s v_0) \in \mathfrak{t}_2$ für alle $s \in \mathbb{R}$.
+		Die Behauptung folgt nun genauso wie eben.\qedhere
+	\end{enumerate}
+\end{beweis}
+
+\begin{definition}[{name=[Rang einer Liegruppe]}]
+	Sei $G$ eine kompakte Liegruppe.
+	Dann nennt man die Dimension eines maximalen Torus in $G_e$ den \Index{Rang} von $G$.
+\end{definition}
+
+\begin{lemma}[label=lem:246,{name=[Zentralisator eines maximalen Torus]}]
+	Sei $G$ eine zusammenhängende, kompakte Liegruppe.
+	Dann gilt
+	\begin{enumerate}[(1)]
+		\item Sei $\tilde{T} \subseteq G$ ein Torus (d.h. eine kompakte abelsche Untergruppe) und $g \in G$ mit $g \tilde{t} = \tilde{t}g$ für alle $\tilde{t} \in \tilde{T}$.
+		Dann existiert ein maximaler Torus $T$ von $G$ mit $g \in T$ und $\tilde{T} \subseteq T$.
+		\item Der \Index{Zentralisator} $c(T) = \set*{g \in G \given g t =tg \,\forall t \in T}$ eines maximalen Torus $T$ von $G$ ist $T$ selbst.
+	\end{enumerate}
+\end{lemma}
+\begin{beweis}
+	Offensichtlich folgt (2) direkt aus (1).
+	Für sei $A \subseteq G$ der Abschluss der von $g$ und $\tilde{T}$ erzeugten Untergruppe von $G$.
+	$A$ ist kompakt und abelsch und somit ist $A_e$ ein Torus.
+	Die Nebenklassen in $\sfrac{A}{A_e}$ werden wegen $\tilde{T} \subseteq A_e$ von $g A_e$ erzeugt und da $A$ kompakt ist, ist $\sfrac{A}{A_e}$ endlich.\footnote{also $A = A_e \mathbin{\dot{\cup}} g A_e \mathbin{\dot{\cup}} g^2 A_e \mathbin{\dot{\cup}} \ldots \mathbin{\dot{\cup}} g^{m-1}A_e$}
+	Folglich ist $A \cong \sfrac{\mathbb{Z}}{m \mathbb{Z}} \times T^k$ für ein $k \ge 1$, $m \ge 1$ minimal mit $g^m \in A_e$.
+	In den Übungen wird gezeigt,\todo{überprüfen} dass jeder Torus $T'$ \enquote{viele} Erzeuger $t'$ besitzt, das heißt $\overline{\set*{(t')^k \given k \in \mathbb{Z}}} = T'$ (Kroneckers Satz).
+	Sei nun $\tilde{t}$ ein Erzeuger von $\tilde{T}$.
+	Wir wählen $\tilde{t}' \in \tilde{T}$ mit $(\tilde{t}')^m = g^{-m} \tilde{t}$.
+	Dann ist $g \tilde{t}'$ ein Erzeuger von $A$ (!).
+	Da das Element $g \tilde{t}$ in einem maximalen Torus $T$ liegt, folgt $A \subseteq T$.
+\end{beweis}
+
+\begin{definition}[{name=[adjungierter Orbit]}]
+	Sei $G$ eine Liegruppe mit Liealgebra $\mathfrak{g}$.
+	Dann nennt man 
+	\[
+		\Ad(G)(v) = \set[\big]{\Ad(g)(v) \given g \in G}
+	\]
+	den \bet{adjungierten Orbit}\index{adjungierter Orbit} von $v \in \mathfrak{g}$. 
+\end{definition}
+
+Ist $G$ abelsch und zusammenhängend, so ist $\Ad(G)(v) = \set*{v}$ für alle $v \in \mathfrak{g}$.
+Ist $\mathfrak{t} \subset \mathfrak{g}$ eine maximale abelsche Unteralgebra von $\mathfrak{g}$, dann folgt aus \autoref{lem:242} (1), dass für alle $v \in \mathfrak{g}$ der entsprechende adjungierte Orbit die maximal abelsche Unteralgebra $\mathfrak{t}$ schneidet.
+
+\begin{definition}[{name=[Weyl-Gruppe]}]
+	Sei $G$ eine zusammenhängende, kompakte Liegruppe und $T$ ein maximaler Torus von $G$.
+	Dann nennt man\marginnote{$N_G(T)$ Normalisator von $T$}
+	\[
+		W = \sfrac{N_G(T)}{T}
+	\]
+	die \Index{Weyl-Gruppe} von $G$. 
+\end{definition}
+
+\begin{satz}[{name=[Weyl-Gruppe und adjungierte Orbiten]}]
+	Sei $G$ eine kompakte, zusammenhängende Liegruppe mit maximalem Torus $T$ und Weyl-Gruppe $W$.
+	Dann gilt
+	\begin{enumerate}[1)]
+		\item $W$ ist eine endliche Gruppe, die effektiv auf $\mathfrak{t} = \Tmap_e T$ operiert vermittels
+		\[
+			w.v \coloneqq \Ad(n)(v) \qquad \text{ falls } w = nT 
+		\]
+		\item Sei $v \in \mathfrak{t}$.
+		Dann gilt 
+		\[
+			\Ad(G)(v) \cap \mathfrak{t} = W.v
+		\]
+		\item Adjungierte Orbiten schneiden maximale Tori orthogonal, wenn man $\mathfrak{g}$ mit einem $\Ad(G)$-invarianten Skalarprodukt versieht.
+	\end{enumerate}
+\end{satz}
+\begin{beweis}
+	Da $N_G(T)$ eine abgeschlossene Untergruppe von $G$ ist, ist $N_G(T)$ kompakt.
+	Wir zeigen $(N_G(T))_e = T$.
+	Dann ist $W=\sfrac{N_G(T)}{T}$ kompakt und diskret, also endlich.
+	Für die Liealgebra $\mathfrak{n}(\mathfrak{t})$ von $N_G(T)$ gilt
+	\[
+		\mathfrak{n}(\mathfrak{t}) = \set[\big]{v \in \mathfrak{g} \given \benbrace*{v,\mathfrak{t}} \subseteq \mathfrak{t}}
+	\]
+	Wähle ein $\overline{v} \in \mathfrak{t}$, sodass $\set{\exp(s \overline{v}) \given s \in \mathbb{R}}$ dicht in $T$ ist.
+	Sei nun $v \in \mathfrak{n}(\mathfrak{t})$.
+	Dann gilt einerseits $\benbrace*{v,\overline{v}} \in \mathfrak{t}$, andererseits für $w \in \mathfrak{t}$
+	\[
+		\skal*{\benbrace*{v,\overline{v}}}{w} = \skal*{v}{ \benbrace*{\overline{v},w}} \stackrel[\mathfrak{t} \text{ abelsch} ]{\benbrace*{\overline{v},w}=0}{=\joinrel=\joinrel=\joinrel=} 0
+	\]
+	das heißt $\benbrace*{v, \overline{v}}=0$.
+	Wir erhalten also $\benbrace*{\mathfrak{n}(\mathfrak{t}),\overline{v}}=0$.
+	Im Beweis von \autoref{lem:242} haben wir gezeigt, dass $\mathfrak{t} = \set*{w \in \mathfrak{g} \given \benbrace*{w, \overline{v}}=0}$.
+	Damit folgt also $\mathfrak{n}(\mathfrak{t}) \subseteq \mathfrak{t}$ und somit die Gleichheit.
+	$W$ ist also endlich.
+	
+	Es bleibt zu zeigen, dass $W$ effektiv operiert.
+	Da $T$ abelsch ist, gilt $\Ad(T)|_{\mathfrak{t}} = {\id_{\mathfrak{t}}}$.
+	Somit ist die Wirkung von $w$ auf $\mathfrak{t}$ wohldefiniert.
+	Sei nun $n \in N_G(T)$ mit $\Ad(n)|_{\mathfrak{t}} = {\id}$.
+	Dann gilt für alle $v \in \mathfrak{t}$
+	\[
+		\exp(v) = \exp \enbrace[\big]{\Ad(n) v} = n \exp(v) n^{-1}
+	\]
+	Damit ist $n \in Z(T) =T$ nach \autoref{lem:246} (2), das heißt $n W = W$, die Wirkung ist also effektiv\marginnote{=treu}.
+	
+	Kommen wir nun zu 2).
+	Es sein $v,\tilde{v} \in \mathfrak{t}$ und $g \in G$ mit $\Ad(g)(v) = \tilde{v}$.
+	Zu zeigen ist, dass ein $n \in N_G(T)$ existiert mit $\Ad(n)(v) = \tilde{v}$.
+	Wir setzen
+	\[
+		Z_v \coloneqq \set[\big]{\tilde{g} \in G \given \Ad(g) v = v}
+	\]
+	Dann gilt $T \subseteq Z_v$ und $g^{-1}Tg \subseteq Z_v$, denn
+	\[
+		\Ad \enbrace*{g^{-1} Tg}v = \Ad(g^{-1}) \Ad(T) \Ad(g) v = \Ad(g^{-1}) \Ad(T) \tilde{v} = \Ad(g^{-1}) \tilde{v} = v
+	\]
+	Nach \autoref{satz:244} (2) sind die maximalen Tori $T$ und $g^{-1} T g$ konjugiert in $(Z_v)_e$, das heißt es existiert ein $h \in (Z_v)_e$ mit $h T h^{-1} = g^{-1} T g$.
+	Es folgt $gh \in N_G(T)$ und somit
+	\[
+		\Ad(gh)(v) = \Ad(g) \Ad(h) v = \Ad(g) v = \tilde{v}
+	\]
+	Mit $n \coloneqq gh$ folgt damit 2).
+	
+	Um 3) zu zeigen wählen wir $v \in \mathfrak{t}$ und $\tilde{v} \in \Ad(G) v \cap t$.
+	Dann gilt für den Tangentialraum des Orbit $\Ad(G)v = \Ad(G)\tilde{v}$
+	\[
+		\Tmap_{\tilde{v}} \enbrace*{\Ad(G)v} = \Tmap_{\tilde{v}} \enbrace*{\Ad(G) \tilde{v}} = \set[\big]{\benbrace*{w,\tilde{v}} \given w \in \mathfrak{g}}
+	\]
+	Ferner gilt für $t \in \mathfrak{t}$
+	\[
+		\skal[\big]{\benbrace*{w,\tilde{v}}}{t} = \skal[\big]{w}{\benbrace*{\tilde{v}, t}} \stackrel[\mathfrak{t} \text{ abelsch} ]{\benbrace*{\overline{v},w}=0}{=\joinrel=\joinrel=\joinrel=}0
+	\]
+	Also ist $\Tmap_{\tilde{v}} \enbrace*{\Ad(G)v} \perp \mathfrak{t}$ wie gewünscht.
+\end{beweis}
+
+\begin{bemerkung*}[{name=[Klassifikation kompakter zusammenhängender einfach-zusammenhängender Liegruppen]}]
+	Kompakte zusammenhängende, einfach zusammenhängende Liegruppen kann man klassifizieren: 
+	\begin{itemize}
+		\item $\operatorname{Spin}(n)$, $n \ge 3$, $\sfrac{\operatorname{Spin}}{\mathbb{Z}_2} = \SO(n)$
+		\item $\SU(n)$, $n \ge 2$
+		\item $\Sp(n)$, $n \ge 1$
+		\item $G_2$, $F_4$, $E_6$, $E_7$, $E_8$ mit Dimension $14,52,78,133,248$.
+	\end{itemize}
+\end{bemerkung*}
+
+\begin{beispiel*}[{name=[maximale Tori der speziellen unitären Gruppe]}]
+	Die maximalen Tori in $\SU(n)$ sind 
+	\[
+		T = \set*{\begin{pmatrix}
+			e^{i \varphi_1} & & \\
+			& \ddots & \\
+			& & e^{i \varphi_n}
+		\end{pmatrix} \given \sum_{i=1}^{n} \varphi_i \in 2 \pi \mathbb{Z}}
+	\]
+	Die Weylgruppe ist $W = \operatorname{Sym}(n)$. Somit ist der Rang $n-1$.
+	Es gilt 
+	\[
+		t = \Tmap_e T = \set*{ \begin{pmatrix}
+			i \alpha_1 & & \\
+			& \ddots & \\
+			& & i \alpha_n
+		\end{pmatrix} \given \sum_{i=1}^{n} \alpha_i = 0}
+	\]
+	Alle adjungierten Orbiten sind von der Form $\sfrac{\SU(n)}{\SU(n_1) \times \ldots \times \Un(n_k)}$ mit
+	\[
+		\sum_{j=1}^{1n} n_j = n \quad , \quad \alpha_1 = \ldots = \alpha_{n-1}, \alpha_{n_1 +1} = \ldots = \alpha_{n_1 +n_2}
+	\]
+	\todo[inline]{das Ganze könnte man mal nachrechnen}
+\end{beispiel*}
 % section 24 (end)
 
-\todo[inline]{Hier fehlt noch eine gesamte Vorlesung!}
-\newpage
 
-Kompakte zusammenhängende, einfach zusammenhängende Liegruppen kann man klassifizieren: 
-\begin{itemize}
-	\item $\operatorname{Spin}(n)$, $n \ge 3$, $\sfrac{\operatorname{Spin}}{\mathbb{Z}_2} = \SO(n)$
-	\item $\SU(n)$, $n \ge 2$
-	\item $\Sp(n)$, $n \ge 1$
-	\item $G_2$, $F_4$, $E_6$, $E_7$, $E_8$ mit Dimension $14,52,78,133,248$.
-\end{itemize}
-Maximale Tori in $\SU(n)$: 
-\[
-	T = \set*{\begin{pmatrix}
-		e^{i \varphi_1} & & \\
-		& \ddots & \\
-		& & e^{i \varphi_n}
-	\end{pmatrix} \given \sum_{i=1}^{n} \varphi_i \in 2 \pi \mathbb{Z}}
-\]
-Weylgruppe $W = \operatorname{Sym}(n)$. Somit Rang $\SU(n)=n-1$.
-Es gilt 
-\[
-	t = \Tmap_e T = \set*{ \begin{pmatrix}
-		i \alpha_1 & & \\
-		& \ddots & \\
-		& & i \alpha_n
-	\end{pmatrix} \given \sum_{i=1}^{n} \alpha_i = 0}
-\]
-Alle adjungierten Orbiten sind von der Form $\sfrac{\SU/n}{\SU(n_1) \times \ldots \times \Un(n_k)}$ mit
-\[
-	\sum_{j=1}^{1n} n_j = n \quad , \quad \alpha_1 = \ldots = \alpha_{n-1}, \alpha_{n_1 +1} = \ldots = \alpha_{n_1 +n_2}
-\]
-Isotropiegruppe
+
+
+
 % section 23 (end)
 % chapter 2 (end)
 
