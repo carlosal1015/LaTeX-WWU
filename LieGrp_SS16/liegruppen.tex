@@ -2112,7 +2112,7 @@ Ist etwa $G$ kompakt, so ist $\mathcal{B}_\mathfrak{g}$ negativ definit!
 	Sei $\mathfrak{g}$ eine kompakte Liealgebra.
 	Dann gilt:
 	\begin{enumerate}[1)]
-		\item Es existiert ein Skalarprodukt $\skal*{\cdot}{\cdot}$ auf $\mathfrak{g}$, sodass $\ad_X \colon \mathfrak{g} \to \mathfrak{g}$ \enquote{schiefsymmetrisch}\marginnote{$\skal*{\Ad_X x}{y} = - \skal*{x}{\Ad_Xy}$} bezüglich $\skal*{\cdot}{\cdot}$ ist für alle $X \in \mathfrak{g}$.
+		\item Es existiert ein Skalarprodukt $\skal*{\cdot}{\cdot}$ auf $\mathfrak{g}$, sodass $\ad_X \colon \mathfrak{g} \to \mathfrak{g}$ \enquote{schiefsymmetrisch}\marginnote{$\skal*{\ad_X x}{y} = - \skal*{x}{\ad_Xy}$} bezüglich $\skal*{\cdot}{\cdot}$ ist für alle $X \in \mathfrak{g}$.
 		\item $G$ besitzt eine \Index{biinvariante Riemannsche Metrik}\footnote{siehe \url{https://de.wikipedia.org/wiki/Riemannsche_Mannigfaltigkeit}} $g_\bi$, das heißt die Diffeomorphismen $L_g,R_g \colon G \to G$ sind alle für alle $g \in G$ Isometrien.
 	\end{enumerate}
 \end{lemma}
@@ -2139,11 +2139,11 @@ Ist etwa $G$ kompakt, so ist $\mathcal{B}_\mathfrak{g}$ negativ definit!
 			&\StackTextClap{Trafo}{=} \int_G \skal[\big]{\Ad(g) X}{ \Ad(g)Y}_0 \, \Underbracket{R^*_{h^{-1}} \omega}{=\omega} = \skal*{X}{Y}
 		\end{align}
 		Somit ist $\skal*{\cdot}{\cdot}$ ein $\Ad(G)$-invariantes Skalarprodukt, das heißt $\Ad(G)\subset \On(\mathfrak{g},\skal*{\cdot}{\cdot})$, $G$ wirkt also durch Isometrien auf $\mathfrak{g}$.
-		Da $\enbrace*{\mathd \Ad}_e = \ad$ folgt die Behauptung (die Liealgebra von $\On(n)$ ist die der schiefsymmetrischen Matrizen).\todo{RevChap 2}
-		\item Sei $\skal*{\cdot}{\cdot}$ ein $\Ad(G)$-invariantes Skalarprodukt auf $\mathfrak{g}$.
+		Da $\enbrace*{\mathd \Ad}_e = \ad$ folgt die Behauptung (die Liealgebra von $\On(n)$ ist die der schiefsymmetrischen Matrizen).
+		\item Sei $\skal*{\cdot}{\cdot}$ ein $\Ad(G)$-invariantes Skalarprodukt auf $\mathfrak{g}$ wie eben konsturiert.
 		Wir definieren $(g_\bi)_g \colon \Tmap_g G \times \Tmap_g G \to \mathbb{R}$ durch
 		\[
-			(g_\bi)(x,y) \coloneqq \skal*{\enbrace*{\mathd L_{g^{-1}}}_g x}{ \enbrace*{\mathd L_{g^{-1}}}_gy}
+			(g_\bi)_g(X,Y) \coloneqq \skal*{\enbrace*{\mathd L_{g^{-1}}}_g X}{ \enbrace*{\mathd L_{g^{-1}}}_g Y}
 		\]
 		Dies ist eine glatte(!) Riemannsche Metrik (Übung).
 		Klar ist: Die Diffeomorphismen $L_h$ sind Isometrien!
@@ -2153,19 +2153,19 @@ Ist etwa $G$ kompakt, so ist $\mathcal{B}_\mathfrak{g}$ negativ definit!
 			\enbrace*{\mathd R_{gh}}_e = \enbrace*{\mathd R_h}_g \cdot \enbrace*{\mathd R_g}_e
 		\]
 		Somit genügt es zu zeigen, dass $(\mathd R_g)_e \colon \Tmap_e G \to \Tmap_g G$ eine Isometrie ist für alle $g \in G$.
-		Es seien $x,y \in \mathfrak{g} = \Tmap_e G$.
+		Es seien $X,Y \in \mathfrak{g} = \Tmap_e G$.
 		Dann gilt
 		\begin{align}
-			g_\bi \enbrace*{(\mathd R_g)_e \cdot x, \enbrace*{\mathd R_g}_e \cdot y}_g = \skal*{ \enbrace*{\mathd L_{g^{-1}}}_g \enbrace*{\mathd R_g}_e \cdot x}{\cdots}
-			&= \skal*{\Ad(g^{-1}) x}{ \Ad(g^{-1})y} \\
-			&= \skal*{x}{y} = g_\bi(x,y)_e
+			g_\bi \enbrace*{(\mathd R_g)_e \cdot X, \enbrace*{\mathd R_g}_e \cdot Y}_g = \skal*{ \enbrace*{\mathd L_{g^{-1}}}_g \enbrace*{\mathd R_g}_e \cdot X}{\cdots}
+			&= \skal*{\Ad(g^{-1}) X}{ \Ad(g^{-1})Y} \\
+			&= \skal*{X}{Y} = g_\bi(X,Y)_e
 		\end{align}
-		da $\skal*{\cdot }{\cdot}$ $\Ad(G)$-invariant ist.
+		da $\skal*{\cdot }{\cdot}$ nach 1 $\Ad(G)$-invariant ist.
 		Dies zeigt die Behauptung.\qedhere
 	\end{enumerate}
 \end{beweis}
 
-\begin{lemma}
+\begin{lemma}[{name=[Eigenschaften kompakter Liealgebren]}]
 	Sei $\mathfrak{g}$ eine reelle Liealgebra.
 	Dann gilt 
 	\begin{enumerate}[1)]
@@ -2180,35 +2180,35 @@ Ist etwa $G$ kompakt, so ist $\mathcal{B}_\mathfrak{g}$ negativ definit!
 \begin{beweis}
 	\begin{enumerate}[1)]
 		\item Sei zunächst $\mathcal{B} < 0$.
-		Dann ist $\mathfrak{g}$ halbeinfach mit trivialem Zentrum.
-		Da die Killingform invariant unter Automorphismen ist, gilt $\Aut(\mathfrak{g}) \subset \On(\mathfrak{g},-\mathcal{B})$.
-		Ferner ist nach \autoref{prop:162} $\Aut(g)$ abgeschlossen in $\End(\mathfrak{g})$.
+		Dann ist $\mathfrak{g}$ halbeinfach, da nicht ausgeartet, und hat somit ein triviales Zentrum.
+		Da nach \autoref{lem:168} die Killingform invariant unter Automorphismen ist, gilt $\Aut(\mathfrak{g}) \subset \On(\mathfrak{g},-\mathcal{B})$.\marginnote{$\On(n)$ ist kompakt, da abgeschlossene Teilmenge der Einheitskugel bzgl. Spektralnorm}
+		Ferner ist nach \autoref{prop:162} $\Aut(\mathfrak{g})$ abgeschlossen in $\End(\mathfrak{g})$.
 		Somit ist $\Aut(\mathfrak{g})$ kompakt.
 		Nach \autoref{satz:222} 4) ist $\sfrac{\Aut(\mathfrak{g})}{\Int(\mathfrak{g})}$ diskret, also endlich.
 		Somit ist
 		\[
 			\enbrace*{\Aut(\mathfrak{g})}_e = \Int(\mathfrak{g})
 		\]
-		$\Int(\mathfrak{g})$ ist kompakt und wegen $\Int(\mathfrak{g}) \cong \mathfrak{g}$ folgt, dass $\mathfrak{g}$ eine kompakte Liealgebra mit $Z(\mathfrak{g})= \set*{0}$ ist.
+		$\Int(\mathfrak{g})$ ist also auch kompakt und wegen $\intAlg(\mathfrak{g}) \cong \mathfrak{g}$ folgt, dass $\mathfrak{g}$ eine kompakte Liealgebra mit $Z(\mathfrak{g})= \set*{0}$ ist.
 		
 		Sei nun $\mathfrak{g}$ eine kompakte Liealgebra mit trivialem Zentrum.
 		Wähle ein $\Ad(G)$-invariantes Skalarprodukt $\skal*{\cdot}{\cdot}$ auf $\mathfrak{g}$.
 		Dann gilt 
 		\[
-			- \mathcal{B}(x,x) = - \Sp \enbrace*{\ad_x \circ \ad_x} = \Sp \enbrace*{\ad_x \circ \ad_x^T} = \norm*{\ad_x}^2 \ge 0
+			- \mathcal{B}(X,X) = - \tr \enbrace*{\ad_X \circ \ad_X} = \tr \enbrace*{\ad_X \circ \ad_X^T} = \norm*{\ad_X}^2 \ge 0
 		\]
-		Somit ist $\mathcal{B} \le 0$ und $\mathcal{B}(x,x)=0 \iff x \in Z(\mathfrak{g})$.
-		\item Wie im Beweis von \autoref{satz:222} 1) zeigt man, dass $\mathfrak{g} = Z(\mathfrak{g}) + \mathfrak{b}$ für ein Ideal $\mathfrak{b}$.\footnote{$\skal*{\cdot}{\cdot}$ $\Ad(G)$-invariantes Skalarprodukt, $\mathfrak{b} \coloneqq Z(\mathfrak{g})^\perp \implies \ad_x$ schiefsymmetrisch}
-		Wir wissen $\mathcal{B} \le 0$ und $\mathcal{B}(x,x) =0 \iff x \in Z(\mathfrak{g})$.
-		Somit $\mathcal{B}_\mathfrak{b} = \mathcal{B}_{\mathfrak{g}}|_{\mathfrak{b}} < 0$ und daher, da $\mathfrak{b}$ halbeinfach ist:
+		Somit ist $\mathcal{B} \le 0$ und $\mathcal{B}(X,X)=0 \iff \ad_X = 0 \iff X \in Z(\mathfrak{g})$.
+		\item Wie im Beweis von \autoref{satz:222} 1) zeigt man, dass $\mathfrak{g} = Z(\mathfrak{g}) \oplus \mathfrak{b}$ für ein Ideal $\mathfrak{b}$.\footnote{$\skal*{\cdot}{\cdot}$ $\Ad(G)$-invariantes Skalarprodukt, $\mathfrak{b} \coloneqq Z(\mathfrak{g})^\perp \implies \ad_X$ schiefsymmetrisch}
+		Wir wissen $\mathcal{B} \le 0$ und $\mathcal{B}(X,X) =0 \iff X \in Z(\mathfrak{g})$.
+		Somit gilt für die Killingform $\mathcal{B}_\mathfrak{b} = \mathcal{B}_{\mathfrak{g}}|_{\mathfrak{b}} < 0$, nach Cartan ist also $\mathfrak{b}$ halbeinfach und damit folgt
 		\[
-			\benbrace*{\mathfrak{g},\mathfrak{g}} = \benbrace*{\mathfrak{b},\mathfrak{b}} = \mathfrak{b}
+			\benbrace*{\mathfrak{g},\mathfrak{g}} \stackrel{\mathfrak{g} = Z(\mathfrak{g}) \oplus \mathfrak{b}}{=\joinrel=\joinrel=\joinrel=\joinrel=\joinrel=}\benbrace*{\mathfrak{b},\mathfrak{b}} \StackText{\ref{satz:222} 3)}{=\joinrel=\joinrel=}\mathfrak{b}
 		\]
 		Dies zeigt $\mathfrak{g} = Z(\mathfrak{g}) \oplus \benbrace*{\mathfrak{g},\mathfrak{g}}$.\qedhere
 	\end{enumerate}
 \end{beweis}
 
-\begin{korollarB}
+\begin{korollarB}[{name=[kompakte Liegruppe mit endlichem Zentrum halbeinfach]}]
 	Eine kompakte Liegruppe mit endlichem Zentrum ist halbeinfach.
 \end{korollarB}
 
@@ -2220,10 +2220,10 @@ Ist etwa $G$ kompakt, so ist $\mathcal{B}_\mathfrak{g}$ negativ definit!
 	\]
 \end{lemma}
 \begin{beweis}
-	\emph{Kommt noch. Wir werden zeigen, dass auf $G$ eine Riemannsche Metrik mit $\Ric >0$ existiert. Mit Bonnet-Myers folgt dann die Behauptung.}
+	\emph{Kommt noch. Wir werden zeigen, dass auf $G$ eine Riemannsche Metrik mit Ricci-Krümmung $\Ric >0$ existiert. Mit Bonnet-Myers folgt dann zusammen mit der Kompaktheit die Behauptung.}\todo{überprüfen, ob das wirklich nochmal drankommt \ldots}
 \end{beweis}
 
-\begin{korollar}
+\begin{korollar}[{name=[Isomorphie kompakte Liegruppe]}]
 	Jede kompakte Liegruppe $G$ ist isomorph zu 
 	\[
 		\faktor{T^k \times G_1 \times \ldots \times G_s}{\Gamma}
@@ -2231,7 +2231,7 @@ Ist etwa $G$ kompakt, so ist $\mathcal{B}_\mathfrak{g}$ negativ definit!
 	wobei $G_1, \ldots ,G_s$ kompakte, zusammenhängende, einfach zusammenhängende Liegruppen sind und $\Gamma \subset Z(T^k \times G_1 \times \ldots \times G_s)$ eine endliche Untergruppe ist.
 \end{korollar}
 \begin{beweis}
-	\emph{Übung.}
+	\emph{Übung.}\todo{RevChap 2}
 \end{beweis}
 
 \begin{lemma}
