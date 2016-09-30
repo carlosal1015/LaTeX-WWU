@@ -2097,7 +2097,7 @@ Ist etwa $G$ kompakt, so ist $\mathcal{B}_\mathfrak{g}$ negativ definit!
 
 \begin{bemerkung*}[{name=[Klassifikation der komplexen halbeinfachen Liealgebren]}]
 	Halbeinfache komplexe Liealgebren sind von \textsc{Cartan} klassifiziert worden.
-	Diese treten in vier unendlichen Familien $A_n$, $B_n$, $C_n$, $D_n$ und fünf sogenannten Ausnahmealgebren $G_2$, $F_4$, $E_6$, $E_7$, $E_8$ auf.\todo{RevChap 2}
+	Diese treten in vier unendlichen Familien $A_n$, $B_n$, $C_n$, $D_n$ und fünf sogenannten Ausnahmealgebren $G_2$, $F_4$, $E_6$, $E_7$, $E_8$ auf.
 \end{bemerkung*}
 % section 22 (end)
 
@@ -2108,32 +2108,38 @@ Ist etwa $G$ kompakt, so ist $\mathcal{B}_\mathfrak{g}$ negativ definit!
 	Eine reelle Liealgebra $\mathfrak{g}$ nennt man \Index{kompakt}, falls es eine kompakte Liegruppe $G$ gibt $\Tmap_e G \cong \mathfrak{g}$. 
 \end{definition}
 
-\begin{lemma}
+\begin{lemma}[{name=[Existenz schöner Skalarprodukte und biinvarianter Metriken]}]
 	Sei $\mathfrak{g}$ eine kompakte Liealgebra.
 	Dann gilt:
 	\begin{enumerate}[1)]
-		\item Es existiert ein Skalarprodukt $\skal*{\cdot}{\cdot}$ auf $\mathfrak{g}$, sodass $\ad_X \colon \mathfrak{g} \to \mathfrak{g}$ \enquote{schiefsymmetrisch} bezüglich $\skal*{\cdot}{\cdot}$ ist für alle $x \in \mathfrak{g}$.\marginnote{$\skal*{Ax}{y} = - \skal*{x}{Ay}$}
-		\item $G$ besitzt eine biinvariante Riemannsche Metrik\footnote{siehe \url{https://de.wikipedia.org/wiki/Riemannsche_Mannigfaltigkeit}} $g_\bi$, das heißt die Diffeomorphismen $L_g,R_g \colon G \to G$ sind alle für alle $g \in G$ Isometrien.
+		\item Es existiert ein Skalarprodukt $\skal*{\cdot}{\cdot}$ auf $\mathfrak{g}$, sodass $\ad_X \colon \mathfrak{g} \to \mathfrak{g}$ \enquote{schiefsymmetrisch}\marginnote{$\skal*{\Ad_X x}{y} = - \skal*{x}{\Ad_Xy}$} bezüglich $\skal*{\cdot}{\cdot}$ ist für alle $X \in \mathfrak{g}$.
+		\item $G$ besitzt eine \Index{biinvariante Riemannsche Metrik}\footnote{siehe \url{https://de.wikipedia.org/wiki/Riemannsche_Mannigfaltigkeit}} $g_\bi$, das heißt die Diffeomorphismen $L_g,R_g \colon G \to G$ sind alle für alle $g \in G$ Isometrien.
 	\end{enumerate}
 \end{lemma}
 \begin{beweis}
 	\begin{enumerate}[1)]
-		\item Sei $\skal*{\cdot}{\cdot}_0$ \emph{ein} Skalarprodukt auf $\mathfrak{g}$.
+		\item Sei $\skal*{\cdot}{\cdot}_0$ \emph{irgendein} Skalarprodukt auf $\mathfrak{g}$.
 		Wir setzen 
 		\[
-			\skal*{x}{y} \coloneqq \int_G \skal*{\Ad(g)x}{\Ad(g)y}_0 \,\omega
+			\skal*{x}{y} \coloneqq \int_G \skal[\big]{\Ad(g)x}{\Ad(g)y}_0 \,\omega
 		\]
-		wobei $\omega$ eine biinvariante Volumenform uf $G$ ist (wir können $G$ als zusammenhängend annehmen). 
-		Die Existenz von $\omega$ zu beweisen, ist eine Übung.
-		Sei $h \in G$.
+		wobei $\omega$ eine \Index{biinvariante Volumenform} auf $G$ ist, das heißt es gilt $L^*_g \omega = R^*_g \omega= \omega$ (wir können $G$ als zusammenhängend annehmen). 
+		Die Existenz von $\omega$ kann man sich wie folgt überlegen:
+		Sei $\omega_0$ eine Volumenform auf $\mathfrak{g}$.
+		Dann lässt sich diese mittels $\omega_g = L_g^* \omega_0$ auf $G$ fortsetzen.
+		Man kann nun eine Funktion $f \colon G \to \mathbb{R}$ definieren mittels $R_g^* \omega = f(g) \omega$.
+		Man rechnet nun leicht $f(gh) =f(g) f(h)$ nach, und somit muss $f(G)$ eine kompakte Untergruppe von $\mathbb{R}^*$ sein.
+		Dann muss aber $f(G)=1$ gelten und damit ist $\omega$ auch rechtsinvariant.
+		
+		Sei nun $h \in G$.
 		Dann gilt 
 		\begin{align}
-			\skal*{\Ad(h) x}{\Ad(h)y} = \int_G \skal*{\Ad(g) \Ad(h)(x)}{ \cdots}_0 \, \omega &= \int_G \skal*{\Ad(gh)x}{\Ad(gh)y} \, R_h^* \enbrace*{R^*_{h^{-1}} \omega} \\
-			&\StackTextClap{Trafo}{=} \int_G \skal*{\Ad(g) x}{ \Ad(g)y}_0 \, \Underbracket{R^*_{h^{-1}} \omega}{=\omega} \\
-			&= \skal*{x}{y}
+			\skal[\big]{\Ad(h) X}{\Ad(h)Y} &= \int_G \skal[\big]{\Ad(g) \Ad(h)(X)}{ \Ad(g) \Ad(h)(Y)}_0 \, \omega \\
+			&= \int_G \skal[\big]{\Ad(gh)X}{\Ad(gh)Y}_0 \, R_h^* \enbrace*{R^*_{h^{-1}} \omega} \\
+			&\StackTextClap{Trafo}{=} \int_G \skal[\big]{\Ad(g) X}{ \Ad(g)Y}_0 \, \Underbracket{R^*_{h^{-1}} \omega}{=\omega} = \skal*{X}{Y}
 		\end{align}
-		Somit ist $\skal*{\cdot}{\cdot}$ $\Ad(G)$-invariantes Skalarprodukt, das heißt $\Ad(G) \subset \On(\mathfrak{g},\skal*{\cdot}{\cdot})$.
-		Da $\enbrace*{\mathd \Ad}_e = \ad$ folgt die Behauptung.
+		Somit ist $\skal*{\cdot}{\cdot}$ ein $\Ad(G)$-invariantes Skalarprodukt, das heißt $\Ad(G)\subset \On(\mathfrak{g},\skal*{\cdot}{\cdot})$, $G$ wirkt also durch Isometrien auf $\mathfrak{g}$.
+		Da $\enbrace*{\mathd \Ad}_e = \ad$ folgt die Behauptung (die Liealgebra von $\On(n)$ ist die der schiefsymmetrischen Matrizen).\todo{RevChap 2}
 		\item Sei $\skal*{\cdot}{\cdot}$ ein $\Ad(G)$-invariantes Skalarprodukt auf $\mathfrak{g}$.
 		Wir definieren $(g_\bi)_g \colon \Tmap_g G \times \Tmap_g G \to \mathbb{R}$ durch
 		\[
