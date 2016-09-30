@@ -1,0 +1,24 @@
+%!TEX TS-program = xelatex
+% -- Author: Phil Steinhorst, p.st@wwu.de
+\input{config.tex}
+\nocite{*}
+\begin{document}
+\pagenumbering{Roman}
+\input{content/title.tex}
+\onehalfspacing
+\input{content/preface.tex}
+\tableofcontents
+\cleardoubleoddemptypage
+\pagenumbering{arabic}
+\setcounter{page}{1}
+\input{content/1.tex}
+
+%\appendix
+%\input{content/A.tex}
+
+\printbibliography
+\printindex
+\listoftodos
+\todototoc
+
+\end{document}
