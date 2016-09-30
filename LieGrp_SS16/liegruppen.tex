@@ -2165,7 +2165,7 @@ Ist etwa $G$ kompakt, so ist $\mathcal{B}_\mathfrak{g}$ negativ definit!
 	\end{enumerate}
 \end{beweis}
 
-\begin{lemma}[{name=[Eigenschaften kompakter Liealgebren]}]
+\begin{lemma}[{name=[Eigenschaften kompakter Liealgebren]},label=lem:233]
 	Sei $\mathfrak{g}$ eine reelle Liealgebra.
 	Dann gilt 
 	\begin{enumerate}[1)]
@@ -2212,12 +2212,13 @@ Ist etwa $G$ kompakt, so ist $\mathcal{B}_\mathfrak{g}$ negativ definit!
 	Eine kompakte Liegruppe mit endlichem Zentrum ist halbeinfach.
 \end{korollarB}
 
-\begin{lemma}[{name={Weyl}}]
+\begin{lemma}[{name={Weyl}},label=lem:235]
 	Sei $G$ eine kompakte Liegruppe mit endlichem Zentrum.\marginnote{$\SO(n)$, $\SU(n)$, $\Sp(n)$ aber $\cancel{\Un(n)}$}
 	Dann ist 
 	\[
 		\abs*{\pi_1(G)} < \infty
 	\]
+	Damit ist auch jede weitere Liegruppe mit Liealgebra $\mathfrak{g}$ kompakt.
 \end{lemma}
 \begin{beweis}
 	\emph{Kommt noch. Wir werden zeigen, dass auf $G$ eine Riemannsche Metrik mit Ricci-Krümmung $\Ric >0$ existiert. Mit Bonnet-Myers folgt dann zusammen mit der Kompaktheit die Behauptung.}\todo{überprüfen, ob das wirklich nochmal drankommt \ldots}
@@ -2231,18 +2232,29 @@ Ist etwa $G$ kompakt, so ist $\mathcal{B}_\mathfrak{g}$ negativ definit!
 	wobei $G_1, \ldots ,G_s$ kompakte, zusammenhängende, einfach zusammenhängende Liegruppen sind und $\Gamma \subset Z(T^k \times G_1 \times \ldots \times G_s)$ eine endliche Untergruppe ist.
 \end{korollar}
 \begin{beweis}
-	\emph{Übung.}\todo{RevChap 2}
+	Nach \autoref{lem:233} 2) und \autoref{satz:222} 1) ist $\mathfrak{g}$ isomorph zu $\mathbb{R}^n \times \mathfrak{g}_1 \times \ldots \times \mathfrak{g}_m$ mit $\mathfrak{g}_i$ einfach.
+	Damit ist die zusammenhängende, einfach zusammenhängende Liegruppe mit Liealgebra $\mathfrak{g}$ isomorph zu $\widetilde{G} = \mathbb{R}^n \times G_1 \times \ldots \times G_m$, wobei die $G_i$ einfach zusammenhängend und einfach sind. 
+	Insbesondere ist diese Liegruppe die universelle Überlagerung von $G$.
+	Nach Weyl (\autoref{lem:235}) sind auch die $G_i$ kompakt.\todo{das verstehe ich noch nicht}
+	Es ist nun $G = \sfrac{\widetilde{G}}{\widetilde{\Gamma}}$ für eine diskrete Untergruppe $\widetilde{\Gamma}$ des Zentrums von $\widetilde{G}$ (vgl. \cref{sec:13}).
+	Die Zentren der $G_i$ sind nun aber endlich, womit die Projektion von $\widetilde{\Gamma}$ auf $G_1\times \ldots \times G_m$ als Homomorphismus endlichen Index hat.
+	Außerdem ist ihr Kern $\overline{\Gamma}$ eine Untergruppe von $\mathbb{R}^n$.
+	Da $G$ kompakt ist, muss auch $\sfrac{\mathbb{R}^n}{\overline{\Gamma}}$ kompakt sein und damit isomorph zu einem Torus $T^n$.
+	
+	Insgesamt wirkt die Gruppe $\Gamma = \sfrac{\widetilde{\Gamma}}{\overline{\Gamma}}$ auf $T^n \times G_1 \times \ldots \times G_m$ mit dem Quotienten $G$.
 \end{beweis}
 
-\begin{lemma}
+\begin{lemma}[{name=[Exponentialabbildung surjektiv für kompakte und zusammenhängend]}]
 	Sei $G$ kompakte zusammenhängende Liegruppe.
-	Dann ist $\exp\colon \mathfrak{g} = \Tmap_e G \to G$ surjektiv.
+	Dann ist die Exponentialabbildung $\exp\colon \mathfrak{g} = \Tmap_e G \to G$ surjektiv.
 \end{lemma}
 \begin{beweis}
 	Wir werden zeigen, dass Einparametergruppen genau die Geodätischen von $(G,g_\bi)$ sind. 
 	$G$ ist kompakt und damit vollständig bezüglich der von $g_\bi$ induzierten Metrik.
-	Mit Hopf-Rinow folgt, dass die geometrische (=algebraische) Exponentialabbildung surjektiv ist.
+	Mit Hopf-Rinow\footnote{siehe \url{https://de.wikipedia.org/wiki/Satz_von_Hopf-Rinow}} folgt, dass die geometrische (=algebraische) Exponentialabbildung surjektiv ist.\todo{RevChap 2}
 \end{beweis}
+
+
 \todo[inline]{Hier fehlt noch eine gesamte Vorlesung!}
 \newpage
 
