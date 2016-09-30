@@ -2251,9 +2251,101 @@ Ist etwa $G$ kompakt, so ist $\mathcal{B}_\mathfrak{g}$ negativ definit!
 \begin{beweis}
 	Wir werden zeigen, dass Einparametergruppen genau die Geodätischen von $(G,g_\bi)$ sind. 
 	$G$ ist kompakt und damit vollständig bezüglich der von $g_\bi$ induzierten Metrik.
-	Mit Hopf-Rinow\footnote{siehe \url{https://de.wikipedia.org/wiki/Satz_von_Hopf-Rinow}} folgt, dass die geometrische (=algebraische) Exponentialabbildung surjektiv ist.\todo{RevChap 2}
+	Mit Hopf-Rinow\footnote{siehe \url{https://de.wikipedia.org/wiki/Satz_von_Hopf-Rinow}} folgt, dass die geometrische (=algebraische) Exponentialabbildung surjektiv ist.
 \end{beweis}
 
+\section{Maximale Tori und Weylgruppen} % (fold)
+\label{sec:24}
+
+\begin{definition}[{name=[maximal abelsche Unteralgebra]}]
+	Sei $\mathfrak{g}$ eine Liealgebra.
+	Dann nennt man eine Unteralgebra $\mathfrak{t} \subseteq \mathfrak{g}$ \Index{maximal abelsch}, falls $\mathfrak{t}$ abelsch ist und gilt: Ist $\mathfrak{t}' \subseteq \mathfrak{g}$ eine weitere abelsche Unteralgebra mit $\mathfrak{t} \subseteq \mathfrak{t}'$, so gilt bereits $\mathfrak{t} = \mathfrak{t}'$.
+\end{definition}
+
+\begin{beispiel*}[{name=[maximal abelsche Unteralgebren]}]
+	\begin{itemize}
+		\item Falls $\mathfrak{g}$ bereits abelsch ist, gilt natürlich $\mathfrak{t} = \mathfrak{g}$.
+		\item Betrachte $G=\SO(2n)$.
+		Dann ist 
+		\[
+			\mathfrak{t} = \set*{\begin{pmatrix}
+				\alpha_1\begin{psmallmatrix}
+					0 & -1 \\ 1 & 0
+				\end{psmallmatrix} & & 0 \\
+				& \ddots &  \\
+				0 & & \alpha_n \begin{psmallmatrix}
+					0 & -1 \\ 1 & 0
+				\end{psmallmatrix}
+			\end{pmatrix} \given \alpha_1,\ldots ,\alpha_n \in \mathbb{R}}
+		\]
+		die maximale abelsche Unteralgebra von $\mathfrak{so}(2n)$.
+		\item Für $G = \SL(n,\mathbb{R})$ ist
+		\[
+			\mathfrak{t} = \set*{\begin{pmatrix}
+				\alpha_1 & & 0 \\
+				& \ddots & \\
+				0 & & \alpha_n
+			\end{pmatrix} \given \alpha_i \in \mathbb{R}, \sum_i \alpha_i = 0}
+		\]
+		die maximal abelsche Unteralgebra von $\mathfrak{sl}(n,\mathbb{R})$
+	\end{itemize}
+\end{beispiel*}
+
+\begin{lemma}[{name=[Eindeutigkeit der maximalen abelschen Unteralgebra]}]
+	Sei $G$ eine kompakte Liegruppe und $\mathfrak{t} \subseteq \mathfrak{g}$ maximale abelsche Unteralgebra.
+	Dann gilt
+	\begin{enumerate}[(1)]
+		\item Für alle $v \in \mathfrak{g}$ existiert ein $g \in G$ mit $\Ad(g) v \in \mathfrak{t}$.
+		\item Sind $\mathfrak{t}_1$ und $\mathfrak{t}_2$ maximale abelsche Unteralgebren von $\mathfrak{g}$, so existiert ein $g \in G$ mit $\Ad(g)\mathfrak{t}_1 = \mathfrak{t}_2$.
+	\end{enumerate}
+\end{lemma}
+\begin{beweis}
+	Sei $T = \exp \mathfrak{t}$.
+	Angenommen $T$ sei nicht abgeschlossen, so wäre $T' \coloneqq \overline{\exp \mathfrak{t}}$ eine zusammenhängende, abgeschlossene Untergruppe von $G$, also eine Lieuntergruppe.
+	Da $T$ offenbar abelsch ist, ist auch $T'$ abelsch. 
+	Wegen $T \subsetneq T'$ folgt $\mathfrak{t} \subsetneq \mathfrak{t}'$, was ein Widerspruch ist.
+	Somit ist $T$ abgeschlossen, also kompakt, das heißt $T = S^1 \times \ldots \times S^1$.
+	
+	In den Übungen wird gezeigt, dass ein $\overline{v} \in \mathfrak{t}$ existiert mit $\overline{\set*{\exp(s \overline{v}) \given s \in \mathbb{R}}} = T$.\todo{einarbeiten}
+	Wir zeigen nun 
+	\[
+		\mathfrak{t} = \set[\big]{w \in \mathfrak{g} \given \benbrace*{\overline{v},w}=0}
+	\]
+	Die Inklusion \enquote{$\subseteq$} ist dabei klar.
+	Sei also $w \in \mathfrak{g}$ mit $\benbrace*{\overline{v},w} =0$.
+	Dann gilt
+	\[
+		w = \enbrace*{e^{s \ad_{\overline{v}}}}(w) \StackText{\ref{lem:153}}{=\joinrel=} \Ad \enbrace[\big]{\exp(s \overline{v})}(w)
+	\]
+	Mit der Dichtheit folgt $\Ad(T)(w)=w$ und Differenzieren liefert $\benbrace*{\mathfrak{t},w}=0$.
+	Wegen der Maximalität von $\mathfrak{t}$ muss also $w \in \mathfrak{t}$ gelten.
+	
+	Sei nun $v \in \mathfrak{g}$ und $\skal*{\cdot}{\cdot}$ ein $\Ad(G)$-invariantes Skalarprodukt auf $\mathfrak{g}$.
+	Wir betrachten die Funktion
+	\mapdef{f \colon G}{\mathbb{R}}{g}{\skal*{\overline{v}}{\Ad(g)v}}{}
+	Da $G$ kompakt ist, nimmt $f$ sein Minimum an, etwa in $g_0 \in G$.
+	Es folgt
+	\begin{align}
+		0 = (\mathd f)_{g_0} (\mathd R_{g_0})_e z = \diffd{}{t}\Big|_{t=0} \skal[\Big]{\overline{v}}{\Ad \enbrace[\big]{\exp(t z)g_0} v} = \skal[\Big]{\overline{v}}{\ad(z) \enbrace[\big]{\Ad(g_0) v}}
+		&= \skal[\Big]{\overline{v}}{\benbrace[\big]{z,\Ad(g_0) v}} \\
+		&= -\skal[\Big]{\benbrace[\big]{\overline{v},\Ad(g_0)v}}{z}
+	\end{align}
+	für alle $z \in \mathfrak{g}$.
+	Somit ist $\benbrace*{\overline{v}, \Ad(g_0)v}=0$, das heißt $\Ad(g_0) v \in \mathfrak{t}$.
+	Damit ist (1) gezeigt.
+	
+	Zu (2): Sei $\overline{v}_i \in \mathfrak{t}_i$ mit $\overline{\set*{\exp(s \overline{v}_i) \given s \in \mathbb{R}}} = T_i$ für $i=1,2$ und die beiden maximalen abelschen Unteralgebren $\mathfrak{t}_1$ und $\mathfrak{t}_2$.
+	Nach (1) existiert $g \in G$ mit $\Ad(g)(\overline{v}_1) \in \mathfrak{t}_2$.
+	Da $\mathfrak{t}_2$ abelsch ist, gilt
+	\[
+		0 = \benbrace[\big]{\Ad(g) \overline{v}_1, t_2} = \benbrace*{\overline{v}_1, \Ad(g^{-1}) t_2}
+	\]
+	Dies zeigt $\Ad(g^{-1})(\mathfrak{t}_2) \subset \mathfrak{t}_1$.
+	Vertauscht man die Rollen von $\mathfrak{t}_1$ und $\mathfrak{t}_2$, so folgt $\dim \mathfrak{t}_1 = \dim \mathfrak{t}_2$ und wir erhalten $\Ad(g^{-1})(\mathfrak{t}_2) = \mathfrak{t}_1$.
+	\todo{RevChap 2}
+\end{beweis}
+
+% section 24 (end)
 
 \todo[inline]{Hier fehlt noch eine gesamte Vorlesung!}
 \newpage
