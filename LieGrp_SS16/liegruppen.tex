@@ -2552,38 +2552,39 @@ Ist $\mathfrak{t} \subset \mathfrak{g}$ eine maximale abelsche Unteralgebra von 
 	Das heißt $U \subseteq \sfrac{G}{H}$ ist offen genau dann, wenn $\pi^{-1}(U)$ offen in $G$ ist.
 \end{definition}
 
-\begin{satz}
+\begin{satz}[{name=[homogener Raum ist differenzierbare Mannigfaltigkeit]}]
 	Sei $G$ eine Liegruppe und $H$ eine abgeschlossene Untergruppe von $G$.
 	Dann ist der homogene Raum eine differenzierbare Mannigfaltigkeit der Dimension $n = \dim G - \dim H$.
 	Ferner ist die Projektionsabbildung $\pi \colon G \to \sfrac{G}{H}$ eine differenzierbare Submersion, das heißt für alle $g \in G$ ist $(\mathd \pi)_g \colon \Tmap_g G \to \Tmap_{gH} \sfrac{G}{H}$ surjektiv.
 \end{satz}
 \begin{beweis}
+	Der Beweis verläuft in mehreren Schritten.
 	\begin{enumerate}[(i)]
-		\item $\pi$ ist offen und $\sfrac{G}{H}$ erfüllt das zweite Abzählbarkeitsaxiom.
-		Aus $U \subseteq G $ offen, folgt dass auch $\pi^{-1}(\pi(U)) = \bigcup_{h \in H} R_h(U)$ offen ist und somit $\pi(U)$ offen ist.
+		\item $\pi$ ist offen und $\sfrac{G}{H}$ erfüllt das zweite Abzählbarkeitsaxiom:
 		
-		Ist $(B_n)_n$ eine Basis der Topologie auf $G$, so ist $\enbrace*{\pi(B_n)}_n$ eine Basis der Topologie auf $\sfrac{G}{H}$.
+		Aus $U \subseteq G $ offen, folgt dass auch $\pi^{-1}(\pi(U)) = \bigcup_{h \in H} R_h(U)$ offen ist und somit $\pi(U)$ offen ist.
+		Ist $(B_n)_n$ eine abzählbare Basis der Topologie auf $G$, so ist $\enbrace*{\pi(B_n)}_n$ eine Basis der Topologie auf $\sfrac{G}{H}$, da $\pi$ offen ist.
 		\item $\sfrac{G}{H}$ ist ein $T_2$-Raum:
 		
 		Seien $g_1 H, g_2 H \in \sfrac{G}{H}$ mit $g_1 H \neq g_2 H$.
 		Dann gilt $g_1 \notin g_2 H$.
-		Da $H$ abgeschlossen ist und $L_{g_2}$ ein Diffeomorphismus ist, ist auch $g_i H$ abgeschlossen in $G$.
+		Da $H$ abgeschlossen ist und $L_{g_i}$ ein Diffeomorphismus ist, ist auch $g_i H$ abgeschlossen in $G$.
 		Somit existiert eine offene Umgebung $U$ von $e$ in $G$ mit $U g_1 \cap g_2 H = \emptyset$.
 		Da die Multiplikation $m \colon G \times G \to G$ stetig ist, existieren offene Mengen $A,B \subseteq G$ mit $e \in A,B$ und $A \times B \subseteq m^{-1}(U)$.
 		Sei $V \coloneqq A \cap B$.
-		Dann ist $V$ offen und es gilt $V^2= \set*{g \tilde{g} \in V} \subseteq U$ ist offen und $V^2 g_1 \cap g_2 H = \emptyset$.
-		Damit folgt $V g:1 \cap V^{-1} g_2 H = \emptyset$, also auch $V g_1 H \cap V^{-1} g_2 H = \emptyset$.
+		Dann ist $V$ offen und es gilt $V^2 \subseteq U$ ist offen und $V^2 g_1 \cap g_2 H = \emptyset$.
+		Damit folgt $V g_1 \cap V^{-1} g_2 H = \emptyset$, also auch $V g_1 H \cap V^{-1} g_2 H = \emptyset$.
 		Insgesamt also $\pi(V g_1 H) \cap \pi(V g_1 H) = \emptyset$.
 		\item Sei $\skal*{\cdot }{\cdot }$ ein Skalarprodukt auf $\mathfrak{g}$ und $\mathfrak{p} \coloneqq \mathfrak{h}^\bot$.
 		Wir setzen 
 		\[
-			V_\varepsilon \coloneqq \set*{v \in \mathfrak{p} \given \norm*{v} < \varepsilon} \quad \text{und} \quad D_\varepsilon \coloneqq \exp_G(V_\varepsilon) \subseteq G 
+			V_\varepsilon \coloneqq \set[\big]{v \in \mathfrak{p} \given \norm*{v} < \varepsilon} \subseteq \mathfrak{g} \quad \text{und} \quad D_\varepsilon \coloneqq \exp_G(V_\varepsilon) \subseteq G 
 		\] 
 		Behauptung: Für $\varepsilon>0$ klein genug ist 
 		\mapdef{F\colon D_\varepsilon \times H}{G}{(g,h)}{g \cdot h}{}
 		eine offene Einbettung. 
-		Um dies zu zeigen, können wir annehmen, dass $\exp|_{V_2} \colon V_\varepsilon \to D_\varepsilon$ ist Diffeomorphismus.
-		Da $(\mathd F)_{e,e} \colon \Tmap_e D_\varepsilon \times \Tmap_e H \to \Tmap_e G$, $(v,w) \mapsto v+w$ invertierbar ist, existiert eine offene Umgebung $U_\varepsilon$ von $e$ in $H$, sodass 
+		Um dies zu zeigen, können wir annehmen, dass $\exp|_{V_\varepsilon} \colon V_\varepsilon \to D_\varepsilon$ ein Diffeomorphismus ist.
+		Da $(\mathd F)_{e,e} \colon \Tmap_e D_\varepsilon \times \Tmap_e H \to \Tmap_e G$, $(v,w) \mapsto v+w$ invertierbar ist, existiert nach dem Umkehrsatz eine offene Umgebung $U_\varepsilon$ von $e$ in $H$, sodass 
 		\begin{equation}
 			F \colon D_\varepsilon \times U_\varepsilon \to D_\varepsilon H \label{ep:32:1}\tag{*}
 		\end{equation}
@@ -2593,17 +2594,17 @@ Ist $\mathfrak{t} \subset \mathfrak{g}$ eine maximale abelsche Unteralgebra von 
 			F\big|_{D_\varepsilon \times U_\varepsilon h_0} = R_{h_0} \circ F\big|_{D_\varepsilon \times U_\varepsilon} \circ R_{h_0^{-1}}
 		\end{align}
 		für $h_0 \in H$, ist $F$ ein lokaler Diffeomorphismus.
-		Es bleibt zu zeigen, dass $F$ injektiv für $\varepsilon$ klein.
-		Sei $Z_e$ eine offene Umgebung von $e$ in $G$ mit $Z_e \cap H \subseteq U_\varepsilon$.
+		Es bleibt zu zeigen, dass $F$ injektiv ist für kleine $\varepsilon$.
+		Sei dazu $Z_e$ eine offene Umgebung von $e$ in $G$ mit $Z_e \cap H \subseteq U_\varepsilon$.
 		Ferner sei $\tilde{Z}_e$ eine offene Umgebung von $e$ in $G$ mit $\tilde{Z}_e^{-1} \cdot \tilde{Z}_e \subseteq Z_e$.
 		Wähle nun $\varepsilon' < \varepsilon$ so klein, dass $D_{\varepsilon'} \subseteq \tilde{Z}_e$.
 		Seien nun $g_1, g_2 \in D_{\varepsilon'}$ und $h_1,h_2 \in H$ mit $g_1 h_1 = g_2 h_2$.
-		Dann gilt $d_1 \coloneqq g_1^{-1} g_2 = h h_2^{-1} \in H \cap Z_e \subseteq U_\varepsilon$.
-		Nach \eqref{ep:32:1} gilt $F(g_1,h) = F(g_2,e)$ und es foglt $g_1 =g_2$, $h=e$ und somit $h_1 =h_2$.
-		Dies zeigt die Behauptung
-		\item $\sfrac{G}{H}$ ist eine differenzierbare Mannigfaltigkeit.
+		Dann gilt $h \coloneqq g_1^{-1} g_2 = h_1 h_2^{-1} \in H \cap Z_e \subseteq U_\varepsilon$.
+		Nach \eqref{ep:32:1} gilt $F(g_1,h) = F(g_2,e)$ und es folgt $g_1 =g_2$, $h=e$ und somit $h_1 =h_2$.
+		Dies zeigt die Behauptung.
+		\item $\sfrac{G}{H}$ ist eine differenzierbare Mannigfaltigkeit:
 		
-		Wir betrachten die offenen Mengen $U_g \coloneqq (g \cdot D_\varepsilon)H \subseteq G$.
+		Wir betrachten die offenen Mengen $U_g \coloneqq (g D_\varepsilon)H \subseteq G$.
 		Dann ist $\sfrac{G}{H} = \bigcup_{g \in G} \sfrac{U_g}{H}$ eine offene Überdeckung von $\sfrac{G}{H}$.
 		Die Karten $\varphi_g \colon \sfrac{U_g}{H} \to D_\varepsilon \cong V_\varepsilon \subseteq \mathbb{R}^n$ sind gegeben durch 
 		\[
@@ -2612,19 +2613,20 @@ Ist $\mathfrak{t} \subset \mathfrak{g}$ eine maximale abelsche Unteralgebra von 
 			\end{tikzcd}
 		\]
 		also $d \mapsto gdH$.
-		Das heißt $\varphi_g^{-1} = \pi \circ L_g \circ F|_{D_\varepsilon \times \set*{e}}$ ist bijektiv stetig und offen.
+		Das heißt $\varphi_g^{-1} = \pi \circ L_g \circ F|_{D_\varepsilon \times \set*{e}}$ ist bijektiv, stetig und offen.
 		Sei nun $\tilde{g} \in G$ mit
-		\[
+		\(
 			\sfrac{U_{\tilde{g}}}{H} \cap \sfrac{U_g}{H} \neq \emptyset
-		\]
+		\),
 		das heißt $U_{\tilde{g}} \cap U_{g} \neq \emptyset$.
 		Dann gilt
-		\mapdef{\varphi_g \circ \varphi_g^{-1} \coloneqq \varphi \enbrace*{\sfrac{U_{\tilde{g}}}{H} \cap \sfrac{U_g}{H}}}{\varphi_{\tilde{g}} \enbrace*{\sfrac{U_{\tilde{g}}}{H} \cap \sfrac{U_g}{H}}}{d}{\tilde{g}^{-1}g h_d}{}
+		\mapdef{\varphi_g \circ \varphi_g^{-1} \coloneqq \varphi_g \enbrace*{\sfrac{U_{\tilde{g}}}{H} \cap \sfrac{U_g}{H}}}{\varphi_{\tilde{g}} \enbrace*{\sfrac{U_{\tilde{g}}}{H} \cap \sfrac{U_g}{H}}}{d}{\tilde{g}^{-1}g h_d}{}
 		für ein $h_d \in H$, da $g d H = \tilde{g} \enbrace*{\tilde{g}^{-1} g d}H$.
-		Da $g D_\varepsilon, \tilde{g}D_\varepsilon$ von allen Linksnebenklassen $g' H$ transversal geschnitten werden, hängt $h_d$ differenzierbar von $d$ ab(!).
-		\item $\pi$ ist differenzierbare Submersion
+		Da $g D_\varepsilon $ und $\tilde{g}D_\varepsilon$ von allen Linksnebenklassen $g' H$ transversal geschnitten werden, hängt $h_d$ differenzierbar von $d$ ab(!).\todo{genauer?}
+		Damit sind die Kartenwechsel offenbar differenzierbar.
+		\item $\pi$ ist eine differenzierbare Submersion:
 		
-		$\pi$ ist surjektiv und stetig. Ferner ist $\pi$ differenzierbar mit $(\mathd \pi)_g$ surjektiv für alle $g \in G$, denn
+		$\pi$ ist surjektiv und stetig. Ferner ist $\pi$ differenzierbar mit $(\mathd \pi)_g$ surjektiv für alle $g \in G$, denn folgendes Diagramm kommutiert
 		\[
 			\begin{tikzcd}
 				U_g \dar["F^{-1} \circ L_{g^{-1}}"'] \rar["\pi"] & \sfrac{G}{H} \\
@@ -2635,14 +2637,14 @@ Ist $\mathfrak{t} \subset \mathfrak{g}$ eine maximale abelsche Unteralgebra von 
 	\end{enumerate}
 \end{beweis}
 
-\begin{bemerkung*}
-	\begin{enumerate}[1)]
+\begin{bemerkung*}[{name=[differenzierbare Struktur des Quotienten]}]
+	\begin{enumerate}[1),itemsep=1pt]
 		\item Die differenzierbare Struktur ist eindeutig bestimmt, wenn man $\pi \colon G \to \sfrac{G}{H}$ differenzierbar fordert.
 		\item Man kann $G$ mit einer analytischen Struktur versehen, welche $\sfrac{G}{H}$ erbt.
-		Somit ist jeder homogene Raum in natürlicher Weise eine analytische Mannigfaltigkeit (Kartenwechsel sind analytische Diffeomorphismen).
+		Somit ist jeder homogene Raum in natürlicher Weise sogar eine analytische Mannigfaltigkeit (Kartenwechsel sind analytische Diffeomorphismen).
 		\item Ist $H$ eine nicht abgeschlossene Untergruppe, so ist $\sfrac{G}{H}$ \emph{nicht} hausdorffsch.
 		Man kann aber immer noch lokale Quotienten betrachten.
-		\item $\pi \colon G \to \sfrac{G}{H}$ ist ein differenzierbares Faserbündel mit Fasertyp $H \cong \pi^{-1}(gH) = gH$.
+		\item $\pi \colon G \to \sfrac{G}{H}$ ist ein differenzierbares Faserbündel\index{Faserbündel} mit Fasertyp $H \cong \pi^{-1}(gH) = gH$.
 		Die Karten des Faserbündels sind gegeben durch
 		\[
 			\begin{tikzcd}
@@ -2659,52 +2661,55 @@ Sei nun $M^k$ eine differenzierbare Mannigfaltigkeit und
 Offenbar ist $f \in C^\infty(G,M)^H$ konstant auf den Linksnebenklassen $g H$.
 Somit ist $\overline{f} \coloneqq f \circ \pi^{-1} \colon \sfrac{G}{H} \to M^k$, $gH \mapsto f(g)$ wohldefiniert.
 
-\begin{lemma}[label=lem:313]
+\begin{lemma}[label=lem:313,{name=[Bijektion von Mengen glatter Abbildungen]}]
 	Die Abbildung $\Phi \colon C^\infty(\sfrac{G}{H}, M^k) \to C^\infty(G,M^k)^H$ definiert durch $\overline{f} \mapsto f \coloneqq \overline{f} \circ \pi$ ist bijektiv. 
 \end{lemma}
 \begin{beweis}
-	Injektivität: Seien $\overline{f},\overline{g} \in C^\infty(\sfrac{G}{H},M^k)$ mit $f=\overline{f} \circ \pi = \overline{g} \circ \pi = g$.
+	Die Injektivität ist klar: Seien $\overline{f},\overline{g} \in C^\infty(\sfrac{G}{H},M^k)$ mit $f=\overline{f} \circ \pi = \overline{g} \circ \pi = g$.
 	Da $\pi$ surjektiv ist, folgt $\overline{f} = \overline{g}$.
 	
-	Surjektivität: Sei $f \colon G \to M^k$ glatt mit $f \circ R_h = f$ für alle $h \in H$.
+	Zur Surjektivität: Sei $f \colon G \to M^k$ glatt mit $f \circ R_h = f$ für alle $h \in H$.
 	Wir setzen $\overline{f} \colon \sfrac{G}{H} \to M^k$, $gH \mapsto f(g)$.
-	$\overline{f}$ ist wohldefiniert und da $f$ konstant auf Linksnebenklassen ist, ist $f \circ F$ konstant auf dem $H$-Faktor.
+	Da $f$ konstant auf Linksnebenklassen ist, ist $\overline{f}$ ist wohldefiniert und $f \circ F$ konstant auf dem $H$-Faktor.
 	Somit hängt $f \circ F$ nicht von der $H$-Variablen ab und die Funktion $D_\varepsilon \ni d \mapsto (f \circ L_g \circ F)(d) = \enbrace*{\overline{f} \circ \varphi_g^{-1}}(d)$ ist differenzierbar.
+	Damit ist $\overline{f}$ das Urbild zu $f$.
 \end{beweis}
 
-\begin{korollar}
+\begin{korollar}[{name=[Linksmulitplikation Diffeomorphismus auf Quotienten]}]
 	Sei $\sfrac{G}{H}$ ein homogener Raum.
 	Dann ist für alle $g \in G$ die Abbildung $\overline{L}_g \colon \sfrac{G}{H} \to \sfrac{G}{H}$, $\overline{g}H \mapsto g \overline{g}H$ ein Diffeomorphismus.
 \end{korollar}
 \begin{beweis}
-	Es gilt: $f \coloneqq \pi \circ L_g \colon G \to \sfrac{G}{G}$ ist differenzierbar mit $f \circ R_h = f$ für alle $h \in H$ und somit ist $\overline{f} \colon \sfrac{G}{H} \to \sfrac{G}{H}$, $\overline{g}H \mapsto f(g) = g \overline{g}H$ differenzierbar mit $\overline{f} = \overline{L}_g$.
-	Wegen $\enbrace*{\overline{L}_g}^{-1} = \overline{L}_{g^{-1}}$  folgt die Behauptung.
+	Es gilt: $f \coloneqq \pi \circ L_g \colon G \to \sfrac{G}{H}$ ist differenzierbar mit $f \circ R_h = f$ für alle $h \in H$ und somit ist $\overline{f} \colon \sfrac{G}{H} \to \sfrac{G}{H}$, $\overline{g}H \mapsto f(g) = g \overline{g}H$ differenzierbar mit $\overline{f} = \overline{L}_g$ nach \autoref{lem:313}.
+	Wegen $\enbrace{\overline{L}_g}^{-1} = \overline{L}_{g^{-1}}$  folgt die Behauptung.
 \end{beweis}
 
-\begin{definition}
+\begin{definition}[{name=[Liegruppenwirkung und $G$-homogener Raum]}]
 	Sei $G$ eine Liegruppe und $M$ eine differenzierbare Mannigfaltigkeit.
 	Eine \Index{Liegruppenwirkung} von $G$ auf $M$ ist eine differenzierbare Gruppenwirkung $\Phi \colon G \times M \to M$, $(g,p) \mapsto g.p$.
 	Insbesondere ist $\psi \colon G\to \operatorname{Diff}(M)$, $g \mapsto  \enbrace*{p \mapsto g.p}$ ein Homomorphismus.
-	Die Mannigfaltigkeit $M$ nennt man \bet{$G$-homogenen Raum}, falls $M$ eine transitive Gruppenwirkung $\Phi$ besitzt, das heißt für alle $p,q \in M$ existiert ein $g \in G$ mit $g.p=q$.
+	
+	Die Mannigfaltigkeit $M$ nennt man \bet{$G$-homogenen Raum},\index{G-homogener Raum@$G$-homogener Raum} falls $M$ eine transitive Gruppenwirkung $\Phi$ besitzt, das heißt für alle $p,q \in M$ existiert ein $g \in G$ mit $g.p=q$.
 \end{definition}
 
-\begin{bemerkung*}
+\begin{bemerkung*}[{name=[Vergleich mit homogenen Räumen]}]
 	\begin{enumerate}[1)]
 		\item Ein homogener Raum $\sfrac{G}{H}$ ist $G$-homogener Raum mittels
+		\mapdef{\Phi \colon G \times \sfrac{G}{H}}{\sfrac{G}{H}}{(g,\overline{g}H)}{(g \cdot \overline{g})H}{}
+		\item Ist $\Phi \colon G \times M^n \to M^n$ eine Liegruppenwirkung auf $M^n$, so ist $\ker \Phi \coloneqq \set*{g \in G \given \Phi(g) = {\id_{M^n}}}$ eine normale, abgeschlossene Untergruppe von $G$ und somit eine Lieuntergruppe.
+		Der Quotient $\sfrac{G}{\ker \Phi}$ ist somit eine Liegruppe, die effektiv auf $M^n$ operiert, das heißt 
 		\[
-			\Phi \colon G \times \sfrac{G}{H} \to \sfrac{G}{H} , (g,\overline{g}H) \mapsto (g \cdot \overline{g})H
+			\Phi(g)= \id_{M} \iff g=e
 		\]
-		\item Ist $\Phi \colon G \times M^n \to M^n$ eine Liegruppenwirkung auf $M^n$, so ist $\ker \Phi \coloneqq \set*{g \in G \given \Phi(g) = \id_{M^n}}$ eine normale, abgeschlossene Untergruppe von $G$ und somit eine Lieuntergruppe.
-		Der Quotient $\sfrac{G}{\ker \Phi}$ ist somit eine Liegruppe, die effektiv auf $M^n$ operiert, das heißt $\Phi(g)= \id_{M} \iff g=e$.
 	\end{enumerate}
 \end{bemerkung*}
 
-\begin{lemma}[label=lem:316]
-	Sei $\Phi \colon G \times M \to M$ eine transitive Liegruppenwirkung, $p \in M^n$ und 
+\begin{lemma}[label=lem:316,{name=[$G$-äquivarianter Diffeo mit Standgruppe]}]
+	Sei $\Phi \colon G \times M^n \to M^n$ eine transitive Liegruppenwirkung, $p \in M^n$ und 
 	\[
-		H \coloneqq G_p = \set*{g \in G \given g.p=p}
+		H \coloneqq G_p = \set[\big]{g \in G \given g.p=p}
 	\]
-	Dann ist die Abbildung $\varphi \colon \sfrac{G}{H} \to M^n$, $gH \mapsto g.p$ ein $G$-äquivarianter Diffeomorphismus, das heißt folgendes Diagramm kommutiert:
+	Dann ist die Abbildung $\varphi \colon \sfrac{G}{H} \to M^n$, $gH \mapsto g.p$ ein \bet{$G$-äquivarianter}\index{G-äquivariant@$G$-äquivariant} Diffeomorphismus, das heißt folgendes Diagramm kommutiert:
 	\[
 		\begin{tikzcd}
 			\sfrac{G}{H} \dar["\overline{L}_g"] \rar["\varphi"] & M \dar["\Phi(g)"] \\
@@ -2713,14 +2718,15 @@ Somit ist $\overline{f} \coloneqq f \circ \pi^{-1} \colon \sfrac{G}{H} \to M^k$,
 	\]
 \end{lemma}
 \begin{beweis}
-	\begin{itemize}
-		\item $\varphi$ ist wohldefiniert: Ist $gH = \tilde{g}H \iff \tilde{g}^{-1}g \in H \iff g = \tilde{g}h \iff g.p = \tilde{g}.p$.
+	Wir müssen viele einzelne Dinge überprüfen:
+	\begin{itemize}[itemsep=1pt]
+		\item $\varphi$ ist wohldefiniert: $gH = \tilde{g}H \iff \tilde{g}^{-1}g \in H \iff g = \tilde{g}h \iff g.p = \tilde{g}.p$
 		\item $\varphi$ ist injektiv: $\varphi(gH) = \varphi(\tilde{g}H) \iff g.p = \tilde{g}.p \iff \tilde{g}^{-1}g \in H \iff gH = \tilde{g}H$
 		\item $\varphi$ ist surjektiv: Klar, da $\Phi$ transitiv ist.
 		\item Äquivarianz: 
-		\begin{align}
-			(\varphi \circ L_g)(\tilde{g}H) = \varphi \enbrace*{g \tilde{g}H} = g.\tilde{g}.p = \Phi(g) \enbrace*{\tilde{g}.p} = \enbrace*{\varphi(g) \circ \varphi}(\tilde{g}H)
-		\end{align}
+		\(
+			(\varphi \circ \overline{L}_g)(\tilde{g}H) = \varphi \enbrace*{g \tilde{g}H} = g.\tilde{g}.p = \Phi(g) \enbrace*{\tilde{g}.p} = \enbrace*{\Phi(g) \circ \varphi}(\tilde{g}H)
+		\)
 		\item Differenzierbarkeit von $\varphi$ und $\varphi^{-1}$:
 		Wir setzen $\hat{\varphi} \colon G \to M^n$, $g \mapsto g.p$.
 		Nach Vorraussetzung ist $\hat{\varphi}$ differenzierbar mit 
@@ -2734,52 +2740,51 @@ Somit ist $\overline{f} \coloneqq f \circ \pi^{-1} \colon \sfrac{G}{H} \to M^k$,
 		Ferner gilt $\hat{\varphi} \circ R_h = \hat{\varphi}$ für alle $h \in H$.
 		Somit ist nach \autoref{lem:313} die Abbildung $\varphi = \overline{\hat{\varphi}}$ differenzierbar.
 		Es gilt $\ker (\mathd \pi)_e = \Tmap_e H$.
-		Übung: Es gilt genauso $\ker (\mathd \hat{\varphi})_e = (\mathd \pi)_e = \Tmap_e H$.
+		Übung: Es gilt genauso $\ker (\mathd \hat{\varphi})_e = \ker (\mathd \pi)_e = \Tmap_e H$.
 		
 		Ferner ist $(\mathd \pi)_e \colon \Tmap_e G \to \Tmap_{eH} \sfrac{G}{H}$ surjektiv.
-		Wegen $\mathd \hat{\varphi}_e = \mathd \varphi_{eH} \circ  \mathd \pi_e$ ist somit $\mathd \varphi_{eH}$ injektiv.
+		Wegen $(\mathd \hat{\varphi})_e = (\mathd \varphi)_{eH} \circ  (\mathd \pi)_e$ ist somit $(\mathd \varphi)_{eH}$ injektiv.
 		Aus der Äquivarianzeigenschaft, folgt 
 		\[
-			(\mathd \varphi)_{gH}\circ \mathd(\overline{L}_g)_H = \mathd(\Phi(g))_{p=\varphi(h)} \circ (\mathd \varphi)_H
+			(\mathd \varphi)_{gH}\circ (\mathd\overline{L}_g)_H = \enbrace[\big]{\mathd\Phi(g)}_{p=\varphi(H)} \circ (\mathd \varphi)_H
 		\]
 		Da die Abbildungen direkt neben dem Gleichheitszeichen Isomorphismen sind und die rechte außerdem injektiv, muss auch $(\mathd \varphi)_{gH}$ injektiv sein.
 		Somit ist $\varphi \colon \sfrac{G}{H} \to M$ eine injektive Immersion.
 		Folglich ist $\dim \sfrac{G}{H} \le \dim M$.
-		Mit der Surjektivität folgt direkt die Gleichheit der Dimensionen.\footnote{Angenommen es gelte $k \coloneqq \dim \sfrac{G}{H} < \dim M^n$. Da $\varphi$ eine Immersion ist, ist $\varphi \enbrace*{B_\varepsilon(gH)}$ eine eingebettete $k$-dimensionele Untermannigfaltigkeit von $M^n$ und hat somit Volumen 0.
+		Mit der Surjektivität folgt direkt die Gleichheit der Dimensionen.\footnote{Angenommen es gelte $k \coloneqq \dim \sfrac{G}{H} < \dim M^n$. Da $\varphi$ eine Immersion ist, ist $\varphi \enbrace*{B_\varepsilon(gH)}$ eine eingebettete $k$-dimensionale Untermannigfaltigkeit von $M^n$ und hat somit Volumen 0.
 		Damit hat auch das Bild $\varphi(\sfrac{G}{H})$ Volumen 0 und man hat einen Widerspruch zur Surjektivität}\qedhere
 	\end{itemize}
 \end{beweis}
 
-\begin{bemerkung*}
-	Standgruppen sind konjugiert, das heißt es gilt $G_{p.p} = g \circ G_p \circ g^{-1}$.
+\begin{bemerkung*}[{name=[Standgruppen sind konjugiert]}]
+	Die Standgruppen sind konjugiert, das heißt es gilt $G_{g.p} = g \cdot G_p \cdot  g^{-1}$.
 \end{bemerkung*}
 
-\begin{beispiel*}
+\begin{beispiel*}[{name=[homogene Räume]}]
 	Es gibt viele homogene Räume:
 	\begin{enumerate}[1)]
 		\item Liegruppen selbst, da $\sfrac{G}{\set*{e}} =G$.
-		\item Sphären $S^n \coloneqq = \set*{x \in \mathbb{R}^{n+1} \given \norm*{x}_2=1}$, denn die Abbildung $\hat{\Phi} \colon \On(n+1) \times \mathbb{R}^{n+1} \to \mathbb{R}^{n+1}$, $(A,v) \mapsto A \cdot v$ ist eine differenzierbare Gruppenwirkung auf $R^{n+1}$ und somit auch die Einschränkung $\varphi \colon \On(n+1) \times S^n \to S^n$.
+		\item Sphären $S^n \coloneqq \set*{x \in \mathbb{R}^{n+1} \given \norm*{x}_2=1}$, denn die Abbildung $\hat{\Phi} \colon \On(n+1) \times \mathbb{R}^{n+1} \to \mathbb{R}^{n+1}$, $(A,v) \mapsto A \cdot v$ ist eine differenzierbare Gruppenwirkung auf $\mathbb{R}^{n+1}$ und somit auch die Einschränkung $\varphi \colon \On(n+1) \times S^n \to S^n$.
 		
 		Diese Wirkung ist transitiv: Sei $v_0 \in S^n$ beliebig.
 		Dann können wir $v_0$ zu einer Orthonormalbasis $v_0,v_1, \ldots ,v_n$ von $\mathbb{R}^{n+1}$ ergänzen und setzen $A_{v_0} \coloneqq (v_0,v_1, \ldots , v_n) \in \On(n+1)$.
 		Es gilt $A_{v_0}(e_1) = v_0$.
-		
-		Die Standgruppe von $e_1$:
+		Die Standgruppe von $e_1$ erhält man durch
 		\[
 			A e_1 = e_1 \iff A = \begin{pmatrix}
 				1 & 0 & \cdots & 0 \\
 				0 & & & \\
 				\vdots & & \tilde{A} & \\
 				0 & & & 
-			\end{pmatrix}, \tilde{A} \in \On(n)
+			\end{pmatrix} \text{ mit } \tilde{A} \in \On(n)
 		\]
-		Somit $S^n = \sfrac{\On(n+1)}{\On(n)} = \sfrac{\SO(n+1)}{\SO(n)}$ (mit obiger Einbettung von $\SO(n) \hookrightarrow \SO(n+1)$ !).
-		\item Die unitäre Gruppe $\Un(n) = \SO(2n) \cap \Mat(n,\mathbb{C})$ operiert ebenfalls transitiv auf $S^{2n-1}$.
+		Nach \autoref{lem:316} ist somit $S^n = \sfrac{\On(n+1)}{\On(n)} = \sfrac{\SO(n+1)}{\SO(n)}$, wobei auch die Einbettung $\SO(n) \hookrightarrow \SO(n+1)$ wie oben erfolgt.
+		\item Die unitäre Gruppe $\Un(n) = \SO(2n) \cap \Mat(n,\mathbb{C})$\todo{vlt Aufgabe 11 einbauen} operiert ebenfalls transitiv auf $S^{2n-1}$.
 		Somit ist $S^{2n-1} = \sfrac{\Un(n)}{\Un(n-1)} \stackrel{!}{=} \sfrac{\SU(n)}{\SU(n-1)}$.
-		\item Wie in 2), 3) zeigt man, dass
+		\item Wie in 2) und 3) zeigt man, dass
 		\(
 			S^{4n-1} = \sfrac{\Sp(n)}{\Sp(n-1)}
-		\) gilt.
+		\) gilt.\todo{RevChap 3}
 		\item Der reell projektive Raum $\mathbb{R}P^n = \sfrac{S^n}{\set*{\pm \id}}$ ist ebenfalls ein homogener Raum: $\Phi \colon \SO(n+1) \times \mathbb{R}P^n \to \mathbb{R}P^n$, $(A,[v]) \mapsto [Av]$.
 		
 		Zur Standgruppe: 
