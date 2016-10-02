@@ -2760,7 +2760,7 @@ Somit ist $\overline{f} \coloneqq f \circ \pi^{-1} \colon \sfrac{G}{H} \to M^k$,
 	Die Standgruppen sind konjugiert, das heißt es gilt $G_{g.p} = g \cdot G_p \cdot  g^{-1}$.
 \end{bemerkung*}
 
-\begin{beispiel*}[{name=[homogene Räume]}]
+\begin{beispiel*}[{name=[homogene Räume]},label=bsp:homSpaces]
 	Es gibt viele homogene Räume:
 	\begin{enumerate}[1)]
 		\item Liegruppen selbst, da $\sfrac{G}{\set*{e}} =G$.
@@ -2784,7 +2784,7 @@ Somit ist $\overline{f} \coloneqq f \circ \pi^{-1} \colon \sfrac{G}{H} \to M^k$,
 		\item Wie in 2) und 3) zeigt man, dass
 		\(
 			S^{4n-1} = \sfrac{\Sp(n)}{\Sp(n-1)}
-		\) gilt.\todo{RevChap 3}
+		\) gilt.
 		\item Der reell projektive Raum $\mathbb{R}P^n = \sfrac{S^n}{\set*{\pm \id}}$ ist ebenfalls ein homogener Raum: $\Phi \colon \SO(n+1) \times \mathbb{R}P^n \to \mathbb{R}P^n$, $(A,[v]) \mapsto [Av]$.
 		
 		Zur Standgruppe: 
@@ -2796,63 +2796,65 @@ Somit ist $\overline{f} \coloneqq f \circ \pi^{-1} \colon \sfrac{G}{H} \to M^k$,
 				0 & & & 
 			\end{pmatrix}\in \SO(n+1) , \tilde{A} \in \On(n)
 		\]
-		Somit ist die Standgruppe $\mathbb{R}P^n = \sfrac{\SO(n+1)}{O(n)}$ \enquote{größer} als $\SO(n)$.
+		Somit ist die Standgruppe von $\mathbb{R}P^n = \sfrac{\SO(n+1)}{O(n)}$ \enquote{größer} als $\SO(n)$.
 		\begin{itemize}
 			\item Achtung: Nicht alle Unterlagerungen von homogenen Räumen sind homogene Räume!
 			\item $\On(n)$ ist nicht zusammenhängend!
 		\end{itemize}
-		\item Die reellen Grassmannmannigfaltigkeiten: 
+		\item Die reellen Grassmannmannigfaltigkeiten:\index{Grassmannmannigfaltigkeit} 
 		\begin{align}
-			G_k (\mathbb{R}^n) &\coloneqq \set*{\text{$k$-dimensionale reelle Unterräume von $\mathbb{R}^n$}} \\
-			G_k^0(\mathbb{R}^n) &\coloneqq \set*{(v,\sigma) \given v \in G_k(\mathbb{R}^n)} \text{ und $\sigma$ Orientierung auf $V$} 
+			G_k (\mathbb{R}^n) &\coloneqq \set[\big]{\text{$k$-dimensionale reelle Unterräume von $\mathbb{R}^n$}} \\
+			G_k^0(\mathbb{R}^n) &\coloneqq \set[\big]{(v,\sigma) \given v \in G_k(\mathbb{R}^n) \text{ und $\sigma$ Orientierung auf $V$}}
 		\end{align}
 		Die Abbildung $\pi \colon G_k^0(\mathbb{R}^n) \to G_k(\mathbb{R}^n)$, $(v,\sigma) \mapsto v$ ist eine 2-fache Überlagerung.
 		Wie in 5) zeigt man, dass $\SO(n)$ transitiv operiert.
-		Stabilisator von $G_k(\mathbb{R}^n)\ni V_0 = \Span_\mathbb{R}(e_1, \ldots ,e_k)$:
-		Dann gilt 
+		Der Stabilisator von $G_k(\mathbb{R}^n)\ni V_0 = \Span_\mathbb{R}(e_1, \ldots ,e_k)$ berechnet sich wie folgt:
 		\[
 			\SO(n)_{V_0} = \set*{ \begin{pmatrix}
 				A & 0 \\ 0 & B
-			\end{pmatrix} \given A \in \On(k), B \in \On(n-k), \det A \cdot \det B = 1} = S \enbrace*{\On(k) \times \On(n-k)}
+			\end{pmatrix} \given A \in \On(k), B \in \On(n-k), \det A \cdot \det B = 1} = S \enbrace[\big]{\On(k) \times \On(n-k)}
 		\]
-		Somit $G_k(\mathbb{R}^n) = \sfrac{\SO(n)}{S \enbrace*{\On(k) \times \On(n-k)}} = \sfrac{\On(n)}{\On(k) \times \On(n-k)}$.
-		Analog:
+		Somit ist $G_k(\mathbb{R}^n) = \sfrac{\SO(n)}{S \enbrace*{\On(k) \times \On(n-k)}} = \sfrac{\On(n)}{\On(k) \times \On(n-k)}$.
+		Analog erhält man:
 		\[
 			G_k^0(\mathbb{R}^n) = \sfrac{\SO(n)}{\SO(k) \times \SO(n-k)}
 		\]
 		\item Komplexe Grassmannmannigfaltigkeiten: 
 		\[
-			G_k(\mathbb{C}^n) \coloneqq \set*{\text{$k$-dimensionale kompakte Untermannigfaltigkeiten von $\mathbb{C}^n$} }
+			G_k(\mathbb{C}^n) \coloneqq \set[\big]{\text{$k$-dimensionale kompakte Untermannigfaltigkeiten von $\mathbb{C}^n$} }
 		\]
 		Wie in 6) zeigt man, dass 
 		\[
 			G_k(\mathbb{C}^n) = \sfrac{\Un(n)}{\Un(k) \times \Un(n-k)} = \sfrac{\SU(n)}{S(\Un(k) \times \Un(n-k))}
 		\]
-		Im Fall $k=1$ nennt man $\mathbb{C}P^{n-1} \coloneqq G_1(\mathbb{C}^n)$ den \Index{komplex projektiven Raum}. ($\mathbb{C}P^1 = S^2$) 
+		Im Fall $k=1$ nennt man $\mathbb{C}P^{n-1} \coloneqq G_1(\mathbb{C}^n)$ den \Index{komplex projektiven Raum}. 
+		Es gilt $\mathbb{C}P^1 = S^2$.
 		\item Quaternionale Grassmannmannigfaltigkeiten:
 		\[
-			G_k(\mathbb{H}^n) = \sfrac{\Sp(n)}{\Sp(k) \Sp(n-k)}
+			G_k(\mathbb{H}^n) = \sfrac{\Sp(n)}{\Sp(k) \times \Sp(n-k)}
 		\]
-		Man nennt $\mathbb{H}P^{n-1} = G_1(\mathbb{H}^n)$ wieder quaternionalen projektiven Raum. $\mathbb{H}P^1 = S^4$.
-		\item Stiefelmannigfaltigkeiten:
+		Man nennt $\mathbb{H}P^{n-1} = G_1(\mathbb{H}^n)$ wieder quaternionalen projektiven Raum. 
+		Es gilt $\mathbb{H}P^1 = S^4$.
+		\item Stiefelmannigfaltigkeiten ($k$-Tupel orthonormaler Vektoren\footnote{siehe \url{https://de.wikipedia.org/wiki/Stiefel-Mannigfaltigkeit}})\index{Stiefelmannigfaltigkeit}
 		\[
-			V_k(\mathbb{R}^n) = \sfrac{\SO(n)}{\SO(k)} \quad V_k(\mathbb{C}^n) = \sfrac{\SU(n)}{\SU(k)} \quad V_k(\mathbb{H}^n) = \sfrac{\Sp(n)}{\Sp(k)}
+			V_k(\mathbb{R}^n) = \sfrac{\SO(n)}{\SO(n-k)} \quad V_k(\mathbb{C}^n) = \sfrac{\SU(n)}{\SU(n-k)} \quad V_k(\mathbb{H}^n) = \sfrac{\Sp(n)}{\Sp(n-k)}
 		\]
-		\item Fahnenmannigfaltigkeiten:
+		\item Fahnenmannigfaltigkeiten:\index{Fahnenmannigfaltigkeit}
 		\[
 			V_{\overline{n}}(\mathbb{R}^n) = \set*{V_{n_1} < \ldots < V_{n_k}}
 		\]
-		wobei die $V_{n_i}$ $n_i$-dimensionale reelle Unterräume von $\mathbb{R}^n$ sind, $\overline{n} = n_1, \ldots ,n_k <n$.
+		wobei die $V_{n_i}$ $n_i$-dimensionale reelle Unterräume von $\mathbb{R}^n$ sind, $\overline{n} = n_1$ und $ n_1, \ldots ,n_k \le n$.
 		Es ist
 		\[
 			V_{\overline{n}}(\mathbb{R}^n) = \sfrac{\On(n)}{\On(n_1) \On(n_2 - n_1) \cdots \On(n-n_k)}
 		\]
-		mit $n_1 + n_2 - n_1 + n_3 - n_2 + \ldots + n - n_k =n$ und die Obigen Kombinationen über $\ge 1$.
-		\item Komplexe Strukturen auf $\mathbb{R}^{2n}$:
+		mit $n_1 + n_2 - n_1 + n_3 - n_2 + \ldots + n - n_k =n$ und den obigen Kombinationen über $\ge 1$.
+		\item Komplexe Strukturen auf $\mathbb{R}^{2n}$:\index{komplexe Struktur}
+		Betrachte den Raum
 		\[
-			X = \set*{J \in  \On(2n) \given J^2 = - \id}
+			X = \set*{J \in  \On(2n) \given J^2 = - {\id}}
 		\]
-		Die Gruppe $\On(2n)$ operiert auf $X$ mittels Konjugation $J \mapsto A J A^T$, denn $(AJA^T)(AJA^T) = A J^2 A^T = - \id$.
+		Die Gruppe $\On(2n)$ operiert auf $X$ mittels Konjugation $(A,J) \mapsto A J A^T$, denn $(AJA^T)(AJA^T) = A J^2 A^T = - {\id}$.
 		Behauptung: Es gilt 
 		\[
 			X = \set*{A \in \On(2n) \given A^T = -A}
@@ -2861,7 +2863,7 @@ Somit ist $\overline{f} \coloneqq f \circ \pi^{-1} \colon \sfrac{G}{H} \to M^k$,
 		Sei umgekehrt $A \in \On(2n)$ schiefsymmetrisch.
 		Dann gilt
 		\[
-			A = A A A^T = - A^2 A\implies A^2 = - \id
+			A = A A A^T = - A^2 A\implies A^2 = - {\id}
 		\]
 		Jede schieffsymmetrische Matrix kann mittels Konjugation (durch $\On(2n)$) auf die Form 
 		\[
@@ -2897,7 +2899,7 @@ Somit ist $\overline{f} \coloneqq f \circ \pi^{-1} \colon \sfrac{G}{H} \to M^k$,
 				& & \ddots & & \\
 				& & & 0 & -1 \\
 				& & & 1 & 0
-			\end{pmatrix} \coloneqq J_0 = i \cdot \diag(1, \ldots ,1) \in \Mat(n,\mathbb{C})
+			\end{pmatrix} =: J_0 = i \cdot \diag(1, \ldots ,1) \in \Mat(n,\mathbb{C})
 		\]
 		Somit operiert $\On(2n)$ transitiv auf $X$.
 		Isotropiegruppen von $J_0$:
@@ -2908,94 +2910,104 @@ Somit ist $\overline{f} \coloneqq f \circ \pi^{-1} \colon \sfrac{G}{H} \to M^k$,
  	\end{enumerate}
 \end{beispiel*}
 
-\begin{definition}
-	Eine vollständige Riemannsche Mannigfaltigkeit\footnote{$g= (g_p)_{p \in M^n}$ mit $g_p$ Skalarprodukt auf $\Tmap_p M^n$, welches differenzierbar vom Punkt $p$ abhängt.} $(M^n,g)$ nennt man \Index{$G$-homogenen Raum}, falls eine transitive und isometrische Liegruppenwirkung $\Phi \colon G\times M^n \to M^n$ existiert.
-	Man nennt dann die Metrik $g$ \bet{$G$-homogen} oder \bet{$G$-invariant}.
+\begin{definition}[{name=[Riemannsche Mannigfaltigkeiten als homogene Räume]}]
+	Eine vollständige Riemannsche Mannigfaltigkeit\footnote{$g= (g_p)_{p \in M^n}$ mit $g_p$ Skalarprodukt auf $\Tmap_p M^n$, welches differenzierbar vom Punkt $p$ abhängt.} $(M^n,g)$ nennt man \bet{$G$-homogenen Raum}\index{G-homogener Raum@$G$-homogener Raum!Riemannsche Mannigfaligkeit}, falls eine transitive und isometrische Liegruppenwirkung $\Phi \colon G\times M^n \to M^n$ existiert.
+	Man nennt dann die Metrik $g$ \bet{$G$-homogen}\index{G-homogene Metrik@$G$-homogene Metrik} oder \bet{$G$-invariant}\index{G-invariante Metrik@$G$-invariante Metrik}.
 \end{definition}
 
-\begin{beispiel*}
-	$M^2 \subset \mathbb{R}^3$ Untermannigfaltigkeit mit $g_p \coloneqq \skal*{\cdot }{\cdot }_{\mathrm{std}}^{\mathbb{R}^3}\big|_{\Tmap_p M^2 \times \Tmap_p M^2}$.
+\begin{beispiel*}[{name=[zweidimensionale Untermannigfaltigkeit des dreidimensionalen Raumes]}]
+	Sei $M^2 \subset \mathbb{R}^3$ eine Untermannigfaltigkeit. 
+	Dann wird $M^2$ durch $g_p \coloneqq \skal*{\cdot }{\cdot }_{\mathrm{std}}^{\mathbb{R}^3}\big|_{\Tmap_p M^2 \times \Tmap_p M^2}$ zu einer Riemannschen Mannigfaltigkeit.
 \end{beispiel*}
 
-Sei $c \colon [0,1] \to M^n$ eine differenzierbare Kurve. 
-Wir definieren die Länge von $c$ als 
-\[
-	L(c) \coloneqq \int_0^1 \norm*{c'(t)}_{c(t)} \,\mathd t
-\]
-und den Abstand zweier Punkte, die \Index{Riemannsche Metrik}  durch 
-\[
-	d_g(p,q) \coloneqq \inf \set[\big]{L(c) \given c \text{ diffb. Kurve von $p$ nach $q$}}
-\]
-Man muss an dieser Stelle natürlich noch zeigen, dass dies tatsächlich eine Metrik auf $M^n$ definiert.
-Somit ist $(M^n,d_g)$ ein metrischer Raum.
-\enquote{vollständig} bezieht sich auf eben diese Metrik.
+\begin{erinnerung}[{name=[Riemannsche Metrik]}]
+	Sei $c \colon [0,1] \to M^n$ eine differenzierbare Kurve. 
+	Wir definieren die \bet{Länge}\index{Länge einer glatten Kurve} von $c$ als 
+	\[
+		L(c) \coloneqq \int_0^1 \norm*{c'(t)}_{c(t)} \,\mathd t
+	\]
+	und den Abstand zweier Punkte, die \Index{Riemannsche Metrik}, durch 
+	\[
+		d_g(p,q) \coloneqq \inf \set[\big]{L(c) \given c \text{ diffb. Kurve von $p$ nach $q$}}
+	\]
+	Man muss an dieser Stelle natürlich noch zeigen, dass dies tatsächlich eine Metrik auf $M^n$ definiert.
+	Mit dieser Metrik wird $(M^n,d_g)$ ein metrischer Raum.
+	Die Eigenschaft \enquote{vollständig} bezieht sich auf eben diese Metrik.
+\end{erinnerung}
 
-\begin{beispiel*}
+\begin{beispiel*}[{name=[nicht vollständige Riemannsche Mannigfaltigkeit]}]
 	Betrachte $\mathbb{R}^2 \setminus \set[\big]{\binom{0}{0}}$ mit der Standardmetrik. 
 	Diese Riemannsche Mannigfaltigkeit ist \emph{nicht} vollständig.
 \end{beispiel*}
 
-\begin{bemerkung*}
-	Nach dem Einbettungssatz von \textsc{Nash} kann jede vollständige riemannsche Mannigfaltigkeit $(M^n,g)$ isometrisch in $(\mathbb{R}^{N(n)},g_{\mathrm{std}})$ eingebettet werden.
+\begin{bemerkung*}[{name=[Einbettungssatz von Nash]}]
+	Nach dem Einbettungssatz von \textsc{Nash} kann jede vollständige riemannsche Mannigfaltigkeit $(M^n,g)$ isometrisch in $(\mathbb{R}^{N(n)},g_{\mathrm{std}})$ eingebettet werden.\footnote{siehe \url{https://de.wikipedia.org/wiki/Einbettungssatz_von_Nash}}
 \end{bemerkung*}
 
 \begin{satz}[{name={Myers-Steenrod}}]
 	Sei $(M^n,g)$ eine vollständige Riemannsche Mannigfaltigkeit.
-	Dann ist die Isometriegruppe $\Isom(M^n,g) = \set*{f \colon (M^n,g) \to (M^n,g) \given \text{bijektive Isometrie} }$ eine Liegruppe, welche differenzierbar auf $M^n$ operiert mittels Auswertung.
+	Dann ist die Isometriegruppe 
+	\[
+		\Isom(M^n,g) = \set[\big]{f \colon (M^n,g) \to (M^n,g) \given \text{bijektive Isometrie}}
+	\]
+	eine Liegruppe, welche differenzierbar auf $M^n$ operiert mittels Auswertung.
 \end{satz}
+\begin{beweis}
+	\emph{Siehe \textcite{MyersSteenrod}.}
+\end{beweis}
 
 Es gilt: Isometrien von $(M^n,g)$ sind Diffeomorphismen, welche die Riemannsche Metrik $g$ \enquote{respektieren}, das heißt für alle $p \in M^n$ und $v,w \in \Tmap_p M^n$ gilt
 \[
 	g_p(v,w) = g_{f(p)} \enbrace*{\mathd f_p \cdot v , \mathd f_p \cdot w}
 \]
-Wir kommen nun zur \emph{Riemannschen Exponentialabbildung}: 
-
+Wir kommen nun zur \bet{Riemannschen Exponentialabbildung}:\index{Riemannsche Exponentialabbildung} 
 Sei $(M^n,g)$ eine vollständige Riemannsche Mannigfaltigkeit, $p \in M^n$.
 Dann kann man jedem Tangentialvektor $v \in \Tmap_p M^n$ eine differenzierbare Kurve $\gamma_v \colon \mathbb{R} \to M^n$ zuordnen mit
-\begin{enumerate}[1)]
-	\item $\gamma_v(g)=p$, $\gamma'(0)=v$
+\begin{enumerate}[1),itemsep=1pt]
+	\item $\gamma_v(0)=p$, $\gamma'(0)=v$
 	\item Für alle $t_0 \in \mathbb{R}$ existiert $\varepsilon_{t_0} >0$, sodass für alle $t_1,t_2 \in \benbrace*{t_0 - \varepsilon_{t_0}, t_0 + \varepsilon_{t_0}}$ gilt
 	\[
-		L \enbrace*{\gamma_v\big|_{\benbrace*{t_1,t_2}}} = d_g \enbrace*{\gamma_v(t_1), \gamma_v(t_2)}
+		L \enbrace*{\gamma_v\big|_{\benbrace*{t_1,t_2}}} = d_g \enbrace[\big]{\gamma_v(t_1), \gamma_v(t_2)}
 	\]
-	$\gamma_v$ ist die \emph{lokal Kürzeste}, $\gamma_v$ nennt man \Index{Geodätische} (\Index{Geodäte}).
-	\item $\norm*{\gamma_v'(t)} = \norm*{\gamma_v'(0)}$
-	
-	$\leadsto$ reguläre Kurve.
+	Das heißt $\gamma_v$ ist die \emph{lokal Kürzeste}, $\gamma_v$ nennt man \Index{Geodätische}(\Index{Geodäte}).
+	\item Es gilt $\norm*{\gamma_v'(t)} = \norm*{\gamma_v'(0)}$, das heißt $\gamma_v$ ist ein sog. \emph{reguläre Kurve}.
 \end{enumerate}
-Die \Index{Riemannsche Exponentialabbildung} $\exp_p = \exp_p^g \colon \Tmap_p M^n \to M^n$ ist definiert durch $v \mapsto \gamma_v(1)$.
+Die \Index{Riemannsche Exponentialabbildung} $\exp_p = \exp_p^g \colon \Tmap_p M^n \to M^n$ ist -- wie auch die aus der Theorie der Liegruppen -- definiert durch $v \mapsto \gamma_v(1)$.
 Es gilt:
-\begin{itemize}
-	\item $\exp_p$ ist differenzierbar.
-	\item surjektiv nach Hopf-Rinow
+\begin{itemize}[itemsep=1pt]
+	\item $\exp_p$ ist differenzierbar,
+	\item $\exp_p$ ist surjektiv nach Hopf-Rinow und
 	\item $\mathd(\exp_p)_{0_p} \colon \Tmap_p M^n \to \Tmap_p M^n$ ist gleich $\id_{\Tmap_p M^n}$ und nach dem Umkehrsatz ein lokaler Diffeomorphismus.
 \end{itemize} 
 
-\begin{lemma}
-	Sei $(M^n,g)$ ein effektiver, $G$-invarianter homogener Raum, $p \in M^n$ und $H = G_p = \set*{g \in G \given \Phi(g) .p = p}$.
+\begin{lemma}[{name=[Kompaktheit der Standgruppe]},label=lem:319]
+	Sei $(M^n,g)$ ein effektiver, $G$-invarianter homogener Raum, $p \in M^n$ und 
+	\[
+		H = G_p = \set[\big]{g \in G \given \Phi(g) .p = p}
+	\]
 	Dann ist $H$ kompakt, falls $\Phi(G) \subset \Isom(M^n,g)$ abgeschlossen ist.
 \end{lemma}
 \begin{beweis}
 	Sei $(h_i)_{i \in \mathbb{N}}$ eine Folge in $H$, das heißt nach Definition $\Phi(h_i)(p)=p$ für alle $i$.
 	Somit ist $\mathd \enbrace*{\Phi(h_i)}_p \colon \Tmap_p M \to \Tmap_p M$ eine lineare Isometrie von $(\Tmap_p M, g_p)$ und somit gilt $\mathd  \enbrace*{\Phi(h_i)}_p \in \On \enbrace*{\Tmap_p M^n,g_p}$.
-	Wegen Kompaktheit können wir also annehmen, dass 
+	Wegen Kompaktheit von $\On \enbrace*{\Tmap_p M^n,g_p}$ können wir also annehmen, dass\marginnote{sonst Übergang zu Teilfolge}
 	\[
-		\mathd \enbrace*{\Phi(h_i)}_p \grenzw{i \to \infty} A_\infty \in \On \enbrace*{\Tmap_p M^n,g_p}
+		\enbrace[\big]{\mathd\Phi(h_i)}_p \grenzw{i \to \infty} A_\infty \in \On \enbrace*{\Tmap_p M^n,g_p}
 	\]
-	Konstruiere nun eine Isometrie \enquote{$\Phi(h_\infty)$} mit $\Phi(h_\infty)(p)=p$ und $\mathd \enbrace*{\Phi(h_\infty)}_p = A_\infty$.
+	Konstruiere nun eine Isometrie \enquote{$\Phi(h_\infty)$} mit $\Phi(h_\infty)(p)=p$ und $\enbrace*{\mathd\Phi(h_\infty)}_p = A_\infty$.
 	Für $q \in M$ existiert ein $v_q \in \Tmap_p M^n$ mit $\exp_p(v_q) =q$.
 	Wir definieren
 	\[
-		\Phi(h_\infty)(q) \coloneqq \exp_p \enbrace*{A_\infty(v_q)}
+		\Phi(h_\infty)(q) \coloneqq \exp_p \enbrace[\big]{A_\infty(v_q)}
 	\]
 	Nun gilt für alle $i \in \mathbb{N}$ 
 	\[
-		\Phi(h_i)(q) = \Phi(h_i) \enbrace*{\exp_p(v_q)} \stackrel{!}{=} \exp_p \enbrace*{\mathd (\Phi(h_i))_p (v_q)} \grenzw{i \to \infty} \Phi(h_\infty)(q)
+		\Phi(h_i)(q) = \Phi(h_i) \enbrace[\big]{\exp_p(v_q)} \stackrel{!}{=} \exp_p \enbrace[\big]{ (\mathd \Phi(h_i))_p (v_q)} \grenzw{i \to \infty} \Phi(h_\infty)(q)
 	\]
 	Wobei \enquote{!} folgt, da Isometrien Geodätische auf Geodätische abbilden und Geodätische eindeutig bestimmt  sind durch $\gamma_v(0)$ und $\gamma_v'(0)$.
 	Weiter gilt
 	\begin{align}
-		d_g \enbrace*{\Phi(h_\infty)(q_1), \Phi(h_\infty)(q_2)} = d_g \enbrace*{\lim_{i \to \infty} \Phi(h_i)(q_1), \ldots (q_2)} &= \lim_{i \to \infty} d_g \enbrace*{\Phi(h_i)(q_1), \Phi(h_i)(q_2)} \\
+		d_g \enbrace[\big]{\Phi(h_\infty)(q_1), \Phi(h_\infty)(q_2)} = d_g \enbrace*{\lim_{i \to \infty} \Phi(h_i)(q_1), \ldots (q_2)} &= \lim_{i \to \infty} d_g \enbrace[\big]{\Phi(h_i)(q_1), \Phi(h_i)(q_2)} \\
 		&\equiv d_g(q_1,q_2)
 	\end{align}
 	Somit ist $\Phi(h_\infty)$ eine Isometrie von $(M^n,g)$ und damit ein Diffeomorphismus von $M^n$.
@@ -3005,48 +3017,48 @@ Es gilt:
 	Also muss $h_\infty \in H$ gelten.
 \end{beweis}
 
-\begin{beispiel*}
+\begin{beispiel*}[{name=[Gültigkeit von \autoref{lem:319}]}]
 	Ist $G$ kompakt, so ist $\Phi(G)$ kompakt und der Satz gilt.
 	
-	Gegenbeispiel: $\enbrace*{S^3 \times S^3, g_{\mathrm{std}} \times g_{\mathrm{std}}}$. Dann operiert $G = S^3 \times S^3 \times \mathbb{R}$ symmetrisch auf $M^6=S^3 \times S^3$ wie folgt: 
+	Gegenbeispiel: $\enbrace*{S^3 \times S^3, g_{\mathrm{std}} \times g_{\mathrm{std}}}$. Dann operiert $G = S^3 \times S^3 \times \mathbb{R}$ symmetrisch auf $M^6=S^3 \times S^3$ wie folgt:\todo{hier fehlt irgendwie noch was}
 	\[
-		S^3 = \set*{q \in \mathbb{H} \given \norm*{q}=1} \supset S^1 = \set*{z \in \mathbb{C} \given \abs*{z}=1 }
+		S^3 = \set[\big]{q \in \mathbb{H} \given \norm*{q}=1} \supset S^1 = \set[\big]{z \in \mathbb{C} \given \abs*{z}=1 }
 	\]
 	\emph{Übung!}
 \end{beispiel*}
 
-\begin{definition}
+\begin{definition}[{name=[Isotropiedarstellung]}]
 	Sei $(M^n,g)$ ein $G$-homogener Raum, $p \in M^n$ und $H= G_p$ die Isotropiegruppe eines Punktes $p \in M^n$.
-	Dann nennt man 
-	\[
-		\rho \colon H \to \On \enbrace*{\Tmap_p M^n, g_p} , h \mapsto \enbrace*{\mathd \Phi_h}_p
-	\]
+	Dann nennt man
+	\mapdef{\rho \colon H}{\On \enbrace*{\Tmap_p M^n, g_p}}{h}{\enbrace*{\mathd \Phi(h)}_p}{}
+	% \[
+	% 	\rho \colon H \to \On \enbrace*{\Tmap_p M^n, g_p} , h \mapsto \enbrace*{\mathd \Phi_h}_p
+	% \]
 	die \Index{Isotropiedarstellung} von $M^n$ 
 \end{definition}
 
-\begin{beispiel*}
-	$M^n = S^n \subset \mathbb{R}^{n+1}$, $G = \SO(n+1)$, $p=e_1$, $H= G_p = \set*{\begin{pmatrix}
+\begin{beispiel*}[{name=[Isotropiedarstellung]}]
+	$M^n = S^n \subset \mathbb{R}^{n+1}$, $G = \SO(n+1)$, $p=e_1$, $H= G_p = \set*{\begin{psmallmatrix}
 		1 & 0 \\ 0 & A
-	\end{pmatrix} \given A \in \SO(n)}$.
-	
+	\end{psmallmatrix} \given A \in \SO(n)}$.
 	Die Gruppe $G = \SO(n+1)$ operiert linear auf $S^n$ mittels $(A,v) \mapsto A \cdot v = \Phi(A)(v)$.
 	Somit auch $H$, das heißt $\mathd \enbrace*{\Phi_h}_p \colon \Tmap_p S^n \to \Tmap_p S^n$, $\binom{0}{x} \mapsto \binom{0}{Ax}$ mit $A=h \in \SO(n)$.
 \end{beispiel*}
 
-\begin{lemma}
-	Sei $(M^n,g)$ ein $G$-homogener Raum, $p \in M^n$ und $H$ Isotropiegruppe von $p$.
+\begin{lemma}[{name=[Bijektion $G$-inv. Metriken und $\rho(H)$-inv. Skalarprodukte]}]
+	Sei $(M^n,g)$ ein $G$-homogener Raum, $p \in M^n$ und $H$ die Isotropiegruppe von $p$.
 	Dann existiert eine Bijektion zwischen
-	\begin{enumerate}[1)]
-		\item $\set*{\text{$G$-invarianter Riemannschen Metriken auf $M^n$}}$
-		\item $\set*{\text{$\rho(h)$-invarianten Skalarprodukten auf $\Tmap_p M^n$} }$
-	\end{enumerate}
+	\begin{itemize}
+		\item den $G$-invarianten Riemannschen Metriken auf $M^n$ und
+		\item den $\rho(H)$-invarianten Skalarprodukten auf $\Tmap_p M^n$.
+	\end{itemize}
 \end{lemma}
 \begin{beweis}
 	Sei $\tilde{g}$ eine $G$-invariante Riemmannsche Metrik auf $M^n$.
 	Dann gilt $\Phi(h) \colon M^n \to M^n$ ist eine Isometrie mit $\Phi(h)(p)=p$ für alle $h \in H$.
-	Folglich ist $(\mathd \Phi(h))_p \colon \enbrace*{\Tmap_p m^n, g_p} \to \enbrace*{\Tmap_p M^n, g_p}$ eine Isometrie, das heißt für alle $v,w \in \Tmap_p M^n$ gilt
+	Folglich ist $(\mathd \Phi(h))_p \colon \enbrace*{\Tmap_p M^n, g_p} \to \enbrace*{\Tmap_p M^n, g_p}$ eine Isometrie, das heißt für alle $v,w \in \Tmap_p M^n$ gilt
 	\[
-		g_p(v,w) = g_p \enbrace*{\rho(h)v, \rho(h)w}
+		g_p(v,w) = g_p \enbrace[\big]{\rho(h)v, \rho(h)w}
 	\]
 	für alle $ \in H$.
 	
@@ -3055,34 +3067,36 @@ Es gilt:
 	Da $M^n$ ein $G$-homogener Raum ist, existiert $g \in G$ mit $q = g.p = \Phi(g)(p)$.
 	Wir definieren $g_q \colon \Tmap_q M^n \times \Tmap_q M^n \to \mathbb{R}$ durch
 	\[
-		(x,y) \longmapsto \skal*{\mathd(\Phi(g^{-1}))_q \cdot x}{\mathd \enbrace*{\Phi(g^{-1})}_q \cdot y}
+		(x,y) \longmapsto \skal*{(\mathd\Phi(g^{-1}))_q \cdot x}{\enbrace*{\mathd\Phi(g^{-1})}_q \cdot y}
 	\]
-	Wohldefiniertheit: Sei $q = g' .p$.
+	Wir müssen Wohldefiniertheit zeigen: Sei $q = g' .p$.
 	Somit $g'.p = g.p \iff g^{-1} g' .p =p \iff g^{-1} g \in H \iff g' = g \cdot h$ für ein $h \in H$. 
 	Nun gilt:
 	\begin{align}
-		\skal*{\mathd \enbrace*{\Phi({g'}^{-1})}_q \cdot x}{\cdots} = \skal*{\mathd \enbrace*{\Phi(h^{-1}) \Phi(g^{-1})}x }{ \cdots} &= \skal*{ \enbrace*{\mathd \Phi(h)}_q \mathd \Phi(g^{-1})_q x}{ \cdots} \\
-		&= \skal*{\enbrace*{\mathd \Phi (g^{-1})}_q x}{ \cdots}
+		\skal[\Big]{\mathd \enbrace*{\Phi({g'}^{-1})}_q \cdot x}{\cdots} = \skal[\Big]{\mathd \enbrace*{\Phi(h^{-1}) \Phi(g^{-1})}x }{ \cdots} &= \skal*{ \enbrace[\big]{\mathd \Phi(h)}_p \enbrace[\big]{\mathd \Phi(g^{-1})}_q x}{ \cdots} \\
+		&= \skal*{\enbrace*{\mathd \Phi (g^{-1})}_q x}{ \cdots} \tag*{$\rho(H)$-inv.}
 	\end{align}
-	Somit ist die Definition unabhängig von der Wahl von $g \in G$ mit $q=g.p$!
-	In den Übungen wird gezeigt, dass $g=(g_q)_{q \in M^n}$ eine differenzierbare Metrik auf $M^n$ ist.
+	Somit ist die Definition unabhängig von der Wahl von $g \in G$ mit $q=g.p$.
+	In den Übungen wird gezeigt, dass $g=(g_q)_{q \in M^n}$ eine differenzierbare Metrik auf $M^n$ ist.\todo{haben wir das wirklich?}
 \end{beweis}
 
-In \autoref{lem:316} hatten wir gezeigt, dass $\phi \colon \sfrac{G}{H} \to M^n$, $g H \mapsto g .p$ ein $G$-äquivarianter Diffeomorphismus ist.
+In \autoref{lem:316} hatten wir gezeigt, dass $\varphi \colon \sfrac{G}{H} \to M^n$, $g H \mapsto g .p$ ein $G$-äquivarianter Diffeomorphismus ist.
+Weiter kommutiert offenbar das folgende Diagramm
 \[
 	\begin{tikzcd}
 		\sfrac{G}{H} \dar["\overline{L}_g"'] \rar["\varphi"] & M^n \dar["\Phi(g)"] \\
 		\sfrac{G}{H} \rar["\varphi"] & M^n
 	\end{tikzcd}
 \]
-Somit können wir die Isotropiedarstellung $\rho \colon H \to \On \enbrace*{\Tmap_p M^n, g_p}$, $h \mapsto \mathd \enbrace*{\Phi(h)}_p$ identifizieren mit $\rho \colon H \to o \enbrace*{\Tmap_{eH} \sfrac{G}{H},g_p}$, $h \mapsto \mathd (\overline{L}_h)_{eH}$
+Somit können wir die Isotropiedarstellung $\rho \colon H \to \On \enbrace*{\Tmap_p M^n, g_p}$, $h \mapsto \enbrace*{\mathd\Phi(h)}_p$ identifizieren mit $\rho \colon H \to \On \enbrace*{\Tmap_{eH} \sfrac{G}{H},g_p}$, $h \mapsto \mathd (\overline{L}_h)_{eH}$.
+Dazu noch ein Lemma:
 
-\begin{lemma}
+\begin{lemma}[{name=[kommutierendes Diagramm mit Isotropiegruppe]},label=lem:3112]
 	Das folgende Diagramm kommutiert
 	\[
 		\begin{tikzcd}[sep=large]
 			\Tmap_e G \rar["\Ad(h)"] \dar["\mathd \pi_e"'] & \Tmap_e G \dar["\mathd \pi_e"] \\
-			\Tmap_{eH} \sfrac{G}{H} \rar["(\mathd \overline{L}_g)_{eH}"] & \Tmap_{eH} \sfrac{G}{H}
+			\Tmap_{eH} \sfrac{G}{H} \rar["(\mathd \overline{L}_h)_{eH}"] & \Tmap_{eH} \sfrac{G}{H}
 		\end{tikzcd}
 	\]
 \end{lemma}
@@ -3095,21 +3109,22 @@ Somit können wir die Isotropiedarstellung $\rho \colon H \to \On \enbrace*{\Tma
 	für alle $g \in G$, also $\overline{L}_h \circ \pi = \pi \circ i_h$.
 	Differenzieren in $g=e$ liefert
 	\[
-		\mathd \enbrace*{\overline{L}_h}_{\pi(e)} \cdot \mathd \pi_e = \mathd \pi_e \cdot \Underbracket{\mathd \enbrace*{i_h}_e}{= \Ad(h)} \qedhere
+		\enbrace*{\mathd \enbrace*{\overline{L}_h}}_{\pi(e)} \cdot (\mathd \pi)_e = (\mathd \pi)_e \cdot \enbrace*{\mathd i_h}_e = (\mathd \pi)_e \cdot \Ad(h) \qedhere
 	\]
 \end{beweis}
 
-\begin{bemerkung*}
-	Es ist $\ker \mathd \pi_e = \Tmap_e H =\mathfrak{h}$.
-	Somit ist $\mathd \pi_e$ \emph{kein} Isomorphismus, falls $\dim H > 0$.
+\begin{bemerkung*}[{name=[Differential der Projektion ist nicht injektiv]}]
+	Es ist $\ker (\mathd \pi)_e = \Tmap_e H =\mathfrak{h}$.
+	Somit ist $(\mathd \pi)_e$ \emph{kein} Isomorphismus, falls $\dim H > 0$.
 \end{bemerkung*}
 
-Wir nehmen nun an, dass auf $\Tmap_e G = \mathfrak{g}$ ein $\Ad(H)$-invariantes Skalarprodukt existiert $\iff$ $\Ad(H) \subset \Ad(G)$ kompakt. (Klar, falls $H$ kompakt, aber es gibt auch Beispiele von $\sfrac{G}{H}$ mit $\Ad(H)$-kompakt und $H$ nicht kompakt!)
-Da $\Ad(H)$ kompakt, existiert eine $\Ad(H)$-invariantes Skalarprodukt auf $\Tmap_e G$ (Beweis analog wie \enquote{früher}).
+Wir nehmen nun an, dass auf $\Tmap_e G = \mathfrak{g}$ ein $\Ad(H)$-invariantes Skalarprodukt existiert oder äquivalent dazu $\Ad(H) \subset \Ad(G)$ kompakt ist. 
+Dies ist klar, falls $H$ kompakt ist, aber es gibt auch Beispiele von $\sfrac{G}{H}$ mit $\Ad(H)$ kompakt und $H$ nicht kompakt!
+Da $\Ad(H)$ kompakt ist, existiert eine $\Ad(H)$-invariantes Skalarprodukt auf $\Tmap_e G$ (Beweis analog wie \enquote{früher} in \cref{sec:23}).
 
 Wir setzen nun $\mathfrak{m} \coloneqq \mathfrak{h}^\perp$.
 Dann ist $\mathfrak{m}$ ebenfalls $\Ad(H)$-invariant ($\mathfrak{h} = \Tmap_e H$ ist natürlich $\Ad(H)$-invariant). 
-Wegen $\mathfrak{h} = \ker \mathd \pi_e$ kommutiert folgendes Diagramm
+Wegen $\mathfrak{h} = \ker (\mathd \pi)_e$ kommutiert folgendes Diagramm nach \autoref{lem:3112}
 \[
 	\begin{tikzcd}
 		\mathfrak{m} \dar["\mathd \pi_e","\cong"'] \rar["\Ad(h)"] & \mathfrak{m} \dar["\mathd \pi_e","\cong"'] \\
@@ -3117,25 +3132,27 @@ Wegen $\mathfrak{h} = \ker \mathd \pi_e$ kommutiert folgendes Diagramm
 	\end{tikzcd}
 \]
 
-\begin{korollarB}
+\begin{korollar}[{name=[Bijektion zw. Metriken auf Quotient und $\Ad(H)$-inv. Skalarprodukten auf Komplement]}]
 	Sei $\sfrac{G}{H}$ ein homogener Raum.
 	Dann existiert eine Bijektion zwischen
-	\begin{enumerate}[1)]
-		\item $\set*{\text{$G$-invariante Metriken auf $\sfrac{G}{H}$}}$ und
-		\item $\set*{\text{$\Ad(H)$-invarianten Skalarprodukten auf einem $\Ad(H)$-invarianten Komplement $\mathfrak{M}$ von $\mathfrak{h}$ in $\mathfrak{g}$} }$
-	\end{enumerate}
-\end{korollarB}
+	\begin{itemize}
+		\item den $G$-invarianten Metriken auf $\sfrac{G}{H}$ und
+		\item den $\Ad(H)$-invarianten Skalarprodukten auf einem $\Ad(H)$-invarianten Komplement $\mathfrak{m}$ von $\mathfrak{h}$ in $\mathfrak{g}$.
+	\end{itemize}
+\end{korollar}
+\begin{beweis}[Rezept]
+	$\sfrac{G}{H}$ gegeben, finde $\mathfrak{g} = \mathfrak{h} \oplus \mathfrak{m}$ mit $\mathfrak{m}$ $\Ad(H)$-invariant.
+	$\Ad(H)$ operiert isometrisch bezüglich einem Skalarprodukt auf $\Tmap_e G$.
+\end{beweis}
 
-Rezept: $\sfrac{G}{H}$ gegeben, finde $\mathfrak{g} = \mathfrak{h} \oplus \mathfrak{m}$ mit $\mathfrak{m}$ $\Ad(H)$-invariant.
-$\Ad(H)$ operiert isometrisch bezüglich einem Skalarprodukt auf $\Tmap_e G$.
-
-\begin{bemerkung*}
+\begin{bemerkung*}[{name=[Eindeutigkeit des Komplements]}]
 	Das Komplement $\mathfrak{m}$ ist im Allgemeinen \emph{nicht} eindeutig.
-	In den Übungen wird $\sfrac{G}{H}$ ein \enquote{kanonisches} Komplement zugeordnet.
+	In den Übungen wird $\sfrac{G}{H}$ ein \enquote{kanonisches} Komplement zugeordnet.\todo{einarbeiten}
 \end{bemerkung*}
 
-\begin{beispiel*}
-	$S^n = \sfrac{\SO(n+1)}{\SO(n)}$. Es gilt
+\begin{beispiel*}[{name=[Isotropiedarstellung der Sphäre]}]
+	Es ist $S^n = \sfrac{\SO(n+1)}{\SO(n)}$ (siehe \cpageref{bsp:homSpaces}). 
+	Es gilt weiter
 	\[
 		\mathfrak{so}(n+1) = \Tmap_e \SO(n+1) = \set*{V \in \Mat(n+1,\mathbb{R}) \given V^T = -V}
 	\]
@@ -3148,52 +3165,53 @@ $\Ad(H)$ operiert isometrisch bezüglich einem Skalarprodukt auf $\Tmap_e G$.
 			-x_n & & & 
 		\end{pmatrix} \given x_i \in \mathbb{R}}}{=: \mathfrak{m}}
 	\]
+	Damit ist $\mathfrak{m}$ tatsächlich $\Ad(H)$-invariant.
 	Sei $h \in H = \SO(n)$ und $\begin{psmallmatrix}
-		0 & -X^T \\ X & 0
+		0 & -x^T \\ x & 0
 	\end{psmallmatrix} \in \mathfrak{m}$.
 	Dann gilt 
 	\begin{align}
 			\Ad(h) \begin{pmatrix}
-			0 & -X^T \\ X & 0
+			0 & -x^T \\ x & 0
 		\end{pmatrix} = \begin{pmatrix}
 			1 & 0 \\ 0 & A
 		\end{pmatrix} \cdot \begin{pmatrix}
-			0 & -X^T \\ X & 0
+			0 & -x^T \\ x & 0
 		\end{pmatrix} \cdot \begin{pmatrix}
 			1 & 0 \\
 			0 & A^T
 		\end{pmatrix} &= \begin{pmatrix}
-			0 & - X^T \\ AX & 0 
+			0 & - x^T \\ Ax & 0 
 		\end{pmatrix} \cdot \begin{pmatrix}
 			1 & 0 \\ 0 & A^T
 		\end{pmatrix} \\
 		&= \begin{pmatrix}
-			0 & -(AX)^T \\ AX & 0
+			0 & -(Ax)^T \\ Ax & 0
 		\end{pmatrix} 
 		\stackrel{!}{\in } \mathfrak{m}
 	\end{align}
-	Wir identifizieren $\mathfrak{m}$ mit $\mathbb{R}^n$ mittels $X \mapsto \begin{psmallmatrix}
-		0 & -X^T \\ X & 0
+	Wir identifizieren $\mathfrak{m}$ mit $\mathbb{R}^n$ mittels $x \mapsto \begin{psmallmatrix}
+		0 & -x^T \\ x & 0
 	\end{psmallmatrix}$.
-	Somit ist die Isotropiedarstellung von $S^n = \sfrac{\SO(n+1)}{\SO(n)}$ die Standarddarstellung von $\SO(n)$ auf $\mathbb{R}^n$ gegeben durch $(A,x) \mapsto A \cdot x$.
-	Diese Darstellung ist irreduzibel, das heißt falls $\mathfrak{m} = \mathfrak{m}_1 \oplus \mathfrak{m}_2$ schon $\mathfrak{m}_1= \set*{0}$ oder $\mathfrak{m}_2 =\set*{0}$ impliziert.
+	Somit ist die Isotropiedarstellung von $S^n = \sfrac{\SO(n+1)}{\SO(n)}$ die Standarddarstellung von $\SO(n)$ auf $\mathbb{R}^n$ gegeben durch $(A,x) \mapsto A \cdot x$. \marginnote{gleich dem Differential, da Wirkung linear}
+	Diese Darstellung ist \emph{irreduzibel}, das heißt dass $\mathfrak{m} = \mathfrak{m}_1 \oplus \mathfrak{m}_2$ schon $\mathfrak{m}_1= \set*{0}$ oder $\mathfrak{m}_2 =\set*{0}$ impliziert.
 \end{beispiel*}
 
 \begin{definition}[{name=[{isotropie-irreduzibel}]}]
 	Einen homogenen Raum $\sfrac{G}{H}$ nennt man \Index{isotropie-irreduzibel}, falls die Isotropiedarstellung irreduzibel ist. 
 \end{definition}
 
-\begin{beispiel*}
+\begin{beispiel*}[{name=[Beispiel für nicht irreduzible Isotropiedarstellung]}]
 	Betrachte $G= \SO(9)$ und $H = \SO(2) \SO(3) \SO(4)$.
 	Dann ist $\mathfrak{g} = \mathfrak{h} \oplus \mathfrak{m}$ mit
 	\[
 		\mathfrak{m} = \set*{\begin{pmatrix}
-			0  x_1 & x_2 \\
+			0 & x_1 & x_2 \\
 			- x_1^T & 0 & x_3 \\
 			-x_2^T & -x_3^T & 0
-		\end{pmatrix} \given x_1 \in \Mat{2\times 3}, x_2 \in \Mat(2 \times 4), x_3 \in \Mat{3\times 4}} 
+		\end{pmatrix} \given x_1 \in \Mat(2\times 3), x_2 \in \Mat(2 \times 4), x_3 \in \Mat(3\times 4)} 
 	\]
-	und $h \in H$ gegeben durhc
+	und $h \in H$ gegeben durch
 	\[
 		h = \begin{pmatrix}
 			A_1 & 0 & 0 \\
@@ -3201,14 +3219,58 @@ $\Ad(H)$ operiert isometrisch bezüglich einem Skalarprodukt auf $\Tmap_e G$.
 			0 & 0 & A_3
 		\end{pmatrix}
 	\]
-	Mit $A_i$ aus $\SO(i+1)$
-	\todo[inline]{lange Rechnung, für die ich zu langsam \TeX{}e}
+	mit $A_i$ aus $\SO(i+1)$.
+	Wir erhalten:
+	\begin{align}
+		\hspace{-1em}\begin{pmatrix}
+			A_1 & 0 & 0 \\
+			0 & A_2 & 0 \\
+			0 & 0 & A_3
+		\end{pmatrix}\!\!
+		\begin{pmatrix}
+			0 & x_1 & x_2 \\
+			- x_1^T & 0 & x_3 \\
+			-x_2^T & -x_3^T & 0
+		\end{pmatrix}\!\!
+		\begin{pmatrix}
+			A_1^T & 0 & 0 \\
+			0 & A_2^T & 0 \\
+			0 & 0 & A_3^T
+		\end{pmatrix} &=
+		\begin{pmatrix}
+			0 & A_1 x_1 & A_1 x_2 \\
+			- A_2 x_1^T & 0 & A_2 x_3 \\
+			- A_3 x_2^T & -A_3 x_3^T & 0
+		\end{pmatrix}\!\!
+		\begin{pmatrix}
+			A_1^T & 0 & 0 \\
+			0 & A_2^T & 0 \\
+			0 & 0 & A_3^T
+		\end{pmatrix}\\
+		&= 
+		\begin{pmatrix}
+			0 & A_1 x_1 A_2^T & A_1 x_2 A_3^T \\
+			(A_1 x_1 A_2^T)^T & 0 & A_2 x_3 A_3^T \\
+			(A_1 x_2 A_3^T)^T & (A_2 x_3 A_3^T)^T & 0
+		\end{pmatrix}
+	\end{align}
+	Damit ist $\mathfrak{m}$ wieder $\Ad(H)$-invariant.
+	Wir schreiben $\mathfrak{m} = \mathfrak{m}_1 \oplus \mathfrak{m}_2 \oplus \mathfrak{m}_3$ mit 
+	\[
+		\mathfrak{m}_1 = \set*{\begin{pmatrix}
+			0 & x_1 & 0\\
+			-x_1^T & 0 & 0 \\
+			0 & 0 & 0
+		\end{pmatrix} \given x_1 \in \Mat(2 \times 3)}
+	\]
+	und $\mathfrak{m}_2$ und $\mathfrak{m}_3$ entsprechend.
+	Man kann sich nun überlegen, dass $\mathfrak{m}_i$ $\Ad(H)$-irreduzibel sind.
 \end{beispiel*}
 % section 31 (end)
 
 \section{Geometrie homogener Räume} % (fold)
 \label{sec:32}
-
+\todo{RevChap 3}
 Riemannsche homogene Räume $(\sfrac{G}{H},g)$, $g$ $G$-invariant, das heißt die Diffeomorphismen $\overline{L}_g \colon \sfrac{G}{H} \to \sfrac{G}{H}$, $\tilde{g} H \mapsto g \tilde{g} H$ sind Isometrien von $(\sfrac{G}{H},g)$.
 Weiter wissen wir schon dass die $g$-invarianten Metriken auf $\sfrac{G}{H}$ in 1 zu 1-Beziehung stehen zu den $\overline{L}_h$-invarianten Skalarprodukten auf $\Tmap_e \sfrac{G}{H}$ für $h \in H = G_{eH}$.
 Diese wiederum stehen auch 1zu1-Beziehung zu den $\Ad(H)$-invarianten Sklarprodukten auf einem $\Ad(H)$-invarianten Komplement $\mathfrak{m}$ von $\mathfrak{h} = \Tmap_eH$ in $\mathfrak{g} = \Tmap_eG$.
