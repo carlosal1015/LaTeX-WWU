@@ -2552,7 +2552,7 @@ Ist $\mathfrak{t} \subset \mathfrak{g}$ eine maximale abelsche Unteralgebra von 
 	Das heißt $U \subseteq \sfrac{G}{H}$ ist offen genau dann, wenn $\pi^{-1}(U)$ offen in $G$ ist.
 \end{definition}
 
-\begin{satz}[{name=[homogener Raum ist differenzierbare Mannigfaltigkeit]}]
+\begin{satz}[{name=[homogener Raum ist differenzierbare Mannigfaltigkeit]},label=satz:312]
 	Sei $G$ eine Liegruppe und $H$ eine abgeschlossene Untergruppe von $G$.
 	Dann ist der homogene Raum eine differenzierbare Mannigfaltigkeit der Dimension $n = \dim G - \dim H$.
 	Ferner ist die Projektionsabbildung $\pi \colon G \to \sfrac{G}{H}$ eine differenzierbare Submersion, das heißt für alle $g \in G$ ist $(\mathd \pi)_g \colon \Tmap_g G \to \Tmap_{gH} \sfrac{G}{H}$ surjektiv.
@@ -2630,7 +2630,7 @@ Ist $\mathfrak{t} \subset \mathfrak{g}$ eine maximale abelsche Unteralgebra von 
 		\[
 			\begin{tikzcd}
 				U_g \dar["F^{-1} \circ L_{g^{-1}}"'] \rar["\pi"] & \sfrac{G}{H} \\
-				D_\varepsilon \times H \rar["\pr_1"] & D_\varepsilon \uar["\varphi_g^{-1}"]
+				D_\varepsilon \times H \rar["\pr_1"] & D_\varepsilon \uar["\varphi_g^{-1}"']
 			\end{tikzcd}
 		\]
 		Dies schließt den Beweis ab.\qedhere
@@ -3270,7 +3270,7 @@ Wegen $\mathfrak{h} = \ker (\mathd \pi)_e$ kommutiert folgendes Diagramm nach \a
 
 \section{Geometrie homogener Räume} % (fold)
 \label{sec:32}
-\todo{RevChap 3}
+\todo{RevChap 3.2}
 Riemannsche homogene Räume $(\sfrac{G}{H},g)$, $g$ $G$-invariant, das heißt die Diffeomorphismen $\overline{L}_g \colon \sfrac{G}{H} \to \sfrac{G}{H}$, $\tilde{g} H \mapsto g \tilde{g} H$ sind Isometrien von $(\sfrac{G}{H},g)$.
 Weiter wissen wir schon dass die $g$-invarianten Metriken auf $\sfrac{G}{H}$ in 1 zu 1-Beziehung stehen zu den $\overline{L}_h$-invarianten Skalarprodukten auf $\Tmap_e \sfrac{G}{H}$ für $h \in H = G_{eH}$.
 Diese wiederum stehen auch 1zu1-Beziehung zu den $\Ad(H)$-invarianten Sklarprodukten auf einem $\Ad(H)$-invarianten Komplement $\mathfrak{m}$ von $\mathfrak{h} = \Tmap_eH$ in $\mathfrak{g} = \Tmap_eG$.
@@ -3982,9 +3982,9 @@ Bezeichnung $\Ric_\mu \coloneqq -\frac{1}{2} \mathcal{B}_\mu + M_\mu - \ad_\mu(Z
 \section{Topologie homogener Räume} % (fold)
 \label{sec:33}
 
-\begin{definition}
+\begin{definition}[{name=[Faserbündel]}]
 	Seien $X,B,F$ differenzierbare Mannigfaltigkeiten und $\pi \colon X \to B$ differenzierbar.
-	Dann nennt man $(X,B,F,\pi)$ ein \Index{Faserbündel} mit \Index{Faser}  $F$, \Index{Totalraum} $X$  und \Index{Basis} $B$, falls gilt 
+	Dann nennt man $(X,B,F,\pi)$ ein \Index{Faserbündel} mit \Index{Faser}  $F$, \Index{Totalraum} $X$  und \bet{Basis}\index{Faserbündel!Basis} $B$, falls gilt 
 	\begin{enumerate}[1)]
 		\item $\pi$ ist surjektiv
 		\item Für alle $b \in B$ existiert eine offene Umgebung $U \subseteq B$ von $b$, sowie ein Diffeomorphismus $\varphi_U \colon U \times F \to \pi^{-1}(U) \subseteq X$, sodass $\pr_1 = \pi \circ \varphi_U$ (\Index{lokale Trivialität}).
@@ -3997,7 +3997,7 @@ Bezeichnung $\Ric_\mu \coloneqq -\frac{1}{2} \mathcal{B}_\mu + M_\mu - \ad_\mu(Z
 	\)
 \end{definition}
 
-\begin{beispiel*}
+\begin{beispiel*}[{name=[einfache Faserbündel]}]
 	\begin{enumerate}[(i)]
 		\item \(
 			\begin{tikzcd}[cramped,sep=small]
@@ -4012,34 +4012,35 @@ Bezeichnung $\Ric_\mu \coloneqq -\frac{1}{2} \mathcal{B}_\mu + M_\mu - \ad_\mu(Z
 			\end{tikzcd}
 		\)
 		ein Faserbündel.
-		\item Für $k=0$: Ein Faserbündel mit diskreter Faser nennt man \Index{Überlagerung}.
+		\item Für $k=0$: Ein Faserbündel mit diskreter Faser ist eine \Index{Überlagerung}!
 	\end{enumerate}
 \end{beispiel*}
 
-\begin{definition}
-	Ist $H$ eine Liegruppe, so ist ein $H$-\Index{Prinzipialbündel} ein differenzierbares Faserbündel \(
+\begin{definition}[{name=[Prinzipalbündel]}]
+	Ist $H$ eine Liegruppe, so ist ein $H$-\Index{Prinzipalbündel} ein differenzierbares Faserbündel \(
 		\begin{tikzcd}[cramped,sep=small]
 			H \rar & X \rar & B
 		\end{tikzcd}
 	\)
-	zusammen mit einer freien transitiven differenzierbaren Rechtsliegruppenwirkung $\Phi \colon X \times H \to X$ mit $\pi(p.h) = \varphi(p)$.
+	zusammen mit einer freien transitiven differenzierbaren Rechtsliegruppenwirkung $\Phi \colon X \times H \to X$ mit $\pi(p.h) = \pi(p)$.
 \end{definition}
 
-\begin{beispiel*}
+\begin{beispiel*}[{name=[Prinzipalbündel]}]
 	\begin{enumerate}[(i)]
 		\item Ist $H$ eine abgeschlossene Lieuntergruppe von $G$, so ist \(
 			\begin{tikzcd}[cramped,sep=small]
 				H \rar & G \rar & \sfrac{G}{H}
 			\end{tikzcd}
-		\) ein $H$-Prinzipialbündel.
-		\item Hopf-Faserung: $\SU(n) \subseteq \Un(n) \subseteq \SU(n+1)$.
+		\) ein $H$-Prinzipialbündel. 
+		Die lokale Trivilität ist direkt durch Abbildung gegeben, die im Beweis von \autoref{satz:312} konstruiert wurde.
+		\item \Index{Hopf-Faserung}: $\SU(n) \subseteq \Un(n) \subseteq \SU(n+1)$.
 		\[
 			\begin{tikzcd}
 				\sfrac{\Un(n)}{\SU(n)} \dar[phantom,sloped,"\cong"] \rar & \sfrac{\SU(n+1)}{\SU(n)} \dar[phantom,sloped,"\cong"] \rar &  \sfrac{\SU(n+1)}{\Un(n)} \dar[phantom,sloped,"\cong"] \\[-1em]
 				S^1 & S^{2n+1} & \mathbb{C}P^n
 			\end{tikzcd}
 		\] 
-		$\Phi \colon S^{2n+1} \times S^1 \to S^{2n+1}$ ist gegeben durch
+		Die Rechtsliegruppenwirkung $\Phi \colon S^{2n+1} \times S^1 \to S^{2n+1}$ ist gegeben durch
 		\[
 			\enbrace*{\begin{pmatrix}
 				z_1 \\ \vdots \\ z_{n+1}
@@ -4051,7 +4052,7 @@ Bezeichnung $\Ric_\mu \coloneqq -\frac{1}{2} \mathcal{B}_\mu + M_\mu - \ad_\mu(Z
 	\end{enumerate}
 \end{beispiel*}
 
-\begin{definition}
+\begin{definition}[{name=[Homotopiegruppen]}]
 	Sei $X$ ein topologischer Raum, $p \in X$ und $v \in S^n$.
 	Dann heißt 
 	\[
@@ -4068,19 +4069,23 @@ Bezeichnung $\Ric_\mu \coloneqq -\frac{1}{2} \mathcal{B}_\mu + M_\mu - \ad_\mu(Z
 	\]
 \end{definition}
 
-Eigenschaften: 
-\begin{enumerate}[(i)]
-	\item $X$ wegzusammenhängend $\implies \pi_k(X,p) \cong \pi_n(X,\tilde{p})$ für alle $p, \tilde{p} \in X$. 
-	Man schreibt dann $\pi_k(X)$
-	\item $\pi_k(X)$ ist eine Gruppe für $n \ge 1$ und abelsch für $n \ge 2$.
+Hier einige zentrale Eigenschaften, die hier ohne Beweis aufgeführt werden:
+\begin{enumerate}[(i),itemsep=1pt]
+	\item Wenn $X$ wegzusammenhängend ist, so ist $\pi_k(X,p) \cong \pi_k(X,\tilde{p})$ für alle $p, \tilde{p} \in X$. 
+	Man schreibt dann $\pi_k(X)$.
+	\item $\pi_k(X)$ ist eine Gruppe für $k \ge 1$ und abelsch für $k \ge 2$.
 	\item $f \colon X \to Y$ stetig induziert einen Homomorphismus $f_* \colon \pi_n(X) \to \pi_n(Y)$ durch $\benbrace*{g} \mapsto \benbrace*{f \circ g}$.
-	\item Sind $f, \tilde{f} \colon X \to Y$ homotop, so ist $f_* = \tilde{f}_*$.
-	\item Für $f \colon X \to Y$, $g \colon Y \to Z$ gilt $(g \circ f)_* = g_* \circ f_*$.
+	\item Sind $f, \tilde{f} \colon X \to Y$ homotop, so ist $f_* = \tilde{f}_*$ (Homotopieinvarianz).
+	\item Für $f \colon X \to Y$, $g \colon Y \to Z$ gilt $(g \circ f)_* = g_* \circ f_*$ (Funktorialität).
 \end{enumerate}
 
-Ist $M$ eine differenzierbare Mannigfaltigkeit, so setzen wir $C_k(M) \coloneqq \set*{\sum_{i=1}^N r_i s_i \given N \in \mathbb{N}, r_i \in \mathbb{Z}, s_i \text{ $k$-Simplex in }M  }$.
-
-\begin{satz}[name={Hurewicz, siehe Hatcher}]
+Ist $M$ eine differenzierbare Mannigfaltigkeit, so setzen wir 
+\[
+	C_k(M) \coloneqq \set*{\sum\nolimits_{i=1}^N r_i s_i \given N \in \mathbb{N}, r_i \in \mathbb{Z}, s_i \text{ $k$-Simplex in }M  }
+\]
+Dies liefert einen Kettenkomplex und damit lässt sich Homologie definieren.
+Folgender Satz stellt einen Zusammenhang zwischen Homotopiegruppen und Homologie her:
+\begin{satz}[name={Hurewicz}]
 	Sei $M^n$ eine $m$-zusammenhängende, glatte Mannigfaltigkeit mit $m>0$, das heißt $\pi_k(M^n)= \set*{e}$ für $0 \le k \le m$.
 	Dann gilt
 	\begin{enumerate}[(i)]
@@ -4088,13 +4093,16 @@ Ist $M$ eine differenzierbare Mannigfaltigkeit, so setzen wir $C_k(M) \coloneqq 
 		\item $\pi_{m+1}(M^n) \to H_{m+1}(M^n)$, $\benbrace*{\varphi} \mapsto \varphi_* \benbrace*{S^{m+1}}$ ist ein Isomorphismus, wobei $\benbrace*{S^{m+1}}$ ein Erzeuger von $H_{m+1}(S^{m+1}) \cong \mathbb{Z}$ ist.
 	\end{enumerate}
 \end{satz}
+\begin{beweis}
+	\emph{Siehe \textcite[Thm.~4.32]{Hatcher}.}
+\end{beweis}
 
-\begin{bemerkung*}
+\begin{bemerkung*}[{name=[Homologie und Homotopiegruppen der Sphäre]}]
 	Für $n \ge 1$ ist $S^n$ $(n-1)$-zusammenhängend mit $\pi_n(S^n) = \mathbb{Z} = H_n(S^n)$.
 	Höhere Homotopiegruppen von $S^n$ zu bestimmen ist schwierig; höhere Homologiegruppen verschwinden.
 \end{bemerkung*}
 
-\begin{satz}[{name={Homotopiesequenz, Hatcher}}]
+\begin{satz}[{name={Homotopiesequenz}}]
 	Sei \(
 		\begin{tikzcd}[cramped,sep=small]
 			F \rar["\iota"] & X \rar["\pi"] & B
@@ -4108,29 +4116,34 @@ Ist $M$ eine differenzierbare Mannigfaltigkeit, so setzen wir $C_k(M) \coloneqq 
 		\end{tikzcd}
 	\]
 \end{satz}
+\begin{beweis}
+	\emph{Siehe \textcite[Thm.~4.41]{Hatcher}.}
+\end{beweis}
 
-\begin{beispiel*}
+\begin{beispiel*}[{name=[Zusammenhangskomponenten wenn Quotient einfach zusammenhängend]}]
 	Betrachte \(
 		\begin{tikzcd}[cramped,sep=small]
 			H \rar & G \rar & \sfrac{G}{H}
 		\end{tikzcd}
 	\) mit $\sfrac{G}{H}$ $1$-zusammenhängend.
-	Dann ist die Sequenz \(
-		\begin{tikzcd}[cramped,sep = small]
+	Dann ist die Sequenz 
+	\[
+		\begin{tikzcd}
 			0 \rar & \pi_0(H) \rar & \pi_0(G) \rar &  0
 		\end{tikzcd}
-	\) exakt, das heißt $H,G$ haben gleich viele Zusammenhangskomponenten ($\sfrac{G}{H} \cong \sfrac{G_e}{H \cap G_e}$ falls $\sfrac{G}{H}$ zusammenhängend).
+	\]
+	exakt, das heißt $H$ und $G$ haben gleich viele Zusammenhangskomponenten ($\sfrac{G}{H} \cong \sfrac{G_e}{H \cap G_e}$ falls $\sfrac{G}{H}$ zusammenhängend).
 \end{beispiel*}
 
-Sei $H^*(M^n)$ die Kohomologiegruppe bezüglich der de-Rham-Kohomologie.
+Sei $H^*(M^n)$ die Kohomologiegruppe bezüglich der \Index{de-Rham-Kohomologie}.
 Das $\cupp$-Produkt liefert zusätzlich eine Ringstruktur auf $H^*(M^n)$
 \mapdef{\cupp \colon H^a(M^n) \times H^b(M^n)}{H^{a+b}(M^n)}{(\omega,\mu)}{\omega \wedge \mu}{}
-Kohomologie kann man allgemeiner mit Koeffizienten in einem Ring $R$ betrachten ($R$ kommutativ mit Eins).
+Kohomologie kann man viel allgemeiner mit Koeffizienten in einem Ring $R$ betrachten ($R$ kommutativ mit Eins).
 
 \begin{satz}[name={Serre-Sequenz, Spanier},label=satz:336]
 	Sei \(
 		\begin{tikzcd}[cramped,sep=small]
-			F \rar["i"] & X \rar["\pi"] & B
+			F \rar["\iota"] & X \rar["\pi"] & B
 		\end{tikzcd}
 	\) ein differenzierbares Faserbündel, $F$ zusammenhängend, $B$ einfach-zusammenhängend, $k, l > 0$ mit
 	\begin{enumerate}[1)]
@@ -4140,11 +4153,11 @@ Kohomologie kann man allgemeiner mit Koeffizienten in einem Ring $R$ betrachten 
 	Dann ist die folgende Sequenz exakt
 	\[
 		\begin{tikzcd}[sep=small]
-			0 \rar & H^1(X) \rar["\iota_*"] & H^1(F) \rar["\partial"] & H^2(X) \rar & \ldots \rar & H^{k+l-1}(B) \rar & H^{k+l-1}(X) \rar & H^{k+l-1} (F)
+			0 \rar & H^1(X) \rar["\iota^*"] & H^1(F) \rar["\partial"] & H^2(X) \rar & \ldots \rar & H^{k+l-1}(B) \rar & H^{k+l-1}(X) \rar & H^{k+l-1} (F)
  		\end{tikzcd}
 	\]
 \end{satz}
-
+\todo[inline]{Referenzen für diese Sätze raussuchen}
 \begin{satz}[name={Leray-Hirsch},label=satz:337]
 	Sei \(
 		\begin{tikzcd}[cramped,sep=small]
@@ -4155,10 +4168,10 @@ Kohomologie kann man allgemeiner mit Koeffizienten in einem Ring $R$ betrachten 
 		\item $H^j(F,R)$ ist ein endlich erzeugter freier $R$-Modul für alle $j$
 		\item Es existiert $C_j^\alpha \in H^j(X;R)$, sodass die Bilder $\iota^*(c^\alpha_j)^{k_j}_{\alpha=1}$ in $H^j(F;R)$ eine Basis von $H^j(F;R)$ bilden
 	\end{enumerate}
-	Dann ist $\varphi \colon H^*(B) \otimes_R H^*(F;R) \to H^*(X;R)$, $\sum_{k,j} b_k \otimes \iota^*(c_j) \mapsto \sum_{k,j} \pi^*(b_k) \cup c_j$ ein Isomorphismus von $R$-Moduln.
+	Dann ist $\varphi \colon H^*(B) \otimes_R H^*(F;R) \to H^*(X;R)$, $\sum_{k,j} b_k \otimes \iota^*(c_j) \mapsto \sum_{k,j} \pi^*(b_k) \cupp c_j$ ein Isomorphismus von $R$-Moduln.
 \end{satz}
 
-\begin{definition}
+\begin{definition}[{name=[äußere Algebra]}]
 	Seien $a_1, \ldots ,a_k$ formale Variablen.
 	Dann ist die \Index{äußere Algebra} 
 	\[
@@ -4167,18 +4180,18 @@ Kohomologie kann man allgemeiner mit Koeffizienten in einem Ring $R$ betrachten 
 	definiert vermittels der Relationen 
 	\begin{enumerate}[(i)]
 		\item $a_i a_j = - a_j a_i$
-		\item $a_1, \cdot \ldots \cdot a_k \neq 0$
+		\item $a_1 \cdot \ldots \cdot a_k \neq 0$
 	\end{enumerate}
 	Es gilt $\Lambda_R \benbrace*{a_1, \ldots ,a_k} = \Span_R \set*{1, a_1, \ldots ,a_k, a_1 a_2, \ldots , a_1 \cdots a_k}$ mit $\Rg \enbrace*{\Lambda_R \benbrace*{a_1, \ldots ,a_k}} = 2^k$.
 \end{definition}
 
-Es gilt $\Lambda_R \benbrace*{a_1, \ldots ,a_{k+1}} = \Lambda_R \benbrace*{a_1, \ldots ,a_k} \hat{\otimes}_R \Lambda \benbrace*{a_{k+1}}$ (graduiertes Tensorprodukt) mit 
+Es gilt $\Lambda_R \benbrace*{a_1, \ldots ,a_{k+1}} = \Lambda_R \benbrace*{a_1, \ldots ,a_k} \mathbin{\hat{\otimes}_R} \Lambda \benbrace*{a_{k+1}}$ (graduiertes Tensorprodukt) mit 
 \[
 	a \mathop{\hat{\otimes}} b \cdot \benbrace*{c \mathop{\hat{\otimes}} d} = (-1)^{\abs*{c} \cdot \abs*{b}} (a \cdot c) \hat{\otimes} (b \cdot d)
 \]
 und $\abs*{\overline{a}} \in \set*{0,1} $ $\mathbb{Z}_2$-graduiert, das heißt $\abs*{a_i}=1$, $\abs*{a_i a_j}=0 $
 
-\begin{satz}
+\begin{satz}[{name=[Kohomologie der unitären Gruppe]}]
 	Es gibt einen $R$-Algebraisomorphismus 
 	\[
 		H^*(\Un(n);R) \cong \Lambda_R \benbrace*{x_1, x_3, \ldots , x_{2n-1}}
@@ -4189,30 +4202,31 @@ und $\abs*{\overline{a}} \in \set*{0,1} $ $\mathbb{Z}_2$-graduiert, das heißt $
 	Per Induktion: Für $n=1$ ist $\Un(1)=S^1$, das heißt $H^0(S^1;R) = R \cdot 1$ und $H^1(S^1;R) = R \cdot x_1$.
 	Damit ist $H^*(\Un(1);R) = \Lambda_R[x_1]$.
 	
-	Für $n \ge 2$ können wir annehemn, dass $H^* \enbrace*{\Un(n-1);R} \cong \Lambda_r \benbrace*{x_1, \ldots , x_{2n-3}}$ gilt.
+	Für $n \ge 2$ können wir annehmen, dass $H^* \enbrace*{\Un(n-1);R} \cong \Lambda_r \benbrace*{x_1, \ldots , x_{2n-3}}$ gilt.
 	Wir betrachten das Faserbündel
 	\[
 		\begin{tikzcd}
 			\Un(n-1) \rar & \Un(n) \rar & \sfrac{\Un(n)}{\Un(n-1)} = S^{2n-1}
 		\end{tikzcd}
 	\]
-	Es gibt $H^i \enbrace*{S^{2n-1};R} = 0$ für $0 < i < 2n-1$. Aus \autoref{satz:336} erhalten wir 
+	Es gibt $H^i \enbrace*{S^{2n-1};R} = 0$ für $0 < i < 2n-1$.
+	Aus \autoref{satz:336} erhalten wir 
 	\[
-		\begin{tikzcd}
-			0 \rar & H^1 \enbrace*{\Un(n)} \rar & H^1 \enbrace*{\Un(n-1)} \rar & 0 = H^2( \enbrace*{S^{2n-1}}) \\
-			\vdots & \vdots \\
-			H^{2n-3}(S^{2n-1}) = 0  \rar & H^{2n-3} \enbrace*{\Un(n)} \rar & H^{2n-3} \enbrace*{\Un(n-1)} \rar & 0 = H^{2n-2} \enbrace*{S^{2n-1}}
+		\begin{tikzcd}[column sep=1.8em,row sep=1em]
+			& 0 \rar & H^1 \enbrace[\big]{\Un(n)} \rar & H^1 \enbrace[\big]{\Un(n-1)} \rar & 0 = H^2\enbrace*{S^{2n-1}}  \\
+			&\vdots & \vdots & \vdots & \vdots \\
+			\cdots \rar & H^{2n-3}\enbrace*{S^{2n-1}} = 0  \rar & H^{2n-3} \enbrace[\big]{\Un(n)} \rar & H^{2n-3} \enbrace[\big]{\Un(n-1)} \rar & 0 = H^{2n-2} \enbrace*{S^{2n-1}}
 		\end{tikzcd}
 	\]
 	Somit ist $i^* \colon H^k \enbrace*{\Un(n)} \to H^k \enbrace*{\Un(n-1)}$ ein Isomorphismus für alle $1\le k \le 2n-3$.
 	Nach Vorraussetzung ist $H^* \enbrace*{\Un(n-1)}$ ein freier $R$-Modul, das heißt es gibt Klassen $c_1, \ldots ,c_{2n-3} \in H^*(\Un(n))$ mit $x_i = i^*(c_i)$\marginnote{$\Rightarrow c_{i_1} \cdot \ldots \cdot c_{i_\ell} \in H^{i_1 +\ldots + i_\ell}(\Un(n))$} und 
 	\[
-		\set*{i^* \enbrace*{c_{i_1} \cdot \ldots cd c_{i_\ell}} \given i_1 < \ldots < i_\ell}
+		\set[\big]{i^* \enbrace*{c_{i_1} \cdot \ldots \cdot  c_{i_\ell}} \given i_1 < \ldots < i_\ell}
 	\]
 	ist eine $R$-Basis von $H^* \enbrace*{\Un(n-1)}$.
 	Aus \autoref{satz:337} folgt
 	\[
-		H^* \enbrace*{\Un(n)} \cong H^* \enbrace*{\Un(n1)} \otimes_R H^* \enbrace*{S^{2n-1}} = \Lambda_r \benbrace*{x_1, x_3, \ldots ,x_{2n-3}} \otimes_R \enbrace*{R \oplus R \benbrace*{S^{2n-1}}}
+		H^* \enbrace[\big]{\Un(n)} \cong H^* \enbrace[\big]{\Un(n-1)} \otimes_R H^* \enbrace*{S^{2n-1}} = \Lambda_r \benbrace*{x_1, x_3, \ldots ,x_{2n-3}} \otimes_R \enbrace*{R \oplus R \benbrace*{S^{2n-1}}}
 	\]
 	als $R$-Moduln.
 	Das heißt $H^* \enbrace*{\Un(n)}$ wird erzeugt durch die Elemente 
@@ -4220,18 +4234,18 @@ und $\abs*{\overline{a}} \in \set*{0,1} $ $\mathbb{Z}_2$-graduiert, das heißt $
 		c_{i_1} \cdot \ldots \cdot c_{i_\ell} , c_{i_1} \cdot \ldots \cdot c_{i_\ell} \cdot \pi^* \benbrace*{S^{2n-1}}
 	\]
 	für $0 < i_1 < \ldots < i_\ell$.
-	Da Cup-Produkte von ungeraden Kohomologieklassen antikommutieren (\textsc{Bredon}, \emph{Topology and Geometry}) und ferner $H^{n^2}(\Un(n)) \neq 0$ gilt ($\Un(n)$ ist Liegruppe, also orientierbar), folgt $c_1 \cdot \ldots \cdot c_{2n-3} \cdot \pi^* \benbrace*{S^{2n-1}} \neq 0$.\marginnote{$1+3+ \ldots + 2n-1 = n^2$}
+	Da Cup-Produkte von ungeraden Kohomologieklassen antikommutieren (siehe \textcite[Thm.~3.11]{Hatcher}) und ferner $H^{n^2}(\Un(n)) \neq 0$ gilt ($\Un(n)$ ist Liegruppe, also orientierbar), folgt $c_1 \cdot \ldots \cdot c_{2n-3} \cdot \pi^* \benbrace*{S^{2n-1}} \neq 0$.\marginnote{$1+3+ \ldots + 2n-1 = n^2$}
 	Somit ist 
 	\[
-		H^* \enbrace*{\Un(n)} = \Lambda_R \benbrace*{c_1, \ldots , c_{2n-1}}
+		H^* \enbrace[\big]{\Un(n)} = \Lambda_R \benbrace*{c_1, \ldots , c_{2n-1}}
 	\]
 	als $R$-Algebra mit $c_{2n-1} = \pi^*\benbrace*{S^{2n-1}}$.
 \end{beweis}
 
-\begin{bemerkung*}
+\begin{bemerkung*}[{name=[Kohomologie der speziellen unitären Gruppe]}]
 	Ähnlich zeigt man ($n \ge 2$)
 	\[
-		H^* \enbrace*{\SU(n);R} = \Lambda_R\benbrace*{x_3, x_5, \ldots , x_{2n-1}} \qquad H^* \enbrace*{\Sp(n);R} = \Lambda_R \benbrace*{x_3, x_7, \ldots , x_{4n-1}}
+		H^* \enbrace[\big]{\SU(n);R} = \Lambda_R\benbrace*{x_3, x_5, \ldots , x_{2n-1}} \qquad H^* \enbrace[\big]{\Sp(n);R} = \Lambda_R \benbrace*{x_3, x_7, \ldots , x_{4n-1}}
 	\]
 \end{bemerkung*}
 \begin{beweis}[name={Skizze}]
