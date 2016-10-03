@@ -2108,7 +2108,7 @@ Ist etwa $G$ kompakt, so ist $\mathcal{B}_\mathfrak{g}$ negativ definit!
 	Eine reelle Liealgebra $\mathfrak{g}$ nennt man \Index{kompakt}, falls es eine kompakte Liegruppe $G$ gibt $\Tmap_e G \cong \mathfrak{g}$. 
 \end{definition}
 
-\begin{lemma}[{name=[Existenz schöner Skalarprodukte und biinvarianter Metriken]}]
+\begin{lemma}[{name=[Existenz schöner Skalarprodukte und biinvarianter Metriken]},label=lem:232]
 	Sei $\mathfrak{g}$ eine kompakte Liealgebra.
 	Dann gilt:
 	\begin{enumerate}[1)]
@@ -3045,7 +3045,7 @@ Es gilt:
 	Somit auch $H$, das heißt $\mathd \enbrace*{\Phi_h}_p \colon \Tmap_p S^n \to \Tmap_p S^n$, $\binom{0}{x} \mapsto \binom{0}{Ax}$ mit $A=h \in \SO(n)$.
 \end{beispiel*}
 
-\begin{lemma}[{name=[Bijektion $G$-inv. Metriken und $\rho(H)$-inv. Skalarprodukte]}]
+\begin{lemma}[{name=[Bijektion $G$-inv. Metriken und $\rho(H)$-inv. Skalarprodukte]},label=lem:3111]
 	Sei $(M^n,g)$ ein $G$-homogener Raum, $p \in M^n$ und $H$ die Isotropiegruppe von $p$.
 	Dann existiert eine Bijektion zwischen
 	\begin{itemize}
@@ -3132,7 +3132,7 @@ Wegen $\mathfrak{h} = \ker (\mathd \pi)_e$ kommutiert folgendes Diagramm nach \a
 	\end{tikzcd}
 \]
 
-\begin{korollar}[{name=[Bijektion zw. Metriken auf Quotient und $\Ad(H)$-inv. Skalarprodukten auf Komplement]}]
+\begin{korollar}[{name=[Bijektion zw. Metriken auf Quotient und $\Ad(H)$-inv. Skalarprodukten auf Komplement]},label=kor:3113]
 	Sei $\sfrac{G}{H}$ ein homogener Raum.
 	Dann existiert eine Bijektion zwischen
 	\begin{itemize}
@@ -3270,13 +3270,13 @@ Wegen $\mathfrak{h} = \ker (\mathd \pi)_e$ kommutiert folgendes Diagramm nach \a
 
 \section{Geometrie homogener Räume} % (fold)
 \label{sec:32}
-\todo{RevChap 3.2}
-Riemannsche homogene Räume $(\sfrac{G}{H},g)$, $g$ $G$-invariant, das heißt die Diffeomorphismen $\overline{L}_g \colon \sfrac{G}{H} \to \sfrac{G}{H}$, $\tilde{g} H \mapsto g \tilde{g} H$ sind Isometrien von $(\sfrac{G}{H},g)$.
-Weiter wissen wir schon dass die $g$-invarianten Metriken auf $\sfrac{G}{H}$ in 1 zu 1-Beziehung stehen zu den $\overline{L}_h$-invarianten Skalarprodukten auf $\Tmap_e \sfrac{G}{H}$ für $h \in H = G_{eH}$.
-Diese wiederum stehen auch 1zu1-Beziehung zu den $\Ad(H)$-invarianten Sklarprodukten auf einem $\Ad(H)$-invarianten Komplement $\mathfrak{m}$ von $\mathfrak{h} = \Tmap_eH$ in $\mathfrak{g} = \Tmap_eG$.
+
+Wir haben nun bereits Riemannsche homogene Räume $(\sfrac{G}{H},g)$ kennengelernt mit $g$ $G$-invariant, das heißt die Diffeomorphismen $\overline{L}_g \colon \sfrac{G}{H} \to \sfrac{G}{H}$, $\tilde{g} H \mapsto g \tilde{g} H$ sind Isometrien von $(\sfrac{G}{H},g)$.
+Weiter wissen wir schon dass die $g$-invarianten Metriken auf $\sfrac{G}{H}$ in 1:1-Beziehung stehen zu den $\overline{L}_h$-invarianten Skalarprodukten auf $\Tmap_e \sfrac{G}{H}$ für $h \in H = G_{eH}$ (siehe \autoref{lem:3111}).
+Diese wiederum stehen auch 1:1-Beziehung zu den $\Ad(H)$-invarianten Sklarprodukten auf einem $\Ad(H)$-invarianten Komplement $\mathfrak{m}$ von $\mathfrak{h} = \Tmap_eH$ in $\mathfrak{g} = \Tmap_eG$ nach \autoref{kor:3113}.
 
 Achtung: Zeige Existenz von $\mathfrak{m}$, falls $G$-invariante Metrik $g$ auf $\sfrac{G}{H}$ existiert.
-Dies funktioniert gut, wenn $H$ kompakt ist, ist etwas schwierigen, wenn $H$ nicht kompakt ist (siehe Übungen).
+Dies funktioniert gut, wenn $H$ kompakt ist, ist etwas schwieriger, wenn $H$ nicht kompakt ist (siehe Übungen).
 \[
 	\begin{tikzcd}
 		\mathfrak{m} \rar["\Ad(h)"] \dar["\mathd \pi_e|_\mathfrak{m}","\cong"'] & \enbrace*{\mathfrak{m},\skal*{\cdot}{\cdot}} \dar["\mathd \pi_e|_\mathfrak{m}","\cong"'] \\
@@ -3285,28 +3285,27 @@ Dies funktioniert gut, wenn $H$ kompakt ist, ist etwas schwierigen, wenn $H$ nic
 \]
 Somit ist $\mathd \pi_e|_\mathfrak{m} \colon \enbrace*{\mathfrak{m}, \skal*{\cdot }{\cdot }} \to \enbrace*{\Tmap_{eH} \sfrac{G}{H}, g_{eH}}$ eine Isometrie (Lineare Algebra).
 
-\begin{erinnerung}
-	Sei $(M^n,g)$ eine Riemannsche Mannigfaltigkeit, vollständig.
-	Seien $X,Y,Z \in \mathfrak{X}(M^n)$ glatte Vektorfelder.
-	Die Levi-Civita-Ableitung $\nabla_X Y = \nabla^g_X Y \in \mathfrak{X}(M^n)$ für $X,Y \in \mathfrak{X}(M^n)$ ist durch die Koszul-Formel definiert (Dies kann man sich als Richtungsableitung von $Y$ in Richtung $X$ vorstellen):
+\begin{erinnerung}[{name=[Levi-Civita-Ableitung]}]
+	Sei $(M^n,g)$ eine vollständige Riemannsche Mannigfaltigkeit und $X,Y,Z \in \mathfrak{X}(M^n)$ glatte Vektorfelder.
+	Die \Index{Levi-Civita-Ableitung} $\nabla_X Y = \nabla^g_X Y \in \mathfrak{X}(M^n)$ für $X,Y \in \mathfrak{X}(M^n)$ ist durch die \Index{Koszul-Formel} definiert (Dies kann man sich als Richtungsableitung von $Y$ in Richtung $X$ vorstellen):
 	\[
 		2 \cdot \skal*{\nabla_X Y}{Z} \coloneqq X \skal*{Y}{Z} - Z \skal*{X}{Y} + Y \skal*{Z}{X} + \skal*{\benbrace*{X,Y}}{Z} + \skal*{\benbrace*{Z,X}}{Y} - \skal*{\benbrace*{Y,Z}}{X}
 	\]
-	wobei $X(f)$ für $f \colon M^n \to \mathbb{R}$ $C^\infty$ die Richtungsableitung von $f$ in Richtung $X$ ist, das heißt $X(f) = \mathd f \cdot X$ ($\benbrace*{X,Y} = \D Y \cdot X - \D X \cdot Y$).
+	wobei $X(f)$ für $f \colon M^n \to \mathbb{R}$ glatt die Richtungsableitung von $f$ in Richtung $X$ ist, das heißt $X(f) = \mathd f \cdot X$ ($\benbrace*{X,Y} = \D Y \cdot X - \D X \cdot Y$).
 	Die Levi-Cevita-Ableitung hat folgende Eigenschaften:
 	\begin{itemize}
 		\item $\nabla_{f X} Y = f \cdot \nabla_X Y$ für alle $f \in C^\infty(M^n,\mathbb{R})$ (tensoriell im ersten Argument)
 		\item $\nabla_X(f \cdot Y) = X(f) \cdot Y + f \cdot \nabla_X Y $ für alle $f$ (derivativ im zweiten Argument)
 		\item $\nabla$ ist metrisch:
 		\[
-			X g(Y,Z) = g \enbrace*{\nabla_X Y,Z} + g \enbrace*{Y,\nabla_X Z}
+			X \enbrace*{g(Y,Z)} = g \enbrace*{\nabla_X Y,Z} + g \enbrace*{Y,\nabla_X Z}
 		\]
 		\item $\nabla$ ist torsionsfrei: $\benbrace*{X,Y} = \nabla_X Y - \nabla_Y X$
 	\end{itemize}
 	Fakt: $\nabla=\nabla^g$ ist durch diese vier Eigenschaften eindeutig bestimmt.
 \end{erinnerung}
 
-\begin{beispiel*}
+\begin{beispiel*}[{name=[für Levi-Cevita-Ableitung]}]
 	\begin{itemize}
 		\item Betrachte $(\mathbb{R}^n,g_\mathrm{flach} = \skal*{\cdot}{\cdot}_\mathrm{std})$.
 		Dann ist $\nabla^\mathrm{flach}_X Y = \D Y \cdot X$.
@@ -3315,65 +3314,66 @@ Somit ist $\mathd \pi_e|_\mathfrak{m} \colon \enbrace*{\mathfrak{m}, \skal*{\cdo
 	\end{itemize}
 \end{beispiel*}
 
-\begin{erinnerung}
+\begin{erinnerung}[{name=[Killingvektorfeld]}]
 	Ein Vektorfeld $X^*$ auf einer Riemannschen Mannigfaltigkeit $(M^n,g)$ nennt man \Index{Killingfeld}, falls $\nabla_\bullet X^* \colon \Tmap M^n \to \Tmap M^n$, $Y \mapsto \nabla_Y X^*$ \enquote{schiefsymmetrisch} ist, das heißt
 	\[
 		g \enbrace*{\nabla_Y X^*,Z} = - g \enbrace*{Y,\nabla_Z X^*}
 	\]
-	für alle $Y,Z$
+	für alle $Y,Z$.
 	\[
 		0 = g \enbrace*{\nabla_{Z_1 + Z_2}X^*,Z_1 + Z_2} = g \enbrace*{\nabla_{Z_1} X^*,Z_2} + g \enbrace*{\nabla_{Z_2} X^*, Z_1} = g \enbrace*{Z_2, (\nabla X^*)^\perp (Z_1)}
 	\]
 	Dies ist äquivalent dazu, dass der Fluss $\set*{\Phi_t^*}_{t \in \mathbb{R}}$ von $X^*$ aus einer Einparameter-Gruppe von Isometrien von $(M^n,g)$ besteht.
 \end{erinnerung}
 
-\begin{beispiel*}
+\begin{beispiel*}[{name=[Killingvektorfelder]}]
 	\begin{itemize}
-		\item \missingfigure{Isometrie des $\mathbb{R}^3$, Drehung um $x$-Achse angewandt auf $S^2 \subset \mathbb{R}^3$, genau auch $y$- oder $z$-Achse}
-		\item $\enbrace*{\sfrac{G}{H},g}$ $G$-homogener Raum. $X \in \mathfrak{g}$, $X^*(g H) \coloneqq \diff{}{t}|_{t=0} \overline{L}_{\exp(tX)} \cdot gH$.
-		
+		\item Man betrachte $S^2 \subset \mathbb{R}^3$.
+		Dann sind beispielsweise die Vektorfelder, die einen Drehung um die $x$-, $y$- oder $z$-Achse erzeugen, Killingvektorfelder.
+		% \missingfigure{Isometrie des $\mathbb{R}^3$, Drehung um $x$-Achse angewandt auf $S^2 \subset \mathbb{R}^3$, genau auch $y$- oder $z$-Achse}
+		\item Sei $\enbrace*{\sfrac{G}{H},g}$ $G$-homogener Raum und $X \in \mathfrak{g}$. 
+		Definiere damit $X^*(g H) \coloneqq \diffd{}{t}\big|_{t=0} \overline{L}_{\exp(tX)} \cdot gH$.
 		Dies ist ein Killingfeld auf $(\sfrac{G}{H},g)$.
 		Es gilt 
 		\[
-			X^*(gH) = \diff{}{t}|_{t=0} \Underbracket{\overline{L}_{\exp(tX)} \cdot gH}{= \exp(t X) \cdot g \cdot H = \pi \enbrace*{\exp(tX) \cdot g}} = (\mathd \pi)_g \cdot \Underbracket{\diff{}{t}|_{t=0} \exp(tX) \cdot g }{= X^R(g)}
+			X^*(gH) = \diffd{}{t}\Big|_{t=0} \Underbracket{\overline{L}_{\exp(tX)} \cdot gH}{= \exp(t X) \cdot g \cdot H = \pi \enbrace*{\exp(tX) \cdot g}} = (\mathd \pi)_g \cdot \Underbracket{\diffd{}{t}|_{t=0} \exp(tX) \cdot g }{= X^R(g)}
 		\]
 		mit $X^R(g) = (\mathd R_g)_e \cdot X$ rechtsinvariant.
 	\end{itemize}
 \end{beispiel*}
 
-Betrachte nun wieder die Isometrie $(\mathd \pi_e)|_\mathfrak{m} \colon (\mathfrak{m},\skal*{\cdot }{\cdot }) \to \enbrace*{\Tmap_{eH} \sfrac{G}{H},g_{eH}}$  und eine Basis $Z_1, \ldots ,Z_n$ von $\mathfrak{m}$.
+Betrachte nun wieder die Isometrie $(\mathd \pi_e)|_\mathfrak{m} \colon (\mathfrak{m},\skal*{\cdot }{\cdot }) \to \enbrace*{\Tmap_{eH} \sfrac{G}{H},g_{eH}}$ und eine beliebige Basis $Z_1, \ldots ,Z_n$ von $\mathfrak{m}$.
 Dann erhalten wir eine Basis $Z_1^*, \ldots , Z_n^*$ für $\Tmap_{gH} \sfrac{G}{H}$ für $gH \in U$ Umgebung von $eH$.
 Es folgt, dass man in jedem Punkt $g H$ eine Basis  von $\Tmap_{gH} \sfrac{G}{H}$ existiert, die aus Killingvektorfeldern besteht.
 
-\begin{lemma}[label=lem:321]
-	Sei $\enbrace*{\sfrac{G}{H},g}$ eine homogener Raum und seien $X^*,Y^*$ Killingvektorfelder.
+\begin{lemma}[label=lem:321,{name=[Eigenschaft von Killingfeldern]}]
+	Sei $\enbrace*{\sfrac{G}{H},g}$ ein homogener Raum und seien $X^*,Y^*$ Killingvektorfelder.
 	Dann gilt
 	\begin{enumerate}[1)]
 		\item $X^* \skal*{Y}{Z} = \skal*{\benbrace*{X^*,Y}}{Z} + \skal*{Y}{\benbrace*{X^*,Z}}$
-		\item $2 \skal*{\nabla_{X^*} Y^*}{Z^*} = \skal*{\benbrace*{X^*,Y^*}}{Z^*} - \skal*{\benbrace*{Z^*,X^*}}{Y^*} + \skal*{\benbrace*{X^*,Z^*}}{X^*}$
+		\item $2 \skal*{\nabla_{X^*} Y^*}{Z^*} = \skal*{\benbrace*{X^*,Y^*}}{Z^*} - \skal*{\benbrace*{Z^*,X^*}}{Y^*} + \skal*{\benbrace*{Y^*,Z^*}}{X^*}$
 	\end{enumerate}
 \end{lemma}
 \begin{beweis}
-	\begin{enumerate}[(i)]
-		\item Es gilt
-		\begin{align}
-			X^* \skal*{Y}{Z} \StackText{metr.}{= }\skal*{\nabla_{X^*}Y}{Z} + \skal*{Y}{\nabla_{X^*} Z} &= \skal*{\nabla_Y X^* + \benbrace*{X^*,Y}}{Z } + \skal*{Y}{\nabla_Z X^* + \benbrace*{X^*,Z}} \\
-			\StackText{$(\nabla X^*)^T = - \nabla X^*$}{=} \skal*{\benbrace*{X^*,Y}}{Z} + \skal*{\benbrace*{X^*,Z}}{Y}
-		\end{align}
-		\item Es gilt
-		\begin{align}
-			2 \skal*{\nabla_{X^*} Y^*}{Z^*} &= X^* \skal*{X^*}{Z^*} - z^* \skal*{X^*}{Y^*} + Y^* \skal*{X^*}{Z^*} + \skal*{\benbrace*{X^*,Y^*}}{Z^*} + \skal*{\benbrace*{Z^*,X^*}}{Y^*} - \skal*{\benbrace*{Y^*,Z^*}}{X^*} \\
-			&\StackText{1)}{=} \skal*{\benbrace*{X^*,Y^*}}{Z^*} + \skal*{Y^*}{\benbrace*{X^*,Z^*}} + \skal*{\benbrace*{X^*,Y^*}}{Z^*} \\
-			& - \skal*{\benbrace*{Z^*,X^*}}{Y^*} - \skal*{X^*}{\benbrace*{Z^*,Y^*}} + \skal*{\benbrace*{Z^*,X^*}}{Y^*} \\
-			& + \skal*{\benbrace*{Y^*,X^*}}{Z^*} + \skal*{X^*}{\benbrace*{Y^*,Z^*}} - \skal*{\benbrace*{Y^*,Z^*}}{X^*} \\
-			&= \skal*{\benbrace*{X^*,X^*}}{Z^*} - \skal*{\benbrace*{Z^*,X^*}}{Y^*} + \skal*{\benbrace*{Y^*,Z^*}}{X^*} \qedhere
-		\end{align}
-	\end{enumerate}
+	Beide Formeln lassen sich einfach nachrechnen:
+	\begin{align}
+		X^* \skal*{Y}{Z} \StackText{metr.}{= }\skal*{\nabla_{X^*}Y}{Z} + \skal*{Y}{\nabla_{X^*} Z} &= \skal[\big]{\nabla_Y X^* + \benbrace*{X^*,Y}}{Z } + \skal[\big]{Y}{\nabla_Z X^* + \benbrace*{X^*,Z}} \\
+		&\stackrel[\mathclap{= - \nabla X^*}]{\mathclap{(\nabla X^*)^T}}{=}\hspace{1em} \skal[\big]{\benbrace*{X^*,Y}}{Z} + \skal[\big]{\benbrace*{X^*,Z}}{Y}
+	\end{align}
+	Die zweite Gleichung ergibt sich aus der Koszul-Formel und Formel 1)
+	\begin{align}
+		2 \skal*{\nabla_{X^*} Y^*}{Z^*} &= X^* \skal*{Y^*}{Z^*} - Z^* \skal*{X^*}{Y^*} + Y^* \skal*{X^*}{Z^*} \\
+		&\hphantom{=} + \skal[\big]{\benbrace*{X^*,Y^*}}{Z^*} + \skal[\big]{\benbrace*{Z^*,X^*}}{Y^*} - \skal[\big]{\benbrace*{Y^*,Z^*}}{X^*} \\
+		&\StackText{1)}{=} \skal[\big]{\benbrace*{X^*,Y^*}}{Z^*} + \skal[\big]{Y^*}{\benbrace*{X^*,Z^*}} + \skal[\big]{\benbrace*{X^*,Y^*}}{Z^*} \\
+		&\hphantom{=} - \skal[\big]{\benbrace*{Z^*,X^*}}{Y^*} - \skal[\big]{X^*}{\benbrace*{Z^*,Y^*}} + \skal[\big]{\benbrace*{Z^*,X^*}}{Y^*} \\
+		&\hphantom{=} + \skal[\big]{\benbrace*{Y^*,X^*}}{Z^*} + \skal[\big]{X^*}{\benbrace*{Y^*,Z^*}} - \skal[\big]{\benbrace*{Y^*,Z^*}}{X^*} \\
+		&= \skal[\big]{\benbrace*{X^*,Y^*}}{Z^*} - \skal[\big]{\benbrace*{Z^*,X^*}}{Y^*} + \skal[\big]{\benbrace*{Y^*,Z^*}}{X^*} \qedhere
+	\end{align}
 \end{beweis}
 
-\begin{lemma}
+\begin{lemma}[{name=[Verwandtschaft von Killingvektorfeldern]}]
 	Sei $\enbrace*{\sfrac{G}{H},g}$ ein homogener Raum und \enquote{${}^{-1}$} $\colon G\to G$ die Inversion.
-	Dann gilt für $X \in \mathfrak{g}$ 
+	Dann gilt für einen Tangentialvektor $X \in \mathfrak{g}$ 
 	\begin{enumerate}[1)]
 		\item $X^R$ ist \enquote{${}^{-1}$}-verwandt zu $-X^L$
 		\item $X^R$ ist $\pi$-verwandt zu $X^*$
@@ -3381,42 +3381,43 @@ Es folgt, dass man in jedem Punkt $g H$ eine Basis  von $\Tmap_{gH} \sfrac{G}{H}
 	\end{enumerate}
 \end{lemma}
 \begin{beweis}
-	Übung bis auf 2).
-	
-	$\pi \colon G \to \sfrac{G}{H}$, $g \mapsto gH$. $\pi$-verwandt heißt per Definition $X^*(\pi(g)) = (\mathd \pi)_g \cdot X^R(g)$ (schon bewiesen).
+	Wir zeigen hier nur 2).\todo{War dies Übungsaufgabe?}
+	Betrachte $\pi \colon G \to \sfrac{G}{H}$, $g \mapsto gH$. 
+	$\pi$-verwandt heißt per Definition $X^*(\pi(g)) = (\mathd \pi)_g \cdot X^R(g)$. 
+	Dies haben wir weiter oben schon bewiesen.
 \end{beweis}
 
-\begin{korollar}
+\begin{korollar}[{name=[Killingfelder und die Levi-Cevita-Ableitung]}]
 	Sei $\enbrace*{\sfrac{G}{H},g}$ ein homogener Raum und $\mathfrak{g} = \mathfrak{h} \oplus \mathfrak{m}$ eine $\Ad(H)$-invariante Zerlegung von $\mathfrak{g}$.
-	Ferner sei $(\mathd \pi_e)|_{\mathfrak{m}}$ eine Isometrie.
+	Ferner sei $(\mathd \pi)_e|_{\mathfrak{m}}$ eine Isometrie.
 	Dann gilt
 	\begin{enumerate}[1)]
-		\item $\skal*{\nabla_{X^*} Y^*}{Z^*}_{eH} = \skal*{- \sfrac{1}{2} \benbrace*{X,Y}_{\mathfrak{m}} + u(X,Y)}{Z}$
-		\item $\skal*{\nabla_{X^*} Y^*}{\nabla_{X^*} Y^*}_{eH} = \norm*{- \sfrac{1}{2} \benbrace*{X,Y}_\mathfrak{m} + u(X,Y)}^2$
-		\item $\skal*{\nabla_{X^*} X^*}{\nabla_{Y^*} Y^*}_{eH} = \skal*{u(X,X)}{u(Y,Y)} $
+		\item $\skal*{\nabla_{X^*} Y^*}{Z^*}_{eH} = \skal[\big]{- \sfrac{1}{2} \cdot \benbrace*{X,Y}_{\mathfrak{m}} + u(X,Y)}{Z}$
+		\item $\skal*{\nabla_{X^*} Y^*}{\nabla_{X^*} Y^*}_{eH} = \norm[\big]{- \sfrac{1}{2} \cdot \benbrace*{X,Y}_\mathfrak{m} + u(X,Y)}^2$
+		\item $\skal*{\nabla_{X^*} X^*}{\nabla_{Y^*} Y^*}_{eH} = \skal[\big]{u(X,X)}{u(Y,Y)} $
 	\end{enumerate}
-	wobei $2\skal*{u(X,Y)}{Z} = \skal*{\benbrace*{Z,X}_\mathfrak{m}}{Y} + \skal*{\benbrace*{Z,Y}_\mathfrak{m}}{X}$ für alle $X,Y,Z \in \mathfrak{m}$.
+	wobei $2 \cdot \skal*{u(X,Y)}{Z} = \skal*{\benbrace*{Z,X}_\mathfrak{m}}{Y} + \skal*{\benbrace*{Z,Y}_\mathfrak{m}}{X}$ für alle $X,Y,Z \in \mathfrak{m}$.
 \end{korollar}
 \begin{beweis}
-	\begin{enumerate}[(i)]
+	\begin{enumerate}[1)]
 		\item Es gilt
 		\begin{align}
-			2 \skal*{\nabla_{X^* Y^*}}{Z^*}_{eH} &\StackText{\ref{lem:321}}{=} \skal*{\benbrace*{X^*,Y^*}}{Z^*} - \skal*{\benbrace*{Z^*,X^*}}{Y^*} + \skal*{\benbrace*{Y^*,Z^*}}{X^*} \\
-			&= - \skal*{\benbrace*{X,Y}^* }{Z^*}_{eH} + \skal*{\benbrace*{Z,X}^*}{Y^*}_{eH} - \skal*{\benbrace*{Y,Z}^*}{X^*}_{eH} \\
-			&= - \skal*{\benbrace*{X,Y}_\mathfrak{m}}{Z} + \skal*{\benbrace*{Z,X}_\mathfrak{m}}{Y} + \skal*{\benbrace*{Z,Y}_\mathfrak{m}}{X} \\
-			&= - \skal*{\benbrace*{X,Y}_\mathfrak{m}}{Z} + 2 \skal*{u(X,Y)}{Z}
+			2 \cdot \skal*{\nabla_{X^*} Y^*}{Z^*}_{eH} &\StackTextClap{\ref{lem:321}}{=} \skal[\big]{\benbrace*{X^*,Y^*}}{Z^*} - \skal[\big]{\benbrace*{Z^*,X^*}}{Y^*} + \skal[\big]{\benbrace*{Y^*,Z^*}}{X^*} \\
+			&= - \skal[\big]{\benbrace*{X,Y}^* }{Z^*}_{eH} + \skal[\big]{\benbrace*{Z,X}^*}{Y^*}_{eH} - \skal[\big]{\benbrace*{Y,Z}^*}{X^*}_{eH} \\
+			&= - \skal[\big]{\benbrace*{X,Y}_\mathfrak{m}}{Z} + \skal[\big]{\benbrace*{Z,X}_\mathfrak{m}}{Y} + \skal[\big]{\benbrace*{Z,Y}_\mathfrak{m}}{X} \\
+			&= - \skal[\big]{\benbrace*{X,Y}_\mathfrak{m}}{Z} + 2 \cdot \skal[\big]{u(X,Y)}{Z}
 		\end{align}
-		\item Klar
+		\item Klar mit 1).
 		\item Sei $(Z_1,\ldots Z_n)$ ONB von $(\mathfrak{m},\skal*{\cdot }{\cdot })$.
-		Dann ist $(Z_1^*(eH), \ldots , Z_n^*(eH))$ eine ONB von $\enbrace*{\Tmap_{eH}\sfrac{G}{H},g_{eH}}$ und somit gilt
+		Dann ist $\enbrace[\big]{Z_1^*(eH), \ldots , Z_n^*(eH)}$ wiederum eine ONB von $\enbrace*{\Tmap_{eH}\sfrac{G}{H},g_{eH}}$ und somit gilt
 		\begin{align}
-			\skal*{\nabla_{X^*}X^*}{\nabla_{Y^*} Y^*}_{eH} &= \sum_{i=1}^{n} \skal*{\nabla_{X^*} X^*}{Z^*}_{eH} \cdot \skal*{\nabla_{Y^*} Y^*}{Z_i^*}_{eH} \\
-			&= \sum_{i=1}^{n} \skal*{u(X,X)}{Z_i} \skal*{u(Y,Y)}{Z_i} = \skal*{u(X,X)}{u(Y,Y)} \qedhere
+			\skal[\big]{\nabla_{X^*}X^*}{\nabla_{Y^*} Y^*}_{eH} &= \sum_{i=1}^{n} \skal[\big]{\nabla_{X^*} X^*}{Z_i^*}_{eH} \cdot \skal[\big]{\nabla_{Y^*} Y^*}{Z_i^*}_{eH} \\
+			&\StackText{1)}{=} \sum_{i=1}^{n} \skal[\big]{u(X,X)}{Z_i} \skal[\big]{u(Y,Y)}{Z_i} = \skal[\big]{u(X,X)}{u(Y,Y)} \qedhere
 		\end{align}
 	\end{enumerate}
 \end{beweis}
 
-\begin{erinnerung}
+\begin{erinnerung}[{name=[Krümmungstensor]}]
 	Sei $(M^n,g)$ eine Riemannsche Mannigfaltigkeit.
 	Der \Index{Krümmungstensor} $R=R^g$ ist definiert durch
 	\[
@@ -3427,102 +3428,106 @@ Es folgt, dass man in jedem Punkt $g H$ eine Basis  von $\Tmap_{gH} \sfrac{G}{H}
 	\[
 		(R_{XY}Z)(p) \stackrel{!}{=} \enbrace*{R_{\tilde{X} \tilde{Y}} \tilde{Z}}(p)
 	\]
-	Sehr überraschend: $(\nabla_X Y)(p)$ hängt sicher \emph{nicht} nur von $Y(p)$ ab.
+	Dies ist sehr überraschend, denn $(\nabla_X Y)(p)$ hängt sicher \emph{nicht} nur von $Y(p)$ ab.
+	Man setzt $R_{XYZW} \coloneqq \skal*{R_{XY} Z}{W} \in \mathbb{R}$. Es gilt
+	\[
+		R_{XYZW} = - R_{YXZW} = -R_{XYWZ} = R_{ZWXY}
+	\]
 \end{erinnerung}
 
-Man setzt $R_{XYZW} \coloneqq \skal*{R_{XY} Z}{W} \in \mathbb{R}$. Es gilt
-\[
-	R_{XYZW} = - R_{YXZW} = -R_{XYWZ} = R_{ZWXY}
-\]
-
-\begin{satz}[label=satz:324]
+\begin{satz}[label=satz:324,{name=[Formel für Krümmungstensor]}]
 	Sei $\enbrace*{\sfrac{G}{H},g}$ ein homogener Raum und $\mathfrak{g} = \mathfrak{h} \oplus \mathfrak{m}$ eine $\Ad(H)$-invariante Zerlegung von $\mathfrak{g}$.
 	Dann gilt für $X,Y \in \mathfrak{m}$ die folgende Identität:
-	\[
-		\enbrace*{R_{X^*Y^*Y^*X^*}}(eH) = -\frac{3}{4} \norm*{\benbrace*{X,Y}_{\mathfrak{m}}}^2 - \frac{1}{2} \skal*{\benbrace*{X, \benbrace*{X,Y}}_{\mathfrak{m}}}{Y} - \frac{1}{2} \skal*{\benbrace*{Y, \benbrace*{Y,X}}_{\mathfrak{m}}}{X} + \norm*{u(X,Y)}^2 - \skal*{u(X,X)}{u(Y,Y)}
-	\]
+	\begin{align}
+		&\enbrace*{R_{X^*Y^*Y^*X^*}}(eH) \\
+		&\hspace{3em} = -\frac{3}{4} \norm[\big]{\benbrace*{X,Y}_{\mathfrak{m}}}^2 - \frac{1}{2} \skal*{\benbrace[\big]{X, \benbrace*{X,Y}}_{\mathfrak{m}}}{Y} - \frac{1}{2} \skal*{\benbrace[\big]{Y, \benbrace*{Y,X}}_{\mathfrak{m}}}{X} + \norm[\big]{u(X,Y)}^2 - \skal[\big]{u(X,X)}{u(Y,Y)}
+	\end{align}
 	wobei $g_{eH}$ auf $\Tmap_{eH} \sfrac{G}{H}$ mit $\skal*{\cdot}{\cdot }$ auf $\mathfrak{m}$ identifiziert wird.
 \end{satz}
 \begin{beweis}
-	Es gilt
+	Es gilt\todo{Rechnung detailliert durchgehen \ldots}
 	\begin{align}
-		R_{X^*Y^*Y^*X^*} = - R_{X^*Y^*X^*Y^*} &= - \skal*{\nabla_{X^*} \nabla_{Y^*} X^* - \nabla_{Y^*} \nabla_{X^*} X^* - \nabla_{\benbrace*{X^*,Y^*}}X^*}{Y^*} \\
+		R_{X^*Y^*Y^*X^*} &= - R_{X^*Y^*X^*Y^*} \\
+		&= - \skal*{\nabla_{X^*} \nabla_{Y^*} X^* - \nabla_{Y^*} \nabla_{X^*} X^* - \nabla_{\benbrace*{X^*,Y^*}}X^*}{Y^*} \\
 		&= - X^* \skal*{\nabla_{Y^*} X^*}{Y^*} + \skal*{\nabla_{Y^*} X^*}{\nabla_{X^*} Y^*} + Y^* \skal*{\nabla_{X^*} X^*}{Y^*} \\
-		& - \skal*{\nabla_{X^*} X^*}{\nabla_{Y^*} Y^*} - \skal*{\benbrace*{X^*,Y^*}}{\nabla_{Y^*} X^*} \\
-		&= - X^* \enbrace*{\skal*{\benbrace*{Y^*,X^*}}{Y^*} - 0+ \skal*{\benbrace*{X^*,Y^*}}{Y^*}} \cdot \frac{1}{2} + Y^* \enbrace*{0- \skal*{\benbrace*{Y^*,X^*}}{X^*} + \skal*{\benbrace*{X^*,Y^*}}{X^*}}  \cdot \frac{1}{2} \\
-		& -\skal*{\nabla_{X^*} X^*}{\nabla_{Y^*} Y^*} + \norm*{\nabla_{Y^*} X^*}^2 \\
+		&\hphantom{=}\,\, - \skal*{\nabla_{X^*} X^*}{\nabla_{Y^*} Y^*} - \skal*{\benbrace*{X^*,Y^*}}{\nabla_{Y^*} X^*} \\
+		&= - X^* \enbrace[\big]{\skal*{\benbrace*{Y^*,X^*}}{Y^*} - 0+ \skal*{\benbrace*{X^*,Y^*}}{Y^*}} \cdot \frac{1}{2}\\
+		&\hspace{1.3em} {+} Y^* \enbrace[\big]{0- \skal*{\benbrace*{Y^*,X^*}}{X^*} + \skal*{\benbrace*{X^*,Y^*}}{X^*}}  \cdot \frac{1}{2} -\skal*{\nabla_{X^*} X^*}{\nabla_{Y^*} Y^*} + \norm*{\nabla_{Y^*} X^*}^2 \\
 		&= \norm*{\nabla_{Y^*} X^*}^2 + Y^* \skal*{ \benbrace*{X^*,Y^*}}{X^*} - \skal*{\nabla_{X^*} Y^*}{\nabla_{Y^*} Y^*} \\
-		&= \frac{1}{4} \norm*{\benbrace*{X,Y}_{\mathfrak{m}}}^2 - \skal*{\benbrace*{Y,X}_{\mathfrak{m}}}{u(x,y)} + \norm*{u(X,Y)}^2 \\
-		& + \skal*{\benbrace*{Y^*, \benbrace*{X^*,Y^*}}}{X^*} + \Underbracket{\skal*{\benbrace*{X^*,Y^*}}{\benbrace*{Y^*,X^*}}}{=\norm*{\benbrace*{X,Y}_\mathfrak{m}}^2} - \skal*{u(X,X)}{u(Y,Y)} \\
-		&= - \frac{3}{4} \norm*{\benbrace*{X,Y}_\mathfrak{m}}^2  + \norm*{u(X,Y)}^2 - \skal*{u(X,X)}{u(Y,Y)} - \skal*{\benbrace*{Y,X}_\mathfrak{m}}{u(X,Y)} + \Underbracket{\skal*{\benbrace*{Y^*, \benbrace*{X^*,Y^*}}}{X^*}}{= \skal*{\benbrace*{Y, \benbrace*{X,Y}}_\mathfrak{m}}{X}} 
+		&= \frac{1}{4} \norm[\big]{\benbrace*{X,Y}_{\mathfrak{m}}}^2 - \skal*{\benbrace*{Y,X}_{\mathfrak{m}}}{u(x,y)} + \norm*{u(X,Y)}^2 \\
+		&\hspace{1em} + \skal*{\benbrace*{Y^*, \benbrace*{X^*,Y^*}}}{X^*} + \Underbracket{\skal*{\benbrace*{X^*,Y^*}}{\benbrace*{Y^*,X^*}}}{=\norm*{\benbrace*{X,Y}_\mathfrak{m}}^2} - \skal*{u(X,X)}{u(Y,Y)} \\
+		&= - \frac{3}{4} \norm[\big]{\benbrace*{X,Y}_\mathfrak{m}}^2  + \norm[\big]{u(X,Y)}^2 - \skal*{u(X,X)}{u(Y,Y)} - \skal*{\benbrace*{Y,X}_\mathfrak{m}}{u(X,Y)} \\
+		&\hspace{1em} + \Underbracket{\skal*{\benbrace*{Y^*, \benbrace*{X^*,Y^*}}}{X^*}}{= \skal*{\benbrace*{Y, \benbrace*{X,Y}}_\mathfrak{m}}{X}} 
 	\end{align}
 	Ferner gilt
 	\begin{align}
-		\skal*{\benbrace*{X,Y}_\mathfrak{m}}{u(X,Y)} &= \enbrace*{\skal*{\benbrace*{\benbrace*{X,Y}_\mathfrak{m},X}}{Y} + \skal*{\benbrace*{\benbrace*{X,Y}_\mathfrak{m},Y}}{X}} \cdot \frac{1}{2}  \\
-		&= \frac{1}{2} \enbrace*{\skal*{\benbrace*{\benbrace*{X,Y},X}}{Y} - \skal*{\benbrace*{\benbrace*{X,Y}_\mathfrak{h},X}}{Y} + \skal*{\benbrace*{\benbrace*{X,Y},Y}}{X} + \skal*{\benbrace*{\benbrace*{X,Y}_\mathfrak{h},X}}{Y}}   \\
-		&= \frac{1}{2} \enbrace*{\skal*{\benbrace*{\benbrace*{X,Y},X}_\mathfrak{m}}{Y} + \skal*{\benbrace*{\benbrace*{X,Y},Y}_\mathfrak{m}}{X}} \\
-		&= -\frac{1}{2}  \skal*{\benbrace*{X,\benbrace*{X,Y}_\mathfrak{m}}}{Y} + \frac{1}{2} \skal*{\benbrace*{Y,\benbrace*{Y,X}}_\mathfrak{m}}{X} 
+		\skal[\big]{\benbrace*{X,Y}_\mathfrak{m}}{u(X,Y)} &= \enbrace[\Big]{\skal*{\benbrace[\big]{\benbrace*{X,Y}_\mathfrak{m},X}}{Y} + \skal*{\benbrace*{\benbrace*{X,Y}_\mathfrak{m},Y}}{X}} \cdot \frac{1}{2}  \\
+		&= \frac{1}{2} \enbrace[\Big]{\skal*{\benbrace[\big]{\benbrace*{X,Y},X}}{Y} - \skal*{\benbrace[\big]{\benbrace*{X,Y}_\mathfrak{h},X}}{Y} + \skal*{\benbrace[\big]{\benbrace*{X,Y},Y}}{X} + \skal*{\benbrace[\big]{\benbrace*{X,Y}_\mathfrak{h},X}}{Y}}   \\
+		&= \frac{1}{2} \enbrace[\Big]{\skal*{\benbrace[\big]{\benbrace*{X,Y},X}_\mathfrak{m}}{Y} + \skal*{\benbrace[\big]{\benbrace*{X,Y},Y}_\mathfrak{m}}{X}} \\
+		&= -\frac{1}{2}  \skal*{\benbrace[\big]{X,\benbrace*{X,Y}_\mathfrak{m}}}{Y} + \frac{1}{2} \skal*{\benbrace[\big]{Y,\benbrace*{Y,X}}_\mathfrak{m}}{X} 
 	\end{align}
 	Die Behauptung folgt.
 \end{beweis}
 
-\begin{korollar}
+\begin{korollar}[{name=[Krümmungstensor einer kompakten Liegruppe]}]
 	Sei $G$ eine kompakte Liegruppe, versehen mit einer biinvarianten Metrik $g_{e_i}$.
 	Dann gilt
 	\[
-		R_{XYYX} = \frac{1}{4} \norm*{\benbrace*{X,Y}}^2 
+		R_{XYYX} = \frac{1}{4} \norm[\big]{\benbrace*{X,Y}}^2 
 	\]
 \end{korollar}
 \begin{beweis}
-	Da $G$ kompakt ist, besitzt $\mathfrak{g} = \Tmap_e G$ eine $\Ad(G)$-invariantes Skalarprodukt $\skal*{\cdot }{\cdot }$.
-	Wir bezeichnen mit $g_{b_i}$ die entsprechende linksinvariante Riemannsche Metrik auf $G$ ($L_g,R_g$ beides(!) Isometrien).
-	Da $\skal*{\cdot}{\cdot }$ $\Ad(G)$-invariant ist, ist $\ad(X) \colon \mathfrak{g} \to \mathfrak{g}$ schiefsymmetrisch bezüglich $\skal*{\cdot}{\cdot}$.
+	Da $G$ kompakt ist, besitzt $\mathfrak{g} = \Tmap_e G$ eine $\Ad(G)$-invariantes Skalarprodukt $\skal*{\cdot }{\cdot }$ nach \autoref{lem:232}.
+	Wir bezeichnen mit $g_{b_i}$ die entsprechende linksinvariante Riemannsche Metrik auf $G$.
+	Dann sind $L_g,R_g$ beides(!) Isometrien.
+	Da $\skal*{\cdot}{\cdot }$ $\Ad(G)$-invariant ist, ist $\ad_X \colon \mathfrak{g} \to \mathfrak{g}$ schiefsymmetrisch bezüglich $\skal*{\cdot}{\cdot}$.
 	Es folgt 
 	\[
-		2\skal*{u(X,Y)}{Z} = \skal*{ \benbrace*{Z,X}}{Y} + \skal*{\benbrace*{Z,Y}}{X} = \skal*{X}{\benbrace*{Z,Y}} + \skal*{\benbrace*{Z,Y}}{X} =0
+		2 \cdot \skal[\big]{u(X,Y)}{Z} = \skal*{ \benbrace*{Z,X}}{Y} + \skal*{\benbrace*{Z,Y}}{X} = -\skal*{X}{\benbrace*{Z,Y}} + \skal*{\benbrace*{Z,Y}}{X} =0
 	\]
 	Ferner gilt 
 	\[
-		\skal*{\benbrace*{X,\benbrace*{X,Y}}}{Y} = - \skal*{\benbrace*{X,Y}}{\benbrace*{X,Y}} = - \norm*{\benbrace*{X,Y}}^2
+		\skal*{\benbrace[\big]{X,\benbrace*{X,Y}}}{Y} = - \skal[\big]{\benbrace*{X,Y}}{\benbrace*{X,Y}} = - \norm[\big]{\benbrace*{X,Y}}^2
 	\]
-	Die Behauptung folgt.
+	Die Behauptung folgt mit der Formel aus \autoref{satz:324}.
 \end{beweis}
 
-\begin{erinnerung}
+\begin{erinnerung}[{name=[Schnittkrümmung und Ricci-Krümmung]}]
 	$(M^n,g)$ Riemannsche Mannigfaltigkeit, $p \in M^n$, $X_p,Y_p \in \Tmap_p M^n$ mit $\norm*{X_p} = \norm*{Y_p} = 1$ sowie $X_p \perp Y_p$.
-	Dann nennt man $K(\Sigma_\alpha) \coloneqq R_{XYYX}$ die \Index{Schnittkrümmung der Ebene $\Sigma_\alpha$}, welche von $X,Y$ aufgespannt wird (ist wohldefiniert!).
-	Mittelung über die Schnittkrümmung gibt die Ricci-Krümmung
+	Dann nennt man $K(\Sigma_\alpha) \coloneqq R_{XYYX}$ die \Index{Schnittkrümmung der Ebene $\Sigma_\alpha$}, welche von $X,Y$ aufgespannt wird (dies ist wohldefiniert!).
+	Mittelung über die Schnittkrümmung gibt die \Index{Ricci-Krümmung}
 	\[
-		\operatorname{ric}_p(X,Y) \coloneqq \sum_{i=1}^{n} R_{Xe_i e_i Y}
+		\ric_p(X,Y) \coloneqq \sum_{i=1}^{n} R_{Xe_i e_i Y}
 	\]
-	wobei $(X_1, \ldots ,X_n)$ eine ONB von $\enbrace*{\Tmap_p M^n,g_p}$ ist
+	wobei $(e_1, \ldots ,e_n)$ eine ONB von $\enbrace*{\Tmap_p M^n,g_p}$ ist.
+	Dann gilt\todo{das ergibt hier noch keinen Sinn \ldots}
 	\[
-		\operatorname{ric}(e_1,e_2) = 0 + R_{1221} + R_{1331} + \ldots + R_{1nn1} = 0 + K(1,2) + K(1,3) + \ldots + K(1,n)
+		\ric_p(e_1,e_2) = 0 + R_{1221} + R_{1331} + \ldots + R_{1nn1} = 0 + K(1,2) + K(1,3) + \ldots + K(1,n)
 	\]
-	Analog wie die Riemannsche Metrik $g$ selbst ist $\operatorname{ric}(g)$ ebenfalls eine symmetrische Bilinearform auf $\Tmap M^n$.
+	Analog wie die Riemannsche Metrik $g$ selbst ist $\ric_g$ ebenfalls eine symmetrische Bilinearform auf $\Tmap M^n$.
 \end{erinnerung}
 
 \begin{lemma}
-	Sei $\enbrace*{\sfrac{G}{H},g}$ eine Riemannscher homogener Raum mit $\Ad(H)$-invarianter Zerlegung $\mathfrak{g} = \mathfrak{h} \oplus \mathfrak{m}$.
+	Sei $\enbrace*{\sfrac{G}{H},g}$ ein Riemannscher homogener Raum mit $\Ad(H)$-invarianter Zerlegung $\mathfrak{g} = \mathfrak{h} \oplus \mathfrak{m}$ der Liealgebra.
 	Sei $(X_1,\ldots X_n)$ eine ONB von $\enbrace*{\mathfrak{m},\skal*{\cdot }{\cdot}}$ und $Z \coloneqq \sum_{i=1}^{n} u(X_i,X_i)$.
 	Dann gilt für alle $X \in \mathfrak{m}$:
 	\[
-		\operatorname{Spur} (\ad(X)) = \skal*{Z}{X}
+		\operatorname{Spur} (\ad_X) = \skal*{Z}{X}
 	\]
 	Insbesondere ist $Z$ wohldefiniert.
 \end{lemma}
 \begin{beweis}
-	Es gilt $\benbrace*{\mathfrak{h},\mathfrak{m}} \subset \mathfrak{m}$, da $\mathfrak{m}$ $\Ad(H)$-invariant ist und $\ad(.) = \D \Ad|_e$ ist (Übung).
-	Somit gilt für $X \in \mathfrak{m}$
+	Es gilt $\benbrace*{\mathfrak{h},\mathfrak{m}} \subset \mathfrak{m}$, da $\mathfrak{m}$ $\Ad(H)$-invariant ist und $\ad = (\mathd \Ad)_e$ ist.
+	Somit gilt für $X \in \mathfrak{m}$\todo{RevChap 3.2}
 	\[
-		\ad(X) = \begin{pmatrix}
+		\ad_X = \begin{pmatrix}
 			0 & A \\ B & C
 		\end{pmatrix}
 	\]
 	und $\operatorname{Spur} (\ad(X)) = \operatorname{Spur}(\ad(X))|_\mathfrak{m}$.
 	Wir erhalten 
 	\begin{align}
-		\skal*{Z}{X} = \skal*{\sum_{i=1}^{n} u(X_i,X_i)}{X} = \sum \skal*{\benbrace*{X,X_i}|_\mathfrak{m}}{X_i} = \sum \skal*{\ad(X)(X_i)}{X_i} = \operatorname{Spur}(\ad(X)|_\mathfrak{m})
+		\skal*{Z}{X} = \skal*{\sum u(X_i,X_i)}{X} = \sum \skal[\big]{\benbrace*{X,X_i}|_\mathfrak{m}}{X_i} = \sum \skal[\big]{\ad_X(X_i)}{X_i} = \operatorname{Spur}(\ad_X|_\mathfrak{m})
 	\end{align}
 	Die Behauptung folgt.
 \end{beweis}
