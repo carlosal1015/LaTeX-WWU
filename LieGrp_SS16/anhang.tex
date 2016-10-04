@@ -89,7 +89,7 @@ Es gilt dann
 \end{beweis}
 % subsection aufg8 (end)
 
-\section{Aufgabe 16 -- Einschränkung der Killingform} % (fold)
+\section{Aufgabe 16 -- Killingform einer Unteralgebra} % (fold)
 \label{sec:einschr_killing}
 Sei $\mathfrak{g}$ eine Liealgebra und $\mathfrak{h} \subset \mathfrak{g}$ eine Unteralgebra.
 Dann entspricht die Killingform von $\mathfrak{h}$ nicht notwendigerweise der Einschränkung von $\mathcal{B}_{\mathfrak{g}}$: Betrachte dazu $\mathfrak{g} = \lenbrace{x,y}$ mit Lieklammer $\benbrace*{x,y} = y$ und die Lieunteralgebra $\mathfrak{h} = \lenbrace{x}$.  
@@ -122,7 +122,35 @@ Nimmt man zusätzlich an, dass $\mathfrak{h}$ ein Ideal ist, so stimmen die beid
 
 \section{Aufgabe 17 -- Universelle Überlagerung der speziellen linearen Gruppe} % (fold)
 \label{sec:aufg17}
-\todo{fertig machen}
+
+Sei $\pi \colon \widetilde{\SL(n,\mathbb{R})} \to \SL(n,\mathbb{R})$ die universelle Überlagerung.
+$\widetilde{\SL(n,\mathbb{R})}$ ist \emph{keine} Matrixliegruppe, das heißt es existiert kein injektiver Homomorphismus $\widetilde{\SL(n,\mathbb{R})} \to \GL(N,\mathbb{C})$ für alle $N \in \mathbb{N}$.
+\begin{beweis}
+	Angenommen ein solcher injektiver Homomorphismus $\varphi \colon \widetilde{\SL(n,\mathbb{R})} \hookrightarrow \GL(N,\mathbb{C})$ existiert doch.
+	Dann ist $f \coloneqq (\mathd \varphi)_e \colon \mathfrak{sl}(n,\mathbb{R}) \hookrightarrow \mathfrak{gl}(n,\mathbb{C})$ ein reeller Liealgebrenhomomorphismus.
+	
+	Betrachtet man allgemein einen reellen Liealgebrenhomomorphismus $f \colon \mathfrak{g} \to \mathfrak{h}_{\mathbb{R}}$, wobei $\mathfrak{h}$ eine komplexe Liealgebra ist, so erhält man einen $\mathbb{C}$-Liealgebrenhomomorphismus durch
+	\mapdef{\tilde{f} \colon \mathfrak{g}_{\mathbb{C}}= \mathfrak{g} \otimes \mathbb{C}}{\mathfrak{h}}{x \otimes \lambda}{\lambda \cdot f(x)}{}
+	Weitergehend überlegt man sich, dass durch $f \mapsto \tilde{f}$ und $f' \mapsto  f' \circ \iota$ mit $\iota\colon \mathfrak{g} \to \mathfrak{g}_{\mathbb{C}}$, $x \mapsto x \otimes 1$ eine Bijektion zwischen den reellen Liealgebrenhomomorphismen $\mathfrak{g} \to \mathfrak{h}_{\mathbb{R}}$ und den komplexen Liealgebrenhomomorphismen $\mathfrak{g}_{\mathbb{C}} \to \mathfrak{h}$ definiert wird.
+	
+	In unserem Fall erhalten wir also $\tilde{f} \colon \mathfrak{sl}(n,\mathbb{R})_{\mathbb{C}} \cong \mathfrak{sl}(n,\mathbb{C}) \to \mathfrak{gl}(N,\mathbb{C})$.
+	Da $\mathfrak{sl}(n,\mathbb{C})$ einfach ist\footnote{$\mathfrak{sl}(n,\mathbb{C})$ besteht aus den Matrizen mit Spur $0$ und hat somit als Basis die Matrizen $e_{ij}$ mit $i\neq j$ und $e_{ii} - e_{nn}$ für $i=1,\ldots ,n-1$. Man kann nun nachrechnen, dass ein Ideal, dass ein $X\neq 0$ enthält, bereits alle diese Basisvektoren enthalten muss.}, gilt $\ker \tilde{f}=0$ oder $\ker \tilde{f} = \mathfrak{sl}(n,\mathbb{C})$.
+	Letzteres ist nicht möglich, da $\tilde{f} \circ \iota = f$ ist und  $f$ injektiv war; folglich ist auch $\tilde{f}$ injektiv.
+	Da $\SL(n,\mathbb{C})$ einfach zusammenhängend ist,\footnote{Man überlegt sich, dass $\SL(n,\mathbb{C})$ mittels Gram-Schmit $\Un(n)$ als Deformationsretrakt hat. Die Fundamentalgruppe von $\Un(n)$ ist nun trivial für $n\ge 2$ und $\mathbb{Z}$ für $n=1$ (Kreisgruppe). Dies sieht man wiederum mittels der Faserung $\Un(n-1) \to \Un(n) \to \sfrac{\Un(n)}{\Un(n-1)} = S^{2n-1}$.} existiert nach \autoref{lem:134} ein eindeutiger Liegruppenhomomorphismus $\psi \colon \SL(n,\mathbb{C}) \to \GL(N,\mathbb{C})$ mit $(\mathd \psi)_{E_n} = \tilde{f}$.
+	Betrachte nun das Diagramm
+	\[
+		\begin{tikzcd}
+			\widetilde{\SL(n,\mathbb{R})} \rar["\varphi"] \dar["\pi"] & \GL(N,\mathbb{C}) \\
+			\SL(n,\mathbb{R}) \rar[hook,"\iota"] & \SL(n,\mathbb{C}) \uar["\psi"']
+		\end{tikzcd}
+	\]
+	Da $\widetilde{\SL(n,\mathbb{R})}$ (einfach) zusammenhängend ist, genügt es, dies für die Differentiale nachzuweisen:\marginnote{$(\mathd \pi)_{E_n}$ ist Isomorphismus}
+	\[
+		(\mathd \varphi)_{E_n} = \mathd \enbrace*{\psi \circ \iota \circ \pi}_{E_n}
+	\]
+	Dies gilt bereits nach Konstruktion.
+	Da nun $\pi$ aber nicht injektiv ist, kann auch auch $\varphi$ nicht injektiv sein im Widerspruch zur Annahme.
+\end{beweis}
 % section aufg17 (end)
 
 
