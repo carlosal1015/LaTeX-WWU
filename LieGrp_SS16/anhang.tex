@@ -28,12 +28,12 @@ Für $X,Y \in \mathfrak{g}$ gilt
 
 \section{Aufgabe 3 -- Über Quaternionen} % (fold)
 \label{sec:aufg3}
-Wir bezeichnen mit $\mathbb{H} \coloneqq \set*{q = \alpha \cdot 1 + \beta \cdot i + \gamma \cdot j + \delta k \given \alpha, \beta, \gamma, \delta \in \mathbb{R}}$ den Schiefkörper der \Index{Quaternionen}.
+Wir bezeichnen mit $\mathbb{H} \coloneqq \set*{q = \alpha \cdot 1 + \beta \cdot i + \gamma \cdot j + \delta \cdot k \given \alpha, \beta, \gamma, \delta \in \mathbb{R}}$ den Schiefkörper der \Index{Quaternionen}.\footnote{Zur Erinnerung: $i^2 = j^2 = k^2 = ijk = -1$}
 Seien weiter
 \[
 	\mathbb{R}^3 \coloneqq \Im \mathbb{H} \coloneqq \set[\big]{q = \beta \cdot i + \gamma \cdot j + \delta \cdot k \given \beta,\gamma,\delta \in \mathbb{R}}
 \]
-die rein imaginären Quaternionen, das heißt $q \notin \mathbb{R}^3$ genau dann, wenn $q = \overline{q}$.
+die rein imaginären Quaternionen, das heißt $q \in \mathbb{R}^3$ genau dann, wenn $-q = \overline{q}$.
 Ferner bezeichnen wir mit $S^3 \coloneqq \set*{q \in \mathbb{H} \given \norm*{q}=1}$ die \Index{Einheitsquaternionen}.
 Es gilt
 \begin{enumerate}[(1)]
@@ -43,7 +43,58 @@ Es gilt
 	\item $\SO(4) = \set*{L_q \circ R_{\overline{q}} \given q,\overline{q} \in S^3}$ und $S^3 \times S^3$ ist eine zweifache Überlagerung von $\SO(4)$.
 \end{enumerate}
 \begin{beweis}
-	\todo{fertig machen}
+	Wir erinnern uns zunächst, dass das Skalarprodukt auf $\mathbb{H}$ dem euklidischen auf $\mathbb{R}^4$ entspricht und weiter gilt $\skal*{x}{y} = \sfrac{1}{2} (x \overline{y} + y\overline{x})$.
+	Weiter gilt für $x,y \in \mathbb{R}^3$ 
+	\[
+		x \perp y \implies xy= -yx
+	\]
+	wegen $0 = \skal*{x}{y} = \sfrac{1}{2} \enbrace[\big]{x(-y) + y(-x)} = - \sfrac{1}{2} \enbrace*{xy-yx}$.
+	Außerdem sollte noch erwähnt werden, dass das Zentrum der Quaternionen genau die reellen Zahlen sind, also $Z(\mathbb{H}) = \mathbb{R}$.
+	
+	Sei $v = \lambda + w \in Z(\mathbb{H})$ mit $\lambda \in \mathbb{R}$ und $w \in \mathbb{R}^3$ und $p \in \mathbb{R}^3$ mit $p\neq 0$ und $p \perp w$.
+	Dann gilt
+	\[
+		pv = vp = (\lambda + w )p = p \lambda - p w = p (\lambda-w) = p \overline{v} \implies v=\overline{v} \implies v \in \mathbb{R}
+	\]
+	Kommen wir nun zu den eigentlichen Aufgaben:
+	\begin{enumerate}[(1)]
+		\item Für $p,q \in \mathbb{H}$ gilt
+		\[
+			\norm*{pq}^2 = pq \overline{pq} = p q \overline{q} \overline{p} = \norm*{q}^2\, p \overline{p} = \norm*{q}^2\, \norm*{p}^2
+		\]
+		Also folgt die Behauptung für $q \in S^3$ direkt.
+		\item Nach (1) gilt $\Ad(q) = L_q \circ R_{\overline{q}} \in \On(\mathbb{H})$ für $q \in S^3$.
+		Damit erhalten wir für $\lambda \in \mathbb{R}$
+		\[
+			\Ad(q)(\lambda) = q \lambda \overline{q} = \lambda \norm*{q}^2 = \lambda 
+		\]
+		Also ist $\mathbb{R}$ $\Ad(q)$-invariant und damit auch das orthogonale Komplement $\mathbb{R}^\bot = \mathbb{R}^3$.
+		\item Aus Zusammenhangsgründen muss das Bild von $\Ad(.)|_{\mathbb{R}^3} \colon S^3 \to \On(3)$ in $\SO(3)$ enthalten sein.
+		Wir berechnen nun das Differential von $\Ad \colon \mathbb{H} \to \End(\mathbb{R}^3)$.
+		\[
+			(\mathd \Ad)_1 (q)= \diffd{}{t}\Big|_{t=1} (1 -tq) v \overline{(1- tq)} = \diffd{}{t}\Big|_{t=1} \enbrace*{v + t(qv+v \overline{q}) + t^2 q v \overline{q}} = qv + v \overline{q}
+		\]
+		Es gilt nun $\ker (\mathd \Ad) =0 $, denn falls $q \in \ker (\mathd {\Ad})$ gilt für $v \in \mathbb{R}^3$
+		\[
+			0= qv + v \overline{q} = qv - \overline{qv}  \implies q=0
+		\]
+		Wegen $\dim \Tmap_1 S^3 = 3 = \dim \Tmap_{\id} \SO(3)$, folgt, dass $(\mathd \Ad)_1$ ein Isomorphismus ist.
+		Nach \autoref{lem:132} (2) ist damit $\Ad \colon S^3 \to \SO(3)$ eine Überlagerung.
+		Wir zeigen nun noch $\ker {\Ad} = \set*{\pm 1}$, um schließen zu können, dass die Überlagerung zweiblättrig ist.
+		
+		Die Relation \enquote{$\supseteq$} ist klar.
+		Sei andersrum $q \in \ker {\Ad} \subseteq S^3$.
+		Dann ist $\Ad(q) \colon \mathbb{H} \to \mathbb{H}$ die Identität, also gilt $qv \overline{q} = v$ für alle $v \in \mathbb{H}$.
+		Damit folgt
+		\[
+			q v = v q \implies q \in Z(\mathbb{H}) = \mathbb{R} \implies q \in S^3 \cap \mathbb{R} = \set*{\pm 1}
+		\]
+		\item Betrachten den Liegruppenhomomorphismus
+		\mapdef{\varphi \colon S^3 \times S^3}{\SO(\mathbb{H})}{(p,q)}{L_p \circ R_{\overline{q}}}{}
+		Sei $(p,q) \in \ker \varphi$, das heißt es gelte $p v \overline{q}=v$ für alle $v \in \mathbb{H}$.
+		Für $v =1$ folgt $p \overline{q}=1$ und damit $p=q$; wie eben folgt $p =\pm 1$ und damit $\ker \varphi = \set*{\pm (1,1)}$.
+		Es folgt wieder $\ker (\mathd \varphi)_{(1,1)}=0$ und $\varphi$ ist damit wieder eine Überlagerung.\qedhere
+	\end{enumerate}
 \end{beweis}
 % section aufg3 (end)
 
