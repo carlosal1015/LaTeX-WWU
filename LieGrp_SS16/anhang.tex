@@ -29,11 +29,37 @@ Für $X,Y \in \mathfrak{g}$ gilt
 
 \section{Dichte Teilmenge des Torus} % (fold)
 \label{sec:dichte_teilmenge_torus}
-\emph{Der hier bewiesene Satz wird im Beweis von \autoref{lem:242} benötigt.}\smallskip \\
+\emph{Der hier bewiesene \autoref{satz:dichte_tm_torus} wird im Beweis von \autoref{lem:242} benötigt.}\smallskip \\
+Wir beginnen mit einem Hilfslemma, das wir für den Beweis des Satzes benötigen werden:
 
+\begin{lemma}[label=lem:Tn_to_Tm]
+	Ist $\varphi \colon T^n \to T^m$ ein Liegruppenhomomorphismus, so ist das Differential $(\mathd \varphi)_e \colon \mathbb{R}^n \to \mathbb{R}^m$ gegeben durch 
+	\[
+		(\mathd \varphi)_e(e_i) = \sum\nolimits_j k_{ji} \cdot e_j \quad \text{ mit } k_{ij} \in \mathbb{Z} 
+	\]
+	Ist umgekehrt $\psi \colon \mathbb{R}^n \to \mathbb{R}^m$ linear mit $\psi(e_i)=\sum_j k_{ji} e_j$ mit $k_{ij} \in \mathbb{Z}$, so existiert (genau ein) Liegruppenhomomorphismus $\overline{\psi} \colon T^n \to T^m$ mit $(\mathd \overline{\psi})_e = \psi$.
+\end{lemma}
+\begin{beweis}
+	Für die Basisvektoren gilt $e_i \in \mathbb{Z}^n$.
+	Da die Exponentialfunktion $\exp_{T^n} \colon \mathbb{R}^n \to T^n$ der Quotientenabbildung $v \mapsto v + \mathbb{Z}^n$ entspricht, folgt $\exp_{T^n}(e_i)=0$ und damit
+	\[
+		0 = \varphi \circ \exp_{T^n}(e_i) = \exp_{T^m} \enbrace[\big]{(\mathd \varphi)_e (e_i)} \implies (\mathd \varphi) e_i \in \mathbb{Z}^m
+	\]
+	Ist umgekehrt $\psi$ wie oben, so definieren wir $\tilde{\psi}$ als die Komposition 
+	\[
+		\begin{tikzcd}
+			\mathbb{R}^n \rar["\psi"] & \mathbb{R}^m \rar["\exp"] & T^m
+		\end{tikzcd}
+	\]
+	Für $x \in Z^n$ ist $\tilde{\psi}(x) = \sum_j k_{ji} x_i e_j + \mathbb{Z}^m = 0$.
+	Aus dem Homomorphiesatz erhalten wir ein $\overline{\psi} \colon T^n \to T^m$ mit $\tilde{\psi} = \overline{\psi} \circ \pi = \overline{\psi} \circ {\exp}$.
+	Weiter gilt
+	\[
+		(\mathd \overline{\psi})_e  e_i =\diffd{}{t}\Big|_{t=0} \overline{\psi} \enbrace[\big]{\exp(t e_i)} = \diffd{}{t}\Big|_{t=0} \tilde{\psi}(t e_i) = \sum\nolimits_j k_{ij} e_j \qedhere
+	\]
+\end{beweis}
 
-
-\begin{satz}
+\begin{satz}[label=satz:dichte_tm_torus]
 	Sei $v \in \mathbb{R}^n$.
 	Dann gilt
 	\begin{enumerate}[(i)]
@@ -42,10 +68,49 @@ Für $X,Y \in \mathfrak{g}$ gilt
 	\end{enumerate}
 \end{satz}
 \begin{beweis}
-	
+	\begin{enumerate}[(i)]
+		\item Angenommen $V$ ist nicht dicht, das heißt $\overline{V}$ ist eine echte, abgeschlossene, zusammenhängende Untergruppe von $T^n$.
+		Sei nun $\varphi$ die Komposition
+		\[
+			\begin{tikzcd}
+				T^n \rar[two heads] & \sfrac{T^n}{\overline{V}} \cong T^k \rar["\pr_1"] & T^1
+			\end{tikzcd}
+		\]
+		Dies ist offenbar ein Liegruppenhomomorphismus mit $V \subseteq \ker \varphi$.
+		Es ist $v \in \ker \mathd \varphi$ und es gilt nach \autoref{lem:Tn_to_Tm}
+		\[
+			0 = \mathd \varphi(v) = \sum\nolimits_i k_{1i} v_i \quad  \text{ mit } k_{1i} \in \mathbb{Z} 
+		\]
+		Nach Konstruktion können nicht alle $k_{1i}$ Null sein und somit folgt, dass $v_1, \ldots ,v_n$ $\mathbb{Q}$-linear abhängig sein muss.
+		
+		Seien nun $v_1, \ldots ,v_n$ linear abhängig über $\mathbb{Q}$, also linear abhängig über $\mathbb{Z}$. 
+		Damit existieren $k_i \in \mathbb{Z}$ mit $\sum_i v_i k_i =0$ aber nicht alle $0$.
+		Sei $\psi \colon T^n \to T^1$ der Liegruppenhomomorphismus aus \autoref{lem:Tn_to_Tm} mit $(\mathd \psi)(x) = \sum k_i x_i$ für $x \in \mathbb{R}^n$.
+		Dann gilt $v \in \ker (\mathd \psi)$ und somit $V \subseteq \ker \psi$.
+		Nun folgt $\overline{V} \subseteq \ker \psi \neq T^n$.
+		\item Angenommen $S$ ist \emph{nicht} dicht.
+		Dann ist wieder
+		\(
+			\begin{tikzcd}[sep=small,cramped]
+				\varphi \colon T^n \rar[two heads] & \sfrac{T^n}{\overline{S}} \cong T^k  \rar[two heads] & T^1
+			\end{tikzcd}
+		\)
+		ein Liegruppenhomomorphismus mit $S \subseteq \ker \varphi$.
+		Es gilt
+		\[
+			1 = \varphi \enbrace[\big]{\exp(v)} = \exp \enbrace[\big]{(\mathd \varphi) v} \implies (\mathd \varphi) v = \sum\nolimits_i k_i v_i \in \mathbb{Z}\marginnote{nicht alle $k_i=0$}
+		\]
+		Damit muss $1, v_1, \ldots ,v_n$ über $\mathbb{Z}$ bzw. $\mathbb{Q}$ linear abhängig sein.
+		
+		Sind umgekehrt $1, v_1, \ldots v_n$ linear abhängig über $\mathbb{Z}$, so finden wir $k_i \in \mathbb{Z}$ nicht alle $0$ mit $\sum_i k_i v_i \in \mathbb{Z}$.
+		Sei nun wieder $\psi \colon T^n \to T^1$ der Liegruppenhomomorphismus nach \autoref{lem:Tn_to_Tm} mit Differential $(\mathd \psi) (x) = \sum_i k_i x_i$ für $x \in \mathbb{R}^n$.
+		Dann gilt
+		\[
+			\psi \enbrace*{\exp(v)} = \exp \enbrace*{(\mathd \psi) v} = 0 \implies \exp(v) \in \ker \psi \implies S \subseteq \ker \psi
+		\]
+		Damit muss auch wieder $\overline{S} \subseteq \ker \psi \neq T^n$ gelten.\qedhere
+	\end{enumerate}
 \end{beweis}
-\newpage
-\todo{fertig machen}
 % section dichte_teilmenge_des_torus (end)
 
 \section{Aufgabe 3 -- Über Quaternionen} % (fold)
