@@ -49,7 +49,7 @@ Es gilt
 
 \section{Aufgabe 8 -- Lieuntergruppen von $T^2$} % (fold)
 \label{sec:aufg8}
-Betrachte $T^2= S^1 \times S^1$ und $S^1_r = \set*{(e^{i \varphi}, e^{i r \varphi}) \given \varphi \in \mathbb{R}} \subseteq T^2$.
+Betrachte die Liegruppe $T^2= S^1 \times S^1$ und $S^1_r = \set*{(e^{i \varphi}, e^{i r \varphi}) \given \varphi \in \mathbb{R}} \subseteq T^2$.
 Es gilt dann
 \begin{enumerate}[a)]
 	\item $S^1_r \subset T^2$ ist eine Lieuntergruppe
@@ -57,7 +57,35 @@ Es gilt dann
 	\item Für $r \in \mathbb{R} \setminus \mathbb{Q}$ ist $S^1_r$ dicht in $T^2$.
 \end{enumerate}
 \begin{beweis}
-	\todo{fertig machen}
+	\begin{enumerate}[a)]
+		\item Wir betrachten 
+		\mapdef{\exp \colon \Tmap_{(1,1)}T^2 = \mathbb{R}^2}{T^2}{(x,y)}{\enbrace*{e^{ix},e^{iy}}}{}
+		Dies ist eine Überlagerung und ein Liegruppenhomomorphismus, da $T^2$ eine zusammenhängende abelsche Liegruppe ist.
+		Da $\mathbb{R} \cdot (1,r) \subset \mathbb{R}^2$ eine Untergruppe ist, muss also auch $S^1_r = \exp \enbrace*{\mathbb{R} \cdot (1,r)}$ eine Lieuntergruppe von $T^2$ sein.
+		Anders ausgedrückt ist $S^1_r$ das Bild des Liegruppenhomomorphismus $f_r \colon \mathbb{R}\to T^2$, $\varphi \mapsto \enbrace*{e^{i \varphi}, e^{ir \varphi}}$.
+		\item Sei nun $r \in \mathbb{Q}$.
+		Dann gilt
+		\[
+			\ker f_r = \set[\big]{\varphi \in \mathbb{R} \given \varphi \in 2 \pi \mathbb{Z}, r \cdot \varphi \in 2 \pi \mathbb{Z}}
+		\]
+		Wir zeigen nun, dass $\ker f_r \neq \set*{0} \iff r \in \mathbb{Q}$ gilt.
+		Für die erste Implikation sei dazu $2 \pi a \in \ker f_r$ mit $a \in \mathbb{R}\setminus \set*{0}$.
+		Dann muss $a \in \mathbb{Z}$ und $ra \in \mathbb{Z}$ gelten.
+		Daraus folgt $r \in \mathbb{Q}$.
+		
+		Sei umgekehrt $r= \sfrac{m}{n}$ mit $m,n \in \mathbb{Z}$, $n \neq 0$.
+		Für $\varphi \coloneqq 2 \pi n \neq 0$ gilt $\varphi \in 2 \pi \mathbb{Z}$ und $r \varphi = \sfrac{m}{n}(2 \pi n) = 2 \pi m \in 2 \pi \mathbb{Z}$.
+		Also ist $\varphi \in  \ker f_r$.
+		
+		Es gilt nun $S^1_r \cong \sfrac{\mathbb{R}}{\ker f_r}$.
+		Ist $r \in \mathbb{Q}$, so ist $\ker f_r \neq \set*{0}$ und somit $S_r^1$ kompakt.
+		\item Sei nun $r$ irrational.
+		Nach der Überlegung aus b) ist $f_r$ in diesem Fall injektiv, das heißt es gilt $S_r^1 \cong \mathbb{R}$, insbesondere ist $S_r^1$ nicht kompakt.
+		Damit kann $S_r^1$ auch nicht abgeschlossen in $T^2$ sein und damit nach \autoref{satz:1210} keine eingebettete Lieuntergruppe.
+		Da $T^2$ eine zusammenhängende Liegruppe ist, gilt stehen die zusammenhängenden Lieuntergruppen von $T^2$ in 1:1-Beziehung mit den Lieunteralgebren von $\mathbb{R}^2$ nach \autoref{satz:125}.
+		Da nun der Abschluss $\overline{S_r^1}$ auch eine Lieuntergruppe ist, muss wegen dieser Bijektion aus $S_r^1 \subsetneq \overline{S_r^1}$ auch $\Tmap_e S_r^1 \subsetneq \Tmap_e \overline{S_r^1}$ gelten.
+		Damit muss aber bereits $T_e \overline{S_r^1} = \mathbb{R}^2$, also auch $\overline{S_r^1} = T^2$ gelten.\qedhere
+	\end{enumerate}
 \end{beweis}
 % subsection aufg8 (end)
 
