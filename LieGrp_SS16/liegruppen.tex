@@ -425,7 +425,10 @@ Wir wissen weiter, dass $I_{\max}$ offen in $\mathbb{R}$ ist.
 	\begin{align}
 		\tilde{c}'(t) = \enbrace*{\mathd L_{c_v(t_0)}}_{c_v(t)}  \cdot \hspace{-1.5em}\Underbrace{\diffd{}{t} c_v(t)}{= X_v \enbrace[\big]{c_v(t)} = \enbrace*{\mathd L_{c_v(t)}} \cdot v} \hspace{-1.5em}= \enbrace*{\mathd L_{c_v(t_0) \cdot c_v(t)}}_e \cdot v = X_v \enbrace*{\tilde{c}(t)}
 	\end{align}
-	Somit ist $\tilde{c}(t)$ wieder eine Integralkurve von $X_v$ und beide Behauptungen folgen.
+	Somit ist $\tilde{c}(t)$ wieder eine Integralkurve von $X_v$ und beide Behauptungen folgen.\footnote{Für die Formel: Für Flüsse $\Phi$ gilt allgemein $\Phi\enbrace*{s, \Phi(t,p)} = \varphi(s+t,p)$, sofern die linke Seite definiert ist. Weiter ist wegen der Linksinvarianz von $X_v$ die Integralkurve an $g \in G$ gerade durch $L_g \circ c_v$ gegeben. Also
+	\[
+		c_v(t+s)= \Phi(s+t,e) = \Phi\enbrace*{s, \Phi(t,e)} = \Phi \enbrace*{s, \Phi(t,e) \cdot e} = \Phi(t,e) \cdot \Phi(s,e) = c_v(t) \cdot c_v(s)
+	\]}
 	Man nennt die Kurve $(c_v(t))_{t \in \mathbb{R}}$ auch \Index{Einparameteruntergruppe} von $G$.
 \end{beweis}
 
