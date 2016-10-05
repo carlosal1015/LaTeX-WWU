@@ -291,6 +291,54 @@ $\widetilde{\SL(n,\mathbb{R})}$ ist \emph{keine} Matrixliegruppe, das heißt es 
 \end{beweis}
 % section aufg17 (end)
 
+\section{Aufgaben 18 \& 19 -- Killingform und Nilpotenz} % (fold)
+\label{sec:aufg18_19}
+In Aufgabe 18 war lediglich folgendes einfaches Lemma zu beweisen:
+\begin{lemma}
+	Ist $\mathfrak{g}$ eine nilpotente Liealgebra, so ist die Killingform identisch $0$.\marginnote{nilpotent $\Rightarrow \mathcal{B}\equiv 0 \Rightarrow$ auflösbar (Cartan)}
+\end{lemma}
+\begin{beweis}
+	Da $\mathfrak{g}$ nilpotent ist, existiert ein $n \in \mathbb{N}$ mit $\mathfrak{g}^n =0$.
+	Damit gilt für alle $X_1,\ldots ,X_n \in \mathfrak{g}$
+	\[
+		{\ad_{X_1}} \circ \ldots \circ {\ad_{X_n}} = 0
+	\]
+	Insbesondere gilt für $X,Y \in \mathfrak{g}$ damit $({\ad_X} \circ {\ad_Y})^n=0$, also ist $\ad_X \circ \ad_Y$ nilpotent.
+	Dann muss aber die Spur $0$ sein, womit $\mathcal{B} \equiv 0$ folgt.
+\end{beweis}
+
+Wir geben nun eine reelle Liealgebra an, deren Killingform auch verschwindet, dabei aber nur auflösbar und nicht nilpotent ist.
+Sei dazu $\mathfrak{g} = \Span_{\mathbb{R}} \set*{X,Y,Z} \cong \mathbb{R}^3$ und $\lambda \in \mathbb{R}\setminus \set*{0}$.
+Wir definieren die Lieklammer wie folgt
+\[
+	\benbrace*{X,Y} \coloneqq Y- \lambda Z  \qquad \benbrace*{X,Z} \coloneqq \sfrac{1}{\lambda}Y + Z \qquad \benbrace*{Y,Z} \coloneqq 0
+\]
+\begin{lemma}
+	Es gilt
+	\begin{enumerate}[(i)]
+		\item $\mathfrak{g}$ ist eine reelle, auflösbare Liealgebra, die nicht nilpotent ist.
+		\item Die Killingform von $(\mathfrak{g}, \benbrace*{\cdot,\cdot })$ ist identisch null.
+	\end{enumerate}
+\end{lemma}
+\begin{beweis}
+	Zu (i): $\benbrace*{\cdot,\cdot }$ ist offenbar eine schiefsymmetrische Bilinearform.
+	Wir müssen also lediglich die Jacobi-Identität nachrechnen
+	\[
+		\benbrace[\big]{\benbrace*{X,Y},Z} + \benbrace[\big]{\benbrace*{Z,X},Y} + \benbrace[\big]{\benbrace*{Y,Z},X} = \benbrace[\big]{Y- \lambda Z,Z} + \benbrace[\big]{- \sfrac{1}{\lambda} Y - Z , Y} + \benbrace[\big]{0,X} 
+		= 0 + 0 +0 = 0
+	\]
+	Weiter gilt $\mathfrak{g}_1 = \benbrace*{\mathfrak{g},\mathfrak{g}} = \Span_{\mathbb{R}}\set*{Y- \lambda Z,\sfrac{1}{\lambda}Y + Z} = \Span_{\mathbb{R}}\set{Y,Z}$.
+	Da $\benbrace*{Y,Z}=0$ folgt daraus $\mathfrak{g}_2=0$ und somit ist $\mathfrak{g}$ auflösbar.
+	Es gilt $\mathfrak{g}_1 = \mathfrak{g}^1$ und damit
+	\begin{align}
+		\mathfrak{g}^2 = \benbrace*{\mathfrak{g}, \mathfrak{g}^1} = \Span_{\mathbb{R}} \set*{\benbrace*{X,\mathfrak{g}^1}, \benbrace*{Y,\mathfrak{g}^1}, \benbrace*{Z,\mathfrak{g}^1}} = \Span_{\mathbb{R}} \set[\big]{\benbrace*{X,Y}, \benbrace*{X,Z}} = \Span_{\mathbb{R}} \set*{Y,Z} = \mathfrak{g}^1
+	\end{align}
+	Folglich ist $\mathfrak{g}$ nicht nilpotent.
+	
+	\todo[inline]{fertig machen}
+\end{beweis}
+% section aufg18 (end)
+
 
 
 
