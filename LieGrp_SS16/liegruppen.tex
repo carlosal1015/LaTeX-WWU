@@ -3372,15 +3372,19 @@ Es folgt, dass man in jedem Punkt $g H$ eine Basis  von $\Tmap_{gH} \sfrac{G}{H}
 \end{beweis}
 
 \begin{lemma}[{name=[Verwandtschaft von Killingvektorfeldern]}]
-	Sei $\enbrace*{\sfrac{G}{H},g}$ ein homogener Raum und \enquote{${}^{-1}$} $\colon G\to G$ die Inversion.
+	Sei $\enbrace*{\sfrac{G}{H},g}$ ein homogener Raum und $\Inv \colon G\to G$ die Inversion.
 	Dann gilt für einen Tangentialvektor $X \in \mathfrak{g}$ 
 	\begin{enumerate}[1)]
-		\item $X^R$ ist \enquote{${}^{-1}$}-verwandt zu $-X^L$
+		\item $X^R$ ist $\Inv$-verwandt zu $-X^L$
 		\item $X^R$ ist $\pi$-verwandt zu $X^*$
 		\item $\benbrace*{X^*,Y^*} = - \benbrace*{X,Y}^*$
 	\end{enumerate}
 \end{lemma}
 \begin{beweis}
+	\begin{enumerate}[1)]
+		\item Wir müssen zeigen, dass $(\mathd \Inv)_g X^R(g) = - X^L(g^{-1})$ gilt.
+		Dazu definieren wir ein weiteres Vektorfeld $\tilde{X}(g) = - (\mathd \Inv)_{g^{-1}} \enbrace*{X(g^{-1})}$ und zeigen, dass $\tilde{X}=X^R$ ist.\todo{fertig machen}
+	\end{enumerate}
 	Wir zeigen hier nur 2).\todo{War dies Übungsaufgabe?}
 	Betrachte $\pi \colon G \to \sfrac{G}{H}$, $g \mapsto gH$. 
 	$\pi$-verwandt heißt per Definition $X^*(\pi(g)) = (\mathd \pi)_g \cdot X^R(g)$. 
