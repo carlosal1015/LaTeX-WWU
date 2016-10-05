@@ -3383,12 +3383,30 @@ Es folgt, dass man in jedem Punkt $g H$ eine Basis  von $\Tmap_{gH} \sfrac{G}{H}
 \begin{beweis}
 	\begin{enumerate}[1)]
 		\item Wir müssen zeigen, dass $(\mathd \Inv)_g X^R(g) = - X^L(g^{-1})$ gilt.
-		Dazu definieren wir ein weiteres Vektorfeld $\tilde{X}(g) = - (\mathd \Inv)_{g^{-1}} \enbrace*{X(g^{-1})}$ und zeigen, dass $\tilde{X}=X^R$ ist.\todo{fertig machen}
+		Dazu definieren wir ein weiteres Vektorfeld $\tilde{X}(g) = - (\mathd \Inv)_{g^{-1}} \enbrace*{X^L(g^{-1})}$ und zeigen, dass $\tilde{X}=X^R$ ist.
+		Wir stellen zunächst fest, dass $\tilde{X}(e) = - (\mathd \Inv)_e X^L(e) = X^L(e)=X^R(e)$ gilt, es genügt also zu zeigen, dass $\tilde{X}$ auch rechtsinvariant ist.
+		Sei $h \in G$ beliebig, dann gilt
+		\begin{align}
+			\enbrace*{\mathd R_h}_g \tilde{X}(g) = - \enbrace*{\mathd R_h}_G \enbrace*{\mathd \Inv}_{g^{-1}} X^L(g^{-1}) &= - \enbrace[\big]{\mathd \enbrace*{R_h \circ \Inv}}_{g^{-1}} X^L(g^{-1}) \\
+			&= - \enbrace[\big]{\mathd \enbrace*{{\Inv} \circ L_{h^{-1}}}}_{g^{-1}} X^L(g^{-1}) \\
+			&= - (\mathd \Inv)_{h^{-1}g^{-1}} X^L(h^{-1} g^{-1}) \\
+			&= \tilde{X}(gh) = \tilde{X}\enbrace*{R_h(g)}
+		\end{align}
+		Also ist auch $\tilde{X}$ rechtsinvariant und es folgt $X^R = \tilde{X}$ und damit auch die gesuchte Verwandtschaft zwischen $X^R$ und $-X^L$.
+		\item Betrachte $\pi \colon G \to \sfrac{G}{H}$, $g \mapsto gH$. 
+		$\pi$-verwandt heißt per Definition $X^*(\pi(g)) = (\mathd \pi)_g \cdot X^R(g)$. 
+		Dies haben wir weiter oben schon bewiesen.
+		\item Unter Benutzung der vorigen zwei Punkte können wir dies nun einfach nachrechnen.
+		Dabei benutzen wir außerdem, dass die Lieklammern $\benbrace*{X_1,Y_1}$ und $\benbrace*{X_2,Y_2}$ $\Phi$-verwandt sind, wenn $X_1$ und $X_2$ sowie $Y_1$ und $Y_2$ $\Phi$-verwandt sind.
+		\begin{align}
+			\benbrace*{X^*,Y^*}(gH) = (\mathd \pi)_g \benbrace*{X^R,Y^R}(g) &= (\mathd \pi)_g (\mathd \Inv)_{g^{-1}} \benbrace*{X^L,Y^L}(g^{-1}) \\
+			&= (\mathd \pi)_g (\mathd \Inv)_{g^{-1}} (\mathd L_{g^{-1}})_e \benbrace*{X,Y}(e) \\
+			&= (\mathd \pi)_g \mathd \enbrace*{R_g \circ \Inv}_e [X,Y](e) \\
+			&= - (\mathd \pi)_g (\mathd R_g) \benbrace*{X,Y}(e) \\
+			&= - (\mathd \pi)_g \benbrace*{X,Y}^R(g) \\
+			&= - \benbrace*{X,Y}^*(gH) \qedhere
+		\end{align}
 	\end{enumerate}
-	Wir zeigen hier nur 2).\todo{War dies Übungsaufgabe?}
-	Betrachte $\pi \colon G \to \sfrac{G}{H}$, $g \mapsto gH$. 
-	$\pi$-verwandt heißt per Definition $X^*(\pi(g)) = (\mathd \pi)_g \cdot X^R(g)$. 
-	Dies haben wir weiter oben schon bewiesen.
 \end{beweis}
 
 \begin{korollar}[{name=[Killingfelder und die Levi-Cevita-Ableitung]}]
