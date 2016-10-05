@@ -191,7 +191,7 @@ Dies führt uns zu folgender Definition:
 		X = \sum_{i=1}^{n} X(x_i) \cdot \diff{}{x_i}
 	\]
 	Somit gilt $\benbrace*{X_v,X_w} =X_{vw -wv}$ und daher $\benbrace*{v,w}_{\mathfrak{gl}(n,\mathbb{R})}=vw -wv$.
-	Die Lieklammer auf der Liealgebra von $\GL_n(\mathbb{K})$ ist also durch den \Index{Matrix-Kommutator gegeben}.
+	Die Lieklammer auf der Liealgebra von $\GL_n(\mathbb{K})$ ist also durch den \Index{Matrix-Kommutator} gegeben.
 \end{beispiel*}
 % subsection 11 (end)
 
@@ -222,7 +222,7 @@ denn es gilt
 	(\Phi \circ L_h)(\tilde{h}) = \Phi \enbrace*{L_h(\tilde{h})} = \Phi(h \cdot \tilde{h}) = \Phi(h) \cdot \Phi(\tilde{h}) = \enbrace*{L_{\Phi(h)} \circ \Phi}(\tilde{h})
 \end{align}
 Einen Homomorphismus $\Phi \colon G \to \GL(n,\mathbb{K})$ nennt man \bet{reelle}\index{Darstellung!reelle} bzw. \bet{komplexe Darstellung}\index{Darstellung!komplexe} von $G$.\marginnote{$\Phi_0(G)\equiv E_n$}
-Ist $\Phi \colon G \to \GL(n,\mathbb{K})$ injektiv, so besitzt die Gruppe $G$ die \Index{treue Darstellung} $\Phi(G)$ in $\GL(n,\mathbb{K})$.
+Ist $\Phi \colon G \to \GL(n,\mathbb{K})$ injektiv, so besitzt die Gruppe $G$ die \Index{Darstellung!treue} $\Phi(G)$ in $\GL(n,\mathbb{K})$.
 
 \begin{lemma}[label=lem:122,{name=[{Differntial von Liegruppenhom. ist Liealgebrenhom.}]}]
 	Sei $\Phi \colon H \to G$ ein Liegruppenhomomorphismus.\marginnote{es folgt, dass man die Liealgebra einer Liegruppe als Funktor auffassen kann}
@@ -258,8 +258,7 @@ Ist $\Phi \colon G \to \GL(n,\mathbb{K})$ injektiv, so besitzt die Gruppe $G$ di
 		\item Die Gruppenhomomorphismuseigenschaft ist klar. 
 		\item Die inverese Abbildung ist offenbar gegeben durch $(i_g)^{-1}= i_{g^{-1}}$.
 	\end{itemize}
-	Somit ist $\Ad(g) := \enbrace*{\mathd i_g}_e \colon \mathfrak{g} \to \mathfrak{g}$ ein Liealgebrenisomorphismus aufgrund der Funktoreigenschaft aus \autoref{lem:122}.
-	
+	Somit ist $\Ad(g) := \enbrace*{\mathd i_g}_e \colon \mathfrak{g} \to \mathfrak{g}$ ein Liealgebrenisomorphismus aufgrund der Funktoreigenschaft aus \autoref{lem:122}.	
 	Ist $G = \GL(n,\mathbb{K})$, so kann man $\Ad(g)$ einfach berechnen:
 	Sei $(h(t))_{t \in (-\varepsilon,\varepsilon)}$ eine differenzierbare Kurve in $G$ mit $h(0)= E_n$ und $h'(0)=v$.
 	Dann gilt
@@ -328,7 +327,7 @@ Ist $\Phi \colon G \to \GL(n,\mathbb{K})$ injektiv, so besitzt die Gruppe $G$ di
 \end{beweis}
 
 Wir erinnern daran, dass die Zusammenhangskomponente $G_0$ der \enquote{Eins} $e \in G$ einer Liegruppe wieder eine Liegruppe ist.
-Beispiel: 
+Zum Beispiel gilt für die orthogonale Gruppe: 
 \[
 	\On(n)= \SO(n) \mathbin{\dot{\cup}} \set*{ \begin{psmallmatrix}
 		-1 & & &\\
@@ -343,7 +342,7 @@ Beispiel:
 	Dann existiert genau eine zusammenhängende Lieuntergruppe $H$ von $G_0$ mit Liealgebra $\mathfrak{h}$. 
 \end{satz}
 \begin{beweis}
-	Sei $g \in G$ und $\mathcal{F}_g := (\mathd L_g) \cdot \mathfrak{h} \subset \Tmap_g G$.
+	Sei $g \in G$ und $\mathcal{F}_g := (\mathd L_g)_e \cdot \mathfrak{h} \subset \Tmap_g G$.
 	Man nennt $\mathcal{F} = \set*{\mathcal{F}_g}_{g \in G}$ eine \Index{Distribution} von Unterräumen (gleicher Dimension!) auf $G$.
 	Seien $v_1, \ldots ,v_r \in \Tmap_e G$ eine Basis von $\mathfrak{h}$.
 	Wir bezeichnen mit $X_{v_1}, \ldots ,X_{v_r}$ die entsprechenden linksinvarianten Vektorfelder auf $G$.
@@ -364,24 +363,24 @@ Beispiel:
 	Zeige nun, dass $H$ eine Untergruppe ist:
 	Da $H$ und $L_{h^{-1}}(H)$ beide $e$ enthalten und maximale Blätter sind, gilt $H=L_{h^{-1}}(H)$ für $h \in H$.
 	Damit ist die Abgeschlossenheit unter Inversion gezeigt.
-	Ähnlich zeigt man die Abgeschlossenheit unter Multiplikation.
+	Ähnlich zeigt man die Abgeschlossenheit unter Multiplikation.\marginnote{$h_1, h_2 \in H$, dann enthalten $L_{h_1}(H)$ und $H$ beide $e$, also $L_{h_1}(H)=H \Rightarrow h_1 h_2 \in H$}
 	Da $m \colon G  \times G \to G$, $^{-1} \colon G \to G$ differenzierbare Abbildungen sind und die Einschränkung von differenzierbaren Abbildungen auf immersierte Untermannigfaltigkeiten wieder differenzierbare Abbildungen liefert, ist $H$ eine Lieuntergruppe von $G$.
 	
 	Es bleibt die Eindeutigkeit zu zeigen: 
 	Sei also $\tilde{H} \subset L$ eine zusammenhängende Lieuntergruppe von $G$ mit $\Tmap_e \tilde{H} = \mathfrak{h} = \Tmap_e H$.
-	Es gilt $\Tmap_{\tilde{h}} \tilde{H} = (\mathd L)_{\tilde{h}} \cdot \Tmap_e \tilde{H}= \mathcal{F}_{\tilde{h}}$ für alle $\tilde{h} \in \tilde{H}$.
+	Es gilt $\Tmap_{\tilde{h}} \tilde{H} = (\mathd L_{\tilde{h}})_e \cdot \Tmap_e \tilde{H}= \mathcal{F}_{\tilde{h}}$ für alle $\tilde{h} \in \tilde{H}$.
 	Somit ist $\tilde{H}$ Integralmannigfaltigkeit von $\mathcal{F}$ mit $e \in \tilde{H}$.
 	Da $H$ maximale Integralmannigfaltigkeit ist, folgt $\tilde{H} \subseteq H$.
 	Es bleibt die Gleichheit zu zeigen:
 	$\tilde{H}$ ist offen in $H$.
 	Annahme: Es gibt ein $h \in H \setminus \tilde{H}$ und eine Folge $(\tilde{h}_i)_{i \in \mathbb{N}}$ in $\tilde{H}$ mit $\tilde{h}_i \to h$.
-	Dann ist $h \in L_h(U)$, wobei $U$ eine offene Umgebung von $e$ ist.
+	Dann ist $h \in L_h(U)$, wobei $U$ eine offene Umgebung von $e$ in $\tilde{H}$ ist.
 	Damit ist $h \in L_{h_i}(U)$ für $i \ge i_0$ für geeignetes $i_0 \in \mathbb{N}$.
 	Dies ist ein Widerspruch, also folgt $\tilde{H}=H$.
 \end{beweis}
 
 \begin{korollar}[label=kor:126,{name=[gleiche induzierte Liealgebrenhom. implizieren Gleichheit der Liegruppenhom.]}]
-	Seien $H,G$ zusammenhängende Liegruppen und $\Phi, \Psi \colon H \to G$ Gruppenhomomorphismen.
+	Seien $H,G$ zusammenhängende Liegruppen und $\Phi, \Psi \colon H \to G$ Liegruppenhomomorphismen.
 	Gilt $(\mathd \Phi)_e = (\mathd \Psi)_e \colon \Tmap_e H \to \Tmap_e G$, so folgt $\Phi = \Psi$.
 \end{korollar}
 \begin{beweis}
@@ -3580,10 +3579,10 @@ Die entsprechende Lieuntergruppe $G_\mathrm{uni} \subsetneq G$ ist also unimodul
 \begin{beweis}
 	Nach \autoref{satz:324} gilt 
 	\begin{align}
-		\operatorname{ric}(X,X) = \sum_{i=1}^{n} R_{XX_iY_iY} &= - \frac{3}{4} \norm*{\benbrace*{X,X_i}|_\mathfrak{m}}^2 - \frac{1}{2} \sum_{i} \skal*{\benbrace*{X,\benbrace*{X,X_i}}}{X} - \frac{1}{2} \sum_i \skal*{\benbrace*{X_i,\benbrace*{X_i,X}}}{X} \\
+		\ric(X,X) = \sum_{i=1}^{n} R_{XX_iY_iY} &= - \frac{3}{4} \norm*{\benbrace*{X,X_i}|_\mathfrak{m}}^2 - \frac{1}{2} \sum_{i} \skal*{\benbrace*{X,\benbrace*{X,X_i}}}{X} - \frac{1}{2} \sum_i \skal*{\benbrace*{X_i,\benbrace*{X_i,X}}}{X} \\
 		& \quad + \sum_i \norm*{u(X_i,X_i)}^2 - \skal*{u(X,X)}{Z}
 	\end{align}
-	Erinnerung: FÜr $X \in \mathfrak{m}$ gilt $\ad(X) = \begin{psmallmatrix}
+	Erinnerung: Für $X \in \mathfrak{m}$ gilt $\ad(X) = \begin{psmallmatrix}
 		0 & A \\ B & C
 	\end{psmallmatrix}$.
 	Somit
@@ -3598,7 +3597,8 @@ Die entsprechende Lieuntergruppe $G_\mathrm{uni} \subsetneq G$ ist also unimodul
 	\end{align}
 	Somit 
 	\begin{align}
-		\operatorname{ric}_g(X,X) = -\frac{3}{4}  \sum \norm*{\benbrace*{X_i,X_i}}^2 - \frac{1}{2} \mathcal{B}_\mathfrak{g}(X,X) - \frac{1}{2} \sum \skal*{\benbrace*{X_i , \benbrace*{X_i,X}_\mathfrak{m}}}{X} + \sum \norm*{u(X_i,X_i)}^2 - \skal*{\benbrace*{Z,X}_\mathfrak{m}}{X}
+		\ric_g(X,X) &= -\frac{3}{4}  \sum \norm*{\benbrace*{X_i,X_i}}^2 - \frac{1}{2} \mathcal{B}_\mathfrak{g}(X,X) - \frac{1}{2} \sum \skal*{\benbrace*{X_i , \benbrace*{X_i,X}_\mathfrak{m}}}{X} \\
+		&\hspace{1em}+ \sum \norm*{u(X_i,X_i)}^2 - \skal*{\benbrace*{Z,X}_\mathfrak{m}}{X}
 	\end{align}
 	Ferner
 	\begin{align}
@@ -3863,9 +3863,10 @@ Weiter
 	Sei $G$ eine Liegruppe mit $\Tmap_e G = \mathbb{R}^n$ und Skalarprodukt $\skal*{\cdot }{\cdot }_0$.
 	Für $h \in \GL(n,\mathbb{R})$ sei $g = \skal*{\cdot }{\cdot } = \skal*{h \cdot }{h \cdot }_0$.
 	Dann gilt
-	\[
-		\ric(g) \enbrace*{h^{-1} \overline{X}, h^{-1} \overline{X}} = -\frac{1}{2} \mathcal{B}_{h.\mu_0} \enbrace*{\overline{X},\overline{X}} + \frac{1}{4} \sum_{i,j} \skal*{(h.\mu_0)(\overline{X}_i, \overline{X}_j)}{\overline{X}}_0^2 - \frac{1}{2} \sum_i \norm*{(h.\mu_0)(\overline{X}_i, X)}_0^2 - \skal*{\ad_{h.\mu_0}(Z_{h.\mu_0})(\overline{X})}{\overline{X}} _0
-	\]
+	\begin{align}
+		\ric(g) \enbrace*{h^{-1} \overline{X}, h^{-1} \overline{X}} &= -\frac{1}{2} \mathcal{B}_{h.\mu_0} \enbrace*{\overline{X},\overline{X}} + \frac{1}{4} \sum_{i,j} \skal*{(h.\mu_0)(\overline{X}_i, \overline{X}_j)}{\overline{X}}_0^2 - \frac{1}{2} \sum_i \norm*{(h.\mu_0)(\overline{X}_i, X)}_0^2 \\
+		&\hspace{1em} - \skal*{\ad_{h.\mu_0}(Z_{h.\mu_0})(\overline{X})}{\overline{X}} _0
+	\end{align}
 	wobei $\Spur \ad_{h.\mu_0}(\overline{X}) = \skal*{Z_{h.\mu_0}}{\overline{X}}_0$.
 \end{satz}
 \begin{beweis}
@@ -3902,7 +3903,7 @@ Die Gruppe $\GL(n)$ operiert \emph{nicht} isometrisch auf $V(n)$, aber $\On(n) \
 		\[
 			\GL(n) \StackText{diffeo}{=\joinrel=}\On(n) \cdot \sfrac{\GL(n)}{\On(n)} = \On(n) \cdot T^m \cdot \On(n)
 		\]
-		$\leadsto$ Geometrische Invariantentheorie.
+		Dies führt zur sogenannten \emph{Geometrischen Invariantentheorie}.\footnote{siehe \url{https://en.wikipedia.org/wiki/Geometric_invariant_theory}}
 	\end{itemize}
 \end{bemerkung*}
 
