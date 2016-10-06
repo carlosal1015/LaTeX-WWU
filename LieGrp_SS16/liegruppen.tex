@@ -2225,7 +2225,7 @@ Ist etwa $G$ kompakt, so ist $\mathcal{B}_\mathfrak{g}$ negativ definit!
 	Damit ist auch jede weitere Liegruppe mit Liealgebra $\mathfrak{g}$ kompakt.\marginnote{Zeige, dass $\widetilde{G}$ kompakt ist, folgt aus: Basis ist Hausdorffsch, kompakt und Überlagerung endlich blättrig}
 \end{lemma}
 \begin{beweis}
-	\emph{Kommt noch. Wir werden zeigen, dass auf $G$ eine Riemannsche Metrik mit Ricci-Krümmung $\Ric >0$ existiert. Mit Bonnet-Myers folgt dann zusammen mit der Kompaktheit die Behauptung.}
+	\emph{Siehe \autoref{korr:328}: Wir werden zeigen, dass auf $G$ eine Riemannsche Metrik mit Ricci-Krümmung $\Ric >0$ existiert. Mit Bonnet-Myers folgt dann zusammen mit der Kompaktheit die Behauptung.}
 \end{beweis}
 
 \begin{korollar}[{name=[Isomorphie kompakte Liegruppe]}]
@@ -3463,7 +3463,7 @@ Es folgt, dass man in jedem Punkt $g H$ eine Basis  von $\Tmap_{gH} \sfrac{G}{H}
 
 \begin{satz}[label=satz:324,{name=[Formel für Krümmungstensor]}]
 	Sei $\enbrace*{\sfrac{G}{H},g}$ ein homogener Raum und $\mathfrak{g} = \mathfrak{h} \oplus \mathfrak{m}$ eine $\Ad(H)$-invariante Zerlegung von $\mathfrak{g}$.
-	Dann gilt für $X,Y \in \mathfrak{m}$ die folgende Identität:
+	Dann gilt für $X,Y \in \mathfrak{m}$ die folgende Identität:\marginnote{Achtung: Ab diesem Satz bin ich mir im gesamten Abschnitt 3.2 nicht sicher, ob ich alles richtig mitgeschrieben habe, gerade kleine Indizes kann man leicht übersehen!}
 	\begin{align}
 		&\enbrace*{R_{X^*Y^*Y^*X^*}}(eH) \\
 		&\hspace{3em} = -\frac{3}{4} \norm[\big]{\benbrace*{X,Y}_{\mathfrak{m}}}^2 - \frac{1}{2} \skal*{\benbrace[\big]{X, \benbrace*{X,Y}}_{\mathfrak{m}}}{Y} - \frac{1}{2} \skal*{\benbrace[\big]{Y, \benbrace*{Y,X}}_{\mathfrak{m}}}{X} + \norm[\big]{u(X,Y)}^2 - \skal[\big]{u(X,X)}{u(Y,Y)}
@@ -3533,7 +3533,7 @@ Es folgt, dass man in jedem Punkt $g H$ eine Basis  von $\Tmap_{gH} \sfrac{G}{H}
 	Analog wie die Riemannsche Metrik $g$ selbst ist $\ric_g$ ebenfalls eine symmetrische Bilinearform auf $\Tmap M^n$.
 \end{erinnerung}
 
-\begin{lemma}
+\begin{lemma}[{name=[Konstruktion von Z]}]
 	Sei $\enbrace*{\sfrac{G}{H},g}$ ein Riemannscher homogener Raum mit $\Ad(H)$-invarianter Zerlegung $\mathfrak{g} = \mathfrak{h} \oplus \mathfrak{m}$ der Liealgebra.
 	Sei $(X_1,\ldots X_n)$ eine ONB von $\enbrace*{\mathfrak{m},\skal*{\cdot }{\cdot}}$ und $Z \coloneqq \sum_{i=1}^{n} u(X_i,X_i)$.
 	Dann gilt für alle $X \in \mathfrak{m}$:
@@ -3544,13 +3544,13 @@ Es folgt, dass man in jedem Punkt $g H$ eine Basis  von $\Tmap_{gH} \sfrac{G}{H}
 \end{lemma}
 \begin{beweis}
 	Es gilt $\benbrace*{\mathfrak{h},\mathfrak{m}} \subset \mathfrak{m}$, da $\mathfrak{m}$ $\Ad(H)$-invariant ist und $\ad = (\mathd \Ad)_e$ ist.
-	Somit gilt für $X \in \mathfrak{m}$\todo{RevChap 3.2}
+	Somit gilt für $X \in \mathfrak{m}$
 	\[
 		\ad_X = \begin{pmatrix}
 			0 & A \\ B & C
 		\end{pmatrix}
 	\]
-	und $\operatorname{Spur} (\ad(X)) = \operatorname{Spur}(\ad(X))|_\mathfrak{m}$.
+	und $\operatorname{Spur} (\ad_X) = \operatorname{Spur}(\ad_X|_\mathfrak{m})$.
 	Wir erhalten 
 	\begin{align}
 		\skal*{Z}{X} = \skal*{\sum u(X_i,X_i)}{X} = \sum \skal[\big]{\benbrace*{X,X_i}|_\mathfrak{m}}{X_i} = \sum \skal[\big]{\ad_X(X_i)}{X_i} = \operatorname{Spur}(\ad_X|_\mathfrak{m})
@@ -3559,57 +3559,190 @@ Es folgt, dass man in jedem Punkt $g H$ eine Basis  von $\Tmap_{gH} \sfrac{G}{H}
 \end{beweis}
 
 Man nennt eine Liegruppe $G$ \Index{unimodular}, falls $Z=0$ ist.
-Im Allgemeinen ist  $\Phi \colon \mathfrak{g} \to \mathbb{R}$, $X \mapsto \operatorname{Spur} (\ad(X))$  eine $\Ad(G)$-invariante Linearform, denn
+Im Allgemeinen ist  $\Phi \colon \mathfrak{g} \to \mathbb{R}$, $X \mapsto \operatorname{Spur} (\ad_X)$  eine $\Ad(G)$-invariante Linearform, denn
 \begin{align}
-	\ad \enbrace*{\Ad(g)(X)}(Y) = \benbrace*{\Ad(g)(X),\Ad(g)(\Ad(g^{-1})(Y))} &= \Ad(g) \benbrace*{X, \Ad(g^{-1})(Y)} \\
+	\ad \enbrace[\big]{\Ad(g)(X)}(Y) = \benbrace*{\Ad(g)(X),\Ad(g) \enbrace*{\Ad(g^{-1})(Y)}} &= \Ad(g) \benbrace*{X, \Ad(g^{-1})(Y)} \\
 	&= \enbrace*{\Ad(g) \circ \ad(X) \circ \Ad(g^{-1})}(Y)
 \end{align}
 Somit 
 \[
-	\Phi \enbrace*{\Ad(g) X} = \operatorname{Spur} \enbrace*{\ad \enbrace*{\Ad(g) X}} = \operatorname{Spur} \enbrace*{\Ad(g) \circ \ad(e) \circ \Ad(g)^{-1}} = \operatorname{Spur} \ad(X) = \Phi(X)
+	\Phi \enbrace[\big]{\Ad(g) X} = \operatorname{Spur} \enbrace*{\ad \enbrace[\big]{\Ad(g) X}} = \operatorname{Spur} \enbrace*{\Ad(g) \circ \ad(X) \circ \Ad(g)^{-1}} = \operatorname{Spur} \enbrace[\big]{\ad(X)} = \Phi(X)
 \]
-Somit ist $\mathfrak{g}_\mathrm{uni} \coloneq \ker \Phi$ $\Ad(G)$-invariantes Ideal von $\mathfrak{g}$ mit Kodimension 1.
+Somit ist $\mathfrak{g}_\mathrm{uni} \coloneqq \ker \Phi$ ein $\Ad(G)$-invariantes Ideal von $\mathfrak{g}$ mit Kodimension $1$.
 Die entsprechende Lieuntergruppe $G_\mathrm{uni} \subsetneq G$ ist also unimodular (und Normalteiler von $G$).
 
-\begin{satz}
+\begin{satz}[{name=[Formel für die Ricci-Krümmung gleicher Vektoren]},label=satz:327]
 	Sei $\enbrace*{\sfrac{G}{H},g}$ ein Riemannscher homogener Raum und $\mathfrak{g} = \mathfrak{h} \oplus \mathfrak{m}$ eine $\Ad(H)$-invariante Zerlegung von $\mathfrak{g}$.
 	Dann gilt für $X \in \mathfrak{m}$:
 	\[
-		\operatorname{ric}_g(X,X) = - \frac{1}{2} \mathcal{B}_\mathfrak{g}(X,X) + \frac{1}{4} \sum_{i,j=1}^n \skal*{\benbrace*{X_i,X_i}_\mathfrak{m}}{X}^2 - \frac{1}{2} \sum_{i=1}^{n} \norm*{\benbrace*{X,X_i}_\mathfrak{m}}^2 - \skal*{\ad(Z)(X)|_\mathfrak{m}}{X}
+		\operatorname{ric}_g(X,X) = - \frac{1}{2} \mathcal{B}_\mathfrak{g}(X,X) + \frac{1}{4} \sum_{i,j=1}^n \skal*{\benbrace*{X_i,X_j}_\mathfrak{m}}{X}^2 - \frac{1}{2} \sum_{i=1}^{n} \norm[\big]{\benbrace*{X,X_i}_\mathfrak{m}}^2 - \skal[\big]{\ad(Z)(X)|_\mathfrak{m}}{X}
 	\]
 \end{satz}
 \begin{beweis}
 	Nach \autoref{satz:324} gilt 
 	\begin{align}
-		\ric(X,X) = \sum_{i=1}^{n} R_{XX_iX_iX} &= - \frac{3}{4} \norm*{\benbrace*{X,X_i}|_\mathfrak{m}}^2 - \frac{1}{2} \sum_{i} \skal*{\benbrace*{X,\benbrace*{X,X_i}}}{X} - \frac{1}{2} \sum_i \skal*{\benbrace*{X_i,\benbrace*{X_i,X}}}{X} \\
-		& \quad + \sum_i \norm*{u(X_i,X_i)}^2 - \skal*{u(X,X)}{Z}
+		\ric(X,X) = \sum_{i=1}^{n} R_{XX_iX_iX} &= - \frac{3}{4}\sum_{i} \norm[\big]{\benbrace*{X,X_i}|_\mathfrak{m}}^2 - \frac{1}{2} \sum_{i} \skal*{\benbrace[\big]{X,\benbrace*{X,X_i}}}{X} - \frac{1}{2} \sum_i \skal*{\benbrace[\big]{X_i,\benbrace*{X_i,X}}}{X} \\
+		& \quad + \sum_i \norm[\big]{u(X,X_i)}^2 - \skal*{u(X,X)}{Z}
 	\end{align}
 	Erinnerung: Für $X \in \mathfrak{m}$ gilt $\ad(X) = \begin{psmallmatrix}
 		0 & A \\ B & C
 	\end{psmallmatrix}$.
 	Somit
 	\begin{align}
-		\mathcal{B}_\mathfrak{g}(X,X) = \operatorname{Spur} \enbrace*{\ad(X) \circ \ad(X)} = \sum_{i=1}^{n} \skal*{\benbrace*{X,\benbrace*{X,X_i}}}{X_i} + \sum_{j=1}^{k} \skal*{\benbrace*{X, \benbrace*{X,k_j}}}{k_j}
+		\mathcal{B}_\mathfrak{g}(X,X) = \operatorname{Spur} \enbrace[\big]{\ad(X) \circ \ad(X)} = \sum_{i=1}^{n} \skal*{\benbrace[\big]{X,\benbrace*{X,X_i}}}{X_i} + \sum_{j=1}^{k} \skal*{\benbrace[\big]{X, \benbrace*{X,k_j}}}{k_j}
 	\end{align}
-	für eine ONB $(Z_1, \ldots ,Z_k)$ von $\mathfrak{h}$, versehen mit einem $\Ad(H)$-invarianter Skalarprodukt $\skal*{\cdot }{\cdot }_\mathfrak{h}$ (Existenz wie in der Übung).
+	für eine ONB $(X_1, \ldots ,X_k)$ von $\mathfrak{h}$, versehen mit einem $\Ad(H)$-invarianter Skalarprodukt $\skal*{\cdot }{\cdot }_\mathfrak{h}$ (Existenz wie in der Übung).
 	Wegen 
 	\begin{align}
-		\sum_{j=1}^{k} \skal*{\enbrace*{\ad(X) \circ \ad(X)}(k_j)}{k_j}_\mathfrak{h} = \operatorname{Spur}(A \cdot B) = \operatorname{Spur}(B \cdot A) &= \sum_i \skal*{\benbrace*{X, \benbrace*{X,X_i}_\mathfrak{h}}}{X_i} \\
-		&\StackText{$\ad(k_i)$ schiefsym.}{= }\sum_i \skal*{\benbrace*{X_i , \benbrace*{X_i,X}_\mathfrak{h}}}{X}
+		\sum_{j=1}^{k} \skal[\big]{\enbrace*{\ad(X) \circ \ad(X)}(k_j)}{k_j}_\mathfrak{h} = \operatorname{Spur}(A \cdot B) = \operatorname{Spur}(B \cdot A) &= \sum_i \skal*{\benbrace*{X, \benbrace*{X,X_i}_\mathfrak{h}}}{X_i} \\
+		&\StackTextClap{$\ad(X_i)$ schiefsym.}{=} \hspace{2.5em}\sum_i \skal*{\benbrace*{X_i , \benbrace*{X_i,X}_\mathfrak{h}}}{X}
 	\end{align}
-	Somit 
+	folgt somit 
 	\begin{align}
-		\ric_g(X,X) &= -\frac{3}{4}  \sum \norm*{\benbrace*{X_i,X_i}}^2 - \frac{1}{2} \mathcal{B}_\mathfrak{g}(X,X) - \frac{1}{2} \sum \skal*{\benbrace*{X_i , \benbrace*{X_i,X}_\mathfrak{m}}}{X} \\
-		&\hspace{1em}+ \sum \norm*{u(X_i,X_i)}^2 - \skal*{\benbrace*{Z,X}_\mathfrak{m}}{X}
+		\ric_g(X,X) &= -\frac{3}{4}  \sum \norm*{\benbrace[\big]{X_i,X_i}}^2 - \frac{1}{2} \mathcal{B}_\mathfrak{g}(X,X) - \frac{1}{2} \sum \skal*{\benbrace[\big]{X_i , \benbrace*{X_i,X}_\mathfrak{m}}}{X} \\
+		&\hspace{1em}+ \sum \norm[\big]{u(X_i,X_i)}^2 - \skal*{\benbrace*{Z,X}_\mathfrak{m}}{X}
 	\end{align}
-	Ferner
+	Ferner gilt
 	\begin{align}
-		\sum_i \norm*{u(X,X_i)}^2 = \sum_{i,j} \skal*{u(X,X_i)}{X_i}^2 &= \frac{1}{4} \sum_{i,j} \enbrace*{\skal*{\benbrace*{X_i,X}}{X_i} + \skal*{\benbrace*{X_i,X_i}}{X}}^2 \\
-		& \quad + \frac{1}{4} \sum_j \norm*{\benbrace*{X_j,X}_\mathfrak{m}}^2  + \frac{1}{2} \sum_j \skal*{\benbrace*{X_j, \sum_i X_i \skal*{\benbrace*{X_j,X}}{X_i}}}{X} \\
-		& \quad + \frac{1}{4}  \sum_{i,j} \skal*{\benbrace*{X_i,X_j}}{X}^2 \qedhere 
+		\sum_i \norm*{u(X,X_i)}^2 = \sum_{i,j} \skal[\big]{u(X,X_i)}{X_i}^2 &= \frac{1}{4} \sum_{i,j} \enbrace[\big]{\skal*{\benbrace*{X_i,X}}{X_i} + \skal*{\benbrace*{X_i,X_i}}{X}}^2 \\
+		& \quad + \frac{1}{4} \sum_j \norm*{\benbrace*{X_j,X}_\mathfrak{m}}^2  + \frac{1}{2} \sum_j \skal*{\benbrace*{X_j, \sum_i X_i \skal*{\benbrace*{X_j,X}}{X_i}}}{X} \\[-1em]
+		& \quad + \frac{1}{4}  \sum_{i,j} \skal[\big]{\benbrace*{X_i,X_j}}{X}^2 \qedhere 
 	\end{align}
 \end{beweis}
-\todo[inline]{hier fehlt mal wieder eine Vorlesung}
+
+\begin{korollar}[{name=[Ricci-Krümmung einer kompakten Liegruppe]},label=korr:328]
+	Sei $(G,g_{\bi})$ eine kompakte Liegruppe versehen mit einer biinvarianten Metrik $g_\bi$.
+	Dann gilt
+	\[
+		\ric_{g_\bi}(X,X) = - \frac{1}{4} \mathcal{B}_{\mathfrak{g}}(X,X)
+	\]
+\end{korollar}
+\begin{beweis}
+	Die biinvariante Metrik liefert uns ein Skalarprodukt auf $\mathfrak{g} = \mathfrak{m}$. 
+	Dieses ist dann auch $\Ad(G)$-invariant und damit ist $\ad(X)$ schiefsymmetrisch.
+	Insbesondere gilt $\skal*{\ad(Z)X}{X} =0$, womit der letze Term der Formel aus \autoref{satz:327}.
+	Ferner gilt
+	\begin{align}
+		\sum_{i,j} \skal[\big]{\benbrace*{X_i,X_j}}{X}^2 = \sum_{i,j} \skal[\big]{X_j}{\benbrace*{X_i,X}} \skal[\big]{X_j}{\benbrace*{X_i,X}}
+		&= \sum_i \skal[\big]{\benbrace*{X_i,X}}{\benbrace*{X_i,X}} \\
+		&= \sum_i \skal[\big]{\ad(X)(X_i)}{\ad(X)(X_i)} \\
+		&= - \sum_i \skal[\big]{\ad(X) \circ \ad(X)(X_i)}{X_i} \\
+		&= - \tr \enbrace*{\ad(X) \circ \ad(X)} \\
+		&= - \mathcal{B}_{\mathfrak{g}}(X,X)
+	\end{align}
+	Setzt man dies in die Formel von \autoref{satz:327} ein, erhält man die Aussage.
+\end{beweis}
+
+Ist $G$ eine kompakt, einfache Liegruppe, so gilt $\mathcal{B}_{\mathfrak{g}} < 0$ (vgl. \autoref{lem:233}).
+Damit besitzt $G$ eine Riemannsche Metrik $g_\bi$ mit $\ric_{g_{\bi}} >0$.
+Der Satz von Bonnet-Myers\footnote{siehe z.B. \url{https://de.wikipedia.org/wiki/Satz_von_Bonnet-Myers}} besagt nun, dass somit 
+\[
+	\abs*{\pi_1(G)}  < \infty
+\]
+gelten muss.
+Dies vervollständigt den Beweis zu \autoref{lem:235}.
+
+Eine weitere Krümmungsgröße einer Riemannschen Mannigfaltigkeit $(M^n,g)$ ist die \Index{Skalarkrümmung}:
+\mapdef{\operatorname{Scal}(g) \colon M^n}{\mathbb{R}}{p}{\sum_{i=1}^n \ric(g)_p (X_i^p, X_i^p)}{}
+wobei $\enbrace*{X_1^p, \ldots ,X_n^p}$ eine $g_p$-ONB von $\Tmap_p M^n$ ist.
+Für eine homogene Metrik auf $\sfrac{G}{H}$ ist $\operatorname{Scal}(g)$ eine konstante Funktion.
+
+\begin{satz}[label=satz:329,{name=[Skalarkrümmung riemannscher homogener Raum]}]
+	Sei $(\sfrac{G}{H},g)$ ein Riemannscher homogener Raum mit $\Ad(H)$-invarianter Zerlegung $\mathfrak{g} = \mathfrak{h} \oplus \mathfrak{m}$.
+	Dann gilt
+	\[
+		\operatorname{Scal}(g) = - \frac{1}{2} \sum \mathcal{B}_{\mathfrak{g}} (X_i,X_i) - \frac{1}{4} \sum_{i,j} \norm*{\benbrace*{X_i,X_j}_{\mathfrak{m}}}^2 - \norm*{Z}^2
+	\]
+	wobei $(X_1, \ldots ,X_n)$ eine ONB von $(\mathfrak{m}, \skal*{\cdot }{\cdot })$ ist.
+\end{satz}
+\begin{beweis}
+	Es gilt
+	\begin{align}
+		\operatorname{Scal}(g) &= \sum_{i=1}^{n} \ric(g) \enbrace*{X_i,X_i} \\
+		&= - \frac{1}{2} \sum_i \mathcal{B}_{\mathfrak{g}}(X_i,X_i) + \frac{1}{4} \sum_{i,j,k} \skal*{\benbrace*{X_i,X_j}_{\mathfrak{m}}}{X_k}^2
+		- \frac{1}{2} \sum_{i,j} \norm*{\benbrace*{X_i,X_j}_{\mathfrak{m}}}^2 - \sum \skal*{\ad(Z)(X_i)}{X_i} \\
+		&= - \frac{1}{2} \sum_i \mathcal{B}_{\mathfrak{g}}(X_i,X_i) - \frac{1}{4} \sum_{i,j} \norm*{\benbrace*{X_i,X_j}_{\mathfrak{m}}}^2 - \Underbracket{\tr \enbrace*{\ad(Z)|_{\mathfrak{m}}}}{= \skal*{Z}{Z}} \qedhere
+	\end{align}
+\end{beweis}
+
+Ist die Killingform $\mathcal{B}_{\mathfrak{g}} \ge 0$, so ist $\operatorname{Scal}(g) \le 0$ für jede $G$-invariante Metrik $g$ auf $\sfrac{G}{H}$.
+Wir wissen, dass $\mathcal{B}_{\mathfrak{g}}=0$, falls $\mathfrak{g}$ nilpotent ist.
+
+\begin{bemerkung*}[{name=[Fall einer nur linksinvarianten Metrik]}]
+	Sogar für eine linksinvariante Metrik $g$ auf einer auflösbaren Liegruppe gilt $\operatorname{Scal}(g) \le 0$, auch wenn im Allgemeinen in diesem Fall nicht $\mathcal{B}_{\mathfrak{g}}\ge 0$ gelten muss!
+\end{bemerkung*}
+
+Wir wenden uns nun dem Raum $\mathcal{M}_G$ aller $G$-invarianten Metriken auf einem Riemannschen homogenen Raum $\sfrac{G}{H}$ zu.
+Wir hatten bereits gesehen, dass $\mathcal{M}_G$ mit dem Raum der $\Ad(H)$-invarianten Skalarprodukte auf einem $\Ad(H)$-invarianten Komplement $\mathfrak{m}$ von $\mathfrak{h}$ in $\mathfrak{g}$ identifiziert werden kann.
+Wir wählen nun ein festes $\Ad(H)$-invariantes  Skalarprodukt
+\[
+	\overline{Q}(\cdot ,\cdot ) \colon \mathfrak{m} \times \mathfrak{m} \longrightarrow \mathbb{R}
+\]
+Für ein weiteres $\Ad(H)$-invariantes Skalarprodukt $\skal*{\cdot }{\cdot }$ auf $\mathfrak{m}$ existiert ein $\overline{Q}$-selbstadjungierter, positiv definiter Endomorphismus $P= P_{\skal*{\cdot }{\cdot }}$ mit $\skal*{X}{Y} = \overline{Q}(P \cdot X,Y)$.
+Es gilt nun
+\begin{align}
+	\overline{Q}(P \cdot X,Y) = \skal*{X}{Y} = \skal*{\Ad(h)X}{\Ad(h)Y} = \overline{Q} \enbrace*{P \Ad(h)X, \Ad(h)Y} = \overline{Q} \enbrace*{\Ad(h^{-1}) P \Ad(h) X,Y}
+\end{align}
+Da dies für alle $X,Y \in \mathfrak{m}$ gilt, folgt
+\[
+	\Ad(h^{-1})\big|_{\mathfrak{m}} P \Ad(h)\big|_{\mathfrak{m}} = P \iff P \Ad(h)\big|_{\mathfrak{m}} = \Ad(h)\big|_{\mathfrak{m}} P
+\]
+Damit ist $P$ $\Ad(H)|_{\mathfrak{m}}$-äquivariant (vertauscht also mit der $\Ad(H)$-Wirkung auf $\mathfrak{m}$).
+Wenden wir uns nun dem Raum $P(n)$ der positiv definiten $(n \times n)$-Matrizen zu.
+Die Gruppe $\GL(n,\mathbb{R})$ operiert auf $P(n)$ wie folgt:
+\mapdef{\Phi \colon \GL(n,\mathbb{R}) \times P(n)}{P(n)}{(A,P)}{A P A^T}{}
+Ferner wissen wir aus der linearen Algebra, dass jedes $P>0$ als $P=AA^T = A I A^T$ geschrieben werden kann ($A= \sqrt(P)$).
+Somit operiert $\GL(n,\mathbb{R})$ transitiv.
+Die Standgruppe von der Identitätsmatrix $I$ ist $\On(n)$.
+Somit gilt
+\[
+	P(n) = \sfrac{\GL(n,\mathbb{R})}{\On(n)}
+\]
+Der Tangentialraum in dem Punkt $I$ ist gegeben durch
+\[
+	\Tmap_I P(n) = \set*{V \in \Mat(n,\mathbb{R}) \given V^T = V} = \Sym(n)
+\]
+Wir versehen $P(n)$ mit der Riemannschen Metrik $\sskal*{\cdot }{\cdot }$ definiert durch
+\mapdef{\sskal*{\cdot}{\cdot}_p \colon \Tmap_p P(n) \times \Tmap_p P(n)}{\mathbb{R}}{(V,W)}{\tr \enbrace*{P^{-1} V P^{-1} W}}{}
+Sei $p(t)= P + t \cdot V$ für \enquote{kleine} $t$.
+Dann gilt
+\[
+	\diffd{}{t}\Big|_{t=0} A p(t) A^T = A V A^T
+\]
+Es folgt
+\[
+	\sskal*{A VA^T}{AWA^T}_{AP A^T} = \tr \enbrace*{ \enbrace*{A P A^T}^{-1} A V A^T \enbrace*{A P A^T}^{-1} A W A^T} = \tr \enbrace*{P^{-1} V P^{-1} W} = \sskal*{V}{W}_P
+\]
+Somit ist $\enbrace*{P(n), \sskal{\cdot }{\cdot }}$ ein Riemannscher homogener Raum.
+Man kann zeigen, dass für eine Matrix $V \in \Sym(n) = \Tmap_I P(n)$ die Kurven $\gamma_V(t) = \exp(tV)$ Geodätische sind (sogar Kinetische) in $\enbrace*{P(n),\sskal*{\cdot }{\cdot }}$ sind.
+
+Ferner ist die Abbildung
+\mapdef{\exp \colon \Tmap_I P(n) }{P(n)}{V}{\exp(V)}{}
+ein Diffeomorphismus.\marginnote{Aus $P(n) \cong \mathbb{R}^{1/2 n(n+1)}$ und $R_{\sskal*{\cdot }{\cdot }} \le 0$ folgt dies auch mit Hadamard-Cartan}
+Für die Surjektivität stellt man einfach fest, dass man $P \in P(n)$ schreiben kann als 
+$P  = A D A^T$ mit $A \in \SO(n)$, $D = \diag(d_1, \ldots ,d_n)$ und $d_i >0$.
+Dann ist $V \coloneqq A \cdot \diag(\ln(d_1), \ldots , \ln(d_n)) \cdot A^T$ ein Urbild unter $\exp$.
+
+Für die Injektivität zerlegt man symmetrische Matrizen $V_1$ und $V_2$ mit gleichem Bild wie eben und kann über ein Permutationsargument feststellen, dass die Diagonalmatrizen $D_1, D_2$  gleich sind.
+Aus 
+\[
+	\exp(D_1) = \enbrace*{A_1^{-1} A_2} \exp(D_1) \enbrace*{A_1^{-1} A_2}^T
+\]
+kann man dann die selbe Gleichung ohne $\exp$ herleiten.
+Dass $\exp$ differenzierbar und ein lokaler Diffeomorphismus ist, ist eine Übungsaufgabe.
+
+\begin{bemerkung*}[{name=[Teilmenge der positiv definiten Matrizen]}]
+	\begin{itemize}
+		\item Betrachte den Raum $P(n)^1 = \set*{P \in P(n) \given \det P = 1}$. 
+		Der Tangentialraum ist $\Tmap_I P(n)^1 = \set*{V \in \Sym(n) \given \tr V =0}$.
+		Wegen $\det \enbrace*{\exp (V)} = \exp (\tr V)$ ist
+		\[
+			\gamma_V(t) = \exp(t V) 
+		\]
+		für $V \in \Tmap_I P(n)^1$ eine Geodätische in $P(n)^1$ (\Index{total gedätische Untermannigfaltigkeit})
+		\item $P(n)^1 = \sfrac{\SL(n,\mathbb{R})}{\SO(n)}$. Dies ist ein symmetrischer Raum vom nicht kompakten Typ.\todo{RevChap 3.2}
+	\end{itemize}
+\end{bemerkung*}
 
 \begin{satz}[label=satz:3210]
 	Sei $\enbrace*{\sfrac{G}{H},g}$ ein homogener Raum mit $\Ad(H)$-invarianter Zerlegung $\mathfrak{g} = \mathfrak{h} \oplus \mathfrak{m}$.
