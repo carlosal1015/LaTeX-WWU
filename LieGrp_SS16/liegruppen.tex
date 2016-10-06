@@ -807,7 +807,7 @@ So kann man zum Beispiel den durch die Identität gegeben Liealgebrenisomorphism
 Dann ist die induzierte Abbildung $\tilde{\Phi} \colon \tilde{H} \to \tilde{H}$ injektiv, aber $\pi \colon \tilde{H} \to H$ muss nicht injektiv sein.
 Ein konkretes Beispiel wäre die universelle Überlagerung von $\SL(n,\mathbb{R})$.
 
-\begin{satz}[{name=[{Liegruppen-Liealgebren-Zusammenhang im einfach zusammenhängenden Fall}]}]
+\begin{satz}[{name=[{Liegruppen-Liealgebren-Zusammenhang im einfach zusammenhängenden Fall}]},label=satz:135]
 	Es gilt
 	\begin{enumerate}[1)]
 		\item Zwei zusammenhängende, einfach zusammenhängende Liegruppen mit isomorphen Liealgebren sind isomorph.
@@ -2239,8 +2239,8 @@ Ist etwa $G$ kompakt, so ist $\mathcal{B}_\mathfrak{g}$ negativ definit!
 	Nach \autoref{lem:233} 2) und \autoref{satz:222} 1) ist $\mathfrak{g}$ isomorph zu $\mathbb{R}^n \times \mathfrak{g}_1 \times \ldots \times \mathfrak{g}_m$ mit $\mathfrak{g}_i$ einfach.
 	Damit ist die zusammenhängende, einfach zusammenhängende Liegruppe mit Liealgebra $\mathfrak{g}$ isomorph zu $\widetilde{G} = \mathbb{R}^n \times G_1 \times \ldots \times G_m$, wobei die $G_i$ einfach zusammenhängend und einfach sind. 
 	Insbesondere ist diese Liegruppe die universelle Überlagerung von $G$.
-	Nach Weyl (\autoref{lem:235}) sind auch die $G_i$ kompakt.\todo{das verstehe ich noch nicht}
-	Es ist nun $G = \sfrac{\widetilde{G}}{\widetilde{\Gamma}}$ für eine diskrete Untergruppe $\widetilde{\Gamma}$ des Zentrums von $\widetilde{G}$ (vgl. \cref{sec:13}).
+	Nach Weyl (\autoref{lem:235}) sind auch die $G_i$ kompakt.
+	Es ist nun $G = \sfrac{\widetilde{G}}{\widetilde{\Gamma}}$ für eine diskrete Untergruppe $\widetilde{\Gamma}$ des Zentrums von $\widetilde{G}$ (nach \autoref{satz:135}).
 	Die Zentren der $G_i$ sind nun aber endlich, womit die Projektion von $\widetilde{\Gamma}$ auf $G_1\times \ldots \times G_m$ als Homomorphismus endlichen Index hat.
 	Außerdem ist ihr Kern $\overline{\Gamma}$ eine Untergruppe von $\mathbb{R}^n$.
 	Da $G$ kompakt ist, muss auch $\sfrac{\mathbb{R}^n}{\overline{\Gamma}}$ kompakt sein und damit isomorph zu einem Torus $T^n$.
@@ -2624,7 +2624,7 @@ Ist $\mathfrak{t} \subset \mathfrak{g}$ eine maximale abelsche Unteralgebra von 
 		\),
 		das heißt $U_{\tilde{g}} \cap U_{g} \neq \emptyset$.
 		Dann gilt
-		\mapdef{\varphi_g \circ \varphi_g^{-1} \coloneqq \varphi_g \enbrace*{\sfrac{U_{\tilde{g}}}{H} \cap \sfrac{U_g}{H}}}{\varphi_{\tilde{g}} \enbrace*{\sfrac{U_{\tilde{g}}}{H} \cap \sfrac{U_g}{H}}}{d}{\tilde{g}^{-1}g h_d}{}
+		\mapdef{\varphi_{\tilde{g}} \circ \varphi_g^{-1} \coloneqq \varphi_g \enbrace*{\sfrac{U_{\tilde{g}}}{H} \cap \sfrac{U_g}{H}}}{\varphi_{\tilde{g}} \enbrace*{\sfrac{U_{\tilde{g}}}{H} \cap \sfrac{U_g}{H}}}{d}{\tilde{g}^{-1}g h_d}{}
 		für ein $h_d \in H$, da $g d H = \tilde{g} \enbrace*{\tilde{g}^{-1} g d}H$.
 		Da $g D_\varepsilon $ und $\tilde{g}D_\varepsilon$ von allen Linksnebenklassen $g' H$ transversal geschnitten werden, hängt $h_d$ differenzierbar von $d$ ab(!).\todo{genauer?}
 		Damit sind die Kartenwechsel offenbar differenzierbar.
@@ -3496,7 +3496,7 @@ Es folgt, dass man in jedem Punkt $g H$ eine Basis  von $\Tmap_{gH} \sfrac{G}{H}
 \end{beweis}
 
 \begin{korollar}[{name=[Krümmungstensor einer kompakten Liegruppe]}]
-	Sei $G$ eine kompakte Liegruppe, versehen mit einer biinvarianten Metrik $g_{e_i}$.
+	Sei $G$ eine kompakte Liegruppe, versehen mit einer biinvarianten Metrik $g_{\mathrm{bi}}$.
 	Dann gilt
 	\[
 		R_{XYYX} = \frac{1}{4} \norm[\big]{\benbrace*{X,Y}}^2 
@@ -3526,9 +3526,9 @@ Es folgt, dass man in jedem Punkt $g H$ eine Basis  von $\Tmap_{gH} \sfrac{G}{H}
 		\ric_p(X,Y) \coloneqq \sum_{i=1}^{n} R_{Xe_i e_i Y}
 	\]
 	wobei $(e_1, \ldots ,e_n)$ eine ONB von $\enbrace*{\Tmap_p M^n,g_p}$ ist.
-	Dann gilt\todo{das ergibt hier noch keinen Sinn \ldots}
+	Dann gilt
 	\[
-		\ric_p(e_1,e_2) = 0 + R_{1221} + R_{1331} + \ldots + R_{1nn1} = 0 + K(1,2) + K(1,3) + \ldots + K(1,n)
+		\ric_p(e_1,e_1) = 0 + R_{1221} + R_{1331} + \ldots + R_{1nn1} = 0 + K(1,2) + K(1,3) + \ldots + K(1,n)
 	\]
 	Analog wie die Riemannsche Metrik $g$ selbst ist $\ric_g$ ebenfalls eine symmetrische Bilinearform auf $\Tmap M^n$.
 \end{erinnerung}
@@ -3581,7 +3581,7 @@ Die entsprechende Lieuntergruppe $G_\mathrm{uni} \subsetneq G$ ist also unimodul
 \begin{beweis}
 	Nach \autoref{satz:324} gilt 
 	\begin{align}
-		\ric(X,X) = \sum_{i=1}^{n} R_{XX_iY_iY} &= - \frac{3}{4} \norm*{\benbrace*{X,X_i}|_\mathfrak{m}}^2 - \frac{1}{2} \sum_{i} \skal*{\benbrace*{X,\benbrace*{X,X_i}}}{X} - \frac{1}{2} \sum_i \skal*{\benbrace*{X_i,\benbrace*{X_i,X}}}{X} \\
+		\ric(X,X) = \sum_{i=1}^{n} R_{XX_iX_iX} &= - \frac{3}{4} \norm*{\benbrace*{X,X_i}|_\mathfrak{m}}^2 - \frac{1}{2} \sum_{i} \skal*{\benbrace*{X,\benbrace*{X,X_i}}}{X} - \frac{1}{2} \sum_i \skal*{\benbrace*{X_i,\benbrace*{X_i,X}}}{X} \\
 		& \quad + \sum_i \norm*{u(X_i,X_i)}^2 - \skal*{u(X,X)}{Z}
 	\end{align}
 	Erinnerung: Für $X \in \mathfrak{m}$ gilt $\ad(X) = \begin{psmallmatrix}
