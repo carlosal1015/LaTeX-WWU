@@ -335,7 +335,66 @@ Wir definieren die Lieklammer wie folgt
 	\end{align}
 	Folglich ist $\mathfrak{g}$ nicht nilpotent.
 	
-	\todo[inline]{fertig machen}
+	Um (ii) zu zeigen, stellen wir nun fest, dass die adjungierten Darstellungen wie folgt aussehen:
+	\[
+		\ad_X = \begin{pmatrix*}[r]
+			0 & 0 & 0\, \\
+			0 & 1 & \sfrac{1}{\lambda} \\
+			0 & -\lambda & 1\,
+		\end{pmatrix*}
+		\qquad 
+		\ad_Y = \begin{pmatrix*}[r]
+			0 & 0 & 0 \\
+			-1 & 0 & 0 \\
+			\lambda & 0 & 0
+		\end{pmatrix*}
+		\qquad 
+		\ad_Z = \begin{pmatrix*}[r]
+			0\, & 0 & 0 \\
+			- \sfrac{1}{\lambda} & 0 & 0 \\
+			-1\, & 0 & 0
+		\end{pmatrix*}
+	\]
+	Beim Nachrechnen von $\tr \enbrace*{{\ad_v} \circ {\ad_w}}$ für alle $v,w \in \mathfrak{g}$, können wir nun ohne Einschränkungen $v=X$ annehmen, da $\benbrace*{Y,\mathfrak{g}_1} = \benbrace*{Z, \mathfrak{g}_1}=0$ gilt; also
+	\begin{align}
+		\ad_X^2 &= \begin{pmatrix}
+			0 & 0 & 0 \\
+			0 & 0 & \sfrac{2}{\lambda} \\
+			0 & - 2 \lambda & 0
+		\end{pmatrix} \\
+		\ad_X \circ \ad_Y &= \begin{pmatrix*}[r]
+			0 & 0 & 0\, \\
+			0 & 1 & \sfrac{1}{\lambda} \\
+			0 & -\lambda & 1\,
+		\end{pmatrix*}
+		\begin{pmatrix*}[r]
+			0 & 0 & 0 \\
+			-1 & 0 & 0 \\
+			\lambda & 0 & 0
+		\end{pmatrix*}
+		= \begin{pmatrix}
+			0 & 0 & 0 \\
+			* & 0 & 0 \\
+			* & 0 & 0
+		\end{pmatrix} \\
+		\ad_X \circ \ad_Z &= 
+		\begin{pmatrix*}[r]
+			0 & 0 & 0\, \\
+			0 & 1 & \sfrac{1}{\lambda} \\
+			0 & -\lambda & 1\,
+		\end{pmatrix*}
+		\begin{pmatrix*}[r]
+			0\, & 0 & 0 \\
+			- \sfrac{1}{\lambda} & 0 & 0 \\
+			-1\, & 0 & 0
+		\end{pmatrix*}
+		= \begin{pmatrix}
+			0 & 0 & 0 \\
+			* & 0 & 0 \\
+			* & 0 & 0
+		\end{pmatrix}
+	\end{align}
+	Damit ist $\mathcal{B} \equiv 0$.
 \end{beweis}
 % section aufg18 (end)
 
