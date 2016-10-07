@@ -2620,7 +2620,7 @@ Ist $\mathfrak{t} \subset \mathfrak{g}$ eine maximale abelsche Unteralgebra von 
 		\),
 		das heißt $U_{\tilde{g}} \cap U_{g} \neq \emptyset$.
 		Dann gilt
-		\mapdef{\varphi_{\tilde{g}} \circ \varphi_g^{-1} \coloneqq \varphi_g \enbrace*{\sfrac{U_{\tilde{g}}}{H} \cap \sfrac{U_g}{H}}}{\varphi_{\tilde{g}} \enbrace*{\sfrac{U_{\tilde{g}}}{H} \cap \sfrac{U_g}{H}}}{d}{\tilde{g}^{-1}g h_d}{}
+		\mapdef{\varphi_{\tilde{g}} \circ \varphi_g^{-1} \colon \varphi_g \enbrace*{\sfrac{U_{\tilde{g}}}{H} \cap \sfrac{U_g}{H}}}{\varphi_{\tilde{g}} \enbrace*{\sfrac{U_{\tilde{g}}}{H} \cap \sfrac{U_g}{H}}}{d}{\tilde{g}^{-1}g d h_d}{}
 		für ein $h_d \in H$, da $g d H = \tilde{g} \enbrace*{\tilde{g}^{-1} g d}H$.
 		Da $g D_\varepsilon $ und $\tilde{g}D_\varepsilon$ von allen Linksnebenklassen $g' H$ transversal geschnitten werden, hängt $h_d$ differenzierbar von $d$ ab(!).\todo{genauer?}
 		Damit sind die Kartenwechsel offenbar differenzierbar.
@@ -2658,6 +2658,7 @@ Sei nun $M^k$ eine differenzierbare Mannigfaltigkeit und
 \[
 	C^\infty(G,M^k)^H \coloneqq \set[\big]{f \in C^\infty(G,M) \given \forall h \in H : f \circ R_h = f}
 \]
+die Menge der $H$-rechtsinvarianten glatten Abbildungen $G \to M^k$.
 Offenbar ist $f \in C^\infty(G,M)^H$ konstant auf den Linksnebenklassen $g H$.
 Somit ist $\overline{f} \coloneqq f \circ \pi^{-1} \colon \sfrac{G}{H} \to M^k$, $gH \mapsto f(g)$ wohldefiniert.
 
@@ -2709,6 +2710,7 @@ Somit ist $\overline{f} \coloneqq f \circ \pi^{-1} \colon \sfrac{G}{H} \to M^k$,
 	\[
 		H \coloneqq G_p = \set[\big]{g \in G \given g.p=p}
 	\]
+	die \Index{Isotropiegruppe} der Wirkung. 
 	Dann ist die Abbildung $\varphi \colon \sfrac{G}{H} \to M^n$, $gH \mapsto g.p$ ein \bet{$G$-äquivarianter}\index{G-äquivariant@$G$-äquivariant} Diffeomorphismus, das heißt folgendes Diagramm kommutiert:
 	\[
 		\begin{tikzcd}
@@ -3020,11 +3022,28 @@ Es gilt:
 \begin{beispiel*}[{name=[Gültigkeit von \autoref{lem:319}]}]
 	Ist $G$ kompakt, so ist $\Phi(G)$ kompakt und der Satz gilt.
 	
-	Gegenbeispiel: $\enbrace*{S^3 \times S^3, g_{\mathrm{std}} \times g_{\mathrm{std}}}$. Dann operiert $G = S^3 \times S^3 \times \mathbb{R}$ symmetrisch auf $M^6=S^3 \times S^3$ wie folgt:\todo{hier fehlt irgendwie noch was}
+	Gegenbeispiel: $\enbrace*{S^3 \times S^3, g_{\mathrm{std}} \times g_{\mathrm{std}}}$. Dann operiert $G = S^3 \times S^3 \times \mathbb{R}$ symmetrisch auf $M^6=S^3 \times S^3$ wie folgt:
 	\[
-		S^3 = \set[\big]{q \in \mathbb{H} \given \norm*{q}=1} \supset S^1 = \set[\big]{z \in \mathbb{C} \given \abs*{z}=1 }
+		(q_1,q_2,t).(v_1,v_2) = \enbrace*{q_1 v_1 e^{it}, q_2 v_2 e^{i \alpha t}}
 	\]
-	\emph{Übung!}
+	für ein festes $\alpha \in \mathbb{R} \setminus \mathbb{Q}$.
+	$G$ operiert isometrisch, da $\Phi(q_1,q_2,t) = L_{(q_1,q_2)} \circ R_{(e^{it},e^{i \alpha t})}$ gilt.
+	Da $g_{\mathrm{std}}$ biinvariant auf $S^3$ ist, ist $g_0 = g_{\mathrm{std}} \times g_{\mathrm{std}}$ biinvariant auf $S^3 \times S^3$.
+	Dann ist 
+	\[
+		H \coloneqq G_{(1,1)} = \set*{\enbrace*{e^{-it}, e^{-i \alpha t}, t} \given t \in \mathbb{R}} \cong \mathbb{R}
+	\]
+	Folglich ist $H$ nicht kompakt.
+	Wir zeigen, dass $G$ effektiv operiert.
+	Sei dazu $g = (e^{-it}, e^{- i \alpha t}, t) \in N \lhd G$ (es muss ja $N \subseteq H$ gelten).
+	Dann gilt
+	\[
+		(j,1,1) g (j,1,1)^{-1} = \enbrace*{\overline{e^{it}}, e^{- i \alpha t},t}
+	\]
+	Also muss $\overline{e^{i t}} = e^{it}$ sein, was $t \in \pi \mathbb{Z}$ impliziert.
+	Genauso erhält man aus $(1,j,1)g(1,j,1)^{-1} = \enbrace*{e^{it}, \overline{e^{i \alpha t}},t}$, dass $\alpha \cdot t \in \pi \mathbb{Z}$ gelten muss.
+	Falls $t \neq 0$ ist, folgt also $\sfrac{\alpha t}{t} \in \mathbb{Q}$, was ein Widerspruch ist.
+	Also muss $t=0$ sein und damit ist $N$ trivial.
 \end{beispiel*}
 
 \begin{definition}[{name=[Isotropiedarstellung]}]
@@ -3034,7 +3053,7 @@ Es gilt:
 	% \[
 	% 	\rho \colon H \to \On \enbrace*{\Tmap_p M^n, g_p} , h \mapsto \enbrace*{\mathd \Phi_h}_p
 	% \]
-	die \Index{Isotropiedarstellung} von $M^n$ 
+	die \Index{Isotropiedarstellung} von $M^n$.
 \end{definition}
 
 \begin{beispiel*}[{name=[Isotropiedarstellung]}]
