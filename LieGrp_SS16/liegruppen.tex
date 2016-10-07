@@ -832,7 +832,7 @@ Ein konkretes Beispiel wäre die universelle Überlagerung von $\SL(n,\mathbb{R}
 \end{beweis}
 
 \begin{beispiel*}[{name=[Überlagerung der speziellen linearen Gruppe]}]
-	Wir betrachten die spezielle lineare Gruppe in Dimension $2$:\todo{hier könnte man noch die Übungen komplett einarbeiten \ldots}
+	Wir betrachten die spezielle lineare Gruppe in Dimension $2$:
 	\[
 		\SL(2,\mathbb{R}) = \set*{\begin{pmatrix}
 			a & b \\ c & d
@@ -847,7 +847,7 @@ Ein konkretes Beispiel wäre die universelle Überlagerung von $\SL(n,\mathbb{R}
 			x \\ y
 		\end{pmatrix} \in \mathbb{R}^2 \given x^2 +y^2 <1}
 	\]
-	Wir führen folgende Multiplikation auf $M^3$ ein:
+	Wir führen folgende Multiplikation auf $M^3$ ein:\marginnote{wurde in den Übungen detailliert durchgerechnet}
 	\[
 		(\alpha,\varphi) \cdot (\beta, \psi) := \enbrace*{ \frac{\beta + \alpha \cdot e^{-i \psi}}{1 + \alpha \overline{\beta} e^{-i \psi}}, \varphi + \psi + 2 \cdot \Arg \enbrace*{1 + \alpha \overline{\beta} e^{-i \psi}} }
 	\]
@@ -1338,19 +1338,16 @@ Achtung! $S^1_r \subset T^2 = S^1 \times S^1$ ist Normalteiler mit $\overline{S^
 		\benbrace[\big]{e_i \wedge e_j , e_j \wedge e_k} = - e_i \wedge e_k \qquad \benbrace[\big]{e_i \wedge e_j, e_k \wedge e_l}= 0
 	\]
 	gilt.
-	Wir erhalten für eine ONB $\set*{b_1, \ldots ,b_N}$ von $\mathfrak{so}(n)$, $N=\frac{1}{2}(n-1)n$
+	Wir erhalten für eine ONB $\set*{b_1, \ldots ,b_N}$ von $\mathfrak{so}(n)$, $N=\frac{1}{2}(n-1)n$\todo{das stimmt noch nicht so ganz, es sollte $\mathcal{B}(X,Y)=(n-2) \tr(XY)$ sein}
+	\begin{align}
+		\mathcal{B}(v,w) = \tr \enbrace*{\ad_v \circ \ad_w} &= \sum_{i=1}^{N} \skal[\big]{(\ad_v \circ \ad_w)(b_i)}{b_i}_{\mathfrak{so}(n)} \\
+		&\stackrel{!}{=} -\sum_{i<j} \skal*{ \benbrace*{w,e_i \wedge e_j}}{ \benbrace*{v, e_i \wedge e_j}} = - \ad_v
+	\end{align}
+	Somit ist $\mathcal{B}(e_k \wedge e_l, e_k \wedge e_k)=-2(n-2)$ und für $\set*{k,l} \neq \set*{\tilde{k},\tilde{l}}$
+	\[
+		\mathcal{B} \enbrace*{e_k \wedge e_l, e_{\tilde{k}} \wedge e_{\tilde{l}}} =0
+	\]
 \end{beispiel*}
-
-
-\todo{RevChap 1}
-\begin{align}
-	\mathcal{B}(v,w) = \tr \enbrace*{\ad_v \circ \ad_w} &= \sum_{i=1}^{N} \skal[\big]{(\ad_v \circ \ad_w)(b_i)}{b_i}_{\mathfrak{so}(n)} \\
-	&\stackrel{!}{=} -\sum_{i<j} \skal*{ \benbrace*{w,e_i \wedge e_j}}{ \benbrace*{v, e_i \wedge e_j}} = - \ad_v
-\end{align}
-Somit ist $\mathcal{B}(e_k \wedge e_l, e_k \wedge e_k)=-2(n-2)$ und für $\set*{k,l} \neq \set*{\tilde{k},\tilde{l}}$
-\[
-	\mathcal{B} \enbrace*{e_k \wedge e_l, e_{\tilde{k}} \wedge e_{\tilde{l}}} =0
-\]
 
 \begin{beispiel*}[{name=[triviale Killingform trotz nicht abelscher Liealgebra]}]
 	Die Killingform $\mathcal{B}$ einer Liealgebra $\mathfrak{g}$ kann aber auch Null sein, ohne dass $\mathfrak{g}$ abelsch ist: Betrachte
@@ -1999,7 +1996,7 @@ Wir haben insbesondere gezeigt, dass $\ker \mathcal{B}$ für jede Liealgebra ein
 	\[
 		\mathcal{B}_{\mathfrak{g}} \enbrace*{X,Y} = \alpha_\mathfrak{g} \cdot \tr(X Y)
 	\]
-	gilt für eine von der Liealgebra abhängige Konstante $\alpha_\mathfrak{g} \neq 0$.\todo{Übungen einarbeiten?}
+	gilt für eine von der Liealgebra abhängige Konstante $\alpha_\mathfrak{g} \neq 0$.
 	In allen Beispielen rechnet man leicht nach, dass
 	\[
 		X \in \mathfrak{g} \implies X^T \in \mathfrak{g}
