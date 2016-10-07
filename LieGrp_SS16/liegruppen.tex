@@ -1338,12 +1338,12 @@ Achtung! $S^1_r \subset T^2 = S^1 \times S^1$ ist Normalteiler mit $\overline{S^
 		\benbrace[\big]{e_i \wedge e_j , e_j \wedge e_k} = - e_i \wedge e_k \qquad \benbrace[\big]{e_i \wedge e_j, e_k \wedge e_l}= 0
 	\]
 	gilt.
-	Wir erhalten für eine ONB $\set*{b_1, \ldots ,b_N}$ von $\mathfrak{so}(n)$, $N=\frac{1}{2}(n-1)n$\todo{das stimmt noch nicht so ganz, es sollte $\mathcal{B}(X,Y)=(n-2) \tr(XY)$ sein}
+	Wir erhalten für eine ONB $\set*{b_1, \ldots ,b_N}$ von $\mathfrak{so}(n)$, $N=\frac{1}{2}(n-1)n$\marginnote{allgemein: $\mathcal{B}(X,Y)=(n-2) \tr(XY)$ }
 	\begin{align}
-		\mathcal{B}(v,w) = \tr \enbrace*{\ad_v \circ \ad_w} &= \sum_{i=1}^{N} \skal[\big]{(\ad_v \circ \ad_w)(b_i)}{b_i}_{\mathfrak{so}(n)} \\
-		&\stackrel{!}{=} -\sum_{i<j} \skal*{ \benbrace*{w,e_i \wedge e_j}}{ \benbrace*{v, e_i \wedge e_j}} = - \ad_v
+		\mathcal{B}(v,w) = \tr \enbrace*{\ad_v \circ \ad_w} = \sum_{i=1}^{N} \skal[\big]{(\ad_v \circ \ad_w)(b_i)}{b_i}_{\mathfrak{so}(n)} 
+		\stackrel{!}{=} -\sum_{i<j} \skal[\big]{\benbrace*{w,e_i \wedge e_j}}{ \benbrace*{v, e_i \wedge e_j}}
 	\end{align}
-	Somit ist $\mathcal{B}(e_k \wedge e_l, e_k \wedge e_k)=-2(n-2)$ und für $\set*{k,l} \neq \set*{\tilde{k},\tilde{l}}$
+	Somit ist $\mathcal{B}(e_k \wedge e_l, e_k \wedge e_l)=-2(n-2)$ und für $\set*{k,l} \neq \set*{\tilde{k},\tilde{l}}$
 	\[
 		\mathcal{B} \enbrace*{e_k \wedge e_l, e_{\tilde{k}} \wedge e_{\tilde{l}}} =0
 	\]
