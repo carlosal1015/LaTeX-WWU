@@ -113,6 +113,41 @@ Wir beginnen mit einem Hilfslemma, das wir für den Beweis des Satzes benötigen
 \end{beweis}
 % section dichte_teilmenge_des_torus (end)
 
+\section{Kanonisches Komplement} % (fold)
+\label{sec:kanonisches_komplement}
+
+\begin{lemma}
+	Es existiert ein kanonisches Komplement $\mathfrak{g} = \mathfrak{h} \oplus \mathfrak{m}$,\marginnote{fast effektiv = effektiv bis auf diskreten Normalteiler} das ohne Riemannsche Metrik auf $H$ definiert werden kann, falls $G$ (fast) effektiv auf $\sfrac{G}{H}$ operiert.
+\end{lemma}
+\begin{beweis}
+	Da ein $\Ad(H)$-invariantes Skalarprodukt auf $\mathfrak{g}$ existiert, ist $\ad_X \colon \mathfrak{g} \to \mathfrak{g}$ schiefsymmetrisch für alle $X \in \mathfrak{h}$.
+	Somit ist $\mathcal{B}_{\mathfrak{g}}|_{\mathfrak{h} \times \mathfrak{h}}$ negativ definit:
+	Für $X \in \mathfrak{h}$ gilt
+	\[
+		\mathcal{B}_{\mathfrak{g}}(X,X) = \tr \ad_X^2 = - \norm*{\ad_X}^2 \le 0
+	\]
+	Also ist $\mathcal{B}_{\mathfrak{g}}=0 \iff \ad_X =0 \iff X \in Z(\mathfrak{g}) \cap \mathfrak{h} \lhd \mathfrak{g}$.
+	Sei $N = \set*{g \in G\given g.p = p \,\, \forall p}$.
+	Da $G$ fast effektiv operiert, ist die zugehörigen Lieunteralgebra $\mathfrak{n} =0$.
+	Damit folgt $\mathcal{B}_{\mathfrak{g}}(X,X) =0 \iff X=0$.
+	Setze nun
+	\[
+		\mathfrak{m} \coloneqq \set[\big]{Y \in \mathfrak{g} \given \mathcal{B}_{\mathfrak{g}}(X,Y) =0 \, \, \forall X \in \mathfrak{h}}
+	\]
+	\begin{enumerate}[(i)]
+		\item Es gilt $\mathfrak{m} \cap \mathfrak{h} =0$, da $\mathcal{B}_{\mathfrak{g}}|_{\mathfrak{h} \times \mathfrak{h}}$ negativ definit ist.
+		\item Die $\Ad(H)$-Invarianz von $\mathfrak{m}$ folgt aus
+		\[
+			0 = \mathcal{B}_{\mathfrak{g}} \enbrace*{\Ad (h^{-1})X,Y} = \mathcal{B}_{\mathfrak{g}} \enbrace[\big]{X, \Ad(h) Y}
+		\]
+		für $X \in \mathfrak{h}$, $y \in \mathfrak{m}$ und $h \in H$.
+		\item Es gilt $\mathfrak{m} \oplus \mathfrak{h} = \mathfrak{g}$: 
+		Betrachte $\Phi \colon \mathfrak{g} \to \mathfrak{h}^*$ mit $Y \mapsto \benbrace*{X \mapsto \mathcal{B}_{\mathfrak{g}}(X,Y)}$.
+		Dann ist $\mathfrak{m} = \ker \Phi$ und damit folgt $\dim \mathfrak{m} \le \dim \mathfrak{g} - \dim \mathfrak{h}$.\qedhere
+	\end{enumerate}
+\end{beweis}
+% section kanonisches_komplement (end)
+
 \section{Aufgabe 3 -- Über Quaternionen} % (fold)
 \label{sec:aufg3}
 Wir bezeichnen mit $\mathbb{H} \coloneqq \set*{q = \alpha \cdot 1 + \beta \cdot i + \gamma \cdot j + \delta \cdot k \given \alpha, \beta, \gamma, \delta \in \mathbb{R}}$ den Schiefkörper der \Index{Quaternionen}.\footnote{Zur Erinnerung: $i^2 = j^2 = k^2 = ijk = -1$}
