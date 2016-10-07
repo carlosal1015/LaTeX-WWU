@@ -116,8 +116,34 @@ Wir beginnen mit einem Hilfslemma, das wir für den Beweis des Satzes benötigen
 \section{Kanonisches Komplement} % (fold)
 \label{sec:kanonisches_komplement}
 
+Zunächst noch ein Lemma zur Existenz $\Ad(H)$-invarianter Skalarprodukte:
+
 \begin{lemma}
-	Es existiert ein kanonisches Komplement $\mathfrak{g} = \mathfrak{h} \oplus \mathfrak{m}$,\marginnote{fast effektiv = effektiv bis auf diskreten Normalteiler} das ohne Riemannsche Metrik auf $H$ definiert werden kann, falls $G$ (fast) effektiv auf $\sfrac{G}{H}$ operiert.
+	Sei $M$ ein $G$-homogener Raum, wobei die Wirkung transitiv, isometrisch und (fast) effetiv\marginnote{fast effektiv = effektiv bis auf diskreten Normalteiler} ist.
+	Sei weiter $\Phi(G) \subseteq \Isom(M,g)$ nicht abgeschlossen.
+	Dann existiert trotzdem ein $\Ad(H)$-invariantes Skalarprodukt auf $\mathfrak{g}$.
+\end{lemma}
+\begin{beweis}
+	Zunächst der effektive Fall:\marginnote{$H \coloneqq G_p$} 
+	$\Phi \colon G \hookrightarrow \Isom(M,g)$ ist injektiv und $\overline{G}$ sei der Abschluss in $\Isom(M,g)$.
+	Sei genauso $\overline{H}$ der Abschluss von $H$ in $\Isom(M,g)$.
+	Nach \autoref{lem:319} existiert dann ein $\Ad(\overline{H})$-invariantes Skalarprodukt $\overline{\skal*{\cdot }{\cdot }}$ auf $\overline{\mathfrak{g}} = \Tmap_e \overline{G}$.
+	$\overline{\skal*{\cdot }{\cdot }}$ ist insbesondere auch $\Ad(H)$-invariant und dan $\mathfrak{g} \subseteq \overline{\mathfrak{g}}$ ein $\Ad(H)$-Untermodul ist, ist $\overline{\skal*{\cdot }{\cdot }}|_{\mathfrak{g} \times \mathfrak{g}}$ ein $\Ad(H)$-invariantes Skalarprodukt auf $\mathfrak{g}$.
+	
+	Nun zum fast effektiven Fall: Sei $N \subseteq H$ der diskrete Normalteiler $N =\set*{g \in G \given g.p=p \,\,\forall p \in M}$.
+	Dann ist $\pi \colon G \to \sfrac{G}{N}$ eine Überlagerung und $\sfrac{G}{N}$ wirkt effektiv auf $M$ mit Isotropiegruppe $\sfrac{H}{N}$.
+	Sei nun also $\skal*{\cdot }{\cdot }$ ein $\Ad(H)$-invariantes Skalarprodukt auf $\mathfrak{g}$ (existiert nach dem ersten Absatz) und $(\cdot ,\cdot ) \coloneqq \skal*{(\mathd \pi)_e \cdot }{(\mathd \pi)_e \cdot}$.
+	Dann gilt für $X,Y \in \mathfrak{g}$ und $h \in H$
+	\begin{align}
+		(X,Y) = \skal[\big]{(\mathd \pi)_e X}{(\mathd \pi)_e Y} &= \skal[\big]{\Ad(\pi(h)) (\mathd \pi)_e X}{\Ad(\pi(h)) (\mathd \pi)_e Y} \\
+		&= \skal[\big]{(\mathd \pi)_e \Ad(h) X}{(\mathd \pi)_e \Ad(h)Y} \\
+		&= \enbrace[\big]{\Ad(h) X, \Ad(h) Y}
+	\end{align}
+	Also ist $(\cdot ,\cdot )$ auch $\Ad(h)$-invariant.
+\end{beweis}
+
+\begin{lemma}
+	Es existiert ein kanonisches Komplement $\mathfrak{g} = \mathfrak{h} \oplus \mathfrak{m}$, das ohne Riemannsche Metrik auf $H$ definiert werden kann, falls $G$ (fast) effektiv auf $\sfrac{G}{H}$ operiert.
 \end{lemma}
 \begin{beweis}
 	Da ein $\Ad(H)$-invariantes Skalarprodukt auf $\mathfrak{g}$ existiert, ist $\ad_X \colon \mathfrak{g} \to \mathfrak{g}$ schiefsymmetrisch für alle $X \in \mathfrak{h}$.
