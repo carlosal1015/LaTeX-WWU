@@ -222,7 +222,7 @@ denn es gilt
 	(\Phi \circ L_h)(\tilde{h}) = \Phi \enbrace*{L_h(\tilde{h})} = \Phi(h \cdot \tilde{h}) = \Phi(h) \cdot \Phi(\tilde{h}) = \enbrace*{L_{\Phi(h)} \circ \Phi}(\tilde{h})
 \end{align}
 Einen Homomorphismus $\Phi \colon G \to \GL(n,\mathbb{K})$ nennt man \bet{reelle}\index{Darstellung!reelle} bzw. \bet{komplexe Darstellung}\index{Darstellung!komplexe} von $G$.\marginnote{$\Phi_0(G)\equiv E_n$}
-Ist $\Phi \colon G \to \GL(n,\mathbb{K})$ injektiv, so besitzt die Gruppe $G$ die \Index{Darstellung!treue} $\Phi(G)$ in $\GL(n,\mathbb{K})$.
+Ist $\Phi \colon G \to \GL(n,\mathbb{K})$ injektiv, so besitzt die Gruppe $G$ die \bet{treue Darstellung}\index{Darstellung!treue} $\Phi(G)$ in $\GL(n,\mathbb{K})$.
 
 \begin{lemma}[label=lem:122,{name=[{Differntial von Liegruppenhom. ist Liealgebrenhom.}]}]
 	Sei $\Phi \colon H \to G$ ein Liegruppenhomomorphismus.\marginnote{es folgt, dass man die Liealgebra einer Liegruppe als Funktor auffassen kann}
@@ -230,7 +230,7 @@ Ist $\Phi \colon G \to \GL(n,\mathbb{K})$ injektiv, so besitzt die Gruppe $G$ di
 \end{lemma}
 \begin{beweis}
 	Seien $v_1,v_2 \in \Tmap_e H$ und $w_i := (\mathd \Phi)_e \, v_i$ für $i=1,2$.
-	Zu zeigen
+	Zu zeigen ist
 	\[
 		(\mathd \Phi)_e \benbrace[\big]{X_{v_1}, X_{v_2}} (e) = \benbrace[\big]{X_{w_1},X_{w_2}}(e)
 	\]
@@ -254,7 +254,7 @@ Ist $\Phi \colon G \to \GL(n,\mathbb{K})$ injektiv, so besitzt die Gruppe $G$ di
 	Sei $G$ eine Liegruppe und $i_g \colon G \to G$ gegeben durch $h \mapsto g \cdot h \cdot g^{-1}$ die \Index{Konjugation} mit $g$.
 	Dann ist $i_g$ ein Liegruppenisomorphismus:
 	\begin{itemize}[itemsep=0pt]
-		\item $i_g(h) = \enbrace*{l_g \circ R_{g^{-1}}}(h)$, also ist $i_g$ differenzierbar.
+		\item $i_g(h) = \enbrace*{L_g \circ R_{g^{-1}}}(h)$, also ist $i_g$ differenzierbar.
 		\item Die Gruppenhomomorphismuseigenschaft ist klar. 
 		\item Die inverese Abbildung ist offenbar gegeben durch $(i_g)^{-1}= i_{g^{-1}}$.
 	\end{itemize}
@@ -312,7 +312,7 @@ Ist $\Phi \colon G \to \GL(n,\mathbb{K})$ injektiv, so besitzt die Gruppe $G$ di
 			&= \exp(tX-tX) \\[-3pt]
 			&= \exp(0) =E_n
 		\end{align}
-		Dies folgt mit $\exp(X+Y)= \exp(X) \exp(Y)$, falls $[X,Y]=0$.
+		Dies folgt mit $\exp(X+Y)= \exp(X) \exp(Y)$, falls $[X,Y]=0$. Siehe \cref{sec:funktionalgleichung} für eine allgemeine Herleitung dieser Funktionalgleichung für Liegruppen.
 	\end{itemize}
 \end{beispiel*}
 
@@ -541,7 +541,7 @@ Wir wissen weiter, dass $I_{\max}$ offen in $\mathbb{R}$ ist.
 			\frac{y_i}{\norm*{y_i}} \grenzw{i \to \infty}  y
 		\]
 		in $\mathfrak{h}$ konstruieren (mittels Teilfolge).
-		Die Eigenschaften $y \in H$, $y \in H^\bot$ und $\norm*{y}=1$ widersprechen sich!
+		Die Eigenschaften $y \in \mathfrak{h}$, $y \in \mathfrak{h}^\bot$ und $\norm*{y}=1$ widersprechen sich!
 		Also existiert eine solche Folge nicht und $H$ ist eine eingebettete Untermannigfaltigkeit wie behauptet.
 		\item Sei $H$ ein abgeschlossene \enquote{abstrakte} Untergruppe von $G$.
 		Wir zeigen zunächst, dass 
@@ -799,12 +799,12 @@ Wir wissen weiter, dass $I_{\max}$ offen in $\mathbb{R}$ ist.
 	mit $(\mathd \Phi)_e = (\mathd \pi_2)_e = \psi$.
 \end{beweis}
 
-Ist in obiger Situation $H$ \emph{nicht} einfach zusammenhängend, so erhält man einen Homomorphismus $\tilde{\Phi} \colon \tilde{H} \to G$, wobei $\tilde{H}$ eine universelle Überlagerung von $H$ ist.
-Dies liefert genau dann einen Homomorphismus $\Phi \colon H \to G$, wenn $\ker \pi \subset \ker \tilde{\Phi}$ ist, wobei $\pi \colon \tilde{H} \to H$ die Überlagerungsabbildung bezeichnet.
+Ist in obiger Situation $H$ \emph{nicht} einfach zusammenhängend, so erhält man einen Homomorphismus $\widetilde{\Phi} \colon \widetilde{H} \to G$, wobei $\widetilde{H}$ eine universelle Überlagerung von $H$ ist.
+Dies liefert genau dann einen Homomorphismus $\Phi \colon H \to G$, wenn $\ker \pi \subset \ker \widetilde{\Phi}$ ist, wobei $\pi \colon \widetilde{H} \to H$ die Überlagerungsabbildung bezeichnet.
 
 Dies ist aber nicht immer richtig:
 So kann man zum Beispiel den durch die Identität gegeben Liealgebrenisomorphismus $\psi \colon \mathfrak{h} \to \mathfrak{h}$ betrachten.
-Dann ist die induzierte Abbildung $\tilde{\Phi} \colon \tilde{H} \to \tilde{H}$ injektiv, aber $\pi \colon \tilde{H} \to H$ muss nicht injektiv sein.
+Dann ist die induzierte Abbildung $\widetilde{\Phi} \colon \widetilde{H} \to \widetilde{H}$ injektiv, aber $\pi \colon \widetilde{H} \to H$ muss nicht injektiv sein.
 Ein konkretes Beispiel wäre die universelle Überlagerung von $\SL(n,\mathbb{R})$.
 
 \begin{satz}[{name=[{Liegruppen-Liealgebren-Zusammenhang im einfach zusammenhängenden Fall}]},label=satz:135]
@@ -827,7 +827,7 @@ Ein konkretes Beispiel wäre die universelle Überlagerung von $\SL(n,\mathbb{R}
 		\item Nach dem Satz von Ado existiert eine Liegruppe $G$ mit Liealgebra $\mathfrak{g}=V$.
 		Die universelle Überlagerung $\tilde{G}$ von $G$ ist die gesuchte Liegruppe.
 		Die Eindeutigkeit folgt aus 1).
-		\item Mit $\widetilde{G}$ als universelle Überlagerung folgt dies direkt aus \autoref{lem:133}.\qedhere
+		\item Mit $\tilde{G}$ als universelle Überlagerung folgt dies direkt aus \autoref{lem:133}.\qedhere
 	\end{enumerate}
 \end{beweis}
 
@@ -937,7 +937,7 @@ mit $(\mathd \Phi_v)_0 = \psi_v$ und $\Phi_v'(0)= v$.
 \begin{lemma}[label=lem:143,{name=[Eigenschaften der Exponentialabbildung]}]
 	Es gilt
 	\begin{enumerate}[(1),itemsep=0pt]
-		\item Für alle $v \in \Tmap_eG$ ist $\Phi_v(t)=\exp(tv)$ eine Einparamtergruppe von $G$ mit $\Phi'_v(0)=v$.
+		\item Für alle $v \in \Tmap_eG$ ist $\Phi_v(t)=\exp(tv)$ eine Einparametergruppe von $G$ mit $\Phi'_v(0)=v$.
 		\item Sei $g \in G$ und $v \in \Tmap_eG$.
 		Dann ist $L_g(\Phi_v(t))$ Integralkurve von $X_v$.
 		\item Ist $\Phi \colon H \to G$ ein Homomorphismus, so gilt für alle $w \in \mathfrak{h}$ für alle $t \in \mathbb{R}$\marginnote{$\exp$ ist natürlich!}
@@ -982,7 +982,7 @@ mit $(\mathd \Phi_v)_0 = \psi_v$ und $\Phi_v'(0)= v$.
 		\item Aus (4) folgt: Ist $H$ eine Lieuntergruppe von $G$, so gilt $\exp_H  = \exp_G\!\big|_{\Tmap_e H} \colon \Tmap_e H \to H$.
 		\item Die Exponentialabbildung $\exp \colon \Tmap_e G \to G$ ist nicht immer surjektiv; dies ist allerdings richtig für kompakte zusammenhängende Liegruppen.
 		Es gilt aber $\im \enbrace*{\exp (\Tmap_e G)} \supset U \supset \set*{e}$ für eine offene Umgebung von $e$ wegen dem Umkehrsatz und \cref{lem:129}.
-		\item Es gilt $\exp(x)^{-1} = \exp(-x)$.
+		\item Es gilt $\exp(x)^{-1} = \exp(-x)$ (nach der Funktionalgleichung aus \cref{sec:funktionalgleichung}).
 		\item Der Fluss eines linksinvarianten Vektorfeldes $X_v$ mit $X_v(g) = \enbrace*{\mathd L_g}_e \cdot v$ ist gegeben durch
 		\[
 			\enbrace*{R_{\exp(tv)}}_{t \in \mathbb{R}}
@@ -1074,7 +1074,7 @@ ein Liealgebrenhomomorphismus.
 		Dabei haben wir benutzt, dass der Fluß von $X_v$ gegeben ist durch $R_{\exp(tv)}$.
 		\item Folgt direkt aus \autoref{lem:143} (3).
 		\item Folgt ebenfalls direkt aus \autoref{lem:143} (3).
-		\item Zur Inklusion $Z(G) \subseteq ker (\Ad)$: Ist $g \in Z(g)$, so ist $i_g = {\id_G} $ und es folgt sofort $\Ad(g)=\id$.
+		\item Zur Inklusion $Z(G) \subseteq \ker (\Ad)$: Ist $g \in Z(g)$, so ist $i_g = {\id_G} $ und es folgt sofort $\Ad(g)=\id$.
 		
 		Es gelte andersrum $\Ad(g) = \id_{\mathfrak{g}}$.
 		Dann sind $i_g, \id_G \colon G \to G$ Liegruppenhomomorphismen mit $\enbrace*{\mathd i_g}_e = (\mathd\id_G)_e$.
@@ -1118,7 +1118,7 @@ ein Liealgebrenhomomorphismus.
 		Somit ist $G$ abelsch.
 		\item Da $G$ abelsch ist, ist $\mathfrak{g}$ abelsch und somit ist $\exp \colon (\Tmap_eG,+) \to (G,\cdot )$ ein Liegruppenhomomorphismus (wenn die Lieklammer verschwindet gilt die Funktionalgleichung, siehe \cref{sec:funktionalgleichung}).
 		Somit ist $\exp \colon \Tmap_e G \to G$ eine Überlagerung und $\Gamma := \exp^{-1}(e)$ eine diskrete Untergruppe von $(\Tmap_e G,+)$.\marginnote{Gitter}
-		Somit existieren $v_1, \ldots, v_k \in \mathfrak{g}$ mit
+		Somit existieren linear unabhängige $v_1, \ldots, v_k \in \mathfrak{g}$ mit
 		\[
 			\Gamma = \set*{\sum\nolimits_{i=1}^{k} \lambda_i v_i \given \lambda_i \in \mathbb{Z}} \cong \mathbb{Z}^k
 		\]
@@ -1208,7 +1208,7 @@ ein Liealgebrenhomomorphismus.
 	\(
 		A(t) \benbrace*{x,y} = \benbrace*{A(t) x, A(t) y}
 	\)
-	in $t=0$ liefert wegen den Produktregel
+	in $t=0$ liefert wegen der Produktregel
 	\[
 		A'(0) \benbrace[\big]{x,y} = \benbrace[\big]{A'(0) x,y} + \benbrace[\big]{x, A'(0)y}
 	\]
@@ -1246,12 +1246,12 @@ Insbesondere gilt sogar $\ad_v \in \Der(\mathfrak{g})$ für alle $v \in \mathfra
 	\end{enumerate}
 \end{definition}
 
-Ist $G$ eine zusammenhängende Liegruppe, so gilt $\Ad(G) = \Int(\mathfrak{g})$, denn $\Ad \enbrace*{\exp v} = e^{\ad_{v}}$ impliziert, dass beide in einer Umgebung von $e$ übereinstimmen und somit die gleiche Liealgebra $\intAlg(\mathfrak{g})$ haben.
+% Ist $G$ eine zusammenhängende Liegruppe, so gilt $\Ad(G) = \Int(\mathfrak{g})$, denn $\Ad \enbrace*{\exp v} = e^{\ad_{v}}$ impliziert, dass beide in einer Umgebung von $e$ übereinstimmen und somit die gleiche Liealgebra $\intAlg(\mathfrak{g})$ haben.
 % sowohl $\Ad(G)$ also auch $\Int(\mathfrak{g})$ sind Lieuntergruppen von $\Aut(\mathfrak{g})$ mit Liealgebra $\intAlg(\mathfrak{g})$.
 
 \begin{beispiel*}[{name=[Automorphismen einer abelsche Liealgebra]}]
 	Ist $\mathfrak{t}$ eine abelsche Liealgebra, so ist jeder Isomorphismus $A \colon \mathfrak{t} \to \mathfrak{t}$ ein Automorphismus.
-	Nichttriviale innere Automorphismen existieren in diesem auch nicht.
+	Nichttriviale innere Automorphismen existieren in einer solchen auch nicht.
 \end{beispiel*}
 
 \begin{lemma}[{name=[Adjungierte Darstellung surjektiv auf innere Automorphismen (zusammenhängend)]},label=lem:164]
@@ -1300,7 +1300,7 @@ Ist $G$ eine zusammenhängende Liegruppe, so gilt $\Ad(G) = \Int(\mathfrak{g})$,
 	Es folgt $H= \ker (\phi)$, das heißt $H$ ist abgeschlossen.
 \end{beweis}
 
-Achtung! $S^1_r \subset T^2 = S^1 \times S^1$ ist Normalteiler mit $\overline{S^1_r}= T^2$, die Eigenschaft einfach zusammenhängend zu sein, ist also von zentraler Wichtigkeit.
+Achtung! $S^1_r \subset T^2 = S^1 \times S^1$ für $r \in \mathbb{R}\setminus \mathbb{Q}$ ist Normalteiler mit $\overline{S^1_r}= T^2$, die Eigenschaft einfach zusammenhängend zu sein ist also von zentraler Wichtigkeit.
 
 \begin{definition}[{name=[Killingform]}]
 	Sei $\mathfrak{g}$ eine Liealgebra (über $\mathbb{R}$ oder $\mathbb{C}$).
@@ -1338,7 +1338,7 @@ Achtung! $S^1_r \subset T^2 = S^1 \times S^1$ ist Normalteiler mit $\overline{S^
 		\benbrace[\big]{e_i \wedge e_j , e_j \wedge e_k} = - e_i \wedge e_k \qquad \benbrace[\big]{e_i \wedge e_j, e_k \wedge e_l}= 0
 	\]
 	gilt.
-	Wir erhalten für eine ONB $\set*{b_1, \ldots ,b_N}$ von $\mathfrak{so}(n)$, $N=\frac{1}{2}(n-1)n$\marginnote{allgemein: $\mathcal{B}(X,Y)=(n-2) \tr(XY)$ }
+	Wir erhalten für eine ONB $\set*{b_1, \ldots ,b_N}$ von $\mathfrak{so}(n)$, $N=\frac{1}{2}(n-1)n$\marginnote{allgemein gilt:\newline $\mathcal{B}(X,Y)= (n-2) \tr(XY)$ }
 	\begin{align}
 		\mathcal{B}(v,w) = \tr \enbrace*{\ad_v \circ \ad_w} = \sum_{i=1}^{N} \skal[\big]{(\ad_v \circ \ad_w)(b_i)}{b_i}_{\mathfrak{so}(n)} 
 		\stackrel{!}{=} -\sum_{i<j} \skal[\big]{\benbrace*{w,e_i \wedge e_j}}{ \benbrace*{v, e_i \wedge e_j}}
