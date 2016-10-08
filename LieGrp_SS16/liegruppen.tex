@@ -1540,7 +1540,7 @@ Dies ist die \Index{absteigende Zentralreihe}. Analog erhält man die \Index{abg
 \end{beispiel*}
 
 \begin{lemma}[label=lem:213,{name=[Grundlegendes zu Nilpotenz und Auflösbarkeit]}]
-	Sei $\mathfrak{g}$ eine Liealgebra nilpontent bzw. auflösbar in $k$ Schritten ist.
+	Sei $\mathfrak{g}$ eine Liealgebra, die nilpotent bzw. auflösbar in $k$ Schritten ist.
 	Dann gilt:
 	\begin{enumerate}[1),itemsep=0pt]
 		\item Für alle $i \in \mathbb{N}$ gilt $\mathfrak{g}_i \subseteq \mathfrak{g}^i$, also impliziert nilpotent auflösbar.
@@ -1571,7 +1571,7 @@ Dies ist die \Index{absteigende Zentralreihe}. Analog erhält man die \Index{abg
 		\item Es ist $0 = \mathfrak{g}^k = \benbrace*{\mathfrak{g}, \mathfrak{g}^{k-1}}$, also $\mathfrak{g}^{k-1} \subset Z(\mathfrak{g})$.
 		Dass $\mathfrak{g}_{k-1}$ abelsch ist, folgt auch direkt aus $\benbrace[\big]{\mathfrak{g}_{k-1}, \mathfrak{g}_{k-1}}=0$.
 		\item Auch klar: Da $\mathfrak{g}$ nilpotent ist, existiert $k$ mit $\mathfrak{g}^k =0$.
-		Für ein Ideal $0 \neq \mathfrak{h}$ ist stets $\mathfrak{h}^i \subseteq \mathfrak{g}^i$ für alle $i$.
+		Für eine Unteralgebra $0 \neq \mathfrak{h}$ ist stets $\mathfrak{h}^i \subseteq \mathfrak{g}^i$ für alle $i$.
 		Genauso ist $\benbrace*{\mathfrak{h}_{k-1}, \mathfrak{h}_{k-1}} \subseteq \benbrace*{\mathfrak{g}_{k-1}, \mathfrak{g}_{k-1}}$, also $\mathfrak{h}$ auch auflösbar, falls $\mathfrak{g}$ auflösbar ist.
 		\item Auf der Quotientenliealgebra $\mathfrak{k} = \sfrac{\mathfrak{g}}{\mathfrak{h}}$ hatten wir die Lieklammer definiert durch
 		\[
@@ -1734,7 +1734,7 @@ Dies ist die \Index{absteigende Zentralreihe}. Analog erhält man die \Index{abg
 	Für $n=1$ sei $A \in \mathfrak{g} \setminus \set*{0}$.
 	Ist $A$ invertierbar, so auch $A^k$ für alle $k \in \mathbb{N}$, was im Widerspruch zur Nilpotenz von $A$ steht.
 	Für den Induktionsschritt sei $\dim \mathfrak{g} = n+1$.
-	Sei $\mathfrak{h}$ eine Unteralgebra maximaler Dimension (d.h. $\le n$) von $\mathfrak{g}$\marginnote{1-dimensionlae Unterräume sind Unteralgebren}.
+	Sei $\mathfrak{h}$ eine echte Unteralgebra maximaler Dimension (d.h. $\le n$) von $\mathfrak{g}$\marginnote{1-dimensionlae Unterräume sind Unteralgebren}.
 	Wir werden nun zeigen, dass $\dim \mathfrak{h}=n$ ist.
 	Wegen $\ad_X(\mathfrak{h}) \subset \mathfrak{h}$ für alle $X \in \mathfrak{h}$ können wir die adjungierte Darstellung auf dem Quotienten betrachten.
 	Damit ist 
@@ -1918,7 +1918,7 @@ Aus Ado's Satz folgt wieder:
 		\item $\SU(2) = \set*{A \in \GL(2,\mathbb{C}) \given A^* A = \begin{psmallmatrix}
 			1 & 0 \\ 0 & 1
 		\end{psmallmatrix}, \det A = 1}$ ist kompakte Liegruppe.
-		\item $\SL(2,\mathbb{R})$ ist nicht kompakte Liegruppe.
+		\item $\SL(2,\mathbb{R})$ ist eine nicht-kompakte Liegruppe.
 	\end{itemize}
 \end{beispiel*}
 
@@ -1930,7 +1930,7 @@ Dann gilt
 	\[
 		\enbrace*{\mathfrak{g}^i}_\mathbb{C} = \enbrace*{\mathfrak{g}_\mathbb{C}}^i \qquad \enbrace*{\mathfrak{g}_i}_\mathbb{C} = \enbrace*{\mathfrak{g}_\mathbb{C}}_i
 	\]
-	\item Killingform: $\mathcal{B}_\mathbb{C} \enbrace*{v_1 \otimes \lambda_1, v_2 \otimes \lambda_2} = \mathcal{B}_\mathbb{R}(v_1,v_2) \cdot \lambda_1 \lambda_2 \in \mathbb{C}$
+	\item Für die Killingform gilt: $\mathcal{B}_\mathbb{C} \enbrace*{v_1 \otimes \lambda_1, v_2 \otimes \lambda_2} = \mathcal{B}_\mathbb{R}(v_1,v_2) \cdot \lambda_1 \lambda_2 \in \mathbb{C}$
 \end{enumerate}
 Somit entsprechen sich nilpotente, auflösbare und halbeinfache reelle Liealgebren und ihre Komplexifizierung.
 
@@ -1972,7 +1972,7 @@ Ist die Killingform $0$, so ist $\mathfrak{g}$ auflösbar, aber nicht notwendig 
 	Angenommen dies gilt nicht, so ist $\ker \mathcal{B}$ nach \autoref{satz:2115} ein auflösbares Ideal und es folgt $\rad(\mathfrak{g}) \neq 0$, was einen Widerspruch darstellt.
 	
 	Ist umgekehrt $\mathcal{B}$ nicht degeneriert, so nehmen wir an, dass $\mathfrak{a}$ ein abelsches Ideal von $\mathfrak{g}$ ist.
-	Wir wählen eine Basis $a_1, \ldots ,a_k, b_1, \ldots ,b_s$ von $\mathfrak{g}$ mit $a = \langle a_1, \ldots , a_k\rangle_\mathbb{K}$.
+	Wir wählen eine Basis $a_1, \ldots ,a_k, b_1, \ldots ,b_s$ von $\mathfrak{g}$ mit $\mathfrak{a} = \langle a_1, \ldots , a_k\rangle_\mathbb{K}$.
 	Dann gilt für $X \in \mathfrak{a}$ und $Y \in \mathfrak{g}$ 
 	\[
 		(\ad_Y \circ \ad_X)(a_i) = \benbrace[\big]{Y,\benbrace*{X,a_i}} = 0
@@ -2047,7 +2047,7 @@ Ist etwa $G$ kompakt, so ist $\mathcal{B}_\mathfrak{g}$ negativ definit!
 		Die Vorüberlegungen \labelcref{enum:222:1,enum:222:2,enum:222:3} implizieren $\mathfrak{g} = \mathfrak{a} \oplus \mathfrak{a}^\perp$.
 		Induktiv folgt dann die Behauptung.
 		\item Sei $\mathfrak{a}$ ein \emph{einfaches} Ideal von $\mathfrak{g}$.
-		Dann ist $\mathfrak{a} \cap \mathfrak{g}_1$ entweder $0$ oder $\mathfrak{g}_i$.
+		Dann ist $\mathfrak{a} \cap \mathfrak{g}_i$ entweder $0$ oder $\mathfrak{g}_i$.
 		Damit folgt direkt die Behauptung
 		% \[
 		% 	\mathfrak{a} \cap \mathfrak{g}_1 = \begin{cases}
@@ -2064,7 +2064,7 @@ Ist etwa $G$ kompakt, so ist $\mathcal{B}_\mathfrak{g}$ negativ definit!
 		% \]
 		% für ein $i_0 \in \set*{1,\ldots ,s}$. Aber $\benbrace*{x,y_{i_0}} \in \mathfrak{g}_{i_0} \cap \mathfrak{a}$.
 		\item Ist $\mathfrak{g}$ einfach, so gilt $\benbrace*{\mathfrak{g},\mathfrak{g}}=0$ oder $\benbrace*{\mathfrak{g},\mathfrak{g}}=\mathfrak{g}$.
-		Im ersten Fall würde dann $\mathfrak{g}$ abelsch sein, damit die Killingform trivial sein, was im Widerspruch zu Cartans Kriterium steht.
+		Im ersten Fall würde dann $\mathfrak{g}$ abelsch und damit die Killingform trivial sein, was im Widerspruch zu Cartans Kriterium steht.
 		Mit der Bilinearität von $\benbrace*{\cdot,\cdot}$ und 1) folgt der allgemeine Fall.
 		% \[
 		% 	\benbrace*{\mathfrak{g},\mathfrak{g}} = \begin{cases}
