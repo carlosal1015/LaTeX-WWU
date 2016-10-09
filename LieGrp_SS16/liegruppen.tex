@@ -2106,7 +2106,7 @@ Ist etwa $G$ kompakt, so ist $\mathcal{B}_\mathfrak{g}$ negativ definit!
 \label{sec:23}
 
 \begin{definition}[{name=[{kompakte Liealgebra}]}]
-	Eine reelle Liealgebra $\mathfrak{g}$ nennt man \Index{kompakt}, falls es eine kompakte Liegruppe $G$ gibt $\Tmap_e G \cong \mathfrak{g}$. 
+	Eine reelle Liealgebra $\mathfrak{g}$ nennt man \Index{kompakt}, falls es eine kompakte Liegruppe $G$ gibt, für die $\Tmap_e G \cong \mathfrak{g}$ ist. 
 \end{definition}
 
 \begin{lemma}[{name=[Existenz schöner Skalarprodukte und biinvarianter Metriken]},label=lem:232]
@@ -2130,8 +2130,7 @@ Ist etwa $G$ kompakt, so ist $\mathcal{B}_\mathfrak{g}$ negativ definit!
 		Dann lässt sich diese mittels $\omega_g = L_g^* \omega_0$ auf $G$ fortsetzen.
 		Man kann nun eine Funktion $f \colon G \to \mathbb{R}$ definieren mittels $R_g^* \omega = f(g) \omega$.
 		Man rechnet nun leicht $f(gh) =f(g) f(h)$ nach, und somit muss $f(G)$ eine kompakte Untergruppe von $\mathbb{R}^*$ sein.
-		Dann muss aber $f(G)=1$ gelten und damit ist $\omega$ auch rechtsinvariant.
-		
+		Dann muss aber $f(G)=1$ gelten und damit ist $\omega$ auch rechtsinvariant.		
 		Sei nun $h \in G$.
 		Dann gilt 
 		\begin{align}
@@ -2148,7 +2147,7 @@ Ist etwa $G$ kompakt, so ist $\mathcal{B}_\mathfrak{g}$ negativ definit!
 		\]
 		Dies ist eine glatte(!) Riemannsche Metrik (Übung).
 		Klar ist: Die Diffeomorphismen $L_h$ sind Isometrien!
-		Zu zeigen $(\mathd R_h)_g \colon \Tmap_g G \to \Tmap_{R_h(g)} G $ ist eine Isometrie:
+		Zu zeigen ist, dass $(\mathd R_h)_g \colon \Tmap_g G \to \Tmap_{R_h(g)} G$ eine Isometrie ist:
 		Wegen $R_{gh} = R_h \circ R_g$, folgt mit der Kettenregel
 		\[
 			\enbrace*{\mathd R_{gh}}_e = \enbrace*{\mathd R_h}_g \cdot \enbrace*{\mathd R_g}_e
@@ -2157,7 +2156,7 @@ Ist etwa $G$ kompakt, so ist $\mathcal{B}_\mathfrak{g}$ negativ definit!
 		Es seien $X,Y \in \mathfrak{g} = \Tmap_e G$.
 		Dann gilt
 		\begin{align}
-			g_\bi \enbrace*{(\mathd R_g)_e \cdot X, \enbrace*{\mathd R_g}_e \cdot Y}_g = \skal*{ \enbrace*{\mathd L_{g^{-1}}}_g \enbrace*{\mathd R_g}_e \cdot X}{\cdots}
+			g_\bi \enbrace*{(\mathd R_g)_e \cdot X, \enbrace*{\mathd R_g}_e \cdot Y}_g = \skal[\big]{ \enbrace*{\mathd L_{g^{-1}}}_g \enbrace*{\mathd R_g}_e \cdot X}{\cdots}
 			&= \skal*{\Ad(g^{-1}) X}{ \Ad(g^{-1})Y} \\
 			&= \skal*{X}{Y} = g_\bi(X,Y)_e
 		\end{align}
@@ -2305,7 +2304,7 @@ Ist etwa $G$ kompakt, so ist $\mathcal{B}_\mathfrak{g}$ negativ definit!
 	Angenommen $T$ sei nicht abgeschlossen, so wäre $T' \coloneqq \overline{\exp \mathfrak{t}}$ eine zusammenhängende, abgeschlossene Untergruppe von $G$, also eine Lieuntergruppe.
 	Da $T$ offenbar abelsch ist, ist auch $T'$ abelsch. 
 	Wegen $T \subsetneq T'$ folgt $\mathfrak{t} \subsetneq \mathfrak{t}'$, was ein Widerspruch ist.
-	Somit ist $T$ abgeschlossen, also kompakt, das heißt $T = S^1 \times \ldots \times S^1$.
+	Somit ist $T$ abgeschlossen, also kompakt, das heißt $T = S^1 \times \ldots \times S^1$, $T$ ist also ein Torus.
 	
 	In den Übungen wird gezeigt, dass ein $\overline{v} \in \mathfrak{t}$ existiert mit $\overline{\set*{\exp(s \overline{v}) \given s \in \mathbb{R}}} = T$.\marginnote{siehe \cref{sec:dichte_teilmenge_torus}}
 	Wir zeigen nun 
@@ -2314,7 +2313,7 @@ Ist etwa $G$ kompakt, so ist $\mathcal{B}_\mathfrak{g}$ negativ definit!
 	\]
 	Die Inklusion \enquote{$\subseteq$} ist dabei klar.
 	Sei also $w \in \mathfrak{g}$ mit $\benbrace*{\overline{v},w} =0$.
-	Dann gilt
+	Dann gilt für $s \in \mathbb{R}$
 	\[
 		w = \enbrace*{e^{s \ad_{\overline{v}}}}(w) \StackText{\ref{lem:153}}{=\joinrel=} \Ad \enbrace[\big]{\exp(s \overline{v})}(w)
 	\]
@@ -2459,7 +2458,7 @@ Ist $\mathfrak{t} \subset \mathfrak{g}$ eine maximale abelsche Unteralgebra von 
 	
 	Es bleibt zu zeigen, dass $W$ effektiv operiert.
 	Da $T$ abelsch ist, gilt $\Ad(T)|_{\mathfrak{t}} = {\id_{\mathfrak{t}}}$.
-	Somit ist die Wirkung von $w$ auf $\mathfrak{t}$ wohldefiniert.
+	Somit ist die Wirkung von $W$ auf $\mathfrak{t}$ wohldefiniert.
 	Sei nun $n \in N_G(T)$ mit $\Ad(n)|_{\mathfrak{t}} = {\id}$.
 	Dann gilt für alle $v \in \mathfrak{t}$
 	\[
@@ -2472,7 +2471,7 @@ Ist $\mathfrak{t} \subset \mathfrak{g}$ eine maximale abelsche Unteralgebra von 
 	Zu zeigen ist, dass ein $n \in N_G(T)$ existiert mit $\Ad(n)(v) = \tilde{v}$.
 	Wir setzen
 	\[
-		Z_v \coloneqq \set[\big]{\tilde{g} \in G \given \Ad(g) v = v}
+		Z_v \coloneqq \set[\big]{\tilde{g} \in G \given \Ad(\tilde{g}) v = v}
 	\]
 	Dann gilt $T \subseteq Z_v$ und $g^{-1}Tg \subseteq Z_v$, denn
 	\[
@@ -2486,13 +2485,13 @@ Ist $\mathfrak{t} \subset \mathfrak{g}$ eine maximale abelsche Unteralgebra von 
 	Mit $n \coloneqq gh$ folgt damit 2).
 	
 	Um 3) zu zeigen wählen wir $v \in \mathfrak{t}$ und $\tilde{v} \in \Ad(G) v \cap t$.
-	Dann gilt für den Tangentialraum des Orbit $\Ad(G)v = \Ad(G)\tilde{v}$
+	Dann gilt für den Tangentialraum des Orbits $\Ad(G)v = \Ad(G)\tilde{v}$
 	\[
 		\Tmap_{\tilde{v}} \enbrace*{\Ad(G)v} = \Tmap_{\tilde{v}} \enbrace*{\Ad(G) \tilde{v}} = \set[\big]{\benbrace*{w,\tilde{v}} \given w \in \mathfrak{g}}
 	\]
 	Ferner gilt für $t \in \mathfrak{t}$
 	\[
-		\skal[\big]{\benbrace*{w,\tilde{v}}}{t} = \skal[\big]{w}{\benbrace*{\tilde{v}, t}} \stackrel[\mathfrak{t} \text{ abelsch} ]{\benbrace*{\overline{v},w}=0}{=\joinrel=\joinrel=\joinrel=}0
+		\skal[\big]{\benbrace*{w,\tilde{v}}}{t} = \skal[\big]{w}{\benbrace*{\tilde{v}, t}} \stackrel[\mathfrak{t} \text{ abelsch} ]{\benbrace*{\tilde{v},t}=0}{=\joinrel=\joinrel=\joinrel=}0
 	\]
 	Also ist $\Tmap_{\tilde{v}} \enbrace*{\Ad(G)v} \perp \mathfrak{t}$ wie gewünscht.
 \end{beweis}
@@ -2743,7 +2742,6 @@ Somit ist $\overline{f} \coloneqq f \circ \pi^{-1} \colon \sfrac{G}{H} \to M^k$,
 		Somit ist nach \autoref{lem:313} die Abbildung $\varphi = \overline{\hat{\varphi}}$ differenzierbar.
 		Es gilt $\ker (\mathd \pi)_e = \Tmap_e H$.
 		Übung: Es gilt genauso $\ker (\mathd \hat{\varphi})_e = \ker (\mathd \pi)_e = \Tmap_e H$.
-		
 		Ferner ist $(\mathd \pi)_e \colon \Tmap_e G \to \Tmap_{eH} \sfrac{G}{H}$ surjektiv.
 		Wegen $(\mathd \hat{\varphi})_e = (\mathd \varphi)_{eH} \circ  (\mathd \pi)_e$ ist somit $(\mathd \varphi)_{eH}$ injektiv.
 		Aus der Äquivarianzeigenschaft, folgt 
@@ -2754,7 +2752,7 @@ Somit ist $\overline{f} \coloneqq f \circ \pi^{-1} \colon \sfrac{G}{H} \to M^k$,
 		Somit ist $\varphi \colon \sfrac{G}{H} \to M$ eine injektive Immersion.
 		Folglich ist $\dim \sfrac{G}{H} \le \dim M$.
 		Mit der Surjektivität folgt direkt die Gleichheit der Dimensionen.\footnote{Angenommen es gelte $k \coloneqq \dim \sfrac{G}{H} < \dim M^n$. Da $\varphi$ eine Immersion ist, ist $\varphi \enbrace*{B_\varepsilon(gH)}$ eine eingebettete $k$-dimensionale Untermannigfaltigkeit von $M^n$ und hat somit Volumen 0.
-		Damit hat auch das Bild $\varphi(\sfrac{G}{H})$ Volumen 0 und man hat einen Widerspruch zur Surjektivität}\qedhere
+		Damit hat auch das Bild $\varphi(\sfrac{G}{H})$ Volumen 0 und man hat einen Widerspruch zur Surjektivität.}\qedhere
 	\end{itemize}
 \end{beweis}
 
@@ -2781,7 +2779,7 @@ Somit ist $\overline{f} \coloneqq f \circ \pi^{-1} \colon \sfrac{G}{H} \to M^k$,
 			\end{pmatrix} \text{ mit } \tilde{A} \in \On(n)
 		\]
 		Nach \autoref{lem:316} ist somit $S^n = \sfrac{\On(n+1)}{\On(n)} = \sfrac{\SO(n+1)}{\SO(n)}$, wobei auch die Einbettung $\SO(n) \hookrightarrow \SO(n+1)$ wie oben erfolgt.
-		\item Die unitäre Gruppe $\Un(n) = \SO(2n) \cap \Mat(n,\mathbb{C})$\marginnote{die Schreibeweise als Schnitt wurde in Aufgabe 11 gezeigt} operiert ebenfalls transitiv auf $S^{2n-1}$.
+		\item Die unitäre Gruppe $\Un(n) = \SO(2n) \cap \Mat(n,\mathbb{C})$\marginnote{die Schreibweise als Schnitt wurde in Aufgabe 11 gezeigt} operiert ebenfalls transitiv auf $S^{2n-1}$.
 		Somit ist $S^{2n-1} = \sfrac{\Un(n)}{\Un(n-1)} \stackrel{!}{=} \sfrac{\SU(n)}{\SU(n-1)}$.
 		\item Wie in 2) und 3) zeigt man, dass
 		\(
@@ -2867,7 +2865,7 @@ Somit ist $\overline{f} \coloneqq f \circ \pi^{-1} \colon \sfrac{G}{H} \to M^k$,
 		\[
 			A = A A A^T = - A^2 A\implies A^2 = - {\id}
 		\]
-		Jede schieffsymmetrische Matrix kann mittels Konjugation (durch $\On(2n)$) auf die Form 
+		Jede schiefsymmetrische Matrix kann mittels Konjugation (durch $\On(2n)$) auf die Form 
 		\[
 			\begin{pmatrix}
 				0 & - \alpha_1 & & & & \\
@@ -2979,7 +2977,7 @@ Es gilt:
 \begin{itemize}[itemsep=1pt]
 	\item $\exp_p$ ist differenzierbar,
 	\item $\exp_p$ ist surjektiv nach Hopf-Rinow und
-	\item $\mathd(\exp_p)_{0_p} \colon \Tmap_p M^n \to \Tmap_p M^n$ ist gleich $\id_{\Tmap_p M^n}$ und nach dem Umkehrsatz ein lokaler Diffeomorphismus.
+	\item $\mathd(\exp_p)_{0_p} \colon \Tmap_p M^n \to \Tmap_p M^n$ ist gleich $\id_{\Tmap_p M^n}$ und nach dem Umkehrsatz ist $\exp_p$ ein lokaler Diffeomorphismus.
 \end{itemize} 
 
 \begin{lemma}[{name=[Kompaktheit der Standgruppe]},label=lem:319]
@@ -2992,7 +2990,7 @@ Es gilt:
 \begin{beweis}
 	Sei $(h_i)_{i \in \mathbb{N}}$ eine Folge in $H$, das heißt nach Definition $\Phi(h_i)(p)=p$ für alle $i$.
 	Somit ist $\mathd \enbrace*{\Phi(h_i)}_p \colon \Tmap_p M \to \Tmap_p M$ eine lineare Isometrie von $(\Tmap_p M, g_p)$ und somit gilt $\mathd  \enbrace*{\Phi(h_i)}_p \in \On \enbrace*{\Tmap_p M^n,g_p}$.
-	Wegen Kompaktheit von $\On \enbrace*{\Tmap_p M^n,g_p}$ können wir also annehmen, dass\marginnote{sonst Übergang zu Teilfolge}
+	Da $\On \enbrace*{\Tmap_p M^n,g_p}$ kompakt ist, können wir also annehmen, dass\marginnote{sonst Übergang zu Teilfolge}
 	\[
 		\enbrace[\big]{\mathd\Phi(h_i)}_p \grenzw{i \to \infty} A_\infty \in \On \enbrace*{\Tmap_p M^n,g_p}
 	\]
@@ -3125,7 +3123,7 @@ Dazu noch ein Lemma:
 	\begin{align}
 		\enbrace*{\overline{L}_h \circ \pi} (g) = h \cdot g \cdot H = h \cdot g \cdot h^{-1} \cdot H = i_h(g) \cdot H = (\pi \circ i_h)(g)
 	\end{align}
-	für alle $g \in G$, also $\overline{L}_h \circ \pi = \pi \circ i_h$.
+	für alle $g \in G$, also folgt $\overline{L}_h \circ \pi = \pi \circ i_h$.
 	Differenzieren in $g=e$ liefert
 	\[
 		\enbrace*{\mathd \enbrace*{\overline{L}_h}}_{\pi(e)} \cdot (\mathd \pi)_e = (\mathd \pi)_e \cdot \enbrace*{\mathd i_h}_e = (\mathd \pi)_e \cdot \Ad(h) \qedhere
@@ -3145,7 +3143,7 @@ Wir setzen nun $\mathfrak{m} \coloneqq \mathfrak{h}^\perp$.
 Dann ist $\mathfrak{m}$ ebenfalls $\Ad(H)$-invariant ($\mathfrak{h} = \Tmap_e H$ ist natürlich $\Ad(H)$-invariant). 
 Wegen $\mathfrak{h} = \ker (\mathd \pi)_e$ kommutiert folgendes Diagramm nach \autoref{lem:3112}
 \[
-	\begin{tikzcd}
+	\begin{tikzcd}[row sep=large]
 		\mathfrak{m} \dar["\mathd \pi_e","\cong"'] \rar["\Ad(h)"] & \mathfrak{m} \dar["\mathd \pi_e","\cong"'] \\
 		\Tmap_{eH} \sfrac{G}{H} \rar["\mathd \overline{L}_h"] & \Tmap_{eH} \sfrac{G}{H}
 	\end{tikzcd}
@@ -3355,7 +3353,7 @@ Somit ist $\mathd \pi_e|_\mathfrak{m} \colon \enbrace*{\mathfrak{m}, \skal*{\cdo
 		Dies ist ein Killingfeld auf $(\sfrac{G}{H},g)$.
 		Es gilt 
 		\[
-			X^*(gH) = \diffd{}{t}\Big|_{t=0} \Underbracket{\overline{L}_{\exp(tX)} \cdot gH}{= \exp(t X) \cdot g \cdot H = \pi \enbrace*{\exp(tX) \cdot g}} = (\mathd \pi)_g \cdot \Underbracket{\diffd{}{t}|_{t=0} \exp(tX) \cdot g }{= X^R(g)}
+			X^*(gH) = \diffd{}{t}\Big|_{t=0} \Underbracket{\overline{L}_{\exp(tX)} \cdot gH}{= \exp(t X) \cdot g \cdot H = \pi \enbrace*{\exp(tX) \cdot g}} = (\mathd \pi)_g \cdot \Underbracket{\diffd{}{t}\Big|_{t=0} \exp(tX) \cdot g }{= X^R(g)}
 		\]
 		mit $X^R(g) = (\mathd R_g)_e \cdot X$ rechtsinvariant.
 	\end{itemize}
@@ -3635,7 +3633,7 @@ Die entsprechende Lieuntergruppe $G_\mathrm{uni} \subsetneq G$ ist also unimodul
 \begin{beweis}
 	Die biinvariante Metrik liefert uns ein Skalarprodukt auf $\mathfrak{g} = \mathfrak{m}$. 
 	Dieses ist dann auch $\Ad(G)$-invariant und damit ist $\ad(X)$ schiefsymmetrisch.
-	Insbesondere gilt $\skal*{\ad(Z)X}{X} =0$, womit der letze Term der Formel aus \autoref{satz:327}.
+	Insbesondere gilt $\skal*{\ad(Z)X}{X} =0$, womit der letze Term der Formel aus \autoref{satz:327} verschwindet.
 	Ferner gilt
 	\begin{align}
 		\sum_{i,j} \skal[\big]{\benbrace*{X_i,X_j}}{X}^2 = \sum_{i,j} \skal[\big]{X_j}{\benbrace*{X_i,X}} \skal[\big]{X_j}{\benbrace*{X_i,X}}
