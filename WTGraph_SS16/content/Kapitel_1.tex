@@ -1,7 +1,9 @@
 %!TEX root = ./WTG.tex
+
 \section{Erstes Kapitel}
 
 \begin{definition}[Netzwerk] 
+	\label{def:Netzwerk}
 	\marginnote{Mit anderen Worten: Ein Netzwerk ist ein positiv gewichteter Graph.} 
 	Ein Netzwerk $G = (V,E,c)$ ist ein Graph $\enb{V,E}$ mit entweder gerichteten oder ungerichteten Kanten, d.h.
 	\begin{align}
@@ -39,6 +41,7 @@ Gilt $c(x,y) = c(y,x)$ für alle $x,y$, so ist die Irrfahrt bezüglich $\pi$ rev
 \end{gather}
 
 \begin{beispiel}[Gambler's Run] \todo{das geht schöner}
+	\label{bsp:GamblersRun}
 	Sei $X_n$ eine Irrfahrt auf $0, \dots, n$ und	
 	\begin{gather}
 		\prop{X_n = i+1 \given X_{n-1} = i} = p = 1 - \prop{X_n = i-1 \given X_{n-1} = i}.
@@ -47,7 +50,7 @@ Gilt $c(x,y) = c(y,x)$ für alle $x,y$, so ist die Irrfahrt bezüglich $\pi$ rev
 	\begin{gather}
 		\prop{X_{n+1} = i+1 \given X_n = i} = \frac{c(i,i+1)}{c(i,i+1)+c(i,i-1)} = \frac{\enb{\frac{p}{q}}^i}{\enb{\frac{p}{q}}^i + \enb{\frac{p}{q}}^{i-1}} = \frac{\frac{p}{q}}{\frac{p}{q} +1} = p
 	\end{gather}
-	Sei nun $A,Z \subseteq V, A \cap Z = \setzero$. Was ist nun $\prop{\tau_A < \tau_Z}[][x]?$ (Wobei $\tau_1$ die erste Treffzeit der Menge $A$ ist und $\p_x$ die Wahrscheinlichkeit, bei Start in $x$). Sei $F(x) = \prop{\tau_A < \tau_Z}[][x]$, dann ist $F|_A = 1$ und $F|_Z = 0$. Ist $x \notin A \cup Z$, dann ist $\set{x,y} \in E$ 
+	Sei nun $A,Z \subseteq V, A \cap Z = \emptyset$. Was ist nun $\prop{\tau_A < \tau_Z}[][x]?$ (Wobei $\tau_1$ die erste Treffzeit der Menge $A$ ist und $\p_x$ die Wahrscheinlichkeit, bei Start in $x$). Sei $F(x) = \prop{\tau_A < \tau_Z}[][x]$, dann ist $F|_A = 1$ und $F|_Z = 0$. Ist $x \notin A \cup Z$, dann ist $\set{x,y} \in E$ 
 	\begin{equation}
 		F(x) = \sum\limits_{y \sim x} p_{xy} F(y) = \frac{1}{\pi(x)} \sum\limits_{y \sim x} c(x,y)F(y) \tag{*} \label{eqn:GamblersRun}
 	\end{equation}
@@ -58,7 +61,7 @@ Gilt $c(x,y) = c(y,x)$ für alle $x,y$, so ist die Irrfahrt bezüglich $\pi$ rev
 	also ist $F(x)$ der Mittelwert all seiner Nachbarn. 
 \end{beispiel}
 
-\begin{definition}
+\begin{definition}	
 	Eine Funktion $F$, welche \eqref{eqn:GamblersRun} erfüllt, heißt harmonisch in $x$ bezüglich der Gewichte $c$. Ist $F$ harmonisch für alle $x \in V$ so heißt es nur harmonisch.
 \end{definition}
 Harmonische Funktionen erfüllen einige nützliche Prinzipien, Dazu sei für $W \subseteq V$
@@ -66,7 +69,7 @@ Harmonische Funktionen erfüllen einige nützliche Prinzipien, Dazu sei für $W 
 	\delta W := \set{y \notin W \given \exists x \in W: y \sim x} && \overline{W} = W \cup \delta W
 \end{align}
 \begin{satz}[Maximumsprinzip]
-	Sei $G(V,E,c)$ endlich oder unendlich und $H = (V(H),E(H),c)$ ein endliches zusammenhängendes Teilnetzwerk. Sei $f: V \to \Real$ harmonisch auf $H$. Falls dann gilt
+	Sei $G(V,E,c)$ endlich oder unendlich und $H = (V(H),E(H),c)$ ein endliches zusammenhängendes Teilnetzwerk. Sei $f: V \to \RR$ harmonisch auf $H$. Falls dann gilt
 	\begin{align}
 		\max\limits_{x \in V(H)} f(x) = \sup\limits_G f
 	\end{align}
@@ -82,21 +85,23 @@ Harmonische Funktionen erfüllen einige nützliche Prinzipien, Dazu sei für $W 
 	\end{equation}
 	für alle $y \sim x$. Das heißt, mit $x \in K$ sind auch alle $y \sim x$ in $K$. Da $V(H)$ endlich und zusammenhängend ist, kann man dies iterieren und kommt so bis $V(H) \cup \delta V(H) = \overline{V}(H)$.
 \end{beweis}
-\todo{was steht hier genau? (Eindeutigkeitsprinzip)} 
+
 \begin{korollar}[Eindeutigkeitsprinzip]
-	Sei $G = (V,E,c)$ beliebig, $W \subseteq V$ endlich. Falls $f,g: V \to Real$ harmonisch auf $W$ sind, so folgt
+	\label{kor:Eindeutigkeitsprinzip}
+	Sei $G = (V,E,c)$ beliebig, $W \subseteq V$ endlich. Falls $f,g: V \to \RR$ harmonisch auf $W$ sind, so folgt
 	\begin{align}
 		f|_{V\backslash W} = g|_{V\backslash W} \Rightarrow f = g
 	\end{align}
 \end{korollar}
 \begin{beweis}
-	Die Funktion $h = f\cdot g$ ist harmonisch auf $W$ und $h=0$ auf $V\backslash W$. Wähle $x \in W$, sodass $h(x) > 0$ maximal ist. Wähle die Zusammenhangskomponente in der $x$ liegt. \todo{Beweis nochmal checken. } $h \equiv h(x)$ auf $W_0 \cup \delta W_0$. Aber $\delta W \subseteq V \backslash W$ und dort ist $h(x) = 0 \lightning \Rightarrow h \leq 0$ überall. 
+	Die Funktion $h = f - g$ ist harmonisch auf $W$ und $h=0$ auf $V\backslash W$. Wähle $x \in W$, sodass $h(x) > 0$ maximal ist. Wähle die Zusammenhangskomponente $W_0$ in der $x$ liegt. Dann ist $h \equiv h(x)$ auf $W_0 \cup \delta W_0$. Aber $\delta W \subseteq V \backslash W$ und dort ist $h(x) = 0 \lightning \Rightarrow h \leq 0$ überall. 
 	
 	Das gleiche stimmt für $\overline{h} = g-f \leq 0$.
 \end{beweis}
 
 \begin{korollar}
-	Sei $V$ endlich, $A,Z \subseteq V, v \cap Z = \setzero$. $G \colon V \to \Real$ erfüllen $G|_A = 1, G|_Z \equiv 0$ $G$ harmonisch azf $V \backslash (A \cap Z)$. Dann ist $G(x) = F(x) = \prop{\tau_A < \tau_Z}[][x]$
+	\label{kor:1-7}
+	Sei $V$ endlich, $A,Z \subseteq V, v \cap Z = \emptyset$. $G \colon V \to \Real$ erfüllen $G|_A = 1, G|_Z \equiv 0$ $G$ harmonisch auf $V \backslash (A \cap Z)$. Dann ist $G(x) = F(x) = \prop{\tau_A < \tau_Z}[][x]$
 \end{korollar}
 \begin{beweis}
 	Folgt aus dem Eindeutigkeitsprinzip, wenn man $W = V\backslash (A \cap Z)$
@@ -107,7 +112,7 @@ Harmonische Funktionen erfüllen einige nützliche Prinzipien, Dazu sei für $W 
 \end{satz}
 
 \begin{beweis}
-	Starte die Netzwerk-Irrfahrt $(X_n)$, d.h. die deren \todo{text schwer lesbar} Übergangswahrscheinlichkeiten durch $c(x,y)$ bestimmt sind. Sei $X$ die ZV, die angibt, wann $(X_n)$ die Menge $V \backslash W$ trifft, falls dies überhaupt der Fall ist. Sei
+	Starte die Netzwerk-Irrfahrt $(X_n)$, d.h. die deren Übergangswahrscheinlichkeiten durch $c(x,y)$ bestimmt sind. Sei $X$ die ZV, die angibt, wann $(X_n)$ die Menge $V \backslash W$ trifft, falls dies überhaupt der Fall ist. Sei
 	\begin{gather}
 		Y = 
 		\begin{cases}
@@ -151,7 +156,7 @@ Aus diesen Regeln lassen sich einige Konsequenzen ableiten:
 			\Rightarrow v(x) = \frac{1}{\pi(x)} \sum\limits_{y \sim x} v(y) c(x,y)
 		\end{align}
 \end{itemize}
-Also folgt aus \ref{regel:ohm} und \ref{regel:kirch}, dass $v$ harmonisch ist. Wenn also $V$ endlich ist, $V|_A = 1$ und $V|_Z \equiv 0$ ist, so folgt mit Korollar 1.2 \todo{REF} $v(x) = \prop{\tau_A < \tau_Z}[][x]$
+Also folgt aus \ref{regel:ohm} und \ref{regel:kirch}, dass $v$ harmonisch ist. Wenn also $V$ endlich ist, $V|_A = 1$ und $V|_Z \equiv 0$ ist, so folgt mit \ref{kor:1-7} $v(x) = \prop{\tau_A < \tau_Z}[][x]$
 
 \begin{korollar}[Kirchhoffsche Maschenregel]
 	Sei $x_1 \sim x_2 \sim \dots \sim x_n \sim x_1$ ein Kreis. Dann gilt 
@@ -163,10 +168,122 @@ Also folgt aus \ref{regel:ohm} und \ref{regel:kirch}, dass $v$ harmonisch ist. W
 \section{Irrfahrte auf elektrischen Netzwerken}
 Zunächst sei $G(V,E,c)$ nun immer ein endliches Netzwerk. Sei $a \in V$ und $Z \subseteq V$. Wir fragen uns nach der Wahrscheinlichkeit mit der Irrfahrt vom Startpunkt $a$ $Z$ zu erreichen, bevor wir wieder nach $a$ zurückkommen, also $\prop{a \to Z} = \prop{\tau_Z < \tau_{\set{a}}}[][a]$. Das wird insbesondere interessant, wenn $G$ unendlich, $G_n$ unendlich mit $G_n \uparrow G$ und  $Z = \delta G_n$ und $a=0$.
 
-Dann fragt man sich offenbar nach der Wahrscheinlichkeit gegebenenfalls sehr weit von Ursprung entfernte Mengen $Z$ zu erreichen, bevor man $0$ wieder sieht. Das ist nichts anderes als Transienz. Wir wollen $\propE{a \to Z}[][a]$ studieren.
+Dann fragt man sich offenbar nach der Wahrscheinlichkeit gegebenenfalls sehr weit von Ursprung entfernte Mengen $Z$ zu erreichen, bevor man $0$ wieder sieht. Das ist nichts anderes als Transienz. Wir wollen $\propE{a \to Z}[][a]$ studieren. Legen wir an $a$ eine Spannung $v(a)$ an und lassen $v(z) = 0, \forall z \in Z$ sein, dann ist $v$ auf $V \backslash(\set{a}\cup Z)$ harmonisch, aber auch $\propE{\tau_A < \tau_Z}[][x]$. Wegen des Eindeutigkeitsprinzips (\ref{kor:Eindeutigkeitsprinzip}) unterscheiden sich beide nun um $\frac{1}{v(a)}$, d.h. $\prop{\tau_a < \tau_Z}[][x] = \frac{v(x)}{v(a)}$. Also
+\begin{align}
+	\prop{a \to Z} = \sum\limits_{x}p_{ax} \Big(1-\prop{\tau_a \tau_Z}[][x] \Big) &= \sum\limits_{x}\frac{c(a,x)}{\pi(a)}\enb{1-\frac{v(x)}{v(a)}} \\
+	&= \frac{1}{\pi(a)v(a)}\sum\limits_{x}c(a,x)\big(v(a)-v(x) \big) \\
+	&= \frac{1}{\pi(a)v(a)}\sum\limits_{x}i(a,x)
+\end{align}
+
+\begin{align}
+	\Rightarrow v(a) = \frac{\sum\limits_{x}i(a,x)}{\pi(a)\prop{a \to Z}}
+\end{align}
+Da $v(z) = 0$ auf $Z$, hat das Ganze wieder die Gestalt des Ohmschen Gesetztes \ref{regel:ohm}, wenn man den Nenner als Leitfähigkeit interpretiert. Tatsächlich heißt $\pi(a)\prop{a \to Z}$ die effektive Leitfähigkeit von $a$ nach $Z$ und wir schreiben
+\begin{align} 
+	\leit{a \leftrightarrow Z} = \mathcal{C}_{eff}  = \leit{a\leftrightarrow Z,G}
+\end{align}
+Den effektive Widerstand ist somit 
+\begin{align}
+	\frac{1}{\leit{a \to Z}} = R(a \leftrightarrow Z)
+\end{align}
+Offenbar ist $\prop{a\to Z} = \frac{\leit{a \leftrightarrow Z}}{\pi(a)}$. Das hilft allerdings nur, wenn $\leit{a \leftrightarrow Z}$ gut ausrechnen kann. 
+
+Sei nun $X$ die Anzahl der Besuche von $X_n$ in $a$ bevor $X_n$ in $Z$ absorbiert wird. Wir betrachten zunächst den Start in $a$. Sei 
+\begin{align}
+	X \sim Geo(p) mit p= \prop{a \to Z} = \frac{\leit{a \leftrightarrow Z}}{\pi(a)} \\
+	\EW{X} = \frac{\pi(a)}{\leit{a \leftrightarrow  Z}}
+\end{align}
+Legt man $v$ nun so an, dass $\sum i(a,x) = 1$ ein Einheitsstrom ist, dann gilt $\EW{X} = \pi(a)v(a)$.
+
+Allgemeiner betrachten wir die erwartete Anzahl der BEsuche in $a$ bei Start in $a$ und Absorption auf $Z$.
+\begin{definition}[Green's-Funktion]
+	$\mathcal{G}(a,x) = \EW{\relax}_a \benb{\text{Besuche in $x$ vor Erreichen von Z}}$ heißt \emph{Green's-Funktion} für die Irrfahrt aus $G$ mit Absorption in $Z$.
+\end{definition}
+
+\begin{satz}
+	Sei $G$ endlich, $v_i$ so, dass ein Einheitstrom in $a$ einfließt und $v(z) = 0, \forall z \in Z$. Dann gilt
+	\begin{align}
+		v(x) = \frac{\greens{a,x}}{\pi(x)}, \forall x \in V
+	\end{align}
+\end{satz}
+\begin{beweis}
+	Die rechte Seite erfüllt $\greens{a,a} = \pi(a) \cot v(a)$ und $\greens{a,z} = 0, z \in Z$, d.h. $\frac{\greens{a,x}}{\pi(x)}$ tut auf $\set{a} \cup Z$ das Gewünschte. Ist die rechte Seite auch harmonisch auf  $\enb{\set{a} \cup Z}^c$, so sind wir nach dem Gleichheitsprinzip fertig. Das ist eine Übung.
+\end{beweis}
+Heuristik: Strom ist eine Irrfahrt von $a$ nach $Z$ und $i(x,y)$ ist gerade die Netto--Anzahl der Überquerungen von $(x,y)$.
+
+\begin{satz}
+	Sei $(X_n)_n$ die Irrfahrt bei Start in $\set{a}$ und Absorption in $Z$ und $S_{xy} = $\enquote{Anzahl Überquerungen von $(x,y)$}. Dann gilt
+	\begin{align}
+		\EW{S_{xy}} = \greens{a,x}p_{xy} && \text{und} && \EW{S_{xy} - S_{yx}} =i(x,y) 
+	\end{align}
+\end{satz}
+\begin{beweis}
+	\begin{align}
+		\EW{S_{xy}} = \sum\limits_{n=0}^{\infty} \mathds{1}_{\set{X_n=x,X_{n+1}=y}} &= \sum\limits_{n=0}^{\infty}\prop{X_n =x,X_{n+1} = y} \\
+		&= \sum\limits_{n=0}^{\infty} \prop{X_n = x}p_{xy} \\
+		&= p_{xy} \EW{\relax}\Big(\sum\limits_{n = 0}^{\infty} \mathds{1}_{\set{X_n = x}}\Big) \\
+		&= p_{xy}\greens{a,x}
+	\end{align}
+	Und damit 
+	\begin{align}
+		\EW{S_{xy} - S_{yx}} = \greens{a,x}p_{xy} - \greens{a,x}p_{yx} = v(x) \underbrace{\pi(x)p_{xy}}_{\mathclap{c(x,y)}} - v(y) \underbrace{\pi(y)p_{xy}}_{\mathclap{c(y,x)=c(x,y)}} = i(x,y)
+	\end{align}
+\end{beweis}
+\marginnote{Beginn Vorlesung 18.04.2016}
+Wir wollen im Lauf dieser Sitzung den effektiven Widerstand nutzen, um Fragen der Rekurrenz und Transienz zu klären. Dazu benötigen wir ein unendliches Netzwerk $G = (V,E,c)$. Sei  nun $G_n$ eine gegen $G$ aufsteigende Folge endlicher Netzwerke, d.h. $G_n \subseteq G_{n+1}$ und $\bigcup G_n = G$. Sein $a \in G_n, \forall n$. Wir fragen uns nach $\prop{\text{\enquote{ich verlasse $G_n$, bevor ich $a$ wiedersehe}}}[][a]$.
+Sei $Z_n = V \backslash V(G_n)$. Diese identifizieren wir mit einem Vertex $z_n$ in einem Netzwerk $G^W_n$. \marginnote{$V(G^W_n)  = V(G_n) \cup \set{z_n}$} Beim Identifizieren von $Z_n$ mit $z_n$ entstehen Schlaufen und Doppelkanten. Schlaufen lassen wir weg, Doppelkanten behalten wir. Die Folge von Ereignissen $\big(\set{a \to Z_n}\big)_n$ ist fallend. Also existiert $\lim \prop{a \to z_n}$. Die Irrfahrt ist transient, falls $\lim\limits_{n \to \infty} \prop{a \to z_n} > 0$. Dies ist genau dann wahr, wenn $\lim\limits_{n \to \infty} \leit{a \leftrightarrow z_n} > 0$.
+
+\begin{satz}
+	Die Irrfahrt auf $G$ ist genau dann transient, wenn zwischen $0$ und $\infty$ die effektive Leitfähigkeit  $\lim\limits_{n \to \infty} C(a \to z_n) > 0$ ist. 
+\end{satz}
+
+Um dies nützlich zu machen, benötigen wir eine Methode um $C(a \leftrightarrow z_n)$ zu berechnen. Die Idee des folgenden Kapitels ist es ein endliches Netzwerk immer weiter zu reduzieren, bis man die effektive Leitfähigkeit als Leitfähigkeiten ablösen kann.
+
+\subsection{Reduktionsmethoden}
+Wie lassen sich Netzwerke verkleinern?
+1. Prinzip: Reihenschaltung \\
+Zwei Widerstände $r_1$ und $r_2$ in Reihe geschaltet verhalten sich wie ein Widerstand der Größe $r_1 + r_2$. Mit anderen Worten: in einem Netzwerk, das die folgende Konfigurationen enthält, lassen sich die Zustände $(v_1,w)$ und $w,v_2)$ \todo{Bild} ersetzen durch die Kante $(v_1,v_2)$  mit Widerstand $r_1+r_2$, ohne dass sich Ströme und Widerstände im restlichen Netzwerk ändern. Übung: Beweis. 
+
+Wieso ist das nützlich?
+\begin{beispiel}
+	Sei $(X_n)_n$ die einfache Irrfahrt auf $\benb{0,n}$ mit Start in $k$. Frage: Was ist $\prop{\tau_0 < \tau_n}[][k]$? Wir wissen: Dies ist $v(k)$, wenn in $0$ eine Spannung $1$ und in $n$ eine Spannung $0$ anlegt.
+	\todo[inline]{bild} Nach dem Gesetz der Reihenschalutng kann man dieses Netzwerk durch das folgende ersetzen:
+	\begin{align}
+		v(k) = \sum\limits_{y \sim k}\frac{c_{ky}}{\pi(k)}v_y = \frac{c_{k0}}{\pi(k)} \\
+		\pi(k) = c_{k0} + c_{kn} ? \frac{1}{k} + \frac{1}{k-n} = \frac{n}{k(n-k)} = \frac{n-k}{n}
+	\end{align}
+	Allgemein \todo{Bild}---. \\
+
+	Dann kann man dieses Netzwerk zusammenfassen als \todo{bild}
+	Wieder ist 
+	\begin{align}
+		v_k = \frac{c_{k0}}{\pi(k)} && \pi(z) = \frac{\sum\limits_{i=0}^{n-1}\enb{\frac{q}{p}}^i}{\enb{\sum\limits_{i=0}^{k-1}\enb{\frac{q}{p}}^i} \enb{\sum\limits_{i=k}^{n-1} \enb{\frac{q}{p}}^i}} \\
+	\end{align}
+	\begin{align}
+		\Rightarrow v_k = \frac{\sum\limits_{i=k}{n-1} \enb{\frac{q}{p}}^i}{\sum\limits_{i=0}^{n-1}\enb{\frac{q}{p}}^i} = \dots = \frac{\enb{\frac{p}{q}}^{n-k} -1}{\enb{\frac{p}{q}}^n-1}
+ 	\end{align}
+\end{beispiel}
+2. Prinzip: Parallelschaltung \\
+Man kann zwei parallele Leitungen mit Kapazitäten (Leitfähigkeiten) $c_1$ und $c_2$ durch eine einzige mit Leitfähigkeit $c_1+c_2$ ersetzen. Mit anderen Worten: In dieser Situation \todo{Bild} lässt sich die Doppelkante $(u_1,u_2)$ mit Leitfähigkeit $c_1$ und $c_2$ durch eine Kante $c_1+c_2$ ersetzen, ohne dass sich an den Spannungen, Strömen im Restnetzwerk etwas ändert. Übung: Beweis.
+
+\begin{beispiel}
+	\todo[inline]{Beispiel 1.3, 1.4 fehlen (vieeele Bilder)}	
+\end{beispiel}
+
+\subsubsection*{3. Prinzip: Y--$\Delta$--Prinzip}
+Auch Stein--Dreieck--Prinzip genannt. Netzwerke in denen man eine der folgenden Konfigurationen durch die andere ersetzt, sind äquivalent, falls 
+\todo{missing Picture.} 
+\begin{gather}
+	c(w, u_i) \cdot c(u_{i-1},u_{i+1}) = \gamma, \forall i \text{ Indizes}\mod{3} \\
+	\gamma = \frac{\prod\limits_{i} c(w,u_i)}{\sum\limits_{i}c(w,u_i)}, \gamma = \frac{1/6}{11/6} = \frac{1}{11}
+\end{gather}
+\todo[inline]{missing Picture}
+
+\subsubsection*{4. Prinzip (trivial):}
+Man kann Knoten von Grad 1 hinzufügen oder entfernen. Selbiges Gilt für Schlaufen
+\todo[inline]{Missing Picture}
 
 
-\todo[inline]{Hier fehlt noch ein großer Teil, der nachgetext werden muss (ab Korolloar 1.2)}
 \newpage
 
 

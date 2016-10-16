@@ -1,0 +1,237 @@
+%!TEX root = ./WTG.tex
+\marginnote{Vorlesungsbeginn 04.07.2016}
+
+\section{Gittergase \& Spinsysteme}
+
+\subsection{Allgemeines Modell}
+
+Sei $\Lambda \subseteq \ZZ^d$ endliche Teilmenge, $N := \abs{\Lambda}$. Die Gesamtenergie des Systems ist gegeben durch 
+\begin{align}
+	H_\Lambda (x_1, \dots, x_N) = \sum\limits_{i \neq j \neq 1} ro_{ij} (x_i,x_j)
+\end{align}
+
+mit Wechselwirkung $ro_{i,j}(x_i,x_j)$ zwischen den Teilchen $x_i$ an der Stelle $i$ und $x_j$ an der Stelle $j$. Aus der Ohysik weiß man, dass Zustände mit niedriger Energie angenommen werden. Hohe Energien sind exponentiell unwahrscheinlich. Gibbsmaß:
+\begin{align}
+	\mu_{1,\beta} (x_1, \dots, x_N) = \frac{e^{-\beta H_{\Lambda}(x,1,\dots, x_N)}}{Z_{\Lambda,\beta,h}}
+\end{align}
+für $\beta > 0$ (inverse Temperatur).Boltzmann Konstant = $\Lambda$. $Z_{\Lambda,\beta}$ heißt Zustandssumme 
+\begin{align}
+	Z_{\Lambda,\beta} = \sum\limits_{x_1,\dots,x_N} e^{-\beta H_{\Lambda}}(x_1,\dots, x_N)
+\end{align}
+und normiert $\mu_{\Lambda,\beta}$ zu einem Wahrscheinlichkeitsmaß.
+ \subsection{Ising Modell als Beispiel für Spinsystem}
+ Sei $\Lambda \subseteq \ZZ^d$ endliche Teilmenge und $S=\set{-1,1}$. Ein $\sigma \in \set{0,1}^1 = S^1$ nennt man Spinkonfiguration. Im Ising--Modell erhält ein $\sigma$ die Energie
+ \begin{align}
+ 	H(\sigma) = H_{\Lambda} (\sigma) = - \sum\limits_{i \neq j \neq 1, <i,j>} \sigma_i \sigma_j - \underbrace{h \sum\limits_{i \in \Lambda} \sigma_i}_{\text{externes Magnetfeld}}
+ \end{align} 
+ 
+ mit $h>0$ als Stärke des externen Magnetfeldes und $<i,j>$ bedeutet $i$ und $j$ sind Nachbarn auf $\Lambda$ sind. Gibbsmaß $\mu_{\Lambda, \beta, h}$ und $Z_{\Lambda, \beta, h}$ wie zuvor.
+ Wichtige Größen sind die Magnetisierung $m_1 = \frac{1}{\abs{\Lambda}} \sum\limits_{i \in \Lambda} \sigma_i$ und die Freie Energie $F_{\Lambda, \beta, h} = -\frac{1}{\beta} \log \enb{Z_{\Lambda,\beta,h}}$.
+ 
+ \underline{Existenz der freien Energie} \\
+ Falls die freie Energie $F_{\Lambda, \beta, h} $ eines Systems subadditiv ist, d.h. 
+ \begin{align}
+ 	- F_{\Lambda, \beta, h} \leq -F_{\Lambda_1, \beta, h} - F_{\Lambda_2, \beta, h}
+ \end{align}
+ für $\Lambda = \Lambda_1 \cup \Lambda_2$ und $\Lambda_1 \cap \Lambda_2 = \emptyset$, $\Lambda_1, \Lambda_2 \subseteq \ZZ^d$ endliche Teilmengen, so existiert für jede Folge von Rechtecken $\Lambda_0, \Lambda_1, \dots$ mit $\Lambda_n \uparrow \ZZ^d$ der Limes $\frac{1}{\abs{\Lambda_n}} F_{\Lambda_n, \beta, h} = f_{\beta,h}$. Ist ferner 
+ \begin{align}
+ 	\frac{\sup\limits_{\sigma} H_1(\sigma) }{\abs{\Lambda}} \geq C > - \infty
+ \end{align}
+ für alle $\Lambda \subseteq \ZZ^d$, so ist $f_{\beta,h}$ endlich. Der Beweis folgt aus
+ \begin{lemma}
+ 	Ist $(a_n)_n$ Folge mit $a_{n+m} \leq a_n + a_m$ dann existiert Limes $\frac{1}{n} a_n$ und es gilt 
+ 	\begin{align}
+ 		\lim\limits_{n \to \infty} \frac{1}{n} a_n = \inf\limits_{n} \frac{1}{n} a_n \marginnote{$-\infty$ möglich}
+ 	\end{align}  	
+ \end{lemma}
+ \begin{korollar}
+ Die freie Energie pro Punkt $f_{\beta,h}$ existiert im Ising--Modell und ist endlich	
+ \end{korollar}
+ \begin{beweis}
+ 	Periodische Randbedingung! Definiere
+ 	\begin{align}
+ 		\overline{H} (\sigma) = \overline{H}_{\Lambda}(\sigma) = \frac{1}{2} \sum\limits_{i,h \in \Lambda, <i,j>} \enb{\sigma_i - \sigma_j}^2 - h \sum\limits_{i \in \Lambda} \sigma_i
+ 	\end{align}
+ 	dann gilt 
+ 	\begin{align}
+ 		H(\sigma) - \overline{H}(\sigma) = .2d\abs{\Lambda}
+ 	\end{align}
+ 	Nun ist $\overline{F}$ subadditiv, denn
+ 	\begin{align}
+ 		\overline{Z}_{\Lambda, \beta, h} &= \sum\limits_{\sigma_i = +- 1, i \in \Lambda_1} \sum\limits_{\tau_j = +-1, j \in \Lambda_2} \exp\enb{-\beta \enb{\overline{H}_{\Lambda_1}(\sigma) + \overline{H}_{\Lambda_2}(\tau)} \cdot \exp\enb{- \beta \sum\limits_{u \in \Lambda_1, j \in \Lambda_2, <i,j>} \enb{\sigma_i - \tau_j}^2 }  } \\
+ 		&\leq \sum\limits_{\sigma_i = +-1, i \in \Lambda_1} e^{-\beta \overline{H}_{\Lambda_1} (\sigma)} \sum\limits_{\tau_j = +-1, j \in \Lambda_2} e^{- \beta \overline{H}_{\Lambda_2}(\tau)} = \overline{Z}_{\Lambda_1} \overline{Z}_{\Lambda_2} \\
+ 		\Rightarrow - \overline{F}_1 \leq -\overline{F}_{\Lambda_1} - \overline{F}_{\Lambda_2}
+ 	\end{align}
+ 	also ist $\overline{F}$ subadditiv, damit auch $F$. Schließlich ist $f_{\beta, h}$ endlich, da 
+ 	\begin{align}
+ 		H_{\Lambda}(\sigma) \geq - \enb{2d - h} \abs{\Lambda} > - \infty
+ 	\end{align} für alle $\sigma$.
+ \end{beweis}
+ 
+ \subsection{Ising--Modell in $d=1$}
+ Es ist 
+ \begin{align}
+ 	\mu_{\Lambda, \beta, h}(\sigma) = \frac{e^{\beta \sum_{<i,j>}\sigma_i\sigma_j + \beta h \sum_{i \in \Lambda} \sigma_i  } }{Z_{\Lambda, \beta, h}}
+ \end{align}
+ und mit $N = \abs{\Lambda}$
+ \begin{align}
+ 	H_{\Lambda}(\sigma) = - \sum\limits_{i = 1}^{N} \sigma_i \sigma_{i+1} - h \sum\limits_{i=1}^{N} \sigma_i
+ \end{align}
+ Setzen wir für $s,s' \in \set{-1,1}$. Sei $L(s,s') = e^{\beta ss' + \beta h s}$ und es bezeichne $L$ die entstehende $2 \times 2$ Matrix.
+ \begin{align}
+ 	Z_{\Lambda, \beta, h} &= \sum\limits_{\sigma_i = +-1, i = 1,\dots,N} e^{\beta \sum\limits_{i=1}^{N} \sigma_i \sigma_{i+1} + \beta h \sum\limits_{i = 1}^{N} \sigma_i } \\
+		 	&= \sum\limits_{\sigma_i = +-1, i = 1,\dots,N} \prod\limits_{i=1}^{N} e^{\beta \sigma_i \sigma_{i+1} + \beta h \sigma_i }  \\
+		 	&= \sum\limits_{\sigma_i = +-1, i ? 1,\dots,N } L(\sigma_1,\sigma_2) \cdot \dots  \cdot L(\sigma_N,\sigma_1) = tr(L^N)
+ \end{align}
+ Mit Eigenwerten $\lambda_1, \lambda_2$ von $L$ 
+ \begin{align}
+ 	tr(L^N) = \lambda_1^N+\lambda_2^N
+ \end{align}
+ wobei
+ \begin{align}
+ 	\lambda_1 &= e^{\beta} \cosh\enb{\beta h} + \sqrt{e^{2\beta} \sinh^2\enb{\beta h} + e^{-2\beta} } \\
+ 	\lambda_2 &= e^{\beta} \cosh\enb{\beta h} - \sqrt{e^{2\beta} \sinh^2\enb{\beta h} + e^{-2\beta} }
+ \end{align}
+ weil $\lambda_1 > \lambda_2$ \todo{missing part at Z lambDa beta h}
+ \begin{align}
+ 	-\frac{1}{\beta} f_{\beta,h} &= \lim\limits_{N \to \infty} \frac{1}{N} \log \enb{Z_{\Lambda,\beta,h}} = \log(\lambda_1) = \beta + \log \enb{\cosh\enb{\beta h} + \sqrt{\sinh^2\enb{\beta h} + e^{-4\beta } } } \\
+ 	f_{\beta,h} &= -1 - \frac{1}{\beta} \log \enb{\cosh\enb{\beta h} + \sqrt{\sinh^2\enb{\beta h} + e^{-4\beta } } }
+ \end{align}
+ Mit Analysis folgt:
+ \begin{align}
+ 	\frac{\delta}{\delta_h}f_{\beta, h } &= \lim\limits_{N \to \infty} \frac{1}{\beta N} \sum\limits_{\sigma = +-1, i = 1, \dots, N} \frac{\frac{\delta}{\delta h} e^{\beta \sum_{i = 1}^{N} \sigma_i \sigma_{i+1} + \beta h \sum_{i =1}^{N} \sigma_i  }}{Z_{\Lambda, \beta, h}} \\
+ 		&= \lim\limits_{N \to \infty} \sum\limits_{\sigma_i, i = 1,\dots,N} \frac{e^{\beta \sum_{i = 1}^{N} \sigma_i \sigma_{i+1} + \beta h \sum_{i = 1}^{N} \sigma_i }}{Z_{\Lambda,\beta,h}}
+ \end{align}
+ \todo{missing end}
+
+\marginnote{Vorlesungsbeginn 17.07.2016}
+
+\section{Phasenübergänge im Ising--Modell}
+
+Es gibt paramagnetisches und diamagnetisches Material. Bei paramagnetischem Material sind magnetische Dipole \enquote{benachbart} Atome \todo{richtig?} tendenziell gleich gerichtet, bei diamagnetischen Material sind sie tendenziell ungleichgerichtet. Paramagnetisches Material kann Ferromagnetismus aufweisen, das soll heißen, es zeigt spontane Magnetisierung, d.h. bringt man das Material in ein externes Magnetfeld ein und schaltet dieses dann aus, dann zeigt das Material weiterhin magnetisches Verhalten. Beispiel hierfür: Eisen.
+\subsection*{Spielzeugmodell (Ising--Modell):}
+Dieses Modell ist definiert durch eine Energiefunktion/
+\begin{align}
+	H_{\Lambda,h} (\delta) := \sum\limits_{<x,y>} \delta_x \delta_y - h \sum\limits_{x \in \Lambda} \lambda_x
+\end{align}
+(dabei ist $h>0$ das externe Magnetfeld, $<\cdot,\cdot>$ bedeutet $x$ und $y$ und nächste Nachbarn im $\ZZ^d$ und $\Lambda \subseteq \ZZ^d$ endlich) und dem induzierten Gibbsmaß 
+\begin{align}
+	\mu_{\beta,\Lambda}(\delta) = \frac{e^{-\beta H_{\Lambda,h}(\delta)}}{Z_{\Lambda,}\beta}
+\end{align}
+mit $T \in \set{1,-1}^{\Lambda}, \beta > 0$ (inverse Temperatur) und $Z_{\Lambda, \beta} = \sum\limits_{\tau \in \{-1,+1\}^{\Lambda}}e^{-\beta H(\tau)}$.
+
+Wir haben schon gesehen, dass das eindimensionale Ising--Modell kein besinders interessantes Verhalten aufweist. Man ist an sehr großen Systemen interessiert ($\abs{\Lambda} \sim 10^{23}$), für Mathematiker und Physiker am Limes $\abs{\Lambda} \to \infty$ (das muss man noch spezifizieren, z.B. im van der Hove--Sinne, d.h. in Quadern, deren Seitenlängen gleichzeitig groß werden, also beispielsweise $\Lambda = \benb{-n,n}^d$). Naheliegend wäre es eine Energiefunktion zu definieren, die die Gestalt 
+\begin{align}
+	H(\delta) = - \sum\limits_{<x,y> \in \ZZ^d} \delta_x \delta_y - h \sum\limits_{x \in ZZ^d} \delta_x
+\end{align}
+mit $\delta \in \set{-1,+1}^{\ZZ^d}$.
+
+Leider ist das Unsinn, denn für fast alle $\sigma$ konvergieren die Reihen nicht. \todo{detla sigma} Das $H$ global existiert ist vielleicht auch mehr als wir wünschen. Wir wollen eigentlich 
+\begin{align}
+	\lim\limits_{\abs{\Lambda} \to \infty} \mu_{\Lambda,\beta}
+\end{align} 
+zu definieren.
+
+Man könnte reflexartig versuchen, den Satz von Kolmogorov (Fortsetzungssatz) in Anschlag zu bringen. Da $\mu_{\Lambda, \beta}$ für $\abs{\Lambda} < \infty$ alle auf den endlichen Mengen $\{-1,+1\}^{\Lambda}$ wohldefiniert sind, liegt dieser Ansatz nahe. Leider funktioniert das nicht, denn die Familie der $\enb{\mu_{\Lambda, \beta}}_{\Lambda \subseteq \ZZ^d}$ ist nicht konsistent. Ist nämlich $\enb{\Lambda_n} \uparrow \infty$. im Van der Hoven Sinne dann gilt nicht $\mu_{\Lambda_{n+1}}|_{\Lambda_n} = \mu_{\Lambda_n}$. Das liegt daran, dass $\mu_{\Lambda_{n+1}}|_{\Lambda}$ von Spins in $\delta_{\Lambda_n}$ ($x \in \Lambda_{n} : d(x,\Lambda_n) = 1$).
+
+Es ist daher \enquote{natürlich}, die Randspins mitzubetrachten.
+
+\begin{definition}
+	Eine \emph{lokale Spezifikation} des Gibbsmaßes im Isingmodell ist ein Maß
+	\begin{align}
+		\mu^{\eta}_{\Lambda, \beta} (\sigma) = \frac{e^{-\beta, H_{\Lambda \cup \sigma_x}(\sigma, \eta)}}{\ZZ^\eta_{\Lambda, \beta}}
+	\end{align}
+	mit $\sigma \in \set{-1,+1}^{\Lambda}$. Dabei ist $\Lambda \subseteq \ZZ^d$ endlich, $\eta \in \set{-1,+1}^{\ZZ^d} , \beta > 0$ und $(\sigma, \eta)$ ist die Konfiguration, die mit $\sigma$auf $\Lambda$ und $\eta$ auf $\ZZ^d$ übereinstimmt. Durch 
+	\begin{align}
+		Z^{\eta}_{\Lambda \beta} = \sum\limits_{\tau \in \set{-1,+1}^{\Lambda}} e^{- \beta H_{\Lambda \cup \sigma_{\Lambda} (\sigma, \eta) }}
+	\end{align}
+	wird $\mu^{\eta}_{\Lambda, \beta}$ zu einem Wahrscheinlichkeitsmaß.
+\end{definition}
+
+	Man rechnet nach, dass lokale Spezifikationen gut zueinander passen, die im folgenden Sinne konsistent sind:
+	\begin{align}
+		\forall f: \set{-1,+1}^{\ZZ^d} \to \RR
+	\end{align}
+	messbar, beschränkt und $\Lambda \subseteq \Lambda'$ gilt
+	\begin{align}
+		\int \int f\enb{\sigma_\Delta, \sigma'_{\Lambda' \backslash \Lambda}, \eta_{(\Lambda')^c}} \mu^{\enb{\eta'_{\Lambda}, \sigma'_{\Lambda' \backslash \Lambda}  }}_{\Lambda,\beta} (d\sigma) \mu^{\eta}_{\Lambda',\beta} (d\sigma') \\
+		\overset{(*)}{=} \int f \enb{\sigma'_{\Lambda}, \eta_{\Lambda'^c }} \mu^{\eta}_{\Lambda, \eta} (d\sigma'), \forall \eta \in \set{-1,+1}^{\ZZ^d} 
+	\end{align}
+	
+	\todo{missing part}
+	\begin{definition}
+		In der Situation des $d$--dimensionalen Ising--Modells ist ein globales Gibbsmaß ein HP einer Folge $\enb{\mu^{\eta}_{\Lambda_n,\beta}}_{\Lambda_n}$ für $\enb{\Lambda_n \uparrow \ZZ^d}$ und $\eta \in \set{-1,+1}^{\ZZ^d}$ oder aber (äquivalent) ein Maß $\mu_{\beta}$ mit $\EW{f \given \mathcal{F}_{\Lambda^c_{\mu,\beta}}} = \mu_{\Lambda,\beta}^{(\cdot)} (f)$ für alle $f: \set{-1,+1} \to \ZZ^d$ beschränkt messbar.
+	\end{definition}
+	
+\begin{definition}
+	Wir sagen, dass das Ising--Modell in Dimension $d$ einen Phasenübergang hat, falls es ein $\beta > 0$ gibt, sodass $\enb{\mu^{(\cdot)}_{\Lambda_n \beta}}$ mehr als einen Häufungspunkt hat. In der Physik gibt es zwei (beinahe) äquivalente Definitionen:
+	\begin{enumerate}
+		\item Das System hat einen Phasenübergang, falls für ein $\beta> 0$ 
+		\begin{align}
+			\beta \mapsto f_{\beta} = \lim\limits_{\abs{\Lambda} \to \infty} \frac{1}{\abs{\Lambda}} \log Z_{\Lambda, \beta}
+		\end{align}
+		nicht $C^{\infty}$ ist.
+		
+		\item Das System hat einen Phasenübergang, falls die 2--Punkt--Korrelation $<\sigma_x,\sigma_y>_{\mu \beta, \Lambda \cup \delta \Lambda}$ nicht exponentiell $|| x- y||$ fällt 
+	\end{enumerate}
+\end{definition}
+	Zunächst versuchen \todo{check def} wir die Situation zu verkleinern. 
+
+\begin{enumerate}[a)]
+	\item Im Hochtemperaturbereich, d.h. $\beta \sim 0$ ist die lokale Spezifikation durch 
+	\begin{align}
+		\sigma^{\eta}_{\Lambda, \beta} (Z) = \frac{e^{-\beta H_{\Lambda \cup \delta\Lambda} \enb{\sigma, \eta} }}{Z^{\eta}_{\Lambda, \beta} } 
+	\end{align}
+	gegeben und für kleines $\beta$ spielt die Energie beinahe keine Rolle, d.h. \todo{missing nebenrechnung. Z schlange} $\mu_{\Lambda, \beta}^{\eta}$ ist eine Perkolation des Produktmaßes. 
+	Wenn die $\mu_{\Lambda, \beta}^{\eta}$ \enquote{fast} Produktmaße sind, so kann man hoffen, dass sie auch einen eindeutigen Limes besitzen, da dies für Produktmaße auch zutrifft. Tatsächlich stimmt das alles auch und folgt aus dem sogenannten Dobrushinschen Eindeutigkeitskriterium. 
+	
+	\item Für große $\beta$ spielt etwas ganz anderes eine Rolle: Es gibt zwei Grundzustände, d.h. Konfigurationen minimaler Energie für $h = 0$
+	\begin{align}
+		H_{\Lambda}(\sigma) = - \sum\limits_{<x,y>} \sigma_x \sigma_y
+	\end{align}
+	wird minimal für $\sigma \equiv + 1$ oder $\sigma \equiv -1$. Jetzt sollte der Rand $\delta \Lambda_n$ wesentlich das Gibbsmaß beeinflussen.
+\end{enumerate}
+\todo{check end}
+
+\marginnote{Vorlesungsbeginn 14.07.2016}
+
+Die Idee ist nun die lokale Spezifikationen $\mu_{\Lambda\beta}^{\sigma^+}$ und $\mu_{\Lambda\beta}^{\sigma^-}$ zu betrachten und zu zeigen, dass diese im Limes $\Lambda \to \ZZ^d$ unterschiedliche Häufungspunkte haben. Dazu zeigen wir, dass 
+\begin{align}
+	\lim\limits_{\Lambda \to \ZZ^d} \mu_{\Lambda \beta}^+ (\sigma_0 = -1) \neq \lim\limits_{\Lambda \to \ZZ^d} \mu_{\Lambda \beta}^- (\sigma_0 = -1) 
+\end{align}
+\begin{satz}[Peierls 1936]
+	In $d \geq 2$ hat das Ising--Modell für hinreichend großes $\beta$ einen Phasenübergang. 
+\end{satz}
+\begin{beweis}
+	Wir betrachten den Fall $d=2$, $\Lambda_n = \benb{-n,n}^2$, $\mu_{\Lambda_n, \beta}^{\sigma^{\pm}} =: \mu_{\Lambda_n, \beta}^{\pm}$
+	
+	Zeige: Für $\beta$ groß genug ist 
+	\begin{align}
+		\lim\limits_{n \to \infty }\mu_{\Lambda_n, \beta}^{+} < \frac{1}{2}
+	\end{align}
+	Das reicht, denn dann ist
+	\begin{align}
+		\lim\limits_{n \to \infty} \mu_{\Lambda_n, \beta}^{-} (\sigma_0 = -1) = \lim\limits_{n \to \infty} 1 - \mu_{\Lambda_n, \beta}^{-} (\sigma_0 = +1) = \lim\limits_{n \to \infty} 1 \mu_{\Lambda_n, \beta}^{+} (\sigma_0  = -1) > \frac{1}{2}
+	\end{align}
+	und damit sind alle Häufungspunkte von $\mu_{\Lambda_n, \beta}^{+}$ verschieden von denen von $\mu_{\Lambda_n, \beta}^{-}$.
+	\todo{missing picture}
+	Die Kernidee des Beweises ist nun, dass das Ereignis $\set{\sigma_0 = -1}$ unter $\mu_{\Lambda_n, \beta}^{+}$ eine Barriere (Kontur) zwischen $+1$--Spins und $-1$--Spins erzeugt, während dies unter $\mu_{\Lambda_n, \beta}^{-}$ nicht der Fall ist. Wir nennen nun $\gamma$ eine Kontur in $(\ZZ^2)*$, wenn es eine Vereinigung von Kreisen in $(\ZZ^d)*$ ist. \marginnote{$(\ZZ^d)*$ Dualraum}
+	
+	Wenn $\sigma_0 = -1$, dann wird der Ursprung $0$ unter $\mu_{\Lambda, \beta}^{+}$ von einer Kontur begrenzt, sodass die Spins innerhalb von $\gamma$ alle $-1$ sind. Also ist \todo{int: interior?}
+	\begin{align}
+		\mu_{\Lambda_n, \beta}^{+}(\sigma_0 = -1) &\leq \mu_{\Lambda_n, \beta}^{+} (\exists \gamma \text{ Kontur } : 0 \in int \gamma) \\
+					&\leq \mu_{\Lambda_n, \beta}(\exists \text{ Kreis } : 0 \in int \gamma)
+	\end{align}
+	\underline{Beobachtung:} Ist $\gamma$ nun die Kontur, welche die $\oplus$--Spins von $\ominus$--Spins trennt, dann ist 
+	\begin{align}
+		H^+_{\Lambda_n} (\sigma) = - \sum\limits_{<x,y> \in \Lambda \cup \delta \Lambda, x \in \Lambda, y \in \Lambda} \sigma_x \sigma_y = \sum\limits_{{<x,y> \in \Lambda \cup \delta \Lambda, x \in \Lambda, y \in \Lambda}} (1- \sigma_x \sigma_y -1) = 2 \abs{\gamma}_{\sigma} - c_{\Lambda \cup \delta \Lambda}
+	\end{align}
+	Die Konstante $c$ verschwindet im Gibbsmaß und der Nenner des Gibbsmaß ist $\geq 1$. Somit ist für alle $n$
+	\begin{align}
+		\mu_{\Lambda, \beta}^{+} (\sigma_0 = -1) &\leq \mu_{\Lambda, \beta} \benb{\exists \text{ Kreis $\gamma$, der den Ursprung von $\delta\Lambda_n$ trennt, sodass } \sigma|_{int \gamma } \equiv -1} \\
+				&\leq \sum\limits_{m = 4}^{\infty} \sum\limits_{\gamma: \abs{\gamma} > m} \mu{\Lambda_n,\beta} (\gamma) \leq \sum\limits_{m = 4}^{\infty} m3^m e^{-2\beta m} \marginnote{$m$ Anzahl der }
+	\end{align}
+	\todo{check formel}
+	wenn $p$ groß wird.
+\end{beweis}
+
