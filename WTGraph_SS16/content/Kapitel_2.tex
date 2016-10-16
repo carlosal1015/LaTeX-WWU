@@ -159,7 +159,8 @@ Es folgt aus der orthogonalen Zerlegung von $\Theta$ in $i$ und $\Theta - i$, da
 \end{beweis}
 
 \marginnote{Vorlesungsbeginn 25.04.2016}
-\section{Transienz \& Rekkurenz}
+\section{Transienz \& Rekurrenz}
+\label{chap:TransienzUndRekurrenz}
 
 Wir haben gesehen: Begriffe wie \enquote{effektive Kapazität}, \enquote{effektiver Widerstand}, \enquote{Energie}, \enquote{Spannung} helfen, um das Verhalten von Irrfahrten auf Graphen besser zu verstehen. Zum Beispiel entsprechen Spannungen Treffwahrscheinlichkeiten effektive Widerstände bzw. Kapazitäten entsprechen Durchgangswahrscheinlichkeiten, Energie ist so etwas wie effektive Widerstände.
 
@@ -337,7 +338,7 @@ Wählt man $\p$ so, dass Kanten hoher Leitfähigkeit oft benutzt, und Kanten nie
 \end{beweis}
 
 \section*{Spezielle Netzwerke}
-
+\label{chap:SpezielleNetzwerke}
 \section{Flüsse, Cutsets und Ford Fulkerson}
 Gegeben sei irgendein Netzwerk $G = (V,R,c).$ Sei $a,(z) \in V$ oder $z = \infty$. Gibt es einen Fluss $\Theta$ von $a$ nach $z$, dergestalt
 \begin{gather}
@@ -347,7 +348,7 @@ Zum Beispiel gilt für den Einheitsstromfluss von $a$ nach $z$ mit Spannungen $v
 \begin{align}
 	\abs{i(e)} = \abs{c(e) dv(e)} \leq c(e)v(a)
 \end{align}
-Somit ist $\frac{i}{v(a)}$ ein Fluss von $a$ nach $z$, mit $\frac{\abs{i(e)}}{v(a)} \leq c(e)$. \todo{v(a) oder v(0)??} Solche Flüsse wollen wir zulässig nennen.
+Somit ist $\frac{i}{v(a)}$ ein Fluss von $a$ nach $z$, mit $\frac{\abs{i(e)}}{v(a)} \leq c(e)$. Solche Flüsse wollen wir zulässig nennen.
 \todo[inline]{missing figure. böum}
 Die erste Frage ist: Was ist die maximale Flussstärke eines zulässigen Flusses von $A$ nach $Z$ mit $A \cap Z = \emptyset$?
 \todo[inline]{uuuuuund noch eine Zeichnung}
@@ -363,26 +364,27 @@ Wir beweisen allgemeiner eine Version für gerichtete Graphen
 \begin{beweis}
 	Dazu sei $G = (V,E,c), E \subseteq V \times V$. Dabei ist $c(e) = c(-e)$ nicht mehr notwendigerweise erfüllt. Sei
 	\begin{align}
-		\Phi (x,e) = \mathds{1}_{\set{x = e^-}}- \mathds{1}_{\set{x = e^+}}
+		\phi (x,e) = \mathds{1}_{\set{x = e^-}}- \mathds{1}_{\set{x = e^+}}
 	\end{align}
-	die Kanten--Knoten--Inzidenz-Funktion.
+	die Kanten-Knoten-Inzidenz-Funktion.
 
 \end{beweis}
-\todo{text weil bweweis gferichteter netze?}
+
 \begin{definition}
-	$\Theta\colon E \to \Real^+$ heißt Fluss von $A$ nach $Z$ mit $A \cap Z = \emptyset$, wenn gilt
+	$\Theta\colon E \to \RR^+$ heißt Fluss von $A$ nach $Z$ mit $A \cap Z = \emptyset$, wenn gilt
 	\begin{align}
-		x \in A &\Rightarrow \sum\limits_{e} \Phi(x,e) \Theta(e) > 0 \\
-		x \in Z &\Rightarrow \sum\limits_{e} \Phi(x,e) \Theta(e) < 0 \\
-		x \notin A \cup Z &\Rightarrow \sum\limits_{e} \Phi(x,e) \Theta(e) = 0
+		x \in A &\Rightarrow \sum\limits_{e} \phi(x,e) \Theta(e) > 0 \\
+		x \in Z &\Rightarrow \sum\limits_{e} \phi(x,e) \Theta(e) < 0 \\
+		x \notin A \cup Z &\Rightarrow \sum\limits_{e} \phi(x,e) \Theta(e) = 0
 	\end{align}
 	$A$ heißt \emph{Quelle}, $Z$ heißt \emph{Senke} von $\Theta$. $\Theta$ heißt \emph{zulässig}, wenn $\Theta(e) \leq c(e)$ für alle $e \in E$. Die \emph{Flussstärke} $S$ ist definiert durch
 	\begin{align}
-		S(\Theta):= \sum\limits_{x \in A} \sum\limits_{e \in E} \Phi(x,e) \Theta(e)
+		S(\Theta):= \sum\limits_{x \in A} \sum\limits_{e \in E} \phi(x,e) \Theta(e)
 	\end{align}
 \end{definition}
 	
 \begin{satz}
+	\label{satz:5-3}
 	$G = (V,E,c)$ gerichtetes, endliches Netzwerk. Dann gilt für zulässiger Flüsse $\Theta$ von $A$ nach $Z$ mit $\abs{\Theta(e)}  \leq c(e), \forall e$:
 	\begin{align}
 		\max\limits_{\Theta \text{ zulässig}}\set{S(\Theta)}  = \min\set{\sum\limits_{e \in \Pi}c(e) \given \Pi \text{ ist ein $A$--$Z$ Cutset}}
@@ -393,11 +395,11 @@ Wir beweisen allgemeiner eine Version für gerichtete Graphen
 	
 	Sei $\Theta$ maximierend, sei $\Pi$ ein $A$--$Z$--Cutset. Dann ist $A'$ die Menge der Vertizes, die nicht durch \todo{malen malen malen} $\Pi$ von $A$ getrennt werden. Insbesondere ist $A \subseteq A'$. Dann gilt
 	\begin{align}
-		S(\Theta) = \sum\limits_{x \in A}\sum\limits_{c \in E} \Phi(x,e) \Theta(e) = \sum\limits_{x \in A'} \sum\limits_{c \in E} \Phi(x,e) \Theta(e)
+		S(\Theta) = \sum\limits_{x \in A}\sum\limits_{c \in E} \phi(x,e) \Theta(e) = \sum\limits_{x \in A'} \sum\limits_{c \in E} \phi(x,e) \Theta(e)
 	\end{align}
-	da $A' \supseteq A$ und $\sum\limits_{e} \Phi (x,e) \Theta(e) = 0$ für $x \in A' \backslash A.$
+	da $A' \supseteq A$ und $\sum\limits_{e} \phi (x,e) \Theta(e) = 0$ für $x \in A' \backslash A.$
 	\begin{align}
-		\dots = \sum\limits_{c \in E}\Theta(e)\sum\limits_{x\in A'}\Phi(x,e) \leq \sum\limits_{e \in \Pi} \Theta(e) \leq \sum\limits_{e \in \Pi} c(e)
+		\dots = \sum\limits_{c \in E}\Theta(e)\sum\limits_{x\in A'}\phi(x,e) \leq \sum\limits_{e \in \Pi} \Theta(e) \leq \sum\limits_{e \in \Pi} c(e)
 	\end{align}
 	Nun ist
 	\begin{align}
@@ -434,8 +436,8 @@ Wir beweisen allgemeiner eine Version für gerichtete Graphen
 	\end{align} 
 	Dann gilt $\Theta(e) = c(e)$ für $e \in B \times B^c$ und $\Theta(e) = 0$ für ein $e \in B^c \times B$. Mit der gleichen Rechnung wie eben erhalten wir 
 	\begin{align} 
-		S(\Theta) &= \sum\limits_{x\in A} \sum\limits_{e \in E} \Phi(x,e) \Theta(e)\\ \marginnote{(*) \text{mit $A'$ wie eben}}
-				&\overset{(*)}{=} \sum\limits_{x \in A'} \sum\limits_{e \in E} \Phi(x,e) \Theta(e) \\
+		S(\Theta) &= \sum\limits_{x\in A} \sum\limits_{e \in E} \phi(x,e) \Theta(e)\\ \marginnote{(*) \text{mit $A'$ wie eben}}
+				&\overset{(*)}{=} \sum\limits_{x \in A'} \sum\limits_{e \in E} \phi(x,e) \Theta(e) \\
 				&= \sum\limits_{e \in Pi}\Theta(e) = \sum\limits_{e \in \Pi}c(e) 
 	\end{align}
 \end{beweis}
@@ -444,9 +446,10 @@ Nun die Verallgemeinerung auf abzählbare Netzwerke. Dazu sei $G= (V,E,c)$ ein a
 	\sum\limits_{e ^- = x} c(e) < \infty
 \end{align}
 
-dann gilt die folgende Verallgemeinerung von \todo{ref} vorherigem Satz. 
+dann gilt die folgende Verallgemeinerung des vorherigen Satzes.
 
 \begin{satz}
+	\label{satz:5-4}
 	Sei $G$ ein zusammenhängendes, abzählbares Netzwerk wie oben. Dann gilt für $a$ (die Quelle)
 	\begin{align}
 		\max\set{S(\Theta) \given \Theta \text{ ist ein zulässiger Fluss von $a$ nach $\infty$}} \\
@@ -465,32 +468,31 @@ dann gilt die folgende Verallgemeinerung von \todo{ref} vorherigem Satz.
 	\end{align}
 	wobei wir nur die Kanten behalten welche in einem $\mathcal{E}_{x_i}$ liegen.
 	
-	Ein Pfad heißt einfach, wenn er keinen Vertex mehrfach seit.
-	Auf $P$ kann man eine Metrik definieren:
-	\todo{check Buchstabe}
+	Sei nun $\mathcal{P}:= \set{\gamma: a \to \infty \given \gamma \text{ ist einfacher Pfad in } G'}$
+	(Ein Pfad heißt einfach, wenn er keinen Vertex mehrfach sieht.)
+	Auf $\mathcal{P}$ kann man eine Metrik definieren:
 	\begin{align}
 		d(\gamma,\gamma') = \inf\set{\frac{1}{n+1} \given \text{$\gamma$ und $\gamma'$ stimmen in den ersten n Schritten überein}}
 	\end{align}	
 	\begin{uebung}
 		Das ist eine Metrik.
 	\end{uebung}
-	Bezüglich $d$ ist $P$ kompakt. Zeige: $p$ ist folgen--kompakt.
+	Bezüglich $d$ ist $\mathcal{P}$ kompakt. Zeige: $\mathcal{P}$ ist Folgen-kompakt.
 	
-	Sei $\Big(\enb{e^m_n}_n \Big)^m$ eine Folge von Pfaden in $P$. Alle starten in $a$ in $G'$ ist lokal--endlich. Es gibt also eine Teilfolge $\Big(\enb{e^{m_1}_n}_n \Big)^{m_1}$ sodass alle Pfade dieser Teilfolge die gleiche 1. Kante haben. 
-	Nun gibt es eine Teilfolge $\Big(\enb{e^{m_2}_n}_n \Big)^{m_2}$ von $\Big(\enb{e^{m_1}_n}_n \Big)^{m_1}$, sodass die Pfade dieser Teilfolge in den ersten zwei Kanten übereinstimmen (mit dem gleichen Argument), und so weiter. Ein Diagonalfolgenargument zeigt dann, dass es eine konvergente Teilfolge (in $d$) der gesamten Folge gibt. Also ist $(P,d)$ kompakt. Nun sei für $e \in E \backslash D$ 
+	Sei $\Big(\enb{e^m_n}_n \Big)^m$ eine Folge von Pfaden in $\mathcal{P}$. Alle starten in $a$ in $G'$ ist lokal--endlich. Es gibt also eine Teilfolge $\Big(\enb{e^{m_1}_n}_n \Big)^{m_1}$ sodass alle Pfade dieser Teilfolge die gleiche 1. Kante haben. 
+	Nun gibt es eine Teilfolge $\Big(\enb{e^{m_2}_n}_n \Big)^{m_2}$ von $\Big(\enb{e^{m_1}_n}_n \Big)^{m_1}$, sodass die Pfade dieser Teilfolge in den ersten zwei Kanten übereinstimmen (mit dem gleichen Argument), und so weiter. Ein Diagonalfolgenargument zeigt dann, dass es eine konvergente Teilfolge (in $d$) der gesamten Folge gibt. Also ist $(\mathcal{P},d)$ kompakt. Nun sei für $e \in E \backslash D$ 
 	\begin{align}
 		\Gamma_e = \set{\gamma \in P, e \in \gamma}.
 	\end{align}
-	Die $\Gamma_e$ sind offen, denn wenn $d_V(a,e^+) = n$, dann gehört mit $\gamma \in \Gamma_e$ auch $\gamma' \in \Gamma_e$, wenn $d_P(\gamma,\gamma') \leq \frac{1}{n+2}$. Ist nun $\Pi$ ein Cutset, dann ist $(\Gamma_e)_{e \in \Pi}$ eine offene Überdeckung von $P$. Also gibt es davon eine endliche Teilüberdekcung $(\Gamma^*_e)$, welche die Gestalt $(\Gamma^*_e)_{e\in\Pi^*}, \Pi^*$ endlich hat. Da $G'$ lokal--endlich ist und $\Pi^*$ endlich, ist die Menge $A' := \set{x \given x \text{ wird von $\Pi^*$ von $\infty$ getrennt}}$ endlich.
+	Die $\Gamma_e$ sind offen, denn wenn $d_V(a,e^+) = n$, dann gehört mit $\gamma \in \Gamma_e$ auch $\gamma' \in \Gamma_e$, wenn $d_{\mathcal{P}}(\gamma,\gamma') \leq \frac{1}{n+2}$. Ist nun $\Pi$ ein Cutset, dann ist $(\Gamma_e)_{e \in \Pi}$ eine offene Überdeckung von $\mathcal{P}$. Also gibt es davon eine endliche Teilüberdekcung $(\Gamma^*_e)$, welche die Gestalt $(\Gamma^*_e)_{e\in\Pi^*}, \Pi^*$ endlich hat. Da $G'$ lokal--endlich ist und $\Pi^*$ endlich, ist die Menge $A' := \set{x \given x \text{ wird von $\Pi^*$ von $\infty$ getrennt}}$ endlich.
 	
 	\underline{Daher:}
 	\begin{align}
-		S(\Theta) = \sum\limits_{e \in E} \Phi(a,e) \Theta(e)  = \sum\limits_{x \in A'}\sum\limits_{e \in E\backslash D} \Phi(x,e) \Theta(e) \leq \sum\limits_{e \in \Pi} \Theta(e) + \epsilon \leq \sum\limits_{e \in \Pi} c(e) + \epsilon
+		S(\Theta) = \sum\limits_{e \in E} \phi(a,e) \Theta(e)  &= \sum\limits_{x \in A'}\sum\limits_{e \in E\backslash D} \phi(x,e) \Theta(e) + \underbrace{\sum\limits_{x \in A'}\sum\limits_{e \in D} \phi(x,e) \Theta(e)}_{<\epsilon} \\ 
+			&\leq \sum\limits_{e \in \Pi^*} \Theta(e) + \epsilon \\ 
+			&\leq \sum\limits_{e \in \Pi} c(e) + \epsilon \underset{\epsilon \to 0}{\longrightarrow} \sum\limits_{e \in \Pi} c(e)
 	\end{align}
-	woraus mit $\epsilon \to 0$ der erste Teil der Behauptung folgt.
-		
-	\todo[inline]{beweisstruktur nacharbeiten}
-	\todo{letzte zeile ggfls nachtragen}
+	woraus der erste Teil der Behauptung folgt.	\todo{Beweis durchgehen}
 	
 	\marginnote{Beginn Vorlesung vom 09.05.2016}
 	
@@ -504,7 +506,7 @@ dann gilt die folgende Verallgemeinerung von \todo{ref} vorherigem Satz.
 	
 	Sei nun wieder $(G'_n)_n$ eine aufsteigende Folge endlicher Netzwerke mit $a \in V'_n$ und $G'_n \uparrow G$. Wie üblich verkleben wir die Vertizes aus $V'\backslash V'_n$ zu einem Vertex $z_n$, behalten dabei Doppelkanten und lassen Schlaufen weg. Das resultierende Netzwerk heiße $G^W_n$.
 	
-	\underline{Behauptung:} \marginnote{Das ist das Kompaktheitsargument der vorherigen Vorlesung} $C(G')  =\inf C(G^W_n)$, denn ist $\Pi$ ein $a$--$\infty$--Cutset in $G'$, dann enthält $\Pi$ einen endlichen $a$--$\infty$--Cutset $\Pi'$. Dann ist aber auch $\sum\limits_{e \in \Pi'} c(e) \leq \sum\limits_{e \in \Pi} c(e)$, d.h. in der Berechnung von $C(G')$ braucht man nur über endliche Cutsets zu gehen. Diese sind aber alle irgendwann in dem $G^W_n$ enthalten. Für die $G_n^W$ weiß man aber nach Satz 2.2  \todo{REF 2.2 } dass
+	\underline{Behauptung:} \marginnote{Das ist das Kompaktheitsargument der vorherigen Vorlesung} $C(G')  =\inf C(G^W_n)$, denn ist $\Pi$ ein $a$--$\infty$--Cutset in $G'$, dann enthält $\Pi$ einen endlichen $a$--$\infty$--Cutset $\Pi'$. Dann ist aber auch $\sum\limits_{e \in \Pi'} c(e) \leq \sum\limits_{e \in \Pi} c(e)$, d.h. in der Berechnung von $C(G')$ braucht man nur über endliche Cutsets zu gehen. Diese sind aber alle irgendwann in dem $G^W_n$ enthalten. Für die $G_n^W$ weiß man aber nach Satz \ref{satz:5-3}, dass
 	\begin{align}
 		\max \set{S(\Theta) \given \Theta \text{ ist zulässiger $a$--$z_n$--Fluss in } G_n^W} = \max \set{\sum\limits_{e \in \Pi} c(e) \given \Pi \text{ ist ein $a$--$z_n$--Cutset in} G^W_n}
 	\end{align} 
@@ -517,18 +519,18 @@ dann gilt die folgende Verallgemeinerung von \todo{ref} vorherigem Satz.
 	\end{beweis}
 	Diesen Satz wollen wir (später) noch für spezielle Graphen anschauen. 
 
-Zum Abschluss dieses Abschnitts wollen wir noch eine Umkehrung der Konstruktionsmethode aus Abschnitt 1.5 \todo{REf 1.5 } betrachten. Dort haben wir zu Irrfahrten gehörige Flüsse betrachtet. 
+Zum Abschluss dieses Abschnitts wollen wir noch eine Umkehrung der Konstruktionsmethode aus Abschnitt \ref{chap:TransienzUndRekurrenz} betrachten. Dort haben wir zu Irrfahrten gehörige Flüsse betrachtet. 
 
 Sei nun $\Theta$ ein Fluss auf einem ungerichteten Netzwerk $G$, d.h. $\Theta(e) = - \Theta(-e)$. $\Theta$ fließe von $a$ nach $z$, falls $G$ endlich ist und von $a$ nach $\infty$, falls $G$ unendlich ist. Zu diesem Fluss definieren wir eine Irrfahrt $(Y_n)$ mit $Y_0 = a$, $z$ absorbierend, falls $G$ endlich ist und 
 \begin{align}
 	\propE{>_n+1 = w \given Y_n = v} = \frac{\max\enb{\Theta(v,w),0}}{\Theta_{out}(v)}
 \end{align}
 wobei $\Theta_{out}(v) = \sum\limits_{e: e^-=v} \max\enb{\Theta(e),0}$.
-Umgekehrt kann man die Methode aus Abschnitt 1.5\todo{ref} verwenden, um aus $(Y_n)$ einen Fluss zu konstruieren
+Umgekehrt kann man die Methode aus Abschnitt \ref{chap:TransienzUndRekurrenz} verwenden, um aus $(Y_n)$ einen Fluss zu konstruieren
 \begin{align}
 	\Theta'(e) = \sum\limits_{k \geq 0}\p \Big( (Y_n,Y_{n+1}) = e\Big) - \p\Big((Y_{n+1},Y_n) = e\Big)
 \end{align} 
-\underline{Frage:} In welcherm Zusammenhang stehen $\Theta'$ und $\Theta$?
+\underline{Frage:} In welchem Zusammenhang stehen $\Theta'$ und $\Theta$?
 \begin{definition}
 	Ein Fluss heißt \emph{azyklisch}, falls es keinen gerichteten Kreis $x_1, \dots, x_k$ gibt, sodass $\Theta(x_i,x_{x+1}) > 0, \forall i$ \marginnote{$x_{k+1} = x_1$} 
 \end{definition}
@@ -538,7 +540,7 @@ Umgekehrt kann man die Methode aus Abschnitt 1.5\todo{ref} verwenden, um aus $(Y
 \end{beispiel}
 
 \begin{satz}
-	Falls $\Theta$ ein azyklischer Fluss von $a$ nach $z$, bzw $\infty$ ist, so gilt
+	Falls $\Theta$ ein azyklischer Fluss von $a$ nach $z$, bzw. $\infty$ ist, so gilt
 	\begin{align}
 		0 \leq \Theta'(e) \overset{(*)}{\leq} \Theta(e) \text{\qquad(für alle $\Theta(e) > 0$)}
 	\end{align}
@@ -553,20 +555,15 @@ Umgekehrt kann man die Methode aus Abschnitt 1.5\todo{ref} verwenden, um aus $(Y
 	\begin{align}
 		p_{N+1}(x) = \sum\limits_{e:e^+=x} \leq \sum\limits_{e:e^+=x} =  \Theta_{out}(x),
 	\end{align}
-	Für $x=a$ ist $p_N(a) = \Theta_{out}(e), \forall N$
-		
-	Mit $e^-=x$ folgt dann 
+	Für $x=a$ ist $p_N(a) = \Theta_{out}(e), \forall N$. Mit $e^-=x$ folgt dann 
 	\begin{align}
 		p_{N+1}(e) = p_{N+1}(x) \cdot \frac{\Theta(e)}{\Theta_{out}(x)} \leq \frac{\Theta_{out}(x)}{\Theta_{out}(x)}\Theta(e) = \Theta(e) 
 	\end{align}
 	Ist $\Theta$ der Einheitsstromfluss von $a$ nch $\infty$, dann minimiert dieses $\mathcal{E}(\overset{\sim}{\Theta}) = \sum\limits_{e} \overset{\sim}{\Theta}^2(e)r(e)$, für alle Einheitsflüsse vom $a$ nach $\infty$, woraus $\overset{\sim}{\Theta} = \Theta$ folgt.
 	
 	Ist $G$ endlich dann ist auch $\Theta^{''} = \Theta - \Theta'$ ein Fluss. $\Theta^{''}$ ist quellenfrei und azyklisch, da $\Theta(e) \geq \Theta'(e), \forall e$ mit $\Theta(e) > 0$, kann $\Theta''(e) > 0$ nur gelten, wenn $\Theta(e) > 0 \Rightarrow \Theta''$ ist azyklisch.
-	\todo{missing=?}
 	
-	Nehmen wir an $\Theta''(e) > 0$ für ein $e$. Dann gibt es eine Kante $e_1$ mit $e^+=e_1^-$, sodass $\Theta(e_1) > 0$, sowie eine Kante $e_2$ mit $e_1^+=e_2^-$, sodass $\Theta(e_2) > 0$.
-	
-	Das geht nur endlich lange gut, bis man zum Ausgangspunkt zurückkommt, da $G$ endlich ist. $\lightning$ $\Rightarrow \Theta''$ ist azyklisch. \todo{format}
+	Nehmen wir an $\Theta''(e) > 0$ für ein $e$. Dann gibt es eine Kante $e_1$ mit $e^+=e_1^-$, sodass $\Theta(e_1) > 0$, sowie eine Kante $e_2$ mit $e_1^+=e_2^-$, sodass $\Theta(e_2) > 0$. Das geht nur endlich lange gut, bis man zum Ausgangspunkt zurückkommt, da $G$ endlich ist. $\lightning$ $\Rightarrow \Theta''$ ist azyklisch.
 \end{beweis}
 
 \begin{korollar}[Monotone Spannungspfade]
@@ -604,8 +601,8 @@ Auf Bäumen gilt
 	S(\Theta) = \sum\limits_{e \in \Pi} \Theta(e)
 \end{align}  
 
-\begin{beweis}[von Satz ]
-	\todo{ref} Es ist
+\begin{beweis}
+	Es ist
 	\begin{align}
 		\mathcal{E}(\Theta) &= \sum\limits_{e \in E} \Theta^2(e) r(e) = \sum\limits_{n=1}^{\infty}\sum\limits_{e: \abs{e} = n} \Theta^2(e) r(e) \\
 		&=\sum\limits_{n = 1}^{\infty} \sum\limits_{e: \abs{e} = n} \Theta(e)\enb{\Theta(e) \frac{1}{c(e)}} \\
@@ -616,7 +613,7 @@ Auf Bäumen gilt
 Wir wollen über Transienz von Irrfahrten auf $T$ reden. Frage: Wie muss man $c(e)$ für Transienz bzw. Rekurrenz wählen? \\
 \underline{Motivierendes Beispiel:} Der $d$--reguläre Baum \todo{Bild}
 
-Hier hat man $\abs{\set{e \given \abs{e} = n}} = d^n$. \todo{strichschlacht} Es liegt also nahe, die Kantengewichte exponentiell fallend zu wählen, wenn man einen Rekurrenz--Transienz--Übergang wählen möchte. Ansatz; $c(e) = \lambda^{-\abs{e}}$. Wir wollen sehen, dass einen einen Phasenübergang in $\lambda$ gibt. Dazu sei $\lambda_c = \lambda_c(T)$ das kritische $\lambda$, sodass für $\lambda < \lambda_c(T)$ ein nicht--Null-Fluss von $0$ nach $\infty$ existiert und für $\lambda > \lambda_c(T)$ nicht. Wir haben schon zu Anfang von Kapitel 2 \todo{REfs} gesehen, falls für ein $\lambda$ ein Strom von $0$ nach $\infty$ fließt, dann gibt es einen zulässigen Fluss $\Theta$ von $0$ nach $\infty$. Also ist der Fall $\lambda \leq \lambda_c$ \todo{satzbau}
+Hier hat man $\abs{\set{e \given \abs{e} = n}} = d^n$. Es liegt also nahe, die Kantengewichte exponentiell fallend zu wählen, wenn man einen Rekurrenz--Transienz--Übergang wählen möchte. Ansatz; $c(e) = \lambda^{-\abs{e}}$. Wir wollen sehen, dass einen einen Phasenübergang in $\lambda$ gibt. Dazu sei $\lambda_c = \lambda_c(T)$ das kritische $\lambda$, sodass für $\lambda < \lambda_c(T)$ ein nicht--Null-Fluss von $0$ nach $\infty$ existiert und für $\lambda > \lambda_c(T)$ nicht. Wir haben schon zu Anfang von Kapitel \ref{chap:SpezielleNetzwerke} gesehen, falls für ein $\lambda$ ein Strom von $0$ nach $\infty$ fließt, dann gibt es einen zulässigen Fluss $\Theta$ von $0$ nach $\infty$. Also ist in diesem Fall $\lambda \leq \lambda_c$ 
 
 Ist Umgekehrt $\lambda < \lambda_c$, dann wähle $\lambda' \in (\lambda,\lambda_c)$ und $w_n=\enb{\frac{\lambda}{\lambda'}}^n$. Dann ist $\sum w_n < \infty$. Da $\lambda' < \lambda_c$ existiert ein Nicht--Null--Fluss $\Theta$ mit $0 \leq \Theta(e) \leq (\lambda')^{-\abs{e}} = w_{\abs{e}}\lambda^{-\abs{e}}$. Also ist der Fluss von endlicher Energie. Somit gibt es einen Strom von $0$ nach $\infty$, also ist die Irrfahrt transient. Definiert man also
 \begin{align}
@@ -630,8 +627,6 @@ dann haben wir gezeigt:
 		\lambda &> br(T) \Rightarrow \text{so ist die Irrfahrt auf $T$ rekurrent} 
 	\end{align}
 \end{satz}
- \todo{REF MFNC}
- \todo{nachprüfen inhlt item 2}
 \begin{bemerkung} \quad \newline
 	\begin{enumerate}[a)] 
 		\item Nach MFNC gilt natürlich
@@ -642,28 +637,27 @@ dann haben wir gezeigt:
 			\begin{align}
 				gr(T) = \lim\limits_{n \to \infty} \# \set{\text{Knoten in Generation }n}^{1/n} 
 			\end{align}
-			mit dem Nachteil, dass der Limes nicht existieren muss und nicht notwendig viel Information über die Struktur von $T$ vermittelt. Falls $gr(T)$ existiert (oder man \enquote{$\liminf$} statt \enquote{$\lim$} schreibt), gilt $br(T) \leq gr(T)$. Warum? Angenommen es gibt einen Nicht--Null--Fluss von $0$ nach $\infty$ mit $\Theta(e) \leq \lambda^{-\abs{e}}$. Dann
+			mit dem Nachteil, dass der Limes nicht existieren muss und nicht notwendig viel Information über die Struktur von $T$ vermittelt. Falls $gr(T)$ existiert (oder man \enquote{$\liminf$} statt \enquote{$\lim$} schreibt), gilt $br(T) \leq gr(T)$. Warum? Angenommen es gibt einen Nicht-Null-Fluss von $0$ nach $\infty$ mit $\Theta(e) \leq \lambda^{-\abs{e}}$. Dann
 			\begin{align}
-				\# \set{e \given \abs{e} = n} = \sum\limits_{\abs{e} = n} 1 \geq \sum\limits_{\abs{e} = n} = \lambda^n S(\Theta) !!!Hier stimmt was nicht todo!!!
+				\# \set{e \given \abs{e} = n} = \sum\limits_{\abs{e} = n} 1 \geq \sum\limits_{\abs{e} = n} \lambda^{\abs{e}} \Theta(e) = \lambda^n S(\Theta) 
 			\end{align}
 			ziehen wir die $n$'te Wurzel, bilden $\liminf$ und schicken $\lambda \to \lambda_c$ so ist $br(T) \leq gr(T).$ 
 	\end{enumerate}
 \end{bemerkung}
-\todo{check inhalt}
 \begin{beispiel}
 	Sei $T$ der Baum, der sich zu geraden Genrationen binär verzweigt und zu ungeraden jeder Knoten drei Kinder hat. Dann ist $br(T) = \sqrt{6}$, denn
 	\begin{align}
-		%\#\set{\text{Knoten in Generation $n$}} = 2^{\lfloor\frac{n}{2} \rfloor} 3^{lfloor\frac{n}{2} \rfloor} \approx \sqrt{6}^n \todo{Floor durch Ceiling ersetzen}
+		\#\set{\text{Knoten in Generation $n$}} = 2^{\lceil\frac{n}{2} \rceil} 3^{\lceil\frac{n}{2} \rceil} \approx \sqrt{6}^n 
 	\end{align}
 	d.h. $gr(T) = \sqrt{6}$ und $br(T) \leq \sqrt{6}$.
 	Wähle:
-%	\begin{align}
-%		\Theta(e) = 	
-%						\begin{cases}
-%							\sqrt{6}^{-\abs{e}}, &\text{ungerade Generation} \\
-%							\frac{1}{3} 6^{\frac{- \abs{e} -1}{2}}, &\text{gerade Generation}
-%						\end{cases}
-%	\end{align}
+	\begin{align}
+		\Theta(e) = 	
+						\begin{cases}
+							\sqrt{6}^{-\abs{e}} &\text{, ungerade Generation} \\
+							\frac{1}{3} 6^{\frac{- \abs{e} -1}{2}} &\text{, gerade Generation}
+						\end{cases}
+	\end{align}
 	Dann ist $\Theta(e)$ ein Fluss von $0$ nach $\infty$ mit $\abs{\Theta(e)} \leq (\sqrt{6}) ^{-abs{e}}.$ Das zeigt: $br(T) = \sqrt{6}$.
 \end{beispiel}
 
