@@ -132,13 +132,15 @@ Das Kirchhoffsche Maschengesetz sagt nun, dass jeder Stromfluss $i$ orthogonal z
 \end{uebung}
 Es folgt aus der orthogonalen Zerlegung von $\Theta$ in $i$ und $\Theta - i$, dass $\Norm{\Theta}^2_r = \Norm{i}^2_r + \Norm{\Theta - i}^2_r$. Dies ergibt sofort folgendes Satz:
 \begin{satz}[Thompsonsches Prinzip]
+	\label{satz:Tompson}
 	Sei $G$ endlich, $A,Z \subseteq V, A \cap Z = \emptyset.$ Sei $\Theta$ ein Fluss von $A$ nach $Z$ und $i$ in der Stromfluss von $A$ nach $Z$, mit $(d^*\Theta) = (d^2i)$. Dann gilt $\mathcal{E}(\Theta) \geq \mathcal(i)$
 \end{satz}
 \begin{beweis}
 	Folgt, da $\mathcal{E}(\Theta) = \Norm{\Theta}^2_r$
 \end{beweis}
 
-\begin{satz}[Rayleysches Prinzip]
+\begin{satz}[Rayleighsches Prinzip]
+	\label{satz:Rayleigh}
 	Sei $G$ endlich, $A,Z \subseteq V, A \cap Z = \emptyset$. Seien $c,c' : E \to \RR$ Leitfähigkeiten und $c \leq c'$. Dann gilt
 	\begin{align}
 		\mathcal{C}_c\enb{A \leftrightarrow Z} \leq \mathcal{C}_{c'} \enb{A \leftrightarrow Z}
@@ -163,35 +165,35 @@ Wir haben gesehen: Begriffe wie \enquote{effektive Kapazität}, \enquote{effekti
 
 Bislang haben wir einiges erst auf endlichen Graphen definiert, dieses Setup ist für Fragen der Rekkurenz und Transienz jedoch zu klein. Sei nun $G$ unendlich. Wir definieren wieder
 
-\begin{align}
-	l^2(V) = \set{f:V \to \Real: \sum\limits_{v\in V} f^2(v)<\infty } && \text{mit Skalarprodukt } \sprod{f,g} = \sum\limits_{v \in V} f(v)g(v),  \Norm{f}^2 = \sprod{f,f} \text{ und } e = \enb{e^+,e^-}, -e = \enb{e^-,e^+}
-\end{align}
-und
+\begin{gather}
+	l^2(V) = \set{f:V \to \Real: \sum\limits_{v\in V} f^2(v)<\infty } \text{mit Skalarprodukt } \sprod{f,g} = \sum\limits_{v \in V} f(v)g(v),  \Norm{f}^2 = \sprod{f,f}
+\end{gather}
+und mit $e = \enb{e^+,e^-}, -e = \enb{e^-,e^+}$
 \begin{gather}
 	l^2_-(E) = \set{\Theta:E \to \Real: \Theta(-e) = -\Theta(e), \sum \Theta^2(e)r(e) < \infty} \\
-	 \text{mit Skalarprodukt } \sprod{\Theta, \Theta'}_r = \sum\limits_{e \in E_{1/2}} \Theta(e)\Theta'(e)r(e) \text{ ,und Energie } \mathcal{E}(\Theta) = \Norm{\Theta}^2_r
+	 \text{mit Skalarprodukt } \sprod{\Theta, \Theta'}_r = \sum\limits_{e \in E_{1/2}} \Theta(e)\Theta'(e)r(e) \text{ und Energie } \mathcal{E}(\Theta) = \Norm{\Theta}^2_r
 \end{gather}
 
-Man kann dann den Co-Randoperator $(df)(e)= d(e^-) - f(e^+)$ definieren, den Randoperator $(d^*\Theta)(x) = \sum\limits_{x = c^-}\Theta(e)$ und man erhält wieder deren Dualität. Man kann sich vergewissern, dass sich so das gesamte Kapitel \ref{chap:Energie} auf die unendliche Situation verallgemeinern lässt. Wir wollen nun Flüsse aus einem $a \in V$ nach unendlich betrachten, d.h. $\Theta$ ist von der Form $d^*\Theta(x) := \alpha EINSFKT_{a}(x)$. 
+Man kann dann den Co-Randoperator $(df)(e)= d(e^-) - f(e^+)$ definieren, den Randoperator $(d^*\Theta)(x) = \sum\limits_{x = c^-}\Theta(e)$ und man erhält wieder deren Dualität. Man kann sich vergewissern, dass sich so das gesamte Kapitel \ref{chap:Energie} auf die unendliche Situation verallgemeinern lässt. Wir wollen nun Flüsse aus einem $a \in V$ nach unendlich betrachten, d.h. $\Theta$ ist von der Form $d^*\Theta(x) := \alpha \mathds{1}_{\set{a}}(x)$. 
 
 Wir wollen die Frage der Transienz in Beziehung zur Existenz solcher Flüsse setzen.
-\todo[inline]{Missing part}
 
-\begin{satz}[Lyans]
-	Wenn $G$ ein abzählbares, zusammenhängendes Netzwerk ist, dann ist die Irrfahrt uf $G$ genau dann transient, wenn es einen Fluss endlicher Energie von $a \in V$ nach $\infty$ gibt.
+\begin{satz}[Lyons]
+	Wenn $G$ ein abzählbares, zusammenhängendes Netzwerk ist, dann ist die Irrfahrt auf $G$ genau dann transient, wenn es einen Fluss endlicher Energie von einem $a \in V$ nach $\infty$ gibt.
 \end{satz}
 \begin{beweis}
-	Sei $G_n  \subseteq G$ endlich, $G_n \uparrow G$. Die Punkte in $V \backslash V_n$ kleben wir wieder summen zu $z_n$, behalten Doppelkanten und werfen Schlaufen weg. Das resultierende Netzwerk sei $G^w_n$ o.E. $a \in G_n$. Es gilt $R(a \leftrightarrow \infty) = \lim R(a \leftrightarrow z_n)$.
-	\todo[inline]{Layout}
+	Sei $G_n  \subseteq G$ endlich, $G_n \uparrow G$. Die Punkte in $V \backslash V_n$ kleben wir wieder summen zu $z_n$, behalten Doppelkanten und werfen Schlaufen weg. Das resultierende Netzwerk sei $G^w_n$, sei o.E. $a \in G_n$. 
+	
+	Es gilt $R(a \leftrightarrow \infty) = \lim R(a \leftrightarrow z_n)$.
 	Nun ist einerseits $R(a \leftrightarrow z_n) = \frac{1}{\leit{a \leftrightarrow z_n}} \sim \frac{1}{\prop{\tau^+_a < \tau_{z_n}}}$, d.h. 
 	\begin{equation}
-		lim R(a \leftrightarrow z_n) < \infty \Leftrightarrow \lim\limits_{n \to \infty} \prop{a \to z_n} < 0. \marginnote{Transienz}
+		\lim R(a \leftrightarrow z_n) < \infty \Leftrightarrow \lim\limits_{n \to \infty} \prop{a \to z_n} < 0. \marginnote{Transienz}
 	\end{equation}
-	Auf der anderen Seite ist $\lim R(a \leftrightarrow z_n) = \lim \mathcal{E}(in)$ für einen Einheitsstrom von $a$ nach $z_n$. Das heißt Transienz der Irrfahrt ist äquivalent zur Endlichkeit von $\lim \mathcal{E}(in)$. Sei nun $\Theta$ irgendein Einheitsfliuss endlicher Energie von $a$ nach $\infty$. Sei $in$ der Einheitsstrom-fluss von $a$ nach $z_n$, $\Theta_n = \Theta|_{G^W_n}$. Dann gilt nach Thompson \todo{verweis}
+	Auf der anderen Seite ist $\lim R(a \leftrightarrow z_n) = \lim \mathcal{E}(i_n)$ für einen Einheitsstrom $i_n$ von $a$ nach $z_n$. Das heißt Transienz der Irrfahrt ist äquivalent zur Endlichkeit von $\lim \mathcal{E}(i_n)$. Sei nun $\Theta$ irgendein Einheitsfluss endlicher Energie von $a$ nach $\infty$. Sei $in$ der Einheitsstrom-Fluss von $a$ nach $z_n$, $\Theta_n = \Theta|_{G^W_n}$. Dann gilt nach Thompson (\ref{satz:Tompson})
 	\begin{align}
-		\mathcal{E}(i_n) \leq \mathcal{E}(\Theta_n) = \mathcal{E}(\Theta) < \infty \text{für alle } n
+		\mathcal{E}(i_n) \leq \mathcal{E}(\Theta_n) = \mathcal{E}(\Theta) < \infty \text{, für alle } n
 	\end{align}
-	zu $Rightarrow:$ $\lim \mathcal{E}(i_n) < \infty \Rightarrow$ Die Irrfahrt ist transient. \\
+	$\Rightarrow \lim \mathcal{E}(i_n) < \infty \Rightarrow$ Die Irrfahrt ist transient. \\
 	
 	Sei nun die Irrfahrt transient. Wir wollen nun einen Fluss von $a$ nach $\infty$ endlicher Energie basteln, Kandidat: $\lim i_n.$ Nach der Vorüberlegung gilt;
 	\begin{align}
@@ -216,8 +218,7 @@ Wir wollen die Frage der Transienz in Beziehung zur Existenz solcher Flüsse set
 \end{beweis}
 
 \begin{uebung}
-	$G$ abzählbar, $(\Theta_n)_n \in l^2_e(E): \mathcal{E} \leq M < \infty$ für ein $M$ und $\Theta_n(e) \to \Theta(e)$. Dann ist $\Theta$ antisymmetrisch und $\mathcal{E}(\Theta) \leq \liminf \mathcal{E}(\Theta_n), \forall x: (d^*\Theta_n)(x) \to (d^*\Theta)(x)$
-	\todo[inline]{missing parts}
+	$G$ abzählbar, $(\Theta_n)_n \subset l^2_-(E): \mathcal{E}(\Theta_n) \leq M < \infty$ für ein $M$ und $\Theta_n(e) \to \Theta(e)$. Dann ist $\Theta$ antisymmetrisch und $\mathcal{E}(\Theta) \leq \liminf \mathcal{E}(\Theta_n)$ und es gilt $ \forall x: (d^*\Theta_n)(x) \to (d^*\Theta)(x)$
 \end{uebung}
 
 Allgemeiner gilt (ohne Beweis)
@@ -245,6 +246,7 @@ Wie findet man nun heraus ob es einen Fluss endlicher Energie von einem $a\in V$
 \end{definition}
 
 \begin{satz}[Nash-Williams]
+	\label{satz:Nash-Williams}
 	Sei $(\pi_n)$ eine Folge paarweise disjunkter Cut-Sets, die $a$ von $\infty$ trennt. Dann gilt 
 	\begin{align}
 		R(a \leftrightarrow \infty) \geq \sum\limits_{n = 1}^{\infty}\enb{\sum\limits_{e \in \pi_n} c(e)}^{-1}
@@ -253,8 +255,8 @@ Wie findet man nun heraus ob es einen Fluss endlicher Energie von einem $a\in V$
 
 \begin{bemerkung}
 	\begin{enumerate}[a)]
-		\item Ist für eine Folge von $\Pi_n$ wie Satz 1.10\todo{Ref} die rechte Seite unendlich, so ist die Irrfahrt rekurrent
-		\item Intuitiv sollte die Aussage des Satzes \todo{Ref} 1.10 klar sein, denn jedes $Pi_n$ hat einen Widerstand $ \geq \enb{\sum\limits_{l\in \Pi_n} c(e)}^{-1}$
+		\item Ist für eine Folge von $\Pi_n$ wie Satz \ref{satz:Nash-Williams} die rechte Seite unendlich, so ist die Irrfahrt rekurrent
+		\item Intuitiv sollte die Aussage des Satzes \ref{satz:Nash-Williams} klar sein, denn jedes $Pi_n$ hat einen Widerstand $ \geq \enb{\sum\limits_{l\in \Pi_n} c(e)}^{-1}$
 	\end{enumerate}
 \end{bemerkung}
 \begin{beweis}
@@ -279,22 +281,30 @@ Wie findet man nun heraus ob es einen Fluss endlicher Energie von einem $a\in V$
 
 Für einen Transienz--Beweis hilft Nash-Williams zunächst nicht. Hier versuchen wir die zufällige Pfadwahl. Dazu sei $\p$ eine Wahrscheinlichkeit auf der Menge der Pfade von $a$ nach $\infty$. So ein Pfad $(e_n)$ entspricht einem Einheitsfluss
 \begin{gather}
-	\gamma^{(e_n)} (e) := \sum\limits_{n \geq 1} \chi^{e_n} = \sum\limits_{n \geq 1} \mathds{1}_{\set{e_n}}- \mathds{1}_{\set{-e_n}}
+	\psi^{(e_n)} (e) := \sum\limits_{n \geq 1} \chi^{e_n} = \sum\limits_{n \geq 1} \mathds{1}_{\set{e_n}}- \mathds{1}_{\set{-e_n}}
 \end{gather}
 Da alle $(e_n)$ in $a$ starten, ist die Erwartung dieses Einheitsfluss von $a \to \infty$  
 \begin{align}
-	\Theta = \EW{\gamma} = \sum\limits_{n \geq 1}\prop{e_n} - \prop{-e_n}
+	\Theta = \EW{\psi} = \sum\limits_{n \geq 1}\prop{e_n} - \prop{-e_n}
 \end{align}
 Von einem solchen $\Theta$ möchte man die Energie beschränken. 
 
 \marginnote{Beginn Vorlesung vom 28.04}
+Wir haben nun elektrische Größen in Beziehung zu Fragen von Rekurrenz und Transienz in Netzwerken gesetzt. Insbesondere gilt: Ist $\mathcal{R}(a \leftrightarrow \infty)  = \infty $, so ist die Irrfahrt rekurrent. Kann man umgekehrt einen Fluss $\Theta$ endlicher Energie von $a$ nach $\infty$ finden, dann ist $\mathcal{R}(a \leftrightarrow \infty)< \infty$ und die Irrfahrt ist transient. Das erste Kriterium lässt sich mit Hilfe des Satzes von Nash-Williams (\ref{satz:Nash-Williams}) überprüfen: Umgekehrt kann man versuchen, einen Fluss zu konstruieren, der möglichst gut an $(c(e))$ angepasst ist. Man kann z.B. eine Menge von Pfaden $\set{(e_n)_n}$ hernehmen, die von $a$ nach $\infty$ laufen und darauf ein Wahrscheinlichkeitsmaß $\p$. Zu einem Pfad $(e_n)$ gehört ein Einheitsfluss \todo{Stimmt das so?(von hand verbessert)}
+\begin{align}
+	\psi^{(e_n)}_{(e)} = \sum\limits_{n \geq 1} \mathds{1}_{\set{e_n = e}} - \mathds{1}_{\set{e_n = -e}}
+\end{align}
+Die Erwartung dieses Einheitsflusses ist
+\begin{gather}
+	\Theta(e) = \sum\limits_{n \geq 1} \prop{e_n = e} - \prop{e_n = -e} \tag{$*$}\label{eqn:4-1}
+\end{gather}
 Wählt man $\p$ so, dass Kanten hoher Leitfähigkeit oft benutzt, und Kanten niedriger Leitfähigkeit wenig, kann man hoffen einen Fluss endlicher Energie von $a \to \infty$ zu konstruieren. Ein Beispiel ist der folgende Satz
 
 \begin{satz}[Polyò]
 	Die Irrfahrt auf $\ZZ^d$ ist rekurrent für $d\leq 2$ und transient für $d \geq 3$.
 \end{satz}
 \begin{beweis}
-	Für $d=1,2$ verwenden wir das Kriterium von Nash-Williams. \todo{ref} \todo[inline]{missing figure}
+	Für $d=1,2$ verwenden wir das Kriterium von Nash-Williams (\ref{satz:Nash-Williams}). \todo[inline]{missing figure}
 	Sind das die $\Pi_n$, so gilt 
 	\begin{gather}
 		(a \leftrightarrow \infty) \leq \sum\limits_{n \geq 1} \enb{\sum c(e) }^{-1} = \sum\limits_{n \geq 1 } \frac{1}{2} = \infty
@@ -310,12 +320,12 @@ Wählt man $\p$ so, dass Kanten hoher Leitfähigkeit oft benutzt, und Kanten nie
 	\begin{gather}
 		R(a\leftrightarrow \infty) \geq \sum\limits_{n \geq 1} \enb{\sum\limits_{c \in \Pi} 1}^{-1} = \sum\limits_{n \geq 1} \frac{1}{8n + 4} = \infty
 	\end{gather}
-	Nach Rayleigh \todo{ref} genügt es für die Transienz den Fall $d=3$ zu betrachten. 
+	Nach Rayleigh (\ref{satz:Rayleigh}) genügt es für die Transienz den Fall $d=3$ zu betrachten. 
 	
 	\underline{Idee:} Wähle alle Pfade, die \enquote{direkt} von $0$ nach $\infty$ laufen \enquote{mit gleicher Wahrscheinlichkeit}.
 	
 	Wir wählen einen Punkt $s \in S^2$ nach dem Haarschen Maß. Konstruiere eine Gerade durch $\overrightarrow{0s}$. Wähle zu jeden $\overrightarrow{0s}$ einen Pfad in $\ZZ^3$, der nach $\infty$ läuft und \enquote{direkt} an $\overrightarrow{0s}$ liegt (Es gibt einen solchen Pfad, der Abstand $\leq 4$ hat). \todo{figuuuuure}
-	Das gibt eine Menge von Pfaden $\set{(e_n)}$ und hierauf habe ich ein Wahrscheinlichkeit die durch das Haar--Maß induziert wird. Wir wollen für das wie in $(*)$ \todo{ref} konstruierte $\Theta$ $\mathcal{E}(\Theta)$ berechnen.
+	Das gibt eine Menge von Pfaden $\set{(e_n)}$ und hierauf habe ich ein Wahrscheinlichkeit die durch das Haar--Maß induziert wird. Wir wollen für das wie in \eqref{eqn:4-1} konstruierte $\Theta$ $\mathcal{E}(\Theta)$ berechnen.
 	\begin{align}
 		\mathcal{E}(\Theta) &= \sum\limits_{e} \Theta^2(e) r(e) = \sum\limits_{e}\Theta^2(e) \leq \sum\limits_{e} \prop{e_n=e}[2] \\
 							&= \sum\limits_{n=1}^{\infty} \sum\limits_{e\colon d(0,e^+) = n}\prop{e_n = e}[2] \\
@@ -326,15 +336,14 @@ Wählt man $\p$ so, dass Kanten hoher Leitfähigkeit oft benutzt, und Kanten nie
 	
 \end{beweis}
 
-\section{Spezielle Netzwerke}
+\section*{Spezielle Netzwerke}
 
-\subsection{Flüsse, Cutsets und Ford Fulkersen}
-\todo{subsections? Titel?}
+\section{Flüsse, Cutsets und Ford Fulkerson}
 Gegeben sei irgendein Netzwerk $G = (V,R,c).$ Sei $a,(z) \in V$ oder $z = \infty$. Gibt es einen Fluss $\Theta$ von $a$ nach $z$, dergestalt
-\begin{align}
-	\abs{\Theta(e)} \leq c(e) && \text{für alle } e
-\end{align}
-Zum Beispiel gilt für den Einheitsstromfluss von $a$ ncah $z$ mit Spannungen $v$, dass 
+\begin{gather}
+	\abs{\Theta(e)} \leq c(e)  \text{ für alle } e?
+\end{gather}
+Zum Beispiel gilt für den Einheitsstromfluss von $a$ nach $z$ mit Spannungen $v$, dass 
 \begin{align}
 	\abs{i(e)} = \abs{c(e) dv(e)} \leq c(e)v(a)
 \end{align}
@@ -458,7 +467,7 @@ dann gilt die folgende Verallgemeinerung von \todo{ref} vorherigem Satz.
 	
 	Ein Pfad heißt einfach, wenn er keinen Vertex mehrfach seit.
 	Auf $P$ kann man eine Metrik definieren:
-	
+	\todo{check Buchstabe}
 	\begin{align}
 		d(\gamma,\gamma') = \inf\set{\frac{1}{n+1} \given \text{$\gamma$ und $\gamma'$ stimmen in den ersten n Schritten überein}}
 	\end{align}	
