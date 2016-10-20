@@ -1,0 +1,42 @@
+%!TEX root = ../madsen_weiss.tex
+%!TEX TS-program = xelatex
+%!TEX TS-options = -shell-escape
+\section{Fibre bundles and their classifying spaces}
+In this talk we will get to know the classifying space $BG$ of a group $G$ and we will try to understand, why we care about $H_*(BG)$.
+
+\begin{definition}
+	A \Index{fibre bundle} with fibre $F$ is a surjective map $\pi \colon E \to X$ that is locally trivial, i.e. for every $x \in X$ there is an open neighbourhood $U \subseteq X$ and a homeomorphism $h \colon \pi^{-1}(U) \to U \times F$ such that the following diagramm commutes
+	\[
+		\begin{tikzcd}[row sep=large]
+			\pi^{-1}(U) \rar["h","\cong"'] \dar["\pi"] & U \times F \dlar["\pr_U"] \\
+			U
+		\end{tikzcd}
+	\]
+\end{definition}
+
+The local triviality ensures that the preimage $\pi^{-1}(x)$ of every point $x \in X$ is homeomorphic to the fibre $F$.
+
+\begin{definition}
+	Let $G$ be a topological group.
+	A \bet{$G$-principal bundle}\index{$G$-principal bunde@G-principal bundle} over a space $X$ is a fibre bundle $\pi \colon E \to X$ together with a free, transitive and continuous right $G$-action on the total space $E$, such that $\pi(y.g) = \pi(y)$ for all $y \in E$ and $g \in G$.
+\end{definition}
+
+\begin{remark}
+	Since $G$ acts transitively and freely the map 
+	\mapdef{G}{\pi^{-1}(x)}{g}{p.g}{\cong}
+	ist a homeomorphism for a fixed $p \in \pi^{-1}(x)$, $x \in X$.
+\end{remark}
+
+\begin{example}
+	\begin{enumerate}[(i)]
+		\item Let $\pi \colon Y \to X$ be a Galois-covering.
+		This means that the group of deck transformation $G=\operatorname{Deck}(\pi)$ acts transitively on the fibres $\pi^{-1}(x)$.
+		Therefore we get a $G$-principal bundle.
+		In particular taking the universal cover $Y= \tilde{X}$ we get a $\pi_1(X,x_0)$-principal bundle.
+		
+		This applies to the usual covering $\mathbb{R} \to S^1$, $\varphi \mapsto e^{i \varphi}$ as well.
+		\item Let $G= \Un(1) =S^1 = \SO(2)$ and $E = S^{2n+1} \subseteq \mathbb{C}^{n+1}$.
+		Define a $G$-action by $(v,g) \mapsto v \cdot g = g \cdot v$.
+		Since $\mathbb{C}P^n = \sfrac{E}{\Un(1)}$ we see that $S^{2n+1} \to \mathbb{C}P^n$ is a $\Un(1)$-principal bundle.
+	\end{enumerate}
+\end{example}
