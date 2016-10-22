@@ -9,7 +9,6 @@ Dies betrifft insbesondere auch den Dropbox- sowie den Sciebo-Ordner!
 Als Zwischenlösung sind einige aktuelle Skripte über die _Releases_ (in der Leiste über der Dateienliste) verfügbar.
 
 * WiSe 2016
-	* [Analysis I](https://github.com/JaMeZ-B/LaTeX-WWU/releases/download/latest/Ana1_WS16.pdf "Analysis I") (Phil)
 	* [Seminar: Madsen-Weiss](https://github.com/JaMeZ-B/LaTeX-WWU/releases/download/latest/madsen_weiss.pdf "Seminar: Madsen-Weiss") (Jannes)
 * SoSe 2016
 	* [Operatoralgebren II.](https://github.com/JaMeZ-B/LaTeX-WWU/releases/download/latest/operatoralgebren2.pdf "Operatoralgebren II.") (Jannes)
