@@ -37,7 +37,6 @@ deploy:
   file:
     - AlgKT_SS16/algebraische_KTheorie.pdf
     - Ana1_WS12/analysis1.pdf
-    - Ana1_WS16/Ana1_WS16.pdf
     - Ana2_SS13/analysis2.pdf
     - Ana2_SS15/Ana2.pdf
     - Ana3_WS13/analysis3.pdf
