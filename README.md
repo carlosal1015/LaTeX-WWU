@@ -10,6 +10,7 @@ Als Zwischenlösung sind einige aktuelle Skripte über die _Releases_ (in der Le
 
 * WiSe 2016
 	* [Analysis I](https://github.com/JaMeZ-B/LaTeX-WWU/releases/download/latest/Ana1_WS16.pdf "Analysis I") (Phil)
+	* [Seminar: Madsen-Weiss](https://github.com/JaMeZ-B/LaTeX-WWU/releases/download/latest/madsen_weiss.pdf "Seminar: Madsen-Weiss") (Jannes)
 * SoSe 2016
 	* [Operatoralgebren II.](https://github.com/JaMeZ-B/LaTeX-WWU/releases/download/latest/operatoralgebren2.pdf "Operatoralgebren II.") (Jannes)
 	* [Lineare Algebra II.](https://github.com/JaMeZ-B/LaTeX-WWU/releases/download/latest/LA2.pdf "Lineare Algebra II.") (Phil)
