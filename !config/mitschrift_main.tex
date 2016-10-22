@@ -555,11 +555,14 @@
 % english versions
 \declaretheorem[name=Remark,sharenumber=definition,style=mainstyle_unshaded]{remark}
 \declaretheorem[name=Example,sharenumber=definition,style=mainstyle_unshaded]{example}
+\declaretheorem[name=Corollary,sharenumber=definition,style=mainstyle]{corollary}
 
 % -- Beweise
 \declaretheoremstyle[headfont=\bfseries\scshape,bodyfont=\normalfont,headpunct=:,postheadspace=1em,spacebelow=12pt,spaceabove=2pt,qed=\qedsymbol]{beweise}
 \declaretheoremstyle[headfont=\sffamily\bfseries,bodyfont=\normalfont,headpunct=:,postheadspace=1em,spacebelow=10pt,spaceabove=10pt]{bemerkungen}
 \declaretheorem[name=Beweis,numbered=no,style=beweise]{beweis}
+\let\proof\relax
+\declaretheorem[name=Proof,numbered=no,style=beweise]{proof}
 
 
 \declaretheorem[name=Übung,numbered=no,style=bemerkungen]{uebung}
