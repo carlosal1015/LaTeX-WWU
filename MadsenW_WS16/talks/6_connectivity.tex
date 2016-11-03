@@ -1,5 +1,34 @@
 %!TEX root = ../madsen_weiss.tex
 %!TEX TS-program = xelatex
 %!TEX TS-options = -shell-escape
-\section{Surfaces, mapping class groups and surface bundles}
+\section{Homological stability III. -- Connectivity}
 In this talk we will fill the gap in the proof of the stability theorem, i.e. proving the connectivity of the curve complexes $\mathcal{O}^1$ and $\mathcal{O}^2$.
+To be precise we will proove the following theorem.
+
+\begin{theorem}
+	$\mathcal{O}(S,b_0,b_1)$ is $(g-2)$-connected.
+\end{theorem}
+
+We start by defining a few more complexes larger than $\mathcal{O}^i(S)$.
+
+Let $\Delta \subset \partial S$ be a non-empty set of points.
+An arc $A$ with boundary in $\Delta$ is called \emph{trivial}, if $S \setminus a$ consists of two components on of which is a disc intersecting $\Delta$ only in the boundary of $a$.
+
+\begin{definition}
+	The \Index{full arc complex} $\mathcal{A}(S,\Delta)$ is the simplical complex with vertices isotopy classes of non-trivial arcs with boundary in $\Delta$.
+\end{definition}
+A $p$-simplex is a collection of isotopy classes of arcs $\angbrace*{a_0, \ldots ,a_p}$ which can be represented by a collection of $p+1$ arcs with disjoint interiors.
+
+Given two disjoint subsets $\Delta_0, \Delta_1 \subset \partial S$ we define a subcomplex $\mathcal{B}(S,\Delta_0,\Delta_1) \subset \mathcal{A}(S,\Delta_0 \cup \Delta_1)$ by restricting to arcs with one boundary point in $\Delta_0$ and one in $\Delta_1$.
+This is obviously a subcomplex.
+
+The next property we require is that the arcs need to be non-seperating.
+Therefore we let 
+\[
+	\mathcal{B}_0(S,\Delta_0, \Delta_1) \subset \mathcal{B}(S,\Delta_0, \Delta_1) 
+\]
+be the subcomplex consisting of \emph{non-seperating collections}, meaning simplices $\sigma = \angbrace{a_0, \ldots ,a_p}$ such that the complement of the arcs $a_0, \ldots ,a_p$ in $S$ is connected.
+
+
+\todo[inline]{Define all the other complexes}
+
