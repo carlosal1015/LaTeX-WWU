@@ -3,9 +3,9 @@
 %!TEX TS-options = -shell-escape
 \section{Homological stability III. -- Connectivity}
 In this talk we will fill the gap in the proof of the stability theorem, i.e. proving the connectivity of the curve complexes $\mathcal{O}^1$ and $\mathcal{O}^2$.
-To be precise we will proove the following theorem.
+To be precise we will prove the following theorem.
 
-\begin{theorem}
+\begin{theorem}[label=connec_main]
 	$\mathcal{O}(S,b_0,b_1)$ is $(g-2)$-connected.
 \end{theorem}
 
@@ -17,7 +17,7 @@ An arc $A$ with boundary in $\Delta$ is called \emph{trivial}, if $S \setminus a
 \begin{definition}
 	The \Index{full arc complex} $\mathcal{A}(S,\Delta)$ is the simplical complex with vertices isotopy classes of non-trivial arcs with boundary in $\Delta$.
 \end{definition}
-A $p$-simplex is a collection of isotopy classes of arcs $\angbrace*{a_0, \ldots ,a_p}$ which can be represented by a collection of $p+1$ arcs with disjoint interiors.
+A $p$-simplex in $\mathcal{A}(S,\Delta)$ is a collection of isotopy classes of arcs $\angbrace*{a_0, \ldots ,a_p}$ which can be represented by a collection of $p+1$ arcs with disjoint interiors.
 
 Given two disjoint subsets $\Delta_0, \Delta_1 \subset \partial S$ we define a subcomplex $\mathcal{B}(S,\Delta_0,\Delta_1) \subset \mathcal{A}(S,\Delta_0 \cup \Delta_1)$ by restricting to arcs with one boundary point in $\Delta_0$ and one in $\Delta_1$.
 This is obviously a subcomplex.
@@ -28,7 +28,24 @@ Therefore we let
 	\mathcal{B}_0(S,\Delta_0, \Delta_1) \subset \mathcal{B}(S,\Delta_0, \Delta_1) 
 \]
 be the subcomplex consisting of \emph{non-seperating collections}, meaning simplices $\sigma = \angbrace{a_0, \ldots ,a_p}$ such that the complement of the arcs $a_0, \ldots ,a_p$ in $S$ is connected.
+With this definition $\mathcal{O}(S,b_0,b_1)$ is the subcomplex of $\mathcal{B}_0(S,\set*{b_0},\set*{b_1})$ where the ordering of the arcs in each simplex in $b_0$ is opposite to the ordering of the arcs at $b_1$ (compare with\todo{ref first talk of this chapter}).
 
+The proof of \autoref{connec_main} will use the following inclusions
+\[
+	\begin{tikzcd}
+		\mathcal{A}(S,\Delta) & \mathcal{B}(S, \Delta_0, \Delta_1) \lar["i_1"',hook'] & \mathcal{B}_0(S,\Delta_0,\Delta_1) \lar["i_2"',hook'] & \mathcal{O}(S,b_0,b_1) \lar["i_3"',hook']
+	\end{tikzcd}
+\]
+We will prove that $\mathcal{A}(S,\Delta)$ is contractible and deduce bounds for the connectivity of the complexes step by step.
+Altough we are interested in the case $\Delta=\set*{b_0,b_1}$ in the end, we will need the more general complexes along the way.\footnote{because cutting along an arc may result in several copies of the boundary points}
 
-\todo[inline]{Define all the other complexes}
+\begin{theorem}
+	$\mathcal{A}(S,\Delta)$ is contractible as long as $S$ is neither a disk nor an annulus with $\Delta$ included in a single component of $\partial S$ in which case it is $(q+2r-7)$-connected, where $q=\abs*{\Delta}$ and $r=1,2$ is the number of boundary components of $S$.
+\end{theorem}
 
+To prove this theorem we will need the following lemma:
+
+\begin{lemma}
+	Suppose $\mathcal{A}(S,\Delta) \neq \emptyset$ and $\Delta'$ is obtained form $\Delta$ by adding an extra point in a component of $\partial S$ already containing a point of $\Delta$.
+	If $\mathcal{A}(S,\Delta)$ is $d$-connected, then $\mathcal{A}(S,\Delta')$ is $(d+1)$-connected.
+\end{lemma}
