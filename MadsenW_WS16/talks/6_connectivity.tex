@@ -39,13 +39,13 @@ The proof of \autoref{connec_main} will use the following inclusions
 We will prove that $\mathcal{A}(S,\Delta)$ is contractible and deduce bounds for the connectivity of the complexes step by step.
 Altough we are interested in the case $\Delta=\set*{b_0,b_1}$ in the end, we will need the more general complexes along the way.\footnote{because cutting along an arc may result in several copies of the boundary points}
 
-\begin{theorem}
+\begin{theorem}[label=thm:connec_full]
 	$\mathcal{A}(S,\Delta)$ is contractible as long as $S$ is neither a disk nor an annulus with $\Delta$ included in a single component of $\partial S$ in which case it is $(q+2r-7)$-connected, where $q=\abs*{\Delta}$ and $r=1,2$ is the number of boundary components of $S$.
 \end{theorem}
 
 To prove this theorem we will need the following lemma:
 
-\begin{lemma}
+\begin{lemma}[label=lem:d_dplus1]
 	Suppose $\mathcal{A}(S,\Delta) \neq \emptyset$ and $\Delta'$ is obtained form $\Delta$ by adding an extra point in a component of $\partial S$ already containing a point of $\Delta$.
 	If $\mathcal{A}(S,\Delta)$ is $d$-connected, then $\mathcal{A}(S,\Delta')$ is $(d+1)$-connected.
 \end{lemma}
@@ -64,9 +64,39 @@ To prove this theorem we will need the following lemma:
 		\mathcal{A}(S,\Delta') = \Star(I) \cup_{\Link(I)} X
 	\]
 	with $X$ being the subcomplex of $\mathcal{A}(S,\Delta')$ of collections of arcs not containing I.
-	The labour-intensive part of the proof is now to construct a deformation retraction $X \to \Star(I')$ (see \textcite{wahlHomological} for the details).
+	The labour-intensive part of the proof is now to construct a deformation retraction $X \to \Star(I')$ (see \textcite{wahlHomological} for the details; the argument is similar to the one in the proof of \autoref{thm:connec_full}).
 	Hence $X$ is contractible.
 	Using the fact, that $\mathcal{A}(S,\Delta)$ is isomorphic to $\Link(I)$ we get the desired result: 
 	If $d \ge 0$ Seifert-van Kampen implies, that $\mathcal{A}(S,\Delta')$ is simply connected and therefore we may use homology to check $(d+1)$-connectivity (Hurewicz).
-	This easily follow via Mayer-Vietoris.
+	This easily follows via Mayer-Vietoris.
 \end{sketch}
+
+\begin{proof}[{name={of \autoref{thm:connec_full}}}]
+	Let's handle the two exceptional cases first (disk and cylinder with $\Delta$ in a single component of $\partial S$):
+	\begin{figure}[htb]
+		\centering
+		\missingfigure{disk and cylinder with sufficiently large set $\Delta$ and the corresponding arcs}
+		\caption{Non-emptiness of the arc complex of certain surfaces}\label{fig:non-empty}
+	\end{figure}
+	As one sees in \cref{fig:non-empty} $\mathcal{A}(D^2,\Delta)$ is non-empty (there are non-trivial arcs connecting points in $\Delta$) as soon as $\Delta$ has four points; similarly $\mathcal{A}(S^1 \times [0,1],\Delta)$ is non-empty if $\Delta$ consists of two points in the same boundary component.
+	The claim is, that $\mathcal{A}(S,\Delta)$ is $(q+2r -7)$-connected in either of those two cases.
+	Plugging in $q=4$ and $r=1$ we get $(-1)$-connectivity which we just showed in case of $S$ being a disk.
+	For the cylinder ($q=2$ and $r=2$) we get $2 +4 -7 =-1$ and therefore the theorem holds for a cylinder with the minimal choice of $\Delta$ s.th. $\mathcal{A}(S^1\times [0,1],\Delta) \neq \emptyset$ as well.
+	As adding a point to $\Delta$ obviously increases $q$ by one, the theorem holds for every choice of $\Delta$ by \autoref{lem:d_dplus1}.
+	
+	We may now assume that we are not in one of these two exceptional cases.
+	Because of \autoref{lem:d_dplus1} we may now assume that in the general case $\Delta$ has at most one point in each boundary component of $S$ to prove contractibility of $\mathcal{A}(S,\Delta)$. 
+	We first notice, that $\mathcal{A}(S,\Delta)$ is not empty: 
+	\begin{itemize}
+		\item If $\Delta$ has at least two points, any arc connecting two points in different boundary components is non-trivial.
+		\item If $\Delta$ consists of just a single point, we know that $S$ has at least genus one or at least three boundary components.
+		\Cref{fig:non-empty-delta-one} gives examples of non-trivial arcs in those cases.
+	\end{itemize}
+	\begin{figure}[htb]
+		\centering
+		\missingfigure{non-trivial arcs for pair of pants and genus one surface}
+		\caption{Non-emptiness of $\mathcal{A}(S,\Delta)$, if $\Delta$ is a singleton}\label{fig:non-empty-delta-one}
+	\end{figure}
+	
+	
+\end{proof}
