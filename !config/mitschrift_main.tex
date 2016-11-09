@@ -311,6 +311,8 @@
 \newcommand{\acts}{\curvearrowright}
 \DeclareMathSymbol{\bbDelta}{\mathord}{bbold}{"01}
 \newcommand{\DDelta}{\bbDelta}
+\DeclareMathOperator{\Star}{Star}
+\DeclareMathOperator{\Link}{Link}
 
 \newcommand{\D}{\ensuremath{\mathrm{D}\mkern-1.0mu}}
 \newcommand{\mathd}{\ensuremath{\mathrm{d}\mkern-1.0mu}}
@@ -560,11 +562,12 @@
 
 % -- Beweise
 \declaretheoremstyle[headfont=\bfseries\scshape,bodyfont=\normalfont,headpunct=:,postheadspace=1em,spacebelow=12pt,spaceabove=2pt,qed=\qedsymbol]{beweise}
+\declaretheoremstyle[headfont=\bfseries\scshape,bodyfont=\normalfont,headpunct=:,postheadspace=1em,spacebelow=12pt,spaceabove=2pt]{beweisskizze}
 \declaretheoremstyle[headfont=\sffamily\bfseries,bodyfont=\normalfont,headpunct=:,postheadspace=1em,spacebelow=10pt,spaceabove=10pt]{bemerkungen}
 \declaretheorem[name=Beweis,numbered=no,style=beweise]{beweis}
 \let\proof\relax
 \declaretheorem[name=Proof,numbered=no,style=beweise]{proof}
-
+\declaretheorem[name=Sketch of Proof,numbered=no,style=beweisskizze]{sketch}
 
 \declaretheorem[name=Übung,numbered=no,style=bemerkungen]{uebung}
 \declaretheorem[name=Erinnerung,numbered=no,style=bemerkungen]{erinnerung}

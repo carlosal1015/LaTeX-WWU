@@ -49,3 +49,24 @@ To prove this theorem we will need the following lemma:
 	Suppose $\mathcal{A}(S,\Delta) \neq \emptyset$ and $\Delta'$ is obtained form $\Delta$ by adding an extra point in a component of $\partial S$ already containing a point of $\Delta$.
 	If $\mathcal{A}(S,\Delta)$ is $d$-connected, then $\mathcal{A}(S,\Delta')$ is $(d+1)$-connected.
 \end{lemma}
+\begin{sketch}
+	Suppose $\Delta' = \Delta \cup \set*{p'}$ and find $p \in \Delta$ closest to $p'$ in $\partial S$.
+	Define two arcs $I$ and $I'$ as in \cref{fig:arcs_lemma_d_dplus1}.
+	\begin{figure}[thb]
+		\centering
+		\begin{tikzpicture}
+			\draw (0,0) rectangle (2,2);
+		\end{tikzpicture}
+		\caption{Definition of the non-trivial arcs $I$ and $I'$ near the added point $p'$.}\label{fig:arcs_lemma_d_dplus1}
+	\end{figure}
+	We get a decomposition
+	\[
+		\mathcal{A}(S,\Delta') = \Star(I) \cup_{\Link(I)} X
+	\]
+	with $X$ being the subcomplex of $\mathcal{A}(S,\Delta')$ of collections of arcs not containing I.
+	The labour-intensive part of the proof is now to construct a deformation retraction $X \to \Star(I')$ (see \textcite{wahlHomological} for the details).
+	Hence $X$ is contractible.
+	Using the fact, that $\mathcal{A}(S,\Delta)$ is isomorphic to $\Link(I)$ we get the desired result: 
+	If $d \ge 0$ Seifert-van Kampen implies, that $\mathcal{A}(S,\Delta')$ is simply connected and therefore we may use homology to check $(d+1)$-connectivity (Hurewicz).
+	This easily follow via Mayer-Vietoris.
+\end{sketch}
