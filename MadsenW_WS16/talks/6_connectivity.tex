@@ -59,7 +59,7 @@ To prove this theorem we will need the following lemma:
 		\end{tikzpicture}
 		\caption{Definition of the non-trivial arcs $I$ and $I'$ near the added point $p'$.}\label{fig:arcs_lemma_d_dplus1}
 	\end{figure}
-	We get a decomposition
+	We get a decomposition\todo{definition of Star and Link}
 	\[
 		\mathcal{A}(S,\Delta') = \Star(I) \cup_{\Link(I)} X
 	\]
@@ -97,6 +97,29 @@ To prove this theorem we will need the following lemma:
 		\missingfigure{non-trivial arcs for pair of pants and genus one surface}
 		\caption{Non-emptiness of $\mathcal{A}(S,\Delta)$, if $\Delta$ is a singleton}\label{fig:non-empty-delta-one}
 	\end{figure}
+	To prove contractibility of $\mathcal{A}(S,\Delta)$ we fix a point $p \in \Delta$ and an arc $a$ of $\mathcal{A}(S,\Delta)$ with a least one endpoint at $p$ and proceed by
+	constructing a retraction to $\Star(a)$.
+	To do so we need to fix a germ of $a$ at $p$ as well.
+	
+	Given a $q$-simplex $\sigma$ of $\mathcal{A}(S,\Delta)$ we choose representing arcs $a_0, \ldots ,a_q$ with minimal and transverse intersection with $a$.
+	If there are $k$ intersections at germs of arcs $\gamma_1, \ldots ,\gamma_k$, we are going to define $k$ intermediate simplices $r_1(\sigma), \ldots ,r_k(\sigma)$ to get to the desired retraction.
+
+	If $a_i$ intersects $a$ at the point $x$ we define $L(a_i)$ and $R(a_i)$ by cutting $a_i$ at $x$ and connecting the new endpoints to the boundary via $a$.
+	Pushing the arcs around a little they become disjoint of $a$ and each other.
+	If $L(a_i)$ or $R(a_i)$ is trivial we forget it.
+	Since $\Delta$ has at most one point in each boundary component and therefore trivial arcs have to be a loop at a single point in $\Delta$, the only case in which this constructions leads to trivial arcs is the one shown in \cref{fig:surg_trivial}.
+	\Cref{fig:surg_trivial} further shows that $L(a_i)$ and $R(a_i)$ cannot be be trivial at the same time.
+	\begin{figure}[hbt]
+		\centering
+		\missingfigure{Surgery creating a trivial arc (figure 12 in \cite{wahlHomological})}
+		\caption{A situation in which surgery creates a trivial arc}\label{fig:surg_trivial}
+	\end{figure}
+	
+	We define $r_i(\sigma)$ as the $(q+ l_i)$-simplex with $1 \le l_i \le i + 2$ consisting of the vertices $L^{\epsilon_i(l)}(a_l)$ and $R^{\epsilon_i(l)}(a_l)$ (if non-trivial)  where 
+	\begin{itemize}
+		\item $\epsilon_i(l) \in \set*{0, \ldots ,k}$ is the number of germs $\gamma_j$ included in $a_l$ with $j < i$\todo{shouldn't this be $\le$? Otherwise $r_1(\sigma)$ is ill-defined} and
+		\item $L^0(a_l)=R^0(a_l)=a_l$ is a single vertex.
+	\end{itemize}
 	
 \end{proof}
 
