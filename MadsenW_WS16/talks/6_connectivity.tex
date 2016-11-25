@@ -37,7 +37,7 @@ The proof of \autoref{connec_main} will use the following inclusions
 	\end{tikzcd}
 \]
 We will prove that $\mathcal{A}(S,\Delta)$ is contractible and deduce bounds for the connectivity of the complexes step by step.
-Altough we are interested in the case $\Delta=\set*{b_0,b_1}$ in the end, we will need the more general complexes along the way.\footnote{because cutting along an arc may result in several copies of the boundary points}
+Although we are interested in the case $\Delta=\set*{b_0,b_1}$ in the end, we will need the more general complexes along the way.\footnote{because cutting along an arc may result in several copies of the boundary points}
 
 \begin{theorem}[label=thm:connec_full]
 	$\mathcal{A}(S,\Delta)$ is contractible as long as $S$ is neither a disk nor an annulus with $\Delta$ included in a single component of $\partial S$ in which case it is $(q+2r-7)$-connected, where $q=\abs*{\Delta}$ and $r=1,2$ is the number of boundary components of $S$.
@@ -120,6 +120,16 @@ To prove this theorem we will need the following lemma:
 		\item $\epsilon_i(l) \in \set*{0, \ldots ,k}$ is the number of germs $\gamma_j$ included in $a_l$ with $j < i$\todo{shouldn't this be $\le$? Otherwise $r_1(\sigma)$ is ill-defined} and
 		\item $L^0(a_l)=R^0(a_l)=a_l$ is a single vertex.
 	\end{itemize}
-	
+	\todo[inline]{complete the proof}
 \end{proof}
 
+To state the next theorem -- which is the most intricate one -- we need to define \emph{pure} and \emph{impure edges}:
+The two disjoint sets $\Delta_0, \Delta_1$ define a decomposition of $\partial S$ into vertices (the set $\Delta_0 \cup \Delta_1$), edges and circles without vertices.\todo{draw a picture}
+An edge is called \emph{pure} if both of its endpoints lie in either $\Delta_0$ or $\Delta_1$; it is called \emph{impure} otherwise.
+Note that a priori this definition has nothing to do with the arcs we are interested in. 
+
+\begin{theorem}
+	The complex $\mathcal{B}(S,\Delta_0,\Delta_1)$ is $(4g +r +r ' +l +m -6)$-connected, where $g$ ist the genus of $S$, $r$ is the number of boundary components, $r'$ the number of components of $\partial S$ containing points of $\Delta_0 \cup \Delta_1$, $l$ is half the number of \emph{impure edges} and $m$ is the number of \emph{pure edges}.
+\end{theorem}
+
+To prove this one first eliminates a few cases before using the general inductive argument.
