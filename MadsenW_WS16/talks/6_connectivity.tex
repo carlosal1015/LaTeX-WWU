@@ -125,7 +125,12 @@ To prove this theorem we will need the following lemma:
 
 To state the next theorem -- which is the most intricate one -- we need to define \emph{pure} and \emph{impure edges}:
 The two disjoint sets $\Delta_0, \Delta_1$ define a decomposition of $\partial S$ into vertices (the set $\Delta_0 \cup \Delta_1$), edges and circles without vertices.\todo{draw a picture}
-An edge is called \emph{pure} if both of its endpoints lie in either $\Delta_0$ or $\Delta_1$; it is called \emph{impure} otherwise.
+\begin{itemize}
+	\item An edge is called \emph{pure} if both of its endpoints lie in either $\Delta_0$ or $\Delta_1$; it is called \emph{impure} otherwise.
+	\item A boundary component of $S$ containing points of $\Delta_0 \cup \Delta_1$ is called \emph{pure}, if it is composed of pure edges, i.e. the point are either all in $\Delta_0$ or all in $\Delta_1$.
+\end{itemize}
+
+
 Note that a priori this definition has nothing to do with the arcs we are interested in as it only involves $\Delta_0$ and $\Delta_1$. 
 
 \begin{theorem}
