@@ -5,9 +5,22 @@
 In this talk we will fill the gap in the proof of the stability theorem, i.e. proving the connectivity of the curve complexes $\mathcal{O}^1$ and $\mathcal{O}^2$.
 To be precise we will prove the following theorem.
 
-\begin{theorem}[label=connec_main]
+\begin{restatable}[{name=[Connectivity]}]{theorem}{connectivity}\label{connec_main}
 	$\mathcal{O}(S,b_0,b_1)$ is $(g-2)$-connected.
-\end{theorem}
+\end{restatable}
+
+\begin{remark*}
+	Just a quick reminder of a few definitions and conventions we need along the way:
+	\begin{itemize}[itemsep=0pt]
+		\item \enquote{$(-1)$-connected} means non-empty by convention
+		\item For a simplex $\sigma$ in a simplical complex we define
+		\(
+			\Star(\sigma)
+		\)
+		as the subcomplex consisting of all simplices that contain $\sigma$ together with their faces.
+		\item We also define $\Link(\sigma) \subset \Star(\sigma)$ as the subcomplex of the star consisting of all simplices disjoint from $\sigma$.
+	\end{itemize}
+\end{remark*}
 
 We start by defining a few more complexes larger than $\mathcal{O}^i(S)$.
 
@@ -160,7 +173,9 @@ To prove this one first eliminates a few cases before using the general inductiv
 	If $\Delta_0, \Delta_1$ are two disjoint non-empty sets of points in $\partial S$, then the complex $\mathcal{B}_0(S,\Delta_0,\Delta_1)$ is $(2g+r'-3)$-connected, for $g$ and $r'$ as above.
 \end{theorem}
 
-\begin{proof}[name={of \autoref{connec_main}}]
+
+\connectivity*
+\begin{proof}
 	\mbox{ }
 	\todo[inline]{prove this!}
 \end{proof}
