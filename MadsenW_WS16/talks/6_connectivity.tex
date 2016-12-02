@@ -72,7 +72,7 @@ To prove this theorem we will need the following lemma:
 		\end{tikzpicture}
 		\caption{Definition of the non-trivial arcs $I$ and $I'$ near the added point $p'$.}\label{fig:arcs_lemma_d_dplus1}
 	\end{figure}
-	We get a decomposition\todo{definition of Star and Link}
+	We get a decomposition
 	\[
 		\mathcal{A}(S,\Delta') = \Star(I) \cup_{\Link(I)} X
 	\]
@@ -98,10 +98,10 @@ To prove this theorem we will need the following lemma:
 	As adding a point to $\Delta$ obviously increases $q$ by one, the theorem holds for every choice of $\Delta$ by \autoref{lem:d_dplus1}.
 	
 	We may now assume that we are not in one of these two exceptional cases.
-	Because of \autoref{lem:d_dplus1} we may now assume that in the general case $\Delta$ has at most one point in each boundary component of $S$ to prove contractibility of $\mathcal{A}(S,\Delta)$. 
+	Because of \autoref{lem:d_dplus1} we may further assume that in the general case $\Delta$ has at most one point in each boundary component of $S$ to prove contractibility of $\mathcal{A}(S,\Delta)$. 
 	We first notice, that $\mathcal{A}(S,\Delta)$ is not empty: 
 	\begin{itemize}
-		\item If $\Delta$ has at least two points, any arc connecting two points in different boundary components is non-trivial.
+		\item If $\Delta$ has at least two points, any arc connecting two points in different boundary components is non-trivial (because it does not disconnect the surface).
 		\item If $\Delta$ consists of just a single point, we know that $S$ has at least genus one or at least three boundary components.
 		\Cref{fig:non-empty-delta-one} gives examples of non-trivial arcs in those cases.
 	\end{itemize}
@@ -116,6 +116,7 @@ To prove this theorem we will need the following lemma:
 	
 	Given a $q$-simplex $\sigma$ of $\mathcal{A}(S,\Delta)$ we choose representing arcs $a_0, \ldots ,a_q$ with minimal and transverse intersection with $a$.
 	If there are $k$ intersections at germs of arcs $\gamma_1, \ldots ,\gamma_k$, we are going to define $k$ intermediate simplices $r_1(\sigma), \ldots ,r_k(\sigma)$ to get to the desired retraction.
+	For $\gamma_i$ let $a_{j_i}$ be the arc $\gamma_i$ is a germ of.
 
 	If $a_i$ intersects $a$ at the point $x$ we define $L(a_i)$ and $R(a_i)$ by cutting $a_i$ at $x$ and connecting the new endpoints to the boundary via $a$.
 	Pushing the arcs around a little they become disjoint of $a$ and each other.
