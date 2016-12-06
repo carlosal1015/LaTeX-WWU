@@ -214,7 +214,14 @@ After eliminating a few cases via \cref{lem:44,lem:45,lem:46} and establishing a
 		Using the Euler characteristic we verify that removing subsequent arcs can reduce the genus only by one for each arc. 
 		
 		(We already used this in the first talk on homological stability; see \textcite[Prop.2.2]{wahlHomological}).
-		\item 
+		\item If $b_0,b_1$ are in the same boundary component, we need the \enquote{badness}:
+		Since $\sigma$ is bad, there are two arcs $a_i, a_j$ of $\sigma$ which are ordered clockwise at both $b_0$ and $b_1$.
+		Cutting along both arcs leaves us with a surface with the same number of boundary components as before.\todo{draw a picture?}
+		By the Euler characteristic $S \setminus (a_i \cup a_j)$ has genus $g-1$.
+		The remaining $p-1$ arcs of $\sigma$ can each reduce the genus by at most one.
 	\end{itemize}
+	We obviously want to remove the purely bad simplices from the image of $\hat{f}$.
+	Let $\sigma$ be a maximal simplex of $D^{k+1}$ such that $\hat{f}(\sigma)$ is purely bad.
+	Now let $b_0'$ be the copy of $b_0$ lying between the boundary component containing $b_0$ and the first arc of $\sigma$ at $b_0$ (in anticlockwise ordering) and analogously let $b_1'$ be the copy of $b_1$ between the boundary containing $b_1$ and the first arc at $b_1$ (in clockwise ordering).
 	\todo[inline]{prove this!}
 \end{proof}
