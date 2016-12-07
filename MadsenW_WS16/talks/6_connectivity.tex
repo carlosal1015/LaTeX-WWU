@@ -186,7 +186,29 @@ After eliminating a few cases via \cref{lem:44,lem:45,lem:46} and establishing a
 	If $\Delta_0, \Delta_1$ are two disjoint non-empty sets of points in $\partial S$, then the complex $\mathcal{B}_0(S,\Delta_0,\Delta_1)$ is $(2g+r'-3)$-connected, for $g$ and $r'$ as above.
 \end{theorem}
 
-\todo[inline]{Write a bit on PL triangulations and joins, $\Link(\sigma)$, $\Star(\sigma)$}
+To finally prove the connectedness of $\mathcal{O}(S,b_0,b_1)$ we need to implement some preliminaries:
+First remember that the join $X * Y$ of simplical complexes coincides with the topological join, i.e.
+\[
+	\abs*{X * Y} = \abs*{X} * \abs*{Y}   
+\]
+For some simplex $\sigma$ of a simplical complex we get the following \enquote{decomposition} of the star of $\sigma$ introduced earlier:
+\[
+	\Star(\sigma) = \Link(\sigma) * \sigma
+\]
+where $\sigma$ is the subcomplex consisting of $\sigma$ and its faces.
+
+\begin{definition*}
+	A \Index{PL triangulation} $K$ of an $n$-manifold $M$ is a simplical complex $K$ such that $\abs*{K} \cong M$ with the additional property that the link of a $p$-simplex $\sigma$ is PL homeomorphic to the boundary of an $(n-p)$-simplex if $\sigma$ is not included in $\partial K$, or to an $(n-p-1)$-simplex if $\sigma \subset \partial K$.
+\end{definition*}
+
+We will use the following facts about PL triangulations:
+\begin{enumerate}[(i),itemsep=0pt]
+	\item There are PL triangulations for the $n$-disk and the $n$-sphere.\footnote{the existence and uniqueness of PL triangulations turns out to be a really complex topic!}
+	\item $\abs*{D^n * D^m}$ and $\abs*{D^n * S^m}$ are $(n+m+1)$-disks.
+	\item $\abs*{S^n * S^m}$ is an $(n+m+1)$-sphere.
+	\item For a $p$-simplex $\sigma$ $\Star(\sigma) = \Link(\sigma) * \sigma$ is of the type $S^{n-p-1} * D^p$ (or $D^{n-p-1} * D^p$) and therefore an $n$-disk. 
+	\item There is a simplical approximation theorem.
+\end{enumerate}
 
 \connectivity*
 \begin{proof}
