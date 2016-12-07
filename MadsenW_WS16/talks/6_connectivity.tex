@@ -212,8 +212,8 @@ We will use the following facts about PL triangulations:
 
 \connectivity*
 \begin{proof}
-	We first notice, that the theorem is true for $g=0$ as being $-2$-connected is a void property and true for $g=1$ as well, since $\mathcal{O}(S,b_0,b_1)$ is not empty in that case.
-	We proceed with an induction on $g$ an may assume $g\ge 2$.
+	We first notice, that the theorem is true for $g=0$ as being $(-2)$-connected is a void property and true for $g=1$ as well, since $\mathcal{O}(S,b_0,b_1)$ is not empty in that case.
+	We proceed with an induction on $g$ and may assume $g\ge 2$.
 	
 	Let $k \le g-2$ and suppose we have a continuous map $f \colon S^k \to \mathcal{O}(S,b_0,b_1)$, which we may assume to be simplical by choosing a PL triangulation\footnote{the link of every simplex is a piecewise-linear sphere} on $S^k$ and applying the simplical approximation theorem.
 	\Cref{thm:48} implies, that there is an extension $\hat{f} \colon D^{k+1} \to \mathcal{B}_0(S,\set*{b_0},\set*{b_1})$ since 
@@ -262,5 +262,8 @@ We will use the following facts about PL triangulations:
 		k-p \le g- p -2 \le g- p' -2 \le \tilde{g} -2
 	\]
 	Therefore we may apply the induction hypothesis to the restriction of $\hat{f}$ to $\Link(\sigma)$ an get a extension $F$ of $\hat{f}|_{\Link(\sigma)}$ on a $(k+1-p)$-disk $K$.
-	\todo[inline]{prove this!}
+	We now replace $\hat{f}$ on $\Star(\sigma) \simeq \partial \sigma * K$ by the map $\hat{f} * F$ (by the facts above $\Star(\sigma)$ is a $(k+1)$-disk and $\partial \sigma * K$ is of the type $S^{p-1} * D^{k+1-p}$ and therefore a $(p-1+k+1-p+1)$-disk).
+	
+	We now have sucessfully removed the maximal purely bad simplex $\sigma$ and new purely bad simplices are faces of $\sigma$ and hence of smaller dimension.
+	The result follows by induction.
 \end{proof}
