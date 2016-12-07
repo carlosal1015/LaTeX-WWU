@@ -207,22 +207,37 @@ After eliminating a few cases via \cref{lem:44,lem:45,lem:46} and establishing a
 	\]
 	uniquely, where $\sigma^g = \lenbrace{a_0, \ldots ,a_i}$ with $i$ maximal such that the clockwise ordering at $b_1$ starts with $a_0, \ldots , a_i$.
 	With this notation $\sigma = \sigma^g$ implies that $\sigma$ is a simplex of $\mathcal{O}(S,b_0,b_1)$ (\emph{good}) and we call $\sigma$ \emph{purely bad} if $\sigma^g$ is empty.
+	Vertices are always good.
 	
 	We claim that $S\setminus \sigma$ has genus at least $g-p$ if $\sigma$ is a purely bad $p$-simplex.
-	\begin{itemize}
-		\item If $b_0,b_1$ are in the different boundary components, this is true regardless of the fact, that $\sigma$ is purely bad:\marginnote{$\chi(S_{g,r}) = 2 - 2g -r$ and $\chi(S\setminus \sigma) = \chi(S)+ p + 1$}
+	\begin{itemize}[itemsep=0pt]
+		\item If $b_0,b_1$ are in the different boundary components, this is true regardless of the fact, that $\sigma$ is purely bad:\marginnote{$\chi(S) = 2 - 2g -r$ and $\chi(S\backslash \sigma) = \chi(S)+ p + 1$}
 		Cutting along the first arc of $\sigma$ reduces just the number of boundary components and does not affect the genus.
 		Using the Euler characteristic we verify that removing subsequent arcs can reduce the genus only by one for each arc. 
 		
 		(We already used this in the first talk on homological stability; see \textcite[Prop.2.2]{wahlHomological}).
 		\item If $b_0,b_1$ are in the same boundary component, we need the \enquote{badness}:
 		Since $\sigma$ is bad, there are two arcs $a_i, a_j$ of $\sigma$ which are ordered clockwise at both $b_0$ and $b_1$.
-		Cutting along both arcs leaves us with a surface with the same number of boundary components as before.\todo{draw a picture?}
+		Cutting along both arcs leaves us with a surface which has the same number of boundary components as before.\todo{draw a picture?}
 		By the Euler characteristic $S \setminus (a_i \cup a_j)$ has genus $g-1$.
 		The remaining $p-1$ arcs of $\sigma$ can each reduce the genus by at most one.
 	\end{itemize}
 	We obviously want to remove the purely bad simplices from the image of $\hat{f}$.
 	Let $\sigma$ be a maximal simplex of $D^{k+1}$ such that $\hat{f}(\sigma)$ is purely bad.
-	Now let $b_0'$ be the copy of $b_0$ lying between the boundary component containing $b_0$ and the first arc of $\sigma$ at $b_0$ (in anticlockwise ordering) and analogously let $b_1'$ be the copy of $b_1$ between the boundary containing $b_1$ and the first arc at $b_1$ (in clockwise ordering).
+	Now let $b_0'$ be the copy of $b_0$ lying between the boundary component containing $b_0$ and the first arc of $\sigma$ at $b_0$ (in anticlockwise ordering) and analogously let $b_1'$ be the copy of $b_1$ between the boundary containing $b_1$ and the first arc at $b_1$ (in clockwise ordering).\todo{another picture}
+	Because $\sigma$ is maximal the link of $\sigma$ is mapped to $\mathcal{O}(S\setminus \hat{f}(\sigma),b_0',b_1')$.
+	
+	Let $\sigma$ be a $p$-simplex.
+	Then $\hat{f}(\sigma)$ is a $p'$-simplex with $p' \le p$ and by the previous claim $S \setminus \hat{f}(\sigma)$ has at least genus $g- p' \ge g- p$.
+	\begin{itemize}[itemsep=0pt]
+		\item Since we chose a PL triangulation of $D^{k+1}$ the $\Link(\sigma)$ is a sphere of dimension $k-p$.
+		As $k \le g-2$, we have $k-p \le g -p -2$.
+		\item As $\hat{f}(\sigma)$ is bad, it cannot be a vertex, so $p' \ge 2$ and $S \setminus \hat{f}(\sigma)$ has genus $\tilde{g} < g$ by the claim above.
+	\end{itemize}
+	Plugging all of this together we get
+	\[
+		k-p \le g- p -2 \le g- p' -2 \le \tilde{g} -2
+	\]
+	Therefore we may apply the induction hypothesis to the restriction of $\hat{f}$ to $\Link(\sigma)$ an get a extension $F$ of $\hat{f}|_{\Link(\sigma)}$ on a $(k+1-p)$-disk $K$.
 	\todo[inline]{prove this!}
 \end{proof}
