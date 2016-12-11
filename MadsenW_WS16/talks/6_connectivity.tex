@@ -2,6 +2,7 @@
 %!TEX TS-program = xelatex
 %!TEX TS-options = -shell-escape
 \renewcommand{\setminus}{\backslash}
+\tikzset{bpoint/.style={fill=DodgerBlue3,thick}}
 \section{Homological stability III. -- Connectivity}
 In this talk we will fill the gap in the proof of the stability theorem, i.e. proving the connectivity of the curve complexes $\mathcal{O}^1$ and $\mathcal{O}^2$.
 To be precise we will prove the following theorem.
@@ -89,8 +90,22 @@ To prove this theorem we will need the following lemma:
 	Let's handle the two exceptional cases first (disk and cylinder with $\Delta$ in a single component of $\partial S$):
 	\begin{figure}[htb]
 		\centering
-		\missingfigure{disk and cylinder with sufficiently large set $\Delta$ and the corresponding arcs}
-		\caption{Non-emptiness of the arc complex of certain surfaces}\label{fig:non-empty}
+		\begin{tikzpicture}
+			\draw[very thick,fill=gray!40] (0,0) circle[radius=1cm]; 
+			\draw[thick] (1,0) -- (-1,0);
+			\draw[bpoint] (0:1cm) circle[radius=.06cm];
+			\draw[bpoint] (180:1cm) circle[radius=.06cm];
+			\draw[bpoint] (90:1cm) circle[radius=.06cm];
+			\draw[bpoint] (270:1cm) circle[radius=.06cm];
+			
+			\draw[very thick,fill=gray!40] (4,0) circle[radius=1cm];
+			\draw[very thick,fill=white] (4,0) circle[radius=.4cm];
+			\draw[thick] (4,1) .. controls +(205:.9) and +(170:.6) .. (4,-0.7) .. controls +(-10:.8) and +(-30:.8) .. (4,1);
+			\draw[bpoint] ($(4,0)+(90:1cm)$) circle[radius=.06cm];
+			\draw[bpoint] ($(4,0)+(270:1cm)$) circle[radius=.06cm];
+		\end{tikzpicture}
+		% \missingfigure{disk and cylinder with sufficiently large set $\Delta$ and the corresponding arcs}
+		\caption{Non-emptiness of the arc complex in case of a disk and a cylinder}\label{fig:non-empty}
 	\end{figure}
 	As one sees in \cref{fig:non-empty} $\mathcal{A}(D^2,\Delta)$ is non-empty (there are non-trivial arcs connecting points in $\Delta$) as soon as $\Delta$ has four points; similarly $\mathcal{A}(S^1 \times [0,1],\Delta)$ is non-empty if $\Delta$ consists of two points in the same boundary component.
 	The claim is, that $\mathcal{A}(S,\Delta)$ is $(q+2r -7)$-connected in either of those two cases.
