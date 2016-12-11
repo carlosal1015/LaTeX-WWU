@@ -137,12 +137,21 @@ To prove this theorem we will need the following lemma:
 	If $a_i$ intersects $a$ at the point $x$ we define $L(a_i)$ and $R(a_i)$ by cutting $a_i$ at $x$ and connecting the new endpoints to the boundary via $a$.
 	Pushing the arcs around a little they become disjoint of $a$ and each other.
 	If $L(a_i)$ or $R(a_i)$ is trivial we forget it.
-	Since $\Delta$ has at most one point in each boundary component and therefore trivial arcs have to be a loop at a single point in $\Delta$, the only case in which this constructions leads to trivial arcs is the one shown in \cref{fig:surg_trivial}.
+	Since $\Delta$ has at most one point in each boundary component and therefore trivial arcs have to be a loop at a single point in $\Delta$, the only case in which this construction leads to trivial arcs is the one shown in \cref{fig:surg_trivial}.
 	\Cref{fig:surg_trivial} further shows that $L(a_i)$ and $R(a_i)$ cannot be be trivial at the same time.
 	\begin{figure}[hbt]
 		\centering
-		\missingfigure{Surgery creating a trivial arc (figure 12 in \cite{wahlHomological})}
-		\caption{A situation in which surgery creates a trivial arc}\label{fig:surg_trivial}
+		\begin{tikzpicture}
+			\clip (-2,-1.33) rectangle (5,2.63);
+			% \draw[help lines] (-2,-2) grid (4,4);
+			\draw[very thick] (0,0) circle[radius=1cm];
+			\draw[dashed, thick] (1,0) -- (4,0) node[below left]{$a$};
+			\draw[thick] (1,0) .. controls +(85:4) and +(183:5) .. (.3,-1.3) .. controls +(3:2) and +(225:4) .. (4,2) node[below right] {$a_i$};
+			\draw[thick] (1,0) .. controls +(15:1) and +(225:3.5) .. (4,2.15) node[above] {$R(a_i)$};
+			\draw[thick,dotted] (1,0) .. controls +(90:3.5) and +(183:4.5) .. (.3,-1.2) .. controls +(3:.8) and +(270:.8) .. (1,0) node[below right]{$L(a_i)$} ;
+			\draw[bpoint] (1,0) circle[radius=.06cm];
+		\end{tikzpicture}
+		\caption{A situation in which surgery creates a trivial arc (the dotted one)}\label{fig:surg_trivial}
 	\end{figure}
 	
 	We define $r_i(\sigma)$ as the $(q+ l_i)$-simplex with $1 \le l_i \le i + 2$ consisting of the vertices $L^{\epsilon_i(l)}(a_l)$ and $R^{\epsilon_i(l)}(a_l)$ (if non-trivial)  where 
