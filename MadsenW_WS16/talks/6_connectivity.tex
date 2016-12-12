@@ -61,6 +61,24 @@ Although we are interested in the case $\Delta=\set*{b_0,b_1}$ in the end, we wi
 
 To prove this theorem we will need the following lemma:
 
+\begin{figure}[thb]
+	\centering
+	\begin{tikzpicture}
+		\draw[thick] (-15:1) arc (-15:-165:1);
+		\coordinate (p) at (250:1);
+		\coordinate (p') at (295:1);
+		\coordinate (a) at (215:1);
+		\coordinate (b) at (-28:1);
+		
+		\node[above] at (p') {$p'$};
+		\draw[thick] (a) .. controls +(250:1.1) and +(255:1.1) .. (p') node[midway, below left]{$I'$};
+		\draw[thick] (p) node[above]{$p$} .. controls +(280:1.1) and +(275:1.1) .. (b) node[midway, below right]{$I$};
+		\foreach \x in {p,p',a,b}{
+			\draw[bpoint] (\x) circle[radius=.06]; 
+		}
+	\end{tikzpicture}
+	\caption{Definition of the non-trivial arcs $I$ and $I'$ near the added point $p'$.}\label{fig:arcs_lemma_d_dplus1}
+\end{figure}
 \begin{lemma}[label=lem:d_dplus1]
 	Suppose $\mathcal{A}(S,\Delta) \neq \emptyset$ and $\Delta'$ is obtained form $\Delta$ by adding an extra point in a component of $\partial S$ already containing a point of $\Delta$.
 	If $\mathcal{A}(S,\Delta)$ is $d$-connected, then $\mathcal{A}(S,\Delta')$ is $(d+1)$-connected.
@@ -68,14 +86,6 @@ To prove this theorem we will need the following lemma:
 \begin{sketch}
 	Suppose $\Delta' = \Delta \cup \set*{p'}$ and find $p \in \Delta$ closest to $p'$ in $\partial S$.
 	Define two arcs $I$ and $I'$ as in \cref{fig:arcs_lemma_d_dplus1}.
-	\begin{figure}[thb]
-		\centering
-		\begin{tikzpicture}
-			\draw (0,0) rectangle (2,2);
-		\end{tikzpicture}
-		\todo[inline]{Grafik fertig machen}
-		\caption{Definition of the non-trivial arcs $I$ and $I'$ near the added point $p'$.}\label{fig:arcs_lemma_d_dplus1}
-	\end{figure}
 	We get a decomposition
 	\[
 		\mathcal{A}(S,\Delta') = \Star(I) \cup_{\Link(I)} X
