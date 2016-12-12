@@ -168,7 +168,8 @@ To prove this theorem we will need the following lemma:
 	If $a_i$ intersects $a$ at the point $x$ we define $L(a_i)$ and $R(a_i)$ by cutting $a_i$ at $x$ and connecting the new endpoints to the boundary via $a$.
 	Pushing the arcs around a little they become disjoint of $a$ and each other.
 	If $L(a_i)$ or $R(a_i)$ is trivial we forget it.
-	Since $\Delta$ has at most one point in each boundary component and therefore trivial arcs have to be a loop at a single point in $\Delta$, the only case in which this construction leads to trivial arcs is the one shown in \cref{fig:surg_trivial}.
+	Since $\Delta$ has at most one point in each boundary component and arcs intersect minimally,
+	the only case in which this construction leads to trivial arcs is the one shown in \cref{fig:surg_trivial}.\marginnote{trivial arcs have to be a loop at a single point in $\Delta$}
 	\Cref{fig:surg_trivial} further shows that $L(a_i)$ and $R(a_i)$ cannot be be trivial at the same time.
 	\begin{figure}[hbt]
 		\centering
@@ -177,7 +178,7 @@ To prove this theorem we will need the following lemma:
 			% \draw[help lines] (-2,-2) grid (4,4);
 			\draw[very thick] (0,0) circle[radius=1cm];
 			\draw[dashed, thick] (1,0) -- (4,0) node[below left]{$a$};
-			\draw[thick] (1,0) .. controls +(85:4) and +(183:5) .. (.3,-1.3) .. controls +(3:2) and +(225:4) .. (4,2) node[below right] {$a_i$};
+			\draw[thick] (1,0) .. controls +(85:4) and +(183:5) .. (.3,-1.3) .. controls +(3:2) and +(225:4) .. (4,2) node[below,xshift=2pt] {$a_i$};
 			\draw[thick] (1,0) .. controls +(15:1) and +(225:3.5) .. (4,2.15) node[above] {$R(a_i)$};
 			\draw[thick,dotted] (1,0) .. controls +(90:3.5) and +(183:4.5) .. (.3,-1.2) node[pos=.25,pin={[pin distance=4ex,pin edge={solid}]30:$L(a_i)$}]{};
 			\draw[thick,dotted] (1,0) .. controls +(90:3.5) and +(183:4.5) .. (.3,-1.2)  .. controls +(3:1.3) and +(320:.9) .. (1,0);
@@ -186,48 +187,63 @@ To prove this theorem we will need the following lemma:
 		\caption{A situation in which surgery creates a trivial arc (the dotted one)}\label{fig:surg_trivial}
 	\end{figure}
 	
-	We define $r_i(\sigma)$ as the $(q+ l_i)$-simplex with $1 \le l_i \le i + 2$ consisting of the vertices $L^{\epsilon_i(l)}(a_l)$ and $R^{\epsilon_i(l)}(a_l)$ (if non-trivial)  where 
-	\begin{itemize}
-		\item $\epsilon_i(l) \in \set*{0, \ldots ,k}$ is the number of germs $\gamma_j$ included in $a_l$ with $j < i$\todo{shouldn't this be $\le$? Otherwise $r_1(\sigma)$ is ill-defined} and
+	We define $r_i(\sigma)$ as the $(q+ l_i)$-simplex with $1 \le l_i \le i + 2$ consisting of the vertices $L^{\epsilon_i(l)}(a_l)$ and $R^{\epsilon_i(l)}(a_l)$ (if non-trivial) for $l \neq a_{j_i}$ and $R^{\epsilon_i(j_i)+1}(a_{j_i}),L^{\epsilon_i(j_i)+1}(a_{j_i})$ where 
+	\begin{itemize}[itemsep=0pt]
+		\item $\epsilon_i(l) \in \set*{0, \ldots ,k}$ is the number of germs $\gamma_j$ included in $a_l$ with $j < i$ and\marginnote{the numbering of the germs is $\gamma_1, \ldots ,\gamma_k$}
 		\item $L^0(a_l)=R^0(a_l)=a_l$ is a single vertex.
 	\end{itemize}
-	We want a map $f \colon I \times \mathcal{A}(S,\Delta) \to \mathcal{A}(S,\Delta)$ with the properties $f(s,\Star(a)) = \id_{\Star(a)}$, $f(1,\mathcal{A}(S,\Delta)) \subset \Star(a)$ and $f(0,\mathcal{A}(S,\Delta)) = \id_{\mathcal{A}(S,\Delta)}$.
+	\Cref{fig:retrac} shows how the $r_i(\sigma)$ look like in the case of $k=3$.
 	
-	\todo[inline]{complete the proof}
+	We want a map $f \colon I \times \mathcal{A}(S,\Delta) \to \mathcal{A}(S,\Delta)$ with the properties 
+	\begin{enumerate}[(i),itemsep=0pt]
+		\item $f(-,\Star(a)) = \id_{\Star(a)}$,
+		\item $f(1,\mathcal{A}(S,\Delta)) \subset \Star(a)$ and 
+		\item $f(0,-) = \id_{\mathcal{A}(S,\Delta)}$.
+	\end{enumerate}
+	A point in a $q$-simplex $\sigma$ corresponds to a weighted collection of arcs via the barycentric coordinates $(t_0,\ldots ,t_q)$, the arc $a_i$ having weight $t_i$.
+	Assign to $\gamma_i$ the weight $w_i \coloneqq \sfrac{t_{j_i}}{2}$.
+	As $\sum_{j=0}^{q}t_j =1$ we have $\sum_{i=1}^{k} w_i \le 1$ (scale the $w_i$ if needed).
+	Now for $\sum_{j=1}^{i-1} w_j \le s \le \sum_{j=1}^{i} w_j$, define the retraction by
+	\[
+		f \enbrace*{s, \benbrace[\big]{\sigma, (t_0, \ldots ,t_q)}} = \benbrace[\big]{r_i(\sigma), (v_0, \ldots, v_{q+l_i})}
+	\]
+	where $v_i = t_i$ except for the triple
+	\[
+		\enbrace*{v_{j_i},v_{R(a_{j_i})}, v_{L(a_{j_i})}} = \enbrace*{t_{j_i} - 2 \enbrace*{s - \sum\nolimits_{j=1}^{i-1} w_j} , \enbrace*{s - \sum\nolimits_{j=1}^{i-1} w_j},\enbrace*{s - \sum\nolimits_{j=1}^{i-1} w_j}}
+	\]
+	i.e. the weight of $(a_{j_i}, R(a_{j_i}),L(a_{j_i}))$ goes from $(t_{j_i},0,0)$ to $(0, \sfrac{t_{j_i}}{2},\sfrac{t_{j_i}}{2})$ as $s$ goes from $\sum_{j=1}^{i-1}w_j $ to $\sum_{j=1}^{i} w_j$.
+	For $\sum_{i=1}^{k} w_j\le s \le 1$ define $f \enbrace*{s, \benbrace*{\sigma,(t_0, \ldots ,t_q)}}$ to be constant equal to 
+	\[
+		f \enbrace*{\sum\nolimits_{j=1}^{k} w_j, \benbrace*{\sigma,(t_0, \ldots ,t_q)}}
+	\]
+	We notice that $f \enbrace*{1,\benbrace*{\sigma,(t_0,\ldots ,t_q)}}$ lies in the face of $r_k$ which is in $\Star(a)$ (the fifth drawing in \cref{fig:retrac}).
+	$f$ has the other properties mentioned earlier as well.
+	Furthermore $f$ is continuous, since going to a face corresponds to a weight going to zero.
 	\begin{figure}[htbp]
 		\centering
-		\tikzexternaldisable
 		\begin{tikzpicture}
 			\coordinate (p) at (0,3);
 			\coordinate (p1) at ($(p)+(3,1)$);
 			\coordinate (p2) at ($(p)+(6,1)$);
 			\coordinate (p3) at ($(p)+(9,1)$);
 			\coordinate (p4) at ($(p)+(12,0)$);
-			
 			\foreach \x in {p,p1}{
 				\draw ($(\x)- (.9,1.9)$) -- ++ (1.8,0);
 			}
-			
 			\foreach \x in {p1,p2,p3,p4}{
 				\draw ($(\x)- (.9,1.7)$) .. controls +(0:.5) and +(260:1.8) .. (\x) .. controls +(-80:1.8) and +(180:.5) .. ($(\x)- (-.9,1.7)$);
-			}
-			
-			
+			}		
 			
 			\foreach \x in {p,p1,p2}{
 				\draw ($(\x)- (.9,2.2)$) -- ++ (1.8,0);
 			}
-			
 			\foreach \x in {p2,p3,p4}{
 				\draw ($(\x)- (.9,1.9)$) .. controls +(0:.5) and +(267:2) .. (\x) .. controls +(-87:2) and +(180:.5) .. ($(\x)- (-.9,1.9)$);
 			}
 			
-			
-			
 			\foreach \x in {p,p1,p2,p3}{
 				\draw ($(\x)- (.9,2.5)$) .. controls +(20:.6) and +(160:.6) .. ++ (1.8,0);
 			}
-			
 			\foreach \x in {p3,p4}{
 				\draw ($(\x)- (.9,2.35)$) .. controls +(20:.6) and +(270:2.5) .. (\x) .. controls +(-90:2.5) and +(160:0.6) .. ($(\x)- (-.9,2.35)$);
 			}
@@ -238,7 +254,6 @@ To prove this theorem we will need the following lemma:
 				\draw[densely dotted,thick] (\x) -- ($(\x)- (0,3)$) node[left]{$a$};
 				\draw[bpoint] (\x) circle[radius=.05] node[above]{$p$};
 			}
-			
 			\draw[->] (1.5,0) -- ++ (9,0);
 		\end{tikzpicture}
 		\caption{Retraction of $\mathcal{A}(S,\Delta)$ in the case of $3$ germs of arcs crossing $a$.}\label{fig:retrac}
