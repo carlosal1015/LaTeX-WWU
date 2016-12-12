@@ -123,7 +123,26 @@ To prove this theorem we will need the following lemma:
 	\end{itemize}
 	\begin{figure}[htb]
 		\centering
-		\missingfigure{non-trivial arcs for pair of pants and genus one surface}
+		\begin{tikzpicture}
+			\draw[very thick,fill=gray!40] (0,0) circle[radius=1cm]; 
+			\draw[very thick,fill=white] (-.4,0) circle[radius=.3cm]; 
+			\draw[very thick,fill=white] (.4,0) circle[radius=.3cm]; 
+			% \draw[thick] (1,0) -- (-1,0);
+			\draw[thick] (0,1) .. controls +(205:.9) and +(170:.6) .. (-.5,-0.5) .. controls +(-10:.4) and +(-70:.7) .. (0,1);
+			\draw[bpoint] (90:1cm) circle[radius=.06cm];
+			
+			
+			
+			\draw[very thick,fill=gray!40] (4,0) circle[radius=1cm];
+			\draw[thick] (4,1) .. controls +(245:.8) and +(170:.55) .. (4.4,-0.5) .. controls +(-10:.8) and +(-30:.8) .. (4,1);
+			\draw[fill=gray!40] (3.3,-.3) .. controls +(12:.5) and +(180:.9) .. (3.9,.6) .. controls +(0:.9) and +(170:.5) .. (4.6,-.3);
+			\draw (3.82,.35) .. controls +(210:.3) and +(155:.3) .. (3.86,-.2);
+			\draw (3.78,.25) .. controls +(-27:.25) and +(30:.2) .. (3.82,-.14);
+			\draw[thick] (3.83,.20) .. controls +(260:.38) and +(170:.21) .. (4.4,-0.5);
+			
+			\draw[bpoint] ($(4,0)+(90:1cm)$) circle[radius=.06cm];
+			% \draw[help lines,step=.5] (3,-1) grid (5,2);
+		\end{tikzpicture}
 		\caption{Non-emptiness of $\mathcal{A}(S,\Delta)$, if $\Delta$ is a singleton}\label{fig:non-empty-delta-one}
 	\end{figure}
 	To prove contractibility of $\mathcal{A}(S,\Delta)$ we fix a point $p \in \Delta$ and an arc $a$ of $\mathcal{A}(S,\Delta)$ with a least one endpoint at $p$ and proceed by
