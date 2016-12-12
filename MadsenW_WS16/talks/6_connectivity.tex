@@ -7,9 +7,9 @@
 In this talk we will fill the gap in the proof of the stability theorem, i.e. proving the connectivity of the curve complexes $\mathcal{O}^1$ and $\mathcal{O}^2$.
 To be precise we will prove the following theorem.
 
-\begin{restatable}[{name=[Connectivity]}]{theorem}{connectivity}\label{connec_main}
+\begin{theorem*}
 	$\mathcal{O}(S,b_0,b_1)$ is $(g-2)$-connected.
-\end{restatable}
+\end{theorem*}
 
 \begin{remark*}
 	Just a quick reminder of a few definitions and conventions we need along the way:
@@ -20,6 +20,7 @@ To be precise we will prove the following theorem.
 			\Star(\sigma)
 		\)
 		as the subcomplex consisting of all simplices that contain $\sigma$ together with their faces.
+		As the name suggests $\Star(\sigma)$ is contractible.
 		\item We also define $\Link(\sigma) \subset \Star(\sigma)$ as the subcomplex of the star consisting of all simplices disjoint from $\sigma$.
 	\end{itemize}
 \end{remark*}
@@ -27,7 +28,7 @@ To be precise we will prove the following theorem.
 We start by defining a few more complexes larger than $\mathcal{O}^i(S)$.
 
 Let $\Delta \subset \partial S$ be a non-empty set of points.
-An arc $A$ with boundary in $\Delta$ is called \emph{trivial}, if $S \setminus a$ consists of two components on of which is a disc intersecting $\Delta$ only in the boundary of $a$.
+An arc $a$ with boundary in $\Delta$ is called \emph{trivial}, if $S \setminus a$ consists of two components on of which is a disc intersecting $\Delta$ only in the boundary of $a$.
 
 \begin{definition*}
 	The \Index{full arc complex} $\mathcal{A}(S,\Delta)$ is the simplical complex with vertices isotopy classes of non-trivial arcs with boundary in $\Delta$.
@@ -51,7 +52,7 @@ The proof of \autoref{connec_main} will use the following inclusions
 		\mathcal{A}(S,\Delta) & \mathcal{B}(S, \Delta_0, \Delta_1) \lar["i_1"',hook'] & \mathcal{B}_0(S,\Delta_0,\Delta_1) \lar["i_2"',hook'] & \mathcal{O}(S,b_0,b_1) \lar["i_3"',hook']
 	\end{tikzcd}
 \]
-We will prove that $\mathcal{A}(S,\Delta)$ is contractible and deduce bounds for the connectivity of the complexes step by step.
+We will prove that $\mathcal{A}(S,\Delta)$ is contractible\footnote{in most cases} and deduce bounds for the connectivity of the complexes step by step.
 Although we are interested in the case $\Delta=\set*{b_0,b_1}$ in the end, we will need the more general complexes along the way.\footnote{because cutting along an arc may result in several copies of the boundary points}
 
 \begin{theorem}[label=thm:connec_full]
@@ -304,7 +305,10 @@ We will use the following facts about PL triangulations:
 	\item There is a simplical approximation theorem.
 \end{enumerate}
 
-\connectivity*
+\begin{restatable}[{name=[Connectivity]}]{theorem}{connectivity}\label{connec_main}
+	$\mathcal{O}(S,b_0,b_1)$ is $(g-2)$-connected.
+\end{restatable}
+
 \begin{proof}
 	We first notice, that the theorem is true for $g=0$ as being $(-2)$-connected is a void property and true for $g=1$ as well, since $\mathcal{O}(S,b_0,b_1)$ is not empty in that case.
 	We proceed with an induction on $g$ and may assume $g\ge 2$.
