@@ -291,7 +291,75 @@ We will use the following facts about PL triangulations:
 	\end{itemize}
 	We obviously want to remove the purely bad simplices from the image of $\hat{f}$.
 	Let $\sigma$ be a maximal simplex of $D^{k+1}$ such that $\hat{f}(\sigma)$ is purely bad.
-	Now let $b_0'$ be the copy of $b_0$ lying between the boundary component containing $b_0$ and the first arc of $\sigma$ at $b_0$ (in anticlockwise ordering) and analogously let $b_1'$ be the copy of $b_1$ between the boundary containing $b_1$ and the first arc at $b_1$ (in clockwise ordering).\todo{another picture}
+	Now let $b_0'$ be the copy of $b_0$ lying between the boundary component containing $b_0$ and the first arc of $\sigma$ at $b_0$ (in anticlockwise ordering) and analogously let $b_1'$ be the copy of $b_1$ between the boundary containing $b_1$ and the first arc at $b_1$ (in clockwise ordering), see \cref{fig:purely-bad}.
+	\begin{figure}[htb]
+		\centering
+		\tikzexternaldisable
+		\hspace{1em}
+		\begin{tikzpicture}[baseline=(b0)]
+			% \draw[help lines] (0,0) grid (12,4);
+			\coordinate (b0) at ($(0,4) + (-65:1)$);
+			\coordinate (b1) at ($(5,4) + (245:1)$);
+			\draw[thick] (b0) arc (-60:-90:2); 
+			\draw[thick] (b0) arc (-60:-30:2); 
+			
+			
+			\draw[thick] (b1) arc (240:270:2); 
+			\draw[thick] (b1) arc (240:210:2); 
+			
+			
+			\draw[very thick] (b0) .. controls +(15:2) and +(165:2) .. (b1);
+			\draw[very thick] (b0) .. controls +(-70:4) and +(210:3) .. (b1);
+			\draw[white,double=black, double distance=1.2pt] (b0) .. controls +(-20:2) and +(280:4) .. (b1);
+			
+			
+			\draw[bpoint] (b0) circle[radius=.06] node[above left]{$b_0$};
+			\draw[bpoint] (b1) circle[radius=.06] node[above right]{$b_1$};
+		\end{tikzpicture}
+		\hfill
+		\begin{tikzpicture}[baseline=(b0')]
+			% \draw[help lines] (0,0) grid (6,4);
+
+			\coordinate (b01) at ($(0,4) + (-55:1)$);
+			\coordinate (b02) at ($(0,4) + (-58:1.15)$);
+			\coordinate (b03) at ($(0,4) + (-68:1.2)$);
+			\coordinate (b0') at ($(0,4) + (-75:1)$);
+			\coordinate (b11) at ($(5,4) + (235:1)$);
+			\coordinate (b12) at ($(5,4) + (238:1.15)$);
+			\coordinate (b13) at ($(5,4) + (248:1.2)$);
+			\coordinate (b1') at ($(5,4) + (255:1)$);
+			
+			\draw[thick] (b0') arc (-60:-90:2); 
+			\draw[thick] (b01) arc (-60:-30:2); 
+			
+			
+			\draw[thick] (b1') arc (240:270:2); 
+			\draw[thick] (b11) arc (240:210:2); 
+			
+			\draw[thick] (b01) .. controls +(15:2) and +(165:2) .. (b11);
+			\draw[thick] (b02) .. controls +(15:2) and +(165:2) .. (b12);
+			\draw[thick] (b02) .. controls +(-20:2) and +(280:3.5) .. (b13);
+			
+			\draw[thick] (b03) .. controls +(-20:2) and +(280:4) .. (b1');
+			
+			\fill[white] (b03) .. controls +(-70:3.5) and +(210:3) .. (b12) -- (b13) .. controls +(210:3) and +(-70:4) .. (b0');
+			
+			\draw[thick] (b03) .. controls +(-70:3.5) and +(210:3) .. (b12);
+			\draw[thick] (b0') .. controls +(-70:4) and +(210:3) .. (b13);
+			% \draw[white,double=black, double distance=1.2pt] (b0) .. controls +(-20:2) and +(280:4) .. (b1);
+			
+			% vertex dashed
+			\draw[thick, dashed] (b0') .. controls +(-90:4.5) and +(-60:4) .. (b1');
+			
+			\foreach \x in {b01,b02,b03,b11,b12,b13}{
+				\draw[bpoint] (\x) circle[radius=.05];
+			}
+			
+			\draw[bpoint,fill=Firebrick2] (b0') circle[radius=.06] node[above left]{$b_0'$};
+			\draw[bpoint,fill=Firebrick2] (b1') circle[radius=.06] node[above right]{$b_1'$};
+		\end{tikzpicture}\\[-1cm]
+		\caption{A purely bad $2$-simplex, and vertex in its link/complement}\label{fig:purely-bad}
+	\end{figure}
 	Because $\sigma$ is maximal the link of $\sigma$ is mapped to $\mathcal{O}(S\setminus \hat{f}(\sigma),b_0',b_1')$.
 	
 	Let $\sigma$ be a $p$-simplex.
