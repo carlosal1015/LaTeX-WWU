@@ -182,6 +182,55 @@ To prove this theorem we will need the following lemma:
 	We want a map $f \colon I \times \mathcal{A}(S,\Delta) \to \mathcal{A}(S,\Delta)$ with the properties $f(s,\Star(a)) = \id_{\Star(a)}$, $f(1,\mathcal{A}(S,\Delta)) \subset \Star(a)$ and $f(0,\mathcal{A}(S,\Delta)) = \id_{\mathcal{A}(S,\Delta)}$.
 	
 	\todo[inline]{complete the proof}
+	\begin{figure}[htbp]
+		\centering
+		\tikzexternaldisable
+		\begin{tikzpicture}
+			\coordinate (p) at (0,3);
+			\coordinate (p1) at ($(p)+(3,1)$);
+			\coordinate (p2) at ($(p)+(6,1)$);
+			\coordinate (p3) at ($(p)+(9,1)$);
+			\coordinate (p4) at ($(p)+(12,0)$);
+			
+			\foreach \x in {p,p1}{
+				\draw ($(\x)- (.9,1.9)$) -- ++ (1.8,0);
+			}
+			
+			\foreach \x in {p1,p2,p3,p4}{
+				\draw ($(\x)- (.9,1.7)$) .. controls +(0:.5) and +(260:1.8) .. (\x) .. controls +(-80:1.8) and +(180:.5) .. ($(\x)- (-.9,1.7)$);
+			}
+			
+			
+			
+			\foreach \x in {p,p1,p2}{
+				\draw ($(\x)- (.9,2.2)$) -- ++ (1.8,0);
+			}
+			
+			\foreach \x in {p2,p3,p4}{
+				\draw ($(\x)- (.9,1.9)$) .. controls +(0:.5) and +(267:2) .. (\x) .. controls +(-87:2) and +(180:.5) .. ($(\x)- (-.9,1.9)$);
+			}
+			
+			
+			
+			\foreach \x in {p,p1,p2,p3}{
+				\draw ($(\x)- (.9,2.5)$) .. controls +(20:.6) and +(160:.6) .. ++ (1.8,0);
+			}
+			
+			\foreach \x in {p3,p4}{
+				\draw ($(\x)- (.9,2.35)$) .. controls +(20:.6) and +(270:2.5) .. (\x) .. controls +(-90:2.5) and +(160:0.6) .. ($(\x)- (-.9,2.35)$);
+			}
+			
+			\foreach \x in {p,p1,p2,p3,p4}{
+				\draw[thick] (\x) arc (-90:0:1);
+				\draw[thick] (\x) arc (-90:-180:1);
+				\draw[densely dotted,thick] (\x) -- ($(\x)- (0,3)$) node[left]{$a$};
+				\draw[bpoint] (\x) circle[radius=.05] node[above]{$p$};
+			}
+			
+			\draw[->] (1.5,0) -- (10.5,0);
+		\end{tikzpicture}
+		\caption{Retraction of $\mathcal{A}(S,\Delta)$ in the case of $3$ germs of arcs crossing $a$.}\label{fig:retrac}
+	\end{figure}
 \end{proof}
 
 To state the next theorem -- which is the most intricate one -- we need to define \emph{pure} and \emph{impure edges}:
