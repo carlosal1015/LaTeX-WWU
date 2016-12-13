@@ -286,7 +286,7 @@ To prove this theorem we will need the following lemma:
 			}		
 			
 			\foreach \x in {p,p1,p2}{
-				\draw ($(\x)- (.9,2.2)$) -- ++ (1.8,0);
+				\draw ($(\x)- (.9,2.1)$) -- ++ (1.8,0);
 			}
 			\foreach \x in {p2,p3,p4}{
 				\draw ($(\x)- (.9,1.9)$) .. controls +(0:.5) and +(267:2) .. (\x) .. controls +(-87:2) and +(180:.5) .. ($(\x)- (-.9,1.9)$);
@@ -305,18 +305,21 @@ To prove this theorem we will need the following lemma:
 				\draw[densely dotted,thick] (\x) -- ($(\x)- (0,3)$) node[left]{$a$};
 				\draw[bpoint] (\x) circle[radius=.05] node[above]{$p$};
 			}
-			\draw[->] (1.5,0) -- ++ (9,0);
+			\draw[->] (1.5,.2) -- ++ (9,0);
+			\node at (3,-.2){$r_1$};
+			\node at (6,-.2){$r_2$};
+			\node at (9,-.2){$r_3$};
 		\end{tikzpicture}
 		\caption{Retraction of $\mathcal{A}(S,\Delta)$ in the case of $3$ germs of arcs crossing $a$.}\label{fig:retrac}
 	\end{figure}
 \end{proof}
 
 To state the next theorem -- which is the most intricate one -- we need to define \emph{pure} and \emph{impure edges}:
-The two disjoint sets $\Delta_0, \Delta_1$ define a decomposition of $\partial S$ into vertices (the set $\Delta_0 \cup \Delta_1$), edges and circles without vertices.\todo{draw a picture}
+The two disjoint sets $\Delta_0, \Delta_1$ define a decomposition of $\partial S$ into vertices (the set $\Delta_0 \cup \Delta_1$), edges and circles without vertices.
 \begin{itemize}
 	\item An edge is called \emph{pure} if both of its endpoints lie in either $\Delta_0$ or $\Delta_1$; it is called \emph{impure} otherwise.
 	The number of impure edges is always even (easy induction argument).
-	\item A boundary component of $S$ containing points of $\Delta_0 \cup \Delta_1$ is called \emph{pure}, if it is composed of pure edges, i.e. the point are either all in $\Delta_0$ or all in $\Delta_1$.
+	\item A boundary component of $S$ containing points of $\Delta_0 \cup \Delta_1$ is called \emph{pure}, if it is composed of pure edges, i.e. the points are either all in $\Delta_0$ or all in $\Delta_1$.
 \end{itemize}
 
 
@@ -339,7 +342,8 @@ To prove this one uses the same technique as in the proof of \autoref{thm:connec
 	If $S$ has at least one pure edge between a pure and an impure one in a boundary component of $S$, then $\mathcal{B}(S,\Delta_0,\Delta_1)$ is contractible.
 \end{lemma}
 
-One proceeds analogous to the proof auf \autoref{lem:d_dplus1}, by providing a contraction form the complex $\mathcal{B}(S,\Delta_0,\Delta_1)$ to the contractible complex $\Star{I'}$.
+One proceeds analogous to the proof of \autoref{lem:d_dplus1}, by providing a contraction form the complex $X=\mathcal{B}(S,\Delta_0,\Delta_1)$ to the contractible complex $\Star(I')$.
+The arc $I$ does not exists in this case, so a decomposition is not needed.
 
 \begin{lemma}[label=lem:46]
 	If the complex is non-empty, adding a pure edge between two impure edges increases the connectivity of $\mathcal{B}(S,\Delta_0,\Delta_1)$ by one.
@@ -352,6 +356,7 @@ This can be proven precisely as in \autoref{lem:d_dplus1}, while the proof of th
 \end{lemma}
 
 After eliminating a few cases via \cref{lem:44,lem:45,lem:46} and establishing a stepping stone by proving \cref{lem:47} the general argument to get the connectivity of $\mathcal{B}(S,\Delta_0,\Delta_1)$ is an induction over the lexicographically ordered set of triples $(g,r,q)$.
+\autoref{thm:connec_full} is used several times an not only with $\Delta=\Delta_0 \cup \Delta_1$.
 
 \begin{theorem}[label=thm:48]
 	If $\Delta_0, \Delta_1$ are two disjoint non-empty sets of points in $\partial S$, then the complex $\mathcal{B}_0(S,\Delta_0,\Delta_1)$ is $(2g+r'-3)$-connected, for $g$ and $r'$ as above.
@@ -415,7 +420,7 @@ We will use the following facts about PL triangulations:
 		(We already used this in the first talk on homological stability; see \textcite[Prop.2.2]{wahlHomological}).
 		\item If $b_0,b_1$ are in the same boundary component, we need the \enquote{badness}:
 		Since $\sigma$ is bad, there are two arcs $a_i, a_j$ of $\sigma$ which are ordered clockwise at both $b_0$ and $b_1$.
-		Cutting along both arcs leaves us with a surface which has the same number of boundary components as before.\todo{draw a picture?}
+		Cutting along both arcs leaves us with a surface which has the same number of boundary components as before (this can be seen by forgetting about the upmost arc in \cref{fig:purely-bad}).
 		By the Euler characteristic $S \setminus (a_i \cup a_j)$ has genus $g-1$.
 		The remaining $p-1$ arcs of $\sigma$ can each reduce the genus by at most one.
 	\end{itemize}
