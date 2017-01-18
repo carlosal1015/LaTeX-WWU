@@ -61,7 +61,7 @@
 	Man kann Metriken auch anderweitig definieren:
 	\begin{enumerate}[(i)]
 		\item Auf der \Index{1-Sphäre} \(
-			S^1 := \set*{z \in \mathbb{C} \given \abs*{z} = 1} 
+			S^1 \coloneqq \set*{z \in \mathbb{C} \given \abs*{z} = 1} 
 		\)
 		wird durch $d(z,z') \coloneqq \min \set*{\abs*{\theta} \given \theta \in \mathbb{R} : z = e^{i \theta} \cdot z'} $ eine Metrik definiert.
 		\item Ist $X$ ein metrischer Raum und $A$ eine Teilmenge von $X$, so wird $A$ durch die Einschränkung der Metrik auf $A$ zu einem metrischen Raum. 
@@ -78,7 +78,7 @@
 		Jedes $x \neq 0 \in \mathbb{Q}$ lässt sich eindeutig schreiben als $x = \frac{a}{b} p^n$ mit $n,a,b \in \mathbb{Z}, b \neq 0$ und $a,b,p$ paarweise teilerfremd. 
 		Dann heißt
 		\[
-			\abs*{x}_p := p^{-n} 
+			\abs*{x}_p \coloneqq p^{-n} 
 		\]
 		der \bet{$p$-adische Betrag}\index{p-adischer Betrag@$p$-adischer Betrag} von $x$. 
 		Setzt man $\abs*{0}_p \coloneqq 0 $, so erhält man durch $d_p(x,y) \coloneqq \abs*{x-y}_p $ die $p$-adische Metrik auf $\mathbb{Q}$. 
@@ -195,6 +195,102 @@
 	\end{enumerate}
 	Man sagt $X$ erfüllt das \bet{zweite Abzählbarkeitsaxiom}\index{zweites Abzählbarkeitsaxiom}, falls $X$ eine abzählbare Basis der Topologie besitzt.
 \end{definition}
+
+\begin{beispiel}[{name=[Basis der Topologie eines metrischen Raumes]}]
+	Sei $X$ ein metrischer Raum. 
+	Dann ist $\set*{B_\delta (x) \given x \in X, \delta > 0}$ eine Basis der Topologie von $X$ nach \cref{def:offen-metrisch}. 
+	Gibt es eine abzählbare dichte Teilmenge $X_0\subseteq X$, so ist 
+	\[
+		\set*{B_{1/n}(x) \given x \in X_0, n \in \mathbb{N}}
+	\]
+	eine abzählbare Basis der Topologie von $X$ und $X$ erfüllt das zweite Abzählbarkeitsaxiom.
+\end{beispiel}
+
+\begin{proposition}[label=prop:basis-topo]
+	Sei $X$ eine Menge und $\mathcal{U} $ eine Familie von Teilmengen von $X$ mit $X = \bigcup_{U \in \mathcal{U} } U$. 
+	Dann ist $\mathcal{U}$ genau dann die Basis einer Topologie $\mathcal{O}$ auf $X$, wenn $\mathcal{U}$ folgende Bedingungen erfüllt:
+	\begin{equation}
+		\forall U,V \in \mathcal{U} : \forall x \in U \cap V : \exists W \in \mathcal{U}  \text{ mit } x \in W \subseteq U \cap V \label{eq:prop-basis} \tag{\#}
+	\end{equation}
+\end{proposition}
+\begin{beweis}
+	Sei $\mathcal{U} $ die Basis der Topologie $\mathcal{O} $ und $U,V \in \mathcal{U} $. $\Rightarrow U,V$ offen, also ist auch $U \cap V$ offen. 
+	Da $\mathcal{U} $ eine Basis der Topologie ist, gibt es zu jedem $x \in U \cap V$ ein $W \in \mathcal{U} $ mit $x \in W \subseteq U \cap V$. Daher gilt \eqref{eq:prop-basis}. 
+	
+	Sei umgekehrt \eqref{eq:prop-basis} erfüllt. Definiere $\mathcal{O} $ durch
+	\[
+		W \in \mathcal{O} :\Longleftrightarrow \forall x \in W : \exists U \in \mathcal{U} : x \in U \subseteq W.  
+	\]
+	Dann ist $\emptyset \in \mathcal{O}$. 
+	Wegen $X = \bigcup_{U \in \mathcal{U}} U$ gilt auch $X \in \mathcal{O}$. 
+	Weiter ist $\mathcal{O}$ unter Vereinigungen abgeschlossen.
+	Seien $W_1, W_2 \in \mathcal{O}$ und $x \in W_1 \cap W_2$. Dann gilt
+	\begin{align*}
+		x \in W_1, W_1 \text{ offen } &\implies  \exists U_1 \in \mathcal{U} : x \in U_1 \subseteq W_1 \\
+		x \in W_2, W_2 \text{ offen } &\implies \exists U_2 \in \mathcal{U} : x \in U_2 \subseteq W_2 
+	\end{align*}
+	Also $x \in U_1 \cap U_2$. Mit \eqref{eq:prop-basis} folgt: $\exists W \in \mathcal{U} $ mit $x \in W \subseteq U_1 \cap U_2 \subseteq W_1 \cap W_2$.
+\end{beweis}
+
+\begin{bemerkung}
+	Die Topologie $\mathcal{O}$ in \cref{prop:basis-topo} wird eindeutig durch $\mathcal{U}$ bestimmt.
+\end{bemerkung}
+
+\begin{beispiel}
+	\begin{itemize}
+		\item Sei $\mathbb{R}^\mathbb{N}$ der $\mathbb{R}$-Vektorraum aller reellen Folgen. 
+		Für $\delta >0$, $n \in \mathbb{N} $, $\alpha_1, \ldots , \alpha_n \in \mathbb{R}$ sei
+		\[
+			U_{n, \delta , \alpha_1, \ldots , \alpha_n} \coloneqq \set[\big]{(x_i)_{i \in \mathbb{N}} \given \abs*{x_i - \alpha_i} < \delta \text{ für } i=1, \ldots ,n } 
+		\]
+		Dann erfüllt $\mathcal{U} \coloneqq \set*{U_{n, \delta , \alpha_1, \ldots , \alpha_n} \given n \in \mathbb{N}, \alpha_i \in \mathbb{R}, \delta >0}$ die Bedingung \eqref{eq:prop-basis} und ist die Basis der \Index{Topologie der punktweisen Konvergenz}.
+		\item Sei $C(\mathbb{R},\mathbb{R})$ der $\mathbb{R}$-Vektorraum aller stetigen Abbildungen. 
+		Zu $[a,b] \subset \mathbb{R}$, $\delta >0$, $g \colon [a,b] \to \mathbb{R}$ stetig sei
+		\[
+			U_{a,b, \delta , g} \coloneqq \set*{f \colon \mathbb{R} \to \mathbb{R} \text{ stetig} \given \forall t \in [a,b] : \abs[\big]{f(t)- g(t)}< \delta}. 
+		\]
+		Dann erfüllt $\mathcal{U} \coloneqq \set*{U_{a,b,\delta ,g}}$ die Bedingung \eqref{eq:prop-basis} und ist die Basis der \Index{Topologie der gleichmäßigen Konvergenz} auf kompakten Intervallen.
+	\end{itemize}
+\end{beispiel}
+
+\begin{definition}
+	Sei $Y$ eine Teilmenge eines topologischen Raums $X$.
+	\begin{align*}
+		\mathring Y &:= \set*{y \in Y \given  \exists U \subseteq X \text{ offen mit } y \in U \subseteq Y} \text{ heißt das \Index{Innere} von $Y$.} \\ 
+		\overline{Y} &:= \set*{x \in X \given \forall U \subseteq X \text{ offen mit } x \in U : U \cap Y \not= \emptyset}    \text{ heißt \Index{Abschluss} von $Y$.} \\
+		\partial Y &:= \overline{Y} \setminus \mathring Y \text{ heißt der \Index{Rand} von $Y$.} 
+	\end{align*}
+\end{definition}
+
+\begin{bemerkung}
+	Es gil
+	\begin{enumerate}[1)]
+		\item $\mathring Y = X \setminus (\overline{X \setminus Y} )$, $\overline{Y} = X \setminus (X \setminus Y)^\circ$.
+		\item $\mathring Y = \bigcup_{\substack{U \subseteq Y \\ U \text{ offen}}} U$ ist offen.
+		\item $\overline{Y} = \bigcap_{Y \subseteq A, A \text{ abg.}} A$ ist abgeschlossen.
+		\item $\partial Y = \overline{Y} \setminus \mathring Y $ ist abgeschlossen.
+	\end{enumerate}
+\end{bemerkung}
+
+\begin{definition}[{name=[Umgebung]}]
+	Sei $X$ ein topologischer Raum und $x \in X$. 
+	$V \subseteq X$ heißt eine \Index{Umgebung} von $x$, falls es $U \subseteq X$ offen gibt mit $x \in U \subseteq V$. 
+	Ist $V$ offen, so heißt $V$ eine \bet{offene Umgebung}\index{Umgebung!offene Umgebung} von $x$.
+\end{definition}
+
+\begin{definition}[{name=[Hausdorffraum]}]
+	Ein topologischer Raum $X$ heißt \Index{hausdorffsch} (oder ein \Index{Hausdorffraum}), falls es zu jedem Paar $x,y \in X, x \neq y$ offene Umgebungen $U$ von $x$ und $V$ von $y$ gibt mit $U \cap V = \emptyset$.
+\end{definition}
+
+Metrische Räume sind stets hausdorffsch.
+Ist $\abs*{X} \ge 2 $ so ist $(X, \mathcal{O}_{\text{grob}})$ nicht hausdorffsch.
+
+\begin{definition}[{name=[topologische Mannigfaltigkeit]}]
+	Ein Hausdorffraum $M$, der das zweite Abzählbarkeitsaxiom erfüllt, heißt eine \Index{topologische Mannigfaltigkeit} der Dimension $n$ (oder eine $n$-Mannigfaltigkeit), falls er lokal homöomorph zum $\mathbb{R}^n$ ist; d.h. $\forall x \in M$ existiert eine offene Umgebung $U$ von $x$ mit $U \cong \mathbb{R}^n$.
+\end{definition}
+
+
+
 
 
 
