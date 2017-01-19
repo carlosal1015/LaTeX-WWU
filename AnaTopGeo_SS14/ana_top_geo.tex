@@ -10,6 +10,8 @@
 \publishers{\scalebox{11}{\Huge$\pi_1$}}
 \input{../!config/mitschrift_headings.tex}
 
+\setlist{itemsep=1pt}
+
 \begin{document}
 \pagenumbering{Roman}
 \maketitle
@@ -131,7 +133,7 @@
 	$A \subseteq X$ heißt \Index{abgeschlossen}, falls $X \setminus A$ offen ist.
 \end{definition}
 
-\begin{beispiel}
+\begin{beispiel}[{name=[topologische Räume]}]
 	\begin{enumerate}[(i)]
 		\item Jeder metrische Raum wird durch 
 		\[
@@ -139,7 +141,7 @@
 		\]
 		zu einem topologischen Raum.
 		\item Sei $X$ eine beliebige Menge.
-		\begin{enumerate}[(i)]
+		\begin{enumerate}[(a)]
 			\item Die \bet{grobe Topologie}\index{Topologie!grobe} ist $\mathcal{O}_{\text{grob}} \coloneqq \set{\emptyset, X}$.
 			\item Die \bet{diskrete Topologie}\index{Topologie!diskrete} ist $\mathcal{O}_{\text{diskret}} \coloneqq \mathcal{P}(X)$.
 			\item Die \bet{koendliche Topologie}\index{Topologie!koendliche}  ist 
@@ -206,7 +208,7 @@
 	eine abzählbare Basis der Topologie von $X$ und $X$ erfüllt das zweite Abzählbarkeitsaxiom.
 \end{beispiel}
 
-\begin{proposition}[label=prop:basis-topo]
+\begin{proposition}[label=prop:basis-topo,{name=[Charakterisierung einer Basis der Topologie]}]
 	Sei $X$ eine Menge und $\mathcal{U} $ eine Familie von Teilmengen von $X$ mit $X = \bigcup_{U \in \mathcal{U} } U$. 
 	Dann ist $\mathcal{U}$ genau dann die Basis einer Topologie $\mathcal{O}$ auf $X$, wenn $\mathcal{U}$ folgende Bedingungen erfüllt:
 	\begin{equation}
@@ -232,14 +234,14 @@
 	Also $x \in U_1 \cap U_2$. Mit \eqref{eq:prop-basis} folgt: $\exists W \in \mathcal{U} $ mit $x \in W \subseteq U_1 \cap U_2 \subseteq W_1 \cap W_2$.
 \end{beweis}
 
-\begin{bemerkung}
+\begin{bemerkung}[{name=[Eindeutigkeit der Topologie aus \cref{prop:basis-topo}]}]
 	Die Topologie $\mathcal{O}$ in \cref{prop:basis-topo} wird eindeutig durch $\mathcal{U}$ bestimmt.
 \end{bemerkung}
 
-\begin{beispiel}
+\begin{beispiel}[{name=[Topologien definiert durch Basen]}]
 	\begin{itemize}
 		\item Sei $\mathbb{R}^\mathbb{N}$ der $\mathbb{R}$-Vektorraum aller reellen Folgen. 
-		Für $\delta >0$, $n \in \mathbb{N} $, $\alpha_1, \ldots , \alpha_n \in \mathbb{R}$ sei
+		Für eine Konstante $\delta >0$, eine Zahl $n \in \mathbb{N}$ und Punkte $\alpha_1, \ldots , \alpha_n \in \mathbb{R}$ sei
 		\[
 			U_{n, \delta , \alpha_1, \ldots , \alpha_n} \coloneqq \set[\big]{(x_i)_{i \in \mathbb{N}} \given \abs*{x_i - \alpha_i} < \delta \text{ für } i=1, \ldots ,n } 
 		\]
@@ -253,7 +255,7 @@
 	\end{itemize}
 \end{beispiel}
 
-\begin{definition}
+\begin{definition}[{name=[{Inneres, Abschluss und Rand einer Teilmenge}]}]
 	Sei $Y$ eine Teilmenge eines topologischen Raums $X$.
 	\begin{align*}
 		\mathring Y &:= \set*{y \in Y \given  \exists U \subseteq X \text{ offen mit } y \in U \subseteq Y} \text{ heißt das \Index{Innere} von $Y$.} \\ 
@@ -262,8 +264,8 @@
 	\end{align*}
 \end{definition}
 
-\begin{bemerkung}
-	Es gil
+\begin{bemerkung}[{name=[{Eigenschaften von Innerem, Abschluss und Rand}]}]
+	Es gilt
 	\begin{enumerate}[1)]
 		\item $\mathring Y = X \setminus (\overline{X \setminus Y} )$, $\overline{Y} = X \setminus (X \setminus Y)^\circ$.
 		\item $\mathring Y = \bigcup_{\substack{U \subseteq Y \\ U \text{ offen}}} U$ ist offen.
@@ -288,15 +290,200 @@ Ist $\abs*{X} \ge 2 $ so ist $(X, \mathcal{O}_{\text{grob}})$ nicht hausdorffsch
 \begin{definition}[{name=[topologische Mannigfaltigkeit]}]
 	Ein Hausdorffraum $M$, der das zweite Abzählbarkeitsaxiom erfüllt, heißt eine \Index{topologische Mannigfaltigkeit} der Dimension $n$ (oder eine $n$-Mannigfaltigkeit), falls er lokal homöomorph zum $\mathbb{R}^n$ ist; d.h. $\forall x \in M$ existiert eine offene Umgebung $U$ von $x$ mit $U \cong \mathbb{R}^n$.
 \end{definition}
-
-
-
-
-
-
-
-
 % section topologische_raume (end)
+
+\newpage
+
+\section{Konstruktion topologischer Räume} % (fold)
+\label{sec:konst_topo}
+
+\begin{definition}[{name=[Teilraumtopologie]}]
+	Sei $X$ ein topologischer Raum und $A \subseteq X$.\marginnote{\emph{Achtung:} $U \subseteq A$ offen $\centernot\implies U \subseteq X$ offen!}
+	Die \Index{Spurtopologie}, \Index{Teilraumtopologie} oder \Index{Unterraumtopologie} auf $A$ besteht aus allen Teilmengen von $A$ der Form $A \cap U$ mit $U \subseteq X$ offen. 
+	Mit dieser Topologie heißt $A$ ein \Index{Unterraum} von $X$.
+\end{definition}
+
+\begin{bemerkung}[{name=[Eigenschaften der Inklusion]}]
+	Sei $i \colon A \hookrightarrow X$ die Inklusion.
+	Dann ist $i$ stetig und falls $Y$ ein weiterer topologischer Raum ist und $f \colon Y \to A$ eine Abbildung, so gilt
+	\[
+		f \text{ stetig} \iff i \circ  f \colon Y \to X \text{ stetig}
+	\]
+\end{bemerkung}
+
+\begin{definition}[{name=[Produkttopologie]}]
+	Seien $X,Y$ topologische Räume. 
+	Eine Basis für die \Index{Produkttopologie} auf $X \times Y$ ist 
+	\[
+		\mathcal{U} \coloneqq \set[\big]{U \times V \given U \subseteq X \text{ offen }, V \subseteq Y \text{ offen}}. 
+	\]
+\end{definition}
+
+Dies können wir auf das Produkt beliebig vieler topologischer Räume verallgemeinern:
+
+\begin{definition}[{name=[Produkttopologie]}]
+	Seien $X_i$ für $i \in I$ topologische Räume. Die \Index{Produkttopologie} auf ihrem Produkt 
+	\[
+		\prod_{i \in I} X_i = \set[\big]{(x_i)_{i \in I} \given x_i \in X_i} 
+	\]
+	hat als Basis alle Mengen der Form $\prod_{i \in I} U_i$ mit
+	\begin{enumerate}[(i)]
+		\item $U_i \subseteq X_i$ ist offen
+		\item Für fast alle $i$ ist $U_i = X_i$ (also für alle bis auf endlich viele $i$).
+	\end{enumerate}
+\end{definition}
+
+\begin{bemerkung}[{name=[universelle Eigenschaft der Produkttopologie]}]
+	Seien $p_j \colon \prod_{i \in I} X_i \to X_j$ die Projektionen auf die einzelnen Koordinaten. 
+	Dann sind die $p_j$ alle stetig und die folgende universelle Eigenschaft ist erfüllt:
+	
+	Ist $Y$ ein weiterer topologischer Raum und $f \colon Y \to \prod_{i \in I} X_i$ eine Abbildung, so gilt:
+	\[
+		f \text{ stetig} \iff \forall j : f_j \coloneqq  p_j \circ f \text{ stetig} 
+	\]
+\end{bemerkung}
+
+\begin{bemerkung}[{name=[Topologie des euklidischen Raumes]}]
+	Die übliche Topologie auf $\mathbb{R}^n = \prod_{i =1}^n \mathbb{R}$ stimmt mit der eben definierten Produkttopologie überein.
+\end{bemerkung}
+
+\begin{beispiel}[{name=[Torus]}]
+	Mit Produkten lassen sich viele interessante topologische Räumen \enquote{bauen}; setze zum Beispiel
+	\[
+		T^n \coloneqq \underbrace{S^1 \times \ldots \times S^1}_{n} = \prod_{i=1}^n S^1
+	\]
+	$T^n$ heißt der \bet{$n$-Torus}\index{Torus}. Der $n$-Torus ist eine (glatte) $n$-Mannigfaltigkeit.
+	\tikzsetnextfilename{Torus}
+	\begin{figure}[hbt]
+		\centering{\begin{tikzpicture}[xscale=0.9, yscale=0.6]
+		    \begin{axis}[hide axis, view={40}{50}]
+		       \addplot3[surf,
+		       colormap/cool,
+		       samples=60,
+		       domain=0:2*pi,y domain=0:2*pi,
+		       z buffer=sort,
+			   shader=faceted,]
+		       ({(2+cos(deg(x)))*cos(deg(y+pi/2))}, 
+		        {(2+cos(deg(x)))*sin(deg(y+pi/2))}, 
+		        {sin(deg(x))});
+		    \end{axis}
+		\end{tikzpicture}
+		\caption[Der Torus $T^2$]{Der Torus $T^2$, \hrefsym{http://tex.stackexchange.com/questions/348/how-to-draw-a-torus}{Quelle}}}
+	\end{figure}
+\end{beispiel}
+
+\begin{definition}[{name=[Homotopie]}]
+	Seien $X$ und $Y$ topologische Räume und $(f_t)_{t \in [0,1]}$ eine Familie von stetigen Abbildungen $f_t \colon X \to Y$. 
+	Wir sagen, dass die $f_t$ stetig von $t$ abhängen, falls 
+	\[
+		H \colon X \times [0,1] \longrightarrow Y \text{ mit } H(x,t) = f_t(x)
+	\]
+	stetig bezüglich der Produkttopologie ist. 
+	In diesem Fall heißen $f_0$ und $f_1$ \Index{homotop} und $H$ eine \Index{Homotopie} zwischen $f_0$ und $f_1$.
+\end{definition}
+
+Beispielsweise sind je zwei Abbildungen $f,g \colon X \to \mathbb{R}^n$ homotop; eine Homotopie wird gegeben durch $H(x,t) \coloneqq (1-t)\cdot f(x) + t \cdot g(x)$. 
+Wir werden später sehen, dass die Identität $\id \colon S^1 \to S^1$ nicht homotop zu einer konstanten Abbildung ist.
+
+\begin{definition}[{name=[Quotiententopologie]}]
+	Sei $X$ ein topologischer Raum, $M$ eine Menge und $q \colon X \to M$ eine surjektive Abbildung. 
+	Die offenen Mengen der \Index{Quotiententopologie} auf $M$ (bezüglich $q$) sind alle $U \subseteq M$ für die $q^{-1} (U ) \subseteq X$ offen ist.
+\end{definition}
+
+Die Quotiententopologie ist gerade so definiert, dass $q \colon X \to M$ stetig ist.
+Außerdem ist wieder eine universelle Eigenschaft erfüllt, nämlich die folgende:
+
+Ist $Y$ ein weiterer topologischer Raum und $f : M \to Y$ eine Abbildung, so gilt 
+\[
+	f \text{ stetig} \iff f \circ q \text{ stetig}
+\]
+Die Quotiententopologie wird oft wie folgt eingesetzt:
+Sei $\sim$ eine Äquivalenzrelation auf dem topologischen Raum $X$. 
+Dann ist die Äquivalenzklassenabbildung $q \colon X \to \sfrac{X}{\sim}$, $x \mapsto [x]_\sim$ surjektiv.
+Insbesondere wird $\sfrac{X}{\sim}$ durch die Quotiententopologie zu einem topologischen Raum.
+
+\begin{beispiel}[{name=[Räume konstruiert als Quotienten]}]
+	Betrachte $X = [0,1] \times [0,1]$.
+	\begin{enumerate}[(i)]
+		\item Definiere $(s,t) \sim (s', t') :\Leftrightarrow (s=s' \text{ und } t=t')$ oder $(s=0, s'=1, t=t')$.
+		Dann erhalten wir einen Zylinder
+		\[
+			\sfrac{X}{\sim} \cong \enspace
+			\vcenter{\hbox{\begin{tikzpicture}[yscale=0.2,xscale=0.3]
+			\draw (-2,6) -- (-2,0) arc (180:360:2cm and 0.5cm) -- (2,6) ++ (-2,0) circle (2cm and 0.5cm);
+			\draw[densely dashed] (-2,0) arc (180:0:2cm and 0.5cm);
+			\end{tikzpicture}}} \enspace
+			 \cong \enspace \vcenter{\hbox{\begin{tikzpicture}[scale=0.7]
+			 	\draw (0,0) circle[radius=0.9];
+				\draw (0,0) circle[radius=1.3];
+				\draw (0,0.9) -- (0,1.3);
+			 \end{tikzpicture}}}
+		\]
+		Anschaulich haben wir zwei gegenüberliegende Seiten \enquote{zusammengeklebt}.
+		\item Definieren wird stattdessen $(s,t) \sim (s',t') :\Leftrightarrow (s=s' \text{ und }t=t')$ oder $(s=0, s'=1 \text{ und } t=1-t')$. Dann erhalten wir das Möbiusband, siehe \cref{fig:moebius}.
+		Hier haben wir anschaulich gesprochen $X$ verdreht und dann zusammengeklebt.
+		\begin{figure}[hbt]
+			\centering
+			\tikzsetnextfilename{Möbiusband}
+			\begin{tikzpicture}[yscale=0.5, xscale=0.9]
+				\begin{axis}[
+				    hide axis,
+				    view={40}{40}
+				]
+				\addplot3 [
+				    surf, shader=faceted interp,
+				    point meta=x,
+				    colormap/greenyellow,
+				    samples=80,
+				    samples y=5,
+				    z buffer=sort,
+				    domain=0:360,
+				    y domain=-0.5:0.5
+				] (
+				    {(1+0.5*y*cos(x/2)))*cos(x)},
+				    {(1+0.5*y*cos(x/2)))*sin(x)},
+				    {0.5*y*sin(x/2)});
+
+				\addplot3 [
+				    samples=70,
+				    domain=-145:180,
+				    samples y=0,
+				    thick
+				] (
+				    {cos(x)},
+				    {sin(x)},
+				    {0});
+				\end{axis}
+			\end{tikzpicture}
+			\caption[Möbius-Band]{Möbius-Band, \hrefsym{http://tex.stackexchange.com/questions/118563/moebius-strip-using-tikz}{Quelle}}\label{fig:moebius}
+		\end{figure}
+		\item Sei $\mathbb{R}P^n$ die Menge aller $1$-dimensionalen Unterräume des $\mathbb{R}^{n+1}$. 
+		Wir erhalten eine surjektive Abbildung 
+		\[
+			q \colon \mathbb{R}^{n+1}\setminus \set{0} \to \mathbb{R}P^n \enspace,  \quad  q(v) \coloneqq \langle v\rangle
+		\]
+		$\mathbb{R}P^n$ mit der Quotiententopologie bezüglich $q$ heißt der \Index{reell projektive Raum} der Dimension $n$. Er ist eine $n$-Mannigfaltigkeit.\todo{Kap 15 referenzieren}
+		% \hfill (siehe auch \hyperref[154:enum:3]{\ref*{sub:154} (\ref*{154:enum:3})})
+		\item Betrachte auf $\mathbb{R}$ die Relation $x \sim y :\Leftrightarrow x-y \in \mathbb{Q}$. 
+		Den Raum der Äquivalenzklassen bezeichnen wir mit $\sfrac{\mathbb{R}}{\mathbb{Q}}$. 
+		Dann ist $\sfrac{\mathbb{R}}{\mathbb{Q}}$ mit der Quotiententopologie nicht hausdorffsch, obwohl $\mathbb{R}$ selbstverständlich hausdorffsch ist.
+		
+		\emph{Übung:} Die Quotiententopologie auf $\nicefrac{\mathbb{R}}{\mathbb{Q}}$ ist die grobe Topologie.
+		\item\label{210:enum:5} Sei $f \colon X \to X$ eine stetige Abbildung. 
+		Betrachte auf $X \times [0,1]$ die Äquivalenzrelation 
+		\[
+			(x,t) \sim (x',t') : \Longleftrightarrow (x=x' \text{ und } t=t') \text{ oder } (t=0, t'=1 \text{ und } x'= f(x))
+		\] 
+		Der Quotient $T_f \coloneqq \sfrac{X \times [0,1]}{\sim}$ heißt der \Index{Abbildungstorus} von $f$. 
+	
+		Beispiel: Betrachte $f \colon [{-1,1}] \to [{-1,1}]$ gegeben durch $f(x)=-x$. 
+		Dann ist $T_f$ das Möbiusband von eben.
+	\end{enumerate}
+\end{beispiel}
+
+
+
+% section konst_topo (end)
 
 
 \cleardoubleoddemptypage
