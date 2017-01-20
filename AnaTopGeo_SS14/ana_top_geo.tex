@@ -238,7 +238,7 @@
 	Die Topologie $\mathcal{O}$ in \cref{prop:basis-topo} wird eindeutig durch $\mathcal{U}$ bestimmt.
 \end{bemerkung}
 
-\begin{beispiel}[{name=[Topologien definiert durch Basen]}]
+\begin{beispiel}[{name=[Topologien definiert durch Basen]},label=bsp:pktw-konv]
 	\begin{itemize}
 		\item Sei $\mathbb{R}^\mathbb{N}$ der $\mathbb{R}$-Vektorraum aller reellen Folgen. 
 		Für eine Konstante $\delta >0$, eine Zahl $n \in \mathbb{N}$ und Punkte $\alpha_1, \ldots , \alpha_n \in \mathbb{R}$ sei
@@ -480,10 +480,95 @@ Insbesondere wird $\sfrac{X}{\sim}$ durch die Quotiententopologie zu einem topol
 		Dann ist $T_f$ das Möbiusband von eben.
 	\end{enumerate}
 \end{beispiel}
-
-
-
 % section konst_topo (end)
+
+\newpage
+
+\section{Konvergenz} % (fold)
+\label{sec:konvergenz}
+
+\begin{definition}[{name=[Konvergenz und Grenzwerte]}]
+	Sei $X$ ein topologischer Raum und $(x_n)_{n \in \mathbb{N}}$ eine Folge in $X$. 
+	Dann sagen wir $(x_n)_{n \in \mathbb{N} }$ \bet{konvergiert} gegen $x \in X$, falls gilt:
+	\[
+		\text{Zu jeder offenen Umgebung $V$ von $x$, gibt es $N \in \mathbb{N}$, sodass $x_n \in V$ für alle $n \ge N$.}
+	\]
+	Wir schreiben dann $x_n \grenzw{} x$ oder $x_n \grenzwIn{n \to \infty} x$. 
+	Der Punkt $x$ heißt \Index{Grenzwert} von $(x_n)_{n \in \mathbb{N}}$.
+\end{definition}
+
+Wir stellen fest: Bezüglich der groben Topologie ist jeder Punkt Grenzwert jeder Folge.\marginnote{hier zeigt sich mal wieder, dass die grobe Topologie nicht besonders spannend ist}
+
+Betrachte die Topologie der gleichmäßigen Konvergenz auf kompakten Teilmengen (siehe \cref{bsp:pktw-konv}) auf dem Raum $C(\mathbb{R},\mathbb{R})$. 
+Dann gilt für Folgen $(f_n)_{n \in \mathbb{N} }$ von stetigen Abbildungen $f_n \in C(\mathbb{R},\mathbb{R})$
+\[
+	f_n \grenzw{} f \iff \forall a < b \text{ konvergiert } f_n|_{[a,b]} \grenzw{} f_{[a,b]} \text{ gleichmäßig.}
+\]
+
+\begin{lemma}[{name=[Eindeutigkeit von Grenzwerten]}]
+	Sei $X$ hausdorffsch. Gilt $x_n \grenzw{} x$ und $x_n \grenzw{} y$, so folgt $x=y$.
+\end{lemma}
+\begin{beweis}
+	\emph{Übung!}
+\end{beweis}
+
+\begin{definition}[{name=[gerichtete Menge]}]
+	Eine nichtleere Menge $\Lambda$ mit einer Relation $\le$ heißt \bet{gerichtet}\index{gerichtete Menge}, falls gilt 
+	\begin{enumerate}[(i)]
+		\item $\forall \lambda  \in \Lambda : \lambda  \le \lambda $
+		\item $\forall \lambda_1, \lambda_2, \lambda_3 \in \Lambda  : (\lambda_1 \le \lambda_2) \wedge (\lambda_2 \le \lambda_3) \implies \lambda_1 \le \lambda_3$
+		\hfill (transitiv)
+		\item $\forall \lambda_1, \lambda_2 \in \Lambda : \exists \mu : (\lambda_1 \le \mu) \wedge (\lambda_2 \le \mu)$
+	\end{enumerate}
+\end{definition}
+
+\begin{definition}[{name=[Konvergenz von Netzen]}]
+	Sei $X$ ein topologischer Raum. 
+	Ein \Index{Netz} $(x_\lambda)_{\lambda \in \Lambda }$ in $X$ besteht aus einer gerichteten Menge $\Lambda $ und Elementen $x_\lambda \in X$ für $\lambda \in \Lambda $. 
+	Für $x \in X$ sagen wir $(x_\lambda )_{\lambda \in \Lambda }$ \bet{konvergiert} gegen $x$, falls gilt:\index{Netz!Konvergenz}
+	\[
+		\forall \text{ Umgebungen } U \text{ von } x : \exists \lambda_0 \in \Lambda : \forall \lambda \in \Lambda \text{ mit } 
+		\lambda \ge \lambda_0 \text{ gilt } x_\lambda \in U
+	\]
+	Wir schreiben dann $x_\lambda \grenzwIn{\lambda  \to \infty} x$ oder $x_\lambda \grenzw{} x$.
+\end{definition}
+
+Es sei $X$ ein topologischer Raum und $x \in X$ ein Punkt.\marginnote{Dies ist die hauptsächliche Anwendung von Netzen!}
+Dann ist die Menge $\Lambda$ aller offenen Umgebungen von $x$ gerichtet bezüglich
+\[
+	U \le V :\Longleftrightarrow V \subseteq U
+\]
+Ist nun $x_U \in U$ für alle $U \in \Lambda $ so gilt $x_U \grenzw{} x$.
+
+\begin{lemma}[{name=[Eindeutigkeit von Grenzwerten]}]
+	Sei $X$ hausdorffsch. Gilt $x_\lambda \grenzw{} x$ und $x_\lambda \grenzw{} y$, so folgt $x=y$.
+\end{lemma}
+\begin{beweis}
+	Angenommen es gilt $x \neq y$. 
+	Da $X$ hausdorffsch ist, existiert dann eine Umgebung $U$ von $x$ und $V$ von $y$ mit $U \cap V = \emptyset$. 
+	Da $x_\lambda \grenzw{} x$ finden wir $\lambda_U$, sodass $x_\lambda \in u$ für alle $\lambda \ge \lambda_U$.
+	Genauso finden wir $\lambda_V$, sodass $x_\lambda \in V$ für alle $\lambda \ge \lambda_V$.
+	Sei nun $\mu \in \Lambda$ mit $\mu \ge \lambda_U$ und $\mu \ge \lambda_V$. 
+	Dann folgt $x_\mu \in U\cap V = \emptyset$. Widerspruch!
+\end{beweis}
+
+\begin{definition}[{name=[Teilnetz]}]
+	Sei $(x_\lambda)_{\lambda  \in \Lambda}$ ein Netz in $X$.\marginnote{Ein Teilnetz einer Folge ist \emph{nicht} notwendig eine Teilfolge!}
+	Ein \Index{Teilnetz} von $(x_{\lambda'} )_{\lambda'  \in \Lambda'}$ ist eine gerichtete Menge $\Lambda'$ mit einer
+	Abbildung $f \colon \Lambda' \to \Lambda$, so dass gilt
+	\begin{enumerate}[i)]
+		\item $\lambda'_1 \le \lambda'_2 \implies f(\lambda'_1) \le f(\lambda'_2)$ \hfill ($f$ erhält \enquote{$\le$})
+		\item $\forall \lambda \in \Lambda : \exists \lambda' \in \Lambda'$ mit $\lambda  \le f(\lambda' )$ \hfill ($f$ ist kofinal)
+		\item $x_{\lambda'} = x_{f(\lambda')}$ für alle $\lambda ' \in \Lambda'$
+	\end{enumerate}
+	Oft schreiben wir $\enbrace*{x_{f(\lambda')}}_{\lambda' \in \Lambda'}$ für ein Teilnetz.
+\end{definition}
+
+
+
+
+
+% section konvergenz (end)
 
 
 \cleardoubleoddemptypage
