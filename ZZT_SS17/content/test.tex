@@ -19,13 +19,42 @@ Was \enquote{geht}? \marginnote{Iiih!}
 	\item[eine] Beschreibung.
 \end{description}
 
-\begin{definition}[Definition von $\pi$]
-	Wir definieren:
+\begin{definition}[Fibonacci-Folge]
+	Wir definieren für $n \in \NN_0$:
 	\[
-		\pi := 4
+		F_n := \begin{cases}
+			0, & \text{falls } n = 0, \\
+			1, & \text{falls } n = 1, \\
+			F_{n-1} + F_{n-2}, & \text{sonst.}
+		\end{cases}
 	\]
 \end{definition}
 
+\begin{beispiel}
+	Für $n = 4$ ist
+	\[
+		F_4 = F_2 + F_3 = F_0 + F_1 + F_1 + F_2 = 0 + 1 + 1 + F_0 + F_1 = 2 + 0 + 1 = 3.
+	\]
+\end{beispiel}
+
+\begin{satz}[Satz von de Moivre-Binet]
+	Für $n \in \NN_0$ gilt:
+	\[
+		F_n = \frac{1}{\sqrt{5}} \benb{ \enb{\frac{1+\sqrt{5}}{2}}^n - \enb{\frac{1-\sqrt{5}}{2}}^n}
+	\]
+\end{satz}
+
+\begin{korollar}[Fibonacci-Folge und Goldener Schnitt]
+	Für $\Phi = \frac{1+\sqrt{5}}{2}$ gilt:
+	\begin{enumerate}[(i)]
+		\item \[
+			\lim\limits_{n \rightarrow \infty} \frac{F_{n+1}}{F_n} = \Phi.
+		\]
+		\item \[
+			\Phi = 1 + \cfrac{1}{1+ \cfrac{1}{1 + \cfrac{1}{1 + \cfrac{1}{1 + \cfrac{1}{1 + \cdots}}}}}
+		\]
+	\end{enumerate}
+\end{korollar}
 \lipsum
 
 \section{Alles gut bis hierhin.}

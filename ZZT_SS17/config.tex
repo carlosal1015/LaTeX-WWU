@@ -56,6 +56,9 @@
 % Farben
 % ===========================================================
 	\usepackage[usenames,x11names,final]{xcolor}
+	\definecolor{fbblau}{HTML}{3078AB}
+	\definecolor{mediumgray}{gray}{.65}
+	\definecolor{blackberry}{rgb}{0.53, 0.0, 0.25}
 % ===========================================================
 
 % Mathe-Pakete und -Einstellungen
@@ -73,6 +76,8 @@
 	\usepackage{tikz}
 	\usepackage{tikz-cd}					% kommutative Diagramme
 	\usetikzlibrary{arrows.meta}			% mehr Pfeile!
+	\usetikzlibrary{shadows}
+	\usetikzlibrary{calc}
 	\tikzset{>=Latex}						% Standard-Pfeilspitze
 % ===========================================================
 
@@ -214,6 +219,52 @@
 	\declaretheorem[name=Beispiel,sharenumber=definition,style=mainstyle]{beispiel}
 	
 	\declaretheorem[name=Beweis,numbered=no,style=beweise]{beweis}
+% ===========================================================
+
+% Rahmen
+% ===========================================================
+	\usepackage[tikz]{mdframed}
+	\newmdenv[linecolor=fbblau,frametitle=Titel]{testframe}
+	\surroundwithmdframed[%
+		hidealllines=true,
+		%linewidth=1.5pt,
+		%linecolor=fbblau,
+		roundcorner=8pt,
+		backgroundcolor=DarkSeaGreen1!50,
+		innertopmargin=-1em,
+		shadow=true,
+		shadowsize=8pt,
+		shadowcolor=black!30
+		]{definition}
+	\surroundwithmdframed[%
+		hidealllines=true,
+		linewidth=1.5pt,
+		linecolor=fbblau,
+		roundcorner=8pt,
+		backgroundcolor=SkyBlue1!30,
+		innertopmargin=-1em,
+		shadow=true,
+		shadowsize=8pt,
+		shadowcolor=black!30
+		]{satz}
+	\surroundwithmdframed[%
+		linewidth=1.5pt,
+		roundcorner=8pt,
+		linecolor=SeaGreen3,
+		innertopmargin=-1em,
+		%shadow=true,
+		%shadowsize=8pt,
+		%shadowcolor=black!30
+		]{beispiel}
+	\surroundwithmdframed[%
+		linewidth=1.5pt,
+		roundcorner=8pt,
+		linecolor=fbblau,
+		innertopmargin=-1em,
+		%shadow=true,
+		%shadowsize=8pt,
+		%shadowcolor=black!30
+		]{korollar}
 % ===========================================================
 
 % Sonstiges / für Testzwecke
