@@ -38,6 +38,7 @@ build_all:
       - Topo1_WS14/topologie_1.pdf
       - Topo2_WS15/topologie_2.pdf
       - WTGraph_SS16/WTG.pdf
+      - ZZT_SS17/ZZT_SS17.pdf
 
 # cache all auxilliary files to speed up compilation
 cache:
