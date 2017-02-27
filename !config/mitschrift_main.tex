@@ -48,6 +48,8 @@
 
 
 %-- Mathesymbole etc.
+\usepackage[T1]{fontenc}
+\renewcommand{\rmdefault}{zpltlf}
 \usepackage{mathtools} % beinhaltet amsmath
 \mathtoolsset{showonlyrefs, centercolon,showmanualtags}
 \newtagform{brackets}[\textbf]{[}{]}
@@ -99,8 +101,7 @@
 
 
 %-- Alles was mit Schrift und XeTeX zu tun hat
-\usepackage{palatino}
-\usepackage[euler-digits]{eulervm}
+\usepackage[euler-digits]{eulervm} % vor fontspec laden!
 \usepackage[no-math]{fontspec}
 \usepackage{polyglossia} % moderner babel-ersatz
 \setmainlanguage[spelling=new,babelshorthands=true]{german}
@@ -136,6 +137,7 @@
 \setmonofont{SourceCodePro}[Scale=0.9,UprightFont=*-Regular, BoldFont=*-Semibold, ItalicFont=*-Light]
 \usepackage{xltxtra}
 \usepackage{fontawesome}
+% \usepackage[euler-digits]{eulervm}
 \usepackage[final]{microtype}
 
 
@@ -239,6 +241,9 @@
 \newcommand{\Underbrace}[2]{{\underbrace{#1}_{#2}}}
 \newcommand{\Underbracket}[2]{{\underbracket[0.7pt][2pt]{#1}_{#2}}}
 \newcommand{\Overbracket}[2]{{\overbracket[0.7pt][2pt]{#1}^{#2}}}
+
+%-- Ersatz für \mathring
+\newcommand*\interior[1]{\overset{\smash{\raisebox{-0.18ex}{$\scriptstyle\circ$}}}{#1}}
 
 %-- Definitionen von weiteren Mathe-Befehlen
 \DeclareMathOperator{\re}{Re} % Realteil
