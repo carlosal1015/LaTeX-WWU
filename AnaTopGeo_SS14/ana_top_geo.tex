@@ -17,6 +17,11 @@
 \maketitle
 \begin{abstract}
 \input{../!config/vorwort.tex}
+
+\section*{Literatur}
+\begin{itemize}[itemsep=0pt]
+	\item \citetitle{Bred} \textcite{Bred}
+\end{itemize}
 \end{abstract}
 
 \tableofcontents
@@ -39,18 +44,18 @@
 \end{definition}
 
 \begin{definition}[{name=[Vektorraumnorm]}]
-	Sei $V$ ein $\mathbb{R}$-Vektorraum. 
+	Sei $V$ ein $\mathbb{R}$-Vektorraum.
 	Eine \Index{Norm} auf $V$ ist eine Abbildung $\norm{.} \colon V \to [0,\infty)$ mit den folgenden Eigenschaften:
 	\begin{enumerate}[(i)]
 		\item $\forall v \in V, \lambda  \in \mathbb{R} : \norm{\lambda  \cdot v} = \abs{\lambda}  \cdot \norm{v}$,
 		\item $\forall v,w \in V : \norm{v+w} \le \norm{v} + \norm{w}$ (Dreiecksungleichung)
 		\item $\forall v \in V : \norm{v} = 0 \iff v=0$
-	\end{enumerate} 
+	\end{enumerate}
 	Durch $d(v,w) \coloneqq \norm{v-w} $ erhalten wir eine Metrik auf $V$ wie man sich leicht klarmacht.
 \end{definition}
 
 \begin{beispiel}[{name=[Normen auf dem euklischen Raum]}]
-	Auf $\mathbb{R}^n$ gibt es verschiedene Normen und damit auch verschiedene Metriken: 
+	Auf $\mathbb{R}^n$ gibt es verschiedene Normen und damit auch verschiedene Metriken:
 	Für $x= (x_1, \ldots ,x_n) \in \mathbb{R}^n$ definiert man
 	\begin{enumerate}[(i)]
 		\item $\norm{x}_2 = \sqrt{\sum_{i=1}^{n} x_i^2}$
@@ -63,10 +68,10 @@
 	Man kann Metriken auch anderweitig definieren:
 	\begin{enumerate}[(i)]
 		\item Auf der \Index{1-Sphäre} \(
-			S^1 \coloneqq \set*{z \in \mathbb{C} \given \abs*{z} = 1} 
+			S^1 \coloneqq \set*{z \in \mathbb{C} \given \abs*{z} = 1}
 		\)
 		wird durch $d(z,z') \coloneqq \min \set*{\abs*{\theta} \given \theta \in \mathbb{R} : z = e^{i \theta} \cdot z'} $ eine Metrik definiert.
-		\item Ist $X$ ein metrischer Raum und $A$ eine Teilmenge von $X$, so wird $A$ durch die Einschränkung der Metrik auf $A$ zu einem metrischen Raum. 
+		\item Ist $X$ ein metrischer Raum und $A$ eine Teilmenge von $X$, so wird $A$ durch die Einschränkung der Metrik auf $A$ zu einem metrischen Raum.
 		Wir sagen dann $A$ ist ein Unterraum von $X$.
 		\item Sei $X$ eine beliebige Menge. Durch
 		\[
@@ -76,19 +81,19 @@
 			\end{cases}
 		\]
 		wird auf $X$ eine Metrik, die \bet{diskrete Metrik}\index{Metrik!diskrete}, definiert.
-		\item Sei $p$ eine Primzahl. 
-		Jedes $x \neq 0 \in \mathbb{Q}$ lässt sich eindeutig schreiben als $x = \frac{a}{b} p^n$ mit $n,a,b \in \mathbb{Z}, b \neq 0$ und $a,b,p$ paarweise teilerfremd. 
+		\item Sei $p$ eine Primzahl.
+		Jedes $x \neq 0 \in \mathbb{Q}$ lässt sich eindeutig schreiben als $x = \frac{a}{b} p^n$ mit $n,a,b \in \mathbb{Z}, b \neq 0$ und $a,b,p$ paarweise teilerfremd.
 		Dann heißt
 		\[
-			\abs*{x}_p \coloneqq p^{-n} 
+			\abs*{x}_p \coloneqq p^{-n}
 		\]
-		der \bet{$p$-adische Betrag}\index{p-adischer Betrag@$p$-adischer Betrag} von $x$. 
-		Setzt man $\abs*{0}_p \coloneqq 0 $, so erhält man durch $d_p(x,y) \coloneqq \abs*{x-y}_p $ die $p$-adische Metrik auf $\mathbb{Q}$. 
+		der \bet{$p$-adische Betrag}\index{p-adischer Betrag@$p$-adischer Betrag} von $x$.
+		Setzt man $\abs*{0}_p \coloneqq 0 $, so erhält man durch $d_p(x,y) \coloneqq \abs*{x-y}_p $ die $p$-adische Metrik auf $\mathbb{Q}$.
 	\end{enumerate}
 \end{beispiel}
 
 \begin{definition}[{name=[Isometrie und Stetigkeit]}]
-	Seien $(X,d_X)$ und $(Y,d_Y)$ zwei metrische Räume. 
+	Seien $(X,d_X)$ und $(Y,d_Y)$ zwei metrische Räume.
 	Eine Abbildung $f \colon X \to Y$ heißt eine \Index{Isometrie}, falls für alle $x,x' \in X$
 	\[
 		d_Y \enbrace[\big]{f(x), f(x')} = d_X (x,x')
@@ -96,14 +101,14 @@
 	gilt.
 	$f$ heißt \Index{stetig}, falls für alle $x_0 \in X$ gilt:
 	\[
-		\forall \varepsilon >0 : \exists \delta >0 : d_X(x,x_0) < \delta  \implies d_Y \enbrace[\big]{f(x), f(x_0)} < \varepsilon 
+		\forall \varepsilon >0 : \exists \delta >0 : d_X(x,x_0) < \delta  \implies d_Y \enbrace[\big]{f(x), f(x_0)} < \varepsilon
 	\]
 \end{definition}
 
 \begin{definition}[{name=[Offene Mengen in metrischen Räumen]},label=def:offen-metrisch]
-	Eine Teilmenge $U$ eines metrischen Raumes $X$ heißt \Index{offen}, falls gilt 
+	Eine Teilmenge $U$ eines metrischen Raumes $X$ heißt \Index{offen}, falls gilt
 	\[
-		\forall x \in U : \exists \delta  > 0 \text{ mit } B_\delta (x) = \set[\big]{y \in X \given d(x,y) < \delta } \subseteq U   
+		\forall x \in U : \exists \delta  > 0 \text{ mit } B_\delta (x) = \set[\big]{y \in X \given d(x,y) < \delta } \subseteq U
 	\]
 \end{definition}
 
@@ -111,7 +116,7 @@
 	Sei $f \colon X \to Y$  eine Abbildung zwischen metrischen Räumen. Dann sind äquivalent:
 	\begin{enumerate}[(i)]
 		\item $f$ ist stetig
-		\item Urbilder offener Mengen in $Y$ sind offen in $X$; also 
+		\item Urbilder offener Mengen in $Y$ sind offen in $X$; also
 		\[
 			\forall \, U \subseteq Y \text{ offen} : f^{-1}(U) \subseteq X \text{ offen}
 		\]
@@ -127,24 +132,24 @@
 		\item $\emptyset, X \in \mathcal{O}$
 		\item $U,V \in \mathcal{O} \implies U \cap V \in \mathcal{O}$
 		\item Ist $I$ eine Indexmenge und $U_i \in \mathcal{O}$ für $i \in I$, so gilt $\bigcup_{i \in I} U_i \in \mathcal{O}$.
-	\end{enumerate} 
-	$\mathcal{O}$ heißt dann eine \Index{Topologie} auf $X$. 
-	$U \subseteq X$ heißt \Index{offen}, falls $U \in \mathcal{O}$. 
+	\end{enumerate}
+	$\mathcal{O}$ heißt dann eine \Index{Topologie} auf $X$.
+	$U \subseteq X$ heißt \Index{offen}, falls $U \in \mathcal{O}$.
 	$A \subseteq X$ heißt \Index{abgeschlossen}, falls $X \setminus A$ offen ist.
 \end{definition}
 
 \begin{beispiel}[{name=[topologische Räume]}]
 	\begin{enumerate}[(i)]
-		\item Jeder metrische Raum wird durch 
+		\item Jeder metrische Raum wird durch
 		\[
-			\mathcal{O} \coloneqq \set[\big]{U \subseteq X \given U \text{ ist offen im Sinne von \cref{def:offen-metrisch}}} 
+			\mathcal{O} \coloneqq \set[\big]{U \subseteq X \given U \text{ ist offen im Sinne von \cref{def:offen-metrisch}}}
 		\]
 		zu einem topologischen Raum.
 		\item Sei $X$ eine beliebige Menge.
 		\begin{enumerate}[(a)]
 			\item Die \bet{grobe Topologie}\index{Topologie!grobe} ist $\mathcal{O}_{\text{grob}} \coloneqq \set{\emptyset, X}$.
 			\item Die \bet{diskrete Topologie}\index{Topologie!diskrete} ist $\mathcal{O}_{\text{diskret}} \coloneqq \mathcal{P}(X)$.
-			\item Die \bet{koendliche Topologie}\index{Topologie!koendliche}  ist 
+			\item Die \bet{koendliche Topologie}\index{Topologie!koendliche}  ist
 			$\mathcal{O}_{\text{koendl.}} \coloneqq \set{U \subseteq X \given X \setminus U \text{ endlich}} \cup \set{\emptyset}$.
 		\end{enumerate}
 	\end{enumerate}
@@ -155,29 +160,29 @@
 \end{definition}
 
 \begin{lemma}[{name=[Verknüpfung stetiger Abbildungen]}]
-	Seien $f \colon X \to Y$ und $g \colon Y \to Z$ stetige Abbildungen. 
+	Seien $f \colon X \to Y$ und $g \colon Y \to Z$ stetige Abbildungen.
 	Dann ist auch $g \circ f \colon X \to Z$ stetig.
 \end{lemma}
 \begin{beweis}
-	Sei $U \subseteq Z$ offen. 
-	Dann ist $g ^{-1}(U) \subseteq Y$ offen, da $g$ stetig ist. 
-	Da auch $f$ stetig ist, gilt 
+	Sei $U \subseteq Z$ offen.
+	Dann ist $g ^{-1}(U) \subseteq Y$ offen, da $g$ stetig ist.
+	Da auch $f$ stetig ist, gilt
 	$\enbrace{g \circ f } ^{-1} (U) = f ^{-1} \enbrace[\big]{g^{-1} (U)} \subseteq X$ offen.
 \end{beweis}
 
 \begin{definition}[{name=[Homöomorphismus]}]
-	Seien $X,Y$ topologische Räume. 
-	Eine bijektive stetige Abbildung $f \colon X \to Y$ heißt \Index{Homöomorphismus}, falls auch ihre Umkehrabbildung  $f^{-1} \colon Y \to X$ 
+	Seien $X,Y$ topologische Räume.
+	Eine bijektive stetige Abbildung $f \colon X \to Y$ heißt \Index{Homöomorphismus}, falls auch ihre Umkehrabbildung  $f^{-1} \colon Y \to X$
 	stetig ist.
-	
+
 	Gibt es einen solchen Homöomorphismus, so heißen $X$ und $Y$ \Index{homöomorph} und wir schreiben $X \cong Y$, andernfalls $X \not\cong Y$.
 \end{definition}
 
 \begin{beispiel}[{name=[Homöomorphismen]}]
 	\begin{enumerate}[(i)]
-		\item Es gilt $(0,1) \cong (0,\infty) \cong (-\infty,0) \cong \mathbb{R}$. 
+		\item Es gilt $(0,1) \cong (0,\infty) \cong (-\infty,0) \cong \mathbb{R}$.
 		Diese Homöomorphismen kann man leicht explizit hinschreiben.
-		\item Es gilt $(0,1)\not\cong [0,1) \not\cong [0,1] \not\cong (0,1)$. 
+		\item Es gilt $(0,1)\not\cong [0,1) \not\cong [0,1] \not\cong (0,1)$.
 		Dies zeigen wir in einer Übungsaufgabe.
 		\item Es gilt
 		\[
@@ -188,20 +193,20 @@
 \end{beispiel}
 
 \begin{definition}[{name=[Basis einer Topologie]}]
-	Sei $X$ ein topologischer Raum. 
+	Sei $X$ ein topologischer Raum.
 	Eine Familie $\mathcal{U}$ von offenen Teilmengen von $X$ heißt eine \Index{Basis der Topologie}, falls für jede Teilmenge $W \subseteq X$
 	äquivalent sind:
 	\begin{enumerate}[(1)]
 		\item $W$ ist offen.
-		\item $\forall x \in W  : \exists U \in \mathcal{U}$ mit $x \in U \subseteq  W \iff W = \bigcup_{\substack{U \in \mathcal{U} \\ U \subseteq W}} U$ 
+		\item $\forall x \in W  : \exists U \in \mathcal{U}$ mit $x \in U \subseteq  W \iff W = \bigcup_{\substack{U \in \mathcal{U} \\ U \subseteq W}} U$
 	\end{enumerate}
 	Man sagt $X$ erfüllt das \bet{zweite Abzählbarkeitsaxiom}\index{zweites Abzählbarkeitsaxiom}, falls $X$ eine abzählbare Basis der Topologie besitzt.
 \end{definition}
 
 \begin{beispiel}[{name=[Basis der Topologie eines metrischen Raumes]}]
-	Sei $X$ ein metrischer Raum. 
-	Dann ist $\set*{B_\delta (x) \given x \in X, \delta > 0}$ eine Basis der Topologie von $X$ nach \cref{def:offen-metrisch}. 
-	Gibt es eine abzählbare dichte Teilmenge $X_0\subseteq X$, so ist 
+	Sei $X$ ein metrischer Raum.
+	Dann ist $\set*{B_\delta (x) \given x \in X, \delta > 0}$ eine Basis der Topologie von $X$ nach \cref{def:offen-metrisch}.
+	Gibt es eine abzählbare dichte Teilmenge $X_0\subseteq X$, so ist
 	\[
 		\set*{B_{1/n}(x) \given x \in X_0, n \in \mathbb{N}}
 	\]
@@ -209,27 +214,28 @@
 \end{beispiel}
 
 \begin{proposition}[label=prop:basis-topo,{name=[Charakterisierung einer Basis der Topologie]}]
-	Sei $X$ eine Menge und $\mathcal{U} $ eine Familie von Teilmengen von $X$ mit $X = \bigcup_{U \in \mathcal{U} } U$. 
-	Dann ist $\mathcal{U}$ genau dann die Basis einer Topologie $\mathcal{O}$ auf $X$, wenn $\mathcal{U}$ folgende Bedingungen erfüllt:
+	Sei $X$ eine Menge und $\mathcal{U} $ eine Familie von Teilmengen von $X$ mit $X = \bigcup_{U \in \mathcal{U} } U$.
+	Dann ist $\mathcal{U}$ genau dann die Basis \emph{einer} Topologie $\mathcal{O}$ auf $X$, wenn $\mathcal{U}$ die folgende Bedingung erfüllt:
 	\begin{equation}
 		\forall U,V \in \mathcal{U} : \forall x \in U \cap V : \exists W \in \mathcal{U}  \text{ mit } x \in W \subseteq U \cap V \label{eq:prop-basis} \tag{\#}
 	\end{equation}
 \end{proposition}
 \begin{beweis}
-	Sei $\mathcal{U} $ die Basis der Topologie $\mathcal{O} $ und $U,V \in \mathcal{U} $. $\Rightarrow U,V$ offen, also ist auch $U \cap V$ offen. 
-	Da $\mathcal{U} $ eine Basis der Topologie ist, gibt es zu jedem $x \in U \cap V$ ein $W \in \mathcal{U} $ mit $x \in W \subseteq U \cap V$. Daher gilt \eqref{eq:prop-basis}. 
-	
-	Sei umgekehrt \eqref{eq:prop-basis} erfüllt. Definiere $\mathcal{O} $ durch
+	Sei $\mathcal{U} $ die Basis der Topologie $\mathcal{O} $ und $U,V \in \mathcal{U} $. 
+	Per Definition sind $U,V$ offen, also ist auch $U \cap V$ offen.
+	Da $\mathcal{U} $ eine Basis der Topologie ist, gibt es zu jedem $x \in U \cap V$ ein $W \in \mathcal{U} $ mit $x \in W \subseteq U \cap V$. Daher gilt \eqref{eq:prop-basis}.
+
+	Sei umgekehrt \eqref{eq:prop-basis} erfüllt. Definiere eine Topologie $\mathcal{O}$ durch
 	\[
-		W \in \mathcal{O} :\Longleftrightarrow \forall x \in W : \exists U \in \mathcal{U} : x \in U \subseteq W.  
+		W \in \mathcal{O} :\Longleftrightarrow \forall x \in W : \exists U \in \mathcal{U} : x \in U \subseteq W.
 	\]
-	Dann ist $\emptyset \in \mathcal{O}$. 
-	Wegen $X = \bigcup_{U \in \mathcal{U}} U$ gilt auch $X \in \mathcal{O}$. 
-	Weiter ist $\mathcal{O}$ unter Vereinigungen abgeschlossen.
+	Dann ist $\emptyset \in \mathcal{O}$.
+	Wegen $X = \bigcup_{U \in \mathcal{U}} U$ gilt auch $X \in \mathcal{O}$.
+	Weiter ist $\mathcal{O}$ offenbar unter Vereinigungen abgeschlossen.
 	Seien $W_1, W_2 \in \mathcal{O}$ und $x \in W_1 \cap W_2$. Dann gilt
 	\begin{align*}
 		x \in W_1, W_1 \text{ offen } &\implies  \exists U_1 \in \mathcal{U} : x \in U_1 \subseteq W_1 \\
-		x \in W_2, W_2 \text{ offen } &\implies \exists U_2 \in \mathcal{U} : x \in U_2 \subseteq W_2 
+		x \in W_2, W_2 \text{ offen } &\implies \exists U_2 \in \mathcal{U} : x \in U_2 \subseteq W_2
 	\end{align*}
 	Also $x \in U_1 \cap U_2$. Mit \eqref{eq:prop-basis} folgt: $\exists W \in \mathcal{U} $ mit $x \in W \subseteq U_1 \cap U_2 \subseteq W_1 \cap W_2$.
 \end{beweis}
@@ -240,16 +246,16 @@
 
 \begin{beispiel}[{name=[Topologien definiert durch Basen]},label=bsp:pktw-konv]
 	\begin{itemize}
-		\item Sei $\mathbb{R}^\mathbb{N}$ der $\mathbb{R}$-Vektorraum aller reellen Folgen. 
+		\item Sei $\mathbb{R}^\mathbb{N}$ der $\mathbb{R}$-Vektorraum aller reellen Folgen.
 		Für eine Konstante $\delta >0$, eine Zahl $n \in \mathbb{N}$ und Punkte $\alpha_1, \ldots , \alpha_n \in \mathbb{R}$ sei
 		\[
-			U_{n, \delta , \alpha_1, \ldots , \alpha_n} \coloneqq \set[\big]{(x_i)_{i \in \mathbb{N}} \given \abs*{x_i - \alpha_i} < \delta \text{ für } i=1, \ldots ,n } 
+			U_{n, \delta , \alpha_1, \ldots , \alpha_n} \coloneqq \set[\big]{(x_i)_{i \in \mathbb{N}} \given \abs*{x_i - \alpha_i} < \delta \text{ für } i=1, \ldots ,n }
 		\]
 		Dann erfüllt $\mathcal{U} \coloneqq \set*{U_{n, \delta , \alpha_1, \ldots , \alpha_n} \given n \in \mathbb{N}, \alpha_i \in \mathbb{R}, \delta >0}$ die Bedingung \eqref{eq:prop-basis} und ist die Basis der \Index{Topologie der punktweisen Konvergenz}.
-		\item Sei $C(\mathbb{R},\mathbb{R})$ der $\mathbb{R}$-Vektorraum aller stetigen Abbildungen. 
+		\item Sei $C(\mathbb{R},\mathbb{R})$ der $\mathbb{R}$-Vektorraum aller stetigen Abbildungen.
 		Zu $[a,b] \subset \mathbb{R}$, $\delta >0$, $g \colon [a,b] \to \mathbb{R}$ stetig sei
 		\[
-			U_{a,b, \delta , g} \coloneqq \set*{f \colon \mathbb{R} \to \mathbb{R} \text{ stetig} \given \forall t \in [a,b] : \abs[\big]{f(t)- g(t)}< \delta}. 
+			U_{a,b, \delta , g} \coloneqq \set*{f \colon \mathbb{R} \to \mathbb{R} \text{ stetig} \given \forall t \in [a,b] : \abs[\big]{f(t)- g(t)}< \delta}.
 		\]
 		Dann erfüllt $\mathcal{U} \coloneqq \set*{U_{a,b,\delta ,g}}$ die Bedingung \eqref{eq:prop-basis} und ist die Basis der \Index{Topologie der gleichmäßigen Konvergenz} auf kompakten Intervallen.
 	\end{itemize}
@@ -258,28 +264,28 @@
 \begin{definition}[{name=[{Inneres, Abschluss und Rand einer Teilmenge}]}]
 	Sei $Y$ eine Teilmenge eines topologischen Raums $X$.
 	\begin{align*}
-		\mathring Y &:= \set*{y \in Y \given  \exists U \subseteq X \text{ offen mit } y \in U \subseteq Y} \text{ heißt das \Index{Innere} von $Y$.} \\ 
+		\interior{Y} &:= \set*{y \in Y \given  \exists U \subseteq X \text{ offen mit } y \in U \subseteq Y} \text{ heißt das \Index{Innere} von $Y$.} \\
 		\overline{Y} &:= \set*{x \in X \given \forall U \subseteq X \text{ offen mit } x \in U : U \cap Y \not= \emptyset}    \text{ heißt \Index{Abschluss} von $Y$.} \\
-		\partial Y &:= \overline{Y} \setminus \mathring Y \text{ heißt der \Index{Rand} von $Y$.} 
+		\partial Y &:= \overline{Y} \setminus \interior Y \text{ heißt der \Index{Rand} von $Y$.}
 	\end{align*}
 \end{definition}
 
 \begin{bemerkung}[{name=[{Eigenschaften von Innerem, Abschluss und Rand}]}]
 	Es gilt
 	\begin{enumerate}[1)]
-		\item $\mathring Y = X \setminus (\overline{X \setminus Y} )$, $\overline{Y} = X \setminus (X \setminus Y)^\circ$.
-		\item $\mathring Y = \bigcup_{\substack{U \subseteq Y \\ U \text{ offen}}} U$ ist offen.
+		\item $\interior Y = X \setminus (\overline{X \setminus Y} )$, $\overline{Y} = X \setminus (X \setminus Y)^\circ$.
+		\item $\interior Y = \bigcup_{\substack{U \subseteq Y \\ U \text{ offen}}} U$ ist offen.
 		\item $\overline{Y} = \bigcap_{Y \subseteq A, A \text{ abg.}} A$ ist abgeschlossen.
-		\item $\partial Y = \overline{Y} \setminus \mathring Y $ ist abgeschlossen.
+		\item $\partial Y = \overline{Y} \setminus \interior Y $ ist abgeschlossen.
 	\end{enumerate}
 \end{bemerkung}
 
 \begin{definition}[{name=[Umgebung]}]
-	Sei $X$ ein topologischer Raum und $x \in X$. 
-	$V \subseteq X$ heißt eine \Index{Umgebung} von $x$, falls es $U \subseteq X$ offen gibt mit $x \in U \subseteq V$. 
+	Sei $X$ ein topologischer Raum und $x \in X$.
+	$V \subseteq X$ heißt eine \Index{Umgebung} von $x$, falls es $U \subseteq X$ offen gibt mit $x \in U \subseteq V$.
 	Ist $V$ offen, so heißt $V$ eine \bet{offene Umgebung}\index{Umgebung!offene Umgebung} von $x$.
 \end{definition}
-
+%
 \begin{definition}[{name=[Hausdorffraum]}]
 	Ein topologischer Raum $X$ heißt \Index{hausdorffsch} (oder ein \Index{Hausdorffraum}), falls es zu jedem Paar $x,y \in X, x \neq y$ offene Umgebungen $U$ von $x$ und $V$ von $y$ gibt mit $U \cap V = \emptyset$.
 \end{definition}
@@ -299,7 +305,7 @@ Ist $\abs*{X} \ge 2 $ so ist $(X, \mathcal{O}_{\text{grob}})$ nicht hausdorffsch
 
 \begin{definition}[{name=[Teilraumtopologie]}]
 	Sei $X$ ein topologischer Raum und $A \subseteq X$.\marginnote{\emph{Achtung:} $U \subseteq A$ offen $\centernot\implies U \subseteq X$ offen!}
-	Die \Index{Spurtopologie}, \Index{Teilraumtopologie} oder \Index{Unterraumtopologie} auf $A$ besteht aus allen Teilmengen von $A$ der Form $A \cap U$ mit $U \subseteq X$ offen. 
+	Die \Index{Spurtopologie}, \Index{Teilraumtopologie} oder \Index{Unterraumtopologie} auf $A$ besteht aus allen Teilmengen von $A$ der Form $A \cap U$ mit $U \subseteq X$ offen.
 	Mit dieser Topologie heißt $A$ ein \Index{Unterraum} von $X$.
 \end{definition}
 
@@ -312,19 +318,19 @@ Ist $\abs*{X} \ge 2 $ so ist $(X, \mathcal{O}_{\text{grob}})$ nicht hausdorffsch
 \end{bemerkung}
 
 \begin{definition}[{name=[Produkttopologie]}]
-	Seien $X,Y$ topologische Räume. 
-	Eine Basis für die \Index{Produkttopologie} auf $X \times Y$ ist 
+	Seien $X,Y$ topologische Räume.
+	Eine Basis für die \Index{Produkttopologie} auf $X \times Y$ ist
 	\[
-		\mathcal{U} \coloneqq \set[\big]{U \times V \given U \subseteq X \text{ offen }, V \subseteq Y \text{ offen}}. 
+		\mathcal{U} \coloneqq \set[\big]{U \times V \given U \subseteq X \text{ offen }, V \subseteq Y \text{ offen}}.
 	\]
 \end{definition}
 
 Dies können wir auf das Produkt beliebig vieler topologischer Räume verallgemeinern:
 
 \begin{definition}[{name=[Produkttopologie]}]
-	Seien $X_i$ für $i \in I$ topologische Räume. Die \Index{Produkttopologie} auf ihrem Produkt 
+	Seien $X_i$ für $i \in I$ topologische Räume. Die \Index{Produkttopologie} auf ihrem Produkt
 	\[
-		\prod_{i \in I} X_i = \set[\big]{(x_i)_{i \in I} \given x_i \in X_i} 
+		\prod_{i \in I} X_i = \set[\big]{(x_i)_{i \in I} \given x_i \in X_i}
 	\]
 	hat als Basis alle Mengen der Form $\prod_{i \in I} U_i$ mit
 	\begin{enumerate}[(i)]
@@ -334,12 +340,12 @@ Dies können wir auf das Produkt beliebig vieler topologischer Räume verallgeme
 \end{definition}
 
 \begin{bemerkung}[{name=[universelle Eigenschaft der Produkttopologie]}]
-	Seien $p_j \colon \prod_{i \in I} X_i \to X_j$ die Projektionen auf die einzelnen Koordinaten. 
+	Seien $p_j \colon \prod_{i \in I} X_i \to X_j$ die Projektionen auf die einzelnen Koordinaten.
 	Dann sind die $p_j$ alle stetig und die folgende universelle Eigenschaft ist erfüllt:
-	
+
 	Ist $Y$ ein weiterer topologischer Raum und $f \colon Y \to \prod_{i \in I} X_i$ eine Abbildung, so gilt:
 	\[
-		f \text{ stetig} \iff \forall j : f_j \coloneqq  p_j \circ f \text{ stetig} 
+		f \text{ stetig} \iff \forall j : f_j \coloneqq  p_j \circ f \text{ stetig}
 	\]
 \end{bemerkung}
 
@@ -363,8 +369,8 @@ Dies können wir auf das Produkt beliebig vieler topologischer Räume verallgeme
 		       domain=0:2*pi,y domain=0:2*pi,
 		       z buffer=sort,
 			   shader=faceted,]
-		       ({(2+cos(deg(x)))*cos(deg(y+pi/2))}, 
-		        {(2+cos(deg(x)))*sin(deg(y+pi/2))}, 
+		       ({(2+cos(deg(x)))*cos(deg(y+pi/2))},
+		        {(2+cos(deg(x)))*sin(deg(y+pi/2))},
 		        {sin(deg(x))});
 		    \end{axis}
 		\end{tikzpicture}
@@ -373,32 +379,32 @@ Dies können wir auf das Produkt beliebig vieler topologischer Räume verallgeme
 \end{beispiel}
 
 \begin{definition}[{name=[Homotopie]}]
-	Seien $X$ und $Y$ topologische Räume und $(f_t)_{t \in [0,1]}$ eine Familie von stetigen Abbildungen $f_t \colon X \to Y$. 
-	Wir sagen, dass die $f_t$ stetig von $t$ abhängen, falls 
+	Seien $X$ und $Y$ topologische Räume und $(f_t)_{t \in [0,1]}$ eine Familie von stetigen Abbildungen $f_t \colon X \to Y$.
+	Wir sagen, dass die $f_t$ stetig von $t$ abhängen, falls
 	\[
 		H \colon X \times [0,1] \longrightarrow Y \text{ mit } H(x,t) = f_t(x)
 	\]
-	stetig bezüglich der Produkttopologie ist. 
+	stetig bezüglich der Produkttopologie ist.
 	In diesem Fall heißen $f_0$ und $f_1$ \Index{homotop} und $H$ eine \Index{Homotopie} zwischen $f_0$ und $f_1$.
 \end{definition}
 
-Beispielsweise sind je zwei Abbildungen $f,g \colon X \to \mathbb{R}^n$ homotop; eine Homotopie wird gegeben durch $H(x,t) \coloneqq (1-t)\cdot f(x) + t \cdot g(x)$. 
+Beispielsweise sind je zwei Abbildungen $f,g \colon X \to \mathbb{R}^n$ homotop; eine Homotopie wird gegeben durch $H(x,t) \coloneqq (1-t)\cdot f(x) + t \cdot g(x)$.
 Wir werden später sehen, dass die Identität $\id \colon S^1 \to S^1$ nicht homotop zu einer konstanten Abbildung ist.
 
 \begin{definition}[{name=[Quotiententopologie]}]
-	Sei $X$ ein topologischer Raum, $M$ eine Menge und $q \colon X \to M$ eine surjektive Abbildung. 
+	Sei $X$ ein topologischer Raum, $M$ eine Menge und $q \colon X \to M$ eine surjektive Abbildung.
 	Die offenen Mengen der \Index{Quotiententopologie} auf $M$ (bezüglich $q$) sind alle $U \subseteq M$ für die $q^{-1} (U ) \subseteq X$ offen ist.
 \end{definition}
 
 Die Quotiententopologie ist gerade so definiert, dass $q \colon X \to M$ stetig ist.
 Außerdem ist wieder eine universelle Eigenschaft erfüllt, nämlich die folgende:
 
-Ist $Y$ ein weiterer topologischer Raum und $f : M \to Y$ eine Abbildung, so gilt 
+Ist $Y$ ein weiterer topologischer Raum und $f : M \to Y$ eine Abbildung, so gilt
 \[
 	f \text{ stetig} \iff f \circ q \text{ stetig}
 \]
 Die Quotiententopologie wird oft wie folgt eingesetzt:
-Sei $\sim$ eine Äquivalenzrelation auf dem topologischen Raum $X$. 
+Sei $\sim$ eine Äquivalenzrelation auf dem topologischen Raum $X$.
 Dann ist die Äquivalenzklassenabbildung $q \colon X \to \sfrac{X}{\sim}$, $x \mapsto [x]_\sim$ surjektiv.
 Insbesondere wird $\sfrac{X}{\sim}$ durch die Quotiententopologie zu einem topologischen Raum.
 
@@ -457,26 +463,26 @@ Insbesondere wird $\sfrac{X}{\sim}$ durch die Quotiententopologie zu einem topol
 			\end{tikzpicture}
 			\caption[Möbius-Band]{Möbius-Band, \hrefsym{http://tex.stackexchange.com/questions/118563/moebius-strip-using-tikz}{Quelle}}\label{fig:moebius}
 		\end{figure}
-		\item Sei $\mathbb{R}P^n$ die Menge aller $1$-dimensionalen Unterräume des $\mathbb{R}^{n+1}$. 
-		Wir erhalten eine surjektive Abbildung 
+		\item Sei $\mathbb{R}P^n$ die Menge aller $1$-dimensionalen Unterräume des $\mathbb{R}^{n+1}$.
+		Wir erhalten eine surjektive Abbildung
 		\[
 			q \colon \mathbb{R}^{n+1}\setminus \set{0} \to \mathbb{R}P^n \enspace,  \quad  q(v) \coloneqq \langle v\rangle
 		\]
 		$\mathbb{R}P^n$ mit der Quotiententopologie bezüglich $q$ heißt der \Index{reell projektive Raum} der Dimension $n$. Er ist eine $n$-Mannigfaltigkeit.\todo{Kap 15 referenzieren}
 		% \hfill (siehe auch \hyperref[154:enum:3]{\ref*{sub:154} (\ref*{154:enum:3})})
-		\item Betrachte auf $\mathbb{R}$ die Relation $x \sim y :\Leftrightarrow x-y \in \mathbb{Q}$. 
-		Den Raum der Äquivalenzklassen bezeichnen wir mit $\sfrac{\mathbb{R}}{\mathbb{Q}}$. 
+		\item Betrachte auf $\mathbb{R}$ die Relation $x \sim y :\Leftrightarrow x-y \in \mathbb{Q}$.
+		Den Raum der Äquivalenzklassen bezeichnen wir mit $\sfrac{\mathbb{R}}{\mathbb{Q}}$.
 		Dann ist $\sfrac{\mathbb{R}}{\mathbb{Q}}$ mit der Quotiententopologie nicht hausdorffsch, obwohl $\mathbb{R}$ selbstverständlich hausdorffsch ist.
-		
+
 		\emph{Übung:} Die Quotiententopologie auf $\nicefrac{\mathbb{R}}{\mathbb{Q}}$ ist die grobe Topologie.
-		\item\label{210:enum:5} Sei $f \colon X \to X$ eine stetige Abbildung. 
-		Betrachte auf $X \times [0,1]$ die Äquivalenzrelation 
+		\item\label{210:enum:5} Sei $f \colon X \to X$ eine stetige Abbildung.
+		Betrachte auf $X \times [0,1]$ die Äquivalenzrelation
 		\[
 			(x,t) \sim (x',t') : \Longleftrightarrow (x=x' \text{ und } t=t') \text{ oder } (t=0, t'=1 \text{ und } x'= f(x))
-		\] 
-		Der Quotient $T_f \coloneqq \sfrac{X \times [0,1]}{\sim}$ heißt der \Index{Abbildungstorus} von $f$. 
-	
-		Beispiel: Betrachte $f \colon [{-1,1}] \to [{-1,1}]$ gegeben durch $f(x)=-x$. 
+		\]
+		Der Quotient $T_f \coloneqq \sfrac{X \times [0,1]}{\sim}$ heißt der \Index{Abbildungstorus} von $f$.
+
+		Beispiel: Betrachte $f \colon [{-1,1}] \to [{-1,1}]$ gegeben durch $f(x)=-x$.
 		Dann ist $T_f$ das Möbiusband von eben.
 	\end{enumerate}
 \end{beispiel}
@@ -488,18 +494,18 @@ Insbesondere wird $\sfrac{X}{\sim}$ durch die Quotiententopologie zu einem topol
 \label{sec:konvergenz}
 
 \begin{definition}[{name=[Konvergenz und Grenzwerte]}]
-	Sei $X$ ein topologischer Raum und $(x_n)_{n \in \mathbb{N}}$ eine Folge in $X$. 
+	Sei $X$ ein topologischer Raum und $(x_n)_{n \in \mathbb{N}}$ eine Folge in $X$.
 	Dann sagen wir $(x_n)_{n \in \mathbb{N} }$ \bet{konvergiert} gegen $x \in X$, falls gilt:
 	\[
 		\text{Zu jeder offenen Umgebung $V$ von $x$, gibt es $N \in \mathbb{N}$, sodass $x_n \in V$ für alle $n \ge N$.}
 	\]
-	Wir schreiben dann $x_n \grenzw{} x$ oder $x_n \grenzwIn{n \to \infty} x$. 
+	Wir schreiben dann $x_n \grenzw{} x$ oder $x_n \grenzwIn{n \to \infty} x$.
 	Der Punkt $x$ heißt \Index{Grenzwert} von $(x_n)_{n \in \mathbb{N}}$.
 \end{definition}
 
 Wir stellen fest: Bezüglich der groben Topologie ist jeder Punkt Grenzwert jeder Folge.\marginnote{hier zeigt sich mal wieder, dass die grobe Topologie nicht besonders spannend ist}
 
-Betrachte die Topologie der gleichmäßigen Konvergenz auf kompakten Teilmengen (siehe \cref{bsp:pktw-konv}) auf dem Raum $C(\mathbb{R},\mathbb{R})$. 
+Betrachte die Topologie der gleichmäßigen Konvergenz auf kompakten Teilmengen (siehe \cref{bsp:pktw-konv}) auf dem Raum $C(\mathbb{R},\mathbb{R})$.
 Dann gilt für Folgen $(f_n)_{n \in \mathbb{N} }$ von stetigen Abbildungen $f_n \in C(\mathbb{R},\mathbb{R})$
 \[
 	f_n \grenzw{} f \iff \forall a < b \text{ konvergiert } f_n|_{[a,b]} \grenzw{} f_{[a,b]} \text{ gleichmäßig.}
@@ -513,7 +519,7 @@ Dann gilt für Folgen $(f_n)_{n \in \mathbb{N} }$ von stetigen Abbildungen $f_n 
 \end{beweis}
 
 \begin{definition}[{name=[gerichtete Menge]}]
-	Eine nichtleere Menge $\Lambda$ mit einer Relation $\le$ heißt \bet{gerichtet}\index{gerichtete Menge}, falls gilt 
+	Eine nichtleere Menge $\Lambda$ mit einer Relation $\le$ heißt \bet{gerichtet}\index{gerichtete Menge}, falls gilt
 	\begin{enumerate}[(i)]
 		\item $\forall \lambda  \in \Lambda : \lambda  \le \lambda $
 		\item $\forall \lambda_1, \lambda_2, \lambda_3 \in \Lambda  : (\lambda_1 \le \lambda_2) \wedge (\lambda_2 \le \lambda_3) \implies \lambda_1 \le \lambda_3$
@@ -523,11 +529,11 @@ Dann gilt für Folgen $(f_n)_{n \in \mathbb{N} }$ von stetigen Abbildungen $f_n 
 \end{definition}
 
 \begin{definition}[{name=[Konvergenz von Netzen]}]
-	Sei $X$ ein topologischer Raum. 
-	Ein \Index{Netz} $(x_\lambda)_{\lambda \in \Lambda }$ in $X$ besteht aus einer gerichteten Menge $\Lambda $ und Elementen $x_\lambda \in X$ für $\lambda \in \Lambda $. 
+	Sei $X$ ein topologischer Raum.
+	Ein \Index{Netz} $(x_\lambda)_{\lambda \in \Lambda }$ in $X$ besteht aus einer gerichteten Menge $\Lambda $ und Elementen $x_\lambda \in X$ für $\lambda \in \Lambda $.
 	Für $x \in X$ sagen wir $(x_\lambda )_{\lambda \in \Lambda }$ \bet{konvergiert} gegen $x$, falls gilt:\index{Netz!Konvergenz}
 	\[
-		\forall \text{ Umgebungen } U \text{ von } x : \exists \lambda_0 \in \Lambda : \forall \lambda \in \Lambda \text{ mit } 
+		\forall \text{ Umgebungen } U \text{ von } x : \exists \lambda_0 \in \Lambda : \forall \lambda \in \Lambda \text{ mit }
 		\lambda \ge \lambda_0 \text{ gilt } x_\lambda \in U
 	\]
 	Wir schreiben dann $x_\lambda \grenzwIn{\lambda  \to \infty} x$ oder $x_\lambda \grenzw{} x$.
@@ -544,11 +550,11 @@ Ist nun $x_U \in U$ für alle $U \in \Lambda $ so gilt $x_U \grenzw{} x$.
 	Sei $X$ hausdorffsch. Gilt $x_\lambda \grenzw{} x$ und $x_\lambda \grenzw{} y$, so folgt $x=y$.
 \end{lemma}
 \begin{beweis}
-	Angenommen es gilt $x \neq y$. 
-	Da $X$ hausdorffsch ist, existiert dann eine Umgebung $U$ von $x$ und $V$ von $y$ mit $U \cap V = \emptyset$. 
+	Angenommen es gilt $x \neq y$.
+	Da $X$ hausdorffsch ist, existiert dann eine Umgebung $U$ von $x$ und $V$ von $y$ mit $U \cap V = \emptyset$.
 	Da $x_\lambda \grenzw{} x$ finden wir $\lambda_U$, sodass $x_\lambda \in u$ für alle $\lambda \ge \lambda_U$.
 	Genauso finden wir $\lambda_V$, sodass $x_\lambda \in V$ für alle $\lambda \ge \lambda_V$.
-	Sei nun $\mu \in \Lambda$ mit $\mu \ge \lambda_U$ und $\mu \ge \lambda_V$. 
+	Sei nun $\mu \in \Lambda$ mit $\mu \ge \lambda_U$ und $\mu \ge \lambda_V$.
 	Dann folgt $x_\mu \in U\cap V = \emptyset$. Widerspruch!
 \end{beweis}
 
@@ -563,12 +569,115 @@ Ist nun $x_U \in U$ für alle $U \in \Lambda $ so gilt $x_U \grenzw{} x$.
 	\end{enumerate}
 	Oft schreiben wir $\enbrace*{x_{f(\lambda')}}_{\lambda' \in \Lambda'}$ für ein Teilnetz.
 \end{definition}
-
-
-
-
-
 % section konvergenz (end)
+
+\newpage
+
+\section{Kompakte Räume} % (fold)
+\label{sec:4}
+
+\begin{definition}[{name=[Offene Überdeckung und Teilüberdeckung]}]
+	Eine Familie $\mathcal{U}$ von offenen Teilmengen von $X$ heißt eine \Index{offene Überdeckung}, falls 
+	\[
+		\bigcup_{U \in \,\mathcal{U}} U = X
+	\] 
+	$\mathcal{V} \subseteq \mathcal{U}$ heißt eine \Index{Teilüberdeckung}, falls immer noch $X \subseteq \bigcup_{V \in \mathcal{V}} V$ gilt.
+\end{definition}
+
+\begin{definition}[{name=[Kompaktheit]}]
+	Ein topologischer Hausdorffraum $X$ heißt \Index{kompakt}, wenn jede offene Überdeckung von $X$ eine endliche Teilüberdeckung besitzt.
+\end{definition}
+
+\begin{definition}[{name=[endliche Durchschnittseigenschaft]}]
+	Eine Familie $\mathcal{A}$ von abgeschlossenen Teilmengen von $X$ hat die \Index{endliche Durchschnittseigenschaft}, wenn für jedes $\mathcal{A}_0 \subseteq \mathcal{A}$ mit
+	$\abs*{\mathcal{A}_0 } < \infty$ gilt 
+	\[
+		\bigcap_{A \in \mathcal{A}_0 } A \neq \emptyset
+	\]
+\end{definition}
+
+\begin{lemma}[{name=[Äquivalenz zur Kompaktheit eines Hausdorffraumes]},label=lem:kpt-schnitte]
+	Sei $X$ ein Hausdorffraum.\marginnote{in kompakten Räumen impliziert die endliche Durchschnittseigenschaft also bereits eine allgemeine Durchschnittseigenschaft}
+	Dann ist $X$ genau dann kompakt, wenn gilt: Hat eine Familie $\mathcal{A}$ von abgeschlossenen Teilmengen von $X$ die endliche 
+	Durchschnittseigenschaft, so gilt
+	\[
+		\bigcap_{A \in \mathcal{A}} A \neq \emptyset.
+	\]
+\end{lemma}
+\begin{beweis}
+	Ist $\mathcal{U}$ eine Familie von offenen Teilmengen, so ist $\mathcal{A} \coloneqq \set*{X \setminus U \given U \in \mathcal{U}}$ eine Familie von abgeschlossenen Teilmengen. 
+	Ist umgekehrt $\mathcal{A}$ eine Familie von abgeschlossenen Teilmengen, so ist 
+	\[
+		\mathcal{U} \coloneqq \set*{X \setminus A \given A \in \mathcal{A} } 
+	\]
+	eine Familie von offenen Teilmengen.
+	Dann gilt: 
+	\begin{itemize}
+		\item $\mathcal{U}$ hat eine endliche Teilüberdeckung $\iff \mathcal{A}$ hat nicht die endliche Durchschnittseigenschaft.
+		\item $\mathcal{U}$ ist eine Überdeckung von $X$ $\iff \bigcap_{A \in \mathcal{A}}A = \emptyset$. \qedhere
+	\end{itemize}
+	\emph{Ein ausführlicher Beweis befindet sich im Anhang \hyperref[sub:kpt-schnitte]{\ref*{sub:kpt-schnitte} auf Seite \pageref*{sub:kpt-schnitte}}.}
+\end{beweis}
+
+\begin{satz}[{name=[Charakterisierung von Kompaktheit durch konvergente Teilnetze]}]
+Sei $X$ ein Hausdorffraum. Dann sind äquivalent:
+\begin{enumerate}[1)]
+	\item $X$ ist kompakt.
+	\item Jedes Netz in $X$ besitzt ein konvergentes Teilnetz.
+\end{enumerate}
+\end{satz}
+\begin{beweis}
+	Sei $(x_\lambda )_{\lambda  \in \Lambda}$ ein Netz in $X$. 
+	Für $\lambda \in \Lambda$ bezeichnen wir den Abschluss aller größeren Elemente des Netzes mit
+	$A_\lambda \coloneqq \overline{\set*{x_{\lambda'} \given \lambda' \ge \lambda}}$. 
+	Wir zeigen zunächst, dass $\mathcal{A} \coloneqq \set*{A_\lambda  \given \lambda  \in \Lambda}$ die endliche Durchschnittseigenschaft hat. 
+	
+	Sei $\mathcal{A}_0 \subseteq \mathcal{A}$ endlich, also $\mathcal{A}_0 = \set*{A_\lambda \given \lambda \in \Lambda_0}$ für ein $\Lambda_0 \subseteq \Lambda$ endlich. 
+	Da $\Lambda$ gerichtet ist, gibt es $\lambda \in \Lambda$ mit $\lambda \ge \mu$ für alle $\mu \in \Lambda_0$. 
+	Es folgt $x_\lambda \in \set*{x_{\lambda'} \given \lambda ' \ge \mu}$ für alle $\mu \in \Lambda_0$. 
+	Insbesondere folgt daraus 
+	\(
+		x_\lambda \in \bigcap_{\mu \in \Lambda_0} \! A_\mu
+	\).
+	Der Schnitt ist also nicht leer und damit die Behauptung gezeigt.
+	
+	Da $X$ kompakt ist, folgt also mit \cref{lem:kpt-schnitte}
+	\[
+		\bigcap_{\lambda  \in \Lambda} A_\lambda \neq \emptyset.
+	\]
+	Wähle ein $x \in \bigcap_{\lambda  \in \Lambda} A_\lambda$. 
+	Sei $\mathcal{U}$ die Menge aller offenen Umgebungen von $x$. Wir setzen 
+	\[
+		\Lambda_\mathcal{U} \coloneqq \set[\big]{(\lambda , U) \given \lambda \in \Lambda, x_\lambda \in U \in \mathcal{U}}
+	\]
+	Durch $(\lambda , U) \le (\lambda', U') :\Leftrightarrow \lambda \le \lambda'$ und $U \supseteq U'$ wird $\Lambda_\mathcal{U}$ zu einer gerichteten Menge: 
+	Für $(\lambda_1, U_1)$ und $(\lambda _2, U_2) \in \Lambda_\mathcal{U}$ betrachte $U \coloneqq U_1 \cap U_2$ und wähle $\lambda \in \Lambda$ mit $\lambda \ge \lambda_1$ und $\lambda  \ge \lambda_2$. 
+	Da $x \in A_\lambda = \overline{\set*{x_{\lambda'} \given \lambda' \ge \lambda}}$ ist und $U$ eine offene Umgebung von $x$ ist, folgt 
+	\[
+		U \cap \set[\big]{x_{\lambda'} \given \lambda'  \ge \lambda } \neq \emptyset
+	\]
+	Also gibt es $\lambda' \ge \lambda $ mit $x_{\lambda'} \in U$ und es gilt $(\lambda', U) \in \Lambda_\mathcal{U}$ sowie $(\lambda_1, U_1)$, $(\lambda_2, U_2) \le (\lambda', U)$.
+	Damit ist $\Lambda_{\mathcal{U}}$ gerichtet.
+	Mit $x_{(\lambda , U)} = x_\lambda $ ist $(x_{\lambda , U})_{(\lambda ,U) \in \Lambda_\mathcal{U}}$ nun das gesuchte Teilnetz (mit welchem Grenzwert?).
+	
+	Zur anderen Implikation:
+	Sei $\mathcal{A}$ eine Familie von abgeschlossenen Teilmengen mit der endlichen Durchschnittseigenschaft. 
+	Sei $\Lambda \coloneqq \set*{\mathcal{A}_0 \subseteq \mathcal{A} \given \mathcal{A}_0 \text{ ist endlich}}$ die Menge der endlichen Teilmengen von $\mathcal{A}$. 
+	$\Lambda$ ist gerichtet bezüglich $\mathcal{A}_0 \le \mathcal{A}_1  :\Leftrightarrow \mathcal{A}_0 \subseteq \mathcal{A}_1$. Zu $\mathcal{A}_0 \in \Lambda $ wähle 
+	\[
+		x_{\mathcal{A}_0 } \in \bigcap_{A \in \mathcal{A}_0 }\! A \neq \emptyset.
+	\]
+	Sei nun $(x_{f(\lambda )})_{\lambda  \in \Lambda'}$ mit $f \colon \Lambda' \to \Lambda$ ein konvergentes Teilnetz von $(x_{\mathcal{A}_0 })_{\mathcal{A}_0 \in \Lambda}$ und $x$ der Grenzwert von $(x_{f(\lambda')})_{\lambda' \in \Lambda'}$. 
+	Behauptung: Es gilt $x \in \bigcap_{A \in \mathcal{A}} A$, woraus mit \cref{lem:kpt-schnitte} die Kompaktheit von $X$ folgt.
+	
+	Sei $A \in \mathcal{A}$ und $U = X \setminus A$. 
+	Angenommen es gelte $x \in U$. 
+	Da $U$ eine offene Umgebung von $x$ ist und $x_{f(\lambda')} \grenzw{} x$ gilt, gibt es $\lambda_0' \in \Lambda'$ mit $x_{f(\lambda')} \in U$ für alle $\lambda' \ge \lambda_0'$. 
+	Zu $\set{A} \in \Lambda$ gibt es $\mu \in \Lambda'$ mit $f(\mu) \ge \set{A}$. 
+	Da $\Lambda '$ gerichtet ist, gibt es $\mu' \ge \mu$ und $\mu' \ge \lambda_0'$. 
+	Es folgt $A \in f(\mu')$ und damit $x_{f(\mu')} \in A$, aber andererseits $x_{f(\mu')} \in U  = X \setminus A$, da $\mu' \ge \lambda_0'$. \light
+\end{beweis}
+
 
 
 \cleardoubleoddemptypage
