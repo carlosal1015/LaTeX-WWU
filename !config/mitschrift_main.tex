@@ -96,10 +96,7 @@
 	\fi
 }
 
-%-- Underbrace als Befehl in LaTeX-Syntax (und ohne Spacingprobleme mit nachfolgenden Operatoren...)
-\newcommand{\Underbrace}[2]{{\underbrace{#1}_{#2}}}
-\newcommand{\Underbracket}[2]{{\underbracket[0.7pt][2pt]{#1}_{#2}}}
-\newcommand{\Overbracket}[2]{{\overbracket[0.7pt][2pt]{#1}^{#2}}}
+
 
 %-- Alles was mit Schrift und XeTeX zu tun hat
 \usepackage{palatino}
@@ -238,8 +235,12 @@
 %%--Abkürzungen etc.
 \newcommand{\light}{\text{\Large $\lightning$}}
 
-%-- Definitionen von weiteren Mathe-Befehlen
+%-- Underbrace als Befehl in LaTeX-Syntax (und ohne Spacingprobleme mit nachfolgenden Operatoren...)
+\newcommand{\Underbrace}[2]{{\underbrace{#1}_{#2}}}
+\newcommand{\Underbracket}[2]{{\underbracket[0.7pt][2pt]{#1}_{#2}}}
+\newcommand{\Overbracket}[2]{{\overbracket[0.7pt][2pt]{#1}^{#2}}}
 
+%-- Definitionen von weiteren Mathe-Befehlen
 \DeclareMathOperator{\re}{Re} % Realteil
 \let\Re\relax
 \DeclareMathOperator{\Re}{Re} % Realteil
