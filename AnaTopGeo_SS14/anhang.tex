@@ -1,0 +1,32 @@
+%!TEX root = ana_top_geo.tex
+
+\subsection{Ausführlicher Beweis zu \cref{lem:kpt-schnitte}} % (fold)
+\label{sub:kpt-schnitte}
+Sei $X$ ein Hausdorffraum. Dann ist $X$ genau dann kompakt, wenn gilt: Hat eine Familie $\mathcal{A}$ von abgeschlossenen Teilmengen von $X$ die endliche 
+Durchschnittseigenschaft, so gilt 
+\[
+	\bigcap_{A \in \mathcal{A}} A \not= \emptyset.
+\]
+\begin{beweis}
+	Für die erste Implikation sei $X$ kompakt und $\mathcal{A}$ eine Familie von abgeschlossenen Mengen mit der endlichen Durchschnittseigenschaft.
+	Angenommen $\bigcap_{A \in \mathcal{A}} A = \emptyset$.
+	Dann gilt
+	\[
+		X = X \setminus \bigcap_{A \in \mathcal{A}} A = \bigcup_{A \in \mathcal{A}} X \setminus A.
+	\]
+	Nun ist $\mathcal{U} \coloneqq \set*{X \setminus A \given A \in \mathcal{A}}$ eine offene Überdeckung von $X$ und da $X$ kompakt ist, existiert $\mathcal{A}_0 \subset \mathcal{A}$ endlich, sodass
+	\[
+		X = \bigcup_{A \in \mathcal{A}_0} X \setminus A = X \setminus \underbrace{\bigcap_{A \in \mathcal{A}_0 } A }_{\neq \emptyset} \quad \light
+	\]
+	Für die umgekehrte Implikation sei nun $\mathcal{U} = \set{U_i}_{i \in I}$ eine offene Überdeckung von $X$.
+	Angenommen für jede endliche Teilmenge $J \subseteq I$ gilt $X \neq \bigcup_{i \in J} U_i$.
+	Betrachte nun $\mathcal{A} =  \set{X \setminus U_i}_{i \in I}$. Dann gilt nach Annahme
+	\[
+		\bigcap_{i \in J} X \setminus U_i = X \setminus \bigcup_{i \in J} U_i \neq \emptyset.
+	\]
+	Also hat $\mathcal{A}$ die endliche Durchschnittseigenschaft. Nach Vorraussetzung gilt dann
+	\[
+		\emptyset \not= \bigcap_{i \in I} X \setminus U_i = X \setminus \underbrace{\bigcup_{i \in I} U_i}_{= X} \quad \light \qedhere
+	\]
+\end{beweis}
+
