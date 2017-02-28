@@ -871,6 +871,173 @@ Zum Abrunden dieses Abschnitts zeigen wir noch eine Anwendung des Satzes von Tyc
 	folgt $M(f) = M(T f)$ für alle $f \in \ell^\infty(\mathbb{Z})$.
 \end{beweis}
 
+\newpage
+\section{Kompaktifizierungen} % (fold)
+
+\begin{definition}[{name=[Kompaktifizierung]}]
+	Sei $X$ ein topologischer Raum. Ein kompakter Raum $\overline{X}$ heißt eine \Index{Kompaktifizierung} von $X$, falls er $X$ als offenen, dichten Unterraum enthält. 
+	(Oft heißt $\partial X \coloneqq \overline{X} \setminus X $ der Rand der Kompaktifizierung)
+\end{definition}
+
+\begin{beispiel}[{name=[Kompaktifizierungen]}]
+	Einige einfache Beispiele für Kompaktifizierungen:
+	\begin{enumerate}[(i)]
+		\item $(-1,1) \subseteq [-1,1]$
+		\item $\interior{D^n} \coloneqq \set[\big]{x \in \mathbb{R}^n \given \norm{x}_2 < 1 } \subseteq D^n = \set[\big]{x \in \mathbb{R}^n \given \norm{x}_2 \le 1}$. Für $n=2$ sieht das wie folgt aus:
+		\[
+			\vcenter{\hbox{\tikz{\draw[dashed, fill=LightBlue2, thick] (0,0) circle[radius=0.6];}}} \enspace\subseteq \enspace
+			\vcenter{\hbox{\tikz{\draw[fill=LightBlue2!70, thick] (0,0) circle[radius=0.6];}}}
+		\]
+		Es gilt $\partial D^n = S^{n-1} \coloneqq \set[\big]{x \in \mathbb{R}^n \given \norm{x}_2 = 1}$.
+		\item $f \colon \mathbb{R}^n \to \interior{D^n}$, $f(x) \coloneqq \frac{x}{1+ \norm{x}_2} $ ist ein Homöomorphismus. Daher können wir $\mathbb{R}^n$ zu
+		\[
+			\overline{\mathbb{R}^n} \coloneqq \mathbb{R}^n \mathop{\dot\cup} \enbrace*{S^{n-1} \times \set{\infty}}  \cong D^n 
+		\]
+		kompaktifizieren.
+		\item Definiere auf $\mathbb{R}^n \cup \set{\infty}$ folgende Topologie 
+		\[
+			\mathcal{O} \coloneqq \set[\big]{U \given U \subseteq \mathbb{R}^n \text{ ist offen}} \cup \set[\big]{U \cup \{\infty\} \given U \subseteq \mathbb{R}^n \text{ offen und } \exists R > 0 : 
+			\mathbb{R}^n \setminus B_R(0) \subseteq U} 
+		\]
+		Dann ist $\mathbb{R}^n \cup \set{\infty}$ eine weitere Kompaktifizierung von $\mathbb{R}^n$. Übung: $\mathbb{R}^n \cup \set{\infty} \cong S^n$.
+	\end{enumerate}
+\end{beispiel}
+
+\begin{definition}[{name=[lokalkompakter Raum]}]
+	Ein topologischer Raum $X$ heißt \Index{lokalkompakt}, wenn für jedes $x \in X$ und jede offene Umgebung $U$ von $x$ eine kompakte Umgebung $K$ von $x$ existiert mit $K \subseteq U$.
+\end{definition}
+
+\begin{beispiel}[{name=[lokalkompakte Räume]}]
+	Viele uns bekannte Räume sind lokalkompakt:
+	\begin{enumerate}[(i)]
+		\item $\mathbb{R}^n$ ist lokalkompakt: Sei $x \in \mathbb{R}^n$ und $U \subseteq \mathbb{R}^n$ eine offene Umgebung von $x$. 
+		Da $U$ offen ist existiert $\varepsilon >0$ mit $B_\varepsilon(x) \subseteq U$. 
+		Es folgt $\overline{B}_{\varepsilon/2}(x) \subseteq B_\varepsilon(x) \subseteq U$. 
+		Dann ist $\overline{B}_{\varepsilon/2}(x)$ eine kompakte Umgebung von $x$, die in $U$ liegt.
+		\item Topologische Mannigfaltigkeiten sind lokalkompakt, da sie lokal homöomorph zum $\mathbb{R}^n$ sind.
+		\item Offene Teilräume von lokalkompakten Räumen sind lokalkompakt.
+	\end{enumerate}
+\end{beispiel}
+
+\begin{proposition}[{name=[Offene Teilräume kompakter Räume sind lokalkompakt]}]
+	Sei $K$ kompakt und $W \subseteq K$ offen. Dann ist $W$ lokalkompakt. 
+	Insbesondere sind kompakte Räume auch lokalkompakt.
+\end{proposition}
+\begin{beweis}
+	Sei $x \in W$ und $U$ eine offene Umgebung von $x$ in $W$. 
+	$K$ ist Hausdorff, also gibt es für alle $y \in K \setminus U$ offene Umgebungen $V_y$ von $y$ und $W_y$ von 
+	$x$ mit $V_y \cap W_y = \emptyset$. 
+	Dann ist $\set*{V_y \given y \in K \setminus U}$ eine offene Überdeckung von $K \setminus U$. 
+	Da mit $K$ auch $K \setminus U$ kompakt ist, gibt es $Y_0 \subseteq K\setminus U$ endlich mit 
+	\[
+		K\setminus U \subseteq \bigcup_{y \in Y_0} V_y.
+	\]
+	Nun ist $L \coloneqq K \setminus \bigcup_{y \in Y_0} V_y$ kompakt und $L \subseteq U$. 
+	Da $\enbrace*{\bigcap_{y \in Y_0} W_y} \cap U$ offen ist und $\enbrace*{\bigcap_{y \in Y_0} W_y} \cap U \subseteq L$ ist, ist $L$ eine Umgebung von $x$.
+\end{beweis}
+
+\begin{definition}[{name=[Einpunktkompaktifizierung]}]
+	Sei $X$ ein lokalkompakter Hausdorffraum.\marginnote{auch Alexandroff-Kompaktifizierung; teilweise $X^*$ und $X^+$ anstatt $\EPK(X)$} 
+	Die \Index{Einpunktkompaktifizierung, $\EPK$} ($\EPK$) von $X$ ist $\EPK(X) \coloneqq X \cup \set{\infty}$ mit der folgenden Topologie:
+	\[
+		U \subseteq X \cup \set{\infty} \text{ offen } :\iff U \subseteq X \text{ ist offen oder } U= (X \setminus K) \cup \set{\infty} \text{ mit } K \subseteq X \text{ kompakt}  
+	\]
+\end{definition}
+
+\begin{proposition}[{name=[Eigenschaften der Einpunktkompaktifizierung]}]
+	$\EPK(X)$ ist kompakt. Ist $X$ nicht kompakt, so ist $\EPK(X)$ eine Kompaktifizierung von $X$.
+\end{proposition}
+\begin{beweis}
+	Sei $\mathcal{U}$ eine offene Überdeckung von $\EPK(X)$. 
+	Sei $U_0 \in \mathcal{U}$ mit $\infty \in U_0$. 
+	Dann existiert $K \subseteq X$ kompakt mit $U_0 = (X \setminus K) \cup \set{\infty}$. 
+	Da $K$ kompakt ist, gibt es $U_1, \ldots , U_n \in \mathcal{U}$ mit $K \subseteq U_1 \cup \ldots \cup U_n$. 
+	Dann ist $U_0, U_1, \ldots , U_n$ eine endliche Teilüberdeckung von $\EPK(X)$.
+
+	Es bleibt zu zeigen, dass $\EPK(X)$ Hausdorff ist. 
+	Seien dazu $x,y \in \EPK(X)$ mit $x \neq y$. 
+	Gilt $x \neq \infty \neq y$ so gibt es $U,V \subseteq X$ mit $x \in U,  y \in V$ und $U\cap V = \emptyset$, da $X$ hausdorffsch ist. 
+	Nach Definition sind dann $U,V$ auch offen in $\EPK(X)$. 
+	Andernfalls sei o.B.d.A. $x = \infty$. 
+	Da $X$ lokalkompakt ist, gibt es eine Umgebung $K$ von $y$ mit $K \subseteq X$ kompakt. 
+	Dann sind $U \coloneqq \interior{K}$ und $V \coloneqq (X \setminus K) \cup \set{\infty}$ disjunkte offene Umgebungen von 
+	$x$ und $y$.
+
+	Insgesamt gezeigt: $\EPK(X)$ ist kompakt. Sei nun $X$ nicht kompakt. 
+	Ist $U$ eine Umgebung von $\infty \in \EPK(X)$, so gibt es $K \subseteq X$ kompakt mit 
+	$U = (X \setminus K) \cup \set{\infty}$. Dann ist $U \cap X = X \setminus K$. 
+	Da $X$ nicht kompakt ist, ist $X \neq K$, also $X \setminus K  \neq \emptyset$. 
+	Daher hat jede Umgebung von $\infty \in \EPK(X)$ einen nicht-trivialen Schnitt mit $X$. 
+	Also ist $X \subseteq \EPK(X)$ dicht.
+\end{beweis}
+
+\begin{korollarB}[{name=[]}]
+	Ein topologischer Hausdorffraum ist genau dann lokalkompakt, wenn die Einpunktkompaktifizierung Hausdorffsch ist.
+\end{korollarB}
+
+Nachdem wir nun gesehen haben, wie man Kompaktifizierungen von Räumen konstruieren kann, stellt sich noch die Frage, ob wir stetige Abbildungen von Räumen auf den Einpuktkompaktifizierungen fortsetzen können.
+Also falls $f \colon X \to Y$ stetig und $X,Y$ lokalkompakt sind, gibt es dann eine stetige Fortsetzung $\bar{f} \colon \EPK(X) \to \EPK(Y)$ mit $\bar{f}(\infty) = \infty$?
+
+Dazu zwei Beispiele:
+\begin{enumerate}[(i)]
+	\item Sei $f \colon \mathbb{R} \to \mathbb{R}$, $f(x) \equiv 0$. Dann ist $\bar{f} \colon \EPK(\mathbb{R}) \to \EPK(\mathbb{R}) $ mit 
+	\[
+		\bar{f} (x) = \begin{cases}
+			f(x)=0, &\text{ falls }x \in \mathbb{R}\\
+			\infty , &\text{ falls } x =\infty
+		\end{cases}
+	\]
+	sicher nicht stetig. 
+	Natürlich ist aber $\tilde f \colon \EPK(\mathbb{R}) \to \EPK(\mathbb{R})$ mit $\tilde f(x) = 0 \,\forall x \in \EPK(\mathbb{R})$ stetig.
+	\item Betrachte $f \colon \mathbb{R} \to \mathbb{R}$ mit 
+	\[
+		f(x) = \begin{cases}
+			1, &\text{ falls }x \ge 1\\
+			x, &\text{ falls }x \in [0,1] \\
+			0, &\text{ falls }x \le 0
+		\end{cases}
+	\]
+	Dann gibt es keine stetige Fortsetzung $\bar{f} \colon \EPK(\mathbb{R}) \to\EPK(\mathbb{R})$, denn die Folge $x_n = n$ konvergiert in $\EPK(\mathbb{R})$ gegen $\infty$.
+	Da $f(x_n) = 1$ $\forall n$ müsste $\bar{f} (\infty) = 1 $ sein. 
+	Die Folge $y_n = -n$ konvergiert in $\EPK(\mathbb{R})$ auch gegen $\infty$. 
+	Da $f(y_n) = 0$ für alle $n$ müsste auch $\bar{f} (\infty) = 0 $ sein. \light
+\end{enumerate}
+Für beliebige stetige Abbildungen funktioniert das Fortsetzen also nicht.
+Dies führt uns zu folgender Definition und dem dazugehörigen \cref{satz:eigentlich-fortsetzungen}:
+
+\begin{definition}[{name=[eigentliche Abbildung]}]
+	Seien $X$ und $Y$ lokalkompakt. 
+	Eine stetige Abbildung $f \colon X \to Y$ heißt \bet{eigentlich}\index{eigentliche Abbildung}, wenn für jede kompakte Teilmenge $K \subseteq Y$ auch $f^{-1}(K) \subseteq X$ kompakt ist.
+\end{definition}
+
+\begin{satz}[{name=[eigentliche Abbildungen und Fortsetzungen]},label=satz:eigentlich-fortsetzungen]
+	Seien $X,Y$ lokalkompakt und $f \colon X \to Y$ stetig. Dann sind äquivalent:
+	\begin{enumerate}[(1)]
+		\item $f$ ist eigentlich.
+		\item $\bar{f} \colon \EPK(X) \to \EPK(Y) $ mit 
+		\(
+			\bar{f} (x) = \begin{cases}
+				f(x), &\text{ falls }x \in X\\
+				\infty, &\text{ falls } x = \infty
+			\end{cases} 
+		\)
+		ist stetig.
+	\end{enumerate}
+\end{satz}
+\begin{beweis}
+	Wir nehmen zunächst an, dass $f$ eigentlich ist.
+	Sei $U \subseteq \EPK(Y)$ offen.
+	Ist $\infty \notin U$, so ist $\bar{f}^{-1}(U)= f ^{-1}(U)$ offen, da $f$ stetig ist.
+	Ist $\infty \in U$, so gibt es $K \subseteq Y$ mit $U = (X \setminus K) \cup \set{\infty}$.
+	Da $f$ eigentlich ist, ist auch $L \coloneqq f ^{-1}(K) \subseteq X$ kompakt und $\bar f ^{-1} (U) = (X \setminus L) \cup \set{\infty}$ ist offen in $\EPK(X)$.
+	
+	Für die andere Implikation betrachten wir $K \subseteq Y$ kompakt.
+	Dann ist $U = (Y \setminus K) \cup \set{\infty} \subseteq Y$ offen.
+	Da $\bar f$ stetig ist, ist auch $\bar{f}^{-1} (U) = \enbrace*{X \setminus f ^{-1}(K)} \cup \set{\infty}$ offen.
+	Damit ist $f ^{-1}(K) \subseteq X$ kompakt.
+\end{beweis}
+ 
+
 \cleardoubleoddemptypage
 \pagenumbering{Alph}
 \setcounter{page}{1}
