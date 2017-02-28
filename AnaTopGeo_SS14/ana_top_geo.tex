@@ -678,7 +678,198 @@ Sei $X$ ein Hausdorffraum. Dann sind äquivalent:
 	Es folgt $A \in f(\mu')$ und damit $x_{f(\mu')} \in A$, aber andererseits $x_{f(\mu')} \in U  = X \setminus A$, da $\mu' \ge \lambda_0'$. \light
 \end{beweis}
 
+\begin{bemerkung}[{name=[Kompaktheit in metrischen Räumen]}]
+Sei $X$ ein metrischer Raum. Dann sind äquivalent:
+\begin{enumerate}[(1)]
+	\item $X$ ist kompakt.
+	\item Jede \emph{Folge} in $X$ besitzt eine konvergente Teil\emph{folge}.
+\end{enumerate}
+Man kann auch zeigen, dass sich Stetigkeit in metrischen Räumen über das Folgenkriterium charakterisieren lässt, in allgemeinen topologischen Räumen muss man stattdessen aber Netze benutzen.
+Bei der Verallgemeinerung von metrischen Räumen hin zu topologischen Räumen, müssen also auch Folgen zu Netzen verallgemeinert werden.
+\end{bemerkung}
 
+\begin{satz}[{name={Tychonov}},label=satz:tychonov]
+	Sei $(X_i)_{i \in I}$ eine Familie von kompakten topologischen Räumen. Dann ist auch $X \coloneqq \prod_{i \in I} X_i$ kompakt.
+\end{satz}
+
+Um den Satz von Tychonov zu beweisen, benötigen wir einige Hilfsaussagen.
+Vorher soll aber noch etwas für den Fall metrischer Räume gesagt werden:
+
+\begin{beispiel}
+	Seien $(X_i, d_i)_{i \in \mathbb{N}}$ kompakte metrische Räume. 
+	Dann gibt es eine Metrik $d$ auf $\prod X_i$, so dass die zugehörige Topologie die Produkttopologie ist.
+	(Übung)
+\end{beispiel}
+\begin{beweis}[{name={Tychonov in metrischen Räumen}}]
+	Sei $p_j \colon \prod_i X_i \to X_j$ die Projektion auf den $j$-ten Faktor. 
+	Sei $(x_n)_{n \in \mathbb{N}}$ eine Folge in $\prod_i X_i$. 
+	Wähle induktiv $\mathbb{N}= N_0 \supseteq N_1 \supseteq N_2 \supseteq \ldots $ mit 
+	\begin{enumerate}[(i)]
+		\item $\abs*{N_i} = \infty $
+		\item $\enbrace*{p_i(x_n)}_{n \in N_i} $ ist eine konvergente Folge in $X_i$.
+	\end{enumerate}
+	Dies ist möglich, da $X_i$ kompakt ist.
+	Wähle nun $n_k \in N_k$ induktiv, so dass $n_k > n_{k-1}$. 
+	Dann ist $\enbrace*{x_{n_k}}_{k \in \mathbb{N}} $ eine Teilfolge von $(x_n)_{n \in \mathbb{N}}$. 
+	Für $i \in \mathbb{N}$ ist $\enbrace*{p_i\enbrace[\big]{x_{n_k}}}_{k \in \mathbb{N}, k \ge i}$ eine Teilfolge der konvergenten Folge $(p_i(x_n))_{n \in N_i}$ und daher konvergent. 
+	Damit konvergiert auch $\enbrace*{p_i \enbrace*{x_{n_k}} }_{k \in \mathbb{N}} $ für jedes $i$. 
+	Daher konvergiert $(x_{n_k})_{k \in \mathbb{N}}$ punktweise, also in der Produkttopologie (Übung).
+	Also gilt \cref{satz:tychonov} für kompakte metrische Räume.
+\end{beweis}
+
+Wir wenden uns nun dem allgemeinen Fall zu:
+\begin{definition}[{name=[Netze immer wieder und schließlich in $A$]}]
+	Sei $(x_\lambda)_{\lambda  \in \Lambda}$ ein Netz in $X$ und $A \subseteq X$. 
+	Wir sagen $(x_\lambda )_{\lambda \in \Lambda}$ ist \Index{immer wieder in} $A$, falls gilt:
+	\[
+		\forall \lambda \in \Lambda : \exists \mu \in \Lambda \text{ mit } \mu \ge \lambda \text{ und } x_\mu \in A
+	\]  
+	Wir sagen $(x_\lambda )_{\lambda \in \Lambda}$ ist \Index{schließlich in} $A$, falls gilt 
+	\[
+		\exists \lambda  \in \Lambda : \forall \mu \in \Lambda \text{ mit } \mu \ge \lambda \text{ gilt } x_\mu \in A
+	\]
+\end{definition}
+
+Offensichtlich gilt: $x_\lambda \grenzw{} x \iff$ für jede Umgebung $U$ von $x$ ist $x_\lambda $ schließlich in $U$.
+
+
+\begin{definition}[{name=[universelles Netz]}]
+	Ein Netz $(x_\lambda )_{\lambda  \in \Lambda}$ in $X$ heißt \bet{universell}\index{Netz!universell}, falls für jede Teilmenge $A \subseteq X$ gilt: 
+	Entweder ist $(x_\lambda )_{\lambda \in \Lambda}$ schließlich in $A$ \emph{oder} schließlich in $X \setminus A$.
+\end{definition}
+
+Wir stellen fest:
+\begin{itemize}
+	\item Ist $(x_\lambda )_{\lambda  \in \Lambda}$ universell und immer wieder in $A$, dann ist $(x_\lambda )_{\lambda  \in \Lambda}$ schließlich in $A$.
+	\item Ist $(x_\lambda )_{\lambda  \in \Lambda}$ ein universelles Netz in $X$ und $f \colon X \to Y$ eine Abbildung, so ist auch $\enbrace*{f(x_\lambda )}_{\lambda \in \Lambda} $ ein universelles Netz in $Y$.
+\end{itemize}
+
+\begin{lemma}[{name=[Universelle Netze konvergieren in kompakten Räumen]},label=lem:konv-univ-netze]
+	Ist $X$ kompakt und $(x_\lambda)_{\lambda  \in \Lambda}$ ein universelles Netz in $X$, so konvergiert $(x_\lambda )_{\lambda  \in \Lambda}$ in $X$.
+\end{lemma}
+\begin{beweis}
+	Sei $X$ kompakt und $(x_\lambda )_{\lambda  \in \Lambda}$ ein universelles Netz in $X$. 
+	Angenommen $(x_\lambda )_{\lambda  \in \Lambda}$ konvergiert nicht in $X$. 
+	Dann gibt es zu jedem $x \in X$ genau eine offene Umgebung $U_x$ von $x$, so dass $(x_\lambda )_{\lambda  \in \Lambda}$ nicht schließlich in $U_x$ ist. 
+	Da $(x_\lambda )_{\lambda  \in \Lambda}$ universell ist, ist $(x_\lambda )_{\lambda  \in \Lambda}$ schließlich in $X \setminus U_x$.
+	Da $X= \bigcup_{x \in X} U_x$ und $X$ kompakt ist, gibt es $x_1, \ldots , x_k \in X$ mit $X= U_{x_1} \cup \ldots \cup U_{x_k}$. 
+	Für jedes $i \in \set{1, \ldots, k}$ sei $\lambda_i \in \Lambda$ mit $x_\mu \in X \setminus U_{x_i}$ für $\mu \ge \lambda_i$. Sei nun $\mu \in \Lambda$ mit $\mu  \ge \lambda_i$ für $i=1, \ldots ,k$. 
+	Es folgt
+	\[
+		x_\mu \in \bigcap_{i=1}^k (X \setminus U_{x_i}) = X \setminus \enbrace*{\bigcup_{i=1}^k U_{x_i}} = X \setminus X = \emptyset \enspace \light \qedhere
+	\]
+\end{beweis}
+
+\begin{proposition}[{name=[Jedes Netz besitzt ein universelles Teilnetz]},label=prop:exis-univ-netze]
+	Jedes Netz besitzt ein universelles Teilnetz.
+\end{proposition}
+\begin{beweis}
+	Sei $(x_\lambda )_{\lambda  \in \Lambda}$ ein Netz in $X$. Sei 
+	\[
+		\mathfrak{M} \coloneqq \set*{\mathfrak{B} \subseteq \mathcal{P}(X) \given 
+		\begin{array}{ll}
+			(1) & B \in \mathfrak{B} \Rightarrow (x_\lambda )_{\lambda  \in \Lambda} \text{ ist immer wieder in } B \\
+			(2) & B, B' \in \mathfrak{B} \Rightarrow B \cap B' \in \mathfrak{B}
+		\end{array}
+		} 
+	\]
+	Dann ist $\set{X} \in \mathfrak{M}$, insbesondere gilt $\mathfrak{M} \neq \emptyset$. 
+	Ist $\mathfrak{M}_0 \subseteq \mathfrak{M}$ mit 
+	\[
+		\mathfrak{B}, \mathfrak{B}' \in \mathfrak{M}_0 \implies \mathfrak{B} \subseteq \mathfrak{B}' \text{ oder } \mathfrak{B'} \subseteq \mathfrak{B}
+	\]
+	so gilt $\bigcup_{\mathfrak{B \in \mathfrak{M}_0}} \mathfrak{B} \in \mathfrak{M}$. 
+	Nach dem Lemma von Zorn\marginnote{$\mathfrak{M}_0$ ist die Kette} enthält $\mathfrak{M}$ ein maximales Element $\mathfrak{B}$. 
+	Da $\mathfrak{B}$ maximal ist, ist $\set{X} \in \mathfrak{B}$. 
+	Sei 
+	\[
+		\Lambda' \coloneqq \set[\big]{(B,\lambda ) \given B \in \mathfrak{B}, \lambda \in \Lambda, x_\lambda  \in B}
+	\]
+	Durch $(B,\lambda ) \le (B', \lambda ') :\Leftrightarrow B \supseteq B', \lambda  \le \lambda '$ wird $\Lambda'$ gerichtet.
+	Wir zeigen nun, dass $(x_\lambda )_{(B,\lambda)  \in \Lambda'}$ universell ist.
+	Dazu zunächst ein Hilfssatz:
+	
+	Sei $(x_\lambda )_{(B,\lambda)  \in \Lambda'}$ immer wieder in $S$. Dann gilt $S \in \mathfrak{B}$. 
+	
+	\emph{Beweis:} Wir zeigen: $\mathfrak{B}^+ \coloneqq \mathfrak{B} \cup \set*{S \cap B \given B \in \mathfrak{B}}  \in \mathfrak{M}$. 
+	Da $\mathfrak{B}$ maximal ist und $\mathfrak{B} \subseteq \mathfrak{B}^+$, folgt dann $\mathfrak{B} = \mathfrak{B}^+$ und $S \in \mathfrak{B}^+ =\mathfrak{B}$. 
+	Offenbar erfüllt $\mathfrak{B}^+$ Bedingung $(2)$; es bleibt also $(1)$ zu zeigen.
+	
+	Da $\mathfrak{B} \in \mathfrak{M}$ müssen wir nur zeigen, dass für alle $B \in \mathfrak{B}$ das Netz $(x_\lambda )_{\lambda \in \Lambda}$ immer wieder in $B \cap S$ ist. 
+	Sei also $\lambda \in \Lambda$ beliebig. 
+	Gesucht ist nun $\mu \ge \lambda $ mit $x_\mu \in B \cap S$. 
+	Da $B \in \mathfrak{B} \in \mathfrak{M}$ gibt es $\lambda' \in \Lambda$, $\lambda' \ge \lambda $ mit $x_{\lambda'} \in B$. Also ist $(B, \lambda') \in \Lambda'$. 
+	Da $(x_\lambda )_{(B,\lambda) \in \Lambda'}$ immer wieder in $S$ ist, gibt es
+	\[
+		\Lambda' \ni (A, \mu) \ge (B,\lambda ')
+	\]
+	mit $x_{\mu} \in S$. 
+	Da $(A,\mu) \in \Lambda'$ ist $x_\mu \in A \subseteq B$. 
+	Also $x_\mu \in B \cap S$, was zu zeigen war. $\qedsymbol$ 
+	
+	Sei $S \subseteq X$ beliebig. 
+	Ist $(x_\lambda )_{(B,\lambda)  \in \Lambda'}$ weder schließlich in $S$ noch schließlich in $X \setminus S$, so ist 
+	$(x_\lambda )_{(B,\lambda)  \in \Lambda'}$ immer wieder in $S$ und immer wieder in $X \setminus S$.
+	Mit dem Hilfssatz folgt nun, dass $S, X \setminus S \in \mathfrak{B}$. Dann gilt aber $\emptyset = S \cap (X \setminus S) \in \mathfrak{B}$. \light
+\end{beweis}
+
+\begin{beweis}[{name=[von \cref{satz:tychonov}]}]
+	Ist $(x_\lambda )_{\lambda  \in \Lambda}$ ein Netz in $\prod_i X_i$, so besitzt dieses Netz ein universelles Teilnetz $(x_{f(\mu)})_{\mu \in \Lambda'}$ nach \cref{prop:exis-univ-netze}.
+	Für jedes $i$ ist dann $p_i(x_{f(\mu)})_{\mu \in \Lambda'}$ ein universelles Netz in $X_i$ und nach \cref{lem:konv-univ-netze} konvergent.
+	Daher ist $(x_{f(\mu)})_{\mu \in \Lambda'}$ bezüglich der Produkttopologie konvergent.
+\end{beweis}
+
+Zum Abrunden dieses Abschnitts zeigen wir noch eine Anwendung des Satzes von Tychonov.
+
+\begin{definition}[{name=[Vektorraum beschränkter Abbildungen]}]
+	Sei $\ell^\infty(\mathbb{Z})$ der $\mathbb{R}$-Vektorraum aller beschränkten Abbildungen $f \colon \mathbb{Z} \to \mathbb{R}$.
+	Die \Index{Supremumsnorm}
+	\[
+		\norm*{f}_\infty \coloneqq \sup \set[\big]{\abs*{f(n)} \given n \in \mathbb{Z}}  
+	\]
+	ist eine Norm auf $\ell^\infty(\mathbb{Z})$.
+\end{definition}
+
+\begin{satz}[{name={Mittelbarkeit}}]
+	Es gibt eine Abbildung $M \colon \ell^\infty(\mathbb{Z}) \to \mathbb{R} $ mit
+	\begin{enumerate}[a)]
+		\item $M$ ist $\mathbb{R}$-linear,
+		\item $M$ ist positiv, d.h. $f \ge 0 \implies M(f) \ge 0$,
+		\item $M(\ind)=1$ für die konstante $1$-Funktion $\ind \colon \mathbb{Z} \to \mathbb{R}$,
+		\item $M$ ist $\mathbb{Z}$-invariant: Für $f \in \ell^\infty(\mathbb{Z})$ sei $T f \in \ell^\infty(\mathbb{Z})$ gegeben durch $(T f) (n) = f(n+1)$. 
+		Dann gilt $M(f)= M(T f)$.
+	\end{enumerate}
+\end{satz}
+\begin{beweis}
+	Sei $\mathfrak{M}$ die Menge aller Abbildungen $M \colon \ell^\infty(\mathbb{Z}) \to \mathbb{R}$, die die Punkte a), b) und c) erfüllen.
+	Für $n \in \mathbb{N}$ sei $M_n \in \mathfrak{M}$ definiert durch 
+	$M_n(f) = \frac{1}{n+1} \sum_{i=0}^{n} f(i)$. 
+	Dann gilt für $f \in \ell^\infty(\mathbb{Z})$
+	\[
+		M_n(f) - M_n(T f) = \frac{1}{n+1} \sum_{i=0}^{n}  f(i) - T f(i) = \frac{1}{n+1} \sum_{i=0}^{n} \enbrace[\big]{f(i)- f(i+1) } = \frac{1}{n+1} \enbrace[\big]{f(0)- f(n+1)}
+	\]
+	Es folgt $\abs[\big]{M_n(f) - M_n(T f)} \le \frac{2 \cdot \norm{f}_\infty }{n+1}$. 
+	Wir konstruieren nun eine kompakte Topologie auf $\mathfrak{M}$, denn dann können wir anschließend ein konvergentes Teilnetz der Folge $(M_n)_{n \in \mathbb{N}}$ betrachten. 
+	Sei 
+	\[
+		X \coloneqq \prod_{f \in \ell^\infty(\mathbb{Z})} \!\benbrace[\big]{- \norm{f}_\infty, \norm{f}_\infty}
+	\]
+	Aus a), b), c) folgt, dass für $f \in \ell^\infty(\mathbb{Z})$ und $M \in \mathfrak{M}$ gilt: $M(f) \in \benbrace[\big]{- \norm{f}_\infty, \norm{f}_\infty}$. Mittels 
+	\[
+		\mathfrak{M} \ni M \longmapsto \enbrace[\big]{M(f)}_{f \in \ell^\infty(\mathbb{Z})} \in X 
+	\]
+	wird $\mathfrak{M}$ zu einem abgeschlossenen Unterraum von $X$. 
+	$\mathfrak{M}$ ist kompakt bezüglich der Produkttopologie auf $X$, also bezüglich punktweiser Konvergenz.
+	Sei nun $\alpha \colon \Lambda \to \mathbb{N}$, sodass $M_{\alpha(\lambda)} \grenzw{} M \in \mathfrak{M}$ (existiert, da $\mathfrak{M}$ kompakt). Es folgt
+	\[
+		\forall f \in \ell^\infty(\mathbb{Z}) : M_{\alpha(\lambda )}(f) \grenzw{} M(f) 
+	\]
+	Wegen $M_{\alpha(\lambda )}(f) - M_{\alpha(\lambda )}(T f) \xrightarrow{\lambda  \to \infty} M(f) - M(T f) $ und
+	\begin{align*}
+		\abs*{M_{\alpha(\lambda )}(f) - M_{\alpha(\lambda )}(T f)} \le \frac{2 \cdot \norm[\infty]{f} }{\alpha(\lambda )+1} \grenzw{\alpha(\lambda ) \to \infty} 0  
+	\end{align*}
+	folgt $M(f) = M(T f)$ für alle $f \in \ell^\infty(\mathbb{Z})$.
+\end{beweis}
 
 \cleardoubleoddemptypage
 \pagenumbering{Alph}
