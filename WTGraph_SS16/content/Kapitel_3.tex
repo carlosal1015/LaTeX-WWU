@@ -4,14 +4,13 @@
 
 \subsection{Erste Momentenmethode}
 
-Erinnerung an Galton--Watson--Prozesse. Es geht im die Aussterbewahrscheinlichkeit einer \enquote{text} Population. Daszu seinen $\enb{L^{(n)}_i}_{i,n}$ Zufallsvariablen mit Werten in $\NN_0$, i.i.d., sodass $L^{(n)}_i \neq 1$ $\p$--f.s. \todo{not konstnat 1}
+Erinnerung an Galton-Watson-Prozesse. Es geht im die Aussterbewahrscheinlichkeit einer \enquote{idealisierten} Population. Dazu seinen $\enb{L^{(n)}_i}_{i,n}$ Zufallsvariablen mit Werten in $\NN_0$, i.i.d., sodass $L^{(n)}_i \not\equiv 1$ $\p$-f.s. 
 
 Es sei $Z^0 = 1$ und für $1 \geq 1$
 \begin{align}
 	Z^{(n)} = \sum\limits_{i = 1}^{Z^{(n-1)}} L_i^{(n)} && \text{wobei } Z^{(n-1)} = 0, \text{falls } Z{(n)}  = 0
 \end{align}
 Frage: Wann überlebt $Z^{(n)}$, d.h. wann ist $\prop{Z^{(n)} > 0\text{ für alle }n} > 0$?
-\todo{nachtragen}
 
 \underline{Es gilt:} \\
 \begin{satz}
@@ -29,22 +28,18 @@ Frage: Wann überlebt $Z^{(n)}$, d.h. wann ist $\prop{Z^{(n)} > 0\text{ für all
 				\item $q = 1 \Leftrightarrow \EW{L} \leq 1$ \\ $q<1$, falls $\EW{L} > 1$
 			\end{enumerate}
 		\item $\frac{Z^{(n)}}{m^n}$  ist für $m = \EW{L}$ ein Martingal
-		\item $\frac{Z^{(n)}}{m^n}$ konvergiert genau dann gegen einen nicht--ent??!! Limes, falls $\EW{L \log L^+} < \infty$
+		\item $\frac{Z^{(n)}}{m^n}$ konvergiert genau dann gegen einen nicht-entarteten Limes, falls $\EW{L \log L^+} < \infty$
 	\end{enumerate}
 \end{satz}
 
-Wir wollen nun Galotn--Watson--Prozesse mit Perkolation verbinden. Was ist Perkolation? Ein Modell für ein poröses Medium, d.h. $G=(V,E)$ sei ein unedlicher Graph. Bei der Knotenperkolation entfernt man zufällig Knoten aus $V$, bei der Kantenperkolation entfernt man zufällig Kanten. Wir bbetrachten Kantenperkolation und zumeist Bernoulli--Perkolation mit Parameter $p \in (0,1)$. Man entfernt hierbei Kanten unabhängig voneinander mit Wahrscheinlichkeit $1-p$. \\
+Wir wollen nun Galotn-Watson-Prozesse mit Perkolation verbinden. Was ist Perkolation? Ein Modell für ein poröses Medium, d.h. $G=(V,E)$ sei ein unedlicher Graph. Bei der Knotenperkolation entfernt man zufällig Knoten aus $V$, bei der Kantenperkolation entfernt man zufällig Kanten. Wir bbetrachten Kantenperkolation und zumeist Bernoulli-Perkolation mit Parameter $p \in (0,1)$. Man entfernt hierbei Kanten unabhängig voneinander mit Wahrscheinlichkeit $1-p$. \\
 \underline{Sprache:} Die Kanten, die man behält, heißen \emph{offen}, die anderen \emph{geschlossen}. Sei $w \subseteq G$ das Produkt eines Perkolationsprozesses, dann heißen die Zusammenhangskomponenten von $w$ (offene) \emph{Cluster}.
 \begin{definition}
 	Sei $x \in V$. Dann bezeichnen wir mit $k(x)$ das offene Cluster mit $x\in V$. $k(x)$ kann auch einelementig sein. 
 \end{definition}
 
 \underline{Zentrale Frage:} Wamm gibt es ein $x$, sodass $k(x)$ unendlichen Durchmesser hat? \\
-Diese Frage ist im Allgemeinen schwer, wir versuchen Schranken an die $p$ zu geben, bei denen in der $Ber(p)$--Perkolation Phasenübergänge stattfinden. \todo{Bernoulli cmd?} Für die obere Schranke benötoigen wir nur, dass Ereignisse folgender Form messbar sind
-\begin{align}
-	\set{w \given x \in w} && \text{oder } \set{w \given e \in w} = \set{w \given X_e(w) = 1} \forall x \in V, e \in E
-\end{align}
-wobei wir $x \notin w$ schreiben, falls $X_e = 0 \forall e$, deren einer Endpunkt $x$ ist \todo{Formulierung?} 
+Diese Frage ist im Allgemeinen schwer, wir versuchen Schranken an die $p$ zu geben, bei denen in der $\Ber(p)$-Perkolation Phasenübergänge stattfinden. Für die obere Schranke benötigen wir nur, dass Ereignisse der Form $\set{w \given x \in w}$ oder $\set{w \given e \in w} = \set{w \given X_e(w) = 1}$ für alle $x \in V, e \in E$ messbar sind, wobei wir $x \notin w$ schreiben, falls $X_e = 0\ \forall e$, deren einer Endpunkt $x$ ist.
 \begin{definition}
 	Für $x,y \in V$ und $e \in E$ schreiben wir
 	\begin{align}
@@ -60,67 +55,79 @@ wobei wir $x \notin w$ schreiben, falls $X_e = 0 \forall e$, deren einer Endpunk
 \end{uebung}
 Um die Wahrscheinlichkeit von $\benb{x \leftrightarrow \infty}$ beschränken zu können, benötigen wir eine Version des Cutsets. Sei $\Pi \subseteq E$. Wir sagen, dass $\Pi$ $x$ von $\infty$ trennt, falls das Löschen der Kanten von $\Pi$ aus $E$ dazu führt, dass $k(x)$ endlich ist. Wir geben eine erste Schranke an $\propE{x \leftrightarrow \infty}$.
 \begin{satz}
+	\label{satz:6-3}
 	Für alle Perkolationsprozesse auf einem unendlichen Graphen $G = (V,E)$ gilt
 	\begin{align}
 		\propE{x \leftrightarrow \infty} \leq \inf \set{\sum\limits_{e \in \Pi} \prop{x \leftrightarrow e} \given \text{$\Pi$ trennt $x$ von $\infty$} }
 	\end{align}
 \end{satz}
 \begin{beweis}
-	Sei $\Pi$ so, dass $Pi$ $x$ von $ \infty$ trennt, dann gilt: $\benb{x \leftrightarrow \infty} \subseteq \bigcup\limits_{e \in \Pi} \benb{x \leftrightarrow e}$. Also
+	Sei $\Pi$ so, dass $\Pi$ $x$ von $ \infty$ trennt, dann gilt: $\benb{x \leftrightarrow \infty} \subseteq \bigcup\limits_{e \in \Pi} \benb{x \leftrightarrow e}$. Also
 	\begin{align}
-		\propE{x \leftrightarrow \infty} \leq \propE{\bigcup\limits_{e in \Pi}\benb{x \leftrightarrow e}} \leq \sum\limits_{e \in Pi}\propE{x \leftrightarrow e}
+		\propE{x \leftrightarrow \infty} \leq \propE{\bigcup\limits_{e \in \Pi}\benb{x \leftrightarrow e}} \leq \sum\limits_{e \in \Pi}\propE{x \leftrightarrow e}
 	\end{align}
-	Da das für jede Menge $\Pi$ gilt, die $x$ von $\infty$ trennt, gilt es auch für das Infimum über all solche $\pi$
+	Da das für jede Menge $\Pi$ gilt, die $x$ von $\infty$ trennt, gilt es auch für das Infimum über all solche $\Pi$
 \end{beweis}
 Diese einfache Schranke heißt \emph{erste Momentenmethode} und liefert manchmal erstaunlich gute Ergebnisse.
 
-Wir betrachten nun eine $Ber(p)$--Kantenperkolation 
+Wir betrachten nun eine $\Ber(p)$-Kantenperkolation 
 \begin{align}
-	\propE{w hat einen \infty Cluster}[p]
+	\propE{\text{w hat einen $\infty$ Cluster}}[][p]
 \end{align}
-In diesem Fall ist $\propE{w hat einen \infty Cluster}[p] \in \set{0,1}$, da $\set{w \text{ hat einen $\infty$ Cluster}}$ nicht von endlich vielen INdikatoren $X(e), e \in E$ abhängt, folgt dies aus dem Kolmogorovschen--$0$--$1$--Gesetz. \todo{def X(e) =1 gdw e in w}
-Es ist untuitiv löar, dass $\prop \to \propE{w hat einen \infty Cluster}[p]$ monoton wachsend ist. Mathematisch folgt das aus einem Kopplungsargument. Dafür sei für jedes $e \in E$ die ZV i.i.d. mit $U(e) \sim Unif[0,1]$. Für ein gegebenes $p$ und eine Realisierung der $\big(U(e) \big)_{e \in E}$ sei nun $X(e)= 1$ für $U(e) \leq p$ und $0$ sonst. $\big(X(e)\big)$ ergibt eine Bernoulli--Kantenperkolation mit Parameter $p$. Ist nun $p' > p$ reali... \todo{what realisierbar?} zu jeder festen Realisierung der $\big(U(e)\big)$ und
+In diesem Fall ist $\propE{\text{w hat einen $\infty$ Cluster}}[][p] \in \set{0,1}$, da $\set{w \text{ hat einen $\infty$ Cluster}}$ nicht von endlich vielen Indikatoren $X_e(w), e \in E$ abhängt, folgt dies aus dem Kolmogorovschen-$0$-$1$-Gesetz. \marginnote{$X_e(w) = \begin{cases}
+	0 &,e \in w \\
+	1 &,e \notin w
+	\end{cases}$} \todo{häßlich}
+Es ist intuitiv klar, dass $p \to \propE{\text{w hat einen $\infty$ Cluster}}[][p]$ monoton wachsend ist. Mathematisch folgt das aus einem Kopplungsargument. Dafür seien für jedes $e \in E$ $U(e) \sim \mathcal{U}[0,1]$ i.i.d.. Für ein gegebenes $p$ und eine Realisierung der $\big(U(e) \big)_{e \in E}$ sei nun $X(e)= 1$ für $U(e) \leq p$ und $0$ sonst. $X(e)$ ergibt eine Bernoulli-Kantenperkolation mit Parameter $p$. Ist nun $p' > p$ realisiere zu jeder festen Realisierung der $\big(U(e)\big)$ und
 \begin{align}
 	X'(e) = \begin{cases}
 				1, & U(e) = p' \\
 				0, & sonst
 			\end{cases}
 \end{align}
-$\big(X'(e)\big)$ ist eine $Ber(p')$--Perkolation. Hat nun die Realisierung der $\big(X(e)\big)$ ein $\infty$ Cluster, so auch die der $\big(X'(e)\big)$. Daher können wir 
+$\big(X'(e)\big)$ ist eine $\Ber(p')$-Perkolation. Hat nun die Realisierung der $\big(X(e)\big)$ ein $\infty$ Cluster, so auch die der $\big(X'(e)\big)$. Daher können wir 
 \begin{align}
-	p_c(G) := \sup\set{p \given \propE{w\text{ hat ein $\infty$ Cluster} = 0 }}
+	p_c(G) := \sup\set{p \given \propE{w\text{ hat ein $\infty$ Cluster}} = 0 }
 \end{align}
 als die kritische Perkolationswahrscheinlichkeit definieren.
 
-\todo[inline]{missung part}
-Allgemein ist 
+\begin{uebung}
+	Wenn $G$ zusammenhängend ist, dann ist 
+	\begin{align}
+		p_c(G):= \sup\set{p \given \prop{\abs{k(x)} = \infty } = 0}
+	\end{align}
+	Im Allgemeinen ist $p_c(G)$ sehr schwierig zu berechnen. Bekannt ist $p_c(\ZZ)$ und $P_c(\ZZ^2) = \frac{1}{2}.$ Für $P_c(\ZZ^3)$ existiert noch nicht einmal eine Vermutung (der Physiker).
+\end{uebung}
 
-Daher betrachten wir Perkolation auf Bäumen. Hier kann man versuchen $\propE{0 \leftrightarrow \infty} \leq \inf\limits_{\Pi, \Pi \text{trennt }0 \leftrightarrow \infty}\sum\limits_{e \in \Pi} \propE{0 \leftrightarrow e}[p]$ auszurechnen.
-Der Vorteil eines Baumes ist  \todo{mathumgebung?}, dass
-\begin{align}
-	\prop{0 \leftrightarrow e}[T] = p^{\abs{e}}
+Daher betrachten wir Perkolation auf Bäumen. Hier kann man versuchen $\propE{0 \leftrightarrow \infty} \leq \inf\limits_{\Pi \text{ trennt }0 \leftrightarrow \infty}\sum\limits_{e \in \Pi} \propE{0 \leftrightarrow e}[p]$ auszurechnen. \todo{häßlich}
+Der Vorteil eines Baumes ist, dass $\prop{0 \leftrightarrow e}[T] = p^{\abs{e}}$
+Daher: Ist $p < \frac{1}{br(T)}$, wobei 
+\begin{align} 
+	br(T) = \sup\limits_{\lambda}\benb{\inf\limits_{\Pi} \sum\limits_{e \in \Pi} \lambda^{-\abs{e}} > 0 }. 
 \end{align}
-Daher: Ist $p < \frac{1}{br(T)}$, wobei $br(T) = \sup\limits_{\lambda}\benb{\inf\limits_{\Pi} \sum\limits_{e \in \Pi} \lambda^{-\abs{e}} > 0 }$. Dann folgt
+Dann folgt
 \begin{align}
-	\inf\limits_{\Pi} \sum\limits_{e \in \Pi} p^{\abs{e}} = 0
+	\inf\limits_{\Pi} \sum\limits_{e \in \Pi} p^{\abs{e}} = 0,
+\end{align}
+weil $\frac{1}{p} > br(T) \Rightarrow \inf\limits_{\pi} \sum\limits_{e \in \Pi} (\frac{1}{p})^{-\abs{e}} = 0$. Dann ist also $\prop{0 \leftrightarrow \infty}[][p] = 0$, womit aus \autoref{satz:6-3} 
+\begin{align}
+	p_c(T) \geq \frac{1}{br(T)} \label{eqn:6-1}
 \end{align}
 
-\todo[inline]{missing part}
-Es gilt in \todo{ref} 3.1 sogar Gleichheit, dazu benötigen wir allerdings etwas mehr Technik. Besonders übersichtilich ist die Situatuin, wenn $T$ $n$--regulär ist, d.h. jeder Knoten hat $n$ Kinder. Lässt man auf einem $n$--regulären Baum $Ber(p)$--Kantenperkolation los, so ergibgt sich ein Galton--Watson--Baum mit $B(n,p)$--verteilter Kinderzahl. Also (da $\EW{B(n,p)} = np$) folgt, dass $p_L (T) = \frac{1}{n}$. Sehr ähnlich zeigt man
+Es gilt in \eqref{eqn:6-1} sogar Gleichheit, dazu benötigen wir allerdings etwas mehr Technik. Besonders übersichtilich ist die Situatuin, wenn $T$ $n$-regulär ist, d.h. jeder Knoten hat $n$ Kinder. Lässt man auf einem $n$-regulären Baum $\Ber(p)$-Kantenperkolation los, so ergibgt sich ein Galton-Watson-Baum mit $B(n,p)$-verteilter Kinderzahl. Also (da $\EW{B(n,p)} = np$) folgt, dass $p_L (T) = \frac{1}{n}$. Sehr ähnlich zeigt man
 \begin{satz}[Lyons '90]
-	Sei T ein superkritischer Galton--Watson--Baum mit $\EW{L} = m > 1$. Bedingt darauf, dass $T$ unendlich ist, ist $p_L(T) = \frac{1}{m}$ fast sicher. 
+	\label{satz:6-4}
+	Sei T ein superkritischer Galton-Watson-Baum mit $\EW{L} = m > 1$. Bedingt darauf, dass $T$ unendlich ist, ist $p_L(T) = \frac{1}{m}$ fast sicher. 
 \end{satz}
-\begin{beweis} Nur Beweisidee: Wenn man GW und Perkolation simultan laufen lässt, so ist dies wieder ein G-W--Prozess mit Wahrscheinlichkeit $pm$. Also überlebt er genau dann, wenn $p > \frac{1}{m}$. Da die endlichen $T$'s kein endliches unendliches Cluster erzeugen können, folgt mit ein paar Berechnungen die Behauptung. 
+\begin{beweis} Nur Beweisidee: Wenn man GW und Perkolation simultan laufen lässt, so ist dies wieder ein G-W-Prozess mit Wahrscheinlichkeit $pm$. Also überlebt er genau dann, wenn $p > \frac{1}{m}$. Da die endlichen $T$'s kein endliches unendliches Cluster erzeugen können, folgt mit ein paar Berechnungen die Behauptung. 
 \end{beweis}
-
-\todo[inline]{alte vorl. nahcarbietne}
 
 \marginnote{Vorlesungsbeginn 03.05.2016}
 
 %Wir betrachten Perkolation auf unendlichen Graphen $G= (V,E)$, d.h. eine Teilmenge $E'(w) \subseteq E$ wird gemäß eines Zufallsmechanismus entfernt. \\
 %\underline{Zentrale Frage:} Gibt es in $(V,E\backslash E')$ ein unendlich großes Cluster?
 %
-%Wir betrachten meist $Ber(p)$--Perkolation, d.h. man behält Kanten unabhängig voneinander mit Wahrscheinlichkeit $o \Rightarrow \prop{\exists \infty \text{ Cluster}}[][p] \in \set{0,1}$. Da $p \rightarrow \prop{\exists \infty \text{ Cluster}}[][p]$ monoton, existiert
+%Wir betrachten meist $Ber(p)$-Perkolation, d.h. man behält Kanten unabhängig voneinander mit Wahrscheinlichkeit $o \Rightarrow \prop{\exists \infty \text{ Cluster}}[][p] \in \set{0,1}$. Da $p \rightarrow \prop{\exists \infty \text{ Cluster}}[][p]$ monoton, existiert
 %\begin{align}
 %	p_c = \sup\set{p \given \prop{\exists \infty \text{ Cluster}}[][p] = 0}
 %\end{align}
@@ -135,52 +142,58 @@ Es gilt in \todo{ref} 3.1 sogar Gleichheit, dazu benötigen wir allerdings etwas
 %\end{satz}
 
 \begin{korollar}
-	Sei $T$ die Realisierung eines Galton--Watson--Prozesses. Dann gilt, bedingt auf das Überleben 
+	Sei $T$ die Realisierung eines Galton-Watson-Prozesses. Dann gilt, bedingt auf das Überleben 
 	\begin{align}
 		br(T) = m, f.s.
 	\end{align}
 \end{korollar}
 \begin{beweis}
-	Aus \todo{Referenz } (*) aus Satz 3.3 folgt
+	Aus \autoref{satz:6-4} folgt
 	\begin{align}
 		br(T) \geq \frac{1}{p_c(T)} = m
 	\end{align}
 	Aus der folgenden Übung ergibt sich $br(T) \leq gr(T) = m$
 \end{beweis}
 \begin{uebung}
-	Man zeige für einen Galton--Watson--Baum $T$ mit $m = \EW{L} > 1$, dass bedingt auf Überleben $gr(T) = m$ ist.
+	Man zeige für einen Galton-Watson-Baum $T$ mit $m = \EW{L} > 1$, dass bedingt auf Überleben $gr(T) = m$ ist.
 \end{uebung}
 
 \subsection*{Zweite Momentenmethode} \todo{nummerierung}
-Die erste Momentenmethode erlaubt eine )(ganz einfache) obere Schranke an $\propE{x \leftrightarrow \infty}$ zu geben. Für untere Schranken benötigt man typischerweise Kenntnisse über das Fluktuationsverhalten der mitspielenden Zufallsvariablen.
-So etwas erhält man typischerweise aus Chebyshev--Ungleichungen bzw. der 2. Momentenmethode. Wir betrachten hier eine \enquote{gewichtete} 2. Momentenmethode, d.h. für eine Menge $\Pi$, die $x$ von $\infty$ trennt, werden wir $\prop{o \leftrightarrow e}, e\in \Pi$ mit dem anderen Gewocht $\mu(e)$ abschätzen. Wir werden von nun an wieder $x = o$ wählen und $k(o)$ sei das Cluster von $o$. Sei weiter $\Pi$ ein $o \rightarrow \infty$--Cutset \todo{schwungpfeil} und $\mu \in M^1(\Pi)$. Wir betrachten
+Die erste Momentenmethode erlaubt eine (ganz einfache) obere Schranke an $\propE{x \leftrightarrow \infty}$ zu geben. Für untere Schranken benötigt man typischerweise Kenntnisse über das Fluktuationsverhalten der mitspielenden Zufallsvariablen.
+So etwas erhält man typischerweise aus Chebyshev-Ungleichungen bzw. der 2. Momentenmethode. Wir betrachten hier eine \enquote{gewichtete} 2. Momentenmethode, d.h. für eine Menge $\Pi$, die $x$ von $\infty$ trennt, werden wir $\prop{o \leftrightarrow e}, e\in \Pi$ mit dem anderen Gewocht $\mu(e)$ abschätzen. Wir werden von nun an wieder $x = o$ wählen und $k(o)$ sei das Cluster von $o$. Sei weiter $\Pi$ ein $o \leftrightarrow \infty$-Cutset und $\mu \in M^1(\Pi)$. Wir betrachten
 \begin{align}
 	X(y) = \sum\limits_{e \in \Pi} \mu(e) \mathds{1}_{\set{e \in k(o)}} \frac{1}{\prop{c \in k(o)}}
 \end{align}
-Nebenrechnung: $\prop{o \leftrightarrow \infty} = \inf \prop{o \leftrightarrow \Pi \given \Pi \text{ ist ein $o$--$\infty$--Cutset}}$ \\
-\underline{Bemerke:} 
+Nebenrechnung: $\prop{o \leftrightarrow \infty} = \inf \prop{o \leftrightarrow \Pi \given \Pi \text{ ist ein $o$-$\infty$-Cutset}}$
+
+\begin{bemerkung}
 	\begin{align}
-%		\EW{X(\mu)} = \EW{\sum\limits_{e \in \Pi} \mu(e) \frac{\mathds{1}_{\set{e \in k(o)}}{\prop{e \in k(o)}}}} = \sum\limits_{e \in \Pi} \mu(e) \frac{\prop{e \in k(o)}}{\prop{e \in k(o)}} = 1
+		\EW{X(\mu)} = \EW{\sum\limits_{e \in \Pi} \mu(e) \frac{\mathds{1}_{\set{e \in k(o)}}}{\prop{e \in k(o)}}} = \sum\limits_{e \in \Pi} \mu(e) \frac{\prop{e \in k(o)}}{\prop{e \in k(o)}} = 1
 	\end{align}
-Dann ist\todo{missing part}
-Da man $\prop{o \leftrightarrow \infty}$ über das Infimum von ..\todo{missing part}
+Sei $\set{o \leftrightarrow \Pi} := \set{\omega \given \exists \ e \in \Pi: o \leftrightarrow e}$. Dann ist 
+\begin{align}
+	\set{\omega \given X(\mu) > 0} \subseteq \set{\omega \given o \leftrightarrow \Pi} \Rightarrow \prop{X(\mu) > 0} \leq \prop{0 \leftrightarrow \Pi}
+\end{align}
+\end{bemerkung} 
+Da man $\prop{o \leftrightarrow \infty}$ über das Infimum von $\prop{o \leftrightarrow \Pi}$ bestimmen kann, ergibt eine untere Schranke an $\prop{X(\mu) > 0}$ auch eine untere Schranke an $\prop{o \leftrightarrow \infty}$. Das funktioniert wie folgt.
 
 \begin{satz}
-	Es sei ein allgemeines Perkolationsmodell auf einem Graphen $G$ gegeben. Dann gilt für $\mu \in M^1(\Pi)$ und jedes $o$--$\infty$--Cutset $\Pi$
+	\label{satz:6-8}
+	Es sei ein allgemeines Perkolationsmodell auf einem Graphen $G$ gegeben. Dann gilt für $\mu \in M^1(\Pi)$ und jedes $o$-$\infty$-Cutset $\Pi$
 	\begin{align}
 		\propE{o \leftrightarrow \infty} > \frac{1}{\EW{X^2(\mu)}}
 	\end{align}
 \end{satz}
 \begin{beweis}
-	Sei $\Pi$ ein Cutset und $\mu \in M^1(\Pi)$. Dann gilt mit Cauchy--Schwarz
+	Sei $\Pi$ ein Cutset und $\mu \in M^1(\Pi)$. Dann gilt mit Cauchy-Schwarz
 	\begin{align}
 		1 = \enb{\EW{X(\mu)}}^2 = \EWE{X(\mu) \mathds{1}_{\set{X(\mu) > o}}}^2 &\leq \EW{X^2(\mu)} \prop{X(\mu) > o} \\
 							& \EW{X^2(\mu)} \prop{o \leftrightarrow \infty} 
 	\end{align}
-	Der Trick ist jetzt: 1. Wähle das \enquote{richige} $\mu$. 2)Schätze $\EW{X^2(<)}$ ab.
+	Der Trick ist jetzt: 1. Wähle das \enquote{richige} $\mu$. 2. Schätze $\EW{X^2(\mu)}$ ab.
 \end{beweis}
 
-Die Schranken aus Sazu 3.4 \todo{Ref} ist nur dann effektiv, wenn wir $\EW{X^2(\mu)}$ bestimmen können. Offenbar
+Die Schranken aus \autoref{satz:6-8} ist nur dann effektiv, wenn wir $\EW{X^2(\mu)}$ bestimmen können. Offenbar
 \begin{align}
 	\EW{X^2(\mu)} = \sum\limits_{e_1,e_2 \in \Pi} \mu(e_1) \mu(e_2) \frac{\prop{e_1,e_2 \in k(o)}}{\prop{e_1 \in k(o)} \prop{e \in k(o)}}
 \end{align}
@@ -193,23 +206,22 @@ Die Schranken aus Sazu 3.4 \todo{Ref} ist nur dann effektiv, wenn wir $\EW{X^2(\
 \end{definition}
 
 \begin{korollar}
+	\label{kor:6-10}
 	\begin{align}
-%		\prop{o \leftrightarrow \infty} \geq \sup\limits_{\Pi\text{--Cutset von} 0\leftrightarrow \infty} \Big\{ \frac{1}{\inf\limits_{\mu \in M^1(T) \mathcal{E}}} \Big\} \todo{M(?)}
+		\prop{o \leftrightarrow \infty} \geq \sup\limits_{\Pi\text{ Cutset von } o\leftrightarrow \infty} \Bigg\{\frac{1}{\inf\limits_{\mu \in M^1(\Pi)} \mathcal{E}(\mu)}\Bigg\}
 	\end{align}
 \end{korollar}
 \begin{beweis}
-	Wir haben das schon für die $\Pi$ und $\mu \in M^2(\Pi)$ gesehen.
+	Wir haben das schon für alle $\Pi$ und $\mu \in M^1(\Pi)$ gesehen.
 \end{beweis}
-\todo[inline]{Missing part + Baum?}
-
-Dann gilt:
+Damit wir weiterkommen benötigen wir nun Abschätzungen an $\mathcal{E}(\mu)$. Im Allgemeinen kann das schwierig sein, für $G=T$ (Bäume) ist es hingegen einfacher. Sei nun $G =  T = (V,E)$ ein Baum und darauf unabhängige $\Ber(p)$-Kantenperkolationen. Wir identifizieren die Kante in einem Vertex $x$ oft mit diesem Vertex und schreiben $e(x)$ für diese Kante. Für $\mu(e(x))$ schreibe auch $\mu(x)$. Sei nun $\Pi$ ein Cutset in einem Baum $T$ und $\mu \in M^1(\Pi)$. Dann gilt:
 \begin{align}
 	\mathcal{E}(\mu) &= \sum\limits_{e(x),e(y) \in \Pi} \mu(x)\mu(y) \frac{\prop{x,y\in k(o)}}{\prop{x \in k(o)} \prop{y \in k(o)}}  \\ \marginnote{wobei $x \land y$ der jüngste gemeinsame Vorfahre von $x$ und $y$ ist.}
 					&= \sum\limits_{e(x),e(y) \in \Pi} \mu(x) \mu(y) \frac{\prop{x \land y \in k(o)} \prop{x \land y \leftrightarrow x} \prop{x \land y \leftrightarrow y} }{\prop{x \land y \in k(o)} \prop{x \land y \leftrightarrow x} \prop{x \land y \in k(o)} \prop{x \land y \leftrightarrow y} } \\
 					&=\sum\limits_{e(x),e(y) \in \Pi} \mu(x) \mu(y) \frac{1}{\prop{o \leftrightarrow x \land y}}
 \end{align}
 
-\todo{Baum als erkäriung? oder lieber mehr text}
+\todo{Mehr erklärung?}
 Das hat eine gewisse Ähnlichkeit mit der Rechnung für Flüsse.
 \begin{lemma}
 	Sei $\Theta$ ein Fluss auf einem endlichen Baum $T$ von der Wurzel $o$ in die Blätter $\delta T$. Dann gilt
@@ -217,51 +229,51 @@ Das hat eine gewisse Ähnlichkeit mit der Rechnung für Flüsse.
 		\mathcal{E}(\Theta) = \sum\limits_{x,y \in \delta T}\Theta(x) \Theta(y) \mathcal{R}(o \leftrightarrow x\land y) \marginnote{$\Theta(x) = \Theta(e(x))$}
 	\end{align}
 \end{lemma}
-\todo[inline]{missing part + Bauuuuum (Addition Flüsse)}
-Das geht leider nicht: (*) \todo{Referenz} ist z.B. für $o = x$ falsch. \\
-\underline{2. Versuch:} Lönnen wir Leitfähigkeiten c so bestimmten, dass 
+\begin{beweis}
+	Benutze $\sum\limits_{x \in \delta T: e \leq x} \Theta(x) = \Theta(e), \forall e$. Dann
+	\begin{align}
+		\sum\limits_{x,y \in \delta T} \Theta(x) \Theta(y) \mathcal{R}(o \leftrightarrow x \land y) &= \sum\limits_{x,y \in \delta T} \Theta(x) \Theta(y) \sum\limits_{e \leq x\land y} r(e) \\
+			&= \sum\limits_{e} r(e) \sum\limits_{\substack{x,y \in \delta T \\ x,y \geq e}} \Theta(x) \Theta(y)\\
+			&= \sum\limits_{e} r(e) \Theta^2(e) = \mathcal{E}(\Theta)
+	\end{align}
+\end{beweis}
+Schön wäre es nun diese Beobachtungen zu verknüpfen: Man wählt für $\Theta$ den durch $\mu$ induzierten Fluss $\Theta(e):= \sum\limits_{e \leq x \overline{\Pi}}\mu(x).$\marginnote{$\overline{\Pi} = \set{x \given x(r) \in \Pi}$} Dann ist $\Theta(e(x)) = \mu(e(x)), \forall x \in \delta T$. Kann man auch noch Leitfähigkeiten wählen, sodass $\prop{o \leftrightarrow x}  = \mathcal{C}(o \leftrightarrow x) (*)$ gilt, so folgt $\mathcal{E}(\mu) = \mathcal{E}(\Theta)$. Das geht leider nicht: $(*)$ ist z.B. für $o = x$ falsch. \\
+\underline{2. Versuch:} Können wir Leitfähigkeiten $c$ so bestimmten, dass 
 \begin{align}
-	\frac{1}{\prop{0 \leftrightarrow}} = 1+\mathcal{R}(o \leftrightarrow x) 
+	\frac{1}{\prop{o \leftrightarrow x}} = 1+\mathcal{R}(o \leftrightarrow x) 
 \end{align}
-\todo{referenz (3.2)? nachprüfen}so gilt:
+so gilt:
 \begin{align}
 	\mathcal{E}(\mu) = \mathcal{E}(\Theta) + 1 
 \end{align}
-was dafür, Schranken an $\mathcal{E}(\mu)$ zu schalten \todo{waaaas steht hier genau}ebenso gut ist.
+was dafür, Schranken an $\mathcal{E}(\mu)$ zu erhalten, ebenso gut ist. Falls $c$ so gewählt ist, dass \autoref{kor:6-10} richtig ist, heißt $c$ an das \emph{Perkolationsproblem angepasst}. 
 
-Falls $c$ so gewählt ist, dass (3.2) \todo{Ref} richtig ist, heißt $x$ an \todo{missiung end}
-
-
-\marginnote{Vorlesungsbeginn 02.06.2016}
-
-Sei von nun an $G$ ein Baum. Beobachtung: Jetzt ist 
+Sei von nun an $G$ ein Baum. Beobachtung: Jetzt ist \marginnote{Vorlesungsbeginn 02.06.2016}
 \begin{align}
-	\mathcal{E}(\mu)  = \sum\limits_{c(x),c(y)}\mu(x)\mu(y) \frac{1}{\propE{o \leftrightarrow x \land y}}
+	\mathcal{E}(\mu)  = \sum\limits_{e(x),e(y)}\mu(x)\mu(y) \frac{1}{\propE{o \leftrightarrow x \land y}}
 \end{align}
 Andererseits gilt für Flüsse $\Theta$ auf $G$ von $o$ in $\delta T$ (wenn $G=T$ endlich ist)
 \begin{align}
 	\mathcal{E}(\Theta) = \sum\limits_{x,y \in \delta T}\Theta(x) \Theta(y) \mathcal{R}(o \leftrightarrow x\land y)
 \end{align}
-Suche nun Leitfähigkeiten c, sodass $\frac{1}{\propE{o \leftrightarrow x}} = \mathcal{R}\enb{o \leftrightarrow x} +1, \forall x$
-\todo{missing oart}
-Wie findet man diese Leitfähigkeiten? Da es zu hedem x in einem Baum genau einen Pfad von $o$ nach $x$ gibt, ist $\mathcal{R}\enb{o \leftrightarrow x}$ nichts anderes als der Widerstannd einer Reihenschaltung. Sei nun $e(x) = \enb{\overleftarrow{x},x}$, dann ist 
+Suche nun Leitfähigkeiten $c$, sodass $\frac{1}{\propE{o \leftrightarrow x}} = \mathcal{R}\enb{o \leftrightarrow x} +1, \forall x$. Dann $\mathcal{E}(\mu) = 1 + \mathcal{E}(\Theta)$ für den durch $\mu$ induzierten Fluss, d.h. man kann statt mit $\mathcal{E}(\mu)$ mit $\mathcal{E}(\Theta)$ arbeiten. 
+Wie findet man diese Leitfähigkeiten? Da es zu jedem $x$ in einem Baum genau einen Pfad von $o$ nach $x$ gibt, ist $\mathcal{R}\enb{o \leftrightarrow x}$ nichts anderes als der Widerstand einer Reihenschaltung. Sei nun $e(x) = \enb{\overleftarrow{x},x}$, dann ist 
 \begin{align} 
 		r(e(x)) &= \mathcal{R} (o \leftrightarrow x) - \mathcal{R}\enb{o \leftrightarrow \overleftarrow{x}} = \mathcal{R} \enb{o \leftrightarrow x} + 1 - \enb{\mathcal{R}(o \leftrightarrow \overleftarrow 
 		{x}) +1} \\
 		&= \frac{1}{\prop{o \leftrightarrow x}} - \frac{1}{\prop{o \leftrightarrow \overleftarrow{x}}} = \frac{1}{\prop{o \leftrightarrow x}} - \frac{p_x}{\prop{o \leftrightarrow \overleftarrow{x}} p_x } = \frac{1-p_x}{\prop{o \leftrightarrow x}} \marginnote{$p_x = \prop{e(x) = 1}$} \\
 		\Rightarrow c(e(x)) = \frac{\prop{o \leftrightarrow x}}{1-p_x}
 \end{align}
-Insbesondere gilt ür $Ber(p)$--Perkolation $c(e(x)) = \frac{p^{\abs{x}}}{1-p}$. Das sind gerade die Leitfähigkeiten des RW--random Walks auf $T$ mit $\lambda = \frac{1}{p}$ Wir können jetzt zeigen:
+Insbesondere gilt ür $\Ber(p)$-Perkolation $c(e(x)) = \frac{p^{\abs{x}}}{1-p}$. Das sind gerade die Leitfähigkeiten des $\text{RW}_{\lambda}$-randomwalks auf $T$ mit $\lambda = \frac{1}{p}$. Wir können jetzt zeigen:
 \begin{satz}[Lyons '90]
-	Für unabhängige Perkolationmit Wahrscheinlichkeit $p$ auf dem Baum gilt
+	Für unabhängige Perkolation mit Wahrscheinlichkeit $p$ auf dem Baum gilt
 	\begin{align}
-		\propE{o \leftrightarrow \infty} \geq \frac{e(o \leftrightarrow \infty)}{1+ e\enb{o \leftrightarrow \infty}}
+		\propE{o \leftrightarrow \infty} \geq \frac{\mathcal{C}(o \leftrightarrow \infty)}{1+ \mathcal{C}\enb{o \leftrightarrow \infty}}
 	\end{align}	
 \end{satz}
-\todo{missing part}
 \begin{beweis}
-	Es gilt $\propE{o \leftrightarrow \infty} \geq \inf\limits_{\Pi \text{ ist $o$--$\infty$--Cutset}} \set{\frac{1}{\inf\limits_{\mu \in M^1(\Pi)}} \mathcal{E}(\mu)}$
-	Wir schätzen das Infimum rechts ab. Gegeben sei ein bezüglich $\subseteq$ minimales Cutset. Sei $\mu$ eine Wahrscheinlichkeit auf $\Pi$ mit minimaler Energie. Sei $\Theta$ der induzierte Fluss von $o$ nach $\overline{\Pi} = \set{x \given \enb{\overleftarrow{x},x} \in \Pi}$. Das ist auch ein Fluss minimaler Energie. 
+	Erinnerung: es gilt $\propE{o \leftrightarrow \infty} \geq \inf\limits_{\substack{\Pi \text{ ist } o\leftrightarrow \infty \\ \text{Cutset}}} \set{\frac{1}{\inf\limits_{\mu \in M^1(\Pi)} \mathcal{E}(\mu)}}$.
+	Wir schätzen das Infimum rechts ab. Gegeben sei ein bezüglich \enquote{$\subseteq$} minimales Cutset. Sei $\mu$ eine Wahrscheinlichkeit auf $\Pi$ mit minimaler Energie. Sei $\Theta$ der induzierte Fluss von $o$ nach $\overline{\Pi} = \set{x \given \enb{\overleftarrow{x},x} \in \Pi}$. Das ist auch ein Fluss minimaler Energie. 
 	Seien nun die Leitfähigkeiten an das Perkolationsproblem angepasst. Dann gilt
 	\begin{align}
 		\mathcal{E}(\mu) = 1 + \mathcal{E}(\Theta) = 1+ \mathcal{R}\enb{o \leftrightarrow \overline{\Pi}}
@@ -273,91 +285,114 @@ Insbesondere gilt ür $Ber(p)$--Perkolation $c(e(x)) = \frac{p^{\abs{x}}}{1-p}$.
 \end{beweis}
 	
 \subsection{Rekurrenz und Transienz von Perkolationsclustern}
-$p_c(G)$ ist für viele Graphen insbesondere aber für $G = \ZZ^d$ schwer zu berechnen. Vielleicht ist die folgende Frage einfacher. Ist \underline{das} $\infty$--Perkolationscluster von $\ZZ^d$ rekurrent oder transient?. Die Frage ist für $d=1,2$ trivial, da das Cluster ein Teilgraph eines rekurrenten Graphen ist, folgt die Behauptung aus dem Prinzip von Raleigh \todo{REf}.
+$p_c(G)$ ist für viele Graphen insbesondere aber für $G = \ZZ^d$ schwer zu berechnen. Vielleicht ist die folgende Frage einfacher. Ist \underline{das} $\infty$-Perkolationscluster von $\ZZ^d$ rekurrent oder transient?. Die Frage ist für $d=1,2$ trivial, da das Cluster ein Teilgraph eines rekurrenten Graphen ist, folgt die Behauptung aus dem Prinzip von Raleigh (\ref{satz:Rayleigh}).
 
 Sei $d \geq 3$. Wir brauchen ein technisches Hilfsmittel, das aber allgemein interessant ist. 
 
-\begin{satz}[Pakey--Zygmund--Ungleichung]
+\begin{satz}[Pakey-Zygmund-Ungleichung]
 	Sei $X$ eine Zuvallsvariable mit $\EW{X} = 1$ und existiere $\EW{X^2}$. Dann gilt für alle t < 1
 	\begin{align}
 		\prop{X > t} \geq \frac{\enb{1-t}^2}{\EW{X^2}}
 	\end{align}
 \end{satz}
 \begin{beweis}
-	Das Bemerkenswerte an dieser Ungleichung ist, dass sie eine nicht--triviale untere Schranke an die Wahrscheinlichkeit legt. Sei $A = \set{w \given X(w) \geq t}$. Dann gilt 
+	Das Bemerkenswerte an dieser Ungleichung ist, dass sie eine nicht-triviale untere Schranke an die Wahrscheinlichkeit legt. Sei $A = \set{w \given X(w) \geq t}$. Dann gilt 
 	\begin{align}
 		\EW{X^2} \prop{A} = \EW{X^2} \EW{\mathds{1}^2_A} \geq \enb{\EW(X\mathds{1}_A)}^2 = \enb{1 - \EW{X\mathds{1}_{A^c}}}^2 \geq \enb{1 - t}^2, \marginnote{$1 = \EW{X} = \EW{X\mathds{1}_A} + \EW{X\mathds{1}_{A^c}}$}
 	\end{align}
-	wobei die erste Ungleichung aus Cauchy--Schwarz folgt und die Zweite gilt da, falls $w\in A, ls = 1^2$ und $w\in A^c ?$ \todo{nachtragen}
+	wobei die erste Ungleichung aus Cauchy-Schwarz folgt und die Zweite gilt da, die linke Seit für $w\in A,$ gleich $1^2$ und für $w\in A^c$ größer gleich $(1-t)^2$ ist.
 \end{beweis}
 		
 Um diese Ungleichung anzuwenden müssen wir Wahrscheinlichkeiten definieren. Wir wollen hierfür Wahrscheinlichkeiten auf den Pfaden von einem Konten $a$ nach $t$ (oder $\infty$) in einen Graphen $G = (V,E)$ definieren. Anders als vorher sind dies keine Wahrscheinlichkeiten auf Cutsets. Die Kernidee wird sein, dass solche Pfade Flüssen identifizieren und die Frage ist, ob wir die Wahrscheinlichkeiten auf der Pfadmenge so wählen können, dass die assoziierten Flüsse endliche Energie haben (Weil wir gesehen haben, dass die Existenz von Flüssen endlicher Energie die Transienz des Graphen impliziert). Wir beginnen in einer endlichen Situation. 
 
-Es sei $\Gamma= \set{\gamma \text{ ist ein Pfad von $a$ nach $t$} }, a,z \in \infty$--Perkolationscluster.
+Es sei $\Gamma= \set{\gamma \text{ ist ein Pfad von $a$ nach $t$} }, a,z \in \infty$-Perkolationscluster.
 
-Sei $\mu$ ein Wahrscheinlichkeitsmaß auf $\Gamma$ und sei $\p$ das Maß der $Ber(p)$--kantenperkolation auf $\ZZ^d$. Gegeben eine Realisierung $w$ der Perkolation, definiere ein positives Maß $Y_{\mu}(w)$ auf $\Gamma$ vermöge
+Sei $\mu$ ein Wahrscheinlichkeitsmaß auf $\Gamma$ und sei $\p$ das Maß der $\Ber(p)$-kantenperkolation auf $\ZZ^d$. Gegeben eine Realisierung $\omega$ der Perkolation, definiere ein positives Maß $Y_{\mu}(\omega)$ auf $\Gamma$ vermöge
 \begin{gather}
-	Y_{\mu}(w)[\gamma] = \begin{cases}
-								\frac{\mu(\gamma)}{\propE{\gamma offen}}, & \text{falls } \gamma \subseteq w \\
+	Y_{\mu}(\omega)[\gamma] = \begin{cases}
+								\frac{\mu(\gamma)}{\propE{\gamma \text{ offen}}}, & \text{falls } \gamma \subseteq \omega \\
 								0, & \text{sonst}
 						\end{cases}		
 \end{gather} 
-Diesen positiven kann man nun einen Fluss $\Theta_{\mu} (w)$ zuordnen \todo{ttext}, wobei 
+Diesem positiven Maß kann man nun einen Fluss $\Theta_{\mu} (\omega)$ zuordnen, wobei 
 \begin{align}
-	\Theta_{\mu}(w) = Y_{\mu}(w)[e \in \gamma] - Y_{\mu}(w)[-e \in \gamma]
+	\Theta_{\mu}(\omega) = Y_{\mu}(\omega)[e \in \gamma] - Y_{\mu}(\omega)[-e \in \gamma]
 \end{align}
-Das $Y$ ist zwar ein positives Maß, aber nicht notwendig ein Wahrscheinlichkeitsmaß, d.h. $\Theta_{\mu}(w)$ ist nicht notwendig ein Einheitsfluss.
-\todo{missing part} \\
-\underline{N.B.} S ist eine Zufallsvariable. Es gilt $\EW{X_{\mu}}(w) = \sum \mu(\gamma) = 1$ und
+Das $Y$ ist zwar ein positives Maß, aber nicht notwendig ein Wahrscheinlichkeitsmaß, d.h. $\Theta_{\mu}(\omega)$ ist nicht notwendig ein Einheitsfluss. Man berechnet 
 \begin{align}
-\EW{X^2_{\mu}}(w) &= \sum\limits_{\gamma_1,\gamma_2}\mu(\gamma_1) \mu(\gamma_2) \frac{\prop{\gamma_1 \cup \gamma_2 \subseteq w}}{\prop{\gamma_1 \text{ offen}} \prop{\gamma_2 \text{ offen}}} \\
+	S (\Theta_{\mu}(\omega)) = X_{\mu}(\omega) \sum\limits_{\gamma \subseteq \omega} \frac{\mu(\gamma)}{\propE{\gamma \subseteq \omega}} 
+\end{align}
+\underline{N.B.} S ist eine Zufallsvariable. Es gilt $\EW{X_{\mu}}(\omega) = \sum \mu(\gamma) = 1$ und
+\begin{align}
+\EW{X^2_{\mu}}(\omega) &= \sum\limits_{\gamma_1,\gamma_2}\mu(\gamma_1) \mu(\gamma_2) \frac{\prop{\gamma_1 \cup \gamma_2 \subseteq \omega}}{\prop{\gamma_1 \text{ offen}} \prop{\gamma_2 \text{ offen}}} \\
 	&= \sum\limits_{\gamma_1,\gamma_2} \mu(\gamma_1)\mu(\gamma_2) \frac{p^{\abs{\gamma_1 \cap \gamma_2}} p^{\abs{\gamma_2 \backslash \enb{\gamma_1 \cap \gamma_2}}} p^{\abs{\gamma_1 \backslash \gamma_1 \cap \gamma_2}} } {p^{\abs{\gamma_1 \cap \gamma_2}} p^{\abs{\gamma_2 \backslash \enb{\gamma_1 \cap \gamma_2}}} p^{\abs{\gamma \cap \gamma 2}}} {p^{\abs{\gamma_1 \backslash \gamma_1 \cap \gamma_2}}} \\ 
-	&= \sum\limits_{\gamma_1, \gamma_2} \mu(\gamma_1)\mu(\gamma_2) p^{-\abs{\gamma_1} \cap \gamma_2}
+	&= \sum\limits_{\gamma_1, \gamma_2} \mu(\gamma_1)\mu(\gamma_2) p^{-\abs{\gamma_1 \cap \gamma_2}}
 \end{align}
 was eine erstaunliche Ähnlichkeit zu den Formeln oben hat. \\
 Ähnlich
 \begin{align}
-	\mathcal{E}\enb{\Theta_{\mu}(w)} = \sum\limits_{e} \Theta^2_{\mu} (w)[e] r(e) \leq \sum\limits_{e}\enb{\gamma \ni e} \frac{\mu(\gamma) \mathds{1}_{[\gamma \subseteq w]}}{\propE{\gamma \subseteq w}}
+	\mathcal{E}\enb{\Theta_{\mu}(\omega)} = \sum\limits_{e} \Theta^2_{\mu} (\omega)[e] \underbrace{r(e)}_{=1} \leq \sum\limits_{e}\enb{ \sum\limits_{\gamma \ni e} \frac{\mu(\gamma) \mathds{1}_{[\gamma \subseteq \omega]}}{\propE{\gamma \subseteq \omega}}}^2
 \end{align}		
-
-\todo{missung end}
+und damit 
+\begin{align}
+	\mathcal{E}(\Theta_{\mu}(w)) &= \sum\limits_{e} \sum\limits_{\gamma_1,\gamma_2 \ni e} \mu(\gamma_1)^\mu(\gamma_2) p^{-\abs{\gamma_1 \cap \gamma_2}} \\
+		&= \sum\limits_{\gamma_1,\gamma_2}\abs{\gamma_1 \cap \gamma_2} \mu(\gamma_1) \mu(\gamma_2) p^{-\abs{\gamma_1 \cap \gamma_2}} \\
+		&= \sum\limits_{n \geq 1} np^{-n} (\mu \times \mu) \benb{\abs{\gamma_1 \cap \gamma_2} = n}
+\end{align}
+Strategie: finde $\mu$, sodass das endlich ist. 
 		
 \marginnote{Vorlesungsbeginn 06.06.2016}
+Eine kurze Rekapitulation: Wir waren dabei zu studieren, ob und wann Perkolationscluster in $\ZZ^d$ rekurrent oder transient sind. Ohne Beschränkung ist $d \geq 3$, da für $d=1,2$ die Irrfahrt schon rekurrent ist (Rayleigh). Wir haben auch schon den Satz von Poley-Zigmund gesehen.
 
-\todo{missing start?}
-Für die Energie des Flusses haben wir gefunden, dass 
-\begin{align}
-	\EW{\mathcal{E}(\Theta_{\mu})} \leq \sum\limits_{n \geq 1} n p^{-h} \enb{\mu \times \mu}(\abs{\gamma \cap \gamma'} = n)
+Für einen endlichen Graphen $G = (V,E)$ mit $a,z \in V$ sei $\Gamma = \set{\gamma\given \gamma \text{ist Pfad von $a$ nach $z$}}$ und $\mu \in M^1(\Gamma)$. Gegeben eine Realisierung $\omega$ der Perkolation, sei $Y(\omega)$ das folgende positive Maß auf $\Gamma$:
+\begin{align} 
+	Y_{\mu} (\omega) \land \benb{\gamma} = \begin{cases}
+	\frac{\mu(\gamma)}{\prop{\gamma \subseteq \omega}} & , \gamma \subseteq \omega \\
+	0 & , \text{ sonst}
+	\end{cases}
 \end{align}
-Wir haben noch die Freiheit $\mu \in M^1(\Gamma)$ \todo{M durch} zu wählen und wir versuchen $\mu$ so zu wählen, dass die rechte seite klein \todo{r-s} ist. Hierfür hilft es, wenn $(\mu \times \mu)(\abs{\gamma \cap \gamma'} = n)$ schnell (in $n$) abfällt. Wir sagen, dass $\mu$ einen Exponential--Intersection--Teil mit Parameter $\xi < 1$ hat, falls
+$Y_{\mu}(\omega)$ induziert einen Fluss $\Theta_{\mu}(\omega)$ der Stärke 
 \begin{align}
-	\enb{\mu \times \mu}\enb{\abs{\gamma \cap \gamma'} = n} \leq C \cdot \xi^h 
-\end{align}\todo{klammer}
-Wir zeigen \begin{enumerate}
-	\item \todo{missing part}
+	X_{\mu}(\omega) = \sum\limits_{\gamma \subseteq \omega} \frac{\mu(\gamma)}{\prop{\gamma \text{ offen}}} && \EW{X_{\mu}} = 1 && \EW{X_{\mu}^2} = \sum\limits_{\gamma, \gamma'} \mu(\gamma) \mu(\gamma') p^{-\abs{\gamma \cap \gamma'}} 
+\end{align}
+Für die Energie des Flusses haben wir gefunden, dass 
+\begin{align*}
+	\EW{\mathcal{E}(\Theta_{\mu})} \leq \sum\limits_{n \geq 1} n p^{-h} \enb{\mu \times \mu}(\abs{\gamma \cap \gamma'} = n) \tag{$*$} \label{eq:6-3}
+\end{align*}
+Wir haben noch die Freiheit $\mu \in M^1(\Gamma)$ zu wählen und wir versuchen $\mu$ so zu wählen, dass die rechte Seite von \eqref{eq:6-3} ist. Hierfür hilft es, wenn $(\mu \times \mu)(\abs{\gamma \cap \gamma'} = n)$ schnell (in $n$) abfällt. Wir sagen, dass $\mu$ einen \emph{Exponential-Intersection-Teil} mit Parameter $\xi < 1$ hat, falls
+\begin{align}
+	\enb{\mu \times \mu}\enb{\abs{\gamma \cap \gamma'} = n} \leq C \cdot \xi^n \tag{EIT($\xi$)}\label{eq:EIT}
+\end{align} 
+Wir zeigen 
+\begin{enumerate}
+	\item \ref{eq:EIT} $\Rightarrow$ Transienz von Perkolationsclustern für hinreichend großes $p$.
+	\item In $\ZZ^d, d \geq 4$ gibt es Maße mit \ref{eq:EIT}
 \end{enumerate}
-\todo{was steht da genaz bei xi}
+
 \begin{satz}
-	Falls $\mu \in M^1(\Gamma)$ mit $, \xi < 1 $ existiert, dann ist der $Ber(p)$--Perkolationscluster für $1 > p > \xi$ $\p$--f.s transient.
+	Falls $\mu \in M^1(\Gamma)$ mit \ref{eq:EIT}$, \xi < 1 $ existiert, dann ist der $\Ber(p)$-Perkolationscluster für $1 > p > \xi$ $\p$-f.s transient.
 \end{satz}
 \begin{beweis}
-	Die Wahrscheinlichkeit, dass ein $Ber(p)$--Perkolationscluster transient ist, ist entweder 0 oder 1, denn wenn $w$ transient, dann hängt es nur von der Varialbe außerhalb jedes Würdlfels ab. Die Kernidee ist nun, $d$ zu m effektiven Widerstand von o nach $\infty$ abzuschätzen \todo{check nach}. Dazu verkleben wir woeder alle Punkte außerhalb von $\benb{-r,r}^d$ zu einem Punkt $z$.
-	\todo{missing part}
-	Also
+	Die Wahrscheinlichkeit, dass ein $\Ber(p)$-Perkolationscluster transient ist, ist entweder 0 oder 1, denn wenn $\omega$ transient, dann hängt es nur von den Variablen außerhalb jedes Würfels ab. Die Kernidee ist nun, den effektiven Widerstand von $o$ nach $\infty$ abzuschätzen. Dazu verkleben wir wieder alle Punkte außerhalb von $\benb{-r,r}^d$ zu einem Punkt $z_r$ und erhalten einen endlichen Graphen. In diesem schätzen wir $\mathcal{R}(o \leftrightarrow z_r)$ ab. Es gilt für einen beliebigen Einheitsfluss $\tau$
 	\begin{align}
-		\mathcal{R}\enb{o \leftrightarrow z,}
+		\mathcal{R}\enb{o \leftrightarrow z_r} \leq \mathcal{E}(\tau)
 	\end{align}
-	\todo{missss}
-	
-	Berechnet man 
+	und somit
 	\begin{align}
-		\EW{X^2_r} = \sum\limits_{\gamma,\gamma'}\mu(\gamma)\mu(\gamma')p^{-\abs{\gamma \cap \gamma'}} = \sum\limits_{n \geq 1} p^{-n} \enb{\mu \times \mu}\enb{\abs{\gamma \cap \gamma'} = n} \leq C \sum\limits_{n \geq 1} \enb{\frac{\zeta}{p}}^n = C \frac{\zeta}{p - \zeta}
+		\mathcal{R}(o \leftrightarrow z_r;\infty) \leq \mathcal{E}(\overline{\Theta}_{\mu,r}) = \frac{\mathcal{E}(\Theta_r)}{X^2_r} && \text{mit \quad } \overline{\Theta}_{\mu,r} =: \frac{\Theta_{\mu,r}}{X_{\mu,r}}=:\frac{\Theta_r}{X_r}
+	\end{align}
+	Dies wollen wir abschätzen.	Berechnet man 
+	\begin{align}
+		\EW{X^2_r} = \sum\limits_{\gamma,\gamma'}\mu(\gamma)\mu(\gamma')p^{-\abs{\gamma \cap \gamma'}} = \sum\limits_{n \geq 1} p^{-n} \enb{\mu \times \mu}\enb{\abs{\gamma \cap \gamma'} = n} \leq C \sum\limits_{n \geq 1} \enb{\frac{\xi}{p}}^n = C \frac{\xi}{p - \xi}
 	\end{align}
 	Erinnerung:
 	\begin{align}
-		\EW{X_r} = 1 
+		\EW{X_r} = 1 \Rightarrow \prop{X_r > \frac{1}{2}} \geq \frac{p - \xi}{4C\xi} =: \delta > 0
 	\end{align}
-	\todo{missing part}
+	Andererseits:
+	\begin{align}
+		\EWE{ \mathcal{E}(\Theta_r)} \leq C \sum\limits_{n \geq 1} n \enb{\frac{\xi}{p}}^n = \frac{Cp\xi}{\enb{p-\xi}^2}=: N
+	\end{align}
 	\begin{align}
 		\propE{\mathcal{E}(\Theta_r) \geq \beta } \leq \frac{n}{\beta} \text{ nach Markov}. 
 	\end{align}
@@ -376,27 +411,23 @@ Wir zeigen \begin{enumerate}
 
 Nun zur Transienz von Perkolationsclustern in $\ZZ^d, d\geq 4$.
 \begin{satz}
-	Für $d \geq 4$ gibt es auf $\ZZ^d$ Maße $\mu$ auf $0 \leftrightarrow \infty$--Pfaden mit
-	\begin{align}
-		\EW{I} 
-	\end{align}
+	Für $d \geq 4$ gibt es auf $\ZZ^d$ Maße $\mu$ auf $\Gamma = \set{\gamma \given \gamma \text{ ist } 0 \leftrightarrow \infty \text{-Pfad}}$ mit EIT$(\xi)$ und $\xi<1$.
 \end{satz}
-\todo{missing}
 \begin{beweis}
-	ObdA sei $d=4$, denn auf $\ZZ^4$ . Sei $\mu$ das Maß auf $0 \leftrightarrow \infty$--Pfade, sodass diese Zuwächse der Form $(1,0,0,0), (0,1,0,0),(0,0,1,0),(0,0,0,1)$ mit Wahrscheinlichkeit $\frac{1}{4}$ haben. Will zeigen, dass dieses Maß \todo{E-konstrukt} hat. Wir betrachten also $(\mu \times \mu)(\abs{\gamma \cap \gamma'} = n)$. Nun ist $\abs{\gamma \cap \gamma'} \leq \abs{\set{n \given \gamma(n) = \gamma'(n)}}$, da man keine Kante rückwärts durchläuft und sich immer von der $0$ wegbewegt, müssen $\gamma$ und $\gamma'$ die gleiche Kante auch zur gleichen Zeit benutzen. Damit müssen sie aber auch zur gleichen Zeit im Ursprungspunkt der Kante sein. 
+	ObdA sei $d=4$, denn auf $\ZZ^4$ . Sei $\mu$ das Maß auf $0 \leftrightarrow \infty$-Pfade, sodass diese Zuwächse der Form $(1,0,0,0), (0,1,0,0),(0,0,1,0),(0,0,0,1)$ mit Wahrscheinlichkeit $\frac{1}{4}$ haben. Wir wollen zeigen, dass dieses Maß EIT hat. Wir betrachten also $(\mu \times \mu)(\abs{\gamma \cap \gamma'} = n)$. Nun ist $\abs{\gamma \cap \gamma'} \leq \abs{\set{n \given \gamma(n) = \gamma'(n)}}$, da man keine Kante rückwärts durchläuft und sich immer von der $0$ wegbewegt, müssen $\gamma$ und $\gamma'$ die gleiche Kante auch zur gleichen Zeit benutzen. Damit müssen sie aber auch zur gleichen Zeit im Ursprungspunkt der Kante sein. 
 	
-	Studiere also die Tails von $\abs{\set{n \given: \gamma(n) = \gamma'(n)}}$. Dazu betrachte $\gamma'' = \gamma - \gamma'$. Dann gilt $\gamma(n) = \gamma'(n) \Leftrightarrow \gamma''(n) = 0$
+	Studiere also die Tails von $\abs{\set{n \given: \gamma(n) = \gamma'(n)}}$. Dazu betrachte $\gamma'' = \gamma - \gamma'$. Dann gilt $\gamma(n) = \gamma'(n) \Leftrightarrow \gamma''(n) = 0$.
 	Aufgrund der Konstruktion von $\gamma$ und $\gamma'$ ist $\gamma''$ eine Irrfahrt auf $V_3 = \set{(x_1,\dots, x_4) \in \ZZ^4 \given \sum\limits_{i =  1}^{4} x_i = 0}$.
-	Das Netzwerk azuf $V_3$ ist \enquote{beinahe dasselbe} wie $\ZZ^3$. Insbesondere ist $\gamma''$ auf $V_3$ transient. Insbesondere ist die Anzahl der Rückkehren in die $0$ geometrisch verteilt zu $\zeta := \propE{\exists: \gamma(n) = 0}$. Also hat dieses $\mu$ EIT zu genau desem $\zeta$. 
+	Das Netzwerk auf $V_3$ ist \enquote{beinahe dasselbe} wie $\ZZ^3$. Insbesondere ist $\gamma''$ auf $V_3$ transient. Insbesondere ist die Anzahl der Rückkehren in die $0$ geometrisch verteilt zu $\xi := \propE{\exists: \gamma(n) = 0}$. Also hat dieses $\mu$ EIT zu genau diesem $\xi$. 
 \end{beweis}
 
 \begin{korollar}
-	Das Perkolationscluster in $\ZZ^d$ ist für $d \geq 4$ und $p > p_0 = \zeta$ transient und unendlich. 
+	Das Perkolationscluster in $\ZZ^d$ ist für $d \geq 4$ und $p > p_0 = \xi$ transient und unendlich. 
 \end{korollar}
 \begin{bemerkung}
 	Die Aussage stimmt auch für $\ZZ^3$, der Beweis allerdings nicht.
 \end{bemerkung}
-\marginnote{\enquote{Es ist generell von unschätzbarem Vorteil, bei mir Stochastik gehört zu haben}, Löwe 06.06.2016}
+\marginnote{\enquote{Es ist generell von unschätzbarem Vorteil bei mir Stochastik gehört zu haben}, Löwe 06.06.2016}
 \section{Cutsets, Pfade und Mischzeiten}
 Wir betrachten für dieses Kapitel ergodische Markovketten auf einem endlichen Zustandsraum. \underline{Erinnerung:} Eine Markovkette mit Übergangsmatrix $Q$ heßt ergodisch, wenn \underline{entweder}:
 \begin{enumerate}
@@ -406,63 +437,64 @@ Wir betrachten für dieses Kapitel ergodische Markovketten auf einem endlichen Z
 \underline{oder} $\exists N: Q^N \gg 0$, d.h. $Q^N(x,y)>0 \forall x,y$ \\
 Wichtigster Satz über endliche Markovketten:
 \begin{satz}[Ergodensatz für Markovketten]
-	Sei $X_0,X_1,\dots$ eine ergodische Markovkette mit Startverteilung $v: \prop{X_0 = a} = v(e), \forall e$ und Übergangsmatrix $Q$ 
-	auf einem endlichen Zustandsraum $\Omega$. Dann existiert genau ein $\mu \in M^(\Omega)$ mit 
+	\label{satz:7-1}
+	Sei $X_0,X_1,\dots$ eine ergodische Markovkette mit Startverteilung $v: \prop{X_0 = a} = v(a), \forall a$ und Übergangsmatrix $Q$ 
+	auf einem endlichen Zustandsraum $\Omega$. Dann existiert genau ein $\mu \in M^1(\Omega)$ mit 
 	\begin{enumerate}
 		\item $\mu Q = \mu$
-		\item $\prop{X_n = a}[v] \to \mu(a) $
+		\item $\prop{X_n = a}[][v] \to \mu(a) $
 	\end{enumerate}
 \end{satz}
-\todo{check satz}
 \begin{bemerkung}
-	Der Satz ist deshalb wichtig, weil er auch die Grundlage für Simulationsverfahren ist. Gegeben sei ein Wahrscheinlichkeitsmaß $\mu$ auf $\Omega$, welches man simulieren soll. Der Monte--Carlo--Ansatz ist, das Intervall $[0,1]$ in Teile der Länge $\mu(w_1), \dots, \mu(w_n), \abs{\Omega} = n$. Dann wählt man eine Zufallszahl $x \in [0,1]$ und wenn $x$ im $k$'--ten Intervall liegt, so sagt man, dass man $w_k$ als Ergebnis der Simulation erhält. Dieses Verfahren hat zwei mögliche Probleme. 
-	\begin{enumerate}
-		\item $\Omega$ kann endlich, aber groß sein, z.B. Curie--Weiss--Modell: $\Omega = \set{+- 1}^N$ mit $N \approx 10^23$. Somit ist $\abs{\Omega} \approx {2^10}^23$
-		\item $\Omega$ kann endlich sein, aber $\abs{\Omega}$ ist unbekannt. Zum Beispiel im Knipsack--Problem: Gewichte $0 \leq a_1, \dots, a_N$ sollen in einen Rucksack der Kapazität $b$ gepackt werden. Wie viele Packungen gibt es?
+	Der Satz ist deshalb wichtig, weil er auch die Grundlage für Simulationsverfahren ist. Gegeben sei ein Wahrscheinlichkeitsmaß $\mu$ auf $\Omega$, welches man simulieren soll. Der Monte-Carlo-Ansatz ist, das Intervall $[0,1]$ in Teile der Länge $\mu(w_1), \dots, \mu(w_n), \abs{\Omega} = n$. Dann wählt man eine Zufallszahl $x \in [0,1]$ und wenn $x$ im $k$'-ten Intervall liegt, so sagt man, dass man $w_k$ als Ergebnis der Simulation erhält. Dieses Verfahren hat zwei mögliche Probleme. 
+	\begin{enumerate}[a)]
+		\item $\Omega$ kann endlich, aber groß sein, z.B. Curie-Weiss-Modell: $\Omega = \set{+- 1}^N$ mit $N \approx 10^{23}$. Somit ist $\abs{\Omega} \approx {2^{10}}^{23}$
+		\item $\Omega$ kann endlich sein, aber $\abs{\Omega}$ ist unbekannt. Zum Beispiel im Knipsack-Problem: Gewichte $0 \leq a_1, \dots, a_N$ sollen in einen Rucksack der Kapazität $b$ gepackt werden. Wie viele Packungen gibt es?
 	\end{enumerate}
 \end{bemerkung}
-\todo{check ending}
 
 \marginnote{Vorlesungsbeginn 09.06.2016}
-\begin{beweis}
-	\underline{Skizze:} 
+	\underline{Beweisskizze zu \autoref{satz:7-1}} 
 	\begin{enumerate}
 		\item Die Existenz von $\pi$ glauben wir
 		\item Mit etwas Zahlentheorie zeigt man: Wenn $Q$ ergodisch ist, dann existiert ein $N$, sodass $Q^N \gg 0$, d.h. $Q^N(x,y) > 0, \forall x,y \in E$
-		\item Kopplungsargument: Wenn man mit der Startverteilung $\pi$ beginnt, so ist stets die Verteilung der Markovkette wieder $\pi$ (zu allen Zeiten). Man startet mit zwei Markovketten mit Übergangsmatrix $Q$, die eine $X_n$ mit Startverteilung $\nu$, die andere $X'_n$ mit Startverteilung $\pi$. Falls $X_m \neq X'_m, \forall m \leq n$, so laufen die Ketten unabhänig, vom Treffzeitpunkt an nehmen sie den gleichen Weg. Nachdem sich die Ketten treffen ist also auch $X_n$ nach $\pi$--verteilt. Zu zeigen ist also: Die Ketten treffen sich irgendwann. Da nun $Q^N \gg 0, \exists \alpha := \min\limits_{x,y} Q^N(x,y) > 0$. Dann ist die $\propE{X_N = X'_N} \geq \alpha^2$. Also $\propE{X_N \neq X'_N} \leq 1- \alpha^2$, und somit $\propE{X_n \neq X'_n, \forall n = 1, \dots, mN} \leq \enb{1- \alpha^2}^m \to 0.$
+		\item Kopplungsargument: Wenn man mit der Startverteilung $\pi$ beginnt, so ist stets die Verteilung der Markovkette wieder $\pi$ (zu allen Zeiten). Man startet mit zwei Markovketten mit Übergangsmatrix $Q$, die eine $X_n$ mit Startverteilung $\nu$, die andere $X'_n$ mit Startverteilung $\pi$. Falls $X_m \neq X'_m, \forall m \leq n$, so laufen die Ketten unabhänig, vom Treffzeitpunkt an nehmen sie den gleichen Weg. Nachdem sich die Ketten treffen ist also auch $X_n$ nach $\pi$-verteilt. Zu zeigen ist also: Die Ketten treffen sich irgendwann. Da nun $Q^N \gg 0, \exists \alpha := \min\limits_{x,y} Q^N(x,y) > 0$. Dann ist die $\propE{X_N = X'_N} \geq \alpha^2$. Also $\propE{X_N \neq X'_N} \leq 1- \alpha^2$, und somit $\propE{X_n \neq X'_n, \forall n = 1, \dots, mN} \leq \enb{1- \alpha^2}^m \to 0.$
 	\end{enumerate}
-\end{beweis}
 
 \begin{korollar}[Bemerkung \& Korollar]
-	Dieser Satz lässt sich auch in anderen Metriken formulieren, typischerweise nimmt der Abstand der Totalvariation. Seien $\mu,\nu \in M^1(E)$, dann
+	Dieser Satz lässt sich auch in anderen Metriken formulieren, typischerweise nimmt der Abstand der Totalvariation $d_{TV}$. Seien $\mu,\nu \in M^1(E)$, dann
 	\begin{align}
-		d_{TV} (\mu,\nu) &= \sup\limits_{A \subseteq E}\abs{\nu(A) - \mu(A)} \\
+		d_{TV} (\mu,\nu) &:= \sup\limits_{A \subseteq E}\abs{\nu(A) - \mu(A)} \\
 		&= \frac{1}{\epsilon} \sum\limits_{x \in E}(\mu(\set{x}) - \nu(\set{x})  \marginnote{Da $E$ diskret}
 	\end{align}
-	Dann ließt sich der Ergodensazu für Markovkette als: Sei $(X_n)_n$ eine ergorische Markovkette auf $E$ mit Übergangsmatrix $Q$, dann glt für alle $\nu \in M^(E)$
+	Dann ließt sich der Ergodensatz für Markovketten als: Sei $(X_n)_n$ eine ergodische Markovkette auf $E$ mit Übergangsmatrix $Q$, dann gilt für alle $\nu \in M^1(E)$
 	\begin{align}
-		d_{TV}(\nu Q^n,\pi) = d(vQ^n,\pi) \to 0
+		d_{TV}(\nu Q^n,\pi) = d(\nu Q^n,\pi) \to 0
 	\end{align}	
 \end{korollar}
-\todo{check korollar}
-Für alle Anwendungen ist allerdings die Frage der Konvergenzgeschwindigkeit essentiell. Die Konvergenz gegen das Gleichgewichtsmaß $\pi$ sollte wesentlich schneller sein als ein Monte--Carlo--Sample von $\pi$.
+Für alle Anwendungen ist allerdings die Frage der Konvergenzgeschwindigkeit essentiell. Die Konvergenz gegen das Gleichgewichtsmaß $\pi$ sollte wesentlich schneller sein als ein Monte-Carlo-Sample von $\pi$.
 \begin{align}
-	\nu Q^n = \nu S^{-1} D^n S = \nu S^{-1}  (Diagonale 1 \lambda_2 \dots \lambda_{\abs{E}-1})^n S
-\end{align}\todo{Matrix}
+	\nu Q^n = \nu S^{-1} D^n S = \nu S^{-1} \begin{psmallmatrix}
+	1 & & & \\
+	  & \lambda_2 &0 & \\
+	  & 0 & \ddots & \\
+	  & & &\lambda_{\abs{E}-1}
+	\end{psmallmatrix}^n S
+\end{align}
 \begin{definition}
 	Es sei $\epsilon > 0$, dann ist 
 	\begin{gather}
 		t_{mix}(\epsilon) = \min\set{t \given d_{TV}(\nu Q^t, \pi) \leq \epsilon} \\
 		t_{mix} := t_{mix}(\frac{1}{4})
 	\end{gather} 
-	die $\epsilon$--Mischzeit bzw. die Mischzeit der Markovkette. Weiter sei 
+	die $\epsilon$-Mischzeit bzw. die Mischzeit der Markovkette. Weiter sei 
 	\begin{align}
 		d(t) &= \max\limits_x \set{d\enb{\delta_x Q^t, \pi}} \\
 		\overline{d}(t) &= \max_{x,y} \set{d\enb{\delta_x Q^t, \delta_y Q^t}}
 	\end{align}
 \end{definition}
 \begin{bemerkung}
-	Die Wahl von $\epsilon = \frac{1}{4}$ ist willkürlich, jedes $\epsilon < \frac{1}{2}$ leidert sinnvole Ergebnisse, wie wir gleich sehen werden. 
+	Die Wahl von $\epsilon = \frac{1}{4}$ ist willkürlich, jedes $\epsilon < \frac{1}{2}$ liefert sinnvolle Ergebnisse, wie wir gleich sehen werden. 
 \end{bemerkung}
 
 \begin{lemma}
@@ -489,7 +521,7 @@ Für alle Anwendungen ist allerdings die Frage der Konvergenzgeschwindigkeit ess
 			&\leq \sum\limits_{y} \pi(y) \max\limits_{A} \abs{Q^t\enb{x,A} - Q^t(y,A) } \marginnote{Dreiecksungleichung} \\
 			&= \sum\limits_{y}\pi d(\delta_x Q^t, \delta_y Q^t) \leq d(t) \marginnote{$\max\limits{x,y}$} \\
 			&\Rightarrow \text{ Max über $x$ ergibt } d(t) \leq \overline{d}(t)
-	\end{align} \todo{marginnotes checken}
+	\end{align}
 \end{beweis}
 
 \begin{lemma}
@@ -501,14 +533,17 @@ Für alle Anwendungen ist allerdings die Frage der Konvergenzgeschwindigkeit ess
 \begin{beweis}
 	Wir benutzen (ohne Beweis): Für $\mu,\nu \in M^1(E)$ gilt
 	\begin{align}
-		d(\mu,\nu) &= \inf\set{\prop{X \neq Y} \given (X,Y)\text{ ist eine } \mu,\nu \text{--Kopplung}} \\
-				&=  \min\set{\prop{X \neq Y} \given (X,Y)\text{ ist eine } \mu,\nu \text{--Kopplung}}
+		d(\mu,\nu) &= \inf\set{\prop{X \neq Y} \given (X,Y)\text{ ist eine } \mu,\nu \text{-Kopplung}} \\
+				&=  \min\set{\prop{X \neq Y} \given (X,Y)\text{ ist eine } \mu,\nu \text{-Kopplung}}
 	\end{align}
-	$(X,Y)$ ist eine $\mu,\nu$--Kopplung, wenn $\p^X = \mu, \p^Y = \nu$. So etwas existiert immer, wenn man z.B. $\p^{X,Y} = \mu ++ \nu$ wählt. Die Kopplung in der das Minimum angenommen wird, heißt optimale Kopplung. Seien nun $x,y\in E$ und für alle $t$ sei $(X_t,Y_t)$ die optimale Kopplung von $\delta_x Q^t$ und $\delta_y Q^t$. Dann gilt für alle $x,w \in E$
+	$(X,Y)$ ist eine $\mu,\nu$-Kopplung, wenn $\p^X = \mu, \p^Y = \nu$. So etwas existiert immer, wenn man z.B. $\p^{X,Y} = \mu \otimes \nu$ wählt. Die Kopplung in der das Minimum angenommen wird, heißt optimale Kopplung. Seien nun $x,y\in E$ und für alle $t$ sei $(X_t,Y_t)$ die optimale Kopplung von $\delta_x Q^t$ und $\delta_y Q^t$. Dann gilt für alle $x,w \in E$
 	\begin{align}
-		Q^{t+s} = ---- \\
-		&=\sum\limits_{z} \propE{X_s = z}[][X] Q^t(z,w) = \EWE{Q(X_s,w)}
-	\end{align} \todo{missing }
+		Q^{t+s}(x,w) = \sum\limits_{z} Q^s(x,z) Q^t(z,w) =\sum\limits_{z} \propE{X_s = z}[X] Q^t(z,w) = \EW{Q^t(X_s,w)}
+	\end{align}
+	und
+	\begin{align}
+		Q^{t+s}(y,w) = \EW{Q^t(Y_s,w)}
+	\end{align}
 	Also:
 	\begin{align}
 		Q^{s+t}(x,w) - Q^{t+s}(y,w) &= \EWE{Q^t(X_s,w) - Q^t(Y_s,w)} \\
@@ -523,18 +558,17 @@ Für alle Anwendungen ist allerdings die Frage der Konvergenzgeschwindigkeit ess
 	\end{align}
 	Also:  
 	\begin{align}
-		c \in \NN: d(ct) \leq \overline{d}(ct) \overline{d}(t)^c \\
-		\Rightarrow d(ct_{mix}(\epsilon)) \leq \overline{d}(t_{mix}(\epsilon))^c \leq \enb{2d(t_{mix} (\epsilon) )}^c \leq \enb{2\epsilon}^c
+		c \in \NN: d(ct) \leq \overline{d}(ct) \overline{d}(t)^c && \Longrightarrow && d(ct_{mix}(\epsilon)) \leq \overline{d}(t_{mix}(\epsilon))^c \leq \enb{2d(t_{mix} (\epsilon) )}^c \leq \enb{2\epsilon}^c
 	\end{align}
 	Also $d(ct_{mix}) \leq 2^{-c}$
 	\begin{align}
-		\Rightarrow t_{mix} (\epsilon) \leq \log_2 \frac{1}{\epsilon} t_{mix}
+		\Rightarrow t_{mix} (\epsilon) \leq \lceil\log_2 \frac{1}{\epsilon}\rceil t_{mix} 
 	\end{align}
-	\todo{check ending gaussklammern}
 \end{beweis}
 
+\marginnote{Vorlesungsbeginn 13.06.2016}
 Zunächst zeigen wir untere Schranken für $t_{mix}(\epsilon)$. Die erste Idee basiert darauf, dass, wenn $\pi$ die Gleichverteilung ist auf $\Omega$ ist, man zumindest potenziell einen wesentlichen Anteil der Punkte gesehen haben können muss, um nahe an $\pi$ zu sein. \\
-\underline{Umsetzung:} Es sei $(X_n)_n$ ergodisch auf $\Omega, \abs{\Omega} < \infty, \pi(w) = \frac{1}{\abs{\Omega}}, \forall w \in \Omega$ und definiere $d_{out} := \abs{\set{y \given Q(x,y) > 0}}$ \todo{check} als die Anztahl der Punkte, die man in einem Schritt von $x$ aus erreichen kann. 
+\underline{Umsetzung:} Es sei $(X_n)_n$ ergodisch auf $\Omega, \abs{\Omega} < \infty, \pi(\omega) = \frac{1}{\abs{\Omega}}, \forall \omega \in \Omega$ und definiere $d_{out} := \abs{\set{y \given Q(x,y) > 0}}$ \todo{check} als die Anzahl der Punkte, die man in einem Schritt von $x$ aus erreichen kann. 
 \begin{align}
 	\Delta = \max\limits_x d_{out}(x)
 \end{align}
@@ -560,9 +594,9 @@ Dann gilt
 	\end{align}
  \end{beweis}
 
-Wichtiger Unterschied: Man muss $t_{mix}(\epsilon)$ midestens $(1-\epsilon)\abs{\Omega}$ gesehen haben können, man muss sie de facto nicht gesehen haben (Diese Zeit wäre viel viel größer). 
-\begin{beispiel}[Irrfahrt auf einem $d$--regulären Graphen]
-	Es sei $G = (V,E)$ $d$--regulär, das heißt $\deg(v) = d$. Wählt man darauf die einfache Irrfahrt $\prop{X_n = y \given X_{n-1} = x} = 
+Wichtiger Unterschied: Man muss $t_{mix}(\epsilon)$ mindestens $(1-\epsilon)\abs{\Omega}$ gesehen haben können, man muss sie de facto nicht gesehen haben (Diese Zeit wäre viel viel größer). 
+\begin{beispiel}[Irrfahrt auf einem $d$-regulären Graphen]
+	Es sei $G = (V,E)$ $d$-regulär, das heißt $\deg(v) = d$. Wählt man darauf die einfache Irrfahrt $\prop{X_n = y \given X_{n-1} = x} = 
 		\begin{cases}
 			\frac{1}{d,} & \forall y \sim x \\
 			0, \text{ sonst} 
@@ -586,7 +620,7 @@ Dieser Graph $G = (V,E)$ hat einen natürlichen Abstand $d_G$.
 \begin{align}
 	diam G := \max\limits_{x,y \in V} d_G(x,y) \marginnote{\enquote{Ah! Groß \enquote{D}. Zum Glück hat Gott auch die Großbuchstaben erfunden}, Löwe 13.06.2016}
 \end{align}
-Wir sagen die Markovkette $(X)$ oder die Übergangsamtrix $Q$ gat denb Durchmesser $D$, falls $diam G = D$. Falls nun $diam Q = D$, dann gibt es $x_ß,y_0 \in \Omega$ mit $d_G(x_0,y_0) =  D.$ Somit können sich zwei Markovketten mit Übergangsmatrix $Q$, von denen eine in $x_0$ und eine in $y_0$ startet zur Zeit $\lfloor\frac{D-1}{2}\rfloor$ noch nicht getroffen haben. 
+Wir sagen die Markovkette $(X)$ oder die Übergangsmatrix $Q$ hat den Durchmesser $D$, falls $diam G = D$. Falls nun $diam Q = D$, dann gibt es $x_ß,y_0 \in \Omega$ mit $d_G(x_0,y_0) =  D.$ Somit können sich zwei Markovketten mit Übergangsmatrix $Q$, von denen eine in $x_0$ und eine in $y_0$ startet zur Zeit $\lfloor\frac{D-1}{2}\rfloor$ noch nicht getroffen haben. 
 \begin{align}
 	\Rightarrow d_{TV} \Big( \delta_x Q^{\lfloor\frac{D-1}{2}\rfloor}, \delta_y  Q^{\lfloor\frac{D-1}{2}\rfloor}  \Big) = 1 \\
 	\Rightarrow \overline{d}(\lfloor\frac{D-1}{2}\rfloor) > 1.
@@ -650,7 +684,7 @@ $C(A,B)$ ist die Wahrscheinlichkeit von $A$ nach $B$ zu laufen, wenn man mit $\p
 		\begin{align}
 			\Phi(S) = \frac{2 \abs{\delta S}}{\sum\limits_{x \in S} \deg x}
 		\end{align}
-		\item Ist $(V,E)$ $d$--regulär, dann ist
+		\item Ist $(V,E)$ $d$-regulär, dann ist
 		\begin{align}
 			\Phi(S) = \frac{\abs{\delta S}}{d \abs{S}}
 		\end{align}
@@ -715,11 +749,11 @@ $C(A,B)$ ist die Wahrscheinlichkeit von $A$ nach $B$ zu laufen, wenn man mit $\p
 \end{beweis}
 
 \begin{beispiel}[Verklebte Tori]
-	Ein diskreter d--dimensionaler Torus ist ein Graph $G = (V,E)$ mit $V = \ZZ_n \times \dots \times \ZZ_n$, d--mal, und $\ZZ_n = \set{0,\dots,n-1}$ und für $x = (x_1,\dots,x_d), y = (y_1,\dots,y_d)$ sei 
+	Ein diskreter d-dimensionaler Torus ist ein Graph $G = (V,E)$ mit $V = \ZZ_n \times \dots \times \ZZ_n$, d-mal, und $\ZZ_n = \set{0,\dots,n-1}$ und für $x = (x_1,\dots,x_d), y = (y_1,\dots,y_d)$ sei 
 	\begin{align}
 		e = \set{x,y} \in E \Leftrightarrow \exists j \in \set{1,\dots,d} :\forall i \neq j: x_i = y_i  \text{ und } x_j = y_j +- 1 \mod{n}.
 	\end{align} 
-	Seien nun $T_1$ und $T_2$ zwei d--dimensionale n--Tori. Diese verkleben wir in genau einem Punkt $v*$. Sei mim $V_1 = V(T_1)$, $V_2 = V(T_2) \Rightarrow V_1 \cap V_2 = \set{v*}$. Wähle für die einfache Irrfahrt auf diesen Gebilden $S = V_1\backslash \set{v*}$. Da jeder Knoten aus $T_1$ oder $T_2$ mit genau $2d$ Knoten aus diesem Torus verbunden ist, ist $\abs{\delta S} = 2d$. Nun ist 
+	Seien nun $T_1$ und $T_2$ zwei d-dimensionale n-Tori. Diese verkleben wir in genau einem Punkt $v*$. Sei mim $V_1 = V(T_1)$, $V_2 = V(T_2) \Rightarrow V_1 \cap V_2 = \set{v*}$. Wähle für die einfache Irrfahrt auf diesen Gebilden $S = V_1\backslash \set{v*}$. Da jeder Knoten aus $T_1$ oder $T_2$ mit genau $2d$ Knoten aus diesem Torus verbunden ist, ist $\abs{\delta S} = 2d$. Nun ist 
 	\begin{align}
 		\sum\limits_{x \in S} \deg{x} = 2d(n^d-1). 
 	\end{align}
@@ -727,16 +761,16 @@ $C(A,B)$ ist die Wahrscheinlichkeit von $A$ nach $B$ zu laufen, wenn man mit $\p
 \end{beispiel}\todo{überarbeitten Anfnag bsp}
 
 \begin{beispiel}[Graphenfärben]
-%	Sei $G = (V,E)$ ein Graph- Eine Färbung von $G$ mit $q$ Farben $\set{1,\dots,q}$ ist eine Abbildung $f: V \to \set{1,\dots,q}$, mit $f(v) \neq f(w)$, falls $\set {v,w} \in E$. Es gibt zwei offensichtliche Fragen: Wie groß muss $q$ minimal sein? Und wie viele Färbungen gibt es? Die zweite Frage versucht man approximativ mithilfe eines MCMC--Verfahrens zu lösen.\marginnote{MCMC = Monte Carlo Markov Chain} Dazu sucht man eine Markovkette auf $\Omega = \set{f:V \to \set{1,\dots,q} \given f \text{ zulässige Färbung}}$, die als stationäres Maß die Gleichverteilung hat. Nun bastelt man Graph $G = G_\abs{E} \supseteq G_\abs{E}-1 \supset \dots \supset G_0 = \enb{V,E_0}, E_0 = \emptyset$, indem man sukzessive Kanten weglässt. Sei $\Omega_i$ die Menge der Färbungen von $G_i \Rightarrow G_0 = q^{\abs{V}}$. Kann man die Gleichverteilung auf allen $\Omega_i$ gut simulieren, so kann man auch $\frac{\abs{\Omega_i}}{\abs{\Omega_{i-1}}}$ gut schätzen. Also kann man auch $\abs{\Omega}$ gut schätzen. Wie sampelt man die Gleichverteilung auf $\Omega$?
+%	Sei $G = (V,E)$ ein Graph- Eine Färbung von $G$ mit $q$ Farben $\set{1,\dots,q}$ ist eine Abbildung $f: V \to \set{1,\dots,q}$, mit $f(v) \neq f(w)$, falls $\set {v,w} \in E$. Es gibt zwei offensichtliche Fragen: Wie groß muss $q$ minimal sein? Und wie viele Färbungen gibt es? Die zweite Frage versucht man approximativ mithilfe eines MCMC-Verfahrens zu lösen.\marginnote{MCMC = Monte Carlo Markov Chain} Dazu sucht man eine Markovkette auf $\Omega = \set{f:V \to \set{1,\dots,q} \given f \text{ zulässige Färbung}}$, die als stationäres Maß die Gleichverteilung hat. Nun bastelt man Graph $G = G_\abs{E} \supseteq G_\abs{E}-1 \supset \dots \supset G_0 = \enb{V,E_0}, E_0 = \emptyset$, indem man sukzessive Kanten weglässt. Sei $\Omega_i$ die Menge der Färbungen von $G_i \Rightarrow G_0 = q^{\abs{V}}$. Kann man die Gleichverteilung auf allen $\Omega_i$ gut simulieren, so kann man auch $\frac{\abs{\Omega_i}}{\abs{\Omega_{i-1}}}$ gut schätzen. Also kann man auch $\abs{\Omega}$ gut schätzen. Wie sampelt man die Gleichverteilung auf $\Omega$?
 %	
-	\enquote{Glauberdynamik} -- Beginne mit irgendeiner zulässigen Färbung.
+	\enquote{Glauberdynamik} - Beginne mit irgendeiner zulässigen Färbung.
 	\begin{itemize}
 		\item wähle zufällig $v \in V$
 		\item wähle zufällige Farbe
 		\item ist diese nicht zufällig, behält $v$ seine Farbe, ansonsten streiche $v$ in der neuen Farbe 
 	\end{itemize}\todo{check}
 	\underline{Mitteilung:} Wenn $q > \Delta = \max\limits_{v \in V} \deg{v}$, dann ist die Kette aperiodisch und irreduzibel, und $\pi = \frac{1}{\abs{\Omega}}$ ist das stationäre Maß \\
-	\underline{Mitteilung:} Ost $q > 2\Delta$, dann mischt die Kette in Zeit $\abs{V} \log \abs{V}$. Es kann aber auch schief gehen, wenn $\Delta$ groß wird. Sei dazu $G = (V,E)$ der $k$--Stern. d.h. $G$ ist ein Baum der Tiefe 1 mit Wurzel $v*$ und $n-1$ Blättern. \todo{Stern bild}
+	\underline{Mitteilung:} Ost $q > 2\Delta$, dann mischt die Kette in Zeit $\abs{V} \log \abs{V}$. Es kann aber auch schief gehen, wenn $\Delta$ groß wird. Sei dazu $G = (V,E)$ der $k$-Stern. d.h. $G$ ist ein Baum der Tiefe 1 mit Wurzel $v*$ und $n-1$ Blättern. \todo{Stern bild}
 	Sei $\Omega \supset S = \set{f \in \Omega \given f(v*) =  1}$. Sei $(x,y) \in S \times S^c, c(x,y) > 0 \Leftrightarrow x(v*) = 1, y(v*) \neq 1 \land x(v) =  y(v) \forall v \neq v* land x(v) \notin \set{1,y(v*)} \forall v \neq v*$ \todo{Layout überarbeiten}. Also gilt für 
 	\begin{align}
 		A = \set{(x,y) \in S\times S^c, c(x,y)> 0} \Rightarrow \abs{A} = (q-1)(q-2)^{n-1} \marginnote{Es gibt $(q-1)$ Färbungen von $v*$ unter $y$}
@@ -751,7 +785,7 @@ $C(A,B)$ ist die Wahrscheinlichkeit von $A$ nach $B$ zu laufen, wenn man mit $\p
 		\Rightarrow t_{mix} \geq \frac{n(q-2)}{4(q-1)^2} \frac{n}{q-1}
 	\end{align}
 	\todo{Brüche}
-	Wählt man nun $n$ und $q$ so, dass $\frac{n}{q \log q} \to \infty$ dann wächst $t_{mix}$ super--polynomiell
+	Wählt man nun $n$ und $q$ so, dass $\frac{n}{q \log q} \to \infty$ dann wächst $t_{mix}$ super-polynomiell
 \end{beispiel}
  
 \marginnote{Vorlesungsbeginn 20.06.2016}
@@ -789,9 +823,9 @@ $C(A,B)$ ist die Wahrscheinlichkeit von $A$ nach $B$ zu laufen, wenn man mit $\p
  	\Phi(S) = \frac{1}{2n-2} \frac{2n-2}{n-2} = \frac{1}{n-2}.
  \end{align}
  Damit $t_{mix} \geq \frac{n-2}{4}$. Diese Abschätzung ist ziemlich gut, denn ,man kann auhc zeigen dass $t_{mix} \leq 4n$ gilt, d.h. untere und obere Schranke unterscheiden sich lediglich um eine Konstante. \\
- Curie--Weiss: $\beta =1$ kritische Temperatur. $m_N = \frac{1}{N} \sum\limits_{i=1}^{N}\delta_i : m_N \sim 0$ \todo{check} für $\beta \leq 1$. $m_N$ konzentriert sich. \todo{missing part}
+ Curie-Weiss: $\beta =1$ kritische Temperatur. $m_N = \frac{1}{N} \sum\limits_{i=1}^{N}\delta_i : m_N \sim 0$ \todo{check} für $\beta \leq 1$. $m_N$ konzentriert sich. \todo{missing part}
  
- \enquote{Man kann zeigen, dass $t_{mix} \leq \dots$ gilt} haben wir in allen Beispielen 4.2--4.4 \todo{REF} gesagt. Aber wie zeigt man so etwas? Wir wollen eine Technik kennenlernen, die solche Abschätzungen aus der Verteilung der Eigenwerte von $Q$ generiert. Die Situiation ist wieder die, dass $Q$ eine bezüglich $\pi$ reversible Markovkette auf einem endlichen Zustandsraum $\Omega$ mit $\abs{\Omega} = m$ ist. Wir werden sehen, dass $Q$ nur reelle Eigenwerte hat. Diese ordnen wir an. $1 = \beta_0 > \beta_1 \dots \geq \beta_{m-1} \overset{*}{>} -1$\marginnote{* die Kette sei aperiodisch}. Man kann einen Operator zu $Q$ assoziieren, der vermöge
+ \enquote{Man kann zeigen, dass $t_{mix} \leq \dots$ gilt} haben wir in allen Beispielen 4.2-4.4 \todo{REF} gesagt. Aber wie zeigt man so etwas? Wir wollen eine Technik kennenlernen, die solche Abschätzungen aus der Verteilung der Eigenwerte von $Q$ generiert. Die Situation ist wieder die, dass $Q$ eine bezüglich $\pi$ reversible Markovkette auf einem endlichen Zustandsraum $\Omega$ mit $\abs{\Omega} = m$ ist. Wir werden sehen, dass $Q$ nur reelle Eigenwerte hat. Diese ordnen wir an. $1 = \beta_0 > \beta_1 \dots \geq \beta_{m-1} \overset{*}{>} -1$\marginnote{* die Kette sei aperiodisch}. Man kann einen Operator zu $Q$ assoziieren, der vermöge
  \begin{align}
  	\benb{Q\Phi}(x) = \sum\limits_{z \in \Omega} Q(x,z)\Phi(z)
  \end{align}
@@ -799,7 +833,7 @@ $C(A,B)$ ist die Wahrscheinlichkeit von $A$ nach $B$ zu laufen, wenn man mit $\p
  	\begin{align}
  		Q^n = S-{-1} D^n S = S^{-1} MATRIXMISSiNG S
   	\end{align}\todo{MATIRX}
-  	D.h. die Konnvergenz findet in $D^n$ statt. Diese Matrix konvergiert gegen \todo{MATRIX} (1,0,0,0) und die Konvergenzgeschwindigkeit richtet sich nach dem betragsmäßig zweitgrößten Eigenwert.
+  	D.h. die Konvergenz findet in $D^n$ statt. Diese Matrix konvergiert gegen \todo{MATRIX} (1,0,0,0) und die Konvergenzgeschwindigkeit richtet sich nach dem betragsmäßig zweitgrößten Eigenwert.
   	
 \begin{satz}
 	In der obigen Situation sei $\beta_* = \max\set{\abs{\beta_i},i\neq 0}, \gamma* = 1- \beta_*$ die absolute Spektrallücke, $\gamma = 1 - \beta_1$ die Spektrallücke und $t_{rel} = \frac{1}{\gamma^*}$ die Relaxationszeit. Dann gilt für alle $\epsilon > 0$ 
@@ -818,7 +852,7 @@ $C(A,B)$ ist die Wahrscheinlichkeit von $A$ nach $B$ zu laufen, wenn man mit $\p
 		Sei $Q$ reversibel bezüglich $\pi$. Dann gilt:
 		\begin{enumerate}[(i)]
 			\item $Q$ hat nur reelle Eigenwerte $(\beta_0,\dots,\beta_m)$
-			\item $(R^m,<\cdot,\cdot>)$ hat eine Orthonormalbasis aus Eigenfunktionmen zu $(\beta_i)$
+			\item $(R^m,<\cdot,\cdot>)$ hat eine Orthonormalbasis aus Eigenfunktionen zu $(\beta_i)$
 			\item $\forall t \in \NN$ gilt $\frac{Q^t(x,y)}{\pi(y)}  = \sum\limits_{j = 0}^{m-1} f_j(x) f_j(y)\beta_j^t$
 			\item $f_0 \equiv 1$ ist zulässig also \begin{align}
 				\frac{Q^t(x,y)}{\pi(y)} = 1+ \sum\limits_{j = 1}^{m-1} f_j(x) fj(y) \beta^t_j
@@ -849,12 +883,12 @@ $C(A,B)$ ist die Wahrscheinlichkeit von $A$ nach $B$ zu laufen, wenn man mit $\p
 	\todo[inline]{auskommentiert}
 %	\begin{align}
 %		|| Q_t(x, \cdot) - \pi(\cdot) ||_{TV} &= \frac{1}{2} \sum\limits_{y} \abs{Q^t(x,y) - \pi(y)} = \frac{1}{2} \sum\limits_{y} \pi(y) \abs{\frac{Q^t(x,y)}{\pi(y)} -1} \\
-%						&= \frac{1}{2} || \frac{Q^t(x,\cdot)}{\pi(\cdot)} -1 ||_1 \marginnote{$||\cdot||_1 $1--Norm in $ L^1(\pi)$} 
+%						&= \frac{1}{2} || \frac{Q^t(x,\cdot)}{\pi(\cdot)} -1 ||_1 \marginnote{$||\cdot||_1 $1-Norm in $ L^1(\pi)$} 
 %						
 %	\end{align}
 	d.h. $4 ||Q^t(x,\cdot) - \pi(\cdot )||^2_{TV} \leq ||\frac{Q^t(x,\cdot)}{\pi(\cdot)} -1||^2_2$. \marginnote{Mit Jensenscher Ungleichung und $||\cdot||_2$ die Norm in $L^2(\pi)$} Nach dem Lemma gilt:
 	\begin{align}
-		\abs{\frac{Q^t(x,y)}{\pi(y)} -1} &\overset{\Delta--\text{Ungl.}}{\leq} \sum\limits_{j =  1}^{m-1} \abs{f_j(x) f_j(y)} \beta^t_j \leq \beta^t_* \sum\limits_{j=1}^{m-1} \abs{f_j(x) f_j(y)} \\
+		\abs{\frac{Q^t(x,y)}{\pi(y)} -1} &\overset{\Delta-\text{Ungl.}}{\leq} \sum\limits_{j =  1}^{m-1} \abs{f_j(x) f_j(y)} \beta^t_j \leq \beta^t_* \sum\limits_{j=1}^{m-1} \abs{f_j(x) f_j(y)} \\
 			&\overset{C.S.}{\leq} \beta^t_* \enb{\sum\limits_{j = 0}^{m-1} f_j^2(x)}^{1/2} \enb{\sum\limits_{j = 0}^{m-1} f_j^2(y)}^{1/2}
 	\end{align}
 	Da \begin{align}
@@ -871,7 +905,7 @@ $C(A,B)$ ist die Wahrscheinlichkeit von $A$ nach $B$ zu laufen, wenn man mit $\p
 \todo{check begin/letztes Ende}
 
 \marginnote{Vorlesungsbeginn 23.06.2016}
-\underline{Moral:} Es genügt $1-\beta_1$ abzuschätzen, um $t_{mix}$ zu kontrollieren. Eine Möglichkeit geht über den mit $Q$ assoziierten Laplace--Operator: $L = \id -Q$. Die Spektrallücke ist dann der erste von 0 verschiedene Eigenwert.
+\underline{Moral:} Es genügt $1-\beta_1$ abzuschätzen, um $t_{mix}$ zu kontrollieren. Eine Möglichkeit geht über den mit $Q$ assoziierten Laplace-Operator: $L = \id -Q$. Die Spektrallücke ist dann der erste von 0 verschiedene Eigenwert.
 
 \begin{definition}
 	Sei $Q$ reversibel bezüglich $\pi$, $c(x,y) = \pi(x) Q(x,y)$ die zu $(Q,\pi)$ assoziierte Dirichletform ist definiert durch
@@ -893,13 +927,13 @@ Man kann mittels $\mathcal{E}$ eine Abschätzung für $1-\beta_1$	erreichen.
 \end{satz}
 \todo{formel pi Varianz + mins}
 \begin{bemerkung}
-	Das heißt in der Physik auch manchmal Raleigh--Ritz--Prinzip. Man sucht in gewissem Sinne möglichst glatte Funktionen, die aber nicht konstant sind.
+	Das heißt in der Physik auch manchmal Raleigh-Ritz-Prinzip. Man sucht in gewissem Sinne möglichst glatte Funktionen, die aber nicht konstant sind.
 \end{bemerkung}
 \begin{beweis}
 	Das letzte Gleichheitszeichen erhält man, indem man $f$ durch $f- \EW{f}[\pi]$ \todo{ EW für oben unten ertweitern} ersetzt, das vorletzte Gleichheitszeichen erhählt man, indem man $f$ durch $\frac{f}{||f||_{2,\pi}}$ ersetzt.
 	Für die erste Gleichheit, sei $f: \EW{f}_[pi](f), ||f||^{2,\pi} = 1$. Dann gilt
 	\begin{align}
-		0 = \EW{f}_{\pi}= \sum\limits_{x}f(x)\pi(x) = \sum\limits_{x} f(x) \mathds{x} \pi(x) ) <f,\mathds{1}>_{pi} \marginnote{$\mathds{1}$--konstante 1 Fkt}
+		0 = \EW{f}_{\pi}= \sum\limits_{x}f(x)\pi(x) = \sum\limits_{x} f(x) \mathds{x} \pi(x) ) <f,\mathds{1}>_{pi} \marginnote{$\mathds{1}$-konstante 1 Fkt}
 	\end{align}
 	Da $\mathds{1}$ Eigenfunktion zu $\beta_0$ ist, ist $f orthogonal$ Eigenraum zu $\beta_0$. Also, mit $f_j$ Eigenfunktion von $\beta_j$
 	\begin{align}
@@ -929,7 +963,7 @@ Weiter sei
 	\kappa = \kappa(\Gamma) = \max\limits_{e} \sum\limits_{\gamma_{xy}}\abs{\gamma_{xy}}_Q.
 \end{align}
 Dann gilt 
-\begin{satz}[Pontcaré Ungleichung]
+\begin{satz}[Poincaré Ungleichung]
 	In der obigen Situation gilt $\beta_1 \leq 1 - \frac{1}{\kappa}$ oder $\lambda_1 \geq \frac{1}{\kappa}$
 \end{satz}
 \begin{beweis}
@@ -1002,7 +1036,7 @@ Dann gilt
 %\todo[inline]{ende der wiederholung}
 %
 \begin{beispiel}
-	Irrfahrt auf dem $p$--Kreis $\ZZ_p$. Sei $p$ ungerade und wir betrachten die gewöhnliche Irrfahrt auf $\ZZ_p$. Es ist $\pi(x) = \frac{1}{p} \forall x \in \ZZ_p$ das invariante Maß. \todo{missing figure} Außerdem gilt $d_* = 2$. Wir wählen (typisch für Simple Random Walk) $\gamma_{xy}$ als den kürzesten Pfad von $x$ nach $y$. Dann ist $\gamma_* = \frac{p-1}{2}$. Nun berechnen wir $b$. Aus Symmetriegründen wird jede Kante von gleich vielen Pfaden benutzt. Nehmen wir die Kante $(0,1)$. \todo{missing picture} $\gamma_{xy}$, die diese Kante benutzen haben $x$ \enquote{links} von $0$ und $y$ \enquote{rechts} von 1. Sei $d(x,0) = i$. Dann laufen alle Pfade von $\gamma_{xy}$ über $(0,1)$ mit $j \neq i \leq \frac{p-1}{2}$ mit $j = d(0,y)$ über $(0,1)$. Das heißt für ein festes $i$ gibt es $\frac{p-1}{2} - i$ solche Pfade ($i = 0, \dots, \frac{p-3}{2}$). Also ist 
+	Irrfahrt auf dem $p$-Kreis $\ZZ_p$. Sei $p$ ungerade und wir betrachten die gewöhnliche Irrfahrt auf $\ZZ_p$. Es ist $\pi(x) = \frac{1}{p} \forall x \in \ZZ_p$ das invariante Maß. \todo{missing figure} Außerdem gilt $d_* = 2$. Wir wählen (typisch für Simple Random Walk) $\gamma_{xy}$ als den kürzesten Pfad von $x$ nach $y$. Dann ist $\gamma_* = \frac{p-1}{2}$. Nun berechnen wir $b$. Aus Symmetriegründen wird jede Kante von gleich vielen Pfaden benutzt. Nehmen wir die Kante $(0,1)$. \todo{missing picture} $\gamma_{xy}$, die diese Kante benutzen haben $x$ \enquote{links} von $0$ und $y$ \enquote{rechts} von 1. Sei $d(x,0) = i$. Dann laufen alle Pfade von $\gamma_{xy}$ über $(0,1)$ mit $j \neq i \leq \frac{p-1}{2}$ mit $j = d(0,y)$ über $(0,1)$. Das heißt für ein festes $i$ gibt es $\frac{p-1}{2} - i$ solche Pfade ($i = 0, \dots, \frac{p-3}{2}$). Also ist 
 	\begin{align}
 		b = \sum\limits_{i = 0}^{\frac{p-3}{2}} \frac{p-1}{2} -i = \enb{\frac{p-1}{2}}^2 - \enb{\frac{p-3}{2} - \frac{p-1}{2} \frac{1}{2}} = \frac{p^2-1}{8}
 	\end{align}
@@ -1038,7 +1072,7 @@ Dann gilt
 		Mann kann sich fragen, ob das an unserer Pfadwahl liegt.
 		\begin{enumerate}
 			\item Nein, weil alle Kanten gleich oft benutzt werden. 
-			\item Nein, denn es gibt zu jedem Punkt $v \in \ZZ^d_2$ Punkte im Abstand $i$. Um $v$ mit solch einem Punkt zu verbinden, muss man also mindestens einen Pfad der Länge $i$ wählen. Das ergibt insgesamt $2^d \sum_{i = 1}^{d} i \cdot (d nCr i) = 2^d \cdot d \cdot 2^{d-1}$ Kanten. Da $\abs{E} = d 2^d$ muss man mindestens eine Kante $2^{d-1}$--mal benutzen.
+			\item Nein, denn es gibt zu jedem Punkt $v \in \ZZ^d_2$ Punkte im Abstand $i$. Um $v$ mit solch einem Punkt zu verbinden, muss man also mindestens einen Pfad der Länge $i$ wählen. Das ergibt insgesamt $2^d \sum_{i = 1}^{d} i \cdot (d nCr i) = 2^d \cdot d \cdot 2^{d-1}$ Kanten. Da $\abs{E} = d 2^d$ muss man mindestens eine Kante $2^{d-1}$-mal benutzen.
 		\end{enumerate}
 	\end{bemerkung}
 \end{beispiel}
@@ -1062,7 +1096,7 @@ Dann gilt
 	\begin{align}
 		\beta_0  = 1 && \beta_1 = \dots = \beta_n = 0 &&  \beta_{n+1} = -1
 	\end{align}
-	Für die faule Urrfahrt ist $\beta_0, \beta_1 = \dots = \beta_n = \frac{1}{2}, \beta_{max} = 0$. Die Irrfahrt mischt sehr schnell: $t_{rel} = 2$ Es ist
+	Für die faule Irrfahrt ist $\beta_0, \beta_1 = \dots = \beta_n = \frac{1}{2}, \beta_{max} = 0$. Die Irrfahrt mischt sehr schnell: $t_{rel} = 2$ Es ist
 	\begin{align}
 		\abs{E} = n && d_* = n && \gamma_* = 2 && b = n 
 	\end{align}
@@ -1070,12 +1104,12 @@ Dann gilt
 	\begin{align}
 		1 - \beta_1 \geq \frac{2n}{2n^3}= \frac{1}{n^2}
 	\end{align}
-	Das ist für großes $n$ eine Katastrophe. Übung: Poncaré ist unschuldig.
+	Das ist für großes $n$ eine Katastrophe. Übung: Poincaré ist unschuldig.
 \end{beispiel}
 
 \marginnote{Vorlesungsbeginn 30.06.2016}
 
-\begin{satz}[Cheeger--Ungleichung]
+\begin{satz}[Cheeger-Ungleichung]
 	Sei $Q$ die Übergangsmatrix einer ergodischen Markovkette auf $V$ (endlich) und $\pi$ sei das reversible Wahrscheinlichkeitsmaß zu $Q$. Sei wieder 
 	\begin{align}
 		h = \min\limits_{S:\pi(S)<1/2} \set{\frac{C(S,S^c)}{\pi(S)}} && \text{mit } C(S,S^C) = \sum\limits_{x \in S, y \notin S} c(x,y) = \sum\limits_{x \in S, y \notin S} \pi(x) Q(x,y)
@@ -1152,11 +1186,11 @@ Dann gilt
 	\begin{align}
 		\lambda_1 \geq \frac{h^2(\Psi)}{2} \geq \frac{h^2}{2} && h^2(\Psi) = \inf\limits_{S \subseteq S(\Psi)} \frac{C(S,S^c)}{\pi(S)}
 	\end{align}
-	solange $\pi\Big(S(\Psi)\Big) \leq \frac{1}{2}$ geht alles gut, denn dann ist das Infimum in $h(\Psi)$ über weniger Mengen $S$ als das in $h$. Nun ist $\EW{\Psi}_{\pi} = <\Psi, \mathds{1}>_{\pi} = 0$, denn $\Psi ORTHOGONAl \mathds{1}$ \todo{orthoigonal}, d.h. wenn $S(\Psi)$ so sein sollte, dass $\pi(S(\Psi)) > \frac{1}{2}$, dann gehen wir zu $\Psi$ über und erhalten $\pi(S(-\Psi)) \leq \frac{1}{2}$. Somit sind wir fertig.
+	solange $\pi\Big(S(\Psi)\Big) \leq \frac{1}{2}$ geht alles gut, denn dann ist das Infimum in $h(\Psi)$ über weniger Mengen $S$ als das in $h$. Nun ist $\EW{\Psi}_{\pi} = <\Psi, \mathds{1}>_{\pi} = 0$, denn $\Psi \perp \mathds{1}$, d.h. wenn $S(\Psi)$ so sein sollte, dass $\pi(S(\Psi)) > \frac{1}{2}$, dann gehen wir zu $\Psi$ über und erhalten $\pi(S(-\Psi)) \leq \frac{1}{2}$. Somit sind wir fertig.
 \end{beweis}
 \todo[inline]{undefined Control sequence titel $Z_p$ und $Z^d_2$}
 \begin{beispiel}%[$\ZZ_p$]
-	Sei $p$ ungerade und $\ZZ_p$ der $p$--Kreis. $\pi(x) = \frac{1}{p}, \forall x$, $h$ wird angenommen, wenn man für $S$ ein Intervall der Länge $\frac{p-1}{2}$ wählt. Dann gilt $h = \frac{2}{p-1}$. Also folgt mit Cheeger \todo{REF}
+	Sei $p$ ungerade und $\ZZ_p$ der $p$-Kreis. $\pi(x) = \frac{1}{p}, \forall x$, $h$ wird angenommen, wenn man für $S$ ein Intervall der Länge $\frac{p-1}{2}$ wählt. Dann gilt $h = \frac{2}{p-1}$. Also folgt mit Cheeger \todo{REF}
 	\begin{align}
 	1 - \frac{\Psi}{p-1} \leq p_1 \leq 1 - \frac{2}{\enb{p-1}^2}
 	\end{align}
@@ -1188,11 +1222,11 @@ Dann gilt
 	\begin{align}
 		1 - \frac{1}{2^{d+1} -2} \leq \beta^1 \leq 1- \frac{1}{2} \enb{\frac{1}{2^{d+2} -4 }}^2
 	\end{align}
-	Der wahre Wert für $d$ groß ist $1 - \frac{1 + o(1)}{2^{d-2}}$. Poincaré: $1- \frac{const}{d2^d}$
+	Der wahre Wert für $d$ groß ist $1 - \frac{1 + o(1)}{2^{d-2}}$. Pointcaré: $1- \frac{const}{d2^d}$
 \end{beispiel}
 
 \begin{beispiel}[Stern]
-	Sei $Q$ die Übergangsmatrix für einen Random Walk auf dem $n$--Stern ($n$ Spitzen) mit holding $\Theta$. Man rechnet aus $h = 1 - \Theta$, $2 \Theta - 1 \leq \beta_1 \leq 1 - \frac{(1- \Theta)^2}{2}$. Z.B. für $\Theta = \frac{1}{2}$  $\beta_1 \leq \frac{7}{8}$. (Der wahre Wert $\beta_1 = \frac{1}{2}$)
+	Sei $Q$ die Übergangsmatrix für einen Random Walk auf dem $n$-Stern ($n$ Spitzen) mit holding $\Theta$. Man rechnet aus $h = 1 - \Theta$, $2 \Theta - 1 \leq \beta_1 \leq 1 - \frac{(1- \Theta)^2}{2}$. Z.B. für $\Theta = \frac{1}{2}$  $\beta_1 \leq \frac{7}{8}$. (Der wahre Wert $\beta_1 = \frac{1}{2}$)
 \end{beispiel}
 
 

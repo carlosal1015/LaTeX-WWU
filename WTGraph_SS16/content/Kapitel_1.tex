@@ -40,9 +40,9 @@ Gilt $c(x,y) = c(y,x)$ für alle $x,y$, so ist die Irrfahrt bezüglich $\pi$ rev
 	\pi(x)p_{xy} = c(x,y) = c(y,x) = \pi(y)p_{yx} 
 \end{gather}
 
-\begin{beispiel}[Gambler's Run] \todo{das geht schöner}
+\begin{beispiel}[Gambler's Run]
 	\label{bsp:GamblersRun}
-	Sei $X_n$ eine Irrfahrt auf $0, \dots, n$ und	
+	Sei $X_n$ eine Irrfahrt auf $\set{0, \dots, n}$ und	
 	\begin{gather}
 		\prop{X_n = i+1 \given X_{n-1} = i} = p = 1 - \prop{X_n = i-1 \given X_{n-1} = i}.
 	\end{gather}
@@ -124,8 +124,26 @@ Harmonische Funktionen erfüllen einige nützliche Prinzipien, Dazu sei für $W 
 \end{beweis}
 \begin{uebung}
 	Berechnen Sie im Gambler's Run die Wahrscheinlichkeit links oder rechts anzuschlagen, sowie die erwartete Treffzeit.
+	\begin{figure}[htbp]
+		\begin{minipage}{0.4\textwidth}
+			\begin{tikzpicture}[scale = 0.8]
+				\draw(0,0) to (7,0);
+				\draw(0,3pt) to (0,-3pt) node[below] {0};
+				\draw(7,3pt) to (7,-3pt) node[below] {n};
+				\draw(3,3pt) to (3,-3pt);
+				\draw [->, bend angle=45, bend right] (3,0) to (2,0);
+				\draw [->, bend angle=45, bend left] (3,0) to (4,0);
+				\draw node at(2.5,0.35) {$p-1$};
+				\draw node at(3.5,0.35) {$p$};
+			\end{tikzpicture}	
+		\end{minipage} 
+		\hfill
+		\begin{minipage}{0.4\textwidth}
+			\centering
+			$p_X = p \cdot p_{X+1} + (1-p) p_{X-1} $
+		\end{minipage}
+	\end{figure}
 \end{uebung}
-\todo[inline]{missing figure}
 Wir bertrachten jetzt ein Netzwerk als ein elektrisches Netzwerk, d.h. $c(x,y)$ sei die Leitfähigkeit und $\frac{1}{c(x,y)} = r(x,y)$ sei der Widerstand der Kante $(x,y)$. Wir legen in einem $a$ eine Spannung $v(a)$ an und leiten einen Strom $i$ durch das Netztwer, das in $Z \subseteq V$ abfließt ($v(z) = 0, \forall z \in Z$). Es gelten die klassischen Regeln der Elektrizitätslehre:
 
 \begin{regel}[Ohmsches Gesetz]
@@ -240,21 +258,97 @@ Sei $Z_n = V \backslash V(G_n)$. Diese identifizieren wir mit einem Vertex $z_n$
 Um dies nützlich zu machen, benötigen wir eine Methode um $C(a \leftrightarrow z_n)$ zu berechnen. Die Idee des folgenden Kapitels ist es ein endliches Netzwerk immer weiter zu reduzieren, bis man die effektive Leitfähigkeit als Leitfähigkeiten ablösen kann.
 
 \subsection{Reduktionsmethoden}
-Wie lassen sich Netzwerke verkleinern?
-1. Prinzip: Reihenschaltung \\
-Zwei Widerstände $r_1$ und $r_2$ in Reihe geschaltet verhalten sich wie ein Widerstand der Größe $r_1 + r_2$. Mit anderen Worten: in einem Netzwerk, das die folgende Konfigurationen enthält, lassen sich die Zustände $(v_1,w)$ und $w,v_2)$ \todo{Bild} ersetzen durch die Kante $(v_1,v_2)$  mit Widerstand $r_1+r_2$, ohne dass sich Ströme und Widerstände im restlichen Netzwerk ändern. Übung: Beweis. 
+Wie lassen sich Netzwerke verkleinern?\\
+1. Prinzip: Reihenschaltung
+Zwei Widerstände $r_1$ und $r_2$ in Reihe geschaltet verhalten sich wie ein Widerstand der Größe $r_1 + r_2$. Mit anderen Worten: in einem Netzwerk, das die Konfigurationen aus \autoref{fig:1-1} enthält, lassen sich die Zustände $(u_1,\omega)$ und $(\omega,u_2)$ ersetzen durch die Kante $(v_1,v_2)$  mit Widerstand $r_1+r_2$, ohne dass sich Ströme und Widerstände im restlichen Netzwerk ändern, siehe \autoref{fig:1-2}. Übung: Beweis. 
+
+	\begin{figure}[b]
+	\begin{subfigure}[t]{0.4\textwidth}
+		\centering
+		\begin{tikzpicture}[scale=1, every node/.style=fill,circle,minimum size=4pt,inner sep=0pt]
+			\draw (0,0) circle (1);
+			\draw (5,0) circle (1);
+			\node[label={[label distance=3pt]320:{$u_1$}}] (u1) at (1,0) {};
+			\node[label={[label distance=3pt]270:{$\omega$}}]  (omega) at (2.5,0) {};
+			\node[label={[label distance=3pt]240:{$u_2$}}]  (u2) at (4,0) {};
+			\draw (u1) -- (omega);
+			\draw (omega) -- (u2);
+			\node[fill=none] at (1.75,0.2) {$r_1$};
+			\node[fill=none] at (3.25,0.2) {$r_2$};
+		\end{tikzpicture}
+		\subcaption{Verbindung der Teilnetzwerke über genau einen Knoten}
+		\label{fig:1-1}
+		\end{subfigure}
+	\hfill
+	\begin{subfigure}[t]{0.4\textwidth}
+		\centering
+			\begin{tikzpicture}[scale=1, every node/.style=fill,circle,minimum size=4pt,inner sep=0pt]
+			\draw (0,0) circle (1);
+			\draw (5,0) circle (1);
+			\node[label={[label distance=3pt]320:{$u_1$}}] (u1) at (1,0) {};
+			\node[label={[label distance=3pt]240:{$u_2$}}]  (u2) at (4,0) {};
+			\draw (u1) -- (u2);
+			\node[fill=none] at (2.5,0.2) {$r_1 + r_2$};
+			\end{tikzpicture}	
+		\subcaption{Ersetzen des Knotens durch Kante}
+		\label{fig:1-2}
+		\end{subfigure}
+	\caption{Ersetzen von $\omega$}	
+	\end{figure}
+
 
 Wieso ist das nützlich?
 \begin{beispiel}
 	Sei $(X_n)_n$ die einfache Irrfahrt auf $\benb{0,n}$ mit Start in $k$. Frage: Was ist $\prop{\tau_0 < \tau_n}[][k]$? Wir wissen: Dies ist $v(k)$, wenn in $0$ eine Spannung $1$ und in $n$ eine Spannung $0$ anlegt.
-	\todo[inline]{bild} Nach dem Gesetz der Reihenschalutng kann man dieses Netzwerk durch das folgende ersetzen:
-	\begin{align}
+	
+	\begin{figure}[t]
+		\begin{subfigure}[t]{0.4\textwidth}
+			\begin{tikzpicture}[scale = 0.8]
+				\draw(0,0) to (7,0);
+				
+				\draw(0,3pt) to (0,-3pt) node[below] {0, $V(0) = 1$};
+				\draw(7,3pt) to (7,-3pt) node[below] {n, $V(n) = 0$};
+				\foreach \x in {1,...,5}
+				{
+					\draw(0.5*\x,2pt) to (0.5*\x,-2pt) node[above=2pt] {1};
+				}
+				\foreach \x in {6,...,8}
+				{
+					\draw(0.5*\x,2pt) to (0.5*\x,-2pt) node[above=2pt] {....};
+				}
+				\draw(4.5,3pt) to (4.5,-3pt) node[above=2pt] {$k$};
+			\end{tikzpicture}
+			\subcaption{}
+			\label{fig:1-3-1}
+		\end{subfigure}
+		\hfill
+		\begin{subfigure}[t]{0.4\textwidth}
+			\begin{tikzpicture}[scale = 0.8]
+			\draw(0,0) to (7,0);
+			\draw(0,3pt) to (0,-3pt) node[below] {0, $V(0) = 1$};
+			\draw(7,3pt) to (7,-3pt) node[below] {n, $V(n) = 0$};
+			\draw(3.5,3pt) to (3.5,-3pt) node[below] {$k$};
+			\node[fill=none] at (1.75,0.2) {$r_1 = k$};
+			\node[fill=none] at (5.25,0.2) {$r_2 = n-k$};	
+			\end{tikzpicture}
+			\subcaption{}
+			\label{fig:1-3-2}
+		\end{subfigure}
+		\caption{Zusammenführen mehrerer Kanten in Reihe}
+	\end{figure}
+	
+	Nach dem Gesetz der Reihenschaltung kann man dieses Netzwerk (\ref{fig:1-3-1}) in folgendes Überführen(\ref{fig:1-3-2}) :
+	\begin{gather}
 		v(k) = \sum\limits_{y \sim k}\frac{c_{ky}}{\pi(k)}v_y = \frac{c_{k0}}{\pi(k)} \\
-		\pi(k) = c_{k0} + c_{kn} ? \frac{1}{k} + \frac{1}{k-n} = \frac{n}{k(n-k)} = \frac{n-k}{n}
-	\end{align}
-	Allgemein \todo{Bild}---. \\
+		\pi(k) = c_{k0} + c_{kn} = \frac{1}{k} + \frac{1}{k-n} = \frac{n}{k(n-k)} = \frac{n-k}{n}
+	\end{gather}
+	Allgemein gilt mit $q = 1-p$: $c(i,i+1) = \enb{\frac{p}{q}}^i$ und $v(i,i+1) = \enb{\frac{q}{p}}^i$.
 
-	Dann kann man dieses Netzwerk zusammenfassen als \todo{bild}
+	Dann kann man das Netzwerk (welches Analog zu \autoref{fig:1-3-2} ist) zusammenfassen mit 
+	\begin{align}
+		r_1 = \sum\limits_{i = 0}^{k-1}\enb{\frac{q}{p}}^i && r_1 = \sum\limits_{i = k}^{n-1}\enb{\frac{q}{p}}^i
+	\end{align}
+
 	Wieder ist 
 	\begin{align}
 		v_k = \frac{c_{k0}}{\pi(k)} && \pi(z) = \frac{\sum\limits_{i=0}^{n-1}\enb{\frac{q}{p}}^i}{\enb{\sum\limits_{i=0}^{k-1}\enb{\frac{q}{p}}^i} \enb{\sum\limits_{i=k}^{n-1} \enb{\frac{q}{p}}^i}} \\
@@ -264,25 +358,100 @@ Wieso ist das nützlich?
  	\end{align}
 \end{beispiel}
 2. Prinzip: Parallelschaltung \\
-Man kann zwei parallele Leitungen mit Kapazitäten (Leitfähigkeiten) $c_1$ und $c_2$ durch eine einzige mit Leitfähigkeit $c_1+c_2$ ersetzen. Mit anderen Worten: In dieser Situation \todo{Bild} lässt sich die Doppelkante $(u_1,u_2)$ mit Leitfähigkeit $c_1$ und $c_2$ durch eine Kante $c_1+c_2$ ersetzen, ohne dass sich an den Spannungen, Strömen im Restnetzwerk etwas ändert. Übung: Beweis.
+Man kann zwei parallele Leitungen mit Kapazitäten (Leitfähigkeiten) $c_1$ und $c_2$ durch eine einzige mit Leitfähigkeit $c_1+c_2$ ersetzen. Mit anderen Worten: In \autoref{fig:1-4} lässt sich die Doppelkante $(u_1,u_2)$ mit Leitfähigkeit $c_1$ und $c_2$ durch eine Kante $c_1+c_2$ ersetzen, ohne dass sich an den Spannungen und Strömen im Restnetzwerk etwas ändert. Übung: Beweis.
+
+\begin{figure}
+	\centering
+	\begin{tikzpicture}[scale=1, every node/.style=fill,circle,minimum size=4pt,inner sep=0pt]
+	\draw (0,0) circle (1);
+	\draw (5,0) circle (1);
+	\node[label={[label distance=3pt]180:{$u_1$}}] (u1) at (1,0) {};
+	\node[label={[label distance=3pt]0:{$u_2$}}]  (u2) at (4,0) {};
+	\draw [bend angle=45, bend right] (u1) to (u2);
+	\draw [bend angle=45, bend left] (u1) to (u2);
+	\node[fill=none] at (2.5,1) {$c_1$};
+	\node[fill=none] at (2.5,-1) {$c_2$};
+	\draw [dashed] (u1) to (u2);
+	\node[fill=none] at (2.5,.2) {$c_1 + c_2$};
+	\end{tikzpicture}	
+	\caption{Zusammenlegen zweier parallel geschalteter Kanten.}
+	\label{fig:1-4}
+\end{figure}
+
+\begin{beispiel} 
+	Gefragt: $\propE{a \to z}$ im Netzwerk von \autoref{fig:1-5}. Durch die abgebildete Simplifizierung des Netwerkes erhalten wir direkt 
+	\begin{align}
+		\prop{a \to z} = \frac{\mathcal{C}(a \leftrightarrow z)}{i(a)} = \frac{\frac{7}{12}}{3} = \frac{7}{36}
+	\end{align}
+	\input{content/figures/bsp1_3.tex}
+\end{beispiel}
+
 
 \begin{beispiel}
-	\todo[inline]{Beispiel 1.3, 1.4 fehlen (vieeele Bilder)}	
+	Gesucht $\prop{a \to z}$ im Netzwerk von \autoref{fig:1-6}. Hier wenden wir ein \enquote{Physikerargument} an:
+	Die Situation von $b$ und $c$ ist vollkommen identisch, daher gilt $v(b) = v(c)$ und somit $i(b,c) = 0$. Also kann man die Kante, welche die beiden verbindet auch einfach weglassen. Danach vereinfacht man das Netzwerk schrittweise analog zum vorigen Beispiel und erhält so
+	\begin{align}
+		\mathcal{C}(a \leftrightarrow z) = \frac{2}{3} \Rightarrow \prop{a \rightarrow z} = \frac{\frac{2}{3}}{2}= \frac{1}{3}
+	\end{align}
+	Spätestens wenn aber die an $b$ und $c$ angrenzenden Kanten unterschiedliches Gewicht haben wird das Argument allerdings problematisch.
+	\begin{figure}
+		\centering
+		\begin{tikzpicture}[scale=1.5, every node/.style=fill,circle,minimum size=4pt,inner sep=0pt]
+		
+			\node [label=left:{a}] (a) at (0,0) {};
+			\node [label=above:{b}] (1) at (0.4,0.5) {};
+			\node (2) at (1.1,0.5) {};
+			\node [label=below:{c}](3) at (0.4,-0.5) {};
+			\node (4) at (1.1,-0.5) {};
+			\node[label=right:{z}] (z) at (1.5,0) {}; 
+			
+			\draw (a) -- (1) node [midway, left, fill=none] {1};	
+			\draw (1) -- (2) node [midway, above, fill=none] {1};	
+			\draw (2) -- (z) node [midway, right, fill=none] {1};	
+			\draw (a) -- (3) node [midway, left, fill=none] {1};
+			\draw (3) -- (4) node [midway, below, fill=none] {1};	
+			\draw (4) -- (z) node [midway, right, fill=none] {1};	
+			\draw (1) -- (3) node [midway, right, fill=none] {1};
+			
+		\end{tikzpicture}
+		\caption{Ausgangsnetzwerk für \enquote{Physikertrick}}
+		\label{fig:1-6}
+	\end{figure}
 \end{beispiel}
 
 \subsubsection*{3. Prinzip: Y--$\Delta$--Prinzip}
-Auch Stein--Dreieck--Prinzip genannt. Netzwerke in denen man eine der folgenden Konfigurationen durch die andere ersetzt, sind äquivalent, falls 
-\todo{missing Picture.} 
-\begin{gather}
-	c(w, u_i) \cdot c(u_{i-1},u_{i+1}) = \gamma, \forall i \text{ Indizes}\mod{3} \\
-	\gamma = \frac{\prod\limits_{i} c(w,u_i)}{\sum\limits_{i}c(w,u_i)}, \gamma = \frac{1/6}{11/6} = \frac{1}{11}
-\end{gather}
-\todo[inline]{missing Picture}
+Auch Stein--Dreieck--Prinzip genannt. Netzwerke in denen man eine der Konfigurationen aus \autoref{fig:1-7} durch die andere ersetzt, sind äquivalent, falls 
 
+\begin{figure}
+	\centering
+	\begin{tikzpicture}[scale=1.5, every node/.style=fill,circle,minimum size=4pt,inner sep=0pt]
+		\node [label=left:{$u_1$}] (u1) at (-0.5,0.5) {};
+		\node [label=right:{$u_2$}] (u2) at (0.5,0.5) {};
+		\node [label=below:{$u_3$}] (u3) at (0,-0.5) {};
+		\node [label=above:{$w$}] (w) at (0,0) {};
+		
+		\node [label=left:{$u_1$}] (u1d) at (2.5,0.5) {};
+		\node [label=right:{$u_2$}] (u2d) at (3.5,0.5) {};
+		\node [label=below:{$u_3$}] (u3d) at (3,-0.5) {};
+		
+		\draw (u1) -- (w);
+		\draw (u2) -- (w);
+		\draw (u3) -- (w);
+		\draw (u1d) -- (u2d);
+		\draw (u2d) -- (u3d);
+		\draw (u3d) -- (u1d);		 
+	\end{tikzpicture}
+	\caption{Äquivalente Konfigurationen}
+	\label{fig:1-7}
+\end{figure}
+
+
+\begin{align}
+	c(w, u_i) \cdot c(u_{i-1},u_{i+1}) = \gamma, \quad \forall i\ \text{mod}\ 3 &&
+	\text{mit }\quad \gamma  = \frac{\prod_{i} c(w,u_i)}{\sum_{i}c(w,u_i)}
+\end{align}
 \subsubsection*{4. Prinzip (trivial):}
-Man kann Knoten von Grad 1 hinzufügen oder entfernen. Selbiges Gilt für Schlaufen
-\todo[inline]{Missing Picture}
-
+Man kann Knoten von Grad 1 hinzufügen oder entfernen. Selbiges Gilt für Schlaufen.
 
 \newpage
 

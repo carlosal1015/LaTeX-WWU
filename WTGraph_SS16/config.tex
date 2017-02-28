@@ -1,6 +1,6 @@
 %!TEX root = WTG.tex
 % -- Vorlage von: Phil Steinhorst, p.st@wwu.de
-\documentclass[a4paper,twoside,index=totoc,toc=bibliography,fontsize=10,DIV=12,headinclude,BCOR=12mm,cleardoublepage=empty]{scrreprt}
+\documentclass[a4paper,twoside,index=totoc,toc=bibliography,fontsize=10,DIV=12,headinclude,BCOR=12mm,cleardoublepage=empty, draft]{scrreprt} %option draft hinzügen für ToDos
 
 \usepackage[usenames,x11names]{xcolor} % Die Optionen definieren zusätzliche Farben (siehe Dokumentation)
 \definecolor{dark_gray}{gray}{0.45}
@@ -76,7 +76,7 @@
 \setlist[enumerate,description]{font=\sffamily\bfseries}
 \usepackage[german=quotes]{csquotes}
 
-\usepackage[textsize=small]{todonotes}
+\usepackage[textsize=small, obeyDraft]{todonotes}
 \usepackage{marginnote}
 \renewcommand*{\marginfont}{\color{gray} \footnotesize }
 \setlength{\parindent}{0em} 
@@ -320,6 +320,8 @@
 \usepackage{faktor}
 
 \usepackage{cancel}
+
+\usepackage{subcaption}
 
 \input{MathCmds.tex}
 \input{Commands_WT.tex}

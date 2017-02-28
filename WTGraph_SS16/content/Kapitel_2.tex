@@ -305,7 +305,28 @@ Wählt man $\p$ so, dass Kanten hoher Leitfähigkeit oft benutzt, und Kanten nie
 	Die Irrfahrt auf $\ZZ^d$ ist rekurrent für $d\leq 2$ und transient für $d \geq 3$.
 \end{satz}
 \begin{beweis}
-	Für $d=1,2$ verwenden wir das Kriterium von Nash-Williams (\ref{satz:Nash-Williams}). \todo[inline]{missing figure}
+	Für $d=1,2$ verwenden wir das Kriterium von Nash-Williams (\ref{satz:Nash-Williams}).
+	
+	\begin{figure}
+		\begin{tikzpicture}[scale=1.5, every node/.style=fill,circle,minimum size=4pt,inner sep=0pt]
+			\draw (0,0) to (8,0);
+			\foreach \x in {1,...,7}
+			{
+				\node[label=above:{\x - 4}] at (\x,0) {};
+			}
+		
+			\draw[bend angle=60,bend right] (4 ,0) to (5, 0);
+			\draw[bend angle=60,bend left] (4,0) to (3, 0);
+			
+			\draw[bend angle=60,bend right, dashed] (4 + 1,0) to (5 + 1, 0);
+			\draw[bend angle=60,bend left, dashed] (4 - 1,0) to (3 - 1, 0);
+			
+			\draw[bend angle=60,bend right, densely dotted] (4 + 2,0) to (5 + 2, 0);
+			\draw[bend angle=60,bend left, densely dotted] (4 - 2,0) to (3 - 2, 0);
+			
+		\end{tikzpicture}
+	\end{figure}
+	 \todo[inline]{missing figure}
 	Sind das die $\Pi_n$, so gilt 
 	\begin{gather}
 		(a \leftrightarrow \infty) \leq \sum\limits_{n \geq 1} \enb{\sum c(e) }^{-1} = \sum\limits_{n \geq 1 } \frac{1}{2} = \infty
