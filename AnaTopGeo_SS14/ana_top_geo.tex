@@ -192,7 +192,7 @@
 	\end{enumerate}
 \end{beispiel}
 
-\begin{definition}[{name=[Basis einer Topologie]}]
+\begin{definition}[{name=[Basis einer Topologie]},label=def:basis-zweitabz]
 	Sei $X$ ein topologischer Raum.
 	Eine Familie $\mathcal{U}$ von offenen Teilmengen von $X$ heißt eine \Index{Basis der Topologie}, falls für jede Teilmenge $W \subseteq X$
 	äquivalent sind:
@@ -1232,6 +1232,98 @@ Wir können nun endlich den Satz von \textsc{Stone-Weierstraß} beweisen:
 		Also gilt insgesamt $\norm[\infty]{f-h} < \varepsilon$.
 	\end{description}
 \end{beweis}
+
+\newpage
+\section{Metrisierbarkeit} % (fold)
+\label{sec:metrisierbarkeit}
+
+\begin{definition}[{name=[metrisierbarer Raum]}]
+	Ein topologischer Raum $X$ heißt \Index{metrisierbar}, wenn es eine Metrik auf $X$ gibt, so dass die von der Metrik induzierte Topologie die Topologie von $X$ ist.
+\end{definition}
+
+Ist $X$ metrisierbar, so gibt es für jedes $x \in X$ eine abzählbare Umgebungsbasis $\mathcal{U}_x$ bei $x$, also eine abzählbare Menge von offenen Umgebungen von $x$, sodass jede Umgebung von $x$ eine Menge aus $\mathcal{U}_x$ enthält. 
+
+Ein Beispiel für einen metrisierbaren topologischen Raum ist eine Menge $X$ versehen mit der diskreten Topologie:
+$(X, \mathcal{O}_{\text{dis}})$ ist metrisierbar mit der diskreten Metrik $d_{\text{dis}}(x,y) \coloneqq \delta_{xy}$.
+
+\begin{definition}[{name=[normaler Hausdorffraum]}]
+	Ein topologischer Hausdorffraum $X$ heißt \bet{normal}\index{Hausdorffraum!normal}, wenn er die folgende Trennungseigenschaft hat: Sind $A,B \subseteq X$ abgeschlossen mit $A \cap B = \emptyset$, so gibt es $U,V \subseteq X$ offen mit $A \subseteq U$, $B \subseteq V$ mit $U \cap V = \emptyset$.
+\end{definition}
+
+Nach Aufgabe 4 von Blatt 5 sind metrisierbare Räume normal.
+
+\begin{satz}[{name={Urysohn}}]
+	Sei $X$ ein normaler Raum, der das zweite Abzählbarkeitsaxiom erfüllt (\ref{def:basis-zweitabz}). 
+	Dann ist $X$ metrisierbar.
+\end{satz}
+\begin{beweis}[{name={mit Urysohn's Lemma, \ref{lem:urysohn}}}]
+	Sei $\mathcal{U}$ eine abzählbare Basis der Topologie von $X$. 
+	Da $X$ normal ist, gibt es zu jedem Paar $U,V \in \mathcal{U}$ mit $\overline{U} \subseteq V $ (also $\overline{U} \cap X \setminus V = \emptyset $) nach Urysohn's Lemma (\ref{lem:urysohn}) eine stetige Funktion $f_{U,V} \colon X \to [0,1]$ mit $f_{U,V} (x) = 0$ für $x \in \overline{U}$ und
+	$f_{U,V}(y) = 1$ für $y \notin V$. 
+	Da $\mathcal{U}$ abzählbar ist, ist das abzählbare Produkt 
+	\[
+		Z \coloneqq \prod_{\substack{U,V \in \mathcal{U} \\ \overline{U} \subseteq V}} [0,1]
+	\]
+	metrisierbar (Übung: Blatt 4 Aufgabe 3).
+	Wir definieren $F\colon X \to Z$ durch
+	\[
+		F(x) \coloneqq \enbrace[\Big]{f_{U,V}(x)}_{\substack{U,V \in \mathcal{U} \\ \overline{U} \subseteq V}} 
+	\]
+	Da die $f_{U,V}$ stetig sind, ist $F$ bezüglich der Produkttopologie auf $Z$ auch stetig. 
+	Es bleibt zu zeigen, dass $F \colon X \to F(X) \subseteq Z$ ein Homöomorphismus ist.
+	
+	Sind $x,y \in X$ mit $x \neq y$, so gibt es $U,V \in \mathcal{U}$ mit $\overline{U} \subseteq V$, $x \in U$, $y \notin V$. 
+	Daher gilt $f_{U,V} (x) = 0 \neq 1 = f_{U,V}(y)$.
+	Insbesondere ist $F$ injektiv; durch Einschränkung auf das Bild also bijektiv. 
+	Es genügt nun zu zeigen, dass $F$ offene Mengen von $X$ auf offene Mengen in $F(X)$ abbildet.
+	Sei $W \subseteq X$ offen und $x \in W$. 
+	Wir müssen eine offene Menge $O \subseteq Z$ finden mit $F(x) \in O$ und $F ^{-1}(O) \subseteq W$. 
+	
+	Wir nehmen an, dass ein offene Menge $U_0 \in \mathcal{U}$ mit $x \in U_0$ und $ \overline{U_0} \subseteq W$ existiert.
+	Damit setzen wir $O \coloneqq \prod_{\overline{U} \subseteq V} I_{U,V}$ wobei 
+	\[
+		I_{U,V} = \begin{cases}
+			[0,1), &\text{ falls }U=U_0, V=W\\
+			[0,1], &\text{ sonst}
+		\end{cases}
+	\]
+	Dann ist $F ^{-1}(O) = f ^{-1}_{U_0, W} \enbrace[\big]{[0,1)} \subseteq W$ und $F(x) \in O$, da $f_{U_0, W} (x) = 0$.
+	
+	Wir müssen noch die Annahme rechtfertigen:
+	Da $X$ Hausdorff ist, ist $\set{x}$ abgeschlossen. Da auch $X \setminus W$ abgeschlossen ist, gibt es offene mengen $U_1$ und $V_1$ mit $U_1 \cap V_1 = \emptyset$, $x \in U_1$ und
+	$X \setminus W \subseteq V_1$. Insbesondere ist $\overline{U_1} \subseteq X \setminus V_1 \subseteq W $. Da $\mathcal{U}$ eine Basis ist, gibt es $U_0 \in \mathcal{U}$ mit 
+	$x \in U_0$ und $U_0 \subseteq U_1$.
+\end{beweis}
+
+\begin{lemma}[{name=[Urysohn]},label=lem:urysohn]
+	Sei $X$ normal und $A,B \subseteq X$ abgeschlossen mit $A \cap B = \emptyset$. 
+	Dann gibt es eine stetige Funktion $f \colon X \to [0,1]$ mit $f(a) = 0$ für alle $a \in A$ und $f(b)= 1$ für alle $b \in B$.
+\end{lemma}
+\begin{beweis}
+	Sei $U_1 \coloneqq X \setminus B$. 
+	Da $X$ normal ist, gibt es $U_0 \subseteq X$ offen mit $A \subseteq U_0$ und $U_0 \cap B = \emptyset$, also $\overline{U_0} \subseteq U_1$.\footnote{$A \subseteq U_0$ und $V_0 \supseteq B$ mit $U_0 \cap V_0 = \emptyset \implies \overline{U_0} \cap B = \emptyset $ also $\overline{U_0} \subseteq U_1$}
+	Ebenso finden wir 
+	\begin{itemize}
+		\item $U_{1/2} \subseteq X$ offen mit $\overline{U_0} \subseteq U_{1/2}$ und $\overline{U_{1/2}} \subseteq U_1$,
+		\item $U_{1/4}, U_{3/4} \subseteq X$ offen mit 
+		$\overline{U_0} \subseteq U_{1/4}, \overline{U_{1/4}} \subseteq U_{1/2}$ und $ \overline{U_{1/2}} \subseteq U_{3/4} $, $\overline{U_{3/4}} \subseteq U_1 $, \ldots
+	\end{itemize}
+	Induktiv finden wir für jedes $r = \frac{m}{2^n} $ mit $0 \le m \le 2^n$ eine offene Menge $U_r \subseteq X$ so dass gilt: 
+	$\overline{U_r} \subseteq U_s $ für $r < s$ mit $A \subseteq U_0$ und $B= X \setminus U_1$. 
+	Sei nun $f \colon X \to [0,1]$ definiert durch
+	\[
+		f(x) = \begin{cases}
+			1, &\text{ falls }x \in B\\
+			\inf \,\set*{r \given x \in U_r} , &\text{ falls } x \notin B
+		\end{cases}
+	\]
+	Für $\alpha\in [0,1]$ ist $f ^{-1}\enbrace[\big]{[0,\alpha)} = \bigcup_{r <\alpha} U_r$ offen und 
+	\[
+		f ^{-1} \enbrace[\big]{(\alpha,1]} = \bigcup_{r > \alpha} X \setminus U_r = \bigcup_{r > \alpha} X  \setminus \overline{U_r} 
+	\]
+	offen. Damit ergibt sich leicht die Stetigkeit von $f$.
+\end{beweis}
+% section metrisierbarkeit (end)
 
 \cleardoubleoddemptypage
 \pagenumbering{Alph}
