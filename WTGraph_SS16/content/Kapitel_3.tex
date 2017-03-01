@@ -582,7 +582,7 @@ Dann gilt
 \begin{beweis}
 	Es sei $\Omega^t_x = \set{y\given Q^t(x,y) > 0}$. Es ist $\abs{\Omega^t_x} \leq \Delta^t$. Ist nun $\Delta^t < (1-\epsilon)\abs{\Omega}$ so folgt
 	\begin{align}
-		&||Q^t(x,\cdot) - \pi||_{TV} = d_{TV}(\delta_x Q^t, \pi) \\
+		&\Norm{Q^t(x,\cdot) - \pi}_{TV} = d_{TV}(\delta_x Q^t, \pi) \\
 		\geq &\abs{Q^t(x,\Omega^t_x) - \pi(\Omega^t_x)} = 1 - \frac{\abs{\Omega^t_x}}{\abs{\Omega}} \geq 1 - \frac{\Delta^t}{\abs{\Omega}} \\
 		\overset{(*)}{>} & 1-(1-\epsilon) =  \epsilon,
 	\end{align}
@@ -708,11 +708,11 @@ $C(A,B)$ ist die Wahrscheinlichkeit von $A$ nach $B$ zu laufen, wenn man mit $\p
 	$S \subseteq V.$ Sei $\pi_S = \pi |S$, d.h. $\pi_S(A) = \pi(A\cap S)$ und $\mu_S(A) = \frac{\pi_S(A)}{\pi(S)}$ die bedingte Wahrscheinlichkeit gegeben $S$. \\
 	1. Beobachtung: Für $\mu,\nu \in M^1(V)$ ist 
 	\begin{align}
-		|| \mu - \nu ||_{TV} = \sum\limits_{v: \mu(v) \geq \nu(v)}\mu(v) - \nu(v)
+		\Norm{ \mu - \nu }_{TV} = \sum\limits_{v: \mu(v) \geq \nu(v)}\mu(v) - \nu(v)
 	\end{align}
 	2. Beobachtung: 
 	\begin{align}
-		\pi_S || \mu_SQ - \mu_S || = || \pi_S Q - \pi_S|| = \sum\limits_{w: \pi_S Q (w) \geq \pi_S (w)}\pi_SQ(w) - \pi_S(w)
+		\pi_S \Norm{\mu_SQ - \mu_S } = \Norm{ \pi_S Q - \pi_S}= \sum\limits_{w: \pi_S Q (w) \geq \pi_S (w)}\pi_SQ(w) - \pi_S(w)
 	\end{align}
 	Einerseits gehören alle $w\in S^c$ zu der Menge $\set{w \given \pi_SQ(w) \geq \pi_S(w) }$, denn für diese ist $\pi_S(w) = 0$. Andererseits:
 	\begin{align}
@@ -721,20 +721,20 @@ $C(A,B)$ ist die Wahrscheinlichkeit von $A$ nach $B$ zu laufen, wenn man mit $\p
 	\end{align}
 	Also wenn $w \in S \Rightarrow \pi_SQ(w) \leq \pi_S(w)$. Also
 	\begin{align}
-		|| \pi_SQ - \pi_S || &= \sum\limits_{w \in S^c} \pi_SQ(w) - \pi_S(w) = \sum\limits_{v \in S}\sum\limits_{w \in S^c} \pi(c)Q(v,w)-0 \\
+		\Norm{ \pi_SQ - \pi_S } &= \sum\limits_{w \in S^c} \pi_SQ(w) - \pi_S(w) = \sum\limits_{v \in S}\sum\limits_{w \in S^c} \pi(c)Q(v,w)-0 \\
 							&= \mathcal{C}(S,S^c) 
 	\end{align}
 	Also (Teilen durch $\pi(S)$)
 	\begin{align}
-		|| \mu_SQ - \mu_S || = \Phi(S)
+		\Norm{ \mu_SQ - \mu_S } = \Phi(S)
 	\end{align}
 	Von hier kommen wir mir der folgenden Übung weiter
 	\begin{align}
-		\forall n \geq 1: || \mu_SQ^{n+1} - \mu_S Q^n ||_{TV} \leq || \mu_SQ - \mu_S || = \Phi(S) \marginnote{Übung}
+		\forall n \geq 1: \Norm{ \mu_SQ^{n+1} - \mu_S Q^n }_{TV} \leq \Norm{ \mu_SQ - \mu_S } = \Phi(S) \marginnote{Übung}
 	\end{align}
 	Mit der Dreiecksungleichung folgt nun
 	\begin{align}
-		\forall m \in n: || \mu_SQ^m-\mu_S ||_{TV} &= || \sum\limits_{n=1}^{m}\mu_SQ^n - \mu_S Q^{n-1} || \leq \sum\limits_{n = 1}^{m} || \mu_S Q^n - \mu_S Q^{n-1} || \leq m \cdot \Phi(S)
+		\forall m \in n: \Norm{ \mu_SQ^m-\mu_S }_{TV} &= \Norm{ \sum\limits_{n=1}^{m}\mu_SQ^n - \mu_S Q^{n-1} } \leq \sum\limits_{n = 1}^{m} \Norm{ \mu_S Q^n - \mu_S Q^{n-1} } \leq m \cdot \Phi(S)
 	\end{align}
 	Sei nun $S$ mit $\pi(S)\leq \frac{1}{2}$. Da $\mu_S(S^c) = 0$ gilt
 	\begin{align}
@@ -742,7 +742,7 @@ $C(A,B)$ ist die Wahrscheinlichkeit von $A$ nach $B$ zu laufen, wenn man mit $\p
  	\end{align}
  	und mit der Dreiecksungleichung 
  	\begin{align}
- 		\frac{1}{2} \leq || \mu_S - \pi ||_{TV} \leq || \mu_S - \mu_SQ^m || + || \mu_SQ^m-\pi || \leq t_{mix}\Phi(S) + \frac{1}{4}
+ 		\frac{1}{2} \leq \Norm{ \mu_S - \pi }_{TV} \leq \Norm{ \mu_S - \mu_SQ^m } + \Norm{ \mu_SQ^m-\pi } \leq t_{mix}\Phi(S) + \frac{1}{4}
   	\end{align}
   	wenn man $m = t_{mix}$ wählt. Also
   	\begin{align}
@@ -764,7 +764,7 @@ $C(A,B)$ ist die Wahrscheinlichkeit von $A$ nach $B$ zu laufen, wenn man mit $\p
 		\sum\limits_{x \in S} \deg{x} = 2d(n^d-1). 
 	\end{align}
 	Damit ist $\Phi(S) = \frac{1}{n^d - 1}$. Wählt man $d = 2$ ist $\Phi(S) \approx \frac{1}{n^2}$. Damit erhält man in diesem Fall $t_{mix} \geq \frac{\enb{n^2-1}}{4}$. Die wahre Mischzeit ist $\mathcal{O}(n^2 \log n)$
-\end{beispiel}\todo{überarbeitten Anfnag bsp}
+\end{beispiel}
 
 \begin{beispiel}[Graphenfärben]
 	Sei $G = (V,E)$ ein Graph. Eine Färbung von $G$ mit $q$ Farben $\set{1,\dots,q}$ ist eine Abbildung $f: V \to \set{1,\dots,q}$, mit $f(v) \neq f(w)$, falls $\set {v,w} \in E$. Es gibt zwei offensichtliche Fragen: 
@@ -810,7 +810,7 @@ Wie sampelt man die Gleichverteilung auf $\Omega$? \\
 \end{beispiel}
  
 \marginnote{Vorlesungsbeginn 20.06.2016}
-\todo[inline]{missing part}
+Ein Beispiel (zu $t_{mix} \geq \frac{1}{4 \Phi_*}$), in dem alles gut geht: 
 \begin{beispiel}[Der Binärbaum]
 	Sei $T=(V,E)$ der Binärbaum der Tiefe $k$, d.h. ein Baum mit Wurzel $v^*$, wobei $\deg(v^*) = 2, \deg(v) = 3$ für alle $v \neq v^*$, die keine Blätter sind und $\deg(v) = 1$ für alle Blätter. Sei $n = \abs{V} = 2^{k+1} -1$. Dann ist $\abs{E} = n-1, d(v,v^*) = k$ für alle Blätter.
 	
@@ -831,30 +831,42 @@ Wie sampelt man die Gleichverteilung auf $\Omega$? \\
  \end{align}
  Damit ist
 \begin{align}
-	\pi(S) = \sum\limits_{v: v \leftarrow v^*}\pi(v) = \sum\limits_{v \leftarrow v^*, v \text{ innerer Knoten}} + \sum\limits_{v \leftarrow v^*, v \text{ Blatt}} \overset{*}{=} \frac{1}{2} - \frac{1}{n-2} = \frac{n-2}{2n-2} \marginnote{* aus Symmetriegründen}
-\end{align} \todo{Inhalte summe vergessen}
+	\pi(S) = \sum\limits_{v: v \leftarrow v^*}\pi(v) = \sum\limits_{\substack{v \leftarrow v^* \\ v \text{ inn. Knoten}}} \pi(v) + \sum\limits_{\substack{v \leftarrow v^* \\ v \text{ Blatt}}} \pi(v) \overset{(*)}{=} \frac{1}{2} - \frac{1}{n-2} = \frac{n-2}{2n-2} \marginnote{$(*)$ aus Symmetriegründen}
+\end{align}
  
  Man berechnet 
  \begin{align}
- 	C =(S,S^c) &= \sum\limits_{x \in S, y\in S^c} \pi(x) Q(x,y) = \pi(v^*) \frac{1}{3} \\
-	 	&= \frac{3}{2n-2}\frac{1}{3} = \frac{1}{2n-2}
+ 	C =(S,S^c) = \sum\limits_{x \in S, y\in S^c} \pi(x) Q(x,y) = \pi(v^*) \frac{1}{3} = \frac{3}{2n-2} \cdot \frac{1}{3} = \frac{1}{2n-2}
  \end{align}
  Somit:
  \begin{align}
  	\Phi(S) = \frac{1}{2n-2} \frac{2n-2}{n-2} = \frac{1}{n-2}.
  \end{align}
- Damit $t_{mix} \geq \frac{n-2}{4}$. Diese Abschätzung ist ziemlich gut, denn ,man kann auhc zeigen dass $t_{mix} \leq 4n$ gilt, d.h. untere und obere Schranke unterscheiden sich lediglich um eine Konstante. \\
- Curie-Weiss: $\beta =1$ kritische Temperatur. $m_N = \frac{1}{N} \sum\limits_{i=1}^{N}\delta_i : m_N \sim 0$ \todo{check} für $\beta \leq 1$. $m_N$ konzentriert sich. \todo{missing part}
+ Damit $t_{mix} \geq \frac{n-2}{4}$. Diese Abschätzung ist ziemlich gut, denn ,man kann auch zeigen dass $t_{mix} \leq 4n$ gilt, d.h. untere und obere Schranke unterscheiden sich lediglich um eine Konstante. \\
+ Curie-Weiß: $\beta =1$ kritische Temperatur $m_N = \frac{1}{N} \sum\limits_{i=1}^{N}\delta_i, m_N \sim 0$, für $\beta \leq 1:$ konzentriert sich $m_N$ um zwei Werte. Auch sind Simulationsalgorithmen für $\beta > 1$ exponentiell langsam.
  
- \enquote{Man kann zeigen, dass $t_{mix} \leq \dots$ gilt} haben wir in allen Beispielen 4.2-4.4 \todo{REF} gesagt. Aber wie zeigt man so etwas? Wir wollen eine Technik kennenlernen, die solche Abschätzungen aus der Verteilung der Eigenwerte von $Q$ generiert. Die Situation ist wieder die, dass $Q$ eine bezüglich $\pi$ reversible Markovkette auf einem endlichen Zustandsraum $\Omega$ mit $\abs{\Omega} = m$ ist. Wir werden sehen, dass $Q$ nur reelle Eigenwerte hat. Diese ordnen wir an. $1 = \beta_0 > \beta_1 \dots \geq \beta_{m-1} \overset{*}{>} -1$\marginnote{* die Kette sei aperiodisch}. Man kann einen Operator zu $Q$ assoziieren, der vermöge
+ \enquote{Man kann zeigen, dass $t_{mix} \leq \dots$ gilt} haben wir in allen Beispielen 4.2-4.4 \todo{REF} gesagt. Aber wie zeigt man so etwas? Wir wollen eine Technik kennenlernen, die solche Abschätzungen aus der Verteilung der Eigenwerte von $Q$ generiert. 
+ 
+ Die Situation ist wieder die, dass $Q$ eine bezüglich $\pi$ reversible Markovkette auf einem endlichen Zustandsraum $\Omega$ mit $\abs{\Omega} = m$ ist. Wir werden sehen, dass $Q$ nur reelle Eigenwerte hat. Diese ordnen wir an: $1 = \beta_0 > \beta_1 \dots \geq \beta_{m-1} \overset{*}{>} -1$\marginnote{* die Kette sei aperiodisch}. Man kann einen Operator zu $Q$ assoziieren, der vermöge
  \begin{align}
- 	\benb{Q\Phi}(x) = \sum\limits_{z \in \Omega} Q(x,z)\Phi(z)
+ 	\benb{Q\phi}(x) = \sum\limits_{z \in \Omega} Q(x,z)\phi(z)
  \end{align}
- auf $L^2(\pi)$ (also alle Funktionen auf $\Omega$) wirkt. Intuitiv ist klar, dass $t_{mix}$ etwas mit $1 - \max\set{\abs{\beta_1},\abs{\beta_{n-z}}}$ zu tun haben muss. 
+ auf $L^2(\pi)$ (also alle Funktionen auf $\Omega$) wirkt. Intuitiv ist klar, dass $t_{mix}$ etwas mit $1 - \max\set{\abs{\beta_1},\abs{\beta_{m-1}}}$ zu tun haben muss. 
  	\begin{align}
- 		Q^n = S-{-1} D^n S = S^{-1} MATRIXMISSiNG S
-  	\end{align}\todo{MATIRX}
-  	D.h. die Konvergenz findet in $D^n$ statt. Diese Matrix konvergiert gegen \todo{MATRIX} (1,0,0,0) und die Konvergenzgeschwindigkeit richtet sich nach dem betragsmäßig zweitgrößten Eigenwert.
+ 		Q^n = S^{-1} D^n S = S^{-1} \cdot 
+ 		\begin{psmallmatrix}
+	 		1	&	&	&	 \\
+	 			&\beta_1	&	&0	 \\
+	 			&	& \diagdown	&	 \\
+	 			&	0 & 	& \beta_{m-1}
+ 		\end{psmallmatrix}^n \cdot S
+  	\end{align}
+  	D.h. die Konvergenz findet in $D^n$ statt. Diese Matrix konvergiert gegen $\begin{psmallmatrix}
+  	1 & & & \\
+  	& 0 & & \\
+  	& & \diagdown & \\
+  	& & & 0
+  	\end{psmallmatrix}$ und die Konvergenzgeschwindigkeit richtet sich nach dem betragsmäßig zweitgrößten Eigenwert.
   	
 \begin{satz}
 	In der obigen Situation sei $\beta_* = \max\set{\abs{\beta_i},i\neq 0}, \gamma* = 1- \beta_*$ die absolute Spektrallücke, $\gamma = 1 - \beta_1$ die Spektrallücke und $t_{rel} = \frac{1}{\gamma^*}$ die Relaxationszeit. Dann gilt für alle $\epsilon > 0$ 
@@ -881,7 +893,7 @@ Wie sampelt man die Gleichverteilung auf $\Omega$? \\
 		\end{enumerate}
 	\end{lemma}
 	\begin{beweis}
-		Sei $A(x,y) = \sqrt{\frac{\pi(x)}{\pi(y)}} Q(x,y).$ $A$ ist symmetrisch, denn $Q$ ist reversibel bezüglich $\pi$. Also hat $A$ lauter reelle Eigenwerte, nennen wir sie auch $\beta_0, \dots \beta_m-1$. Außerdem gibt es eine ONB des $\RR^m$ bezüglich $<\cdot,\cdot>$ (euklidisch) aus Eigenfunktionen $(\phi_j)_{j=0}^{m-1}$ von $A$. Man rechnet nach, dass $(\sqrt{\pi(x)})$ ein Eigenvektor zum größten Eigenwert $\beta_0$ ist. Weiter ist mit $D_\pi = diag(\pi(x))$ \todo{diag} $A = D^{1/2}_{\pi}  Q D^{1/2}_{\pi}$. Weiter sei $f_j =  D^{-1/2} \phi_j$. Dann sind $f_j$ Eigenfunktionen zu Eigenwert $\beta_j$ und der Matrix $Q$. 
+		Sei $A(x,y) = \sqrt{\frac{\pi(x)}{\pi(y)}} Q(x,y).$ $A$ ist symmetrisch, denn $Q$ ist reversibel bezüglich $\pi$. Also hat $A$ lauter reelle Eigenwerte, nennen wir sie auch $\beta_0, \dots \beta_m-1$. Außerdem gibt es eine ONB des $\RR^m$ bezüglich $\sprod{\cdot,\cdot}$ (euklidisch) aus Eigenfunktionen $(\phi_j)_{j=0}^{m-1}$ von $A$. Man rechnet nach, dass $(\sqrt{\pi(x)})_x$ ein Eigenvektor zum größten Eigenwert $\beta_0 = 1$ ist. Mit $D_\pi = \text{diag}(\sqrt{\pi(x))}_x$ ist weiter $A = D^{1/2}_{\pi}  Q D^{1/2}_{\pi}$. Weiter sei $f_j =  D^{-1/2} \phi_j$. Dann sind $f_j$ Eigenfunktionen zu Eigenwert $\beta_j$ und der Matrix $Q$. 
 		\begin{align}
 			Qf_j = Q D^{-1/2}_{\pi} \phi_j = D^{-1/2}_\pi (D^{1/2}_\pi Q D^{-1/2}_{\pi}) \phi_j = D^{-1/2}_{\pi} A \phi_j = D^{-1/2}_{\pi} \beta_j \phi_j = \beta_j f_j
 		\end{align}
@@ -901,13 +913,11 @@ Wie sampelt man die Gleichverteilung auf $\Omega$? \\
 	\underline{Beweis 4.5} \todo{REF!}
 	
 	Wir zeigen nur die obere Schranke, weil uns diese hilft $t_{mix}$ von oben zu beschränken. Nach Definition von TV:
-	\todo[inline]{auskommentiert}
-%	\begin{align}
-%		|| Q_t(x, \cdot) - \pi(\cdot) ||_{TV} &= \frac{1}{2} \sum\limits_{y} \abs{Q^t(x,y) - \pi(y)} = \frac{1}{2} \sum\limits_{y} \pi(y) \abs{\frac{Q^t(x,y)}{\pi(y)} -1} \\
-%						&= \frac{1}{2} || \frac{Q^t(x,\cdot)}{\pi(\cdot)} -1 ||_1 \marginnote{$||\cdot||_1 $1-Norm in $ L^1(\pi)$} 
-%						
-%	\end{align}
-	d.h. $4 ||Q^t(x,\cdot) - \pi(\cdot )||^2_{TV} \leq ||\frac{Q^t(x,\cdot)}{\pi(\cdot)} -1||^2_2$. \marginnote{Mit Jensenscher Ungleichung und $||\cdot||_2$ die Norm in $L^2(\pi)$} Nach dem Lemma gilt:
+	\begin{align}
+		\Norm{Q_t(x, \cdot) - \pi(\cdot)}_{TV} &= \frac{1}{2} \sum\limits_{y} \abs{Q^t(x,y) - \pi(y)} = \frac{1}{2} \sum\limits_{y} \pi(y) \abs{\frac{Q^t(x,y)}{\pi(y)} -1} \\
+						&\leq \frac{1}{2} \Norm{\frac{Q^t(x,\cdot)}{\pi(\cdot)} -1 }_1  \marginnote{$\Norm{\cdot}_1$ 1-Norm in $L^1(\pi)$} 
+	\end{align}
+	d.h. $4 \Norm{Q^t(x,\cdot) - \pi(\cdot )}^2_{TV} \leq \Norm{\frac{Q^t(x,\cdot)}{\pi(\cdot)} -1}^2_2$. \marginnote{Mit Jensenscher Ungleichung und $\Norm{\cdot}_2$ die Norm in $L^2(\pi)$} Nach dem Lemma gilt:
 	\begin{align}
 		\abs{\frac{Q^t(x,y)}{\pi(y)} -1} &\overset{\Delta-\text{Ungl.}}{\leq} \sum\limits_{j =  1}^{m-1} \abs{f_j(x) f_j(y)} \beta^t_j \leq \beta^t_* \sum\limits_{j=1}^{m-1} \abs{f_j(x) f_j(y)} \\
 			&\overset{C.S.}{\leq} \beta^t_* \enb{\sum\limits_{j = 0}^{m-1} f_j^2(x)}^{1/2} \enb{\sum\limits_{j = 0}^{m-1} f_j^2(y)}^{1/2}
@@ -918,12 +928,14 @@ Wie sampelt man die Gleichverteilung auf $\Omega$? \\
 	\end{align}
 	Also
 	\begin{align}
-		4 || Q^t (x,\cdot) - \pi(\cdot) ||^2_{TV} \leq \beta^{2t}_* \sum\limits_{y}\frac{1}{\pi(x)} \frac{1}{\pi(y)} \pi(y) = \frac{\beta^{2t}_*}{\pi(x)} \leq \beta^{2t}_* \pi_{min} \\
-		& (1-\gamma*)^{2t} \frac{1}{\pi_{min}} \leq e^{-2jt} \frac{1}{\pi_{min}} \\
-		\Rightarrow d(t) \leq \epsilon \text{ wenn } t \geq \frac{1}{\gamma*} \log \frac{1}{2\epsilon \sqrt{\pi_{min}}} = \log \enb{\frac{1}{2\epsilon\pi_{min}}} t_{rel}
+		4 \Norm{ Q^t (x,\cdot) - \pi(\cdot) }^2_{TV} \leq \beta^{2t}_* \sum\limits_{y}\frac{1}{\pi(x)} \frac{1}{\pi(y)} \pi(y) = \frac{m \beta^{2t}_*}{\pi(x)} &\leq m \beta^{2t}_* \frac{1}{\pi_{min}} \\
+		&= (1-\gamma^*)^{2t} \frac{1}{\pi_{min}} \leq e^{-2jt} \frac{1}{\pi_{min}} \\
+	\end{align}
+	\begin{align}
+		\Rightarrow d(t) \leq \epsilon \text{ wenn } t \geq \frac{1}{\gamma^*} \log \frac{1}{2\epsilon \sqrt{\pi_{min}}} = \log \enb{\frac{1}{2\epsilon\pi_{min}}} t_{rel}
 	\end{align}
 \end{beweis}
-\todo{check begin/letztes Ende}
+\todo{Zusammenfassung sollte passen}
 
 \marginnote{Vorlesungsbeginn 23.06.2016}
 \underline{Moral:} Es genügt $1-\beta_1$ abzuschätzen, um $t_{mix}$ zu kontrollieren. Eine Möglichkeit geht über den mit $Q$ assoziierten Laplace-Operator: $L = \id -Q$. Die Spektrallücke ist dann der erste von 0 verschiedene Eigenwert.
@@ -943,18 +955,17 @@ Man kann mittels $\mathcal{E}$ eine Abschätzung für $1-\beta_1$	erreichen.
 \begin{satz}
 	Sei $\lambda_1 = 1-\beta_1$, dann ist  
 	\begin{align}
-		\lambda = \min\limits_{f:S\to \RR, E_\pi(f) = 0, \Var{f}_{\pi} = 1} \mathcal{E}(f,f) = \min\limits_{f:S\to \RR, E_\pi (f) = 0} ||f||^2_{2,\pi} = \min\limits_{f:S \to \RR, f \neq const.} \frac{\mathcal{f,f}}{\Var{f}_{\pi}}
+		\lambda = \min\limits_{\substack{f:S\to \RR \\ \EW{\relax}_{\pi}(f) = 0 \\ \Var{\relax}_{\pi}(f) = 1}} \mathcal{E}(f,f) = \min\limits_{\substack{f:S\to \RR \\ \EW{\relax}_{\pi} (f) = 0}} \frac{\mathcal{E}(f,f)}{\Norm{f}^2_{2,\pi}} = \min\limits_{\substack{f:S \to \RR \\ f \neq const.}} \frac{\mathcal{E}(f,f)}{\Var{\relax}_{\pi}(f)}
 	\end{align}
 \end{satz}
-\todo{formel pi Varianz + mins}
 \begin{bemerkung}
 	Das heißt in der Physik auch manchmal Raleigh-Ritz-Prinzip. Man sucht in gewissem Sinne möglichst glatte Funktionen, die aber nicht konstant sind.
 \end{bemerkung}
 \begin{beweis}
-	Das letzte Gleichheitszeichen erhält man, indem man $f$ durch $f- \EW{f}[\pi]$ \todo{ EW für oben unten ertweitern} ersetzt, das vorletzte Gleichheitszeichen erhählt man, indem man $f$ durch $\frac{f}{||f||_{2,\pi}}$ ersetzt.
-	Für die erste Gleichheit, sei $f: \EW{f}_[pi](f), ||f||^{2,\pi} = 1$. Dann gilt
+	Das letzte Gleichheitszeichen erhält man, indem man $f$ durch $f- \EW{\relax}_{\pi}(f)$ ersetzt, das vorletzte Gleichheitszeichen erhählt man, indem man $f$ durch $\frac{f}{\Norm{f}_{2,\pi}}$ ersetzt.
+	Für die erste Gleichheit, sei $f: \EW{\relax}_{\pi}(f) = 0, \Norm{f}^{2,\pi} = 1$. Dann gilt
 	\begin{align}
-		0 = \EW{f}_{\pi}= \sum\limits_{x}f(x)\pi(x) = \sum\limits_{x} f(x) \mathds{x} \pi(x) ) <f,\mathds{1}>_{pi} \marginnote{$\mathds{1}$-konstante 1 Fkt}
+		0 = \EW{\relax}_{\pi}(f)= \sum\limits_{x}f(x)\pi(x) = \sum\limits_{x} f(x) \mathds{x} \pi(x) ) <f,\mathds{1}>_{pi} \marginnote{$\mathds{1}$-konstante 1 Fkt}
 	\end{align}
 	Da $\mathds{1}$ Eigenfunktion zu $\beta_0$ ist, ist $f orthogonal$ Eigenraum zu $\beta_0$. Also, mit $f_j$ Eigenfunktion von $\beta_j$
 	\begin{align}
@@ -967,7 +978,7 @@ Man kann mittels $\mathcal{E}$ eine Abschätzung für $1-\beta_1$	erreichen.
 		&= <(I-Q)f,f >_{\pi} = <Lf,f>_{\pi} = <L\sum\limits_{j=1}^{m-1}<f_i,f_j>_{pi},f_j, \sum\limits_{j=1}^{m-1}<f,f_j>_{pi}f_j>_{\pi} \\
 		&= <\sum\limits_{j=1}^{m-1}(1-\beta_j)<f,f_j>_{\pi}f_j,\sum\limits_{j=1}^{m-1}<f,f_j>_{\pi}f_j>_{\pi} \marginnote{$f_j$ sind Eigenfkt von $L$} \\
 		&= \sum\limits_{j = 1}^{m-1}(1-\beta_j)<f,f_j>^2_{\pi}\geq \enb{1-\beta_1} \sum\limits_{j = 1}^{m-1}<f,f_j>^2_{\pi}  =\enb{1-\beta_1} \sum\limits_{j = 0}^{m-1}<f,f_j>^2_n \marginnote{$f_j$ ONB}
-		&= \enb{1- \beta_1} ||f||^2_{2,\pi} = (1-\beta_)
+		&= \enb{1- \beta_1} \Norm{f}^2_{2,\pi} = (1-\beta_)
 	\end{align}
 \end{beweis}
 
@@ -1020,21 +1031,22 @@ Dann gilt
 \begin{korollar}
 	Für alle $\epsilon > 0$ gilt
 	\begin{align}
-		t_{mix} \leq \log\enb{\frac{1}{2 \epsilon \pi_{min}}} \kappa(\Gamma) \\
-		t_{mix} \leq \log \enb{\frac{1}{2\epsilon\pi_{min}}} k
+		t_{mix} &\leq \log\enb{\frac{1}{2 \epsilon \pi_{min}}} \kappa(\Gamma) \\
+		t_{mix} &\leq \log \enb{\frac{1}{2\epsilon\pi_{min}}} K
 	\end{align}
 \end{korollar}
 \begin{beweis}
 	folgt unmittelbar aus Satz 4.5, 4.7 und 4.8 \todo{REF} \todo{d*}
 \end{beweis}
 \begin{korollar}
-	Für die einfache Irrfahrt auf $G$ gilt $\beta_1 \leq 1 - \frac{2\abs{E}}{d_*^2\gamma_* b}$. Dabei $d^2_* = \max\limits_x \deg(x), \gamma_* = \max\set{\abs{\gamma_{xy}} \given x,y \in V }$ und $b = \max\limits_{e} \abs{\set{\gamma \in \Gamma \given e \in  \gamma}}$.
-\end{korollar}\todo{check korollar formel}
+	Für die einfache Irrfahrt auf $G$ gilt $\beta_1 \leq 1 - \frac{2\abs{E}}{d_*^2\gamma_* b}$. Dabei ist $d_* = \max\limits_x \deg(x), \gamma_* = \max\set{\abs{\gamma_{xy}} \given x,y \in V }$ und $b = \max\limits_{e} \abs{\set{\gamma \in \Gamma \given e \in  \gamma}}$.
+\end{korollar}
 \begin{beweis}
 	Hier ist $Q(x,y) = \frac{1}{\deg (x)}$, falls $x \sim y$, sonst 0. Sei $\pi(x) = \frac{deg (x)}{2\abs{E}}$ und daher $c(e) = \frac{1}{2\abs{E}}$, für alle $e \in E$.
 	\begin{align}
-		\Rightarrow k(\Gamma) = \max\limits_x \sum\limits_{\gamma_{xy}} \abs{\gamma_{xy}}_Q \pi(x)\pi()
+		\Rightarrow \kappa(\Gamma) = \max\limits_x \sum\limits_{\gamma_{xy}} \abs{\gamma_{xy}}_Q \pi(x)\pi(y) \leq \frac{d^2_*}{(2\abs{E})^2} 2 \abs{E} \gamma_* b \marginnote{$b$ ist entschiedende Größe, kluge Pfadwahl}
 	\end{align}
+	weil $\frac{1}{\epsilon(e)} = 2\abs{E}$ jeder Pfad höchstens $\gamma_*$ ist und jede Kante höchstens $b$ mal vorkommt folgt die Behauptung.
 	\todo{missing end}
 \end{beweis}
 %
@@ -1157,16 +1169,16 @@ Dann gilt
 	\underline{Infimum bilden:} $\lambda_1 \leq 2h$ \\
 	U.S: \underline{1. Beobachtung:} $\Psi \in L^2(\pi), \Psi^+ = \max(\Psi,0),	S(\Psi) = \set{ x : \Psi (x) > 0 }$. Dann gilt $\forall S(\Psi) \neq 0$ und alle $\lambda \geq 0$
 	\begin{align}
-		\lambda ||\Psi^+||^2_{L^2(\pi)} \geq \mathcal{E} (\Psi^+,\Psi^+)
+		\lambda \Norm{\Psi^+}^2_{L^2(\pi)} \geq \mathcal{E} (\Psi^+,\Psi^+)
 	\end{align}
 	falls $L\Psi := (\id - Q) \Psi \leq \lambda\Psi$ auf $S(\Psi)$. Denn
 	\begin{align}
-		\lambda ||\Psi^+||_{L^2(\pi)} = < \lambda\Psi^+, \Psi^+>_{\pi} \overset{*}{\geq} <L_{\Psi^+}, \Psi^+ > = \mathcal{E} (\Psi^+,\Psi^+)
+		\lambda \Norm{\Psi^+}_{L^2(\pi)} = < \lambda\Psi^+, \Psi^+>_{\pi} \overset{*}{\geq} <L_{\Psi^+}, \Psi^+ > = \mathcal{E} (\Psi^+,\Psi^+)
 	\end{align}
 
 	\underline{2. Beobachtung:} $\forall \Psi \in L^2(\pi)$ mit $S(\Psi) \neq \emptyset$ gilt
 	\begin{align}
-		\mathcal{E} (\Psi^+,\Psi^+) \geq \frac{h^2(\Psi) ||\Psi||^2_{L^2(\pi)}}{2} \\
+		\mathcal{E} (\Psi^+,\Psi^+) \geq \frac{h^2(\Psi) \Norm{\Psi}^2_{L^2(\pi)}}{2} \\
 		\text{wo } h(\Psi) = \inf \set{ \frac{C(S,S^)}{\pi(S)} - t, \emptyset \neq S \subseteq S(\Psi)  }
 	\end{align}
 	denn einerseits: O.B.d.A. $\Psi \geq 0$ überall, dann gilt
@@ -1175,7 +1187,7 @@ Dann gilt
 		\sum\limits_{x,y} \abs{\Psi^2(x) - \Psi^2(y)} c(x,y) &= \sum\limits_{x,y} \abs{\Psi(x) - \Psi(y)} \abs{\Psi(x) - \Psi(y)} \sqrt{c(x,y)} \sqrt{c(x,y)} \\
 		&\leq \sqrt{2} \mathcal{E}^{1/2} (\Psi,\Psi) \enb{\sum\limits_{x,y}\enb{\Psi(x) + \Psi(y)}^2 c(x,y) }^{1/2} \marginnote{Siehe Nebenrechnung}\\
 		&\leq 2 \mathcal{E}^{1/2}(\Psi,\Psi) \enb{\sum\limits_{x,y} \enb{\Psi^2(x) + \Psi^2(y) } c(x,y) }^{1/2} \\
-		&\leq 2^{3/2} \mathcal{E} (\Psi,\Psi) || \Psi ||_{L^2(\pi)}
+		&\leq 2^{3/2} \mathcal{E} (\Psi,\Psi) \Norm{ \Psi }_{L^2(\pi)}
 	\end{align}
 	
 	Nebenrechnung: \todo{norm psi fehlt?}
@@ -1189,17 +1201,17 @@ Dann gilt
 		&= \marginnote{Fubini} 4 \int_{0}^{\infty} t\enb{\sum\limits_{\Psi(x) \leq t \leq \Psi(y)} c(x,y) } dt \marginnote{Sei $S := \set{y \given \Psi(y) > t} \subseteq S(\Psi)$} \\
 		&= 4 \int_{0}^{\infty} t C(S,S^c) dt = 4 \int_{0}^{\infty} t \frac{C(S,S^c)}{\pi(S)} \pi(S) dt \\
 		&\geq 4h(\Psi) \int_{0}^{\infty} t \pi(y : \Psi(y) > t) dt \\
-		&= 4 \frac{h(\Psi)}{2} || \Psi ||_{L^2(\pi)}
+		&= 4 \frac{h(\Psi)}{2} \Norm{ \Psi }_{L^2(\pi)}
 	\end{align}		
 	
 	\todo{missing nebenrechnung. check gleichung oben}
 	Zusammen: 
 	\begin{align}
-		2^{3/2} \mathcal{E}^{1/2}(\Psi,\Psi) || \Psi ||_{L^2(\pi)} \geq \sum\limits_{x,y} \abs{\Psi^2(x) - \Psi^2(y)} c(x,y) \geq 2 h(\Psi) || \Psi||^2_{L^2(\pi)}
+		2^{3/2} \mathcal{E}^{1/2}(\Psi,\Psi) \Norm{\Psi}_{L^2(\pi)} \geq \sum\limits_{x,y} \abs{\Psi^2(x) - \Psi^2(y)} c(x,y) \geq 2 h(\Psi) \Norm{\Psi}^2_{L^2(\pi)}
 	\end{align}
 	Zusammen mit (3.3) \todo{REF}
 	\begin{gather}
-		\lambda || \Psi_+ ||^2_{L^2(\pi)} \geq \mathcal{E}(\Psi^+,\Psi^+) \frac{h^2(\Psi)}{2} ||\Psi_+||^2_{L^2(\pi)} \\
+		\lambda \Norm{\Psi_+}^2_{L^2(\pi)} \geq \mathcal{E}(\Psi^+,\Psi^+) \frac{h^2(\Psi)}{2} \Norm{\Psi_+}^2_{L^2(\pi)} \\
 		\Rightarrow \lambda \geq \frac{h^2(\Psi)}{2}
 	\end{gather}	
 	wobei $h = \inf\limits_{S: \pi(S) \leq 1/2} \frac{C(S,S^c)}{\pi(S)}$. \\
