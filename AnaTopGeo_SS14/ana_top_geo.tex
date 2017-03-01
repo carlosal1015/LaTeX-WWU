@@ -1325,6 +1325,103 @@ Nach Aufgabe 4 von Blatt 5 sind metrisierbare Räume normal.
 \end{beweis}
 % section metrisierbarkeit (end)
 
+\newpage
+\section{Zusammenhängende topologische Räume} % (fold)
+\label{sec:zusammenhangende_topologische_raume}
+
+\begin{definition}[{name=[zusammenhängend und wegzusammenhängend]}]
+	Sei $X$ ein topologischer Raum.
+	\begin{enumerate}[(1)]
+		\item $X$ heißt \bet{zusammenhängend}\index{topologischer Raum!zusammenhängend}, falls er nicht als die disjunkte Vereinigung von zwei nicht leeren offenen Mengen geschrieben werden kann.
+		\item $X$ heißt \bet{wegzusammenhängend}\index{topologischer Raum!wegzusammenhängend}, falls es zu allen $x,y \in X$ eine stetige Abbildung $\omega : [0,1] \to X$ gibt mit $\omega(0)=x$ und $\omega(1)=y$. 
+		$\omega$ heißt dann ein \Index{Weg} von $x$ nach $y$.
+		\item $X$ heißt \bet{lokal zusammenhängend}\index{topologischer Raum! lokal zusammenhängend}, falls es für jedes $x \in X$ und jede offene Umgebung $U$ von $x$ eine zusammenhängende Umgebung $V$ von $x$ gibt mit $V \subseteq U$.
+		\item $X$ heißt \bet{lokal wegzusammenhängend}\index{topologischer Raum! lokal wegzusammenhängend}, falls es für jedes $x \in X$ und jede offene Umgebung $U$ von $x$ eine wegzusammenhängende Umgebung $V$ von $x$ gibt mit $V \subseteq U$.
+	\end{enumerate}
+\end{definition}
+
+\begin{bemerkung}[{name=[einfache Aussagen zu (weg)zusammenhängenden Räumen]}]
+	Einige Beispiele und Anmerkungen zu obigen Definitionen:
+	\begin{enumerate}[(1)]
+		\item $\mathbb{R} \setminus \set{0} = {(-\infty,0)} \cup {(0, \infty)}$ ist nicht zusammenhängend und auch nicht wegzusammenhängend, wie man leicht mit dem Zwischenwertsatz zeigen kann.
+		\item $[0,1]$ ist zusammenhängend: Angenommen es wäre $[0,1] = U \cup V$ mit $U, V$ offen, $U \cap V = \emptyset$. 
+		Dann sind $U= [0,1] \setminus V$ und $V= [0,1] \setminus U$ auch abgeschlossen. 
+		O.B.d.A. sei $0 \in U$. 
+		Dann liegt $\inf V$ sowohl in $\overline{V}$ als auch in $\overline{U}$. 
+		Also $U \cap V = \overline{U} \cap \overline{V} \neq \emptyset$ \light.
+	
+		Natürlich ist $[0,1]$ auch wegzusammenhängend: Zu $x,y\in [0,1]$ ist $\omega \colon [0,1]\to [0,1]$ mit $\omega(t)=(1-t)\cdot x +t\cdot y$ ein stetiger Weg von $x$ nach $y$.
+		\item Ist $f \colon X \to Y$ stetig und surjektiv und $X$ zusammenhängend, so ist auch $Y$ zusammenhängend: 
+		Ist $Y = U \mathop{\dot{\cup}} V$, so ist auch $X = f ^{-1}(U) \mathop{\dot{\cup}} f^{-1}(V)$ und es gilt $U \neq \emptyset \iff f^{-1}(U) \neq \emptyset$ und $V \neq \emptyset \iff f^{-1}(V) \neq \emptyset$.
+		\item Ist $X$ wegzusammenhängend, so ist $X$ auch zusammenhängend: 
+		Sei $X= U \cup V$ mit $U,V$ offen und $U \not= \emptyset$, $V \not= \emptyset$. 
+		Sei $x \in U$ und $y \in V$.
+		Da $X$ wegzusammenhängend ist, gibt es einen Weg $\omega \colon [0,1] \to X$ von $x$ nach $y$. 
+		Dann ist $[0,1] = \omega ^{-1}(U) \cup \omega ^{-1}(V)$. 
+		Es ist $0 \in \omega ^{-1} (U)$ und $1 \in \omega ^{-1}(V)$. 
+		Also $\omega ^{-1} (U) \neq \emptyset \neq \omega ^{-1}(V)$. 
+		Da $[0,1]$ nach (1) zusammenhängend ist, ist $\omega^{-1} (U) \cap \omega ^{-1}(V) \neq \emptyset$. 
+		Damit ist auch $U \cap V \neq \emptyset$.
+		\item Ist $f \colon X \to Y$ ein Homöomorphismus, so gelten:
+		\begin{align*}
+			X \text{ wegzusammenhängend } &\iff Y \text{ wegzusammenhängend} \\
+			X \text{ zusammenhängend } &\iff Y \text{ zusammenhängend}
+		\end{align*}
+	\end{enumerate}
+\end{bemerkung}
+
+\begin{beispiel}[{name=[Polnischer Kreis]}]
+	Die eben definierten Begriffe sind nicht äquivalent:
+	\begin{enumerate}[(i)]
+		\item Der sogenannte \bet{Polnische Kreis}\index{Polnischer Kreis} $PK$, gegeben durch
+		\[
+			PK = \set*{(x,y) \in \mathbb{R}^2 \given  \begin{array}{rlcl}
+				 & (x \in [{-1,1}] &\wedge& y=1) \\
+				\vee & (x \in \set{-1,1} &\wedge& y \in [0,1])  \\
+				\vee & (x \in [-1,0] & \wedge& y = 0) \\
+				\vee & (x=0 & \wedge & y \in [-1/2, 1/2]) \\
+				\vee & (x \in (0,1] & \wedge& y= 1/2 \cdot \sin (\pi/x))
+			\end{array}}
+		\]
+		ist wegzusammenhängend, aber nicht lokal wegzusammenhängend.
+		\item Die folgende Teilmenge ist zusammenhängend, aber nicht wegzusammenhängend.
+		\[
+			\set*{(x,y) \in \mathbb{R}^2 \given  \begin{array}{rlcl}
+						 & x=0 & \wedge & y \in [-1/2, 1/2] \\
+						\vee & x \in (0,1] & \wedge& y= 1/2 \cdot \sin (\pi/x)
+					\end{array}}
+		\]
+	\end{enumerate}
+	\begin{figure}[thbp]
+		\centering{\tikzsetnextfilename{polish_circle}
+		\begin{tikzpicture}[scale=2.1]
+			\draw[domain=0.019:1, variable=\t, samples=600, very thin, smooth] plot ({\t}, {0.5 * sin(pi / \t r)}) -- (1,0);
+			\draw[thick] (1,0) -- (1,1) -- (-1,1) -- (-1,0) -- (0,0) -- (0,0.5) -- (0,-0.5);
+			\node at (-0.5,0.5) {$PK$};
+		\end{tikzpicture} \qquad \qquad 
+		\begin{tikzpicture}[scale=2.1]
+			\draw[domain=0.019:1, variable=\t, samples=600, very thin, smooth] plot ({\t}, {0.5 * sin(pi / \t r)});
+			\draw[thick] (0,-0.5) -- (0,0.5);
+		\end{tikzpicture}
+		\caption{Der Polnische Kreis und eine nicht wegzusammenhängende Teilmenge davon}
+		}
+	\end{figure}
+\end{beispiel}
+
+Wir können nun einen ersten Spezialfall der topologischen Invarianz der Dimension zeigen:
+\begin{satz}[{name=[topologische Invarianz der Dimension]}]
+	Es gilt: $\mathbb{R}^n \cong \mathbb{R}^m \iff n=m$
+\end{satz}
+\begin{beweis}[{name={für $n=1$}}]
+	Angenommen es gäbe einen Homöomorphismus $f \colon \mathbb{R} \to \mathbb{R}^m$ mit $m \ge 2$. 
+	Durch Einschränkung von $f$ erhalten wir dann auch einen Homöomorphismus $\mathbb{R} \setminus\set{0} \to \mathbb{R}^m \setminus \set{f(0)}$. 
+	Nach obiger Bemerkung ist $\mathbb{R} \setminus \set{0}$ aber nicht wegzusammenhängend und für $m \ge 2$, $x \in \mathbb{R}^m$ ist $\mathbb{R}^m \setminus \set{x}$ wegzusammenhängend \light.
+\end{beweis}
+
+Eine Variante dieses Arguments kann benutzt werden, um zu zeigen, dass $\mathbb{R}^n \cong \mathbb{R}^m$ genau dann gilt, wenn $n=m$. 
+Dafür benötigt man aber höher dimensionale Varianten des Begriffes \enquote{wegzusammenhängend}.
+% section zusammenhangende_topologische_raume (end)
+
 \cleardoubleoddemptypage
 \pagenumbering{Alph}
 \setcounter{page}{1}
