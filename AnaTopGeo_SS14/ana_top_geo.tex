@@ -1036,7 +1036,202 @@ Dies führt uns zu folgender Definition und dem dazugehörigen \cref{satz:eigent
 	Da $\bar f$ stetig ist, ist auch $\bar{f}^{-1} (U) = \enbrace*{X \setminus f ^{-1}(K)} \cup \set{\infty}$ offen.
 	Damit ist $f ^{-1}(K) \subseteq X$ kompakt.
 \end{beweis}
- 
+
+\newpage
+\section{Der Approximationssatz von Stone-Weierstraß} % (fold)
+
+\begin{definition}[{name=[Im Unendlichen verschwindende Funktionen]},label=def:unendlich-verschwinden]
+	Sei $X$ ein lokalkompakter Hausdorffraum. 
+	Eine stetige Funktion $f \colon X \to \mathbb{R}$ \bet{verschwindet im Unendlichen}\index{verschwindende Funktion}, falls für jedes 
+	$\varepsilon >0$ 
+	\[
+		K_\varepsilon \coloneqq \set[\big]{x \in X \given \abs{f(x)} \ge \varepsilon} 
+	\] 
+	kompakt ist. 
+	Die \Index{Algebra}\marginnote{Vektorraum mit Multiplikation, die mit Vektorraumstruktur verträglich, also bilinear ist} aller solchen Funktionen bezeichnen wir mit $C_0(X)$ und für $f \in C_0 (X) $ setzen wir 
+	\[
+		\norm*{f}_\infty \coloneqq \sup_{x \in X} \,\abs*{f(x)} = \max_{x \in X} \,\abs*{f(x)}  
+	\]
+	$\norm{.}_\infty$ ist eine Norm auf $C_0(X)$.
+\end{definition}
+
+Man überlegt sich leicht, dass $f \colon X \to \mathbb{R}$ genau dann in $C_0(X)$ liegt, wenn $\bar{f} \colon \EPK(X) \to \mathbb{R}$ mit $\bar{f}(\infty)=0$ stetig ist.
+
+\begin{definition}[{name=[Punkte streng trennen]}]
+	Sei $\mathcal{B} \subseteq C_0(X) $. 
+	Wir sagen, dass $\mathcal{B}$ die Punkte von $X$ \bet{streng trennt}, falls es zu $x,y \in X$ mit $ x \neq y$ ein $f \in \mathcal{B}$ gibt 
+	mit $0 \neq f(x) \neq f(y) \neq 0$.
+\end{definition}
+
+Sei $\mathcal{A} \subseteq C_0(X) $ eine Unteralgebra. Gilt
+\begin{enumerate}[a)]
+	\item $\forall x,y \in X : \exists f \in \mathcal{A}  : f(x) \neq f(y)$ und
+	\item $\forall x \in X : \exists g \in \mathcal{A} : g(x) \neq 0 $
+\end{enumerate}
+so trennt $\mathcal{A}$ die Punkte von $X$ streng, wie man sich leicht überlegt.
+Betrachtet man beispielsweise ein kompaktes Intervall $[a,b] \subseteq \mathbb{R}$ und die Unteralgebra der reellen Polynome $\mathcal{A} \coloneqq \set[\big]{x \mapsto p(x) \given p \in R[t]} \subseteq C_0([a,b])$, so trennt $\mathcal{A}$ die Punkte von $[a,b]$ streng.
+
+\begin{satz}[{name={Stone-Weierstraß}},label=satz:stone-weier]
+	Sei $X$ ein lokalkompakter Hausdorff-Raum und sei $\mathcal{A} \subseteq C_0(X)$ eine Unteralgebra, die die Punkte von $X$ streng trennt. 
+	Dann ist $\mathcal{A} \subseteq C_0(X)$ dicht bezüglich $\norm{.}_\infty$.
+\end{satz}
+
+Um diesen Satz beweisen zu können, zeigen wir zunächst einige Hilfsaussagen.
+Wir beginnen dazu mit einem eventuell schon aus der Analysis bekannten Satz:
+
+\begin{satz}[{name={Dini}},label=satz:dini]
+	Sei $\enbrace*{f_n \colon [0,1] \to \mathbb{R}}_{n \in \mathbb{N}}$ eine punktweise monoton wachsende Folge stetiger Funktionen, die punktweise gegen eine stetige Funktion $f$ konvergiert. 
+	Dann konvergiert $f_n \grenzw{} f$ gleichmäßig, d.h. $\norm{f_n -f}_\infty \grenzw{} 0$.
+\end{satz}
+\begin{beweis}
+	Sei $\varepsilon >0$. Zu jedem $t \in [0,1]$ gibt es $n_t$ mit 
+	\[
+		\forall n\ge n_t \, : \, f(t) \ge f_n(t) \ge f_{n_t}(t) \ge f(t) - \varepsilon. 
+	\]
+	Da $f$ und $f_{n_t}$ stetig sind, ist $U_t \coloneqq \set[\big]{{s \in [0,1]} \given f(s) - f_{n_t}(s) < \varepsilon} $ offen. 
+	Da $[0,1]$ kompakt ist, gibt es $t_0, \ldots , t_k \in [0,1]$ mit 
+	\(
+		[0,1] = U_{t_0} \cup \ldots \cup U_{t_k}.
+	\).
+	Für alle $n \ge \max \set{n_{t_0}, \ldots , n_{t_k}} $ folgt dann
+	\(
+		\norm{f_n - f}_\infty \le \varepsilon
+	\).
+\end{beweis}
+
+\begin{lemma}[{name=[Approximation der Wurzelfunktion]},label=lem:wurzel-approx]
+	Sei $g(t) = \sqrt{t}$ für $t \in [0,1]$. 
+	Es gibt eine Folge $(p_n)_{n \in \mathbb{N}}$ von reellen Polynomen so dass $p_n \to g$ gleichmäßig auf $[0,1]$ und $p_n(0)=0$.
+\end{lemma}
+\begin{beweis}
+	Sei $p_0 \equiv 0$ und für $n > 0$
+	\[
+		p_{n+1} (t) \coloneqq p_n(t) - \frac{1}{2} \cdot \enbrace[\big]{p_n(t)^2 - t} 
+	\]
+	Dann gilt $p_n(0)=0$. Per Induktion nach $n$ zeigen wir, dass $0 \le p_n(t) \le \sqrt{t}$ für alle $t \in [0,1]$ gilt:
+	
+	Für $n=0$ ist die Behauptung offensichtlich erfüllt.
+	Für den Induktionsschritt $n \mapsto n+1$ betrachte
+	\begin{align*}
+		p_{n+1}(t) - \sqrt{t} = p_n(t) - \sqrt{t} - \frac{1}{2} \enbrace[\Big]{p_n(t)^2 -t} &= \enbrace*{p_n(t) - \sqrt{t} }- \frac{1}{2} \enbrace*{p_n(t)- \sqrt{t}} \enbrace*{p_n(t) + \sqrt{t}} \\
+		&=\underbrace{\enbrace*{p_n(t) - \sqrt{t}  } }_{\le 0} \, \underbrace{\bigg( 1- \frac{1}{2}\underbrace{\enbrace[\big]{p_n(t) + \sqrt{t}  }}_{\text{IV.: }\le 2 \sqrt{t}} \bigg)
+		}_{\ge 0} 
+	\end{align*}
+	Also gilt $p_{n+1}(t)- \sqrt{t} \le 0$ wie behauptet. 
+	Weiter gilt, dass $p_n(t)$ monoton wachsend ist für jedes $t$. 
+	Wegen $p_n(t) \le \sqrt{t}$ existiert $\lim_{ n \to \infty} p_n(t)$
+	für $t \in [0,1]$. Es folgt 
+	\begin{align*}
+		0 = \lim_{ n \to \infty} p_{n+1}(t) - \lim_{ n \to \infty} p_n(t) = \lim_{ n \to \infty} \enbrace[\big]{p_{n+1}(t) - p_n(t)} &= \lim_{ n \to \infty} 
+		-\frac{1}{2} \enbrace[\Big]{p_n(t)^2 -t  } \\
+		&= - \frac{1}{2} \enbrace*{ \enbrace*{\lim_{ n \to \infty} p_n(t)}^2 -t }  
+	\end{align*}
+	Also gilt $\lim_{ n \to \infty} p_n(t) = \sqrt{t}$. 
+	Mit dem Satz von \textsc{Dini} (\ref{satz:dini}) folgt, dass $p_n$ gleichmäßig gegen $g$ konvergiert.
+\end{beweis}
+
+\begin{bemerkung}[{name=[Komposition von Elementen einer Unteralgebra mit Polynomen]},label=bem:komp-polynome]
+	Sei $\mathcal{A} \subseteq C_0(X)$ eine Algebra. 
+	Ist $p \in \mathbb{R}[t]$ ein Polynom mit $p(0)=0$ und $f \in \mathcal{A}$, so liegt auch $p \circ f \in \mathcal{A}$:
+	Sei dazu $p= \sum_{i=1}^{n} a_i t^i$, dann gilt 
+	\[
+		p\enbrace[\big]{f(t)} = \sum_{i=1}^{n} a_i f(t)^i = \enbrace*{\sum_{i=1}^{n} a_i f^i} (t) \in \mathcal{A}. 
+	\]
+\end{bemerkung}
+
+\begin{lemma}[{name=[Betrag im Abschluss der Unteralgebra]},label=lem:abschluss-betrag]
+	Sei $X$ ein lokalkompakter Hausdorffraum und $\mathcal{A} \subseteq C_0(X)$ eine Unteralgebra. 
+	Dann gilt: $f \in A \implies \abs*{f} \in \overline{\mathcal{A}}$.\marginnote{$\bar{\mathcal{A} }:= $ Abschluss von $\mathcal{A}$ bezüglich $\norm[\infty]{.}$}
+\end{lemma}
+\begin{beweis}
+	Sei $f \in \mathcal{A}$. O.B.d.A. sei $f(X) \subseteq [{-1},1]$. 
+	Dann ist $f(x)^2 \in [0,1]$ für alle $x \in X$. Sei $(p_n)_{n \in \mathbb{N}}$ die Folge von Polynomen aus 
+	\cref{lem:wurzel-approx}. 
+	Dann gilt
+	\[
+		\abs*{p_n \enbrace*{f(x)^2} - \sqrt{f(x)^2}} = \abs[\Big]{ p_n \enbrace*{f(x)^2} - \abs[\big]{f(x)}} \grenzw{n \to \infty}  0 
+	\]
+	gleichmäßig in $x \in X$. 
+	Es folgt $\norm[\big]{p_n(f^2) - \abs*{f}}_\infty \grenzw{} 0$. 
+	Wegen $f \in \mathcal{A} $ gilt $f^2 \in \mathcal{A}$ und nach \cref{bem:komp-polynome} auch $p_n(f^2) \in \mathcal{A}$.
+	Also folgt $\abs*{f} \in \overline{\mathcal{A}}$.
+\end{beweis}
+
+\begin{bemerkung}[{name=[Max und Min von Funktionen im Abschluss]},label=bem:minmax-abschluss]
+	Für zwei Funktionen $f,g \in \mathcal{A}$ gilt
+	\[
+		\max(f,g) = \frac{1}{2} \enbrace[\Big]{f+g + \abs*{f-g}} \in\overline{\mathcal{A}} \quad \text{ und } \quad\min(f,g) = \frac{1}{2} \enbrace[\Big]{f+g - \abs*{f-g} } \in \overline{\mathcal{A}}
+	\]
+	Wegen $\overline{\mathcal{A} } = \overline{\overline{\mathcal{A}}}$ gilt auch $f,g \in \overline{\mathcal{A}} \implies \min(f,g), \max(f,g) \in \overline{\mathcal{A}}$.
+\end{bemerkung}
+
+\begin{lemma}[{name=[Eigenschaft einer streng trennenden Unteralgebra]},label=lem:unteralg-streng-trennend]
+	Sei $X$ ein lokalkompakter Hausdorffraum und $\mathcal{A} \subseteq C_0(X)$ eine Unteralgebra, die die Punkte von $X$ streng trennt. 
+	Zu $x,y \in X$, $x \neq y$, $\alpha, \beta \in \mathbb{R}$ gibt es dann $f \in \mathcal{A}$ mit $f(x) = \alpha, f(y) = \beta$.
+\end{lemma}
+\begin{beweis}
+	Es gibt $g \in \mathcal{A}$ mit $0 \neq g(x) \neq g(y) \neq 0$. 
+	Ansatz: Für $\lambda , \mu \in \mathbb{R}$ betrachte $f \coloneqq \lambda g + \mu g^2$.
+	\[
+		\begin{aligned}
+			f(x) &{}= \alpha \\
+			f(y) &{}= \beta
+		\end{aligned} 
+		\iff
+		\begin{aligned}
+			g(x) \lambda + g(x)^2 \mu &= \alpha \\
+			g(y) \lambda + g(y)^2 \mu &= \beta
+		\end{aligned} 
+	\]
+	Da 
+	\[
+		\det \begin{pmatrix}
+			g(x)& g(x)^2 \\
+			g(y) & g(y)^2
+		\end{pmatrix} = g(x) g(y)^2 - g(y) g(x)^2 = g(x)g(y) \enbrace[\big]{g(y) - g(x)} \neq 0 
+	\]
+	gibt es $\lambda , \mu \in \mathbb{R}$, sodass das Gleichungssystem eine Lösung hat.
+\end{beweis}
+
+Wir können nun endlich den Satz von \textsc{Stone-Weierstraß} beweisen:
+
+\begin{beweis}[{name={von \cref{satz:stone-weier}}}]
+	Seien $h \in C_0(X)$ und $\varepsilon>0$ beliebig.
+	Wir müssen zeigen, dass ein $f \in \overline{\mathcal{A}}$ existiert mit $\norm{f-h}_\infty < \varepsilon$, da $\overline{\overline{\mathcal{A}}}= \overline{\mathcal{A}}$ gilt.
+	\begin{description}
+		\item[Schritt 1:] Wir konstruieren für $y \in X$ eine Funktion $f_y \in \overline{\mathcal{A}}$ mit $f_y(y) = h(y)$ und $f_y(z) \ge h(z) - \varepsilon$ für alle $z \in X$.
+		
+		Zu $x \in X$ gibt es nach \cref{lem:unteralg-streng-trennend} $g_x \in \mathcal{A}$ mit 
+		\[
+			g_x(y) = h(y) \quad \text{und} \quad g_x(x) = h(x)
+		\]
+		Sei $U_x \coloneqq \set[\big]{z \in X \given g_x(z) > h(z) - \varepsilon}$. 
+		Da $g_x$ und $h$ stetig sind, ist $U_x$ offen. Da $g_x$ und $h$ in $\infty$ verschwinden, ist $X \setminus U_x$ kompakt (vgl. \cref{def:unendlich-verschwinden}).
+		Wegen $g_x(x)= h(x)$ ist $x \in U_x$. 
+		Zu jedem festem $x_1 \in X$ gibt es dann $x_2, \ldots , x_k$ mit $X \setminus U_{x_1} \subseteq \bigcup_{i=2}^k U_{x_i}$.
+		Dann gilt auch 
+		\[
+			X \subseteq \bigcup_{i=1}^k U_{x_i}
+		\]
+		$f_y := \max \,\set{g_{x_1}, \ldots , g_{x_k}}$ ist die gesuchte Funktion. 
+		Wegen \cref{lem:abschluss-betrag} bzw.  \cref{bem:minmax-abschluss} gilt $f_y \in \overline{\mathcal{A}}$.
+		\item[Schritt 2:] Konstruktion von $f$: 
+		Zu $y \in X$ sei $V_y \coloneqq \set[\big]{z \in X \given f_y(z) < h(z)+ \varepsilon}$. 
+		Wieder ist $V_y$ offen, $X\setminus V_y$ kompakt und $y \in V_y$. 
+		Also gibt es wieder $y_1, \ldots , y_l$ mit $X = \bigcup_{i=1}^l V_{y_i}$. 
+		Für die Funktion $f \coloneqq \min\, \set{f_{y_1}, \ldots , f_{y_l}}$ gilt dann
+		\[
+			h(z) - f(z) = \max_i h(z)- f_{y_i} (z) < \varepsilon
+		\]
+		da $f_{y_i}(z) \ge h(z) -\varepsilon\Rightarrow  h(z)- f_{y_i}(z) \le \varepsilon$ nach obiger Konstruktion für jedes $i$ gilt. 
+		Weiter gilt
+		\[
+			f(z)- h(z) = \min_i f_{y_i}(z)- h(z) < \varepsilon
+		\]
+		nach Definition der $V_{y_i}$. 
+		Also gilt insgesamt $\norm[\infty]{f-h} < \varepsilon$.
+	\end{description}
+\end{beweis}
 
 \cleardoubleoddemptypage
 \pagenumbering{Alph}
