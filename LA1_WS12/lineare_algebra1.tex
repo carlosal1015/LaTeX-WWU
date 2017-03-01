@@ -28,7 +28,7 @@ fehlen. Außerdem müssen die Labels eindeutig werden. Wie man dies handhaben ka
 \setcounter{page}{1}
 \setcounter{footnote}{0}
 
-\section{Lineare Gleichungsysteme in 2 Unbekannten} 
+\section{Lineare Gleichungssysteme in 2 Unbekannten} 
 \subsection{Beispiel}
 \[
 \begin{rcases}
@@ -4690,22 +4690,23 @@ Sei $f \in \text{End}_K (V)$. Sind $v_1, \ldots , v_r \in V$ Eigenvektoren zu pa
 \underline{\textbf{Beweis per Induktion nach $r$:}} \\
 Induktionsanfang: $r=0$ (die leere Menge ist linear unabhängig)
 \vspace{7pt} \\
-Induktionsschritt: $r-1 \mapsto r$ \\
-Sei $\alpha_1, \ldots , \alpha_r \in K$ mit $\sum\limits_{i=1}^{r} \alpha_i v_i = 0$. Dann
+Induktionsschritt: $r-1 \mapsto r$:
+Sei $\alpha_1, \ldots , \alpha_r \in K$ mit $\sum_{i=1}^{r} \alpha_i v_i = 0$. Dann gilt
 \[
-	0= f \left( \sum\limits_{i=1}^{r} \alpha_i v_i \right) = \sum\limits_{i=1}^{r} \alpha_i f(v_i)= \sum\limits_{i=1}^{r} \alpha_i \lambda_i v_i  
+	0= f \left( \sum_{i=1}^{r} \alpha_i v_i \right) = \sum_{i=1}^{r} \alpha_i f(v_i)= \sum_{i=1}^{r} \alpha_i \lambda_i v_i  
 \]
-Da auch $\sum\limits_{i=1}^{r} \alpha_i \lambda_r v_i = 0 $, folgt:
+Da auch $\sum_{i=1}^{r} \alpha_i \lambda_r v_i = 0 $, folgt:
 \[
 	0 = \sum\limits_{i=2}^{r} \alpha_i (\lambda_i - \lambda_r) v_i = \sum\limits_{i=1}^{r-1} \alpha_i (\lambda_i - \lambda_r) v_i
 \]
-Induktionsvorraussetzung $\Rightarrow$ $\alpha_i (\lambda_i - \lambda_r)=0$ für $i= 1, \ldots , r-1$. \\
+Die Induktionsvorraussetzung impliziert $\alpha_i (\lambda_i - \lambda_r)=0$ für $i= 1, \ldots , r-1$.
 Da $\lambda_1, \ldots , \lambda_r$ paarweise verschieden sind, ist 
 \[
 	\lambda_1 - \lambda_r \not= 0 , \ldots , \lambda_{r-1} - \lambda_r \not= 0
 \]
-Es folgt $\alpha_1, \ldots , \alpha_{r-1} = 0$. Nun folgt auch $\alpha_r v_r = 0$. Da $v_r$ Eigenvektor und 
-damit $v_r \not= 0 $ ist, folgt $\alpha_r = 0$. \hfill \( \square \)
+Es folgt $\alpha_1, \ldots , \alpha_{r-1} = 0$. 
+Nun folgt auch $\alpha_r v_r = 0$. 
+Da $v_r$ Eigenvektor und damit $v_r \not= 0 $ ist, folgt $\alpha_r = 0$. \hfill \( \square \)
 % subsection satz (end)
 
 \subsection{Korollar} % (fold)

@@ -1,0 +1,514 @@
+%!TEX root = ../vortrag.tex
+%!TEX TS-program = xelatex
+%!TEX TS-options = -shell-escape
+\renewcommand{\setminus}{\backslash}
+\tikzset{bpoint/.style={fill=DodgerBlue3,thick}}
+\section{Homological stability III. -- Connectivity}
+In this talk we will fill the gap in the proof of the stability theorem, i.e. proving the connectivity of the curve complexes $\mathcal{O}^1$ and $\mathcal{O}^2$.
+To be precise we will prove the following theorem.
+
+\begin{theorem*}
+	$\mathcal{O}(S,b_0,b_1)$ is $(g-2)$-connected.
+\end{theorem*}
+
+\begin{remark*}
+	Just a quick reminder of a few definitions and conventions we need along the way:
+	\begin{itemize}[itemsep=0pt]
+		\item \enquote{$(-1)$-connected} means non-empty by convention
+		\item For a simplex $\sigma$ in a simplical complex we define
+		\(
+			\Star(\sigma)
+		\)
+		as the subcomplex consisting of all simplices that contain $\sigma$ together with their faces.
+		As the name suggests $\Star(\sigma)$ is contractible.
+		\item We also define $\Link(\sigma) \subset \Star(\sigma)$ as the subcomplex of the star consisting of all simplices disjoint from $\sigma$.
+	\end{itemize}
+\end{remark*}
+
+We start by defining a few more complexes larger than $\mathcal{O}^i(S)$.
+
+Let $\Delta \subset \partial S$ be a non-empty set of points.
+An arc $a$ with boundary in $\Delta$ is called \emph{trivial}, if $S \setminus a$ consists of two components on of which is a disc intersecting $\Delta$ only in the boundary of $a$.
+
+\begin{definition*}
+	The \Index{full arc complex} $\mathcal{A}(S,\Delta)$ is the simplical complex with vertices isotopy classes of non-trivial arcs with boundary in $\Delta$.
+\end{definition*}
+A $p$-simplex in $\mathcal{A}(S,\Delta)$ is a collection of isotopy classes of arcs $\angbrace*{a_0, \ldots ,a_p}$ which can be represented by a collection of $p+1$ arcs with disjoint interiors.
+
+Given two disjoint subsets $\Delta_0, \Delta_1 \subset \partial S$ we define a subcomplex $\mathcal{B}(S,\Delta_0,\Delta_1) \subset \mathcal{A}(S,\Delta_0 \cup \Delta_1)$ by restricting to arcs with one boundary point in $\Delta_0$ and one in $\Delta_1$.
+This is obviously a subcomplex.
+
+The next property we require is that the arcs need to be non-seperating.
+Therefore we let 
+\[
+	\mathcal{B}_0(S,\Delta_0, \Delta_1) \subset \mathcal{B}(S,\Delta_0, \Delta_1) 
+\]
+be the subcomplex consisting of \emph{non-seperating collections}, meaning simplices $\sigma = \angbrace{a_0, \ldots ,a_p}$ such that the complement of the arcs $a_0, \ldots ,a_p$ in $S$ is connected.
+With this definition $\mathcal{O}(S,b_0,b_1)$ is the subcomplex of $\mathcal{B}_0(S,\set*{b_0},\set*{b_1})$ where the ordering of the arcs in each simplex in $b_0$ is opposite to the ordering of the arcs at $b_1$ (compare: first talk of the section about homological stability).
+
+The proof of \autoref{connec_main} will use the following inclusions
+\[
+	\begin{tikzcd}
+		\mathcal{A}(S,\Delta) & \mathcal{B}(S, \Delta_0, \Delta_1) \lar["i_1"',hook'] & \mathcal{B}_0(S,\Delta_0,\Delta_1) \lar["i_2"',hook'] & \mathcal{O}(S,b_0,b_1) \lar["i_3"',hook']
+	\end{tikzcd}
+\]
+We will prove that $\mathcal{A}(S,\Delta)$ is contractible\footnote{in most cases} and deduce bounds for the connectivity of the complexes step by step.
+Although we are interested in the case $\Delta=\set*{b_0,b_1}$ in the end, we will need the more general complexes along the way.\footnote{because cutting along an arc may result in several copies of the boundary points}
+
+\begin{theorem}[label=thm:connec_full]
+	$\mathcal{A}(S,\Delta)$ is contractible as long as $S$ is neither a disk nor an annulus with $\Delta$ included in a single component of $\partial S$ in which case it is $(q+2r-7)$-connected, where $q=\abs*{\Delta}$ and $r=1,2$ is the number of boundary components of $S$.
+\end{theorem}
+
+To prove this theorem we will need the following lemma:
+
+\begin{figure}[thb]
+	\centering
+	\begin{tikzpicture}
+		\draw[thick] (-15:1) arc (-15:-165:1);
+		\coordinate (p) at (250:1);
+		\coordinate (p') at (295:1);
+		\coordinate (a) at (215:1);
+		\coordinate (b) at (-28:1);
+		
+		\node[above] at (p') {$p'$};
+		\draw[thick] (a) .. controls +(250:1.1) and +(255:1.1) .. (p') node[midway, below left]{$I'$};
+		\draw[thick] (p) node[above]{$p$} .. controls +(280:1.1) and +(275:1.1) .. (b) node[midway, below right]{$I$};
+		\foreach \x in {p,p',a,b}{
+			\draw[bpoint] (\x) circle[radius=.06]; 
+		}
+	\end{tikzpicture}
+	\caption{Definition of the non-trivial arcs $I$ and $I'$ near the added point $p'$.}\label{fig:arcs_lemma_d_dplus1}
+\end{figure}
+\begin{lemma}[label=lem:d_dplus1]
+	Suppose $\mathcal{A}(S,\Delta) \neq \emptyset$ and $\Delta'$ is obtained form $\Delta$ by adding an extra point in a component of $\partial S$ already containing a point of $\Delta$.
+	If $\mathcal{A}(S,\Delta)$ is $d$-connected, then $\mathcal{A}(S,\Delta')$ is $(d+1)$-connected.
+\end{lemma}
+\begin{sketch}
+	Suppose $\Delta' = \Delta \cup \set*{p'}$ and find $p \in \Delta$ closest to $p'$ in $\partial S$.
+	Define two arcs $I$ and $I'$ as in \cref{fig:arcs_lemma_d_dplus1}.
+	We get a decomposition
+	\[
+		\mathcal{A}(S,\Delta') = \Star(I) \cup_{\Link(I)} X
+	\]
+	with $X$ being the subcomplex of $\mathcal{A}(S,\Delta')$ of collections of arcs not containing I.
+	The labour-intensive part of the proof is now to construct a deformation retraction $X \to \Star(I')$ (see \textcite{wahlHomological} for the details; the argument is similar to the one in the proof of \autoref{thm:connec_full}).
+	Hence $X$ is contractible.
+	Using the fact, that $\mathcal{A}(S,\Delta)$ is isomorphic to $\Link(I)$ we get the desired result: 
+	If $d \ge 0$ Seifert-van Kampen implies, that $\mathcal{A}(S,\Delta')$ is simply connected and therefore we may use homology to check $(d+1)$-connectivity (Hurewicz).
+	This easily follows via Mayer-Vietoris.
+	
+	The retraction is defined by some intermediate steps, as can be seen in \cref{fig:retrac_lemma}.
+	\begin{figure}[hbtp]
+		\centering
+		\begin{tikzpicture}[font=\small]
+			\coordinate (p) at (0,3);
+			\coordinate (p1) at ($(p)+(3,1)$);
+			\coordinate (p2) at ($(p)+(6,1)$);
+			\coordinate (p3) at ($(p)+(9,1)$);
+			\coordinate (p4) at ($(p)+(12,0)$);
+			\foreach \x in {p,p1}{
+				\draw ($(\x) - (-.3,3)$) .. controls +(130:1.6) and +(-85:1) .. ($(\x)+ (250:1)$);
+			}
+			\foreach \x in {p1,p2,p3,p4}{
+				\draw ($(\x) - (-.35,3)$) .. controls +(130:2) and +(275:1.3) .. ($(\x)+ (295:1)$);
+			}
+
+			\foreach \x in {p,p1,p2}{
+				\draw ($(\x)- (.3,3)$) .. controls +(110:1.2) and +(-95:1) .. ($(\x)+ (250:1)$);
+			}
+			\foreach \x in {p2,p3,p4}{
+				\draw ($(\x)- (.25,3)$) .. controls +(110:1.8) and +(268:1.2) .. ($(\x)+ (295:1)$);
+			}
+
+			\foreach \x in {p,p1,p2,p3}{
+				\draw ($(\x)- (1.3,3)$) .. controls +(65:1.2) and +(-110:1) .. ($(\x)+ (250:1)$);
+			}
+			\foreach \x in {p3,p4}{
+				\draw ($(\x)- (1.25,3)$) .. controls +(65:2.1) and +(260:1.0) .. ($(\x)+ (295:1)$);
+			}
+
+			\foreach \x in {p,p1,p2,p3,p4}{
+				\draw[thick] ($(\x) + (-15:1)$) arc (-15:-165:1);
+				\draw[bpoint] ($(\x)+ (250:1)$) circle[radius=.06] node[above]{$p$};
+				\draw[bpoint] ($(\x)+ (295:1)$) circle[radius=.06] node[above]{$p'$};
+				\draw[bpoint] ($(\x)+ (215:1)$) circle[radius=.06];
+				\draw[bpoint] ($(\x)+ (-28:1)$) circle[radius=.06];
+				\draw[dashed] ($(\x)+ (215:1)$) .. controls +(250:1.1) and +(255:1.1) .. ($(\x)+ (295:1)$) node[pos=0.2, left]{$I'$};
+				% \draw[thick] (\x) arc (-90:0:1);
+				% \draw[thick] (\x) arc (-90:-180:1);
+				% \draw[densely dotted,thick] (\x) -- ($(\x)- (0,3)$) node[left]{$a$};
+				% \draw[bpoint] (\x) circle[radius=.05] node[above]{$p$};
+			}
+			\draw[->] (1.5,.2) -- ++ (9,0);
+			\node at (2.8,-.2){$r_1$};
+			\node at (5.8,-.2){$r_2$};
+			\node at (8.8,-.2){$r_3$};
+		\end{tikzpicture}
+		\caption{Simplices $r_1,r_2,r_3$ of the retraction in the case of $3$ germs of arcs at $p$.}\label{fig:retrac_lemma}
+	\end{figure}  
+\end{sketch}
+
+\begin{proof}[{name={of \autoref{thm:connec_full}}}]
+	Let's handle the two exceptional cases first (disk and cylinder with $\Delta$ in a single component of $\partial S$):
+	\begin{figure}[htb]
+		\centering
+		\begin{tikzpicture}
+			\draw[very thick,fill=gray!40] (0,0) circle[radius=1cm]; 
+			\draw[thick] (1,0) -- (-1,0);
+			\draw[bpoint] (0:1cm) circle[radius=.06cm];
+			\draw[bpoint] (180:1cm) circle[radius=.06cm];
+			\draw[bpoint] (90:1cm) circle[radius=.06cm];
+			\draw[bpoint] (270:1cm) circle[radius=.06cm];
+			
+			\draw[very thick,fill=gray!40] (4,0) circle[radius=1cm];
+			\draw[very thick,fill=white] (4,0) circle[radius=.4cm];
+			\draw[thick] (4,1) .. controls +(205:.9) and +(170:.6) .. (4,-0.7) .. controls +(-10:.8) and +(-30:.8) .. (4,1);
+			\draw[bpoint] ($(4,0)+(90:1cm)$) circle[radius=.06cm];
+			\draw[bpoint] ($(4,0)+(270:1cm)$) circle[radius=.06cm];
+		\end{tikzpicture}
+		% \missingfigure{disk and cylinder with sufficiently large set $\Delta$ and the corresponding arcs}
+		\caption{Non-emptiness of the arc complex in case of a disk and a cylinder}\label{fig:non-empty}
+	\end{figure}
+	As one sees in \cref{fig:non-empty} $\mathcal{A}(D^2,\Delta)$ is non-empty (there are non-trivial arcs connecting points in $\Delta$) as soon as $\Delta$ has four points; similarly $\mathcal{A}(S^1 \times [0,1],\Delta)$ is non-empty if $\Delta$ consists of two points in the same boundary component.
+	The claim is, that $\mathcal{A}(S,\Delta)$ is $(q+2r -7)$-connected in either of those two cases.
+	Plugging in $q=4$ and $r=1$ we get $(-1)$-connectivity which we just showed in case of $S$ being a disk.
+	For the cylinder ($q=2$ and $r=2$) we get $2 +4 -7 =-1$ and therefore the theorem holds for a cylinder with the minimal choice of $\Delta$ s.th. $\mathcal{A}(S^1\times [0,1],\Delta) \neq \emptyset$ as well.
+	As adding a point to $\Delta$ obviously increases $q$ by one, the theorem holds for every choice of $\Delta$ by \autoref{lem:d_dplus1}.
+	
+	We may now assume that we are not in one of these two exceptional cases.
+	Because of \autoref{lem:d_dplus1} we may further assume that in the general case $\Delta$ has at most one point in each boundary component of $S$ to prove contractibility of $\mathcal{A}(S,\Delta)$. 
+	We first notice, that $\mathcal{A}(S,\Delta)$ is not empty: 
+	\begin{itemize}
+		\item If $\Delta$ has at least two points, any arc connecting two points in different boundary components is non-trivial (because it does not disconnect the surface).
+		\item If $\Delta$ consists of just a single point, we know that $S$ has at least genus one or at least three boundary components.
+		\Cref{fig:non-empty-delta-one} gives examples of non-trivial arcs in those cases.
+	\end{itemize}
+	\begin{figure}[htb]
+		\centering
+		\begin{tikzpicture}
+			\draw[very thick,fill=gray!40] (0,0) circle[radius=1cm]; 
+			\draw[very thick,fill=white] (-.4,0) circle[radius=.3cm]; 
+			\draw[very thick,fill=white] (.4,0) circle[radius=.3cm]; 
+			% \draw[thick] (1,0) -- (-1,0);
+			\draw[thick] (0,1) .. controls +(205:.9) and +(170:.6) .. (-.5,-0.5) .. controls +(-10:.4) and +(-70:.7) .. (0,1);
+			\draw[bpoint] (90:1cm) circle[radius=.06cm];
+			
+			
+			
+			\draw[very thick,fill=gray!40] (4,0) circle[radius=1cm];
+			\draw[thick] (4,1) .. controls +(245:.8) and +(170:.55) .. (4.4,-0.5) .. controls +(-10:.8) and +(-30:.8) .. (4,1);
+			\draw[fill=gray!40] (3.2,-.3) .. controls +(12:.5) and +(180:.9) .. (3.9,.6) .. controls +(0:.9) and +(170:.5) .. (4.6,-.3);
+			\draw (3.82,.35) .. controls +(210:.3) and +(155:.3) .. (3.86,-.2);
+			\draw (3.78,.25) .. controls +(-27:.25) and +(30:.2) .. (3.82,-.14);
+			\draw[thick] (3.83,.20) .. controls +(260:.38) and +(170:.21) .. (4.4,-0.5);
+			
+			\draw[bpoint] ($(4,0)+(90:1cm)$) circle[radius=.06cm];
+			% \draw[help lines,step=.5] (3,-1) grid (5,2);
+		\end{tikzpicture}
+		\caption{Non-emptiness of $\mathcal{A}(S,\Delta)$, if $\Delta$ is a singleton}\label{fig:non-empty-delta-one}
+	\end{figure}
+	To prove contractibility of $\mathcal{A}(S,\Delta)$ we fix a point $p \in \Delta$ and an arc $a$ of $\mathcal{A}(S,\Delta)$ with a least one endpoint at $p$ and proceed by
+	constructing a retraction to $\Star(a)$.
+	To do so we need to fix a germ of $a$ at $p$ as well.
+	
+	Given a $q$-simplex $\sigma$ of $\mathcal{A}(S,\Delta)$ we choose representing arcs $a_0, \ldots ,a_q$ with minimal and transverse intersection with $a$.
+	If there are $k$ intersections at germs of arcs $\gamma_1, \ldots ,\gamma_k$, we are going to define $k$ intermediate simplices $r_1(\sigma), \ldots ,r_k(\sigma)$ to get to the desired retraction.
+	For $\gamma_i$ let $a_{j_i}$ be the arc $\gamma_i$ is a germ of.
+
+	If $a_i$ intersects $a$ at the point $x$ we define $L(a_i)$ and $R(a_i)$ by cutting $a_i$ at $x$ and connecting the new endpoints to the boundary via $a$.
+	Pushing the arcs around a little they become disjoint of $a$ and each other.
+	If $L(a_i)$ or $R(a_i)$ is trivial we forget it.
+	Since $\Delta$ has at most one point in each boundary component and arcs intersect minimally,
+	the only case in which this construction leads to trivial arcs is the one shown in \cref{fig:surg_trivial}.\marginnote{trivial arcs have to be a loop at a single point in $\Delta$}
+	\Cref{fig:surg_trivial} further shows that $L(a_i)$ and $R(a_i)$ cannot be be trivial at the same time.
+	\begin{figure}[hbt]
+		\centering
+		\begin{tikzpicture}
+			\clip (-2,-1.33) rectangle (5,2.63);
+			% \draw[help lines] (-2,-2) grid (4,4);
+			\draw[very thick] (0,0) circle[radius=1cm];
+			\draw[dashed, thick] (1,0) -- (4,0) node[below left]{$a$};
+			\draw[thick] (1,0) .. controls +(85:4) and +(183:5) .. (.3,-1.3) .. controls +(3:2) and +(225:4) .. (4,2) node[below,xshift=2pt] {$a_i$};
+			\draw[thick] (1,0) .. controls +(15:1) and +(225:3.5) .. (4,2.15) node[above] {$R(a_i)$};
+			\draw[thick,dotted] (1,0) .. controls +(90:3.5) and +(183:4.5) .. (.3,-1.2) node[pos=.25,pin={[pin distance=4ex,pin edge={solid}]30:$L(a_i)$}]{};
+			\draw[thick,dotted] (1,0) .. controls +(90:3.5) and +(183:4.5) .. (.3,-1.2)  .. controls +(3:1.3) and +(320:.9) .. (1,0);
+			\draw[bpoint] (1,0) circle[radius=.06cm];
+		\end{tikzpicture}
+		\caption{A situation in which surgery creates a trivial arc (the dotted one)}\label{fig:surg_trivial}
+	\end{figure}
+	
+	We define $r_i(\sigma)$ as the $(q+ l_i)$-simplex with $1 \le l_i \le i + 2$ consisting of the vertices $L^{\epsilon_i(l)}(a_l)$ and $R^{\epsilon_i(l)}(a_l)$ (if non-trivial) for $l \neq a_{j_i}$ and $R^{\epsilon_i(j_i)+1}(a_{j_i}),L^{\epsilon_i(j_i)+1}(a_{j_i})$ where 
+	\begin{itemize}[itemsep=0pt]
+		\item $\epsilon_i(l) \in \set*{0, \ldots ,k}$ is the number of germs $\gamma_j$ included in $a_l$ with $j < i$ and\marginnote{the numbering of the germs is $\gamma_1, \ldots ,\gamma_k$}
+		\item $L^0(a_l)=R^0(a_l)=a_l$ is a single vertex.
+	\end{itemize}
+	\Cref{fig:retrac} shows how the $r_i(\sigma)$ look like in the case of $k=3$.
+	
+	We want a map $f \colon I \times \mathcal{A}(S,\Delta) \to \mathcal{A}(S,\Delta)$ with the properties 
+	\begin{enumerate}[(i),itemsep=0pt]
+		\item $f(-,\Star(a)) = \id_{\Star(a)}$,
+		\item $f(1,\mathcal{A}(S,\Delta)) \subset \Star(a)$ and 
+		\item $f(0,-) = \id_{\mathcal{A}(S,\Delta)}$.
+	\end{enumerate}
+	A point in a $q$-simplex $\sigma$ corresponds to a weighted collection of arcs via the barycentric coordinates $(t_0,\ldots ,t_q)$, the arc $a_i$ having weight $t_i$.
+	Assign to $\gamma_i$ the weight $w_i \coloneqq \sfrac{t_{j_i}}{2}$.
+	As $\sum_{j=0}^{q}t_j =1$ we have $\sum_{i=1}^{k} w_i \le 1$ (scale the $w_i$ if needed).
+	Now for $\sum_{j=1}^{i-1} w_j \le s \le \sum_{j=1}^{i} w_j$, define the retraction by
+	\[
+		f \enbrace*{s, \benbrace[\big]{\sigma, (t_0, \ldots ,t_q)}} = \benbrace[\big]{r_i(\sigma), (v_0, \ldots, v_{q+l_i})}
+	\]
+	where $v_i = t_i$ except for the triple
+	\[
+		\enbrace*{v_{j_i},v_{R(a_{j_i})}, v_{L(a_{j_i})}} = \enbrace*{t_{j_i} - 2 \enbrace*{s - \sum\nolimits_{j=1}^{i-1} w_j} , \enbrace*{s - \sum\nolimits_{j=1}^{i-1} w_j},\enbrace*{s - \sum\nolimits_{j=1}^{i-1} w_j}}
+	\]
+	i.e. the weight of $(a_{j_i}, R(a_{j_i}),L(a_{j_i}))$ goes from $(t_{j_i},0,0)$ to $(0, \sfrac{t_{j_i}}{2},\sfrac{t_{j_i}}{2})$ as $s$ goes from $\sum_{j=1}^{i-1}w_j $ to $\sum_{j=1}^{i} w_j$.
+	For $\sum_{i=1}^{k} w_j\le s \le 1$ define $f \enbrace*{s, \benbrace*{\sigma,(t_0, \ldots ,t_q)}}$ to be constant equal to 
+	\[
+		f \enbrace*{\sum\nolimits_{j=1}^{k} w_j, \benbrace*{\sigma,(t_0, \ldots ,t_q)}}
+	\]
+	We notice that $f \enbrace*{1,\benbrace*{\sigma,(t_0,\ldots ,t_q)}}$ lies in the face of $r_k$ which is in $\Star(a)$ (the fifth drawing in \cref{fig:retrac}).
+	$f$ has the other properties mentioned earlier as well.
+	Furthermore $f$ is continuous, since going to a face corresponds to a weight going to zero.
+	\begin{figure}[htbp]
+		\centering
+		\begin{tikzpicture}
+			\coordinate (p) at (0,3);
+			\coordinate (p1) at ($(p)+(3,1)$);
+			\coordinate (p2) at ($(p)+(6,1)$);
+			\coordinate (p3) at ($(p)+(9,1)$);
+			\coordinate (p4) at ($(p)+(12,0)$);
+			\foreach \x in {p,p1}{
+				\draw ($(\x)- (.9,1.9)$) -- ++ (1.8,0);
+			}
+			\foreach \x in {p1,p2,p3,p4}{
+				\draw ($(\x)- (.9,1.7)$) .. controls +(0:.5) and +(260:1.8) .. (\x) .. controls +(-80:1.8) and +(180:.5) .. ($(\x)- (-.9,1.7)$);
+			}		
+			
+			\foreach \x in {p,p1,p2}{
+				\draw ($(\x)- (.9,2.1)$) -- ++ (1.8,0);
+			}
+			\foreach \x in {p2,p3,p4}{
+				\draw ($(\x)- (.9,1.9)$) .. controls +(0:.5) and +(267:2) .. (\x) .. controls +(-87:2) and +(180:.5) .. ($(\x)- (-.9,1.9)$);
+			}
+			
+			\foreach \x in {p,p1,p2,p3}{
+				\draw ($(\x)- (.9,2.5)$) .. controls +(20:.6) and +(160:.6) .. ++ (1.8,0);
+			}
+			\foreach \x in {p3,p4}{
+				\draw ($(\x)- (.9,2.35)$) .. controls +(20:.6) and +(270:2.5) .. (\x) .. controls +(-90:2.5) and +(160:0.6) .. ($(\x)- (-.9,2.35)$);
+			}
+			
+			\foreach \x in {p,p1,p2,p3,p4}{
+				\draw[thick] (\x) arc (-90:0:1);
+				\draw[thick] (\x) arc (-90:-180:1);
+				\draw[densely dotted,thick] (\x) -- ($(\x)- (0,3)$) node[left]{$a$};
+				\draw[bpoint] (\x) circle[radius=.05] node[above]{$p$};
+			}
+			\draw[->] (1.5,.2) -- ++ (9,0);
+			\node at (3,-.2){$r_1$};
+			\node at (6,-.2){$r_2$};
+			\node at (9,-.2){$r_3$};
+		\end{tikzpicture}
+		\caption{Retraction of $\mathcal{A}(S,\Delta)$ in the case of $3$ germs of arcs crossing $a$.}\label{fig:retrac}
+	\end{figure}
+\end{proof}
+
+To state the next theorem -- which is the most intricate one -- we need to define \emph{pure} and \emph{impure edges}:
+The two disjoint sets $\Delta_0, \Delta_1$ define a decomposition of $\partial S$ into vertices (the set $\Delta_0 \cup \Delta_1$), edges and circles without vertices.
+\begin{itemize}
+	\item An edge is called \emph{pure} if both of its endpoints lie in either $\Delta_0$ or $\Delta_1$; it is called \emph{impure} otherwise.
+	The number of impure edges is always even (easy induction argument).
+	\item A boundary component of $S$ containing points of $\Delta_0 \cup \Delta_1$ is called \emph{pure}, if it is composed of pure edges, i.e. the points are either all in $\Delta_0$ or all in $\Delta_1$.
+\end{itemize}
+
+
+Note that a priori this definition has nothing to do with the arcs we are interested in as it only involves $\Delta_0$ and $\Delta_1$. 
+
+\begin{theorem}
+	The complex $\mathcal{B}(S,\Delta_0,\Delta_1)$ is $(4g +r +r ' +l +m -6)$-connected, where $g$ ist the genus of $S$, $r$ is the number of boundary components, $r'$ the number of components of $\partial S$ containing points of $\Delta_0 \cup \Delta_1$, $l$ is half the number of \emph{impure edges} and $m$ is the number of \emph{pure edges}.
+\end{theorem}
+
+To prove this one first eliminates a few cases before using the general inductive argument.
+
+
+\begin{lemma}[label=lem:44]
+	If $S$ has at least one pure boundary component, then $\mathcal{B}(S,\Delta_0,\Delta_1)$ is contractible.
+\end{lemma}
+
+To prove this one uses the same technique as in the proof of \autoref{thm:connec_full}, tough in this case only $L(a_i)$ or $R(a_i)$ is kept after the surgery process.
+
+\begin{lemma}[label=lem:45]
+	If $S$ has at least one pure edge between a pure and an impure one in a boundary component of $S$, then $\mathcal{B}(S,\Delta_0,\Delta_1)$ is contractible.
+\end{lemma}
+
+One proceeds analogous to the proof of \autoref{lem:d_dplus1}, by providing a contraction form the complex $X=\mathcal{B}(S,\Delta_0,\Delta_1)$ to the contractible complex $\Star(I')$.
+The arc $I$ does not exists in this case, so a decomposition is not needed.
+
+\begin{lemma}[label=lem:46]
+	If the complex is non-empty, adding a pure edge between two impure edges increases the connectivity of $\mathcal{B}(S,\Delta_0,\Delta_1)$ by one.
+\end{lemma}
+
+This can be proven precisely as in \autoref{lem:d_dplus1}, while the proof of the next statement is a variation of said lemma.
+
+\begin{lemma}[label=lem:47]
+	When $S$ has at least one impure edge and the complex is non-empty, adding a boundary component to $S$ disjoint from $\Delta$ increases the connectivity of $\mathcal{B}(S,\Delta_0,\Delta_1)$ by one.
+\end{lemma}
+
+After eliminating a few cases via \cref{lem:44,lem:45,lem:46} and establishing a stepping stone by proving \cref{lem:47} the general argument to get the connectivity of $\mathcal{B}(S,\Delta_0,\Delta_1)$ is an induction over the lexicographically ordered set of triples $(g,r,q)$.
+\autoref{thm:connec_full} is used several times an not only with $\Delta=\Delta_0 \cup \Delta_1$.
+
+\begin{theorem}[label=thm:48]
+	If $\Delta_0, \Delta_1$ are two disjoint non-empty sets of points in $\partial S$, then the complex $\mathcal{B}_0(S,\Delta_0,\Delta_1)$ is $(2g+r'-3)$-connected, for $g$ and $r'$ as above.
+\end{theorem}
+
+To finally prove the connectedness of $\mathcal{O}(S,b_0,b_1)$ we need to implement some preliminaries:
+First remember that the join $X * Y$ of simplical complexes coincides with the topological join, i.e.
+\[
+	\abs*{X * Y} = \abs*{X} * \abs*{Y}   
+\]
+For some simplex $\sigma$ of a simplical complex we get the following \enquote{decomposition} of the star of $\sigma$ introduced earlier:
+\[
+	\Star(\sigma) = \Link(\sigma) * \sigma
+\]
+where $\sigma$ is the subcomplex consisting of $\sigma$ and its faces.
+
+\begin{definition*}
+	A \Index{PL triangulation} $K$ of an $n$-manifold $M$ is a simplical complex $K$ such that $\abs*{K} \cong M$ with the additional property that the link of a $p$-simplex $\sigma$ is PL homeomorphic to the boundary of an $(n-p)$-simplex if $\sigma$ is not included in $\partial K$, or to an $(n-p-1)$-simplex if $\sigma \subset \partial K$.
+\end{definition*}
+
+We will use the following facts about PL triangulations:
+\begin{enumerate}[(i),itemsep=0pt]
+	\item There are PL triangulations for the $n$-disk and the $n$-sphere.\footnote{the existence and uniqueness of PL triangulations turns out to be a really complex topic!}
+	\item $\abs*{D^n * D^m}$ and $\abs*{D^n * S^m}$ are $(n+m+1)$-disks.
+	\item $\abs*{S^n * S^m}$ is an $(n+m+1)$-sphere.
+	\item For a $p$-simplex $\sigma$ $\Star(\sigma) = \Link(\sigma) * \sigma$ is of the type $S^{n-p-1} * D^p$ (or $D^{n-p-1} * D^p$) and therefore an $n$-disk. 
+	\item There is a simplical approximation theorem.
+\end{enumerate}
+
+\begin{restatable}[{name=[Connectivity]}]{theorem}{connectivity}\label{connec_main}
+	$\mathcal{O}(S,b_0,b_1)$ is $(g-2)$-connected.
+\end{restatable}
+
+\begin{proof}
+	We first notice, that the theorem is true for $g=0$ as being $(-2)$-connected is a void property and true for $g=1$ as well, since $\mathcal{O}(S,b_0,b_1)$ is not empty in that case.
+	We proceed with an induction on $g$ and may assume $g\ge 2$.
+	
+	Let $k \le g-2$ and suppose we have a continuous map $f \colon S^k \to \mathcal{O}(S,b_0,b_1)$, which we may assume to be simplical by choosing a PL triangulation on $S^k$ and applying the simplical approximation theorem.
+	\Cref{thm:48} implies, that there is an extension $\hat{f} \colon D^{k+1} \to \mathcal{B}_0(S,\set*{b_0},\set*{b_1})$ since 
+	\[
+		2g + r' -3 \ge g-2
+	\]
+	By simplical approximation we may further assume, that $\hat{f}$ is simplical as well.
+	We will try to modify $\hat{f}$ appropriately so its image lies in $\mathcal{O}(S,b_0,b_1)$.
+	
+	Let $\sigma$ be a simplex of $\mathcal{B}_0(S,\set*{b_0},\set*{b_1})$ with $\sigma = \lenbrace{a_0, \ldots , a_p}$ such that the arcs are ordered $a_0 < a_1 < \ldots < a_p$ in the anticlockwise ordering at $b_0$.
+	We can write 
+	\[
+		\sigma = \sigma^g * \sigma^b
+	\]
+	uniquely, where $\sigma^g = \lenbrace{a_0, \ldots ,a_i}$ with $i$ maximal such that the clockwise ordering at $b_1$ starts with $a_0, \ldots , a_i$.
+	With this notation $\sigma = \sigma^g$ implies that $\sigma$ is a simplex of $\mathcal{O}(S,b_0,b_1)$ (\emph{good}) and we call $\sigma$ \emph{purely bad} if $\sigma^g$ is empty.
+	Vertices are always good.
+	
+	We claim that $S\setminus \sigma$ has genus at least $g-p$ if $\sigma$ is a purely bad $p$-simplex.
+	\begin{itemize}[itemsep=0pt]
+		\item If $b_0,b_1$ are in the different boundary components, this is true regardless of the fact, that $\sigma$ is purely bad:\marginnote{$\chi(S) = 2 - 2g -r$ and $\chi(S\backslash \sigma) = \chi(S)+ p + 1$}
+		Cutting along the first arc of $\sigma$ reduces just the number of boundary components and does not affect the genus.
+		Using the Euler characteristic we verify that removing subsequent arcs can reduce the genus only by one for each arc. 
+		
+		(We already used this in the first talk on homological stability; see \textcite[Prop.2.2]{wahlHomological}).
+		\item If $b_0,b_1$ are in the same boundary component, we need the \enquote{badness}:
+		Since $\sigma$ is bad, there are two arcs $a_i, a_j$ of $\sigma$ which are ordered clockwise at both $b_0$ and $b_1$.
+		Cutting along both arcs leaves us with a surface which has the same number of boundary components as before (this can be seen by forgetting about the upmost arc in \cref{fig:purely-bad}).
+		By the Euler characteristic $S \setminus (a_i \cup a_j)$ has genus $g-1$.
+		The remaining $p-1$ arcs of $\sigma$ can each reduce the genus by at most one.
+	\end{itemize}
+	We obviously want to remove the purely bad simplices from the image of $\hat{f}$.
+	Let $\sigma$ be a maximal simplex of $D^{k+1}$ such that $\hat{f}(\sigma)$ is purely bad.
+	Now let $b_0'$ be the copy of $b_0$ lying between the boundary component containing $b_0$ and the first arc of $\sigma$ at $b_0$ (in anticlockwise ordering) and analogously let $b_1'$ be the copy of $b_1$ between the boundary containing $b_1$ and the first arc at $b_1$ (in clockwise ordering), see \cref{fig:purely-bad}.
+	\begin{figure}[htb]
+		\centering
+		\hspace{1em}
+		\begin{tikzpicture}[baseline=(b0)]
+			% \draw[help lines] (0,0) grid (12,4);
+			\coordinate (b0) at ($(0,4) + (-65:1)$);
+			\coordinate (b1) at ($(5,4) + (245:1)$);
+			\draw[thick] (b0) arc (-60:-90:2); 
+			\draw[thick] (b0) arc (-60:-30:2); 
+			
+			
+			\draw[thick] (b1) arc (240:270:2); 
+			\draw[thick] (b1) arc (240:210:2); 
+			
+			
+			\draw[very thick] (b0) .. controls +(15:2) and +(165:2) .. (b1);
+			\draw[very thick] (b0) .. controls +(-70:4) and +(210:3) .. (b1);
+			\draw[white,double=black, double distance=1.2pt] (b0) .. controls +(-20:2) and +(280:4) .. (b1);
+			
+			
+			\draw[bpoint] (b0) circle[radius=.06] node[above left]{$b_0$};
+			\draw[bpoint] (b1) circle[radius=.06] node[above right]{$b_1$};
+		\end{tikzpicture}
+		\hfill
+		\begin{tikzpicture}[baseline=(b0')]
+			% \draw[help lines] (0,0) grid (6,4);
+
+			\coordinate (b01) at ($(0,4) + (-55:1)$);
+			\coordinate (b02) at ($(0,4) + (-58:1.15)$);
+			\coordinate (b03) at ($(0,4) + (-68:1.2)$);
+			\coordinate (b0') at ($(0,4) + (-75:1)$);
+			\coordinate (b11) at ($(5,4) + (235:1)$);
+			\coordinate (b12) at ($(5,4) + (238:1.15)$);
+			\coordinate (b13) at ($(5,4) + (248:1.2)$);
+			\coordinate (b1') at ($(5,4) + (255:1)$);
+			
+			\draw[thick] (b0') arc (-60:-90:2); 
+			\draw[thick] (b01) arc (-60:-30:2); 
+			
+			
+			\draw[thick] (b1') arc (240:270:2); 
+			\draw[thick] (b11) arc (240:210:2); 
+			
+			\draw[thick] (b01) .. controls +(15:2) and +(165:2) .. (b11);
+			\draw[thick] (b02) .. controls +(15:2) and +(165:2) .. (b12);
+			\draw[thick] (b02) .. controls +(-20:2) and +(280:3.5) .. (b13);
+			
+			\draw[thick] (b03) .. controls +(-20:2) and +(280:4) .. (b1');
+			
+			\fill[white] (b03) .. controls +(-70:3.5) and +(210:3) .. (b12) -- (b13) .. controls +(210:3) and +(-70:4) .. (b0');
+			
+			\draw[thick] (b03) .. controls +(-70:3.5) and +(210:3) .. (b12);
+			\draw[thick] (b0') .. controls +(-70:4) and +(210:3) .. (b13);
+			% \draw[white,double=black, double distance=1.2pt] (b0) .. controls +(-20:2) and +(280:4) .. (b1);
+			
+			% vertex dashed
+			\draw[thick, dashed] (b0') .. controls +(-90:4.5) and +(-60:4) .. (b1');
+			
+			\foreach \x in {b01,b02,b03,b11,b12,b13}{
+				\draw[bpoint] (\x) circle[radius=.05];
+			}
+			
+			\draw[bpoint,fill=Firebrick2] (b0') circle[radius=.06] node[above left]{$b_0'$};
+			\draw[bpoint,fill=Firebrick2] (b1') circle[radius=.06] node[above right]{$b_1'$};
+		\end{tikzpicture}\\[-1cm]
+		\caption{A purely bad $2$-simplex, and vertex in its link/complement (the dashed one)}\label{fig:purely-bad}
+	\end{figure}
+	Because $\sigma$ is maximal the link of $\sigma$ is mapped to $\mathcal{O}(S\setminus \hat{f}(\sigma),b_0',b_1')$.
+	
+	Let $\sigma$ be a $p$-simplex.
+	Then $\hat{f}(\sigma)$ is a $p'$-simplex with $p' \le p$ and by the previous claim $S \setminus \hat{f}(\sigma)$ has at least genus $g- p' \ge g- p$.
+	\begin{itemize}[itemsep=0pt]
+		\item Since we chose a PL triangulation of $D^{k+1}$ the $\Link(\sigma)$ is a sphere of dimension $k-p$.
+		As $k \le g-2$, we have $k-p \le g -p -2$.
+		\item As $\hat{f}(\sigma)$ is bad, it cannot be a vertex, so $p' \ge 2$ and $S \setminus \hat{f}(\sigma)$ has genus $\tilde{g} < g$ by the claim above.
+	\end{itemize}
+	Plugging all of this together we get
+	\[
+		k-p \le g- p -2 \le g- p' -2 \le \tilde{g} -2
+	\]
+	Therefore we may apply the induction hypothesis to the restriction of $\hat{f}$ to $\Link(\sigma)$ an get a extension $F$ of $\hat{f}|_{\Link(\sigma)}$ on a $(k+1-p)$-disk $K$.
+	We now replace $\hat{f}$ on $\Star(\sigma) \simeq \partial \sigma * K$ by the map $\hat{f} * F$ (by the facts above $\Star(\sigma)$ is a $(k+1)$-disk and $\partial \sigma * K$ is of the type $S^{p-1} * D^{k+1-p}$ and therefore a $(p-1+k+1-p+1)$-disk).
+	
+	We now have sucessfully removed the maximal purely bad simplex $\sigma$ and new purely bad simplices are faces of $\sigma$ and hence of smaller dimension.
+	The result follows by induction.
+\end{proof}

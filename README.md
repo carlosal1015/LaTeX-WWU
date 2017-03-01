@@ -8,8 +8,10 @@ lecture notes written at WWU Münster, FB10
 Dies betrifft insbesondere auch den Dropbox- sowie den Sciebo-Ordner!
 Als Zwischenlösung sind einige aktuelle Skripte über die _Releases_ (in der Leiste über der Dateienliste) verfügbar.
 
+* SoSe 2017
+	* [Zahlen und elementare Zahlentheorie](https://github.com/JaMeZ-B/LaTeX-WWU/releases/download/latest/ZZT_SS17.pdf "Zahlen und elementare Zahlentheorie") (Phil)
 * WiSe 2016
-	* [Analysis I](https://github.com/JaMeZ-B/LaTeX-WWU/releases/download/latest/Ana1_WS16.pdf "Analysis I") (Phil)
+	* [Seminar: Madsen-Weiss](https://github.com/JaMeZ-B/LaTeX-WWU/releases/download/latest/madsen_weiss.pdf "Seminar: Madsen-Weiss") (Jannes)
 * SoSe 2016
 	* [Operatoralgebren II.](https://github.com/JaMeZ-B/LaTeX-WWU/releases/download/latest/operatoralgebren2.pdf "Operatoralgebren II.") (Jannes)
 	* [Lineare Algebra II.](https://github.com/JaMeZ-B/LaTeX-WWU/releases/download/latest/LA2.pdf "Lineare Algebra II.") (Phil)
@@ -55,7 +57,7 @@ Ich lade jeden herzlich ein, sich mittels Forks und Pull-Requests an der Entwick
 Zeichnungen fehlt noch eine ganze Menge.
 Schon einmal vielen Dank an
 
-* Phil (phist91) _PDGL I., Elementare Zahlentheorie, Elliptische Kurven und Kryptographie, CAT(0) kubische Komplexe, Lineare Algebra II., Analysis I_
+* Phil (phist91) _PDGL I., Elementare Zahlentheorie, Elliptische Kurven und Kryptographie, CAT(0) kubische Komplexe, Lineare Algebra II., Zahlen und elementare Zahlentheorie_
 * Arne (moregrey) _Differentialformen und Mannigfaltigkeiten, Differentialgeometrie_
 * Tobias (Tazdr) _Einführung in die Algebra, Finanzmathematik, Modellreduktion_
 * Tim (Tii1) _Analysis II._

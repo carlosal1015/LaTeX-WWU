@@ -568,40 +568,43 @@ Für alle Anwendungen ist allerdings die Frage der Konvergenzgeschwindigkeit ess
 
 \marginnote{Vorlesungsbeginn 13.06.2016}
 Zunächst zeigen wir untere Schranken für $t_{mix}(\epsilon)$. Die erste Idee basiert darauf, dass, wenn $\pi$ die Gleichverteilung ist auf $\Omega$ ist, man zumindest potenziell einen wesentlichen Anteil der Punkte gesehen haben können muss, um nahe an $\pi$ zu sein. \\
-\underline{Umsetzung:} Es sei $(X_n)_n$ ergodisch auf $\Omega, \abs{\Omega} < \infty, \pi(\omega) = \frac{1}{\abs{\Omega}}, \forall \omega \in \Omega$ und definiere $d_{out} := \abs{\set{y \given Q(x,y) > 0}}$ \todo{check} als die Anzahl der Punkte, die man in einem Schritt von $x$ aus erreichen kann. 
+\underline{Umsetzung:} Es sei $(X_n)_n$ ergodisch auf $\Omega, \abs{\Omega} < \infty, \pi(\omega) = \frac{1}{\abs{\Omega}}, \forall \omega \in \Omega$ und definiere $d_{out}(x) := \abs{\set{y \in \Omega \given Q(x,y) > 0}}$ als die Anzahl der Punkte, die man in einem Schritt von $x$ aus erreichen kann. Sei
 \begin{align}
-	\Delta = \max\limits_x d_{out}(x)
+	\Delta := \max\limits_x d_{out}(x)
 \end{align}
 Dann gilt
 \begin{satz}
 	Es ist 
 	\begin{align}
-		t_{mix}(\epsilon) \geq \frac{\log(\abs{\Omega} ())}{\log(\Delta)} 
+		t_{mix}(\epsilon) \geq \frac{\log(\abs{\Omega} (1 - \epsilon))}{\log(\Delta)} 
 	\end{align}
-\end{satz}\todo{check satz}
+\end{satz}
 \begin{beweis}
 	Es sei $\Omega^t_x = \set{y\given Q^t(x,y) > 0}$. Es ist $\abs{\Omega^t_x} \leq \Delta^t$. Ist nun $\Delta^t < (1-\epsilon)\abs{\Omega}$ so folgt
 	\begin{align}
-		&||Q^t(x,\cdot) - \pi||_{TV} = d_TV(\delta_x Q^t, \pi) \\
-		\geq &\abs{Q^t(x,\Omega^t_x) - \pi(\Omega^t_x)} = 1 - \frac{\abs{\Omega^x_t}}{\abs{\Omega}} \geq 1 - \frac{\Delta^t}{\abs{\Omega}} \\
-		> & 1-(1-\epsilon) =  \epsilon
+		&||Q^t(x,\cdot) - \pi||_{TV} = d_{TV}(\delta_x Q^t, \pi) \\
+		\geq &\abs{Q^t(x,\Omega^t_x) - \pi(\Omega^t_x)} = 1 - \frac{\abs{\Omega^t_x}}{\abs{\Omega}} \geq 1 - \frac{\Delta^t}{\abs{\Omega}} \\
+		\overset{(*)}{>} & 1-(1-\epsilon) =  \epsilon,
 	\end{align}
-	Das heißt solange (*) \todo{ref} wahr ist, ist der totale Variationsabstand größer als $\epsilon$.
-	\todo{check formel}
+	wobei $(*): \Delta^t < (1-\epsilon) \abs{\Omega}$. 
+	Das heißt solange $(*)$ wahr ist, ist der totale Variationsabstand größer als $\epsilon$.
 	\begin{align}
-		&\Rightarrow t_{mix}(\epsilon) \text{ muss? } \Delta^{t_{mix}(c)} \geq (1-\epsilon)\abs{\Omega} \\
+		&\Rightarrow t_{mix}(\epsilon) \text{ muss } \Delta^{t_{mix}(\epsilon)} \geq (1-\epsilon)\abs{\Omega} erfüllen \\
 		&\Rightarrow t_{mix}(\epsilon) \geq\frac{\log\big((1-\epsilon) \abs{\Omega}\big)}{\log\Delta}
 	\end{align}
  \end{beweis}
 
 Wichtiger Unterschied: Man muss $t_{mix}(\epsilon)$ mindestens $(1-\epsilon)\abs{\Omega}$ gesehen haben können, man muss sie de facto nicht gesehen haben (Diese Zeit wäre viel viel größer). 
 \begin{beispiel}[Irrfahrt auf einem $d$-regulären Graphen]
-	Es sei $G = (V,E)$ $d$-regulär, das heißt $\deg(v) = d$. Wählt man darauf die einfache Irrfahrt $\prop{X_n = y \given X_{n-1} = x} = 
+	Es sei $G = (V,E)$ $d$-regulär, das heißt $\deg(v) = d$. Wählt man darauf die einfache Irrfahrt 
+	\begin{gather}
+		\prop{X_n = y \given X_{n-1} = x} = 
 		\begin{cases}
-			\frac{1}{d,} & \forall y \sim x \\
-			0, \text{ sonst} 
-		\end{cases}$
-	Dann ist das stationäre Maß von $(X_n)$ die Gleichverteilung. $\pi(v)= \frac{1}{\abs{v}}$. Weiter ist $\Delta = d$ und das ergibt $t_{mix} \geq \frac{\log( \abs{V}(1-3))}{\log d}$ \\
+			\frac{1}{d}, & \forall y \sim x \\
+			0, & \text{ sonst} 
+		\end{cases}
+	\end{gather}
+	Dann ist das stationäre Maß von $(X_n)$ die Gleichverteilung. $\pi(v)= \frac{1}{\abs{v}}$. Weiter ist $\Delta = d$ und das ergibt $t_{mix} \geq \frac{\log( \abs{V}(1-\epsilon))}{\log d}$ \\
 	Spezialfall: $V = \set{0,1}^d$ (der Hyperwürfel)
 	\begin{align}
 		E = \set{\set{x,y} \given d_H(x,y) = \#\set{i \given x_i \neq y} = 1} \marginnote{$d_H$: Hammy}
@@ -618,24 +621,24 @@ Der folgende Ansatz verfolgt eine ähnliche Idee, gilt aber auch für allgemeine
 \end{align}
 Dieser Graph $G = (V,E)$ hat einen natürlichen Abstand $d_G$. 
 \begin{align}
-	diam G := \max\limits_{x,y \in V} d_G(x,y) \marginnote{\enquote{Ah! Groß \enquote{D}. Zum Glück hat Gott auch die Großbuchstaben erfunden}, Löwe 13.06.2016}
+	\text{diam} (G) := \max\limits_{x,y \in V} d_G(x,y) \marginnote{\enquote{Ah! Groß \enquote{D}. Zum Glück hat Gott auch die Großbuchstaben erfunden}, Löwe 13.06.2016}
 \end{align}
-Wir sagen die Markovkette $(X)$ oder die Übergangsmatrix $Q$ hat den Durchmesser $D$, falls $diam G = D$. Falls nun $diam Q = D$, dann gibt es $x_ß,y_0 \in \Omega$ mit $d_G(x_0,y_0) =  D.$ Somit können sich zwei Markovketten mit Übergangsmatrix $Q$, von denen eine in $x_0$ und eine in $y_0$ startet zur Zeit $\lfloor\frac{D-1}{2}\rfloor$ noch nicht getroffen haben. 
+Wir sagen die Markovkette $(X_n)$ oder die Übergangsmatrix $Q$ hat den Durchmesser $D$, falls $\text{diam} (G) = D$. Falls nun $\text{diam} (Q) = D$, dann gibt es $x_ß,y_0 \in \Omega$ mit $d_G(x_0,y_0) =  D.$ Somit können sich zwei Markovketten mit Übergangsmatrix $Q$, von denen eine in $x_0$ und eine in $y_0$ startet zur Zeit $\lfloor\frac{D-1}{2}\rfloor$ noch nicht getroffen haben. 
 \begin{align}
 	\Rightarrow d_{TV} \Big( \delta_x Q^{\lfloor\frac{D-1}{2}\rfloor}, \delta_y  Q^{\lfloor\frac{D-1}{2}\rfloor}  \Big) = 1 \\
 	\Rightarrow \overline{d}(\lfloor\frac{D-1}{2}\rfloor) > 1.
 \end{align}
-Da $\overline{d}(t) > 2d(t)$ heißt dann für $\epsilon< \frac{1}{2}$  \todo{missing zeile}
-... also gezeigt.
+Da $\overline{d}(t) > 2d(t)$ heißt das für $\epsilon< \frac{1}{2}$, dass $t_{mix} (\epsilon) > \lfloor \frac{D-1}{2} \rfloor.$ 
+Also haben wir gezeigt:
 
 \begin{satz}
-	Gilt $diam Q = D$, so gilt für alle $\epsilon > \frac{1}{2}$
+	Gilt $\text{diam} (Q) = D$, so gilt für alle $\epsilon > \frac{1}{2}$
 	\begin{align}
 		t_{mix}(\epsilon) \geq \lfloor\frac{D-1}{2}\rfloor
 	\end{align}
 \end{satz}
 
-Bislang haben wir wenig von der \enquote{Gemoetrie} von $(X_n)n$ benutzt. Die Idee \enquote{Um nahe an $\pi$ zu sein, muss man die Punkte, die $\pi$ mit hoher Wahrscheinlichkeit ausstattet gesehen haben können} wollen wir nun verknüpfen mit \enquote{das ist aber schwierig, wenn der Übergangsgraph Flaschenhälse hat}. \todo{Bild Flaschenhals}Gibt es relativ kleine Teilmengen, die man nur schlecht verlassen kann? Wir suchen ein Maß für \enquote{Flaschenhalsigkeit}. Dafür sei $Q$ ergodisch und reversibel auf $\Omega$. Wie schon in Kapitel 1-3 \todo{refs?} sei $\pi Q = \pi$, definiere $c(x,y) = \pi(x) Q(x,y) = \pi(y) Q(y,x).$ Es sei für $A,B \subseteq \Omega$
+Bislang haben wir wenig von der \enquote{Gemoetrie} von $(X_n)n$ benutzt. Die Idee \enquote{Um nahe an $\pi$ zu sein, muss man die Punkte, die $\pi$ mit hoher Wahrscheinlichkeit ausstattet gesehen haben können} wollen wir nun verknüpfen mit \enquote{das ist aber schwierig, wenn der Übergangsgraph Flaschenhälse hat}. \todo{Bild Flaschenhals}Gibt es relativ kleine Teilmengen, die man nur schlecht verlassen kann? Wir suchen ein Maß für \enquote{Flaschenhalsigkeit}. Dafür sei $Q$ ergodisch und reversibel auf $\Omega$. Sei $\pi Q = \pi$, $\pi$ W-Maß. Wie schon in Kapitel 1-3 \todo{refs?} definiere $c(x,y) = \pi(x) Q(x,y) = \pi(y) Q(y,x).$ Es sei für $A,B \subseteq \Omega$
 \begin{align}
 	C(A,B) = \sum\limits_{x\in A} \sum\limits_{y \in B} c(x,y)
 \end{align}
@@ -647,9 +650,9 @@ $C(A,B)$ ist die Wahrscheinlichkeit von $A$ nach $B$ zu laufen, wenn man mit $\p
 	\end{align}
 	Ein \enquote{Flaschenhalsmaß} für die Markovkette $X_n$, die durch $Q$ beschrieben wird ist 
 	\begin{align}
-		\Phi_*(Q) = \min\limits_{S:\pi(S)\leq 1/2} \Phi(S)
+		\Phi_* := \Phi_*(Q) = \min\limits_{S:\pi(S)\leq 1/2} \Phi(S)
 	\end{align}
-\end{definition}\todo{check phi* def}
+\end{definition}
 \begin{beispiel}
 	Sei (V,E) ein zusammenhängender Graph. Sei $X_n$ Simple Random Walk auf $G$, d.h. 
 	\begin{align}
@@ -676,9 +679,13 @@ $C(A,B)$ ist die Wahrscheinlichkeit von $A$ nach $B$ zu laufen, wenn man mit $\p
 	Wenn wir also die Mischzeit in Bezug zu $\Phi_*$ setzen können, dann sind Mengen kleiner Oberflächen \enquote{schlimm} für die Markovkette.
 \end{beispiel}
 \begin{beweis}
-		\todo{enumerate?}
 	\begin{enumerate}
-		\item Anstelle normaler Irrfahrten betrachten man oft \enquote{faule Irrfahrten}. Diese folgt mit Wahrscheinlichkeit $1-\epsilon$ der Übergangsmatrix $Q$ und mit Wahrscheinlichkeit $\epsilon$ der Identität, d.h. die Übergangsmatrix ist $(1-\epsilon) Q + \epsilon I)$. Oft ist $\epsilon = \frac{1}{2}$. Zwei Gründe dafür: Die Kette ist automatisch aperiodisch. (ii) Beim letzten Mal motiviert: $t_{mix}$ hängt im allgemeinen von $1-\lambda_2$ und $\lambda_{\abs{\Omega} -1} +1$ ab. Für die Faule Irrfahrt mit $\epsilon = \frac{1}{2}$ ist der zweite Ausdruck 0. Für die Frage, ob die Irrfahrt Polynomiell oder Exponentiell mischt, ist das Warten irrelevant, die Konvergenz verlangsamt sich lediglich um den Faktor 2. 
+		\item Anstelle normaler Irrfahrten betrachten man oft \enquote{faule Irrfahrten}. Diese folgt mit Wahrscheinlichkeit $1-\epsilon$ der Übergangsmatrix $Q$ und mit Wahrscheinlichkeit $\epsilon$ der Identität, d.h. die Übergangsmatrix ist $(1-\epsilon) Q + \epsilon I)$. Oft ist $\epsilon = \frac{1}{2}$. Zwei Gründe dafür: 
+		\begin{enumerate}[i]
+			\item Die Kette ist automatisch aperiodisch.
+			\item Beim letzten Mal motiviert: $t_{mix}$ hängt im allgemeinen von $1-\lambda_2$ und $\lambda_{\abs{\Omega} -1} +1$ ab. 
+		\end{enumerate}
+	Für die Faule Irrfahrt mit $\epsilon = \frac{1}{2}$ ist der zweite Ausdruck $\geq$ 0. Für die Frage, ob die Irrfahrt polynomiell oder exponentiell mischt, ist das Warten irrelevant, die Konvergenz verlangsamt sich lediglich um den Faktor 2. 
 		
 		Für die faule Irrfahrt mit $\epsilon = \frac{1}{2}$ gilt
 		\begin{align}
@@ -728,16 +735,16 @@ $C(A,B)$ ist die Wahrscheinlichkeit von $A$ nach $B$ zu laufen, wenn man mit $\p
 	Mit der Dreiecksungleichung folgt nun
 	\begin{align}
 		\forall m \in n: || \mu_SQ^m-\mu_S ||_{TV} &= || \sum\limits_{n=1}^{m}\mu_SQ^n - \mu_S Q^{n-1} || \leq \sum\limits_{n = 1}^{m} || \mu_S Q^n - \mu_S Q^{n-1} || \leq m \cdot \Phi(S)
-	\end{align}\todo{unschön}
-	Sei nun $S$ mit $\pi(S)\leq \frac{1}{2}$. Da $\mu_S(S^c) = 0$
+	\end{align}
+	Sei nun $S$ mit $\pi(S)\leq \frac{1}{2}$. Da $\mu_S(S^c) = 0$ gilt
 	\begin{align}
 		d_{TV}(\mu_S,\pi) = \max\limits_A \abs{\pi(A - \mu_S(A))} \geq \pi(S^c)- \mu_S(S^c) = \pi(S^c) \geq \frac{1}{2}
  	\end{align}
- 	und damit
+ 	und mit der Dreiecksungleichung 
  	\begin{align}
- 		\frac{1}{2} \leq || \mu_S - \pi ||_{TV} \leq || \mu_S \mu_SQ^m || + || \mu_SQ^m-\pi ||
+ 		\frac{1}{2} \leq || \mu_S - \pi ||_{TV} \leq || \mu_S - \mu_SQ^m || + || \mu_SQ^m-\pi || \leq t_{mix}\Phi(S) + \frac{1}{4}
   	\end{align}
-  	Wähle nun $m = t_{mix} \leq t_{mix}\Phi(S) + \frac{1}{4}$. Dann
+  	wenn man $m = t_{mix}$ wählt. Also
   	\begin{align}
   		t_{mix} \Phi(S) \geq \frac{1}{4} \Rightarrow t_mix \geq \frac{1}{4\Phi(S)}
   	\end{align}
@@ -745,15 +752,14 @@ $C(A,B)$ ist die Wahrscheinlichkeit von $A$ nach $B$ zu laufen, wenn man mit $\p
   	\begin{align}
   		t_{mix} \geq \frac{1}{4\Phi_*}
   	\end{align}
-  	\todo{Beweis nochmal durchgehenb}
 \end{beweis}
 
 \begin{beispiel}[Verklebte Tori]
-	Ein diskreter d-dimensionaler Torus ist ein Graph $G = (V,E)$ mit $V = \ZZ_n \times \dots \times \ZZ_n$, d-mal, und $\ZZ_n = \set{0,\dots,n-1}$ und für $x = (x_1,\dots,x_d), y = (y_1,\dots,y_d)$ sei 
+	Ein diskreter d-dimensionaler Torus ist ein Graph $G = (V,E)$ mit $V = \underbrace{\ZZ_n \times \dots \times \ZZ_n}_{\text{d-mal}}$, und $\ZZ_n = \set{0,\dots,n-1}$ und für $x = (x_1,\dots,x_d), y = (y_1,\dots,y_d)$ sei 
 	\begin{align}
-		e = \set{x,y} \in E \Leftrightarrow \exists j \in \set{1,\dots,d} :\forall i \neq j: x_i = y_i  \text{ und } x_j = y_j +- 1 \mod{n}.
+		e = \set{x,y} \in E \Leftrightarrow \exists j \in \set{1,\dots,d} :\forall i \neq j: x_i = y_i  \text{ und } x_j = (y_j \pm 1 \mod{n}).
 	\end{align} 
-	Seien nun $T_1$ und $T_2$ zwei d-dimensionale n-Tori. Diese verkleben wir in genau einem Punkt $v*$. Sei mim $V_1 = V(T_1)$, $V_2 = V(T_2) \Rightarrow V_1 \cap V_2 = \set{v*}$. Wähle für die einfache Irrfahrt auf diesen Gebilden $S = V_1\backslash \set{v*}$. Da jeder Knoten aus $T_1$ oder $T_2$ mit genau $2d$ Knoten aus diesem Torus verbunden ist, ist $\abs{\delta S} = 2d$. Nun ist 
+	Seien nun $T_1$ und $T_2$ zwei d-dimensionale n-Tori. Diese verkleben wir in genau einem Punkt $v^*$. Sei mim $V_1 = V(T_1)$, $V_2 = V(T_2) \Rightarrow V_1 \cap V_2 = \set{v^*}$. Wähle für die einfache Irrfahrt auf diesen Gebilden $S = V_1\backslash \set{v^*}$. Da jeder Knoten aus $T_1$ oder $T_2$ mit genau $2d$ Knoten aus diesem Torus verbunden ist, ist $\abs{\delta S} = 2d$. Nun ist 
 	\begin{align}
 		\sum\limits_{x \in S} \deg{x} = 2d(n^d-1). 
 	\end{align}
@@ -761,37 +767,52 @@ $C(A,B)$ ist die Wahrscheinlichkeit von $A$ nach $B$ zu laufen, wenn man mit $\p
 \end{beispiel}\todo{überarbeitten Anfnag bsp}
 
 \begin{beispiel}[Graphenfärben]
-%	Sei $G = (V,E)$ ein Graph- Eine Färbung von $G$ mit $q$ Farben $\set{1,\dots,q}$ ist eine Abbildung $f: V \to \set{1,\dots,q}$, mit $f(v) \neq f(w)$, falls $\set {v,w} \in E$. Es gibt zwei offensichtliche Fragen: Wie groß muss $q$ minimal sein? Und wie viele Färbungen gibt es? Die zweite Frage versucht man approximativ mithilfe eines MCMC-Verfahrens zu lösen.\marginnote{MCMC = Monte Carlo Markov Chain} Dazu sucht man eine Markovkette auf $\Omega = \set{f:V \to \set{1,\dots,q} \given f \text{ zulässige Färbung}}$, die als stationäres Maß die Gleichverteilung hat. Nun bastelt man Graph $G = G_\abs{E} \supseteq G_\abs{E}-1 \supset \dots \supset G_0 = \enb{V,E_0}, E_0 = \emptyset$, indem man sukzessive Kanten weglässt. Sei $\Omega_i$ die Menge der Färbungen von $G_i \Rightarrow G_0 = q^{\abs{V}}$. Kann man die Gleichverteilung auf allen $\Omega_i$ gut simulieren, so kann man auch $\frac{\abs{\Omega_i}}{\abs{\Omega_{i-1}}}$ gut schätzen. Also kann man auch $\abs{\Omega}$ gut schätzen. Wie sampelt man die Gleichverteilung auf $\Omega$?
-%	
+	Sei $G = (V,E)$ ein Graph. Eine Färbung von $G$ mit $q$ Farben $\set{1,\dots,q}$ ist eine Abbildung $f: V \to \set{1,\dots,q}$, mit $f(v) \neq f(w)$, falls $\set {v,w} \in E$. Es gibt zwei offensichtliche Fragen: 
+	\begin{enumerate}
+		\item Wie groß muss $q$ minimal sein? 
+		\item Wie viele Färbungen gibt es? 
+	\end{enumerate}Die zweite Frage versucht man approximativ mithilfe eines MCMC-Verfahrens zu lösen.\marginnote{MCMC = Monte Carlo Markov Chain} Dazu sucht man eine Markovkette auf $\Omega = \set{f:V \to \set{1,\dots,q} \given f \text{ zulässige Färbung}}$, die als stationäres Maß die Gleichverteilung hat. Nun bastelt man Graph $G = G_{\abs{E}} \supseteq G_{\abs{E}-1} \supset \dots \supset G_0 = \enb{V,E_0}, E_0 = \emptyset$, indem man sukzessive Kanten weglässt. Sei $\Omega_i$ die Menge der Färbungen von $G_i \Rightarrow G_0 = q^{\abs{V}}$. Kann man die Gleichverteilung auf allen $\Omega_i$ gut simulieren, so kann man auch $\frac{\abs{\Omega_i}}{\abs{\Omega_{i-1}}}$ gut schätzen. Also kann man auch $\abs{\Omega}$ gut schätzen. 
+
+Wie sampelt man die Gleichverteilung auf $\Omega$? \\
 	\enquote{Glauberdynamik} - Beginne mit irgendeiner zulässigen Färbung.
 	\begin{itemize}
 		\item wähle zufällig $v \in V$
 		\item wähle zufällige Farbe
-		\item ist diese nicht zufällig, behält $v$ seine Farbe, ansonsten streiche $v$ in der neuen Farbe 
-	\end{itemize}\todo{check}
+		\item ist diese nicht zulässig, behält $v$ seine Farbe, ansonsten streiche $v$ in der neuen Farbe an
+	\end{itemize}
 	\underline{Mitteilung:} Wenn $q > \Delta = \max\limits_{v \in V} \deg{v}$, dann ist die Kette aperiodisch und irreduzibel, und $\pi = \frac{1}{\abs{\Omega}}$ ist das stationäre Maß \\
-	\underline{Mitteilung:} Ost $q > 2\Delta$, dann mischt die Kette in Zeit $\abs{V} \log \abs{V}$. Es kann aber auch schief gehen, wenn $\Delta$ groß wird. Sei dazu $G = (V,E)$ der $k$-Stern. d.h. $G$ ist ein Baum der Tiefe 1 mit Wurzel $v*$ und $n-1$ Blättern. \todo{Stern bild}
-	Sei $\Omega \supset S = \set{f \in \Omega \given f(v*) =  1}$. Sei $(x,y) \in S \times S^c, c(x,y) > 0 \Leftrightarrow x(v*) = 1, y(v*) \neq 1 \land x(v) =  y(v) \forall v \neq v* land x(v) \notin \set{1,y(v*)} \forall v \neq v*$ \todo{Layout überarbeiten}. Also gilt für 
+	\underline{Mitteilung:} Ist $q > 2\Delta$, dann mischt die Kette in Zeit $\abs{V} \log \abs{V}$. Es kann aber auch schief gehen, wenn $\Delta$ groß wird. Sei dazu $G = (V,E)$ der $n$-Stern, d.h. $G$ ist ein Baum der Tiefe 1 mit Wurzel $v^*$ und $n-1$ Blättern. \todo{Stern bild}
+	Sei $\Omega \supseteq S = \set{f \in \Omega \given f(v^*) =  1}$. Sei $(x,y) \in S \times S^c$ und es gelte c(x,y) > 0 genau dann, wenn
+	\begin{itemize}
+		\item $x(v^*) = 1, y(v^*) \neq 1$
+		\item $x(v) =  y(v) \forall v \neq v^* $
+		\item $x(v) \notin \set{1,y(v^*)} \forall v \neq v^*$ 
+	\end{itemize}
+	\todo{Layout überarbeiten}. Also gilt für 
 	\begin{align}
-		A = \set{(x,y) \in S\times S^c, c(x,y)> 0} \Rightarrow \abs{A} = (q-1)(q-2)^{n-1} \marginnote{Es gibt $(q-1)$ Färbungen von $v*$ unter $y$}
+		A = \set{(x,y) \in S\times S^c, c(x,y)> 0} \Rightarrow \abs{A} = (q-1)(q-2)^{n-1} \marginnote{Es gibt $(q-1)$ Färbungen von $v^*$ unter $y$}
 	\end{align}
 	Für alle $(x,y) \in A$ ist außerdem $c(x,y) = \pi(x)Q(x,y) \leq \frac{1}{\abs{\Omega}} \frac{1}{n}$. Daraus folgt
 	\begin{align}
-		C (S,S^c) \leq \frac{1}{\abs{\Omega}} \frac{1}{n} \enb{q-1} \enb{q-2}^{n-1}.
+		C (S,S^c) \leq \frac{1}{\abs{\Omega} n} \enb{q-1} \enb{q-2}^{n-1}.
 	\end{align}
-	Umgekehrt gilt $x \in S \Leftrightarrow x(v*) = 1 \land x(v) \neq 1 \forall v \neq v^*$. Das heißt $\abs{S} = \enb{q-1}^{n-1}$
+	Umgekehrt gilt $x \in S \Leftrightarrow x(v^*) = 1 \land x(v) \neq 1, \forall v \neq v^*$. Das heißt $\abs{S} = \enb{q-1}^{n-1}$
 	\begin{align}
-		\frac{C(S,S^c)}{\pi(S)} \leq \frac{1}{\abs{\Omega} n}(q-1)(q-2)^{n-1} \frac{\abs{\Omega}}{(q-1)^{n-1}} = \frac{\enb{q-1}^2}{n(q-2)} \enb{1  - \frac{1}{q-1}}^n \leq \frac{(1-1)^2}{n(q-2)} - \frac{n}{q-1} \\
-		\Rightarrow t_{mix} \geq \frac{n(q-2)}{4(q-1)^2} \frac{n}{q-1}
+		\Rightarrow \frac{C(S,S^c)}{\pi(S)} &\leq \frac{1}{\abs{\Omega} n}(q-1)(q-2)^{n-1} \frac{\abs{\Omega}}{(q-1)^{n-1}} \\
+		&= \frac{\enb{q-1}^2}{n(q-2)} \enb{1  - \frac{1}{q-1}}^n \\
+		&\leq \frac{(q-1)^2}{n(q-2)} e^{-\frac{n}{q-1}} 
 	\end{align}
-	\todo{Brüche}
-	Wählt man nun $n$ und $q$ so, dass $\frac{n}{q \log q} \to \infty$ dann wächst $t_{mix}$ super-polynomiell
+	Und daraus folgt
+	\begin{gather}
+		t_{mix} \geq \frac{n(q-2)}{4(q-1)^2} e^{\frac{n}{q-1}}
+	\end{gather}
+	Wählt man nun $n$ und $q$ so, dass $\frac{n}{q \log q} \to \infty$ dann wächst $t_{mix}$ super-polynomiell.
 \end{beispiel}
  
 \marginnote{Vorlesungsbeginn 20.06.2016}
 \todo[inline]{missing part}
 \begin{beispiel}[Der Binärbaum]
-	Sei $T=(V,E)$ der Binärbaum der Tiefe $k$, d.h. ein Baum mit Wurzel $v*$, wobei $\deg(v*) = 2, \deg(v) = 3$ für alle $v \neq v*$, die keine Blätter sind und $\deg(v) = 1$ für alle Blätter. Sei $n = \abs{V} = 2^{k+1} -1$. Dann ist $\abs{E} = n-1, d(v,v*) = k$ für alle Blätter.
+	Sei $T=(V,E)$ der Binärbaum der Tiefe $k$, d.h. ein Baum mit Wurzel $v^*$, wobei $\deg(v^*) = 2, \deg(v) = 3$ für alle $v \neq v^*$, die keine Blätter sind und $\deg(v) = 1$ für alle Blätter. Sei $n = \abs{V} = 2^{k+1} -1$. Dann ist $\abs{E} = n-1, d(v,v^*) = k$ für alle Blätter.
 	
 \end{beispiel}
 \begin{uebung}
@@ -800,22 +821,22 @@ $C(A,B)$ ist die Wahrscheinlichkeit von $A$ nach $B$ zu laufen, wenn man mit $\p
  
  Auf $T$ lassen wir die einfache Irrfahrt laufen. \\
  \underline{Behauptung:} $t_{mix} \geq \frac{k-2}{4}$. \\
- Um das zu zeigen, seien $v_l$ und $v_r$ die direkten Nachbarn von $v*$ und wir nennen $w$ einen Abkömmling von $v$ (oder $v$ einen Vorgänger von $w$), wenn der kürzeste Weg von $v*$ nach $w$ durch $v$ geht. Wir wählen als $S$ die Menge der Abkömmlinge von $v_r$ inklusive $v_r$ selbst. Um $\Phi(S)$ zu berechnen, müssen wir zunächst $\pi(x), x \in V$ ausrechnen. 
+ Um das zu zeigen, seien $v_l$ und $v_r$ die direkten Nachbarn von $v^*$ und wir nennen $w$ einen Abkömmling von $v$ (oder $v$ einen Vorgänger von $w$), wenn der kürzeste Weg von $v^*$ nach $w$ durch $v$ geht. Wir wählen als $S$ die Menge der Abkömmlinge von $v_r$ inklusive $v_r$ selbst. Um $\Phi(S)$ zu berechnen, müssen wir zunächst $\pi(x), x \in V$ ausrechnen. 
  \begin{align}
  	\pi(x) = \begin{cases}
-			 	\frac{2}{2n-2}, & x = v* \\
+			 	\frac{2}{2n-2}, & x = v^* \\
 			 	\frac{1}{2n-2}, & x \text{ ist ein Blatt}\\
-			 	\frac{3}{2n -2}, & x \text{ ist ein innerer Knoten } \neq v*	
+			 	\frac{3}{2n -2}, & x \text{ ist ein innerer Knoten } \neq v^*	
 		 	\end{cases}
  \end{align}
  Damit ist
 \begin{align}
-	\pi(S) = \sum\limits_{v: v \leftarrow v*}\pi(v) = \sum\limits_{v \leftarrow v*, v \text{ innerer Knoten}} + \sum\limits_{v \leftarrow v*, v \text{ Blatt}} \overset{*}{=} \frac{1}{2} - \frac{1}{n-2} = \frac{n-2}{2n-2} \marginnote{* aus Symmetriegründen}
+	\pi(S) = \sum\limits_{v: v \leftarrow v^*}\pi(v) = \sum\limits_{v \leftarrow v^*, v \text{ innerer Knoten}} + \sum\limits_{v \leftarrow v^*, v \text{ Blatt}} \overset{*}{=} \frac{1}{2} - \frac{1}{n-2} = \frac{n-2}{2n-2} \marginnote{* aus Symmetriegründen}
 \end{align} \todo{Inhalte summe vergessen}
  
  Man berechnet 
  \begin{align}
- 	C =(S,S^c) &= \sum\limits_{x \in S, y\in S^c} \pi(x) Q(x,y) = \pi(v*) \frac{1}{3} \\
+ 	C =(S,S^c) &= \sum\limits_{x \in S, y\in S^c} \pi(x) Q(x,y) = \pi(v^*) \frac{1}{3} \\
 	 	&= \frac{3}{2n-2}\frac{1}{3} = \frac{1}{2n-2}
  \end{align}
  Somit:
@@ -1078,11 +1099,11 @@ Dann gilt
 \end{beispiel}
 
 \begin{beispiel}[Binärbaum]
-	Sei $T = (V,E)$ der Binärbaum mit Wurzel $v*$ der Tiefe $d$. Betrachte wieder einen Simple Random Walk. Für $x \neq y$ wähle $\gamma_{xy}$ als den direkten Pfad von $x$ nach $y$. Dann:
+	Sei $T = (V,E)$ der Binärbaum mit Wurzel $v^*$ der Tiefe $d$. Betrachte wieder einen Simple Random Walk. Für $x \neq y$ wähle $\gamma_{xy}$ als den direkten Pfad von $x$ nach $y$. Dann:
 	\begin{align}
 		\abs{E} = \abs{V} -1 = 2^{d+1} - 2, d* = 3, \gamma_* = 2d
 	\end{align}
-	Offenbar werden $(v*,v_l)$ und $(v*,v_r)$ am meisten benutzt \marginnote{$v_r,v_l$ die Kinder links bzw. rechts von $v*$} und zwar $2^d \cdot \enb{2^d-1}$ mal (Alle Knoten (links + Wurzel) mal alle Knoten (rechts + Wurzel))
+	Offenbar werden $(v^*,v_l)$ und $(v^*,v_r)$ am meisten benutzt \marginnote{$v_r,v_l$ die Kinder links bzw. rechts von $v^*$} und zwar $2^d \cdot \enb{2^d-1}$ mal (Alle Knoten (links + Wurzel) mal alle Knoten (rechts + Wurzel))
 	\todo[inline]{missing figure tree}
 	\begin{align}
 		b = 2^d(2^d-1) \Rightarrow \beta_1 \leq 1- \frac{2(2^{d+1} -2)}{q \cdot 2d \cdot 2^d(2^d-1)}) = \frac{2}{q d \cdot 2^d} = \frac{1}{q d 2^{d-1}}
@@ -1092,7 +1113,7 @@ Dann gilt
 	\todo[inline]{missing figure stern}
 \begin{beispiel}[Der Stern]
 
-	Sei $G = (V,E)$ der Stern mit $n$ Spitzen und Zentrum $v*$. Betrachte wieder SRW. Man kann das Spektrum der einfachen Irrfahrt ausrechnen:
+	Sei $G = (V,E)$ der Stern mit $n$ Spitzen und Zentrum $v^*$. Betrachte wieder SRW. Man kann das Spektrum der einfachen Irrfahrt ausrechnen:
 	\begin{align}
 		\beta_0  = 1 && \beta_1 = \dots = \beta_n = 0 &&  \beta_{n+1} = -1
 	\end{align}
@@ -1214,7 +1235,7 @@ Dann gilt
 
 \begin{beispiel}[Binärbäume]
 	
-	Sei $T$ der Binärbaum mit Wurzel $v*$ und der Tiefe $d$. \todo{missing Tree?} Wähle als $S$ die linken oder rechten Nachfolger von $v*$ ohne die Wurzel. Dann gilt $\pi(S) = \frac{2^d-1}{2^{d+1}-1}$ Man rechnet aus
+	Sei $T$ der Binärbaum mit Wurzel $v^*$ und der Tiefe $d$. \todo{missing Tree?} Wähle als $S$ die linken oder rechten Nachfolger von $v^*$ ohne die Wurzel. Dann gilt $\pi(S) = \frac{2^d-1}{2^{d+1}-1}$ Man rechnet aus
 	\begin{align}
 		h = \frac{1}{4 \cdot 2^{d-1} - 1} = \frac{1}{2\abs{E}} = \frac{1}{(2d^{d+2}) -4 } \marginnote{\enquote{Das ist noch eins der Dinge, die ich ganz gut kann: 2 mal 2}, Löwe}
 	\end{align}

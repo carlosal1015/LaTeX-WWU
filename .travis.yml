@@ -37,7 +37,6 @@ deploy:
   file:
     - AlgKT_SS16/algebraische_KTheorie.pdf
     - Ana1_WS12/analysis1.pdf
-    - Ana1_WS16/Ana1_WS16.pdf
     - Ana2_SS13/analysis2.pdf
     - Ana2_SS15/Ana2.pdf
     - Ana3_WS13/analysis3.pdf
@@ -65,6 +64,8 @@ deploy:
     - Topo1_WS14/topologie_1.pdf
     - Topo2_WS15/topologie_2.pdf
     - WTGraph_SS16/WTG.pdf
+    - MadsenW_WS16/madsen_weiss.pdf
+    - ZZT_SS17/ZZT_SS17.pdf
   skip_cleanup: true
   on:
     repo: JaMeZ-B/LaTeX-WWU

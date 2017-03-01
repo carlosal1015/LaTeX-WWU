@@ -109,12 +109,12 @@
 \setmainlanguage[spelling=new,babelshorthands=true]{german}
 \shorthandoff{"}
 \setotherlanguage{english}
-\defaultfontfeatures{Mapping=tex-text, WordSpace={1.2}, Ligatures={Required,Common,Contextual}} %
+\defaultfontfeatures{Mapping=tex-text, WordSpace={1.2}, Ligatures={Required,Common,Contextual},Extension=.otf} %
 
 %-- Alle hier aufgeführten Schriftarten sind in jeder TeXlive-Installation vorhanden!!
 %-- Hauptschriftart festlegen
 % \setmainfont{texgyrepagella}[Extension=.otf,UprightFont=*-regular,BoldFont=*-bold,ItalicFont=*-italic,BoldItalicFont=*-bolditalic,ItalicFeatures={Style=Historic}]
-\setmainfont{TeXGyrePagellaX}[Extension=.otf,UprightFont=*-Regular,BoldFont=*-Bold,ItalicFont=*-Italic,BoldItalicFont=*-BoldItalic,ItalicFeatures={Style=Historic},Ligatures={Required,Common,Contextual,Historic}]
+\setmainfont{TeXGyrePagellaX}[UprightFont=*-Regular,BoldFont=*-Bold,ItalicFont=*-Italic,BoldItalicFont=*-BoldItalic,ItalicFeatures={Style=Historic},Ligatures={Required,Common,Contextual,Historic}]
 % \setmainfont[BoldFont={* Bold}, ItalicFont={* Light Italic},SmallCapsFont={Linux Libertine O}, SmallCapsFeatures={Letters=SmallCaps}]{Source Sans Pro}
 
 
@@ -128,7 +128,7 @@
 % \setsansfont{Iwona}[Scale=MatchUppercase, Extension=.otf, UprightFont=*Medium-Regular, BoldFont=*Heavy-Regular, ItalicFont=*Medium-Italic,BoldItalicFont=*Heavy-Italic]
 % \setsansfont{LinBiolinum}[Scale=MatchUppercase, Extension=.otf, UprightFont=*_R, BoldFont=*_RB, ItalicFont=*_RI,BoldItalicFont=*_RBO]
 % \setsansfont{texgyrebonum}[Scale=MatchUppercase,Extension=.otf, UprightFont=*-regular, BoldFont=*-bold, ItalicFont=*-italic, BoldItalicFont=*-bolditalic]
-\setsansfont{texgyreadventor}[Scale=MatchUppercase,Extension=.otf, UprightFont=*-regular, BoldFont=*-bold, ItalicFont=*-italic, BoldItalicFont=*-bolditalic]
+\setsansfont{texgyreadventor}[Scale=MatchUppercase, UprightFont=*-regular, BoldFont=*-bold, ItalicFont=*-italic, BoldItalicFont=*-bolditalic]
 % \setsansfont{Raleway}[Scale=MatchUppercase,Extension=.otf, UprightFont=*-Regular, BoldFont=*-Bold, ItalicFont=*-Regular-Italic, BoldItalicFont=*-Bold-Italic]
 % \setsansfont{Syntax Next LT W1G}
 
@@ -136,7 +136,7 @@
 
 % \newfontfamily{\geometric}{texgyreheros}[Scale=MatchLowercase, Extension=.otf, UprightFont=*-regular, BoldFont=*-bold, ItalicFont=*-italic]
 % \addtokomafont{disposition}{\geometric}
-\setmonofont{SourceCodePro}[Scale=0.9,Extension=.otf,UprightFont=*-Regular, BoldFont=*-Semibold, ItalicFont=*-Light]
+\setmonofont{SourceCodePro}[Scale=0.9,UprightFont=*-Regular, BoldFont=*-Semibold, ItalicFont=*-Light]
 \usepackage{xltxtra}
 \usepackage{fontawesome}
 \usepackage[final]{microtype}
@@ -311,6 +311,8 @@
 \newcommand{\acts}{\curvearrowright}
 \DeclareMathSymbol{\bbDelta}{\mathord}{bbold}{"01}
 \newcommand{\DDelta}{\bbDelta}
+\DeclareMathOperator{\Star}{Star}
+\DeclareMathOperator{\Link}{Link}
 
 \newcommand{\D}{\ensuremath{\mathrm{D}\mkern-1.0mu}}
 \newcommand{\mathd}{\ensuremath{\mathrm{d}\mkern-1.0mu}}
@@ -320,6 +322,7 @@
 
 \DeclareMathOperator{\supp}{supp} %Träger
 \DeclareMathOperator{\GL}{GL}
+\DeclareMathOperator{\Diff}{Diff}
 
 
 %-- Liegruppen
@@ -532,7 +535,7 @@
 \declaretheorem[name=Definition,numbered=no,style=mainstyle_unnumbered]{definition*}
 \declaretheorem[name=Theorem,sharenumber=definition,style=mainstyle]{theorem}
 \declaretheorem[name=Theorem,numbered=no,style=mainstyle_unnumbered]{theorem*}
-\declaretheorem[name=Proposition,sharenumber=definition,style=mainstyle]{proposition}
+\declaretheorem[name=Proposition,sharenumber=definition,style=mainstyle,refname=Proposition]{proposition}
 \declaretheorem[name=Lemma,sharenumber=definition,style=mainstyle]{lemma}
 \declaretheorem[name=Satz,sharenumber=definition,style=mainstyle]{satz}
 \declaretheorem[name=Satz,sharenumber=definition,style=mainstyle_unshaded]{satzUnshaded}
@@ -552,12 +555,20 @@
 \declaretheorem[name=Beispiel,numbered=no,style=mainstyle_unnumbered]{beispiel*}
 \declaretheorem[name=Exkurs,numbered=no,style=mainstyle_unnumbered]{exkurs*}
 
+% english versions
+\declaretheorem[name=Remark,sharenumber=definition,style=mainstyle_unshaded]{remark}
+\declaretheorem[name=Remark,numbered=no,style=mainstyle_unnumbered]{remark*}
+\declaretheorem[name=Example,sharenumber=definition,style=mainstyle_unshaded]{example}
+\declaretheorem[name=Corollary,sharenumber=definition,style=mainstyle]{corollary}
 
 % -- Beweise
 \declaretheoremstyle[headfont=\bfseries\scshape,bodyfont=\normalfont,headpunct=:,postheadspace=1em,spacebelow=12pt,spaceabove=2pt,qed=\qedsymbol]{beweise}
+\declaretheoremstyle[headfont=\bfseries\scshape,bodyfont=\normalfont,headpunct=:,postheadspace=1em,spacebelow=12pt,spaceabove=2pt]{beweisskizze}
 \declaretheoremstyle[headfont=\sffamily\bfseries,bodyfont=\normalfont,headpunct=:,postheadspace=1em,spacebelow=10pt,spaceabove=10pt]{bemerkungen}
 \declaretheorem[name=Beweis,numbered=no,style=beweise]{beweis}
-
+\let\proof\relax
+\declaretheorem[name=Proof,numbered=no,style=beweise]{proof}
+\declaretheorem[name=Sketch of Proof,numbered=no,style=beweisskizze]{sketch}
 
 \declaretheorem[name=Übung,numbered=no,style=bemerkungen]{uebung}
 \declaretheorem[name=Erinnerung,numbered=no,style=bemerkungen]{erinnerung}
@@ -614,6 +625,7 @@
 \DeclarePairedDelimiter\benbrace{[}{]}
 \DeclarePairedDelimiter\bbenbrace{[\![}{]\!]}
 \DeclarePairedDelimiter\lenbrace{<}{>}
+\DeclarePairedDelimiter\angbrace{\langle}{\rangle}
 \newcommand{\ssbrace}[1]{{\scriptscriptstyle\enbrace{#1}}}
 \newcommand{\ssbbrace}[1]{{\scriptscriptstyle\benbrace{#1}}}
 

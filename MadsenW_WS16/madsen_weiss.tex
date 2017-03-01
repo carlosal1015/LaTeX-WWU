@@ -1,0 +1,59 @@
+%!TEX TS-program = xelatex
+%!TEX TS-options = -shell-escape
+
+\input{../!config/mitschrift3_report.tex}
+\setmainlanguage[variant=british]{english}
+\newcommand{\fach}{Mapping Class Groups, Homological Stability and Madsen-Weiss-Theory}
+\newcommand{\shortFach}{Madsen-Weiss-Theory}
+\newcommand{\semester}{Wise 2016}
+\newcommand{\homepage}{https://wwwmath.uni-muenster.de/reine/u/topos/lehre/WS2015-2016/Topologie2/}
+
+\newcommand{\prof}{Prof.\ Dr.\ Johannes Ebert}
+\publishers{\scalebox{9}{\Huge$S_{g,r}$}}
+\input{../!config/mitschrift_headings_seminar.tex}
+
+\begin{document}
+\pagenumbering{Roman}
+\maketitle
+\begin{abstract}
+\input{../!config/vorwort.tex}
+\section*{References}
+
+\end{abstract}
+
+\tableofcontents
+\cleardoubleoddemptypage
+
+\pagenumbering{arabic}
+\setcounter{page}{1}
+\setcounter{footnote}{0}
+
+
+\input{talks/1_classifying_spaces.tex}
+
+\chapter{Topology of surfaces}
+\input{talks/2_topo_surfaces.tex}
+
+
+\chapter{Homological stability} % (fold)
+\label{cha:homological_stability}
+
+
+\input{talks/6_connectivity.tex}
+% chapter homological_stability (end)
+
+
+\cleardoubleoddemptypage
+\pagenumbering{Alph}
+\setcounter{page}{1}
+\cleardoubleoddemptypage
+\appendix
+
+\chapter{Appendix} % (fold)
+\label{chap:appendix}
+\input{appendix.tex}
+\printindex
+\printbibliography
+\listoffigures
+\todototoc\listoftodos
+\end{document}

@@ -1,0 +1,44 @@
+%!TEX root = ../madsen_weiss.tex
+%!TEX TS-program = xelatex
+%!TEX TS-options = -shell-escape
+\section{Surfaces, mapping class groups and surface bundles}
+\todo[inline]{incomplete at the moment}
+
+
+
+The classification of surfaces by \textcite[chap.~9, thm.~3.11]{hirschDifferential} goes as follows (not the same wording as in the talk):
+\begin{theorem}[{name={classification of surfaces}}]
+	Two connected compact surfaces are diffeomorphic if and only if they have the same Euler characteristic and the same number of boundary components.
+\end{theorem}
+
+Let's turn to the definition of the mapping class group: 
+
+\begin{definition}
+	Let $\Sigma$ be an oriented compact surface. 
+	We define\marginnote{equiv.: $f|_U = {\id}$ for a neighbourhood of $\partial \Sigma$}
+	\[
+		\Diff_{\partial}^+ \coloneqq \set[\big]{f \colon \Sigma \to \Sigma \given f \text{ is an orientation preserving diffeo and } f|_{\partial \Sigma} = {\id}}
+	\]
+\end{definition}
+
+\begin{remark}
+	Given the $C^\infty$-topology $\Diff_\partial^+(\Sigma)$ becomes a topological group.
+	This topology has the following property
+	\[
+		f_n \to f \iff \text{ all derivatives converge uniformly} 
+	\]	
+\end{remark}
+
+\begin{definition}
+	Let $\Sigma$ be an compact oriented surface.
+	We define the \Index{mapping class group} of $\Sigma$ as\marginnote{this is a group, because $\Diff_\partial^+$ is a topological group}
+	\[
+		\Gamma(\Sigma) \coloneqq \pi_0 \enbrace*{\Diff_\partial^+(\Sigma)}
+	\]
+	and for simplicity we set $\Gamma_{g,r} \coloneqq \Gamma \enbrace*{\Sigma_{g,r}}$.
+\end{definition}
+
+\begin{theorem}[{name={Earle-Eells}}]
+	If $g \ge 2$ or $r \ge 1$ then $\Gamma_{g,r} \simeq \Diff_\partial^+(\Sigma_{g,r})$ with $\Diff_\partial^+(\Sigma_{g,r}) \to \Gamma_{g,r}$ being the projection.
+\end{theorem}
+

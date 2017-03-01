@@ -1,0 +1,252 @@
+%!TEX root = ../madsen_weiss.tex
+%!TEX TS-program = xelatex
+%!TEX TS-options = -shell-escape
+\section{Fibre bundles and their classifying spaces}
+In this talk we will get to know the classifying space $BG$ of a group $G$ and we will try to understand, why we care about $H_*(BG)$.
+
+\begin{definition}[{name=[fibre bundle]}]
+	A \Index{fibre bundle} with fibre $F$ is a surjective map $\pi \colon E \to X$ that is locally trivial, i.e. for every $x \in X$ there is an open neighbourhood $U \subseteq X$ and a homeomorphism $h \colon \pi^{-1}(U) \to U \times F$ such that the following diagramm commutes
+	\[
+		\begin{tikzcd}[row sep=large]
+			\pi^{-1}(U) \rar["h","\cong"'] \dar["\pi"] & U \times F \dlar["\pr_U"] \\
+			U
+		\end{tikzcd}
+	\]
+\end{definition}
+
+The local triviality ensures that the preimage $\pi^{-1}(x)$ of every point $x \in X$ is homeomorphic to the fibre $F$.
+
+\begin{definition}[{name=[G-principal bundle]}]
+	Let $G$ be a topological group.
+	A \bet{$G$-principal bundle}\index{G-principal bundle@$G$-principal bunde} over a space $X$ is a fibre bundle $\pi \colon E \to X$ together with a free, continuous right $G$-action on the total space $E$, such that 
+	\begin{itemize}
+		\item $\pi(y.g) = \pi(y)$ for all $y \in E$ and $g \in G$,
+		\item $G$ acts transitively on each fibre,
+		\item the local trivializations can be chosen to be $G$-equivariant.\marginnote{not 100\% sure, but may be a consequence of the previous points}
+	\end{itemize}
+	
+\end{definition}
+
+\begin{remark}
+	Since $G$ acts transitively and freely the map 
+	\mapdef{G}{\pi^{-1}(x)}{g}{p.g}{\cong}
+	ist a homeomorphism for a fixed $p \in \pi^{-1}(x)$, $x \in X$.
+\end{remark}
+
+\begin{example}
+	\begin{enumerate}[(i)]
+		\item Let $\pi \colon Y \to X$ be a Galois-covering.
+		This means that the group of deck transformation $G=\operatorname{Deck}(\pi)$ acts transitively on the fibres $\pi^{-1}(x)$.
+		Therefore we get a $G$-principal bundle.
+		In particular taking the universal cover $Y= \tilde{X}$ we get a $\pi_1(X,x_0)$-principal bundle.
+		
+		This applies to the well known covering $\mathbb{R} \to S^1$, $\varphi \mapsto e^{i \varphi}$ as well.
+		\item Let $G= \Un(1) =S^1 = \SO(2)$ and $E = S^{2n+1} \subseteq \mathbb{C}^{n+1}$.
+		Define a $G$-action by $(v,g) \mapsto v \cdot g = g \cdot v$.
+		Since $\mathbb{C}P^n = \sfrac{E}{\Un(1)}$ we see that $S^{2n+1} \to \mathbb{C}P^n$ is a $\Un(1)$-principal bundle.
+	\end{enumerate}
+\end{example}
+
+One may ask how principal bundles are connected to vector bundles. 
+Let $\pi \colon V \to X$ be a $\mathbb{R}$-vector bundle, i.e. $V_x = \pi^{-1}(x)$ is a  $n$-dimensional vector space.
+We now construct the corresponding \Index{frame bundle} $\operatorname{Fr}(V)$ by setting
+\[
+	\operatorname{Fr}(V) = \coprod_{x \in X} \Iso(\mathbb{R}^n, V_x)
+\]
+using the obvious mapping to $X$. 
+The group $\GL(n,\mathbb{R})$ acts on $\operatorname{Fr}(V)$ by $f.g \coloneqq f \circ g$.
+Using a \enquote{suitable} topology $\operatorname{Fr}(V)$ becomes a $\GL(n,\mathbb{R})$-principal bundle.
+
+\begin{definition}[{name=[bundle map]}]
+	Let $P \to X$ and $Q \to Y$ be $G$-principal bundles and $f \colon X \to Y$ a continuous map.
+	A \Index{bundle map} over $f$ is a $G$-equivariant map $\hat{f} \colon P \to Q$ such that
+	\[
+		\begin{tikzcd}
+			P \rar["\hat{f}"] \dar["\pi_P"] & Q \dar["\pi_Q"] \\
+			X \rar["f"] & Y
+		\end{tikzcd}
+	\] 
+\end{definition}
+
+\begin{remark}[label=rmk:id_bundle]
+	If $f = {\id_X}$ then $\hat{f}$ is bijective and $\hat{f}^{-1}$ is continuous.
+\end{remark}
+
+\begin{definition}[{name=[pullback bundle]}]
+	Let $\pi \colon P \to X$ be a $G$-principal bundle and $f \colon Y \to X$ be continuous.
+	The \Index{pullback bundle} is defined by
+	\[
+		f^*P = \set[\big]{(y,p) \in Y \times P \given f(y)= \pi(p)}
+	\]
+	with $G$-action given by $(y,p).g \coloneqq (y,p.g)$.
+	$f^* P$ is a $G$-principal bundle over $Y$ with fibre $\pi^{-1}(f(y))$ over $y \in Y$.
+	We get the following commutative diagramm
+	\[
+		\begin{tikzcd}
+			f^* P \rar \dar & P \dar \\
+			Y \rar["f"] & X
+		\end{tikzcd}
+	\]
+\end{definition}
+
+\begin{remark}
+	Given two $G$-principal bundles $Q \to Y$ and $P \to X$ and a continuous map $f \colon Y \to X$ we get 
+	\[
+		\begin{tikzcd}[sep=small]
+			Q \ar[rr,"\hat{f}"]  \ar[dd] \drar[dashed,"\exists!"] & & P \ar[dd] \\
+			& f^* P \urar \dlar & \\
+			Y \ar[rr,"f"] & & X
+		\end{tikzcd}
+	\]
+	for every bundle map $\hat{f}$ over $f$.
+	In particular the previous \autoref{rmk:id_bundle} implies $Q \cong f^* P$.
+\end{remark}
+
+\begin{definition}[{name={Borel construction}}]
+	Let $\pi \colon P \to X$ be a $G$-principal bundle and $F$ a left $G$-space.
+	Define a right $G$-action on $P \times F$ by
+	\[
+		(p,f) .g \coloneqq \enbrace*{p.g, g^{-1}.f}
+	\]
+	The orbit space is denoted by $P \times_G F \coloneqq \sfrac{P \times F}{G}$.
+	The invariant map $\pi$ induces $q \colon P \times_G F \to X$ and we get
+	\[
+		q^{-1}(x) = \sfrac{\pi^{-1}(x) \times F}{G} \cong F
+	\]
+	where the homeomorphism is given by $f \mapsto \benbrace[\big]{(p,f)}$ for a fixed $p \in \pi^{-1}(x)$.
+\end{definition}
+
+\begin{example}
+	Let $V$ be a vector bundle.
+	Then $V$ can be recovered from the frame bundle constructed earlier by the Borel construction; to be precise there is a isomorphism of vector bundles $V \cong \operatorname{Fr}(V) \times_{\GL(n,\mathbb{R})} \mathbb{R}^n$.
+	The isomorphism becomes clear, once one realises that the map
+	\mapdef{\operatorname{Fr}(V) \times \mathbb{R}^n}{V}{(f,v)}{f(v)}{}
+	maps $\enbrace*{f.g, g^{-1}. v}$ to $f(v)$ as well for every $f, \in \operatorname{Fr}(V)$, $v \in \mathbb{R}^n$ and $g \in \GL(n,\mathbb{R})$.
+\end{example}
+
+We now list four main theorems about fibre bundles and principal bundles without proofs.
+
+\begin{theorem}
+	A fibre bundle is a Serre fibration, in other words the following homotopy lifting property is fullfilled:\marginnote{equiv. for CW complexes instead of $D^n$}
+	\[
+		\begin{tikzcd}[sep=large]
+			D^n \times \set*{0} \rar["k"]  \dar["j",hook] & E \dar["\pi"] \\
+			D^n \times I \urar[dashed,"\exists g"] \rar["h"] & X
+		\end{tikzcd}
+	\]
+	In particular there is a long exact sequence for $x_0 \in X$, $F \coloneqq \pi^{-1}(x_0)$, $e_0 \in F \subseteq E$
+	\[
+		\begin{tikzcd}
+			\ldots \rar & \pi_n(F,e_0) \rar & \pi_n(E,e_0) \rar & \pi_n(X,x_0) \rar["\partial"] & \pi_{n-1}(F,e_0) \rar & \ldots 
+		\end{tikzcd}
+	\]
+\end{theorem}
+
+\begin{theorem}[{name={homotopy invariance}}]
+	Let $P \to Y$ be a $G$-principal bundle, $X$ a CW complex and $f \colon X \times I \to Y$ a homotopy.
+	Then there is a bundle isomorphism $f_0^* P \cong f_1^* P$.
+\end{theorem}
+
+\begin{theorem}[label=thm:ex_bundle_map]
+	Let $E \to B$ be a $G$-principal bundle and assume that $E$ is weakly contractible, i.e. $E \neq \emptyset$, $E$ path connected and $\pi_k(E)=0$ for all $k$.
+	Let $P \to X$ be another $G$-principal bundle over a CW complex $X$.
+	
+	Then there is $f \colon X \to B$ and a bundle map $\hat{f} \colon P \to E$ over $f$ and $f$ is uniquely determined up to homotopy.
+\end{theorem}
+
+\todo[inline]{reference?}
+
+\begin{corollary}
+	Consider $E \to B$ as above.
+	There is a bijection
+	\[
+		\benbrace*{X,B} \longleftrightarrow \operatorname{Prin}_G(X) = \set*{\!\begin{array}{ll}
+			\text{isomorphism classes of}\\
+			\text{$G$-bundles over $X$}
+		\end{array}\!}
+	\]
+\end{corollary}
+
+\begin{theorem}
+	For each topological group $G$ there is a CW complex $BG$ and a $G$-principal bundle $EG \to BG$ with $EG \simeq_{\w} *$.
+	This construction is functorial in $G$.
+\end{theorem}
+
+Some notation: A space $B$ with a $G$-principal bundle $E \to B$, such that $E \simeq_{\w} *$ is called \Index{classifying space} for $G$.
+By using the previous theorems and considering the diagramm
+\[
+	\begin{tikzcd}
+		E \rar[yshift=2pt] \dar & E' \lar[yshift=-2pt] \dar \\
+		B \rar[yshift=2pt] & B' \lar[yshift=-2pt]
+	\end{tikzcd}
+\]
+one sees that classifying spaces are unique up to homotopy equivalence (with Whiteheads theorem).
+
+Using this knowledge about principal bundles we may define \emph{characteristic classes}:
+Let $P \to X$ be a $G$-principal bundle. 
+By \autoref{thm:ex_bundle_map} there is a unique map $f_P \colon X \to BG$ with $f_P^* EG \cong P$.
+Given a cohomology class $c \in H^*(BG)$ we set
+\[
+	c(P) \coloneqq f_P^*(c) \in H^*(X)
+\]
+Given a continuous map $g \colon Y \to X$ we get the following diagramm
+\[
+	\begin{tikzcd}
+		g^* P \rar \dar & P \dar \rar &  EG \dar \\
+		Y \rar["g"] & X \rar["f_P"] & BG
+	\end{tikzcd}
+\]
+Especially $g^* = (f_P \circ g)^* EG$ and $f_{g^*P} = f_p \circ g$ and therefore
+\[
+	c \enbrace*{g^* P} = f_{g^*P}(c) = g^* \circ f_P^*(c) = g^* \enbrace*{c(P)}
+\]
+\todo[inline]{add more explanation}
+
+\begin{example}
+	Let's compute some classifying spaces:
+	\begin{itemize}
+		\item Consider the group $G= \Sigma_n$ and the space
+		\[
+			F^n(\mathbb{R}^m) = \set[\big]{(x_1,\ldots ,x_n) \given x_i \in \mathbb{R}^m, x_i \neq x_j \text{ if } i\neq j}
+		\]
+		We get a right action by $\enbrace[\big]{\enbrace*{x_1, \ldots ,x_n}, \sigma} \mapsto \enbrace*{x_{\sigma(1)}, \ldots , x_{\sigma(n)}}$ which is obviously free. 
+		Now put
+		\[
+			C^n(\mathbb{R}^m) \coloneqq \sfrac{F^n(\mathbb{R}^m)}{\Sigma_n} = \set*{S \subseteq \mathbb{R}^m \given \#S = n}
+		\]
+		Claim: $\colim_{m \to \infty} C^n(\mathbb{R}^m) \simeq_{\w} B\Sigma_n$.
+		
+		\begin{proof}
+			We show $\pi_k F^n(\mathbb{R}^m) =0$ for $k \le m-3$.
+			\mapdef{F^n(\mathbb{R}^m)}{F^{n-1}(\mathbb{R}^m)}{\enbrace*{x_1, \ldots ,x_n}}{\enbrace*{x_1, \ldots ,x_{n-1}}}{}
+			is a fibre bundle with fiber over $\enbrace*{x_1, \ldots ,x_{n-1}}$ given by $\mathbb{R}^m \setminus \set*{x_1, \ldots ,x_{n-1}} \simeq \bigvee^{n-1} S^{m-1}$ which is $(m-2)$-connected.
+			The claim follows by induction and the long exact sequence.
+		\end{proof}
+		\item Consider the group $G = \GL(n,\mathbb{R})$ and the \Index{Grassmann manifold} 
+		\[
+			\operatorname{Gr}_{n,k} \coloneqq \set*{V \subseteq \mathbb{R}^k \given V \text{ is a $n$-dim. subspace}}
+		\]
+		There is a tautological vector bundle of rank $n$
+		\[
+			V_{n,k} = \set*{(V,v) \in \operatorname{Gr}_{n,k} \times \mathbb{R}^k \given v \in V} \twoheadrightarrow \operatorname{Gr}_{n,k}
+		\]
+		The \Index{Stiefel manifold} is defined by
+		\[
+			\operatorname{St}_{n,k} \coloneqq \set*{(v_1, \ldots ,v_n) \given v_i \in \mathbb{R}^k \text{ linearly independent} } = \set*{f \colon \mathbb{R}^n \to \mathbb{R}^k \given f \text{ inj.} }
+		\]
+		Now $\GL_n$ acts freely on $\operatorname{St}_{n,k}$ and $\sfrac{\operatorname{St}_{n,k}}{\GL_n} \cong \operatorname{Gr}_{n,k}$.
+		This is a principal bundle.
+		Similar to earlier we now claim, that
+		\[
+			B \GL(n,\mathbb{R}) \simeq \colim_{k \to \infty} \operatorname{Gr}_{n,k}
+		\]
+		\begin{proof}
+			We show that $\pi_r \operatorname{St}_{n,k} =0$ for $r \le k-n-1$.
+			$(v_1, \ldots ,v_n) \mapsto (v_1, \ldots ,v_{n-1})$ defines a fibre bundle ${\operatorname{St}_{n,k}} \to {\operatorname{St}_{n-1,k}}$ with fibre $\mathbb{R}^{k-n+1} \setminus \set*{0} \simeq S^{k-n}$ which is $(k-n-1)$-connected.
+		\end{proof}
+	\end{itemize}
+\end{example}
+
+
+
+
