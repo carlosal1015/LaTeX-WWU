@@ -1422,6 +1422,100 @@ Eine Variante dieses Arguments kann benutzt werden, um zu zeigen, dass $\mathbb{
 Dafür benötigt man aber höher dimensionale Varianten des Begriffes \enquote{wegzusammenhängend}.
 % section zusammenhangende_topologische_raume (end)
 
+\newpage
+\section{Die Fundamentalgruppe} % (fold)
+\label{sec:die_fundamentalgruppe}
+
+\begin{definition}[{name=[einfach zusammenhängend]}]
+	Ein topologischer Raum $X$ heißt \bet{einfach zusammenhängend}\index{topologischer Raum!einfach zusammenhängend}, wenn jede stetige Abbildung $f \colon S^1 \to X$ eine stetige Fortsetzung $F \colon D^2 \to X$ besitzt.
+\end{definition}
+
+Die Bezeichnung entstammt der folgenden Tatsache:
+Ein topologischer Raum $X$ ist genau dann wegzusammenhängend, wenn jede stetige Abbildung $f \colon S^0 \to X$ ein stetige Fortsetzung $F \colon D^1 \to X$ besitzt.\marginnote{$S^0 = \set*{\pm 1} \subset \mathbb{R}$, $D^1 = [-1,1] \subset \mathbb{R}$}
+
+\begin{bemerkung}
+	\begin{enumerate}[(i)]
+		\item $\mathbb{R}^n$ ist einfach zusammenhängend: Sei $f \colon S^1 \to \mathbb{R}^n$ stetig. 
+		Dann erhält man eine Fortsetzung $F \colon D^2 \to \mathbb{R}^n$ durch
+		\[
+			F(t \cdot v) \coloneqq t \cdot f(v) \qquad \text{ für } t \in [0,1], v \in S^1
+		\]
+		\item Ist $X \cong Y$ dann gilt: $X$ einfach zusammenhängend $\iff$ $Y$ einfach zusammenhängend.
+		\item Wir werden später sehen: $\mathbb{R}^2 \setminus \set{0}$ ist \emph{nicht} einfach zusammenhängend.
+	\end{enumerate}
+\end{bemerkung}
+
+\begin{definition}[{name=[Homotopie mit festen Endpunkten]}]
+	Seien $\omega_0, \omega_1 \colon [0,1] \to X$ Wege in $X$. 
+	Eine \bet{Homotopie mit festen Endpunkten}\index{Homotopie!mit festen Endpunkten} (oder relativ $\set{0,1}$) zwischen $\omega_0$ und $\omega_1$ ist eine stetige Abbildung $H \colon [0,1] \times [0,1] \to X$, so dass gilt:\\
+	\begin{minipage}[c]{0.45\textwidth}
+	\begin{enumerate}[(i)]
+		\item $H(s,0)= \omega_0(s) \enspace \forall s \in [0,1]$
+		\item $H(s,1) = \omega_1(s) \enspace \forall s \in [0,1]$
+		\item $H(0,t) = \omega_0(0)= \omega_1(0) \enspace \forall t \in [0,1]$
+		\item $H(1,t) = \omega_0(1) = \omega_1(1) \enspace \forall t \in [0,1]$
+	\end{enumerate}	
+	\end{minipage} \hfill
+	\begin{minipage}[c]{0.45\textwidth}
+		\captionsetup{type=figure, skip=1pt}
+		\[
+			\begin{tikzpicture}[scale=0.9]
+				\coordinate (x) at (0,0);
+				\coordinate (y) at (4,2);
+				\draw[very thick] (x) .. controls +(90:3) and +(190:2) .. (y) node[midway, above]{$\omega_0$};
+				\foreach \s / \t in {80/200, 70/210, 60/220, 50/230, 40/240, 30/250 , 20/260, 10/270, 0/280} {
+					\draw[dashed] (x) .. controls +(\s:3) and +(\t:2) .. (y);
+				}
+				\draw[very thick] (x) .. controls +(-10:3) and +(-70:2) .. (y) node[midway, below]{$\omega_1$};
+				\draw[thick, fill=Tomato3] (x) circle(0.06) node[below left]{$x$};
+				\draw[thick, fill=Tomato3] (y) circle(0.06) node[above right]{$y$};
+			\end{tikzpicture}
+		\]
+		\caption{Homotopie relativ $\set{0,1}$}
+	\end{minipage} \smallskip\\
+	Durch 
+	\[
+		\omega_0 \sim \omega_1 :\iff \exists \text{ Homotopie relativ } \set{0,1} \text{ zwischen } \omega_0 \text{ und } \omega_1
+	\]
+	wird eine Äquivalenzrelation auf der Menge aller Wege in $X$ erklärt. 
+	Die Äquivalenzklassen heißen \Index{Homotopieklassen}, wir schreiben $[\omega]$ für die Homotopieklasse von $\omega$.
+\end{definition}
+
+\begin{definition}[{name=[Schleife]}]
+	Ein Weg $\omega \colon [0,1] \to X$ heißt eine \Index{Schleife} in $X$, falls $\omega(0)= \omega(1)$ gilt. 
+	Dieser Punkt heißt dann \Index{Basispunkt} von $\omega$. 
+\end{definition}
+
+\begin{lemma}[{name=[Charakterisierung von einfach zusammenhängend mittels Homotopie]}]
+	$X$ ist genau dann einfach zusammenhängend, wenn jede Schleife in $X$ homotop relativ $\set{0,1}$ zu einer konstanten Schleife ist.
+\end{lemma}
+\begin{beweis}
+	Beweis per Zeichnung:
+	\[
+		\begin{tikzpicture}[scale=0.8]
+			\foreach \r in {0.1, 0.2,...,1}{
+				\draw (0,0) arc (0:360:\r); 
+			}
+		\end{tikzpicture}\qedhere
+	\]
+\end{beweis}
+
+Wir vereinbaren die folgende Notation: 
+Für $x \in X$ bezeichne $c_x \colon [0,1] \to X$ die konstante Schleife bei $x$, d.h. $c_x(t)= x $ für alle $ t \in [0,1]$.
+
+\begin{definition}[{name=[Kompositionsweg]}]
+	Seien $\omega$ und $\omega'$ Wege in $X$ mit $\omega(1)= \omega'(0)$. 
+	Dann ist der \Index{Kompositionsweg} $\omega * \omega' \colon [0,1] \to X$ definiert durch\marginnote{Man beachte die hier getroffene Konvention bzgl. der Reihenfolge!} 
+	\[
+		\omega * \omega' (t) = \begin{cases}
+			\omega(2 t), &\text{ falls }t \in [0, \sfrac{1}{2}]\\
+			\omega'(2t -1), &\text{ falls } t \in [\sfrac{1}{2},1]
+		\end{cases}
+	\]
+\end{definition}
+
+% section die_fundamentalgruppe (end)
+
 \cleardoubleoddemptypage
 \pagenumbering{Alph}
 \setcounter{page}{1}
