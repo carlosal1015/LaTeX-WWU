@@ -1486,7 +1486,7 @@ Ein topologischer Raum $X$ ist genau dann wegzusammenhängend, wenn jede stetige
 	Dieser Punkt heißt dann \Index{Basispunkt} von $\omega$. 
 \end{definition}
 
-\begin{lemma}[{name=[Charakterisierung von einfach zusammenhängend mittels Homotopie]}]
+\begin{lemma}[{name=[Charakterisierung von einfach zusammenhängend mittels Homotopie]},label=lem:einf-zsmh-homotopie]
 	$X$ ist genau dann einfach zusammenhängend, wenn jede Schleife in $X$ homotop relativ $\set{0,1}$ zu einer konstanten Schleife ist.
 \end{lemma}
 \begin{beweis}
@@ -1514,6 +1514,94 @@ Für $x \in X$ bezeichne $c_x \colon [0,1] \to X$ die konstante Schleife bei $x$
 	\]
 \end{definition}
 
+\begin{lemma}[{name=[Eigenschaften von Kompositionswegen]},label=lem:eig-kompositionsweg]
+	Kompositionswege haben die folgenden Eigenschaften:
+	\begin{enumerate}[a)]
+		\item Seien $\omega, \omega', \omega''$ Wege in $X$ mit $\omega(1)= \omega'(0)$ und $\omega'(1)= \omega''(0)$. Dann gilt 
+		\[
+			\benbrace[\big]{(\omega * \omega') * \omega''} =  \benbrace[\big]{\omega * ( \omega' * \omega'')}
+		\]
+		\item Seien $\omega_0, \omega_0', \omega_1, \omega_1'$ Wege in $X$ mit $\omega_0(1)= \omega_0'(0)$, $\omega_1(1)= \omega_1'(0)$ und 
+		$[\omega_0] = [\omega_1]$ und $[\omega_0'] = [\omega_1']$. Dann gilt
+		\[
+			\benbrace*{\omega_0 * \omega_0'} = \benbrace*{\omega_1 * \omega_1'}
+		\]
+		\item Sei $\omega$ ein Weg in $X$ und $\overline{\omega} \colon [0,1] \to X $ der umgekehrte Weg, also $\overline{\omega} (t) \coloneqq \omega(1-t)$. 
+		Dann gilt $[\omega * \overline{\omega}] = [c_{\omega(0)}]$ und $[\overline{\omega} * \omega ] = [c_{\omega(1)}]$.
+		\item Sei $\omega$ ein Weg in $X$. Dann gilt 
+		\[
+			\benbrace*{\omega * c_{\omega(1)}} = [\omega]
+		\]
+	\end{enumerate}
+\end{lemma}
+\begin{beweis}
+	Wir zeigen an dieser Stelle nur a), die anderen Beweise funktionieren ähnlich.
+	
+	\begin{figure}[bhtp]
+		\centering{
+		\begin{tikzpicture}[scale=2.4]
+			\coordinate (a) at (0.5,0.25);
+			\coordinate (b) at (0.75, 0.5);
+			\draw[<->] (1.2,0) -- (0,0) -- (0,1.2);
+			\draw[very thick, PaleGreen4] (0,0) -- (a) -- (b) -- (1,1) node[below right]{$\varphi$};
+			\draw (0.5,0.05) -- ++ (0,-0.1) node[below]{$\frac{1}{2}$};
+			\draw (0.75,0.05) -- ++ (0,-0.1) node[below]{$\frac{3}{4}$};
+			\draw (1,0.05) -- ++ (0,-0.1) node[below]{$1$};
+			\draw (0.05,0.25) -- ++ (-0.1,0) node[left]{$\frac{1}{4}$};
+			\draw (0.05,0.5) -- ++ (-0.1,0) node[left]{$\frac{1}{2}$};
+			\draw (0.05,1) -- ++ (-0.1,0) node[left]{$1$};
+		\end{tikzpicture}
+		\caption{Funktion $\varphi$ aus dem Beweis von \cref{lem:eig-kompositionsweg}}
+		\label{fig:assoz-fundamental}
+		}
+	\end{figure}
+	
+	Sei $\varphi \colon [0,1] \to [0,1]$ gegeben wie in \cref{fig:assoz-fundamental} gezeichnet. 
+	Dann gilt 
+	\begin{align*}
+		\enbrace[\Big]{\omega * \enbrace[\big]{\omega' * \omega''} }(s) = \enbrace[\Big]{\enbrace[\big]{\omega * \omega'} * \omega''} (\varphi(s))
+	\end{align*}
+	Die gesuchte Homotopie mit festen Endpunkten wird durch
+	\[
+		H(s,t) \coloneqq \enbrace[\Big]{ \enbrace[\big]{\omega * \omega'} * \omega'' } \enbrace[\big]{(1-t)s + t \varphi(s)}
+	\]
+	definiert.
+\end{beweis}
+
+\begin{korollarB}[{name=[Gruppenstruktur für Homotopieklassen von Schleifen]}]
+	Sei $X$ ein topologischer Raum und $x_0 \in X$ fest. Dann wird 
+	\[
+		\pi_1 (X, x_0) \coloneqq \set[\big]{[\omega] \given \omega \text{ ist eine Schleife in }X \text{ mit } \omega(0)= x_0} 
+	\]
+	durch die Komposition von Wegen zu einer Gruppe mit neutralem Element $e= [c_{x_0}]$.
+\end{korollarB}
+
+\begin{definition}[{name=[Fundamentalgruppe]}]
+	$\pi_1(X, x_0)$ heißt die \Index{Fundamentalgruppe} von $X$ bezüglich des \bet{Basispunktes}\index{Basispunkt} $x_0$.
+\end{definition}
+
+Nach obigem \cref{lem:einf-zsmh-homotopie} folgt nun, dass $X$ genau dann einfach zusammenhängend ist, wenn $\pi_1(X,x_0)$ für alle $x_0 \in X$ die triviale Gruppe ist.
+
+\begin{bemerkung}
+	Sei $\eta$ ein Weg in $X$ von $x_1$ nach $x_0$. Dann definiert
+	\[
+		\pi_1(X,x_0) \ni [\omega] \xmapsto{\, \conj_\eta} \benbrace*{\eta * \omega * \overline{\eta}}  \in \pi_1(X,x_1)
+	\]
+	einen Isomorphismus zwischen $\pi_1(X,x_0)$ und $\pi_1(X,x_1)$. 
+\end{bemerkung}
+\begin{beweis}
+	Wir zeigen nur, dass $\conj_\eta$ ein Gruppenhomomorphismus ist.
+	Unter Benutzung der einzelnen Aussagen von \cref{lem:eig-kompositionsweg} erhalten wir:
+	\begin{align*}
+		\conj_\eta \enbrace*{ \benbrace*{\omega} * \benbrace*{\omega'}} &= \conj_\eta \enbrace[\big]{ \benbrace*{\omega * \omega'}} = \benbrace[\Big]{ \enbrace[\big]{\eta * (\omega * \omega')} * \overline{\eta}  }  \\
+		\conj_\eta \enbrace*{[\omega]} \cdot \conj_\eta \enbrace*{[\omega']} &= \benbrace[\big]{(\eta * \omega) * \overline{\eta} } \cdot  \benbrace[\big]{(\eta * \omega') * \overline{\eta}} = \benbrace[\Big]{ \enbrace[\big]{ \enbrace*{\eta * \omega}* \overline{\eta}  } * \enbrace[\big]{\enbrace*{\eta * \omega'} * \overline{\eta}  }  } \\
+		&\stackrel{\text{a)}}{=} \benbrace[\bigg]{ \enbrace[\Big]{\eta * \enbrace[\big]{\omega * \enbrace*{\overline{\eta} * \eta } }* \omega' } * \overline{\eta}  } 
+		\stackrel{\text{c)}}{=} \benbrace[\bigg]{\enbrace[\Big]{ \eta * \enbrace[\big]{\enbrace{\omega * c_{\omega(1)}} * \omega' } } * \overline{\eta}} \\
+		&\stackrel{\text{d)}}{=}
+		\benbrace[\Big]{\enbrace[\big]{\eta * \enbrace*{\omega * \omega'} } * \overline{\eta}  } 
+	\end{align*}
+	Insbesondere hängt der Isomorphietyp von $\pi_1(X,x_0)$ für wegzusammenhängende Räume nicht von der Wahl des Basispunktes ab.
+\end{beweis}
 % section die_fundamentalgruppe (end)
 
 \cleardoubleoddemptypage
