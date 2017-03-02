@@ -2678,8 +2678,188 @@ Betrachte nun:
 \end{align*}
 Mit Exaktheit folgt $\pi_2(S^2) \cong \pi_1(S^1) \cong \mathbb{Z}$ und $\pi_3(S^3) \cong \pi_3(S^2)$. 
 Tatsächlich gilt sogar $\pi_3(S^3) \cong \mathbb{Z}$.
-
 % section hohere_homotopiegruppen (end)
+
+\newpage
+\section{Differenzierbare Mannigfaltigkeiten} % (fold)
+\label{sec:differenzierbare_mannigfaltigkeiten}
+
+Sei $M$ eine topologische Mannigfaltigkeit. 
+Welche Funktionen $f \colon M \to \mathbb{R}$ sind differenzierbar? 
+Was sind Richtungsableitungen für solche Funktionen? 
+Was sind Richtungen in $M$?
+
+Da topologische Mannigfaltigkeiten lokal homöomorph zum $\mathbb{R}^n $ wäre folgendes ein naheliegender Ansatz für eine Definition im obigen Sinne:
+$f \colon M \to \mathbb{R}$ heißt $C^\infty$ genau dann, wenn
+\[
+	\forall x \in M : \exists  U \subseteq M \text{ offen mit } x \in U \text { und } h \colon U \xrightarrow{\approx}  V \subseteq \mathbb{R}^n : f \circ h ^{-1} : V \to \mathbb{R} \text{ ist } C^\infty
+\]
+Dieser Ansatz hat aber noch die folgenden Probleme:
+\begin{enumerate}[a)]
+	\item Ob $f \circ h ^{-1} \colon V \to \mathbb{R}$ $\, C^\infty$ ist oder nicht, hängt von der Wahl von $h$ ab.
+	\item Jeder Homöomorphismus $f \colon \mathbb{R} \to \mathbb{R}$ ist in dieser Definition $C^\infty$!
+\end{enumerate}
+
+\begin{definition}[{name=[{Karten, Kartenwechsel, Atlanten}]}]
+	Sei $M^n$ eine topologische $n$-Mannigfaltigkeit. 
+	\begin{enumerate}[a)]
+		\item Eine \Index{Karte} für $M$ ist ein Homöomorphismus $h \colon U \xrightarrow{\approx}V$ mit $U \subseteq M$ offen, $V\subseteq\mathbb{R}^n$ offen. 
+		$U$ heißt das \Index{Kartengebiet} von $h$. 
+		Ist $x \in U$, so heißt $h$ eine \bet{Karte um} $x$.
+		\item Sind $h_i \colon U_i \xrightarrow{\approx} V_i$, $i=0,1$ zwei Karten, so heißt 
+		\[
+			h_1 \circ h_0 ^{-1}\big|_{h_0(U_0 \cap U_1)} \colon \underset{\subseteq V_0 \subseteq \mathbb{R}^n}{h_0(U_0 \cap U_1)} \to \underset{\subseteq V_1 \subseteq 
+			\mathbb{R}^n}{h_1 (U_0 \cap U_1)}
+		\]
+		der \Index{Kartenwechsel} zwischen $h_0$ und $h_1$. 
+		Ein Kartenwechsel ist ein Homöomorphismus zwischen offenen Teilmengen des $\mathbb{R}^n$. 
+		\item Eine Menge von Karten $\set[\big]{h_\alpha : U_\alpha \to V_\alpha \given \alpha \in A}$ heißt ein \Index{Atlas} für $M$, wenn die Kartengebiete $U_\alpha$ die Mannigfaltigkeit überdecken:
+		\(
+			M = \bigcup_{\alpha \in A} U_\alpha
+		\)
+		\item Ein Atlas $\mathcal{A}$ heißt $C^\infty$ (oder \bet{glatt}\index{Atlas!glatter}), wenn alle Kartenwechsel zwischen Karten aus $\mathcal{A}$ $C^\infty$"=Abbildungen sind.
+	\end{enumerate}
+\end{definition}
+
+\begin{definition}[{name=[differenzierbare Mannigfaltigkeit]}]
+	Eine \bet{$C^\infty$"=Mannigfaltigkeit}\index{C-Mannigfaltigkeit@$C^\infty$-Mannigfaltigkeit} ist eine topologische Mannigfaltigkeit zusammen mit einem $C^\infty$"=Atlas $\mathcal{A}$.
+\end{definition}
+
+\begin{beispiel}[{name=[differenzierbare Mannigfaltigkeiten]}]
+	Viele interessante topologische Räume sind differenzierbare Mannigfaltigkeiten:
+	\begin{enumerate}[(1)]
+		\item $U \subseteq \mathbb{R}^n$ offen ist eine $C^\infty$"=Mannigfaltigkeit mit Atlas $\set{\id_U}$.
+		\item $S^n$ ist eine $C^\infty$"=Mannigfaltigkeit: 
+		Definiere Kartengebiete $U_{k,j} \coloneqq \set[\big]{x \in S^n \given (-1)^j x_k > 0}$ für $k=0, \ldots, n$, $j=0,1$. Sei 
+		\[
+			h_{k,j} \colon U_{k,j} \to \interior{D}^n = \set[\big]{x \in \mathbb{R}^n \given \norm{x}_2 < 1 } 
+		\]
+		mit 
+		\[
+			h_{k,j} (x_0, \ldots , x_n) = (x_0, \ldots , x_{k-1}, x_{k+1}, \ldots , x_n)
+		\]
+		Dann ist $\mathcal{A} = \set[\big]{h_{k,j} \given k=0, \ldots ,n \enspace j=0,1}$ ein $C^\infty$"=Atlas für $S^n$.
+		\begin{figure}[htbp]
+			\centering{
+			\tikzsetnextfilename{sphere_S2}
+			\begin{tikzpicture}[scale=1.5]
+				\begin{scope}
+					\clip (-1,0) arc (180:360:1cm and 0.5cm) arc (0:180:1cm and 0.5cm);
+		  		  	\foreach \x in {-1.1,-1, -0.9,-0.8,...,1,1.1}%
+		  		    	\draw[Sienna3!80,line width=0.3mm](\x,0,2)--(\x,0,-2);
+				\end{scope}
+				\draw (-1,0) arc (180:360:1cm and 0.5cm);
+			    \draw[dashed] (-1,0) arc (180:0:1cm and 0.5cm);
+			    \draw (0,1) arc (90:270:0.5cm and 1cm);
+			    \draw[dashed] (0,1) arc (90:-90:0.5cm and 1cm);
+			    \draw (0,0) circle (1cm);
+			    \shade[ball color=blue!10!white,opacity=0.20] (0,0) circle (1cm);
+				\draw[dashed, ->] (-1.2,0) -- (1.3,0) node[right]{$x_2$};
+				\draw[dashed, ->] (0,-1.2) -- (0,1.3) node[right]{$x_3$};
+				\draw[dashed, ->] (0,0,-2) -- (0,0,2.5) node[below]{$x_1$};
+				\node[left] at (-.8,.8) {$S^2$};
+				\draw[decorate, decoration={brace,amplitude=5pt, mirror, raise=4pt},yshift=0pt, thick] (1.8,0) -- (1.8,1) node[right, midway, xshift=0.25cm]{$U_{3,0}$};
+				\node[color=Sienna3] at (0,-1.4) {$h_{3,0}(U_{3,0}) = \set[(x_0,x_1)]{x_0^2+ x_1^2 < 1} $};
+			\end{tikzpicture}
+			\caption{Die $C^\infty$"=Mannigfaltigkeit $S^2$ mit dem Kartengebiet $U_{3,0}$}}
+		\end{figure}
+		\item \label{154:enum:3} $\mathbb{R}P^n = \nicefrac{S^n}{x \sim -x}$ ist eine $C^\infty$"=Mannigfaltigkeit: Setze 
+		\[
+			U_k \coloneqq \set[\big]{{\benbrace[\big]{(x_0, \ldots, x_n)} \in \mathbb{R}P^n} \given x_k \neq 0} 
+		\]
+		und definiere $h_k \colon U_k \to \interior{D}^n$ durch
+		\[
+			h_k \enbrace[\big]{[x_0, \ldots, x_n]} = \frac{x_k}{\abs*{x_k}} \enbrace*{x_0, \ldots , x_{k-1}, x_{k+1}, \ldots, x_n} 
+		\]
+		Dann ist $\set{h_k \given k=0, \ldots, n}$ ein $C^\infty$"=Atlas für $\mathbb{R}P^n$.
+		\item Sind $(M, \mathcal{A})$ und $(N, \mathcal{B})$ $C^\infty$"=Mannigfaltigkeiten, so ist $\set{h \times k \given h \in \mathcal{A}, k \in \mathcal{B}}$ ein $C^\infty$"=Atlas für $M \times N$.
+	\end{enumerate}
+\end{beispiel}
+
+\begin{bemerkung}[{name=[maximaler Atlas]}]
+	Sei $(M,\mathcal{A})$ eine $C^\infty$"=Mannigfaltigkeit. 
+	Eine Karte $h \colon U \to V$ für $M$ (nicht notwendig in $\mathcal{A}$) heißt eine $C^\infty$"=Karte, wenn alle 
+	Kartenwechsel zwischen $h$ und einer Karte aus $\mathcal{A}$ $C^\infty$ sind. 
+	Offenbar besteht $\mathcal{A}$ aus $C^\infty$"=Karten. 
+	Es ist auch $\mathcal{A}_\mathrm{max}\coloneqq \set[\big]{h \given h \text{ ist $C^\infty$"=Karte}}$ ein $C^\infty$"=Atlas für $M$. 
+	Dieser Atlas ist maximal, d.h. man kann keine weiteren Karten zu $\mathcal{A}_\mathrm{max}$ hinzufügen und immer noch einen $C^\infty$"=Atlas erhalten.\index{Atlas!maximaler}
+\end{bemerkung}
+
+\begin{definition}[{name=[Differenzierbarkeit von Abbildungen zwischen Mannigfaltigkeiten]}]
+	Seien $M,N$ $C^\infty$"=Mannigfaltigkeiten. 
+	Sei $f \colon M \to N$ eine stetige Abbildung.
+	\begin{enumerate}[a)]
+		\item Sei $x \in M$. 
+		$f$ heißt $C^\infty$ oder \bet{glatt}\index{Differenzierbarkeit} in $x$, wenn es eine Karte $h_0 \colon U_0 \to V_0$ von $M$ um $x$ und eine Karte $h_1 \colon U_1 \to V_1$ von $N$ um $f(x)$ gibt, sodass 
+		\[
+			h_1 \circ f \circ h_0 ^{-1}
+		\]
+		auf einer Umgebung von $h_0(x)$ eine $C^\infty$"=Abbildung ist.
+		\item Ist $f$ in allen $x \in M$ glatt, so heißt $f$ eine \bet{$C^\infty$"=Abbildung}\index{C-Abbildung@$C^\infty$"=Abbildung}. 
+		Wir schreiben $C^\infty(M,N)$ für die Menge der $C^\infty$"=Abbildungen von $M$ nach $N$.
+		\item $M$ und $N$ heißen \Index{diffeomorph} ($\cong$), wenn es $f \in C^\infty(M,N)$ und $g \in C^\infty(N,M)$\marginnote{$\approx$ homöomorph\linebreak$\cong$ diffeomorph} gibt mit $f \circ g = \id_N$ und $g \circ f = \id_M$. 
+	
+		In diesem Fall heißen $f$ und $g$ \Index{Diffeomorphismen}. 
+	\end{enumerate}	
+\end{definition}
+
+Man etwas künstliches Beispiel:
+$(M,\mathcal{A})$ und $(M, \mathcal{A}_\mathrm{max})$ sind diffeomorph mittels der Identität $\id_M \colon (M,\mathcal{A}) \to (M, \mathcal{A}_\mathrm{max})$.
+
+\begin{bemerkung}[{name=[zur Definition von Differenzierbarkeit]}]
+	Einige Anmerkungen zur obigen Definiton von Differenzierbarkeit:
+	\begin{enumerate}[a)]
+		\item Ist $f \colon M \to N$ glatt in $x$, so ist $h_1 \circ f \circ h_0 ^{-1}$ glatt in einer Umgebung von $h_0(x)$ für \emph{alle} Wahlen von $C^\infty$"=Karten $h_0$ um $x$ und $h_1$ um $f(x)$.
+		\item Die Komposition von $C^\infty$"=Abbildungen ist wieder eine $C^\infty$"=Abbildung.
+		\item Ist $f \colon M \to N$ bijektiv und $C^\infty$ ist, so ist $f$ noch nicht notwendigerweise ein Diffeomorphismus. (betrachte z.B. $f \colon \mathbb{R} \to \mathbb{R}$, $x \mapsto x^3$)
+	\end{enumerate}
+\end{bemerkung}
+
+\begin{bemerkung}[{name=[Homöomorphismen und Diffeomorphismen]}]
+	Beim Unterscheiden zwischen Homöomorphismen und Diffeomorphismen ist Vorsicht geboten:
+	\begin{enumerate}[a)]
+		\item Es gibt $C^\infty$"=Mannigfaltigkeiten $M$ und $N$, sodass $M$ und $N$ zueinander homöomorph sind, aber nicht diffeomorph sind. Dabei kann man sogar $M=S^7$ wählen.
+		\item Es gibt topologische Mannigfaltigkeiten, auf denen kein $C^\infty$"=Atlas existiert.
+	\end{enumerate}
+\end{bemerkung}
+
+\begin{definition}[{name=[Untermannigfaltigkeit]}]
+	Eine Teilmenge $N \subseteq M^{n+k}$ einer $(n+k)$-dimensionalen $C^\infty$"=Mannigfaltigkeit $M$, heißt eine $n$ dimensionale $C^\infty$"=\Index{Untermannigfaltigkeit}, wenn es um jedes $x \in N$ eine Karte $h \colon U \to V \subseteq \mathbb{R}^{n+k}$ für $M$ gibt, so dass $h(N \cap U) = V \cap (\mathbb{R}^n \times \set{0})$.
+	$k= \dim M - \dim N$ heißt die \Index{Kodimension} von $N$ in $M$. 
+	Durch Einschränkung dieser Karten von $M$ auf $N$ erhalten wir einen $C^\infty$"=Atlas für $N$. 
+	Insbesondere ist $N$ eine $n$-dimensionale $C^\infty$"=Mannigfaltigkeit.
+\end{definition}
+
+\begin{figure}[tbhp]
+	\centering{ \tikzsetnextfilename{Untermannigfaltigkeit}
+	\begin{tikzpicture}[scale=1.2]
+		% \draw[help lines] (0,0) grid (8,4);
+		\coordinate (x) at (2,2);
+		\path (5,1) coordinate (ecke)  +(1,0) node[below]{$V \subseteq \mathbb{R}^2$} ++(0,1) coordinate(start) ++(1,0) coordinate(mitte); % 
+		\coordinate (e1) at (1.4,1.35);
+		\draw[very thick, DodgerBlue3] (0,0) .. controls +(120:0.6) and +(200:0.5) .. (0,1.5)
+			.. controls +(20:0.4) and +(170:0.7) .. (x) 
+			.. controls +(-10:1) and +(90:0.5) .. (3,1)
+			.. controls +(-80:0.6) and +(-10:0.3) .. (2.2,0.4) node[below]{$N$}
+			.. controls +(170:0.5) and +(120:0.4) .. (1.5,-0.5)
+			.. controls +(-60:1) and +(-60:0.7) .. cycle ;
+		\draw[fill=Tomato2] (x) circle(0.05) node[below]{$x$};
+		\draw[very thick, DodgerBlue3] (start) -- ++(2,0) node[right]{$\mathbb{R} \times \set{0}$};
+		\draw[fill=Tomato2] (mitte) circle(0.05) node[below]{$h(x)$};
+		\draw[very thick, Sienna3] (ecke) rectangle ++(2,2);
+		\draw[very thick, Sienna3] (e1) .. controls +(90:0.4) and +(-70:0.4) ..
+			++(100:1.2) .. controls +(20:0.5) and +(150:0.4) .. 
+			++(-4:1.5) .. controls +(250:0.4) and +(95:0.4) .. 
+			++(-0.1,-1.2) .. controls +(160:0.4) and +(10:0.4) .. cycle;
+		\draw[-to, thick] (3,2) -- ++(1.8,0) node[midway, above]{$h$};
+	\end{tikzpicture}
+	\caption{Skizze einer Untermannigfaltigkeit $N$ der Mannigfaltigkeit $M=\mathbb{R}^2$}}
+\end{figure}
+
+\begin{definition}[{name=[Einbettung]}]
+	Eine $C^\infty$"=Abbildung $f \colon N \to M$ heißt eine \Index{Einbettung}, wenn $f(N) \subseteq M$ eine $C^\infty$"=Untermannigfaltigkeit ist und $f \colon N \to f(N)$ ein Diffeomorphismus ist. 
+\end{definition}
+% section differenzierbare_mannigfaltigkeiten (end)
 \cleardoubleoddemptypage
 \pagenumbering{Alph}
 \setcounter{page}{1}
