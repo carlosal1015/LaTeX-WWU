@@ -2040,6 +2040,187 @@ In diesem Fall benutzt der Beweis eine andere Invariante als die Fundamentalgrup
 	Aus \cref{prop:abbildungsgrad} folgt dann aber $n=0$.
 \end{beweis}
 % section induzierte_abbildungen (end)
+
+\newpage
+\section{Eigentlich diskontinuierliche Wirkungen} % (fold)
+\label{sec:eigentlich_diskontinuierliche_wirkungen}
+
+\begin{definition}[{name=[Eigentlich diskontinuierliche Wirkung]}]
+	Sei $G$ eine Gruppe und $X$ ein topologischer Raum.
+	\begin{enumerate}[(1)]
+		\item Eine \Index{Wirkung} $G \action X$ von $G$ auf $X$ ist eine Abbildung $G \times X \to X$, $(g,x) \mapsto g . x$, so dass gilt
+		\begin{itemize}
+			\item Für $g \in G$ ist $\lambda_g \colon X \to X$, $x \mapsto g . x$ stetig.
+			\item Für $g,h \in G$ gilt $g . (h . x)= (g . h) . x$
+			\item Für das neutrale Element $e \in G$ gilt $e . x = x$ für alle $x \in X$
+		\end{itemize}
+		\item Eine Wirkung heißt \bet{frei}\index{Wirkung!freie Wirkung}, falls $g . x = x \implies g = e$. \hfill {\color{gray} ($G \to \Sym(X)$ ist injektiv)}
+		\item Eine Wirkung heißt \bet{eigentlich diskontinuierlich}\index{Wirkung!eigentlich diskontinuierlich} (e.d.k.), falls es zu jedem $x \in X$ eine Umgebung $U$ von $x$ gibt mit $g U\cap U = \emptyset$ für alle $g \in G \setminus \set{e}$.
+		\item Durch $x \sim y :\Leftrightarrow \exists g \in G : g . x = y (\Leftrightarrow G x = G y)$ wird eine 
+		Äquivalenzrelation auf $X$ erklärt. 
+		Die Äquivalenzklassen dieser Äquivalenzrelation sind genau die \bet{Bahnen}\index{Bahn} $Gx =\set*{g. x \given g \in G}$ der Wirkung.
+		Die Menge der Äquivalenzklassen bezeichnen wir mit $G \backslash X \coloneqq \sfrac{X}{\sim}$. 
+		Durch die Quotiententopologie bezüglich der Quotientenabbildung  $X \to G\backslash X$, $x \mapsto G x$ wird $G \backslash X$ zu einem topologischen Raum.
+	\end{enumerate}
+\end{definition}
+
+\begin{lemma}[{name=[Überlagerung aus e.d.k. Wirkung]}]
+	Sei $G \action X$ eine e.d.k Wirkung. 
+	Dann ist $p \coloneqq X \to G \backslash X$, $x \mapsto Gx$ eine Überlagerung.
+\end{lemma}
+\begin{beweis}
+	Offenbar ist $p$ surjektiv und stetig. 
+	Sei $\overline{x} \coloneqq G x \in G \setminus X$. 
+	Sei $U$ eine offene Umgebung von $x \in X$, für die $g U \cap U = \emptyset$ für alle $g \not= e$ ist. 
+	Dann ist $p(U)$ eine elementare Umgebung von $\overline{x}$, denn 
+	\[
+		p ^{-1} \enbrace[\big]{p(U)} = \bigcup_{g \in G} g U
+	\]
+	ist die disjunkte Vereinigung der $g U$, $g \in G$.
+\end{beweis}
+
+\begin{beispiel}[{name=[eigentlich diskontinuierliche Wirkungen]}]
+	\begin{enumerate}[(1)]
+		\item $\mathbb{Z}^n \action \mathbb{R}^n$ mit $z . x \coloneqq x + z$ ist eine e.d.k. Wirkung: Ist $\varepsilon < \frac{1}{2}$ so gilt 
+		\[
+			B_\varepsilon(x) \cap B_\varepsilon(x) + z = B_\varepsilon(x) \cap B_\varepsilon(x +z) = \emptyset
+		\]
+		für alle $x \in \mathbb{R}^n$, $z \in \mathbb{Z}^n \setminus \set{0}$. 
+		Da $\mathbb{Z} \backslash \mathbb{R} \cong S^1$ folgt $\mathbb{Z}^n \backslash \mathbb{R}^n \cong \enbrace*{\mathbb{Z} \backslash \mathbb{R}}^n \cong (S^1)^n = T^n $. 
+		Wir erhalten eine Überlagerung $\mathbb{R}^n \to T^n$ des $n$-Torus.
+		\item Sei $\sfrac{\mathbb{Z}}{2} = \set{e, \tau}$. 
+		Durch $\tau . v \coloneqq - v$ erhalten wir eine e.d.k. Wirkung $\nicefrac{\mathbb{Z}}{2} \action S^n$. 
+		Dann gilt
+		\[
+			\sfrac{\mathbb{Z}}{2} \backslash S^n \cong \mathbb{R}P^n
+		\]
+		und wir erhalten eine Überlagerung $S^n \to \mathbb{R}P^n$. 
+		\item Zu $m,n \in \mathbb{Z}$ sei $f_{n,m} \colon \mathbb{R}^2 \to \mathbb{R}^2$ mit $f_{n,m} (x,y) = \enbrace[\big]{x + n, (-1)^n y + m}$. Dann ist 
+		\[
+			G \coloneqq \set[\big]{f_{n,m} \given n,m \in \mathbb{Z}} 
+		\]
+		eine Gruppe bezüglich der Verknüpfung von Abbildungen. 
+		Man rechnet nun nach, dass $f_{n,m} \circ f_{n',m'} = f_{n+n', m+ (-1)^n m'}$ gilt. 
+		Die kanonische Wirkung von $G$ auf $\mathbb{R}^2$ gegeben durch $f_{n,m} . x \coloneqq f_{n,m}(x)$ ist e.d.k., da 
+		\[
+			f_{n,m} \enbrace[\big]{U_\varepsilon(x)} \cap U_\varepsilon(x) = \emptyset  
+		\]
+		für $(n,m) \neq (0,0)$ und $\varepsilon < \frac{1}{2}$. 
+		Der Quotient $G\backslash \mathbb{R}^2 \eqqcolon K$ heißt die \Index{Kleinsche Flasche}.\marginnote{In den Übungen: $K \cong T_{\substack{S^1\!\to S^1\\ z \mapsto -z}}$ (Abbildungstorus)} 
+		Wir erhalten eine Wirkung $\mathbb{R}^2 \to K$. 
+		\begin{figure}[htbp]
+			\centering{
+			\includegraphics[height=4cm, keepaspectratio]{Bilder/Klein_bottle.pdf}
+			\caption[Kleinsche Flasche]{Kleinsche Flasche, \hrefsym{https://en.wikipedia.org/wiki/File:Klein_bottle.svg}{Quelle}}
+			}
+		\end{figure}
+	\end{enumerate}
+\end{beispiel}
+
+\begin{satz}[{name=[Zusammenhang der Fundamentalgruppe mit einer e.d.k.-Wirkung]},label=satz:fund-edk]
+	Sei $X$ wegzusammenhängend und einfach zusammenhängend. S
+	ei $G \action X$ eine e.d.k. Wirkung. 
+	Für jedes $\overline{x}_0 \in G \backslash X$ ist dann 
+	\[
+		\pi_1 \enbrace*{ G \backslash X, \overline{x}_0 } \cong G
+	\]
+\end{satz}
+\begin{beweis}
+	Sei $x_0 \in X$ ein Urbild von $\overline{x}_0$, also $\overline{x}_0 = G x_0 $. 
+	Zu jeder Schleife $\omega \colon [0,1] \to G \backslash X$ mit $\omega(0) = \omega(1) = \overline{x}_0 $ gibt es eine Hebung $\hat{\omega} \colon [0,1] \to X$ mit $\hat{\omega}(0) = x_0$. 
+	Hier heben wir bezüglich der Überlagerung $p \colon X \to G \backslash X$, $x \mapsto G x$, also $p \circ  \hat{\omega} = \omega$.
+
+	Da $p \enbrace*{ \hat{\omega}(1)} = \omega(1) = \overline{x}_0 $ folgt $\hat{\omega}(1)\in p ^{-1} (\overline{x}_0 ) = G  x_0$.  
+	Es gibt also $g_\omega \in G$ mit $g_\omega \cdot x_0 = \hat{\omega}(1)$. 
+	Wie im Fall der Überlagerung $\mathbb{R} \to S^1$ zeigt man mit Hilfe des Homotopiehebungssatzes, dass $[\omega] \mapsto g_\omega$ ein Gruppenhomomorphismus $\varphi \colon \pi_1(G \backslash X, \overline{x}_0 ) \to G$ definiert. 
+	\begin{description}
+		\item[Surjektivität von $\varphi$:] Sei $g \in G$. 
+		Sei $\hat{\omega} \colon [0,1] \to X$ ein Weg von $x_0$ nach $g \cdot x_0$ (Solch einen Weg gibt es, da $X$ wegzusammenhängend ist). 
+		Dann ist $\hat{\omega}$ die Hebung von $\omega \coloneqq p \circ  \hat{\omega}$ und es folgt $\varphi( [\omega]) = g_\omega = g$, da $\hat{\omega}(1) = g \cdot  x_0$. 
+		Also $g \in \im \varphi$.
+		\item[Injektivität von $\varphi$:] Sei $\omega \coloneqq [0,1] \to G \backslash X$ eine Schleife mit $\omega(0)= \omega(1) = \overline{x}_0$, für die $\varphi([\omega]) = e$. 
+		Sei $\hat{\omega} \colon [0,1] \to X$ die Hebung von $\omega$ mit $\hat{\omega}(0) = x_0$. 
+		Da $\varphi([\omega]) = e$ ist, gilt $\hat{\omega}(1) = x_0$, $\hat{\omega}$ ist also eine Schleife in $X$. 
+		Da $X$ einfach zusammenhängend ist, ist $[\hat{\omega}] = e \in \pi_1(X,x_0)$. 
+		Es folgt 
+		\[
+			[\omega] = [p \circ  \hat{\omega}] = p_* [\hat{\omega}] = p_*(e) = e. \qedhere
+		\]
+	\end{description}
+\end{beweis}
+
+\begin{bemerkung}[{name=[Fundamentalgruppe des reell-projektiven Raumes]}]
+	Für $n \ge 1$ ist $S^n$ wegzusammenhängend (einfache Übung).
+	Für $n \ge 2$ ist $S^n$ einfach zusammenhängend (weniger einfache Übung).
+	
+	Nach \cref{satz:fund-edk} ist daher $\pi_1(\mathbb{R}P^n, x_0) = \nicefrac{\mathbb{Z}}{2}$ für $n \ge 2$. 
+	Es folgt $\mathbb{R}P^n \not\cong S^n$ für $n \ge 2$. 
+	(Andererseits ist $\mathbb{R}P^1 \cong S^1$.)
+\end{bemerkung}
+
+\begin{definition}[{name=[Decktransformationen]}]
+	Sei $p \colon \hat{X} \to X$ eine Überlagerung. 
+	Eine \Index{Decktransformation} von $p$ ist ein Homöomorphismus $f \colon \hat{X} \to \hat{X}$, sodass $p \circ f = p$. 
+	Die Decktransformationen von $p$ bilden eine Gruppe $\Delta(p)$. 
+	Diese Gruppe wirkt in kanonischer Wiese auf $\hat{X}$.
+\end{definition}
+
+\begin{lemma}[{name=[Decktransformationsgruppe wirkt eigentlich diskontinuierlich]}]
+	Sei $p \colon \hat{X} \to X$ eine Überdeckung, wobei $\hat{X}$ wegzusammenhängend ist. 
+	Dann ist die Wirkung der Decktransformationsgruppe $\Delta(p)$ auf $\hat{X}$ eigentlich diskontinuierlich.
+\end{lemma}
+\begin{beweis}
+	Wir zeigen zunächst, dass die Wirkung frei ist. 
+	Sei $f \in \Delta(p)$ und $x \in \hat{X}$ mit $f(x) = x$. Zu zeigen: $f =\id_{\hat{X}}$.
+	Sei $y \in \hat{X}$ und $\hat{\omega} \colon [0,1] \to \hat{X}$ ein Weg von $x$ nach $y$. 
+	Dann sind $\hat{\omega}$ und $f \circ \hat{\omega}$ zwei Hebungen von $\omega \coloneqq p \circ \hat{\omega}$. 
+	Da $\hat{\omega}(0) = x = f(x) = f \circ \hat{\omega}(0)$ folgt mit der Eindeutigkeit im \hyperref[satz:hebung-homotopie]{Homotopiehebungssatz} $\hat{\omega} = f \circ \hat{\omega}$ und insbesondere $y=f(y)$.
+	Da $y$ beliebig war, ist $f= \id_{\hat{X}}$.
+
+	Wir können nun zeigen, dass die Wirkung eigentlich diskontinuierlich ist: 
+	Sei $x \in \hat{X}$ und $U$ eine elementare Umgebung von $p(x)$. 
+	Dann ist $p^{-1}(U)$ die disjunkte Vereinigung von offenen Mengen $V$, $V \in \mathcal{V}$ von denen jede homöomorph auf $U$ abgebildet wird. 
+	Sei $V_0 \in \mathcal{V}$ mit $x \in V_0$ und $f \in \Delta(p)$, $f \neq \id$. 
+	Für $y \in V_0$ gilt dann $p \enbrace*{f(y)} = p(y)$. 
+	Da $f(y) \neq y$ gilt, folgt $f(y) \notin V_0$, denn andernfalls wäre $p\big|_{V_0}$ nicht injektiv. 
+	Daher ist $f(V_0) \cap V_0 = \emptyset$.
+\end{beweis}
+
+\noindent\begin{minipage}{.82\textwidth}
+	\begin{bemerkung}[{name=[Untergruppen der Decktransformationsgruppe]},label=bem:untergrp-decktrans]
+		Sei $p \colon \hat{X} \to X$ eine Überlagerung, wobei $\hat{X}$ wegzusammenhängend ist. 
+		Sei $H \le \Delta(p)$ eine Untergruppe. Dann ist auch die Wirkung $H \action \hat{X}$ eigentlich diskontinuierlich und die Quotientenabbildung $q \colon \hat{X} \to H \backslash \hat{X}$ eine Überlagerung. 
+		Weiter ist $q' \colon H \backslash \hat{X} \to X$ mit $q'(Hx) \coloneqq p(x)$ stetig, da $q' \circ q = p$ stetig ist. 
+		Ist $U \subseteq X$ elementar für $p$, so ist $U$ auch elementar für $q'$. 
+		$q'$ ist also auch eine Überlagerung.
+	
+		Insgesamt haben wir also jeder Untergruppe von $\Delta (p)$ eine Überlagerung $H \backslash \hat{X}$ zugeordnet, die zwischen $\hat{X}$ und $X$ liegt.\marginnote{An dieser Stelle darf man sich gerne an die Galois-Gruppen aus \enquote{Einführung in die Algebra} erinnern.}
+	\end{bemerkung}
+\end{minipage}%
+\begin{minipage}{.17\textwidth}
+	\hfill\begin{tikzcd}
+		\hat{X} \rar{p} \dar{q}& X \\
+		H \backslash \hat{X} \urar[swap]{q'}&
+	\end{tikzcd}
+\end{minipage}
+
+\begin{definition}[{name=[normale Überlagerung]}]
+	Sei $p \colon \hat{X} \to X$ eine Überlagerung. 
+	Für $x \in X$ wirkt dann $\Delta(p)$ auf $p^{-1}(x)$. 
+	Die Überlagerung heißt \bet{normal}\index{Überlagerung!normal}, falls diese Wirkung \emph{transitiv} ist, d.h. falls es zu $\hat{x}, \hat{y} \in p^{-1}(x)$ immer $f \in \Delta(p)$ gibt mit $f(\hat{x})= \hat{y}$.
+\end{definition}
+
+\begin{proposition}[{name=[Homöomorphismus für normale Überlagerungen]}]
+	Sei $\hat{X} \xrightarrow{p} X $ eine normale Überlagerung, wobei $\hat{X}$ wegzusammenhängend ist. Dann ist die Abbildung
+	\mapdef{q' \colon \Delta(p)\backslash \hat{X}}{X}{\Delta(p) x}{p(x)}{\cong}
+	Wenn zusätzlich $\hat{X}$ einfach zusammenhängend und wegzusammenhängend ist, dann gilt $\pi_1(X, x_0) \cong \Delta(p)$ für einen beliebigen Basispunkt $x_0 \in X$.
+\end{proposition}
+\begin{beweis}
+	Wir haben in \cref{bem:untergrp-decktrans} schon gesehen, dass $q'$ eine Überlagerung ist unabhängig davon ob $p$ normal ist. Ist $p$ zusätzlich normal, so ist $q'$ eine bijektive Überlagerung und daher automatisch ein Homöomorphismus.
+\end{beweis}
+
+
+% section eigentlich_diskontinuierliche_wirkungen (end)
 \cleardoubleoddemptypage
 \pagenumbering{Alph}
 \setcounter{page}{1}
