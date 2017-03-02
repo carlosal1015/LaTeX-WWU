@@ -30,3 +30,47 @@ Durchschnittseigenschaft, so gilt
 	\]
 \end{beweis}
 
+
+\subsection[Blatt3, Aufgabe 4: Hilfssatz für den Hauptsatz der Algebra]{Blatt 3, Aufgabe 4} % (fold)
+\label{sub:B3A4}
+\emph{Diese Übungsaufgabe ist zentral für den Beweis des Hauptsatzes der Algebra, \cref{satz:hauptsatz-algebra}.} 
+
+Sei $p(x)= x^n + a_{n-1} x^{n-1} + \ldots + a_1 x + a_0$ mit $n \in \mathbb{N}_0$ ein Polynom mit Koeffizienten $a_i \in \mathbb{C}$, dass \emph{keine} Nullstelle in $\mathbb{C}$ besitzt. 
+Sei $S^1= \set*{z \in \mathbb{C} \given \abs*{z}=1}$.
+\begin{enumerate}[(a)]
+	\item $f \colon S^1 \to S^1$ gegeben durch $f(z) = \frac{p(z)}{\abs*{p(z)} } $ ist wohldefiniert und homotop zu einer konstanten Abbildung.
+	\item $f$ ist homotop zur Abbildung $g_n \colon S^1 \to S^1$ mit $g_n(z)= z^n$.
+\end{enumerate}
+\minisec{Beweis}
+\begin{enumerate}[(a)]
+	\item \begin{description}
+		\item[Wohldefiniertheit:] Sei $z \in S^1$ beliebig. Dann gilt
+		\[
+			\abs*{\frac{p(z)}{\abs*{p(z)} } } = \frac{1}{\abs*{p(z)} } \cdot \abs*{p(z)} =1,
+		\]
+		also ist $f(z) \in S^1$.
+		\item[Homotop zu einer konstanten Abbildung:] Definiere $f_t \colon S^1 \to S^1$ für $t \in [0,1]$ durch 
+		\[
+			f_t(z) = \frac{p(t \cdot z)}{\abs*{p(t \cdot z)} } 
+		\]
+		Dies ist mit der gleichen Begründung wie oben wohldefiniert. 
+		Außerdem ist $f_0(z)= \frac{a_0}{\abs*{a_0} } \in S^1 $ konstant und $f_1(z)= \frac{p(z)}{\abs*{p(z)} }=f(z)$. 
+		Definiere nun $H \colon S^1 \times [0,1] \to S^1$ durch $H(x,t) \coloneqq f_t(x)$. 
+		Dann ist $H$ stetig, da Polynome und $\abs*{.} $, sowie Multiplikation stetig sind. 
+		$H$ ist die gesuchte Homotopie.
+	\end{description}
+	\item Sei $h \colon S^1 \times [0,1] \to \mathbb{C}$ gegeben durch $h(z,t) = z^n + \sum_{k=0}^{n-1} a_k z^k t^{n-k}$. 
+	Dann gilt $h(z,0)=z^n \not= 0$, da $z \in S^1$.
+	Für $t \neq 0$ gilt nun
+	\begin{align*}
+		h(z,t) = 0 \iff \frac{h(z,t)}{t^n} = 0 \iff \frac{z^n}{t^n} + \sum_{k=0}^{n-1} a_k \frac{z^k}{t^k} = 0 \iff p \enbrace*{\frac{z}{t}} = 0
+	\end{align*}
+	Aber nach Vorraussetzung gilt $p \enbrace*{\frac{z}{t}} \neq 0$. 
+	Also $h(z,t) \neq 0$ für alle $t \in [0,1]$. 
+	Definiere nun $H \colon S^1 \times [0,1]\to S^1$ durch $H(z,t) = \frac{h(z,t)}{\abs*{h(z,t)}}$. 
+	Wie eben gezeigt, ist dies wohldefiniert und offensichtlich stetig. Da
+	\[
+		H(z,0) = \frac{z^n}{\abs*{z^n} } = z^n \quad \text{ und } \quad H(z,1) = \frac{h(z,1)}{\abs*{h(z,1)} } = \frac{p(z)}{\abs*{p(z)} } =f(z)
+	\]
+	ist $H$ die gesuchte Homotopie. \qedhere
+\end{enumerate}

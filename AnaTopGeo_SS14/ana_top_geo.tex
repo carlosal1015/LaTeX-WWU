@@ -1804,6 +1804,242 @@ Insbesondere wollen wir dazu die folgenden Fragen klären:
 \end{beweis}
 % section die_windungszahl (end)
 
+\newpage
+\section{Induzierte Abbildungen} % (fold)
+\label{sec:induzierte_abbildungen}
+\begin{lemma}[{name=[induzierte Gruppenhomomorphismus der Fundamentalgruppen]}]
+	Sei $f \colon X \to Y$ stetig mit $f(x_0)= y_0$. 
+	Dann definiert $f_*([\omega]) \coloneqq [f \circ \omega]$ einen Gruppenhomomorphismus $f_* \colon \pi_1(X,x_0) \to \pi_1(Y,y_0)$.
+\end{lemma}
+\begin{beweis}
+	Wir zeigen nur, dass $f_*$ wohldefiniert ist. 
+	Seien $\omega, \eta \colon [0,1] \to X$ Schleifen mit $\omega(0)= x_0 = \eta(0)$ und $[\omega]= [\eta]$. 
+	Es gibt also eine Homotopie $H \colon [0,1] \times [0,1] \to X$ mit festen Endpunkten zwischen $\omega$ und $\eta$.\footnote{d.h. $H(-,0)=\omega, H(-,1)=\eta$, $H(t,0)= H(t,1)= x_0$ für alle $t \in [0,1]$} 
+	Dann ist $f \circ H$ eine Homotopie mit festen Endpunkten zwischen $f \circ \omega$ und $f \circ \eta$. 
+	Also 
+	\[
+		f_*([\omega]) = \benbrace*{f \circ  \omega} = \benbrace*{f \circ \eta} = f_*([\eta]) \in \pi_1(Y,y_0)\qedhere
+	\]
+\end{beweis}
+
+\begin{definition}[{name=[induzierte Abbildung]}]
+	$f_*$ heißt die von $f$ \Index{induzierte Abbildung}. 
+	Manchmal schreibt man auch $\pi_1(f)$ für $f_*$, um $f_*$ von anderen induzierten Abbildungen zu unterscheiden.
+\end{definition}
+
+Man kann nachrechnen, dass die folgenden Eigenschaften gelten:
+\begin{enumerate}[(i)]
+	\item Für $f \colon Y \to Z$, $g \colon Y \to Y$ gilt $(f \circ g)_* = f_* \circ  g_*$.
+	\item Es gilt $(\id_X)_* = \id_{\pi_1(X,x_0)}$.
+\end{enumerate}
+Damit ist $\pi_1$ ein sog. Funktor\footnote{siehe \url{https://de.wikipedia.org/wiki/Funktor_(Mathematik)}}
+
+\begin{definition}[{name=[{Punktierter Raum, punktierte Abbildung und punktiert homotop}]}]
+	Ein topologischer Raum $X$ zusammen mit einem Basispunkt $x_0 \in X$, $(X,x_0)$ heißt ein \bet{punktierter Raum}\index{topologischer Raum!punktiert}. 
+	Eine \Index{punktierte Abbildung} zwischen punktierten Räumen $f \colon (X,x_0) \to (Y,y_0)$ ist eine stetige Abbildung $f \colon X \to Y$ mit $f(x_0)= y_0$. 
+	Punktierte Abbildungen $f,g \colon (X,x_0) \to (Y,y_0)$ heißen \bet{punktiert homotop}\index{homotop!punktiert}, falls es eine Homotopie $H \colon X \times [0,1] \to Y$ von $f$ nach $g$ gibt mit 
+	\[
+		H(x_0,t)= y_0 \enspace \forall t \in [0,1].
+	\]
+\end{definition}
+
+\begin{proposition}[{name={Homotopieinvarianz von $\pi_1$}}]
+	Seien $f,g \colon (X,x_0) \to (Y,y_0)$ homotop. Dann gilt 
+	\[
+		f_* = g_* \colon \pi_1(X,x_0) \to \pi_1(Y,y_0)
+	\]
+\end{proposition}
+\begin{beweis}
+	Sei $H$ eine Homotopie zwischen $f$ und $g$. 
+	Für $[\omega] \in \pi_1(X,x_0)$ ist $H \circ \omega$ eine Homotopie mit festen Endpunkten zwischen $f \circ \omega$ und 
+	$g \circ \omega$. Also 
+	\[
+		f_*([\omega]) = [f \circ \omega] = [g \circ \omega] = g_*([\omega]) \qedhere
+	\]
+\end{beweis}
+
+\begin{definition}[{name=[homotopieäquivalent]}]
+	Seien $X,Y$ topologische Räume. 
+	Dann heißen $X$ und $Y$ \Index{homotopieäquivalent}, falls es stetige Abbildungen $f \colon X \to Y$, $g \colon Y \to X$ gibt, so dass\marginnote{$f \simeq g :\Leftrightarrow$ $f$ homotop zu $g$ }
+	\[
+		f \circ g \simeq \id_Y \text{ und } \, g \circ  f \simeq \id_X.
+	\]
+	Wir schreiben dann $X \simeq Y$ oder $X \xrightarrow[\simeq]{f} Y$.\marginnote{Homöomorphe Räume sind homotopieäquivalent!} 
+	$g$ heißt \Index{Homotopie-Inverse} von $f$.
+	Entsprechendes benutzen wir auch für punktierte Räume. 
+	Falls $X \simeq \set{0}$, so sagen wir: $X$ ist \Index{zusammenziehbar}.
+\end{definition}
+
+\begin{beispiel}[{name=[Homotopieäquivalenzen]}]
+	\begin{enumerate}[(1)]
+		\item $S^{n-1}$ ist homotopieäquivalent zu $\mathbb{R}^n \setminus \set{0}$: 
+		Betrachte dazu die Inklusion $i \colon S^{n-1} \hookrightarrow \mathbb{R}^n \setminus \set{0}$ und
+		die Normierung $p \colon \mathbb{R}^n \setminus \set{0} \to S^{n-1}$, $v \mapsto \frac{v}{\norm{v}}$. 
+		Dann gilt
+		\[
+			p \circ i = \id_{S^{n-1}} \quad , \quad i \circ p  \simeq \id_{\mathbb{R}^{n} \setminus \set{0} }
+		\]
+		mit der Homotopie $H(v,t)= t \cdot v + (1-t) \frac{v}{\norm{v}}$.
+		\item Sei $K \subseteq \mathbb{R}^n$ eine konvexe Teilmenge und $x_0 \in K$. 
+		Dann ist $(K,x_0)$ zusammenziehbar:
+		\[
+			\begin{array}{r@{\,}l@{}ll}
+				i &\colon \enbrace*{\set{x_0}, x_0 }\enspace &\to  (K,x_0) \qquad  &\text{ die Inklusion}\\
+				p &\colon \enbrace*{K, x_0} &\to \enbrace*{\set{x_0}, x_0 }  &\text{ die konstante Abbildung}
+			\end{array}
+		\]
+		$p \circ i = \id_{\enbrace*{\set{x_0}, x_0}}$ und $i \circ p \simeq \id_{(K,x_0)}$ mit der Homotopie $H(x,t)= t \cdot x + (1-t)x_0$.
+		\item Auch der in \cref{fig:streifen-R2} skizzierte Raum $X \coloneqq \mathbb{R}^2 \setminus \set[\big]{(x,y) \given x \in (0,\infty) , y \in [0,1]} $ ist kontrahierbar.
+		Setze $H \coloneqq \set*{(x,y) \given x \le 0} $. 
+		Dann ist $X \simeq H \simeq \set{x_0}$.
+		\begin{figure}[tbhp]
+			\centering{
+			\begin{tikzpicture}
+				\fill[SkyBlue1!60] (0,0) rectangle (4,1);
+				\draw[->] (-2,0) -- (4.2,0);
+				\draw[->] (0,-0.6) -- (0,2);
+				\draw[DodgerBlue2, very thick] (0,1) -- (4,1);
+				% \draw[DodgerBlue2, very thick, dashed] (0,1) -- (0,0);
+				\draw[DodgerBlue2, very thick] (0,0) -- (4,0);
+				\node[left] at (0,1) {$1$};
+				\node[DodgerBlue2] at (2,0.5) {$X$};
+			\end{tikzpicture}
+			\caption{Kontrahierbare Teilmenge des $\mathbb{R}^2$}\label{fig:streifen-R2}}
+		\end{figure}
+	\end{enumerate}
+\end{beispiel}
+
+\begin{korollar}[{name=[Homotopieäquivalenzen induzieren Isomorphismen]}]
+	Ist $f \colon (X,x_0) \to (Y,y_0)$ eine Homotopieäquivalenz, so ist $f_* : \pi_1(X,x_0) \to \pi_1(Y,y_0)$ ein Isomorphismus. Insbesondere ist $\pi_1(X,x_0) = \set{1}$, falls $(X,x_0)$ zusammenziehbar ist.
+\end{korollar}
+\begin{beweis}
+	Sei $g \colon (Y, y_0) \to (X,x_0)$ eine Homotopie-Inverse zu $f$, also $ g \circ f \simeq \id_X$, $f \circ g \simeq \id_Y$. Dann ist $g_*= (f_*)^{-1}$ (und $f_*$ ein Isomorphismus):
+	\begin{align*}
+		f_* \circ g_* &= (f \circ g)_* = (\id_Y)_* = \id_{\pi_1(Y,y_0)} \\
+		g_* \circ f_* &= (g \circ f)_* = (\id_X)_* = \id_{\pi_1(X,x_0)} \qedhere
+	\end{align*}
+\end{beweis}
+
+\begin{satz}[{name={Fixpunktsatz von Brouwer}}]
+	Jede stetige Abbildung $f \colon D^n \to D^n$ hat einen Fixpunkt.
+\end{satz}
+\begin{beweis}[für $n\le 2$]
+	Für $n=1$ ist dies eine Folgerung aus dem Zwischenwertsatz, da $D^1= [-1,1]$.
+	
+	Angenommen $f \colon D^n \to D^n$ habe keinen Fixpunkt, also $f(x) \neq x$ für alle $x \in D^n$. 
+	Wir konstruieren eine stetige Abbildung $F \colon D^n \to S^{n-1}$ mit $F\big|_{S^{n-1}} = \id_{S^{n-1}}$ wie in \cref{fig:brouwer}, sodass gilt
+	
+	\begin{minipage}{0.45\textwidth}
+		\begin{enumerate}[(i)]
+			\item $F(x) = t \enbrace[\big]{x- f(x)} + x \enspace, t\ge 0$
+			\item $F(x) \in S^{n-1}$
+		\end{enumerate}
+	\end{minipage} \quad 
+	\begin{minipage}{0.45\textwidth}
+		\captionsetup{type=figure, skip=4pt, name=Abb.}
+		\centering{
+		\vspace{1ex}
+		
+		\begin{tikzpicture}[scale=0.7]
+			\coordinate (Fx) at (130:2);
+			\coordinate (fx) at (-20:1);
+			\draw[thick] (0,0) circle[radius=2];
+			\draw[very thick, DodgerBlue2] (fx) node[below]{$f(x)$} -- (Fx) node[left]{$F(x)$} node[pos=0.7] (x) { };
+			\node[below left] at (x) {$x$};
+			\foreach \a in {Fx, fx, x}{
+				\draw[fill=Coral2] (\a) circle[radius=0.07];
+			}
+		\end{tikzpicture}
+		\caption{Konstruktion von $F$}\label{fig:brouwer}}
+	\end{minipage}
+	
+	\noindent Sei $x_0 \in S^{n-1}$. Wir haben also
+	\[
+		\begin{tikzcd}[row sep=4em]
+			\enbrace*{S^{n-1}, x_0} \rar{\id} \dar[hook]{i} & \enbrace*{S^{n-1}, x_0} \\
+			\enbrace*{D^n, x_0} \urar[swap]{F}
+		\end{tikzcd}
+		\qquad \begin{tikzcd}[row sep=4em]
+			\pi_1 \enbrace*{S^{n-1}, x_0} \rar{(\id)_* = \id}  \dar{i_*}& \pi_1 \enbrace*{S^{n-1}, x_0} \\
+			\pi_1 \enbrace*{D^n, x_0} \urar[swap]{F_*}   
+		\end{tikzcd}
+	\]
+	Da $(D^n, x_0)$ zusammenziehbar ist, gilt $\pi_1 \enbrace*{D^n, x_0} = \set{e}$.
+	Für $n=2$ ist das zweite Diagramm also
+	\[
+		\begin{tikzcd}
+				\mathbb{Z} \rar{(\id)_* = \id}  \dar{i_*}& \mathbb{Z} \\
+				\set{e} \urar[swap]{F_*} 
+			\end{tikzcd}
+	\]
+	Daher folgt $\id = F_* \circ  i_* =$ triviale Null-Abbildung. \light
+\end{beweis}
+
+Für $n \ge 3$ ist $\pi_1(S^{n-1}, x_0)$ trivial. 
+In diesem Fall benutzt der Beweis eine andere Invariante als die Fundamentalgruppe.
+
+\begin{proposition}[{name=[Abbildungen die Multiplikation auf Fundamentalgruppen induzieren]},label=prop:abbildungsgrad]
+	Für $n \in \mathbb{Z}$ sei $f_n \colon S^1 \to S^1$, $z \mapsto z^n$.\marginnote{$S^1 \subset \mathbb{C}$}
+	Dann ist $(f_n)_* \colon \pi_1(S^1, 1) \to \pi_1(S^1,1)$ durch Multiplikation mit $n$ gegeben:
+	\[
+		(f_n)_* ([\omega]) = n \cdot [\omega] \enspace {\color{light_gray}\in \pi_1\enbrace{S^1,1} = \mathbb{Z}}
+	\]
+	Weiter sind die $f_n$ paarweise nicht homotop zueinander.
+\end{proposition}
+\begin{beweis}
+	Sei $p \colon \mathbb{R} \to S^1$, $t \mapsto e^{2 \pi  i t}$. 
+	Zu jeder Schleife $\omega \colon [0,1] \to S^1$ mit $\omega(0)= \omega(1) = 1$ gibt es eine eindeutige Hebung
+	\(
+		\hat{\omega} \colon [0,1]  \to \mathbb{R}
+	\)
+	zu einem Weg mit $\hat{\omega}(0)=0$. 
+	Der Isomorphismus $d \colon \pi_1(S^1,1) \to \mathbb{Z}$ bildet $[\omega]$ auf $\hat{\omega}(1) \in \mathbb{Z} \subseteq \mathbb{R}$ ab.
+	Sei $\hat{f}_n \colon \mathbb{R} \to \mathbb{R}$, $t  \mapsto n \cdot t$. 
+	Dann gilt $p \circ  \hat{f}_n = f_n \circ p$ und $\hat{f}_n (0)=0$. 
+	Ist $\hat{\omega}$ eine Hebung von $\omega$, so ist $\hat{f}_n \circ \hat{w}$ eine Hebung von $f_n \circ \omega$, da
+	\begin{align*}
+		(\hat{f}_n \circ  \hat{\omega}) (0) &= \hat{f}_n (0) = 0 \\
+		p \circ  \hat{f}_n \circ  \hat{\omega} &= f_n \circ p \circ  \hat{\omega} = f_n \circ  \omega
+	\end{align*}
+	Es folgt 
+	\[
+		d \enbrace[\big]{ [f_n \circ \omega]} = (\hat{f}_n \circ  \hat{\omega}) (1) = \hat{f}_n \enbrace[\big]{\hat{\omega}(1)} = \hat{f}_n (d[\omega]) = n \cdot d[\omega]
+	\]
+	Da $d$ ein Isomorphismus ist, folgt die Behauptung.
+	
+	Mit der Homotopieinvarianz von induzierten Abbildungen folgt, dass die $f_n \colon (S^1,1) \to (S^1,1)$ als punktierte Abbildungen nicht punktiert homotop sind. 
+	Mit dem nächsten Lemma folgt das die $f_n$ paarweise nicht homotop sind.
+\end{beweis}
+
+\begin{lemma}[{name=[Konstruktion einer punktierten Homotopie aus einer nicht punktierten]}]
+	Seien $f,g \colon (X,x_0) \to (S^1,1)$ stetig. 
+	Sei $H \colon X \times [0,1] \to S^1$ eine (unpunktierte) Homotopie zwischen $f$ und $g$. 
+	Dann ist $\tilde{H} \colon X \times [0,1]\to S^1$,
+	\[
+		\tilde{H} (x,t) = \frac{H(x,t)}{H(x_0, t)} 
+	\]
+	ein punktierte Homotopie zwischen $f$ und $g$.
+\end{lemma}
+\begin{beweis}
+	Es ist 
+	\(
+		\tilde{H}(x_0,t) = \frac{H(x_0,t)}{H(x_0,t)} =1
+	\)
+	für alle $t$. Da $H(x_0,0) = f(x_0) = 1 = g(x_0) = H(x_0, 1)$ gilt, ist
+	\[
+		\tilde{H}(x,0) = H(x,0) = f(x) \quad \text{ und } \quad \tilde{H}(x,1) = H(x,1) = g(x). \qedhere
+	\]
+\end{beweis}
+
+\begin{satz}[{name={Hauptsatz der Algebra}},label=satz:hauptsatz-algebra]
+	Jedes Polynom $p = X^n + a_{n-1} X^{n-1} + \ldots  + a_0 \in \mathbb{C}[X]$ von $\grad p = n \ge 1$ hat eine Nullstelle.
+\end{satz}
+\begin{beweis}
+	Angenommen $p$ habe keine Nullstelle.\marginnote{Der Beweis aus der Übung befindet sich im Anhang \hyperref[sub:B3A4]{\ref*{sub:B3A4} auf Seite \pageref*{sub:B3A4}}}
+	In den Übungen haben wir gezeigt, dass dann $f_n \colon S^1 \to S^1$, $z \mapsto z^n$ homotop zu einer konstanten Abbildung ist. 
+	Aus \cref{prop:abbildungsgrad} folgt dann aber $n=0$.
+\end{beweis}
+% section induzierte_abbildungen (end)
 \cleardoubleoddemptypage
 \pagenumbering{Alph}
 \setcounter{page}{1}
