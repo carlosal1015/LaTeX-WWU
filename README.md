@@ -10,7 +10,7 @@ Als Zwischenlösung lässt sich ein Ordner mit allen Skripten
 
 ### [HIER](https://gitlab.com/JaMeZ-B/LaTeX-WWU/builds/artifacts/master/download?job=build_all) herunterladen.
 
-Die Links aus der folgenden Liste funktionieren aktuell nicht!
+Die Links aus der folgenden Liste funktionieren aktuell nur unzuverlässig!
 
 * SoSe 2017
 	* [Zahlen und elementare Zahlentheorie](https://github.com/JaMeZ-B/LaTeX-WWU/releases/download/latest/ZZT_SS17.pdf "Zahlen und elementare Zahlentheorie") (Phil)
