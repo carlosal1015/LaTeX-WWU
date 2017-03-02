@@ -1503,7 +1503,7 @@ Ein topologischer Raum $X$ ist genau dann wegzusammenhängend, wenn jede stetige
 Wir vereinbaren die folgende Notation: 
 Für $x \in X$ bezeichne $c_x \colon [0,1] \to X$ die konstante Schleife bei $x$, d.h. $c_x(t)= x $ für alle $ t \in [0,1]$.
 
-\begin{definition}[{name=[Kompositionsweg]}]
+\begin{definition}[{name=[Kompositionsweg]},label=def:kompositionsweg]
 	Seien $\omega$ und $\omega'$ Wege in $X$ mit $\omega(1)= \omega'(0)$. 
 	Dann ist der \Index{Kompositionsweg} $\omega * \omega' \colon [0,1] \to X$ definiert durch\marginnote{Man beachte die hier getroffene Konvention bzgl. der Reihenfolge!} 
 	\[
@@ -2380,8 +2380,306 @@ In diesem Fall benutzt der Beweis eine andere Invariante als die Fundamentalgrup
 	Also $q_* \enbrace*{\pi_1 \enbrace*{H_\Delta \backslash \tilde{X}, \hat{x}_0}} = H $. 
 	Mit $\hat{X} \coloneqq H_\Delta \backslash \tilde{X}$ folgt die Behauptung.
 \end{beweis}
-
 % section klassifikation_von_uberlagerungen (end)
+
+\newpage
+\section{Höhere Homotopiegruppen} % (fold)
+\label{sec:hohere_homotopiegruppen}
+\emph{Dieses Kapitel ist nur ein kleiner Exkurs zu einem Thema, das auch -- mehrere -- Vorlesungen füllen könnte.}\smallskip
+
+Sei $(X,x_0)$ ein punktierter Raum. Sei in diesem Abschnitt $I= [0,1]$.
+\begin{description}
+	\item[Wegzusammenhang:] Punkte in $X$ können wir auch wie folgt verstehen: $I^0 = \set{x} \to X$. 
+	Wege in $X$ sind dann Homotopien solcher Abbildungen. 
+	$\pi_0(X,x_0)$ ist dann die (punktierte) Menge der Homotopieklassen von Abbildungen $I^0 \to X$.
+	\item[Fundamentalgruppe:] Die Schleifen in $X$ sind stetige Abbildungen $\omega \colon I\to X$ mit $\omega(0)= x_0 = \omega(1)$. 
+	$\pi_1(X,x_0)$ ist die Menge der Homotopieklassen von Schleifen und heißt die \Index{Fundamentalgruppe}.
+\end{description}
+Ziel: Definition von höher dimensionalen Analoga.
+
+\begin{definition}
+	Seien $\omega_0, \omega_1 \colon I^n \to X$ stetige Abbildungen mit $\omega_0(\partial I^n)= \set{x_0} = \omega_1(\partial I^n)$. 
+	Eine \Index{Homotopie} (relativ zum Rand) zwischen $\omega_0$ und $\omega_1$ ist eine stetige Abbildung $H \colon I^n \times [0,1] \to X$, sodass Folgendes gilt:
+	\begin{itemize}
+		\item $H(s_1, \ldots , s_n, 0) = \omega_0(s_1, \ldots , s_n)$ für alle $(s_1, \ldots , s_n) \in I^n$
+		\item $H(s_1, \ldots , s_n, 1) = \omega_1(s_1, \ldots , s_n)$ für alle $(s_1, \ldots , s_n) \in I^n$
+		\item $H(s_1, \ldots , s_n, t) = x_0$ für alle $t \in [0,1]$, $(s_1, \ldots , s_n) \in \partial I^n$
+	\end{itemize}
+\end{definition}
+
+Homotopie relativ zum Rand definiert eine Äquivalenzrelation auf der Menge der stetigen Abbildungen $I^n \to X$.
+Für $n=1$ erhalten wir die Begriffe aus \cref{sec:die_fundamentalgruppe}.
+
+\begin{definition}[{name=[Höhere Homotopiegruppen]}]
+	Sei $(X,x_0)$ ein punktierter Raum. 
+	Definiere $\pi_n(X,x_0)$ als die Menge der Homotopieklassen $[\omega]$ von stetigen Abbildungen $\omega \colon I^n \to X$ mit $\omega(\partial I^n)=\set{x_0}$.\marginnote{für $n>0$}
+\end{definition}
+
+Wenn wir den Rand auf einen Punkt kollabieren, erhalten wir zum Beispiel für $n=2$:
+\[
+	\begin{tikzcd}
+		I^2 \rar["\omega"] \arrow[d, two heads]& X \\
+		\nicefrac{I^2}{\partial I^2} \urar[dashed, "\exists"]
+	\end{tikzcd} \qquad \qquad 
+	\vcenter{\hbox{\begin{tikzpicture}[scale=0.8]
+		\draw (0,0) rectangle (2,2);
+		\node at (1,1) {$I^2$};
+	\end{tikzpicture}}}
+	\enspace\twoheadrightarrow \enspace
+	\vcenter{\hbox{
+	\begin{tikzpicture}
+		\draw (-1,0) arc (180:360:1cm and 0.5cm) node[right]{$S^2$};
+	    \draw[dashed] (-1,0) arc (180:0:1cm and 0.5cm);
+	    \draw (0,1) arc (90:270:0.5cm and 1cm);
+	    \draw[dashed] (0,1) arc (90:-90:0.5cm and 1cm);
+	    \draw (0,0) circle (1cm);
+	    \shade[ball color=blue!10!white,opacity=0.20] (0,0) circle (1cm);
+	\end{tikzpicture}}}
+\]
+Allgemein erhalten wir für jede stetige Abbildung $\omega \colon I^n \to X$ mit $\omega(\partial I^n) = \set{x_0}$ eine punktierte Abbildung $(S^n, s_0) \to (X,x_0)$.
+
+\begin{definition}[{name=[Analogon zu Kompositionswegen]}]
+	Sei $1 \le k \le n$ und seien  $\omega_1, \omega_2 \colon I^n \to X$ stetig mit $\omega_i(\partial I^n) = \set{x_0}$ für $i=1,2$. Definiere:\marginnote{vergleiche \cref{def:kompositionsweg}}
+	\[
+		\enbrace*{\omega_1 *_k \omega_2} (s_1, \ldots , s_n) \coloneqq \begin{cases}
+			\omega_1 \enbrace[\big]{s_1, \ldots , s_{k-1}, 2 s_k, s_{k+1}, \ldots , s_n} &\text{ falls } 0 \le s_k, \le \frac{1}{2} \\
+			\omega_2 \enbrace[\big]{s_1, \ldots , s_{k-1}, 2 s_k - 1, s_{k+1}, \ldots , s_n} &\text{ falls } \frac{1}{2} \le s_k \le 1 
+		\end{cases} 
+	\]
+\end{definition}
+
+\begin{lemma}[{name={Eckmann-Hilton-Argument}}]
+	Sei $A$ eine Menge mit zwei inneren Verknüpfungen $\boxdot, \diamond \colon A \times A\to A $, sodass gilt:
+	\begin{enumerate}[a)]
+		\item Es gibt $e \in A$ mit $e \boxdot a = a \boxdot e = a = e \diamond a = a \diamond e$ für alle $a \in A$
+		\item Für alle $a,b,c,d \in A$ gilt $(a \boxdot b) \diamond (c \boxdot d) = (a \diamond c) \boxdot (b \diamond d)$.
+	\end{enumerate}
+	Dann stimmen $\boxdot$ und $\diamond $ überein, sind assoziativ und kommutativ.
+\end{lemma}
+\begin{beweis}
+	Es gilt
+	\begin{align*}
+		a \boxdot b &= (e \diamond a) \boxdot (b \diamond e) = (e \boxdot b) \diamond (a \boxdot e) = b \diamond a \\
+		b \diamond a &= (b \boxdot e) \diamond (e \boxdot a) = (b \diamond e) \boxdot (e \diamond a) = b \boxdot a \\
+		a \boxdot (b \boxdot c) &= (a \diamond e) \boxdot (b \diamond c) = (a \boxdot b) \diamond (e \boxdot c) = (a \boxdot b) \boxdot c
+	\end{align*}
+	Es folgt $\boxdot = \diamond$ und dass die Verknüpfung assoziativ und kommutativ ist.
+\end{beweis}
+
+\begin{proposition}[{name=[Gruppenstruktur und induzierte Abbildungen]},label=prop:eig-hom-gruppen]
+	Es gilt:
+	\begin{enumerate}[a)]
+		\item Sei $1 \le k \le n$ und seien $\omega_0, \omega_0', \omega_1, \omega_1' \colon I^n \to X$ stetig mit $\omega_i (\partial I^n) = \set{x_0} = \omega_i'(\partial I^n)$ für $i=0,1$. 
+		Es gelte weiter $[\omega_0] = [\omega_1]$ und $[\omega_0'] = [\omega_1']$ in $\pi_n(X,x_0)$. Dann gilt 
+		\[
+			[\omega_0 *_k \omega_0'] = [\omega_1 *_k \omega_1'] \in \pi_n(X, x_0)
+		\]
+		Schreibe $\cdot_k$ für die induzierte Verknüpfung.
+		\item Seien $1 \le k,l \le n$. Dann gilt $\cdot_k = \cdot_l$. Für $n \ge 2$ ist $\cdot $ kommutativ und außerdem assoziativ.
+		\item $\pi_n(X,x_0)$ ist eine abelsche Gruppe für $n \ge 2$.
+		\item\label{prop:eig-hom-gruppen:enum:4} Sei $f \colon (X,x_0) \to (Y,y_0)$ stetig. 
+		Dann definiert $[\omega] \mapsto [f \circ \omega]$ einen Gruppenhomomorphismus $\pi_n(f) \colon \pi_n(X,x_0) \to \pi_n(Y,y_0)$, falls $n \ge 1$.
+		\item Es ist $\pi_n(\id_X) = \id_{\pi_n(X,x_0)}$ und $\pi_n(f \circ g) = \pi_n(f) \circ \pi_n(g)$.
+		\item Ist $f$ punktiert homotop zu $g$, so gilt $\pi_n(f) = \pi_n(g)$.
+	\end{enumerate}
+\end{proposition}
+\begin{beweis}
+	\begin{enumerate}[a)]
+		\item Sei $H$ eine Homotopie zwischen $\omega_0$ und $\omega_1$ und $H'$ eine Homotopie zwischen $\omega_0'$ und $\omega_1'$. 
+		Dann ist $H *_k H'$ die gesuchte Homotopie. \hfill (vgl. \cref{lem:eig-kompositionsweg})
+		\item Für $n=2$
+		\[
+			\begin{array}{c}
+				(\omega *_1 \omega') \\
+				*_2 \\
+				(\omega'' *_1 \omega''')
+			\end{array}
+			 = 
+			\vcenter{\hbox{\begin{tikzpicture}[scale=0.9]
+				\draw (0,0) grid (2,2);
+				\node at (0.5,0.5){$\omega''$};
+				\node at (0.5,1.5){$\omega$};
+				\node at (1.5,0.5){$\omega'''$};
+				\node at (1.5,1.5){$\omega'$};
+			\end{tikzpicture}}}
+			 = \begin{pmatrix}
+			 	\omega \\
+				*_2 \\
+				\omega''
+			 \end{pmatrix} *_1
+			 \begin{pmatrix}
+			 	\omega' \\
+				*_2 \\
+				\omega'''
+			 \end{pmatrix}
+		\]
+		Mit dem Eckmann-Hilton-Argument folgt $\cdot_k = \cdot_l$, die Kommutativität und die Assoziativität.
+		\item Nur die Existenz von Inversen muss noch gezeigt werden:
+		Gegeben $\omega \colon I^n \to X$. Wähle $1 \le k \le n$ und setze
+		\[
+			\overline{\omega} (s_1, \ldots , s_n) \coloneqq \omega  \enbrace[\big]{s_1, \ldots , s_{k-1} ,1- s_k , s_{k+1}, \ldots , s_n} 
+		\]
+		Dann ist $[\overline{\omega}]$ das Inverse von $[\omega]$, da $[\overline{\omega} *_k \omega ]$ nullhomotop ist.
+		\item[d)--f)] einfach. \qedhere
+	\end{enumerate}
+\end{beweis}
+
+\begin{korollar}[{name=[Die Homotopiegruppen punktiert homöomorpher Räume stimmen überein]}]
+	Es gilt 
+	\[
+		(X,x_0) \simeq (Y,y_0) \implies \pi_n(X,x_0) \cong \pi_n(Y,y_0)
+	\]
+	für alle $n$. Insbesondere ist $\pi_n(X,x_0) = 0$ für $n \ge 2$, wenn  $(X,x_0)$ zusammenziehbar ist.
+\end{korollar}
+
+\begin{proposition}[{name=[für $n\ge 2$ induzieren Überlagerungen Gruppenisomorphismen]},label=prop:iso-covering]
+	Sei $p \colon \hat{X} \to X$ eine Überlagerung und $\hat{x}_0 \in \hat{X}, x_0 \in X$ mit $p(\hat{x}_0) = x_0$ Basispunkte. Dann ist $\pi_n(p) \colon \pi_n(\hat{X}, \hat{x}_0) \to \pi_n(X,x_0)$ ein Isomorphismus für $n \ge 2$.
+\end{proposition}
+\begin{beweis}
+	\emph{Übung: Blatt 10 Aufgabe 3, siehe Anhang \hyperref[sub:B10A3]{\ref*{sub:B10A3} auf Seite \pageref*{sub:B10A3}}.}
+\end{beweis}
+
+\begin{korollar}
+	Es ist $\pi_n(S^1, s_0) = 0$ für $n \ge 2$.
+\end{korollar}
+\begin{beweis}
+	Es gibt eine Überlagerung $\mathbb{R} \to S^1$. 
+	Da $\mathbb{R}$ zusammenziehbar ist, folgt die Behauptung aus \cref{prop:iso-covering}.
+\end{beweis}
+
+\begin{definition}
+	Eine stetige Abbildung $p \colon E \to B$ heißt (Serre-)\Index{Faserung}, falls sie folgende Homotopiehebungseigenschaft hat: 
+	Für jedes $n \ge 0$, jede Homotopie $H \colon I^n \times [0,1] \to B$ und jede partielle Hebung $\tilde{H} \colon I^n \times \set{0} \cup \partial I^n \times [0,1]$ existiert eine Hebung $\overline{H}$ von $H$ entlang $p$, die $\tilde{H}$ fortsetzt. Nenne $p^{-1}(b)$ die \Index{Faser} über $b$. 
+	\[
+		\begin{tikzcd}[row sep=3em, column sep=3em]
+			I^n \times \set{0} \cup \partial I^n \times [0,1] \rar["\tilde{H}"]  \dar[hook]& E \dar["p"] \\
+			I^n \times [0,1] \rar["H"] \urar[dashed,"\overline{H}"]& B
+		\end{tikzcd}
+	\]
+\end{definition}
+
+Man überlegt sich, dass Überlagerungen Faserungen sind(!).
+Ein weiteres triviales Beispiel für eine Faserung ist die Projektion $B \times F \to B$.
+
+\begin{satz}
+	Sei $p \colon E \to B$ eine Faserung. 
+	Seien $b_0 \in B, e_0 \in E$ mit $p(e_0)= b_0$. 
+	Setze $F \coloneqq p ^{-1}(b_0)$. 
+	Sei $i \colon (F, e_0) \hookrightarrow (E,e_0)$ die Inklusion.
+	Dann existiert eine lange exakte Sequenz
+	\[
+		\begin{tikzcd}[row sep=1em]
+			\ldots  \pi_{n+1}(B,b_0) \rar["\partial_{n+1}"] & \pi_n(F,e_0) \rar["\pi_n(i)"] & \pi_n(E,e_0) \rar["\pi_n(p)"]& \pi_n(B,b_0)  \rar["\partial_n"]& \pi_{n-1}(F,e_0) \ldots  \\
+			\qquad \ldots  \qquad  \rar & \pi_1(B,b_0) \rar["\partial_1"] & \pi_0(F,e_0) \rar["\pi_0(i)"]& \pi_0(F,e_0) \rar["\pi_0(p)"]& \pi_0(B,b_0)
+		\end{tikzcd}
+	\]
+	Das heißt
+	\begin{itemize}
+		\item $\partial_n$ ist ein Homomorphismus für $n >2$
+		\item $\ker \pi_n(p) = \im \pi_n(i)$, $\ker( \partial_{n+1}) = \im \pi_{n+1}(p)$, $\ker \pi_n(i) = \im \partial_{n+1}$ für $n \ge 1$
+		\item $\partial_1(x) = [e_0] \iff x \in \im \pi_1(p)$
+		\item $\pi_0(i)(x) = [e_0] \iff x \in \im \partial_1$
+		\item $\pi_0(p)(x) = [b_0] \iff x \in \im \pi_0 (i)$
+	\end{itemize}
+\end{satz}
+\begin{beweis}
+	Definition von $\partial_n$: Sei $\omega \colon I^n \to B$ mit $\omega(\partial I^n) = \set{b_0}$. 
+	Fasse $\omega$ als Homotopie $I^{n-1} \times [0,1] \to B$ auf.
+	Dann ist die konstante Abbildung $\mathrm{const}_{e_0} \colon I^{n-1} \times \set{0} \cup \partial I^{n-1} \times [0,1] \to E$ mit Wert $e_0$ eine partielle Hebung.
+	Da $p$ eine Faserung ist, existiert eine Hebung $\tilde{\omega} \colon I^{n-1} \times [0,1] \to E$, die $\mathrm{const}_{e_0}$ fortsetzt.
+	\[
+		\begin{tikzcd}[row sep=3em, column sep=4em]
+			I^{n-1} \times \set{0} \cup \partial I^{n-1} \times [0,1] \rar["\mathrm{const}_{e_0}"] \dar[hook]& E \dar["p"] \\
+			I^{n-1} \times [0,1] \rar["\omega"] \urar[dashed,"\tilde{\omega}"]& B 
+		\end{tikzcd}
+	\]
+	Definiere nun $\partial_n([\omega]) \coloneqq \benbrace*{\tilde{\omega}|_{I^{n-1} \times \set{1}}}$.
+	\begin{description}
+		\item[Wohldefiniertheit:] Seien $\omega, \omega' \colon I^n \to B$ mit $[\omega]=[\omega']$, d.h. es gibt eine Homotopie $H \colon I^n \times [0,1] \to B$ zwischen $\omega$ und $\omega'$. Sei 
+		\[
+			J \coloneqq I^{n-1} \times \set{0} \times [0,1] \quad \cup \quad I^n \times\set{0}\quad\cup\quad I^n \times\set{1}\quad \cup \quad \partial I^{n-1} \times I \times [0,1]  
+		\]
+		Diese Menge ist homöomorph zu $I^n \times \set{0} \cup \partial I^n \times [0,1]$ unter dem Homöomorphismus $I^{n+1} \cong I^{n+1}$, der die letzte und vorletzte Koordinate vertauscht.
+		\begin{figure}[htbp]
+			\centering{\qquad \qquad 
+			\begin{tikzpicture}[draw/.append style=thick, scale=0.9]
+				% draw the left part
+				\draw (0,0,-4) rectangle (1,1,-4);
+				\draw[dashed] (0,0) -- (0,0,-4);
+				\draw (1,1) -- (1,1,-4);
+				\draw (0,1) -- (0,1,-4);
+				\draw (1,0) -- (1,0,-4);
+				\draw[decorate, 
+					decoration={brace,amplitude=5pt, mirror, raise=3pt}, 
+					] (1,0) -- (1,0,-4) node[below right, midway, xshift=0.2cm]{$[0,1]$};
+				\draw[decorate, 
+					decoration={brace,amplitude=5pt, mirror, raise=3pt}, 
+					] (0,0) -- (1,0) node[below, midway, yshift=-0.2cm]{$I^2$};
+				\draw (0,0) rectangle (1,1);
+		
+				% draw right part
+				\draw[SpringGreen4, fill=SpringGreen3!40, fill opacity=0.3] (8,0,-4.5) rectangle (9,1,-4.5);
+				\node[SpringGreen4,right] at (9,0.5,-4.5) {$I^2 \times \set{1}$};
+		
+		
+				\draw[Firebrick2, fill=Firebrick1!40, fill opacity=0.3] (7.3,0) -- (7.3,1) -- (7.3,1,-4) -- (7.3,0,-4) -- cycle ;
+				\node[above left, Firebrick2] at (7.3,1,-2) {$I \times \set{0} \times [0,1]$};
+		
+				\draw[RoyalBlue3, fill=RoyalBlue2!40, fill opacity=0.3] (8,-0.5) -- (9,-0.5) -- (9,-0.5,-4) -- (8,-0.5,-4) -- cycle ;
+				\node[RoyalBlue3, below right] at (9,-0.5,-2) {$\partial I \times I \times [0,1]$} ;
+		
+				\draw[SpringGreen4, fill=SpringGreen3!40, fill opacity=0.3] (8,0,0.5) rectangle (9,1,0.5);
+				\node[SpringGreen4,below left] at (8,0,0.5) {$I^2 \times \set{0}$};
+		
+				\draw[RoyalBlue3, fill=RoyalBlue2!40, fill opacity=0.3] (8,1.5) -- (9,1.5) -- (9,1.5,-4) -- (8,1.5,-4) -- cycle ;
+			\end{tikzpicture}
+			\caption{Die Menge $J$ für $n=2$}}
+		\end{figure}
+		Wir können eine partielle Hebung $\bar{H} \colon J \to E$ von $H$ definieren, indem wir $\bar{H} \big|_{I^n \times \set{0}} = \tilde{\omega}$ und $\bar{H} \big|_{I^n \times \set{1}} = \tilde{\omega'}$ setzen und $\bar{H}$ sonst konstant $e_0$ sein lassen ($\tilde{\omega}$ und $\tilde{\omega'}$ sind gewählte Hebungen von $\omega$ und $\omega'$). 
+		Nach der Vorbemerkung über $J$ können wir $\bar{H}$ zu einer Hebung $\tilde{H}$ von $H$ fortsetzen. 
+		Dann ist $\tilde{H} |_{I^{n-1} \times \set{1} \times [0,1] }$ eine Homotopie zwischen $\tilde{\omega} |_{I^{n-1} \times \set{1}}$ und $\tilde{\omega'} |_{I^{n-1} \times \set{1}}$ in $F$.
+		\item[Homomorphismus:] Wir betrachten Exaktheit nur an den Stellen, an denen alle beteiligten Abbildungen Homomorphismen sind.
+		\item[Exaktheit bei $\pi_n(E,e_0)$:] Sei $[\omega ] \in \pi_n(F, e_0)$. 
+		Dann ist $p \circ i \circ \omega \equiv b_0$, also $\im \pi_n (i) \subseteq \ker \pi_n(p)$.
+	
+		Sei nun $[\omega ] \in \pi_n(E, e_0)$, sodass eine Homotopie $H \colon I^n \times [0,1] \to B$ zwischen $p \circ \omega$ und $\mathrm{const}_{b_0}$ existiert, also $[\omega] \in \ker \pi_n(p)$. 
+		Indem wir $\omega$ durch die konstante Abbildung auf $I^n \times \set{0} \cup \partial I^n \times [0,1]$ fortsetzen, können wir die Homotopiehebungseigenschaft anwenden und erhalten eine Hebung $\bar{H}$ von $H$. 
+		Diese Hebung ist eine Homotopie zwischen $\omega$ und $\omega' \coloneqq \bar{H} |_{I^n \times \set{1} }$. 
+		Da $p \circ \omega' = \mathrm{const}_{b_0}$, ist $\omega' \colon I^n \to F$. 
+		Also $\im \pi_n(i) \subseteq \ker \pi_n(p)$.
+		\item[Exaktheit bei $\pi_n(B, b_0)$:] Sei $\omega \colon I^n \to E$. 
+		Dann ist $\omega$ selbst eine zulässige Hebung für $p \circ \omega$, wie wir sie in der Definition von $\partial_n$ benutzt haben. 
+		Also ist
+		\[
+			\partial_n \enbrace*{[p \circ \omega]} = \benbrace*{\omega |_{I^{n-1} \times \set{1}}}  = \benbrace*{\mathrm{const}_{e_0}}, 
+		\]
+		d.h. $\im \pi_n(p) \subseteq \ker \partial_n$.
+	
+		Gelte nun $[\omega] \in \ker \partial_n$, d.h.\marginnote{Notation wie in Def. von $\partial_n$} es gibt eine Homotopie $H$ zwischen $\tilde{\omega}|_{I^{n-1} \times\set{1}}$ und $\mathrm{const}_{e_0}$ in $F$.
+		Dann definiert $[\tilde{\omega} *_n H]$ ein Element in $\pi_n(E,e_0)$ und $p \circ (\tilde{\omega} *_n H) = \omega *_n \mathrm{const}_{b_0}$, da $H$ eine Homotopie in n$F$ ist. 
+		Also gilt $\ker \partial_n \subseteq \im \pi_n(p)$.
+		\item[Exaktheit bei $\pi_n(F, e_0)$:] Sei $[\omega] \in \pi_n(B,b_0)$. 
+		Wähle $\tilde{\omega}$ wie in der Definition von $\partial_n$. 
+		Dann ist $\tilde{\omega}$ eine Homotopie zwischen $i \circ \tilde{\omega} |_{I^{n-1} \times \set{1}}$ und $\mathrm{const}_{e_0}$, also $\im \partial_{n+1} \subseteq \ker \pi_n(i)$.
+	
+		Sei nun $[\omega] \in \pi_n(F,e_0)$, sodass eine Homotopie $H \colon I^n \times [0,1] \to E$ zwischen $i \circ \omega$ und $\mathrm{const}_{e_0}$ existiert. 
+		Diese Homotopie ist eine Hebung von $p \circ H$, die zeigt, dass $\partial_{n+1} \enbrace*{ [p \circ H]} = [\omega]$. 
+		Also $\ker \pi_n(i) \subseteq \im \partial_{n+1}$. \qedhere
+	\end{description}
+\end{beweis}
+
+Diesen Satz kann man wie folgt anwenden:
+Es gibt eine Faserung $S^3 \xrightarrow{p} S^2$, sodass $p^{-1}(s) \cong S^1$ (\enquote{Hopf-Faserung}\index{Hopf-Faserung}). 
+Es gilt $\pi_1(S^n)= 1$ für $n \ge 2$ und $\pi_2(S^3)= 0$.
+Betrachte nun:
+\begin{align*}
+	\ldots  &\longrightarrow \underbrace{\pi_3(S^1)}_{=0} \longrightarrow \pi_3(S^3) \longrightarrow \pi_3(S^2) \longrightarrow \underbrace{\pi_2(S^1)}_{=0} \\
+	&\longrightarrow \underbrace{\pi_2(S^3)}_{=0} \longrightarrow \pi_2(S^2) \longrightarrow \pi_1(S^1) \longrightarrow \underbrace{\pi_1(S^3)}_{=1} \longrightarrow \ldots 
+\end{align*}
+Mit Exaktheit folgt $\pi_2(S^2) \cong \pi_1(S^1) \cong \mathbb{Z}$ und $\pi_3(S^3) \cong \pi_3(S^2)$. 
+Tatsächlich gilt sogar $\pi_3(S^3) \cong \mathbb{Z}$.
+
+% section hohere_homotopiegruppen (end)
 \cleardoubleoddemptypage
 \pagenumbering{Alph}
 \setcounter{page}{1}
