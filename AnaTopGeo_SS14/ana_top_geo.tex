@@ -2218,9 +2218,170 @@ In diesem Fall benutzt der Beweis eine andere Invariante als die Fundamentalgrup
 \begin{beweis}
 	Wir haben in \cref{bem:untergrp-decktrans} schon gesehen, dass $q'$ eine Überlagerung ist unabhängig davon ob $p$ normal ist. Ist $p$ zusätzlich normal, so ist $q'$ eine bijektive Überlagerung und daher automatisch ein Homöomorphismus.
 \end{beweis}
-
-
 % section eigentlich_diskontinuierliche_wirkungen (end)
+
+\newpage
+\section{Klassifikation von Überlagerungen} % (fold)
+\label{sec:klassifikation_von_uberlagerungen}
+
+\begin{satz}[{name={Hebungssatz}},label=satz:hebungssatz]
+	Sei $p \colon \hat{X} \to X$ eine Überlagerung. 
+	Sei $x_0 \in X, \hat{x}_0 \in \hat{X}$, $p(\hat{x}_0)= x_0$. 
+	Sei $Z$ wegzusammenhängend und lokal wegzusammenhängend. 
+	Sei $z_0 \in Z$, $f \colon Z \to X$ stetig mit $f(z_0)= x_0$. 
+	Dann gibt es eine Hebung $\hat{f} \colon Z \to \hat{X}$ mit $\hat{f} (z_0) = \hat{x}_0$ genau dann, wenn
+	\begin{equation}
+		f_*\enbrace[\big]{\pi_1 (Z, z_0)} \subseteq  p_* \enbrace[\big]{\pi_1(\hat{X}, \hat{x}_0)} \tag{$\star$}\label{eq:hebungssatz}
+	\end{equation}
+	als Untergruppe von $\pi_1(X,x_0)$ gilt. 
+	In diesem Fall ist $\hat{f}$ eindeutig.
+	\[
+		\begin{tikzcd}
+			X & \hat{X} \lar[swap]{p} \\
+			Z \uar{f}  \urar[dashed, swap]{\hat{f}}&
+		\end{tikzcd}
+	\]
+\end{satz}
+\begin{beweis}
+	Existiert $\hat{f}$, so folgt \eqref{eq:hebungssatz} aus $f_* = p_* \circ\hat{f}_*$. 
+	Sei umgekehrt \eqref{eq:hebungssatz} erfüllt. 
+	Sei $z\in Z$. Sei $\omega \colon [0,1]\to Z$ ein Weg von $z_0$ nach $z$.
+	Sei $\hat{\omega} \colon [0,1] \to \hat{X}$ die eindeutige Hebung von $f \circ \omega$ mit $\hat{\omega}(0)= \hat{x}_0$ (siehe Homotopiehebungssatz, \ref{satz:hebung-homotopie}). 
+	Existiert $\hat{f}$, so ist auch $\hat{f} \circ \omega$ eine Hebung von $f \circ \omega$ mit $\hat{f} \circ \omega (0) = \hat{f}(z_0)= \hat{x}_0$, also $\hat{\omega} = \hat{f} \circ \omega$ und insbesondere ist $\hat{f}(z)= \hat{f} \enbrace[\big]{\omega(1)} = \hat{\omega}(1)$. Daher ist $\hat{f}$ eindeutig, falls es existiert. \smallskip \\
+	Zur Existenz setzen wir $\hat{f}(z) := \hat{\omega}(1)$. Wir müssen zeigen:
+	\begin{description}
+		\item[Wohldefiniertheit:] Sei $\eta \colon [0,1] \to Z$ ein zweiter Weg von $z_0$ nach $z$. 
+		Sei $\hat{\eta} \colon [0,1] \to \hat{X}$ die zugehörige Hebung. 
+		Zu zeigen: $\hat{\eta}(1) = \hat{\omega}(1)$. 
+		Betrachte die Schleife $\overline{\omega} * \eta$ in $Z$. 
+		Dann ist $\overline{\hat{\omega}} * \hat{\eta}$ eine Hebung von $f \circ (\overline{\omega} * \eta)$. 
+		Aus \eqref{eq:hebungssatz} folgt, dass $\benbrace*{f \circ (\overline{\omega} * \eta )}$ im Bild von $p_* \colon \pi_1(\hat{X}, \hat{x}_0) \to \pi_1(X,x_0)$ liegt. 
+		Mit dem Homotopiehebungssatz ergibt sich, dass auch $\overline{\hat{\omega}} * \hat{\eta}$ eine Schleife ist (Übung!). 
+		Damit folgt $\hat{\omega}(1)= \hat{\eta}(1)$.
+		\item[Stetigkeit:] Sei $U \subseteq \hat{X}$ offen. 
+		Sei $z \in \hat{f} ^{-1} (U)$. 
+		Sei $V$ eine elementare Umgebung von $f(z)$. 
+		Indem wir $V$ wenn nötig klein machen, erhalten wir eine offene Umgebung $V'$ von $\hat{f}(z)$, die unter $p$ homöomorph auf $V$ abgebildet wird. 
+		Da $f$ stetig ist und $Z$ lokal wegzusammenhängend ist, gibt es eine wegzusammenhängende Umgebung $W$ von $z$ mit $f(W) \subseteq V$. 
+		Sei nun $\omega \colon [0,1] \to Z$ ein Weg von $z_0$ nach $z$.
+		Zu $z' \in W$ gibt es einen Weg $\eta \colon [0,1] \to W$ von $z$ nach $z'$ und $\omega * \eta$ ist ein Weg von $z_0$ nach $z'$. 
+		Insbesondere ist 
+		\[
+			\hat{f}(z') = \widehat{(\omega * \eta)} (1)= \hat{\omega} * p\big|_{V'} ^{-1} (\eta) (1) = \enbrace*{p \big|_{V'}} ^{-1} \enbrace[\big]{\eta(1)} \in V'  
+		\]
+		Also $\hat{f}(W) \subseteq V' \subseteq U$ und $\hat{f}$ ist stetig. \qedhere
+	\end{description}
+\end{beweis}
+
+\begin{satz}[{name={Eindeutigkeit}}]
+	Seien $p_1 \colon \hat{X}_1 \to X$ und $p_2 \colon \hat{X}_2 \to X$ zwei Überlagerungen. 
+	Dabei seien $\hat{X}_1$ und $\hat{X}_2$ wegzusammenhängend und lokal wegzusammenhängend.
+	Seien $\hat{x}_1 \in \hat{X}_1$, $\hat{x}_2 \in \hat{X}_2$ mit $p_1(\hat{x}_1) = x_0 = p_2(\hat{x}_2)$.
+	Dann sind äquivalent:
+	\begin{enumerate}[a)]
+		\item Es gibt einen Homöomorphismus $f \colon \hat{X}_1 \to \hat{X}_2$ mit $p_2 \circ f = p_1$ und $f(\hat{x}_1) = \hat{x}_2$.
+		\item ${p_1}_*\enbrace*{\pi_1 \enbrace*{\hat{X}_1, \hat{x}_1}} = {p_2}_* \enbrace*{\pi_1 \enbrace*{\hat{X}_2, \hat{x}_2}}$ als Untergruppen von $\pi_1(X,x_0)$.
+	\end{enumerate}
+\end{satz}
+\begin{beweis}
+	Ist $f$ wie in a), so ist $f_* \colon \pi_1 \enbrace*{\hat{X}_1, \hat{x}_1} \to \pi_1 \enbrace*{\hat{X}_2, \hat{x}_2}$ ein Isomorphismus und es folgt 
+	\[
+		(p_1)_* \enbrace*{\pi_1 \enbrace*{\hat{X}_1, \hat{x}_1}} =  (p_2 \circ f)_* \enbrace*{\pi_1 \enbrace*{\hat{X}_1, \hat{x}_1}} 
+		= (p_2)_* \circ (f)_* \enbrace*{\pi_1 \enbrace*{\hat{X}_1, \hat{x}_1}} = (p_2)_* \enbrace*{\pi_1 \enbrace*{\hat{X}_2, \hat{x}_2}}
+	\]
+	Für die umgekehrte Implikation betrachte
+	\[
+		\begin{tikzcd}
+			\mbox{ } & \hat{X}_2 \dar{p_2}\\
+			\hat{X}_1 \rar{p_1} \urar[dashed]{f}& X
+		\end{tikzcd}
+	\]
+	Nach dem Hebungssatz \ref{satz:hebungssatz} existiert $f \colon \hat{X}_1 \to \hat{X}_2$ mit $p_2 \circ f = p_1$, $f(\hat{x}_1) = \hat{x}_2$. Betrachte nun
+	\[
+		\begin{tikzcd}
+			\mbox{} & \hat{X}_1\dar{p_1} \\
+			\hat{X}_2 \rar{p_2} \urar[dashed]{g}&  X
+		\end{tikzcd}
+	\]
+	Wieder liefert der Hebungssatz ein $g \colon \hat{X}_2 \to \hat{X}_1$ mit $p_1 \circ  g = p_2$, $g(\hat{x}_2) = \hat{x}_1$. Betrachte nun
+	\[
+		\begin{tikzcd}[column sep=4em, row sep=4em]
+			\mbox{ } & \hat{X}_1 \dar{p_1}\\
+			\hat{X}_1 \rar{p_1} \urar[swap]{\id_{\hat{X}_1}} \urar[bend left]{g \circ f} & X
+		\end{tikzcd}
+	\]
+	Die Eindeutigkeit im Hebungssatz liefert $g \circ f = \id_{\hat{X}_1}$. Analog folgt $f \circ g = \id_{\hat{X}_2}$.
+\end{beweis}
+
+\begin{satz}[{name=[universelle Überlagerung]}]
+	Sei $X$ wegzusammenhängend, lokal wegzusammenhängend und lokal einfach zusammenhängend. 
+	Dann gibt es eine wegzusammenhängende und einfach zusammenhängende  Überlagerung $\tilde{X} \xrightarrow{p} X$.
+\end{satz}
+\begin{beweis}[Skizze]
+	Sei $x_0 \in X$. Sei $P = \set[\big]{{\omega \colon [0,1] \to X \text{ Weg}} \given \omega(0)=x_0} $. Sei 
+	\[
+		\tilde{X} \coloneqq \sfrac{P}{\text{Homotopie mit festen Endpunkten}}
+	\] 
+	Dann induziert $\omega \mapsto \omega(1)$ eine wohldefinierte Abbildung $p \colon \tilde{X} \to X$. 
+	Sei $\omega \in P$ und $V$ eine wegzusammenhängende, einfach zusammenhängende Umgebung von $\omega(1)$ in $X$. Setze 
+	\[
+		U(V,\omega) = \set[\big]{{[\omega * \eta]} \given \rule{0cm}{1em} \eta \colon [0,1] \to V \text{ Weg mit } \eta(0)= \omega(1)} 
+	\]
+	Die $U(V,\omega)$ bilden die Basis der Topologie von $\tilde{X}$. 
+	Da $V$ wegzusammenhängend und einfach zusammenhängend ist, ist 
+	\[
+		p \Big|_{U(V,\omega)} \colon U(V,\omega) \to V
+	\]
+	bijektiv. 
+	Da $X$ lokal wegzusammenhängend und lokal einfach zusammenhängend ist, ist $p \big|_{U(V,\omega)}$ sogar ein Homöomorphismus. 
+	Damit ist $V$ eine elementare Umgebung von $\omega(1)$. 
+	Da $X$ wegzusammenhängend ist, ist $p$ auch surjektiv und $p \colon \tilde{X} \to X$ eine Überlagerung. 
+	
+	Zu zeigen bleibt, dass $\tilde{X}$ wegzusammenhängend ist: Sei $\tilde{x}_0 \colon [c_{x_0}] \in \tilde{X}$. 
+	Sei $\tilde{x} = [\omega] \in \tilde{X}$. Sei $\omega_s \colon [0,1] \to X$ mit
+	\[
+		\omega_s(t) = \begin{cases}
+			\omega(t), &\text{ falls } t \le s\\
+			\omega(s), &\text{ falls } t \ge s
+		\end{cases}
+	\]
+	Dann ist $\alpha \colon [0,1] \to \tilde{X}$ mit $\alpha(s) = [\omega_s]$ ein Weg von $\tilde{x}_0$ nach $\tilde{x}$. 
+	Damit ist $\tilde{X}$ wegzusammenhängend.
+	Dass $\tilde{X}$ einfach zusammenhängend ist, zeigen wir an dieser Stelle nicht.
+\end{beweis}
+
+\begin{definition}[{name=[universelle Überlagerung]}]
+	$\tilde{X} \xrightarrow{p} X$ heißt die \bet{universelle Überlagerung}\index{Überlagerung!universell} von $X$.
+\end{definition}
+
+\begin{satz}[{name={Existenz}}]
+	Sei $X$ wegzusammenhängend, lokal wegzusammenhängend und lokal einfach zusammenhängend. Sei $x_0 \in X$. 
+	Dann gibt es zu jeder Untergruppe $H \le \pi_1(X,x_0)$ eine Überlagerung $q \colon \hat{X} \to X$ und $\hat{x}_0 \in p^{-1} (x_0)$ mit $q_* \enbrace*{\pi_1(\hat{X}, \hat{x}_0)} = H$.
+\end{satz}
+\begin{beweis}
+	Sei $p \colon \tilde{X} \to X$ die universelle Überlagerung. 
+	Der Hebungssatz\marginnote{Setze dazu $Z=\hat{X}$ in \cref{satz:hebungssatz}} impliziert, dass $p \colon \tilde{X} \to X$ normal ist. 
+	Es folgt $\Delta(p) \backslash \tilde{X} \cong X$ und $\pi_1(X, x_0) \simeq \Delta(p)$. 
+	Genauer: Zu $\tilde{x}_0 \in p ^{-1}(x_0)$ gibt es einen Isomorphismus $\varphi \colon \Delta (p) \to \pi_1(X,x_0)$ mit 
+	\[
+		\varphi(f) = [p \circ \tilde{\omega}_f],
+	\]
+	wobei $\tilde{\omega}_f \colon [0,1] \to \tilde{X}$ ein Weg von $\tilde{x}_0$ nach $f (\tilde{x}_0)$ ist. 
+	Setze $H_\Delta \coloneqq \varphi ^{-1}(H)  \le \Delta(p)$. 
+	Wir erhalten Überlagerungen $\tilde{X} \xrightarrow{q'} H_\Delta \backslash \tilde{X} \xrightarrow{q} X $ mit $q'(x) = H_\Delta x$ und $q (H_\Delta x) = p(x)$. 
+	Da $\tilde{X}$ einfach zusammenhängend ist, ist $\pi_1 \enbrace*{ H_\Delta \backslash \tilde{X}, H_\Delta \hat{x}_0} \cong H_\Delta$ nach \cref{satz:fund-edk}. 
+	Sei $\hat{x}_0 \coloneqq H_\Delta \tilde{x}_0$.
+	Genauer gibt es einen Isomorphismus
+	\mapdef{\psi \colon H_\Delta}{\pi_1 \enbrace*{H_\Delta \backslash \tilde{X}, \hat{x}_0}}{f}{\benbrace*{q' \circ  \omega_f}}{\cong}
+	Es folgt 
+	\[
+		q_* \enbrace[\big]{\psi(f)} = q_* \benbrace*{q' \circ \omega_f} = \benbrace*{q \circ q' \circ \omega_f} = \benbrace*{p \circ \omega_f} = \varphi(f) 
+	\]
+	Also $q_* \enbrace*{\pi_1 \enbrace*{H_\Delta \backslash \tilde{X}, \hat{x}_0}} = H $. 
+	Mit $\hat{X} \coloneqq H_\Delta \backslash \tilde{X}$ folgt die Behauptung.
+\end{beweis}
+
+% section klassifikation_von_uberlagerungen (end)
 \cleardoubleoddemptypage
 \pagenumbering{Alph}
 \setcounter{page}{1}
