@@ -1604,6 +1604,206 @@ Nach obigem \cref{lem:einf-zsmh-homotopie} folgt nun, dass $X$ genau dann einfac
 \end{beweis}
 % section die_fundamentalgruppe (end)
 
+\newpage
+\section{Die Windungszahl} % (fold)
+\label{sec:die_windungszahl}
+Im vorigen Abschnitt haben wir die Fundamentalgruppe definiert; wir wollen nun einige dieser Gruppen ausrechnen.
+Insbesondere wollen wir dazu die folgenden Fragen klären:
+\[
+	\pi_1 \enbrace*{\mathbb{R}^2 \setminus \set{0}, x_0 } = \,? \qquad \pi_1 \enbrace*{S^1, x_0} = \,?  
+\]
+
+\begin{proposition}[{name=[Hebung eines Weges auf der 1-Sphäre in die reellen Zahlen]},label=prop:hebung-windung]
+	Sei $p \colon \mathbb{R} \to S^1$ definiert durch $p(t) = e^{2 \pi i t}$. 
+	Sei $\omega \colon [0,1] \to S^1$ stetig und $t_0 \in \mathbb{R}$ mit $p(t_0) = \omega(0)$.
+	Dann gibt es eine eindeutige stetige Abbildung $\hat{\omega} \colon [0,1] \to \mathbb{R}$ mit $\hat{\omega}(0) = t_0$ und $p  \circ  \hat{\omega} = \omega$.
+	\[
+		\begin{tikzcd}
+			\set{0} \rar{t_0} \dar& \mathbb{R} \dar{p} \\
+			{[0,1]} \rar{\omega} \urar[dashed]{\hat{\omega}}& S^1 
+		\end{tikzcd}
+	\]
+	Ist $\eta \colon [0,1] \to S^1$ eine weitere Abbildung mit $[\eta] = [\omega]$ und $\hat{\eta} \colon [0,1] \to \mathbb{R}$ mit $\hat{\eta}(0)= t_0$, $p \circ \hat{\eta} = \eta$ so gilt $\hat{\eta}(1) = \hat{\omega}(1)$.
+\end{proposition}
+\begin{beweis}
+	\emph{Mit dem Homotopiehebungssatz (siehe \cref{satz:hebung-homotopie}).}
+\end{beweis}
+
+\noindent\begin{minipage}{.85\textwidth}
+	\begin{definition}[{name=[Windungszahl]}]
+		Sei $\omega \colon [0,1] \to S^1$ eine Schleife in $S^1$ mit $\omega(0) = \omega(1) = 1$. Sei $\hat{\omega} : [0,1] \to \mathbb{R}$ mit $p \circ  \hat{\omega} = \omega$ und $\hat{\omega}(0)=0$. 
+		Dann heißt $\hat{\omega}(1) \in \mathbb{Z} = p^{-1}(1)$ die \Index{Windungszahl} von $\omega$.
+	\end{definition}
+
+	\begin{satz}[{name=[Windungszahl definiert Isomorphismus der Fundamentalgruppe]}]
+		Die Windungszahl definiert einen Isomorphismus $d \colon \pi_1(S^1,1) \to \mathbb{Z}$, $[\omega] \mapsto \hat{\omega}(1)$.
+	\end{satz}
+	\begin{beweis}
+		Nach \cref{prop:hebung-windung} ist $d$ eine wohldefinierte Abbildung.
+	
+		Für die Surjektivität betrachten wir stetige Abbildungen $\hat{\omega}_n : [0,1] \to \mathbb{R}$ gegeben durch $\hat{\omega}_n (t) = t \cdot n$ für $n \in \mathbb{Z}$.
+		Dann ist
+		\[
+			d \enbrace[\big]{ \benbrace*{p \circ  \hat{\omega}_n}} = \hat{\omega}_n(1) = n 
+		\]
+		und $d$ somit surjektiv.
+	
+		Wir zeigen nun, dass $d$ ein Gruppenhomomorphismus ist.
+		Seien dazu $\omega, \eta \colon [0,1] \to S^1$ zwei Schleifen mit $\omega(0)= \eta(0) = 1$.
+		Seien $\hat{\omega}, \hat{\eta} \colon [0,1] \to \mathbb{R}$ Hebungen mit $\hat{\eta}(0)=0, \hat{\omega}(0)=0$, $p \circ  \hat{\omega} = \omega$, $p \circ \hat{\eta} = \eta$.
+		Es gilt also $d( [\omega]) = \hat{\omega}(1)$ und $d([\eta]) = \hat{\eta}(1)$.
+		Sei nun $\hat{\eta}_+ \colon [0,1] \to \mathbb{R}$ gegeben durch $\hat{\eta}_+ (s) = \hat{\eta}(s) + \hat{\omega}(1)$.
+		Dann ist $\hat{\omega} * \hat{\eta}_+$ wohldefiniert und es gilt $\enbrace*{\hat{\omega} * \hat{\eta}_+}(0) = 0 $ sowie $\enbrace*{\hat{\omega} * \hat{\eta}_+}(1) = \hat{\eta}(1) + \hat{\omega}(1)$.
+		Also folgt
+		\[
+			d \enbrace[\big]{[\omega * \eta]} = \enbrace*{ \hat{\omega} * \hat{\eta}_+} (1) = \hat{\eta}(1) + \hat{\omega}(1) = d([\omega]) + d([\eta]).
+		\]
+	
+		Kommen wir schließlich zur Injektivität:
+		Sei $\omega \colon [0,1] \to S^1$ eine Schleife mit $d([\omega]) = 0$.
+		Dann gibt es $\hat{\omega} \colon [0,1] \to \mathbb{R}$ mit $\hat{\omega}(0)= 0 = \hat{\omega}(1)$ und $p \circ  \hat{\omega} = \omega$.
+		Nun ist $H \colon [0,1] \times [0,1] \to \mathbb{R}$ mit 
+		\[
+			H (s,t) \coloneqq (1-t)\cdot  \hat{\omega}(s)
+		\]
+		eine Homotopie mit festen Endpunkten zwischen $\hat{\omega}$ und $c_0$.
+		Dann ist $p \circ H$ eine Homotopie mit festen Endpunkten zwischen $\omega$ und $c_1$.
+		Also $[\omega] = e \in \pi_1(S^1,1)$.
+	\end{beweis}
+\end{minipage}%
+\makebox[0pt][l]{\begin{minipage}{.3\textwidth}
+	\captionsetup{type=figure, skip=1pt}
+	\centering{
+	\tikzsetnextfilename{windungszahl}
+	\makebox[0pt]{\mbox{ }\hspace{1em}\begin{tikzpicture}[scale=0.7, yscale=1.1, font=\Large]
+		\begin{axis}[
+			z post scale=3,
+			xmin=-1.5, xmax=3,
+			zmin=-22,
+			view={15}{18},
+			hide axis,
+			]
+		\draw[dashed, gray] (axis cs: 1,0,-19) -- (axis cs: 1,0,28);
+		\addplot3[
+			domain=0:2*pi,
+			smooth,
+			samples=50,
+			samples y=1,
+			ultra thick,
+			postaction={decorate},
+			decoration={markings,
+				mark=at position 0.25 with {\arrow{stealth}},
+				mark=at position 0.75 with {\arrow{stealth}}}]
+			({cos(deg(x))}, {sin(deg(x))}, -17);
+		\addplot3[
+			domain=0:2*pi,
+			smooth,
+			samples=50,
+			samples y=1,
+			ultra thick,
+			Firebrick2,
+			dashed,
+			-stealth,
+			]
+			({cos(deg(x))}, {sin(deg(x))}, -17) node[midway, above left]{$\omega$};
+		\node[pin=0:$1 \in S^1$, minimum size=0.09cm, draw=black, thick, fill=Chartreuse3, inner sep=0.008cm, circle] at (axis cs: 1,0,-17){};
+		\addplot3[
+			domain=-1*pi:9*pi,
+			smooth,
+			samples=100,
+			samples y=1,
+			ultra thick,
+			postaction={decorate},
+			decoration={markings,
+			mark=between positions 0.05 and 0.99 step 0.1 with {\arrow{stealth}}},%
+			]
+			({cos (deg(x) )},{sin(deg(x))}, {x} );
+		\addplot3[
+			domain=0:2*pi,
+			smooth,
+			samples=50,
+			samples y=1,
+			ultra thick,
+			dashed,
+			-stealth,
+			Firebrick2,
+			]
+			({cos (deg(x) )},{sin(deg(x))}, {x} ) node[midway, above left]{$\omega$};
+		\draw[-to, very thick] (axis cs:0,0,-8) -- ++(axis direction cs: 0,0,-3.5) node[midway,left]{$p$};
+		\foreach \t in {0,1,2,3,4} {\edef\temp{\noexpand
+			\node[pin=0:$\t$, minimum size=0.11cm,draw, thick,circle, fill=Chartreuse3, inner sep=0.01cm] at (axis cs: 1,0,\t*2*pi){}; 
+		} \temp}
+		\node at (axis cs: 0,0,33) {$\mathbb{R}$};
+		\end{axis}
+	\end{tikzpicture}}
+	\caption{Schleife $\omega$ mit der Windungszahl $1$}}
+\end{minipage}}
+
+\begin{definition}[{name=[Überlagerung und elementare Umgebung]}]
+	Eine surjektive stetige Abbildung $p \colon \hat{X} \to X$ heißt eine \Index{Überlagerung}, falls es zu jedem $x \in X$ eine Umgebung $U$ gibt, so dass sich $p^{-1}(U)$ schreiben lässt als die disjunkte Vereinigung von offenen Mengen $U_i \subseteq \hat{X}$ und für jedes $i$ die Einschränkung $p\big|_{U_i} \colon U_i \to U$ ein Homöomorphismus ist. 
+	Eine solche Umgebung $U$ heißt eine \bet{elementare Umgebung}\index{Umgebung!elementare Umgebung}.
+\end{definition}
+
+\begin{beispiel}[{name=[Überlagerungen]}]
+	\begin{enumerate}[(1)]
+		\item $p \colon \mathbb{R} \to S^1$, $t \mapsto e^{2 \pi  i t}$ ist eine Überlagerung.
+		\item $p_n \colon S^1 \to S^1$, $z \mapsto z^n$ ist eine Überlagerung.
+		\item Sind $p \colon \hat{X} \to X$, $q : \hat{Y} \to Y$ Überlagerungen, so ist $p \times q \colon \hat{X} \times \hat{Y} \to X \times Y$ eine Überlagerung.
+		Man erhält so zum Beispiel einer Überlagerung des Torus: $\mathbb{R}^2 \to T^2 = S^1 \times S^1$.
+		\item Die Quotientenabbildung $S^2 \to \mathbb{R}P^2= \sfrac{S^2}{x \sim -x}$ ist eine Überlagerung. \hfill (Übung!)
+	\end{enumerate}
+\end{beispiel}
+
+\begin{definition}[{name=[Hebung]}]
+	Sei $p \colon \hat{X} \to X$ eine Überlagerung und $f \colon Z \to X$ eine stetige Abbildung. 
+	Eine \Index{Hebung} oder ein \Index{Lift} von $f$ (bezüglich $p$) ist eine stetige Abbildung $\hat{f} \colon Z \to \hat{X}$ mit $p \circ \hat{f} = f$.
+	\[
+		\begin{tikzcd}
+			&\hat{X} \dar{p}&  \\
+			Z \rar{f} \urar[dashed]{\hat{f}} & X
+		\end{tikzcd}
+	\]
+\end{definition}
+
+\begin{satz}[{name={Homotopiehebungssatz}},label=satz:hebung-homotopie]
+	Sei $p \colon \hat{X} \to X$ eine Überlagerung, $H \colon Z \times [0,1] \to X$ eine Homotopie und $\hat{f} \colon Z \to \hat{X}$ eine Hebung von $f = H(-,0) \coloneqq H\big|_{Z \times \set{0}}$. 
+	Dann gibt es eine \emph{eindeutige} Hebung $\hat{H}$ von $H$ mit $\hat{H}(-,0)= \hat{f}$.
+	\[
+		\begin{tikzcd}[row sep=3em]
+			Z \times \set{0} \dar[hook, swap]{i} \rar{\hat{f}}& \hat{X} \dar{p} \\
+			Z \times [0,1] \urar[dashed]{\hat{H}} \rar{H}& X  
+		\end{tikzcd}
+	\]
+\end{satz}
+\begin{beweis}
+	Sei $\mathcal{U}$ eine Überdeckung von $X$ durch elementare Umgebungen. 
+	Wir können $\mathcal{U}$ mittels $H$ zurückziehen und erhalten eine offene Überdeckung $H ^{-1}(\mathcal{U}) \coloneqq \set*{H ^{-1}(U) \given U \in \mathcal{U}}$ von $Z \times [0,1]$. 
+	
+	Sei $z_0 \in Z$ fest. Da $\set{z_0} \times [0,1]$ kompakt ist, gibt es $0 = t_0 < t_1 < \ldots < t_n=1$ und $U_1, \ldots , U_n \in \mathcal{U}$ mit\marginnote{die $H ^{-1}(U_i)$ überdecken $\set{z_0}\times [0,1]$}
+	\[
+		H \enbrace[\big]{\set{z_0} \times [t_i, t_{i+1}] } \subseteq U_i
+	\]
+	Da die $U_i$ offen sind gibt es zu jedem $i$ eine offene Umgebung $V_i$ von $z_0$ mit $H\enbrace[\big]{V_i \times[t_i, t_{i+1}]} \subseteq U_i$. 
+	Sei $V \coloneqq \bigcap_{i=1}^n V_i$, dann ist $H \enbrace[\big]{V \times [t_i, t_{i+1}]} \subseteq U_i$. 
+	Da alle $U_i$ elementar sind, finden wir induktiv eindeutige Hebungen $\hat{H}_i^V$ von $H\big|_{V \times [t_i, t_{i+1}]}$ mit 
+	\[
+		\hat{H}_i^V(-,0)= \hat{f}\big|_{V}\quad \text{ und } \quad \hat{H}_i^V(-,t_{i}) = \hat{H}_{i-1}^V (-, t_{i}).
+	\]
+	Nun erhalten wir mit $\hat{H}^V(z,t) \coloneqq \hat{H}_i^V(z,t)$ für $z \in V$, $t \in [t_{i},t_{i+1}]$ eine eindeutige Hebung von $H\big|_{V \times [0,1]}$ mit $\hat{H}^V(-,0) = \hat{f}\big|_V$. 
+	Dabei bleibt $\hat{H}^V$ eindeutig auch wenn wir $V$ verkleinern. 
+	Nun finden wir für jedes $z \in Z$ eine Umgebung $V_z$ und eine eindeutige Hebung $\hat{H}^{V_z}$ von $H\big|_{V_z \times [0,1]}$ mit 
+	\(
+		\hat{H}^{V_z} (-,0) = \hat{f}\big|_{V_z}
+	\).
+	Wegen der Eindeutigkeit gilt 
+	\[
+		\hat{H}^{V_z} (\xi,t) = \hat{H}^{V_{z'}}(\xi,t)
+	\]
+	für alle $\xi \in V_z \cap V_{z'}$. 
+	Daher definiert $\hat{H}(z,t) \coloneqq \hat{H}^{V_z}(z,t)$ die gesuchte eindeutige Hebung.
+\end{beweis}
+% section die_windungszahl (end)
+
 \cleardoubleoddemptypage
 \pagenumbering{Alph}
 \setcounter{page}{1}
