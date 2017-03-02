@@ -87,9 +87,9 @@ Idee aus der Physik: An einem Widerstand der Stärke $v$ wird eine Arbeit der St
 Für $\Theta \in l^2_-(E)$ sei $\mathcal{E}(\Theta) = \Norm{\Theta}^2_v$ die Energie von $\Theta$. Insbesondere ist für einen Stromfluss $i$. $\mathcal{E}(i) = \Norm{i}^2_v = \sprod{i,i\cdot v}  =\sprod{i, dv}$ nach Ohm.
 
 \begin{uebung}
-	Für $A\cap Z = \emptyset$ definiere $C(A \leftrightarrow Z)$ als $C(a \leftrightarrow Z)$, wenn man alle $x \in A$ zu $a$ identifiziert nun entsprechend $R(A \leftrightarrow Z) = \frac{1}{C(A \leftrightarrow Z)}$. Man zeige, dass dann für \todo{const?}
+	Für $A\cap Z = \emptyset$ definiere $C(A \leftrightarrow Z)$ als $C(a \leftrightarrow Z)$, wenn man alle $x \in A$ zu $a$ identifiziert nun entsprechend $R(A \leftrightarrow Z) = \frac{1}{C(A \leftrightarrow Z)}$. Man zeige, dass dann für
 	\begin{align} 
-		v|_A \equiv const = v_A && v|_Z \equiv const = v_Z \\ 
+		v|_A \equiv \text{const.} = v_A && v|_Z \equiv \text{const.} = v_Z \\ 
 	\end{align}
 	\begin{align}
 		v_A - v_Z = \mathcal{I}_{AZ}R(A \leftrightarrow Z) \text{ gilt, wobei } \mathcal{I}_{AZ} = \sum\limits_{a \in A}\sum\limits_{x \sim a}i(a,x)
@@ -308,11 +308,17 @@ Wählt man $\p$ so, dass Kanten hoher Leitfähigkeit oft benutzt, und Kanten nie
 	Für $d=1,2$ verwenden wir das Kriterium von Nash-Williams (\ref{satz:Nash-Williams}).
 	
 	\begin{figure}
+		\centering
 		\begin{tikzpicture}[scale=1.5, every node/.style=fill,circle,minimum size=4pt,inner sep=0pt]
 			\draw (0,0) to (8,0);
 			\foreach \x in {1,...,7}
 			{
-				\node[label=above:{\x - 4}] at (\x,0) {};
+				\node[label=above:{\pgfmathparse{\x - 4}% Evaluate the expression
+					\pgfmathprintnumber[    % Print the result
+					fixed,
+					fixed zerofill,
+					precision=0
+					]{\pgfmathresult}}] at (\x,0) {};
 			}
 		
 			\draw[bend angle=60,bend right] (4 ,0) to (5, 0);
@@ -325,9 +331,10 @@ Wählt man $\p$ so, dass Kanten hoher Leitfähigkeit oft benutzt, und Kanten nie
 			\draw[bend angle=60,bend left, densely dotted] (4 - 2,0) to (3 - 2, 0);
 			
 		\end{tikzpicture}
+		\caption{Cutsets in $d=1$}
+		\label{fig:7}
 	\end{figure}
-	 \todo[inline]{missing figure}
-	Sind das die $\Pi_n$, so gilt 
+	Betrachten wir die Cutsets $\Pi_n$ wie in \autoref{fig:7}, so gilt 
 	\begin{gather}
 		(a \leftrightarrow \infty) \leq \sum\limits_{n \geq 1} \enb{\sum c(e) }^{-1} = \sum\limits_{n \geq 1 } \frac{1}{2} = \infty
 	\end{gather}
@@ -358,7 +365,7 @@ Wählt man $\p$ so, dass Kanten hoher Leitfähigkeit oft benutzt, und Kanten nie
 	
 \end{beweis}
 
-\section*{Spezielle Netzwerke}
+\chapter{Spezielle Netzwerke}
 \label{chap:SpezielleNetzwerke}
 \section{Flüsse, Cutsets und Ford Fulkerson}
 Gegeben sei irgendein Netzwerk $G = (V,R,c).$ Sei $a,(z) \in V$ oder $z = \infty$. Gibt es einen Fluss $\Theta$ von $a$ nach $z$, dergestalt
@@ -598,7 +605,7 @@ Umgekehrt kann man die Methode aus Abschnitt \ref{chap:TransienzUndRekurrenz} ve
 	mit positiver Wahrscheinlichkeit getroffen. Damit ist die Spannung entlang des Pfades von $a$ nach $x$ strikt monoton. Die restlichen Punkte kann man mit einem $0$--Strompfad anschließen.
 \end{beweis}
 
-\subsection{Flüsse und Irrfahrten auf Bäumen}
+\section{Flüsse und Irrfahrten auf Bäumen}
 \begin{definition}
 	Ein \emph{Baum} ist ein kreisfreier, zusammenhängender Graph. Ein kreisfreier, nicht notwendig zusammenhängender Graph heißt \emph{Wald}. In einem gerichteten Baum sind alle Kanten von einem Knoten weg orientiert, dieser heißt \emph{Wurzel}.
 	Es gibt auf Bäumen eine natürliche Graphendistanz $d$. Im gerichteten Fall sei für $e = (e^-,e^+), \abs{e} := d(0,e^+)$. Für $e=(e^-,e^+)$ heißt $e^-$ der \emph{Vorgänger} von $e^+$ und $e^+$ das \emph{Kind} von $e^-$. Knoten ohne Kinder heißen \emph{Blätter}.

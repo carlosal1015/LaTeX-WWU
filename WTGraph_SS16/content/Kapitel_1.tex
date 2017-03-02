@@ -1,7 +1,8 @@
 %!TEX root = ./WTG.tex
 
-\section{Erstes Kapitel}
-
+\chapter{Irrfahrten und (elektrische) Netzwerke}
+Thematisch scheinen diese beiden Begriffe nicht verwandt. Wir wollen sehen, dass dies nicht der Fall ist. Der Begriff \enquote{Irrfahrt} oder Markov-Kette sollte bekannt sein.
+\section{Einführung Netzwerke}
 \begin{definition}[Netzwerk] 
 	\label{def:Netzwerk}
 	\marginnote{Mit anderen Worten: Ein Netzwerk ist ein positiv gewichteter Graph.} 
@@ -183,7 +184,7 @@ Also folgt aus \ref{regel:ohm} und \ref{regel:kirch}, dass $v$ harmonisch ist. W
 	\end{align}
 \end{korollar}
 
-\section{Irrfahrte auf elektrischen Netzwerken}
+\section{Irrfahrten auf elektrischen Netzwerken}
 Zunächst sei $G(V,E,c)$ nun immer ein endliches Netzwerk. Sei $a \in V$ und $Z \subseteq V$. Wir fragen uns nach der Wahrscheinlichkeit mit der Irrfahrt vom Startpunkt $a$ $Z$ zu erreichen, bevor wir wieder nach $a$ zurückkommen, also $\prop{a \to Z} = \prop{\tau_Z < \tau_{\set{a}}}[][a]$. Das wird insbesondere interessant, wenn $G$ unendlich, $G_n$ unendlich mit $G_n \uparrow G$ und  $Z = \delta G_n$ und $a=0$.
 
 Dann fragt man sich offenbar nach der Wahrscheinlichkeit gegebenenfalls sehr weit von Ursprung entfernte Mengen $Z$ zu erreichen, bevor man $0$ wieder sieht. Das ist nichts anderes als Transienz. Wir wollen $\propE{a \to Z}[][a]$ studieren. Legen wir an $a$ eine Spannung $v(a)$ an und lassen $v(z) = 0, \forall z \in Z$ sein, dann ist $v$ auf $V \backslash(\set{a}\cup Z)$ harmonisch, aber auch $\propE{\tau_A < \tau_Z}[][x]$. Wegen des Eindeutigkeitsprinzips (\ref{kor:Eindeutigkeitsprinzip}) unterscheiden sich beide nun um $\frac{1}{v(a)}$, d.h. $\prop{\tau_a < \tau_Z}[][x] = \frac{v(x)}{v(a)}$. Also
@@ -257,9 +258,9 @@ Sei $Z_n = V \backslash V(G_n)$. Diese identifizieren wir mit einem Vertex $z_n$
 
 Um dies nützlich zu machen, benötigen wir eine Methode um $C(a \leftrightarrow z_n)$ zu berechnen. Die Idee des folgenden Kapitels ist es ein endliches Netzwerk immer weiter zu reduzieren, bis man die effektive Leitfähigkeit als Leitfähigkeiten ablösen kann.
 
-\subsection{Reduktionsmethoden}
-Wie lassen sich Netzwerke verkleinern?\\
-1. Prinzip: Reihenschaltung
+\section{Reduktionsmethoden}
+Wie lassen sich Netzwerke verkleinern?
+\subsubsection*{Erstes Prinzip: Reihenschaltung}
 Zwei Widerstände $r_1$ und $r_2$ in Reihe geschaltet verhalten sich wie ein Widerstand der Größe $r_1 + r_2$. Mit anderen Worten: in einem Netzwerk, das die Konfigurationen aus \autoref{fig:1-1} enthält, lassen sich die Zustände $(u_1,\omega)$ und $(\omega,u_2)$ ersetzen durch die Kante $(v_1,v_2)$  mit Widerstand $r_1+r_2$, ohne dass sich Ströme und Widerstände im restlichen Netzwerk ändern, siehe \autoref{fig:1-2}. Übung: Beweis. 
 
 	\begin{figure}[b]
@@ -294,6 +295,7 @@ Zwei Widerstände $r_1$ und $r_2$ in Reihe geschaltet verhalten sich wie ein Wid
 		\label{fig:1-2}
 		\end{subfigure}
 	\caption{Ersetzen von $\omega$}	
+	\label{fig:1}
 	\end{figure}
 
 
@@ -357,7 +359,7 @@ Wieso ist das nützlich?
 		\Rightarrow v_k = \frac{\sum\limits_{i=k}{n-1} \enb{\frac{q}{p}}^i}{\sum\limits_{i=0}^{n-1}\enb{\frac{q}{p}}^i} = \dots = \frac{\enb{\frac{p}{q}}^{n-k} -1}{\enb{\frac{p}{q}}^n-1}
  	\end{align}
 \end{beispiel}
-2. Prinzip: Parallelschaltung \\
+\subsubsection*{Zweites Prinzip: Parallelschaltung}
 Man kann zwei parallele Leitungen mit Kapazitäten (Leitfähigkeiten) $c_1$ und $c_2$ durch eine einzige mit Leitfähigkeit $c_1+c_2$ ersetzen. Mit anderen Worten: In \autoref{fig:1-4} lässt sich die Doppelkante $(u_1,u_2)$ mit Leitfähigkeit $c_1$ und $c_2$ durch eine Kante $c_1+c_2$ ersetzen, ohne dass sich an den Spannungen und Strömen im Restnetzwerk etwas ändert. Übung: Beweis.
 
 \begin{figure}
@@ -419,7 +421,7 @@ Man kann zwei parallele Leitungen mit Kapazitäten (Leitfähigkeiten) $c_1$ und 
 	\end{figure}
 \end{beispiel}
 
-\subsubsection*{3. Prinzip: Y--$\Delta$--Prinzip}
+\subsubsection*{Drittes Prinzip: Y--$\Delta$--Prinzip}
 Auch Stein--Dreieck--Prinzip genannt. Netzwerke in denen man eine der Konfigurationen aus \autoref{fig:1-7} durch die andere ersetzt, sind äquivalent, falls 
 
 \begin{figure}
@@ -450,7 +452,7 @@ Auch Stein--Dreieck--Prinzip genannt. Netzwerke in denen man eine der Konfigurat
 	c(w, u_i) \cdot c(u_{i-1},u_{i+1}) = \gamma, \quad \forall i\ \text{mod}\ 3 &&
 	\text{mit }\quad \gamma  = \frac{\prod_{i} c(w,u_i)}{\sum_{i}c(w,u_i)}
 \end{align}
-\subsubsection*{4. Prinzip (trivial):}
+\subsubsection*{Viertes Prinzip (trivial):}
 Man kann Knoten von Grad 1 hinzufügen oder entfernen. Selbiges Gilt für Schlaufen.
 
 \newpage

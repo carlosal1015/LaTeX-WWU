@@ -1,8 +1,8 @@
 %!TEX root = ./WTG.tex
 
-\section{Verzweigungsprozesse, Perkolation und Momentenmethode}
+\chapter{Verzweigungsprozesse, Perkolation und Momentenmethode}
 
-\subsection{Erste Momentenmethode}
+\section{Erste Momentenmethode}
 
 Erinnerung an Galton-Watson-Prozesse. Es geht im die Aussterbewahrscheinlichkeit einer \enquote{idealisierten} Population. Dazu seinen $\enb{L^{(n)}_i}_{i,n}$ Zufallsvariablen mit Werten in $\NN_0$, i.i.d., sodass $L^{(n)}_i \not\equiv 1$ $\p$-f.s. 
 
@@ -158,7 +158,7 @@ Es gilt in \eqref{eqn:6-1} sogar Gleichheit, dazu benötigen wir allerdings etwa
 	Man zeige für einen Galton-Watson-Baum $T$ mit $m = \EW{L} > 1$, dass bedingt auf Überleben $gr(T) = m$ ist.
 \end{uebung}
 
-\subsection*{Zweite Momentenmethode} \todo{nummerierung}
+\section{Zweite Momentenmethode} \todo{nummerierung}
 Die erste Momentenmethode erlaubt eine (ganz einfache) obere Schranke an $\propE{x \leftrightarrow \infty}$ zu geben. Für untere Schranken benötigt man typischerweise Kenntnisse über das Fluktuationsverhalten der mitspielenden Zufallsvariablen.
 So etwas erhält man typischerweise aus Chebyshev-Ungleichungen bzw. der 2. Momentenmethode. Wir betrachten hier eine \enquote{gewichtete} 2. Momentenmethode, d.h. für eine Menge $\Pi$, die $x$ von $\infty$ trennt, werden wir $\prop{o \leftrightarrow e}, e\in \Pi$ mit dem anderen Gewocht $\mu(e)$ abschätzen. Wir werden von nun an wieder $x = o$ wählen und $k(o)$ sei das Cluster von $o$. Sei weiter $\Pi$ ein $o \leftrightarrow \infty$-Cutset und $\mu \in M^1(\Pi)$. Wir betrachten
 \begin{align}
@@ -284,7 +284,7 @@ Insbesondere gilt ür $\Ber(p)$-Perkolation $c(e(x)) = \frac{p^{\abs{x}}}{1-p}$.
 	\end{align}
 \end{beweis}
 	
-\subsection{Rekurrenz und Transienz von Perkolationsclustern}
+\section{Rekurrenz und Transienz von Perkolationsclustern}
 $p_c(G)$ ist für viele Graphen insbesondere aber für $G = \ZZ^d$ schwer zu berechnen. Vielleicht ist die folgende Frage einfacher. Ist \underline{das} $\infty$-Perkolationscluster von $\ZZ^d$ rekurrent oder transient?. Die Frage ist für $d=1,2$ trivial, da das Cluster ein Teilgraph eines rekurrenten Graphen ist, folgt die Behauptung aus dem Prinzip von Raleigh (\ref{satz:Rayleigh}).
 
 Sei $d \geq 3$. Wir brauchen ein technisches Hilfsmittel, das aber allgemein interessant ist. 
@@ -428,7 +428,8 @@ Nun zur Transienz von Perkolationsclustern in $\ZZ^d, d\geq 4$.
 	Die Aussage stimmt auch für $\ZZ^3$, der Beweis allerdings nicht.
 \end{bemerkung}
 \marginnote{\enquote{Es ist generell von unschätzbarem Vorteil bei mir Stochastik gehört zu haben}, Löwe 06.06.2016}
-\section{Cutsets, Pfade und Mischzeiten}
+\chapter{Cutsets, Pfade und Mischzeiten}
+\section{Markovketten}
 Wir betrachten für dieses Kapitel ergodische Markovketten auf einem endlichen Zustandsraum. \underline{Erinnerung:} Eine Markovkette mit Übergangsmatrix $Q$ heßt ergodisch, wenn \underline{entweder}:
 \begin{enumerate}
 	\item $Q$ ist irreduzibel, d.h. $\forall x,y \exists n: Q^n(x,y)>0$ und
@@ -1046,8 +1047,7 @@ Dann gilt
 	\begin{align}
 		\Rightarrow \kappa(\Gamma) = \max\limits_x \sum\limits_{\gamma_{xy}} \abs{\gamma_{xy}}_Q \pi(x)\pi(y) \leq \frac{d^2_*}{(2\abs{E})^2} 2 \abs{E} \gamma_* b \marginnote{$b$ ist entschiedende Größe, kluge Pfadwahl}
 	\end{align}
-	weil $\frac{1}{\epsilon(e)} = 2\abs{E}$ jeder Pfad höchstens $\gamma_*$ ist und jede Kante höchstens $b$ mal vorkommt folgt die Behauptung.
-	\todo{missing end}
+	weil $\frac{1}{\epsilon(e)} = 2\abs{E}$ jeder Pfad höchstens $\gamma_*$ lang ist und jede Kante höchstens $b$ mal vorkommt folgt die Behauptung.
 \end{beweis}
 %
 \marginnote{Vorlesungsbeginn 27.06.2016}
@@ -1098,9 +1098,9 @@ Dann gilt
 	\end{gather}
 	Also gibt es für die Kante $b$ $2^{j-1} 2^{d-j} = 2^{d-1}$ Möglichkeiten. \underline{Also:}
 	\begin{align}
-		\beta_1 \leq 1 . \frac{d2^{d+1}}{d^2 \cdot d \cdot d^{d-1}} = 1 - \frac{4}{d^2}
+		\beta_1 \leq 1 . \frac{d2^{d}}{d^2 \cdot d \cdot d^{d-1}} = 1 - \frac{2}{d^2}
 	\end{align}
-	Der wahre Wert ist $\beta_1 = 1 - \frac{2}{d}$. \todo{bemerkung ohne begin/end?}
+	Der wahre Wert ist $\beta_1 = 1 - \frac{2}{d}$. 
 	\begin{bemerkung}
 		Mann kann sich fragen, ob das an unserer Pfadwahl liegt.
 		\begin{enumerate}
@@ -1187,24 +1187,23 @@ Dann gilt
 		\sum\limits_{x,y} \abs{\Psi^2(x) - \Psi^2(y)} c(x,y) &= \sum\limits_{x,y} \abs{\Psi(x) - \Psi(y)} \abs{\Psi(x) - \Psi(y)} \sqrt{c(x,y)} \sqrt{c(x,y)} \\
 		&\leq \sqrt{2} \mathcal{E}^{1/2} (\Psi,\Psi) \enb{\sum\limits_{x,y}\enb{\Psi(x) + \Psi(y)}^2 c(x,y) }^{1/2} \marginnote{Siehe Nebenrechnung}\\
 		&\leq 2 \mathcal{E}^{1/2}(\Psi,\Psi) \enb{\sum\limits_{x,y} \enb{\Psi^2(x) + \Psi^2(y) } c(x,y) }^{1/2} \\
-		&\leq 2^{3/2} \mathcal{E} (\Psi,\Psi) \Norm{ \Psi }_{L^2(\pi)}
+		&\leq 2^{3/2} \mathcal{E}^{1/2} (\Psi,\Psi) \Norm{ \Psi }_{L^2(\pi)}
 	\end{align}
 	
-	Nebenrechnung: \todo{norm psi fehlt?}
+	Nebenrechnung: \todo{nebenrechnung unsicher}
 	\begin{align}
-		\Psi^2(x) + \Psi^2(y) c(x,y) = \sum\limits_{x,y} \Psi^2(x) \pi(x) Q(x,y) + \sum\limits_{x,y} \Psi^2(y) \pi(x) Q(x,y) = \sum\limits_{y}\Psi^2(y)\pi(y)
+		\Psi^2(x) + \Psi^2(y) c(x,y) = \sum\limits_{x,y} \Psi^2(x) \pi(x) Q(x,y) + \sum\limits_{x,y} \Psi^2(y) \pi(x) Q(x,y) = 2 \Norm{\Psi^2}_{L^2(\pi)}
 	\end{align}
 	
 	\underline{Andererseits:} 
 	\begin{align}
-		\sum\limits_{x,y} \abs{\Psi^2(x) - \Psi^2(y)}c(x,y) &= 2 \sum\limits_{x,y, \Psi(y) > \Psi(x)} \enb{\Psi^2(y) - \Psi^2(x)} c(x,y) = 4 \sum\limits_{x,y, \Psi(y) > \Psi(x)} \int_{\Psi(x)}^{\Psi(y)} t dt c(x,y) \\
-		&= \marginnote{Fubini} 4 \int_{0}^{\infty} t\enb{\sum\limits_{\Psi(x) \leq t \leq \Psi(y)} c(x,y) } dt \marginnote{Sei $S := \set{y \given \Psi(y) > t} \subseteq S(\Psi)$} \\
-		&= 4 \int_{0}^{\infty} t C(S,S^c) dt = 4 \int_{0}^{\infty} t \frac{C(S,S^c)}{\pi(S)} \pi(S) dt \\
-		&\geq 4h(\Psi) \int_{0}^{\infty} t \pi(y : \Psi(y) > t) dt \\
+		\sum\limits_{x,y} \abs{\Psi^2(x) - \Psi^2(y)}c(x,y) &= 2 \sum\limits_{\substack{x,y \\ \Psi(y) > \Psi(x)}} \enb{\Psi^2(y) - \Psi^2(x)} c(x,y) = 4 \sum\limits_{\substack{x,y \\ \Psi(y) > \Psi(x)}} \int_{\Psi(x)}^{\Psi(y)} t \diff t \cdot c(x,y) \\
+		&= \marginnote{Fubini} 4 \int_{0}^{\infty} t\enb{\sum\limits_{\Psi(x) \leq t \leq \Psi(y)} c(x,y) } \diff t \\
+		&= 4 \int_{0}^{\infty} t C(S,S^c) \diff t = 4 \int_{0}^{\infty} t \frac{C(S,S^c)}{\pi(S)} \pi(S) \diff t \marginnote{Sei $S := \set{y \given \Psi(y) > t} \subseteq S(\Psi)$} \\
+		&\geq 4h(\Psi) \int_{0}^{\infty} t \pi(y : \Psi(y) > t) \diff t \\
 		&= 4 \frac{h(\Psi)}{2} \Norm{ \Psi }_{L^2(\pi)}
 	\end{align}		
-	
-	\todo{missing nebenrechnung. check gleichung oben}
+
 	Zusammen: 
 	\begin{align}
 		2^{3/2} \mathcal{E}^{1/2}(\Psi,\Psi) \Norm{\Psi}_{L^2(\pi)} \geq \sum\limits_{x,y} \abs{\Psi^2(x) - \Psi^2(y)} c(x,y) \geq 2 h(\Psi) \Norm{\Psi}^2_{L^2(\pi)}
@@ -1215,14 +1214,14 @@ Dann gilt
 		\Rightarrow \lambda \geq \frac{h^2(\Psi)}{2}
 	\end{gather}	
 	wobei $h = \inf\limits_{S: \pi(S) \leq 1/2} \frac{C(S,S^c)}{\pi(S)}$. \\
-	Das betrechten wir für $\lambda = \lambda_1$. Sei $\Psi$ eine Eigenfunktion von $L$ zu $\lambda_1$- Damm stimmt $(*)$ \todo{REF}, d.h. 
+	Das betrechten wir für $\lambda = \lambda_1$. Sei $\Psi$ eine Eigenfunktion von $L$ zu $\lambda_1$. Dann stimmt $(*)$ \todo{REF}, d.h. 
 	\begin{align}
-		\lambda_1 \geq \frac{h^2(\Psi)}{2} \geq \frac{h^2}{2} && h^2(\Psi) = \inf\limits_{S \subseteq S(\Psi)} \frac{C(S,S^c)}{\pi(S)}
+		\lambda_1 \geq \frac{h^2(\Psi)}{2} \geq \frac{h^2}{2} &&  h^2 = \inf\limits_{S: \pi(S) \leq \frac{1}{2}} \frac{C(S,S^c)}{\pi(S)} && h^2(\Psi) = \inf\limits_{S \subseteq S(\Psi)} \frac{C(S,S^c)}{\pi(S)}
 	\end{align}
-	solange $\pi\Big(S(\Psi)\Big) \leq \frac{1}{2}$ geht alles gut, denn dann ist das Infimum in $h(\Psi)$ über weniger Mengen $S$ als das in $h$. Nun ist $\EW{\Psi}_{\pi} = <\Psi, \mathds{1}>_{\pi} = 0$, denn $\Psi \perp \mathds{1}$, d.h. wenn $S(\Psi)$ so sein sollte, dass $\pi(S(\Psi)) > \frac{1}{2}$, dann gehen wir zu $\Psi$ über und erhalten $\pi(S(-\Psi)) \leq \frac{1}{2}$. Somit sind wir fertig.
+	solange $\pi\Big(S(\Psi)\Big) \leq \frac{1}{2}$ geht alles gut, denn dann ist das Infimum in $h(\Psi)$ über weniger Mengen $S$ als das in $h$. Nun ist $\EW{\Psi}_{\pi} = \sprod{\Psi, \mathds{1}}_{\pi} = 0$, denn $\Psi \perp \mathds{1}$, d.h. wenn $S(\Psi)$ so sein sollte, dass $\pi(S(\Psi)) > \frac{1}{2}$, dann gehen wir zu $\Psi$ über und erhalten $\pi(S(-\Psi)) \leq \frac{1}{2}$. Somit sind wir fertig.
 \end{beweis}
 \todo[inline]{undefined Control sequence titel $Z_p$ und $Z^d_2$}
-\begin{beispiel}%[$\ZZ_p$]
+\begin{beispiel}[$Z_p$]
 	Sei $p$ ungerade und $\ZZ_p$ der $p$-Kreis. $\pi(x) = \frac{1}{p}, \forall x$, $h$ wird angenommen, wenn man für $S$ ein Intervall der Länge $\frac{p-1}{2}$ wählt. Dann gilt $h = \frac{2}{p-1}$. Also folgt mit Cheeger \todo{REF}
 	\begin{align}
 	1 - \frac{\Psi}{p-1} \leq p_1 \leq 1 - \frac{2}{\enb{p-1}^2}
@@ -1230,7 +1229,7 @@ Dann gilt
 	\underline{Erinnerung:} $\beta_1 = \cos(\frac{2\pi}{p}) = 1 - \frac{2\pi^2}{p^2} + \mathcal{O}\enb{\frac{1}{p^4}}$. Hier ist für $p$ groß die untere Schranke schlecht und die obere Schranke bis auf einen Faktor $\pi^2$ gut.
 \end{beispiel}
 
-\begin{beispiel}%[$\ZZ^d_2$]
+\begin{beispiel}[$Z^d_2$]
 	Sei $V = \set{0,1}^d, \pi(x) = \frac{1}{2^d}, \forall x$.$h$ wird angenommen für die $S$, welche genau eine Koordinate festhalten, z.B.
 	\begin{align}
 		S = \set{x \given x_1 = 0} && \pi(S) = \frac{1}{2}
