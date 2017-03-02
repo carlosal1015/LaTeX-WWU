@@ -2539,7 +2539,7 @@ Allgemein erhalten wir für jede stetige Abbildung $\omega \colon I^n \to X$ mit
 	\emph{Übung: Blatt 10 Aufgabe 3, siehe Anhang \hyperref[sub:B10A3]{\ref*{sub:B10A3} auf Seite \pageref*{sub:B10A3}}.}
 \end{beweis}
 
-\begin{korollar}
+\begin{korollar}[{name=[höhere Homotopiegruppen der 1-Sphäre]}]
 	Es ist $\pi_n(S^1, s_0) = 0$ für $n \ge 2$.
 \end{korollar}
 \begin{beweis}
@@ -2547,7 +2547,7 @@ Allgemein erhalten wir für jede stetige Abbildung $\omega \colon I^n \to X$ mit
 	Da $\mathbb{R}$ zusammenziehbar ist, folgt die Behauptung aus \cref{prop:iso-covering}.
 \end{beweis}
 
-\begin{definition}
+\begin{definition}[{name=[Faserung]}]
 	Eine stetige Abbildung $p \colon E \to B$ heißt (Serre-)\Index{Faserung}, falls sie folgende Homotopiehebungseigenschaft hat: 
 	Für jedes $n \ge 0$, jede Homotopie $H \colon I^n \times [0,1] \to B$ und jede partielle Hebung $\tilde{H} \colon I^n \times \set{0} \cup \partial I^n \times [0,1]$ existiert eine Hebung $\overline{H}$ von $H$ entlang $p$, die $\tilde{H}$ fortsetzt. Nenne $p^{-1}(b)$ die \Index{Faser} über $b$. 
 	\[
@@ -2561,7 +2561,7 @@ Allgemein erhalten wir für jede stetige Abbildung $\omega \colon I^n \to X$ mit
 Man überlegt sich, dass Überlagerungen Faserungen sind(!).
 Ein weiteres triviales Beispiel für eine Faserung ist die Projektion $B \times F \to B$.
 
-\begin{satz}
+\begin{satz}[{name=[lange Homotopiesequenz]}]
 	Sei $p \colon E \to B$ eine Faserung. 
 	Seien $b_0 \in B, e_0 \in E$ mit $p(e_0)= b_0$. 
 	Setze $F \coloneqq p ^{-1}(b_0)$. 
