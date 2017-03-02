@@ -6,7 +6,11 @@ lecture notes written at WWU Münster, FB10
 ## Das Bereitstellen der PDFs ist noch nicht vollständig eingerichtet!
 
 Dies betrifft insbesondere auch den Dropbox- sowie den Sciebo-Ordner!
-Als Zwischenlösung sind einige aktuelle Skripte über die _Releases_ (in der Leiste über der Dateienliste) verfügbar.
+Als Zwischenlösung lässt sich ein Ordner mit allen Skripten 
+
+### [HIER](https://gitlab.com/JaMeZ-B/LaTeX-WWU/builds/artifacts/master/download?job=build_all) herunterladen.
+
+Die Links aus der folgenden Liste funktionieren aktuell nicht!
 
 * SoSe 2017
 	* [Zahlen und elementare Zahlentheorie](https://github.com/JaMeZ-B/LaTeX-WWU/releases/download/latest/ZZT_SS17.pdf "Zahlen und elementare Zahlentheorie") (Phil)
