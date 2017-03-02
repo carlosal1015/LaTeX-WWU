@@ -2860,6 +2860,235 @@ $(M,\mathcal{A})$ und $(M, \mathcal{A}_\mathrm{max})$ sind diffeomorph mittels d
 	Eine $C^\infty$"=Abbildung $f \colon N \to M$ heißt eine \Index{Einbettung}, wenn $f(N) \subseteq M$ eine $C^\infty$"=Untermannigfaltigkeit ist und $f \colon N \to f(N)$ ein Diffeomorphismus ist. 
 \end{definition}
 % section differenzierbare_mannigfaltigkeiten (end)
+
+\newpage
+\section{Reguläre Werte} % (fold)
+\label{sec:regulare_werte}
+
+Man betrachte, die in \cref{fig:height-torus} gezeichnete Höhenfunktion auf dem Torus $T^2$.
+Wie angedeutet, scheinen die Urbilder einzelner Punkte Mannigfaltigkeiten zu sein, die entweder $S^1$ oder eine disjunkte Vereinigung von zwei Kopien der $S^1$ sind.
+An zwei Punkten (einer davon der grün gezeichnete) findet ein Wechsel zwischen diesen beiden Typen von Urbildern statt und das Urbild ist \texttt{keine} Mannigfaltigkeit, da eine Umgebung des Klebepunktes der beiden 1-Sphären nicht homöomorph zum $\mathbb{R}^1$ ist.
+\begin{figure}[htbp]
+	\centering{
+	\begin{tikzpicture}[rotate=90, xscale=0.8, yscale=1, scale=0.7]
+		% \draw[help lines] (-4,-4) grid (4,4);
+		\draw[->] (-4,-7) -- (4,-7) node[above]{$\mathbb{R}$};
+		
+		\draw[RoyalBlue2, thick] (-2.5,1.89) .. controls +(240:0.8) and +(120:0.8) .. (-2.5,-1.89);
+		\draw[RoyalBlue2, thick, dashed] (-2.5,1.89) .. controls +(300:0.8) and +(60:0.8) .. (-2.5,-1.89);
+		\draw[fill=RoyalBlue2] (-2.5,-7) circle[radius=0.07];
+		
+		\draw[Firebrick2, thick] (0,2.5) .. controls +(250:0.6) and +(110:0.6) .. (0,0.5);
+		\draw[Firebrick2, thick, dashed] (0,2.5) .. controls +(290:0.6) and +(70:0.6) .. (0,0.5);
+		
+		\draw[Firebrick2, thick] (0,-0.5) .. controls +(250:0.6) and +(110:0.6) .. (0,-2.5);
+		\draw[Firebrick2, thick, dashed] (0,-0.5) .. controls +(290:0.6) and +(70:0.6) .. (0,-2.5);
+		\draw[fill=Firebrick2] (0,-7) circle[radius=0.07];
+		
+		\draw[Green2, thick] (1.75,2.25) .. controls +(250:0.6) and +(110:0.6) .. (1.75,0) .. controls +(250:0.6) and +(110:0.6) .. (1.75,-2.25);
+		\draw[Green2, thick, dashed] (1.75,2.25) .. controls +(290:0.6) and +(70:0.6) .. (1.75,0) .. controls +(290:0.6) and +(70:0.6) .. (1.75,-2.25);
+		\draw[fill=Green2] (1.75,-7) circle[radius=0.07];
+		
+		\draw (-3.5,0) .. controls (-3.5,2) and (-1.5,2.5) .. (0,2.5);
+		\draw[xscale=-1] (-3.5,0) .. controls (-3.5,2) and (-1.5,2.5) .. (0,2.5);
+		\draw[rotate=180] (-3.5,0) .. controls (-3.5,2) and (-1.5,2.5) .. (0,2.5);
+		\draw[yscale=-1] (-3.5,0) .. controls (-3.5,2) and (-1.5,2.5) .. (0,2.5);
+		\draw (-2,.2) .. controls (-1.5,-0.3) and (-1,-0.5) .. (0,-.5) .. controls (1,-0.5) and (1.5,-0.3) .. (2,0.2);
+		\draw (-1.75,0) .. controls (-1.5,0.3) and (-1,0.5) .. (0,.5) .. controls (1,0.5) and (1.5,0.3) .. (1.75,0);
+		
+		\draw[-to] (0,-4) -- (0,-5.5) node[above, midway]{$h$};
+	\end{tikzpicture}
+	\caption{Höhenfunktion beim $T^2$ Torus}\label{fig:height-torus}}
+\end{figure}
+
+Diese informellen Beobachtungen wollen wir in diesem Abschnitt mathematisch präzisieren.
+
+\begin{definition}[{name=[Differential und Rang im euklidischen Fall]}]
+	Sei $U \subseteq \mathbb{R}^n$ offen und $f \colon U\to \mathbb{R}^m$ eine $C^\infty$"=Abbildung. 
+	Für $x \in U$ sei $\D f_x \colon \mathbb{R}^n \to \mathbb{R}^m$ das \Index{Differential} von $f$ in $x$. 
+	Der Rang der linearen Abbildung $\D f_x \colon \mathbb{R}^n \to \mathbb{R}^m$ heißt der \Index{Rang} von $f$ in $x$.
+\end{definition}
+
+\begin{definition}[{name=[Rang einer glatten Abbildung zwischen Mannigfaltigkeiten]}]
+	Seien $N^n$ und $M^m$ glatte Mannigfaltigkeiten mit $\dim N = n, \dim M =m$. 
+	Sei $f \colon N \to M$ glatt und $x \in N$. 
+	Seien $h_0 \colon U_0 \to V_0 \subseteq \mathbb{R}^n$ und $h_1 \colon U_1 \to V_1 \subseteq \mathbb{R}^m$ Karten von $N$ um $x$ und $M$ um $f(x)$. 
+	Der \Index{Rang} von $f$ in $x$ ist erklärt als 
+	\[
+		\Rg_x f \coloneqq \mathrm{Rang} \enbrace[\Big]{\D \enbrace*{h_1 \circ f \circ h_0 ^{-1}}_{h_0(x)}} .
+	\]
+\end{definition}
+
+\begin{figure}[hbtp]
+	\centering{
+	\begin{tikzpicture}[scale=1.2, every pin edge/.style={black!80, very thin}]
+		% \draw[help lines] (-3,-2) grid (7,2);
+		
+		\path (5,0) coordinate (mids1) +(40:1) coordinate (fx) +(20:1) coordinate (br1) ;
+		\path (fx) + (0.2,0) coordinate (starth1);
+		\path (-2,-1) coordinate (h0x) ++ (0.2,0.3) coordinate (endh0);
+		\path (0.1,0.1) coordinate (x) ++ (-0.3,0) coordinate (starth0);
+		\path (mids1) ++ (2,-1) coordinate (midv1) + (-0.3,0) coordinate (leftv1) + (0.3,0) coordinate (rightv1) +(0,0.2) coordinate (endh1);
+	
+		% sphere
+		\draw (-1,0) arc (180:360:1cm and 0.5cm);
+	    \draw[dashed, black!60] (-1,0) arc (180:0:1cm and 0.5cm);
+	    \draw (0,1) arc (90:270:0.5cm and 1cm);
+	    \draw[dashed, black!60] (0,1) arc (90:-90:0.5cm and 1cm);
+	    \draw (0,0) circle (1cm);
+	    \shade[ball color=blue!20!white,opacity=0.20] (0,0) circle (1cm);
+		\node[] at (-1,1) {$N=S^2$};
+	
+		% U_0
+		\begin{scope}
+			\clip (x) circle[radius=0.25];
+		  		  	\foreach \y in {0.5,0.45,...,-0.3}%
+		  		    	\draw[black!60,line width=0.25mm, opacity=0.5] (-0.5,\y) .. controls +(-25:0.4) and +(205:0.4) .. (0.5,\y);
+		\end{scope}
+		\draw[] (x) circle[radius=0.25] ++ (0.43,0) node {$U_0$};
+		\draw[fill=IndianRed3, thick] (x)  circle[radius=0.04] node[pin={[pin distance=1.5ex]230:$x$}]{ };
+	
+		% h_0
+		\draw[IndianRed3, -To, thick] (starth0) to[bend right, "$h_0$"' near end] (endh0);
+	
+		% V_0
+		\begin{scope}
+			\clip (h0x) circle[radius=0.3];
+  		  	\foreach \x in {0,-0.1,...,-1}%
+  		    	\draw[IndianRed3!70,line width=0.25mm] (-2.5,\x)--(-1.5,\x-1);
+		\end{scope}
+		\draw[IndianRed3, thick] (h0x) circle[radius=0.3] ++ (0.5,0) node {$V_0$};
+		\draw[fill=IndianRed3, thick] (h0x) circle[radius=0.04] node[pin=230:$h_0(x)$]{ };
+	
+		% Arrow
+		\draw[-To, thick] (1.5,0) -- (3.5,0) node[midway, above]{$f$};
+	
+		% S^1
+		\draw[thick] (mids1) circle[radius=1];
+		\path (mids1) ++ (-1,1) node{$M=S^1$};
+		\draw[Arc Barb-Arc Barb, DodgerBlue3, thick] (br1) arc(20:60:1) node[midway, below left] {$U_1$};
+		\draw[fill=DodgerBlue3, thick] (fx) circle[radius=0.04] node[pin=above right:$f(x)$]{ };
+	
+		% V_1
+		\draw[Arc Barb-Arc Barb, DodgerBlue3, thick] (leftv1) node[left] {$V_1$} -- (rightv1);
+		\draw[fill=DodgerBlue3, thick] (midv1) circle[radius=0.04] node[pin=310:$h_1 \big( f(x) \big) $ ] { };
+	
+		% h_1
+		\draw[DodgerBlue3, -To, thick] (starth1) to[bend left, "$h_1$" near end] (endh1);
+	\end{tikzpicture}
+	\caption{Diagramm zur Definition des Ranges einer glatten Abbildung $f \colon N \to M$}}
+\end{figure}
+
+\begin{lemma}[{name=[Rang hängt nicht von Wahl der Karte ab]}]
+	Sind $\hat{h}_0 \colon \hat{U}_0 \to \hat{V}_0$ und $\hat{h}_1 \colon \hat{U}_1 \to \hat{V}_1$ zwei weitere Karten um $x$ und $f(x)$, so gilt:
+	\[
+		\mathrm{Rang} \enbrace*{\D \enbrace*{h_1 \circ f \circ h_0 ^{-1}}_{h_0(x)} } = \mathrm{Rang} \enbrace*{\D \enbrace*{\hat{h}_1 \circ f \circ \hat{h}_0 ^{-1}}_{\hat{h}_0(x)} }  
+	\]
+	Insbesondere hängt $\Rg_x f$ nicht von der Wahl von Karten ab.
+\end{lemma}
+\begin{beweis}
+	Es gilt
+	\begin{align*}
+		\D \enbrace*{\hat{h}_1 \circ f \circ \hat{h}_0 ^{-1}}_{\hat{h}_0(x)}&= \D \enbrace*{\hat{h}_1 \circ h_1 ^{-1} \circ h_1 \circ f \circ h_0 ^{-1} \circ h_0 \circ \hat{h}_0 ^{-1}}_{\hat{h}_0(x)}\\
+		&= \D \enbrace*{\hat{h}_1 \circ  h_1 ^{-1}}_{h_1\enbrace[\big]{f(x)}} \circ  \D \enbrace*{h_1 \circ f \circ h_0 ^{-1}}_{h_0(x)} \circ \D \enbrace*{h_0 \circ \hat{h}_0 ^{-1}}_{\hat{h}_0(x)}   
+	\end{align*}
+	Da $\hat{h}_1 \circ h_1 ^{-1}$ und $h_0 \circ \hat{h}_0 ^{-1}$ Diffeomorphismen (um $h_1\enbrace[\big]{f(x)}$ bzw. $\hat{h}_0 (x)$) sind, sind die Differentiale $\D \enbrace[\big]{\hat{h}_1 \circ  h_1 ^{-1}}_{h_1\enbrace*{f(x)}}$ und $\D \enbrace[\big]{h_0 \circ \hat{h}_0 ^{-1}}_{\hat{h}_0(x)}$ invertierbar. 
+	Es folgt die Behauptung.
+\end{beweis}
+
+\begin{definition}[{name=[reguläre Werte]}]
+	Sei $f \colon N \to M$ eine $C^\infty$"=Abbildung.
+	\begin{enumerate}[a)]
+		\item $x \in N$ heißt \Index{regulär} für $f$, wenn $\Rg_x f = \dim M$.
+		\item $y \in M$ heißt ein \Index{regulärer Wert} für $f$, falls alle $x \in f^{-1} (y)$ regulär sind.
+	\end{enumerate}
+\end{definition}
+
+\begin{satz}[{name={über reguläre Werte}}]
+	Sei $f \colon N \to M$ eine $C^\infty$"=Abbildung und $y \in M$ ein regulärer Wert. 
+	Dann ist $f^{-1}(y)$ eine Untermannigfaltigkeit der Kodimension $\dim M$ von $N$.
+\end{satz}
+\begin{beweis}
+	Sei $x \in f^{-1}(y)$. 
+	Wir müssen zeigen, dass eine Karte $\varphi \colon U \to V \subseteq \mathbb{R}^k \times \mathbb{R}^m$ um $x$ existiert mit 
+	\[
+		\set[\big]{u \in U \given f(u)=y} = \set[\big]{\varphi ^{-1} (x,0) \given (x,0) \in V}
+	\]
+	Da es Karten um $x$ und $y$ gibt, können wir o.B.d.A. annehmen, dass $N \subseteq \mathbb{R}^k \times \mathbb{R}^m$ und $M \subseteq \mathbb{R}^m$ offene Teilmengen sind.
+	Weiter können wir annehmen, dass $x=0, y=0$ gilt. 
+	Nach Voraussetzung ist $\D f_0 \colon \mathbb{R}^k \times \mathbb{R}^m \to \mathbb{R}^m$ surjektiv. 
+	Indem wir $f$ -- falls nötig -- um einen linearen Isomorphismus von $\mathbb{R}^{k+m} = \mathbb{R}^k \times \mathbb{R}^m$ ändern, können wir erreichen, dass $\D f_0 \enbrace*{\set{0} \times \mathbb{R}^m } = \mathbb{R}^m$ gilt.
+
+	Seien nun $0\in U_1 \subseteq \mathbb{R}^k$ und $0 \in U_2 \subseteq \mathbb{R}^m$ offen mit $U_1 \times U_2 \subseteq N$. Mit dem Satz über implizite Funktionen (\ref{satz:implizite-fkt}) folgt, dass offene Menge $V_1, V_2$ existieren mit $0 \in V_1 \subseteq U_1$, $0 \in V_2 \subseteq U_2$ und eine $C^\infty$"=Abbildung $g \colon V_1 \to V_2$, sodass gilt: Für 
+	$(x_1, x_2) \in V_1 \times V_2$ ist
+	\[
+		f(x_1, x_2) = 0 \iff x_2 = g(x_1).
+	\]
+	Betrachte nun
+	\[
+		\begin{tikzcd}
+			V_1 \times V_2 \rar["f"]  \dar["\varphi"]& M \\
+			\mathbb{R}^k \times \mathbb{R}^m
+		\end{tikzcd}
+	\]
+	mit $\varphi(x_1, x_2) = \enbrace[\big]{x_1, x_2 - g(x_1)}$. 
+	Für $(x_1, x_2) \in V_1 \times V_2$ gilt dann
+	\[
+		f(x_1, x_2) = 0 \iff \varphi(x_1, x_2) \in \mathbb{R}^k \times \set{0}.
+	\]
+	Weiter ist $\D \varphi_0 = \begin{psmallmatrix}
+		\id & 0 \\
+		-\D g_0 & \id
+	\end{psmallmatrix}$ invertierbar. 
+	Mit dem Satz von der Umkehrfunktion folgt wieder die Existenz offener Umgebungen $ 0 \in U \subseteq V_1 \times V_2$ und $0 \in V \subseteq \mathbb{R}^k \times \mathbb{R}^m$, sodass $\varphi \big|_{U} \colon U \to V$ ein Diffeomorphismus ist. 
+	Dies ist die gesuchte Karte.
+\end{beweis}
+
+\begin{beispiel}[{name=[Orthogonale Matrizen als Untermannigfaltigkeit]}]
+	Sei $\On(n) = \set*{A \in \mathbb{R}^{n \times n} \given  A^t \cdot A= \ind_n}$ die Gruppe der orthogonalen $n \times n$-Matrizen. Sei 
+	\[
+		S = \set[\big]{B \in \mathbb{R}^{n \times n} \given B = B^t}
+	\]
+	Dann ist $S \cong \mathbb{R}^{\frac{n(n+1)}{2}}$. 
+	Nun ist $f \colon \mathbb{R}^{n \times n} \to S$ mit $f(A)= A^t \cdot A$ eine 
+	$C^\infty$"=Abbildung und es ist $\On(n) = f^{-1}(\ind_n)$.
+	Behauptung: $\ind_n$ ist regulärer Wert von $f$ und somit folgt, dass $\On(n)$ eine Untermannigfaltigkeit von $\mathbb{R}^{n \times n} \cong \mathbb{R}^{n^2}$ ist.
+\end{beispiel}
+\begin{beweis}
+		Sei $A \in \On(n)$ und $B \in \mathbb{R}^{n \times n}$. 
+		Für $\lambda \in \mathbb{R}$ ist dann 
+		\begin{align*}
+			f(A+ \lambda B) = (A+ \lambda B)^t (A+ \lambda B) &= A^t A + \lambda B^t A + \lambda A^t B + \lambda^2 B^t B \\ &= A^t A + \lambda (B^t A + A^t B) + \lambda^2 B^t B.
+		\end{align*}
+		Es folgt, dass die Richtungsableitung in Richtung $B$ von $f$ in $A$ genau $B^t A + A^t B$ ist. 
+		Die Richtungsableitungen von $f$ sind genau das Bild des Differentials von $f$ in $A$. 
+		Für $B \in S$ ist mit $B \coloneqq \frac{1}{2} A \cdot C $, $C = B^t A + A^t B$. 
+		Also ist das Differential surjektiv und $A$ regulär für $f$.
+\end{beweis}
+
+\begin{satz}[{name={über implizite Funktionen}},label=satz:implizite-fkt]
+	Seien $U_1 \subseteq \mathbb{R}^n$ und $U_2 \subseteq \mathbb{R}^m$ offen. 
+	Seien $x_1 \in U_1$, $x_2 \in U_2$ und $f \colon U_1 \times U_2 \to \mathbb{R}^m$ eine 
+	$C^\infty$"=Abbildung, für die
+	\[
+		\D f_{(x_1,x_2)} \Big|_{\set{0} \times \mathbb{R}^n } \quad {\color{light_gray} = \diff{f}{\underline{y}} (x_1, x_2)}
+	\]
+	invertierbar ist. 
+	Dann gibt es eine $C^\infty$"=Abbildung $g \colon V_1 \to V_2$ mit $x_1 \in V_1 \subseteq U_1$, $x_2 \in V_2 \subseteq U_2$, $g(x_1)=x_2$ und 
+	\[
+		\set[\big]{(y_1, y_2) \in V_1 \times V_2 \given f(y_1, y_2)= f(x_1,x_2)} = \set[\big]{{\enbrace[\big]{y_1, g(y_1)}} \given y_1 \in V_1}  
+	\]
+\end{satz}
+\begin{beweis}
+	\emph{Siehe Skript Analysis \RM{2}.\footnote{\label{note5}Verfügbar unter \url{https://github.com/JaMeZ-B/latex-wwu}, siehe dazu auch \url{https://de.wikipedia.org/wiki/Satz_von_der_impliziten_Funktion}}}
+\end{beweis}
+
+\begin{bemerkung}[{name=[Satz von Sard]}]
+	Nach dem Satz von \textsc{Sard}\footnote{Wikipedia: \url{https://de.wikipedia.org/wiki/Satz_von_Sard}} ist die Menge der \bet{kritischen Werte}\index{kritischer Wert}, also der nicht regulären Werte einer $C^\infty$"=Abbildung $f \colon N \to M$ eine Menge mit Lebesgue-Maß Null. 
+	Insbesondere gibt es immer reguläre Werte.
+\end{bemerkung}
+
+% section regulare_werte (end)
 \cleardoubleoddemptypage
 \pagenumbering{Alph}
 \setcounter{page}{1}
