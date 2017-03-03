@@ -430,12 +430,15 @@ Nun zur Transienz von Perkolationsclustern in $\ZZ^d, d\geq 4$.
 \marginnote{\enquote{Es ist generell von unschätzbarem Vorteil bei mir Stochastik gehört zu haben}, Löwe 06.06.2016}
 \chapter{Cutsets, Pfade und Mischzeiten}
 \section{Markovketten}
-Wir betrachten für dieses Kapitel ergodische Markovketten auf einem endlichen Zustandsraum. \underline{Erinnerung:} Eine Markovkette mit Übergangsmatrix $Q$ heßt ergodisch, wenn \underline{entweder}:
+Wir betrachten für dieses Kapitel ergodische Markovketten auf einem endlichen Zustandsraum. Erinnerung: Eine Markovkette mit Übergangsmatrix $Q$ heßt ergodisch, wenn \underline{entweder}:
 \begin{enumerate}
-	\item $Q$ ist irreduzibel, d.h. $\forall x,y \exists n: Q^n(x,y)>0$ und
+	\item $Q$ ist irreduzibel, d.h. $\forall x,y \ \exists n: Q^n(x,y)>0$ und
 	\item $Q$ ist apersiondisch, d.h. $ggT\set{n \given Q^n(x,x) > 0} = 1$
 \end{enumerate}
-\underline{oder} $\exists N: Q^N \gg 0$, d.h. $Q^N(x,y)>0 \forall x,y$ \\
+\underline{oder} 
+\begin{gather}
+	\exists N: Q^N \gg 0,\text{ d.h. } Q^N(x,y)>0, \forall x,y
+\end{gather}
 Wichtigster Satz über endliche Markovketten:
 \begin{satz}[Ergodensatz für Markovketten]
 	\label{satz:7-1}
@@ -639,7 +642,7 @@ Also haben wir gezeigt:
 	\end{align}
 \end{satz}
 
-Bislang haben wir wenig von der \enquote{Gemoetrie} von $(X_n)n$ benutzt. Die Idee \enquote{Um nahe an $\pi$ zu sein, muss man die Punkte, die $\pi$ mit hoher Wahrscheinlichkeit ausstattet gesehen haben können} wollen wir nun verknüpfen mit \enquote{das ist aber schwierig, wenn der Übergangsgraph Flaschenhälse hat}. \todo{Bild Flaschenhals}Gibt es relativ kleine Teilmengen, die man nur schlecht verlassen kann? Wir suchen ein Maß für \enquote{Flaschenhalsigkeit}. Dafür sei $Q$ ergodisch und reversibel auf $\Omega$. Sei $\pi Q = \pi$, $\pi$ W-Maß. Wie schon in Kapitel 1-3 \todo{refs?} definiere $c(x,y) = \pi(x) Q(x,y) = \pi(y) Q(y,x).$ Es sei für $A,B \subseteq \Omega$
+Bislang haben wir wenig von der \enquote{Gemoetrie} von $(X_n)n$ benutzt. Die Idee \enquote{Um nahe an $\pi$ zu sein, muss man die Punkte, die $\pi$ mit hoher Wahrscheinlichkeit ausstattet gesehen haben können} wollen wir nun verknüpfen mit \enquote{das ist aber schwierig, wenn der Übergangsgraph Flaschenhälse hat}. \todo{Bild Flaschenhals}Gibt es relativ kleine Teilmengen, die man nur schlecht verlassen kann? Wir suchen ein Maß für \enquote{Flaschenhalsigkeit}. Dafür sei $Q$ ergodisch und reversibel auf $\Omega$. Sei $\pi Q = \pi$, $\pi$ W-Maß. Wie schon in Kapitel I-III definiere $c(x,y) = \pi(x) Q(x,y) = \pi(y) Q(y,x).$ Es sei für $A,B \subseteq \Omega$
 \begin{align}
 	C(A,B) = \sum\limits_{x\in A} \sum\limits_{y \in B} c(x,y)
 \end{align}
@@ -756,6 +759,7 @@ $C(A,B)$ ist die Wahrscheinlichkeit von $A$ nach $B$ zu laufen, wenn man mit $\p
 \end{beweis}
 
 \begin{beispiel}[Verklebte Tori]
+	\label{bsp:verklebtte-Tori}
 	Ein diskreter d-dimensionaler Torus ist ein Graph $G = (V,E)$ mit $V = \underbrace{\ZZ_n \times \dots \times \ZZ_n}_{\text{d-mal}}$, und $\ZZ_n = \set{0,\dots,n-1}$ und für $x = (x_1,\dots,x_d), y = (y_1,\dots,y_d)$ sei 
 	\begin{align}
 		e = \set{x,y} \in E \Leftrightarrow \exists j \in \set{1,\dots,d} :\forall i \neq j: x_i = y_i  \text{ und } x_j = (y_j \pm 1 \mod{n}).
@@ -768,6 +772,7 @@ $C(A,B)$ ist die Wahrscheinlichkeit von $A$ nach $B$ zu laufen, wenn man mit $\p
 \end{beispiel}
 
 \begin{beispiel}[Graphenfärben]
+	\label{bsp:graphenfärben}
 	Sei $G = (V,E)$ ein Graph. Eine Färbung von $G$ mit $q$ Farben $\set{1,\dots,q}$ ist eine Abbildung $f: V \to \set{1,\dots,q}$, mit $f(v) \neq f(w)$, falls $\set {v,w} \in E$. Es gibt zwei offensichtliche Fragen: 
 	\begin{enumerate}
 		\item Wie groß muss $q$ minimal sein? 
@@ -813,6 +818,7 @@ Wie sampelt man die Gleichverteilung auf $\Omega$? \\
 \marginnote{Vorlesungsbeginn 20.06.2016}
 Ein Beispiel (zu $t_{mix} \geq \frac{1}{4 \Phi_*}$), in dem alles gut geht: 
 \begin{beispiel}[Der Binärbaum]
+	\label{bsp:Binärbaum}
 	Sei $T=(V,E)$ der Binärbaum der Tiefe $k$, d.h. ein Baum mit Wurzel $v^*$, wobei $\deg(v^*) = 2, \deg(v) = 3$ für alle $v \neq v^*$, die keine Blätter sind und $\deg(v) = 1$ für alle Blätter. Sei $n = \abs{V} = 2^{k+1} -1$. Dann ist $\abs{E} = n-1, d(v,v^*) = k$ für alle Blätter.
 	
 \end{beispiel}
@@ -846,7 +852,7 @@ Ein Beispiel (zu $t_{mix} \geq \frac{1}{4 \Phi_*}$), in dem alles gut geht:
  Damit $t_{mix} \geq \frac{n-2}{4}$. Diese Abschätzung ist ziemlich gut, denn ,man kann auch zeigen dass $t_{mix} \leq 4n$ gilt, d.h. untere und obere Schranke unterscheiden sich lediglich um eine Konstante. \\
  Curie-Weiß: $\beta =1$ kritische Temperatur $m_N = \frac{1}{N} \sum\limits_{i=1}^{N}\delta_i, m_N \sim 0$, für $\beta \leq 1:$ konzentriert sich $m_N$ um zwei Werte. Auch sind Simulationsalgorithmen für $\beta > 1$ exponentiell langsam.
  
- \enquote{Man kann zeigen, dass $t_{mix} \leq \dots$ gilt} haben wir in allen Beispielen 4.2-4.4 \todo{REF} gesagt. Aber wie zeigt man so etwas? Wir wollen eine Technik kennenlernen, die solche Abschätzungen aus der Verteilung der Eigenwerte von $Q$ generiert. 
+ \enquote{Man kann zeigen, dass $t_{mix} \leq \dots$ gilt} haben wir in allen Beispielen \ref{bsp:verklebtte-Tori}, \ref{bsp:graphenfärben} und \ref{bsp:Binärbaum} gesagt. Aber wie zeigt man so etwas? Wir wollen eine Technik kennenlernen, die solche Abschätzungen aus der Verteilung der Eigenwerte von $Q$ generiert. 
  
  Die Situation ist wieder die, dass $Q$ eine bezüglich $\pi$ reversible Markovkette auf einem endlichen Zustandsraum $\Omega$ mit $\abs{\Omega} = m$ ist. Wir werden sehen, dass $Q$ nur reelle Eigenwerte hat. Diese ordnen wir an: $1 = \beta_0 > \beta_1 \dots \geq \beta_{m-1} \overset{*}{>} -1$\marginnote{* die Kette sei aperiodisch}. Man kann einen Operator zu $Q$ assoziieren, der vermöge
  \begin{align}
@@ -870,6 +876,7 @@ Ein Beispiel (zu $t_{mix} \geq \frac{1}{4 \Phi_*}$), in dem alles gut geht:
   	\end{psmallmatrix}$ und die Konvergenzgeschwindigkeit richtet sich nach dem betragsmäßig zweitgrößten Eigenwert.
   	
 \begin{satz}
+	\label{satz:11-17}
 	In der obigen Situation sei $\beta_* = \max\set{\abs{\beta_i},i\neq 0}, \gamma* = 1- \beta_*$ die absolute Spektrallücke, $\gamma = 1 - \beta_1$ die Spektrallücke und $t_{rel} = \frac{1}{\gamma^*}$ die Relaxationszeit. Dann gilt für alle $\epsilon > 0$ 
 	\begin{align}
 		(t_{rel} - 1) \log \frac{1}{2 \epsilon} \leq t_{mix} (\epsilon) \leq \log\enb{\frac{1}{2\epsilon \sqrt{\pi_{min}}}} t_{rel}
@@ -911,7 +918,7 @@ Ein Beispiel (zu $t_{mix} \geq \frac{1}{4 \Phi_*}$), in dem alles gut geht:
 		\end{align}
 		Da $Q^t f_j = \beta^t_j f_j$ und $Q^t(x,y) = \benb{Q^t\delta_y} (x)$ folgt $Q^t(x,y) = \sum\limits_{j}f_j(y) \pi(y) \beta_j^t f(x) \Rightarrow $ Division durch $\pi(y)$ gibt das Ergebnis.
 	\end{beweis}
-	\underline{Beweis 4.5} \todo{REF!}
+	\underline{Beweis von \autoref{satz:11-17}}
 	
 	Wir zeigen nur die obere Schranke, weil uns diese hilft $t_{mix}$ von oben zu beschränken. Nach Definition von TV:
 	\begin{align}
@@ -954,6 +961,7 @@ Ein Beispiel (zu $t_{mix} \geq \frac{1}{4 \Phi_*}$), in dem alles gut geht:
 
 Man kann mittels $\mathcal{E}$ eine Abschätzung für $1-\beta_1$	erreichen.
 \begin{satz}
+	\label{satz:11-20}
 	Sei $\lambda_1 = 1-\beta_1$, dann ist  
 	\begin{align}
 		\lambda = \min\limits_{\substack{f:S\to \RR \\ \EW{\relax}_{\pi}(f) = 0 \\ \Var{\relax}_{\pi}(f) = 1}} \mathcal{E}(f,f) = \min\limits_{\substack{f:S\to \RR \\ \EW{\relax}_{\pi} (f) = 0}} \frac{\mathcal{E}(f,f)}{\Norm{f}^2_{2,\pi}} = \min\limits_{\substack{f:S \to \RR \\ f \neq const.}} \frac{\mathcal{E}(f,f)}{\Var{\relax}_{\pi}(f)}
@@ -983,7 +991,7 @@ Man kann mittels $\mathcal{E}$ eine Abschätzung für $1-\beta_1$	erreichen.
 	\end{align}
 \end{beweis}
 
-Um Satz 4.6 \todo{ref} anzuwenden, sei nun ein Random Walk auf einem zusammenhängenden Netzwerk $G = (V,E,c)$ mit Übergangsmatrix $Q$ und stationären Maß $\pi$ gegeben. F+r je zwei Punkte $x \neq y \in V$ sei $\gamma_{xy}$ ein Pfad von $x$ nach $y$ und 
+Um \autoref{satz:11-20} anzuwenden, sei nun ein Random Walk auf einem zusammenhängenden Netzwerk $G = (V,E,c)$ mit Übergangsmatrix $Q$ und stationären Maß $\pi$ gegeben. F+r je zwei Punkte $x \neq y \in V$ sei $\gamma_{xy}$ ein Pfad von $x$ nach $y$ und 
 \begin{align}
 	\Gamma = \set{\gamma_{x,y} \given x,y \in V}
 \end{align}
@@ -997,6 +1005,7 @@ Weiter sei
 \end{align}
 Dann gilt 
 \begin{satz}[Poincaré Ungleichung]
+	\label{satz:poincare-ungleichung}
 	In der obigen Situation gilt $\beta_1 \leq 1 - \frac{1}{\kappa}$ oder $\lambda_1 \geq \frac{1}{\kappa}$
 \end{satz}
 \begin{beweis}
@@ -1011,11 +1020,12 @@ Dann gilt
 				&\leq \frac{1}{2} \kappa \sum\limits_{e} c(e) f^2(e) \\
 				&= \frac{1}{2} \kappa \sum\limits_{x,y} c(x,y) \enb{f(x) - f(y) }^2 = \kappa \mathcal{E}(f,f)
 	\end{align}
-	Mit Satz 4.6 \todo{REF} folgt die Behauptung.
+	Mit \autoref{satz:11-20} folgt die Behauptung.
 \end{beweis}
 
 \underline{Ähnlich:} 
 \begin{satz}
+	\label{satz:11-23}
 	Sei $\abs{\gamma_{xy}}$ in obiger Situation die Länge von $\gamma_{xy}$ und $k = \max_e \set{\frac{1}{c(e)} \sum\limits_{\gamma_{xy} \ni e} \abs{\gamma_{xy}} \pi(x) \pi(y) }$. Dann
 	\begin{align}
 		\beta_1 \leq 1- \frac{1}{k}
@@ -1037,7 +1047,7 @@ Dann gilt
 	\end{align}
 \end{korollar}
 \begin{beweis}
-	folgt unmittelbar aus Satz 4.5, 4.7 und 4.8 \todo{REF} \todo{d*}
+	folgt unmittelbar aus \autoref{satz:11-17}, \autoref{satz:poincare-ungleichung} und \autoref{satz:11-23}.
 \end{beweis}
 \begin{korollar}
 	Für die einfache Irrfahrt auf $G$ gilt $\beta_1 \leq 1 - \frac{2\abs{E}}{d_*^2\gamma_* b}$. Dabei ist $d_* = \max\limits_x \deg(x), \gamma_* = \max\set{\abs{\gamma_{xy}} \given x,y \in V }$ und $b = \max\limits_{e} \abs{\set{\gamma \in \Gamma \given e \in  \gamma}}$.
@@ -1143,6 +1153,7 @@ Dann gilt
 \marginnote{Vorlesungsbeginn 30.06.2016}
 
 \begin{satz}[Cheeger-Ungleichung]
+	\label{satz:Cheeger}
 	Sei $Q$ die Übergangsmatrix einer ergodischen Markovkette auf $V$ (endlich) und $\pi$ sei das reversible Wahrscheinlichkeitsmaß zu $Q$. Sei wieder 
 	\begin{align}
 		h = \min\limits_{S:\pi(S)<1/2} \set{\frac{C(S,S^c)}{\pi(S)}} && \text{mit } C(S,S^C) = \sum\limits_{x \in S, y \notin S} c(x,y) = \sum\limits_{x \in S, y \notin S} \pi(x) Q(x,y)
@@ -1171,9 +1182,9 @@ Dann gilt
 	\begin{align}
 		\lambda \Norm{\Psi^+}^2_{L^2(\pi)} \geq \mathcal{E} (\Psi^+,\Psi^+)
 	\end{align}
-	falls $L\Psi := (\id - Q) \Psi \leq \lambda\Psi$ auf $S(\Psi)$. Denn
+	falls $L\Psi := (\id - Q) \Psi \leq \lambda\Psi$ auf $S(\Psi) \ (*)$. Denn
 	\begin{align}
-		\lambda \Norm{\Psi^+}_{L^2(\pi)} = < \lambda\Psi^+, \Psi^+>_{\pi} \overset{*}{\geq} <L_{\Psi^+}, \Psi^+ > = \mathcal{E} (\Psi^+,\Psi^+)
+		\lambda \Norm{\Psi^+}_{L^2(\pi)} = \sprod{\lambda\Psi^+, \Psi^+}_{\pi} \overset{(*)}{\geq} \sprod{L_{\Psi^+}, \Psi^+} = \mathcal{E} (\Psi^+,\Psi^+)
 	\end{align}
 
 	\underline{2. Beobachtung:} $\forall \Psi \in L^2(\pi)$ mit $S(\Psi) \neq \emptyset$ gilt
@@ -1208,36 +1219,36 @@ Dann gilt
 	\begin{align}
 		2^{3/2} \mathcal{E}^{1/2}(\Psi,\Psi) \Norm{\Psi}_{L^2(\pi)} \geq \sum\limits_{x,y} \abs{\Psi^2(x) - \Psi^2(y)} c(x,y) \geq 2 h(\Psi) \Norm{\Psi}^2_{L^2(\pi)}
 	\end{align}
-	Zusammen mit (3.3) \todo{REF}
+	Zusammen mit \autoref{satz:6-4}
 	\begin{gather}
 		\lambda \Norm{\Psi_+}^2_{L^2(\pi)} \geq \mathcal{E}(\Psi^+,\Psi^+) \frac{h^2(\Psi)}{2} \Norm{\Psi_+}^2_{L^2(\pi)} \\
 		\Rightarrow \lambda \geq \frac{h^2(\Psi)}{2}
 	\end{gather}	
 	wobei $h = \inf\limits_{S: \pi(S) \leq 1/2} \frac{C(S,S^c)}{\pi(S)}$. \\
-	Das betrechten wir für $\lambda = \lambda_1$. Sei $\Psi$ eine Eigenfunktion von $L$ zu $\lambda_1$. Dann stimmt $(*)$ \todo{REF}, d.h. 
+	Das betrachten wir für $\lambda = \lambda_1$. Sei $\Psi$ eine Eigenfunktion von $L$ zu $\lambda_1$. Dann stimmt $(*)$ ($L\Psi \leq \lambda\Psi $), d.h. 
 	\begin{align}
 		\lambda_1 \geq \frac{h^2(\Psi)}{2} \geq \frac{h^2}{2} &&  h^2 = \inf\limits_{S: \pi(S) \leq \frac{1}{2}} \frac{C(S,S^c)}{\pi(S)} && h^2(\Psi) = \inf\limits_{S \subseteq S(\Psi)} \frac{C(S,S^c)}{\pi(S)}
 	\end{align}
 	solange $\pi\Big(S(\Psi)\Big) \leq \frac{1}{2}$ geht alles gut, denn dann ist das Infimum in $h(\Psi)$ über weniger Mengen $S$ als das in $h$. Nun ist $\EW{\Psi}_{\pi} = \sprod{\Psi, \mathds{1}}_{\pi} = 0$, denn $\Psi \perp \mathds{1}$, d.h. wenn $S(\Psi)$ so sein sollte, dass $\pi(S(\Psi)) > \frac{1}{2}$, dann gehen wir zu $\Psi$ über und erhalten $\pi(S(-\Psi)) \leq \frac{1}{2}$. Somit sind wir fertig.
 \end{beweis}
 \todo[inline]{undefined Control sequence titel $Z_p$ und $Z^d_2$}
-\begin{beispiel}[$Z_p$]
-	Sei $p$ ungerade und $\ZZ_p$ der $p$-Kreis. $\pi(x) = \frac{1}{p}, \forall x$, $h$ wird angenommen, wenn man für $S$ ein Intervall der Länge $\frac{p-1}{2}$ wählt. Dann gilt $h = \frac{2}{p-1}$. Also folgt mit Cheeger \todo{REF}
+\begin{beispiel}%[$\ZZ_p$]
+	Sei $p$ ungerade und $\ZZ_p$ der $p$-Kreis. $\pi(x) = \frac{1}{p}, \forall x$, $h$ wird angenommen, wenn man für $S$ ein Intervall der Länge $\frac{p-1}{2}$ wählt. Dann gilt $h = \frac{2}{p-1}$. Also folgt mit Cheeger (\autoref{satz:Cheeger})
 	\begin{align}
 	1 - \frac{\Psi}{p-1} \leq p_1 \leq 1 - \frac{2}{\enb{p-1}^2}
 	\end{align}
 	\underline{Erinnerung:} $\beta_1 = \cos(\frac{2\pi}{p}) = 1 - \frac{2\pi^2}{p^2} + \mathcal{O}\enb{\frac{1}{p^4}}$. Hier ist für $p$ groß die untere Schranke schlecht und die obere Schranke bis auf einen Faktor $\pi^2$ gut.
 \end{beispiel}
 
-\begin{beispiel}[$Z^d_2$]
-	Sei $V = \set{0,1}^d, \pi(x) = \frac{1}{2^d}, \forall x$.$h$ wird angenommen für die $S$, welche genau eine Koordinate festhalten, z.B.
+\begin{beispiel}%[$Z^d_2$]
+	Wir betrachten $\ZZ^d_2$. Sei $V = \set{0,1}^d, \pi(x) = \frac{1}{2^d}, \forall x$.$h$ wird angenommen für die $S$, welche genau eine Koordinate festhalten, z.B.
 	\begin{align}
 		S = \set{x \given x_1 = 0} && \pi(S) = \frac{1}{2}
 	\end{align}
 	\begin{align}
 		h = \frac{C(S,S^c)}{\pi(S)} = 2 \sum\limits_{x \in S, y \notin S} c(x,y) = \frac{2 \abs{S} }{2 \abs{E}} = \frac{2 \cdot 2^{d-1}}{2 (d/2) 2^d} = \frac{1}{d} \marginnote{SRW hat $c(x,y) = \frac{1}{2\abs{E}}$}
 	\end{align}
-	Es gilt $p_1 =  1 - \frac{2}{d}$ und wir erhalten mit Cheeger:
+	Es gilt $p_1 =  1 - \frac{2}{d}$ und wir erhalten mit Cheeger (\autoref{satz:Cheeger}):
 	\begin{align}
 		1 - \frac{2}{d} \leq p_1 \leq 1 - \frac{1}{2d^2}
 	\end{align}
@@ -1250,7 +1261,7 @@ Dann gilt
 	\begin{align}
 		h = \frac{1}{4 \cdot 2^{d-1} - 1} = \frac{1}{2\abs{E}} = \frac{1}{(2d^{d+2}) -4 } \marginnote{\enquote{Das ist noch eins der Dinge, die ich ganz gut kann: 2 mal 2}, Löwe}
 	\end{align}
-	\underline{Cheeger:}
+	mit Cheeger (\autoref{satz:Cheeger})
 	\begin{align}
 		1 - \frac{1}{2^{d+1} -2} \leq \beta^1 \leq 1- \frac{1}{2} \enb{\frac{1}{2^{d+2} -4 }}^2
 	\end{align}
