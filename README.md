@@ -1,3 +1,4 @@
+[![build status](https://gitlab.com/JaMeZ-B/LaTeX-WWU/badges/master/build.svg)](https://gitlab.com/JaMeZ-B/LaTeX-WWU/commits/master)
 # LaTeX-WWU
 lecture notes written at WWU Münster, FB10
 
