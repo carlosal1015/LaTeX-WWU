@@ -1,0 +1,123 @@
+%!TEX root = ana_top_geo.tex
+
+\subsection{Ausführlicher Beweis zu \cref{lem:kpt-schnitte}} % (fold)
+\label{sub:kpt-schnitte}
+Sei $X$ ein Hausdorffraum. Dann ist $X$ genau dann kompakt, wenn gilt: Hat eine Familie $\mathcal{A}$ von abgeschlossenen Teilmengen von $X$ die endliche 
+Durchschnittseigenschaft, so gilt 
+\[
+	\bigcap_{A \in \mathcal{A}} A \not= \emptyset.
+\]
+\begin{beweis}
+	Für die erste Implikation sei $X$ kompakt und $\mathcal{A}$ eine Familie von abgeschlossenen Mengen mit der endlichen Durchschnittseigenschaft.
+	Angenommen $\bigcap_{A \in \mathcal{A}} A = \emptyset$.
+	Dann gilt
+	\[
+		X = X \setminus \bigcap_{A \in \mathcal{A}} A = \bigcup_{A \in \mathcal{A}} X \setminus A.
+	\]
+	Nun ist $\mathcal{U} \coloneqq \set*{X \setminus A \given A \in \mathcal{A}}$ eine offene Überdeckung von $X$ und da $X$ kompakt ist, existiert $\mathcal{A}_0 \subset \mathcal{A}$ endlich, sodass
+	\[
+		X = \bigcup_{A \in \mathcal{A}_0} X \setminus A = X \setminus \underbrace{\bigcap_{A \in \mathcal{A}_0 } A }_{\neq \emptyset} \quad \light
+	\]
+	Für die umgekehrte Implikation sei nun $\mathcal{U} = \set{U_i}_{i \in I}$ eine offene Überdeckung von $X$.
+	Angenommen für jede endliche Teilmenge $J \subseteq I$ gilt $X \neq \bigcup_{i \in J} U_i$.
+	Betrachte nun $\mathcal{A} =  \set{X \setminus U_i}_{i \in I}$. Dann gilt nach Annahme
+	\[
+		\bigcap_{i \in J} X \setminus U_i = X \setminus \bigcup_{i \in J} U_i \neq \emptyset.
+	\]
+	Also hat $\mathcal{A}$ die endliche Durchschnittseigenschaft. Nach Vorraussetzung gilt dann
+	\[
+		\emptyset \not= \bigcap_{i \in I} X \setminus U_i = X \setminus \underbrace{\bigcup_{i \in I} U_i}_{= X} \quad \light \qedhere
+	\]
+\end{beweis}
+
+
+\subsection[Blatt3, Aufgabe 4: Hilfssatz für den Hauptsatz der Algebra]{Blatt 3, Aufgabe 4} % (fold)
+\label{sub:B3A4}
+\emph{Diese Übungsaufgabe ist zentral für den Beweis des Hauptsatzes der Algebra, \cref{satz:hauptsatz-algebra}.} 
+
+Sei $p(x)= x^n + a_{n-1} x^{n-1} + \ldots + a_1 x + a_0$ mit $n \in \mathbb{N}_0$ ein Polynom mit Koeffizienten $a_i \in \mathbb{C}$, dass \emph{keine} Nullstelle in $\mathbb{C}$ besitzt. 
+Sei $S^1= \set*{z \in \mathbb{C} \given \abs*{z}=1}$.
+\begin{enumerate}[(a)]
+	\item $f \colon S^1 \to S^1$ gegeben durch $f(z) = \frac{p(z)}{\abs*{p(z)} } $ ist wohldefiniert und homotop zu einer konstanten Abbildung.
+	\item $f$ ist homotop zur Abbildung $g_n \colon S^1 \to S^1$ mit $g_n(z)= z^n$.
+\end{enumerate}
+\minisec{Beweis}
+\begin{enumerate}[(a)]
+	\item \begin{description}
+		\item[Wohldefiniertheit:] Sei $z \in S^1$ beliebig. Dann gilt
+		\[
+			\abs*{\frac{p(z)}{\abs*{p(z)} } } = \frac{1}{\abs*{p(z)} } \cdot \abs*{p(z)} =1,
+		\]
+		also ist $f(z) \in S^1$.
+		\item[Homotop zu einer konstanten Abbildung:] Definiere $f_t \colon S^1 \to S^1$ für $t \in [0,1]$ durch 
+		\[
+			f_t(z) = \frac{p(t \cdot z)}{\abs*{p(t \cdot z)} } 
+		\]
+		Dies ist mit der gleichen Begründung wie oben wohldefiniert. 
+		Außerdem ist $f_0(z)= \frac{a_0}{\abs*{a_0} } \in S^1 $ konstant und $f_1(z)= \frac{p(z)}{\abs*{p(z)} }=f(z)$. 
+		Definiere nun $H \colon S^1 \times [0,1] \to S^1$ durch $H(x,t) \coloneqq f_t(x)$. 
+		Dann ist $H$ stetig, da Polynome und $\abs*{.} $, sowie Multiplikation stetig sind. 
+		$H$ ist die gesuchte Homotopie.
+	\end{description}
+	\item Sei $h \colon S^1 \times [0,1] \to \mathbb{C}$ gegeben durch $h(z,t) = z^n + \sum_{k=0}^{n-1} a_k z^k t^{n-k}$. 
+	Dann gilt $h(z,0)=z^n \not= 0$, da $z \in S^1$.
+	Für $t \neq 0$ gilt nun
+	\begin{align*}
+		h(z,t) = 0 \iff \frac{h(z,t)}{t^n} = 0 \iff \frac{z^n}{t^n} + \sum_{k=0}^{n-1} a_k \frac{z^k}{t^k} = 0 \iff p \enbrace*{\frac{z}{t}} = 0
+	\end{align*}
+	Aber nach Vorraussetzung gilt $p \enbrace*{\frac{z}{t}} \neq 0$. 
+	Also $h(z,t) \neq 0$ für alle $t \in [0,1]$. 
+	Definiere nun $H \colon S^1 \times [0,1]\to S^1$ durch $H(z,t) = \frac{h(z,t)}{\abs*{h(z,t)}}$. 
+	Wie eben gezeigt, ist dies wohldefiniert und offensichtlich stetig. Da
+	\[
+		H(z,0) = \frac{z^n}{\abs*{z^n} } = z^n \quad \text{ und } \quad H(z,1) = \frac{h(z,1)}{\abs*{h(z,1)} } = \frac{p(z)}{\abs*{p(z)} } =f(z)
+	\]
+	ist $H$ die gesuchte Homotopie. \qedhere
+\end{enumerate}
+
+\subsection{Blatt 10, Aufgabe 3} % (fold)
+\label{sub:B10A3}
+\emph{Diese Übungsaufgabe lieferte den Beweis zu \cref{prop:iso-covering}.} \smallskip \\
+Sei $p \colon \overline{X} \to X$ eine Überlagerung. 
+Seien $\overline{x}_0  \in \overline{X}$ und $x_0= p(\overline{x}_0 )$ Basispunkte. 
+Dann ist die induzierte Abbildung $\pi_n (p) \colon \pi_n(\overline{X}, \overline{x}_0) \to \pi_n(X,x_0)$ ein Isomorphismus für alle $n \ge 2$.
+\minisec{Beweis}
+Als Überlagerung ist $p$ stetig, also ist $\pi_n(p)$ ein Gruppenhomomorphismus nach \hyperref[prop:eig-hom-gruppen:enum:4]{ \cref*{prop:eig-hom-gruppen} \ref*{prop:eig-hom-gruppen:enum:4}}.
+\begin{description}
+	\item[Surjektivität:] Sei $[\omega] \in \pi_n(X,x_0)$, also $\omega \colon I^n \to X$ mit $\omega(\partial I^n) = \set{x_0}$. Betrachte $\omega$ nun als Abbildung $I^{n-1} \times [0,1] \to X$:
+	\[
+		\begin{tikzcd}[column sep=4em]
+			I^{n-1} \times \set{0} \dar[hook] \rar["\mathrm{const}_{\overline{x}_0}"] & \overline{X} \dar["p"]\\
+			I^{n-1} \times I \rar["\omega"] & X  
+		\end{tikzcd}
+	\]
+	$\mathrm{const}_{\overline{x}_0} \colon I^{n-1} \times \set{0}$ ist eine Hebung von $\omega\big|_{I^{n-1} \times \set{0}} \equiv x_0$. 
+	Nach dem Homotopiehebungssatz (\ref{satz:hebung-homotopie}) existiert eine Hebung $\overline{\omega} \colon I^{n-1} \times I \to \overline{X}$ von $\omega$ mit $\overline{\omega}\big|_{I^{n-1} \times \set{0}} \equiv \overline{x}_0 $. 
+	Also gilt
+	\[
+		p \circ \overline{\omega} \big|_{\partial I^n} = \omega \big|_{\partial I^n} \equiv x_0 \enspace \Longrightarrow \enspace \overline{\omega} \big|_{\partial I^n} 
+		\in p ^{-1}( \set{x_0} ) .
+	\]
+	Da $p^{-1}(\set{x_0})$ diskret und $\partial I^n$ für $n \ge 2$ zusammenhängend ist, muss $\overline{\omega} \big|_{\partial I^n}$ konstant sein. 
+	Da $\overline{\omega}\big|_{I^{n-1} \times \set{0}} \equiv \overline{x}_0 $ gilt, folgt somit $\overline{\omega}(\partial I^n) = \set{\overline{x}_0}$. 
+	Also ist $[\overline{\omega}] \in \pi_n(\overline{X},\overline{x}_0)$ und weiter gilt
+	\[
+		\pi_n(p) \enbrace*{[\overline{\omega}]} = [p \circ \overline{\omega} ] = [\omega] \in \pi_n(X,x_0). 
+	\]
+	\item[Injektivität:] Sei $[\omega] \in \ker \pi_n(p)$, also $[p \circ \omega] = [c_{x_0}]$. 
+	Es existiert also eine Homotopie $H$ relativ $\partial I^n$ zwischen $p \circ \omega$ und $c_{x_0}$. 
+	Offensichtlich ist $\omega$ eine Hebung von $p \circ \omega$. 
+	Mit dem Homotopiehebungssatz erhalten wir eine Hebung $\overline{H}$ von $H$ mit $\overline{H}(-,0) = \omega$. 
+	Weiter wissen wir, dass
+	\[
+		\overline{H} \big|_{\partial I^n \times [0,1]} \in p ^{-1}(\set{x_0} ) \quad \text{ und }\quad  \overline{H} \big|_{ I^n \times \set{1}} \in p ^{-1}(\set{x_0} )
+	\]
+	gelten muss, da $H = p \circ \overline{H}$ und $H(-,1)= c_{x_0} \equiv x_0$. 
+	Mit dem gleichen Argument wie oben folgt, dass $\overline{H} \big|_{\partial I^n \times [0,1]}$ und $\overline{H} \big|_{ I^n \times \set{1}}$ konstant sind. 
+	Für $z \in \partial I^n$ gilt nun
+	\[
+		\overline{H}(z,0) = \omega(z) = \overline{x}_0
+	\]
+	Da $\partial I^n \times [0,1] \cap I^n \times \set{1} \not= \emptyset$, muss also auch $\overline{H}(-,1) \equiv \overline{x}_0$ gelten. 
+	Damit folgt $[\omega] = [c_{x_0}]$.\qedhere
+\end{description}
