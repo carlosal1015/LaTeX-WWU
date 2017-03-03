@@ -408,7 +408,7 @@ Sei $\sim$ eine Äquivalenzrelation auf dem topologischen Raum $X$.
 Dann ist die Äquivalenzklassenabbildung $q \colon X \to \sfrac{X}{\sim}$, $x \mapsto [x]_\sim$ surjektiv.
 Insbesondere wird $\sfrac{X}{\sim}$ durch die Quotiententopologie zu einem topologischen Raum.
 
-\begin{beispiel}[{name=[Räume konstruiert als Quotienten]}]
+\begin{beispiel}[{name=[Räume konstruiert als Quotienten]},label=bsp:konst-top]
 	Betrachte $X = [0,1] \times [0,1]$.
 	\begin{enumerate}[(i)]
 		\item Definiere $(s,t) \sim (s', t') :\Leftrightarrow (s=s' \text{ und } t=t')$ oder $(s=0, s'=1, t=t')$.
@@ -475,7 +475,7 @@ Insbesondere wird $\sfrac{X}{\sim}$ durch die Quotiententopologie zu einem topol
 		Dann ist $\sfrac{\mathbb{R}}{\mathbb{Q}}$ mit der Quotiententopologie nicht hausdorffsch, obwohl $\mathbb{R}$ selbstverständlich hausdorffsch ist.
 
 		\emph{Übung:} Die Quotiententopologie auf $\nicefrac{\mathbb{R}}{\mathbb{Q}}$ ist die grobe Topologie.
-		\item\label{210:enum:5} Sei $f \colon X \to X$ eine stetige Abbildung.
+		\item\label{bsp:konst-top:enum:5} Sei $f \colon X \to X$ eine stetige Abbildung.
 		Betrachte auf $X \times [0,1]$ die Äquivalenzrelation
 		\[
 			(x,t) \sim (x',t') : \Longleftrightarrow (x=x' \text{ und } t=t') \text{ oder } (t=0, t'=1 \text{ und } x'= f(x))
@@ -3558,6 +3558,105 @@ Die Tangentialabbildung ist \emph{funktoriell}, das heißt
 	Insbesondere ist $x$ genau dann regulär, wenn $\Tang_x f \cong \Tang_x N \to \Tang_{f(x)} M$ surjektiv ist.
 \end{bemerkung}
 % section der_tangentialraum (end)
+
+\newpage
+\section{Das Tangentialbündel} % (fold)
+\label{sec:das_tangentialbundel}
+
+\begin{definition}[{name=[Tangentialbündel]}]
+	Sei $X$ ein topologischer Raum. 
+	Ein $n$-dimensionales \Index{Vektorraumbündel} über $X$ ist eine stetige, surjektive Abbildung $\pi \colon E \to X$,\marginnote{Oft bezeichnet man das Vektorbündel einfach nur mit $E$} wobei für jedes 
+	$x \in X$ die Faser $E_x \coloneqq \pi^{-1} (\set{x})$ mit einer $n$-dimensionalen $\mathbb{R}$-Vektorraumstruktur versehen ist, so dass gilt:
+	\begin{center}
+		Für alle $x \in X$ gibt es eine offene Umgebung $U \subseteq X$ von $x$ und einen Homöomorphismus 
+		\[
+			f \colon \pi^{-1}(U) \xrightarrow{\enspace\approx \enspace} U \times \mathbb{R}^n, 
+		\]
+		sodass für jedes $y \in U$ $g_y \coloneqq f \big|_{E_y} \colon E_y  \to \set{y} \times \mathbb{R}^n $ ein $\mathbb{R}$-Vektorraumisomorphismus ist.
+	\end{center}
+	Oft sagt man für diese Eigenschaft auch, dass $E$ \Index{lokal trivial} ist. 
+	Das Paar $(f,U)$ heißt dann \Index{Bündelkarte} für $E$.
+\end{definition}
+
+\begin{beispiel}[{name=[Möbiusband als Vektorraumbündel]}]
+	Sei $f \colon \mathbb{R} \to \mathbb{R}$, $f(v)=-v$. 
+	Dann ist der Abbildungstorus von $f$ \marginnote{vgl. \hyperref[bsp:konst-top:enum:5]{Beispiel \ref*{bsp:konst-top} \ref*{bsp:konst-top:enum:5}}} $T(f)$ ein ein $1$-dimensionales Vektorraumbündel über $S^1$, denn $T(f)$ ist wieder das Möbiusband und als Vektorraumbündel nicht trivial, da $T(f) \not\cong S^1 \times \mathbb{R}$.
+\end{beispiel}
+
+\begin{definition}[{name=[Homomorphismus von Vektorraumbündeln]}]
+	Seien $E$ und $E'$ Vektorraumbündel über $X$ und $X'$. 
+	Sei $f \colon X \to X'$ stetig. 
+	Eine \bet{lineare Abbildung über $f$} ist eine stetige Abbildung $F \colon E \to E'$, so dass 
+	\begin{enumerate}[(i)]
+		\item \(
+			\begin{tikzcd}
+				E \rar["F"] \dar["\pi"] & E' \dar["\pi'"]\\
+				X \rar["f"] & X'
+			\end{tikzcd}
+		\)
+		kommutiert.
+		\item $\forall x \in X$ ist $F_x \coloneqq F \big|_{E_x} \colon E_x \to E_{f(x)}'$ $\mathbb{R}$-linear.
+	\end{enumerate}
+\end{definition}
+
+Achtung: $\im F$ und $\ker F$ sind im Allgemeinen keine Vektorraumbündel! ($F$ ist im Allgemeinen nicht linear)
+
+\begin{definition}[{name=[Schnitt]}]
+	Sei $E$ ein Vektorraumbündel über $X$. 
+	Ein stetiger \Index{Schnitt} von $E$ ist eine stetige Abbildung $s \colon X \to E$ mit $\pi \circ s = \id_X$.
+\end{definition}
+
+\begin{definition}[{name=[Tangentialbündel]}]
+	Sei $M$ eine $C^\infty$"=Mannigfaltigkeit. Das \Index{Tangentialbündel} von $M$ ist 
+	\[
+		\Tang M := \bigsqcup_{x \in M} \Tang_x M.
+	\]
+	Wir werden im Folgenden eine Topologie auf $\Tang M$ konstruieren, sodass $\Tang M$ mit der kanonischen Projektion $\pi \colon \Tang M \to M$ ein Vektorbündel ist.
+\end{definition}
+
+\begin{definition}[{name=[induzierte Bündelkarte]}]
+	Sei $M$ eine $C^\infty$"=Mannigfaltigkeit. 
+	Sei $M \supseteq U \xrightarrow{h} V \subseteq \mathbb{R}^n$ eine $C^\infty$"=Karte von $M$. 
+	Dann heißt $\Tang h \colon \Tang U \to V \times \mathbb{R}^n$ mit 
+	\[
+		\Tang h (v) = \enbrace[\Big]{h \enbrace[\big]{\pi(v)}, \Tang_{\pi(v)} h (v)}  
+	\]
+	die von $h$ \bet{induzierte Bündelkarte}\index{Bündelkarte!induzierte Bündelkarte} von $\Tang M$.
+\end{definition}
+
+\begin{bemerkung}[{name=[Bündelkartenwechsel]}]
+	Seien $M \supseteq U_i \xrightarrow{h_i} V_i \subseteq \mathbb{R}^n $, $i=0,1$ zwei $C^\infty$"=Karten von $M$. 
+	Dann ist der \Index{Bündelkartenwechsel} zwischen den Bündelkarten $\Tang h_0$ und $\Tang h_1$
+	\[
+		\Tang h_1 \circ (\Tang h_0)^{-1} \colon h_0(U_0 \cap U_1) \times \mathbb{R}^n \longrightarrow h_1(U_0 \cap U_1) \times \mathbb{R}^n
+	\]
+	gegeben durch $(x,v) \mapsto \enbrace[\Big]{h_1 \enbrace*{h_0^{-1}(x)}, \D ( h_1 \circ h_0^{-1})_x (v)}$. 
+	Insbesondere ist der Bündelkartenwechsel stetig und sogar $C^\infty$.
+\end{bemerkung}
+
+\begin{proposition}[{name=[Topologie auf dem Tangentialbündel]}]
+	Sei $M$ eine $C^\infty$"=Mannigfaltigkeit.
+	\begin{enumerate}[a)]
+		\item $\mathcal{U} \coloneqq \set[\big]{(\Tang h) ^{-1} (W) \given h \colon U \to V \text{ Karten für }M , W \subseteq V \times\mathbb{R}^n \text{ offen}} $ ist die Basis einer Topologie auf $\Tang M$.
+		\item Mit dieser Topologie ist $\Tang M$ ein Vektorraumbündel.
+	\end{enumerate}
+\end{proposition}
+\begin{beweis}[grobe Skizze]
+	\begin{enumerate}[(i)]
+		\item Folgt aus der Stetigkeit der Bündelkartenwechsel.
+		\item Die Bündelkarten liefern die lokale Trivialität. \qedhere
+	\end{enumerate}
+\end{beweis}
+
+\begin{bemerkung}[{name=[glatte Vektorfelder]}]
+	\begin{itemize}
+		\item Ist $\varphi \colon M \to N$ eine $C^\infty$"=Abbildung, so ist $\Tang \varphi \colon \Tang M  \to \Tang N$ mit $\Tang \varphi(v) \coloneqq \enbrace*{\Tang_{\pi(v)} \varphi}(v)$ eine lineare Abbildung über $\varphi$.
+		\item Schnitte des Tangentialbündels heißen \Index{Vektorfelder}. 
+		Ein differenzierbares Vektorfeld ist ein Vektorfeld $s \colon M \to \Tang M$, so dass $\Tang h \circ s \big|_{U} \colon U \to V \times \mathbb{R}^n$ für jede $C^\infty$"=Karte $h \colon U \to V$ von $M$ eine $C^\infty$"=Abbildung ist.
+	\end{itemize}
+\end{bemerkung}
+
+% section das_tangentialbundel (end)
 \cleardoubleoddemptypage
 \pagenumbering{Alph}
 \setcounter{page}{1}
