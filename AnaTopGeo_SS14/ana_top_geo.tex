@@ -2823,7 +2823,7 @@ $(M,\mathcal{A})$ und $(M, \mathcal{A}_\mathrm{max})$ sind diffeomorph mittels d
 	\end{enumerate}
 \end{bemerkung}
 
-\begin{definition}[{name=[Untermannigfaltigkeit]}]
+\begin{definition}[{name=[Untermannigfaltigkeit]},label=def:untermfkt]
 	Eine Teilmenge $N \subseteq M^{n+k}$ einer $(n+k)$-dimensionalen $C^\infty$"=Mannigfaltigkeit $M$, heißt eine $n$ dimensionale $C^\infty$"=\Index{Untermannigfaltigkeit}, wenn es um jedes $x \in N$ eine Karte $h \colon U \to V \subseteq \mathbb{R}^{n+k}$ für $M$ gibt, so dass $h(N \cap U) = V \cap (\mathbb{R}^n \times \set{0})$.
 	$k= \dim M - \dim N$ heißt die \Index{Kodimension} von $N$ in $M$. 
 	Durch Einschränkung dieser Karten von $M$ auf $N$ erhalten wir einen $C^\infty$"=Atlas für $N$. 
@@ -3315,7 +3315,7 @@ Das Ziel für den weiteren Verlauf dieses Abschnitts ist, folgendes zu zeigen
 	Definiere nun $A$ durch $A(t) \cdot e_i(t) = e_i$.
 \end{beweis}
 
-\begin{beweis}[von \cref{satz:sphaere-einf-zsm}]
+\begin{beweis}[von \cref{satz:sphaere-einf-zsmh}]
 	Wir müssen zeigen, dass jede stetige Abbildung $f \colon (S^n, e_0) \to (S^m, e_0)$ homotop zu eine konstanten Abbildung ist.\footnote{Man erinnere sich an das Kollabieren des Randes am Anfang von \cref{sec:hohere_homotopiegruppen}} 
 	Nach \cref{kor:approx-to-sphere} gibt es eine $C^\infty$"=Abbildung $\varphi \colon S^n \to S^m$ mit $\norm{f(x)- \varphi(x)} \le \frac{1}{2}$ für alle $x \in S^n$. 
 	Sei nun $H \colon S^n \times [0,1] \to S^m$ definiert durch\marginnote{Nenner $\neq 0$ wegen Approximation}
@@ -3332,6 +3332,232 @@ Das Ziel für den weiteren Verlauf dieses Abschnitts ist, folgendes zu zeigen
 	Daher ist jede stetige Abbildung $(S^n, e_0) \to (S^m \setminus \set{y} ,e_0)$ punktiert homotop zur konstanten Abbildung. Daher ist $\tilde{f}$, und damit auch $f$, punktiert homotop zur konstanten Abbildung.
 \end{beweis}
 % section approximation_durch_c_infty_abbildungen (end)
+
+\newpage
+\section{Der Tangentialraum} % (fold)
+\label{sec:der_tangentialraum}
+
+\begin{beispiel}[{name=[Tagentialraum der Sphäre]}]
+	Betrachte $S^n \subseteq \mathbb{R}^{n+1}$. 
+	Zu $x \in S^n$ betrachten wir den Unterraum 
+	\[
+		\Tang_x^n S^n \coloneqq \set*{v \in \mathbb{R}^{n+1} \given \sprod*{v}{x}=0} 
+	\]
+	Diesen können wir als $\mathbb{R}$-Vektorraum von \enquote{Richtungen} von $S^n$ in $x$ auffassen. 
+	Die Vereinigung der $\Tang^n_x S^n$, $\Tang^n S^n = \bigcup_{x \in S^n}\Tang_x^n S^n$ ist ein natürlicher Weise ein Unterraum des topologischen Raumes $S^n \times \mathbb{R}^{n+1}$, also
+	\[
+		\Tang^n S^n = \set*{(x,v) \given x \in S^n, v \in x^\bot} 
+	\]
+	Insbesondere ist $T^n S^n$ ein topologischer Raum.
+\end{beispiel}
+
+\begin{bemerkung}[{name=[Parallelisierbarkeit von Sphären]}]
+	$S^n$ heißt \Index{parallelisierbar}, falls es einen Homöomorphismus  $\Theta \colon \Tang^n S^n \to S^n\times \mathbb{R}^n$ gibt, so dass für jedes $x \in S^n$ die Einschränkung 
+	\[
+		\Theta\big|_{\Tang_x^n S^n} : \Tang^n_x S^n \to \set{x}\times \mathbb{R}^n 
+	\]
+	ein $\mathbb{R}$-Vektorraumisomorphismus ist. 
+	Unter den Sphären sind genau $S^1$, $S^3$ und $S^7$
+	parallelisierbar, siehe  \textcite{bott1958parallelizability}.
+\end{bemerkung}
+
+\begin{beispiel}[{name=[Tangentialraum einer Untermannigfaltigkeit]}]
+	Sei $M \subseteq \mathbb{R}^{n+k}$ eine $n$-dimensionale $C^\infty$"=Untermannigfaltigkeit. 
+	Sei $x \in M$. 
+	Dann gibt es eine an $M$ angepasste Karte 
+	\[
+		\mathbb{R}^{n+k} \supseteq U \xrightarrow[\cong]{\enspace h \enspace} V \subseteq \mathbb{R}^n \times \mathbb{R}^k 
+	\]
+	um $x$ mit $h(M \cap U) =(\mathbb{R}^n \times \set{0})\cap V$.\marginnote{siehe \cref{def:untermfkt}}
+	Das Urbild von $\mathbb{R}^n \times \set{0}$ unter $\D h_x$ ist der \bet{Tangentialraum}\index{Tangentialraum!einer Untermannigfaltigkeit} $\Tang^u_x M$ von $M$ im Punkt $x$. 
+	Da $h$ ein Diffeomorphismus ist, ist $\D h_x$ ein Isomorphismus von $\mathbb{R}$-Vektorräumen. 
+	Insbesondere ist $\dim \Tang^u_x M = \dim \mathbb{R}^n = n$.
+	
+	$\Tang_x^u M$ ist unabhängig von der Wahl der Karte $h$: Ist $k$ eine zweite an $M$ angepasste Karte, so ist 
+	\[
+		\D \enbrace*{h \circ k ^{-1}}_{k(x)} = \begin{pmatrix}
+			A & * \\
+			0 & *
+		\end{pmatrix}
+	\]
+	mit $A \in \GL(n,\mathbb{R})$. Das \Index{Tangentialbündel} von $M$ ist 
+	\[
+		\Tang^n M \coloneqq \set[\big]{(x,v) \given x \in M, v \in T_x^u M} \subseteq M \times \mathbb{R}^{n+k} 
+	\]
+	Ist $V \subseteq \mathbb{R}^n$ eine Untermannigfaltigkeit der Kodimension $0$, also $V \subseteq \mathbb{R}^n$ offen, so ist $\Tang^n V = \mathbb{R}^n$.
+\end{beispiel}
+
+\begin{lemma}[{name=[Tangentialvektoren als Geschwindigkeitsvektoren]},label=lem:tang-geschw]
+	Sei $M \subseteq \mathbb{R}^{n+k}$ eine $C^\infty$"=Untermannigfaltigkeit. 
+	Sei $x \in M$. 
+	Für $v \in \mathbb{R}^{n+k}$ sind äquivalent:
+	\begin{enumerate}[(1)]
+		\item $v \in T^u_x M$.
+		\item Es gibt einen $C^\infty$"=Weg $\omega \colon (-\varepsilon, \varepsilon) \to M$ mit $\omega(0)=x$ und $\diffd{\omega}{t}(0)=v$.
+	\end{enumerate}
+\end{lemma}
+\begin{beweis}
+	Sei $\mathbb{R}^{n+k} \supseteq U \xrightarrow{h} V \subseteq \mathbb{R}^n \times \mathbb{R}^k $ eine Karte mit $h(M \cap U) = V \cap (\mathbb{R}^n \times \set{0})$.
+	Ohne Einschränkungen können wir $h(x)=0$ annehmen.
+	
+	Ist $v \in \Tang_x^u M$, so gilt $\D h_x (v) \in \mathbb{R}^n \times \set{0}$. 
+	Sei $\omega \colon (-\varepsilon,\varepsilon) \to M$ definiert durch $\omega(t) \coloneqq h^{-1} \enbrace*{t \cdot \D h_x(v)}$. Dann gilt
+	\begin{align*}
+		\diffd{\omega}{t}(0) = \diffd{}{t} h ^{-1} \enbrace[\big]{t \cdot \D h_x(v)} = \enbrace*{\D h ^{-1}}_{h(x)} \enbrace[\big]{\D h_x (v)} = v
+	\end{align*}
+	Im  umgekehrten Fall ist
+	\begin{align*}
+		\D h_x \enbrace*{\diffd{\omega}{t}(0)} = \D h_{\omega(0)} \enbrace*{\diffd{\omega}{t}(0)} = \D(h \circ \omega)_0 (1) 
+	\end{align*}
+	Da $h \circ \omega \colon (-\varepsilon,\varepsilon) \to \mathbb{R}^n \times \set{0}$, folgt auch $\D(h \circ \omega)_0 (1) \in \mathbb{R}^n \times \set{0}$.
+\end{beweis}
+
+\begin{lemma}[{name=[Äquivalenz von glatten Wegen]},label=lem:equiv-tangvek]
+	Seien $\omega, \eta \colon (-\varepsilon, \varepsilon) \to \mathbb{R}^n$ zwei $C^\infty$"=Abbildungen, mit $\omega(0)= \eta(0)$. Dann sind äquivalent:
+	\begin{enumerate}[(1)]
+		\item $\diffd{\omega}{t}(0)= \diffd{\eta}{t}(0)$
+		\item Für alle $f \in C^\infty(\mathbb{R}^n,\mathbb{R})$ gilt $\diffd{(f \circ \omega)}{t}(0) = \diffd{(f \circ \eta)}{t}(0)$
+	\end{enumerate}
+\end{lemma}
+\begin{beweis}
+	Nach der Kettenregel gilt
+	\[
+		\diffd{(f \circ \omega)}{t}(0) = (\D f)_{\omega(0)}\enbrace*{\diffd{\omega}{t}(0)}
+	\]
+	und somit dier erste Implikation.
+	
+	Sei nun $P_i : \mathbb{R}^n \to \mathbb{R}$ die Projektion auf die $i$-te Koordinate. 
+	Dann gilt
+	\begin{align*}
+		\diffd{(P_i \circ \omega)}{t}(0) = P_i \enbrace*{\diffd{\omega}{t}(0)}. \tag*{(Linearisierung einer linearen Abbildung)}
+	\end{align*}
+	und es folgt die andere Implikation.
+\end{beweis}
+
+\begin{definition}[{name=[Tangentialraum]}]
+	Sei $M$ eine $C^\infty$"=Mannigfaltigkeit. 
+	Sei $x \in M$. Sei $\mathcal{T}_x M$ die Menge der $C^\infty$"=Abbildungen $\omega \colon (-\varepsilon,\varepsilon) \to M$ mit $\omega(0)=x$. Durch
+	\[
+		\omega \sim \eta :\Leftrightarrow \forall f \in C^\infty(M,\mathbb{R}) : \diffd{(f \circ \omega)}{t}(0) = \diffd{(f \circ \eta)}{t}(0)
+	\]
+	erhalten wir eine Äquivalenzrelation auf $\mathcal{T}_xM$. 
+	Der \Index{Tangentialraum} zu $M$ im Punkt $x$ ist definiert als die Menge der Äquivalenzklassen  $\Tang_x M := \sfrac{\mathcal{T}_x M}{\sim}$.
+\end{definition}
+
+\begin{bemerkung}[{name=[Verträglichkeit mit Definition für Untermannigfaltigkeiten]},label=bem:vertraeglich-def-untermfkt]
+	Sei $M \subseteq \mathbb{R}^{n+k}$ eine Untermannigfaltigkeit und $x \in M$. 
+	Wegen \cref{lem:tang-geschw} ist die Abbildung $\mathcal{T}_x M \to \Tang^u_x M$, $\omega \mapsto \diffd{\omega}{t}(0)$ surjektiv und induziert wegen \cref{lem:equiv-tangvek} eine bijektive Abbildung $\alpha_x^u \colon \Tang_x M \to \Tang_x^u M$.
+\end{bemerkung}
+
+\begin{bemerkung}[{name=[linearer Isomorphismus zum euklidischen Raum]}]
+	Sei $V \subseteq \mathbb{R}^n$ offen und $x \in V$. 
+	Dann erhalten wir aus \cref{bem:vertraeglich-def-untermfkt} eine Bijektion 
+	\mapdef{\alpha^u_x \colon \Tang_x V}{\mathbb{R}^n}{[\omega]}{\diffd{\omega}{t}(0)}{}
+	denn $V \subseteq \mathbb{R}^n$ ist eine $C^\infty$"=Mannigfaltigkeit der Kodimension $0$. 
+	Oft werden wir diesen Isomorphismus unterschlagen und einfach $\Tang_x V = \mathbb{R}^n$ schreiben.
+\end{bemerkung}
+
+\begin{bemerkung}[{name=[Tangential einer offenen Teilmenge]}]
+	Sei $U$ eine offene Umgebung von $x \in M$. 
+	Dann gilt $\Tang_x U = \Tang_x M$. 
+	Genauer induziert die Inklusion $U \subseteq M$ eine Inklusion $\mathcal{T}_x U \to \mathcal{T}_x M$, die wiederum einen kanonischen Isomorphismus $\Tang_x U \xrightarrow{\cong} \Tang_x M$ induziert.
+\end{bemerkung}
+
+\begin{lemma}[{name=[Wohldefiniertheit der Tangentialabbildung]}]
+	Sei $\varphi \colon N \to M$ eine $C^\infty$"=Abbildung und $x \in N$. 
+	Dann definiert $[\omega] \mapsto [\varphi \circ \omega]$ eine wohldefinierte Abbildung $\Tang_x \varphi \colon \Tang_x N \to T_{\varphi(x)} M$.
+\end{lemma}
+\begin{beweis}
+	Seien $\omega, \eta \colon (-\varepsilon, \varepsilon) \to N$ glatte Wege mit $\omega(0)=x= \eta(0)$ und $[\omega]= [\eta]\in \Tang_x N$. 
+	Sei $f \in C^\infty(M,\mathbb{R})$ eine Testfunktion. Zu zeigen ist: 
+	\[
+		\diffd{(f \circ \varphi \circ \omega)}{t} (0) = \diffd{(f \circ \varphi \circ \eta)}{t}(0)
+	\]
+	Sei $g \coloneqq f \circ \varphi \in C^\infty(N,\mathbb{R})$. 
+	Da $[\omega]= [\eta] \in \Tang_x N$, gilt 
+	\(
+		\diffd{(g \circ \omega)}{t}(0) = \diffd{(g \circ \eta)}{t}(0)
+	\).
+\end{beweis}
+
+\begin{definition}[{name=[Tangentialabbildung]}]
+	$\Tang_x \varphi$ heißt die \Index{Tangentialabbildung} von $\varphi$ in $x$.
+\end{definition}
+
+Die Tangentialabbildung ist \emph{funktoriell}, das heißt
+\begin{enumerate}[a)]
+	\item Für die Identität $\id_M \colon M \to M$ gilt $\Tang_x \id = \id_{\Tang_x M}$.
+	\item Für $N \xrightarrow{\varphi} M \xrightarrow{\psi} W$ gilt $\Tang_x(\psi \circ \varphi) = \Tang_{\varphi(x)} \psi \circ \Tang_x \varphi$.
+	
+	Dies bezeichnet man auch als die \emph{Kettenregel für die Tangentialabbildung}.
+\end{enumerate}
+
+\begin{lemma}[{name=[Die Tangentialabbildung ist eine Verallgemeinerung des Differentials]},label=lem:bekanntes-diff]
+	Seien $U \subseteq \mathbb{R}^n$ offen, $V \subseteq \mathbb{R}^m$ offen und $\varphi \colon U \to V$ eine $C^\infty$"=Abbildung mit $\varphi(x)=y$. Dann ist
+	\[
+		\Tang_x \varphi \colon \mathbb{R}^n= \Tang_x U \to \Tang_{\varphi(x)} V = \mathbb{R}^m
+	\] 
+	genau das Differential $\D \varphi_x$ von $\varphi$ im Punkt $x$.
+\end{lemma}
+\begin{beweis}
+	Sei $v \in \mathbb{R}^n$. 
+	Unter $\mathbb{R}^n = \Tang_x U$ ist $v=[\omega_v]$ mit $\omega_v(t) = x + t \cdot v$. 
+	Unter $\Tang_y V =\mathbb{R}^m$ ist
+	\[
+		\Tang_x \varphi \enbrace*{[\omega_v]} = [\varphi \circ \omega_v] = \diffd{(\varphi \circ \omega_v)}{t}(0) = \D \varphi_x \circ \D \omega_v (1)=\D \varphi_x(v) \qedhere
+	\]
+\end{beweis}
+
+\begin{proposition}[{name=[Vektorraumstruktur und Linearität der Tangentialabbildungen]}]
+	\begin{enumerate}[a)]
+		\item Sei $M$ eine $C^\infty$"=Mannigfaltigkeit und $x \in M$. 
+		Dann gilt es eine eindeutige $\mathbb{R}$"=Vektorraumstruktur auf $\Tang_x M$ mit folgender Eigenschaft:
+	
+		Ist $V \subseteq \mathbb{R}^k$ offen, $\varphi \colon V \to M$ glatt mit $\varphi(y)=x$, so ist 
+		\(
+			\Tang_y \varphi \colon \mathbb{R}^k = \Tang_y V \to \Tang_x M
+		\)
+		$\mathbb{R}$-linear.
+		\item Ist $f \colon N \to M$ eine $C^\infty$"=Abbildung mit $f(x)=y$, so ist $\Tang_x f \colon \Tang_x N \to \Tang_{y} M$ bezüglich der $\mathbb{R}$-Vektorraumstruktur aus a) $\mathbb{R}$-linear.
+	\end{enumerate}
+	\noindent Ist $M \supseteq U \xrightarrow{\enspace h \enspace} V \subseteq \mathbb{R}^n$ eine Karte um $x$, so legt $\Tang_x h \colon \Tang_x M = \Tang_x U \to \Tang_{h(x)}V = \mathbb{R}^n$ die $\mathbb{R}$-Vektorraumstruktur auf $\Tang_x M$ fest.
+\end{proposition}
+\begin{beweis}
+	\begin{enumerate}[a)]
+		\item Sei $M \supseteq U \xrightarrow{h} W \subseteq \mathbb{R}^n $ eine $C^\infty$"=Karte um $x$. 
+		Dann ist $\Tang_x h \colon \Tang_x M = \Tang_x U \to \Tang_{h(x)} W = \mathbb{R}^n$ bijektiv mit $(\Tang_x h)^{-1} = \Tang_{h(x)} (h ^{-1})$. 
+		Wir benutzen diesen Isomorphismus um die $\mathbb{R}$-Vektorraumstruktur auf $\Tang_x M$ zu definieren:
+		\[
+			v + w \coloneqq \enbrace*{\Tang_{h(x)}  h^{-1}}\enbrace[\big]{\Tang_x h(v) + \Tang_x h(w)}
+		\]
+		Dies ist die einzige $\mathbb{R}$-Vektorraumstruktur auf $\Tang_x M$, für die $\Tang_{h(x)}(h ^{-1})$ $\mathbb{R}$-linear ist.
+	
+		Sei nun $\varphi \colon V \to M$ eine $C^\infty$"=Abbildung mit $V \subseteq \mathbb{R}^k$ offen und $\varphi(y)=x$. 
+		Um zu zeigen, dass $\Tang_y \varphi \colon \mathbb{R}^k =\Tang_y V \to \Tang_x M$ $\mathbb{R}$-linear ist, genügt es zu zeigen, dass die Komposition $\Tang_x (h) \circ \Tang_y (\varphi) \colon \mathbb{R}^k \to \mathbb{R}^n$ $\mathbb{R}$-linear ist.
+	
+		Nun gilt aber nach \cref{lem:bekanntes-diff}
+		\[
+			\Tang_x (h) \circ  \Tang_y (\varphi) = \Tang_y (h \circ \varphi) = \D_y (h \circ \varphi).
+		\]
+		Also ist $\Tang_x (h) \circ \Tang_y (\varphi)$ $\mathbb{R}$-linear, da $\D_y (h \circ \varphi)$ $\mathbb{R}$-linear ist.
+		\item Seien $N \supseteq U \xrightarrow{\enspace h \enspace} V \subseteq \mathbb{R}^n $ und $M \supseteq \hat{U} \xrightarrow{\enspace \hat{h} \enspace} \hat{V} \subseteq \mathbb{R}^n$ glatte Karten um $x$ bzw. um $y$. Da 
+		\begin{align*}
+			\Tang_x h \colon \Tang_x N  = \Tang_x U &\to \Tang_{h(x)} V = \mathbb{R}^n \\
+			\Tang_y \hat{h} \colon \Tang_y M = \Tang_y \hat{U} &\to \Tang_{\hat{h}(y)} \hat{V} = \mathbb{R}^m
+		\end{align*}
+		Isomorphismen von $\mathbb{R}$-Vektorräumen sind, genügt es zu zeigen, dass $(\Tang_y \hat{h}) \circ (\Tang_x f) \circ (\Tang_x h)^{-1}$ $\mathbb{R}$-linear ist. 
+		Dies folgt mit der Kettenregel:
+		\[
+			(\Tang_y \hat{h}) \circ (\Tang_x f) \circ (\Tang_x h)^{-1} = \Tang_{h(x)} \enbrace*{\hat{h} \circ f \circ h^{-1}} \StackText{\cref{lem:bekanntes-diff}}{=} \D  \enbrace*{\hat{h} \circ  f \circ h^{-1}}_{h(x)} \qedhere
+		\]
+	\end{enumerate}
+\end{beweis}
+
+\begin{bemerkung}[{name=[Zusammenhang mit der Definition des Ranges]}]
+	Ist $f \colon N \to M$ glatt und $x \in N$, so gilt $\mathrm{Rang}_x f = \Rg \enbrace*{\Tang_x f}$. 
+	Insbesondere ist $x$ genau dann regulär, wenn $\Tang_x f \cong \Tang_x N \to \Tang_{f(x)} M$ surjektiv ist.
+\end{bemerkung}
+% section der_tangentialraum (end)
 \cleardoubleoddemptypage
 \pagenumbering{Alph}
 \setcounter{page}{1}
