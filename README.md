@@ -41,7 +41,7 @@ Die Links aus der folgenden Liste funktionieren aktuell nur unzuverlässig!
 * SoSe 2014
 	* [Höhere Algebra I.](https://github.com/JaMeZ-B/LaTeX-WWU/releases/download/latest/hoehere_algebra.pdf "Höhere Algebra I.") (Jannes)
 	* [Differentialformen und Mannigfaltigkeiten](https://github.com/JaMeZ-B/LaTeX-WWU/releases/download/latest/diff_ma.pdf "Differentialformen und Mannigfaltigkeiten") (Jannes)
-	* [Grundlagen der Analysis, Topologie, Geometrie](https://github.com/JaMeZ-B/LaTeX-WWU/releases/download/latest/ana_top_geo.pdf "Grundlagen der Analysis, Topologie und Geometrie") (Jannes)
+	* [Grundlagen der Analysis, Topologie, Geometrie](https://gitlab.com/JaMeZ-B/LaTeX-WWU/builds/artifacts/master/file/AnaTopGeo_SS14/ana_top_geo.pdf?job=build_all "Grundlagen der Analysis, Topologie und Geometrie") (Jannes)
 	* [Partielle Differentialgleichungen I.](https://github.com/JaMeZ-B/LaTeX-WWU/releases/download/latest/PDGL1.pdf "Partielle Differentialgleichungen I.") (Phil)
 * WiSe 2013
 	* [Analysis III.](https://github.com/JaMeZ-B/LaTeX-WWU/releases/download/latest/analysis3.pdf "Analysis III.") (Jannes)
