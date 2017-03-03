@@ -1,4 +1,4 @@
-%!TEX root = ../OpAlg2_SS16/operatoralgebren2.tex
+%!TEX root = ../AnaTopGeo_SS14/ana_top_geo.tex
 \usepackage{scrtime} % KOMA, Uhrzeit ermoeglicht
 \usepackage{etoolbox}
 \usepackage{letltxmacro}
@@ -26,7 +26,7 @@
 %-- Konfiguration von tikzexternalize
 \tikzexternalize[prefix=tikz/,up to date check=diff]
 \pgfkeys{/pgf/images/include external/.code=\includegraphics{#1}}
-\tikzset{external/system call={xelatex \tikzexternalcheckshellescape -halt-on-error -interaction=batchmode --shell-escape -jobname "\image" "\texsource"}}
+\tikzset{external/system call={lualatex \tikzexternalcheckshellescape -halt-on-error -interaction=batchmode --shell-escape -jobname "\image" "\texsource"}}
 
 
 %-- tikzexternalize fuer tikzcd deaktivieren, da inkompatibel
@@ -48,6 +48,8 @@
 
 
 %-- Mathesymbole etc.
+\usepackage[T1]{fontenc}
+\renewcommand{\rmdefault}{zpltlf}
 \usepackage{mathtools} % beinhaltet amsmath
 \mathtoolsset{showonlyrefs, centercolon,showmanualtags}
 \newtagform{brackets}[\textbf]{[}{]}
@@ -96,14 +98,10 @@
 	\fi
 }
 
-%-- Underbrace als Befehl in LaTeX-Syntax (und ohne Spacingprobleme mit nachfolgenden Operatoren...)
-\newcommand{\Underbrace}[2]{{\underbrace{#1}_{#2}}}
-\newcommand{\Underbracket}[2]{{\underbracket[0.7pt][2pt]{#1}_{#2}}}
-\newcommand{\Overbracket}[2]{{\overbracket[0.7pt][2pt]{#1}^{#2}}}
+
 
 %-- Alles was mit Schrift und XeTeX zu tun hat
-\usepackage{palatino}
-\usepackage[euler-digits]{eulervm}
+\usepackage[euler-digits]{eulervm} % vor fontspec laden!
 \usepackage[no-math]{fontspec}
 \usepackage{polyglossia} % moderner babel-ersatz
 \setmainlanguage[spelling=new,babelshorthands=true]{german}
@@ -139,6 +137,7 @@
 \setmonofont{SourceCodePro}[Scale=0.9,UprightFont=*-Regular, BoldFont=*-Semibold, ItalicFont=*-Light]
 \usepackage{xltxtra}
 \usepackage{fontawesome}
+% \usepackage[euler-digits]{eulervm}
 \usepackage[final]{microtype}
 
 
@@ -235,11 +234,19 @@
 %--Römische Zahlen
 \newcommand{\RM}[1]{\MakeUppercase{\romannumeral #1{}}}
 
-%%--Abkürzungen etc.
-\newcommand{\light}{\text{\Large $\lightning$}}
+%%--Blitz
+\usepackage{marvosym}
+\newcommand{\light}{\text{\raisebox{-.3ex}{\Large\Lightning}}}
+
+%-- Underbrace als Befehl in LaTeX-Syntax (und ohne Spacingprobleme mit nachfolgenden Operatoren...)
+\newcommand{\Underbrace}[2]{{\underbrace{#1}_{#2}}}
+\newcommand{\Underbracket}[2]{{\underbracket[0.7pt][2pt]{#1}_{#2}}}
+\newcommand{\Overbracket}[2]{{\overbracket[0.7pt][2pt]{#1}^{#2}}}
+
+%-- Ersatz für \mathring
+\newcommand*\interior[1]{\overset{\smash{\raisebox{-0.18ex}{$\scriptstyle\circ$}}}{#1}}
 
 %-- Definitionen von weiteren Mathe-Befehlen
-
 \DeclareMathOperator{\re}{Re} % Realteil
 \let\Re\relax
 \DeclareMathOperator{\Re}{Re} % Realteil
@@ -313,10 +320,14 @@
 \newcommand{\DDelta}{\bbDelta}
 \DeclareMathOperator{\Star}{Star}
 \DeclareMathOperator{\Link}{Link}
+\DeclareMathOperator{\EPK}{EPK}
+\newcommand{\action}{\mathrel{\curvearrowright}}
+\DeclareMathOperator{\Vol}{Vol}
 
 \newcommand{\D}{\ensuremath{\mathrm{D}\mkern-1.0mu}}
 \newcommand{\mathd}{\ensuremath{\mathrm{d}\mkern-1.0mu}}
 \newcommand{\Tmap}{\ensuremath{\mathrm{T}\mkern-0.85mu}}
+\let\Tang\Tmap
 \newcommand{\opL}{\ensuremath{\mathrm{L}\mkern-0.6mu}}
 
 
@@ -537,21 +548,21 @@
 \declaretheorem[name=Theorem,numbered=no,style=mainstyle_unnumbered]{theorem*}
 \declaretheorem[name=Proposition,sharenumber=definition,style=mainstyle,refname=Proposition]{proposition}
 \declaretheorem[name=Lemma,sharenumber=definition,style=mainstyle]{lemma}
-\declaretheorem[name=Satz,sharenumber=definition,style=mainstyle]{satz}
+\declaretheorem[name=Satz,sharenumber=definition,style=mainstyle,refname=Satz]{satz}
 \declaretheorem[name=Satz,sharenumber=definition,style=mainstyle_unshaded]{satzUnshaded}
 \declaretheorem[name=Definition,sharenumber=definition,style=mainstyle_unshaded]{definitionUnshaded}
 \declaretheorem[name=Satz,numbered=no,style=mainstyle_unnumbered]{satz*}
-\declaretheorem[name=Korollar,sharenumber=definition,style=mainstyle]{korollar}
-\declaretheorem[name=Korollar,sharenumber=definition,style=mainstyleB]{korollarB}
+\declaretheorem[name=Korollar,sharenumber=definition,style=mainstyle,refname=Korollar]{korollar}
+\declaretheorem[name=Korollar,sharenumber=definition,style=mainstyleB,refname=Korollar]{korollarB}
 \declaretheorem[name=Frage,numbered=no,style=mainstyle_unnumbered]{frage}
 \declaretheorem[name=Frage,sharenumber=definition,style=mainstyle_unshaded]{frageA}
 \declaretheorem[name=Erinnerung,sharenumber=definition,style=mainstyle_unshaded]{erinnerungA}
 \declaretheorem[name=Ausblick,sharenumber=definition,style=mainstyle_unshaded]{ausblick}
 \declaretheorem[name=Konvention,sharenumber=definition,style=mainstyle]{konvention}
 \declaretheorem[name=Notation,sharenumber=definition,style=mainstyle_unshaded]{notation}
-\declaretheorem[name=Bemerkung,sharenumber=definition,style=mainstyle_unshaded]{bemerkung}
+\declaretheorem[name=Bemerkung,sharenumber=definition,style=mainstyle_unshaded,refname=Bemerkung]{bemerkung}
 \declaretheorem[name=Bemerkung,numbered=no,style=mainstyle_unnumbered]{bemerkung*}
-\declaretheorem[name=Beispiel,sharenumber=definition,style=mainstyle_unshaded]{beispiel}
+\declaretheorem[name=Beispiel,sharenumber=definition,style=mainstyle_unshaded,refname=Beispiel]{beispiel}
 \declaretheorem[name=Beispiel,numbered=no,style=mainstyle_unnumbered]{beispiel*}
 \declaretheorem[name=Exkurs,numbered=no,style=mainstyle_unnumbered]{exkurs*}
 
