@@ -2397,7 +2397,7 @@ Sei $(X,x_0)$ ein punktierter Raum. Sei in diesem Abschnitt $I= [0,1]$.
 \end{description}
 Ziel: Definition von höher dimensionalen Analoga.
 
-\begin{definition}
+\begin{definition}[{name=[Homotopie]}]
 	Seien $\omega_0, \omega_1 \colon I^n \to X$ stetige Abbildungen mit $\omega_0(\partial I^n)= \set{x_0} = \omega_1(\partial I^n)$. 
 	Eine \Index{Homotopie} (relativ zum Rand) zwischen $\omega_0$ und $\omega_1$ ist eine stetige Abbildung $H \colon I^n \times [0,1] \to X$, sodass Folgendes gilt:
 	\begin{itemize}
@@ -3087,8 +3087,251 @@ Diese informellen Beobachtungen wollen wir in diesem Abschnitt mathematisch prä
 	Nach dem Satz von \textsc{Sard}\footnote{Wikipedia: \url{https://de.wikipedia.org/wiki/Satz_von_Sard}} ist die Menge der \bet{kritischen Werte}\index{kritischer Wert}, also der nicht regulären Werte einer $C^\infty$"=Abbildung $f \colon N \to M$ eine Menge mit Lebesgue-Maß Null. 
 	Insbesondere gibt es immer reguläre Werte.
 \end{bemerkung}
-
 % section regulare_werte (end)
+
+\newpage
+\section{Approximation durch $C^\infty$-Abbildungen} % (fold)
+\label{sec:approximation_durch_c_infty_abbildungen}
+
+\begin{proposition}[{name=[glatte Funktionen dicht in den im Unendlichen verschwindenden]},label=prop:glatt-dicht]
+	Sei $M$ eine $C^\infty$"=Mannigfaltigkeit. 
+	Dann ist $C^\infty_0 (M,\mathbb{R}) \coloneqq C^\infty(M,\mathbb{R}) \cap C_0(M,\mathbb{R})$\marginnote{siehe \ref{def:unendlich-verschwinden} für $C_0(M,\mathbb{R})$} dicht in $C_0(M,\mathbb{R})$ bezüglich $\norm{.}_\infty$.
+\end{proposition}
+
+Bevor wir dies beweisen, betrachten wir zunächst sogenannte Glockenfunktionen:
+
+\begin{beispiel}[{name=[Glockenfunktionen]}]
+	Seien $\psi, \varphi_\varepsilon \colon \mathbb{R} \to \mathbb{R}$ für $\varepsilon>0$ gegeben durch 
+	\[
+		\psi(t) \coloneqq \begin{cases}
+			0, &\text{ falls }t \le 0\\
+			e^{-t^{-2}} ,&\text{ falls } t >0
+		\end{cases} \qquad , \qquad \varphi_\varepsilon(t) = \frac{\psi(t)}{\psi(t) + \psi(\varepsilon-t)}
+	\]
+	$\psi$ und $\varphi_\varepsilon$ sind $C^\infty$"=Funktionen (nach Analysis II.).
+	\begin{figure}[htbp]%
+		\centering{
+		\begin{tikzpicture}[baseline]
+			\begin{axis}[%
+				x=1cm, y=2cm,
+				ymin=-0.3, ymax =1.5,
+				axis lines=center,
+				ytick={0,1},
+				tick style={color=black},
+				xticklabels={,,},
+			]
+				\addplot[
+					Sienna2, very thick
+				] table{Mathematica/data1.dat} node[pos=0.9, below]{$\psi$};
+				\draw[dashed, very thin] (axis cs: 0,1) -- (axis cs: 4,1);
+			\end{axis}
+		\end{tikzpicture} \qquad \qquad %
+		\begin{tikzpicture}[baseline]%
+			\begin{axis}[%
+				x=2cm, y=2cm,
+				axis lines=center, 
+				ymin=-0.3, ymax=1.5,
+				ytick={0,1}, xtick={0,1,2},
+				tick style={color=black},
+				xticklabels={,,},
+			]
+				\draw[dashed, very thin] (axis cs: 0,1) -- (axis cs: 2,1);
+				\addplot[very thick, DodgerBlue2] table {Mathematica/data2.dat} node[pos=0.9, below]{$\varphi_\varepsilon$};
+				\draw[decorate, 
+					decoration={brace,amplitude=5pt, mirror, raise=3pt}, 
+					] (axis cs: 0,0) -- (axis cs: 1,0) node[below, midway, yshift=-0.2cm]{\footnotesize$\varepsilon = 1$};
+			\end{axis}
+		\end{tikzpicture}%
+		\caption{Die Funktionen $\psi$ und $\varphi_\varepsilon$ für $\varepsilon =1$}}
+	\end{figure} %
+	Für $r>0$ sei nun eine weitere Familie von Funktionen $f_{\varepsilon,r} \colon \mathbb{R}^n \to \mathbb{R}$ gegeben durch $f_{\varepsilon,r}(x) = 1- \varphi_\varepsilon(\norm{x}-r)$.
+	\begin{figure}[htpb]
+		\centering{
+		\tikzsetnextfilename{2D-Glockenfunktion}
+		\begin{tikzpicture}[baseline]
+			\begin{axis}[
+				x=1cm, y=2cm,
+				axis lines=center, 
+				ymin=-0.3, ymax=1.5,
+				ytick={0}, xtick={-3,-2.5,...,2.5,3},
+				tick style={color=black},
+				xticklabels={,,},
+			]
+				\draw[dashed, very thin] (axis cs: -2.5,1) node[left]{$1$} -- (axis cs: 2.5,1);
+				\addplot[very thick, Firebrick2] table {Mathematica/data3.dat} node[pos=0.6, above]{$f_{\varepsilon, r}$};
+				\draw[decorate, 
+					decoration={brace,amplitude=5pt, mirror, raise=3pt}, 
+					] (axis cs: 0,0) -- (axis cs: 1.5,0) node[below, midway, yshift=-0.2cm]{\footnotesize$r=1.5$};
+				\draw[decorate, 
+					decoration={brace,amplitude=5pt, mirror, raise=3pt}, 
+					] (axis cs: 1.5,0) -- (axis cs: 2.5,0) node[below, midway, yshift=-0.2cm]{\footnotesize$\varepsilon=1$};
+			\end{axis}
+		\end{tikzpicture}\qquad \qquad 
+		\tikzsetnextfilename{3D-Glockenfunktion}
+		\begin{tikzpicture}[baseline, scale=0.8]
+			\begin{axis}[
+			]
+				\addplot3[surf,
+					colormap/summer,
+					z buffer=sort,
+					shader=faceted,
+					mesh/cols=61,
+					mesh/rows=61,
+					line join=bevel,]
+					table[col sep=comma] {Mathematica/data4.dat} ;
+			\end{axis}
+		\end{tikzpicture}%
+		\caption{Glockenfunktion $f_{\varepsilon,r}$ für $\mathbb{R}$ und $\mathbb{R}^2$, wobei $\varepsilon=1$, $r=1.5$}\label{fig:glocken}}
+	\end{figure}%
+	Es ist $f_{\varepsilon,r} \in C^\infty(\mathbb{R}^n)$ und es gilt $f_{\varepsilon,r}(x) \subseteq [0,1]$ für alle $x \in \mathbb{R}^n$.
+	Weiter ist $f_{\varepsilon,r}(x) = 1$ für $\abs*{x} \le r $, $f_{\varepsilon,r}(x)=0$ für $\abs*{x} \ge r +\varepsilon$.
+	\Cref{fig:glocken} zeigt eine der Funktionen für $n=1$ und eine für $n=2$.
+\end{beispiel}
+
+\begin{beweis}[von \cref{prop:glatt-dicht}]
+	Wir wollen den Approximationssatz von Stone-Weierstraß (\ref{satz:stone-weier}) anwenden: Dazu müssen wir zeigen:
+	\[
+		\forall x,y \in M : \exists f \in C^\infty_0(M,\mathbb{R}) \text{ mit } f(x) \neq f(y) \text{ und } f(x) \neq 0\neq f(y)
+	\]
+	Wähle dazu Karten $\varphi \colon U \to V$ und $\hat{\varphi} \colon \hat{U} \to \hat{V}$ von $M$ mit $x \in U$, $y \in \hat{U}$ und $U \cap \hat{U}= \emptyset$. 
+	Indem wir, wenn nötig, einen Isomorphismus von $\mathbb{R}^n$ anwenden, können wir außerdem fordern, dass $\varphi(x)=0$, $\hat{\varphi}(y)=0$, $B_2(0) \subseteq V$ und $B_2(0) \subseteq \hat{V}$ gilt. 
+	Dann ist $f_x \in C_0^\infty(M,\mathbb{R})$ mit 
+	\[
+		f_x(z) = \begin{cases}
+			0, &\text{ falls }z \notin U\\
+			f_{1/2,1} \enbrace[\big]{\varphi(z)} , &\text{ sonst}
+		\end{cases}
+	\]
+	Dann gilt $f_x(x)=1$ und $f_x(y)=0$. 
+	Ebenso gibt es $f_y \in C^\infty_0(M,\mathbb{R})$ mit $f_y(x)=0$ und $f_y(y)=1$. 
+	Nun ist $f \coloneqq 2 f_x + f_y$ die gesuchte Funktion.
+\end{beweis}
+
+\begin{korollar}[label=kor:glatt-in-eukl-approx,{name=[Approximation von Abbildungen in den euklidischen Raum]}]
+	Sei $M$ eine kompakte $C^\infty$"=Mannigfaltigkeit und $\varphi \colon M \to \mathbb{R}^n$ stetig. 
+	Dann gibt es zu jedem $\varepsilon >0$ eine $C^\infty$"=Abbildung $f \colon M \to \mathbb{R}^n$ mit $\norm{\varphi(x)- f(x)}_2  \le \varepsilon$ für alle $x \in M$.
+\end{korollar}
+\begin{beweis}
+	Schreibe $\varphi= (\varphi_1, \ldots , \varphi_n)$ und approximiere die $\varphi_i$ durch $C^\infty$"=Funktionen.
+\end{beweis}
+
+\begin{korollar}[label=kor:approx-to-sphere,{name=[Approximation von Abbildungen in eine Sphäre]}]
+	Sei $M$ eine kompakte $C^\infty$"=Mannigfaltigkeit und $\varphi \colon M \to S^n$ stetig. 
+	Dann gibt es zu jedem $\varepsilon >0$ eine $C^\infty$"=Abbildung $f \colon M \to S^n$ mit $\norm{f(x)- \varphi(x)}_2 \le \varepsilon$ für alle $x \in M$.
+\end{korollar}
+\begin{beweis}
+	Da $S^n \subseteq \mathbb{R}^{n+1}$, gibt es nach \cref{kor:glatt-in-eukl-approx} eine $C^\infty$"=Abbildung $f_0 \colon M \to \mathbb{R}^{n+1}$ mit $\norm{f_0(x)-\varphi(x)}_2 \le \varepsilon \enspace \forall x \in M$. 
+	O.B.d.A. sei $\varepsilon <1$. 
+	Wegen $\varphi(x) \in S^n$ folgt
+	\[
+		1 - \varepsilon \le \norm{f_0(x)}_2 \le 1+ \varepsilon 
+	\]
+	Sei $f \colon M \to S^n$ die durch $f(x) \coloneqq \frac{f_0(x)}{\norm{f_0(x)}_2}$ definierte $C^\infty$"=Abbildung. 
+	Dann gilt: 
+	\begin{align*}
+		\norm{f(x)- \varphi(x)}_2 &\le \norm{f(x)- f_0(x)}_2 + \norm{f_0(x)- \varphi(x)}_2   \\
+		&\le \norm*{\frac{f_0(x)}{\norm{f_0(x)}_2 } - f_0(x)}_2 + \varepsilon \\
+		&= \abs*{1- \frac{1}{\norm{f_0(x)}_2 } } \cdot \norm{f_0(x)}_2 + \varepsilon \\
+		&= \abs*{\frac{\norm{f_0(x)}_2 -1 }{\norm{f_0(x)}_2 }} \cdot \norm{f_0(x)}_2 + \varepsilon \\
+		&\le \frac{\varepsilon}{1 - \varepsilon} (1+ \varepsilon) + \varepsilon \xrightarrow{\varepsilon \to 0} 0
+	\end{align*}
+	Damit folgt die Behauptung.
+\end{beweis}
+
+\begin{bemerkung}[{name=[Approximation beliebiger stetige Abbildungen zwischen Mannigfaltigkeiten]}]
+	Allgemein lässt sich jede stetige Abbildung zwischen $C^\infty$"=Mannigfaltigkeiten durch $C^\infty$"=Abbildungen approximieren. Dazu zeigt man:
+	\begin{enumerate}[(i)]
+		\item Jede (kompakte) $C^\infty$"=Mannigfaltigkeit lässt sich in den $\mathbb{R}^N$ für $N \gg \dim M$ einbetten.
+		\item $M \subseteq \mathbb{R}^N$ besitzt eine \Index{Tubenumgebung}\footnote{Wikipedia: \url{https://de.wikipedia.org/wiki/Tubulare_Umgebung}}. 
+		Dies erlaubt es, eine $C^\infty$"=Retraktion $K \to M$ auf einer kompakten Umgebung $K$ von $M \subseteq \mathbb{R}^N$ zu konstruieren.
+	\end{enumerate}
+\end{bemerkung}
+
+Das Ziel für den weiteren Verlauf dieses Abschnitts ist, folgendes zu zeigen
+\begin{center}
+	$\pi_n(S^m, e_0) = 0$ für $n <m$ 
+\end{center}
+
+\begin{proposition}[{name=[glatte Abbildungen in höherdimensionalen Raum haben Bild mit Maß Null]},label=prop:glatt-nullmenge]
+	Sei $U \subseteq \mathbb{R}^n$ offen und $f \colon U \to \mathbb{R}^m$ eine $C^\infty$"=Abbildung. 
+	Ist $m > n$, so ist $f(U) \subseteq \mathbb{R}^m$ eine Nullmenge bezüglich des Lebesgue-Maßes.
+\end{proposition}
+\begin{beweis}
+	Jede offene Teilmenge des $\mathbb{R}^n$ ist die abzählbare Vereinigung von kompakten Teilmengen. 
+	Die abzählbare Vereinigung von Nullmengen ist wieder eine Nullmenge. 
+	Daher genügt es zu zeigen: Ist $K \subseteq U$ kompakt, so ist $f(K) \subseteq \mathbb{R}^m$ eine Nullmenge. 
+
+	Da $K$ kompakt ist , ist $\norm{\D f_x} $ für $x \in K$ beschränkt. 
+	Insbesondere ist $f$ auf $K$ Lipschitz-stetig. 
+	Es gibt also $\alpha >0$ mit 
+	\[
+		\forall \varepsilon > 0 : f \enbrace*{B_\varepsilon(x) \cap K} \subseteq B_{\alpha \varepsilon} \enbrace[\big]{f(x)}  
+	\]
+	Sei nun $R >0$ mit $K \subseteq [-R,R]^n$. 
+	Zu $\varepsilon>0$ gibt es dann eine Überdeckung von $K$ durch $\enbrace*{2 \ceil*{\frac{R}{\varepsilon}}}^n$ viele Bälle 
+	$B_\varepsilon(x_i) \subseteq \mathbb{R}^n$. Es folgt 
+	\[
+		\Vol_{\mathbb{R}^n}\enbrace[\big]{f(K)} \le \enbrace*{2  \ceil*{\frac{R}{\varepsilon}}}^n \cdot \Vol_{\mathbb{R}^n} \enbrace[\big]{B_{\alpha \varepsilon}(0)} = \enbrace*{2 \ceil*{\frac{R}{\varepsilon}}}^n \cdot (\alpha \varepsilon)^m \cdot C_m
+	\]
+	mit $C_m \coloneqq \Vol_{\mathbb{R}^m} \enbrace[\big]{B_1(0)}$. 
+	Wegen $m >n$ gilt $\enbrace*{2 \ceil*{\frac{R}{\varepsilon}}}^n \cdot (\alpha \varepsilon)^m \cdot C_m \xrightarrow{\varepsilon \to 0} 0$.  
+	Also $\Vol_{\mathbb{R}^m} \enbrace[\big]{f(K)}=0$.
+\end{beweis}
+
+\begin{korollar}[label=kor:komplement-dicht,{name=[Komplement einer glatten Abbildung in höherdimensionale Mannigfaltigkeit]}]
+	Sei $f \colon N \to M$ eine $C^\infty$"=Abbildung. 
+	Sei $\dim M > \dim N$. 
+	Dann ist $M \setminus f(N) \subseteq M$ dicht und insbesondere ist $f$ nicht surjektiv.
+\end{korollar}
+\begin{beweis}
+	Sei $y \in M$. Sei $U$ eine offene Umgebung von $y$. Zu zeigen: $U \setminus f(N) \neq \emptyset$. 
+	O.B.d.A. sei $U$ das Kartengebiet einer Karte $h \colon U \to V$. 
+	Da $N$ das zweite Abzählbarkeitsaxiom erfüllt, können wir $f^{-1}(U)$ durch abzählbar viele $C^\infty$"=Kartengebiete $U_i$ von Karten $k_i \colon U_i \to V_i$ von $N$ überdecken, für die wir $U_i \subseteq f ^{-1}(U)$ annehmen dürfen. 
+	Nun ist
+	\[
+		h \enbrace[\big]{f(N) \cap U}  = h \enbrace*{\bigcup_{i} f\enbrace*{h_i ^{-1}(V_i)}} = \bigcup_i h \circ f \circ h_i ^{-1} (V_i)
+	\]
+	Nach \cref{prop:glatt-nullmenge} ist jedes $h \circ f \circ h_i^{-1}(V_i)$ eine Nullmenge in $V$. 
+	Da die abzählbare Vereinigung von Nullmengen eine Nullmenge ist, ist auch $h \enbrace[\big]{f(N) \cap U}$ eine Nullmenge in $V$. 
+	Insbesondere ist $V \setminus h \enbrace[\big]{f(N)\cap U} \neq \emptyset$. 
+	Da $h$ bijektiv ist, folgt auch $U \setminus f(N) \neq \emptyset$.
+\end{beweis}
+
+\begin{satz}[label=satz:sphaere-einf-zsmh,{name=[triviale Homotopiegruppen der Sphäre]}]
+	Für $n < m$ ist $\pi_n (S^m,e_0) = 0$. Insbesondere ist $S^m$ für $m>1$ einfach zusammenhängend.\marginnote{wir bezeichnen mit $e_0, \ldots , e_n$ die Standardorthonormalbasis von $\mathbb{R}^{n+1}$.}
+\end{satz}
+
+\begin{lemma}[{name=[Existenz eines Wegen in der Gruppe der orthogonalen Matrizen]},label=lem:weg-orthogonal]
+	Sei $\omega \colon [0,1] \to S^m_+ = \set[\big]{(x_0, \ldots , x_m) \in S^m \given x_0 >0}$ ein Weg mit $\omega(0)=e_0$. 
+	Dann gibt es einen Weg $A \colon [0,1] \to \On(m+1)$ mit $A(0)=\ind_m$ und $A(t) \cdot \omega(t) = \omega(0)$ für $t \in [0,1]$.
+\end{lemma}
+\begin{beweis}
+	Da $\omega(t) \in S^m_+$, ist $\omega(t), e_1, \ldots ,e_m$ immer noch eine Basis von $\mathbb{R}^{n+1}$. 
+	Das Gram-Schmidt-Verfahren liefert dann für jedes $t$ eine Orthonormalbasis 
+	\[
+		\omega(t), e_1(t), e_2(t), \ldots , e_m(t).
+	\]
+	Dabei sind die $e_i$ stetige Wege $[0,1] \to S^m$. 
+	Definiere nun $A$ durch $A(t) \cdot e_i(t) = e_i$.
+\end{beweis}
+
+\begin{beweis}[von \cref{satz:sphaere-einf-zsm}]
+	Wir müssen zeigen, dass jede stetige Abbildung $f \colon (S^n, e_0) \to (S^m, e_0)$ homotop zu eine konstanten Abbildung ist.\footnote{Man erinnere sich an das Kollabieren des Randes am Anfang von \cref{sec:hohere_homotopiegruppen}} 
+	Nach \cref{kor:approx-to-sphere} gibt es eine $C^\infty$"=Abbildung $\varphi \colon S^n \to S^m$ mit $\norm{f(x)- \varphi(x)} \le \frac{1}{2}$ für alle $x \in S^n$. 
+	Sei nun $H \colon S^n \times [0,1] \to S^m$ definiert durch\marginnote{Nenner $\neq 0$ wegen Approximation}
+	\[
+		H(x,t) \coloneqq \frac{t \cdot f(x)+ (1-t)\varphi(x)}{\norm{t \cdot f(x) + (1-t) \varphi(x)}} 
+	\]
+	$H$ ist eine (nicht notwendig punktierte!) Homotopie von $\varphi$ nach $f$. 
+	Mit \cref{lem:weg-orthogonal} folgt die Existienz von $A \colon [0,1] \to O(m)$ mit $A(0)= \ind_m$ und
+	$A(t) \cdot H(e_0,t) = e_0$ für alle $t$. 
+	Nun ist $\tilde{H} \colon S^n \times [0,1]$ mit $\tilde{H}(x,t) \coloneqq A(t) \cdot H(x,t)$ eine punktierte Homotopie zwischen $f$ und der $C^\infty$"=Abbildung $\tilde{f} \coloneqq A(1) \cdot \varphi$. 
+	Mit \cref{kor:komplement-dicht} folgt, dass $\tilde{f}$ nicht surjektiv ist. 
+	Sei $y \in S^m \setminus \tilde{f}(S^n)$. 
+	Nun ist $S^m \setminus \set{y} \cong \mathbb{R}^m$. 
+	Daher ist jede stetige Abbildung $(S^n, e_0) \to (S^m \setminus \set{y} ,e_0)$ punktiert homotop zur konstanten Abbildung. Daher ist $\tilde{f}$, und damit auch $f$, punktiert homotop zur konstanten Abbildung.
+\end{beweis}
+% section approximation_durch_c_infty_abbildungen (end)
 \cleardoubleoddemptypage
 \pagenumbering{Alph}
 \setcounter{page}{1}
