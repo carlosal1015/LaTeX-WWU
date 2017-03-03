@@ -1,60 +1,57 @@
-[![Build Status](https://travis-ci.org/JaMeZ-B/LaTeX-WWU.svg?branch=master)](https://travis-ci.org/JaMeZ-B/LaTeX-WWU)
 # LaTeX-WWU
 lecture notes written at WWU Münster, FB10
 
 ---
-## Das Bereitstellen der PDFs ist noch nicht vollständig eingerichtet!
+Ein Ordner mit allen Skripten lässt sich
+**[HIER](https://gitlab.com/JaMeZ-B/LaTeX-WWU/builds/artifacts/master/download?job=build_all)**
+herunterladen.
 
-Dies betrifft insbesondere auch den Dropbox- sowie den Sciebo-Ordner!
-Als Zwischenlösung lässt sich ein Ordner mit allen Skripten 
-
-### [HIER](https://gitlab.com/JaMeZ-B/LaTeX-WWU/builds/artifacts/master/download?job=build_all) herunterladen.
-
-Die Links aus der folgenden Liste funktionieren aktuell nur unzuverlässig!
+Die folgenden Skripte sind verfügbar (die Links führen direkt zu den einzelnen PDF-Dateien)
 
 * SoSe 2017
-	* [Zahlen und elementare Zahlentheorie](https://github.com/JaMeZ-B/LaTeX-WWU/releases/download/latest/ZZT_SS17.pdf "Zahlen und elementare Zahlentheorie") (Phil)
+	* [Zahlen und elementare Zahlentheorie](https://gitlab.com/JaMeZ-B/LaTeX-WWU/builds/artifacts/master/file/ZZT_SS17/ZZT_SS17.pdf?job=build_all "Zahlen und elementare Zahlentheorie") (Phil)
 * WiSe 2016
-	* [Seminar: Madsen-Weiss](https://github.com/JaMeZ-B/LaTeX-WWU/releases/download/latest/madsen_weiss.pdf "Seminar: Madsen-Weiss") (Jannes)
+	* [Seminar: Madsen-Weiss](https://gitlab.com/JaMeZ-B/LaTeX-WWU/builds/artifacts/master/file/MadsenW_WS16/madsen_weiss.pdf?job=build_all "Seminar: Madsen-Weiss") (Jannes; unvollständig)
 * SoSe 2016
-	* [Operatoralgebren II.](https://github.com/JaMeZ-B/LaTeX-WWU/releases/download/latest/operatoralgebren2.pdf "Operatoralgebren II.") (Jannes)
-	* [Lineare Algebra II.](https://github.com/JaMeZ-B/LaTeX-WWU/releases/download/latest/LA2.pdf "Lineare Algebra II.") (Phil)
-	* [Liegruppen](https://github.com/JaMeZ-B/LaTeX-WWU/releases/download/latest/liegruppen.pdf "Liegruppen") (Jannes)
-	* [Algebraische K-Theorie](https://github.com/JaMeZ-B/LaTeX-WWU/releases/download/latest/algebraische_KTheorie.pdf "Algebraische K-Theorie") (Jannes)
-	* [PDGL I.](https://github.com/JaMeZ-B/LaTeX-WWU/releases/download/latest/pdeskript.pdf "PDGL I.") (Tim)
+	* [Operatoralgebren II.](https://gitlab.com/JaMeZ-B/LaTeX-WWU/builds/artifacts/master/file/OpAlg2_SS16/operatoralgebren2.pdf?job=build_all "Operatoralgebren II.") (Jannes)
+	* [Lineare Algebra II.](https://gitlab.com/JaMeZ-B/LaTeX-WWU/builds/artifacts/master/file/LA2_SS16/LA2.pdf?job=build_all "Lineare Algebra II.") (Phil)
+	* [Liegruppen](https://gitlab.com/JaMeZ-B/LaTeX-WWU/builds/artifacts/master/file/LieGrp_SS16/liegruppen.pdf?job=build_all "Liegruppen") (Jannes)
+	* [Algebraische K-Theorie](https://gitlab.com/JaMeZ-B/LaTeX-WWU/builds/artifacts/master/file/AlgKT_SS16/algebraische_KTheorie.pdf?job=build_all "Algebraische K-Theorie") (Jannes)
+	* [PDGL I.](https://gitlab.com/JaMeZ-B/LaTeX-WWU/builds/artifacts/master/file/PDGL1_SS16/pdeskript.pdf?job=build_all "PDGL I.") (Tim)
+	* [Wahrscheinlichkeitstheorie auf Graphen](https://gitlab.com/JaMeZ-B/LaTeX-WWU/builds/artifacts/master/file/WTGraph_SS16/WTG.pdf?job=build_all "Wahrscheinlichkeitstheorie auf Graphen") (Lukas)
 * WiSe 2015
-	* [CAT(0) kubische Komplexe](https://github.com/JaMeZ-B/LaTeX-WWU/releases/download/latest/CAT0.pdf "CAT(0) kubische Komplexe") (Phil)
-	* [Topologie II.](https://github.com/JaMeZ-B/LaTeX-WWU/releases/download/latest/topologie_2.pdf "Topologie II.") (Jannes)
-	* [Operatoralgebren](https://github.com/JaMeZ-B/LaTeX-WWU/releases/download/latest/operatoralgebren.pdf "Operatoralgebren") (Jannes)
-	* [Modellreduktion](https://github.com/JaMeZ-B/LaTeX-WWU/releases/download/latest/Modellreduktion.pdf "Modellreduktion") (Tobias)
+	* [CAT(0) kubische Komplexe](https://gitlab.com/JaMeZ-B/LaTeX-WWU/builds/artifacts/master/file/CAT0_WS15/CAT0.pdf?job=build_all "CAT(0) kubische Komplexe") (Phil)
+	* [Topologie II.](https://gitlab.com/JaMeZ-B/LaTeX-WWU/builds/artifacts/master/file/Topo2_WS15/topologie_2.pdf?job=build_all "Topologie II.") (Jannes)
+	* [Operatoralgebren](https://gitlab.com/JaMeZ-B/LaTeX-WWU/builds/artifacts/master/file/OpAlg_WS15/operatoralgebren.pdf?job=build_all "Operatoralgebren") (Jannes)
+	* [Modellreduktion](https://gitlab.com/JaMeZ-B/LaTeX-WWU/builds/artifacts/master/file/ModRed_WS15/Modellreduktion.pdf?job=build_all "Modellreduktion") (Tobias)
 * SoSe 2015
-	* [Elliptische Kurven und Kryptographie](https://github.com/JaMeZ-B/LaTeX-WWU/releases/download/latest/EKK.pdf "Elliptische Kurven und Kryptographie") (Phil)
-	* [K-Theorie](https://github.com/JaMeZ-B/LaTeX-WWU/releases/download/latest/K-Theorie.pdf "K-Theorie und die Hopf-Invariante") (Jannes; momentan noch etwas unvollständig…)
-	* [Analysis II.](https://github.com/JaMeZ-B/LaTeX-WWU/releases/download/latest/Ana2.pdf "Analysis II.") (Tim)
+	* [Elliptische Kurven und Kryptographie](https://gitlab.com/JaMeZ-B/LaTeX-WWU/builds/artifacts/master/file/EKK_SS15/EKK.pdf?job=build_all "Elliptische Kurven und Kryptographie") (Phil)
+	* [K-Theorie](https://gitlab.com/JaMeZ-B/LaTeX-WWU/builds/artifacts/master/file/KTheorie_SS15/K-Theorie.pdf?job=build_all "K-Theorie und die Hopf-Invariante") (Jannes; momentan noch etwas unvollständig…)
+	* [Analysis II.](https://gitlab.com/JaMeZ-B/LaTeX-WWU/builds/artifacts/master/file/Ana2_SS15/Ana2.pdf?job=build_all "Analysis II.") (Tim)
 * WiSe 2014
-	* [Topologie I.](https://github.com/JaMeZ-B/LaTeX-WWU/releases/download/latest/topologie_1.pdf "Topologie I.") (Jannes)
-	* [Funktionalanalysis](https://github.com/JaMeZ-B/LaTeX-WWU/releases/download/latest/funktional_analysis.pdf "Funktionalanalysis") (Jannes)
-	* [Elementare Zahlentheorie](https://github.com/JaMeZ-B/LaTeX-WWU/releases/download/latest/EZT.pdf "Elementare Zahlentheorie") (Phil)
-	* [Differentialgeometrie](https://github.com/JaMeZ-B/LaTeX-WWU/releases/download/latest/diff_geo.pdf "Differentialgeometrie") (Arne)
-	* [Einführung in die Algebra](https://github.com/JaMeZ-B/LaTeX-WWU/releases/download/latest/Einf_Algebra.pdf "Einführung in die Algebra") (Tobias)
-	* [Finanzmathematik](https://github.com/JaMeZ-B/LaTeX-WWU/releases/download/latest/Fima_WS14.pdf "Finanzmathematik") (Tobias)
+	* [Topologie I.](https://gitlab.com/JaMeZ-B/LaTeX-WWU/builds/artifacts/master/file/Topo1_WS14/topologie_1.pdf?job=build_all "Topologie I.") (Jannes)
+	* [Funktionalanalysis](https://gitlab.com/JaMeZ-B/LaTeX-WWU/builds/artifacts/master/file/FunkAna_WS14/funktional_analysis.pdf?job=build_all "Funktionalanalysis") (Jannes)
+	* [Elementare Zahlentheorie](https://gitlab.com/JaMeZ-B/LaTeX-WWU/builds/artifacts/master/file/EZT_WS14/EZT.pdf?job=build_all "Elementare Zahlentheorie") (Phil)
+	* [Differentialgeometrie](https://gitlab.com/JaMeZ-B/LaTeX-WWU/builds/artifacts/master/file/DiffGeo_WS14/diff_geo.pdf?job=build_all "Differentialgeometrie") (Arne)
+	* [Einführung in die Algebra](https://gitlab.com/JaMeZ-B/LaTeX-WWU/builds/artifacts/master/file/EinfAlg_WS14/Einf_Algebra.pdf?job=build_all "Einführung in die Algebra") (Tobias)
+	* [Finanzmathematik](https://gitlab.com/JaMeZ-B/LaTeX-WWU/builds/artifacts/master/file/Fima_WS14/Fima_WS14.pdf?job=build_all "Finanzmathematik") (Tobias)
 * SoSe 2014
-	* [Höhere Algebra I.](https://github.com/JaMeZ-B/LaTeX-WWU/releases/download/latest/hoehere_algebra.pdf "Höhere Algebra I.") (Jannes)
-	* [Differentialformen und Mannigfaltigkeiten](https://github.com/JaMeZ-B/LaTeX-WWU/releases/download/latest/diff_ma.pdf "Differentialformen und Mannigfaltigkeiten") (Jannes)
+	* [Höhere Algebra I.](https://gitlab.com/JaMeZ-B/LaTeX-WWU/builds/artifacts/master/file/HoehAlg1_SS14/hoehere_algebra.pdf?job=build_all "Höhere Algebra I.") (Jannes)
+	* [Differentialformen und Mannigfaltigkeiten](https://gitlab.com/JaMeZ-B/LaTeX-WWU/builds/artifacts/master/file/DiffMa_SS14/diff_ma.pdf?job=build_all "Differentialformen und Mannigfaltigkeiten") (Jannes)
 	* [Grundlagen der Analysis, Topologie, Geometrie](https://gitlab.com/JaMeZ-B/LaTeX-WWU/builds/artifacts/master/file/AnaTopGeo_SS14/ana_top_geo.pdf?job=build_all "Grundlagen der Analysis, Topologie und Geometrie") (Jannes)
-	* [Partielle Differentialgleichungen I.](https://github.com/JaMeZ-B/LaTeX-WWU/releases/download/latest/PDGL1.pdf "Partielle Differentialgleichungen I.") (Phil)
+	* [Partielle Differentialgleichungen I.](https://gitlab.com/JaMeZ-B/LaTeX-WWU/builds/artifacts/master/file/PDGL1_SS14/PDGL1.pdf?job=build_all "Partielle Differentialgleichungen I.") (Phil)
 * WiSe 2013
-	* [Analysis III.](https://github.com/JaMeZ-B/LaTeX-WWU/releases/download/latest/analysis3.pdf "Analysis III.") (Jannes)
-	* [Einführung in die Algebra](https://github.com/JaMeZ-B/LaTeX-WWU/releases/download/latest/algebra.pdf "Einführung in die Algebra") (Jannes)
+	* [Analysis III.](https://gitlab.com/JaMeZ-B/LaTeX-WWU/builds/artifacts/master/file/Ana3_WS13/analysis3.pdf?job=build_all "Analysis III.") (Jannes)
+	* [Einführung in die Algebra](https://gitlab.com/JaMeZ-B/LaTeX-WWU/builds/artifacts/master/file/EinfAlg_WS13/algebra.pdf?job=build_all "Einführung in die Algebra") (Jannes)
 * SoSe 2013
-	* [Analysis II.](https://github.com/JaMeZ-B/LaTeX-WWU/releases/download/latest/analysis2.pdf "Analysis II.") (Jannes)
-	* [Lineare Algebra II.](https://github.com/JaMeZ-B/LaTeX-WWU/releases/download/latest/lineare_algebra2.pdf "Lineare Algebra II.") (Jannes)
+	* [Analysis II.](https://gitlab.com/JaMeZ-B/LaTeX-WWU/builds/artifacts/master/file/Ana2_SS13/analysis2.pdf?job=build_all "Analysis II.") (Jannes)
+	* [Lineare Algebra II.](https://gitlab.com/JaMeZ-B/LaTeX-WWU/builds/artifacts/master/file/LA2_SS13/lineare_algebra2.pdf?job=build_all "Lineare Algebra II.") (Jannes)
 * WiSe 2012,  
 _Nur der Vollständigkeit wegen hinzugefügt, Qualität bleibt hinter anderen Skripten zurück_
-	* [Analysis I.](https://github.com/JaMeZ-B/LaTeX-WWU/releases/download/latest/analysis1.pdf "Analysis I.") (Jannes)
-	* [Lineare Algebra I.](https://github.com/JaMeZ-B/LaTeX-WWU/releases/download/latest/lineare_algebra1.pdf "Lineare Algebra I.") (Jannes)
+	* [Analysis I.](https://gitlab.com/JaMeZ-B/LaTeX-WWU/builds/artifacts/master/file/Ana1_WS12/analysis1.pdf?job=build_all "Analysis I.") (Jannes)
+	* [Lineare Algebra I.](https://gitlab.com/JaMeZ-B/LaTeX-WWU/builds/artifacts/master/file/LA1_WS12/lineare_algebra1.pdf?job=build_all "Lineare Algebra I.") (Jannes)
 	
-(Die Links führen direkt zu den PDF-Dateien; hauptsächlicher Autor in Klammern)
+(hauptsächlicher Autor in Klammern)
 
 ### Mitarbeit
 Ich lade jeden herzlich ein, sich mittels Forks und Pull-Requests an der Entwicklung der Skripte zu beteiligen. Es gibt sicherlich noch diverse Fehler und auch bei den
@@ -65,6 +62,7 @@ Schon einmal vielen Dank an
 * Arne (moregrey) _Differentialformen und Mannigfaltigkeiten, Differentialgeometrie_
 * Tobias (Tazdr) _Einführung in die Algebra, Finanzmathematik, Modellreduktion_
 * Tim (Tii1) _Analysis II._
+* Lukas (B0Bftl) _Wahrscheinlichkeitstheorie auf Graphen_
 * Gautam (gdbgauda) _Höhere Algebra I._
 
 für die Beteiligung an diesem Projekt!
