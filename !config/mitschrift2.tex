@@ -50,20 +50,26 @@
 
 
 %-- Mathesymbole etc.
+\usepackage[T1]{fontenc}
+\renewcommand{\rmdefault}{zpltlf}
 \usepackage{mathtools} % beinhaltet amsmath
-\mathtoolsset{showonlyrefs, centercolon}
+\mathtoolsset{showonlyrefs, centercolon,showmanualtags}
 \newtagform{brackets}[\textbf]{[}{]}
 \usetagform{brackets}
-\usepackage{wasysym} % zusätzliche Symbole
+\usepackage{fix-cm}
+% \usepackage{wasysym} % zusätzliche Symbole
+\usepackage[bbgreekl]{mathbbol}
 \usepackage{amssymb} % zusätzliche Symbole
-% \usepackage{latexsym} % zusätzliche Symbole
-\usepackage{stmaryrd} % für Blitz
+% \usepackage{stmaryrd} % für Blitz
 \usepackage{nicefrac} % schräge Brüche
 \usepackage{faktor}
 \newcommand{\Faktor}[1]{\faktor[\textstyle]{#1}}
-\usepackage{cancel} % Befehle zum Durchstreichen
+\usepackage{xfrac}
+\usepackage{cancel}
 \usepackage{mathdots} % Verbesserung von Punkten wie zB \ldots
-\usepackage{mathrsfs} % das X wurde benötigt
+\usepackage[bb=px]{mathalfa}
+\usepackage{centernot}
+
 
 %-- einzelne Symbole aus dem mathx-package
 \DeclareFontFamily{U}{mathx}{\hyphenchar\font45}
@@ -248,6 +254,9 @@
 \DeclareMathOperator{\resolv}{R} %Resolventenmenge
 \DeclareMathOperator{\idx}{ind} %Fredholm Index
 \DeclareMathOperator{\Fred}{Fred} %menge der Fredholm-Operatoren
+
+%-- Ersatz für \mathring
+\newcommand*\interior[1]{\overset{\smash{\raisebox{-0.18ex}{$\scriptstyle\circ$}}}{#1}}
 
 \newcommand{\tr}{\mathrm{tr}}
 \newcommand{\w}{\mathrm{w}}

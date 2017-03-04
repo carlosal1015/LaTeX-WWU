@@ -115,7 +115,7 @@ so dass die folgenden Eigenschaften gelten:
 		\end{tikzcd}
 	\]
 	exakt.
-	\item \Index{Ausschneidung}: Sei $(X,A)$ ein Raumpaar, $U \subset A$, sodass $\overline{U} \subseteq \mathring{A}$. Dann ist die von der Inklusion 
+	\item \Index{Ausschneidung}: Sei $(X,A)$ ein Raumpaar, $U \subset A$, sodass $\overline{U} \subseteq \interior{A}$. Dann ist die von der Inklusion 
 	$\iota \colon (X \setminus U, A \setminus U) \hookrightarrow (X,A)$ induzierte Abbildung $h^n(\iota) \colon h^n(X,A;R) \to h^n(X \setminus U, A \setminus U;R)$ ein 
 	Isomorphismus.
 \end{enumerate}	
@@ -902,7 +902,7 @@ Es folgt damit
 \section*{Ausschneidung}
 Wir erinnern uns an das Ausschneide-Axiom:
 \begin{quote}
-Sei $(X,A)$ ein Ko-Raumpaar und $U \subset A$ eine Teilmenge mit $\overline{U} \subset \mathring{A}$. Dann ist die induzierte Abbildung 
+Sei $(X,A)$ ein Ko-Raumpaar und $U \subset A$ eine Teilmenge mit $\overline{U} \subset \interior{A}$. Dann ist die induzierte Abbildung 
 $K^{-n}(X,A) \to K^{-n}(X \setminus U, A \setminus U)$ ein Isomorphismus.	
 \end{quote}
 Wir wollen das Ausschneide-Axiom nun für die $K$-Theorie beweisen.
@@ -1113,7 +1113,7 @@ Damit ist das Theorem bewiesen.
 
 
 \begin{korollar}[label=sub:310, {name=[Ausschneidung für $K$-Theorie]}]
-Sei $(X,A)$ ein Ko-Raumpaar und $U \subseteq A$, sodass $\overline{U} \subset \mathring{A}$, dann ist $K^{-n}(X,A) \to K^{-n}(X \setminus U, A \setminus U)$ ein 
+Sei $(X,A)$ ein Ko-Raumpaar und $U \subseteq A$, sodass $\overline{U} \subset \interior{A}$, dann ist $K^{-n}(X,A) \to K^{-n}(X \setminus U, A \setminus U)$ ein 
 Isomorphismus.	
 \end{korollar}
 \begin{beweis}
@@ -1890,7 +1890,7 @@ $L_{n-1} \cong p^* L_n$.
 \[
 	K^0(\mathds{C}P^n) \cong \nicefrac{\mathds{Z}[L]}{(L-1)^{n+1}}
 \]
-als Ring, induziert durch $[L_n,0]_\st \mapsfrom L$
+als Ring, induziert durch $L \mapsto [L_n,0]_\st$
 \minisec{Beweis}
 Für $n=1$ ist die Aussage richtig (siehe Satz 3.2.1). Wir betrachten $(\mathds{C}P^n, \mathds{C}P^{n-1})$ und die zugehörigen Sequenz aus der 6-Term Sequenz
 \[
