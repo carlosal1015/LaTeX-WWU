@@ -18,6 +18,7 @@
 
 ## Bilderordner einschließen
 !**/img/*.pdf
+!**/Bilder/*.pdf
 
 ## Bibliography auxiliary files (bibtex/biblatex/biber):
 *.bbl
