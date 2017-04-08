@@ -37,7 +37,7 @@
 	%\usepackage[proportional,scaled=1.0]{erewhon}
 	% \usepackage{concmath}
 	% \usepackage[default]{droidserif}
-	\usepackage[oldstyle]{XCharter}
+	%\usepackage[oldstyle]{XCharter}
 	%\usepackage[rm]{merriweather}
 	%\usepackage[default,regular,bold,osf]{sourceserifpro}
 	
@@ -65,7 +65,7 @@
 % ===========================================================
 	\usepackage{mathtools}
 	\usepackage{amssymb}
-	\usepackage{amsthm}
+	%\usepackage{amsthm}
 	\usepackage[bigdelims]{newtxmath}		% moderne Mathe-Font
 	\allowdisplaybreaks						% seitenübergreifende Rechnungen
 	\input{MathCmds.tex}
@@ -175,95 +175,60 @@
 	\renewcommand{\indexpagestyle}{scrheadings}
 % ===========================================================
 
-% Theorem-Pakete und -Konfiguration
+
+% ntheorem
 % ===========================================================
-	\usepackage{thmtools}
-	\declaretheoremstyle[%
-		headfont=\sffamily\bfseries,
-		notefont=\normalfont\sffamily,
-		bodyfont=\normalfont,
-		headformat=\NUMBER \ \NAME \NOTE,
-		headpunct={\\},
-		postheadspace=1ex,
-		spaceabove=15pt,spacebelow=10pt]{mainstyle}
-	\declaretheoremstyle[%
-		headfont=\sffamily\bfseries,
-		notefont=\normalfont\sffamily,
-		bodyfont=\normalfont,
-		headformat=\NAME \NOTE,
-		headpunct={\\},
-		postheadspace=1ex,
-		spaceabove=15pt,spacebelow=10pt]{nonumber}
-	\declaretheoremstyle[%
-		headfont=\sffamily\bfseries,
-		notefont=\normalfont\sffamily,
-		bodyfont=\normalfont,
-		headformat=\NAME \ \NOTE,
-		headpunct={\\},
-		postheadspace=1ex,
-		spaceabove=15pt,spacebelow=10pt]{miscstyle}
-	\declaretheoremstyle[%
-		headfont=\bfseries\scshape,
-		bodyfont=\normalfont,
-		headpunct=:,
-		postheadspace=1ex,
-		spacebelow=12pt,spaceabove=2pt,
-		qed=\qedsymbol]{beweise}
-	
-	\declaretheorem[name=Definition,parent=section,style=mainstyle]{definition}
-	\declaretheorem[name=Satz,sharenumber=definition,style=mainstyle]{satz}
-	\declaretheorem[name=Korollar,sharenumber=definition,style=mainstyle]{korollar}
-	\declaretheorem[name=Lemma,sharenumber=definition,style=mainstyle]{lemma}
-	\declaretheorem[name=Proposition,sharenumber=definition,style=mainstyle]{proposition}
-	\declaretheorem[name=Bemerkung,sharenumber=definition,style=mainstyle]{bemerkung}
-	\declaretheorem[name=Beispiel,sharenumber=definition,style=mainstyle]{beispiel}
-	
-	\declaretheorem[name=Beweis,numbered=no,style=beweise]{beweis}
+\usepackage[amsmath,thmmarks,thref,hyperref]{ntheorem}
+
+\theoremstyle{changebreak}
+\theorembodyfont{\normalfont}
+\newtheorem{satz}{Satz}[section]
+\newtheorem{definition}[satz]{Definition}
+\newtheorem{korollar}[satz]{Korollar}
+
+\theoremstyle{change}
+\theorembodyfont{\normalfont}
+\theoremseparator{:}
+\newtheorem{beispiel}[satz]{Beispiel}
+
+\theoremstyle{nonumberplain}
+\theoremheaderfont{\bfseries\scshape}
+\theorembodyfont{\normalfont}
+\theoremseparator{:}
+\theoremsymbol{\ensuremath{\blacksquare}}
+\newtheorem{beweis}{Beweis}
+
 % ===========================================================
 
 % Rahmen
 % ===========================================================
 	\usepackage[tikz]{mdframed}
-	\newmdenv[linecolor=fbblau,frametitle=Titel]{testframe}
+%	\newmdenv[linecolor=fbblau,frametitle=Titel]{testframe}
 	\surroundwithmdframed[%
 		hidealllines=true,
-		%linewidth=1.5pt,
-		%linecolor=fbblau,
-		roundcorner=8pt,
-		backgroundcolor=DarkSeaGreen1!50,
-		innertopmargin=-1em,
+		backgroundcolor=DarkSeaGreen1!30,
 		shadow=true,
 		shadowsize=8pt,
-		shadowcolor=black!30
+		shadowcolor=black!20,
+		ntheorem=true
 		]{definition}
 	\surroundwithmdframed[%
 		hidealllines=true,
-		linewidth=1.5pt,
-		linecolor=fbblau,
-		roundcorner=8pt,
-		backgroundcolor=SkyBlue1!30,
-		innertopmargin=-1em,
+		backgroundcolor=SkyBlue1!20,
 		shadow=true,
 		shadowsize=8pt,
-		shadowcolor=black!30
+		shadowcolor=black!20,
+		ntheorem=true
 		]{satz}
 	\surroundwithmdframed[%
 		linewidth=1.5pt,
-		roundcorner=8pt,
 		linecolor=SeaGreen3,
-		innertopmargin=-1em,
-		%shadow=true,
-		%shadowsize=8pt,
-		%shadowcolor=black!30
+		ntheorem=true
 		]{beispiel}
 	\surroundwithmdframed[%
 		linewidth=1.5pt,
-		roundcorner=8pt,
 		linecolor=fbblau,
-		innertopmargin=-1em,
-		%shadow=true,
-		%shadowsize=8pt,
-		%shadowcolor=black!30
+		ntheorem=true
 		]{korollar}
 % ===========================================================
 

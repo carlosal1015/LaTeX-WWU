@@ -20,6 +20,7 @@ Was \enquote{geht}? \marginnote{Iiih!}
 \end{description}
 
 \begin{definition}[Fibonacci-Folge]
+	\label{def:fibonacci}
 	Wir definieren für $n \in \NN_0$:
 	\[
 		F_n := \begin{cases}
@@ -38,11 +39,15 @@ Was \enquote{geht}? \marginnote{Iiih!}
 \end{beispiel}
 
 \begin{satz}[Satz von de Moivre-Binet]
-	Für $n \in \NN_0$ gilt:
+	Für $n \in \NN_0$ und $F_n$ wie in \thref{def:fibonacci} \todo[inline]{Hier ist noch was im Argen mit thref!} gilt:
 	\[
 		F_n = \frac{1}{\sqrt{5}} \benb{ \enb{\frac{1+\sqrt{5}}{2}}^n - \enb{\frac{1-\sqrt{5}}{2}}^n}
 	\]
 \end{satz}
+
+\begin{beweis}
+	Per Induktion.
+\end{beweis}
 
 \begin{korollar}[Fibonacci-Folge und Goldener Schnitt]
 	Für $\Phi = \frac{1+\sqrt{5}}{2}$ gilt:
@@ -58,3 +63,5 @@ Was \enquote{geht}? \marginnote{Iiih!}
 \lipsum
 
 \section{Alles gut bis hierhin.}
+
+\todo[inline]{List of theorems!}
