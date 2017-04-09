@@ -17,8 +17,9 @@
 	final=true,
 	twoside,
 	index=totoc,
-	cleardoublepage=empty
-]{scrreprt}
+	cleardoublepage=empty,
+	twopage
+]{scrartcl}
 
 % Basics für Codierung und Sprache
 % ===========================================================
@@ -101,8 +102,8 @@
 % Nummerierungen
 % ===========================================================
 	\usepackage{chngcntr}
-	\counterwithout{equation}{chapter} 	% keine Kapitel in Gleichungsnummern
-	\counterwithout{section}{chapter}	% keine Kapitel in Abschnittsnummern
+	%\counterwithout{equation}{chapter} 	% keine Kapitel in Gleichungsnummern
+	%\counterwithout{section}{chapter}	% keine Kapitel in Abschnittsnummern
 % ===========================================================
 
 % Biblatex
@@ -197,6 +198,39 @@
 \theoremseparator{:}
 \theoremsymbol{\ensuremath{\blacksquare}}
 \newtheorem{beweis}{Beweis}
+
+\theoremlisttype{optname}
+
+% Workaround für Tabulatoren im Theorem-Verzeichnis
+\makeatletter
+\def\thm@@thmline@name#1#2#3#4{%
+	\@dottedtocline{-2}{0em}{2.3em}%
+	{\makebox[\widesttheorem][l]{#1 \protect\numberline{#2}}#3}%
+	{#4}}
+\@ifpackageloaded{hyperref}{
+	\def\thm@@thmline@name#1#2#3#4#5{%
+		\ifx\\#5\\%
+		\@dottedtocline{-2}{0em}{2.3em}%
+		{\makebox[\widesttheorem][l]{#1 \protect\numberline{#2}}#3}%
+		{#4}
+		\else
+		\ifHy@linktocpage\relax\relax
+		\@dottedtocline{-2}{0em}{2.3em}%
+		{\makebox[\widesttheorem][l]{#1 \protect\numberline{#2}}#3}%
+		{\hyper@linkstart{link}{#5}{#4}\hyper@linkend}%
+		\else
+		\@dottedtocline{-2}{0em}{2.3em}%
+		{\hyper@linkstart{link}{#5}%
+			{\makebox[\widesttheorem][l]{#1 \protect\numberline{#2}}#3}\hyper@linkend}%
+		{#4}%
+		\fi
+		\fi}
+}
+\makeatother
+\newlength\widesttheorem
+\AtBeginDocument{
+	\settowidth{\widesttheorem}{Definition 5.5\quad}	% Referenzstring für die Breite der ersten Spalte
+}
 
 % ===========================================================
 
