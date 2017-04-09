@@ -164,7 +164,8 @@
 % ===========================================================
 	\usepackage[tocindentauto]{tocstyle}
 	% \setcounter{tocdepth}{3}				% Tiefe des Inhaltsverzeichnisses
-	\usetocstyle{KOMAlike}	
+	\newtocstyle[KOMAlike][leaders]{alldotted}{}
+	\usetocstyle{alldotted}
 	\usepackage[nameinlink]{cleveref}
 % ===========================================================
 
