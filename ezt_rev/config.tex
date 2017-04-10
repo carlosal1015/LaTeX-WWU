@@ -70,6 +70,7 @@
 	\usepackage[bigdelims]{newtxmath}		% moderne Mathe-Font
 	\allowdisplaybreaks						% seitenübergreifende Rechnungen
 	\input{MathCmds.tex}
+	\usepackage{extarrows}
 % ===========================================================
 
 % TikZ
@@ -238,32 +239,32 @@
 % ===========================================================
 	\usepackage[tikz]{mdframed}
 %	\newmdenv[linecolor=fbblau,frametitle=Titel]{testframe}
-%	\surroundwithmdframed[%
-%		hidealllines=true,
-%		backgroundcolor=DarkSeaGreen1!30,
-%		shadow=true,
-%		shadowsize=8pt,
-%		shadowcolor=black!20,
-%		ntheorem=true
-%		]{definition}
-%	\surroundwithmdframed[%
-%		hidealllines=true,
-%		backgroundcolor=SkyBlue1!20,
-%		shadow=true,
-%		shadowsize=8pt,
-%		shadowcolor=black!20,
-%		ntheorem=true
-%		]{satz}
+	\surroundwithmdframed[%
+		hidealllines=true,
+		backgroundcolor=DarkSeaGreen1!30,
+		shadow=true,
+		shadowsize=8pt,
+		shadowcolor=black!20,
+		ntheorem=true
+		]{defn}
+	\surroundwithmdframed[%
+		hidealllines=true,
+		backgroundcolor=SkyBlue1!20,
+		shadow=true,
+		shadowsize=8pt,
+		shadowcolor=black!20,
+		ntheorem=true
+		]{satz}
 %	\surroundwithmdframed[%
 %		linewidth=1.5pt,
 %		linecolor=SeaGreen3,
 %		ntheorem=true
 %		]{beispiel}
-%	\surroundwithmdframed[%
-%		linewidth=1.5pt,
-%		linecolor=fbblau,
-%		ntheorem=true
-%		]{korollar}
+	\surroundwithmdframed[%
+		linewidth=1.5pt,
+		linecolor=fbblau,
+		ntheorem=true
+		]{falko}
 % ===========================================================
 
 % Sonstiges / für Testzwecke
