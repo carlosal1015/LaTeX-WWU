@@ -34,20 +34,8 @@
 
 % Fonts und Typographie
 % ===========================================================
-	% \usepackage[lining,semibold]{libertine}
-	%\usepackage[proportional,scaled=1.0]{erewhon}
-	% \usepackage{concmath}
-	% \usepackage[default]{droidserif}
-	%\usepackage[oldstyle]{XCharter}
-	%\usepackage[rm]{merriweather}
-	%\usepackage[default,regular,bold,osf]{sourceserifpro}
-	
-	% Sans- und Mono-Fonts
-	% \usepackage[rm,light]{roboto}
 	\usepackage{sourcecodepro}
 	\usepackage[default]{sourcesanspro}
-	% \usepackage[sb,lining,scale=.92]{FiraSans}
-	% \usepackage[lining,scale=.87]{FiraMono}
 	
 	\usepackage[babel=true,final,tracking=smallcaps]{microtype}
 	\DisableLigatures{encoding = T1, family = tt* } % keine Ligaturen für Monospace-Fonts
@@ -103,8 +91,7 @@
 % Nummerierungen
 % ===========================================================
 	\usepackage{chngcntr}
-	\counterwithin{equation}{section} 	% keine Kapitel in Gleichungsnummern
-	%\counterwithout{section}{chapter}	% keine Kapitel in Abschnittsnummern
+	\counterwithin{equation}{section} 	% Section in Gleichungsnummern
 % ===========================================================
 
 % Biblatex
@@ -164,7 +151,6 @@
 % Inhaltsverzeichnis und Querverweise
 % ===========================================================
 	\usepackage[tocindentauto]{tocstyle}
-	% \setcounter{tocdepth}{3}				% Tiefe des Inhaltsverzeichnisses
 	\newtocstyle[KOMAlike][leaders]{alldotted}{}
 	\usetocstyle{alldotted}
 	\usepackage[nameinlink]{cleveref}
@@ -188,7 +174,6 @@
 \theorembodyfont{\normalfont}
 \newtheorem{satz}{Satz}[section]
 \newtheorem{defn}{Definition}[section]
-\newtheorem{korollar}{Korollar}[section]
 \newtheorem{falko}{F}[section]
 \newtheorem{bsp}{Beispiel}[section]
 \newtheorem{lemma}{Lemma}[section]
@@ -238,7 +223,6 @@
 % Rahmen
 % ===========================================================
 	\usepackage[tikz]{mdframed}
-%	\newmdenv[linecolor=fbblau,frametitle=Titel]{testframe}
 	\surroundwithmdframed[%
 		hidealllines=true,
 		backgroundcolor=DarkSeaGreen1!30,
@@ -255,19 +239,9 @@
 		shadowcolor=black!20,
 		ntheorem=true
 		]{satz}
-%	\surroundwithmdframed[%
-%		linewidth=1.5pt,
-%		linecolor=SeaGreen3,
-%		ntheorem=true
-%		]{beispiel}
 	\surroundwithmdframed[%
 		linewidth=1.5pt,
 		linecolor=fbblau,
 		ntheorem=true
 		]{falko}
-% ===========================================================
-
-% Sonstiges / für Testzwecke
-% ===========================================================
-	\usepackage{lipsum}
 % ===========================================================
