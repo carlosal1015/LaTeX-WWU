@@ -1,3 +1,5 @@
+%!TEX root = ../EZT_WS1415.tex
+% Author: Phil Steinhorst, p.st@wwu.de
 \section{Der Vier-Quadrate-Satz}
 \label{sec:para9}
 
@@ -37,7 +39,7 @@
 Die Quadrate in $\ZZ/8\ZZ$ sind $0, 1$ und $4$, also ist $x^2+y^2+z^2 \not\kon 7 \modu 8$ für alle $x,y,z \in \ZZ$. Somit ist kein $n$ von der Gestalt $n = 8k+7$ eine Summe von drei Quadraten in $\ZZ$. 
 Jetzt Induktion nach $j$: \\
 Sei $j \geq 1$, dann ist $n = 4m$, und nach Induktionsanfang ist $m$ keine Summe von drei Quadraten. \\
-Angenommen, es ist $4m = n = x^2+y^2+z^2$, dann folgt $x^2+y^2+z^2 \kon 0 \modu 4$. Dann sind $x,y$ und $z$ gerade, und es folgt $m = \leg{x}{2}^2 + \leg{y}{2}^2 + \leg{z}{2}^2 \quad \lightning$
+Angenommen, es ist $4m = n = x^2+y^2+z^2$, dann folgt $x^2+y^2+z^2 \kon 0 \modu 4$. Dann sind $x,y$ und $z$ gerade, und es folgt $m = \leg{x}{2}^2 + \leg{y}{2}^2 + \leg{z}{2}^2$. Widerspruch!
 
 \begin{satz}[Drei-Quadrate-Satz] \label{3quadsatz}
 	Jede natürliche Zahl $n$, die nicht von der in F\ref{F10.1} genannten Gestalt \eqref{eq_F10.1} ist, ist eine Summe von drei Quadraten in $\ZZ$, d.h. $n$ hat eine Darstellung der Gestalt
@@ -68,4 +70,4 @@ Der Drei-Quadrate-Satz folgt -- allerdings ohne den Zusatz \eqref{eq_10_2} -- au
 	Mit der Formel von Jacobi für $r_4(n)$ liefert \eqref{eq_10_3} eine gute Rekursionsformel für die $r_3(n)$. Aber dieser Rekursionsformel lässt sich nicht entnehmen -- jedenfalls nicht auf einfache Weise --, dass stets $r_3(n) \neq 0$, wenn $n$ nicht von der Gestalt $n = 4^j(8k+7)$ ist.
 	\item In einer Extra-Vorlesung am 03. Februar 2015, 12:00 Uhr, wird Prof. Lorenz die Idee des Gaußschen Beweises für den Drei-Quadrate-Satzes vorstellen.
 \end{enumerate}
-\newpage
+\cleardoubleemptypage

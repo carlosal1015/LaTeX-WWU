@@ -1,3 +1,5 @@
+%!TEX root = ../EZT_WS1415.tex
+% Author: Phil Steinhorst, p.st@wwu.de
 \section{Fermatsche und Mersennesche Primzahlen}
 \label{sec:para7}
 	
@@ -73,7 +75,7 @@ $n = 3 \cdot 15 \cdot 17 \cdot 257 \cdot 65537 = F_5 - 2 = 2^{32} - 1 = 4.294.96
 	\item Bislang sind 48 Mersennesche Primzahlen bekannt (Stand Oktober 2014); die größte ist $M_{57885161}$. Sie hat 17.425.170 Stellen.
 \end{enumerate}
 
-\setcounter{countfalko}{3}
+\setcounter{falko}{3}
 \begin{falko} \label{F7.4}
 	Sei $p$ eine Primzahl mit $p \kon 3 \modu 4$. Dann gilt:
 	\[2p + 1 \text{ Primzahl } \Leftrightarrow 2p+1 \text{ teilt } M_p. \]
@@ -88,7 +90,7 @@ $n = 3 \cdot 15 \cdot 17 \cdot 257 \cdot 65537 = F_5 - 2 = 2^{32} - 1 = 4.294.96
 	\[ M_p \text{ prim } \Leftrightarrow s_{p-1} \kon 0 \modu M_p \]
 \end{falko}
 
-\setcounter{countfalko}{2}
+\setcounter{falko}{2}
 \begin{falko} \label{F7.3}
 	Sei $p$ ein Primteiler einer Fermatschen Zahl $F_n$ bzw. einer Mersenne-Zahl $M_q$. Genau dann geht auch $p^2$ in $F_n$ bzw. $M_q$ auf, wenn die Bedingung \marginnote{06.01. \\ \ [21]}
 	\begin{equation}
@@ -122,7 +124,7 @@ $n \in \NN$ ist genau dann vollkommen, wenn $\sigma(n) = 2n$. Ist $\sigma(n) < 2
 	$\sum\limits_{d \mid n_1n_2} d = \sum\limits_{d_1 \mid n_1, d_2 \mid n_2} d_1d_2 = \sum\limits_{d_1 \mid n_1} d_1 \cdot \sum\limits_{d_2 \mid n_2} d_2$
 \end{enumerate}
 
-\setcounter{countfalko}{5}
+\setcounter{falko}{5}
 \begin{falko}	\label{F7.6}
 	Hat $n$ die Gestalt $n = 2^{k-1} (2^k-1)$ und ist dabei $2^k - 1$ eine Primzahl, so ist $n$ vollkommen.
 \end{falko}
@@ -137,4 +139,4 @@ $n \in \NN$ ist genau dann vollkommen, wenn $\sigma(n) = 2n$. Ist $\sigma(n) < 2
 \minisec{Bemerkung}
 	Man weiß: $n$ ungerade mit weniger als 8 Primteilern ist nicht vollkommen. \\
 	Jedes ungerade $n \leq 10^{200}$ nicht vollkommen.
-\newpage
+\cleardoubleemptypage

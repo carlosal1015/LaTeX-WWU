@@ -1,3 +1,5 @@
+%!TEX root = ../EZT_WS1415.tex
+% Author: Phil Steinhorst, p.st@wwu.de
 \section{Kongruenzrechnung}
 \label{sec:para3}
 	Zur Motivation:
@@ -18,11 +20,12 @@
 	und sagt: $x$ ist kongruent zu $x'$ modulo $m$. \index{Kongruenz}
 \end{defn}
 
-\begin{falko} \label{F3.1} 
+\begin{falko} \label{F3.1}
+	Es gilt:
 	\[ x \equiv x' \modu m \quad \Leftrightarrow \quad m | x-x' \]	
 \end{falko}
 
-\setcounter{countdef}{0}
+\setcounter{defn}{0}
 \begin{defn}[Kongruenz allgemeiner] \label{def_3.1a}
 	Sei $R$ ein kommutativer Ring und $m \in R$. Definiere:
 	\[ x \equiv y \modu m :\Leftrightarrow m | x-y \]
@@ -78,7 +81,7 @@
 	Sei $d := (a,m) \neq 0$, und es gelte \eqref{eq_3.2a}. Die Lösungsmenge von \eqref{eq_3.1a} ist dann eine Restklasse modulo $\frac{m}{d}$. Die Kongruenz \eqref{eq_3.1a} besitzt genau $d = (a,m)$ viele Lösungen modulo $m$. Insbesondere gilt: Ist $(a,m) = 1$, so ist \eqref{eq_3.1a} für jedes $c$ lösbar und die Lösungen sind modulo $m$ eindeutig. 
 \end{falko}
 
-\setcounter{countdef}{1}
+\setcounter{defn}{1}
 \begin{defn}[Restklassen allgemein] \label{def_3.2a}
 	Sei $R$ ein kommutativer Ring, $m \in R$. Die \Index{Restklasse} modulo $m$, in der $a \in R$ liegt, hat die Gestalt
 	\[ \{x \in R : x \kon a \modu m\} = a+mR = \{a + ym : y \in R\}. \]
@@ -169,7 +172,7 @@
 	Nach F\ref{F3.6} gilt $\varphi(m) = \# \{a \in \{0, 1, 2, \dots, m-1\} : a \text{ teilerfremd zu } m \}$. Für eine Primzahl $p$ ist daher $\varphi(p) = p-1$. $\varphi$ heißt \Index{Eulersche $\varphi$-Funktion}.
 \end{defn}
 
-\setcounter{countsatz}{0}
+\setcounter{satz}{0}
 \begin{satz}[Satz von Euler-Fermat] \label{satz_3.1a}
 	Aus $(a,m) = 1$ folgt $a^{\varphi(m)} \kon 1 \modu m$. \index{Satz von Euler-Fermat}
 \end{satz}
@@ -177,7 +180,7 @@
 \begin{lemma}
 	Sei $G$ eine abelsche Gruppe der Ordnung $n$. Dann gilt $x^n = 1$ für alle $x \in G$.
 \end{lemma}
-
+\newpage
 \subsection{Simultane Kongruenzen}
 \begin{satz}[Chinesischer Restsatz] \label{satz_3.2}
 	Ist $m = m_1 m_2 \cdot m_r$ mit paarweise teilerfremden natürlichen Zahlen $m_1,\dots,m_r > 1$, so ist die Abbildung \index{Chinesischer Restsatz}
@@ -196,7 +199,7 @@
 	\[ \varphi(m) = \varphi(m_1) \cdot \varphi(m_2) \cdots \varphi(m_r) \]
 \end{satz}
 
-\setcounter{countsatz}{1}
+\setcounter{satz}{1}
 \begin{satz}[Chinesischer Restsatz für simultane Kongruenzen] \label{satz_3.2a}
 	Sei $m = m_1m_2 \cdots m_r$ mit paarweise teilerfremden natürlichen Zahlen $m_1,\dots,m_r > 1$. Sind dann $a_1,\dots,a_r$ beliebige ganze Zahlen, so gibt es eine ganze Zahl $x$ mit \index{Chinesischer Restsatz} \index{simultane Kongruenz}
 	\begin{equation}
@@ -231,4 +234,4 @@
 	\[ \{\alpha \in \ZZ/m : f(\alpha) = 0\} \rightarrow \prod_{i=1}^{r} \{ \alpha_i \in \ZZ/m_i : f(\alpha_i) = 0 \} \]
 	Für die Lösungsanzahlen $N_f(n) := \# \{\alpha \in \ZZ/n : f(\alpha) = 0 \}$ gilt also:
 	\[N_f(m_1m_2\dots m_r) = N_f(m_1) N_f(m_2) \cdots N_f(m_r) \]
-\newpage
+\cleardoubleemptypage
