@@ -1,4 +1,4 @@
-%!TEX root = ZZT_SS17.tex
+%!TEX root = EZT_WS1415.tex
 % Author: Phil Steinhorst, p.st@wwu.de
 \documentclass[%
 	paper=a4,
@@ -102,7 +102,7 @@
 % Nummerierungen
 % ===========================================================
 	\usepackage{chngcntr}
-	%\counterwithout{equation}{chapter} 	% keine Kapitel in Gleichungsnummern
+	\counterwithin{equation}{section} 	% keine Kapitel in Gleichungsnummern
 	%\counterwithout{section}{chapter}	% keine Kapitel in Abschnittsnummern
 % ===========================================================
 
@@ -175,6 +175,7 @@
 	\newcommand{\Index}[1]{\textbf{#1}\index{#1}}
 	\makeindex
 	\renewcommand{\indexpagestyle}{scrheadings}
+	\newcommand{\bet}[1]{\textbf{#1}}
 % ===========================================================
 
 
@@ -182,17 +183,14 @@
 % ===========================================================
 \usepackage[amsmath,thmmarks,thref,hyperref]{ntheorem}
 
-\theoremstyle{changebreak}
+\theoremstyle{break}
 \theorembodyfont{\normalfont}
 \newtheorem{satz}{Satz}[section]
-\newtheorem{definition}[satz]{Definition}
-\newtheorem{korollar}[satz]{Korollar}
-\newtheorem{lemma}[satz]{Lemma}
-
-\theoremstyle{change}
-\theorembodyfont{\normalfont}
-\theoremseparator{:}
-\newtheorem{beispiel}[satz]{Beispiel}
+\newtheorem{defn}{Definition}[section]
+\newtheorem{korollar}{Korollar}[section]
+\newtheorem{falko}{F}[section]
+\newtheorem{bsp}{Beispiel}[section]
+\newtheorem{lemma}{Lemma}[section]
 
 \theoremstyle{nonumberplain}
 \theoremheaderfont{\bfseries\scshape}
@@ -240,32 +238,32 @@
 % ===========================================================
 	\usepackage[tikz]{mdframed}
 %	\newmdenv[linecolor=fbblau,frametitle=Titel]{testframe}
-	\surroundwithmdframed[%
-		hidealllines=true,
-		backgroundcolor=DarkSeaGreen1!30,
-		shadow=true,
-		shadowsize=8pt,
-		shadowcolor=black!20,
-		ntheorem=true
-		]{definition}
-	\surroundwithmdframed[%
-		hidealllines=true,
-		backgroundcolor=SkyBlue1!20,
-		shadow=true,
-		shadowsize=8pt,
-		shadowcolor=black!20,
-		ntheorem=true
-		]{satz}
-	\surroundwithmdframed[%
-		linewidth=1.5pt,
-		linecolor=SeaGreen3,
-		ntheorem=true
-		]{beispiel}
-	\surroundwithmdframed[%
-		linewidth=1.5pt,
-		linecolor=fbblau,
-		ntheorem=true
-		]{korollar}
+%	\surroundwithmdframed[%
+%		hidealllines=true,
+%		backgroundcolor=DarkSeaGreen1!30,
+%		shadow=true,
+%		shadowsize=8pt,
+%		shadowcolor=black!20,
+%		ntheorem=true
+%		]{definition}
+%	\surroundwithmdframed[%
+%		hidealllines=true,
+%		backgroundcolor=SkyBlue1!20,
+%		shadow=true,
+%		shadowsize=8pt,
+%		shadowcolor=black!20,
+%		ntheorem=true
+%		]{satz}
+%	\surroundwithmdframed[%
+%		linewidth=1.5pt,
+%		linecolor=SeaGreen3,
+%		ntheorem=true
+%		]{beispiel}
+%	\surroundwithmdframed[%
+%		linewidth=1.5pt,
+%		linecolor=fbblau,
+%		ntheorem=true
+%		]{korollar}
 % ===========================================================
 
 % Sonstiges / für Testzwecke
