@@ -1,6 +1,5 @@
-\chapter{Der Satz von \textsc{Cartan-Hadamard}} 
+\section{Der Satz von \textsc{Cartan-Hadamard}} 
 \label{cha:2}
-\vspace*{-.5em}
 Sei $X$ ein $\CAT$-Raum. Wir haben gesehen, dass $\CAT$-Räume viele \enquote{schöne} Eigenschaften haben.
 
 \begin{enumerate}[(i)]
@@ -43,9 +42,9 @@ Sei $X$ ein vollständiger metrischer Raum. Wir suchen nun eine \enquote{schwach
 \end{korollar}
 
 Um diesen Satz zu beweisen, brauchen wir viel Vorarbeit.
-\newpage
+
 \begin{minipage}{0.6\textwidth}
-	\begin{no-erinnerung}[{siehe \cite[Kap. 3]{Kramer}}]
+	\begin{no-erinner}[{siehe \cite[Kap. 3]{Kramer}}]
 		Seien $E,B$ topologische Räume.
 		Sei weiter $p \colon E \twoheadrightarrow B$ eine stetige surjektive Abbildung.
 		Wir nennen $p$ eine \Index{Überlagerung} von $B$, wenn jeder Punkt $b \in B$ eine offene Umgebung $U_b \subseteq B$ von $b$ besitzt mit folgender Eigenschaft:
@@ -55,7 +54,7 @@ Um diesen Satz zu beweisen, brauchen wir viel Vorarbeit.
 		p^{-1} (U_b) = \bigsqcup \{V_i : i \in I \}, V_i \subseteq E \text{ offen}, V_i \cap V_j = \emptyset, i \neq j
 		\]
 		und $p \big|_{V_i} \rightarrow U_b$ ist ein Homöomorphismus.
-	\end{no-erinnerung}
+	\end{no-erinner}
 \end{minipage}
 ~ \begin{minipage}{.35\textwidth}
 	\centering
@@ -81,12 +80,12 @@ Um diesen Satz zu beweisen, brauchen wir viel Vorarbeit.
 \end{minipage}
 \vspace*{1em}
 
-Ein triviales Beispiel einer Überlagerung ist die Identität $\id_B$. Ein weiteres, wichtiges Beispiel ist $E := \RR, B: = \Ss^1 = \{(x,y) \in \RR^2 : x^2 + y^2 = 1 \}$ und
+Ein triviales Beispiel einer Überlagerung ist die Identität $\id_B$. Ein weiteres, wichtiges Beispiel ist $E := \RR$, $B: = \Ss^1 = \{(x,y) \in \RR^2 : x^2 + y^2 = 1 \}$ und
 \begin{align*}
 	p\colon E &\longrightarrow B \\
 	t &\longmapsto (\cos(2\pi t),\sin(2\pi t))
 \end{align*}
-Das ist eine Überlagerung, denn für $b = (\cos(\alpha),\sin(\alpha)) \in \Ss^1$ und $U_b = \Ss^{-1} \setminus \{-b\}$ ist $p^{-1}(U_b) = \bigcup\penbrace*{ \enbrace*{k+r-\frac{1}{2},k+r+\frac{1}{2}} : k \in \ZZ}$.
+Das ist eine Überlagerung, denn für $b = (\cos(\alpha),\sin(\alpha)) \in \Ss^1$ und $U_b = \Ss^{-1} \setminus \{-b\}$ ist $p^{-1}(U_b) =$ \linebreak $\bigcup\penbrace*{ \enbrace*{k+r-\frac{1}{2},k+r+\frac{1}{2}} : k \in \ZZ}$.
 
 \begin{figure}[h]
 	\centering
@@ -120,9 +119,8 @@ Die Frage ist nun, welche Räume die universelle Überlagerung besitzen.
 \end{no-satz}
 
 $X$ heißt genau dann \textbf{semilokal einfach zusammenhängend}, wenn für alle $x \in X$ eine offene Umgebung $U_x$ von $x$ existiert, sodass $\id_*\colon \pi_1(U_x,x) \rightarrow \pi_1(X,x)$ trivial ist.
-\newpage
+
 \begin{no-bem}
-	\mbox{} \\[-1.4cm]
 	\begin{enumerate}[(i)]
 		\item Wenn $X$ lokal $\CAT$ ist, dann ist $X$ semilokal einfach zusammenhängend, denn für $x \in X$ existiert ein $\varepsilon > 0$, sodass $B_\varepsilon(x) \CAT$ ist.
 		$\CAT$-Räume sind kontrahierbar, folglich ist $\pi_1(B_\varepsilon(x),x) \simeq \setzero$ und damit ist $\id_*\colon \pi_1(B_\varepsilon(x),x) \rightarrow \pi_1(X,x)$ trivial.
@@ -130,26 +128,25 @@ $X$ heißt genau dann \textbf{semilokal einfach zusammenhängend}, wenn für all
 	\end{enumerate}
 \end{no-bem}
 
-\begin{beweis}[\autoref{kor:2.2}]
-	\mbox{} \\[-.9cm]
+\begin{beweis}[Korollar~\ref{kor:2.2}]
 	\begin{description}
-		\item[\bewrueck] Ist $X$ ein $\CAT$-Raum, dann ist $B_\varepsilon(x)$ für alle $\varepsilon > 0, x \in X$ konvex (\autoref{aufg:4.1}). Also ist $B_\varepsilon(x)$ $\CAT$.
-		In \autoref{satz:1.19} haben wir bewiesen, dass $X$ kontrahierbar ist, folglich ist $\pi_1(X,\{x\}) \simeq \{0\}$.
+		\item[\bewrueck] Ist $X$ ein $\CAT$-Raum, dann ist $B_\varepsilon(x)$ für alle $\varepsilon > 0, x \in X$ konvex (Aufgabe~\ref{aufg:4.1}). Also ist $B_\varepsilon(x)$ $\CAT$.
+		In Satz~\ref{satz:1.19} haben wir bewiesen, dass $X$ kontrahierbar ist, folglich ist $\pi_1(X,\{x\}) \simeq \{0\}$.
 		Da $X$ wegzusammenhängend ist, folgt insgesamt, dass $X$ einfach zusammenhängend ist.
-		\item[\bewhin] Die Identität $\id_X$ ist die universelle Überlagerung, da $X$ nach Voraussetzung zusammenhängend ist. Nach \autoref{satz:cartan-hadamard} ist $X$ dann $\CAT$. \qedhere
+		\item[\bewhin] Die Identität $\id_X$ ist die universelle Überlagerung, da $X$ nach Voraussetzung zusammenhängend ist. Nach Satz~\ref{satz:cartan-hadamard} ist $X$ dann $\CAT$. 
 	\end{description}
 \end{beweis}
 
 Der Satz von \textsc{Cartan} und \textsc{Hadamard} liefert uns also:
 \begin{itemize}
-	\item eine lokal $\rightarrow$ global-Aussage (\autoref{kor:2.2})
+	\item eine lokal $\rightarrow$ global-Aussage (Korollar~\ref{kor:2.2})
 	\item eine Möglichkeit, viele $\CAT$-Räume zu erhalten
 	\item ein Werkzeug, um zu zeigen, dass die universelle Überlagerung kontrahierbar ist.
 \end{itemize}
 
 Für den Beweis machen wir zuerst ein paar Vorüberlegungen: Wir haben $p \colon \tilde{X} \twoheadrightarrow X$, wobei $X$ ein vollständiger metrischer zusammenhängender lokaler $\CAT$-Raum ist. Wir werden eine Metrik auf $\tilde{X}$ definieren, sodass $p$ eine \textbf{lokale Isometrie} ist, d.h. für $\tilde{x} \in \tilde{X}$ existiert ein $\varepsilon > 0$, sodass $p \colon B_\varepsilon(\tilde{x}) \rightarrow B_\varepsilon(p(\tilde{x}))$ eine Isometrie ist.
 
-\section{Längenräume}
+\subsection{Längenräume}
 \label{sec:2.1}
 	Betrachte $\Ss^1 \subseteq \EE^2$. Die induzierte Metrik von $\EE^2$ auf $\Ss^1$ ist keine \enquote{gute} Metrik, um Geometrie zu machen. Besser ist folgende Metrik:
 	\[
@@ -260,7 +257,7 @@ Für den Beweis machen wir zuerst ein paar Vorüberlegungen: Wir haben $p \colon
 		\end{align*}
 	\end{enumerate}
 \end{definition}
-\newpage
+
 \begin{proposition}
 \label{prop:2.6}
 	Sei $(X,d)$ ein metrischer Raum und $c\colon [a,b] \rightarrow X$ ein Weg.
@@ -286,7 +283,7 @@ Für den Beweis machen wir zuerst ein paar Vorüberlegungen: Wir haben $p \colon
 \end{proposition}
 
 \begin{beweis}
-	(i) bis (iv) und (vi): siehe \autoref{aufg:4.2} und \autoref{aufg:4.3}.
+	(i) bis (iv) und (vi): siehe Aufgabe~\ref{aufg:4.2} und Aufgabe~\ref{aufg:4.3}.
 	\begin{enumerate}[(i)]
 		\setcounter{enumi}{4}
 		\item Zuerst zeigen wir, dass $\lambda_c$ schwach monoton ist.
@@ -358,7 +355,7 @@ Für den Beweis machen wir zuerst ein paar Vorüberlegungen: Wir haben $p \colon
 		\end{align*}
 		Also:
 		\[
-			\ell(c) \leq (k+1) \cdot \frac{\varepsilon}{2 \cdot (k+1)} + \sum\limits_{i=0}^{k} d(c_n(t_i),c_n(t_{i+1})) + \frac{\varepsilon}{2} \leq \ell(c_n) + \varepsilon \quad \forall n \geq N \qedhere
+			\ell(c) \leq (k+1) \cdot \frac{\varepsilon}{2 \cdot (k+1)} + \sum\limits_{i=0}^{k} d(c_n(t_i),c_n(t_{i+1})) + \frac{\varepsilon}{2} \leq \ell(c_n) + \varepsilon \quad \forall n \geq N 
 		\]
 	\end{enumerate}
 \end{beweis}
@@ -375,7 +372,6 @@ Für den Beweis machen wir zuerst ein paar Vorüberlegungen: Wir haben $p \colon
 
 \begin{beispiel}
 \label{bsp:2.8}
-	\mbox{} \\[-1.4cm]
 	\begin{enumerate}[(i)]
 		\item Jeder geodätische Raum $X$ ist ein Längenraum.
 		Genauer:
@@ -388,7 +384,7 @@ Für den Beweis machen wir zuerst ein paar Vorüberlegungen: Wir haben $p \colon
 			&\stack{\gamma\text{ isom.}}{=} \sum\limits_{i=0}^{n} d_2(t_i,t_{i+1}) + \varepsilon \\
 			&\stack{}{=} d(x,y) + \varepsilon
 		\end{align*}
-		Für $\varepsilon = \frac{1}{n}$ erhalten wir $\ell(\gamma) \leq d(x,y)$ für $n \rightarrow \infty$. Mit $\ell(\gamma) \geq d(\gamma(0),\gamma(d(x,y))) = d(x,y)$ (\autoref{prop:2.6}(i)) folgt Gleichheit.
+		Für $\varepsilon = \frac{1}{n}$ erhalten wir $\ell(\gamma) \leq d(x,y)$ für $n \rightarrow \infty$. Mit $\ell(\gamma) \geq d(\gamma(0),\gamma(d(x,y))) = d(x,y)$ (Proposition~\ref{prop:2.6}(i)) folgt Gleichheit.
 		\item Im Allgemeinen ist ein Längenraum nicht geodätisch.
 		Zum Beispiel ist $(\RR^2 \setminus \setzero,d_2)$ ein Längenraum, aber zwischen $(-1,0)$ und $(1,0)$ existiert keine Geodäte.
 	\end{enumerate}
@@ -406,7 +402,7 @@ Dann induziert $d$ eine Längenmetrik $d_L$ auf $X$ und zwar wie folgt:
 		(x,y) &\longmapsto \inf\{ \ell(c) : c \text{ ist ein rektifizierbarer Weg von } x \text{ nach } y\}
 	\end{align*}	
 	Falls kein rektifizierbarer Weg von $x$ nach $y$ existiert, dann setzen wir $d_L(x,y) = \infty$.
-	Es gilt (folgt direkt mit \autoref{prop:2.6}):
+	Es gilt (folgt direkt mit Proposition~\ref{prop:2.6}):
 	\begin{enumerate}[(i)]
 		\item $d_L$ ist eine Metrik auf $X$ (Konvention: $a + \infty = \infty$ für alle $a \in [0,\infty]$)
 		\item $d_L(x,y) \geq d(x,y)$ für alle $x,y \in X$
@@ -416,7 +412,6 @@ Dann induziert $d$ eine Längenmetrik $d_L$ auf $X$ und zwar wie folgt:
 
 \begin{beispiel}
 \label{bsp:2.10}
-	\mbox{} \\[-1.4cm]
 	\begin{enumerate}[(i)]
 		\item $(\QQ,d_2)$: $d_{2_L}(x,y) = \infty$ für alle $x,y \in \QQ$ mit $x \neq y$
 		\item $(\Ss^1,d_2)$: $d_{2_L}(x,y) = \arccos(\sprod{x,y})$
@@ -433,7 +428,6 @@ Dann induziert $d$ eine Längenmetrik $d_L$ auf $X$ und zwar wie folgt:
 \end{proposition}
 
 \begin{beweis}
-	\mbox{} \\[-.9cm]
 	\begin{enumerate}[(i)]
 		\item Wir zeigen zuerst, dass $c \colon [a,b] \rightarrow (X,d_2)$ stetig ist.
 		Sei $t \in [a,b]$ beliebig.
@@ -448,7 +442,7 @@ Dann induziert $d$ eine Längenmetrik $d_L$ auf $X$ und zwar wie folgt:
 			&\stack{}{\leq} \sup \penbrace*{\sum\limits_{i=0}^{n} \ell^d \enbrace*{c\big|_{[t_i,t_{i+1}]} : a=t_0 < \dots < t_{n+1} = b, n\in \NN}} \\
 			&\stack{\text{Def}}{=} \ell^d(c).
 		\end{align*}
-		\item folgt sofort aus (i). \qedhere
+		\item folgt sofort aus (i).
 	\end{enumerate}
 \end{beweis}
 
@@ -575,7 +569,7 @@ Zum Beispiel ist $(\RR^2 \setminus \setzero, d_2)$ ein (nicht vollständiger) L�
 			\[
 				d(x_{n_k},x_{n_l}) < \frac{\varepsilon}{2} + \frac{\varepsilon}{2} = \varepsilon
 			\]
-			für alle $k,l > N$. \qedhere
+			für alle $k,l > N$. 
 		\end{description}
 \end{beweis}
 
@@ -598,7 +592,6 @@ Um die Aussage (ii) zu beweisen, brauchen wir ein Resultat von \textsc{Arzelà} 
 \end{lemma}
 
 \begin{beweis}
-	\mbox{} \\[-.9cm]
 	\begin{itemize}
 		\item Da $X$ separabel, existiert eine abzählbare dichte Teilmenge $Q \subseteq X$.
 		Wähle so ein $Q = \{q_j : j \in \NN\}$.
@@ -628,7 +621,6 @@ Um die Aussage (ii) zu beweisen, brauchen wir ein Resultat von \textsc{Arzelà} 
 			\Rightarrow d(f(q),f(q')) &\leq \varepsilon \text{ für alle } q,q' \in Q \text{ mit } d(q,q') < \delta \
 		\end{align*}
 		Folglich ist $f \colon Q \rightarrow Y$ gleichmäßig stetig.
-		\newpage
 		\item Gleichmäßig stetige Funktionen lassen sich stetig fortsetzen:
 		\begin{align*}
 			f \colon X &\longrightarrow Y \\
@@ -663,6 +655,7 @@ Um die Aussage (ii) zu beweisen, brauchen wir ein Resultat von \textsc{Arzelà} 
 			d\enbrace*{f_{n_k^k}(q_j),f(q_j)} \leq \frac{\varepsilon}{3} \text{ für alle } n_k^k \geq N \text{ und alle } j \in \{1, \dots, l\}. \label{eq:2.15.4}
 		\end{equation}
 	\end{itemize}
+	\newpage
 	Insgesamt erhalten wir:
 	\begin{align*}
 		d\enbrace*{f(x),f_{n_k^k}(x)} &\stack{\eqref{eq:2.15.3}}{\leq} d(f(x),f(q_j)) + d\enbrace*{f(q_j),f_{n_k^k}(q_j)} + d\enbrace*{f_{n_k^k}(q_j),f_{n_k^k}(x)} \\
@@ -670,7 +663,7 @@ Um die Aussage (ii) zu beweisen, brauchen wir ein Resultat von \textsc{Arzelà} 
 	\end{align*}
 \end{beweis}
 
-\begin{beweis}[\autoref{thm:2.13}(ii)]
+\begin{beweis}[Theorem~\ref{thm:2.13}(ii)]
 	Seien $x,y \in X, x\neq y$ beliebig.
 	Da $X$ ein Längenraum ist, existieren Wege
 	\begin{align*}
@@ -691,17 +684,17 @@ Um die Aussage (ii) zu beweisen, brauchen wir ein Resultat von \textsc{Arzelà} 
 			&\stack{}{=} \varepsilon.
 		\end{align*}
 		\item Weiter gilt $\im(c_n') \subseteq \ol{B_{d(x,y)+1}(x)}$.
-		Nach \autoref{thm:2.13}(i) ist $\ol{B_{d(x,y)+1}(x)}$.
+		Nach Theorem~\ref{thm:2.13}(i) ist $\ol{B_{d(x,y)+1}(x)}$.
 		\item Insgesamt haben wir $(c_n'\colon [0,1] \rightarrow \ol{B_{d(x,y)+1}(x)})_n$ gleichstetig mit $[0,1]$ separabel und $\ol{B_{d(x,y)+1}(x)}$ kompakt.
-		Nach \autoref{lemma:2.15} existiert also eine konvergente Teilfolge $(c_{n_k}')_{k \in \NN}$, die gleichmäßig gegen den Weg $c'\colon [0,1] \rightarrow X$ von $x$ nach $y$ konvergiert.
-		\item Für $\frac{1}{k}$ existiert nach \autoref{prop:2.6} ein $n \in \NN$, sodass mit $\ell(c_{n_k}') \leq  d(x,y) + \frac{1}{n_k}$ gilt:
+		Nach Lemma~\ref{lemma:2.15} existiert also eine konvergente Teilfolge $(c_{n_k}')_{k \in \NN}$, die gleichmäßig gegen den Weg $c'\colon [0,1] \rightarrow X$ von $x$ nach $y$ konvergiert.
+		\item Für $\frac{1}{k}$ existiert nach Proposition~\ref{prop:2.6} ein $n \in \NN$, sodass mit $\ell(c_{n_k}') \leq  d(x,y) + \frac{1}{n_k}$ gilt:
 		\begin{align*}
 			d(x,y) \leq \ell(c') &\leq \ell(c_{n_k}') + \frac{1}{k} \text{ für alle } n_k \geq N \\
 			&\leq d(x,y) + \frac{1}{n_k} + \frac{1}{k} \text{ für alle } n_k \geq N \\
 			\xRightarrow{\lim} \quad d(x,y) &\leq \ell(c') \leq d(x,y) \\
 			\Rightarrow \quad \ell(c') &= d(x,y)
 		\end{align*}
-		Dann ist $\tilde{c}' \colon [0,d(x,y)] \rightarrow X$ aus \autoref{prop:2.6} eine Geodäte von $x$ nach $y$. \qedhere
+		Dann ist $\tilde{c}' \colon [0,d(x,y)] \rightarrow X$ aus Proposition~\ref{prop:2.6} eine Geodäte von $x$ nach $y$. 
 	\end{itemize}
 \end{beweis}
 
@@ -713,17 +706,16 @@ Um die Aussage (ii) zu beweisen, brauchen wir ein Resultat von \textsc{Arzelà} 
 		$X$ vollständig und lokal kompakt \quad $\Leftrightarrow$ \quad $\ol{B_r(x)}$ ist kompakt für alle $x \in X$ und alle $r \in \RR_{>0}$.
 	\end{center}
 \end{korollar}
-\newpage
+
 \begin{beweis}
-	\mbox{} \\[-.9cm]
 	\begin{description}
-		\item[\bewhin] \autoref{thm:2.13}.
+		\item[\bewhin] Theorem~\ref{thm:2.13}.
 		\item[\bewrueck] Dass $X$ lokal kompakt ist, ist klar.
 		
 		Sei $(x_i)_{i \in \NN}$ eine Cauchy-Folge in $X$.
 		Cauchy-Folgen sind beschränkt, folglich existiert ein $x \in X$ und $r > 0$ mit $x_i \in \ol{B_r(x)}$ für alle $i \in \NN$.
 		Nach Voraussetzung ist $\ol{B_r(x)}$ kompakt, also existiert eine konvergente Teilfolge $(x_{i_n})_n$ mit $x_{i_n} \xrightarrow{n \rightarrow \infty} x'$.
-		Da $(x_i)_i$ eine Cauchy-Folge ist, gilt $\lim\limits_{i \rightarrow \infty} x_i = x'$. \qedhere
+		Da $(x_i)_i$ eine Cauchy-Folge ist, gilt $\lim\limits_{i \rightarrow \infty} x_i = x'$. 
 	\end{description}
 \end{beweis}
 
@@ -765,7 +757,7 @@ Um die Aussage (ii) zu beweisen, brauchen wir ein Resultat von \textsc{Arzelà} 
 	\begin{align*}
 		d(c'(t),c_n'(t)) &\stack{\Delta\text{-Ungl.}}{\leq} d(c'(t),\gamma_n'(t)) + d(\gamma_n'(t),c_n'(t)) \\
 		&\stack{d\text{ konv.}}{\leq} (1-t) \cdot d(c'(0),\gamma_n'(0)) + t \cdot d(\gamma_n'(1),c_n'(1)) \\
-		&\stack{}{\leq} d(x,x_n) + d(y,y_n) = \varepsilon \text{ für alle } n \geq N. \qedhere
+		&\stack{}{\leq} d(x,x_n) + d(y,y_n) = \varepsilon \text{ für alle } n \geq N. 
 	\end{align*}
 \end{beweis}
 	
@@ -806,7 +798,7 @@ Um die Aussage (ii) zu beweisen, brauchen wir ein Resultat von \textsc{Arzelà} 
 	\begin{equation}
 		d(c_{n_k}(t_0),c(t_0)) \geq \varepsilon \text{ für alle } k \in \NN. \label{eq:2.21.1}
 	\end{equation}
-	Nach \autoref{kor:2.20} existiert eine Teilfolge $\enbrace*{c_{n_{k_i}}}_i$ von $(c_{n_k}\colon [0,1] \rightarrow \ol{B_R(x)})_k$, die gleichmäßig gegen eine linear umparametrisierte Geodäte $c'\colon [0,1] \rightarrow X$ konvergiert.
+	Nach Korollar~\ref{kor:2.20} existiert eine Teilfolge $\enbrace*{c_{n_{k_i}}}_i$ von $(c_{n_k}\colon [0,1] \rightarrow \ol{B_R(x)})_k$, die gleichmäßig gegen eine linear umparametrisierte Geodäte $c'\colon [0,1] \rightarrow X$ konvergiert.
 	Es gilt $c_{n_{k_i}}(0) \xrightarrow{i \rightarrow \infty} x = c'(0)$ sowie $c_{n_{k_i}}(1) \xrightarrow{i \rightarrow \infty} y = c'(1)$.
 	Weiter gilt
 	\[
@@ -814,7 +806,7 @@ Um die Aussage (ii) zu beweisen, brauchen wir ein Resultat von \textsc{Arzelà} 
 	\]
 	und, da $d$ stetig ist, $d(c'(t_0),c(t_0)) \geq \varepsilon$, was ein Widerspruch zur Eindeutigkeit der Geodäten ist.
 	
-	Als Übung zeige man nun: Wenn $(c_n)_n$ punktweise gegen $c$ konvergiert, dann auch gleichmäßig (für beliebige metrische Räume). \qedhere
+	Als Übung zeige man nun: Wenn $(c_n)_n$ punktweise gegen $c$ konvergiert, dann auch gleichmäßig (für beliebige metrische Räume). 
 \end{beweis}
 
 
@@ -830,14 +822,13 @@ Um die Aussage (ii) zu beweisen, brauchen wir ein Resultat von \textsc{Arzelà} 
 	\[
 		X:= \enbrace*{ \bigsqcup_{n \geq 3} Y_n \cup [0,\pi]} \diagup \sim.
 	\]
-	\newpage
 	Dann ist $X$ ausgestattet mit der Längenmetrik der gesuchte Raum.
 	Betrachte Geodäten $c_n \colon 0 \geo y_n$.
 	Diese konvergieren nicht punktweise gegen die Geodäte $c\colon 0 \geo \pi$.
 	
 	\begin{figure}[h]
 		\centering
-		\begin{tikzpicture}[scale=1,>=Latex]
+		\begin{tikzpicture}[scale=0.8,>=Latex]
 		\draw [thick] (0,0) circle (3);
 		\draw (-3,0) to [bend angle=30, bend right] (3,0);
 		\draw [dashed] (3,0) to [bend angle=30, bend right] (-3,0);
@@ -850,7 +841,7 @@ Um die Aussage (ii) zu beweisen, brauchen wir ein Resultat von \textsc{Arzelà} 
 		\draw pic["$\alpha$",draw=black,angle eccentricity=.6,angle radius=.8cm]{angle=N1--N--N2};
 		\draw pic["$\alpha$",draw=black,angle eccentricity=.6,angle radius=.8cm]{angle=S2--S--S1};
 		\end{tikzpicture} \hspace{2cm}
-		\begin{tikzpicture}[scale=1,>=Latex]
+		\begin{tikzpicture}[scale=0.8,>=Latex]
 		\draw [color=LightBlue2,fill=LightBlue2] (0,3) to [bend angle=45,bend left] (0,-3)
 		to [bend angle=45,bend left] cycle;
 		\draw [thick] (0,3) to [bend angle=45, bend left] (0,-3);
@@ -866,11 +857,12 @@ Um die Aussage (ii) zu beweisen, brauchen wir ein Resultat von \textsc{Arzelà} 
 		\draw [<->] (1,2) -- (2.25,2);
 		\draw [color=red] (-.325,2.625) node[fill,circle,inner sep=1.5pt]{};
 		\draw [color=red] (-.325,2.625) node[left]{$y_n$};
-		\end{tikzpicture}		
+		\end{tikzpicture}	
+		\caption{Veranschaulichung der Konstruktion aus Bemerkung~\ref{bem:2.22}.}	
 	\end{figure}	
 \end{bemerkung}
 
-\section{Längenmetrik auf Überlagerungsräumen}
+\subsection{Längenmetrik auf Überlagerungsräumen}
 \label{sec:2.2}
 
 \begin{definition}[Induzierte Pseudometrik]
@@ -898,9 +890,8 @@ Um die Aussage (ii) zu beweisen, brauchen wir ein Resultat von \textsc{Arzelà} 
 		\item Die Eigenschaften (ii) und (iii) legen $\tilde{d}$ eindeutig fest.
 	\end{enumerate}
 \end{satz}
-\newpage
+
 \begin{beweis}
-	\mbox{} \\[-.9cm]
 	\begin{enumerate}[(i)]
 		\item Es ist nur zu zeigen, dass $\tilde{d}$ keine Pseudometrik ist. 
 		Seien $\tilde{x},\tilde{y} \in \tilde{X}$ beliebig und verschieden.
@@ -916,10 +907,7 @@ Um die Aussage (ii) zu beweisen, brauchen wir ein Resultat von \textsc{Arzelà} 
 			p\colon p \big|_{\tilde{U}_{\tilde{x}}}^{-1} (B_r(x)) \rightarrow B_r(x)
 		\]
 		Da $\im(p \circ c) \nsubseteq B_r(x)$, existiert ein $t \in [0,1]$ mit $p \circ c(t) \notin B_r(x)$ und somit ein $s \in [0,1]$, sodass $p \circ c(s) \in \partial B_r(x)$.
-		Damit folgt
-		\[
-			\ell(c) = \ell(p \circ c) \geq d(p \circ c (s), p \circ c(0)) = r.
-		\]
+		Damit folgt $\ell(c) = \ell(p \circ c) \geq d(p \circ c (s), p \circ c(0)) = r$.
 		Da $c$ ein beliebiger Weg war, folgt $\tilde{d}(\tilde{x},\tilde{y}) \geq r$.
 		\item Sei $\tilde{x} \in \tilde{X}$ beliebig.
 		Da $p$ ein lokaler Homöomorphismus ist, existiert eine offene Umgebung $\tilde{U}_{\tilde{x}}$ von $\tilde{x}$ in $\tilde{X}$ und eine offene Umgebung $U \subseteq X$, sodass $p \big|_{\tilde{U}_{\tilde{x}}} \colon \tilde{U}_{\tilde{x}} \rightarrow U$ ein Homöomorphismus ist.
@@ -948,7 +936,7 @@ Um die Aussage (ii) zu beweisen, brauchen wir ein Resultat von \textsc{Arzelà} 
 				\ell(c_\varepsilon) &\longmapsto b
 			\end{align*}
 			mit $\ell(c_\varepsilon) \leq d(a,b) + \varepsilon$.
-			\newpage
+
 			Wir betrachten den Weg
 			\begin{align*}
 				s \circ c_\varepsilon\colon [0,\ell_\varepsilon] &\longrightarrow B_{2r}(\tilde{x}) \\
@@ -963,7 +951,7 @@ Um die Aussage (ii) zu beweisen, brauchen wir ein Resultat von \textsc{Arzelà} 
 		
 		Sei $\tilde{x} \in \tilde{X}$ beliebig.
 		Da $p$ eine lokale Isometrie ist, existiert ein $\varepsilon_1 > 0$, sodass $p \colon (B_{\varepsilon_1}(\tilde{x}),d') \rightarrow B_{\varepsilon_1}(p(\tilde{x}))$ eine Isometrie ist, und ein $\varepsilon_2 > 0$, sodass $p \colon (B_{\varepsilon_2}(\tilde{x}),\tilde{d}) \rightarrow B_{\varepsilon_2}(p(\tilde{x}))$ eine Isometrie ist.
-		Sie nun $\varepsilon := \min\{\varepsilon_1,\varepsilon_2\}$.
+		Sei nun $\varepsilon := \min\{\varepsilon_1,\varepsilon_2\}$.
 		Dann ist $\id_{B_\varepsilon(\tilde{x})} = p^{-1} \circ \id_{B_\varepsilon(p(\tilde{x}))} \circ p$.
 		\[
 		\begin{tikzcd}[column sep=large, row sep=huge]
@@ -972,14 +960,14 @@ Um die Aussage (ii) zu beweisen, brauchen wir ein Resultat von \textsc{Arzelà} 
 		\end{tikzcd}
 		\]
 		Für einen beliebigen Weg $c \colon [a,b] \rightarrow \tilde{X}$ gilt somit $\ell^{d'}(c) = \ell^{\tilde{d}}(c)$.
-		Da $d'$ und $\tilde{d}$ beide Längenmetriken sind, stimmen sie überein. \qedhere
+		Da $d'$ und $\tilde{d}$ beide Längenmetriken sind, stimmen sie überein. 
 	\end{enumerate}
 \end{beweis}
 
 \begin{bemerkung}
 \label{bem:2.25}
 	Jede Überlagerung $p\colon \tilde{X} \rightarrow X$ ist ein lokaler Homöomorphismus, und falls $X$ hausdorffsch ist, dann ist $\tilde{X}$ ein Hausdorff-Raum.
-	Man kann also die Konstruktion aus \autoref{satz:2.24} insbesondere auf Überlagerungen anwenden.
+	Man kann also die Konstruktion aus Satz~\ref{satz:2.24} insbesondere auf Überlagerungen anwenden.
 \end{bemerkung}
 
 Wie erkennen wir Überlagerungen?
@@ -995,10 +983,10 @@ Wie erkennen wir Überlagerungen?
 	Sei $X$ ein lokaler $\CAT$-Raum.
 	Dann ist $X$ lokal eindeutig geodätisch.
 \end{beispiel}
-\newpage
+
 \begin{satz}
 \label{satz:2.28}
-	Sei $p\colon \tilde{X} \rightarrow X$ eine Abbildung zwischen Längenräumen mit folgenden Eigenschaften:
+	Eine Abbildung $p\colon \tilde{X} \rightarrow X$ zwischen Längenräumen ist eine Überlagerung, falls gilt:
 	\begin{enumerate}[(i)]
 		\item $X$ ist wegzusammenhängend.
 		\item $p$ ist ein lokaler Homöomorphismus.
@@ -1007,7 +995,6 @@ Wie erkennen wir Überlagerungen?
 		\item Für $x \in X$ beliebig hängen die Geodäten in einem eundeutig geodätischen Ball um $x$ von ihren Endpunkten ab.
 		\item $\tilde{X}$ ist vollständig.
 	\end{enumerate}
-	Dann ist $p \colon \tilde{X} \rightarrow X$ eine Überlagerung.
 \end{satz}
 
 \begin{beweis}
@@ -1046,7 +1033,7 @@ Wie erkennen wir Überlagerungen?
 		\end{tikzpicture}
 	\end{minipage}
 
-	\textit{Zur Eindeutigkeit:} \autoref{aufg:5.2}.
+	\textit{Zur Eindeutigkeit:} Aufgabe~\ref{aufg:5.2}.
 	
 	\textit{Zur Existenz:} Sei $c \colon [0,1] \rightarrow X$ ein rektifizierbarer Weg und $\tilde{x} \in \tilde{X}$ mit $p(\tilde{x}) = c(0)$.
 	Wir definieren $S:= \penbrace*{t \in [0,1] : \text{es existiert ein Lift } \tilde{c} \text{ von } c\big|_{[0,t]}}$ und zeigen, dass $S$ offen, abgeschlossen und nichtleer ist.
@@ -1069,6 +1056,7 @@ Wie erkennen wir Überlagerungen?
 			\end{cases}
 		\end{align*}
 		$\tilde{c}$ ist stetig und ein Lift von $c \big|_{[0,t+\varepsilon)}$, also ist $[0,t + \varepsilon) \subseteq S$ und $S$ damit offen.
+		\newpage
 		\begin{figure}[h]
 			\centering
 			\begin{tikzpicture}[scale=1.5,>=Latex]
@@ -1100,6 +1088,7 @@ Wie erkennen wir Überlagerungen?
 				\draw (3.5,-.55) node[right]{$B_\varepsilon(p \circ \tilde{c}(t))$};
 			\end{tikzpicture}
 		\end{figure}
+	
 		\item $S$ ist abgeschlossen:
 		Wir nehmen an, dass $[0,a) \subseteq S$.
 		Zu zeigen ist dann $a \in S$.
@@ -1153,9 +1142,7 @@ Wie erkennen wir Überlagerungen?
 			x' &\longmapsto \tilde{c}_{x'}(1),
 		\end{align*}
 		wobei $\tilde{c}_{x'}$ der Lift der linear umparametrisierten Geodäte $c_{x'} \colon [0,1] \rightarrow X, x \geo x'$ mit $\tilde{c}_{x'}(0) = y$.
-		\item \mbox{} 
 		
-		\vspace*{-1em}
 		\begin{minipage}{.6\textwidth}
 			Nun ist $s_y \colon B_r(x) \rightarrow s_y(B_r(x))$ ein Homöomorphismus und $s_y(B_r(x))$ ist offen:
 			Mit Hilfe von (v) zeigt man, dass $s_y$ eine Inverse zu $p$ ist.
@@ -1192,7 +1179,7 @@ Wie erkennen wir Überlagerungen?
 		\]
 		ein Homöomorphismus auf die offene Menge $B_i$ ist.
 		Da $p \circ \tilde{c}_z = c_z$ ist, gilt $c_z([0,1]) \subseteq B_1 \cup \dots \cup B_k$. 
-		
+		\newpage
 		\begin{figure}[h]
 			\centering
 			\begin{tikzpicture}[scale=1,>=Latex]
@@ -1286,24 +1273,28 @@ Wie erkennen wir Überlagerungen?
 		\end{figure}
 		
 		Da die Geodäten in $B_r(x)$ stetig von ihren Endpunkten abhängen, existiert ein $\delta > 0$, sodass für alle $z' \in B_\delta(z) \subseteq B_r(x)$ gilt:
+		
 		\[
 			c_{z'} \enbrace*{\benbrace*{\frac{l-1}{n},\frac{l}{n}}} \subseteq B_l \text{ für } l \in \{1,\dots,k\}.
 		\]
+		
 		Wir definieren:
+
 		\begin{align*}
 			\tilde{s}\colon B_\delta(z) \times [0,1] &\longrightarrow \tilde{X} \\
 			(z',t) &\longmapsto s^l(c_{z'}(t)) \text{ für } t \in \benbrace*{\frac{l-1}{n},\frac{l}{n}}.
 		\end{align*}
+		
 		$\tilde{s}$ ist wohldefiniert und stetig und es gilt $s_y \big|_{B_\delta(z)} = \tilde{s} \big|_{B_\delta(z) \times \{1\}}$.
-		Folglich ist $s_y$ stetig in $z$. \qedhere	
+		Folglich ist $s_y$ stetig in $z$. 	
 	\end{itemize}
 \end{beweis}
 
-\section{Die Exponentialabbildung}
+\subsection{Die Exponentialabbildung}
 \label{sec:2.3}
 	Sei $X$ ein metrischer Raum und $x_0 \in X$ beliebig. 
 	Wir werden nun einen Raum $\tilde{X}_{x_0}$ und eine Abbildung $\exp\colon \tilde{X}_{x_0} \rightarrow X$ konstruieren, die für \enquote{schöne} Basisräume die universelle Überlagerung werden wird.
-\newpage	
+	
 \begin{definition}[Exponentialabbildung]
 \label{def:2.29}
 	Sei $(X,d_X)$ ein metrischer Raum und $x_0 \in X$ beliebig.
@@ -1376,7 +1367,7 @@ Wie erkennen wir Überlagerungen?
 			&\stack{}{\leq} d(c_n,c) + \lambda \cdot \abs{s_n-s} \xrightarrow{n \rightarrow \infty} 0
 		\end{align*}
 	\end{itemize}
-	Damit haben wir gezeigt, dass die Folge $(c_{n_{s_n}})_n$ gegen $c_s$ konvergiert. \qedhere
+	Damit haben wir gezeigt, dass die Folge $(c_{n_{s_n}})_n$ gegen $c_s$ konvergiert. 
 \end{beweis}
 
 Der Beweis von (ii) und (iii) ist wesentlich aufwendiger.
@@ -1412,7 +1403,7 @@ Wir müssen zuerst verstehen, wie eine Umgebung einer gegebenen linear umparamet
 			\draw [color=red] (2,1) node[right]{$<\varepsilon$};
 		\end{tikzpicture}
 	\end{figure}
-	\newpage
+
 	Weiter gilt, dass für je zwei linear umparametrisierte Geodäten $c_1,c_2 \colon [0,1] \rightarrow X$ mit $\sup\limits_{t \in [0,1]} d_X(c_1(t),c(t)) < \varepsilon$ und $\sup\limits_{t \in [0,1]} d_X(c_2(t),c(t)) < \varepsilon$ die Funktion
 	\begin{align*}
 		\Phi\colon [0,1] &\longrightarrow \RR_{\geq 0} \\
@@ -1427,18 +1418,18 @@ Wir müssen zuerst verstehen, wie eine Umgebung einer gegebenen linear umparamet
 
 Dieses Lemma beweisen zu einem späteren Zeitpunkt (siehe S. \pageref{bew:tech_lemma}).
 
-\begin{beweis}[Fortsetzung von \autoref{satz:2.31}]
-	\mbox{} \\[-.85cm]
+\begin{beweis}[Fortsetzung von Satz~\ref{satz:2.31}]
 	\begin{enumerate}[(i)]
 		\setcounter{enumi}{1}
-		\item Sei $c \in \tilde{X}_{x_0}$ beliebig und $\varepsilon > 0$ so, wie in \autoref{lemma:2.32}.
+		\item Sei $c \in \tilde{X}_{x_0}$ beliebig und $\varepsilon > 0$ so, wie in Lemma~\ref{lemma:2.32}.
 		Dann ist $\exp\colon B_\varepsilon(c) \rightarrow B_\varepsilon(c(1))$ eine Isometrie:
 		\begin{itemize}
 			\item $\exp$ ist surjektiv:
 			Sei $\ol{y} \in B_\varepsilon(c(1))$ beliebig.
-			Nach \autoref{lemma:2.32} existiert eine linear umparametrisierte Geodäte $c_{x_0 \ol{y}}\colon [0,1] \rightarrow X, x_0 \geo \ol{y}$ mit $d(c_{x_0 \ol{y}},c) = \sup\limits_{t \in [0,1]} d_X(c_{x_0 \ol{y}}(t),c(t)) < \varepsilon$.
+			Nach Lemma~\ref{lemma:2.32} existiert eine linear umparametrisierte Geodäte $c_{x_0 \ol{y}}\colon [0,1] \rightarrow X, x_0 \geo \ol{y}$ mit $d(c_{x_0 \ol{y}},c) = \sup\limits_{t \in [0,1]} d_X(c_{x_0 \ol{y}}(t),c(t)) < \varepsilon$.
 			Somit ist $c_{x_0 \ol{y}} \in B_\varepsilon(c)$.
 			Ferner gilt $\exp(c_{x_0 \ol{y}}) = c_{x_0 \ol{y}}(1) = \ol{y}$.
+			
 			\begin{figure}[h]
 				\centering
 				\begin{tikzpicture}[scale=1,>=Latex]
@@ -1467,7 +1458,7 @@ Dieses Lemma beweisen zu einem späteren Zeitpunkt (siehe S. \pageref{bew:tech_l
 			
 			\item $\exp$ ist isometrische Einbettung:
 			Seien $c_1,c_2 \in B_\varepsilon(c)$ beliebig.
-			Aus \autoref{lemma:2.32} wissen wir, dass für alle $t \in [0,1]$ gilt:
+			Aus Lemma~\ref{lemma:2.32} wissen wir, dass für alle $t \in [0,1]$ gilt:
 			\begin{align}
 				\Phi(t) &\leq t \cdot \Phi(1) \\
 				d_X(c_1(t),c_2(t)) &\leq t \cdot d_X(c_1(1),c_2(t)) \leq d_X(c_1(1),c_2(t)) \label{eq:2.31.1}
@@ -1478,7 +1469,6 @@ Dieses Lemma beweisen zu einem späteren Zeitpunkt (siehe S. \pageref{bew:tech_l
 			\]
 			Somit ist $\exp$ eine Isometrie auf $B_\varepsilon(c)$.
 		\end{itemize}
-		\newpage
 		\item Sei $(c_n)_{n \in \NN}$ eine Cauchy-Folge in $\tilde{X}_{x_0}$.
 		Dann ist $(c_n(t))_{n \in \NN}$ für jedes $t \in [0,1]$ eine Cauchy-Folge in $X$ und da $X$ vollständig ist, konvergiert diese.
 		Wir definieren:
@@ -1502,7 +1492,7 @@ Dieses Lemma beweisen zu einem späteren Zeitpunkt (siehe S. \pageref{bew:tech_l
 		Folglich sind die $c_n \big|_I$ linear umparametrisierte Geodäten (vgl. Übungsaufgabe).
 		Da die linear umparametrisierten Geodäten $c_n \big|_I$ stetig von ihren Endpunkten abhängen, konvergiert $c_n \big|_I$ gleichmäßig gegen die eindeutige linear umparametrisierte Geodäte $\gamma \colon c(t-\varepsilon) \geo c(t+\varepsilon)$.
 		Es gilt aber auch $\gamma = c \big|_I$ und damit ist $c \big|_I$ eine linear umparametrisierte Geodäte. Somit ist $c$ eine linear umparametrisierte lokale Geodäte.
-		Ferner gilt $\lim\limits_{n \rightarrow \infty} c_n = c$. \qedhere
+		Ferner gilt $\lim\limits_{n \rightarrow \infty} c_n = c$. 
 	\end{enumerate}
 \end{beweis}	
 
@@ -1528,10 +1518,9 @@ Dieses Lemma beweisen zu einem späteren Zeitpunkt (siehe S. \pageref{bew:tech_l
 	\] 
 	ein Weg von $c_1$ nach $c_2$.
 	
-	Weiter haben wir in \autoref{satz:2.31} bewiesen, dass $\tilde{X}_{x_0}$ zusammenziehbar ist.
+	Weiter haben wir in Satz~\ref{satz:2.31} bewiesen, dass $\tilde{X}_{x_0}$ zusammenziehbar ist.
 	Insgesamt ist also $\tilde{X}_{x_0}$ einfach zusammenhängend.
 	Wenn also $\exp$ eine Überlagerung ist, handelt es sich um die universelle Überlagerung.
-	\newpage
 	\begin{itemize}
 		\item Wir ersetzen nun die Metriken auf $X$ und $\tilde{X}_{x_0}$ durch die induzierten Längenmetriken $\tilde{d}$ auf $\tilde{X}_{x_0}$ und $\tilde{d_X}$ auf $X$.
 		Da $X$ lokal geodätisch ist, ändert sich die Topologie auf $X$ nicht, und da $\exp$ eine lokale Isometrie ist, auch nicht auf $\tilde{X}_{x_0}$.
@@ -1540,17 +1529,17 @@ Dieses Lemma beweisen zu einem späteren Zeitpunkt (siehe S. \pageref{bew:tech_l
 			\exp\colon (\tilde{X}_{x_0},d) \rightarrow (X,d_X) \text{ ist Überlagerung } \Leftrightarrow \Exp\colon (\tilde{X}_{x_0},\tilde{d}) \rightarrow \tilde{d_x} \text{ ist Überlagerung.}
 		\]
 		\item Da die Metriken lokal nicht verändert werden, bleibt $\Exp$ eine lokale Isometrie.
-		Nach \autoref{satz:2.24} ist $\tilde{d} =: d_{\exp}$ die von $\exp$ induzierte Längenmetrik.
-		Die Bedingungen von \autoref{satz:2.28} sind für \linebreak $\Exp\colon (\tilde{X}_{x_0},d_{\exp}) \rightarrow (X,\tilde{d_X})$ erfüllt:
+		Nach Satz~\ref{satz:2.24} ist $\tilde{d} =: d_{\exp}$ die von $\exp$ induzierte Längenmetrik.
+		Die Bedingungen von Satz~\ref{satz:2.28} sind für \linebreak $\Exp\colon (\tilde{X}_{x_0},d_{\exp}) \rightarrow (X,\tilde{d_X})$ erfüllt:
 		\begin{enumerate}[(i)]
 			\item gilt, da $X$ lokal wegzusammenhängend und zusammenhängend
 			\item gilt, da $\Exp$ lokale Isometrie ist.
 			\item gilt, da $d_{\exp}$ die von $\exp$ induzierte Längenmetrik ist.
 			\item gilt, da $X$ lokal $\CAT$ ist.
-			\item gilt, da $X$ lokal $\CAT$ ist (\autoref{satz:2.18}).
-			\item gilt, da $X$ vollständig ist (\autoref{satz:2.31}).
+			\item gilt, da $X$ lokal $\CAT$ ist (Satz~\ref{satz:2.18}).
+			\item gilt, da $X$ vollständig ist (Satz~\ref{satz:2.31}).
 		\end{enumerate}
-		Damit ist $\Exp$ eine Überlagerung. \qedhere
+		Damit ist $\Exp$ eine Überlagerung. 
 	\end{itemize}
 \end{beweis}
 
@@ -1575,7 +1564,7 @@ Um dies zu beweisen, brauchen wir eine Umformulierung der $\CAT$-Eigenschaft mit
 		\begin{korollar}
 		\label{kor:2.35}
 		Sei $(X,d_X)$ ein metrischer Raum, der lokal $\CAT$ und lokal vollständig ist und $c \colon [0,1] \rightarrow X$ eine linear umparametrisierte Geodäte von $x \in X$ nach $y \in X$.
-		Sei weiter $\varepsilon > 0$ so, wie in \autoref{lemma:2.32}.
+		Sei weiter $\varepsilon > 0$ so, wie in Lemma~\ref{lemma:2.32}.
 		Sei nun $\ol{y} \in B_\varepsilon(y)$ beliebig und $c_{x \ol{y}}$ die eindeutige linear umparametrisierte Geodäte von $x$ nach $\ol{y}$.
 		Dann gilt:
 		\[
@@ -1611,7 +1600,7 @@ Um dies zu beweisen, brauchen wir eine Umformulierung der $\CAT$-Eigenschaft mit
 		t \cdot \ell(c_{x \ol{y}}) &\stack{\eqref{eq:2.35.1}}{=} d_X(\Underbrace{c_{x \ol{y}}(0)}{=c(0)},c_{x \ol{y}}(t)) \\
 		&\stack{\Delta\text{-Ungl}}{\leq} d_X(c(0),c(t)) + d_X(c(t),c_{x \ol{y}}(t)) \\
 		&\stack{\eqref{eq:2.35.2}}{=} t \cdot \ell(c) + d_X(c(t),c_{x \ol{y}}(t)) \\
-		&\stack{\ref{lemma:2.32}}{\leq} t \cdot \ell(c) + t \cdot d_X(y,\ol{y}) \qquad (\Phi \text{ ist konvex}) \qedhere
+		&\stack{\ref{lemma:2.32}}{\leq} t \cdot \ell(c) + t \cdot d_X(y,\ol{y}) \qquad (\Phi \text{ ist konvex}) 
 	\end{align*}
 \end{beweis}
 
@@ -1633,7 +1622,7 @@ Um dies zu beweisen, brauchen wir eine Umformulierung der $\CAT$-Eigenschaft mit
 	Sei $(X,d_X)$ ein vollständiger zusammenhängender lokaler $\CAT$-Raum.
 	Sei $x_0 \in X$ beliebig.
 	Sei weiter $p \in (\tilde{X}_{x_0},d_{\exp})$ beliebig.
-	Wir haben in \autoref{satz:2.33} bewiesen, dass $(\tilde{X}_{x_0},d_{\exp}), (\tilde{X}_{p(1)},d_{\exp})$ universelle Überlagerungen sind.
+	Wir haben in Satz~\ref{satz:2.33} bewiesen, dass $(\tilde{X}_{x_0},d_{\exp}), (\tilde{X}_{p(1)},d_{\exp})$ universelle Überlagerungen sind.
 	Es existiert also ein Homöomorphismus $\alpha \colon \tilde{X}_{x_0} \rightarrow \tilde{X}_{p(1)}$, sodass $\Exp_{x_1} \circ \alpha = \Exp_{x_0}$ und $\alpha(p) = c_{p(1)}$ für $b_0 = p(1)$ gilt.
 	\[
 		\begin{tikzcd}
@@ -1651,9 +1640,8 @@ Um dies zu beweisen, brauchen wir eine Umformulierung der $\CAT$-Eigenschaft mit
 	Seien nun $p,q \in (\tilde{X}_{x_0},d_{\exp})$ beliebig.
 	Dann existiert genau eine linear umparametrisierte lokale Geodäte zwischen $p$ und $q$.
 \end{lemma}
-\newpage
+
 \begin{beweis}
-	\mbox{} \\[-.9cm]
 	\begin{description}
 		\item[1. Fall:] \begin{align*}
 			p = c_{x_0}\colon [0,1] &\longrightarrow X \\
@@ -1665,7 +1653,7 @@ Um dies zu beweisen, brauchen wir eine Umformulierung der $\CAT$-Eigenschaft mit
 			s &\longmapsto [q_s \colon t \mapsto q(st)]
 		\end{align*}
 		\begin{itemize}
-			\item $C_{pq}$ ist stetig, da $C_{pq} = H \big|_{\{q\} \times [0,1]}$, siehe \autoref{satz:2.31}.
+			\item $C_{pq}$ ist stetig, da $C_{pq} = H \big|_{\{q\} \times [0,1]}$, siehe Satz~\ref{satz:2.31}.
 			\item Es gilt $C_{pq}(0) = c_{x_0}$ und $C_{pq} = q$.
 			\item Weiter gilt $\Exp \circ C_{pq} = q$, wobei $\Exp$ eine lokale Isometrie und $q$ eine linear umparametrisierte Geodäte ist.
 			Folglich ist $C_{pq}$ linear umparametrisierte lokale Geodäte von $c_{x_0}$ nach $q.$
@@ -1674,18 +1662,18 @@ Um dies zu beweisen, brauchen wir eine Umformulierung der $\CAT$-Eigenschaft mit
 		Zur Eindeutigkeit: Sei $\gamma\colon [0,1] \rightarrow \tilde{X}_{x_0}$ eine linear umparametrisierte lokale Geodäte von $c_{x_0}$ nach $q$.
 		Da $\Exp$ eine lokale Isometrie ist, ist $\Exp \circ \gamma \colon [0,1] \rightarrow X$ eine linear umparametrisierte lokale Geodäte von $\Exp \colon \gamma(0) = \Exp(c_{x_0}) = c_{x_0}(1) = x_0$ nach $\Exp \circ \gamma(1) = \Exp(q) = q(1)$.
 		Aber $q$ ist auch eine linear umparametrisierte lokale Geodäte von $x_0$ nach $q(1)$.
-		Aus der in \autoref{lemma:2.32} formulierten Eindeutigkeit folgt somit $\Exp \circ \gamma = q$, und damit
+		Aus der in Lemma~\ref{lemma:2.32} formulierten Eindeutigkeit folgt somit $\Exp \circ \gamma = q$, und damit
 		\begin{align*}
 			\Exp \circ \gamma(s) &= q(s) \text{ für alle } s \in [0,1] \\
 			\Leftrightarrow \gamma(s)(1) &= q(s) \text{ für alle } s \in [0,1]
 		\end{align*}
 		Sei $s \in [0,1]$ beliebig.
 		Wir wissen, dass $\gamma(s) \colon [0,1] \rightarrow X$ und $ q_s\colon [0,1] \rightarrow X, t \mapsto q(st)$ zwei linear umparametrisierte lokale Geodäten von $x_0$ nach $q(s)$ sind.
-		Mit \autoref{lemma:2.32} folgt somit wieder $\gamma(s) = q_s$.
+		Mit Lemma~\ref{lemma:2.32} folgt somit wieder $\gamma(s) = q_s$.
 		Insgesamt erhalten wir $\gamma = C_{pq}$.
 		\item[allgemein:] Seien $p,q \in \tilde{X}_{x_0}$ beliebig.
 		Wir betrachten die universelle Überlagerung $\Exp_{p(1)} \colon \tilde{X}_{p(1)} \rightarrow X$.
-		Nach \autoref{bem:2.37} existiert ein Homöomorphismus $\alpha \colon \tilde{X}_{x_0} \rightarrow \tilde{X}_{p(1)}$ mit $\alpha^{-1}(c_{p(1)}) = p$, der eine lokale Isometrie ist und sodass das dort angegebene Diagramm kommutiert.
+		Nach Bemerkung~\ref{bem:2.37} existiert ein Homöomorphismus $\alpha \colon \tilde{X}_{x_0} \rightarrow \tilde{X}_{p(1)}$ mit $\alpha^{-1}(c_{p(1)}) = p$, der eine lokale Isometrie ist und sodass das dort angegebene Diagramm kommutiert.
 		Wir haben im ersten Fall gesehen, dass es eine eindeutige linear umparametrisierte lokale Geodäte existiert:
 		\begin{align*}
 			C_{c_p(1)\alpha(q)} \colon [0,1] &\longrightarrow \tilde{X}_{p(1)} \\
@@ -1694,7 +1682,6 @@ Um dies zu beweisen, brauchen wir eine Umformulierung der $\CAT$-Eigenschaft mit
 		\end{align*}
 		Zur Existenz:
 		Wir zeigen, dass $\alpha^{-1} \circ C_{c_p(1)\alpha(q)}\colon [0,1] \rightarrow \tilde{X}_{x_0}$ eine linear umparametrisierte lokale Geodäte von $p$ nach $q$ ist.
-		\newpage
 		\begin{itemize}
 			\item $\alpha \circ C_{c_p(1)\alpha(q)}$ ist eine linear umparametrisierte lokale Geodäte, da dies für $C_{c_p(1)\alpha(q)}$ der Fall ist und $\alpha$ eine lokale Isometrie ist.
 			\item Weiter gilt $\alpha^{-1} \circ C_{c_p(1)\alpha(q)}(0) = \alpha^{-1}(C_{p(1)}) = p$ und $\alpha^{-1} \circ C_{c_p(1)\alpha(q)}(1) = \alpha^{-1}(\alpha(q)) = q$.
@@ -1703,13 +1690,13 @@ Um dies zu beweisen, brauchen wir eine Umformulierung der $\CAT$-Eigenschaft mit
 		Zur Eindeutigkeit:
 		Sei $\gamma \colon [0,1] \rightarrow \tilde{X}_{x_0}$ eine weitere linear umparametrisierte lokale Geodäte von $p$ nach $q$.
 		Dann ist $\alpha \circ \gamma \colon [0,1] \rightarrow \tilde{X}_{p(1)}$ eine linear umparametrisierte lokale Geodäte von $\alpha \circ \gamma(0) = \alpha(p) = c_{x_0}$ nach $\alpha \circ \gamma(1) = \alpha(q)$.
-		Aus der Eindeutigkeit im ersten Fall folgt $\alpha \circ \gamma = C_{c_p(1)\alpha(q)}$ und damit $\gamma = \alpha^{-1} \circ C_{c_p(1)\alpha(q)}$. \qedhere
+		Aus der Eindeutigkeit im ersten Fall folgt $\alpha \circ \gamma = C_{c_p(1)\alpha(q)}$ und damit $\gamma = \alpha^{-1} \circ C_{c_p(1)\alpha(q)}$. 
 	\end{description}
 \end{beweis}
 
 \begin{lemma}
 \label{lemma:2.39}
-	Die linear umparametrisierten lokalen Geodäten in $\tilde{X}_{x_0}$ hängen stetig von ihren Endpunkten ab. (\autoref{aufg:6.1})
+	Die linear umparametrisierten lokalen Geodäten in $\tilde{X}_{x_0}$ hängen stetig von ihren Endpunkten ab. (Aufgabe~\ref{aufg:6.1})
 \end{lemma}
 
 \begin{lemma}
@@ -1719,9 +1706,9 @@ Um dies zu beweisen, brauchen wir eine Umformulierung der $\CAT$-Eigenschaft mit
 \end{lemma}
 
 \begin{beweis}
-	Nach \autoref{prop:2.6}(iv) genügt zu zeigen, dass $\ell(C_{pq}) = d_{\exp}(p,q)$ gilt.
+	Nach Proposition~\ref{prop:2.6}(iv) genügt zu zeigen, dass $\ell(C_{pq}) = d_{\exp}(p,q)$ gilt.
 	
-	Es gilt $\ell(C_{pq}) \geq d_{\exp}(p,q)$ (vgl. \autoref{aufg:4.2}). Es bleibt zu zeigen:
+	Es gilt $\ell(C_{pq}) \geq d_{\exp}(p,q)$ (vgl. Aufgabe~\ref{aufg:4.2}). Es bleibt zu zeigen:
 	\[
 		\ell(C_{pq}) \leq d_{\exp}(p,q) = \inf\{ \ell(\gamma) : \gamma \text{ ist ein rektifizierbarer Weg von } p \text{ nach } q\}.
 	\]
@@ -1747,7 +1734,7 @@ Um dies zu beweisen, brauchen wir eine Umformulierung der $\CAT$-Eigenschaft mit
 			\]
 			Somit ist $[0,\eta] \subseteq \delta$.
 			\item[2. Fall:] $t_0 > 0$.
-			Wähle $\varepsilon > 0$ so, wie in \autoref{lemma:2.32} für die linear umparametrisierte lokale Geodäte $\Exp \circ C_{\gamma(0)\gamma(t_0)}$.
+			Wähle $\varepsilon > 0$ so, wie in Lemma~\ref{lemma:2.32} für die linear umparametrisierte lokale Geodäte $\Exp \circ C_{\gamma(0)\gamma(t_0)}$.
 			Weiter wähle $\eta > 0$, sodass für alle $t' \in (t_0-\eta, t_0 + \eta)$ gilt, dass $\Exp \circ \gamma(t') \in B_\varepsilon(\Exp \circ \gamma(t_0))$ ist und $\Exp \colon B_\eta(\gamma(0)) \rightarrow B_\eta(\Exp\circ \gamma(t_0))$ eine Isometrie ist.
 			
 			Dann gilt für alle $t' \in (t_0 - \eta, t_0 + \eta)$:
@@ -1764,26 +1751,27 @@ Um dies zu beweisen, brauchen wir eine Umformulierung der $\CAT$-Eigenschaft mit
 		\item $S$ ist abgeschlossen:
 		Es reicht zu zeigen: $[0,t_0) \subseteq S \Rightarrow t_0 \in S$.
 		
-		Wir wissen nach \autoref{prop:2.6}(v), dass die Funktion
+		Wir wissen nach Proposition~\ref{prop:2.6}(v), dass die Funktion
 		\begin{align}
 			\lambda_\gamma\colon [0,1] &\longrightarrow [0,\ell(\gamma)] \label{eq:2.40.1}\\
 			t &\longmapsto \ell\enbrace*{\gamma \big|_{[0,t]}}
 		\end{align}
 		stetig ist.
 		Sei $(t_n)_n$ eine Folge in $S$ mit $t_n \rightarrow t_0$ beliebig.
-		Da die linear umparametrisierten lokalen Geodäten nach \autoref{lemma:2.39} stetig von ihren Endpunkten abhängen, konvergiert $C_{\gamma(0)\gamma(t_n)}$ gleichmäßig gegen $C_{\gamma(0)\gamma(t_0)}$.
-		Nach \autoref{prop:2.6}(vii) existiert somit für alle $\varepsilon > 0$ ein $N \in \NN$, sodass
+		Da die linear umparametrisierten lokalen Geodäten nach Lemma~\ref{lemma:2.39} stetig von ihren Endpunkten abhängen, konvergiert $C_{\gamma(0)\gamma(t_n)}$ gleichmäßig gegen $C_{\gamma(0)\gamma(t_0)}$.
+		Nach Proposition~\ref{prop:2.6}(vii) existiert somit für alle $\varepsilon > 0$ ein $N \in \NN$, sodass
 		\begin{equation}
 			\ell(C_{\gamma(0)\gamma(t_0)}) \leq \ell(C_{\gamma(0)\gamma(t_n)}) + \varepsilon \label{eq:2.40.2}
 		\end{equation}
 		für alle $n \geq N$.
-		Wähle $\varepsilon > 0$ so, wie in \autoref{lemma:2.32} für die linear umparametrisierte lokale Geodäte $\Exp \circ C_{\gamma(0)\gamma(t_0)}$.
+		Wähle $\varepsilon > 0$ so, wie in Lemma~\ref{lemma:2.32} für die linear umparametrisierte lokale Geodäte $\Exp \circ C_{\gamma(0)\gamma(t_0)}$.
 		Sei $N \geq \NN$ so groß, dass $\Exp \circ \gamma(t_n) \in B_\varepsilon(\Exp \circ \gamma(t_0))$ für alle $n \geq N$.
-		Nach \autoref{kor:2.35} gilt o.B.d.A.
+		Nach Korollar~\ref{kor:2.35} gilt o.B.d.A.
 		\begin{align}
 			\ell(C_{\gamma(0)\gamma(t_n)}) = \ell(\Exp \circ C_{\gamma(0)\gamma(t_n)}) &\leq \ell(\Exp \circ C_{\gamma(0)\gamma(t_0)}) + d_X(\Exp \circ \gamma(t_0),\Exp \circ \gamma(t_n)) \\
 			&= \ell(C_{\gamma(0)\gamma(t_0)}) + d_{\exp}(\gamma(t_0),\gamma(t_n)), \label{eq:2.40.3}
 		\end{align}
+		
 		da $\Exp$ eine Isometrie auf $B_\varepsilon(\gamma(0))$ ist.
 		
 		Nun können wir zeigen, dass gilt:
@@ -1806,15 +1794,14 @@ Um dies zu beweisen, brauchen wir eine Umformulierung der $\CAT$-Eigenschaft mit
 		\end{align*}
 		Also ist $t_0 \in S$.
 	\end{itemize}
-	Insgesamt folgt $S = [0,1]$ und damit $\ell(C_{pq}) \leq \ell(\gamma)$. \qedhere
+	Insgesamt folgt $S = [0,1]$ und damit $\ell(C_{pq}) \leq \ell(\gamma)$. 
 \end{beweis}
 
-\section{Winkel in metrischen Räumen}
+\subsection{Winkel in metrischen Räumen}
 \label{sec:2.4}
 
 \begin{definition}[Dreieck, Winkel]
 \label{def:2.41}
-	\mbox{} \\[-1.35cm]
 	\begin{enumerate}[(i)]
 		\item Sei $(X,d_X)$ ein metrischer Raum. 
 		Ein \Index{Dreieck} in $X$ ist gegeben durch ein $3$-Tupel aus $X^3$.
@@ -1826,12 +1813,14 @@ Um dies zu beweisen, brauchen wir eine Umformulierung der $\CAT$-Eigenschaft mit
 		\]
 		Das Vergleichsdreieck $(\ol{x},\ol{y},\ol{z})$ in $\EE^2$ ist eindeutig bis auf Isometrie und wir schreiben dafür $\ol{\Delta} = (\ol{x},\ol{y},\ol{z})$.
 		Weiter bezeichnen wir mit $\angle_{\ol{x}}(\ol{y},\ol{z}) \in [0,\pi]$ den \Index{Winkel} in $\ol{\Delta}$ in $\ol{x}$.
+		\newpage
 		\item Seien $c_1,c_2$ zwei Geodäten in $(X,d_X)$ mit $c_1(0) = c_2(0) =:p$.
 		Wir definieren
 		\begin{align*}
 			\angle(c_1,c_2) :&= \limsup_{t,t' \rightarrow 0} \angle_{\ol{p}} (\ol{c_1(t)},\ol{c_2(t)}) \\
 			&= \lim\limits_{n \rightarrow \infty} \sup \penbrace*{ \angle_{\ol{p}}(\ol{c_1(t)},\ol{c_2(t)}) : t,t' \in \enbrace*{0,\frac{1}{n}}}.
 		\end{align*}
+		
 		$\angle(c_1,c_2)$ heißt der \Index{Winkel} zwischen $c_1$ und $c_2$.
 	\end{enumerate}
 \end{definition}
@@ -1840,6 +1829,7 @@ Um dies zu beweisen, brauchen wir eine Umformulierung der $\CAT$-Eigenschaft mit
 \label{bsp:2.42}
 	Seien $c_1,c_2$ zwei Geodäten in $X$ mit $c_1(0) = c_2(0) =: p$, sodass $\ol{c_1} * c_2$ eine Geodäte in $X$ ist.
 	Dann ist $\angle(c_1,c_2) = \pi$.
+	
 	\begin{figure}[h]
 		\centering
 		\begin{tikzpicture}[scale=.9,>=Latex]
@@ -1867,11 +1857,11 @@ Um dies zu beweisen, brauchen wir eine Umformulierung der $\CAT$-Eigenschaft mit
 	\end{figure}
 	
 \end{beispiel}
-\newpage
+
 \begin{proposition}
 \label{prop:2.43}
 	Sei $(X,d_X)$ ein metrischer Raum und $c_1,c_2,c_3$ Geodäten in $X$ mit $c_1(0) = c_2(0) = c_3(0)$.
-	Dann gilt (\autoref{aufg:6.4}):
+	Dann gilt (Aufgabe~\ref{aufg:6.4}):
 	\[
 		\angle(c_1,c_3) \leq \angle(c_1,c_2) + \angle(c_2,c_3)
 	\]
@@ -1914,7 +1904,7 @@ Um dies zu beweisen, brauchen wir eine Umformulierung der $\CAT$-Eigenschaft mit
 			\draw (B) node[fill,circle,inner sep=1pt]{};
 		\end{tikzpicture}
 	\end{figure}
-	
+	\newpage
 	Dann gilt:
 	\begin{enumerate}[(i)]
 		\item $d_2(B,A) + d_2(A,B') \geq d_2(B,C) + d_2(C,B')$
@@ -1933,6 +1923,7 @@ Um dies zu beweisen, brauchen wir eine Umformulierung der $\CAT$-Eigenschaft mit
 	\[
 		d\enbrace[\Bigg]{x,\underbrace{\beta \enbrace*{\frac{d(z,y)}{2}}}_{=:m}} \leq d_2\enbrace[\Bigg]{\ol{x}, \underbrace{\ol{\beta} \enbrace*{\frac{d_2(\ol{z},\ol{y}}{2}}}_{=:\ol{m}}}
 	\]
+	
 	\begin{figure}[h]
 		\centering
 		\begin{tikzpicture}[scale=1]
@@ -1962,6 +1953,7 @@ Um dies zu beweisen, brauchen wir eine Umformulierung der $\CAT$-Eigenschaft mit
 		\draw (0,3) node[right]{$\mathbf{(\RR^2,d_2)}$};
 		\end{tikzpicture}	
 	\end{figure}
+
 \end{lemma}
 
 \begin{satz}[Winkelbedingung für $\CAT$-Räume]
@@ -1975,13 +1967,13 @@ Um dies zu beweisen, brauchen wir eine Umformulierung der $\CAT$-Eigenschaft mit
 \end{satz}
 
 \begin{beweis}
-	\mbox{} \\[-.9cm]
 	\begin{description}
 		\item[(i) $\Rightarrow$ (ii):] Sei $\Delta(x,y,z,\alpha,\beta,\gamma)$ ein beliebiges geodätisches Dreieck.
 		Da $X$ $\CAT$ ist, gilt für $t \in [0,d(x,z)], t' \in [0,d(x,y)]$ beliebig:
 		\[
 			d(\alpha(t),\gamma(t')) \leq d_2(\ol{\alpha(t)},\ol{\gamma(t')}).
 		\]
+		
 		\begin{figure}[h]
 			\centering
 			\begin{tikzpicture}[scale=1]
@@ -2028,8 +2020,8 @@ Um dies zu beweisen, brauchen wir eine Umformulierung der $\CAT$-Eigenschaft mit
 		\[
 			d(x,m) \leq d_2(\ol{x},\ol{m}).
 		\]
-		Dann folgt mit \autoref{lemma:2.45}, dass $X$ $\CAT$ ist.
-		\newpage
+		Dann folgt mit Lemma~\ref{lemma:2.45}, dass $X$ $\CAT$ ist.
+
 		Wähle eine Geodäte zwischen $x$ und $m$ und betrachte die beiden schraffierten Dreiecke: 
 		
 		\begin{figure}[h]
@@ -2086,9 +2078,9 @@ Um dies zu beweisen, brauchen wir eine Umformulierung der $\CAT$-Eigenschaft mit
 			\stack{\ref{prop:2.43}}{\geq} &\angle(\beta\big|\_,\ol{\beta}\big|\_) \stack{\ref{bsp:2.42}}{=} \pi.
 		\end{align*}
 		Also ist das Vergleichsdreieck von der Gestalt wie links.		
-		Mit \autoref{lemma:2.44} folgt:
+		Mit Lemma~\ref{lemma:2.44} folgt:
 		\[
-			d(x,m) = d_2(\ol{x},\ol{\ol{m}}) \leq d_2(\ol{x},\ol{m}). \qedhere
+			d(x,m) = d_2(\ol{x},\ol{\ol{m}}) \leq d_2(\ol{x},\ol{m}). 
 		\]
 	\end{description}
 \end{beweis}
@@ -2111,6 +2103,7 @@ Um dies zu beweisen, brauchen wir eine Umformulierung der $\CAT$-Eigenschaft mit
 			\gamma\colon [0,1] \rightarrow Y \text{ die linear umparametrisierte Geodäte von } p \text{ nach } q_1.
 		\end{array}
 	\]
+	
 	\begin{figure}[h]
 		\centering
 		\begin{tikzpicture}[scale=1.5,>=Latex]
@@ -2159,6 +2152,7 @@ Um dies zu beweisen, brauchen wir eine Umformulierung der $\CAT$-Eigenschaft mit
 		\]
 		mit $c([s_i,s_{i+1}] \times [t_j,t_{j+1}]) \subseteq B_{\varepsilon_m}(p_m)$ für $m \in \{1,\dots,n\}$.
 	\end{itemize}
+	\newpage
 	\begin{figure}[h]
 		\centering
 		\begin{tikzpicture}[scale=1,>=Latex]
@@ -2197,6 +2191,7 @@ Um dies zu beweisen, brauchen wir eine Umformulierung der $\CAT$-Eigenschaft mit
 	\begin{description}
 		\item[0. Fall:] $k=1, l=1$. Nichts zu zeigen.
 		\item[1. Fall:] $k=2, l =2$.
+		
 	\begin{figure}[h]
 		\centering
 		\begin{tikzpicture}[scale=1,>=Latex]
@@ -2227,13 +2222,16 @@ Um dies zu beweisen, brauchen wir eine Umformulierung der $\CAT$-Eigenschaft mit
 			\draw (2.7,1.4) circle (1.8);
 		\end{tikzpicture}
 	\end{figure}
+
 	Die $\CAT$-Winkelbedingung gilt für $\Delta_1$ und $\Delta_2$.
 	\begin{align*}
 		\angle(\beta,\gamma) &\stack{\ref{prop:2.43}}{\leq} \angle(\beta,c_{s_1}) + \angle(c_{s_1},\gamma) \\
 		&\stack{\ref{satz:2.46}}{\leq} \angle_{\ol{p}} (\ol{\ol{q_0}},\ol{\ol{q(s_1)}}) + \angle_{\ol{p}}(\ol{\ol{q(s_1)}},\ol{\ol{q_1}}) \\
 		&\stack{\ref{lemma:2.44}}{\leq} \angle_{\ol{p}}(\ol{q_0},\ol{q_1})
 	\end{align*}
+	\newpage
 	\item[2. Fall:] $k=1, l > 1$.
+	
 		\begin{figure}[h]
 			\centering
 			\begin{tikzpicture}[scale=1,>=Latex]
@@ -2278,12 +2276,12 @@ Um dies zu beweisen, brauchen wir eine Umformulierung der $\CAT$-Eigenschaft mit
 				\draw [color=teal] (3.25,.4) node{$\Delta_7$};
 			\end{tikzpicture}
 		\end{figure}
+	
 		Verbinde die Punkte $c(s_i,t_j)$ mit Geodäten, wie im Bild zu sehen.
 		Die $\CAT$-Winkelbedingung gilt für alle $\Delta_i$ so wie oben.
 		Wende Fall 1 an auf das zusammengesetzte Dreieck bestehend aus $\Delta_1$ und $\Delta_2$.
 		Demzufolge gilt die Winkelbedingung für das Dreieck $\Delta(p,c(0,t_2),c(1,t_1)$.
 		Durch Wiederholung dieser Argumentation haben wir nach endlich vielen Schritten gezeigt, dass die Winkelbedingung für das Dreieck $\Delta(p,q_0,q_1)$ gilt.
-		\newpage
 		\item[3. Fall:] $k > 1, l > 1$.
 		
 		\begin{figure}[h]
@@ -2307,13 +2305,12 @@ Um dies zu beweisen, brauchen wir eine Umformulierung der $\CAT$-Eigenschaft mit
 		\end{figure}
 		
 		Wende Fall 2 auf jede \enquote{Spalte} des Dreiecks an.
-		Anschließend ist Fall 1 benutzbar. \qedhere
+		Anschließend ist Fall 1 benutzbar. 
 	\end{description}
 \end{beweis}
 
 \begin{definition}[konvex]
 \label{def:2.48}
-	\mbox{} \\[-1.4cm]
 	\begin{enumerate}[(i)]
 		\item Sei $I \subseteq \RR$ ein Intervall.
 		Eine Funktion $\Phi\colon I \rightarrow \RR$ heißt \Index{konvex}, wenn für alle $t,s \in I$ und $\lambda \in [0,1]$ gilt: 
@@ -2329,7 +2326,7 @@ Um dies zu beweisen, brauchen wir eine Umformulierung der $\CAT$-Eigenschaft mit
 		konvex ist.
 	\end{enumerate}
 \end{definition}
-\newpage
+
 \begin{lemma}
 \label{lemma:2.49}
 	Sei $X$ ein geodätischer Raum und $f \colon X \rightarrow \RR$ eine Funktion.
@@ -2353,7 +2350,7 @@ Um dies zu beweisen, brauchen wir eine Umformulierung der $\CAT$-Eigenschaft mit
 		&\stack{\ref{aufg:1.2}}{\leq} (1-\lambda) \cdot d(\pi_1 \circ c(0),\pi_2 \circ c(0)) + \lambda \cdot d(\pi_1 \circ c(1), \pi_2 \circ c(1)) \\
 		&\stack{}{=} (1-\lambda) \cdot d(c(0)) + \lambda \cdot d(c(1))
 	\end{align*}
-	Mit \autoref{lemma:2.49} folgt, dass $d \colon X \times X \rightarrow \RR_{\geq 0}$ konvex ist.
+	Mit Lemma~\ref{lemma:2.49} folgt, dass $d \colon X \times X \rightarrow \RR_{\geq 0}$ konvex ist.
 \end{beispiel}
 
 \begin{definition}[lokal konvex]
@@ -2365,10 +2362,10 @@ Um dies zu beweisen, brauchen wir eine Umformulierung der $\CAT$-Eigenschaft mit
 \begin{lemma}
 \label{lemma:2.52}
 	Sei $\Phi\colon [0,1] \rightarrow \RR$ eine lokal konvexe Funktion.
-	Dann ist $\Phi$ konvex. (\autoref{aufg:7.1})
+	Dann ist $\Phi$ konvex. (Aufgabe~\ref{aufg:7.1})
 \end{lemma}
 
-Es folgt nun der Beweis von \autoref{lemma:2.32}.
+Es folgt nun der Beweis von Lemma~\ref{lemma:2.32}.
 
 \begin{beweis}
 \label{bew:tech_lemma}
@@ -2418,14 +2415,14 @@ Es folgt nun der Beweis von \autoref{lemma:2.32}.
 	\end{align*}
 	und $B_{2\varepsilon}(c(t))$ ist $\CAT$.
 	Wir definieren $\varepsilon' := \min\{ \varepsilon_1',\varepsilon_2'\}$.
-	Nach \autoref{aufg:2.1} sind lokale Geodäten in $\CAT$-Räumen schon globale Geodäten.
+	Nach Aufgabe~\ref{aufg:2.1} sind lokale Geodäten in $\CAT$-Räumen schon globale Geodäten.
 	Folglich sind  $c_1 \big|_{[t-\varepsilon',t+\varepsilon']}$ und $c_2 \big|_{[t-\varepsilon',t+\varepsilon']}$ linear umparametrisierte Geodäten.
-	Nach \autoref{bsp:2.50} ist
+	Nach Beispiel~\ref{bsp:2.50} ist
 	\[
 	d \big|_{B_{2\varepsilon}(c(t))} \colon B_{2\varepsilon}(c(t)) \times B_{2\varepsilon}(c(t)) \rightarrow \RR_{\geq 0}
 	\]
 	eine konvexe Funktion. Folglich ist $\Phi \colon [t- \varepsilon',t+\varepsilon'] \rightarrow \RR_{\geq 0}$ konvex.
-	Mit \autoref{lemma:2.52} folgt, dass $\Phi$ global konvex ist.
+	Mit Lemma~\ref{lemma:2.52} folgt, dass $\Phi$ global konvex ist.
 	
 	Damit können wir nur die Eindeutigkeit zeigen:
 	Seien $\ol{x} \in B_\varepsilon(x), \ol{y} \in B_\varepsilon(y)$ beliebig und $c_{\ol{x},\ol{y}}, c_{\ol{x},\ol{y}}' \colon [0,1] \rightarrow X$ linear umparametrisierte Geodäten von $\ol{x}$ nach $\ol{y}$ mit der Eigenschaft
@@ -2438,7 +2435,7 @@ Es folgt nun der Beweis von \autoref{lemma:2.32}.
 		\Phi\colon [0,1] &\longrightarrow \RR_{\geq 0} \\
 		t &\longmapsto d(c_{\ol{x},\ol{y}}(t),c_{\ol{x},\ol{y}}'(t))
 	\end{align*}
-	konvex ist. \newpage
+	konvex ist.
 	Insbesondere gilt für $\lambda \in [0,1]$ beliebig:
 	\begin{align*}
 		\Phi(\lambda) &\leq (1-\lambda) \cdot \Phi(0) + \lambda \cdot \Phi(1) \\
@@ -2590,9 +2587,8 @@ Es folgt nun der Beweis von \autoref{lemma:2.32}.
 		\end{align*}
 		Die Konvergenz $c_n \rightarrow \alpha$ und $c_n' \rightarrow \beta$ ist gleichmäßig und $\alpha$ und $\beta$ sind linear umparametrisierte lokale Geodäten.
 		Weiter gilt $\alpha \big|_{[a_1,b_1]} = \beta \big|_{[a_1,b_1]}$.
-		Die Komposition $\alpha\big|_{[a,a_2]} * \beta \big|_{[a_1,b]}$ ist die gesuchte linear umparametrisierte lokale Geodäte $c_{\ol{p},\ol{q}}$. \qedhere
+		Die Komposition $\alpha\big|_{[a,a_2]} * \beta \big|_{[a_1,b]}$ ist die gesuchte linear umparametrisierte lokale Geodäte $c_{\ol{p},\ol{q}}$. 
 	\end{enumerate}
 \end{beweis}
-
 
 \cleardoubleoddemptypage

@@ -116,7 +116,7 @@ Sofern nichts anderes gesagt wird, ist $[0,d(x,y)]$ der Definitionsbereich einer
 		\draw[->,very thick, color=red] (0,1) -- (1,0);
 		\draw[->,very thick, color=SeaGreen4] (1,0.02) -- (-1,0.02);
 		\end{tikzpicture}
-		\caption{Geodätische Dreiecke sind im Allgemeinen durch ihre Ecken nicht eindeutig bestimmt.}
+		\caption{Zwei verschiedene geodätische Dreiecke mit den gleichen Eckpunkten.}
 	\end{figure}
 \end{beispiel}
 
@@ -579,7 +579,7 @@ Für den Beweis brauchen wir eine metrische Charakterisierung von Prähilberträ
 			&\stack{}{=} d(x,\pi_C(x)),
 		\end{align*}
 		was ein Widerspruch zur Minimalität von $\pi_C(x)$ ist.
-		\item \autoref{aufg:1.4}. 
+		\item Aufgabe~\ref{aufg:1.4}. 
 	\end{enumerate}
 \end{beweis}
 
@@ -645,7 +645,7 @@ Unser nächstes Ziel ist es zu zeigen, das $\CAT$-Räume kontrahierbar sind.
 \end{satz}
 
 \begin{beweis}
-	Wir brauchen folgendes Resultat (\autoref{aufg:1.2}):
+	Wir brauchen folgendes Resultat (Aufgabe~\ref{aufg:1.2}):
 	
 	\vspace*{.5cm}
 	
@@ -674,7 +674,7 @@ Unser nächstes Ziel ist es zu zeigen, das $\CAT$-Räume kontrahierbar sind.
 	\end{align*}
 	wobei $\gamma_{x_n}\colon x_n \geo \pi_C(x_n)$.
 	
-	Sei $\varepsilon > 0$ gegeben. Wähle $N_1 \in \NN$ so groß, dass mit \autoref{satz:1.16}(iii) gilt:
+	Sei $\varepsilon > 0$ gegeben. Wähle $N_1 \in \NN$ so groß, dass mit Satz~\ref{satz:1.16}(iii) gilt:
 	\begin{equation} \def\arraystretch{1.8}
 		\left. \begin{array}{r}
 			\displaystyle d(x_n,x) < \frac{\varepsilon}{2} \\
@@ -853,7 +853,7 @@ Der Begriff des Radius ist also mit der Idee eines \textbf{\enquote{Zentrums}} (
 \label{lemma:1.26}
 	Sei $X$ ein $\CAT$-Raum und $\Phi\colon G \rightarrow \Isom(X)$ eine isometrische Wirkung.
 	Dann ist $\Fix_\Phi(G)$ abgeschlossen.
-	Wenn $\Fix_\Phi(G) \neq \emptyset$, dann ist $\Fix_\Phi(G)$ konvex. (\autoref{aufg:2.2}) \index{konvex}
+	Wenn $\Fix_\Phi(G) \neq \emptyset$, dann ist $\Fix_\Phi(G)$ konvex. (Aufgabe~\ref{aufg:2.2}) \index{konvex}
 \end{lemma}
 
 \begin{satz}[\textsc{Bruhat-Tits}-Fixpunkttheorem, BTFT]
@@ -883,7 +883,7 @@ Der Begriff des Radius ist also mit der Idee eines \textbf{\enquote{Zentrums}} (
 
 \begin{beweis}
 	Betrachte $A := G(x)$.
-	Dann ist $\Phi(g)(A) = A$ für alle $g \in G$. Mit \autoref{BTFT} folgt $\Fix_\Phi(G) \neq \emptyset$.
+	Dann ist $\Phi(g)(A) = A$ für alle $g \in G$. Mit Satz~\ref{BTFT} folgt $\Fix_\Phi(G) \neq \emptyset$.
 \end{beweis}
 
 \begin{bemerkung}
@@ -928,7 +928,7 @@ Der Begriff des Radius ist also mit der Idee eines \textbf{\enquote{Zentrums}} (
 	Wir betrachten die Stabilisatorgruppe $G_x := \{g \in G : \Phi(g)(x) = x\}$ von $x$.
 
 	\begin{itemize}
-		\item Wir haben in \autoref{kor:1.28} bzw. \autoref{bem:1.29} gesehen, dass jede endliche Untergruppe von $G$ in einem $G_x$ für geeignetes $x \in X$ enthalten ist.
+		\item Wir haben in Korollar~\ref{kor:1.28} bzw. Bemerkung~\ref{bem:1.29} gesehen, dass jede endliche Untergruppe von $G$ in einem $G_x$ für geeignetes $x \in X$ enthalten ist.
 		Genauer:
 		Ist $U \subseteq G$ endlich und $\Phi \colon G \rightarrow \Isom(X)$, so ist $\Fix_{\Phi \big|_U}(U) \neq \emptyset$. Für $x \in \Fix_{\Phi \big|_U}(U)$ ist $U \subseteq G_x$.
 		\item Wir werden zunächst zeigen, dass es nur endlich viele Konjugationsklassen von Untergruppen von $G$ vom Typ $G_x$ gibt.
@@ -993,14 +993,14 @@ Man beachte, dass Mittelpunkte nicht eindeutig sein müssen. Zum Beispiel haben 
 
 \begin{lemma}
 \label{lemma:1.35}
-	Ein vollständiger metrischer Raum, der Mittelpunkte hat, ist geodätisch. (\autoref{aufg:1.3})
+	Ein vollständiger metrischer Raum, der Mittelpunkte hat, ist geodätisch. (Aufgabe~\ref{aufg:1.3})
 \end{lemma}
 
 \begin{definition}[Ungefährer Mittelpunkt, Vierpunktbedingung]
 \label{def:1.36}
 	\begin{enumerate}[(i)]
 		\item Ein metrischer Raum $X$ hat \textbf{ungefähre Mittelpunkte}, wenn es zu allen $u,v \in X$ und $\varepsilon > 0$ ein $m \in X$ gibt mit $d(u,m), d(m,v) \leq \frac{1}{2} d(u,v) + \varepsilon$. \label{Mittelpunkt!ungefähr}
-		\item Ein metrischer Raum $X$ erfüllt die \textbf{CAT(0)-Vierpunktbedingung}, wenn es zu allen $x_1,y_1,x_2,y_2 in X$ stets $\ol{x_1}, \ol{x_2}, \ol{y_1}, \ol{y_2} \in \EE^2$ gibt mit: \index{CAT(0)-Raum@$\CAT$-Raum!Vierpunktbedingung}
+		\item Ein metrischer Raum $X$ erfüllt die \textbf{CAT(0)-Vierpunktbedingung}, wenn es zu allen $x_1,y_1,x_2,y_2 \in X$ stets $\ol{x_1}, \ol{x_2}, \ol{y_1}, \ol{y_2} \in \EE^2$ gibt mit: \index{CAT(0)-Raum@$\CAT$-Raum!Vierpunktbedingung}
 		\[
 			d(x_1,y_1) = d_2(\ol{x_1},\ol{y_1}), \quad
 			d(x_2,y_2) = d_2(\ol{x_2},\ol{y_2}), \quad
@@ -1050,7 +1050,7 @@ Wir werden sehen, dass man $\CAT$-Räume über die Vierpunktbedingung charakteri
 \begin{lemma}
 \label{lemma:1.37}
 	Ein geodätischer Raum ist genau dann $\CAT$, wenn für jedes geodätische Dreieck $\Delta(x,y,z,\alpha,\beta,\gamma)$ mit Vergleichsdreieck $\ol{\Delta}(\ol{x},\ol{y},\ol{z},\ol{\alpha},\ol{\beta},\ol{\gamma})$ in $\EE^2$ gilt:
-	$d(x,\beta(s)) \leq d_2(\ol{x},\ol{\beta}(s))$ für alle $s \in [0,d(y,z)]$. (\autoref{aufg:3.2})
+	$d(x,\beta(s)) \leq d_2(\ol{x},\ol{\beta}(s))$ für alle $s \in [0,d(y,z)]$. (Aufgabe~\ref{aufg:3.2})
 \end{lemma}
 
 \begin{figure}[h]
@@ -1193,7 +1193,7 @@ Wir werden sehen, dass man $\CAT$-Räume über die Vierpunktbedingung charakteri
 				d_2(\ol{x_1},\ol{y_2}) = d_2(\ol{\ol{x_1}},\ol{\ol{y_2}}).			
 			\end{array}
 		\]
-		
+		\newpage
 		\begin{figure}[h]
 			\centering
 			\begin{tikzpicture}[scale=.8]
@@ -1226,7 +1226,7 @@ Wir werden sehen, dass man $\CAT$-Räume über die Vierpunktbedingung charakteri
 	\end{description}
 	\item[\bewrueck] Nun sei $X$ vollständig, habe ungefähre Mittelpunkte und erfülle die $\CAT$-Vierpunktbedingung. 
 	Zuerst zeigen wir, dass $X$ geodätisch ist.
-	Nach \autoref{lemma:1.35} reicht es zu zeigen, dass $X$ Mittelpunkte hat.
+	Nach Lemma~\ref{lemma:1.35} reicht es zu zeigen, dass $X$ Mittelpunkte hat.
 	Seien $u,v \in X$ beliebig.
 	Sei weiter $\varepsilon_n := \frac{1}{n}$ für $n \in \NN$.
 	Da $X$ ungefähre Mittelpunkte hat, existiert ein $m_r \in X$ mit $d(u,m_r), d(v,m_r) \leq \frac{1}{2} d(u,v) + \varepsilon_r$.
@@ -1257,6 +1257,7 @@ Wir werden sehen, dass man $\CAT$-Räume über die Vierpunktbedingung charakteri
 		\end{array} \right\} \leq r+ \delta \quad \forall r,s \geq N \label{eq:1.38.1}
 	\end{equation}
 	Betrachte das $4$-Tupel $(u,m_r,v,m_s)$ und die Vergleichspunkte $(\ol{u},\ol{m_r},\ol{v},\ol{m_s})$ in $\EE^2$. Sei $\ol{M}$ der Mittelpunkt von $\ol{u}$ und $\ol{v}$.
+	
 	\begin{figure}[h]
 		\centering
 		\begin{tikzpicture}[scale=1.5,>=Latex]
@@ -1295,14 +1296,16 @@ Wir werden sehen, dass man $\CAT$-Räume über die Vierpunktbedingung charakteri
 			\draw (M) node[fill,circle,inner sep=1pt,red]{};
 		\end{tikzpicture}
 	\end{figure}
+
 	Nach Voraussetzung erfüllt $X$ die $\CAT$-Vierpunktbedingung, also gilt
+	
 	\begin{equation}
 		\left. \begin{array}{rcl}
 			d(u,v) & \leq & d_2(\ol{u},\ol{v}) \\
 			d(m_r,m_s) & \leq & d_2(\ol{m_r},\ol{m_s})
 		\end{array} \right\} \label{eq:1.38.2}
 	\end{equation}
-	Aus der Parallelogrammgleichung für $\EE^2$ kann man folgern (siehe Beweis zu \autoref{thm:1.22}):
+	Aus der Parallelogrammgleichung für $\EE^2$ kann man folgern (siehe Beweis zu Theorem~\ref{thm:1.22}):
 	\begin{equation}
 		d_2(\ol{m_r},\ol{M})^2 = \frac{1}{2} d_2 (\ol{u}, \ol{m_r})^2 + \frac{1}{2} d_2 (\ol{m_r},\ol{v})^2 - \frac{1}{4} d_2(\ol{u},\ol{v})^2 \label{eq:1.38.3}
 	\end{equation}
@@ -1322,7 +1325,7 @@ Wir werden sehen, dass man $\CAT$-Räume über die Vierpunktbedingung charakteri
 	Somit ist $(m_r)_r$ eine Cauchy-Folge.
 	
 	Sei $\Delta(x,y,z,\alpha,\beta,\gamma)$ ein geodätisches Dreieck in $X$.
-	Wir betrachten die Bedingung aus \autoref{lemma:1.37}. Sei $p := \beta(s) \in \im(\beta \colon y \geo z)$ beliebig.
+	Wir betrachten die Bedingung aus Lemma~\ref{lemma:1.37}. Sei $p := \beta(s) \in \im(\beta \colon y \geo z)$ beliebig.
 	
 	\begin{figure}[h]
 		\centering
@@ -1378,7 +1381,7 @@ Wir werden sehen, dass man $\CAT$-Räume über die Vierpunktbedingung charakteri
 
 \begin{beweis}
 	Sei $X$ ein $\CAT$-Raum mit Vervollständigung $\widehat{X}$.
-	Wir zeigen, dass die Bedingung aus \autoref{thm:1.38} erfüllt sind.
+	Wir zeigen, dass die Bedingung aus Theorem~\ref{thm:1.38} erfüllt sind.
 	Zuerst zeugen wir, dass $\widehat{X}$ ungefähre Mittelpunkte hat.
 	Seien $p,q \in \widehat{X}, \varepsilon >0$. Wähle $p',q' \in X$ mit
 	\begin{equation}

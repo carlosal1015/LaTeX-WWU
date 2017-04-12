@@ -76,10 +76,24 @@
 % ===========================================================
 	\usepackage{tikz}
 	\usepackage{tikz-cd}					% kommutative Diagramme
-	\usetikzlibrary{arrows.meta}			% mehr Pfeile!
 	\usetikzlibrary{shadows}
 	\usetikzlibrary{calc}
 	\tikzset{>=Latex}						% Standard-Pfeilspitze
+	\usetikzlibrary{quotes,babel,angles}
+	\usetikzlibrary{patterns}
+	\usetikzlibrary{arrows.meta}
+	\tikzset{
+		schraffiert/.style={pattern=north west lines,pattern color=#1},
+		schraffiert/.default=black
+	}
+	\tikzset{
+		schraffiert2/.style={pattern=north east lines,pattern color=#1},
+		schraffiert2/.default=black
+	}
+	\tikzset{
+		schraffiert3/.style={pattern=horizontal lines,pattern color=#1},
+		schraffiert3/.default=black
+	}
 % ===========================================================
 
 % Seitenlayout, Kopf-/Fußzeile
@@ -197,6 +211,15 @@
 \newtheorem{theorem}[satz]{Theorem}
 \newtheorem{proposition}[satz]{Proposition}
 \newtheorem{erinnerung}[satz]{Erinnerung}
+
+\theoremstyle{nonumberbreak}
+\theorembodyfont{\normalfont}
+\theorempreskip{2em}
+\theorempostskip{2em}
+\newtheorem{no-satz}{Satz}
+\newtheorem{no-def}{Definition}
+\newtheorem{no-bem}{Bemerkung}
+\newtheorem{no-erinner}{Erinnerung}
 
 \theoremstyle{nonumberplain}
 \theoremheaderfont{\bfseries\scshape}
