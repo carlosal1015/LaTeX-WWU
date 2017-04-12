@@ -1,4 +1,5 @@
-\chapter{CAT(0)-Räume} 
+%!TEX root = ../CAT0_WS1516.tex
+\section{CAT(0)-Räume} 
 \label{cha:1}
 
 \begin{definition}[Metrischer Raum]
@@ -15,7 +16,6 @@
 
 \begin{beispiel}
 \label{bsp:1.2}
-	\mbox{} \\[-1.4cm]
 	\begin{enumerate}[(i)]
 		\item Für $n \in \NN$ ist $\EE^n := (\RR^n,d_2)$ mit
 		\begin{align*}
@@ -37,7 +37,6 @@
 
 \begin{definition}[Geodätischer Raum]
 \label{def:1.3}
-	\mbox{} \\[-1.4cm]
 	\begin{enumerate}[(i)]
 		\item Sei $(X,d)$ ein metrischer Raum und $x,y \in X$.
 		Eine \Index{Geodäte} von $x$ nach $y$ ist eine Abbildung $\gamma \colon [a,b] \rightarrow X$ mit $\gamma(a) = x, \gamma(b) = y$ und $d(\gamma(t),\gamma(t')) = \abs{t-t'}$ für alle $t,t' \in [a,b]$.
@@ -48,10 +47,9 @@
 \end{definition}
 
 Sofern nichts anderes gesagt wird, ist $[0,d(x,y)]$ der Definitionsbereich einer Geodäte $\alpha\colon x \geo y$.
-\newpage
+
 \begin{beispiel}
 \label{bsp:1.4}
-	\mbox{} \\[-1.4cm]
 	\begin{enumerate}[(i)]
 		\item Sei $(V, \Norm{\cdot})$ ein normierter reeller Vektorraum.
 		Dann ist $(V,d_{\Norm{\cdot}})$ ein geodätischer Raum.
@@ -88,10 +86,11 @@ Sofern nichts anderes gesagt wird, ist $[0,d(x,y)]$ der Definitionsbereich einer
 \label{def:1.5}
 	Ein \Index{geodätisches Dreieck} $\Delta = \Delta(x,y,z,\alpha,\beta,\gamma)$ in einem geodätischen Raum $(X,d)$ ist gegeben durch ein Tripel $(x,y,z) \in X^3$ und Geodäten $\alpha \colon x \geo y$, $\beta\colon y \geo z$, $\gamma \colon z \geo x$ -- den Seiten von $\Delta$.
 \end{definition}
+\newpage
 
 \begin{beispiel}
 \label{bsp:1.6}
-	\mbox{} \\[-1cm]
+	Geodätische Dreiecke sind im Allgemeinen durch ihre Ecken nicht eindeutig bestimmt.
 	\begin{figure}[h]
 		\centering
 		\begin{tikzpicture}[scale=2.5,>=Latex]
@@ -131,7 +130,6 @@ Ist $v = \gamma(s)$ für ein $s$, so heißt $\ol{v} = \ol{\gamma}(s)$ \Index{Ver
 
 \begin{definition}[$\CAT$-Raum]
 \label{def:1.7}
-	\mbox{} \\[-1.4cm]
 	\begin{enumerate}[(i)]
 		\item Ein Dreieck $\Delta$ in $(X,d)$ hat die \textbf{CAT(0)-Eigenschaft}, wenn für alle $n,m$ auf den Seiten von $\Delta$ und ihre Vergleichspunkte $\ol{n},\ol{m}$ auf den Seiten von $\ol{\Delta}$ gilt: \index{CAT(0)-Raum@$\CAT$-Raum}
 		\[
@@ -180,19 +178,17 @@ Ist $v = \gamma(s)$ für ein $s$, so heißt $\ol{v} = \ol{\gamma}(s)$ \Index{Ver
 	\end{tikzpicture}	
 	\caption{Anschaulich gesprochen sind Dreiecke in $\CAT$-Räumen \enquote{mindestens so dünn} wie ihre Vergleichsdreiecke im euklidischen Raum.}
 \end{figure}
-
+\newpage
 \begin{bemerkung}
 \label{bem:1.8}
-	\mbox{} \\[-1.4cm]
 	\begin{enumerate}[(i)]
 		\item Lokal $\CAT$-Räume heißen auch nichtpositiv gekrümmte oder Alexandrov-Räume.
 		\item $\CAT$ steht für \textsc{Cartan-Alexandrov-Topogonov} und Krümmung $\leq 0$.
 	\end{enumerate}
 \end{bemerkung}
-\newpage
+
 \begin{beispiel}
 \label{bsp:1.9}
-	\mbox{} \\[-1.4cm]
 	\begin{enumerate}[(i)]
 		\item Der euklidische Raum $\EE^n$ ist $\CAT$.
 		\item $(\RR^2,d_1)$ ist nicht $\CAT$: In der folgenden Abbildung~\ref{abb:1.4} ist $d_1(n,m) = 2$, aber $d_2(\ol{n},\ol{m}) = \sqrt{3}$.
@@ -306,8 +302,6 @@ Offensichtlich ist $C$ wieder ein $\CAT$-Raum und Durchschnitte konvexer Mengen 
 
 Für den Beweis brauchen wir eine metrische Charakterisierung von Prähilberträumen:
 
-\vspace*{.5cm}
-
 \begin{minipage}{0.6\textwidth}
 	\begin{proposition}[\textsc{von Neumann}, 1935]
 		\label{prop:1.14}
@@ -339,7 +333,6 @@ Für den Beweis brauchen wir eine metrische Charakterisierung von Prähilberträ
 \end{minipage}
 
 \begin{beweis}
-	\mbox{} \\[-.85cm]
 	\begin{description}
 		\item[\bewhin] Seien $u,v \in V$.
 		\begin{align*}
@@ -361,12 +354,11 @@ Für den Beweis brauchen wir eine metrische Charakterisierung von Prähilberträ
 				b(v,v) &= \frac{1}{4} (2\cdot \Norm{v})^2 = \Norm{v}^2 \geq 0 \\
 				b(v,v) &= 0 \Leftrightarrow v = 0
 			\end{align*}
-			\newpage
 			\item Sei nun $w \in V$ beliebig. Zu zeigen ist, dass $b(\cdot,w) \colon V \rightarrow \RR$ linear ist. Seien also $u,v \in V$ beliebig, dann gilt:
 			\begin{align}
 				&b(u+v,w) + b(u-v,w) \\
 				\stack{\text{Def}}{=} &\frac{1}{4} (\Norm{\textcolor{blue}{u}+v+\textcolor{blue}{w}}^2 - \Norm{\textcolor{red}{u}+v\textcolor{red}{-w}}^2 + \Norm{\textcolor{blue}{u}-v+\textcolor{blue}{w}}^2 - \Norm{\textcolor{red}{u}-v\textcolor{red}{-w}}^2) \\
-				\stack{\eqref{eq:PG}}{=} &\frac{1}{4} (2 \cdot \Norm{u+w}^2 + 2 \cdot \Norm{v}^2 - 2 \cdot \Norm{u-w}^2 - 2\cdot \Norm{v}^2) \\
+				\stack{\eqref{eq:PG}}{=} &\frac{1}{4} (2 \cdot \Norm{u+w}^2 + 2 \cdot \Norm{v}^2 - 2 \cdot \Norm{u-w}^2 - 2\cdot \Norm{v}^2) \displaybreak \\
 				\stack{}{=} &\frac{1}{2} (\Norm{u+w}^2 - \Norm{u-w}^2) \\
 				\stack{\text{Def}}{=} &2 \cdot b(u,w) \label{eq:1.14.1}
 			\end{align}
@@ -400,13 +392,12 @@ Für den Beweis brauchen wir eine metrische Charakterisierung von Prähilberträ
 					b\enbrace*{\frac{1}{n} v,w} = \frac{1}{n} \cdot b(n \cdot \frac{1}{n}v,w) = \frac{1}{n} b(v,w)
 				\] 
 			\end{description}
-			Aus allen drei Fällen folgt nun $b(qv,w) = q\cdot b(v,w)$ für alle $q \in \QQ$. Da $\QQ \subseteq \RR$ eine dichte Teilmenge und $b(\cdot,w)$ stetig ist, folgt $b(rv,w) = r \cdot b(v,w)$ für alle $r \in \RR$. \qedhere
+			Aus allen drei Fällen folgt nun $b(qv,w) = q\cdot b(v,w)$ für alle $q \in \QQ$. Da $\QQ \subseteq \RR$ eine dichte Teilmenge und $b(\cdot,w)$ stetig ist, folgt $b(rv,w) = r \cdot b(v,w)$ für alle $r \in \RR$.
 		\end{itemize}
 	\end{description}
 \end{beweis}
-\newpage
+
 \begin{beweis}[Satz~\ref{satz:1.13}]
-	\mbox{} \\[-.85cm]
 	\begin{description}
 		\item[\bewrueck] Sei $\Delta \subseteq (V,\Norm{\cdot}) = \HH$ ein geodätisches Dreieck.
 		Dann ist die lineare Hülle $\sprod{\Delta}$ isometrisch isomorph zum $\EE^2$, bzw. zum $\EE^1$ oder zu $\setzero$, falls $\Delta$ degeneriert ist.
@@ -427,7 +418,7 @@ Für den Beweis brauchen wir eine metrische Charakterisierung von Prähilberträ
 		\end{equation}
 		Insgesamt haben wir also:
 		\[
-			\Norm{u+v}^2 \stackrel{\eqref{eq:1.13.1}}{\leq} 2 \cdot \Norm{u}^2 + 2\cdot \Norm{v}^2 - \Norm{u-v}^2 \stackrel{\eqref{eq:1.13.2}}{\leq} \Norm{u+v}^2 \qedhere
+			\Norm{u+v}^2 \stackrel{\eqref{eq:1.13.1}}{\leq} 2 \cdot \Norm{u}^2 + 2\cdot \Norm{v}^2 - \Norm{u-v}^2 \stackrel{\eqref{eq:1.13.2}}{\leq} \Norm{u+v}^2 
 		\]
 	\end{description}
 \end{beweis}
@@ -472,7 +463,6 @@ Für den Beweis brauchen wir eine metrische Charakterisierung von Prähilberträ
 			d(x,\pi_C(x)) = \inf_{p \in C} d(x,p) =: d(x,C).
 		\]
 		Die Abbildung $\pi_C \colon X \rightarrow C$ heißt die \textbf{(orthogonale) Projektion} auf $C$. \index{orthogonale Projektion}
-		\newpage
 		\item Ist $y \in [x, \pi_C(x)] = \im(\gamma \colon x \geo \pi_C(x))$, so ist $\pi_C(y) = \pi_C(x)$.
 		\begin{figure}[h]
 			\centering
@@ -495,7 +485,6 @@ Für den Beweis brauchen wir eine metrische Charakterisierung von Prähilberträ
 \end{satz}
 
 \begin{beweis}
-	\mbox{}\\[-.85cm]
 	\begin{enumerate}[(i)]
 		\item Sei $(y_n)_{n \in \NN} \subseteq C$ eine Folge mit $d(x,y_n) \rightarrow d(x,C) =: D$.
 		Ziel ist es zu zeigen, dass $(y_n)_n$ eine Cauchy-Folge ist.
@@ -590,12 +579,12 @@ Für den Beweis brauchen wir eine metrische Charakterisierung von Prähilberträ
 			&\stack{}{=} d(x,\pi_C(x)),
 		\end{align*}
 		was ein Widerspruch zur Minimalität von $\pi_C(x)$ ist.
-		\item \autoref{aufg:1.4}. \qedhere
+		\item \autoref{aufg:1.4}. 
 	\end{enumerate}
 \end{beweis}
 
 Unser nächstes Ziel ist es zu zeigen, das $\CAT$-Räume kontrahierbar sind.
-\newpage
+
 \begin{definition}[Homotopie]
 \label{def:1.17}
 	Seien $\phi_0,\phi_1 \colon X \rightarrow Y$ stetige Abbildungen zwischen topologischen Räumen $X$ und $Y$.
@@ -733,7 +722,7 @@ Unser nächstes Ziel ist es zu zeigen, das $\CAT$-Räume kontrahierbar sind.
 	\begin{align*}
 		&d(H(x_n,t_m),H(x,t)) \\
 		\stack{\Delta\text{-Ungl.}}{\leq} &d(H(x_n,t_m),H(x_n,t)) + d(H(x_n,t),H(x,t)) \\
-		\stack{\eqref{eq:1.19.3},\eqref{eq:1.19.4}}{\leq} &\frac{\varepsilon}{2} + \frac{\varepsilon}{2} = \varepsilon \quad \forall n,m \geq \max(N_1,N_2). \qedhere
+		\stack{\eqref{eq:1.19.3},\eqref{eq:1.19.4}}{\leq} &\frac{\varepsilon}{2} + \frac{\varepsilon}{2} = \varepsilon \quad \forall n,m \geq \max(N_1,N_2). 
 	\end{align*}
 \end{beweis}
 
@@ -782,7 +771,6 @@ Der Begriff des Radius ist also mit der Idee eines \textbf{\enquote{Zentrums}} (
 \begin{beweis}
 	Seien $q,r \in X$ beliebig und $m \in X$ mit $d(q,m) = d(m,r) = \frac{d(q,r)}{2}$.
 	Sei weiter $a \in X$ beliebig. Wir betrachten $\Delta(a,r,q)$ und $\ol{\Delta}(\ol{a},\ol{r},\ol{q})$ und ergänzen $\ol{\Delta}$ zu einem Parallelogramm (vgl. Abb. \ref{abb:erg_parallel} auf S. \pageref{abb:erg_parallel}). Die Parallelogrammgleichung in $\EE^2$ besagt:
-	\newpage
 	\begin{align*}
 		(2 \cdot d_2(\ol{a},\ol{m}))^2 + (d_2(\ol{r},\ol{q}))^2 &= 2 \cdot d_2(\ol{a},\ol{r})^2 + 2 \cdot d_2 (\ol{a},\ol{q})^2 \\
 		\Rightarrow \qquad d_2(\ol{a},\ol{m}) &= \frac{1}{2} d_2(\ol{a},\ol{r})^2 + \frac{1}{2} d_2(\ol{a},\ol{q})^2 - \frac{1}{4} d_2 (\ol{r},\ol{q})^2.
@@ -825,7 +813,7 @@ Der Begriff des Radius ist also mit der Idee eines \textbf{\enquote{Zentrums}} (
 		d(x_n,x_m)^2 &\stack{}{\leq} 2 \cdot (\rad(x_n,A)^2 + \rad(x_m,A)^2) - 4 \cdot \rad(A)^2 \\
 		&\stack{\eqref{eq:1.22.2}}{\leq} 2 \cdot (2 \cdot (\rad(A) + \delta)^2)-4 \cdot \rad(A)^2 \quad \forall n,m \geq N \\
 		&\stack{}{=} 8 \cdot \rad(A) \delta + 4 \delta^2 \quad \forall n,m \geq N \\
-		\Rightarrow \quad d(x_n,x_m) &\stack{}{\leq} 2 \cdot \sqrt{2 \cdot \rad(A) \delta + \delta^2} \stack{\eqref{eq:1.22.3}}{=} \varepsilon \quad \forall n,m \geq N \qedhere
+		\Rightarrow \quad d(x_n,x_m) &\stack{}{\leq} 2 \cdot \sqrt{2 \cdot \rad(A) \delta + \delta^2} \stack{\eqref{eq:1.22.3}}{=} \varepsilon \quad \forall n,m \geq N 
 	\end{align*}
 \end{beweis}
 
@@ -880,9 +868,9 @@ Der Begriff des Radius ist also mit der Idee eines \textbf{\enquote{Zentrums}} (
 	Es gilt:
 	\begin{align*}
 		\rad(A) &\stack{}{=} \rad(c_A,A) \stack{\text{Def}}{=} \sup_{a \in A}\{ d(c_A,a)\} \\
-		&\stack{\Phi(g) \text{ isom.}}{=} \sup_{a \in A} \{d(\Phi(g)(c_A),\Phi(g)(a))\} \displaybreak \\
+		&\stack{\Phi(g) \text{ isom.}}{=} \sup_{a \in A} \{d(\Phi(g)(c_A),\Phi(g)(a))\} \\
 		&\stack{\Phi(g)(A)=A}{=} \sup_{a \in A} \{d(\Phi(g)(c_A),a)\} \stack{\text{Def}}{=} \rad(\Phi(g)(c_A),A) \\
-		\xRightarrow{c_A \text{ eind.}} c_A &\stack{}{=} \Phi(g)(c_A) \quad \xRightarrow{g \text{ bel.}} c_A \in \Fix_\Phi(G) \qedhere
+		\xRightarrow{c_A \text{ eind.}} c_A &\stack{}{=} \Phi(g)(c_A) \quad \xRightarrow{g \text{ bel.}} c_A \in \Fix_\Phi(G) 
 	\end{align*}
 \end{beweis}
 
@@ -953,7 +941,7 @@ Der Begriff des Radius ist also mit der Idee eines \textbf{\enquote{Zentrums}} (
 		Nun gilt aber weiter $g G_x g^{-1} = G_{\Phi(g)(x)}$, das heißt jedes beliebige $G_x$ ist konjugiert zu einer von endlich vielen $G_{\Phi(g)(x)}$.
 		Also gibt es nur endlich viele Konjugationsklassen von Gruppen $G_x$.
 		Da jedes $G_x$ endlich ist, hat es selbst nur endlich viele Konjugationsklassen von Untergruppen.
-		Da jede endliche Untergruppe von $G$ automatisch eine Untergruppe eines $G_x$ ist, kann es damit auch nur endlich viele Konjugationsklassen von endlichen Untergruppen von $G$ geben. \qedhere
+		Da jede endliche Untergruppe von $G$ automatisch eine Untergruppe eines $G_x$ ist, kann es damit auch nur endlich viele Konjugationsklassen von endlichen Untergruppen von $G$ geben. 
 	\end{itemize}
 \end{beweis}
 
@@ -978,9 +966,9 @@ Um zu beweisen, dass die Vervollständigung eines $\CAT$-Raumes wieder $\CAT$ is
 	\[
 		\widehat{X} := \faktor{\CF(X)}{\sim} \qquad \widehat{d}([(x_n)_n],[(y_n)_n]) := \lim\limits_{n \rightarrow \infty} d(x_n,y_n)
 	\]
-	und definiere $\phi \colon X \hookrightarrow \widehat{X}$ durch $x \mapsto [(x)_n]$. \qedhere
+	und definiere $\phi \colon X \hookrightarrow \widehat{X}$ durch $x \mapsto [(x)_n]$. 
 \end{beweis}
-\newpage
+
 \begin{erinnerung}
 \label{erin:1.32}
 	Seien $(X,d_X)$ und $(Y,d_Y)$ metrische Räume und $f \colon X \rightarrow Y$ eine Lipschitz-Abbildung. \index{Lipschitz}
@@ -996,7 +984,6 @@ Man beachte, dass Mittelpunkte nicht eindeutig sein müssen. Zum Beispiel haben 
 
 \begin{beispiel}
 \label{bsp:1.34}
-	\mbox{} \\[-1.4cm]
 	\begin{enumerate}[(i)]
 		\item $(\QQ_2,d_2)$ hat Mittelpunkte.
 		\item Jeder geodätische Raum hat Mittelpunkte: Für alle $u,v \in X$ existiert eine Geodäte $\gamma\colon [0,d(u,v)] \rightarrow X$ von $u$ nach $v$. Dann ist $\gamma\enbrace*{\frac{1}{2} d(u,v)}$ Mittelpunkt von $u$ und $v$.
@@ -1011,7 +998,6 @@ Man beachte, dass Mittelpunkte nicht eindeutig sein müssen. Zum Beispiel haben 
 
 \begin{definition}[Ungefährer Mittelpunkt, Vierpunktbedingung]
 \label{def:1.36}
-	\mbox{} \\[-1.4cm]
 	\begin{enumerate}[(i)]
 		\item Ein metrischer Raum $X$ hat \textbf{ungefähre Mittelpunkte}, wenn es zu allen $u,v \in X$ und $\varepsilon > 0$ ein $m \in X$ gibt mit $d(u,m), d(m,v) \leq \frac{1}{2} d(u,v) + \varepsilon$. \label{Mittelpunkt!ungefähr}
 		\item Ein metrischer Raum $X$ erfüllt die \textbf{CAT(0)-Vierpunktbedingung}, wenn es zu allen $x_1,y_1,x_2,y_2 in X$ stets $\ol{x_1}, \ol{x_2}, \ol{y_1}, \ol{y_2} \in \EE^2$ gibt mit: \index{CAT(0)-Raum@$\CAT$-Raum!Vierpunktbedingung}
@@ -1060,13 +1046,13 @@ Man beachte, dass Mittelpunkte nicht eindeutig sein müssen. Zum Beispiel haben 
 \end{figure}
 	
 Wir werden sehen, dass man $\CAT$-Räume über die Vierpunktbedingung charakterisieren kann.
-\newpage
+
 \begin{lemma}
 \label{lemma:1.37}
 	Ein geodätischer Raum ist genau dann $\CAT$, wenn für jedes geodätische Dreieck $\Delta(x,y,z,\alpha,\beta,\gamma)$ mit Vergleichsdreieck $\ol{\Delta}(\ol{x},\ol{y},\ol{z},\ol{\alpha},\ol{\beta},\ol{\gamma})$ in $\EE^2$ gilt:
 	$d(x,\beta(s)) \leq d_2(\ol{x},\ol{\beta}(s))$ für alle $s \in [0,d(y,z)]$. (\autoref{aufg:3.2})
 \end{lemma}
-\mbox{} \\[-1.5cm]
+
 \begin{figure}[h]
 	\centering
 	\begin{tikzpicture}[scale=.8]
@@ -1096,14 +1082,13 @@ Wir werden sehen, dass man $\CAT$-Räume über die Vierpunktbedingung charakteri
 	\draw (0,3) node[right]{$\mathbf{\EE^2}$};
 	\end{tikzpicture}	
 \end{figure}
-\mbox{} \\[-1.5cm]
+
 \begin{theorem}
 \label{thm:1.38}
 	Ein vollständiger metrischer Raum ist $\CAT$ genau dann, wenn er ungefähre Mittelpunkte hat und die $\CAT$-Vierpunktbedingung erfüllt.
 \end{theorem}	
 
 \begin{beweis}
-	\mbox{} \\[-.8cm]
 	\begin{description}
 		\item[\bewhin] Der Raum $X$ sei $\CAT$.
 		Dann hat $X$ Mittelpunkte, also auch ungefähre Mittelpunkte.
@@ -1162,7 +1147,6 @@ Wir werden sehen, dass man $\CAT$-Räume über die Vierpunktbedingung charakteri
 			d(y_1,y_2) &\stack{\Delta\text{-Ungl.}}{=} d(y_1,m) + d(m,y_2) \\
 			&\stack{}{\leq} d_2(\ol{y_1},\ol{m}) + d_2(\ol{m},\ol{y_2}) = d_2(\ol{y_1},\ol{y_2})
 		\end{align*}
-		\newpage
 		\item[2. Fall:] Das Viereck ist nicht konvex.
 		
 		\begin{figure}[h]
@@ -1383,7 +1367,7 @@ Wir werden sehen, dass man $\CAT$-Räume über die Vierpunktbedingung charakteri
 	\[
 		d_2(\ol{y},\ol{z} \stack{\Delta-\text{Ungl.}}{\leq} d_2(\ol{y},\ol{p}) + d_2(\ol{p},\ol{z}).
 	\]
-	Folglich liegt $\ol{p}$ auf der Geodäte $\ol{\beta}$, das heißt wir haben ein Vergleichsdreieck. \qedhere
+	Folglich liegt $\ol{p}$ auf der Geodäte $\ol{\beta}$, das heißt wir haben ein Vergleichsdreieck. 
 	\end{description}
 \end{beweis}
 
@@ -1449,6 +1433,6 @@ Wir werden sehen, dass man $\CAT$-Räume über die Vierpunktbedingung charakteri
 		&\stack{}{=} \lim\limits_{n} d_2(\ol{x_i(n)},\ol{y_j(n)}) \\
 		&\stack{d_2\text{ stetig}}{=} d_2(\ol{x_i},\ol{y_j})
 	\end{align*}
-	Ebenso haben wir $d(x_1,x_2) \leq d_2(\ol{x_1},\ol{x_2})$ und $d(y_1,y_2) \leq d_2(\ol{y_1},\ol{y_2})$. \qedhere
+	Ebenso haben wir $d(x_1,x_2) \leq d_2(\ol{x_1},\ol{x_2})$ und $d(y_1,y_2) \leq d_2(\ol{y_1},\ol{y_2})$. 
 \end{beweis}
-\cleardoubleoddemptypage
+\cleardoubleemptypage

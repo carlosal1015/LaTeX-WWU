@@ -66,10 +66,10 @@
 % ===========================================================
 	\usepackage{mathtools}
 	\usepackage{amssymb}
-	%\usepackage{amsthm}
 	\usepackage[bigdelims]{newtxmath}		% moderne Mathe-Font
 	\allowdisplaybreaks						% seitenübergreifende Rechnungen
 	\input{MathCmds.tex}
+	\usepackage{faktor}
 % ===========================================================
 
 % TikZ
@@ -95,14 +95,15 @@
 	\raggedbottom
 	\usepackage{setspace}					
 	\onehalfspacing							% Zeilenabstand 1.5-fach
-	%\setlength{\parindent}{0pt}
-	%\setlength{\parskip}{0.5\baselineskip}
+	\setlength{\parindent}{0pt}
+	\setlength{\parskip}{0.5\baselineskip}
+	\usepackage[all]{nowidow}
 % ===========================================================
 
 % Nummerierungen
 % ===========================================================
 	\usepackage{chngcntr}
-	%\counterwithout{equation}{chapter} 	% keine Kapitel in Gleichungsnummern
+	%\counterwithin{equation}{section} 	% keine Kapitel in Gleichungsnummern
 	%\counterwithout{section}{chapter}	% keine Kapitel in Abschnittsnummern
 % ===========================================================
 
@@ -184,15 +185,18 @@
 
 \theoremstyle{changebreak}
 \theorembodyfont{\normalfont}
+\theorempreskip{2em}
+\theorempostskip{2em}
 \newtheorem{satz}{Satz}[section]
 \newtheorem{definition}[satz]{Definition}
 \newtheorem{korollar}[satz]{Korollar}
 \newtheorem{lemma}[satz]{Lemma}
-
-\theoremstyle{change}
-\theorembodyfont{\normalfont}
-\theoremseparator{:}
+\newtheorem{bemerkung}[satz]{Bemerkung}
+\newtheorem{beobachtung}[satz]{Beobachtung}
 \newtheorem{beispiel}[satz]{Beispiel}
+\newtheorem{theorem}[satz]{Theorem}
+\newtheorem{proposition}[satz]{Proposition}
+\newtheorem{erinnerung}[satz]{Erinnerung}
 
 \theoremstyle{nonumberplain}
 \theoremheaderfont{\bfseries\scshape}
@@ -238,34 +242,34 @@
 
 % Rahmen
 % ===========================================================
-	\usepackage[tikz]{mdframed}
-%	\newmdenv[linecolor=fbblau,frametitle=Titel]{testframe}
-	\surroundwithmdframed[%
-		hidealllines=true,
-		backgroundcolor=DarkSeaGreen1!30,
-		shadow=true,
-		shadowsize=8pt,
-		shadowcolor=black!20,
-		ntheorem=true
-		]{definition}
-	\surroundwithmdframed[%
-		hidealllines=true,
-		backgroundcolor=SkyBlue1!20,
-		shadow=true,
-		shadowsize=8pt,
-		shadowcolor=black!20,
-		ntheorem=true
-		]{satz}
-	\surroundwithmdframed[%
-		linewidth=1.5pt,
-		linecolor=SeaGreen3,
-		ntheorem=true
-		]{beispiel}
-	\surroundwithmdframed[%
-		linewidth=1.5pt,
-		linecolor=fbblau,
-		ntheorem=true
-		]{korollar}
+%	\usepackage[tikz]{mdframed}
+%%	\newmdenv[linecolor=fbblau,frametitle=Titel]{testframe}
+%	\surroundwithmdframed[%
+%		hidealllines=true,
+%		backgroundcolor=DarkSeaGreen1!30,
+%		shadow=true,
+%		shadowsize=8pt,
+%		shadowcolor=black!20,
+%		ntheorem=true
+%		]{definition}
+%	\surroundwithmdframed[%
+%		hidealllines=true,
+%		backgroundcolor=SkyBlue1!20,
+%		shadow=true,
+%		shadowsize=8pt,
+%		shadowcolor=black!20,
+%		ntheorem=true
+%		]{satz}
+%	\surroundwithmdframed[%
+%		linewidth=1.5pt,
+%		linecolor=SeaGreen3,
+%		ntheorem=true
+%		]{beispiel}
+%	\surroundwithmdframed[%
+%		linewidth=1.5pt,
+%		linecolor=fbblau,
+%		ntheorem=true
+%		]{korollar}
 % ===========================================================
 
 % Sonstiges / für Testzwecke
