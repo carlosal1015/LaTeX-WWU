@@ -1,0 +1,274 @@
+%!TEX root = CAT0_WS1516.tex
+% Author: Phil Steinhorst, p.st@wwu.de
+\documentclass[%
+	paper=a4,
+	fontsize=10,
+	DIV=13,
+	BCOR=9mm,
+	chapterprefix=false,
+	headinclude,
+	footinclude,
+	headheight=20.7pt,
+	footheight=18pt,
+	headings=optiontohead,
+	toc=bibliography,
+	toc=listof,
+	ngerman,
+	final=true,
+	twoside,
+	index=totoc,
+	cleardoublepage=empty,
+	twopage
+]{scrartcl}
+
+% Basics für Codierung und Sprache
+% ===========================================================
+	\usepackage{scrtime}
+	\usepackage{etex}
+	\usepackage{shellesc}
+	\usepackage[final]{graphicx}
+	\usepackage[utf8]{inputenc}
+	\usepackage{babel}
+	\usepackage[german=quotes]{csquotes}
+% ===========================================================
+
+% Fonts und Typographie
+% ===========================================================
+	% \usepackage[lining,semibold]{libertine}
+	%\usepackage[proportional,scaled=1.0]{erewhon}
+	% \usepackage{concmath}
+	% \usepackage[default]{droidserif}
+	%\usepackage[oldstyle]{XCharter}
+	%\usepackage[rm]{merriweather}
+	%\usepackage[default,regular,bold,osf]{sourceserifpro}
+	
+	% Sans- und Mono-Fonts
+	% \usepackage[rm,light]{roboto}
+	\usepackage{sourcecodepro}
+	\usepackage[default]{sourcesanspro}
+	% \usepackage[sb,lining,scale=.92]{FiraSans}
+	% \usepackage[lining,scale=.87]{FiraMono}
+	
+	\usepackage[babel=true,final,tracking=smallcaps]{microtype}
+	\DisableLigatures{encoding = T1, family = tt* } % keine Ligaturen für Monospace-Fonts
+	\usepackage{ellipsis}
+% ===========================================================
+
+% Farben
+% ===========================================================
+	\usepackage[usenames,x11names,final]{xcolor}
+	\definecolor{fbblau}{HTML}{3078AB}
+	\definecolor{mediumgray}{gray}{.65}
+	\definecolor{blackberry}{rgb}{0.53, 0.0, 0.25}
+% ===========================================================
+
+% Mathe-Pakete und -Einstellungen
+% ===========================================================
+	\usepackage{mathtools}
+	\usepackage{amssymb}
+	%\usepackage{amsthm}
+	\usepackage[bigdelims]{newtxmath}		% moderne Mathe-Font
+	\allowdisplaybreaks						% seitenübergreifende Rechnungen
+	\input{MathCmds.tex}
+% ===========================================================
+
+% TikZ
+% ===========================================================
+	\usepackage{tikz}
+	\usepackage{tikz-cd}					% kommutative Diagramme
+	\usetikzlibrary{arrows.meta}			% mehr Pfeile!
+	\usetikzlibrary{shadows}
+	\usetikzlibrary{calc}
+	\tikzset{>=Latex}						% Standard-Pfeilspitze
+% ===========================================================
+
+% Seitenlayout, Kopf-/Fußzeile
+% ===========================================================
+	\usepackage{scrpage2}
+	\pagestyle{scrheadings}
+	\clearscrheadfoot 
+	\setheadsepline{1pt} 					% Linie in Kopfzeile
+	\automark[section]{section}				% Abschnittstitel in Kopfzeile
+	\rohead{\rightmark} 
+	\lehead{\rightmark} 
+	\ofoot[{\Large \pagemark}]{\Large \pagemark}	% Seitenzahl in Fußzeile
+	\raggedbottom
+	\usepackage{setspace}					
+	\onehalfspacing							% Zeilenabstand 1.5-fach
+	%\setlength{\parindent}{0pt}
+	%\setlength{\parskip}{0.5\baselineskip}
+% ===========================================================
+
+% Nummerierungen
+% ===========================================================
+	\usepackage{chngcntr}
+	%\counterwithout{equation}{chapter} 	% keine Kapitel in Gleichungsnummern
+	%\counterwithout{section}{chapter}	% keine Kapitel in Abschnittsnummern
+% ===========================================================
+
+% Biblatex
+% ===========================================================
+	\usepackage[%
+		backend=biber,
+		sortlocale=auto,
+		natbib,
+		hyperref,
+		backref,
+		backrefstyle=three+,
+		style=alphabetic]{biblatex}
+	\setlength{\bibitemsep}{1em}		% Abstand zwischen den Literaturangaben
+	\setlength{\bibhang}{2em}			% Einzug nach jeweils erster Zeile
+	\addbibresource{literature.bib}		% Literaturdatei einlesen
+	\nocite{*}							% Aufführen nicht referenzierter Quellen
+% ===========================================================
+
+% Hyperref
+% ===========================================================
+	\usepackage[%
+		hidelinks,
+		pdfpagelabels,
+		bookmarksopen=true,
+		bookmarksnumbered=true,
+		linkcolor=black,
+		urlcolor=SkyBlue2,
+		plainpages=false,
+		pagebackref,
+		citecolor=black,
+		hypertexnames=true,
+		pdfauthor={Phil Steinhorst},
+		pdfborderstyle={/S/U},
+		linkbordercolor=SkyBlue2,
+		colorlinks=false,
+		backref=false]{hyperref}
+	\hypersetup{final}
+% ===========================================================
+
+% Marginnotes / ToDo-Notes
+% ===========================================================
+	\usepackage[fulladjust]{marginnote}
+	\renewcommand*{\marginfont}{\itshape\footnotesize}
+	\usepackage[textsize=small,color=Red1!80!OrangeRed1!80]{todonotes}
+% ===========================================================
+
+% Listen und Tabellen
+% ===========================================================
+	\usepackage{multicol}
+	\usepackage[shortlabels]{enumitem}
+	\setlist{itemsep=0pt}
+	\setlist[enumerate]{font=\sffamily\bfseries}
+	\setlist[itemize]{label=$\triangleright$}
+	\usepackage{tabularx}
+% ===========================================================
+
+% Inhaltsverzeichnis und Querverweise
+% ===========================================================
+	\usepackage[tocindentauto]{tocstyle}
+	% \setcounter{tocdepth}{3}				% Tiefe des Inhaltsverzeichnisses
+	\newtocstyle[KOMAlike][leaders]{alldotted}{}
+	\usetocstyle{alldotted}
+	\usepackage[nameinlink]{cleveref}
+% ===========================================================
+
+% Indexerstellung
+% ===========================================================
+	\usepackage{makeidx}
+	\newcommand{\Index}[1]{\textbf{#1}\index{#1}}
+	\makeindex
+	\renewcommand{\indexpagestyle}{scrheadings}
+% ===========================================================
+
+
+% ntheorem
+% ===========================================================
+\usepackage[amsmath,thmmarks,thref,hyperref]{ntheorem}
+
+\theoremstyle{changebreak}
+\theorembodyfont{\normalfont}
+\newtheorem{satz}{Satz}[section]
+\newtheorem{definition}[satz]{Definition}
+\newtheorem{korollar}[satz]{Korollar}
+\newtheorem{lemma}[satz]{Lemma}
+
+\theoremstyle{change}
+\theorembodyfont{\normalfont}
+\theoremseparator{:}
+\newtheorem{beispiel}[satz]{Beispiel}
+
+\theoremstyle{nonumberplain}
+\theoremheaderfont{\bfseries\scshape}
+\theorembodyfont{\normalfont}
+\theoremseparator{:}
+\theoremsymbol{\ensuremath{\blacksquare}}
+\newtheorem{beweis}{Beweis}
+
+\theoremlisttype{optname}
+
+% Workaround für Tabulatoren im Theorem-Verzeichnis
+\makeatletter
+\def\thm@@thmline@name#1#2#3#4{%
+	\@dottedtocline{-2}{0em}{2.3em}%
+	{\makebox[\widesttheorem][l]{#1 \protect\numberline{#2}}#3}%
+	{#4}}
+\@ifpackageloaded{hyperref}{
+	\def\thm@@thmline@name#1#2#3#4#5{%
+		\ifx\\#5\\%
+		\@dottedtocline{-2}{0em}{2.3em}%
+		{\makebox[\widesttheorem][l]{#1 \protect\numberline{#2}}#3}%
+		{#4}
+		\else
+		\ifHy@linktocpage\relax\relax
+		\@dottedtocline{-2}{0em}{2.3em}%
+		{\makebox[\widesttheorem][l]{#1 \protect\numberline{#2}}#3}%
+		{\hyper@linkstart{link}{#5}{#4}\hyper@linkend}%
+		\else
+		\@dottedtocline{-2}{0em}{2.3em}%
+		{\hyper@linkstart{link}{#5}%
+			{\makebox[\widesttheorem][l]{#1 \protect\numberline{#2}}#3}\hyper@linkend}%
+		{#4}%
+		\fi
+		\fi}
+}
+\makeatother
+\newlength\widesttheorem
+\AtBeginDocument{
+	\settowidth{\widesttheorem}{Definition 5.5\quad}	% Referenzstring für die Breite der ersten Spalte
+}
+
+% ===========================================================
+
+% Rahmen
+% ===========================================================
+	\usepackage[tikz]{mdframed}
+%	\newmdenv[linecolor=fbblau,frametitle=Titel]{testframe}
+	\surroundwithmdframed[%
+		hidealllines=true,
+		backgroundcolor=DarkSeaGreen1!30,
+		shadow=true,
+		shadowsize=8pt,
+		shadowcolor=black!20,
+		ntheorem=true
+		]{definition}
+	\surroundwithmdframed[%
+		hidealllines=true,
+		backgroundcolor=SkyBlue1!20,
+		shadow=true,
+		shadowsize=8pt,
+		shadowcolor=black!20,
+		ntheorem=true
+		]{satz}
+	\surroundwithmdframed[%
+		linewidth=1.5pt,
+		linecolor=SeaGreen3,
+		ntheorem=true
+		]{beispiel}
+	\surroundwithmdframed[%
+		linewidth=1.5pt,
+		linecolor=fbblau,
+		ntheorem=true
+		]{korollar}
+% ===========================================================
+
+% Sonstiges / für Testzwecke
+% ===========================================================
+	\usepackage{lipsum}
+% ===========================================================
