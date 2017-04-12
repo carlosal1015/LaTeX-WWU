@@ -1,4 +1,5 @@
-\chapter{Gruppenwirkungen auf kubischen Komplexen}
+%!TEX root = ../CAT0_WS1516.tex
+\section{Gruppenwirkungen auf kubischen Komplexen}
 \label{cha:3}
 
 \subsection*{Motivation}
@@ -22,7 +23,7 @@
 	Für $\CAT$ kubische Komplexe werden wir eine Methode sehen, um diese Fragestellung anzugehen.
 \end{enumerate}
 
-\section{Kubische Komplexe}
+\subsection{Kubische Komplexe}
 \label{sec:3.1}
 	Grobe Idee: Wir bauen einen topologischen Raum aus Würfeln.\\
 	Als Konvention legen wir fest: $[0,1]^0 = \{0\}$.
@@ -43,7 +44,7 @@
 \newpage
 \begin{beispiel}
 \label{bsp:3.2}
-	\mbox{} \\[-1.2cm]
+	\mbox{} \vspace*{-1cm}
 	\begin{figure}[h]
 		\centering
 		\begin{tikzpicture}[scale=1.5,>=Latex]
@@ -86,7 +87,7 @@
 
 \begin{beispiel}
 \label{bsp:3.4}
-	\mbox{} \\[-1.4cm]
+	\mbox{} \vspace*{-1cm}
 	\begin{align*}
 		\mathcal{W} := \ &\{W_1 = [0,1]^2, W_2 = [0,1]^2, W_3 = [0,1]\} \\
 		\mathcal{V} := \ &\{\varphi_1 \colon \{0\} \times \{0\} \subseteq W_1 \rightarrow \{1\} \times \{1\} \subseteq W_2, \varphi_2 \colon [0,1] \times \{1\} \subseteq W_2 \rightarrow [0,1] = W_3\}
@@ -121,7 +122,7 @@
 		\draw [color=RoyalBlue2] (1,1) node[fill,circle,inner sep=2pt]{};
 	\end{tikzpicture}
 \end{figure}
-\newpage
+
 \begin{definition}
 \label{def:3.5}
 	Seien $x,y \in X$ beliebig.
@@ -172,7 +173,7 @@ Ab jetzt betrachten wir einen wegzusammenhängenden kubischen Komplex immer mit 
 	\end{figure}
 \end{beispiel}
 
-\subsection{Simpliziale Bäume}
+\subsubsection{Simpliziale Bäume}
 \label{subsec:3.1.1}
 
 Erinnerung:
@@ -184,7 +185,7 @@ Wir betrachten nun Bäume mit dieser kubischen Struktur.
 
 \begin{satz}
 \label{satz:3.7}
-	Bäume sind vollständige $\CAT$-Räume. (\autoref{aufg:7.3})
+	Bäume sind vollständige $\CAT$-Räume. (Aufgabe~\ref{aufg:7.3})
 \end{satz}
 
 Fragestellung:
@@ -243,7 +244,7 @@ Ja, zum Beispiel für Bäume:
 
 \begin{no-satz}[\textsc{Helly}s Theorem für Bäume]
 	Sei $X$ ein Baum und $\mathcal{S} = \{S_1,\dots,S_l\}$ eine endliche Familie von Teilbäumen.
-	Wenn sich jeweils zwei Elemente aus $\mathcal{S}$ nichttrivial schneiden, dann ist $\cap \mathcal{S}$ nicht leer. (\autoref{aufg:7.2})
+	Wenn sich jeweils zwei Elemente aus $\mathcal{S}$ nichttrivial schneiden, dann ist $\cap \mathcal{S}$ nicht leer. (Aufgabe~\ref{aufg:7.2})
 \end{no-satz}
 
 \begin{satz}
@@ -255,14 +256,14 @@ Ja, zum Beispiel für Bäume:
 
 \begin{beweis}
 	$\Fix_\Phi(\sprod{g_i}) \subseteq X$ ist ein Teilbaum von $X$.
-	Mit \textsc{Helly}s Theorem für Bäume folgt $\emptyset \neq \cap \Fix_\Phi(\sprod{g_i}) = \Fix_\Phi(\sprod{g_1,\dots,g_k}) = \Fix_\Phi(G)$. \qedhere
+	Mit \textsc{Helly}s Theorem für Bäume folgt $\emptyset \neq \cap \Fix_\Phi(\sprod{g_i}) = \Fix_\Phi(\sprod{g_1,\dots,g_k}) = \Fix_\Phi(G)$. 
 \end{beweis}
 
 \begin{satz}[Verallgemeinerung]
 \label{satz:3.9}
 	Sei $G = \sprod{g_1,\dots,g_k}$ eine endlich erzeugte Gruppe und $X$ ein Baum.
 	Sei $\Phi\colon G \rightarrow \Isom(X)$ eine isometrische Wirkung.
-	Wenn $\Fix_\Phi(\sprod{g_i}) \neq \emptyset$ und $\Fix_\Phi(\sprod{g_i}) \cap \Fix_\Phi(\sprod{g_j}) \neq \emptyset$ für alle $i,j \in \{1,\dots,k\}$, dann ist $\Fix_\Phi(G) \neq \emptyset$. \autoref{aufg:7.2}
+	Wenn $\Fix_\Phi(\sprod{g_i}) \neq \emptyset$ und $\Fix_\Phi(\sprod{g_i}) \cap \Fix_\Phi(\sprod{g_j}) \neq \emptyset$ für alle $i,j \in \{1,\dots,k\}$, dann ist $\Fix_\Phi(G) \neq \emptyset$. Aufgabe~\ref{aufg:7.2}
 \end{satz}
 
 \begin{no-bsp}
@@ -277,23 +278,21 @@ Ja, zum Beispiel für Bäume:
 			x_k, & \text{falls } k \neq i
 		\end{cases}
 	\end{align*}
-	Weiter definieren wir die Involution
-	\begin{align*}
-		(x_i,x_j)\colon F_n &\longrightarrow F_n \\
-			s_k &\longmapsto \begin{cases}
+	Weiter definieren wir die Involution $(x_i,x_j)\colon F_n \longrightarrow F_n$ durch
+	\[
+		(x_i,x_j)(s_k) := \begin{cases}
 				x_j, & \text{falls } k=i \\
 				x_i, & \text{falls } k=j \\
 				x_k, & \text{sonst}
 			\end{cases}
-	\end{align*}
-	und
-	\begin{align*}
-		e_i \colon F_n &\longrightarrow F_n \\
-		x_k &\longmapsto \begin{cases}
+	\]
+	und $e_i \colon F_n \longrightarrow F_n$ durch
+	\[
+		e_i(x_k) := \begin{cases}
 			x_i^{-1}, & \text{falls } k = i \\
 			x_k, &\text{falls } k \neq i.
 		\end{cases}
-	\end{align*}
+	\]
 	Es gilt $\rho_{i,j}, (x_i,x_j), e_i \in \Aut(F_n)$, und es ist
 	\[
 		\Aut(F_n) = \sprod{\Underbrace{(x_1,x_2)e_1e_2, (x_2,x_3)e_1, (x_i,x_{i+1}), e_2\rho_{1,2},e_n : i = 3, \dots n-1}{=:Y}}
@@ -303,9 +302,9 @@ Ja, zum Beispiel für Bäume:
 	Sei nun $X$ ein Baum und $\Phi\colon \Aut(F_n) \rightarrow \Isom(X)$ eine isometrische Wirkung.
 	Dann ist $\Fix_\Phi(\Aut(F_n)) \neq \emptyset$, denn:
 	\begin{itemize}
-		\item Nach \textsc{Bruhat-Tits} (\autoref{BTFT}) ist $\Fix_\Phi(\sprod{\alpha}) \neq \emptyset$, da Bäume $\CAT$ und vollständig sind.
+		\item Nach \textsc{Bruhat-Tits} (Satz~\ref{BTFT}) ist $\Fix_\Phi(\sprod{\alpha}) \neq \emptyset$, da Bäume $\CAT$ und vollständig sind.
 		\item Ebenso ist $\Fix_\Phi(\sprod{\alpha}) \cap \Fix_\Phi(\sprod{\beta}) \neq \emptyset$ für $\alpha, \beta \in Y$ beliebig.
-		\item Mit \autoref{satz:3.9} folgt somit $\Fix_\Phi(\Aut(F_n)) \neq \emptyset$.
+		\item Mit Satz~\ref{satz:3.9} folgt somit $\Fix_\Phi(\Aut(F_n)) \neq \emptyset$.
 	\end{itemize}
 \end{no-bsp}
 
@@ -341,7 +340,7 @@ Kann man $G$ in \enquote{einfache} Bestandteile zerlegen?
 
 Im Seminar im Sommersemester 2016 werden wir sehen, dass $\Aut(F_n)$ für $n \geq 3$ kein nichttriviales amalgamiertes Produkt ist.
 
-\subsection{\textsc{Helly}s Theorem für CAT(0) kubische Komplexe}
+\subsubsection{\textsc{Helly}s Theorem für CAT(0) kubische Komplexe}
 \label{subsec:3.1.2}
 
 \begin{definition}
@@ -373,7 +372,7 @@ Im Seminar im Sommersemester 2016 werden wir sehen, dass $\Aut(F_n)$ für $n \ge
 		\end{tikzpicture}
 	\end{figure}
 \end{bemerkung}
-\newpage
+
 \begin{theorem}[\textsc{Helly}s Theorem für $\CAT$ kubische Komplexe]
 \label{thm:3.14}
 	Sei $X$ ein $\CAT$ kubischer Komplex und $\mathcal{S}$ eine endliche Familie von nichtleeren konvexen kubischen Unterkomplexen.
@@ -425,17 +424,19 @@ Um dies zu beweisen, müssen wir zuerst Hyperebenen einführen.
 \end{definition}
 
 \begin{definition}[Mittelwürfel, transversal, Hyperebene]
-	\label{def:3.16}
-	Sei $W = [0,1]^n \in \mathcal{W}$ ein Würfel.
-	Für $i = 1, \dots, n$ definieren wir den \Index{Mittelwürfel} 
-	\[
-		W_i := [0,1]^{i-1} \times \penbrace*{\frac{1}{2}} \times [0,1]^{n-i}
-	\]
-	\mbox{} \\[-1cm]
+	\label{def:3.16} \mbox{}
 	
-	\begin{figure}[h]
-		\centering
-		\begin{tikzpicture}[scale=1.5,>=Latex]
+	\vspace*{-1.5cm}
+	
+	\begin{minipage}{0.6\textwidth}
+		Sei $W = [0,1]^n \in \mathcal{W}$ ein Würfel.
+		Für $i = 1, \dots, n$ definieren wir den \Index{Mittelwürfel} 
+		\[
+		W_i := [0,1]^{i-1} \times \penbrace*{\frac{1}{2}} \times [0,1]^{n-i}
+		\]
+	\end{minipage}~
+	\begin{minipage}{0.35\textwidth}
+			\begin{tikzpicture}[scale=1.5,>=Latex]
 			\draw [->,very thick] (0,0) -- (0,1.4) node[right] {$x_3$};
 			\draw [->,very thick] (0,0) -- (1.4,0) node[right] {$x_1$};
 			\draw [->,very thick] (0,0) -- (-.7,-.7) node[left] {$x_2$};
@@ -444,17 +445,17 @@ Um dies zu beweisen, müssen wir zuerst Hyperebenen einführen.
 			\draw (.5,-.5) -- (.5, .5) -- (1,1) -- (1,0) -- (.5,-.5);
 			\draw (-.5,.5) -- (.5,.5) -- (1,1) -- (0,1) -- (-.5,.5);
 			\draw (-.5,-.5) -- (.5,-.5);
-		
+			
 			\draw [color=teal,schraffiert=teal] (0,-.5) -- (.5,0) -- (.5,1) -- (0,.5) -- (0,-.5);
 			\draw [color=teal] (0,-.5) node[below]{$W_1$};
-		
+			
 			\draw [color=red,schraffiert=red] (-.25,-.25) -- (.75,-.25) -- (.75,.75) -- (-.25,.75) -- (-.25,-.25);
 			\draw [color=red] (-.4,.85) node{$W_2$};
-		
+			
 			\draw [color=blue,schraffiert=blue] (-.5,0) -- (.5,0) -- (1,.5) -- (0,.5) -- (-.5,0);
 			\draw [color=blue] (1.0,.5) node[right]{$W_3$};
-		\end{tikzpicture}
-	\end{figure}
+			\end{tikzpicture}
+	\end{minipage}
 	
 	Sei $k \in \mathcal{K}$ eine beliebige Kante.
 	Ein Mittelwürfel $W_i$ heißt \Index{transversal} zu $k$, wenn gilt
@@ -467,7 +468,7 @@ Um dies zu beweisen, müssen wir zuerst Hyperebenen einführen.
 	\[
 		H(k) := \bigcup_{W_i \in k^\pitchfork} W_i
 	\]
-	
+
 	\begin{figure}[h]
 		\centering
 			\begin{tikzpicture}[scale=1.25]
@@ -498,12 +499,15 @@ Um dies zu beweisen, müssen wir zuerst Hyperebenen einführen.
 	Da in einem Baum keine zweidimensionalen Würfel existieren, gibt es zu einer Kante $k$ keine weiteren quadratäquivalenten Kanten.
 	Demzufolge ist der Mittelpunkt von $k$ die Hyperebene zu $k$.
 	
+	\newpage
+	
 	In kubischen Komplexen, die nicht $\CAT$ sind, können Hyperebenen sich selbst schneiden.
 	
-	\mbox{} \\[-4cm]
+	\vspace*{-3cm}
+	
 	\begin{figure}[h]
 		\centering
-		\begin{tikzpicture}[scale=1.7,>=Latex]
+		\begin{tikzpicture}[scale=1.5,>=Latex]
 			\draw [very thick] (0,0) -- (.5,.5) -- (1,0);
 			\draw [very thick,color=red] (1,0) -- (2,0);
 			\draw [very thick] (0,1) -- (.5,.5) -- (1,1) -- (1,2);
@@ -527,7 +531,7 @@ Um dies zu beweisen, müssen wir zuerst Hyperebenen einführen.
 			\draw [color=blue] (1.5,0.1) node[above]{$H(k)$};
 			\draw [color=red] (1.5,-.1) node[below]{$k$};
 		\end{tikzpicture}~\hspace{5cm}~
-		\begin{tikzpicture}[scale=.8]
+		\begin{tikzpicture}[scale=.7]
 			\draw [thick,step=1] (0,0) grid (3,3);
 			
 			\draw [thick] (1,3) .. controls (1.5,10) and (10,1.5) .. 
@@ -671,6 +675,7 @@ Um dies zu beweisen, müssen wir zuerst Hyperebenen einführen.
 			X^{(n)} = \cup \{S : S \text{ ist Seite von } W \in \mathcal{W} \text{ und isometrisch zu } [0,1]^i \text{ für ein } i \leq n\} \diagup \sim.
 		\]
 		Wir definieren wie folgt eine Metrik auf $X^{(0)}$:
+		
 		\begin{align*}
 			D \colon X^{(0)} \times X^{(0)} &\longrightarrow \RR_{\geq 0} \\
 			(x,y) &\longmapsto \inf\{ \ell(c) : c \text{ ist Weg von } x \text{ nach } y \text{ in } X^{(1)}\}
@@ -678,8 +683,8 @@ Um dies zu beweisen, müssen wir zuerst Hyperebenen einführen.
 \end{definition}
 
 \begin{beispiel}
-	\label{bsp:3.20}
-		\mbox{} \\[-1cm]
+	\label{bsp:3.20} \mbox{} \\[-1.4cm]
+	
 		\begin{figure}[h]
 			\centering
 			\begin{tikzpicture}[scale=1.3]
@@ -739,7 +744,7 @@ Um dies zu beweisen, müssen wir zuerst Hyperebenen einführen.
 			\end{tikzpicture}
 		\end{figure}
 \end{lemma}
-\newpage
+
 \begin{definition}[medianer Graph]
 	\label{def:3.22}
 		Sei $\Gamma = (V,E)$ ein Graph.
@@ -754,8 +759,8 @@ Um dies zu beweisen, müssen wir zuerst Hyperebenen einführen.
 \end{definition}
 
 \begin{beispiel}
-	\label{bsp:3.23}
-	\mbox{} \\[-1.3cm]
+	\label{bsp:3.23} \mbox{} \\[-1.4cm]
+	
 	\begin{figure}[h]
 		\centering
 		\begin{tikzpicture}[scale=1,>=Latex]
@@ -812,7 +817,7 @@ Um dies zu beweisen, müssen wir zuerst Hyperebenen einführen.
 	\[
 		W(x,y) := \{H \subseteq X : H \text{ ist Hyperebene, die } x \text{ und } y \text{ trennt.}\}
 	\]
-	Nach \autoref{lemma:3.21} gilt $D(x,y) = \#W(x,y)$.
+	Nach Lemma~\ref{lemma:3.21} gilt $D(x,y) = \#W(x,y)$.
 	Wir erhalten
 	\begin{align*}
 		z \in I(x,y) &\stack{\text{Def.}}{\Leftrightarrow} D(x,y) = D(x,z) + D(z,y) \\
@@ -880,11 +885,11 @@ Um dies zu beweisen, müssen wir zuerst Hyperebenen einführen.
 		O.B.d.A. seien $x,y \in H^-$.
 		Dann folgt $H^- \in \mathcal{HR}$, aber $H^+ \notin \mathcal{HR}$.
 		Da $I(x,y) \cap I(x,z) \cap I(y,z) \subseteq \cap \mathcal{HR}$, ist $m_2 \notin \cap \mathcal{HR}$, also auch $m_2 \notin I(x,y) \cap I(x,z) \cap(y,z)$.
-		Widerspruch. \qedhere
+		Widerspruch. 
 	\end{enumerate}
 \end{beweis}
-\newpage
-\begin{beweis}[\autoref{thm:3.14}]
+
+\begin{beweis}[Theorem~\ref{thm:3.14}]
 	Wir zeigen per Induktion, dass für $k = 2, \dots, m$ die $k$-elementigen Mengen aus $\mathcal{S}$ sich nichttrivial schneiden.
 	Für $k=2$ ist dies nach Voraussetzung erfüllt.
 	Wir definieren $Y := X_3 \cap X_4 \cap \dots \cap X_k$.
@@ -895,7 +900,7 @@ Um dies zu beweisen, müssen wir zuerst Hyperebenen einführen.
 	Da $Y$ ein $\CAT$ kubischer Unterkomplex ist und $p,q \in Y$, liegt auch $I(p,q) \subseteq Y$.
 	Ebenso ist $p,r \in X_1$, also $I(p,r) \subseteq X_1$ und $q,r \in X_2$, also $I(q,r) \subseteq X_2$.
 	Weiter ist $I(p,q) \cap I(p,r) \cap I(q,r) = \{m(p,q,r)\}$ und $m(p,q,r) \in Y$.
-	Folglich ist $m(p,q,r) \in X_1 \cap X_2 \cap Y$. \qedhere
+	Folglich ist $m(p,q,r) \in X_1 \cap X_2 \cap Y$. 
 \end{beweis}
 
 \begin{satz}
@@ -906,7 +911,7 @@ Um dies zu beweisen, müssen wir zuerst Hyperebenen einführen.
 \end{satz}
 
 \begin{beweis}
-	\autoref{thm:3.14} mit $\mathcal{S} := \{\Fix_\Phi(\sprod{g_1}),\dots,\Fix_\Phi(\sprod{g_k})\}$. \qedhere
+	Theorem~\ref{thm:3.14} mit $\mathcal{S} := \{\Fix_\Phi(\sprod{g_1}),\dots,\Fix_\Phi(\sprod{g_k})\}$. 
 \end{beweis}
 
 \begin{minipage}{.6\textwidth}
@@ -943,7 +948,7 @@ Um dies zu beweisen, müssen wir zuerst Hyperebenen einführen.
 	Wenn sich jeweils $(d+1)$ Elemente aus $\mathcal{S}$ nichttrivial schneiden, dann ist $\cap \mathcal{S} \neq \emptyset$.
 \end{theorem}
 
-\section{\textsc{Gromov}s Link-Bedingung}
+\subsection{\textsc{Gromov}s Link-Bedingung}
 \label{sec:3.2}
 	\textbf{Leitfrage:} Wie kann man in kubischen Komplexen die lokale $\CAT$ Eigenschaft nachprüfen?
 	
@@ -966,6 +971,7 @@ Um dies zu beweisen, müssen wir zuerst Hyperebenen einführen.
 \begin{beispiel}
 	\label{bsp:3.28}
 	$Y := \NN, \Delta= \{\emptyset,\{1\},\{2\},\{3\},\{4\},\{1,2\},\{1,3\},\{2,3\},\{1,2,3\}\}$
+	\newpage
 	\begin{figure}[h]
 		\centering
 		\begin{tikzpicture}[scale=1.5,>=Latex]
@@ -997,7 +1003,7 @@ Um dies zu beweisen, müssen wir zuerst Hyperebenen einführen.
 
 In Worten ausgedrückt bedeutet dies:
 Wenn der Rand eines Simplex in $\Delta$ liegt, dann muss auch schon das gesamte Simplex in $\Delta$ liegen.
-Der Simplizialkomplex aus \autoref{bsp:3.28} ist beispielsweise ein Fahnenkomplex.
+Der Simplizialkomplex aus Beispiel~\ref{bsp:3.28} ist beispielsweise ein Fahnenkomplex.
 Der Simplizialkomplex definiert durch $Y:=\NN$, $\Delta = \{\emptyset,\{1\},\{2\},\{3\},\{1,2\},\{1,3\},\{2,3\}\}$ ist jedoch kein Fahnenkomplex:
 lle zweielementigen Teilmengen von $\{1,2,3\}$ sind in $\Delta$ enthalten, jedoch nicht $\{1,2,3\}$ selbst.
  
@@ -1017,9 +1023,8 @@ lle zweielementigen Teilmengen von $\{1,2,3\}$ sind in $\Delta$ enthalten, jedoc
 
 \begin{beispiel}
 	\label{bsp:3.31}
-	\mbox{} \\[-1.45cm]
 	\begin{enumerate}[(i)]
-		\item \mbox{} \\[-1cm]
+		\item \mbox{} \\[-1.4cm]
 		\begin{figure}[h]
 			\centering
 			$\vcenter{\hbox{\begin{tikzpicture}[scale=1,>=Latex]
@@ -1046,7 +1051,7 @@ lle zweielementigen Teilmengen von $\{1,2,3\}$ sind in $\Delta$ enthalten, jedoc
 			\draw [color=red] (3.3,3.3) node[right]{$\operatorname{Lk}(x)$};
 			\end{tikzpicture}}}$		
 		\end{figure} \newpage
-		\item \mbox{} \\[-1cm]
+		\item \mbox{} \\[-1.4cm]
 		\begin{figure}[h]
 			\centering
 			$\vcenter{\hbox{\begin{tikzpicture}[scale=2,>=Latex]
@@ -1164,9 +1169,7 @@ lle zweielementigen Teilmengen von $\{1,2,3\}$ sind in $\Delta$ enthalten, jedoc
 	\caption{Dieser kubische Komplex ist lokal $\CAT$, da alle seine Links Fahnenkomplexe sind.}
 \end{figure}
 
-\newpage
-
-\section*{Zusammenfassung}
+\subsection*{Zusammenfassung}
 \begin{itemize}
 	\item $\CAT$-Räume
 		\begin{itemize}
@@ -1175,6 +1178,7 @@ lle zweielementigen Teilmengen von $\{1,2,3\}$ sind in $\Delta$ enthalten, jedoc
 			\item einfach zusammenhängend
 			\item Vervollständigung ist ebenfalls $\CAT$
 		\end{itemize}
+	\newpage
 	\item Beispiele für $\CAT$-Räume
 		\begin{itemize}
 			\item $(V,\Norm{\cdot})$ ist $\CAT \Leftrightarrow (V,\Norm{})$ ist ein Prähilbertraum
@@ -1199,3 +1203,4 @@ lle zweielementigen Teilmengen von $\{1,2,3\}$ sind in $\Delta$ enthalten, jedoc
 			\item Eigenschaft $\prF{A}$
 		\end{itemize}
 \end{itemize}
+\cleardoubleoddemptypage

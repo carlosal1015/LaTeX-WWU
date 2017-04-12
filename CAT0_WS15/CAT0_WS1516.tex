@@ -1,0 +1,24 @@
+%!TEX TS-program = pdflatex
+% Author: Phil Steinhorst, p.st@wwu.de
+\input{config.tex}
+\begin{document}
+\input{content/title.tex}
+\input{content/preface.tex}
+\tableofcontents
+\cleardoubleoddemptypage
+	
+\input{content/01.tex}
+\input{content/02.tex}
+\input{content/03.tex}
+\appendix
+\input{content/A.tex}
+\section*{Liste der Sätze und Definitionen}
+\addtocontents{toc}{\vspace{\normalbaselineskip}}
+\addcontentsline{toc}{section}{Liste der Sätze und Definitionen}
+\listtheorems{definition,satz,korollar,lemma,theorem,proposition,bemerkung,erinnerung}
+\cleardoubleemptypage
+\printbibliography
+\cleardoubleemptypage
+\printindex
+
+\end{document}
