@@ -1,3 +1,4 @@
+%!TEX root = ../EKK_SS15.tex
 \section{Sichere Kryptographie mit elliptischen Kurven}
 \label{sec:para4}
 \nextlecture
@@ -23,9 +24,9 @@
 \end{defn}
 
 \begin{bem}
-	Vorüberlegung: Sei $m = \ceil*{\sqrt{n}} = \min \{ l \in \NN : l \geq \sqrt{n}\}$, schreibe $k = qm + r, r \in \{0,1,\dots,m-1\}$ (Division mit Rest). \\
+	Vorüberlegung: Sei $m = \ceil{\sqrt{n}} = \min \{ l \in \NN : l \geq \sqrt{n}\}$, schreibe $k = qm + r, r \in \{0,1,\dots,m-1\}$ (Division mit Rest). \\
 	Ziel: Bestimme $q, r$. \\
-	Da $Q = kP = qmP + rP$, folgt $\underbrace{Q - rP}_{\text{"Baby step"}} = \underbrace{qmP}_{\text{"Giant step"}}$.
+	Da $Q = kP = qmP + rP$, folgt $\underbrace{Q - rP}_{\text{\enquote{Baby step}}} = \underbrace{qmP}_{\text{\enquote{Giant step}}}$.
 \end{bem}
 
 \begin{bem}
@@ -60,7 +61,7 @@
 \begin{bem}
 	Die Bestimmung von $k$ in $\sprod{P}$ wird auf Untergruppen von $\sprod{P}$ der Ordnungen $p_i \mid n$ zurückgeführt.
 	Sei $\ord(P) = n = \prod_{i=1}^{t} p_i^{\lambda_i}$ mit $p_1, \dots, p_t$ paarweise verschieden und prim, $\lambda_i \in \NN$.
-	Der Algorithmus hat dann eine Laufzeit von $\oh \enbrace*{\sum_{i=1}^{t} (\lambda_i(\log n + \sqrt{p_i}))}$.
+	Der Algorithmus hat dann eine Laufzeit von $\oh \enb{\sum_{i=1}^{t} (\lambda_i(\log n + \sqrt{p_i}))}$.
 \end{bem}
 
 \begin{bem}
@@ -204,7 +205,7 @@
 
 \begin{bem}
 	Für konventionelle Kryptoverfahren (RSA und ElGamal/DSA auf $(\FF_{p^r}^*,\cdot)$) gibt es subexponentielle Verfahren zur Lösung des DL-Problems. Dieser Vergleich schlägt sich in der Wahl der Schlüssellängen ($=$ Bitzahl der Größe des endlichen Körpers) nieder:
-	Die Schlüssellänge eines elliptischen Kurven-Systems wächst etwas schneller als die dritte Wurzel der Schlüssellänge eines konventionellen Krypto-Systems mit ähnlicher kryptographischer Sicherheit: \todo{Grafik einfügen!}
+	Die Schlüssellänge eines elliptischen Kurven-Systems wächst etwas schneller als die dritte Wurzel der Schlüssellänge eines konventionellen Krypto-Systems mit ähnlicher kryptographischer Sicherheit.
 \end{bem}
 
 \begin{bem}
@@ -270,11 +271,10 @@
 				\end{tabular} 
 		\end{center}
 		Die Folge der Punktepaare $(\tilde{a}P,\tilde{a}Q + M_w)$ wird von Alice an Bob verschickt.
-		Bob entschlüsselt mit $\tilde{a}Q + M_w - b \tilde{a}P = M_w$, da $Q = bP$, die $x$-Koordinate von $M_w \in E(\FF_p)$ ergibt dann mit $\floor*{\frac{x}{10}} = w$ den Textblock.
+		Bob entschlüsselt mit $\tilde{a}Q + M_w - b \tilde{a}P = M_w$, da $Q = bP$, die $x$-Koordinate von $M_w \in E(\FF_p)$ ergibt dann mit $\flo{\frac{x}{10}} = w$ den Textblock.
 	\end{itemize}
 \end{bsp}
 
-\newpage
 \subsection{ECDSA-Signaturen}
 \label{sub:4.3}
 \begin{bem}
@@ -428,3 +428,4 @@
 	Im Jahr 2010 gelang es einer Hackergruppe, den private key bei der von Sony für die Playstation 3 benutzten ECDSA zu erbeuten und damit das Sicherheitssystem fast vollständig zu unterwandern.
 	Dies war aber vor allem auf Implementierungsfehler von Sony zurückzuführen und beruhte nicht auf etwaige Sicherheitslücken des verwendeten ECC-Systems.
 \end{bem}
+\cleardoubleoddemptypage
