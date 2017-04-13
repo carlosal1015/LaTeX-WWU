@@ -21,18 +21,18 @@ Die folgenden Skripte sind verfügbar (die Links führen direkt zu den einzelnen
 	* [PDGL I.](https://gitlab.com/JaMeZ-B/LaTeX-WWU/builds/artifacts/master/file/PDGL1_SS16/pdeskript.pdf?job=build_all "PDGL I.") (Tim)
 	* [Wahrscheinlichkeitstheorie auf Graphen](https://gitlab.com/JaMeZ-B/LaTeX-WWU/builds/artifacts/master/file/WTGraph_SS16/WTG.pdf?job=build_all "Wahrscheinlichkeitstheorie auf Graphen") (Lukas)
 * WiSe 2015
-	* [CAT(0) kubische Komplexe](https://gitlab.com/JaMeZ-B/LaTeX-WWU/builds/artifacts/master/file/CAT0_WS15/CAT0.pdf?job=build_all "CAT(0) kubische Komplexe") (Phil)
+	* [CAT(0) kubische Komplexe](https://gitlab.com/JaMeZ-B/LaTeX-WWU/builds/artifacts/master/file/CAT0_WS15/CAT0_WS1516.pdf?job=build_all "CAT(0) kubische Komplexe") (Phil)
 	* [Topologie II.](https://gitlab.com/JaMeZ-B/LaTeX-WWU/builds/artifacts/master/file/Topo2_WS15/topologie_2.pdf?job=build_all "Topologie II.") (Jannes)
 	* [Operatoralgebren](https://gitlab.com/JaMeZ-B/LaTeX-WWU/builds/artifacts/master/file/OpAlg_WS15/operatoralgebren.pdf?job=build_all "Operatoralgebren") (Jannes)
 	* [Modellreduktion](https://gitlab.com/JaMeZ-B/LaTeX-WWU/builds/artifacts/master/file/ModRed_WS15/Modellreduktion.pdf?job=build_all "Modellreduktion") (Tobias)
 * SoSe 2015
-	* [Elliptische Kurven und Kryptographie](https://gitlab.com/JaMeZ-B/LaTeX-WWU/builds/artifacts/master/file/EKK_SS15/EKK.pdf?job=build_all "Elliptische Kurven und Kryptographie") (Phil)
+	* [Elliptische Kurven und Kryptographie](https://gitlab.com/JaMeZ-B/LaTeX-WWU/builds/artifacts/master/file/EKK_SS15/EKK_SS15.pdf?job=build_all "Elliptische Kurven und Kryptographie") (Phil)
 	* [K-Theorie](https://gitlab.com/JaMeZ-B/LaTeX-WWU/builds/artifacts/master/file/KTheorie_SS15/K-Theorie.pdf?job=build_all "K-Theorie und die Hopf-Invariante") (Jannes; momentan noch etwas unvollständig…)
 	* [Analysis II.](https://gitlab.com/JaMeZ-B/LaTeX-WWU/builds/artifacts/master/file/Ana2_SS15/Ana2.pdf?job=build_all "Analysis II.") (Tim)
 * WiSe 2014
 	* [Topologie I.](https://gitlab.com/JaMeZ-B/LaTeX-WWU/builds/artifacts/master/file/Topo1_WS14/topologie_1.pdf?job=build_all "Topologie I.") (Jannes)
 	* [Funktionalanalysis](https://gitlab.com/JaMeZ-B/LaTeX-WWU/builds/artifacts/master/file/FunkAna_WS14/funktional_analysis.pdf?job=build_all "Funktionalanalysis") (Jannes)
-	* [Elementare Zahlentheorie](https://gitlab.com/JaMeZ-B/LaTeX-WWU/builds/artifacts/master/file/EZT_WS14/EZT.pdf?job=build_all "Elementare Zahlentheorie") (Phil)
+	* [Elementare Zahlentheorie](https://gitlab.com/JaMeZ-B/LaTeX-WWU/builds/artifacts/master/file/EZT_WS14/EZT_WS1415.pdf?job=build_all "Elementare Zahlentheorie") (Phil)
 	* [Differentialgeometrie](https://gitlab.com/JaMeZ-B/LaTeX-WWU/builds/artifacts/master/file/DiffGeo_WS14/diff_geo.pdf?job=build_all "Differentialgeometrie") (Arne)
 	* [Einführung in die Algebra](https://gitlab.com/JaMeZ-B/LaTeX-WWU/builds/artifacts/master/file/EinfAlg_WS14/Einf_Algebra.pdf?job=build_all "Einführung in die Algebra") (Tobias)
 	* [Finanzmathematik](https://gitlab.com/JaMeZ-B/LaTeX-WWU/builds/artifacts/master/file/Fima_WS14/Fima_WS14.pdf?job=build_all "Finanzmathematik") (Tobias)

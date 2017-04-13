@@ -1,3 +1,4 @@
+%!TEX root = ../EKK_SS15.tex
 \section{Allgemeines über Kryptographieverfahren}
 \label{sec:para1}
 \nextlecture
@@ -8,13 +9,13 @@
 	Bezüglich den Verknüpfungen $+$ und $\cdot$ sind verschiedene Axiome erfüllt, die diese Zahlbereiche zu interessante algebraische Strukturen machen:	
 \begin{center}
 	\begin{tabular}{|c|c|c|c|}
-	\hline  \textbf{Halbgruppe}		&	\textbf{Gruppe}								&	\textbf{Ring}			&	\textbf{Körper} \\
-	\hline	$(\NN,+), (\NN,\cdot)$ & & & \\
-	\hline $(\ZZ,+),(\ZZ,\cdot)$ & $(\ZZ,+,0) $ & $(\ZZ,+,\cdot)$ & \\
-	\hline $(\QQ,+),(\QQ,\cdot)$ & $(\QQ,+,0),(\QQ \setminus \setnull, \cdot, 1)$ & $(\QQ,+,\cdot)$ & $(\QQ,+,\cdot)$ \\
-	\hline $(\RR,+), (\RR,\cdot)$ & $(\RR,+,0), (\RR\setminus \setnull, \cdot, 1)$ & $(\RR,+,\cdot)$ & $(\RR,+,\cdot)$ \\
-	\hline $(\CC,+),(\CC,\cdot)$ & $(\CC,+,0),(\CC \setminus \setnull, \cdot, 1)$ & $(\CC,+,\cdot)$ & $(\CC,+,\cdot)$ \\
-	\hline
+		\hline
+		 \textbf{Halbgruppe}   &                \textbf{Gruppe}                 &  \textbf{Ring}  & \textbf{Körper} \\ \hline
+		$(\NN,+), (\NN,\cdot)$ &                                                &                 &                 \\ \hline
+		$(\ZZ,+),(\ZZ,\cdot)$  &                  $(\ZZ,+,0) $                  & $(\ZZ,+,\cdot)$ &                 \\ \hline
+		$(\QQ,+),(\QQ,\cdot)$  & $(\QQ,+,0),(\QQ \setminus \setnull, \cdot, 1)$ & $(\QQ,+,\cdot)$ & $(\QQ,+,\cdot)$ \\ \hline
+		$(\RR,+), (\RR,\cdot)$ & $(\RR,+,0), (\RR\setminus \setnull, \cdot, 1)$ & $(\RR,+,\cdot)$ & $(\RR,+,\cdot)$ \\ \hline
+		$(\CC,+),(\CC,\cdot)$  & $(\CC,+,0),(\CC \setminus \setnull, \cdot, 1)$ & $(\CC,+,\cdot)$ & $(\CC,+,\cdot)$ \\ \hline
 	\end{tabular} 
 \end{center}
 	Weiter sind $\QQ$ und $\RR$ angeordnete Körper, d.h. es gibt eine Anordnungsrelation $\leq$, die sich mit $+$ und $\cdot$ verträgt. 
@@ -72,19 +73,19 @@ Allgemein erhalten wir die $g$-adische Darstellung von $n \in \NN$ so:
 
 \minisec{Beweis}
 	\begin{description}
-	\item[Existenz:] Sei $k \in \NN_0$ so, dass $g^k \leq n < g^{k+1}$ gilt, das heißt wir setzen $k := \floor*{\frac{\log(n)}{\log(g)}}$. 
+	\item[Existenz:] Sei $k \in \NN_0$ so, dass $g^k \leq n < g^{k+1}$ gilt, das heißt wir setzen $k := \Floor{\frac{\log(n)}{\log(g)}}$. 
 	Zeige durch Induktion nach $k$ die Existenz: \\
 	$k = 0$: Setze $c_0 := n$. \\
 	$k \rightsquigarrow k+1$: Sei $g^{k+1} \leq n < g^{k+2}$. 
-	Setze $n' = n - \floor*{\frac{n}{g^{k+1}}} \cdot g^{k+1}$. 
+	Setze $n' = n - \Floor{\frac{n}{g^{k+1}}} \cdot g^{k+1}$. 
 	Es folgt $0 \leq n' < g^{k+1}$, d.h. auf $n'$ ist die Induktionsvoraussetzung anwendbar. 
 	Nach dieser hat $n'$ eine $g$-adische Zifferndarstellung $n' = \sum\limits_{i=0}^{k} c_i g^i$. 
-	Wegen $1 \leq  \frac{n}{g^{k+1}} < g$ ist $1 \leq \floor*{\frac{n}{g^{k+1}}} < g$, also setze $c_{k+1} := \floor*{\frac{n}{g^{k+1}}}$. \\
+	Wegen $1 \leq  \frac{n}{g^{k+1}} < g$ ist $1 \leq \Floor{\frac{n}{g^{k+1}}} < g$, also setze $c_{k+1} := \Floor{\frac{n}{g^{k+1}}}$. \\
 	$\Rightarrow  n = c_{k+1} g^{k+1} + n' = \sum\limits_{i=0}^{k+1} c_i g^i$.
 	\item[Eindeutigkeit:] Sind $\sum\limits_{i=0}^{k} a_i g^i = m = \sum\limits_{i=0}^{r} b_i g^i$ zwei verschiedene Darstellungen von $m \in \NN$. 
 	Ist $r > k$, so sei $a_{k+1} = \dots = a_r := 0$, sonst sei $b_{r+1} = \dots = b_k := 0$, falls $r < k$. 
 	Dann sei $l := \max \{i \in \NN_0 : \linebreak i \leq \max\{k,r\}, a_i \neq b_i \}$ die größte Stelle, an der sich die Darstellungen unterscheiden. \\
-	$\Rightarrow 0 = \sum\limits_{i=0}^l \underbrace{(a_i-b_i)}_{=0 \text{ für } i>l} g^i \Rightarrow \underbrace{|b_l - a_l|}_{\geq 1} g^l = \abs*{\sum\limits_{i=0}^{l-1} (a_i - b_i)g^i}$ \\
+	$\Rightarrow 0 = \sum\limits_{i=0}^l \underbrace{(a_i-b_i)}_{=0 \text{ für } i>l} g^i \Rightarrow \underbrace{|b_l - a_l|}_{\geq 1} g^l = \abs{\sum\limits_{i=0}^{l-1} (a_i - b_i)g^i}$ \\
 	$\Rightarrow g^l \leq \sum\limits_{i=0}^{l-1} |a_i-b_i| g^i \leq \sum\limits_{i=0}^{l-1} (g-1) g^i = (g-1) \frac{g^l - 1}{g-1} = g^l - 1 \quad \lightning$ \qed
 	\end{description}
 
@@ -115,7 +116,7 @@ Allgemein erhalten wir die $g$-adische Darstellung von $n \in \NN$ so:
 Die bekannten schriftlichen Additions- und Multiplikationsrechnungen, die unter Beachtung von Überträgen ziffernweise geschehen, können in jeder Basis ausgeführt werden. 
 Es gibt weiter für die Multiplikation großer Zahlen (d.h. mit großer Stellenzahl bis etwa $2 \cdot 10^{10}$) schnelle Algorithmen, die wir hier aber nicht näher behandeln möchten; etwa mit der schnellen Fouriertransformation (FFT) nach Schönhage/Strassen\footnote{siehe \url{http://de.wikipedia.org/wiki/Sch\%C3\%B6nhage-Strassen-Algorithmus}}.
 
-Der Beweis von Satz \ref{satz_g-adisch} zeigt, dass die Länge von $n$ gleich $\floor*{\frac{\log(n)}{\log(g)}}+1$ ist, so viele Ziffern müssen zum Hinschreiben bzw. Eintippen von $n$ angegeben werden. 
+Der Beweis von Satz \ref{satz_g-adisch} zeigt, dass die Länge von $n$ gleich $\Floor{\frac{\log(n)}{\log(g)}}+1$ ist, so viele Ziffern müssen zum Hinschreiben bzw. Eintippen von $n$ angegeben werden. 
 Bei verschiedenen Basen ändert sich hier nur der Faktor $\frac{1}{\log(g)}$. 
 Deswegen sagt man, die Länge sei $\oh(\log(n))$ und meint damit die Aussage: Es existiert eine Konstante $C > 0$, sodass $k + 1 \leq C \cdot \log(n)$. 
 (Landau-Symbolik\footnote{siehe \url{http://de.wikipedia.org/wiki/Landau-Symbole}}, "Groß-O-Notation")
@@ -191,7 +192,7 @@ Wegen des Faktorisierungsproblems kann dies aber so nicht praktisch umgesetzt we
 Stattdessen benutzt man den (polynomiell) schnellen euklidischen Algorithmus, vgl. Übungsaufgabe.
 
 \begin{satz}[Teilen mit Rest]
-	Zu $a \in \ZZ, b \in \NN$ existieren eindeutigen $q,r \in \ZZ, 0 \leq r < b$ mit $a = qb + r$, nämlich $q = \floor*{\frac{a}{b}} = \max\{m \in \ZZ : \linebreak m \leq \frac{a}{b}\}$ und $r = a-qb$. 
+	Zu $a \in \ZZ, b \in \NN$ existieren eindeutigen $q,r \in \ZZ, 0 \leq r < b$ mit $a = qb + r$, nämlich $q = \Floor{\frac{a}{b}} = \max\{m \in \ZZ : \linebreak m \leq \frac{a}{b}\}$ und $r = a-qb$. 
 	Dabei heißt $r$ der \bet{kleinste nichtnegative Rest}. 
 	Statt $0 \leq r < b$ kann auch $r \in \ZZ$, $\abs{r} < \frac{b}{2}$, erfüllt werden; $r$ heißt dann der \bet{absolut kleinste Rest} (bei Division durch $b$). 
 	\index{Divison mit Rest} \index{kleinster nichtnegativer Rest} \index{absolut kleinster Rest}
@@ -276,7 +277,7 @@ Deren Existenz ist auch in der Theorie immer wieder wichtig, z.B. hierfür:
 		\item $a \kon b \modu m$ bedeutet, dass $a$ und $b$ bei Division durch $m$ denselben kleinsten nichtnegativen (absolut kleinsten) Rest lassen.
 		\item $a \kon b \modu m, b \kon c \modu m \Rightarrow a \kon c \modu m$
 		\item $a_1 \kon b_1 \modu m, a_2 \kon b_2 \modu m \Rightarrow a_1 + a_2 \kon b_1 + b_2 \modu m, a_1 \cdot a_2 \kon b_1 \cdot b_2 \modu m$.
-		\item $ca \kon cb \modu m \Rightarrow a \kon b \modu \enbrace*{\frac{m}{\ggT(c,m)}}$, insbesondere $a \kon b \modu m$, falls $\ggT(c,m) = 1$.
+		\item $ca \kon cb \modu m \Rightarrow a \kon b \modu \enb{\frac{m}{\ggT(c,m)}}$, insbesondere $a \kon b \modu m$, falls $\ggT(c,m) = 1$.
 		\item $a \kon b \modu m_i$ für $i = 1, \dots, k \Rightarrow a \kon b \modu \kgV(m_1,\dots,m_k)$
 	\end{enumerate}
 	Dies zeigt, dass $\kon$ für festes $m$ eine Äquivalenzrelation ist und $\ZZ$ in $m$ paarweise disjunkte Äquivalenzklassen zerlegt.
@@ -357,7 +358,7 @@ Fazit: Mit dem euklidischen Algorithmus können wir also Inverse schnell explizi
 	Diese sind genau die Einheiten in $(\ZZ_m,+,\cdot)$, d.h.
 	\[ \ZZ_m^* = \{\uline{x} \in \ZZ_m : \ggT(x,m) = 1\} \]
 	Die Anzahl der Einheiten sei $\varphi(m) := \# \ZZ_m^* = \# \{a \in \NN : a \leq m, \ggT(a,m) = 1\}$, die so erklärte Funktion $\varphi\colon \NN \rightarrow \NN$ heißt \Index{Eulersche $\varphi$-Funktion}. 
-	Jedes Repräsentantensystem $\{x_1, \dots, x_{\varphi(m)}\}$ von $\ZZ_m^*$ heißt \bet{reduziertes} oder \bet{primes Restsystem} modulo $m$.´\index{Restsystem!reduziert, prim} \index{Restklasse!reduziert, prim}
+	Jedes Repräsentantensystem $\{x_1, \dots, x_{\varphi(m)}\}$ von $\ZZ_m^*$ heißt \bet{reduziertes} oder \bet{primes Restsystem} modulo $m$. \index{Restsystem!reduziert, prim} \index{Restklasse!reduziert, prim}
 \end{defn}
 
 \begin{satz}[Multiplikativität von $\varphi$]
@@ -370,7 +371,7 @@ Fazit: Mit dem euklidischen Algorithmus können wir also Inverse schnell explizi
 	Zur Multiplikativität siehe Zusatz \ref{zusatz_1.1.2.18}.
 	
 Ist $n = \prod_{p \mid n} p^{e(p)}$ die Primfaktorzerlegung von $n$, folgt aus Satz \ref{satz_1.1.2.12}:
-\[ \varphi(n) = \prod_{p \mid n} \enbrace*{p^{e(p)} - p^{e(p)-1}} = \prod_{p \mid n} p^{e(p)} \cdot \enbrace*{1-\frac{1}{p}} = n \cdot \prod_{p \mid n} \enbrace*{1-\frac{1}{p}} \]
+\[ \varphi(n) = \prod_{p \mid n} \enb{p^{e(p)} - p^{e(p)-1}} = \prod_{p \mid n} p^{e(p)} \cdot \enb{1-\frac{1}{p}} = n \cdot \prod_{p \mid n} \enb{1-\frac{1}{p}} \]
 
 \begin{folg}
 	$(\ZZ_m^*,\cdot)$ ist eine Gruppe, die multiplikative Gruppe von $\ZZ_m$, und die Gruppe $(\ZZ_m,+)$ heißt additive Gruppe von $\ZZ_m$. 
@@ -536,7 +537,7 @@ Die Struktur der Zahlringe $(\ZZ_m,+,\cdot)$ versteht man besser, indem man sie 
 	Eine Gruppe $G$ mit Erzeuger $a$, das heißt $G = \sprod{a}$, heißt \Index{zyklisch}.
 \end{defn}
 
-Schreibt man die Gruppe multiplikativ mit Verknüpfung "$\cdot$", so setzt man $a^k := \underbrace{a \cdots a}_{k\text{-mal}}$, falls $k > 0$, $a^0 := 1$, $a^k := \enbrace*{a^{(-k)}}^{-1}$, falls $k < 0$, und $\sprod{a} := \{a^k : k \in \ZZ\}$. 
+Schreibt man die Gruppe multiplikativ mit Verknüpfung "$\cdot$", so setzt man $a^k := \underbrace{a \cdots a}_{k\text{-mal}}$, falls $k > 0$, $a^0 := 1$, $a^k := \enb{a^{(-k)}}^{-1}$, falls $k < 0$, und $\sprod{a} := \{a^k : k \in \ZZ\}$. 
 Ansonsten ist bis auf Schreibweise die Begrifflichkeit und Theorie zu Erzeugern und Ordnungen dieselbe. \\
 Nach dem Satz von Lagrange gilt für jede endliche Gruppe $G$ und $a \in G$ stets $\ord(a) \mid \ord(G)$.
 
@@ -587,16 +588,16 @@ Nach dem Satz von Lagrange gilt für jede endliche Gruppe $G$ und $a \in G$ stet
 Generell stellt sich in Anwendungen die Frage, wie man leicht und schnell (modulare) Potenzen $a^k \modu m$ mit großem $k$ berechnen kann. 
 Der Satz von Euler-Fermat erlaubt bereits eine Reduktion von $k \modu \varphi(m)$: Ist\linebreak
 $k = q \cdot \varphi(m) + r$ mit $0 \leq r < \varphi(m)$, folgt
-\[ a^k = a^{\varphi(m) \cdot q + r} = \enbrace*{a^{\varphi(m)}}^q \cdot a^r \kon 1^q \cdot a^r = a^r \modu m.\]
+\[ a^k = a^{\varphi(m) \cdot q + r} = \enb{a^{\varphi(m)}}^q \cdot a^r \kon 1^q \cdot a^r = a^r \modu m.\]
 Ist aber auch $\varphi(m)$ bzw. $r$ groß, hilft man sich mit folgender Methode des schnellen Potenzierens weiter:
 
 \begin{lemma}[Methode des schnellen Potenzierens]
 	Gegeben sei eine Gruppe $(G,\cdot)$, zu berechnen ist für $r \in \NN, a \in G$ die Potenz $a^r$ in der Gruppe $G$. 
 	\begin{description}
-		\item[1. Schritt:] Mit höchstens $d := \floor*{\frac{\log r}{\log 2}}$ vielen Verknüpfungen in $G$ berechne durch sukzessives Quadrieren $a^2,$\linebreak
-		$\enbrace*{a^2}^2 = a^4, \dots, a^{2^d}$.
+		\item[1. Schritt:] Mit höchstens $d := \Floor{\frac{\log r}{\log 2}}$ vielen Verknüpfungen in $G$ berechne durch sukzessives Quadrieren $a^2,$\linebreak
+		$\enb{a^2}^2 = a^4, \dots, a^{2^d}$.
 		\item[2. Schritt:] Schreibe $r$ als Binärzahl: $r = \sum_{i=0}^d c_i \cdot 2^i$ mit $c_i \in \{0,1\}$.
-		\item[3. Schritt:] Berechne $a^r = a^{c_0} \cdot a^{2c_1} \cdot a^{2^2 c_2} \cdots a^{2^d c_d} = \enbrace*{a^{c_0}} \cdot \enbrace*{a^2}^{c_1} \cdot \enbrace*{a^{2^2}}^{c_2} \cdots \enbrace*{a^{2^d}}^{c_d}$ mit maximal $d$ weiteren Verknüpfungen in $G$. 
+		\item[3. Schritt:] Berechne $a^r = a^{c_0} \cdot a^{2c_1} \cdot a^{2^2 c_2} \cdots a^{2^d c_d} = \enb{a^{c_0}} \cdot \enb{a^2}^{c_1} \cdot \enb{a^{2^2}}^{c_2} \cdots \enb{a^{2^d}}^{c_d}$ mit maximal $d$ weiteren Verknüpfungen in $G$. 
 		\index{schnelles Potenzieren}
 		\end{description}
 \end{lemma}
@@ -615,7 +616,7 @@ Man nennt es dann auch das \Index{dual and add}-Verfahren.
 \begin{anw}[Lösen quadratischer Kongruenzen]
 	Im Fall $p \kon 3 \modu 4$ prim können wir Lösungen quadratischer Kongruenzen modulo $p$ bestimmen: Sei $p = 4k+3$ prim und $a$ mit $p \nmid a$ ein quadratischer Rest modulo $p$, d.h. es existiert ein $b \in \ZZ$ mit $a \kon b^2 \modu p$, und wir möchten $\pm b \modu p$ ausrechnen können. 
 	Nach dem kleinen Fermat folgt $b^{4k+2} = b^{p-1} \kon 1 \modu p$. 
-	Es folgt $\enbrace*{a^{k+1}}^2 \kon \enbrace*{b^2}^{2(k+1)} = b^{(4k+2)+2} \kon 1 \cdot b^2 \kon a \modu p$, d.h. die Lösungen von $b^2 \kon a \modu p$ sind $b = \pm a^{k+1} \modu p$. 
+	Es folgt $\enb{a^{k+1}}^2 \kon \enb{b^2}^{2(k+1)} = b^{(4k+2)+2} \kon 1 \cdot b^2 \kon a \modu p$, d.h. die Lösungen von $b^2 \kon a \modu p$ sind $b = \pm a^{k+1} \modu p$. 
 	Da $a^{k+1} \not\kon -a^{k+1} \modu p \Leftrightarrow 2a^{k+1} \not\kon 0 \modu p$, gibt es genau zwei Lösungen modulo $p$, die wir etwa im Restsystem $\{0,1,\dots,p-1\}$ angeben können und mit $\pm a^{k+1} \modu p$ berechnen können, zum Beispiel mit dem schnellen Potenzieren.
 \end{anw}
 
@@ -625,7 +626,8 @@ Man nennt es dann auch das \Index{dual and add}-Verfahren.
 	Sei $a \modu n$ ein quadratischer Rest modulo $n$. 
 	Gesucht seien die Lösungen der Kongruenz $a \kon x^2 \modu n$. 
 	Nach dem chinesischen Restsatz gilt $x^2 \kon a \modu n \Leftrightarrow x^2 \kon a \modu p$ und $x^2 \kon a \modu q$, und die jeweiligen Lösungen $\pm a^{k+1} \modu p$ und $\pm a^{l+1} \modu q$ kann man zusammensetzen zu (maximal) vier Lösungen modulo $n$. 
-	Es sind genau vier Lösungen, die explizit wie folgt bestimmt werden können: \\
+	Es sind genau vier Lösungen, die explizit wie folgt bestimmt werden können:
+	
 	Sind $r,s \in \ZZ$ gegeben mit $rp + sq = 1$, d.h. die Bézout-Elemente von $p$ und $q$, und ist $\pm b$ Lösung von $x^2 \kon a \modu p$ sowie $\pm c$ Lösung von $x^2 \kon a \modu q$, so liefert die Formel des chinesischen Restsatzes
 	\[ x = \pm b\cdot s \cdot q \pm c \cdot r \cdot p \]
 	genau vier Lösungen von $x^2 \kon a \modu pq$. 
@@ -711,7 +713,7 @@ Daher erzeugt man solange Zufallszahlen, bis der Primzahltest "anschlägt".
 		Er besorgt sich die Daten $n,e$ vom Server und verschlüsselt $x$ zu $x^e \modu n$. 
 		Dann schickt er ihr das Ergebnis $v \kon x^e \modu (n)$ zwischen $1$ und $n$.
 		\item[Schritt 3:] Alice entschlüsselt den geheimen Text $v$ durch Berechnen von $v^d \modu n$, sie erhält $x$, weil für ein $k \in \ZZ$ gilt: $ed = 1 + k \cdot \varphi(n)$, also folgt mit Euler-Fermat, falls $\ggT(x,n) = 1$:
-		\[ v^d \kon (x^e)^d \kon x^{1+k\cdot \varphi(n)} \kon x \cdot \underbrace{\enbrace*{x^{\varphi(n)}}^k}_{\kon 1 \modu n} \kon x \modu n\]
+		\[ v^d \kon (x^e)^d \kon x^{1+k\cdot \varphi(n)} \kon x \cdot \underbrace{\enb{x^{\varphi(n)}}^k}_{\kon 1 \modu n} \kon x \modu n\]
 	\end{description}
 \end{anw}
 
@@ -937,4 +939,4 @@ Daher erzeugt man solange Zufallszahlen, bis der Primzahltest "anschlägt".
 	Da für (geeignete) elliptische Kurven das DL-Problem bzw. DH-Problem schwieriger für $\ZZ_m^*$ ist, gilt diese Art von Verschlüsselungstechnik heute als besonders sicher und wird vielfältig industriell angewendet. 
 	Wir werden die Mathematik elliptischer Kurven im folgenden Abschnitt der Vorlesung näher kennenlernen.
 \end{mot}
-\newpage
+\cleardoubleoddemptypage

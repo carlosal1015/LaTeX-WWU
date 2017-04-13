@@ -1,44 +1,36 @@
-% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
-%		PhistTitle.tex											%
-%		Layout für Skript-Titelseiten							%
-%																%
-%		Author: Phil Steinhorst									%
-% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
+%!TEX root = ../EKK_SS15.tex
 \begin{titlepage}
-\pagestyle{empty}
-\begin{center}
-\begin{minipage}{0.4\textwidth}
-\begin{flushleft}
-\includegraphics[height=1.5cm,keepaspectratio]{../!config/Bilder/wwulogo.pdf}
-\end{flushleft}
-\end{minipage}
-\hfill
-\begin{minipage}{0.4\textwidth}
-\begin{flushright}
-\vspace*{0.3cm}
-\includegraphics[height=1.2cm,keepaspectratio]{../!config/Bilder/fb10logo.pdf} \
-\end{flushright}
-\end{minipage}
+	\newcommand{\HRule}{\rule{\linewidth}{0.8mm}} 
 
-% Title
-\vspace*{2cm}
-\textbf{\Huge{\fach}} \\
-\vspace{0.2cm} 
-\textbf{{\LARGE \untertitel}} \\
-\vspace{0.6cm}
-\LARGE{Zusammenfassung von \verfasser} \\
-\vspace{0.6cm}
-\LARGE{\semester} \\
-\vspace*{1.5cm}
-Hier kommt bald ein Bild hin! \\
-%\includegraphics[width=10cm,keepaspectratio]{content/totient.pdf} \\
-\vspace*{1cm}
-\footnotesize{\url{\homepage}} \\
+	\center 
+ 
+	\begin{minipage}{0.4\textwidth}
+	\begin{flushleft}
+	\includegraphics[height=1.5cm,keepaspectratio]{../!config/Bilder/wwulogo17.eps}\\[1cm]
+	\end{flushleft}
+	\end{minipage}
+	\hfill
+	\begin{minipage}{0.4\textwidth}
+	\begin{flushright}
+	\vspace*{0.3cm}
+	\includegraphics[height=1.2cm,keepaspectratio]{../!config/Bilder/fb10logo.pdf} \
+	\end{flushright}
+	\end{minipage}
 
-\vfill
-\vspace*{1.5cm}
-\begin{flushright}
-{\footnotesize Stand: \today}
-\end{flushright}
-\end{center}
+	\vspace{2cm}
+	
+	\HRule \\[0.8cm]
+	{ \huge \sffamily\bfseries Elliptische Kurven und Kryptographie}\\[0.4cm] % Title of your document
+	\HRule \\[1cm]
+ 
+	{\LARGE gelesen von} \\[.7cm]
+	\textsc{\LARGE \textbf{PD Dr. Karin Halupczok}}\\[.7cm]
+	{\LARGE im Sommersemester 2015}\\[2cm]
+
+
+	\vfill
+	{\Large Vorlesungsmitschrift von Phil Steinhorst} \\[.5cm]
+	{\large Stand: \today}
+	
 \end{titlepage}
+\cleardoubleemptypage
