@@ -1,0 +1,574 @@
+\section{Elliptische Kurven über verschiedenen Körpern}
+\label{sec:para3}
+\nextlecture
+\subsection{Elliptische Kurven über $\QQ$}
+\label{sub:3.1}
+
+\begin{mot}
+	Betrachte die elliptische Kurve $E(k)$ jetzt über $k = \QQ$. \marginnote{[16]}
+	Wie findet man möglichst viele rationale Punkte (d.h. $P=(x,y) \in \aff^2(\QQ)$) auf der Kurve $E(\QQ)$?
+	Die expliziten Formeln zeigen:
+	\begin{itemize}
+		\item Ist $P$ ein rationaler Punkt auf $E(k)$, so auch $2P, 3P, 4P, \dots$
+		\item Sind $P,Q$ zwei rationale Punkte, so auch $P+Q, P+(P+Q) = 2P + Q, 2P + 2Q,$ usw.
+	\end{itemize}
+	Können so unendlich viele rationale Punkte auf $E(k)$ konstruiert werden?
+	Das hängt von der Ordnung des Punktes $P$ in der Gruppe $(E(k),+)$ ab, d.h. von $\ord(P) = \min\{m \in \NN : mP = \oh\}$, falls diese existiert.
+	Das ist ziemlich unklar, wie auch Beispiele zeigen:
+\end{mot}
+
+\begin{bsp}
+\label{bsp_16.2}
+	Sei $E(\QQ) \colon y^2 = x^3 + 17$.
+	Dann ist $\Delta(E) = -16 \cdot 27 \cdot 17^2 \neq 0$.
+	Zwei Punkte sind $P = (-2,3)$ und $Q = (-1,4)$.
+	Es ist
+	\begin{equation}
+	\begin{aligned}
+		P + Q &= (4,-9) \\
+		2P + Q &= (2,5) \\
+		3P + Q &= \enbrace*{\frac{1}{4}, - \frac{33}{8}} \\
+		4P + Q &= \enbrace*{\frac{106}{9}, \frac{1097}{27}} \\
+		5P + Q &= \enbrace*{-\frac{2228}{961},-\frac{63465}{29791}}\\
+		6P + Q &= \enbrace*{\frac{76271}{289},-\frac{21063928}{4913}} \\
+		&\vdots
+	\end{aligned}
+	\end{equation}
+	Offenbar werden die Ergebnisse immer komplizierter; unendlich viele rationale Punkte können auf $E(\QQ)$ wohl derart konstruiert werden, d.h. vermutlich hat $P$ keine (endliche) Ordnung.
+\end{bsp}
+
+\begin{bsp}
+\label{bsp_16.3}
+	Sei $E(\QQ)\colon y^2 = x^3+x$.
+	Der einzige affine rationale Punkt auf $(0,0)$.
+	Dies kann direkt gezeigt werden unter Verwendung, dass die Gleichung $u^4+v^4 = w^2$ nur ganzzahlige Lösungen mit $u=0$ oder $v=0$ hat (was auch schon nicht so schnell zu zeigen ist).
+	Es kann dennoch gesagt werden, dass durch $P, 2P = \oh, 3P = P, 4P = \oh, \dots$ alle rationalen Punkte auf $E(\QQ)$ konstruiert werden können.
+\end{bsp}
+
+\begin{bsp}
+\label{bsp_16.4}
+	Sei $E(\QQ)\colon y^2 = x^3 - 4x^2 + 16$.
+	Dann ist $\Delta(E) = -16 \cdot (4 \cdot (-4)^3 + 27 \cdot 16^2) \neq 0$.
+	Eine kurze Suche liefert die vier rationalen Punkte
+	\[
+		P_1 = (0,4) \qquad P_2 = (4,4) \qquad P_3 = (0,-4) = -P_1 \qquad P_4 = (4,-4) = -P_2
+	\]
+	Können hier wie in Beispiel~\ref{bsp_16.2} beliebig viele rationale Punkte konstruiert werden?
+	Hier ist die Gerade durch $P_1$ und $P_2$ die Tangente an $E(k)$ in $P_1$, weil $4^2 = x^3 - 4x^2 + 16 \Leftrightarrow 0 = x^2(x-4)$ ist und $x = 0$ doppelte Nullstelle.
+	Damit ist $-P_1 = P_1 + P_2 = P_3$, also kann so kein weiterer rationaler Punkt konstruiert werden.
+	Auch mit anderen Paaren $P_i$ und $P_j$ der vier Punkte passiert dies.
+	Vermutlich gibt es außer den vier angegebenen rationalen Punkten keine weiteren auf $E(\QQ)$.
+	Wir haben:
+	\begin{equation}
+	\begin{aligned}
+		P_1 &= (0,4) \\
+		2P_1 &= -P_2 = P_4 \\
+		3P_1 &= P_1 + P_4 = P_1 - P_2 = P_2 \\
+		4P_1 &= P_1 + P_2 = P_3 \\
+		5P_1 &= P_3 + P_1 = (P_1 + P_2) + P_1) = 2P_1 + P_2 = -P_2 + P_2 = \oh,
+	\end{aligned}
+	\end{equation} 
+	d.h. $\ord(P_1) = 5$.
+	Somit ist $\sprod*{P_1} = \{\oh, P_1, P_2, P_3, P_4\} \simeq \ZZ_5$.
+\end{bsp}
+
+Die Beispiele legen folgenden Satz nahe:
+\begin{satz}[Satz von Mordell (1922)]
+\label{satz_mordell} \label{satz_16.5}
+	Sei $E(\QQ)$ eine elliptische Kurve über $\QQ$.
+	Dann gibt es eine endliche Liste von Punkten $P_1,\dots,P_s \in E(\QQ)$, sodass alle (rationalen) Punkte auf $E(\QQ)$ von diesen erzeugt werden, d.h. für alle $P \in E(\QQ)$ existieren Zahlen $m_1,\dots,m_s \in \NN_0$ mit
+	\[
+		P = m_1 P_1 + \dots + m_s P_s
+	\]
+	Mit anderen Worten: Die Gruppe $(E(\QQ),+)$ ist endlich erzeugt.
+	Dabei können die Erzeuger endliche Ordnung haben oder nicht.
+	Natürlich sind die Erzeuger nicht unbedingt eindeutig bestimmt.
+\end{satz}
+
+\begin{bem}
+	\begin{itemize}
+		\item In Beispiel~\ref{bsp_16.3} haben wir einen endlichen Erzeuger $P_1 = (0,0), \ord(P_1) = 2$.
+		\item In Beispiel~\ref{bsp_16.4} haben wir eventuell einen endlichen Erzeuger $P_1 = (0,4), \ord(P_1)=5$.
+		\item In Beispiel~\ref{bsp_16.2} haben wir eventuell einen unendlichen Erzeuger $P_1 = (-2,3)$, welcher eventuell nicht der einzige ist. Die von $P_1$ erzeugte Untergruppe $\ZZ \cdot P_1 := \{m P_1 : m \in \ZZ\} \subseteq E(\QQ)$ ist isomorph zu $\ZZ$ vermöge $m \cdot P_1 \mapsto m$.
+	\end{itemize}
+\end{bem}
+
+\begin{defn}[Torsionsgruppe]
+	Wir können in der Formuliereung von Satz~\ref{satz_16.5} die Unterscheidung zwischen Punkten mit und ohne endliche Ordnung vornehmen.
+	Die Teilmenge $T := \{P \in E(\QQ) : \ord(P) \in \NN\}$ aller Punkte von $E(\QQ)$ mit endlicher Ordnung ist offenbar eine Untergruppe, die \Index{Torsionsgruppe} von $E(\QQ)$ heißt.
+	Somit hat der Satz von Mordell auch die folgende Formulierung:
+\end{defn}
+
+\begin{satz}[Satz von Mordell, Gruppenstruktur]
+	Es gibt ein $r = r(E) \in \NN_0$ mit $E(\QQ) \simeq \ZZ^r \times T$. \marginnote{$\ZZ^r$ mit komponentenweiser Addition}
+	\index{Satz von Mordell}
+\end{satz}
+
+\begin{defn}[Rang]
+\label{def_16.9}
+	Die Zahl $r(E)$ heißt \Index{Rang} von $E(\QQ)$.
+\end{defn}
+
+\begin{bem}
+	Die Torsionsgruppe $T$ ist stets endlich, wie aus dem 	\href{https://de.wikipedia.org/wiki/Hauptsatz_\%C3\%BCber_endlich_erzeugte_abelsche_Gruppen}{Struktursatz über endlich erzeugte abelsche Gruppen} gefolgert werden kann.
+	Allerdings bleiben Größe von $T$ und Lage der Torsionspunkte $P \in T$ damit unbekannt.
+	Weiter kann aber $\#E(\QQ) = \infty \Leftrightarrow r(E) > 0$ gefolgert werden.
+\end{bem}
+
+\begin{bsp}
+	\begin{itemize}
+		\item Für $E(\QQ) \colon y^2 = x^3 - 4$ ist $E(\QQ) \simeq \ZZ^1$, wobei z.B. $P_1 = (2,2)$ Erzeuger ist.
+		\item Im Beispiel~\ref{bsp_16.3} und \ref{bsp_16.4} ist $\Rg E(\QQ) = 0.$ (ohne Beweis)
+	\end{itemize}
+\end{bsp}
+
+\begin{bem}
+	Der Rang elliptischer Kurven ist bislang schlecht verstanden.
+	Offen, d.h. bislang unbewiesen, ist z.B. die \Index{Rangvermutung}:
+	\[
+		\limsup_{E(\QQ)} r(E) = \infty
+	\]
+	D.h. man vermutet, dass es zu jedem $C \in \RR$ eine elliptische Kurve mit $\Rg E(\QQ) > C$ gibt.
+	Der aktuelle Weltrekord (2006, von N. Elkies\footnote{\url{https://de.wikipedia.org/wiki/Noam\_Elkies}}) ist eine elliptische Kurve vom Rang $\geq 28$ (da $28$ "unabhängige" Punkte unendlicher Ordnung auf ihre gefunden wurden), die Kurve lautet $y^2 + xy + y = x^3 - x^2 - ax + b$ mit
+	\footnotesize
+	\begin{equation}
+	\begin{aligned}
+		a &= 20.067.762.415.575.526.585.033.208.209.338.542.750.930.230.312.178.985.502 \\
+		b &= 34.481.611.795.030.556.467.032.985.690.390.720.374.855.944.359.319.180.361.266.008.296.291.939.448.732.243.729
+	\end{aligned}
+	\end{equation}
+	\normalsize
+	Die Torsionsgruppe ist deutlich besser verstanden:
+\end{bem}
+
+\begin{satz}[Satz von Nagell-Lutz (Nagell 1935, Lutz 1937)]
+	(T. Nagell\footnote{\url{https://de.wikipedia.org/wiki/Trygve_Nagell}}, E. Lutz\footnote{\url{https://de.wikipedia.org/wiki/\%C3\%89lizabeth_Lutz}}) \\
+	Sei $E(\QQ)$ eine elliptische Kurve mit Gleichung $y^2 = x^3 + ax^2 + bx + c$, $a,b,c \in \ZZ$, und seien $P_1,\dots,P_s$ alle Torsionspunkte, d.h. $T = \{P_1,\dots,P_s\}$.
+	Schreibe die $P_i = (x_i,y_i) \in \QQ^2$.
+	Dann sind alle $x_i,y_i \in \ZZ$, und für $y_i \neq 0$ gilt $y_i^2 \mid \Delta(E)$. \index{Satz von Nagell-Lutz}
+\end{satz}
+
+\begin{satz}[Satz von Mazur (1977)]
+	(B. Mazur\footnote{\url{https://de.wikipedia.org/wiki/Barry_Mazur}}) \\
+	Sei $E(\QQ)$ eine elliptische Kurve mit Gleichung $y^2 = x^3 + ax^2 + bx + c, a,b,c \in \ZZ$, mit Torsionsuntergruppe $T$.
+	Dann ist $T \simeq \ZZ_n$ mit $n \leq 12, n \neq 11$ oder $T \simeq \ZZ_2 \times \ZZ_n$ mit $n \in \{2,4,6,8\}$.
+	Andere Torsionsuntergruppen kann es nicht geben, und alle genannten kommen vor. \index{Satz von Mazur}
+\end{satz}
+
+Das sind beachtliche, tiefe Sätze.
+In Beispiel~\ref{bsp_16.4} ist $T \simeq \ZZ_5$, und man kann sehen, dass der Nagell-Lutz-Satz hier korrekt ist: $4^2 \mid \Delta(E)$. \\
+Für $a,b,c \in \ZZ$ kann es höchstens endlich viele Punkte mit ganzzahligen Koordinaten geben:
+
+\begin{satz}[Satz von Siegel (1926)]
+	(C. L. Siegel\footnote{\url{https://de.wikipedia.org/wiki/Carl_Ludwig_Siegel}}) \\
+	Sei $E(\QQ)\colon y^2 = x^3 + ax^2 + bc + c$ mit $a,b,c \in \ZZ$ eine elliptische Kurve.
+	Dann gibt es nur endlich viele Kurvenpunkte $(x,y) \in E(\QQ) \cap \ZZ^2$. \index{Satz von Siegel}
+\end{satz}
+
+\begin{bem}
+	In Beispiel~\ref{bsp_16.2} haben genau die Punkte $\oh, (-2,\pm -3), (-1,\pm 4), (2,\pm 5), (4,\pm 9), (8, \pm 23), (43,\pm 282), (52, \pm 375), (5324, \pm 378661)$ auf der elliptischen Kurve $E(\QQ)$ ganzzahlige Koordinaten.
+\end{bem}
+
+\begin{bem}
+	Elliptische Kurve über $\QQ$ sind nicht-singuläre algebraische Kurven vom Geschlecht $1$. Mordell\footnote{\url{https://de.wikipedia.org/wiki/Louis_Mordell}} vermutete, dass jede über $\QQ$ definierte nicht-singuläre algebraische Kurve vom Geschlecht $\geq 2$ höchstens endlich viele Punkte enthält.
+	Diese Vermutung wurde 1983 von Faltings\footnote{\url{https://de.wikipedia.org/wiki/Gerd_Faltings}} für beliebige Körper bewiesen, wofür er 1986 auf der ICM in Berkeley mit der Fields-Medaille ausgezeichnet wurde.
+\end{bem}
+
+\newpage
+\subsection{Elliptische Kurven über $\CC$}
+\label{sub:3.2}
+\begin{bem}
+	Elliptische Kurven über $\CC$ können einerseits über die Weierstraßgleichung dargestellt werden und zum anderen über ihre \Index{Legendre-Normalform} mit einer Gleichung der Form $y^2 = x(x-1)(x-\lambda)$, vgl. Übungsblatt 6, Aufgabe 2(a).
+	Wir besprechen hier kurz die dritte Darstellung mittels elliptischer Funktionen.
+	Wir möchten hier nur erläutern, warum eine elliptische Kurve über $\CC$ in diesem Sinne ein Torus ist.
+	
+	Gegeben sei $\tau \in \CC \setminus \RR$. Betrachte das Gitter $\Lambda := \{ a + \tau \cdot b : a,b \in \ZZ\} \subseteq \CC$.	
+\end{bem}
+
+\begin{defn}[Elliptische Funktion]
+	Eine Funktion $f\colon \CC \setminus \pol \rightarrow \CC$ der Form $f(z) := \frac{f(z)}{g(z)}$, $g,h$ holomorph, $h \neq 0$, heißt \Index{elliptische Funktion}, falls $f(z+w) = f(z)$ für alle $z \in \CC$ und $\omega \in \Lambda$ (sofern $f(z), f(z+\omega)$ definiert ist, wobei $\pol = \{z : h(z) = 0\}$ die Menge der Polstellen von $f$ ist), d.h. wenn $f$ (doppelt-)periodische Funktion zu $\Lambda$ ist.
+	Der Körper der elliptischen Funktionen über $\Lambda$ sei $\CC(\Lambda)$. \todo{Zeichnungen einfügen!}
+\end{defn}
+
+Eine elliptische Funktion ohne Polstellen (oder ohne Nullstellen) ist konstant (vgl. Satz von Liouville aus der Funktionentheorie).
+
+\begin{defn}[Weierstraß-$\wp$-Funktion, Eisensteinreihe]
+	Zu $\Lambda$ definiere
+	\begin{equation}
+	\begin{aligned}
+		\wp \colon \CC \setminus \Lambda &\Longrightarrow \CC \\
+		z &\longmapsto \frac{1}{z^2} + \sum_{\omega \in \Lambda \setminus \setnull} \enbrace*{\frac{1}{(z-\omega)^2} - \frac{1}{\omega^2}}
+	\end{aligned}
+	\end{equation}
+	und $G_{2k}(\Lambda) := \sum_{\omega \in \Lambda \setminus \setnull} \frac{1}{\omega^{2k}} \in \CC$. Dann heißt $\wp$ die \Index{Weierstraß-$\wp$-Funktion} und $G_{2k}$ heißt \Index{Eisensteinreihe} vom Gewicht $2k \in \RR_{>2}$.
+\end{defn}
+
+\begin{satz}
+	Sei $\Lambda$ ein Gitter.
+	\begin{enumerate}[(a)]
+		\item Die Eisenstein-Reihe $G_{2k}(\Lambda)$ konvergiert absolut für $k > 1$.
+		\item Die Reihe der Funktion $\wp$ konvergiert absolut und gleichmäßig auf jeder kompakten Teilmenge von $\CC \setminus \Lambda$.
+		Sie definiert eine elliptische Funktion mit zweifachem Pol in jedem Gitterpunkt $\omega \in \Lambda$.
+	\end{enumerate}
+\end{satz}
+
+Es gilt somit $\wp'(z) = -2 \sum_{\omega \in \Lambda \setminus \setnull} \frac{1}{(z-\omega)^3}$ für $z \in \CC \setminus \Lambda$. 
+Die Funktionen $\wp$ und $\wp'$ liefern den "Prototyp" elliptischer Funktionen:
+Man kann zeigen, dass jede elliptische Funktion $f$ schreibbar ist als
+\[
+	f(z) = \frac{P_1(\wp(z))}{Q_1(\wp(z))} + \wp'(z) \cdot \frac{P_2(\wp(z))}{Q_2(\wp(z))}, P_i, Q_i \in \CC[Z].
+\]
+
+\begin{satz}
+	Es gilt $(\wp'(z))^2 = 4(\wp(z))^3 - g_2 \cdot \wp(z) - g_3$, d.h. $(\wp(z),\wp'(z)) \in E(\CC)$ mit Gleichung $y^2 = 4x^3 - g_2 x - g_3$, wobei $g_2 := 60 G_4, g_3 := 140 G_6$.
+	Da $\Delta(E) = g_2^3 - 27g_3^2 \neq 0$, handelt es sich bei $E(\CC)$ um eine elliptische Kurve.
+\end{satz}
+
+Wir haben so die Abbildung
+\begin{equation}
+\begin{aligned}
+	\varphi \colon \CC / \Lambda &\longrightarrow \PP^2(\CC) \\
+	z+\Lambda &\longmapsto [\wp(z) : \wp'(z) : 1],
+\end{aligned}
+\end{equation}
+wobei $\varphi(0 + \Lambda) = [0:1:0] = \oh$.
+Das Bild von $\varphi$ ist genau die genannte elliptische Kurve $E(\CC)$.
+Die Abbildung $\varphi \colon \CC/\Lambda \rightarrow E(\CC)$ ist bijektiv und überträgt die Addition "$+$" auf $\CC/\Lambda$, gegeben durch $(x+\Lambda) + (y+\Lambda) := (x+y) + \Lambda$, auf $E(\CC)$, welche sich als unsere bisher studierte Addition $+$ auf $E(\CC)$ erweist.
+Der Torus $\CC/\Lambda$ wird so mit der elliptischen Kurve $E(\CC)$ identifiziert.
+Umgekehrt ist auch jede elliptische Kurve $(E(\CC),+)$ beschreibbar als Torus $(\CC/\Lambda,+)$.
+
+\nextlecture
+\newpage
+\subsection{Elliptische Kurven über $\FF_p$ und $\FF_{p^r}$}
+\label{sub:3.3}
+\begin{bem}
+	Elliptische Kurven über endlichen Körpern werden vielfältig eingesetzt, \marginnote{[17]} zum einen in der Kryptographie, zum anderen auch in technischen Systemen mit wenig Ressourcen (eingebettete Systeme), z.B. Steuergeräte in Automobilen (elektronische Wegfahrsperren, Tuning-Schutz, Car-To-Car-Kommunikation, etc.).
+	Manche Hardware-Implementationen arbeiten über $\FF_{2^r}$ der Charakteristik $2$, bei denen die technische Umsetzung damit günstig ist.
+\end{bem}
+
+\subsubsection{Punkte zählen, der Frobenius}
+\label{subsub:3.3.1}
+\begin{bem}
+	Wir studieren zunächst elliptische Kurven über $\FF_p$, wo $p$ prim, mit der "modularen Brille" modulo $p$.
+	Das Verhalten dieser Kurven kann ganz anders sein als über $\QQ$:
+	Die elliptische Kurve $E(\QQ)\colon y^2 = x^3 + x$ aus Beispiel~\ref{bsp_16.3} etwa enthält den einzigen rationalen Punkt $(0,0)$, über $\FF_p$ hat sie aber viele Punkte:
+	Sei $\NN_p := \#E(\FF_p)$ von $y^2 = x^3 + x$, d.h. $N_p$, die Anzahl der Punkte der elliptischen Kurve $E(\FF_p)$, ist die Anzahl der Lösungen von $y^2 = x^3 + x$ modulo $p$.
+\end{bem}
+
+\begin{defn}[Defekt]
+	Numerische Daten ergeben folgende Tabelle:
+	\begin{center}
+		\begin{tabular}{c||c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c}
+		$p$ & 2 & 3 & 5 & 7 & 11 & 13 & 17 & 19 & 23 & 29 & 31 & 37 & 41 & 43 & 47 & \dots \\ 
+		\hline $N_p-1$ & 2 & 3 & 3 & 7 & 11 & 19 & 15 & 19 & 23 & 19 & 31 & 35 & 31 & 43 & 47 & \dots
+		\end{tabular} 
+	\end{center}
+	Offenbar gilt $p = N_p-1$, falls $p \kon 3 \modu 4$.
+	Für $p \kon 1 \modu 4$ sieht der so genannte \Index{Defekt} $a_p := p+1 - N_p$ so aus:
+	\begin{center}
+		\begin{tabular}{c||c|c|c|c|c|c|c|c|c|c|c}
+		$p$ & 5 & 13 & 17 & 29 & 37 & 41 & 53 & 61 & 73 & 89 & \dots \\ 
+		\hline $a_p / 2$ & 1 & -3 & 1 & 5 & 1 & 5 & -7 & 5 & -3 & 5 & \dots 
+		\end{tabular} 
+	\end{center}
+	Beobachtung: $p-\enbrace*{\frac{ap}{2}}^2$ ist stets eine Quadratzahl!
+\end{defn}
+
+Wir halten fest:
+\begin{satz}
+\label{satz_17.4}
+	Für $E(\FF_p)\colon y^2 = x^3+x$ gilt:
+	\begin{enumerate}[(a)]
+		\item Ist $p \kon 3 \modu 4$, gilt $N_p = p+1$.
+		\item Ist $p \kon 1 \modu 4$, ist $N_p = p+1 \pm 2A$, wobei $p = A^2 + B^2$ mit $2 \nmid A$.
+		Dabei gilt "$+$", falls $A \kon 1 \modu 4$ und "$-$", falls $A \kon 3 \modu 4$.
+	\end{enumerate}
+\end{satz}
+
+Zum Beweis benutzen wir:
+\begin{satz}
+	Für $p > 2$ und $E(\FF_p) \colon y^2 = x^3 + ax + b$ mit $a,b \in \FF_p$ gilt
+	\[
+		N_p := \#E(\FF_p) = p+1+\sum_{x \in \FF_p} \leg{x^3+ax+b}{\FF_p},
+	\]
+	wobei
+	\[
+		\leg{u}{\FF_p} := \begin{dcases}
+			+1, & \text{wenn } u \not\kon 0 \modu p \text{ ein quadratischer Rest } \modu p\text{, d.h. } \exists w \in \ZZ : u \kon w^2 \modu p \\
+			-1, & \text{wenn } u \not\kon 0 \modu p \text{ kein quadratischer Rest } \modu p\text{, d.h. } \forall w \in \ZZ : u \not\kon w^2 \modu p \\
+			0, & \text{wenn } u \kon 0 \modu p\text{, d.h. } p \mid u
+		\end{dcases}
+	\]
+	das verallgemeinerte \Index{Legendre-Symbol} ist.
+\end{satz}
+
+\minisec{Beweis}
+	Vgl. Übungsblatt 7, Aufgabe 4(a). \qed
+	
+\begin{bew}[zu Satz~\ref{satz_17.4}(a)]
+	Für $p \kon 3 \modu 4$ ist $\leg{-1}{\FF_p} = (-1)^\frac{p-1}{2} = -1$ nach dem 1. Ergänzungssatz für das Legendre-Symbol,\marginnote{Für die Rechenregeln zum Legendre- Symbol siehe EZT-Skript!} also $\leg{(-x)^3+(-x)}{\FF_p} = -\leg{x^3+x}{\FF_p}$ für das $x \not\kon 0 \modu p$ nach den Rechenregeln für das Legendre-Symbol, sodass
+	\[
+		0 = \sum_{x \not\kon 0 \modu p} \enbrace*{ \leg{x^3+x}{\FF_p} + \leg{(-x)^3+(-x)}{\FF_p}} = 2 \sum_{x \not\kon 0 \modu p} \leg{x^3 + x}{\FF_p}
+	\]
+	folgt, denn mit $x$ durchläuft auch $-x$ alle Restklassen $\not\kon 0 \modu p$.
+	Also ist $\NN_p = p+1$. \qed
+\end{bew}
+
+\begin{bem}
+	Für den Defekt $a_p = p+1-N_p$ gilt somit $a_p = - \sum_{x \in \FF_p} \leg{x^3+ax+b}{\FF_p}$.
+	Im Absolutbetrag kann $a_p$ nicht allzu groß werden, d.h. $N_p = \#E(\FF_p)$ kann nicht allzu stark von $p$ abweichen:
+\end{bem}
+
+\begin{satz}[Satz von Hasse (1933)]
+	(H. Hasse\footnote{\url{https://de.wikipedia.org/wiki/Helmut_Hasse}}) \\
+	Für den Defekt $a_p$ einer elliptischen Kurve $E(\FF_p)$ gilt $|a_p| \leq 2 \sqrt{p}$.
+	Der Satz gilt auch für $E(\FF_{p^r}), r \geq 1$: Es ist $|p^r + 1 - N_{p^r}| \leq 2 \sqrt{p^r}$.
+	\index{Satz von Hasse}
+\end{satz}
+
+\begin{bem}
+	Diese Abschätzung für $|a_p|$ wurde 1920 von E. Artin\footnote{\url{https://de.wikipedia.org/wiki/Emil_Artin}} vermutet.
+	Eine Verallgemeinerung zeigte A. Weil\footnote{\url{https://de.wikipedia.org/wiki/Andr\%C3\%A9_Weil}} in den 1940ern, und stark verallgemeinert wurde sie von P. Deligne\footnote{\url{https://de.wikipedia.org/wiki/Pierre_Deligne}} in den 1970ern, wofür er 1978 mit der Fields-Medaille ausgezeichnet wurde.
+\end{bem}
+
+\begin{bem}
+	Im Beispiel $y^2 = x^3 + x$ mit $p \kon 1 \modu 4$ folgt aus Satz~\ref{satz_17.4}(b) die Hasseschranke, da
+	\[
+		|a_p| = |p+1-N_p| = |p+1-p-1 \mp 2A| = |\mp 2A| = |\mp 2 \sqrt{p-B^2}| \leq 2 \sqrt{p}.
+	\]
+\end{bem}
+
+\begin{bem}
+	Fragen über die Größen von $N_p$ führen zu offenen Problemen, z.B. die schwache Vermutung von Birch\footnote{\url{https://de.wikipedia.org/wiki/Bryan_Birch}} und Swinnerton-Dyer\footnote{\url{https://de.wikipedia.org/wiki/Peter_Swinnerton-Dyer}} (1963, 1965):
+	Für $E(\QQ)$ mit Koeffizienten aus $\ZZ$ sollte
+	\[
+		\prod_{p \leq x} \frac{N_p}{p} \sim C_E(\log x)^{r(E)}
+	\]
+	gelten, wobei $C_E$ eine Konstante $> 0$ ist, die nur von $E(\QQ)$ abhängig ist.
+	Die Aussage $f(x) \sim g(x)$ für zwei Funktionen $f,g\colon \RR_{>0} \rightarrow \RR_{>0}$ bedeutet, dass $\lim\limits_{x \rightarrow \infty} \frac{f(x)}{g(x)}=1$, d.h. $f$ und $g$ sind asymptotisch gleich.
+	Die Zahl $r(E)$ ist der Rang von $E(\QQ)$.
+	Numerische Untersuchungen stützen diese Vermutung bislang.
+	Sie bedeutet:
+	Ist die Anzahl $N_p$ der Punkte auf $E(\FF_p)$ bei Reduktion modulo $p$ signifikant größer als der Erwartungswert, so sollte der Rang $r(E)$ positiv sein.
+	Sie stellt damit ein numerisch leicht testbares Kriterium für $r(E) > 0$ dar.
+\end{bem}
+
+\begin{bsp}
+	Weitere numerische Beobachtungen in anderen Beispielen: \\
+	Für $E \colon y^2 = x^3 + 17$ gilt $a_p = 0$ genau für $p \kon 2 \modu 3$, also auch $a_p = 0$ für "die Hälfte" aller Primzahlen.
+	Das kommt für "wenige" elliptische Kurven mit Koeffizienten aus $\ZZ$ so heraus.
+	Für die Kurve $E \colon y^2 = x^3 - 4x^2 + 16$ etwa haben wir $a_p=0$ nur selten:
+	Die einzigen $p < 2000$ mit $a_p = 0$ sind
+	\[
+		p = 2, 19, 29, 199, 569, 809, 1289, 1439, \dots
+	\]
+	Welcher der Fälle eintritt, hängt davon ab, ob die elliptische Kurve \Index{komplexe Multiplikation} (CM) hat.
+\end{bsp}
+
+\begin{defn}[komplexe Multiplikation (CM)]
+	Eine elliptische Kurve $E(k)$ hat \Index{komplexe Multiplikation} (CM), falls sie neben den üblichen Endomorphismen $\Psi_m \colon E(k) \rightarrow E(k), P \mapsto m \cdot P$ mit $m \in \ZZ$ noch weitere hat.
+\end{defn}
+
+Elliptische Kurven mit CM haben viele spezielle Eigenschaften, z.B.:
+\begin{itemize}
+	\item Elliptische Kurven mit CM haben "ebensoviele" $p$ mit $a_p = 0$ wie $p$ mit $a_p \neq 0$.
+	\item Elliptische Kurven ohne CM haben nur "wenige" $p$ mit $a_p = 0$.
+\end{itemize}
+Dennoch konnte N. Elkies 1987 zeigen, dass jede elliptische Kurve $a_p=0$ für unendlich viele $p$ hat.
+
+\begin{bem}
+	Beim Übergang von $E(\QQ)$ mit Koeffizienten in $\ZZ$ zu $E(\FF_p)$ zu einer Primzahl $P$ reduzieren wir modulo $p$.
+	Nicht immer kommt dabei wieder eine elliptische Kurve heraus, nämlich dann nicht, wenn $\Delta(E(\FF_p)) = 0$ in $\FF_p$ gilt, d.h. $p \mid \Delta(E(\QQ))$ in $\ZZ$.
+	Wir sprechen dann von \bet{schlechter Reduktion} (\Index{bad prime}), ansonsten von \bet{guter Reduktion} (\Index{good prime}). \index{gute Reduktion} \index{schlechte Reduktion}
+	Die schlechte Reduktion kommt nur für alle Primteiler von $\Delta(E(\QQ)) \in \ZZ$ vor, also nur für endlich viele Primzahlen $p$.
+	In diesen Ausnahmefällen verhält sich die kubische Kurve, die durch Reduktion der Gleichung von $E(\QQ)$ modulo $p$ gegeben ist, oft anders; "$+$" gibt es dann nicht.
+	Im Beispiel $E(\QQ) \colon y^2 = x^3-4x^2+16$ gilt etwa $N_p \kon 4 \modu 5$ für alle Primzahlen $p$ außer $p = 2$ und $p=11$.
+	Tatsächlich sind $p=2$ und $p=11$ hier die Primzahlen mit schlechter Reduktion, da $\Delta(E(\QQ)) 0 -2^{12} \cdot 11$ ist.
+\end{bem}
+
+\begin{defn}[Spur des Frobenius]
+	Für eine elliptische Kurve $E(\FF_{p^r}), r \geq 1$, wird der Defekt $a_{p^r} = p^r + 1 - N_{p^r}$ auch die \Index{Spur des Frobenius} genannt.
+\end{defn}
+
+\begin{defn}[Frobeniusendomorphismus]
+	Der \Index{Frobeniusendomorphismus} (kurz: Frobenius\footnote{\url{https://de.wikipedia.org/wiki/Ferdinand_Georg_Frobenius}}) einer elliptischen Kurve $E(\FF_{p^r})$ ist der durch die Abbildung
+	\begin{equation}
+	\begin{aligned}
+		\phi \colon \PP^2(\overline{\FF_{p^r}}) &\longrightarrow \PP^2(\overline{\FF_{p^r}}) \\
+		[x:y:z] &\longmapsto \benbrace*{x^{p^r} : y^{p^r} : z^{p^r}}
+	\end{aligned}
+	\end{equation}
+	vermittelte Gruppenhomomorphiusmus $\Phi\colon E(\overline{\FF_{p^r}}) \rightarrow E(\overline{\FF_{p^r}})$.
+\end{defn}
+
+\minisec{Beweisskizze}
+	\begin{itemize}
+		\item $\phi$ ist wirklich eine Abbildung $\PP^2(\overline{\FF_{p^r}})$ in sich.
+		\item Ist $E(\FF_{p^r})$ gegeben durch $F(X,Y,Z) = 0$, folgt auch $F(X^{p^r},Y^{p^r},Z^{p^r}) = 0$, weil in $\overline{\FF_{p^r}}$ die Gleichung $(c+d)^{p^r} = c^{p^r} + d^{p^r}$ für $c,d \in \overline{\FF_{p^r}}$ richtig ist.
+		Damit ist durch $\Phi$ eine Abbildung von $E(\overline{\FF_{p^r}})$ in sich definiert.
+		\item Die Verträglichkeit der Gruppenaddition auf $E(\overline{\FF_{p^r}})$ mit $\Phi$, d.h. die Eigenschaft $\Phi(P_1+P_2) = \Phi(P_1) + \Phi(P_2)$, kann man nachrechnen. \qed
+	\end{itemize}
+	
+\begin{bem}
+	Der Frobenius $\Phi$ lässt sich auf allgemeinere Strukturen (genauer: dem Tatemodul) übertragen; dieser lässt eine Matrixdarstellung zu, wobei die Spur dieser Matrix genau $a_{p^r}$ ergibt, daher der Name.
+	Dieser Zusammenhang liefert weitere Möglichkeiten, den Defekt $a_{p^r}$ zu bestimmen.
+\end{bem}
+
+\begin{anw}[Text in eine elliptische Kurve einbetten]
+\label{anw_17.18}
+	Bei der Umsetzung des ElGamal-Verschlüsselungsverfahrens für eine elliptische Kurvengruppe $(G,+) = (E(\FF_{p^r}),+)$, vergleiche Abschnitt~\ref{subsub:1.2.3}, ist es erforderlich, dass sich die Kommunizierenden Alice und Bob darauf einigen, wie man Klartext in eine Folge von Punkten auf der elliptischen Kurve $E(\FF_{p^r})$ übersetzt und wieder zurückerhält.
+	Hier ein beispielhaftes Verfahren, wie dies praktisch durchgeführt werden kann:
+\end{anw}
+
+\begin{anw}[Schritt 1]
+	Man legt ein Alphabet mit $N$ Buchstaben (identifiziert mit $0,1,\dots,N-1$) fest.
+	Der Klartext (z.B. ein Wort) habe die Blocklänge $l$.
+	Die Zuordnung 
+	\[
+		w= (a_0 \ a_1 \ \dots \ a_l) \mapsto a_0 N^{l-1} + a_1 N^{l-2} + \dots + a_{l-2} N + a_{l-1} = x_w
+	\]
+	liefert eine Bijektion zwischen den möglichen Klartextblöcken $w$ und den Zahlen $0 \leq xw < N^l$.
+	Eine Zahl $x_w$ soll $x$-Koordinate eines Kurvenpunkts werden.
+\end{anw}
+
+
+\begin{anw}[Schritt 2]
+	Für eine gegebene elliptische Kurve $E(\FF_{p^r})$ gibt es aber nicht zu jedem $x \in \FF_{p^r}$ einen Kurvenpunkt $(x_0,y_0) \in E(\FF_{p^r})$.
+	Für ein $k \in \NN$ kann man aber die nächste $x$-Koordinate eines Kurvenpunkts $(x_1,y_1) \in E(\FF_{p^r})$ mit $x_0 \leq x_1 \leq x_0+k$ schnell ermitteln; die Wahrscheinlichkeit, dass dies scheitert, d.h. dass ein solches $x_1$ nicht existiert, beträgt schätzungsweise nur etwa $\leg{1}{2}^k$
+	(z.B. für $k = 50$ weniger als $10^{-15}$). \\
+	Wähle so ein geeignetes $k$ fest und eine elliptische Kurve $E(\FF_{p^r})$ mit $p^r > k \cdot N^l$, d.h. es gibt wohl Kurvenpunkte mit genügend großen $x$-Koordinaten.
+\end{anw}
+
+\begin{anw}[Schritt 3]
+	Zu $x_w \in \{0,\dots,N^l-1\}$ bestimme $P_w \in E(\FF_{p^r})$ mit $x$-Koordinate $\geq kx_w$, etwa $P_w = (kx_w + j, y)$ mit $j \geq 0$ minimal.
+\end{anw}
+
+\begin{bem}
+	Wir beobachten: Hat das Verfahren funktioniert, ist dabei $j < k$, sodass durch Berechnung von $x_w = \floor*{\frac{x}{k}}$ für $P_w=(x,y) \in E(\FF_{p^r})$ der Klartext $w$ aus $P_w$ wieder zurückgewonnen werden kann.
+\end{bem}
+
+\begin{bsp}
+	Für das Alphabet $\{A,B,\dots,Z\} = \{0,1,\dots,25\}$ ist $N = 26$, wähle z.B. $l = 2, k=10$.
+	Dann erfüllt $p=6833$ die Bedingung $p > kN^2 = 6760$.
+	Ist dazu $E(\FF_p)$ gegeben durch $E(\FF_p)\colon y^2 = x^3 + 5984x + 1180$, kann z.B. der Text "\texttt{KRYPTO}" wie folgt in eine Liste von drei Punkten auf $E(\FF_p)$ umgesetzt werden:
+	\begin{center}
+		\begin{tabular}{c||c|c|c}
+		$w$ & \texttt{KR} & \texttt{YP} & \texttt{TO} \\ 
+		\hline $x_w$ & $(10,17)_{26} = 277$ & $(24,15)_{26} = 639$ & $(19,14)_{26} = 508$ \\ 
+		\hline $P_w$ & $(2771,353)$ & $(6390,2797)$ & $(5080,238)$
+		\end{tabular} 
+	\end{center}
+\end{bsp}
+
+\nextlecture
+\subsubsection{Modularitätsmuster und der große Fermatsche Satz}
+\label{subsub:3.3.2}
+\begin{bem}
+	Für elliptische Kurven mit Koeffizienten in $\ZZ$ wurde ein Modularitätsmuster gefunden,\marginnote{[18]} welches sehr unterwartet und ungewöhnlich ist, dass es kaum vorstellbar ist, dass dieses überhaupt gefunden werden konnte.
+	Es handelt sich (in voller Allgemeinheit) um die \Index{Taniyama-Shimura-Vermutung}\footnote{\url{https://de.wikipedia.org/wiki/Yutaka_Taniyama} \\ \url{https://de.wikipedia.org/wiki/Gor\%C5\%8D_Shimura}} von 1957, welche von A. Wiles und anderen 1995 komplett bewiesen wurde und als Baustein des Beweises des großen Fermatschen Satzes diente.
+\end{bem}
+
+\begin{bsp}
+	Im Spezialfall der Kurve $E\colon y^2 = x^3 - 4x^2 + 16$ z.B. lautet diese Vermutung, dass folgendes "Modularitätsmuster" für die Defekte $a_p$ gilt: \\
+	Man betrachte die Potenzreihe $\Theta(T) \in \ZZ[T]$, welche durch Ausmultiplizieren des unendlichen Produkts
+	\[
+		\Theta(T) := T \cdot \prod_{k=1}^{\infty} ((1-T^k)(1-T^{11k}))^2 = T \cdot ((1-T)(1-T^{11}))^2 \cdot ((1-T^2)(1-T^{22}))^2 \cdot ((1-T^3)(1-T^{33}))^2 \cdots
+	\]
+	entsteht.
+	Sie beginnt mit
+	\[
+		\Theta(T) = T - 2T^2 - T^3 + 2T^4 + T^5 + 2T^6 - 2T^7 - 2T^9 - 2T^{10} + T^{11} - 2T^{12} + 4T^{13} + 4T^{14} - T^{15} - 4T^{16} - 2T^{17} \dots
+	\]
+	Im Vergleich die Defekte von $E$:
+	\[
+		a_2 = 0, a_3 = -1, a_5 = 1, a_7 = -2, a_{11} = 1, a_{13} = 4, a_{17} = -2, \dots
+	\]
+	d.h. bis auf $a_2$ ist $a_p$ genau der Koeffizient vor $T^p$ in $\Theta(T)$, $p \geq 3$ prim.
+\end{bsp}
+
+\begin{bem}
+	Ein derartiges Muster vermuteten Taniyama und Shimura für jede elliptische Kurve mit Koeffizienten in $\ZZ$, genauer:
+	jede elliptische Kurve ist "modular".
+\end{bem}
+	
+\begin{bem}
+	Der große Satz von Fermat besagt, dass die Gleichung $A^n + B^n = C^n$ für $n \geq 3$ keine Lösungen in $\ZZ \setminus \setnull$ besitzt.
+	Fermat formulierte diese Aussage im 17. Jahrhundert und ihr Beweis galt bis 1995 als eines der größten ungelösten Probleme der Mathematik.
+	Die Bemühungen vieler Mathematiker um diese Vermutung brachten die Mathematik, speziell die algebraische Zahlentheorie, bis heute weit voran.
+	Die Lösung durch A. Wiles stellte 1995 eine riesigen Durchbruch dar.
+\end{bem}
+
+\begin{bem}
+	Bis 1980 wurden Lösungsversuche durch Faktorisierungstechniken vorgenommen.
+	Im Jahr 1986 schlug G. Frey\footnote{\url{https://de.wikipedia.org/wiki/Gerhard_Frey_(Mathematiker)}} eine Verbindung zwischen Fermats großem Satz und elliptischen Kurven vor, auf der die weiteren Erfolge beruhten: \\
+	Zu einer angenommenen, nichttrivialen Lösung $A,B,C$ des großen Fermat-Satzes zu einem primen Exponenten $n=p$ betrachtet man die zugehörige elliptische Kurve
+	\[
+		E_{A,B} \colon y^2 = x(x+A^p)(x-B^p),
+	\]
+	ihre Diskriminante ist $\Delta(E_{A,B}) = 16(ABC)^{2p}$, was unwahrscheinlich erscheint.
+	Die Idee ist zu zeigen, dass eine solche Kurve nicht modular sein kann, d.h. der Taniyama-Shimura-Vermutung widerspricht.
+	Im Jahr 1986 konnte dies gezeigt werden von K. Ribet\footnote{\url{https://de.wikipedia.org/wiki/Kenneth_Alan_Ribet}}.
+	Davon inspiriert verbrachte A. Wiles die nächsten sechs Jahre damit, die Taniyama-Shimura-Vermutung zumindest für so genannte semistabile elliptische Kurven zu zeigen, was ihm gelang.
+	Da Frey-Kurven $E_{A,B}$ seminstabil sind, reichte dies zum Beweis des großen Fermatschen Satzes aus.
+\end{bem}
+
+\begin{bem}
+	Mittlerweile wurde die (volle) Taniyama-Shimura-Vermutung bewiesen durch C. Breuil, B. Conrad, F. Diamond und R. Taylor (2001) und heißt heute \Index{Modularitätssatz}.
+	Heute wird der Modularitätssatz als Spezialfall der allgemeineren \Index{Serre-Vermutung über Galoisdarstellungen} angesehen, welche aufbauen auf den Arbeiten von A. Wiles inzwischen (im Jahr 2006) von C. Khare, J.-P. Wintenberger und M. Kisin bewiesen wurde.
+\end{bem}
+
+\subsubsection{Der Schoof-Algorithmus}
+\label{subsub:3.3.3}
+\begin{bem}
+	Für die Kryptographie-Anwendungen ist ein praktischer Weg, die Anzahl $N_{p^r} = \#E(\FF_{p^r})$ der Punkte auf einer elliptischen Kurve über einem endlichen Körper $\FF_{p^r}$ zu bestimmen, von Bedeutung.
+	Dies leistet der Schoof-Algorithmus\footnote{\url{https://de.wikipedia.org/wiki/Ren\%C3\%A9_Schoof}}, den wir jetzt besprechen.
+\end{bem}
+
+\begin{anw}
+	Sei $p > 2$ und $E(\FF_{p^r})$ gegeben durch $y^2 = x^3 + ax + b$ mit $a,b \in \FF_{p^r}$.
+	Der Algorithmus bestimmt $t := a_{p^r} = p^r + 1 - \#E(\FF_{p^r})$ nur modulo der ersten Primzahlen $p_1 = 2, p_2 = 3, p_3 = 5, \dots$, bis damit $a_{p^r}$ bestimmt werden kann.
+\end{anw}
+
+\begin{bem}
+	Für die ersten $s$ Primzahlen $p_1,\dots,p_s$ vermittelt der chinesische Restsatz durch die Restklassenabbildung $\ZZ \rightarrow \ZZ_{p_1} \times \dots \times \ZZ_{p_s}$ eine Bijektion $\ZZ_{p_1 \cdots p_s} \rightarrow \ZZ_{p_1} \times \dots \times \ZZ_{p_s}$. \\
+	Gilt $|t| < \frac{1}{2} p_1 \cdots p_s$, ist $t \modu p_1 \cdots p_s$ durch die Restklassen $(t \modu p_1, \dots, t \modu p_s)$ eindeutig bestimmt.
+	Da nach dem Satz von Hasse $|t| < 2 \sqrt{p^r}$ gilt, genügt es, $r$ mit $p_1 \cdots p_s > 4 \sqrt{p^r}$ zu wählen.
+	Die Bestimmung von $t \modu p_1, \dots, t \modu p_s$ reicht dann also zur Bestimmung von $t$ laut chinesischem Restsatz.
+\end{bem}
+
+\begin{anw}[Schritt 1: Bestimmung von $t$ modulo $2$]
+	Da $t \kon \#E(\FF_{p^r}) \modu 2$, muss die Parität von $\#E(\FF_{p^r})$ bestimmt werden, d.h. ob $\#E(\FF_{p^r})$ gerade oder ungerade ist.
+	\begin{itemize}
+		\item Für festes $x \in \FF_{p^r}$ mit $x^3 + ax + b \neq 0$ in $\FF_{p^r}$ hat $y^2 = x^3 + ax + b$ keine oder zwei Lösungen $y$, d.h. die Anzahl der Lösungen $(x,y)$ mit $y \neq 0$ ist gerade und zählen modulo $2$ daher nicht.
+		\item Es bleiben $\oh$ und die $(x_0,0) \in E(\FF_{p^r})$ zu zählen.
+		Über $\overline{\FF_{p^r}}$ faktorisiert $x^3 + ax + b$ zu $x^3 + ax + b = (x-x_0)(x-x_1)(x-x_2)$ mit $x_1, x_2 \overline{\FF_{p^r}}$.
+		Da $E$ nicht-singulär, sind $x_0,x_1,x_2$ paarweise verschieden.
+		Wegen $x_0+x_1+x_2 = 0$ (Koeffizient von $x^2$), folgt entweder
+		\begin{enumerate}[a)]
+			\item $x_1,x_2 \in F_{p^r}$, oder
+			\item $x_1,x_2 \in \overline{\FF_{p^r}} \setminus \FF_{p^r}$.
+		\end{enumerate}
+		\item Im Fall a) gibt es drei Punkte $(x_i,0) \in E(\FF_{p^r})$, im Fall b) nur einen Punkt, sodass $t \kon \#E(\FF_{p^r}) \kon 0 \modu 2$ folgt (wegen $\oh$), sofern $(x_0,0) \in E(\FF_{p^r})$ existieren.
+		Gibt es keine solchen Punkte, folgt (wegen $\oh$) dann $t \kon \#E(\FF_{p^r}) \kon 1 \modu 2$.
+		\item Ob $(x_0,0) \in E(\FF_{p^r})$ existieren, kann durch Überprüfen von $x-x_0 \mid x^3 + ax + b$ für alle $x_0 \in \FF_{p^r}$ getestet werden; wegen $x^{p^r} - x = \prod\limits_{x_0 \in \FF_{p^r}} (x-x_0)$ also effektiv durch Überprüfen von $\ggT(x^3 + ax + b, x^{p^r} - x) = 1$ im Polynomring $\FF_{p^r}[x]$ mit dem euklidischen Algorithmus.
+	\end{itemize}
+\end{anw}
+
+\begin{anw}[Schritt 2: Bestimmung von $t \modu p_i > 3$]
+	Dies ist deutlich schwieriger, hier nur die Grundidee:
+	\begin{itemize}
+		\item Der Frobenius $\Phi$ genügt der Gleichung $\Phi^2(P) - t \cdot \Phi(P) + p^r \cdot P = \oh$ für alle $P \in E(\overline{\FF_{p^r}})$, da $t$ die "Spur" des Frobenius ist (ohne Beweis). \\
+		Zu bestimmen ist eine Zahl $\tau \in \{0, \dots, p-1\}$, die dieser Gleichung an Stelle $t$ für jeden Punkt $P \in E[p_i] := \{P \in E(\overline{\FF_{p^r}}) : \ord(P) \mid p_i\}$ genügt. \\
+		(Denn für so ein $\tau$ muss $(t-\tau) \Phi(P) = \oh$ für jedes $P \in E[p_i] \setminus \oh$ sein.
+		Da $\Phi(P) \in E[p_i] \setminus \oh$ ist, ist $\ord(\Phi(P)) = p_i$ in $E[p_i]$, es folgt $p_i = \ord(\Phi(P)) \mid t-\tau$, also $t \kon \tau \modu p_i$.
+		\item Die Bestimmung von $\tau$ mit $\Phi^2(P) - \tau \Phi(P) + p^r \cdot P = \oh$ für alle $P \in E[p_i]$ kann mittels der expliziten Formeln in eine Polynomgleichung übersetzt werden, für die der Reihe nach für $\tau = 0,1,\dots,p_i-1$ getestet wird, ob sie gilt, bis man auf die Lösung stößt.
+	\end{itemize}
+\end{anw}
+
+\begin{bem}
+	Der Schoof-Algorithmus hat eine Laufzeit von nur $\oh(\log^8(p^r))$, ein naiver Algorithmus zur Bestimmung von $\#E(\FF_{p^r})$ hat eine Laufzeit von $\oh(p^{r/4 + \varepsilon})$.
+	Damit kann $\#E(\FF_{p^r})$ mit dem Schoof-Algorithmus effektiv und schnell bestimmt werden, wenn $p^r$ groß ist.
+	Mithilfe von $\#E(\FF_{p^r}) \in \NN$ kann dann entschieden werden, ob die (meist zufällig gewählte) elliptische Kurve kryptographisch geeignet ist oder nicht.
+	Das behandeln wir im nächsten Abschnitt.
+\end{bem}
+\newpage
