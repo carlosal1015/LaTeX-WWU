@@ -1,3 +1,4 @@
+%!TEX root = ../EKK_SS15.tex
 \section{Elliptische Kurven}
 \label{sec:para2}
 \nextlecture
@@ -22,7 +23,7 @@
 	\begin{equation}
 	\begin{aligned}
 		\sum_{\uline{\nu}} \alpha_{\uline{\nu}} \uline{x}^{\uline{\nu}} + \sum_{\uline{\nu}} \beta_{\uline{\nu}} \uline{x}^{\uline{\nu}} &:= \sum_{\uline{\nu}} (\alpha_{\uline{\nu}} + \beta_{\uline{\nu}}) \uline{x}^{\uline{\nu}} \\
-		\enbrace*{\sum_{\uline{\nu}} \alpha_{\uline{\nu}} \uline{x}^{\uline{\nu}}} \cdot \enbrace*{\sum_{\uline{\mu}} \beta_{\uline{\mu}} \uline{x}^{\uline{\mu}}} &:= \sum_{\uline{\nu},\uline{\mu}} \alpha_{\uline{\nu}} \beta_{\uline{\mu}} \uline{x}^{\uline{\nu} + \uline{\mu}}
+		\enb{\sum_{\uline{\nu}} \alpha_{\uline{\nu}} \uline{x}^{\uline{\nu}}} \cdot \enb{\sum_{\uline{\mu}} \beta_{\uline{\mu}} \uline{x}^{\uline{\mu}}} &:= \sum_{\uline{\nu},\uline{\mu}} \alpha_{\uline{\nu}} \beta_{\uline{\mu}} \uline{x}^{\uline{\nu} + \uline{\mu}}
 	\end{aligned}
 	\end{equation}
 	wird $k[\uline{x}]$ zu einem kommutativen Ring mit Eins; das Nullpolynom $0 := \sum_{\uline{\nu}} 0 \uline{x}^{\uline{\nu}}$ ist dabei das Nullelement, das Polynom $1 := 1 \cdot \uline{x}^{\uline{0}} + \sum_{\uline{\nu} \neq 0} 0 \uline{x}^{\uline{\nu}}$ ist das Einselement. 
@@ -262,7 +263,7 @@ Wir lösen das so, dass in unserer neuen "Ebene" eine dritte "Koordinate" $z$ hi
 \end{defn}
 
 \begin{bem}
-	Ist $y_3 \neq 0$, gilt $[y_1 : y_2 : y_3] = \benbrace*{\frac{y_1}{y_3} : \frac{y_2}{y_3} : 1}$, das heißt die dritte (oder jede andere Koordinate $\neq 0$) kann dann auf $1$ gebracht ("normiert") werden.
+	Ist $y_3 \neq 0$, gilt $[y_1 : y_2 : y_3] = \benb{\frac{y_1}{y_3} : \frac{y_2}{y_3} : 1}$, das heißt die dritte (oder jede andere Koordinate $\neq 0$) kann dann auf $1$ gebracht ("normiert") werden.
 \end{bem}
 
 Einem projektiven Punkt $[x:y:z]$ entspricht in unserem Modell in $k^3$ die Ursprungsgerade $\{(\lambda x, \lambda y, \lambda z) : \lambda \in k\}$. 
@@ -353,8 +354,8 @@ kann die affine Ebene in die projektive eingebettet werden (d.h. $\iota$ ist inj
 
 Die in $\aff^2(k)$ parallelen Geraden $g(a,1,c) = \{(x,y) \in k^2 : ax + y + c = 0\} = \{(x,-ax-c) : x \in k\}$ und $g(a,1,d)$ müssen die projektiven Punkte $[x:-ax-c:1]$ und $[x:-ax-d:1]$ enthalten. \\
 Das klappt, wenn die Gleichung $ax + y \{c,d\} = 0$ zu $ax + y + \{c,d\}z = 0$ ergänzt wird. 
-Sie schneiden sich dann im unendlich fernen Punkt $[1 : -a : 0] = \benbrace*{-\frac{1}{a} : 1 : 0}$, welcher die gemeinsame Steigung $-a$ angibt bzw. die gemeinsame "Richtung" $(1,-a)$. 
-Die gemeinsame Richtung $(1,-a)$ wird zum gemeinsamen Schnittpunkt $\benbrace*{-\frac{1}{a} : 1 : 0}$ erklärt.
+Sie schneiden sich dann im unendlich fernen Punkt $[1 : -a : 0] = \benb{-\frac{1}{a} : 1 : 0}$, welcher die gemeinsame Steigung $-a$ angibt bzw. die gemeinsame "Richtung" $(1,-a)$. 
+Die gemeinsame Richtung $(1,-a)$ wird zum gemeinsamen Schnittpunkt $\benb{-\frac{1}{a} : 1 : 0}$ erklärt.
 
 \begin{defn}[projektive Gerade]
 	Eine \Index{projektive Gerade} ist eine Teilmenge von $\PP^2(k)$ der Form
@@ -365,7 +366,7 @@ Die gemeinsame Richtung $(1,-a)$ wird zum gemeinsamen Schnittpunkt $\benbrace*{-
 \end{defn}
 
 \minisec{Beispiel und Bemerkung}
-	Die projektiven Geraden $g(a,1,c),g(a,1,d)$ schneiden sich in $\penbrace*{-\frac{1}{a}:1:0} \in g_\infty$. 
+	Die projektiven Geraden $g(a,1,c),g(a,1,d)$ schneiden sich in $\penb{-\frac{1}{a}:1:0} \in g_\infty$. 
 	Durch je zwei verschiedene Punkte des $\PP^2(k)$ führt genau eine projektive Gerade.
 	
 \subsubsection{Affine Kurven}
@@ -416,7 +417,7 @@ Die gemeinsame Richtung $(1,-a)$ wird zum gemeinsamen Schnittpunkt $\benbrace*{-
 
 \begin{defn}[Tangente]
 	Eine (affine) \Index{Tangente} an eine affine Kurve $\cc_f(k)$ im Punkt $(a,b) \in \cc_f(k)$ ist die Gerade
-	\[ t_f(a,b) = \penbrace*{ (x,y) : \frac{\der f}{\der x} (a,b)x + \frac{\der f}{\der y}(a,b)y + d = 0},\]
+	\[ t_f(a,b) = \penb{ (x,y) : \frac{\der f}{\der x} (a,b)x + \frac{\der f}{\der y}(a,b)y + d = 0},\]
 	falls diese existiert (wir brauchen, dass $\frac{\der f}{\der x}(a,b), \frac{\der f}{\der y}(a,b)$ nicht beide $=0$). 
 	Dabei ist $d \in k$ so gewählt, dass $(a,b) \in t_f(a,b)$ gilt.
 \end{defn}
@@ -760,8 +761,8 @@ Wir zeigen nun, dass wir bei Tangenten in einem Kurvenpunkt immer die Schnittmul
 	\begin{description}
 		\item[(i)$\Rightarrow$(ii):] Sei $h$ ein gemeinsamer Teiler, $\deg(h) \geq 1$. 
 		Dann setze $f_0 = \frac{f}{h}, g_0 = \frac{g}{h}$.
-		\item[(i)$\Leftarrow$(ii):] Sind $f_0,g_0$ wie in (ii) und $h = \ggT(f,g)$, folgt $\ggT\enbrace*{\frac{f}{h},\frac{g}{h}}=1$. 
-		Nach Voraussetzung ist $\frac{f}{h} \cdot g_0 = f_0 \cdot \frac{g}{h}$, also ist $\frac{f}{h} \mid f_0$, das heißt $\deg\enbrace*{\frac{f}{h}} \leq \deg(f_0) \leq m-1$, also $\deg(h) \geq 1$.
+		\item[(i)$\Leftarrow$(ii):] Sind $f_0,g_0$ wie in (ii) und $h = \ggT(f,g)$, folgt $\ggT\enb{\frac{f}{h},\frac{g}{h}}=1$. 
+		Nach Voraussetzung ist $\frac{f}{h} \cdot g_0 = f_0 \cdot \frac{g}{h}$, also ist $\frac{f}{h} \mid f_0$, das heißt $\deg\enb{\frac{f}{h}} \leq \deg(f_0) \leq m-1$, also $\deg(h) \geq 1$.
 		\item[(ii)$\Leftrightarrow$(iii):] $f_0, g_0$ entsprechen den nichttrivialen Lösungen des linearen Gleichungssystems
 		\[ \sum_{k=1}^{n} c_k T^{k-1} f + \sum_{k=1}^m c_{n+k} T^{k-1} g = 0. \]
 		Bezüglich der Basis $T^0, T^1, \dots, T^{n+m-1}$ über $S$ wird das LGS gerade durch $M(f,g)$ beschrieben. \qed
@@ -886,7 +887,7 @@ Wir zeigen nun, dass wir bei Tangenten in einem Kurvenpunkt immer die Schnittmul
 \end{bsp}
 
 \begin{bem}
-	Veranschaulichung, dass zum Beispiel alle elliptischen Kurven $E_s(\RR)$ zur Gleichung $y^2 = x^3 - 3x + s, s \in \RR$, den unendlich fernen Punkt $\oh = [0:1:0]$ gemeinsam haben: \todo{Wer mir das folgende Bild text, bekommt Eis oder Bier!} 
+	Veranschaulichung, dass zum Beispiel alle elliptischen Kurven $E_s(\RR)$ zur Gleichung $y^2 = x^3 - 3x + s, s \in \RR$, den unendlich fernen Punkt $\oh = [0:1:0]$ gemeinsam haben:
 	
 	\begin{figure}[h]
 		\centering
@@ -904,7 +905,7 @@ Wir zeigen nun, dass wir bei Tangenten in einem Kurvenpunkt immer die Schnittmul
 		\begin{equation}
 		\begin{aligned}
 			\Phi \colon \PP^2(k) &\longrightarrow 2\PP^2(k) \\
-			[r:s:t] &\longmapsto \benbrace*{r : s + \frac{a_1}{2}r + \frac{a_3}{2}t : t}
+			[r:s:t] &\longmapsto \benb{r : s + \frac{a_1}{2}r + \frac{a_3}{2}t : t}
 		\end{aligned}
 		\end{equation}
 		bijektiv und es ist $\Phi(E_f(k)) = E_{H_1}(k)$ ebenfalls eine elliptische Kurve mit $H_1(X,Y,Z) = Y^2Z - X^3 - \frac{1}{4}b_2 X^2Z - \frac{1}{2} b_4 XZ^2 - \frac{1}{4} b_6 Z^3$, wobei $b_2 = a_1^2 + 4a_2, b_4 = 2a_4 + a_1 a_3, b_6 = a_3^2 + 4a_6$.
@@ -931,17 +932,17 @@ Wir zeigen nun, dass wir bei Tangenten in einem Kurvenpunkt immer die Schnittmul
 
 \begin{bew}
 	Zunächst zu (i): \begin{itemize}
-		\item $\Phi$ ergibt als Abbildung nur Sinn, wenn $2$ invertierbar ist in $k$, das heißt, falls $\Char(k) \neq 2$ ist. $\Phi$ ist dann bijektiv, da $\Phi$ die Umkehrabbildung $\Phi^{-1}([r:s:t]) = \benbrace*{r : s - \frac{a_1}{2}r - \frac{a_3}{2}t : t}$ hat.
-		\item Weiter bezeichnen wir mit $\Phi, \Phi^{-1}$ auch die zugehörigen (affinen) Abbildungen $\Phi, \Phi^{-1}\colon k^3 \longrightarrow k$,\linebreak $\Phi(r,s,t) = \enbrace*{r,s+ \frac{a_1}{2}r + \frac{a_3}{2}t, t}$ bzw. $\Phi^{-1}(r,s,t) = \enbrace*{r,s - \frac{a_1}{2}r - \frac{a_3}{2}t,t}$. 
-		Nun können wir mit den im Satz angegebenen Zahlen $b_2,b_4,b_6$ nachrechnen, dass $H_1(X,Y,Z) = F\enbrace*{X,Y - \frac{a_1}{2}X - \frac{a_3}{2}Z,Z}$:
+		\item $\Phi$ ergibt als Abbildung nur Sinn, wenn $2$ invertierbar ist in $k$, das heißt, falls $\Char(k) \neq 2$ ist. $\Phi$ ist dann bijektiv, da $\Phi$ die Umkehrabbildung $\Phi^{-1}([r:s:t]) = \benb{r : s - \frac{a_1}{2}r - \frac{a_3}{2}t : t}$ hat.
+		\item Weiter bezeichnen wir mit $\Phi, \Phi^{-1}$ auch die zugehörigen (affinen) Abbildungen $\Phi, \Phi^{-1}\colon k^3 \longrightarrow k$,\linebreak $\Phi(r,s,t) = \enb{r,s+ \frac{a_1}{2}r + \frac{a_3}{2}t, t}$ bzw. $\Phi^{-1}(r,s,t) = \enb{r,s - \frac{a_1}{2}r - \frac{a_3}{2}t,t}$. 
+		Nun können wir mit den im Satz angegebenen Zahlen $b_2,b_4,b_6$ nachrechnen, dass $H_1(X,Y,Z) = F\enb{X,Y - \frac{a_1}{2}X - \frac{a_3}{2}Z,Z}$:
 		\begin{equation}
 		\begin{aligned}
-			& \quad \ F\enbrace*{X,Y-\frac{a_1}{2}X-\frac{a_3}{2}Z,Z} \\
-			&= \enbrace*{Y- \frac{a_1}{2} X - \frac{a_3}{2}Z}^2 Z + a_1 X \enbrace*{Y - \frac{a_1}{2} X - \frac{a_3}{2}Z}Z + a_3 \enbrace*{Y - \frac{a_1}{2} X - \frac{a_3}{2} Z}Z^2 \\
+			& \quad \ F\enb{X,Y-\frac{a_1}{2}X-\frac{a_3}{2}Z,Z} \\
+			&= \enb{Y- \frac{a_1}{2} X - \frac{a_3}{2}Z}^2 Z + a_1 X \enb{Y - \frac{a_1}{2} X - \frac{a_3}{2}Z}Z + a_3 \enb{Y - \frac{a_1}{2} X - \frac{a_3}{2} Z}Z^2 \\
 			& \quad \ - X^3 - a_2X^2Z - a_4 XZ^2 - a_6Z^3 \\
-			&= Z \cdot \enbrace*{Y^2 - 2Y \enbrace*{\frac{a_1}{2}X + \frac{a_3}{2} Z} + \enbrace*{\frac{a_1^2}{4} X^2 + 2 \cdot \frac{a_1 a_3}{4} XZ + \frac{a_3^2}{4} Z^2}} \\
+			&= Z \cdot \enb{Y^2 - 2Y \enb{\frac{a_1}{2}X + \frac{a_3}{2} Z} + \enb{\frac{a_1^2}{4} X^2 + 2 \cdot \frac{a_1 a_3}{4} XZ + \frac{a_3^2}{4} Z^2}} \\
 			& \quad \ + a_1XYZ - \frac{a_1^2}{2} X^2 Z - \frac{a_1 a_3}{2} XZ^2 + a_3 YZ^2 - \frac{a_1 a_3}{2} XZ^2 - \frac{a_3^2}{2} Z^3 - X^3 - a_2 X^2 Z - a_4 XZ^2 - a_6Z^3 \\
-			&= Y^2 Z - X^3 + \enbrace*{-\frac{a_1^2}{4} - a_2} X^2 Z + \enbrace*{- \frac{a_1 a_3}{2} - a_4} XZ^2 + \enbrace*{- \frac{a_3^2}{4} - a_6} Z^3 \\
+			&= Y^2 Z - X^3 + \enb{-\frac{a_1^2}{4} - a_2} X^2 Z + \enb{- \frac{a_1 a_3}{2} - a_4} XZ^2 + \enb{- \frac{a_3^2}{4} - a_6} Z^3 \\
 			&= Y^2 Z - X^3 - \frac{1}{4} b_2 X^2 Z - \frac{1}{2} b_4 XZ^2 - \frac{1}{4} b_6 Z^3 = H_1(X,Y,Z)
 		\end{aligned}
 		\end{equation}
@@ -958,8 +959,8 @@ Wir zeigen nun, dass wir bei Tangenten in einem Kurvenpunkt immer die Schnittmul
 		Die drei Ableitungen von $F$ in $\Phi^{-1}(P)$ sind also nicht alle $= 0$, also sind auch die drei Ableitungen von $H_1$ in $(r,s,t)$ nicht alle $=0$. 
 		Also ist $P$ auf $\cc_{H_1}(\overline{k})$ nicht-singulär.
 	\end{itemize}
-	Zu (ii): $\Psi$ hat die Inverse $[r:s:t] \mapsto \benbrace*{\frac{1}{36} r - \frac{b_2}{12}t : \frac{1}{216} s : t}$, da wegen $\Char(k) \neq 2, \neq 3$ die Zahlen $\frac{1}{36}, \frac{1}{12}, \frac{1}{216} = \frac{1}{2^3 \cdot 3^3}$ in $k$ existieren, und leicht zu bestätigen ist, dass $\Psi(\Psi^{-1}([r:s:t])) = [r:s:t]$ gilt. 
-	Durch geduldiges Nachrechnen zeigt man $H_2(X,Y,Z) = 2^6 3^6 \cdot H_1 \enbrace*{\frac{1}{36} X - \frac{b_2}{12}Z, \frac{1}{216} Y,Z}$, daraus folgt $H_1(r,s,t) = 0$ genau dann, wenn $H_2(\Psi(r,s,t))=0$, das heißt $\Psi(E_{H_1}(k)) = \cc_{H_2}(k)$. 
+	Zu (ii): $\Psi$ hat die Inverse $[r:s:t] \mapsto \benb{\frac{1}{36} r - \frac{b_2}{12}t : \frac{1}{216} s : t}$, da wegen $\Char(k) \neq 2, \neq 3$ die Zahlen $\frac{1}{36}, \frac{1}{12}, \frac{1}{216} = \frac{1}{2^3 \cdot 3^3}$ in $k$ existieren, und leicht zu bestätigen ist, dass $\Psi(\Psi^{-1}([r:s:t])) = [r:s:t]$ gilt. 
+	Durch geduldiges Nachrechnen zeigt man $H_2(X,Y,Z) = 2^6 3^6 \cdot H_1 \enb{\frac{1}{36} X - \frac{b_2}{12}Z, \frac{1}{216} Y,Z}$, daraus folgt $H_1(r,s,t) = 0$ genau dann, wenn $H_2(\Psi(r,s,t))=0$, das heißt $\Psi(E_{H_1}(k)) = \cc_{H_2}(k)$. 
 	Wieder mit der Kettenregel kann auch die Nicht-Singularität von $\cc_{H_2}$ gezeigt werden. \qed
 \end{bew}
 
@@ -1172,7 +1173,6 @@ Theoretische Ergänzungen zu unserer Definition von $\Delta(\cc_F(k))$:
 	Betrachte die elliptische Kurve $E(k)$ zur (kurzen) Weierstraßgleichung $y^2 = x^3 - 3x + 3$. 
 	Jede Gerade, die $E(k)$ in zwei Punkten schneidet, schneidet $E(k)$ in einem dritten Punkt, gemäß Vielfachheit gezählt. 
 	Der dritte Schnittpunkt kann auch $\oh \in g_\infty$ sein.
-	\newpage
 	\begin{figure}[h]
 		\centering
 		\begin{tikzpicture}[scale=1]
@@ -1472,7 +1472,7 @@ Als Beweishilfsmitten benötigen wir den \Index{Neunpunktesatz}.
 		\item Sowohl bei der Addition "$+$" als auch bei der Punkteverdopplung $P \mapsto 2P$ (affin) wir eine Division in $k$ benötigt.
 		Das ist zum Beispiel für $k = \RR$ unpässlich bzw. zu ungenau.
 		Das Problem lässt sich mit projektiven Koordinaten beheben:
-		Ist $P = \enbrace*{\frac{x}{r},\frac{y}{s}} \in \PP^2(k)$ mit $r,s \in k \setminus \setnull$, ist $P = [xs:yr:rs]$ ohne Division berechenbar, aber es müssen mehr Multiplikationen durchgeführt werden.
+		Ist $P = \enb{\frac{x}{r},\frac{y}{s}} \in \PP^2(k)$ mit $r,s \in k \setminus \setnull$, ist $P = [xs:yr:rs]$ ohne Division berechenbar, aber es müssen mehr Multiplikationen durchgeführt werden.
 		Durch die Einführung einer Variante von projektiven Koordinaten -- den so genannten \bet{Jakobinischen Koordinaten} --  kann man im Vergleich dazu Multiplikationen einsparen, was den Rechenaufwand vermindert.
 		Wir besprechen dies in diesem Abschnitt zur schnellen Punkteaddition.
 		\index{Jakobinische Koordinaten}
@@ -1499,7 +1499,7 @@ Als Beweishilfsmitten benötigen wir den \Index{Neunpunktesatz}.
 
 \begin{bem}
 	\begin{itemize}
-		\item Wenn $z \neq 0$, gilt durch Normierung $\enbrace*{\frac{x}{z^c}, \frac{y}{z^d},1} \sim (x,y,z)$, vermöge $\sigma = \frac{1}{z}$, damit kann man in der Menge
+		\item Wenn $z \neq 0$, gilt durch Normierung $\enb{\frac{x}{z^c}, \frac{y}{z^d},1} \sim (x,y,z)$, vermöge $\sigma = \frac{1}{z}$, damit kann man in der Menge
 		\[
 			\PP_{(c,d)}^2(k) := \{ (x:y:z) : (x,y,z) \in k^3 \setminus \setnull \}
 		\]
@@ -1507,9 +1507,10 @@ Als Beweishilfsmitten benötigen wir den \Index{Neunpunktesatz}.
 		\item Die Punkte mit $z = 0$ bilden wieder die unendlich ferne Gerade.
 		\item Die projektive Form der Weierstraßgleichung erhält man durch Einsetzen von $\frac{x}{z^c}$ und $\frac{y}{z^d}$ in die Gleichung und Entfernung der Nenner durch Multiplikation:
 		\[
-			y^2 - x^3 - ax - b = 0 \Rightarrow \enbrace*{\frac{y}{z^d}}^2 - \enbrace*{\frac{x}{z^c}}^3 - a \cdot \frac{x}{z^c} - b = 0 \Rightarrow y^2 - x^{3-3c+2d} - axz^{2d-c} - bz^{2d} = 0,
+			y^2 - x^3 - ax - b = 0 \Rightarrow \enb{\frac{y}{z^d}}^2 - \enb{\frac{x}{z^c}}^3 - a \cdot \frac{x}{z^c} - b = 0 \Rightarrow y^2 - x^{3-3c+2d} - axz^{2d-c} - bz^{2d} = 0,
 		\]
 		falls etwa $2d = 3c$, was offenbar im Allgemeinen nicht mehr homogen sein muss.
+		\newpage
 		\item In der Krpytographie verwendet man folgende projektive Darstellungen:
 			\begin{itemize}
 				\item Standard-projektive Koordinaten: $c=d=1$
@@ -1529,11 +1530,11 @@ Als Beweishilfsmitten benötigen wir den \Index{Neunpunktesatz}.
 	wobei $\lambda := \frac{3u^2+a}{2v}$, die affine Version der expliziten Formel in Standard-Darstellung.
 	Für die Koordinaten $x,y$ von $2P = (x:y:1) = [x:y:1]$ bei $P=[u:v:z]$ erhält man durch Einsetzen von $\frac{u}{z^2}$ für $u$ und $\frac{v}{z^3}$ für $v$ dann
 	\[
-		x = \enbrace*{\frac{3 \cdot \enbrace*{ \frac{u}{z^2} }^2 + a}{2 \cdot \frac{v}{z^3}}}^2 - 2 \cdot \frac{u}{z^2} = \frac{\enbrace*{3 \cdot \frac{u^2}{z^4} + a}^2 z^6}{4v^2} - 2 \cdot \frac{u}{z^2} = \frac{(3u^2 + az^4)^2-8uv^2}{4v^2z^2}
+		x = \enb{\frac{3 \cdot \enb{ \frac{u}{z^2} }^2 + a}{2 \cdot \frac{v}{z^3}}}^2 - 2 \cdot \frac{u}{z^2} = \frac{\enb{3 \cdot \frac{u^2}{z^4} + a}^2 z^6}{4v^2} - 2 \cdot \frac{u}{z^2} = \frac{(3u^2 + az^4)^2-8uv^2}{4v^2z^2}
 	\]
 	und
 	\[
-		y = \frac{3 \cdot \enbrace*{ \frac{u}{z^2}}^2 + a}{2 \cdot \frac{v}{z^3}} \cdot \enbrace*{\frac{u}{z^2} - x} - \frac{v}{z^3} = \frac{3u^2 + az^4}{2vz} \cdot \enbrace*{\frac{u}{z^2} - x} - \frac{v}{z^3}.
+		y = \frac{3 \cdot \enb{ \frac{u}{z^2}}^2 + a}{2 \cdot \frac{v}{z^3}} \cdot \enb{\frac{u}{z^2} - x} - \frac{v}{z^3} = \frac{3u^2 + az^4}{2vz} \cdot \enb{\frac{u}{z^2} - x} - \frac{v}{z^3}.
 	\]
 	Setzen wir nun $\sigma := 2vz$, wird damit $x_0 = \sigma^2 x, y_0 = \sigma^3 y, z_0 = \sigma$ und somit
 	\[
@@ -1542,13 +1543,13 @@ Als Beweishilfsmitten benötigen wir den \Index{Neunpunktesatz}.
 	und
 	\begin{equation}
 	\begin{aligned}
-		y_0 &= \frac{3u^2+az^4}{2vz} \cdot 8v^3z^3 \cdot \enbrace*{\frac{u}{z^2} - x} - \frac{v}{z^3} \cdot 8v^3z^3 \\
+		y_0 &= \frac{3u^2+az^4}{2vz} \cdot 8v^3z^3 \cdot \enb{\frac{u}{z^2} - x} - \frac{v}{z^3} \cdot 8v^3z^3 \\
 		&= (3u^2 + az^4) \cdot 4v^2 \cdot(u-z^2x) - 8v^4 \\
 		&= (3u^2 + az^4) \cdot (4uv^2 - x_0) - 8v^4
 	\end{aligned}
 	\end{equation}
 \end{anw}
-
+\newpage
 \begin{bem}
 	Eine Umsetzung der Berechnung von $(x_0:y_0:z_0) = 2P = (x:y:1)$ ist somit wie folgt möglich:
 	\[
@@ -1601,9 +1602,9 @@ Als Beweishilfsmitten benötigen wir den \Index{Neunpunktesatz}.
 	Zur Erinnerung: Wie bei der schnellen Potenzierung zur Berechnung von $x^m$ kann bei additiver Schreibweise einer Gruppe die Berechnung von $m \cdot P$ analog durchgeführt werden, was man "schnelle Vervielfachung nennen könnte, engl. \Index{dual and add}-algorithm.
 	Schritte des Verfahrens:
 	\begin{enumerate}[1)]
-		\item Sei $d = \floor*{\frac{\log m}{\log 2}}$, berechne durch sukzessives Verdoppeln $P, 2P, 4P, 8P, \dots, 2^d P$.
+		\item Sei $d = \Floor{\frac{\log m}{\log 2}}$, berechne durch sukzessives Verdoppeln $P, 2P, 4P, 8P, \dots, 2^d P$.
 		\item Schreibe $m$ als Binärzahl: $m = \sum_{i=0}^d c_i 2^i, c_i \in \{0,1\}$.
 		\item Berechne $mP = (c_0 P) + (c_1 \cdot 2P) + (c_2 \cdot 4P) + \dots + (c_d \cdot 2^dP)$ mit maximal $d$ weiteren Additionen von Punkten auf $E(k)$.
 	\end{enumerate}
 \end{bem}
-\newpage
+\cleardoubleoddemptypage

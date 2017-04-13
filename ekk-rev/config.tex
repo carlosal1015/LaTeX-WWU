@@ -40,6 +40,7 @@
 	\usepackage[babel=true,final,tracking=smallcaps]{microtype}
 	\DisableLigatures{encoding = T1, family = tt* } % keine Ligaturen für Monospace-Fonts
 	\usepackage{ellipsis}
+	\newcommand{\bet}[1]{\textbf{#1}}
 % ===========================================================
 
 % Farben
@@ -54,6 +55,7 @@
 % ===========================================================
 	\usepackage{mathtools}
 	\usepackage{amssymb}
+	\usepackage{wasysym}
 	\usepackage[bigdelims]{newtxmath}		% moderne Mathe-Font
 	\allowdisplaybreaks						% seitenübergreifende Rechnungen
 	\input{MathCmds.tex}
@@ -84,13 +86,17 @@
 	\onehalfspacing							% Zeilenabstand 1.5-fach
 	\setlength{\parindent}{0pt}
 	\setlength{\parskip}{0.5\baselineskip}
+	\usepackage[all]{nowidow}
 % ===========================================================
 
 % Nummerierungen
 % ===========================================================
 	\usepackage{chngcntr}
 	\counterwithin{equation}{section} 	% keine Kapitel in Gleichungsnummern
-	%\counterwithout{section}{chapter}	% keine Kapitel in Abschnittsnummern
+	\newcounter{counter}				% Zähler für Sätze
+	\newcounter{lecture}
+	\numberwithin{counter}{lecture}		% Section in Satz-Nummerierung einbeziehen
+	\newcommand{\nextlecture}{\stepcounter{lecture} \setcounter{counter}{0}}
 % ===========================================================
 
 % Biblatex
@@ -171,22 +177,33 @@
 
 \theoremstyle{changebreak}
 \theorembodyfont{\normalfont}
-\newtheorem{satz}{Satz}[section]
-\newtheorem{definition}[satz]{Definition}
-\newtheorem{korollar}[satz]{Korollar}
-\newtheorem{lemma}[satz]{Lemma}
+\theorempreskip{2em}
+\theorempostskip{2em}
+\newtheorem{satz}[counter]{Satz}
+\newtheorem{defn}[counter]{Definition}
+\newtheorem{bem}[counter]{Bemerkung}
+\newtheorem{bsp}[counter]{Beispiel}
+\newtheorem{lemma}[counter]{Lemma}
+\newtheorem{folg}[counter]{Folgerung}
+\newtheorem{zusatz}[counter]{Zusatz}
+\newtheorem{anw}[counter]{Anwendung}
+\newtheorem{erl}[counter]{Erläuterung}
+\newtheorem{mot}[counter]{Motivation}
+\newtheorem{bew}[counter]{Beweis}
+\newtheorem{kor}[counter]{Korollar}
+\newtheorem{vor}[counter]{Vorbereitung}
 
-\theoremstyle{change}
-\theorembodyfont{\normalfont}
-\theoremseparator{:}
-\newtheorem{beispiel}[satz]{Beispiel}
-
-\theoremstyle{nonumberplain}
-\theoremheaderfont{\bfseries\scshape}
-\theorembodyfont{\normalfont}
-\theoremseparator{:}
-\theoremsymbol{\ensuremath{\blacksquare}}
-\newtheorem{beweis}{Beweis}
+%\theoremstyle{change}
+%\theorembodyfont{\normalfont}
+%\theoremseparator{:}
+%\newtheorem{beispiel}[satz]{Beispiel}
+%
+%\theoremstyle{nonumberplain}
+%\theoremheaderfont{\bfseries\scshape}
+%\theorembodyfont{\normalfont}
+%\theoremseparator{:}
+%\theoremsymbol{\ensuremath{\blacksquare}}
+%\newtheorem{beweis}{Beweis}
 
 \theoremlisttype{optname}
 
