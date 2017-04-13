@@ -1,3 +1,4 @@
+%!TEX root = ../EKK_SS15.tex
 \section{Elliptische Kurven über verschiedenen Körpern}
 \label{sec:para3}
 \nextlecture
@@ -27,10 +28,10 @@
 	\begin{aligned}
 		P + Q &= (4,-9) \\
 		2P + Q &= (2,5) \\
-		3P + Q &= \enbrace*{\frac{1}{4}, - \frac{33}{8}} \\
-		4P + Q &= \enbrace*{\frac{106}{9}, \frac{1097}{27}} \\
-		5P + Q &= \enbrace*{-\frac{2228}{961},-\frac{63465}{29791}}\\
-		6P + Q &= \enbrace*{\frac{76271}{289},-\frac{21063928}{4913}} \\
+		3P + Q &= \enb{\frac{1}{4}, - \frac{33}{8}} \\
+		4P + Q &= \enb{\frac{106}{9}, \frac{1097}{27}} \\
+		5P + Q &= \enb{-\frac{2228}{961},-\frac{63465}{29791}}\\
+		6P + Q &= \enb{\frac{76271}{289},-\frac{21063928}{4913}} \\
 		&\vdots
 	\end{aligned}
 	\end{equation}
@@ -69,7 +70,7 @@
 	\end{aligned}
 	\end{equation} 
 	d.h. $\ord(P_1) = 5$.
-	Somit ist $\sprod*{P_1} = \{\oh, P_1, P_2, P_3, P_4\} \simeq \ZZ_5$.
+	Somit ist $\sk{P_1} = \{\oh, P_1, P_2, P_3, P_4\} \simeq \ZZ_5$.
 \end{bsp}
 
 Die Beispiele legen folgenden Satz nahe:
@@ -187,7 +188,7 @@ Für $a,b,c \in \ZZ$ kann es höchstens endlich viele Punkte mit ganzzahligen Ko
 
 \begin{defn}[Elliptische Funktion]
 	Eine Funktion $f\colon \CC \setminus \pol \rightarrow \CC$ der Form $f(z) := \frac{f(z)}{g(z)}$, $g,h$ holomorph, $h \neq 0$, heißt \Index{elliptische Funktion}, falls $f(z+w) = f(z)$ für alle $z \in \CC$ und $\omega \in \Lambda$ (sofern $f(z), f(z+\omega)$ definiert ist, wobei $\pol = \{z : h(z) = 0\}$ die Menge der Polstellen von $f$ ist), d.h. wenn $f$ (doppelt-)periodische Funktion zu $\Lambda$ ist.
-	Der Körper der elliptischen Funktionen über $\Lambda$ sei $\CC(\Lambda)$. \todo{Zeichnungen einfügen!}
+	Der Körper der elliptischen Funktionen über $\Lambda$ sei $\CC(\Lambda)$.
 \end{defn}
 
 Eine elliptische Funktion ohne Polstellen (oder ohne Nullstellen) ist konstant (vgl. Satz von Liouville aus der Funktionentheorie).
@@ -197,7 +198,7 @@ Eine elliptische Funktion ohne Polstellen (oder ohne Nullstellen) ist konstant (
 	\begin{equation}
 	\begin{aligned}
 		\wp \colon \CC \setminus \Lambda &\Longrightarrow \CC \\
-		z &\longmapsto \frac{1}{z^2} + \sum_{\omega \in \Lambda \setminus \setnull} \enbrace*{\frac{1}{(z-\omega)^2} - \frac{1}{\omega^2}}
+		z &\longmapsto \frac{1}{z^2} + \sum_{\omega \in \Lambda \setminus \setnull} \enb{\frac{1}{(z-\omega)^2} - \frac{1}{\omega^2}}
 	\end{aligned}
 	\end{equation}
 	und $G_{2k}(\Lambda) := \sum_{\omega \in \Lambda \setminus \setnull} \frac{1}{\omega^{2k}} \in \CC$. Dann heißt $\wp$ die \Index{Weierstraß-$\wp$-Funktion} und $G_{2k}$ heißt \Index{Eisensteinreihe} vom Gewicht $2k \in \RR_{>2}$.
@@ -271,7 +272,7 @@ Umgekehrt ist auch jede elliptische Kurve $(E(\CC),+)$ beschreibbar als Torus $(
 		\hline $a_p / 2$ & 1 & -3 & 1 & 5 & 1 & 5 & -7 & 5 & -3 & 5 & \dots 
 		\end{tabular} 
 	\end{center}
-	Beobachtung: $p-\enbrace*{\frac{ap}{2}}^2$ ist stets eine Quadratzahl!
+	Beobachtung: $p-\enb{\frac{ap}{2}}^2$ ist stets eine Quadratzahl!
 \end{defn}
 
 Wir halten fest:
@@ -308,7 +309,7 @@ Zum Beweis benutzen wir:
 \begin{bew}[zu Satz~\ref{satz_17.4}(a)]
 	Für $p \kon 3 \modu 4$ ist $\leg{-1}{\FF_p} = (-1)^\frac{p-1}{2} = -1$ nach dem 1. Ergänzungssatz für das Legendre-Symbol,\marginnote{Für die Rechenregeln zum Legendre- Symbol siehe EZT-Skript!} also $\leg{(-x)^3+(-x)}{\FF_p} = -\leg{x^3+x}{\FF_p}$ für das $x \not\kon 0 \modu p$ nach den Rechenregeln für das Legendre-Symbol, sodass
 	\[
-		0 = \sum_{x \not\kon 0 \modu p} \enbrace*{ \leg{x^3+x}{\FF_p} + \leg{(-x)^3+(-x)}{\FF_p}} = 2 \sum_{x \not\kon 0 \modu p} \leg{x^3 + x}{\FF_p}
+		0 = \sum_{x \not\kon 0 \modu p} \enb{ \leg{x^3+x}{\FF_p} + \leg{(-x)^3+(-x)}{\FF_p}} = 2 \sum_{x \not\kon 0 \modu p} \leg{x^3 + x}{\FF_p}
 	\]
 	folgt, denn mit $x$ durchläuft auch $-x$ alle Restklassen $\not\kon 0 \modu p$.
 	Also ist $\NN_p = p+1$. \qed
@@ -395,7 +396,7 @@ Dennoch konnte N. Elkies 1987 zeigen, dass jede elliptische Kurve $a_p=0$ für u
 	\begin{equation}
 	\begin{aligned}
 		\phi \colon \PP^2(\overline{\FF_{p^r}}) &\longrightarrow \PP^2(\overline{\FF_{p^r}}) \\
-		[x:y:z] &\longmapsto \benbrace*{x^{p^r} : y^{p^r} : z^{p^r}}
+		[x:y:z] &\longmapsto \benb{x^{p^r} : y^{p^r} : z^{p^r}}
 	\end{aligned}
 	\end{equation}
 	vermittelte Gruppenhomomorphiusmus $\Phi\colon E(\overline{\FF_{p^r}}) \rightarrow E(\overline{\FF_{p^r}})$.
@@ -444,7 +445,7 @@ Dennoch konnte N. Elkies 1987 zeigen, dass jede elliptische Kurve $a_p=0$ für u
 \end{anw}
 
 \begin{bem}
-	Wir beobachten: Hat das Verfahren funktioniert, ist dabei $j < k$, sodass durch Berechnung von $x_w = \floor*{\frac{x}{k}}$ für $P_w=(x,y) \in E(\FF_{p^r})$ der Klartext $w$ aus $P_w$ wieder zurückgewonnen werden kann.
+	Wir beobachten: Hat das Verfahren funktioniert, ist dabei $j < k$, sodass durch Berechnung von $x_w = \Floor{\frac{x}{k}}$ für $P_w=(x,y) \in E(\FF_{p^r})$ der Klartext $w$ aus $P_w$ wieder zurückgewonnen werden kann.
 \end{bem}
 
 \begin{bsp}
@@ -571,4 +572,4 @@ Dennoch konnte N. Elkies 1987 zeigen, dass jede elliptische Kurve $a_p=0$ für u
 	Mithilfe von $\#E(\FF_{p^r}) \in \NN$ kann dann entschieden werden, ob die (meist zufällig gewählte) elliptische Kurve kryptographisch geeignet ist oder nicht.
 	Das behandeln wir im nächsten Abschnitt.
 \end{bem}
-\newpage
+\cleardoubleoddemptypage
