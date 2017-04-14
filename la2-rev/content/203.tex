@@ -1,0 +1,488 @@
+%!TEX root = ../LA2.tex
+\section{Orthogonale und unitäre Vektorräume}
+\label{sec:2.3}
+
+In diesem Abschnitt betrachten wir die Körper $\KK = \RR$ oder $\KK = \CC$.
+Ist $V$ ein $\KK$-Vektorraum, so wollen wir eine zusätzliche Struktur auf $V$ betrachten, die es erlaubt, die Längen eines Vektors und den Winkel zwischen zwei Vektoren zu erklären.
+
+\begin{definition}[Skalarprodukt]
+	\label{def:3.1}
+	Sei $V$ ein $\KK$-Vektorraum.
+	Ein \Index{Skalarprodukt} auf $V$ ist eine Abbildung
+	\begin{align*}
+		\sprod{\cdot,\cdot} \colon V \times V &\longrightarrow \KK \\
+		(v,w) &\longmapsto \sprod{v,w}
+	\end{align*}
+	mit folgenden Eigenschaften:
+	\begin{enumerate}[(i)]
+		\item $\sprod{\cdot,\cdot}$ ist \textbf{linear in der ersten Variablen}, das heißt für alle $v_1,v_2,w \in V$ und $\lambda_1,\lambda_2 \in \KK$ gilt
+		\[
+			\sk{\lambda_1v_1+\lambda_2v_2,w} = \lambda_1 \sk{v_1,w} + \lambda_2 \sk{v_2,w}.
+		\]
+		\item $\sprod{\cdot,\cdot}$ ist \Index{hermitesch}, das heißt für alle $v,w \in V$ gilt $\sk{v,w} = \ol{\sk{w,v}}$.
+		Im Fall $\KK=\RR$ bedeutet das also $\sk{v,w} = \sk{w,v}$, das heißt $\sprod{\cdot,\cdot}$ ist \Index{symmetrisch}.
+		\item  $\sprod{\cdot,\cdot}$ ist \Index{positiv definit}, das heißt für alle $v \in V$ gilt $\sk{v,v} \geq 0$, und es gilt
+		\[
+			\sk{v,v} = 0 \quad \Leftrightarrow \quad v = 0.
+		\]
+	\end{enumerate}
+\end{definition}
+
+\begin{bemerkung}
+	\label{bem:3.2}
+	\mbox{} \\[-1.4cm]
+	\begin{enumerate}[(a)]
+		\item Verzichten wir auf Bedingung (iii), so heißt $\sprod{\cdot,\cdot}$  eine \textbf{hermitesche Sesquilinearform}.
+		Ein Skalarprodukt ist also eine positiv definite hermitesche Sesquilinearform. \index{Sesquilinearform}
+		\item Aus (i) und (ii) folgt die Eigenschaft
+		\begin{equation}
+			\sk{w,\lambda_1v_1+\lambda_2v_2} = \ol{\lambda_1} \sk{w,v_1} + \ol{\lambda_2} \sk{w,v_2}. \label{eq:antilin}
+		\end{equation}
+		Wir sagen dann, $\sprod{\cdot,\cdot}$ ist \Index{antilinear} oder \Index{semilinear} in der zweiten Variablen.
+		Eine Abbildung $V \times V \rightarrow \KK$, die linear in der ersten und semilinear in der zweiten Variablen ist, heißt \Index{Sesquilinearform}.
+		\item Ist $\KK = \RR$, so gilt $\ol{\lambda} = \lambda$ für alle $\lambda \in \RR$, das heißt $\sprod{\cdot,\cdot}$ ist dann auch linear in der zweiten Variable.
+		Wir sagen dann, dass $\sprod{\cdot,\cdot}$ \Index{bilinear} ist.
+		Ein Skalarprodukt auf einem $\RR$-Vektorraum ist also eine symmetrische positiv definite Bilinearform.
+	\end{enumerate}
+\end{bemerkung}
+
+\begin{beispiel}
+	\label{bsp:3.3}
+	\mbox{} \\[-1.4cm]
+	\begin{enumerate}[(a)]
+		\item Sei $V = \KK^n$.
+		Für $x = (x_1,\dots,x_n)^T, y = (y_1,\dots,y_n)^T \in \KK^n$ definieren wir
+		\[
+			\sk{x,y} := \sum_{i=1}^{n} x_i \ol{y_i}.
+		\]
+		Dann ist $\sprod{\cdot,\cdot}$ ein Skalarprodukt auf $\KK^n$, denn für $x,y,z \in \KK^n, \lambda_1,\lambda_2 \in \KK$ gilt:
+		\begin{align*}
+			\sk{\lambda_1 x + \lambda_2 y,z} &= \sum_{k=1}^{n} (\lambda_1 x_i + \lambda_2 y_i)\ol{z_i} \\
+			&= \lambda_1 \enb{\sum_{i=1}^n x_i \ol{z_i}} + \lambda_2 \enb{\sum_{i=1}^{n} y_i \ol{z_i}} = \lambda_1 \sk{x,y} + \lambda_2 \sk{y,z}.
+		\end{align*}
+		Ferner gilt
+		\[
+			\sk{x,y} = \sum_{i=1}^{n} x_i \ol{y_i} = \sum_{i=1}^{n} \ol{y_i}x_i = \ol{\sum_{i=1}^{n} y_i \ol{x_i}} = \ol{\sk{y,z}}
+		\]
+		und $\sk{x,x} = \sum_{i=1}^{n} x_i \ol{x_i} = \sum_{i=1}^{n} \abs{x_i}^2 \geq 0$, und die Summe ist $0$ genau dann, wenn alle Summanden 0 sind und damit $x = 0$ ist.
+		
+		Dieses Skalarprodukt heißt das \Index{Standard-Skalarprodukt} auf $\KK^n$.
+		\item Sei $V$ ein beliebiger endlich dimensionaler $\KK$-Vektorraum mit Basis $B := \{v_1,\dots,v_n\}$.
+		Dann wird durch
+		\[
+			\sk{\sum_{i=1}^{n} \lambda_i v_i, \sum_{i=1}^{n} \mu_i v_i} := \sum_{i=1}^n \lambda_i \ol{\mu_i}
+		\]
+		ein Skalarprodukt auf $V$ definiert -- das Standard-Skalarprodukt bzgl. $B$.
+		
+		Beachte: Identifizieren wir $V$ mit $\KK^n$ vermöge $v_j \mapsto e_j$, so geht dieses Skalarprodukt über auf das Standard-Skalarprodukt auf $\KK^n$.
+		\item Sei $V = \RR^2$.
+		Dann wird durch
+		\[
+			\sk{x,y} := (2x_1,x_2)y_1 + (x_1+2x_2)y_2
+		\]
+		ein Skalarprodukt auf $\RR^2$ definiert, welches nicht das Standard-Skalarprodukt auf $\RR^2$ ist.
+		Später werden wir aber sehen, dass es das Skalarprodukt bezüglich einer geeigneten Basis von $\RR^2$ ist.
+		Es gibt unendlich viele verschiedene Skalarprodukte auf $\RR^2$.
+		\item Sei $V = \mathcal{C}[a,b] = \{f \colon [a,b] \rightarrow \CC \text{ stetig}\}$ mit $a,b \in \RR, a < b$.
+		Dann wird durch
+		\[
+			\sk{f,g} := \int_{a}^{b} f(t) \ol{g(t)} dt
+		\]
+		ein Skalarprodukt auf $\mathcal{C}[a,b]$ definiert.
+	\end{enumerate}
+\end{beispiel}
+
+\begin{satz}[\textsc{Cauchy-Schwarz}-Ungleichung]
+	\label{satz:3.4}
+	Sei $\sk{\cdot,\cdot}$ ein Skalarprodukt auf dem $\KK$-Vektorraum $V$.
+	Dann gilt für alle $v,w \in V$: \index{Cauchy-Schwarz-Ungleichung}
+	\[
+		\abs{\sk{v,w}}^2 \leq \sk{v,v} \cdot \sk{w,w}
+	\]
+	Ferner gilt $\abs{\sk{v,w}}^2 = \sk{v,v} \sk{w,w}$ genau dann, wenn $v$ und $w$ linear abhängig sind.
+\end{satz}
+
+\begin{beweis}
+	Ist $w = 0$, so sind beide Seiten $0$ und die Behauptung folgt.
+	Sei also o.B.d.A. $w \neq 0$.
+	Für $\lambda \in \KK$ folgt:
+	\begin{align*}
+		0 &\stack{}{\leq} \sk{v-\lambda w, v - \lambda w} \\
+		&\stack{(i)}{=} \sk{v,v-\lambda w} - \lambda \sk{w,v-\lambda w} \\
+		&\stack{\eqref{eq:antilin}}{=} \sk{v,v} - \ol{\lambda} \sk{v,w} - \lambda \sk{w,v} + \lambda \ol{\lambda} \sk{w,w}.
+	\end{align*}
+	Mit $\lambda = \frac{\sk{v,w}}{\sk{w,w}}$ (geht, da $w \neq 0$) folgt
+	\begin{align*}
+		0 &\leq \sk{v,v} - \frac{\ol{\sk{v,w}}}{\sk{w,w}} \sk{v,w} - \frac{\ol{\sk{v,w}}}{\sk{w,w}} \sk{w,v} + \frac{\abs{\sk{v,w}}^2}{\sk{w,w}^2} \sk{w,w} \\
+		&= \sk{v,v} - \frac{1}{\sk{w,w}} \abs{\sk{v,w}}^2 - \frac{1}{\sk{w,w}} \abs{\sk{v,w}}^2 + \frac{1}{\sk{w,w}} \abs{\sk{v,w}}^2 \\
+		&= \sk{v,v} - \frac{1}{\sk{w.w}} \abs{\sk{v,w}}^2.
+	\end{align*}
+	Es folgt $\frac{1}{\sk{w,w}} \abs{\sk{v,w}}^2 \leq \sk{v,v}$ und damit $\abs{\sk{v,w}}^2 \leq \sk{v,v} \sk{w,w}$.
+	
+	Es gilt Gleichheit genau dann, wenn
+	\[
+		0 = \sk{v,v} - \frac{1}{\sk{w,w}} \abs{\sk{v,w}}^2 = \sk{v- \lambda w, v-\lambda w}
+	\]
+	für $v = \frac{\sk{v,w}}{\sk{w,w}}$.
+	Da $\sk{\cdot,\cdot}$ positiv definit ist, folgt $v - \lambda w = 0$, also sind $v$ und $w$ linear abhängig.
+	
+	Umgekehrt gilt:
+	Sind $v$ und $w$ linear abhängig mit $w \neq 0$, so existiert ein $\mu \in \KK$ mit $v = \mu w$ und dann folgt
+	\begin{align*}
+		\abs{\sk{v,w}}^2 &= \abs{\sk{\mu w,w}}^2 = \abs{\mu \sk{w,w}}^2 = \abs{\mu}^2 \sk{w,w}^2 \\
+		&= \mu \ol{\mu} \sk{w,w} \sk{w,w} = \sk{\mu w, \mu w} \sk{w,w} \\
+		&= \sk{v,v} \sk{w,w}. \qedhere
+	\end{align*}
+\end{beweis}
+
+Wir wollen nun sehen, dass man mit Hilfe eines Skalarprodukts eine Norm auf $V$ definieren kann, das heißt ein Maß für die Länge eines Vektors:
+
+\begin{definition}[Norm]
+	\label{def:3.5}
+	Sei $V$ ein $\KK$-Vektorraum.
+	Eine \Index{Norm} auf $V$ ist eine Abbildung $\Norm{\cdot} \colon V \rightarrow [0,\infty)$	mit den Eigenschaften
+	\begin{enumerate}[(i)]
+		\item $\no{\lambda v} = \abs{\lambda} \cdot \no{v}$ für alle $\lambda \in \KK$ und $v \in V$.
+		\item $\no{v+w} \leq \no{v} + \no{w}$ für alle $v,w \in V$ (\Index{Dreiecksungleichung})
+		\item $\no{v} = 0 \quad \Leftrightarrow \quad v = 0$.
+	\end{enumerate}
+	\newpage
+	Ist $\no{\cdot}$ eine Norm auf $V$ so heißt für $v,w \in V$
+	\[
+		d(v,w) := \no{v-w}
+	\]
+	der \Index{Abstand} von $v$ zu $w$ bezüglich $\no{\cdot}$.
+\end{definition}
+
+\begin{beispiel}
+	\label{bsp:3.6}
+	\mbox{} \\[-1.4cm]
+	\begin{enumerate}[(a)]
+		\item Ist $V = \CC$ (als $\CC$-Vektorraum oder auch als $\RR$-Vektorraum), so ist $\no{z} := \abs{z}$ eine Norm auf $\CC$.
+		Ebenso ist $\no{x} = \abs{x}$ eine Norm auf $\RR$ als $\RR$-Vektorraum.
+		\item Ist $V = \mathcal{C}[a,b]$, so ist
+		\[
+			\no{f}_{\infty} := \sup_{x \in [a,b]} \abs{f(x)}
+		\]
+		eine Norm auf $\mathcal{C}[a,b]$ -- die \Index{Supremumsnorm}.
+		Diese spielt eine wichtige Rolle in der Analysis.
+		\item Ist $V = \KK^n$, so sind $\no{x}_1 := \sum_{i=1}^{n} \abs{x_i}$ und $\no{x}_\infty := \max\{ \abs{x_1},\dots,\abs{x_n}\}$ Normen auf $\KK^n$. Allgemein ist die $\mathbf{p}$\textbf{-Norm} definiert durch \index{p-Norm@$p$-Norm}
+		\[
+			\no{x}_p = \enb{\sum_{i=1}^{n} \abs{x_i}^p}^{\frac{1}{p}}.
+		\]
+	\end{enumerate}
+	Es gibt also sehr viele verschiedene Normen auf $\KK^n$.
+\end{beispiel}
+
+\begin{satz}[Induzierte Norm und Parallelogrammgleichung]
+	\label{satz:3.7}
+	Sei $\sk{\cdot,\cdot}$ ein Skalarprodukt auf dem $\KK$-Vektorraum $V$.
+	Dann wird durch
+	\[
+		\no{v} := \sqrt{\sk{v,v}}, \qquad v \in V
+	\]
+	eine Norm auf $V$ definiert.
+	Diese erfüllt für alle $v,w \in V$ die \Index{Parallelogrammgleichung}
+	\[
+		\no{v+w}^2 + \no{v-w}^2 = 2 (\no{v}^2 + \no{w}^2).
+	\]
+\end{satz}	
+	
+\begin{figure}[h]
+	\centering
+	\begin{tikzpicture}[scale=.4,>=Latex]
+			\draw (0,0) node[fill,circle,inner sep=1.5pt]{};
+			\draw (5,2) node[fill,circle,inner sep=1.5pt]{};
+			\draw (2,5) node[fill,circle,inner sep=1.5pt]{};
+			\draw (7,7) node[fill,circle,inner sep=1.5pt]{};
+			\draw (3,-3) node[fill,circle,inner sep=1.5pt]{};
+			
+			\draw (0,0) node[left]{$0$};
+			\draw (5,2) node[right]{$v$};
+			\draw (2,5) node[left]{$w$};
+			\draw (7,7) node[right]{$v+w$};
+			\draw (3,-3) node[right]{$v-w$};
+			%\draw (3.3,1.33) node[rotate=-20]{$\Norm{v-w}$};
+			
+			\draw [->,thick] (0,0) -- (2,5);
+			\draw [->,thick] (0,0) -- (5,2);
+			\draw [->,darkgray] (0,0) -- (7,7);
+			\draw [->,darkgray] (0,0) -- (3,-3);
+			\draw [thick,dashed] (2,5) -- (7,7) -- (3,-3);
+			\draw [thick,dashed] (5,2) -- (2,5);
+	\end{tikzpicture}
+	\caption{Die Summe der Quadrate der Diagonalen ist gleich der doppelten Summe der Quadrate der Seiten.}
+\end{figure}
+\newpage
+\begin{beweis}
+	Zunächst gilt $\no{\lambda v}^2 = \sk{\lambda v,\lambda v} = \lambda \ol{\lambda} \sk{v,v} = \abs{\lambda}^2 \sk{v,v}$, also $\no{\lambda v} = \abs{\lambda} \cdot \no{v}$ für alle $\lambda \in \KK$ und $v \in V$.
+	Sind $v,w \in V$, so gilt
+	\begin{align*}
+		\no{v+w}^2 &\stack{}{} \sk{v+w,v+w} = \sk{v,v} + \sk{v,w} + \sk{w,v} + \sk{w,w} \\
+		&\stack{}{=} \no{v}^2 + \sk{v,w} + \ol{\sk{v,w}} + \no{w}^2 \\
+		&\stack{}{=} \no{v}^2 + 2 \cdot \Re( \sk{v,w}) + \no{w}^2 \\
+		&\stack{}{\leq} \no{v}^2 + 2 \cdot \abs{\sk{v,w}} + \no{w}^2 \\
+		&\stack{\ref{satz:3.4}}{\leq} \no{v}^2 + 2 \cdot \no{v} \cdot \no{w} + \no{w}^2 = (\no{v} + \no{w})^2,
+	\end{align*}
+	also folgt $\no{v+w} \leq \no{v} + \no{w}$.
+	
+	Schließlich gilt $\no{v} = 0 \Rightarrow \sk{v,v} = \no{v}^2 = 0 \Rightarrow v = 0$.
+	Damit ist $\no{\cdot}$ eine Norm.
+	Es gilt dann für alle $v,w \in V$:
+	\begin{align*}
+		\no{v+w}^2 + \no{v-w}^2 &= \sk{v+w,v+w} + \sk{v-w,v-w} \\
+		&= \sk{v,v} + \sk{v,w} + \sk{w,v} + \sk{w,w} + \sk{v,v} - \sk{v,w} - \sk{w,v} + \sk{w,w} \\
+		&= 2 \sk{v,v} + 2\sk{w,w} = 2 \cdot \no{v}^2 + 2 \cdot \no{w}^2 \qedhere
+	\end{align*}
+\end{beweis}
+
+\begin{bemerkung}
+	\label{bem:3.8}
+	Man kann zeigen, dass jede Norm, die die Parallelogrammgleichung erfüllt, durch ein Skalarprodukt definiert ist.
+	Im Fall $\KK = \RR$ ist dann
+	\[
+		\sk{v,w} := \frac{1}{4} (\no{v+w}^2 - \no{v-w}^2).
+	\]
+	Im Fall $\KK= \CC$ gilt
+	\begin{align*}
+		\sk{v,w} := &\frac{1}{4} \sum_{k=0}^{3} i^k \no{v+i^kw}^2 \\
+		= &\frac{1}{4} (\no{v+w}^2 + i \cdot \no{v+iw}^2 - \no{v-w}^2 - i \cdot \no{v-iw}^2).
+	\end{align*}
+\end{bemerkung}
+
+\begin{beispiel}
+	\label{bsp:3.9}
+	Sei $V = \RR^n$ versehen mit dem Standard-Skalarprodukt $\sk{x,y} = \sum_{i=1}^{n} x_iy_i$.
+	Dann ist die zugehörige Norm
+	\[
+		\no{x}_2 := \sqrt{\sk{x,x}} = \sqrt{\enb{\sum_{i=1}^{n} x_i^2}}
+	\]
+	die \Index{euklidische Norm} (oder $2$-Norm) auf $\RR^n$.
+	Für $x,y \in \RR^n$ ist dann $\no{x-y}_2 = \sqrt{\enb{\sum_{i=1}^{n} (x_i-y_i)^2}}$ der euklidische Abstand von $x$ zu $y$. 
+	\newpage
+	\begin{figure}[h]
+		\centering
+		\begin{tikzpicture}[>=Latex]
+		\draw [thick,->] (-.5,0) -- (3.5,0);
+		\draw [thick,->] (0,-.5) -- (0,3);
+		
+		\draw (1,-.1) node[below]{$x_1$} -- (1,.1);
+		\draw (3,-.1) node[below]{$y_1$} -- (3,.1);
+		\draw (-.1,1) node[left]{$x_2$} -- (.1,1);
+		\draw (-.1,2.5) node[left]{$y_2$} -- (.1,2.5);
+		
+		\draw (1,1) node[fill,circle,inner sep=1pt]{};
+		\draw (1,1) node[below]{$x$};
+		\draw (3,2.5) node[fill,circle,inner sep=1pt]{};
+		\draw (3,2.5) node[right]{$y$};
+		
+		\draw (1,1) coordinate (x) -- (3,2.5) coordinate (y) -- (3,1) coordinate (r) -- cycle;
+		
+		\draw pic["$\bullet$",draw=black,angle eccentricity=.5,angle radius=.5cm]{angle=y--r--x};
+		\end{tikzpicture}
+		\caption{Es gilt $\no{x-y}_2^2 = (x_1 - y_1)^2 + (x_2 - y_2)^2$ (Satz von \textsc{Pythagoras}).}
+	\end{figure}
+	
+	Vergleiche: $\no{x-y}_1 = \abs{x_1-y_1} + \abs{x_2-y_2}$ ist die Länge des Wegs, wenn ich \enquote{über den rechten Winkel} von $x$ nach $y$ gehe.
+	$\no{x-y}_\infty$ gibt die größere der Strecken von $x_1$ nach $y_1$ und von $x_2$ nach $y_2$ an.
+\end{beispiel}
+
+
+\begin{definition}[euklidischer und unitärer Vektorraum, orthogonal]
+	\label{def:3.10}
+	Sei $V$ ein $\KK$-Vektorraum versehen mit einem Skalarprodukt $\sk{\cdot,\cdot}$.
+	\begin{enumerate}[(i)]
+		\item Ist $\KK= \RR$, so heißt $(V,\sk{\cdot,\cdot})$ ein \Index{euklidischer Vektorraum}.
+		\item Ist $\KK = \CC$, so heißt $(V,\sk{\cdot,\cdot})$ ein \Index{unitärer Vektorraum}
+	\end{enumerate}
+	Ist $(V,\sk{\cdot,\cdot})$ ein euklidischer bzw. unitärer Vektorraum und sind $v,w \in V$, so sagen wir:
+	$v$ steht \Index{orthogonal} (senkrecht) zu $w$ genau dann, wenn $\sk{v,w} = 0$.
+	Wir schreiben dann $v \perp w$.
+\end{definition}
+
+\begin{beispiel}
+	\label{bsp:3.11}
+	Sei $V = \RR^2$ mit dem Standard-Skalarprodukt $\sk{x,y} = x_1 y_1 + x_2 y_2$ für $x = (x_1,x_2)^T, y = (y_1,y_2)^T$.
+	Dann gilt:
+	\[
+		x \perp y \quad \Leftrightarrow \quad \sk{x,y} = 0 \quad \Leftrightarrow \quad x_1y_1 + x_2y_2 = 0.
+	\]
+	Ist dann $y \neq 0$, so folgt $(x_1, x_2)^T = \lambda \cdot (-y_2,y_1)^T$ für ein $\lambda \in \RR$, denn $x_1 y_1 + x_2 y_2 = 0$ gilt genau dann, wenn $(x_1 x_2)^T \in \Kern(A)$ ist mit $A = (y_1,y_2)$, und $\{ (-y_2,y_1)^T\}$ ist eine Basis von $\Kern(A)$.
+	Das heißt, $x$ steht senkrecht zu $y$ im \enquote{geometrischen} (anschaulichen) Sinn! 
+	
+	\begin{figure}[h]
+		\centering
+		\begin{tikzpicture}[>=Latex]
+		\draw [thick,->] (-2,0) -- (3.5,0);
+		\draw [thick,->] (0,-.5) -- (0,3.5);
+		
+		\draw (3,-.1) node[below]{$y_1$} -- (3,.1);
+		\draw (-1.5,-.1) node[below]{$-y_2$} -- (-1.5,.1);
+		\draw (-.1,1.5) node[left]{$y_2$} -- (.1,1.5);
+		\draw (-.1,3) node[left]{$y_1$} -- (.1,3);
+		
+		\draw (-1.5,3) node[fill,circle,inner sep=1pt]{};
+		\draw (-1.5,3) node[left]{$(-y_2, y_1)^T$};
+		\draw (3,1.5) node[fill,circle,inner sep=1pt]{};
+		\draw (3,1.5) node[right]{$(y_1,y_2)^T$};
+		
+		\draw (-1.5,3) coordinate (x) -- (0,0) coordinate (y) -- (3,1.5) coordinate (r);
+		
+		\draw pic["$\bullet$",draw=black,angle eccentricity=.5,angle radius=.5cm]{angle=r--y--x};
+		\end{tikzpicture}
+	\end{figure}
+	
+	Allgemein gilt: Ist $\sk{\cdot,\cdot}$ das Standard-Skalarprodukt auf $\RR^n$, so bedeutet $\sk{x,y} = 0$, dass $x \perp y$ im geometrischen Sinn (sofern man für $n > 3$ davon reden kann).
+	\newpage
+	Achtung: Verschiedene Skalarprodukte geben verschiedene Begriffe von $\perp$!
+	Zum Beispiel:
+	
+	Seien $v_1 = (1, 0)^T, v_2 = (1, 1)^T \in \RR^2$.
+	Dann ist $B = \{v_1,v_2\}$ eine Basis von $\RR^2$.
+	Definiere $\sk{\cdot,\cdot}_B$ auf $\RR^2$ wie in \autoref{bsp:3.3} (b).
+	Dann ist $v_1 \perp v_2$ bezüglich $\sk{\cdot,\cdot}_B$, aber nicht bezüglich des Standard-Skalarprodukts!
+\end{beispiel}
+
+\begin{bemerkung}
+	\label{bem:3.12}
+	Wenn wir wissen, was \enquote{senkrecht} bedeutet, können wir auch schon das senkrechte Lot eines (Punkt-)Vektors $w \in V$ auf eine Gerade $G \subseteq V$ bestimmen.
+	Wir betrachten dazu zunächst nur Geraden durch den Nullpunkt, also $G = \RR \cdot v$ (bzw. $G = \CC \cdot v$)
+	
+	\vspace*{-.75cm}
+	\begin{figure}[h]
+		\centering
+		\begin{turn}{15}
+		\begin{tikzpicture}[>=Latex]
+		\coordinate (O) at (0,0);
+		\coordinate (v) at (2,0);
+		\coordinate (wL) at (0,3);
+		\coordinate (w) at (-1.5,3);
+		\coordinate (L) at (-1.5,0);
+		
+		\draw (-3,0) -- (3.5,0) node[right]{$G = \RR \cdot v$};
+		\draw [thick,->] (O) node[below]{$0$} -- (v) node[below]{$v$};
+		\draw [dashed] (O) node[fill,circle,inner sep=1pt]{} -- (wL) node[fill,circle,inner sep=1pt]{} -- (w) node[fill,circle,inner sep=1pt]{};
+		
+		\draw (w) node[above]{$w$} -- (L) node[below]{$L$};
+		\draw (w) node[fill,circle,inner sep=1pt]{};
+		\draw (L) node[fill,circle,inner sep=1pt]{};
+		\draw (wL) node[right]{$w-L$};
+		
+		\draw pic["$\bullet$",draw=black,angle eccentricity=.5,angle radius=.5cm]{angle=v--O--wL};
+		\draw pic["$\bullet$",draw=black,angle eccentricity=.5,angle radius=.5cm]{angle=O--L--w};
+		\end{tikzpicture}
+		\end{turn}
+	\end{figure}
+	
+	Das Lot $L$ von $w$ auf $G$ ist eindeutig durch die Bedingungen $L \in G$ und $(w-L) \perp v$ festgelegt.
+\end{bemerkung}
+
+\begin{lemma}[orthogonale Projektion]
+	\label{lemma:3.13}
+	Sei $v \in V \setminus \setzero$.
+	Ist $w \in V$, so existiert genau ein Vektor $L \in G = \KK \cdot v$ mit $L \in G$ und $(w-L) \perp v$.
+	$L$ ist gegeben durch die Formel
+	\[
+		L = \frac{\sk{w,v}}{\sk{v,v}} \cdot v = \frac{\sk{w,v}}{\no{x}^2} \cdot v.
+	\]
+	$L$ heißt die \Index{orthogonale Projektion} (das senkrechte Lot) von $w$ auf die Gerade $G = \KK \cdot v$.
+\end{lemma}
+
+\begin{beweis}
+	Ist $L \in G = \KK \cdot v$ mit $(w-L) \perp v$, so existiert ein $\lambda \in \KK$ mit $L = \lambda v$ und
+	\begin{align*}
+		&0 = \sk{w-L,v} = \sk{w- \lambda v,v} = \sk{w,v} - \lambda \cdot \sk{v,v} \\
+		\Leftrightarrow \quad &\lambda = \frac{\sk{w,v}}{\sk{v,v}} \quad \Leftrightarrow \quad L = \lambda v = \frac{\sk{w,v}}{\sk{v,v}} \cdot v. \qedhere
+	\end{align*}
+\end{beweis}
+
+\begin{bemerkung}[Winkel zwischen Vektoren]
+	\label{bem:3.14}
+	Sei $(V,\sk{\cdot,\cdot})$ ein euklidischer Vektorraum (also $\KK= \RR$).
+	Sind dann $v,w \in V$ mit $\no{v} = \no{w} = 1$, so gilt
+	
+	\vspace*{.2cm}
+	\begin{minipage}{.75\textwidth}
+		\textbf{1. Fall:} Ist der (kleine) Winkel $\alpha$ zwischen $v$ und $w \leq \frac{\pi}{2}$, so gilt wegen $\no{v} = \no{w} = 1$:
+		$L = \sk{w,v} \cdot v$ mit $0 \leq \sk{w,v} \leq 1$ und dann $0 \leq \no{L} = \sk{w,v} \leq 1$ und damit folgt
+		\[
+			 \cos{\alpha} = \frac{\mathrm{Ankathete}}{\mathrm{Hypotenuse}} = \frac{\no{L}}{1} = \sk{w,v}
+		\] 
+	\end{minipage} \hfill 
+	\begin{minipage}{.2\textwidth}
+		\begin{tikzpicture}[>=Latex]
+			\coordinate (O) at (0,0);
+			\coordinate (L) at (1.5,0);
+			\coordinate (v) at (2,0);
+			\coordinate (w) at (1.5,2);
+			
+			\draw [thick,->] (O) node[below]{$0$} -- (v) node[below]{$v$};
+			\draw [thick,->] (O) -- (w) node[right]{$w$};
+			\draw [dashed] (L) node[below]{$L$} -- (w);
+			
+			\draw pic["$\alpha$",draw=black,angle eccentricity=.65,angle radius=.5cm]{angle=L--O--w};
+			\draw pic["$\bullet$",draw=black,angle eccentricity=.5,angle radius=.5cm]{angle=w--L--O};
+		\end{tikzpicture}
+	\end{minipage}
+	\newpage
+	\begin{minipage}{.75\textwidth}
+		\textbf{2. Fall:} Ist $\alpha > \frac{\pi}{2}$, so gilt $L = \sk{w,v} \cdot v$ mit $\sk{w,v} < 0$.
+		Dann gilt für $\alpha' = \pi - \alpha$:
+		\[
+		\cos(\alpha') = \frac{\no{L}}{1} = -\sk{w,v}.
+		\]
+		Da $\cos(\pi-\alpha) = \cos(\alpha - \pi) = -\cos(\alpha)$ folgt $\cos(\alpha) = - \cos(\alpha') = \sk{w,v}$.
+	\end{minipage} \hfill 
+	\begin{minipage}{.2\textwidth}
+		\begin{tikzpicture}[>=Latex]
+		\coordinate (O) at (0,0);
+		\coordinate (L) at (1.5,0);
+		\coordinate (v) at (-1,0);
+		\coordinate (w) at (1.5,2);
+		
+		\draw (O) -- (2,0);
+		\draw [thick,->] (O) node[below]{$0$} -- (v) node[below]{$v$};
+		\draw [thick,->] (O) -- (w) node[right]{$w$};
+		\draw [dashed] (L) node[below]{$L$} -- (w);
+		
+		\draw pic["$\alpha'$",draw=black,angle eccentricity=.75,angle radius=.8cm]{angle=L--O--w};
+		\draw pic["$\alpha$",draw=black,angle eccentricity=.5,angle radius=.5cm]{angle=w--O--v};
+		\end{tikzpicture}
+	\end{minipage}
+		
+		In beiden Fällen folgt also die Formel
+		\[
+			\cos(\alpha) = \sk{w,v}.
+		\]
+		Sind nun $v,w \in V$ beliebig mit $v,w \neq 0$ und ist $v' = \frac{1}{\no{v}} \cdot v, w' = \frac{1}{\no{w}} w$, so ist der Winkel $\alpha$ zwischen $v$ und $w$ gleich dem Winkel zwischen $v'$ und $w'$ und wir erhalten die Formel
+		\[
+			\cos(\alpha) = \sk{w',v'} = \sk{\frac{w}{\no{w}},\frac{v}{\no{v}}} = \frac{\sk{w,v}}{\no{w} \cdot \no{v}}.
+		\]
+		Beachte: In diesen Überlegungen haben wir so getan, als wäre $\perp$ in $V$ auch \enquote{anschaulich} das selbe wie $\perp$ (was aber von der Wahl als Skalarprodukts abhängt!)
+
+\end{bemerkung}
+
+\begin{definition}[Winkel]
+	\label{def:3.15}
+	Sei $(V,\sk{\cdot,\cdot})$ ein euklidischer Vektorraum und seien $0 \leq v,w \in V$.
+	Dann definieren wir den \Index{Winkel} $\alpha = \sphericalangle(v,w)$ zwischen $v$ und $w$ durch
+	\[
+		\alpha = \arccos \enb{\frac{\sk{v,w}}{\no{v} \cdot \no{w}}} \in [0,\pi].
+	\]
+	Hierbei ist $\arccos\colon [-1,1] \rightarrow [0,\pi]$ die Umkehrfunktion von $\cos \colon [0,\pi] \rightarrow [-1,1]$.
+\end{definition}
+
+Fazit: Ist $V$ ein reeller Vektorraum und $\sk{\cdot,\cdot}$ ein Skalarprodukt auf $V$, so liefert $\sk{\cdot,\cdot}$ die folgenden geometrischen Größen:
+\begin{enumerate}[(i)]
+	\item Die Länge $\no{v} = \sqrt{\sk{v,v}}$ von $v \in V$ (bezüglich $\sk{\cdot,\cdot}$).
+	\item Den Winkel $\alpha = \sphericalangle(v,w) = \arccos \enb{\frac{\sk{v,w}}{\no{v} \cdot \no{w}}}$ zwischen den Vektoren $v$ und $w$ (bezüglich $\sk{\cdot,\cdot}$).
+	Insbesondere gilt $v \perp w \Leftrightarrow \sk{v,w} = 0$.
+\end{enumerate}
+Ist $V$ ein $\CC$-Vektorraum mit Skalarprodukt $\sk{\cdot,\cdot}$, so können wir immer noch die Länge $\no{v} = \sqrt{\sk{v,v}}$ definieren, und die Relation $v \perp w$ definieren:
+\[
+	v \perp w \quad \Leftrightarrow \quad \sk{v,w} = 0.
+\]
+
+Beachte: Ist $V = \RR^n$ mit Standard-Skalarprodukt $\sk{x,y} = \sum_{i=1}^{n} x_i y_i$, so liefern $\no{x}$ und $\sphericalangle(x,y)$ die \enquote{anschaulichen} geometrischen Größen!
+\newpage
+

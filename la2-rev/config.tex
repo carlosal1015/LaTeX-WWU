@@ -34,21 +34,9 @@
 
 % Fonts und Typographie
 % ===========================================================
-	% \usepackage[lining,semibold]{libertine}
-	%\usepackage[proportional,scaled=1.0]{erewhon}
-	% \usepackage{concmath}
-	% \usepackage[default]{droidserif}
-	%\usepackage[oldstyle]{XCharter}
-	%\usepackage[rm]{merriweather}
-	%\usepackage[default,regular,bold,osf]{sourceserifpro}
-	
-	% Sans- und Mono-Fonts
-	% \usepackage[rm,light]{roboto}
 	\usepackage{sourcecodepro}
 	\usepackage[default]{sourcesanspro}
-	% \usepackage[sb,lining,scale=.92]{FiraSans}
-	% \usepackage[lining,scale=.87]{FiraMono}
-	
+
 	\usepackage[babel=true,final,tracking=smallcaps]{microtype}
 	\DisableLigatures{encoding = T1, family = tt* } % keine Ligaturen für Monospace-Fonts
 	\usepackage{ellipsis}
@@ -70,6 +58,7 @@
 	\usepackage[bigdelims]{newtxmath}		% moderne Mathe-Font
 	\allowdisplaybreaks						% seitenübergreifende Rechnungen
 	\input{MathCmds.tex}
+	\usepackage{bm}
 % ===========================================================
 
 % TikZ
@@ -97,6 +86,7 @@
 	\onehalfspacing							% Zeilenabstand 1.5-fach
 	\setlength{\parindent}{0pt}
 	\setlength{\parskip}{0.5\baselineskip}
+	\usepackage[all]{nowidow}
 % ===========================================================
 
 % Nummerierungen
@@ -184,15 +174,14 @@
 
 \theoremstyle{changebreak}
 \theorembodyfont{\normalfont}
+\theorempreskip{2em}
+\theorempostskip{2em}
 \newtheorem{satz}{Satz}[section]
 \newtheorem{definition}[satz]{Definition}
-\newtheorem{korollar}[satz]{Korollar}
+%\newtheorem{korollar}[satz]{Korollar}
 \newtheorem{lemma}[satz]{Lemma}
-
-\theoremstyle{change}
-\theorembodyfont{\normalfont}
-\theoremseparator{:}
-\newtheorem{beispiel}[satz]{Beispiel}
+\newtheorem{beispiel}[satz]{Lemma}
+\newtheorem{bemerkung}[satz]{Lemma}
 
 \theoremstyle{nonumberplain}
 \theoremheaderfont{\bfseries\scshape}
