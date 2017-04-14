@@ -103,6 +103,7 @@
 	\usepackage{chngcntr}
 	%\counterwithout{equation}{chapter} 	% keine Kapitel in Gleichungsnummern
 	%\counterwithout{section}{chapter}	% keine Kapitel in Abschnittsnummern
+	\counterwithout{subsection}{section}
 % ===========================================================
 
 % Biblatex
@@ -185,7 +186,7 @@
 \theorembodyfont{\normalfont}
 \theorempreskip{2em}
 \theorempostskip{2em}
-\newtheorem{satz}{Satz}[section]
+\newtheorem{satz}{Satz}[subsection]
 \newtheorem{definition}[satz]{Definition}
 %\newtheorem{korollar}[satz]{Korollar}
 \newtheorem{lemma}[satz]{Lemma}
