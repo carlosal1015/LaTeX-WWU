@@ -70,7 +70,14 @@
 	\usetikzlibrary{arrows.meta}			% mehr Pfeile!
 	\usetikzlibrary{shadows}
 	\usetikzlibrary{calc}
+	\usetikzlibrary{quotes,babel,angles}
 	\tikzset{>=Latex}						% Standard-Pfeilspitze
+	\usetikzlibrary{patterns}
+	\usetikzlibrary{matrix}
+	\tikzset{
+		schraffiert/.style={pattern=north west lines,pattern color=#1},
+		schraffiert/.default=black
+	}
 % ===========================================================
 
 % Seitenlayout, Kopf-/Fußzeile
