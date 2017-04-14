@@ -1,5 +1,5 @@
-%!TEX root = ../LA2.tex
-\section{Orthogonale und unitäre Vektorräume}
+%!TEX root = ../LA2_SS16.tex
+\subsection{Orthogonale und unitäre Vektorräume}
 \label{sec:2.3}
 
 In diesem Abschnitt betrachten wir die Körper $\KK = \RR$ oder $\KK = \CC$.
@@ -30,7 +30,6 @@ Ist $V$ ein $\KK$-Vektorraum, so wollen wir eine zusätzliche Struktur auf $V$ b
 
 \begin{bemerkung}
 	\label{bem:3.2}
-	\mbox{} \\[-1.4cm]
 	\begin{enumerate}[(a)]
 		\item Verzichten wir auf Bedingung (iii), so heißt $\sprod{\cdot,\cdot}$  eine \textbf{hermitesche Sesquilinearform}.
 		Ein Skalarprodukt ist also eine positiv definite hermitesche Sesquilinearform. \index{Sesquilinearform}
@@ -48,7 +47,6 @@ Ist $V$ ein $\KK$-Vektorraum, so wollen wir eine zusätzliche Struktur auf $V$ b
 
 \begin{beispiel}
 	\label{bsp:3.3}
-	\mbox{} \\[-1.4cm]
 	\begin{enumerate}[(a)]
 		\item Sei $V = \KK^n$.
 		Für $x = (x_1,\dots,x_n)^T, y = (y_1,\dots,y_n)^T \in \KK^n$ definieren wir
@@ -84,11 +82,10 @@ Ist $V$ ein $\KK$-Vektorraum, so wollen wir eine zusätzliche Struktur auf $V$ b
 		Später werden wir aber sehen, dass es das Skalarprodukt bezüglich einer geeigneten Basis von $\RR^2$ ist.
 		Es gibt unendlich viele verschiedene Skalarprodukte auf $\RR^2$.
 		\item Sei $V = \mathcal{C}[a,b] = \{f \colon [a,b] \rightarrow \CC \text{ stetig}\}$ mit $a,b \in \RR, a < b$.
-		Dann wird durch
+		Dann wird auf $\mathcal{C}[a,b]$ ein Skalarprodukt definiert durch
 		\[
-			\sk{f,g} := \int_{a}^{b} f(t) \ol{g(t)} dt
+			\sk{f,g} := \int_{a}^{b} f(t) \ol{g(t)} dt.
 		\]
-		ein Skalarprodukt auf $\mathcal{C}[a,b]$ definiert.
 	\end{enumerate}
 \end{beispiel}
 
@@ -146,7 +143,6 @@ Wir wollen nun sehen, dass man mit Hilfe eines Skalarprodukts eine Norm auf $V$ 
 		\item $\no{v+w} \leq \no{v} + \no{w}$ für alle $v,w \in V$ (\Index{Dreiecksungleichung})
 		\item $\no{v} = 0 \quad \Leftrightarrow \quad v = 0$.
 	\end{enumerate}
-	\newpage
 	Ist $\no{\cdot}$ eine Norm auf $V$ so heißt für $v,w \in V$
 	\[
 		d(v,w) := \no{v-w}
@@ -156,7 +152,6 @@ Wir wollen nun sehen, dass man mit Hilfe eines Skalarprodukts eine Norm auf $V$ 
 
 \begin{beispiel}
 	\label{bsp:3.6}
-	\mbox{} \\[-1.4cm]
 	\begin{enumerate}[(a)]
 		\item Ist $V = \CC$ (als $\CC$-Vektorraum oder auch als $\RR$-Vektorraum), so ist $\no{z} := \abs{z}$ eine Norm auf $\CC$.
 		Ebenso ist $\no{x} = \abs{x}$ eine Norm auf $\RR$ als $\RR$-Vektorraum.
@@ -213,7 +208,7 @@ Wir wollen nun sehen, dass man mit Hilfe eines Skalarprodukts eine Norm auf $V$ 
 	\end{tikzpicture}
 	\caption{Die Summe der Quadrate der Diagonalen ist gleich der doppelten Summe der Quadrate der Seiten.}
 \end{figure}
-\newpage
+
 \begin{beweis}
 	Zunächst gilt $\no{\lambda v}^2 = \sk{\lambda v,\lambda v} = \lambda \ol{\lambda} \sk{v,v} = \abs{\lambda}^2 \sk{v,v}$, also $\no{\lambda v} = \abs{\lambda} \cdot \no{v}$ für alle $\lambda \in \KK$ und $v \in V$.
 	Sind $v,w \in V$, so gilt
@@ -259,7 +254,7 @@ Wir wollen nun sehen, dass man mit Hilfe eines Skalarprodukts eine Norm auf $V$ 
 	\]
 	die \Index{euklidische Norm} (oder $2$-Norm) auf $\RR^n$.
 	Für $x,y \in \RR^n$ ist dann $\no{x-y}_2 = \sqrt{\enb{\sum_{i=1}^{n} (x_i-y_i)^2}}$ der euklidische Abstand von $x$ zu $y$. 
-	\newpage
+
 	\begin{figure}[h]
 		\centering
 		\begin{tikzpicture}[>=Latex]
@@ -333,13 +328,13 @@ Wir wollen nun sehen, dass man mit Hilfe eines Skalarprodukts eine Norm auf $V$ 
 	\end{figure}
 	
 	Allgemein gilt: Ist $\sk{\cdot,\cdot}$ das Standard-Skalarprodukt auf $\RR^n$, so bedeutet $\sk{x,y} = 0$, dass $x \perp y$ im geometrischen Sinn (sofern man für $n > 3$ davon reden kann).
-	\newpage
+
 	Achtung: Verschiedene Skalarprodukte geben verschiedene Begriffe von $\perp$!
 	Zum Beispiel:
 	
 	Seien $v_1 = (1, 0)^T, v_2 = (1, 1)^T \in \RR^2$.
 	Dann ist $B = \{v_1,v_2\}$ eine Basis von $\RR^2$.
-	Definiere $\sk{\cdot,\cdot}_B$ auf $\RR^2$ wie in \autoref{bsp:3.3} (b).
+	Definiere $\sk{\cdot,\cdot}_B$ auf $\RR^2$ wie in Beispiel~\ref{bsp:3.3} (b).
 	Dann ist $v_1 \perp v_2$ bezüglich $\sk{\cdot,\cdot}_B$, aber nicht bezüglich des Standard-Skalarprodukts!
 \end{beispiel}
 
@@ -424,7 +419,7 @@ Wir wollen nun sehen, dass man mit Hilfe eines Skalarprodukts eine Norm auf $V$ 
 			\draw pic["$\bullet$",draw=black,angle eccentricity=.5,angle radius=.5cm]{angle=w--L--O};
 		\end{tikzpicture}
 	\end{minipage}
-	\newpage
+
 	\begin{minipage}{.75\textwidth}
 		\textbf{2. Fall:} Ist $\alpha > \frac{\pi}{2}$, so gilt $L = \sk{w,v} \cdot v$ mit $\sk{w,v} < 0$.
 		Dann gilt für $\alpha' = \pi - \alpha$:
@@ -484,5 +479,4 @@ Ist $V$ ein $\CC$-Vektorraum mit Skalarprodukt $\sk{\cdot,\cdot}$, so können wi
 \]
 
 Beachte: Ist $V = \RR^n$ mit Standard-Skalarprodukt $\sk{x,y} = \sum_{i=1}^{n} x_i y_i$, so liefern $\no{x}$ und $\sphericalangle(x,y)$ die \enquote{anschaulichen} geometrischen Größen!
-\newpage
-
+\cleardoubleoddemptypage
