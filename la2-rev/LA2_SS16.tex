@@ -1,0 +1,26 @@
+%!TEX TS-program = pdflatex
+% Author: Phil Steinhorst, p.st@wwu.de
+\input{config.tex}
+\begin{document}
+\input{content/title.tex}
+\input{content/preface.tex}
+\tableofcontents
+\cleardoubleoddemptypage
+	
+%\appendix
+%\input{content/A.tex}
+
+%\cleardoubleemptypage
+%\section*{Liste der Sätze und Definitionen}
+%\addtocontents{toc}{\vspace{\normalbaselineskip}}
+%\addcontentsline{toc}{section}{Liste der Sätze und Definitionen}
+%\listtheorems{definition,satz,korollar,lemma}
+\cleardoubleemptypage
+\printbibliography
+\cleardoubleemptypage
+\printindex
+
+\listoftodos
+\todototoc
+
+\end{document}
