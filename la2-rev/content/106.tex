@@ -1,5 +1,5 @@
-%!TEX root = ../LA2.tex
-\section{Lineare Abbildungen von $\mathbf{K^n}$ nach $\mathbf{K^m}$ und Matrizen}
+%!TEX root = ../LA2_SS16.tex
+\subsection{Lineare Abbildungen von $\mathbf{K^n}$ nach $\mathbf{K^m}$ und Matrizen}
 \label{sec:I.6}
 
 \begin{definition}[Linearkombination]
@@ -11,7 +11,7 @@
 	eine \Index{Linearkombination} der Vektoren $v_1,\dots,v_m$ in $V$.
 \end{definition}
 
-\setcounter{definition}{2}
+\setcounter{satz}{2}
 \begin{lemma}
 	\label{lemma:I.6.3}
 	Sei $A \in M(m \times n,K)$, dann ist die Abbildung
@@ -19,15 +19,15 @@
 		F_A \colon K^n &\longrightarrow K^m \\
 		x &\longmapsto Ax
 	\end{align*}
-	mit $Ax$ wie in \autoref{def:I.3.5}(iii) linear.
+	mit $Ax$ wie in Definition~\ref{def:I.3.5}(iii) linear.
 \end{lemma}
 
-\begin{satz}[Umkehrung von \autoref{lemma:I.6.3}]
+\begin{satz}[Umkehrung von Lemma~\ref{lemma:I.6.3}]
 	\label{satz:I.6.4}
 	Ist $F\colon K^n \rightarrow K^m$ eine lineare Abbildung, dann ist $A_F = (F(e_1),\dots,F(e_n)) \in M(m\times n,K)$ die eindeutige Matrix mit $F(x) = A_F x$ für alle $x \in K^n$.
 \end{satz}
 
-\setcounter{definition}{5}
+\setcounter{satz}{5}
 \begin{satz}
 	\label{satz:I.6.6}
 	Die Abbildung
@@ -39,7 +39,7 @@
 	Für $A \in M(m\times n,A)$ setzen wir $\Kern(A) := \Kern(F_A)$ und $\Bild(A) := \Bild(F_A)$.
 \end{satz}
 
-\setcounter{definition}{7}
+\setcounter{satz}{7}
 \begin{satz}
 	\label{satz:I.6.8}
 	Seien $A \in M(m\times n,K)$ und $b \in K^m$.
@@ -52,7 +52,7 @@
 		\]
 	\end{enumerate}
 \end{satz}
-\newpage
+
 \begin{korollar}
 	\label{folg:I.6.9}
 	Sei $A \in M(m\times n,K)$.
@@ -64,7 +64,7 @@
 	\end{enumerate}
 \end{korollar}
 
-\setcounter{definition}{12}
+\setcounter{satz}{12}
 \begin{definition}[Matrixmultiplikation]
 	\label{def:I.6.13}
 	Für $B \in M(l \times m,K)$ und $A \in (m \times n,K)$ definieren wir das Produkt $C := B \cdot A = (c_{ij})_{i,j} \in M(l \times n,K)$ durch \index{Matrixmultiplikation}
@@ -80,7 +80,7 @@
 	Ist umgekehrt $A \in M(m \times n,K), B \in M(l \times m,K)$, so ist $F_{BA} = F_B \circ F_A$.
 \end{satz}
 
-\setcounter{definition}{16}
+\setcounter{satz}{16}
 \begin{definition}[Inverse Matrix]
 	\label{def:I.6.17}
 	$A \in M(n \times n,K)$ heißt \Index{invertierbar}, falls eine Matrix $B \in M(n\times n,K)$ existiert mit $BA = AB = E_n$.
@@ -88,7 +88,7 @@
 	Wir schreiben $A^{-1} := B$.
 \end{definition}
 
-\setcounter{definition}{18}
+\setcounter{satz}{18}
 \begin{satz}
 	\label{satz:I.6.19}
 	Sei $A \in M(n \times n,K)$.
@@ -101,7 +101,7 @@
 	\end{enumerate}
 \end{satz}
 
-\setcounter{definition}{21}
+\setcounter{satz}{21}
 \begin{definition}[allgemeine lineare Gruppe]
 	\label{def:I.6.22}
 	Sei $K$ ein Körper und sei $n \in \NN$.
@@ -111,4 +111,4 @@
 	\]
 	ist versehen mit der Matrixmultiplikation eine Gruppe -- die \Index{allgemeine lineare Gruppe}.
 \end{definition}
-\newpage
+\cleardoubleoddemptypage
