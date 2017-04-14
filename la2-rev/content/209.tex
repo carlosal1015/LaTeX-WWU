@@ -1,5 +1,5 @@
-%!TEX root = ../LA2.tex
-\section{Die Jordan-Normalform}
+%!TEX root = ../LA2_SS16.tex
+\subsection{Die Jordan-Normalform}
 \label{sec:2.9}
 
 In diesem Abschnitt wollen wir Endomorphismen untersuchen, die nicht unbedingt diagonalisierbar sind.
@@ -8,7 +8,6 @@ Wir werden diese Normalform dann später benutzen, um Differentialgleichungen zu
 Wir starten mit:
 
 \begin{definition}[trigonalisierbar]
-	\mbox{} \\[-1.4cm]
 	\label{def:9.1}
 	\begin{enumerate}[(i)]
 		\item Sei $V$ ein endlich dimensionaler $K$-Vektorraum und sei $F \in \End_K(V)$.
@@ -26,7 +25,6 @@ Wir starten mit:
 \end{definition}
 
 \begin{bemerkung}
-	\mbox{} \\[-1.4cm]
 	\label{bem:9.2}
 	\begin{enumerate}[(i)]
 		\item Ist $F \in \End_K(V)$ und $A \in M(n \times n,K)$ eine beliebige Darstellungsmatrix von $F$, so gilt:
@@ -51,7 +49,7 @@ Wir starten mit:
 		Wir sehen, dass es für diese Fragen ganz wichtig ist, über welchem Körper $K$ wir arbeiten!
 	\end{enumerate}
 \end{bemerkung}
-\newpage
+  
 Die Beobachtung in (ii) besitzt auch eine Umkehrung:
 
 \begin{satz}
@@ -66,18 +64,17 @@ Die Beobachtung in (ii) besitzt auch eine Umkehrung:
 
 \begin{bemerkung}
 	\label{bem:9.4}
-	Nach dem Fundamentalsatz der Algebra (\autoref{satz:1.11}) zerfällt jedes komplexe Polynom in Linearfaktoren.
-	Aus \autoref{satz:9.3} folgt also insbesondere, dass jedes $F \in \End_{\CC}(V)$ trigonalisierbar ist, wenn $V$ ein endlich dimensionaler $\CC$-Vektorraum ist.
+	Nach dem Fundamentalsatz der Algebra (Satz~\ref{satz:1.11}) zerfällt jedes komplexe Polynom in Linearfaktoren.
+	Aus Satz~\ref{satz:9.3} folgt also insbesondere, dass jedes $F \in \End_{\CC}(V)$ trigonalisierbar ist, wenn $V$ ein endlich dimensionaler $\CC$-Vektorraum ist.
 	Allgemeiner gilt:
 	Ist $K$ ein \textbf{algebraisch abgeschlossener} Körper (das heißt, dass jedes Polynom über $K$ in Linearfaktoren zerfällt), und ist $V$ ein endlich dimensionaler $K$-Vektorraum, so ist jedes $F \in \End_K(V)$ trigonalisierbar. \index{algebraisch abgeschlossen}
 \end{bemerkung}
 
-Die Richtung (i) $\Rightarrow$ (ii) des Satzes folgt aus \autoref{bem:9.2}(ii).
-Die andere Richtung werden wir in \autoref{satz:9.6} beweisen, wobei wir auch zeigen werden, dass die gesuche obere Dreiecksmatrix in einer besonderen Form gewählt werden kann.
+Die Richtung (i) $\Rightarrow$ (ii) des Satzes folgt aus Bemerkung~\ref{bem:9.2}(ii).
+Die andere Richtung werden wir in Satz~\ref{satz:9.6} beweisen, wobei wir auch zeigen werden, dass die gesuche obere Dreiecksmatrix in einer besonderen Form gewählt werden kann.
 Wir starten mit:
 
 \begin{definition}[Jordan-Normalform]
-	\mbox{} \\[-1.4cm]
 	\label{def:9.5}
 	\begin{enumerate}[(i)]
 		\item Eine Matrix $J \in M(m \times m, K)$ heißt \Index{Jordan-Kasten}, falls ein $\lambda \in K$ existiert mit
@@ -156,7 +153,7 @@ Beachte:
 \end{enumerate}
 
 Im Rest dieses Abschnitts werden wir den folgenden Satz beweisen.
-Als direkte Folgerung erhalten wir dann auch einen Beweis von \autoref{satz:9.3}.
+Als direkte Folgerung erhalten wir dann auch einen Beweis von Satz~\ref{satz:9.3}.
 
 \begin{satz}[Jordan-Normalform]
 	\label{satz:9.6}
@@ -205,7 +202,6 @@ Wir benötigen:
 
 \begin{lemma}
 	\label{lemma:9.8}
-	\mbox{} \\[-1.4cm]
 	\begin{enumerate}[(i)]
 		\item Sei $A = \begin{pmatrix}
 		A_1 & * \\
@@ -234,7 +230,7 @@ Wir benötigen:
 		A_{1,i} & * \\
 		0 & A_2
 	\end{pmatrix}$ für alle $1 \leq i \leq r$.
-	Da alle Einträge der ersten Spalte von $A$ unterhalb der $l$-ten Zeile verschwinden, erhalten wir durch Entwicklung der Determinante von $A$ (bzw. $A_1$) nach der ersten Spalte: \newpage
+	Da alle Einträge der ersten Spalte von $A$ unterhalb der $l$-ten Zeile verschwinden, erhalten wir durch Entwicklung der Determinante von $A$ (bzw. $A_1$) nach der ersten Spalte:   
 	\begin{align*}
 		\det(A) &\stack{}{=} (-1)^{i+1} a_{i1} \det(A_i) = \sum_{i=1}^{l} (-1)^{i+1} a_{i1} \det \begin{pmatrix}
 			A_{1,i} & * \\ 0 & A_2
@@ -261,7 +257,7 @@ Ist $B_i$ eine Basis von $V_i$ und $B = B_1 \cup \dots \cup B_r$, so folgt wie f
 		0 & \cdots & 0 & A_{F_r}^{B_r}
 	\end{pmatrix}.
 \]
-Mit \autoref{lemma:9.8} und einer leichten Induktion erhält man dann
+Mit Lemma~\ref{lemma:9.8} und einer leichten Induktion erhält man dann
 \begin{equation}
 	\det(F_1 \oplus \cdots \oplus F_r) = \prod_{i=1}^{r} \det(F_i) \quad \text{und} \quad \chi_F = \prod_{i=1}^{r} \chi_{F_r}. \label{eq:9.1}
 \end{equation}
@@ -300,7 +296,7 @@ Wir wollen zunächst untersuchen, wann $F \in \End_K(V)$ eine Basis $B$ besitzt,
 
 \begin{bemerkung}
 	\label{bem:9.10}
-	Ist $F$ wie in \autoref{lemma:9.9} und ist $1 \leq l \leq k$, so gilt
+	Ist $F$ wie in Lemma~\ref{lemma:9.9} und ist $1 \leq l \leq k$, so gilt
 	\[
 		\Kern(F-\lambda \id)^l = \LH\{v_1,\dots,v_l\}.
 	\]
@@ -350,7 +346,7 @@ Wir wollen zunächst untersuchen, wann $F \in \End_K(V)$ eine Basis $B$ besitzt,
 	also auch $(F-\lambda \id)^k = 0$.
 	Endomorphismen mit einer solchen Eigenschaft verdienen einen eigenen Namen!
 \end{bemerkung}
-\newpage
+  
 \begin{definition}[nilpotent]
 	\label{def:9.11}
 	Sei $V$ ein $K$-Vektorraum.
@@ -401,11 +397,11 @@ Wir benötigen:
 	\label{def:9.13}
 	Sei $V$ ein endlich dimensionaler $K$-Vektorraum, $F \in \End_K(V)$ und $\lambda$ ein Eigenwert von $F$.
 	Für jedes $l \in \NN_0$ setze $V_{l,\lambda} := \Kern(F-\lambda \id)^l$.
-	Nach \autoref{lemma:9.12} existiert ein $k \in \NN$ mit
+	Nach Lemma~\ref{lemma:9.12} existiert ein $k \in \NN$ mit
 	\[
 		\setzero = V_{0,\lambda} \subsetneq V_{1,\lambda} \subsetneq V_{2.\lambda} \subsetneq \cdots \subsetneq V_{k,\lambda} = V_{k+1,\lambda} =: V_\lambda.
 	\]
-	\newpage
+	  
 	Dann heißt $V_\lambda$ der bet{verallgemeinerte Eigenraum} oder \Index{Hauptraum} von $F$ zum Eigenwert $\lambda$. \index{verallgemeinerter Eigenraum}
 	Ist $v \in V_\lambda \setminus \setzero$, so heißt $v$ \Index{verallgemeinerter Eigenvektor} von $F$ zum Eigenwert $\lambda$.
 	Ist $v \in V_{l,\lambda} \setminus V_{l-1,\lambda}$ für $1 \leq l \leq k$, so heißt $v$ \textbf{verallgemeinerter Eigenvektor der Ordnung} l.
@@ -503,7 +499,7 @@ Diese Beobachtung gibt den entscheidenden Schritt im Beweis von:
 	Sei also nun $\dim(V) = n > 1$ und der Satz sei richtig für kleinere Dimensionen.
 	Da $\chi_F$ in Linearfaktoren zerfällt, besitzt $\chi_F$ mindestens eine Nullstelle.
 	Also besitzt $F$ mindestens einen Eigenwert $\lambda$.
-	Setze $V_1 := V_\lambda$, und wähle $k \in \NN$ wie in \autoref{lemma:9.12} mit $V_\lambda = \Kern(F - \lambda \id)^k$.
+	Setze $V_1 := V_\lambda$, und wähle $k \in \NN$ wie in Lemma~\ref{lemma:9.12} mit $V_\lambda = \Kern(F - \lambda \id)^k$.
 	
 	Ist $V_\lambda = V$, so ist $\lambda$ der einzige Eigenwert von $F$, denn wäre $\lambda' \neq \lambda$ ein weiterer Eigenwert, so wäre
 	\[
@@ -541,22 +537,22 @@ Diese Beobachtung gibt den entscheidenden Schritt im Beweis von:
 		(F- \lambda \id)^k(v) = (F - \lambda \id)^{2k}(w) = 0.
 	\]
 	Es folgt $w \in V_{2k,\lambda} = \Kern(F - \lambda \id)^{2k}$.
-	Nach \autoref{lemma:9.12} und der Wahl von $k$ gilt aber
+	Nach Lemma~\ref{lemma:9.12} und der Wahl von $k$ gilt aber
 	\[
 		V_\lambda = V_{k,\lambda} = V_{k+1,\lambda} = \cdots = V_{2k,\lambda}.
 	\]
 	Es folgt $w \in V_{\lambda}$ und $v = (F - \lambda \id)^{k}(w) = 0$.
 	
 	Aus (i) und (ii) folgt, dass $F = F_1 \oplus F_2$ mit $F_i = F\big|_{V_i} \colon V_i \rightarrow V_i$.
-	Nach \autoref{lemma:9.8} gilt $\chi_F = \chi_{F_1} \cdot \chi_{F_2}$, und daher zerfällt mit $\chi_F$ auch $\chi_{F_2}$ in Linearfaktoren.
+	Nach Lemma~\ref{lemma:9.8} gilt $\chi_F = \chi_{F_1} \cdot \chi_{F_2}$, und daher zerfällt mit $\chi_F$ auch $\chi_{F_2}$ in Linearfaktoren.
 	Sind $\lambda_2,\dots,\lambda_m$ die paarweise verschiedenen Eigenwerte von $F_2$, so besitzt $F_2$ nach Induktionsvoraussetzung eine Zerlegung $F_2 = F_{\lambda_2} \oplus \cdots \oplus F_{\lambda_m}$, und setzen wir $\lambda_1 := \lambda$, so erhalten wir mit $F_{\lambda_1} = F_1$ die gewünschte Zerlegung $F = F_{\lambda_1} \oplus \cdots \oplus F_{\lambda_m}$. 
 \end{beweis}
 
 \begin{bemerkung}
 	\label{bem:9.16}
 	Wir sind leider immer noch nicht fertig mit dem Beweis der Existenz der Jordan-Normalform.
-	\autoref{satz:9.15} reduziert das Problem aber auf den Fall, dass $F = F_\lambda$ für einen (und dann den einzigen) Eigenwert $\lambda$ von $F$.
-	Geligt es uns, für solche Endomorphismen eine Jordan-Basis zu konstruieren, so können wir für jeden Summanden $F_{\lambda_i}$ in der Zerlegung $F = F_{\lambda_1} \oplus \cdots \oplus F_{\lambda_m}$ von \autoref{satz:9.15} eine Basis $B_i$ von $V_{\lambda_i}$ angeben, sodass die zugehörige Darstellungsmatrix $A_i = A^{B_i}_{F_{\lambda_i}}$ eine Jordan-Matrix ist.
+	Satz~\ref{satz:9.15} reduziert das Problem aber auf den Fall, dass $F = F_\lambda$ für einen (und dann den einzigen) Eigenwert $\lambda$ von $F$.
+	Geligt es uns, für solche Endomorphismen eine Jordan-Basis zu konstruieren, so können wir für jeden Summanden $F_{\lambda_i}$ in der Zerlegung $F = F_{\lambda_1} \oplus \cdots \oplus F_{\lambda_m}$ von Satz~\ref{satz:9.15} eine Basis $B_i$ von $V_{\lambda_i}$ angeben, sodass die zugehörige Darstellungsmatrix $A_i = A^{B_i}_{F_{\lambda_i}}$ eine Jordan-Matrix ist.
 	Ist dann $B = B_1 \cup \dots \cup B_l$ die entsprechend zusammengesetzte Basis von $V$, so ist auch
 	\[
 		A_F^B = \begin{pmatrix}
@@ -573,7 +569,7 @@ Diese Beobachtung gibt den entscheidenden Schritt im Beweis von:
 	\label{lemma:9.17}
 	Sei $V$ ein endlich dimensionaler $K$-Vektorraum und sei $G \in \End_K(V)$ nilpotent.
 	Für $l \in \NN_0$ setze $V_l := \Kern(G^l)$.
-	Nach \autoref{lemma:9.12} existiert dann ein $k \in \NN$ mit
+	Nach Lemma~\ref{lemma:9.12} existiert dann ein $k \in \NN$ mit
 	\[
 		\setzero = V_0 \subsetneq V_1 \subsetneq \cdots \subsetneq V_{k-1} \subsetneq V_k = V.
 	\]
@@ -600,8 +596,8 @@ Diese Beobachtung gibt den entscheidenden Schritt im Beweis von:
 	Das System $\{u_1,\dots,u_r,$ \linebreak $\wt{w_1},\dots,\wt{w_s},v_1,\dots,v_t\}$ hat dann alle gewünschten Eigenschaften. 
 \end{beweis}
 
-Wir kommen nun zum Abschluss des Beweises von \autoref{satz:9.6}.
-Wir erinnern daran (siehe \autoref{bem:9.16}), dass es genügt, den Fall $V = V_\lambda$ und $F = F_\lambda$ zu betrachten.
+Wir kommen nun zum Abschluss des Beweises von Satz~\ref{satz:9.6}.
+Wir erinnern daran (siehe Bemerkung~\ref{bem:9.16}), dass es genügt, den Fall $V = V_\lambda$ und $F = F_\lambda$ zu betrachten.
 Dann ist $F- \lambda \id$ nilpotent!
 
 \begin{satz}
@@ -637,7 +633,7 @@ Dann ist $F- \lambda \id$ nilpotent!
 \end{satz}
 
 \begin{beweis}
-	Die Beziehung $d_l \leq d_{l-1}$ für $2 \leq l \leq k$ ist eine direkte Konsequenz aus \autoref{lemma:9.17}.
+	Die Beziehung $d_l \leq d_{l-1}$ für $2 \leq l \leq k$ ist eine direkte Konsequenz aus Lemma~\ref{lemma:9.17}.
 	Zur Konstruktion des Schemas mit den gewünschten Eigenschaften wählen wir zunächst eine Basis $U_1$ von $V_1$, ergänzen diese zu einer Basis $U_2$ von $V_2$ und fahren induktiv fort, bis wir ein Schema
 	
 	\[
@@ -659,7 +655,7 @@ Dann ist $F- \lambda \id$ nilpotent!
 	
 	erhalten, indem die ersten $l$ Spalten zusammen jeweils eine Basis von $V_l$ bilden (die Vektoren aus $U_1$ finden wir also in der ersten Spalte, etc.).
 	Wir setzen zunächst $v_{i,k} := u_{i,k}$ für $1 \leq i \leq d_k$.
-	Durch Anwenden von \autoref{lemma:9.17} auf die vorletzte Spalte können wir dann die Vektoren $u_{1,k-1},\dots,u_{d_{k-1},k-1}$ durch geeignete Vektoren $v_{1,k-1},\dots,v_{d_{k-1},k-1}$ ersetzen, sodass $v_{i,k-1} = G(v_{i,k})$ für $1 \leq i \leq d_{k-1}$ gilt.
+	Durch Anwenden von Lemma~\ref{lemma:9.17} auf die vorletzte Spalte können wir dann die Vektoren $u_{1,k-1},\dots,u_{d_{k-1},k-1}$ durch geeignete Vektoren $v_{1,k-1},\dots,v_{d_{k-1},k-1}$ ersetzen, sodass $v_{i,k-1} = G(v_{i,k})$ für $1 \leq i \leq d_{k-1}$ gilt.
 	Nach $k$ Schritten erhalten wir dann das gesuchte Schema.
 	
 	Setzen wir $v_i := v_{i,k_i}$, so folgt aus (ii), dass die $i$-te Zeile $B_i$ des Schemas wie folgt aussieht:
@@ -667,7 +663,7 @@ Dann ist $F- \lambda \id$ nilpotent!
 		B_i = \{G^{k_i-1}(v_i), G^{k_i-2}(v_i), G^{k_i-3}(v_i),\dots,G(v_i),v_i\}.
 	\]
 	Setzen wir dann $\wt{V_i} := \LH(B_i)$, so folgt $G(\wt{V_i}) \subseteq \wt{V_i}$, und dann auch $F(\wt{V_i}) \subseteq \wt{V_i}$, da $F = G + \lambda \id$.
-	\autoref{lemma:9.9} liefert dann, dass $F_i := F\big|_{\wt{V_i}} \colon \wt{V_i} \rightarrow \wt{V_i}$ die Darstellungsmatrix
+	Lemma~\ref{lemma:9.9} liefert dann, dass $F_i := F\big|_{\wt{V_i}} \colon \wt{V_i} \rightarrow \wt{V_i}$ die Darstellungsmatrix
 	\[
 		A_{F_i}^{B_i} = J_i = \begin{pmatrix}
 		\lambda & 1 & 0 & \cdots & 0 \\ 
@@ -690,7 +686,7 @@ Dann ist $F- \lambda \id$ nilpotent!
 
 \begin{bemerkung}
 	\label{bem:9.19}
-	Die verschiedenen Schritte im Beweis von \autoref{satz:9.6} liefern auch ein Verfahren zur Berechnung der Jordan-Normalform und einer zugehörigen Jordan-Basis.
+	Die verschiedenen Schritte im Beweis von Satz~\ref{satz:9.6} liefern auch ein Verfahren zur Berechnung der Jordan-Normalform und einer zugehörigen Jordan-Basis.
 	Konkret gehen wir wie folgt vor:
 	\begin{enumerate}[(i)]
 		\item Berechne alle paarweise verschiedenen Eigenwerte $\lambda_1,\dots,\lambda_m$ von $F$.
@@ -712,7 +708,7 @@ Dann ist $F- \lambda \id$ nilpotent!
 		
 		und wählen weitere Vektoren $v_{d_l+1,l-1}, \dots, v_{d_{l-1},l-1} \in C_{l-1}$ mit $v_{1,l-1},\dots,v_{d_{l-1},l-1}$ linear unabhängig.
 		
-		Auf diese Weise erhalten wir ein Schema von Vektoren $v_{i,l}$ wie in \autoref{satz:9.18}, das alle im Satz erwähnten Anforderungen erfüllt.
+		Auf diese Weise erhalten wir ein Schema von Vektoren $v_{i,l}$ wie in Satz~\ref{satz:9.18}, das alle im Satz erwähnten Anforderungen erfüllt.
 		Wie im Satz beschrieben erhalten wir dann eine Jordan-Basis $B_\lambda$ von $V_\lambda$ für $F_\lambda = F \big|_{V_\lambda}$.
 		Genauer: Ist $B_i$ die $i$-te Zeile des Schemas, so setzen wir $B_\lambda := B_1 \cup \dots \cup B_{d_1}$.
 		Zu jeder Zeile $B_i$ erhalten wir dann einen $\lambda$-Jordan-Kasten der Länge $k_i$, wenn $k_i$ die Länge der Zeile $B_i$ bezeichnet.
@@ -783,7 +779,7 @@ Beachte: Ist $A \in M(n \times n,K)$, $F \colon K^n \rightarrow K^n, v \mapsto A
 			v_{2,1} & v_{2,2}
 		\end{array}
 	\]
-	ein Schema wie in \autoref{satz:9.18} und
+	ein Schema wie in Satz~\ref{satz:9.18} und
 	\[
 		B = \{v_{1,1},v_{1,2},v_{1,3},v_{2,1},v_{2,2}\} = \penb{
 			\begin{pmatrix} 1 \\ 2 \\ 0 \\ 0 \\ 0 \end{pmatrix},
@@ -823,7 +819,7 @@ Wir wollen hier aber nur die wichtigsten Ideen und nicht alle Einzelheiten des B
 
 Sei also $V$ ein $\RR$-Vektorraum mit $\dim(V) = n < \infty$ und sei $F \in \End_{\RR}(V)$.
 Zunächst betrachten wir alle paarweise verschiedenen reellen Eigenwerte $\lambda_1,\dots,\lambda_l$ von $F$.
-Wie zuvor bilden wir dann die Haupträume $V_{\lambda_1},\dots,V_{\lambda_l}$ für diese Eigenwerte, und erhalten mit einer leichten Abwandlung von \autoref{satz:9.15} eine Zerlegung
+Wie zuvor bilden wir dann die Haupträume $V_{\lambda_1},\dots,V_{\lambda_l}$ für diese Eigenwerte, und erhalten mit einer leichten Abwandlung von Satz~\ref{satz:9.15} eine Zerlegung
 \[
 	V = V_{\lambda_1} \oplus \cdots \oplus V_{\lambda_m} \oplus V^c
 \]
@@ -852,7 +848,7 @@ Ist $\mu = \alpha + i \beta$ ein nicht-reeller Eigenwert von $F_{\CC}^c$ und ist
 	V_{\ol{\mu}} = \ol{V_\mu} = \{ \ol{u} : u \in V_{\mu}\},
 \]
 wobei für $u = v + iw \in V_{\CC}^c$ der konjugierte Vektor $\ol{u}$ definiert ist durch $\ol{u} = v-iw$.
-Zerlegen wir nun $V_{\CC}^c$ in die Haupträume der Eigenwerte von $F$ wie in \autoref{satz:9.15}, so erhalten wir eine Zerlegung
+Zerlegen wir nun $V_{\CC}^c$ in die Haupträume der Eigenwerte von $F$ wie in Satz~\ref{satz:9.15}, so erhalten wir eine Zerlegung
 \[
 	V_{\CC}^c = V_{\mu_1} \oplus V_{\ol{\mu_1}} \oplus \cdots \oplus V_{\mu_m} \oplus V_{\ol{\mu_m}}.
 \]
@@ -1087,6 +1083,4 @@ wobei die Blöcke $J_i$ entweder $\lambda$-Jordan-Kästen zu rellen Eigenwerten 
 		\end{pmatrix} \in M(5 \times 5, \RR).
 	\]
 \end{beispiel}
-
-
-\newpage
+\cleardoubleoddemptypage
