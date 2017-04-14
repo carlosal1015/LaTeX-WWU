@@ -52,7 +52,7 @@ Ferner werden wir die Struktur von beliebigen orthogonalen Endomorphismen bzw. M
 			\lambda_1 \sk{v,w} = \sk{\lambda_1v,w} = \sk{F(v),w} = \sk{v,F^*(w)} = \sk{v,\ol{\lambda_2} w} = \lambda_2 \sk{v,w},
 		\]
 		also $(\lambda_1 - \lambda_2)\sk{v,w} = 0$.
-		Da $\lambda_1 \neq \lambda_2$, folgt $\sk{v,w} = 0$. \qedhere
+		Da $\lambda_1 \neq \lambda_2$, folgt $\sk{v,w} = 0$. 
 	\end{enumerate}
 \end{beweis}
 
@@ -90,7 +90,7 @@ Ferner werden wir die Struktur von beliebigen orthogonalen Endomorphismen bzw. M
 	Da $\KK= \CC$ besitzt $F \big|_{W^\perp}$ mindestens einen Eigenwert $\mu \in \CC$, und dann existiert ein Eigenvektor $v \in W^\perp \setminus \setzero$ für $\mu$.
 	Da $W^\perp \subseteq V$, ist $\mu$ auch Eigenwert von $F$ und $v \in E_\mu(F)$, das heißt es existiert ein $i \in \{1,\dots,k\}$ mit $\mu = \lambda_i$ und dann $v \in E_{\lambda_i}(F) \subseteq W$.
 	Damit ist $v \in W \cap W^\perp = \setzero$.
-	Widerspruch zu $v \neq 0$. \qedhere
+	Widerspruch zu $v \neq 0$. 
 \end{beweis}
 
 \begin{korollar}
@@ -102,7 +102,7 @@ Ferner werden wir die Struktur von beliebigen orthogonalen Endomorphismen bzw. M
 \begin{beweis}
 	Betrachte $\CC^n$ mit dem Standard-Skalarprodukt und $F_A \colon \CC^n \rightarrow \CC^n, x \mapsto Ax$.
 	Dann ist $F_A$ normal und ist $B = \{v_1,\dots,v_n\}$ eine Orthonormalbasis von $\CC^n$ wie in \autoref{satz:7.3}, so ist $U = (v_1,\dots,v_n)$ invertierbar und $U^{-1} A U$ ist eine Diagonalmatrix (vgl. Lineare Algebra I, \ref{sec:I.6}).
-	Nach \autoref{satz:6.9} ist $U$ unitär und $U^* = U^{-1}$. \qedhere
+	Nach \autoref{satz:6.9} ist $U$ unitär und $U^* = U^{-1}$. 
 \end{beweis}
 
 Wir wollen nun die reelle Situation untersuchen.
@@ -175,7 +175,7 @@ Wir wollen dieses nutzen, um auch die reelle Situation zu verstehen.
 	&= \sk{F(v_1),v_2} + \sk{F(w_1),w_2} + i( \sk{F(w_1),v_2} - \sk{F(v_1),w_2}) \\
 	&= \sk{v_1,F^*(v_2)} + \sk{w_1,F^*(w_2)} + i(\sk{w_1,F^*(v_2)} - \sk{v_1,F^*(w_2)}) \\
 	&= \sk{v_1 + iw_2,F^*(v_2) + iF^*(w_2)} \\
-	&= \sk{v_1 + iw_1, (F^*)_{\CC}(v_2+iw_2)} \qedhere
+	&= \sk{v_1 + iw_1, (F^*)_{\CC}(v_2+iw_2)} 
 	\end{align*}
 \end{beweis}
 
@@ -202,7 +202,7 @@ Dazu benutzen wir zunächst, dass jedes reelle Polynom $p(\lambda) = \sum_{k=0}^
 \begin{beweis}
 	Wähle eine Orthonormalbasis $B = \{v_1,\dots,v_n\}$ von $V$ wie in \autoref{lemma:7.7}.
 	Dann folgt mit \autoref{bem:7.8}:
-	$\chi_{F_{\CC}}(\lambda) = \det(\lambda E_n - A^B_{F_{\CC}}) = \det(\lambda E_n - A^B_F) = \chi_F(\lambda)$. \qedhere
+	$\chi_{F_{\CC}}(\lambda) = \det(\lambda E_n - A^B_{F_{\CC}}) = \det(\lambda E_n - A^B_F) = \chi_F(\lambda)$. 
 \end{beweis}
 
 \begin{lemma}
@@ -231,7 +231,7 @@ Dazu benutzen wir zunächst, dass jedes reelle Polynom $p(\lambda) = \sum_{k=0}^
 	\]
 	also ist $(\lambda-\mu)(\lambda-\ol{\mu})$ ein reelles Polynom.
 	Damit existiert ein reelles Polynom mit $\grad(q) = \grad(p) - 2$ und $p(\lambda) = q(\lambda)(\lambda-\mu)(\lambda-\ol{\mu})$.
-	Die Behauptung folgt dann per Induktion nach $\grad(p)$. \qedhere
+	Die Behauptung folgt dann per Induktion nach $\grad(p)$. 
 \end{beweis}
 
 \begin{korollar}
@@ -249,7 +249,7 @@ Dazu benutzen wir zunächst, dass jedes reelle Polynom $p(\lambda) = \sum_{k=0}^
 		(\lambda - \mu_i)(\lambda - \ol{\mu}_i) = \lambda^2 - 2 \alpha_i \lambda + (\alpha_i^2 + \beta_i^2),
 	\]
 	wobei die rechte Seite keine Nullstellen in $\RR$ hat, da beide Nullstellen in $\CC \setminus \RR$ sind.
-	Damit ist $(\lambda - \mu_i)^{m_i} (\lambda - \ol{\mu}_i)^{m_i} = (\lambda^2 - 2 \alpha_i \lambda + (\alpha_i^2 + \beta_i^2))^{m_i}$, also $a_i = -2\alpha_i, b_i = (\alpha_i + \beta_i)^2$. \qedhere
+	Damit ist $(\lambda - \mu_i)^{m_i} (\lambda - \ol{\mu}_i)^{m_i} = (\lambda^2 - 2 \alpha_i \lambda + (\alpha_i^2 + \beta_i^2))^{m_i}$, also $a_i = -2\alpha_i, b_i = (\alpha_i + \beta_i)^2$. 
 \end{beweis}
 
 \begin{lemma}
@@ -302,7 +302,7 @@ Dazu benutzen wir zunächst, dass jedes reelle Polynom $p(\lambda) = \sum_{k=0}^
 		\end{align*}
 		Damit folgt $\no{w_j}^2 = \no{v_j}^2$ und $\sk{v_j,w_j} = 0$.
 		Wegen $1 = \no{u_j}^2 = \no{v_j+iw_j}^2 \stackrel{\ref{satz:4.7}}{=} \no{v_j}^2 + \no{w_j}^2$ folgt dann $\no{v_j} = \no{w_j} \cdot \frac{1}{\sqrt{2}}$.
-		Somit ist $\penb{\sqrt{2} v_1, \sqrt{2} w_2, \dots, \sqrt{2} v_l,\sqrt{2} w_l}$ ein Orthonormalsystem in $E_{\lambda}(F_{\CC}) \oplus E_{\ol{\lambda}}(F_{\CC})$ mit $2l$ Elementen, und damit eine Orthonormalbasis von $E_{\lambda}(F_{\CC}) \oplus E_{\ol{\lambda}}(F_{\CC})$. \qedhere
+		Somit ist $\penb{\sqrt{2} v_1, \sqrt{2} w_2, \dots, \sqrt{2} v_l,\sqrt{2} w_l}$ ein Orthonormalsystem in $E_{\lambda}(F_{\CC}) \oplus E_{\ol{\lambda}}(F_{\CC})$ mit $2l$ Elementen, und damit eine Orthonormalbasis von $E_{\lambda}(F_{\CC}) \oplus E_{\ol{\lambda}}(F_{\CC})$. 
 	\end{enumerate}
 \end{beweis}
 
@@ -347,7 +347,7 @@ Dazu benutzen wir zunächst, dass jedes reelle Polynom $p(\lambda) = \sum_{k=0}^
 	Ist $B = \{u_1,\dots,u_k,v_1,w_1,\dots,v_m,w_m\}$, wobei $\{u_1,\dots,u_k\}$ die Vereinigung der im Fall 1 konstruierten Orthonormalbasen für die reellen Eigenvektoren $\lambda_i$ und $\{v_1,w_1,\dots,v_m,w_m\}$ die Vereinigung der in Fall 2 konstruierten Orthonormalbasen für $E_{\mu_j}(F_{\CC}) \oplus E_{\ol{\mu_j}}(F_{\CC})$, so erhalten wir eine Orthonormalbasis von $V_{\CC}$ mit Elementen in $V$, und damit eine Orthonormalbasis von $V$ mit $A_F^B$ wie im Satz:
 		
 	Da $F(u_i) = \lambda_i u_i$, hat $A_F^B$ in der $i$-ten Spalte $\lambda_i$ als Diagonaleintrag und sonst nur Nullen.
-	Da $F(v_j) = \alpha v_j - \beta w_j$ und $F(w_j) = \beta_j v_j + \alpha_j w_j$, erhalten wir (da $v_j$ an der $k+2j-1$-ten Stelle in $B$ und $w_j$ an $k+2j$-ter Stelle in $B$ steht) in der $k+2j-1$-ten Spalte $\alpha_j$ in Zeile $k+2j-1$ und $-\beta_j$ an Stelle $k+2j$, und in der $k+2j$-ten Spalte $\beta_j$ in Zeile $k+2j-1$ und $\alpha_j$ an Stelle $k+2j$ und sonst nur Nullen. \qedhere	
+	Da $F(v_j) = \alpha v_j - \beta w_j$ und $F(w_j) = \beta_j v_j + \alpha_j w_j$, erhalten wir (da $v_j$ an der $k+2j-1$-ten Stelle in $B$ und $w_j$ an $k+2j$-ter Stelle in $B$ steht) in der $k+2j-1$-ten Spalte $\alpha_j$ in Zeile $k+2j-1$ und $-\beta_j$ an Stelle $k+2j$, und in der $k+2j$-ten Spalte $\beta_j$ in Zeile $k+2j-1$ und $\alpha_j$ an Stelle $k+2j$ und sonst nur Nullen. 	
 \end{beweis}
 
 \begin{korollar}
@@ -372,7 +372,7 @@ Dazu benutzen wir zunächst, dass jedes reelle Polynom $p(\lambda) = \sum_{k=0}^
 \end{korollar}
 
 \begin{beweis}
-	Wende \autoref{satz:7.13} an auf $F_A \colon \RR^n \rightarrow \RR^n, x \mapsto Ax$ und setze $O = (u_1,\dots,u_k,v_1,w_1,\dots,v_m,w_m)$, wenn $B = \{u_1,\dots,u_k,v_1,w_1,\dots,v_m,w_m\}$ die in \autoref{satz:7.13} konstruierte Orthonormalbasis von $\RR^n$ ist. \qedhere
+	Wende \autoref{satz:7.13} an auf $F_A \colon \RR^n \rightarrow \RR^n, x \mapsto Ax$ und setze $O = (u_1,\dots,u_k,v_1,w_1,\dots,v_m,w_m)$, wenn $B = \{u_1,\dots,u_k,v_1,w_1,\dots,v_m,w_m\}$ die in \autoref{satz:7.13} konstruierte Orthonormalbasis von $\RR^n$ ist. 
 \end{beweis}
 
 Wir wollen dieses Resultat nutzen, um insbesondere orthogonale Endomorphismen bzw. Matrizen besser zu verstehen.
@@ -395,7 +395,7 @@ Wir benötigen:
 		Nach \autoref{lemma:7.2} ist dann $v$ auch Eigenvektor zu $F^*$ zum Eigenwert $\ol{\lambda}$.
 		Damit folgt $\lambda v = F(v) = F^*(v) = \ol{\lambda} v$, also $\lambda = \ol{\lambda}$.
 		\item Da $F$ unitär bzw. orthogonal ist, gilt $\sk{F(v),F(v)} = \sk{v,v}$ für alle $v \in V$.
-		Ist dann $v \in V \setminus \setzero$ ein Eigenvektor zum Eigenwert $\lambda$, so folgt $0 \neq \sk{v,v} = \sk{F(v),F(v)} = \sk{\lambda v,\lambda v} = \abs{\lambda}^2 \sk{v,v}$, also $\abs{\lambda}^2 = 1$, und dann auch $\abs{\lambda} = 1$. \qedhere
+		Ist dann $v \in V \setminus \setzero$ ein Eigenvektor zum Eigenwert $\lambda$, so folgt $0 \neq \sk{v,v} = \sk{F(v),F(v)} = \sk{\lambda v,\lambda v} = \abs{\lambda}^2 \sk{v,v}$, also $\abs{\lambda}^2 = 1$, und dann auch $\abs{\lambda} = 1$. 
 	\end{enumerate}
 \end{beweis}
 
@@ -426,7 +426,7 @@ Wir kommen nun zu sehr wichtigen Folgerungen von \autoref{satz:7.13}:
 \end{korollar}
 
 \begin{beweis}
-	Der Beweis folgt sofort aus \autoref{satz:7.13}, \autoref{kor:7.14} und \autoref{lemma:7.15}. \qedhere
+	Der Beweis folgt sofort aus \autoref{satz:7.13}, \autoref{kor:7.14} und \autoref{lemma:7.15}. 
 \end{beweis}
 
 \begin{korollar}
@@ -456,7 +456,7 @@ Wir kommen nun zu sehr wichtigen Folgerungen von \autoref{satz:7.13}:
 
 \begin{beweis}
 	Nach \autoref{lemma:7.15}(ii) ist jeder reelle Eigenwert von $F$ (bzw. $A$) $1$ oder $-1$, und jeder komplexe Eigenwert $\mu$ erfüllt $\abs{\mu}=1$.
-	Dann gilt $\mu = \cos(\alpha) - i \sin(\alpha)$ für ein $\alpha \in [0,2\pi)$, und der Satz folgt sofort aus \autoref{satz:7.13} und \autoref{kor:7.14}. \qedhere
+	Dann gilt $\mu = \cos(\alpha) - i \sin(\alpha)$ für ein $\alpha \in [0,2\pi)$, und der Satz folgt sofort aus \autoref{satz:7.13} und \autoref{kor:7.14}. 
 \end{beweis}
 
 Wir sehen also, dass jede orthogonale lineare Abbildung sich aus Drehungen geeigneter Teilebenen und Spiegelungen an geeigneten Achsen zusammensetzt (Beachte, dass die Matrix $-E_2$ eine Drehung um den Winkel $\pi$ ist).
@@ -507,7 +507,7 @@ Wir schließen den Abschnitt mit einer geeigneten Anwendung von \autoref{satz:7.
 		\[
 			\sk{F(v),v} = \sk{\lambda v,v} = \lambda \Underbrace{\sk{v,v}}{\geq 0} \leq 0.
 		\]
-		Widerspruch zu $F$ positiv definit. \qedhere
+		Widerspruch zu $F$ positiv definit. 
 	\end{description}
 \end{beweis}
 \newpage

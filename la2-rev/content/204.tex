@@ -157,7 +157,7 @@ Dazu benötigen wir die folgende wichtige Notation:
 \begin{beweis}
 	Es gilt
 	\[
-		\no{\sum_{i=1}^{l} \lambda_i v_i}^2 = \sk{\sum_{i=1}^{l} \lambda_i v_i,\sum_{j=1}^{l} \lambda_j v_j} = \sum_{i=1}^{l} \sum_{j=1}^{l} \lambda_i \ol{\lambda_j} \sk{v_i,v_j} = \sum_{i,j=1}^{l} \lambda_i \ol{\lambda_j} \delta_{ij} \no{v_i}^2 = \sum_{i=1}^{l} \lambda_i \ol{\lambda_i} \no{v_i}^2 \qedhere
+		\no{\sum_{i=1}^{l} \lambda_i v_i}^2 = \sk{\sum_{i=1}^{l} \lambda_i v_i,\sum_{j=1}^{l} \lambda_j v_j} = \sum_{i=1}^{l} \sum_{j=1}^{l} \lambda_i \ol{\lambda_j} \sk{v_i,v_j} = \sum_{i,j=1}^{l} \lambda_i \ol{\lambda_j} \delta_{ij} \no{v_i}^2 = \sum_{i=1}^{l} \lambda_i \ol{\lambda_i} \no{v_i}^2 
 	\]
 \end{beweis}
 
@@ -173,7 +173,7 @@ Dazu benötigen wir die folgende wichtige Notation:
 		0 = \no{\sum_{i=1}^{l} \lambda_i v_i}^2 \stackrel{\ref{satz:4.7}}{=} \sum_{i=1}^{l} \abs{\lambda_i}^2 \no{v_i}^2,
 	\]
 	und damit $\abs{\lambda_i}^2 \no{v_i}^2 = 0$ für alle $1 \leq i \leq l$.
-	Da $v_i \neq 0$, folgt $\lambda_i = 0$ für alle $1 \leq i \leq l$. \qedhere
+	Da $v_i \neq 0$, folgt $\lambda_i = 0$ für alle $1 \leq i \leq l$. 
 \end{beweis}
 
 \begin{satz}
@@ -222,7 +222,7 @@ Dazu benötigen wir die folgende wichtige Notation:
 		Dann folgt mit \autoref{satz:4.7}:
 		\begin{align*}
 			\no{v-u}^2 &\stack{}{=} \no{(v-P_U(v)) + \Underbrace{(P_U(v) - u)}{\in U}}^2 \\
-			&\stack{\ref{satz:4.7}}{=} \no{v-P_U(v)}^2 + \Underbrace{\no{P_U(v)-u}}{\neq 0 \text{ n.V.}}^2 > \no{v-P_U(v)}^2 \qedhere
+			&\stack{\ref{satz:4.7}}{=} \no{v-P_U(v)}^2 + \Underbrace{\no{P_U(v)-u}}{\neq 0 \text{ n.V.}}^2 > \no{v-P_U(v)}^2 
 		\end{align*}
 	\end{enumerate}
 \end{beweis}
@@ -245,7 +245,7 @@ Dazu benötigen wir die folgende wichtige Notation:
 \end{korollar}
 
 \begin{beweis}
-	Das folgt aus dem Beweis von \autoref{satz:4.9}(iii). \qedhere
+	Das folgt aus dem Beweis von \autoref{satz:4.9}(iii). 
 \end{beweis}
 
 Ist $\{v_1,\dots,v_n\}$ eine Orthonormalbasis von $V$, so erhalten wir eine besonders schöne Darstellung der Elemente von $V$ als Linearkombination der Basiselemente:
@@ -290,7 +290,7 @@ Ist $\{v_1,\dots,v_n\}$ eine Orthonormalbasis von $V$, so erhalten wir eine beso
 		Zeige: $U = V$.
 		Nach \autoref{satz:4.9} existiert die orthogonale Projektion $P_U\colon V \rightarrow U$.
 		Ist dann $v \in V$, so gilt $v - P_U(v) \perp U$, also insbesondere $\sk{v-P_U(v),v_i} = 0$ für alle $1 \leq i \leq l$.
-		Nach (v) folgt $v - P_U(v) = 0$, also $v = P_U(v) \in U$. \qedhere
+		Nach (v) folgt $v - P_U(v) = 0$, also $v = P_U(v) \in U$. 
 	\end{description}
 \end{beweis}
 
@@ -336,7 +336,7 @@ Und wenn ja, wie kann man eine Orthonormalbasis finden?
 		und damit ist $v_{j+1}$ eine Linearkombination von $\{v_1,\dots,v_j,w_{j+1}\}$ derart, dass der Koeffizient von $w_{j+1}$ nicht $0$ ist.
 		Nach dem Austauschlemma \ref{lemma:I.9.1} folgt dann
 		\[
-			\LH\{v_1,\dots,v_{j+1}\} = \LH\{v_1,\dots,v_j,w_{j+1}\} = \LH\{w_1,\dots,w_{j+1}\}. \qedhere
+			\LH\{v_1,\dots,v_{j+1}\} = \LH\{v_1,\dots,v_j,w_{j+1}\} = \LH\{w_1,\dots,w_{j+1}\}. 
 		\]
 	\end{enumerate}
 \end{beweis}

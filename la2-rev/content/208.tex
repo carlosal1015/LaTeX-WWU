@@ -28,7 +28,7 @@ Ist dann $A = (a_{ij})_{ij} \in M(n \times n, \RR)$, so ist $A = A^T$ und wir er
 
 \begin{beweis}
 	Die erste Gleichung folgt direkt durch einsetzen.
-	Die zweite Gleichung folgt aus $\sk{y,x} = y^Tx$ für alle $x,y \in \RR^n$ und $\sk{Ax,x} = \sk{x,A^Tx} = \sk{x,Ax} = x^T Ax$. \qedhere
+	Die zweite Gleichung folgt aus $\sk{y,x} = y^Tx$ für alle $x,y \in \RR^n$ und $\sk{Ax,x} = \sk{x,A^Tx} = \sk{x,Ax} = x^T Ax$. 
 \end{beweis}
 
 Unser Ziel: Wir wollen durch geeignete Wahl von Koordinaten in $\RR^n$ und durch Verschiebung des Ursprungs erreichen, dass $p$ eine besonders schöne Gestalt annimmt (vgl. mit Blatt 6, Aufgabe 1).
@@ -53,7 +53,7 @@ Beachte: Der Faktor $2$ vor dem Term $\sk{a,x}$ bzw. $a^Tx$ vereinfacht einige U
 		A^2w = A \cdot \enb{\sum_{k=1}^{n} \frac{\mu_i}{\lambda_i} Av_i} = A \cdot \enb{\sum_{i=1}^{k} \mu_i v_i} = \sum_{i=1}^{n} \mu_i \lambda_i v_i = Av.
 	\]
 	Damit folgt $\Bild(A) \subseteq \Bild(A^2)$.
-	Die Umkehrung ist trivial. \qedhere
+	Die Umkehrung ist trivial. 
 \end{beweis}
 
 \begin{lemma}[Reduktion durch Translation]
@@ -94,7 +94,7 @@ Beachte: Der Faktor $2$ vor dem Term $\sk{a,x}$ bzw. $a^Tx$ vereinfacht einige U
 		&= p(c) - \alpha + p(\delta b) = p(c) - \alpha + \delta^2 b^TAb + \delta 2 a^T b + \alpha \\
 		&= p(c) - p(c) \enb{\frac{1}{2 \no{b}^2}} 2a^Tb = 0,
 	\end{align*}
-	denn $\no{b}^2 = b^Tb = (Ac+a)^Tb = c^T\Underbrace{Ab}{=0} + a^Tb = a^Tb$. \qedhere
+	denn $\no{b}^2 = b^Tb = (Ac+a)^Tb = c^T\Underbrace{Ab}{=0} + a^Tb = a^Tb$. 
 \end{beweis}
 
 \begin{satz}[Normalform quadratischer Polynome I]
@@ -174,7 +174,7 @@ Beachte: Der Faktor $2$ vor dem Term $\sk{a,x}$ bzw. $a^Tx$ vereinfacht einige U
 			&= x^T \cdot \diag(\lambda_1,\dots,\lambda_{n-1},0) \cdot x_n + 2 \no{b} x_n \\
 			&= \lambda_1 x_1^2 + \dots + \lambda_{n-1}x_{n-1}^2 + \beta x_n
 		\end{align*}
-		für $\beta := 2 \no{b}$. \qedhere
+		für $\beta := 2 \no{b}$. 
 	\end{enumerate}
 \end{beweis}
 
@@ -200,7 +200,7 @@ Wenn wir die Koeffizienten $\lambda_i$ vor den quadratischen Termen in \autoref{
 	Wir ordnen die $\lambda_i$ (also die Variablen $x_i$) so um, dass, dass die ersten $k$ Koeffizienten größer $0$ und die folgenden $m-k$ Koeffizienten kleiner $0$ sind.
 	Alle anderen sind $0$.
 	Umordnung der Variablen geschieht durch Konjugation mit einer Permutationsmatrix $P \in \oh(n)$.
-	Ist also $\wt{O} \in \oh(n)$ wie in \autoref{satz:8.5}, so ist $O = P\wt{O} \in \oh(n)$. \qedhere
+	Ist also $\wt{O} \in \oh(n)$ wie in \autoref{satz:8.5}, so ist $O = P\wt{O} \in \oh(n)$. 
 \end{beweis}
 \newpage
 \begin{definition}[Quadrik]

@@ -1,5 +1,5 @@
-%!TEX root = ../LA2.tex
-\section{Das charakteristische Polynom und Diagonalisierbarkeit}
+%!TEX root = ../LA2_SS16.tex
+\subsection{Das charakteristische Polynom und Diagonalisierbarkeit}
 \label{sec:2.2}
 
 \minisec{Wiederholung aus LA 1}
@@ -91,7 +91,7 @@ Damit: Die Eigenwerte von $F$ sind genau die Nullstellen der \textbf{charakteris
 	\lambda &\longmapsto \det(\lambda \cdot \id - F)
 \end{align*}
 Analog: Ist $A \in M(n \times n,K)$, so sind die Eigenwerte von $A$ gerade die Nullstellen von $\chi_A(\lambda) := \det(\lambda \cdot E_n - A)$.
-\newpage
+
 \minisec{Berechnung einer Basis von Eigenvektoren}
 Ist $\lambda \in K$ Eigenwert zu $F$, so heißt
 \[
@@ -102,8 +102,8 @@ Sind dann $\lambda_1,\dots,\lambda_l$ die paarweise verschiedenen Eigenwerte von
 \[
 	B = \{v_{11},\dots,v_{1n_1},v_{21},\dots,v_{2n_2},\dots,v_{l1},\dots,v_{ln_l}\}
 \]
-ein linear unabhängiges System von Eigenvektoren von $F$ (dies folgt aus \autoref{satz:I.16.19}).
-Nach \autoref{satz:I.16.20} ist $F$ diagonalisierbar genau dann, wenn $B$ eine Basis von $V$ ist, das heißt genau dann, wenn
+ein linear unabhängiges System von Eigenvektoren von $F$ (dies folgt aus Satz~\ref{satz:I.16.19}).
+Nach Satz~\ref{satz:I.16.20} ist $F$ diagonalisierbar genau dann, wenn $B$ eine Basis von $V$ ist, das heißt genau dann, wenn
 \[
 	\dim(V) = \dim(F_{\lambda_1}(F)) + \cdots + \dim(E_{\lambda_l}(F)).
 \]
@@ -120,7 +120,7 @@ Dazu wollen wir die charakteristische\linebreak (Polynom-)Funktion genauer ansch
 
 \begin{beweis}
 	Sei $\widetilde{A}	 = \lambda E_n - A = (\widetilde{a}_{ij})_{1 \leq i,j \leq n}$.
-	Dann gilt nach \textsc{Leibniz} (\autoref{satz:I.14.15}):
+	Dann gilt nach \textsc{Leibniz} (Satz~\ref{satz:I.14.15}):
 	\[
 		\chi_A(\lambda) = \det(\lambda E_n - A) = \sum_{\sigma \in S_n}^{} \sign(\sigma) \widetilde{a}_{1 \sigma(1)},\dots,\widetilde{a}_{n \sigma (n)},
 	\]
@@ -134,7 +134,7 @@ Dazu wollen wir die charakteristische\linebreak (Polynom-)Funktion genauer ansch
 	\]
 	Damit ist jeder Summand in der Leibnizformel eine Polynomfunktion vom Grad $k \leq n$, wobei $k$ genau die Anzahl der $i \in \{1,\dots,n\}$ mit $\sigma(i) = i$ ist.
 	(Für jedes solche $i$ erhalten wir den Faktor $(\lambda - a_{ii})$ im Summanden für $\sigma$).
-	\newpage	
+	
 	Es folgt: Es gibt genau einen Summanden vom Grad $n$, nämlich wenn $\sigma(i) = i$ für alle $i \in \{1,\dots,n\}$, also $\sigma=\id$.
 	Dieser Summand hat die Form
 	\[
@@ -144,7 +144,7 @@ Dazu wollen wir die charakteristische\linebreak (Polynom-)Funktion genauer ansch
 	Zusammen folgt:
 	\begin{align*}
 		\chi_A(\lambda) &= \lambda^n + \sum (\text{Polynome vom Grad} < n) \\
-		&= \lambda^n + \sum_{k=0}^{n-1} a_k \lambda^k \text{ für geeignete } a_0,\dots,a_{n-1} \in K \qedhere
+		&= \lambda^n + \sum_{k=0}^{n-1} a_k \lambda^k \text{ für geeignete } a_0,\dots,a_{n-1} \in K 
 	\end{align*}
 \end{beweis}
 
@@ -170,7 +170,7 @@ Dazu wollen wir die charakteristische\linebreak (Polynom-)Funktion genauer ansch
 	\[
 		\chi_A(T) = T^n - \sum_{k=0}^{n-1} a_kT^k
 	\]
-	mit genau den Koeffizienten $a_0,\dots,a_{n-1}$ wie in \autoref{satz:2.1}.
+	mit genau den Koeffizienten $a_0,\dots,a_{n-1}$ wie in Satz~\ref{satz:2.1}.
 	
 	Wir müssen zeigen, dass dieses Polynom nur von $F$ abhängt und nicht von der Wahl der Basis $C$ (bzw. von $A = A_F^C$)!
 	
@@ -180,8 +180,8 @@ Dazu wollen wir die charakteristische\linebreak (Polynom-)Funktion genauer ansch
 		\det(\lambda E_n - A_F^B) &= \det(S^{-1}(\lambda E_n-A_F^C)S) \\
 		&= \Underbrace{\det(S^{-1})}{=\det(S)^{-1}} \det(\lambda E_n - A_F^C) \det(S) = \det(\lambda E_n -A_F^C).
 	\end{align*}
-	\newpage
-	Besitzt $K$ unendlich viele Elemente, so folgt aus \autoref{satz:I.15.6}, dass die Abbildung
+
+	Besitzt $K$ unendlich viele Elemente, so folgt aus Satz~\ref{satz:I.15.6}, dass die Abbildung
 	\begin{align*}
 		K[T] &\longrightarrow \Abb(K,K) \\
 		p &\longmapsto f_p = \text{ Polynomfunktion von } p
@@ -266,14 +266,13 @@ Wir halten fest:
 
 \begin{erinnerung}
 	\label{erinnerung:2.7}
-	\mbox{} \\[-1.4cm]
 	\begin{enumerate}[(a)]
 		\item Wenn $\chi_F$ in Linearfaktoren zerfällt, so gilt, da $\chi_F$ normiert ist,
 		\[
 			\chi_F(T) = (T-\lambda_1)^{n_1} \cdots (T-\lambda_l)^{n_l},
 		\]
 		wobei $\lambda_1,\dots,\lambda_l$ die paarweise verschiedenen Eigenwerte von $F$ bezeichnet, und dann ist $\alpha(\lambda_i) := n_i$ die \Index{algebraische Vielfachheit} des Eigenwerts $\lambda_i$.
-		\item In \autoref{def:I.16.21} hatten wir für einen Eigenwert $\lambda_i$ von $F$ die \Index{geometrische Vielfachheit} von $\lambda_i$ definiert durch die Dimension des Eigenraums: $\gamma(\lambda_i) := \dim(E_{\lambda_i}(F))$.
+		\item In Definition~\ref{def:I.16.21} hatten wir für einen Eigenwert $\lambda_i$ von $F$ die \Index{geometrische Vielfachheit} von $\lambda_i$ definiert durch die Dimension des Eigenraums: $\gamma(\lambda_i) := \dim(E_{\lambda_i}(F))$.
 	\end{enumerate}
 \end{erinnerung}
 
@@ -290,7 +289,7 @@ Wir halten fest:
 \begin{beweis}
 	Seien $\lambda_1,\dotsm\lambda_l$ die paarweise verschiedenen Eigenwerte von $F$.
 	\begin{description}
-		\item[(1) $\Rightarrow$ (2):] Ist $F$ diagonalisierbar, so existiert eine Basis $B=\{v_{11},\dots,v_{1n_1},v_{21},\dots,v_{2n_2},\dots,v_{l1},\dots,v_{ln_l}\}$ von $V$ mit $\{v_{i1},\dots,v_{in_i}\}$ Basis von $E_{\lambda_i}(F)$ für alle $1 \leq i \leq l$ (\autoref{satz:I.16.20}).
+		\item[(1) $\Rightarrow$ (2):] Ist $F$ diagonalisierbar, so existiert eine Basis $B=\{v_{11},\dots,v_{1n_1},v_{21},\dots,v_{2n_2},\dots,v_{l1},\dots,v_{ln_l}\}$ von $V$ mit $\{v_{i1},\dots,v_{in_i}\}$ Basis von $E_{\lambda_i}(F)$ für alle $1 \leq i \leq l$ (Satz~\ref{satz:I.16.20}).
 		Die zugehörige Darstellungsmatrix $A_F^B$ für $F$ lautet dann
 		
 		\[
@@ -315,7 +314,7 @@ Wir halten fest:
 		$n_i = \dim(E_{\lambda_i}(F))$ ist genau die algebraische Vielfachheit der Nullstelle $\lambda_i$ von $F$, also $\gamma(\lambda_i) = \alpha(\lambda_i)$ für alle $1 \leq i \leq l$.
 		\item[(2) $\Rightarrow$ (1):] Sei nun $n_i := \alpha(\lambda_i) = \gamma(\lambda_i) = \dim(\Kern(E_{\lambda_i}(F)))$ für alle $1 \leq i \leq l$.
 		Da $\chi_F$ in Linearfaktoren zerfällt, gilt $\dim(V) =: n = \grad(\chi_F) = n_1+\dots+n_l = \dim(E_{\lambda_1}(F)) + \cdots + \dim(E_{\lambda_l}(F))$.
-		Nach \autoref{satz:I.16.20} folgt, dass $F$ diagonalisierbar ist. \qedhere
+		Nach Satz~\ref{satz:I.16.20} folgt, dass $F$ diagonalisierbar ist. 
 	\end{description}
 \end{beweis}
 
@@ -364,4 +363,4 @@ Wir halten fest:
 	\]
 	Also ist $F$ nicht diagonalisierbar.
 \end{beispiel}
-\newpage
+\cleardoubleoddemptypage

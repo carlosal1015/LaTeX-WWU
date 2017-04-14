@@ -118,7 +118,7 @@ Dazu stellen wir zunächst fest:
 \begin{beweis}
 	Ist $j \in \{1,\dots,n\}$ mit $m_j \neq 0$, so gilt $\sum_{i=1}^{n} a_{ij} = \sum_{W_j \leadsto W_i} \frac{1}{m_j} = \frac{m_j}{m_j} = 1$.
 	
-	Ist $m_j = 0$, so gilt $a_{ij} = \frac{1}{n}$ für alle $i$, also $\sum_{i=1}^{n} a_{ij} = n \cdot \frac{1}{n} = 1$. \qedhere
+	Ist $m_j = 0$, so gilt $a_{ij} = \frac{1}{n}$ für alle $i$, also $\sum_{i=1}^{n} a_{ij} = n \cdot \frac{1}{n} = 1$. 
 \end{beweis}
 
 \begin{lemma}
@@ -133,7 +133,7 @@ Dazu stellen wir zunächst fest:
 	\[
 		(A^Ty)_i = \sum_{j=1}^{n} a_{ij}^T y_j = \sum_{j=1}^{n} a_{ji} = 1.
 	\]
-	Damit ist $y \neq 0$ ein Eigenvektor zum Eigenwert $1$ für $A^T$. \qedhere
+	Damit ist $y \neq 0$ ein Eigenvektor zum Eigenwert $1$ für $A^T$. 
 \end{beweis}
 
 Wir haben noch nicht gezeigt, dass alle $x_i \geq 0$ gewählt werden können.
@@ -213,10 +213,10 @@ In der Literatur wird häufig der Wert $c = 0.85$ als gute Wahl angegeben!
 		Dann folgt $b_{ij} = ca_{ij} + \frac{1-c}{n} > 0$ für alle $i,j$.
 		\item Es gilt: 
 		\[
-			\sum_{i=1}^{n} b_{ij} = \sum_{i=1}^{n} \enb{ca_{ij} + \frac{1-c}{n}} = c \cdot \Underbrace{\sum_{i=1}^{n} a_{ij}}{=1} + (1-c) \sum_{i=1}^{n} \frac{1}{n} = c+(1-c) \frac{n}{n} = 1. \qedhere
+			\sum_{i=1}^{n} b_{ij} = \sum_{i=1}^{n} \enb{ca_{ij} + \frac{1-c}{n}} = c \cdot \Underbrace{\sum_{i=1}^{n} a_{ij}}{=1} + (1-c) \sum_{i=1}^{n} \frac{1}{n} = c+(1-c) \frac{n}{n} = 1. 
 		\]
 	\end{enumerate}
-	\qedhere
+	
 \end{beweis}
 
 \begin{beispiel}
@@ -311,7 +311,7 @@ Zunächst benötigen wir eine schwache Version des Banachschen Fixpunktsatzes.
 		a &= \lim\limits_{n \rightarrow \infty} a_{k_n+1} = \lim\limits_{n \rightarrow \infty} d(f(\overbrace{f^{k_n}(x_0)}^{\rightarrow y_0}),\ol{x_0}) = d(f(y_0),\ol{x}) \\
 		&= d(f(y_0),f(\ol{x})) \stackrel{\eqref{eq:13.12}}{<} d(y_0,\ol{x}) = a,
 	\end{align*}
-	also $a < a$, und wir erhalten wieder einen Widerspruch. \qedhere
+	also $a < a$, und wir erhalten wieder einen Widerspruch. 
 \end{beweis}
 
 Es geht nun darum, den passenden metrischen Raum für den Beweis des Perron-Frobenius-Satzes zu basteln.
@@ -349,7 +349,7 @@ Auf $Y^+$ definieren wir eine Metrik $d$ durch
 	Damit erhalten wir mit der Monotonie von $\ln$:
 	\begin{align*}
 		d(x,z) &= \ln(M(x,z) \cdot M(z,x)) \leq \ln(M(x,y)\cdot M(y,z) \cdot M(z,y) \cdot M(y,x) \\
-		&= \ln(M(x,y) \cdot M(y,x)) + ln(M(y,z) \cdot M(z,y)) = d(x,y) + d(y,z). \qedhere
+		&= \ln(M(x,y) \cdot M(y,x)) + ln(M(y,z) \cdot M(z,y)) = d(x,y) + d(y,z). 
 	\end{align*}
 \end{beweis}
 
@@ -367,7 +367,7 @@ Es gilt dann:
 	Dann gilt $y_{n,i} \rightarrow y_{0,i}$ für alle $1 \leq i \leq n$, und damit $\frac{y_{n,i}}{y_{0,i}} \rightarrow 1$.
 	Es folgt $M(y_n,y_0) \rightarrow 1$ und analog $M(y_0,y_n) \rightarrow 1$, und dann auch
 	\[
-		d(y_n,y_0) = \ln(M(y_n,y_0) \cdot M(y_0,y_n)) \rightarrow \ln(1) = 0. \qedhere
+		d(y_n,y_0) = \ln(M(y_n,y_0) \cdot M(y_0,y_n)) \rightarrow \ln(1) = 0. 
 	\]
 \end{beweis}
 
@@ -415,6 +415,6 @@ Es gilt dann:
 		\]
 	
 		Damit sind wir nun in der Situation von \autoref{satz:13.12} und es existiert genau ein $\ol{x} \in X = AY$ mit $A\ol{x} = f(\ol{x}) = \ol{x}$, und es gilt $\ol{x} = \lim\limits_{k\rightarrow \infty} A^k x_0$ für jedes $x_0 \in Y$ (denn $Ax_0 \in X$).
-		Diese Konvergenz ist wegen (ii) sowohl bezüglich $d$, als auch bezüglich $\no{\cdot}$ für jede beliebige Norm auf $\RR^n$. \qedhere
+		Diese Konvergenz ist wegen (ii) sowohl bezüglich $d$, als auch bezüglich $\no{\cdot}$ für jede beliebige Norm auf $\RR^n$. 
 	\end{enumerate}
 \end{beweis}
