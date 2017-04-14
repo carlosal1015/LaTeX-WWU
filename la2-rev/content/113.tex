@@ -1,5 +1,5 @@
-%!TEX root = ../LA2.tex
-\section{Determinanten}
+%!TEX root = ../LA2_SS16.tex
+\subsection{Determinanten}
 
 \begin{definition}[Determinante]
 	\label{def:I.13.1}
@@ -22,7 +22,7 @@
 
 \begin{satz}[Eigenschaften von Determinanten]
 	\label{satz:I.13.2}
-	Sei $\det_n\colon M(n \times n,K) \rightarrow K$ wie in \autoref{def:I.13.1}.
+	Sei $\det_n\colon M(n \times n,K) \rightarrow K$ wie in Definition~\ref{def:I.13.1}.
 	Dann gelten:
 	\begin{description}
 		\item[(D4)] Entsteht $A'$ aus $A$ durch Vertauschen zweier unterschiedlicher Spalten, so gilt $\det_n(A') = -\det_n(A)$.
@@ -34,10 +34,10 @@
 	\end{description}
 \end{satz}
 
-\setcounter{definition}{4}
+\setcounter{satz}{4}
 \begin{satz}[Mehr Eigenschaften von Determinanten]
 	\label{satz:I.13.5}
-	Sei $\det_n\colon M(n\times n,K)$ eine Determinante wie in \autoref{def:I.13.1} und $A,B \in M(n \times n,K)$.
+	Sei $\det_n\colon M(n\times n,K)$ eine Determinante wie in Definition~\ref{def:I.13.1} und $A,B \in M(n \times n,K)$.
 	Dann gelten:
 	\begin{enumerate}[(i)]
 		\item	$\det_n(A) \neq 0 \Leftrightarrow A \in \GL(n,K) \Leftrightarrow \Rang(A) = n \Leftrightarrow \text{ Die Spalten bzw. Zeilen von } A \text{ sind linear unabhängig.}$
@@ -46,9 +46,9 @@
 	\end{enumerate}
 \end{satz}
 
-\setcounter{definition}{7}
+\setcounter{satz}{7}
 \begin{korollar}
 	\label{kor:I.13.8}
 	Für jeden Körper $K$ und jedes $n \in \NN$ existiert höchstens eine Determinante $\det_n\colon M(n \times n,K)$.
 \end{korollar}
-\newpage
+\cleardoubleoddemptypage
