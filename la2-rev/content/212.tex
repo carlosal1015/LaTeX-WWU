@@ -1,5 +1,5 @@
-%!TEX root = ../LA2.tex
-\section{Dualräume}
+%!TEX root = ../LA2_SS16.tex
+\subsection{Dualräume}
 \label{sec:2.12}
 	Weitere wichtige Beispiele von Räumen, die wir bisher vernachlässigt haben, sind die Dualräume von Vektorräumen.
 	
@@ -34,11 +34,12 @@
 
 \begin{definition}[duale Basis]
 	\label{def:12.3}
-	Sei $B = \{v_1,\dots,v_n\}$ eine Basis des $K$-Vektorraumes $V$ und sei $B^* = \{\varphi_1,\dots,\varphi_n\}$ wie in \autoref{bem:12.2}.
+	Sei $B = \{v_1,\dots,v_n\}$ eine Basis des $K$-Vektorraumes $V$ und sei $B^* = \{\varphi_1,\dots,\varphi_n\}$ wie in Bemerkung~\ref{bem:12.2}.
 	Dann heißt $B^*$ die zu $B$ \Index{duale Basis} von $V^*$.
 \end{definition}
 
 Beachte: Wir erhalten insbesondere $\dim(V^*) = \dim(V)$ und die Wahl der Basis $B = \{v_1,\dots,v_n\}$ induziert einen Isomorphismus
+\newpage
 \begin{align*}
 	\Phi\colon V &\longrightarrow V^* \\
 	\sum_{i=1}^{n} x_i v_i &\longmapsto \sum_{i=1}^{n} x_i \varphi_i.
@@ -99,11 +100,10 @@ Wir erhalten also einen Isomorphismus
 
 \begin{bemerkung}
 	\label{bem:12.6}
-	\mbox{} \\[-1.4cm]
 	\begin{enumerate}[(i)]
-		\item Ist $(V,\sk{\cdot,\cdot})$ ein endlich dimensionaler unitärer $\CC$-Vektorraum, so wird ähnlich wie in \autoref{satz:12.5} ein konjugiert linearer Isomorphismus $\Phi \colon V \rightarrow V^*, \Phi(v)(w) = \sk{v,w}$ definiert.
+		\item Ist $(V,\sk{\cdot,\cdot})$ ein endlich dimensionaler unitärer $\CC$-Vektorraum, so wird ähnlich wie in Satz~\ref{satz:12.5} ein konjugiert linearer Isomorphismus $\Phi \colon V \rightarrow V^*, \Phi(v)(w) = \sk{v,w}$ definiert.
 		Der Beweis geht völlig analog.
-		\item Ist $(V,\sk{\cdot,\cdot})$ wie in \autoref{satz:12.5} und ist $B = \{v_1,\dots,v_n\}$ eine Orthonormalbasis von $V$ und $\Phi \colon V \rightarrow V^*$ wie in \autoref{satz:12.5}, so ist $\{\Phi_(v_1),\dots,\Phi_(v_n)\}$ gerade die duale Basis von $V^*$ bezüglich $\{v_1,\dots,v_n\}$, denn $\Phi(v_i)(v_j) = \sk{v_i,v_j} = \delta_{ij}$.
+		\item Ist $(V,\sk{\cdot,\cdot})$ wie in Satz~\ref{satz:12.5} und ist $B = \{v_1,\dots,v_n\}$ eine Orthonormalbasis von $V$ und $\Phi \colon V \rightarrow V^*$ wie in Satz~\ref{satz:12.5}, so ist $\{\Phi_(v_1),\dots,\Phi_(v_n)\}$ gerade die duale Basis von $V^*$ bezüglich $\{v_1,\dots,v_n\}$, denn $\Phi(v_i)(v_j) = \sk{v_i,v_j} = \delta_{ij}$.
 	\end{enumerate}
 \end{bemerkung}
 
@@ -175,9 +175,9 @@ Insbesondere erhalten wir eine Formel für die Basiswechselmatrix von einer dual
 	Sei $B = \{v_1,\dots,v_n\}$ eine Basis von $K^n$.
 	Identifizieren wir $K^n$ mit $(K^n)^*$ via $y \mapsto \varphi_y(x) := y^Tx$, so wollen wir die duale Basis $\{\varphi_1,\dots,\varphi_n\}$ von $B$ als Vektoren in $K^n$ berechnen, das heißt wir suchen $y_1,\dots,y_n \in K^n$ mit $\varphi_i = \varphi_{y_i}$.
 	
-	Beachte: Die duale Basis der Standardbasis in diesem Bild ist wieder die Standard-Basis (\autoref{bsp:12.4}).
+	Beachte: Die duale Basis der Standardbasis in diesem Bild ist wieder die Standard-Basis (Beispiel~\ref{bsp:12.4}).
 	Sei nun $S = (v_1,\dots,v_n) = \mat{A}{\mathcal{S}}{B}{\id_V}$.
-	Nach \autoref{kor:12.9} gilt $\mat{A}{\mathcal{S}^*}{B^*}{\id_{V^*}} = (S^T)^{-1} = (S^{-1})^T$ und die Spalten dieser Matrix geben genau die Koeffizienten zur Darstellung von $y_j$ in der Basis $\mathcal{S}^*$, also folgt
+	Nach Korollar~\ref{kor:12.9} gilt $\mat{A}{\mathcal{S}^*}{B^*}{\id_{V^*}} = (S^T)^{-1} = (S^{-1})^T$ und die Spalten dieser Matrix geben genau die Koeffizienten zur Darstellung von $y_j$ in der Basis $\mathcal{S}^*$, also folgt
 	\[
 		(S^T)^{-1} = (y_1,\dots,y_n).
 	\]
@@ -195,7 +195,7 @@ Wir wollen nun den doppelten Dualraum $V^{**} = (V^*)^*$ betrachten.
 	ein Isomorphismus.
 	Ist $B = \{v_1,\dots,v_n\}$ Basis von $V$ und $\{\varphi_1,\dots,\varphi_n\}$ duale Basis von $V^*$ bezüglich $B$, so ist $\{\iota_V(v_1),\dots,\iota_V(v_n)\}$ duale Basis von $V^{**}$ bezüglich $B^*$.
 \end{satz}
-\newpage
+  
 Fazit: $\iota_V \colon V \rightarrow V^{**}$ überträgt die Stuktur eins zu eins von $V$ auf $V^{**}$.
 Wir können daher $V$ mit $V^{**}$ in kanonischer Weise identifizieren.
 
@@ -280,7 +280,7 @@ Für den Beweis benötigen wir ein Lemma:
 	Dann folgt $\varphi(v) = 1$ und $\varphi(U) = \setzero$. 
 \end{beweis}
 
-\begin{beweis}[\autoref{satz:12.14}]
+\begin{beweis}[Satz~\ref{satz:12.14}]
 	Sind $\varphi, \psi \in M^\perp$ und $\lambda, \mu \in K$, so folgt für alle $m \in M$
 	\[
 	(\lambda \varphi + \mu \psi)(m) = \lambda \varphi(m) + \mu \psi(m) = 0,
@@ -294,7 +294,7 @@ Für den Beweis benötigen wir ein Lemma:
 	
 	Es bleibt zu zeigen, dass $(M^\perp)^\perp \subseteq \LH\{M\} := U$ gilt.
 	Angenommen, $v \in (M^\perp)^\perp \setzero U$.
-	Nach \autoref{lemma:12.15} existiert dann ein $\varphi \in V^*$ mit $\varphi(v) = 1$ und $\varphi(U)=\setzero$.
+	Nach Lemma~\ref{lemma:12.15} existiert dann ein $\varphi \in V^*$ mit $\varphi(v) = 1$ und $\varphi(U)=\setzero$.
 	Da $M \subseteq U$, folgt $\varphi \in M^\perp$.
 	Da $v \in (M^\perp)^\perp$, folgt dann $0 = \varphi(v) = 1$, ein Widerspruch!
 	
@@ -313,7 +313,6 @@ Für den Beweis benötigen wir ein Lemma:
 \end{satz}
 
 \begin{beweis}
-	\mbox{} \\[-.9cm]
 	\begin{enumerate}[(i)]
 		\item Sei $\varphi \in (V \diagup U)^*$.
 		Dann gilt $q^*(\varphi) = \varphi \circ q \in U^\perp$, da $U = \Kern(q) \subseteq \Kern(\varphi \circ q)$.
@@ -339,7 +338,7 @@ Für den Beweis benötigen wir ein Lemma:
 
 \begin{bemerkung}
 	\label{bem:12.17}
-	\autoref{satz:12.16} kann man auch schön mit kurzen exakten Sequenzen deuten:
+	Satz~\ref{satz:12.16} kann man auch schön mit kurzen exakten Sequenzen deuten:
 	Ist
 	\[
 		0 \rightarrow U \xrightarrow{\iota} V \xrightarrow{q} W \rightarrow 0
@@ -351,7 +350,7 @@ Für den Beweis benötigen wir ein Lemma:
 	wieder eine kurze exakte Sequenz von $K$-Vektorräumen (und dann folgt $W^* \simeq \Kern(\iota^*) = U^\perp$ via $q^*$).
 \end{bemerkung}
 
-Mit Hilfe von \autoref{satz:12.16} erhalten wir insbesondere die folgende Dimensionsformel:
+Mit Hilfe von Satz~\ref{satz:12.16} erhalten wir insbesondere die folgende Dimensionsformel:
 
 \begin{korollar}
 	\label{kor:12.18}
@@ -363,7 +362,7 @@ Mit Hilfe von \autoref{satz:12.16} erhalten wir insbesondere die folgende Dimens
 \end{korollar}
 
 \begin{beweis}
-	Nach \autoref{satz:12.16} (i) gilt
+	Nach Satz~\ref{satz:12.16} (i) gilt
 	\[
 		\dim(U^\perp) = \dim((V\diagup U)^*) = \dim(V/U) = \dim(V) - \dim(U). 
 	\]
@@ -381,9 +380,9 @@ Wir wollen nun die bisherigen Ergebnisse nutzen, um noch etwas Geometrie zu betr
 		E = \{v \in V : \varphi_i(v) = b_i \text{ für alle } 1 \leq i \leq m\}
 	\]
 \end{satz}
-\newpage
+  
 \begin{beweis}
-	Nach \autoref{kor:12.18} gilt $\dim(U^\perp) = m$.
+	Nach Korollar~\ref{kor:12.18} gilt $\dim(U^\perp) = m$.
 	Sei $\{\varphi_1,\dots,\varphi_m\}$ eine Basis von $U^\perp$ und setze $b_i := \varphi_i(v_0)$ für alle $1 \leq i \leq m$.
 	Dann gilt für alle $w = v_0 + u \in E$:
 	\[
@@ -401,7 +400,7 @@ Wir wollen nun die bisherigen Ergebnisse nutzen, um noch etwas Geometrie zu betr
 
 \begin{korollar}
 	\label{kor:12.20}
-	Seien $V$ und $E = v_0 + U$ wie in \autoref{satz:12.19}.
+	Seien $V$ und $E = v_0 + U$ wie in Satz~\ref{satz:12.19}.
 	Dann existiert eine surjektive lienare Abbildung $F \colon V \rightarrow K^m$ und ein $b \in K^m$ mit $\Kern(F) = U$ und
 	\[
 		E = \{v \in V : F(v) = b\} = F^{-1}(\{b\}).
@@ -409,7 +408,7 @@ Wir wollen nun die bisherigen Ergebnisse nutzen, um noch etwas Geometrie zu betr
 \end{korollar}
 
 \begin{beweis}
-	Seien $\varphi_1,\dots,\varphi_m$ und $b \in K^m$ wie in \autoref{satz:12.19}.
+	Seien $\varphi_1,\dots,\varphi_m$ und $b \in K^m$ wie in Satz~\ref{satz:12.19}.
 	Dann definieren wir $F \colon V \rightarrow K^m$ durch $F(v) = (\varphi_1(v),\dots,\varphi_m(v)) \in K^m$.
 	Dann folgt
 	\[
@@ -435,7 +434,7 @@ Wir wollen nun die bisherigen Ergebnisse nutzen, um noch etwas Geometrie zu betr
 \end{korollar}
 
 \begin{beweis}
-	Nach \autoref{kor:12.20} existiert eine surjektive lineare Abbildung $F \colon K^n \rightarrow K^m$ und $b \in K^m$ mit $E = \{x \in K^n : F(x) = b\}$.
+	Nach Korollar~\ref{kor:12.20} existiert eine surjektive lineare Abbildung $F \colon K^n \rightarrow K^m$ und $b \in K^m$ mit $E = \{x \in K^n : F(x) = b\}$.
 	Ist dann $A = (F(e_1),\dots,F(e_n))$, so gilt $F(x) = Ax$. 
 \end{beweis}
 
@@ -446,7 +445,7 @@ Wir wollen nun die bisherigen Ergebnisse nutzen, um noch etwas Geometrie zu betr
 	Im $\RR^3$ sind also gerade die zweidimensionalen Ebenen die Hyperebenen.
 	Im $\RR^2$ sind die Geraden di Hyperebenen.
 	
-	Es folgt sofort aus \autoref{satz:12.19}, dass die Hyperebenen gerade die Mengen der Form
+	Es folgt sofort aus Satz~\ref{satz:12.19}, dass die Hyperebenen gerade die Mengen der Form
 	\[
 		E = \{v \in V : \varphi(v) = b\} = \varphi^{-1}(\{b\})
 	\]
@@ -458,7 +457,7 @@ Wir wollen nun die bisherigen Ergebnisse nutzen, um noch etwas Geometrie zu betr
 	für ein $w \in V$, da jedes $\varphi \in V^*$ von der Form $v \mapsto \varphi_w(v) := \sk{v,w}$ ist.
 	
 	Ist $E = v_0 + U$, so ist $0 \neq w \in U^\perp$ ($\Leftrightarrow U = w^\perp$) und wählen wir $w \in U^\perp$ mit $\no{w}=1$ und $b > 0$ (durch die Wahl eines geeigneten Vorzeichens), so ist $b$ genau der Abstand von $E$ zu $0$, was man sich an folgender Skizze klarmacht:
-	
+	\newpage	
 	\begin{figure}[h]
 		\centering
 		\begin{turn}{15}
@@ -495,4 +494,4 @@ Wir wollen nun die bisherigen Ergebnisse nutzen, um noch etwas Geometrie zu betr
 		H^+ := \{v \in V : \sk{v,w} \geq b\} \qquad \text{und} \qquad H^- := \{v \in V : \sk{v,w} \leq b\}
 	\]
 \end{bemerkung}
-\newpage
+\cleardoubleoddemptypage
