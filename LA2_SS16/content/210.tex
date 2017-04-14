@@ -1,5 +1,5 @@
-%!TEX root = ../LA2.tex
-\section{Eine Anwendung der Jordan-Normalform in der Analysis}
+%!TEX root = ../LA2_SS16.tex
+\subsection{Eine Anwendung der Jordan-Normalform in der Analysis}
 \label{sec:2.10}
 
 In der Analysis, insbesondere in der Theorie der linearen Differentialgleichungen, ist es wichtig, Matrizen in Potenzreihen einsetzen zu können.
@@ -51,7 +51,7 @@ Die Abbildung $\opn{\cdot}$ ist daher wohldefiniert.
 		Insbesondere folgt $\abs{a_{ij}} \leq \no{A}$ für alle $1 \leq i,j \leq n$.
 	\end{enumerate}
 \end{lemma}
-\newpage
+ 
 \begin{beweis}
 	Man rechnet leicht nach, dass $\no{\lambda A}_2 = \no{\lambda} \cdot \opn{A}$ und $\opn{A} = 0 \Rightarrow A = 0$ gelten.
 	Für die Dreiecksungleichung seien $A,B \in M(n \times n,\KK)$.
@@ -81,7 +81,7 @@ Die Abbildung $\opn{\cdot}$ ist daher wohldefiniert.
 		\sum_{i=1}^{n} \abs{a_{ij}}^2 = \no{Ae_j}_2^2 \leq \opn{A}^2.
 	\]
 	Es folgt $\sqrt{\sum_{i=1}^n \abs{a_{ij}}^2} \leq \opn{A}$.
-	Da $\abs{a_{ij}} \leq \sqrt{\sum_{i=1}^n \abs{a_{ij}}^2}$, folgt (iii).	\qedhere
+	Da $\abs{a_{ij}} \leq \sqrt{\sum_{i=1}^n \abs{a_{ij}}^2}$, folgt (iii).	
 \end{beweis}
 
 \begin{definition}[absolute Konvergenz]
@@ -102,11 +102,11 @@ Die Abbildung $\opn{\cdot}$ ist daher wohldefiniert.
 \end{satz}
 
 \begin{beweis}
-	Nach \autoref{lemma:10.3} gilt für alle $1 \leq i,j \leq n$:
+	Nach Lemma~\ref{lemma:10.3} gilt für alle $1 \leq i,j \leq n$:
 	\[
 		\sum_{k=0}^{\infty} \abs{(A_k)_{i,j}} \leq \sum_{k=0}^{\infty} \opn{A_k}.
 	\]
-	Damit ist $\sum_{k=0}^{\infty} \opn{A_k}$ eine konvergente Majorante von $\sum_{k=0}^{\infty} \abs{(A_k)_{i,j}}$.	\qedhere
+	Damit ist $\sum_{k=0}^{\infty} \opn{A_k}$ eine konvergente Majorante von $\sum_{k=0}^{\infty} \abs{(A_k)_{i,j}}$.	
 \end{beweis}
 
 \begin{korollar}
@@ -116,12 +116,12 @@ Die Abbildung $\opn{\cdot}$ ist daher wohldefiniert.
 \end{korollar}
 
 \begin{beweis}
-	Nach \autoref{lemma:10.3}(ii) gilt $\opn{A^k} \leq \opn{A}^k$ für alle $k \in \NN_0$.
+	Nach Lemma~\ref{lemma:10.3}(ii) gilt $\opn{A^k} \leq \opn{A}^k$ für alle $k \in \NN_0$.
 	Damit folgt
 	\[
 		\sum_{k=0}^{\infty} \opn{a_k A^k} = \sum_{k=0}^{\infty} \abs{a_k} \opn{A^k} \leq \sum_{k=0}^{\infty} \abs{a_k} \opn{A}^k < \infty.
 	\]
-	Da $\opn{A} < R$, ist die Reihe auf der rechten Seite konvergent. \qedhere
+	Da $\opn{A} < R$, ist die Reihe auf der rechten Seite konvergent. 
 \end{beweis}
 
 Die Exponentialreihe $\exp(z) = \sum_{k=0}^{\infty} \frac{1}{k!} z^k$ hat bekanntlich den Konvergenzradius $R = \infty$.
@@ -138,7 +138,6 @@ Wenden wir die Folgerung auf diese Reihe an, so können wir definieren:
 
 \begin{bemerkung}
 	\label{bem:10.9}
-	\mbox{} \\[-1.4cm]
 	\begin{enumerate}[(i)]
 		\item Ist $B \in M(n \times n,\RR)$ eine reelle Matrix, so ist nach (i) jede Komponente von $\exp(B)$ ein Grenzwert einer reellen Folge, und damit ist auch $\exp(B) \in M(n \times n,\RR)$.
 		\item Ist $A = C^{-1} BC$ für ein $C \in \GL(n,\CC)$, so folgt
@@ -176,7 +175,7 @@ Wenden wir die Folgerung auf diese Reihe an, so können wir definieren:
 	\begin{align*}
 	\exp(A+B) &= \sum_{k=0}^{\infty} \frac{1}{k!} (A+B)^k = \sum_{k=0}^{\infty} \frac{1}{k!} \enb{\sum_{j=0}^{k} A^{j} B^{k-j}} \\
 	&= \sum_{k=0}^{\infty} \enb{\sum_{j=0}^{k} \enb{\frac{1}{j!} A^{j}} \cdot \enb{\frac{1}{(k-j)!} B^{k-j}}} = \enb{\sum_{j=0}^{\infty} \frac{1}{j!} A^{j}} \cdot \enb{\sum_{k=0}^{\infty} \frac{1}{k!} B^{k}} \\
-	&= \exp(A) \cdot \exp(B) \qedhere
+	&= \exp(A) \cdot \exp(B) 
 	\end{align*}
 \end{beweis}
 
@@ -229,7 +228,6 @@ Ist $f \equiv 0$, so heißt $y' = By$ \textbf{homogenes System linearer Differen
 
 \begin{bemerkung}
 	\label{bem:10.12}
-	\mbox{} \\[-1.4cm]
 	\begin{enumerate}[(i)]
 		\item Tatsächlich ist es nützlich, sich nicht auf den Fall reeller Funktionen zu beschränken, sondern auch komplexwertige Funktionen und komplexe Matrizen zuzulassen.
 		Ist dabei $f\colon I \rightarrow \CC$, so ist $f$ differenzierbar in $t \in \RR$, wenn $f'(t) := \lim\limits_{h \rightarrow 0} \frac{f(t+h) - f(t)}{h}$ existiert.
@@ -286,15 +284,14 @@ Dies ist wieder äquivalent zur komponentenweisen Existenz des Grenzwertes
 		y'(t) &= \lim\limits_{h \rightarrow 0} \frac{1}{h} (y(t+h)-y(t)) = \lim\limits_{h \rightarrow 0} \frac{1}{h} (Y(t+h) \cdot y_0 - Y(t) \cdot y_0) \\
 		&= \enb{\lim\limits_{h \rightarrow \infty} \frac{1}{h}(Y(t+h)-Y(t))} \cdot y_0 = B \cdot Y(t) \cdot y_0 = B \cdot y(t)
 	\end{align*}
-	und $y(0) = \exp(0\cdot B) \cdot y_0 = E \cdot y_0 = y_0$. \qedhere
+	und $y(0) = \exp(0\cdot B) \cdot y_0 = E \cdot y_0 = y_0$. 
 \end{beweis}
 
 \begin{bemerkung}
 	\label{bem:10.14}
-	\mbox{} \\[-1.4cm]
 	\begin{enumerate}[(i)]
 		\item Man kann auch hier zeigen, dass die im Satz angegebene Lösung die einzige Lösung des homogenen Anfangswertproblems $y' = By$ mit der Anfangsbedingung $y(0) = y_0$ ist.
-		\item Da $\exp(tB) \in M(n \times n,\RR)$, wenn $B \in M(n \times n,\RR)$ (siehe \autoref{bem:10.9}), folgt:
+		\item Da $\exp(tB) \in M(n \times n,\RR)$, wenn $B \in M(n \times n,\RR)$ (siehe Bemerkung~\ref{bem:10.9}), folgt:
 		Sind $B$ und $y_0$ reell, so ist auch $y(t)$ für alle $t \in \RR$ reell.
 	\end{enumerate}
 \end{bemerkung}
@@ -329,7 +326,7 @@ Zusammen erhalten wir nun:
 \begin{anwendung}[Berechnung der Funktion]
 	\label{anw:10.16}
 	Wir wollen nun überlegen, wie wir die Funktion $Y(t) = \exp(tB)$ für $B \in M(n \times n,\CC)$ mit Hilfe einer Jordan-Normalform von $B$ explizit berechnen können.
-	Da jedes Polynom über $\CC$ in Linearfaktoren zerfällt, können wir nach \autoref{satz:9.6} eine Matrix $C \in \GL(n,\CC)$ finden (und im Prinzip auch berechnen), sodass $A = C^{-1}BC$ eine Jordan-Matrix ist.
+	Da jedes Polynom über $\CC$ in Linearfaktoren zerfällt, können wir nach Satz~\ref{satz:9.6} eine Matrix $C \in \GL(n,\CC)$ finden (und im Prinzip auch berechnen), sodass $A = C^{-1}BC$ eine Jordan-Matrix ist.
 	Dann folgt $tB = CtAC^{-1}$ und $\exp(tB) = C \exp(tA)C^{-1}$.
 	Es genügt also zu wissen, wie die Funktion $\exp(tA)$ für jede Jordan-Matrix $A$ berechnet werden kann.
 	
@@ -370,7 +367,7 @@ Zusammen erhalten wir nun:
 	0      & \cdots & \cdots & 0      & 0
 	\end{pmatrix}.
 	\]
-	Da $\lambda E \cdot N = N \cdot \lambda E$, folgt mit \autoref{lemma:10.10}, dass
+	Da $\lambda E \cdot N = N \cdot \lambda E$, folgt mit Lemma~\ref{lemma:10.10}, dass
 	\[
 	\exp(tJ) = \exp(t\lambda E + tN) = \exp(t \lambda E) \cdot \exp(tN).
 	\]
@@ -378,7 +375,7 @@ Zusammen erhalten wir nun:
 	\[
 	\exp(t\lambda E) = \sum_{k=0}^{\infty} \frac{1}{k!} (t \lambda E)^{k} = \enb{\sum_{k=0}^{\infty} \frac{1}{k!} (t\lambda)^{k}} E = e^{t\lambda} E.
 	\]
-	Eine leichte Rechnung (benutze \autoref{lemma:9.9}) ergibt ferner, dass $N^{l} = (0, \dots, 0,e_1,\dots,e_{k-l})$, wobei die ersten $l$ Einträge aus Nullspalten bestehen und dann die ersten $k-l$ Einheitsvektoren des $\CC^{k}$ als weitere Spalten der Matrix $N^{l}$ auftreten.
+	Eine leichte Rechnung (benutze Lemma~\ref{lemma:9.9}) ergibt ferner, dass $N^{l} = (0, \dots, 0,e_1,\dots,e_{k-l})$, wobei die ersten $l$ Einträge aus Nullspalten bestehen und dann die ersten $k-l$ Einheitsvektoren des $\CC^{k}$ als weitere Spalten der Matrix $N^{l}$ auftreten.
 	Insbesondere gilt $N^{k} = 0$.
 	Einsetzen in die Exponentialreihe ergibt (mit $N^0 = E$):
 	\[
@@ -470,7 +467,7 @@ Zusammen erhalten wir nun:
 
 Wir wollen zum Abschluss noch eine weitere Anwendung einer Matrix-Reihe geben.
 Sie zeigt, dass für jede Matrix $A \in M(n \times n,\CC)$ mit $\no{A}_2 < 1$ die Matrix $E_n-A$ invertierbar ist:
-\newpage
+ 
 \begin{satz}[\textsc{Neumann}-Reihe]
 	\label{satz:10.18}
 	Sei $A \in M(n \times n,\CC)$ mit $\no{A}_2 < 1$.
@@ -491,6 +488,6 @@ Sie zeigt, dass für jede Matrix $A \in M(n \times n,\CC)$ mit $\no{A}_2 < 1$ di
 	\[
 	(E_n-A) \sum_{k=0}^{\infty} A^k = E_n \sum_{k=0}^{\infty} A^k - A \sum_{k=0}^{\infty} A^k = \sum_{k=0}^{\infty} A^k - \sum_{k=1}^{\infty} A^k = A^0 = E_n.
 	\]
-	Analog rechnet man $\sum_{k=0}^{\infty} A^k(E_n - A) = E_n$. \qedhere
+	Analog rechnet man $\sum_{k=0}^{\infty} A^k(E_n - A) = E_n$. 
 \end{beweis}
-\newpage
+\cleardoubleoddemptypage

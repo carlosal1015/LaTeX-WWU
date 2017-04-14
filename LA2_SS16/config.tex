@@ -1,165 +1,245 @@
-%!TEX root = LA2.tex
-% -- Author: Phil Steinhorst, p.st@wwu.de
-\documentclass[a4paper,twoside,index=totoc,toc=bibliography,fontsize=10,DIV=12,headinclude,BCOR=12mm,cleardoublepage=empty]{scrreprt}
+%!TEX root = LA2_SS16.tex
+% Author: Phil Steinhorst, p.st@wwu.de
+\documentclass[%
+	paper=a4,
+	fontsize=10,
+	DIV=13,
+	BCOR=9mm,
+	chapterprefix=false,
+	headinclude,
+	footinclude,
+	headheight=20.7pt,
+	footheight=18pt,
+	headings=optiontohead,
+	toc=bibliography,
+	toc=listof,
+	ngerman,
+	final=true,
+	twoside,
+	index=totoc,
+	cleardoublepage=empty,
+	twopage
+]{scrartcl}
 
-\usepackage[usenames,x11names]{xcolor} % Die Optionen definieren zusätzliche Farben (siehe Dokumentation)
-\usepackage[final]{graphicx}
+% Basics für Codierung und Sprache
+% ===========================================================
+	\usepackage{scrtime}
+	\RequirePackage{easybmat}
+	\usepackage{etex}
+	\usepackage{shellesc}
+	\usepackage[final]{graphicx}
+	\usepackage[utf8]{inputenc}
+	\usepackage{babel}
+	\usepackage[german=quotes]{csquotes}
+% ===========================================================
 
-\usepackage{lmodern}
-\usepackage{mathtools,amssymb,amsthm} % Verbesserung von amsmath (die amsmath selbst lädt)
-\mathtoolsset{showonlyrefs}
-\usepackage[libertine,cmintegrals,bigdelims,varbb]{newtxmath}
-\usepackage[no-math]{fontspec}
-\usepackage{polyglossia} % moderner babel-ersatz
-\setmainlanguage[spelling=new,babelshorthands=true,latesthyphen]{german}
-\shorthandoff{"}
-\defaultfontfeatures{Mapping=tex-text, Ligatures={Required,Common,Contextual}}
-\setmainfont{LinLibertine}[Extension=.otf,UprightFont=*_R,BoldFont=*_RZ,ItalicFont=*_RI,BoldItalicFont=*_RZI]
-\setsansfont{LinBiolinum}[Scale=MatchUppercase, Extension=.otf, UprightFont=*_R, BoldFont=*_RB, ItalicFont=*_RI,BoldItalicFont=*_RBO]
-\setmonofont{Inconsolatazi4}[Scale=MatchUppercase,Extension=.otf,UprightFont=*-Regular,BoldFont=*-Bold,StylisticSet=1]
-\usepackage[final]{microtype}
+% Fonts und Typographie
+% ===========================================================
+	\usepackage{sourcecodepro}
+	\usepackage[default]{sourcesanspro}
 
-%%% Mathematikpakete und Einstellungen
-\mathtoolsset{centercolon} % sorgt dafür dass := und =: besser aussehen
-\usepackage{mathdots} % sorgt dafür, dass Punte wie zB \ddots besser aussehen
-\usepackage{easybmat}
-\usepackage{tensor}
+	\usepackage[babel=true,final,tracking=smallcaps]{microtype}
+	\DisableLigatures{encoding = T1, family = tt* } % keine Ligaturen für Monospace-Fonts
+	\usepackage{ellipsis}
+% ===========================================================
 
-%%% kommutative Diagramme
-\usepackage{tikz-cd} %-- meiner Meinung nach das beste Paket für kommutative Diagramme
-\tikzset{% um Kompatibilität mit Babel herzustellen und die angenehme "<label>"-Syntax zu nutzen
-  every picture/.append style={
-    execute at begin picture={\shorthandoff{"}},
-    execute at end picture={\shorthandon{"}}
-  }
-}
-\usetikzlibrary{quotes,babel,angles}
-\usetikzlibrary{patterns}
-\usetikzlibrary{arrows.meta}
-\usetikzlibrary{matrix}
-\tikzset{
-	schraffiert/.style={pattern=north west lines,pattern color=#1},
-	schraffiert/.default=black
-}
-\tikzset{>=Latex}
-\usepackage{pst-math,pst-plot}
+% Farben
+% ===========================================================
+	\usepackage[usenames,x11names,final]{xcolor}
+	\definecolor{fbblau}{HTML}{3078AB}
+	\definecolor{mediumgray}{gray}{.65}
+	\definecolor{blackberry}{rgb}{0.53, 0.0, 0.25}
+% ===========================================================
 
+% Mathe-Pakete und -Einstellungen
+% ===========================================================
+	\usepackage{mathtools}
+	\usepackage{amssymb}
+	%\usepackage{amsthm}
+	\usepackage[bigdelims]{newtxmath}		% moderne Mathe-Font
+	\allowdisplaybreaks						% seitenübergreifende Rechnungen
+	\input{MathCmds.tex}
+	\usepackage{bm}
+	\usepackage{tensor}
+% ===========================================================
 
+% TikZ
+% ===========================================================
+	\usepackage{tikz}
+	\usepackage{tikz-cd}					% kommutative Diagramme
+	\usetikzlibrary{arrows.meta}			% mehr Pfeile!
+	\usetikzlibrary{shadows}
+	\usetikzlibrary{calc}
+	\usetikzlibrary{quotes,babel,angles}
+	\tikzset{>=Latex}						% Standard-Pfeilspitze
+	\usetikzlibrary{patterns}
+	\usetikzlibrary{matrix}
+	\tikzset{
+		schraffiert/.style={pattern=north west lines,pattern color=#1},
+		schraffiert/.default=black
+	}
+	\usepackage{rotating}
+% ===========================================================
 
-%%% Biber-Settings
-\usepackage[%
-	backend=biber,
-	sortlocale=auto,
-	natbib,
-	hyperref,
-	backref,
-	backrefstyle=three+,
-	style=alphabetic % eine unvollständige Auswahl von Styles: ieee, numeric, apa
-	]%
-{biblatex}
-\setlength{\bibitemsep}{1em}     % Abstand zwischen den Literaturangaben
-\setlength{\bibhang}{2em}        % Einzug nach jeweils erster Zeile
-\addbibresource{literature.bib} % Literaturdatei einlesen
+% Seitenlayout, Kopf-/Fußzeile
+% ===========================================================
+	\usepackage{scrpage2}
+	\pagestyle{scrheadings}
+	\clearscrheadfoot 
+	\setheadsepline{1pt} 					% Linie in Kopfzeile
+	\automark[section]{section}				% Abschnittstitel in Kopfzeile
+	\rohead{\rightmark} 
+	\lehead{\rightmark} 
+	\ofoot[{\Large \pagemark}]{\Large \pagemark}	% Seitenzahl in Fußzeile
+	\raggedbottom
+	\usepackage{setspace}					
+	\onehalfspacing							% Zeilenabstand 1.5-fach
+	\setlength{\parindent}{0pt}
+	\setlength{\parskip}{0.5\baselineskip}
+	\usepackage[all]{nowidow}
+% ===========================================================
 
-%%% Hyperref-Konfigration
-\usepackage[hidelinks, pdfpagelabels, bookmarksopen=true, bookmarksnumbered=true, linkcolor=black, urlcolor=SkyBlue2, plainpages=false,pagebackref, citecolor=black, hypertexnames=true, pdfauthor={Phil Steinhorst}, pdfborderstyle={/S/U}, linkbordercolor=SkyBlue2, colorlinks=false,backref=false]{hyperref}
-\hypersetup{final}
+% Nummerierungen
+% ===========================================================
+	\usepackage{chngcntr}
+	%\counterwithout{equation}{chapter} 	% keine Kapitel in Gleichungsnummern
+	%\counterwithout{section}{chapter}	% keine Kapitel in Abschnittsnummern
+	\counterwithout{subsection}{section}
+% ===========================================================
 
-%%% Aufzählung und Zitate
-\usepackage[shortlabels]{enumitem}
-\setlist[enumerate,description]{font=\sffamily\bfseries}
-\usepackage[german=quotes]{csquotes}
+% Biblatex
+% ===========================================================
+	\usepackage[%
+		backend=biber,
+		sortlocale=auto,
+		natbib,
+		hyperref,
+		backref,
+		backrefstyle=three+,
+		style=alphabetic]{biblatex}
+	\setlength{\bibitemsep}{1em}		% Abstand zwischen den Literaturangaben
+	\setlength{\bibhang}{2em}			% Einzug nach jeweils erster Zeile
+	\addbibresource{literature.bib}		% Literaturdatei einlesen
+	\nocite{*}							% Aufführen nicht referenzierter Quellen
+% ===========================================================
 
-\usepackage[textsize=small]{todonotes}
-\usepackage{marginnote}
-\renewcommand*{\marginfont}{\color{gray} \footnotesize }
-\setlength{\parindent}{0em} 
+% Hyperref
+% ===========================================================
+	\usepackage[%
+		hidelinks,
+		pdfpagelabels,
+		bookmarksopen=true,
+		bookmarksnumbered=true,
+		linkcolor=black,
+		urlcolor=SkyBlue2,
+		plainpages=false,
+		pagebackref,
+		citecolor=black,
+		hypertexnames=true,
+		pdfauthor={Phil Steinhorst},
+		pdfborderstyle={/S/U},
+		linkbordercolor=SkyBlue2,
+		colorlinks=false,
+		backref=false]{hyperref}
+	\hypersetup{final}
+% ===========================================================
 
-%%% Kopf-/Fußzeilen
-\usepackage{scrpage2}
-\pagestyle{scrheadings}
-\clearscrheadfoot 
-\setheadsepline{1pt} 
-\automark[section]{section} % definiert, welcher Text in den Kolumnentiteln erscheinen soll
-\rohead{\rightmark} 
-\lehead{\rightmark} 
-\ofoot[\pagemark]{\pagemark} 
+% Marginnotes / ToDo-Notes
+% ===========================================================
+	\usepackage[fulladjust]{marginnote}
+	\renewcommand*{\marginfont}{\itshape\footnotesize}
+	\usepackage[textsize=small,color=Red1!80!OrangeRed1!80]{todonotes}
+% ===========================================================
+
+% Listen und Tabellen
+% ===========================================================
+	\usepackage{multicol}
+	\usepackage[shortlabels]{enumitem}
+	\setlist{itemsep=0pt}
+	\setlist[enumerate]{font=\sffamily\bfseries}
+	\setlist[itemize]{label=$\triangleright$}
+	\usepackage{tabularx}
+% ===========================================================
+
+% Inhaltsverzeichnis und Querverweise
+% ===========================================================
+	\usepackage[tocindentauto]{tocstyle}
+	% \setcounter{tocdepth}{3}				% Tiefe des Inhaltsverzeichnisses
+	\newtocstyle[KOMAlike][leaders]{alldotted}{}
+	\usetocstyle{alldotted}
+	\usepackage[nameinlink]{cleveref}
+% ===========================================================
 
 % Indexerstellung
-\usepackage{makeidx}
-\newcommand{\Index}[1]{\textbf{#1}\index{#1}}
-\makeindex
-\renewcommand{\indexpagestyle}{scrheadings}
-
-%-- Theorem-Pakete und Konfiguration
-\usepackage{thmtools}
-
-\declaretheoremstyle[%
-	headfont=\sffamily\bfseries,
-	notefont=\normalfont\sffamily,
-	bodyfont=\normalfont,
-	headformat=\NUMBER \ \NAME \NOTE,
-	headpunct={\\},
-	postheadspace=1ex,
-	spaceabove=15pt,spacebelow=10pt]%
-{mainstyle}
-\declaretheoremstyle[%
-	headfont=\sffamily\bfseries,
-	notefont=\normalfont\sffamily,
-	bodyfont=\normalfont,
-	headformat=\NAME \NOTE,
-	headpunct={\\},
-	postheadspace=1ex,
-	spaceabove=15pt,spacebelow=10pt]%
-{nonumber}
-\declaretheoremstyle[%
-	headfont=\sffamily\bfseries,
-	notefont=\normalfont\sffamily,
-	bodyfont=\normalfont,
-	headformat=\NAME \ \NOTE,
-	headpunct={\\},
-	postheadspace=1ex,
-	spaceabove=15pt,spacebelow=10pt]%
-{miscstyle}
-\declaretheoremstyle[%
-	headfont=\bfseries\scshape,
-	bodyfont=\normalfont,
-	headpunct=:,
-	postheadspace=1ex,
-	spacebelow=12pt,spaceabove=2pt,
-	qed=\qedsymbol]%
-{beweise}
+% ===========================================================
+	\usepackage{makeidx}
+	\newcommand{\Index}[1]{\textbf{#1}\index{#1}}
+	\makeindex
+	\renewcommand{\indexpagestyle}{scrheadings}
+% ===========================================================
 
 
-\declaretheorem[name=Definition,parent=section,style=mainstyle]{definition}
-\declaretheorem[name=Satz,sharenumber=definition,style=mainstyle]{satz}
-\declaretheorem[name=Korollar,sharenumber=definition,style=mainstyle]{korollar}
-\declaretheorem[name=Lemma,sharenumber=definition,style=mainstyle]{lemma}
-\declaretheorem[name=Proposition,sharenumber=definition,style=mainstyle]{proposition}
-\declaretheorem[name=Bemerkung,sharenumber=definition,style=mainstyle]{bemerkung}
-\declaretheorem[name=Beispiel,sharenumber=definition,style=mainstyle]{beispiel}
-\declaretheorem[name=Erinnerung,sharenumber=definition,style=mainstyle]{erinnerung}
-\declaretheorem[name=Beobachtung,sharenumber=definition,style=mainstyle]{beobachtung}
-\declaretheorem[name=Theorem,sharenumber=definition,style=mainstyle]{theorem}
-\declaretheorem[name=Aufgabe,parent=chapter,style=mainstyle]{aufgabe}
-\declaretheorem[name=Problem,sharenumber=definition,style=mainstyle]{problem}
-\declaretheorem[name=Anwendung,sharenumber=definition,style=mainstyle]{anwendung}
+% ntheorem
+% ===========================================================
+\usepackage[amsmath,thmmarks,thref,hyperref]{ntheorem}
 
-\declaretheorem[name=Beweis,numbered=no,style=beweise]{beweis}
+\theoremstyle{changebreak}
+\theorembodyfont{\normalfont}
+\theorempreskip{2em}
+\theorempostskip{2em}
+\newtheorem{satz}{Satz}[subsection]
+\newtheorem{definition}[satz]{Definition}
+\newtheorem{lemma}[satz]{Lemma}
+\newtheorem{beispiel}[satz]{Beispiel}
+\newtheorem{bemerkung}[satz]{Bemerkung}
+\newtheorem{korollar}[satz]{Korollar}
+\newtheorem{erinnerung}[satz]{Erinnerung}
+\newtheorem{problem}[satz]{Problem}
+\newtheorem{anwendung}[satz]{Anwedung}
 
-% \declaretheorem[name=Erinnerung,numbered=no,style=nonumber]{no-erinnerung}
+\theoremstyle{nonumberplain}
+\theoremheaderfont{\bfseries\scshape}
+\theorembodyfont{\normalfont}
+\theoremseparator{:}
+\theoremsymbol{\ensuremath{\blacksquare}}
+\newtheorem{beweis}{Beweis}
 
-\input{MathCmds.tex}
+\theoremlisttype{optname}
 
-\usepackage{setspace}
-\usepackage{hyphenat}
-\usepackage{bm}
-\allowdisplaybreaks
-\raggedbottom
-\renewcommand{\phi}{\varphi}
-\usepackage{chngcntr}
-\counterwithout{equation}{chapter} % undo numbering system provided by phstyle.cls
-\counterwithout{section}{chapter}
-\renewcommand\thechapter{\Roman{chapter}}
-\usepackage{faktor}
-\usepackage{rotating}
+% Workaround für Tabulatoren im Theorem-Verzeichnis
+\makeatletter
+\def\thm@@thmline@name#1#2#3#4{%
+	\@dottedtocline{-2}{0em}{2.3em}%
+	{\makebox[\widesttheorem][l]{#1 \protect\numberline{#2}}#3}%
+	{#4}}
+\@ifpackageloaded{hyperref}{
+	\def\thm@@thmline@name#1#2#3#4#5{%
+		\ifx\\#5\\%
+		\@dottedtocline{-2}{0em}{2.3em}%
+		{\makebox[\widesttheorem][l]{#1 \protect\numberline{#2}}#3}%
+		{#4}
+		\else
+		\ifHy@linktocpage\relax\relax
+		\@dottedtocline{-2}{0em}{2.3em}%
+		{\makebox[\widesttheorem][l]{#1 \protect\numberline{#2}}#3}%
+		{\hyper@linkstart{link}{#5}{#4}\hyper@linkend}%
+		\else
+		\@dottedtocline{-2}{0em}{2.3em}%
+		{\hyper@linkstart{link}{#5}%
+			{\makebox[\widesttheorem][l]{#1 \protect\numberline{#2}}#3}\hyper@linkend}%
+		{#4}%
+		\fi
+		\fi}
+}
+\makeatother
+\newlength\widesttheorem
+\AtBeginDocument{
+	\settowidth{\widesttheorem}{Proposition 10.10\quad}	% Referenzstring für die Breite der ersten Spalte
+}
+
+% ===========================================================
+
+% Sonstiges / für Testzwecke
+% ===========================================================
+	\usepackage{lipsum}
+% ===========================================================

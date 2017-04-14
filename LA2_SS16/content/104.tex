@@ -1,8 +1,7 @@
-%!TEX root = ../LA2.tex
-\section{Gruppen, Ringe, Körper}
+%!TEX root = ../LA2_SS16.tex
+\subsection{Gruppen, Ringe, Körper}
 \begin{definition}[Gruppe]
 	\label{def:I.4.1}
-	\mbox{} \\[-1.4cm]
 	\begin{enumerate}[(i)]
 		\item Eine \Index{Gruppe} $(G,*)$ besteht aus einer Menge $G$ zusammen mit einer Verknüpfung $*\colon G \times G \rightarrow G, (x,y) \mapsto x*y$ mit folgenden Eigenschaften:
 		\begin{enumerate}[a)]
@@ -14,7 +13,7 @@
 	\end{enumerate}
 \end{definition}
 
-\setcounter{definition}{3}
+\setcounter{satz}{3}
 \begin{beispiel}[Symmetrische Gruppe]
 	\label{bsp:I.4.4}
 	Sei $X$ eine Menge. Die Gruppe $S(X) := \{f \colon X \rightarrow X : f \text{ ist bijektiv}\}$ mit der Komposition $\circ$ als Verknüpfung heißt \textbf{symmetrische Gruppe} von $X$.
@@ -34,7 +33,7 @@
 	Die Menge $R^* := \{x \in R : \text{es existiert ein } x^{-1} \in R \text{ mit } x \cdot x^{-1} = x^{-1} \cdot x = 1\}$ heißt dann die \Index{Einheitengruppe} von $R$. \index{Ring!unital} \index{Ring!mit Eins} \index{Ring!kommutativ}
 \end{definition}
 
-\setcounter{definition}{6}
+\setcounter{satz}{6}
 \begin{definition}[Schiefkörper, Körper]
 	\label{def:I.4.7}
 	Sei $R$ ein Ring mit Eins.
@@ -42,14 +41,13 @@
 	Ist $R$ zusätzlich kommutativ, so heißt $R$ ein \Index{Körper}.
 \end{definition}
 
-\setcounter{definition}{9}
+\setcounter{satz}{9}
 \begin{definition}[Komplexe Zahlen]
 	\label{def:I.4.10}
 	Sei $\CC$ die Menge der formalen Summen der Gestalt $x+iy$ mit $x,y \in \RR$, also
 	\[
 		\CC:= \{x+iy : x,y \in \RR\}.
 	\]
-	\newpage
 	Vermöge $i^2 := -1$ und der Verknüpfungen
 	\begin{align*}
 		(a+ib) + (c+id) &:= (a+c) + i(b+d) \\
@@ -65,7 +63,7 @@
 	\end{enumerate}
 \end{definition}
 
-\setcounter{definition}{11}
+\setcounter{satz}{11}
 \begin{lemma}
 	\label{def:I.4.12}
 	Für alle $z = a+ib, w = c+id \in \CC$ gilt:
@@ -103,4 +101,4 @@
 		\end{tikzpicture}
 	\end{center}
 \end{bemerkung}
-\newpage
+\cleardoubleoddemptypage

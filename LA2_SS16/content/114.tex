@@ -1,5 +1,5 @@
-%!TEX root = ../LA2.tex
-\section{Die Entwicklungssätze von \textsc{Laplace} und \textsc{Leibniz}}
+%!TEX root = ../LA2_SS16.tex
+\subsection{Die Entwicklungssätze von \textsc{Laplace} und \textsc{Leibniz}}
 
 \begin{satz}[\textsc{Laplace}-Entwicklungssatz]
 	\label{satz:I.14.1}
@@ -21,7 +21,7 @@
 	\]
 \end{satz}
 
-\setcounter{definition}{3}
+\setcounter{satz}{3}
 \begin{korollar}
 	\label{kor:I.14.4}
 	Ist $A = (a_{ij})_{ij} \in M(n \times n,K)$ eine obere Dreiecksmatrix, das heißt $a_{ij} = 0$ für alle $i > j$, so gilt
@@ -36,7 +36,7 @@
 	\[
 		\widehat{a_{ij}} = (-1)^{i+j} \Det_{n-1}(\widehat{A_{\textcolor{red}{ji}}})
 	\]
-	mit $\widehat{A_{ji}}$ wie in \autoref{satz:I.14.1}.
+	mit $\widehat{A_{ji}}$ wie in Satz~\ref{satz:I.14.1}.
 \end{definition}
 
 \begin{satz}
@@ -47,7 +47,7 @@
 	\]
 \end{satz}
 
-\setcounter{definition}{7}
+\setcounter{satz}{7}
 \begin{satz}[\textsc{Cramer}sche Regel]
 	\label{satz:I.14.8}
 	Sei $A \in M(n \times n,K)$ mit $\det_n(A) \neq 0$ und sei $b \in K^n$.
@@ -61,10 +61,10 @@
 	\]
 \end{satz}
 
-\setcounter{definition}{9}
+\setcounter{satz}{9}
 \begin{definition}[Transposition]
 	\label{def:I.14.10}
-	Eine Permutation $\tau \in S_n$ (vgl. \autoref{bsp:I.4.4}) heißt \Index{Transposition}, falls $i \neq j \in \{1,\dots,n\}$ existieren mit
+	Eine Permutation $\tau \in S_n$ (vgl. Beispiel~\ref{bsp:I.4.4}) heißt \Index{Transposition}, falls $i \neq j \in \{1,\dots,n\}$ existieren mit
 	\[
 		\tau(x) = \begin{cases}
 			j, & \text{falls } x = i \\
@@ -81,7 +81,7 @@
 	Dann existieren endlich viele Transpositionen $\tau_1,\dots,\tau_l$ mit $\sigma = \tau_1 \circ \dots \circ \tau_l$, das heißt jede Permutation ist ein Produkt von endlich vielen Transpositionen.
 \end{lemma}
 
-\setcounter{definition}{12}
+\setcounter{satz}{12}
 \begin{definition}[Signum]
 	\label{def:I.14.13}
 	Sei $\sigma \in S_n$.
@@ -95,7 +95,7 @@
 	Es gilt $\sign(\sigma) = \Det_n(e_{\sigma(1)},\dots,e_{\sigma(n)})$ und $\sign$ ist ein Gruppenhomomorphismus $(S_n,\circ) \rightarrow(\{\pm 1\},\cdot)$.
 \end{definition}
 
-\setcounter{definition}{14}
+\setcounter{satz}{14}
 \begin{satz}[\textsc{Leibniz}sche Determinantenformel]
 	\label{satz:I.14.15}
 	Sei $A = (a_{ij})_{ij} \in M(n \times n,K)$.
@@ -104,4 +104,4 @@
 		\Det_n(A) = \sum_{\sigma \in S_n}^{} \sign(\sigma) \prod_{i=1}^{n} a_{i,\sigma(i)}.
 	\]
 \end{satz}
-\newpage
+\cleardoubleoddemptypage

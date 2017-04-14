@@ -1,5 +1,5 @@
-%!TEX root = ../LA2.tex
-\section{Orthogonale und unitäre Abbildungen}
+%!TEX root = ../LA2_SS16.tex
+\subsection{Orthogonale und unitäre Abbildungen}
 \label{sec:2.6}
 
 In diesem Abschnitt wollen wir lineare Abbildungen auf unitären (bzw. orthogonalen) $\KK$-Vektorräumen betrachten, die das Skalarprodukt (und damit die Geometrie) erhalten.
@@ -32,7 +32,7 @@ Allgmein werden wir in diesem Abschnitt auch alle Abbildungen $\RR^n \rightarrow
 		\sk{(F \circ G)(v),w} = \sk{G(v),F^*(w)} = \sk{v,G^*(F^*(w))} = \sk{v,G^*\circ F^*(w)}.
 	\]
 	Dann folgt $(F \circ G)^* \circ (F \circ G) = G^* \circ (F^* \circ F) \circ G ) = \id_V$.
-	Analog folgt: $A,B$ unitär $\Rightarrow AB$ unitär. \qedhere
+	Analog folgt: $A,B$ unitär $\Rightarrow AB$ unitär. 
 \end{beweis}
 
 \begin{bemerkung}
@@ -94,7 +94,6 @@ Allgmein werden wir in diesem Abschnitt auch alle Abbildungen $\RR^n \rightarrow
 \end{definition}
 
 \begin{bemerkung}
-	\mbox{} \\[-1.4cm]
 	\begin{enumerate}[(i)]
 		\item Man prüft leicht nach, dass $\UU(V), \oh(V), \UU(n), \oh(n)$ Gruppen sind.
 		Ist $(V,\sk{\cdot,\cdot})$ ein $n$-dimensionaler unitärer (bzw. orthogonaler) $\CC$-Vektorraum (bzw. $\RR$-Vektorraum), und ist $B = \{v_1,\dots,v_n\}$ eine Orthonormalbasis von $V$, so ist
@@ -103,14 +102,14 @@ Allgmein werden wir in diesem Abschnitt auch alle Abbildungen $\RR^n \rightarrow
 			F &\longmapsto A_F^B
 		\end{align*}
 		(bzw. $\oh(V) \rightarrow \oh(n)$) ein Isomorphismus.
-		\item Ist $A \in M(n \times n,\KK)$, so gilt $\det(A^*) = \ol{\det(A)}$ (vgl. \autoref{prob:5.11}(iv)).
+		\item Ist $A \in M(n \times n,\KK)$, so gilt $\det(A^*) = \ol{\det(A)}$ (vgl. Problem~\ref{prob:5.11}(iv)).
 		Ist also $U \in \UU(n)$ so folgt $\abs{\det(U)} = 1$, denn
 		\[
 			\abs{\det(U)}^2 = \ol{\det(U)} \cdot \det(U) = \det(U^*) \cdot \det(U) = \det(U^*U) = \det(E_n) = 1.
 		\]
 		Da für $F \in \End(V)$ gilt $\det(F) := \det(A_F^B)$ für eine beliebige Basis $B = \{v_1,\dots,v_n\}$ von $V$, folgt auch $\abs{\det(F)}=1$ für alle $F \in \UU(V)$.
 		Analoges gilt für $\oh(V)$ und $\oh(n)$.
-		\newpage
+		 
 		Wir definieren die \textbf{spezielle unitäre} bzw. \textbf{spezielle orthogonale Gruppe} durch: \index{spezielle orthogonale Gruppe} \index{spezielle unitäre Gruppe}
 		\begin{align*}
 			\SU(V) &:= \{F \in \UU(V) : \det(F) = 1\} \\
@@ -124,7 +123,7 @@ Allgmein werden wir in diesem Abschnitt auch alle Abbildungen $\RR^n \rightarrow
 
 \begin{beispiel}
 	\label{bsp:6.7}
-	Für die Drehmatrizen $O(\alpha)$ aus \autoref{bsp:6.4} gilt $\det(O(\alpha)) = 1$, also gilt $O(\alpha) \in \SO(2)$.
+	Für die Drehmatrizen $O(\alpha)$ aus Beispiel~\ref{bsp:6.4} gilt $\det(O(\alpha)) = 1$, also gilt $O(\alpha) \in \SO(2)$.
 	Für die Spiegelung $S$ gilt $\det(S) = -1$, also gilt $S \notin \SO(2)$.
 	
 	Da für $O \in \oh(n)$ stets $\det(O) \in \RR$ gilt, gilt stets $\det(O) = \pm 1$ für alle $O \in \oh(n)$.
@@ -146,7 +145,7 @@ Wir wollen noch mehr über unitäre und orthogonale Endomorphismen und Matrizen 
 	Die Richtungen (ii) $\Rightarrow$ (iii) und (ii) $\Rightarrow$ (iv) gelten für jede Abbildung $F \colon V \rightarrow V$.
 \end{satz}
 
-\begin{beweis} \mbox{} \\[-.9cm]
+\begin{beweis} 
 	\begin{description}
 		\item[(i) $\Rightarrow$ (ii):] Ist $F$ unitär, so gilt für alle $v,w \in V$:
 		\[
@@ -172,7 +171,7 @@ Wir wollen noch mehr über unitäre und orthogonale Endomorphismen und Matrizen 
 		\begin{align*}
 			4 \cdot \sk{F(v),F(w)} &= \sum_{k=0}^{3} i^k \no{F(v) + i^k F(w)}^2 
 			= \sum_{k=0}^{3} i^k \no{F(v+i^kw)}^2 \\
-			&= \sum_{k=0}^{3} i^k \no{v+i^kw}^2 = 4 \cdot \sk{v,w}. \qedhere
+			&= \sum_{k=0}^{3} i^k \no{v+i^kw}^2 = 4 \cdot \sk{v,w}. 
 		\end{align*}
 	\end{description}	
 \end{beweis}
@@ -190,7 +189,7 @@ Für Matrizen erhalten wir:
 	\end{enumerate}
 \end{satz}
 
-\begin{beweis} \mbox{} \\[-.9cm]
+\begin{beweis} 
 	\begin{description}
 		\item[(i) $\Leftrightarrow$ (ii):] Seien $\{a_1,\dots,a_n\}$ die Spalten von $A$.Dann gilt mit $A^*A = (\gamma_{ij})_{1 \leq i,j \leq n}$:
 		\[
@@ -202,9 +201,9 @@ Für Matrizen erhalten wir:
 			&\Leftrightarrow \quad \sk{a_j,a_i} = \delta_{ij} \text{ für alle } 1 \leq i,j \leq n \\
 			&\Leftrightarrow \quad \{a_1,\dots,a_n\} \text{ ist Orthonormalbasis von } \KK^n.
 		\end{align*}
-		\newpage
+		 
 		Gilt $A^*A = E_n$, so gilt schon $A^* = A^{-1}$, denn wegen $\det(A^*) \cdot \det(A) = \det(A^*A) = \det(E_n) = 1$ ist $\det(A) \neq 0$, also ist $A$ invertierbar, und dann folgt $A^{-1} = (A^*A)A^{-1} = A^*(AA^{-1}) = A^*$.
-		\item[(i) $\Leftrightarrow$ (iii):] Dies folgt analog mit $AA^*$ anstelle von $A^*A$. \qedhere
+		\item[(i) $\Leftrightarrow$ (iii):] Dies folgt analog mit $AA^*$ anstelle von $A^*A$. 
 	\end{description}
 \end{beweis}
 
@@ -243,14 +242,14 @@ Wir wollen nun einsehen, dass jede Isometrie von $V$ eine Kombination einer Tran
 	\end{enumerate}
 \end{satz}
 
-\begin{beweis} \mbox{} \\[-.9cm]
+\begin{beweis} 
 	\begin{enumerate}[(i)]
 		\item Es genügt zu zeigen, dass $T$ unter der zusätzlichen Voraussetzung $T(0) = 0$ automatisch linear ist.
 		Da für alle $v \in V$ gilt
 		\[
 			\no{T(v)} = \no{T(v) - 0} = \no{T(v) - T(0)} = \no{v-0} = \no{v},
 		\]
-		folgt dann aus \autoref{satz:6.8}, dass $T$ orthogonal ist.
+		folgt dann aus Satz~\ref{satz:6.8}, dass $T$ orthogonal ist.
 		
 		Sei also $T \colon V \rightarrow V$ isometrisch mit $T(0) = 0$.
 		Wegen
@@ -268,8 +267,8 @@ Wir wollen nun einsehen, dass jede Isometrie von $V$ eine Kombination einer Tran
 			\label{eq:6.11.1}
 		\end{equation}
 		Sei nun $B = \{v_1,\dots,v_n\}$ eine Orthonormalbasis von $V$.
-		Wegen \autoref{satz:6.8} ist dann auch $\{T(v_1),\dots,T(v_n)\}$ eine Orthonormalbasis von $V$.
-		Dann folgt für alle $v \in V$ mit \autoref{satz:4.12}:
+		Wegen Satz~\ref{satz:6.8} ist dann auch $\{T(v_1),\dots,T(v_n)\}$ eine Orthonormalbasis von $V$.
+		Dann folgt für alle $v \in V$ mit Satz~\ref{satz:4.12}:
 		\[
 			T(v) = \sum_{j=1}^{n} \sk{T(v),T(v_j)} T(v_j) \stackrel{\eqref{eq:6.11.1}}{=} \sum_{j=1}^{n} \sk{v,v_j} T(v_j),
 		\]
@@ -282,19 +281,19 @@ Wir wollen nun einsehen, dass jede Isometrie von $V$ eine Kombination einer Tran
 		\item Sei nun $T \colon V \rightarrow V$ eine beliebige Isometrie.
 		Setze $v_0 := T(0)$ und $O\colon V \rightarrow V$ mit $O(v) := T(v) - v_0$.
 		Mit $T$ ist dann auch $O$ eine Isometrie, und es gilt $O(0) = T(0) - v_0 = 0$.
-		Nach (i) ist $O$ eine orthogonale Abbildung und für alle $v \in V$ gilt $T(v) = O(v) + v_0$. \qedhere
+		Nach (i) ist $O$ eine orthogonale Abbildung und für alle $v \in V$ gilt $T(v) = O(v) + v_0$. 
 	\end{enumerate}
 \end{beweis}
 
 \begin{anwendung}
 	\label{anw:6.12}
 	Wir wollen alle Isometrien des $\RR^2$ bezüglich Standard-Skalarprodukt verstehen.
-	Nach \autoref{satz:6.11} genügt es dazu, alle orthogonalen Matrizen zu betrachten.
+	Nach Satz~\ref{satz:6.11} genügt es dazu, alle orthogonalen Matrizen zu betrachten.
 	
 	Sei also $A = \begin{pmatrix}
 	 a & b \\ c & d
 	\end{pmatrix} \in \oh(2)$.
-	Nach \autoref{satz:6.9} ist dann $\penb{\binom{a}{b},\binom{c}{d}}$ eine Orthonormalbasis von $\RR^2$, das heißt es gilt
+	Nach Satz~\ref{satz:6.9} ist dann $\penb{\binom{a}{b},\binom{c}{d}}$ eine Orthonormalbasis von $\RR^2$, das heißt es gilt
 	\[
 		\no{\binom{a}{b}}^2 = a^2 + b^2 = 1 = c^2 + d^2 = \no{\binom{c}{d}}^2
 	\]
@@ -325,7 +324,7 @@ Wir wollen nun einsehen, dass jede Isometrie von $V$ eine Kombination einer Tran
 		
 		Sei $\beta = \frac{\alpha}{2}$.
 		Wir behaupten, dass $F_A\colon \RR^2 \rightarrow \RR^2, x \mapsto Ax$ gerade die Spiegelung $S_\beta$ an der Geraden $G_\beta := \RR \cdot (\cos(\beta),\sin(\beta))^T \subseteq \RR^2$ ist.
-		
+		\newpage
 		\begin{figure}[h]
 			\centering
 			\begin{tikzpicture}[scale=2.5,>=Latex]
@@ -391,4 +390,4 @@ Wir wollen nun einsehen, dass jede Isometrie von $V$ eine Kombination einer Tran
 	\end{description}
 	Fazit: Jede Isometrie von $\RR^2$ ist eine Kombination einer Translation mit einer Drehung oder Spiegelung.
 \end{anwendung}
-\newpage
+\cleardoubleoddemptypage

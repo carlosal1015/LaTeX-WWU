@@ -1,5 +1,5 @@
-%!TEX root = ../LA2.tex
-\section{Orthogonale Projektionen und Orthonormalbasen}
+%!TEX root = ../LA2_SS16.tex
+\subsection{Orthogonale Projektionen und Orthonormalbasen}
 \label{sec:2.4}
 
 In diesem Abschnitt ist wieder $\KK = \RR$ oder $\KK= \CC$.
@@ -35,7 +35,7 @@ In diesem Abschnitt ist wieder $\KK = \RR$ oder $\KK= \CC$.
 	(v- P_U(v)) \perp U \qquad \text{bzw.} \qquad v-P_U(v) \in U^\perp.
 	\]
 \end{definition}
-
+\newpage
 \begin{figure}[h]
 	\centering
 	\begin{tikzpicture}
@@ -66,10 +66,9 @@ In diesem Abschnitt ist wieder $\KK = \RR$ oder $\KK= \CC$.
 	\end{tikzpicture}
 	\caption{Veranschaulichung der orthogonalen Projektion auf einen Untervektorraum.}
 \end{figure}
-\newpage
+
 \begin{bemerkung}
 	\label{bem:4.4}
-	\mbox{} \\[-1.4cm]
 	\begin{enumerate}[(1)]
 		\item Wenn $P_U(v)$ existiert, so ist es eindeutig bestimmt, denn sind $u_1,u_2 \in U$ mit $(v-u_1) \in U^\perp$ und $(v-u_2) \in U^\perp$, so folgt
 		\[
@@ -79,7 +78,7 @@ In diesem Abschnitt ist wieder $\KK = \RR$ oder $\KK= \CC$.
 		\[
 			v = \Underbrace{P_U(v)}{\in U} + \Underbrace{(v-P_U(v))}{\in U^\perp} \in U + U^\perp.
 		\]
-		Damit folgt $V = U+U^\perp$ und dann $V = U \oplus U^\perp$, da $U \cap U^\perp = \setzero$, und $P_U \colon V \rightarrow U$ ist die Projektion von $V$ auf $U$ wie in \autoref{satz:I.12.5}.
+		Damit folgt $V = U+U^\perp$ und dann $V = U \oplus U^\perp$, da $U \cap U^\perp = \setzero$, und $P_U \colon V \rightarrow U$ ist die Projektion von $V$ auf $U$ wie in Satz~\ref{satz:I.12.5}.
 		\item Existiert $P_U(v)$ für alle $v \in V$, so existiert auch $P_{U^\perp}(v)$ für alle $v \in V$, und es gilt
 		\[
 			P_{U^\perp}(v) = v - P_U(v).
@@ -100,6 +99,7 @@ Dazu benötigen wir die folgende wichtige Notation:
 	\label{def:4.5}
 	Sei $V$ ein $\KK$-Vektorraum mit Skalarprodukt $\sk{\cdot,\cdot}$ und seien $v_1,\dots,v_l \in V$.
 	Dann definieren wir:
+	
 	\begin{enumerate}[(i)]
 		\item $\{v_1,\dots,v_l\}$ heißt \Index{Orthogonalsystem}, wenn $v_i \perp v_j$ für alle $1 \leq i,j \leq l$ mit $i \neq j$.
 		\item $\{v_1,\dots,v_l\}$ heißt \Index{Orthonormalsystem}, falls $\{v_1,\dots,v_l\}$ ein Orthogonalsystem ist mit $\no{v_i} = 1$ für alle $1 \leq i \leq l$.
@@ -157,7 +157,7 @@ Dazu benötigen wir die folgende wichtige Notation:
 \begin{beweis}
 	Es gilt
 	\[
-		\no{\sum_{i=1}^{l} \lambda_i v_i}^2 = \sk{\sum_{i=1}^{l} \lambda_i v_i,\sum_{j=1}^{l} \lambda_j v_j} = \sum_{i=1}^{l} \sum_{j=1}^{l} \lambda_i \ol{\lambda_j} \sk{v_i,v_j} = \sum_{i,j=1}^{l} \lambda_i \ol{\lambda_j} \delta_{ij} \no{v_i}^2 = \sum_{i=1}^{l} \lambda_i \ol{\lambda_i} \no{v_i}^2 \qedhere
+		\no{\sum_{i=1}^{l} \lambda_i v_i}^2 = \sk{\sum_{i=1}^{l} \lambda_i v_i,\sum_{j=1}^{l} \lambda_j v_j} = \sum_{i=1}^{l} \sum_{j=1}^{l} \lambda_i \ol{\lambda_j} \sk{v_i,v_j} = \sum_{i,j=1}^{l} \lambda_i \ol{\lambda_j} \delta_{ij} \no{v_i}^2 = \sum_{i=1}^{l} \lambda_i \ol{\lambda_i} \no{v_i}^2 
 	\]
 \end{beweis}
 
@@ -168,12 +168,14 @@ Dazu benötigen wir die folgende wichtige Notation:
 \end{lemma}
 
 \begin{beweis}
-	Seien $\lambda_1, \dots, \lambda_l \in \KK$ mit $\sum_{i=1}^{l} \lambda_i v_i = 0$, so folgt mit \autoref{satz:4.7}:
+	Seien $\lambda_1, \dots, \lambda_l \in \KK$ mit $\sum_{i=1}^{l} \lambda_i v_i = 0$, so folgt mit Satz~\ref{satz:4.7}:
+	
 	\[
 		0 = \no{\sum_{i=1}^{l} \lambda_i v_i}^2 \stackrel{\ref{satz:4.7}}{=} \sum_{i=1}^{l} \abs{\lambda_i}^2 \no{v_i}^2,
 	\]
+	
 	und damit $\abs{\lambda_i}^2 \no{v_i}^2 = 0$ für alle $1 \leq i \leq l$.
-	Da $v_i \neq 0$, folgt $\lambda_i = 0$ für alle $1 \leq i \leq l$. \qedhere
+	Da $v_i \neq 0$, folgt $\lambda_i = 0$ für alle $1 \leq i \leq l$. 
 \end{beweis}
 
 \begin{satz}
@@ -193,11 +195,10 @@ Dazu benötigen wir die folgende wichtige Notation:
 		\item Ist $v \in V$, so gilt $\no{v- P_U(v)} \leq \no{v-u}$ für alle $u \in U$ mit $u \neq v$, das heißt $P_U(v)$ ist das eindeutige Element in $U$, das von $v$ den kleinsten Abstand hat.
 	\end{enumerate}
 \end{satz}
-\newpage
+
 \begin{beweis}
-	\mbox{} \\[-.9cm]
 	\begin{enumerate}[(i)]
-		\item Nach \autoref{bem:4.4} genügt es zu zeigen:
+		\item Nach Bemerkung~\ref{bem:4.4} genügt es zu zeigen:
 		Ist $u_0 = \sum_{i=1}^{l} \sk{v,v_i} v_i$, so gilt $(v-u_0) \perp U$.
 		Zunächst gilt für alle $v_j$ mit $1 \leq j \leq l$:
 		\begin{align*}
@@ -209,7 +210,7 @@ Dazu benötigen wir die folgende wichtige Notation:
 		\[
 			\sk{v-u_0,u} = \sk{v-u_0,\sum_{i=1}^{l} \lambda_j v_j} = \sum_{i=1}^{l} \ol{\lambda_j} \sk{v-u_0,v_j} = 0.
 		\]
-		\item Nach \autoref{satz:4.7} und (i) gilt
+		\item Nach Satz~\ref{satz:4.7} und (i) gilt
 		\[
 			\no{P_U(v)}^2 = \no{\sum_{i=1}^{l} \sk{v,v_i} v_i}^2 = \sum_{i=1}^{l} \abs{\sk{v,v_i}}^2 \Underbrace{\no{v_i}^2}{=1} = \sum_{i=1}^{l} \abs{\sk{v,v_i}}^2.
 		\]
@@ -219,10 +220,10 @@ Dazu benötigen wir die folgende wichtige Notation:
 		\]
 		Beachte: Es folgt auch $\no{v} = \no{P_U(v)} \Leftrightarrow v = P_U(v) \in U$.
 		\item Ist $u \in U$ mit $u \neq P_U(v)$, so folgt $P_U(v) - u \neq 0$.
-		Dann folgt mit \autoref{satz:4.7}:
+		Dann folgt mit Satz~\ref{satz:4.7}:
 		\begin{align*}
 			\no{v-u}^2 &\stack{}{=} \no{(v-P_U(v)) + \Underbrace{(P_U(v) - u)}{\in U}}^2 \\
-			&\stack{\ref{satz:4.7}}{=} \no{v-P_U(v)}^2 + \Underbrace{\no{P_U(v)-u}}{\neq 0 \text{ n.V.}}^2 > \no{v-P_U(v)}^2 \qedhere
+			&\stack{\ref{satz:4.7}}{=} \no{v-P_U(v)}^2 + \Underbrace{\no{P_U(v)-u}}{\neq 0 \text{ n.V.}}^2 > \no{v-P_U(v)}^2 
 		\end{align*}
 	\end{enumerate}
 \end{beweis}
@@ -234,7 +235,7 @@ Dazu benötigen wir die folgende wichtige Notation:
 		d(v,M) := \inf \{ \no{v-u} : u \in M\} \geq 0
 	\]
 \end{definition}
-\newpage
+
 \begin{korollar}
 	\label{kor:4.11}
 	Ist $U \subseteq V$ ein Untervektorraum, sodass eine orthogonale Projektion $P_U\colon V \rightarrow U$ existiert, dann gilt für alle $v \in V$
@@ -245,7 +246,7 @@ Dazu benötigen wir die folgende wichtige Notation:
 \end{korollar}
 
 \begin{beweis}
-	Das folgt aus dem Beweis von \autoref{satz:4.9}(iii). \qedhere
+	Das folgt aus dem Beweis von Satz~\ref{satz:4.9}(iii). 
 \end{beweis}
 
 Ist $\{v_1,\dots,v_n\}$ eine Orthonormalbasis von $V$, so erhalten wir eine besonders schöne Darstellung der Elemente von $V$ als Linearkombination der Basiselemente:
@@ -264,9 +265,8 @@ Ist $\{v_1,\dots,v_n\}$ eine Orthonormalbasis von $V$, so erhalten wir eine beso
 \end{satz}
 
 \begin{beweis}
-	\mbox{} \\[-.85cm]
 	\begin{description}
-		\item[(i) $\Rightarrow$ (ii):] Nach \autoref{lemma:4.8} folgt aus (i), dass $V = \LH\{v_1,\dots,v_n\}$, das heißt $v = \sum_{j=1}^{n} \lambda_j v_j$ für geeignete $\lambda_i \in \KK$.
+		\item[(i) $\Rightarrow$ (ii):] Nach Lemma~\ref{lemma:4.8} folgt aus (i), dass $V = \LH\{v_1,\dots,v_n\}$, das heißt $v = \sum_{j=1}^{n} \lambda_j v_j$ für geeignete $\lambda_i \in \KK$.
 		Dann folgt für alle $1 \leq i \leq n$:
 		\[
 			\sk{v,v_i} = \sk{\sum_{j=1}^{n} \lambda_j v_j, v_i} = \sum_{j=1}^{n} \lambda_j \cdot \Underbrace{\sk{v_j,v_i}}{=\delta_{ij}} = \lambda_i,
@@ -288,9 +288,9 @@ Ist $\{v_1,\dots,v_n\}$ eine Orthonormalbasis von $V$, so erhalten wir eine beso
 		also $v = 0$.
 		\item[(v) $\Rightarrow$ (i):] Sei $U = \LH\{v_1,\dots,v_n\}$.
 		Zeige: $U = V$.
-		Nach \autoref{satz:4.9} existiert die orthogonale Projektion $P_U\colon V \rightarrow U$.
+		Nach Satz~\ref{satz:4.9} existiert die orthogonale Projektion $P_U\colon V \rightarrow U$.
 		Ist dann $v \in V$, so gilt $v - P_U(v) \perp U$, also insbesondere $\sk{v-P_U(v),v_i} = 0$ für alle $1 \leq i \leq l$.
-		Nach (v) folgt $v - P_U(v) = 0$, also $v = P_U(v) \in U$. \qedhere
+		Nach (v) folgt $v - P_U(v) = 0$, also $v = P_U(v) \in U$. 
 	\end{description}
 \end{beweis}
 
@@ -323,7 +323,7 @@ Und wenn ja, wie kann man eine Orthonormalbasis finden?
 		\]
 		Nach Induktionsvoraussetzung ist $\{v_1,\dots,v_j\}$ ein Orthonormalsystem mit $\LH\{v_1,\dots,v_j\}$ \linebreak $= \LH\{w_1,\dots,w_j\} =: U_j$.
 		Wir zeigen nun, dass dann Ähnliches für $\{v_1,\dots,v_{j+1}\}$ gilt:
-		\newpage
+		
 		Da $\widetilde{v}_{j+1} = w_{j+1} - P_{U_j}(w_{j+1}) \in U_j^\perp$, gilt $\sk{\widetilde{v}_{j+1},v_i} = 0$ für alle $1 \leq i \leq j$, und dann auch $\sk{v_{j+1},v_i} = 0$ für alle $1 \leq i \leq j$.
 		Da $\no{v_{j+1}} = 1$ und da $\{v_1,\dots,v_j\}$ ein Orthonormalsystem ist, folgt dann $\sk{v_i,v_j} = \delta_{ij}$ für alle $1 \leq i,l \leq  j+1$.
 		
@@ -336,7 +336,7 @@ Und wenn ja, wie kann man eine Orthonormalbasis finden?
 		und damit ist $v_{j+1}$ eine Linearkombination von $\{v_1,\dots,v_j,w_{j+1}\}$ derart, dass der Koeffizient von $w_{j+1}$ nicht $0$ ist.
 		Nach dem Austauschlemma \ref{lemma:I.9.1} folgt dann
 		\[
-			\LH\{v_1,\dots,v_{j+1}\} = \LH\{v_1,\dots,v_j,w_{j+1}\} = \LH\{w_1,\dots,w_{j+1}\}. \qedhere
+			\LH\{v_1,\dots,v_{j+1}\} = \LH\{v_1,\dots,v_j,w_{j+1}\} = \LH\{w_1,\dots,w_{j+1}\}. 
 		\]
 	\end{enumerate}
 \end{beweis}
@@ -348,7 +348,6 @@ Und wenn ja, wie kann man eine Orthonormalbasis finden?
 
 \begin{beispiel}
 	\label{bsp:4.15}
-	\mbox{} \\[-1.4cm]
 	\begin{enumerate}[(i)]
 		\item Ist $\KK^n$ versehen mit dem Standard-Skalarprodukt $\sk{x,y} = \sum_{i=1}^{n} x_i \ol{y_i}$, so ist $\{e_1,\dots,e_n\}$ eine Orthonormalbasis.
 		\item Sei $\RR^2$ versehen mit dem Standard-Skalarprodukt.
@@ -384,7 +383,7 @@ Und wenn ja, wie kann man eine Orthonormalbasis finden?
 				\draw pic["$\bullet$",draw=black,angle eccentricity=.5,angle radius=.5cm]{angle=Q--O--P};
 			\end{tikzpicture}
 		\end{figure}
-		\newpage
+		
 		\item Sei $V = \RR^4$ mit dem Standard-Skalarprodukt $\sk{\cdot,\cdot}$ und sei $U \subseteq V$ der von $w_1,w_2,w_3 \in \RR^4$ erzeugte Untervektorraum von $V$ mit
 		\[
 			w_1 = \begin{pmatrix} 1 \\ 1 \\ 0 \\ 0 \end{pmatrix}, \qquad
@@ -405,7 +404,7 @@ Und wenn ja, wie kann man eine Orthonormalbasis finden?
 			v_3 = \frac{1}{\no{\widetilde{v}_3}} \widetilde{v}_3 = \frac{1}{\sqrt{12}} \begin{pmatrix} 1 \\ -1 \\ 1 \\ 3 \end{pmatrix}
 		\]
 		Wir können nun mit Hilfe der Orthonormalbasis $\{v_1,v_2,v_3\}$ von $U$ ohne Probleme die orthogonale Projektion $P_U\colon \RR^4 \rightarrow U \subseteq \RR^4$ berechnen.
-		Nach \autoref{satz:4.9} gilt
+		Nach Satz~\ref{satz:4.9} gilt
 		\[
 			P_U(v) = \sk{v,v_1} v_1 + \sk{v,v_2} v_2 + \sk{v,v_3} v_3.
 		\]
@@ -428,7 +427,7 @@ Und wenn ja, wie kann man eine Orthonormalbasis finden?
 	\end{enumerate}
 \end{beispiel}
 
-Als Folgerung von \autoref{bem:4.4}, \autoref{satz:4.9} und \autoref{satz:4.13} erhalten wir:
+Als Folgerung von Bemerkung~\ref{bem:4.4}, Satz~\ref{satz:4.9} und Satz~\ref{satz:4.13} erhalten wir:
 \begin{satz}
 	\label{satz:4.16}
 	Sei $V$ ein $\KK$-Vektorraum mit Skalarprodukt $\sk{\cdot,\cdot}$ und sei $U \subseteq V$ ein Untervektorraum mit $\dim(U) < \infty$.
@@ -501,7 +500,4 @@ Als Folgerung von \autoref{bem:4.4}, \autoref{satz:4.9} und \autoref{satz:4.13} 
 		a_n = \sk{f,\cos(2\pi n \cdot)}, \qquad b_n = \sk{f,\sin(2\pi n \cdot)}.
 	\]
 \end{anwendung}
-
-
-
-\newpage
+\cleardoubleoddemptypage

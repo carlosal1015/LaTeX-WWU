@@ -1,7 +1,7 @@
-%!TEX root = ../LA2.tex
-\section{Eigenwerte und Eigenvektoren von Endomorphismen}
+%!TEX root = ../LA2_SS16.tex
+\subsection{Eigenwerte und Eigenvektoren von Endomorphismen}
 
-\setcounter{definition}{1}
+\setcounter{satz}{1}
 \begin{definition}[Endomorphismus, Diagonalisierbarkeit]
 	\label{def:I.16.2}
 	Sei $V$ ein $K$-Vektorraum.
@@ -14,7 +14,7 @@
 	\[
 		\mat{A}{}{B}{F} := \mat{A}{B}{B}{F} = (a_{ij})_{ij} \in M(n \times n,K),
 	\]
-	das heißt es gilt $F(v_j) = \sum\limits_{i=1}^{n} a_{ij}v_i$ (vgl. \autoref{satz:I.10.1}).
+	das heißt es gilt $F(v_j) = \sum\limits_{i=1}^{n} a_{ij}v_i$ (vgl. Satz~\ref{satz:I.10.1}).
 	
 	$F \in \End(V)$ heißt \Index{diagonalisierbar}, falls eine Basis $B$ von $V$ existiert, sodass $A^B_F$ eine Diagonalmatrix ist.
 \end{definition}
@@ -36,7 +36,7 @@
 	\end{enumerate}
 \end{satz}
 
-\setcounter{definition}{6}
+\setcounter{satz}{6}
 \begin{definition}[Eigenwert, Eigenvektor, Eigenraum]
 	\label{def:I.16.7}
 	Sei $V$ ein $K$-Vektorraum und $F \in \End(V)$.
@@ -49,7 +49,7 @@
 	heißt \Index{Eigenraum} von $F$ zum Eigenwert $\lambda$.
 \end{definition}
 
-\setcounter{definition}{8}
+\setcounter{satz}{8}
 \begin{satz}
 	\label{satz:I.16.9}
 	Sei $V$ ein $n$-dimensionaler $K$-Vektorraum und $F \in \End(V)$.
@@ -59,8 +59,8 @@
 		\item $V$ besitzt eine Basis aus Eigenvektoren von $F$.
 	\end{enumerate}
 \end{satz}
-\newpage
-\setcounter{definition}{10}
+
+\setcounter{satz}{10}
 \begin{definition}[charakteristische Funktion]
 	\label{def:I.16.11}
 	Sei $V$ ein $n$-dimensionaler $K$-Vektorraum, $F \in \End(V)$ sowie $A$ eine Darstellungsmatrix von $F$.
@@ -82,7 +82,7 @@
 	\end{enumerate}
 \end{satz}
 
-\setcounter{definition}{13}
+\setcounter{satz}{13}
 \begin{lemma}
 	\label{def:I.16.14}
 	Eigenvektoren zu zu paarweise verschiedenen Eigenwerten sind linear unabhängig.
@@ -110,7 +110,7 @@
 \begin{definition}[Direkte Summe]
 	\label{def:I.16.17}
 	Sei $V$ ein $K$-Vektorraum und $W_1,\dots,W_l$ Untervektorräume von $V$.
-	$V$ heißt die \Index{direkte Summe} (vgl. \autoref{def:I.12.3}) von $W_1,\dots,W_l$, wenn gelten:
+	$V$ heißt die \Index{direkte Summe} (vgl. Definition~\ref{def:I.12.3}) von $W_1,\dots,W_l$, wenn gelten:
 	\begin{enumerate}[(1)]
 		\item $V = \sum\limits_{i=1}^{l} W_i := \penb{\sum\limits_{i=1}^{l} w_i : w_i \in W_i, 1 \leq i \leq l}$
 		\item Für alle $1 \leq j \leq l$ gilt $W_j \cap \enb{\sum\limits_{\substack{i = 1 \\ i \neq j}}^{l} W_i} = \setzero$.
@@ -151,3 +151,4 @@
 	\label{def:I.16.21}
 	Die Zahl $\dim(E_{\lambda_i}(F)) \in \NN$ heißt die \Index{geometrische Vielfachheit} des Eigenwerts $\lambda_i$ von $F$.
 \end{definition}
+\cleardoubleoddemptypage

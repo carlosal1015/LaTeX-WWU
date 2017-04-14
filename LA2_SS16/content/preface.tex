@@ -1,55 +1,56 @@
-%!TEX root = ../LA2.tex
+%!TEX root = ../LA2_SS16.tex
 \begin{abstract}
 	\section*{Vorwort}
 	\label{sec:preface}
-	Der vorliegende Text ist eine Mitschrift zur Vorlesung \textit{Lineare Algebra II}, gelesen von Prof. Dr. Siegfried Echterhoff an der WWU Münster im Sommersemester 2016. Der Inhalt entspricht weitestgehend den Vorlesungsnotizen, welche auf der Vorlesungswebsite bereitsgestellt werden. Dieses Werk ist daher keine Eigenleistung des Autors und wird nicht vom Dozenten der Veranstaltung korrekturgelesen. Für die Korrektheit des Inhalts wird keinerlei Garantie übernommen. Bemerkungen, Korrekturen und Ergänzungen kann man folgenderweise loswerden:
+	Der vorliegende Text ist eine Mitschrift zur Vorlesung \textit{Lineare Algebra II}, gelesen von Prof. Dr. Siegfried Echterhoff an der WWU Münster im Sommersemester 2016. Der Inhalt entspricht weitestgehend den Vorlesungsnotizen, welche auf der Vorlesungswebsite bereitgestellt werden. Dieses Werk ist daher keine Eigenleistung des Autors und wird nicht vom Dozenten der Veranstaltung korrekturgelesen. Für die Korrektheit und Vollständigkeit des Inhalts wird keinerlei Garantie übernommen. Bemerkungen, Korrekturen und Ergänzungen kann man folgenderweise loswerden:
 	\begin{itemize}
 		\item persönlich durch Überreichen von Notizen oder per E-Mail
-		\item durch Abändern der entsprechenden TeX-Dateien und Versand per E-Mail an mich
-		\item direktes Mitarbeiten via GitHub. Dieses Skript befindet sich im \texttt{latex-wwu}-Repository von Jannes Bantje:
+		\item durch Abändern der entsprechenden \TeX-Dateien und Versand per E-Mail an mich
+		\item direktes Mitarbeiten via GitLab. Dieses Skript befindet sich im \texttt{LaTeX-WWU}-Repository von Jannes Bantje:
 		\begin{center}
-			\url{https://github.com/JaMeZ-B/latex-wwu}
+			\url{https://gitlab.com/JaMeZ-B/LaTeX-WWU}
 		\end{center}
 	\end{itemize}
-	
+
 	\subsection*{Vorlesungswebsite}
 	\label{sub:link}
 	Das handgeschriebene Skript sowie weiteres Material findet man unter folgendem Link:
 	\begin{center}
 		\url{http://wwwmath.uni-muenster.de/u/echters/Lineare-AlgebraI/Skript/}
 	\end{center}
-	
+
 	\vfill
 	\begin{flushright}
 		Phil Steinhorst \\
 		p.st@wwu.de
 	\end{flushright}
-	 \newpage
-	\section*{Prolog des Dozenten}
+	\newpage
+	\subsection*{Prolog des Dozenten}
+	\label{sub:kommentar}
 	Im klassischen Sinn befasst sich die \textbf{Algebra} mit dem Auflösen von Gleichungen, wie etwa quadratische Gleichungen der Form
 	\[
-		x^2 + 2x + 3 = 9
+	x^2 + 2x + 3 = 9
 	\]
 	nach der Variablen $x$ (oder allgemeiner $x^2+ax+b=c$ mit festen \enquote{Größen} $a,b,c$).
 	Komplizierter sind Gleichungen, die simultan gelöst werden sollen, wie etwa
 	\begin{align*}
-		x^4 + 9x^3 + 7 &= 8 \\
-		3x^2 + 4x^3 &= 0
+	x^4 + 9x^3 + 7 &= 8 \\
+	3x^2 + 4x^3 &= 0
 	\end{align*}
 	Ein solches System kann auch mehrere freie (Lösungs-)Variablen besitzen, zum Beispiel
 	\begin{equation}
-		\begin{aligned}
-			x^2 + y^3 + z^4 &= 6 \\
-			x-y+z^4 &= 2,
-		\end{aligned} \label{eq:0.1}
+	\begin{aligned}
+	x^2 + y^3 + z^4 &= 6 \\
+	x-y+z^4 &= 2,
+	\end{aligned} \label{eq:0.1}
 	\end{equation}
 	wobei dann alle Tripel $(x,y,z)$ gesucht werden, die das gegebene System von Gleichungen lösen (beispielsweise ist $(x,y,z) = (2,1,1)$ eine Lösung des Systems \eqref{eq:0.1}).
 	
 	Ein klassisches Gebiet der \textbf{linearen Algebra} ist dementsprechend die Lösungstheorie von linearen Gleichungssystemen, wie zum Beispiel
 	\begin{align*}
-		2x + 3y -4z +8u &= 24 \\
-		x - y + z &= 9 \\
-		2y + 8u &= 11
+	2x + 3y -4z +8u &= 24 \\
+	x - y + z &= 9 \\
+	2y + 8u &= 11
 	\end{align*}
 	Frage: Was macht dieses System von Gleichungen mit den Unbekannten $x,y,z,u$ linear?
 	
@@ -59,3 +60,4 @@
 	Es ist mein Ziel, Ihnen in den nächsten zwei Semestern die wichtigsten Methoden und Ergebnisse der linearen Algebra beizubringen, damit Sie dann für viele weitere interessante Gebiete der Mathematik gerüstet sind.
 	Mit Ihrer großen Motivation und Ihrem Einsatz -- gerade auch in den Übungen -- wird mir dies in Zusammenarbeit mit den Übungsgruppenleitern auch gelingen!
 \end{abstract}
+\cleardoubleemptypage

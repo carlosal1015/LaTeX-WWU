@@ -1,5 +1,5 @@
-%!TEX root = ../LA2.tex
-\section{Mengen und Abbildungen}
+%!TEX root = ../LA2_SS16.tex
+\subsection{Mengen und Abbildungen}
 \label{sec:1.2}
 
 \begin{definition}[Menge, \textsc{Cantor}]
@@ -12,7 +12,6 @@ Für unsere Zwecke ist er aber zunächst ausreichend (mehr dazu in der Vorlesung
 
 \begin{beispiel}
 	\label{bsp:I.2.2}
-	\mbox{} \\[-1.4cm]
 	\begin{enumerate}[(i)]
 		\item $\NN = \{1,2,3,\dots\}$ heißt die Menge der natürlichen Zahlen.
 		
@@ -30,7 +29,6 @@ Für unsere Zwecke ist er aber zunächst ausreichend (mehr dazu in der Vorlesung
 
 \begin{definition}[Teilmenge]
 	\label{def:I.2.3}
-	\mbox{} \\[-1.4cm]
 	\begin{enumerate}[(i)]
 		\item Sei $M$ eine Menge.
 		Wir schreiben $x \in M$ (bzw. $x \notin M$), wenn $x$ ein (bzw. kein) Element von $M$ ist.
@@ -48,7 +46,7 @@ Für unsere Zwecke ist er aber zunächst ausreichend (mehr dazu in der Vorlesung
 		Wir schreiben $M_1 \nsubseteq M_2$, falls $M_1$ nicht Teilmenge von $M_2$ ist.
 	\end{enumerate}
 \end{definition}
-\newpage
+
 \begin{definition}[Vereinigung, Durchschnitt, Komplement]
 	\label{def:I.2.4}
 	Seien $M_1, M_2$ Mengen.
@@ -89,7 +87,7 @@ Das führt zu folgender Definition:
 		\Leftrightarrow \quad &(x \in M_1) \wedge (x \in M_2 \cup M_3) \\
 		\Leftrightarrow \quad &(x \in M_1) \wedge (x \in M_2 \vee x \in M_3) \\
 		\xLeftrightarrow{\ref{def:I.1.2}} \quad &[(x \in M_1) \wedge (x \in M_2)] \vee [(x \in M_1) \wedge (x \in M_3)] \\
-		\Leftrightarrow \quad &x \in (M_1 \cap M_2) \cup (M_1 \cap M_3). \qedhere
+		\Leftrightarrow \quad &x \in (M_1 \cap M_2) \cup (M_1 \cap M_3).
 	\end{align*}
 \end{beweis}
 
@@ -97,12 +95,13 @@ Das führt zu folgender Definition:
 	\label{def:I.2.7}
 	Sei $I$ eine beliebige Indexmenge und für jedes $i \in I$ sei $M_i$ eine Menge.
 	Wir setzen:
+	
 	\begin{enumerate}[(i)]
 		\item $\bigcup\limits_{i \in I} M_i = \{x : \exists i \in I \text{ mit } x \in M_i\}$
 		\item $\bigcap\limits_{i \in I} M_i = \{x : \forall i \in I \text{ gilt } x \in M_i\}$
 	\end{enumerate}
 \end{definition}
-\newpage
+
 \begin{satz}[Regel von \textsc{de Morgan}]
 	\label{satz:I.2.8}
 	Sei $M$ eine Menge und seien $M_i$ Mengen für alle $i \in I$.
@@ -124,7 +123,7 @@ Das führt zu folgender Definition:
 		\Leftrightarrow \quad &\forall i \in I \text{ gilt } x \in M \setminus M_i \\
 		\Leftrightarrow \quad &x \in \bigcap\limits_{i \in I} (M \setminus M_i).
 	\end{align*}
-	Der Beweis von (ii) geht sehr ähnlich. \qedhere
+	Der Beweis von (ii) geht sehr ähnlich.
 \end{beweis}
 
 Wir wollen nun Abbildungen zwischen Mengen betrachten:
@@ -136,8 +135,8 @@ Wir wollen nun Abbildungen zwischen Mengen betrachten:
 	$X$ heißt dann \Index{Urbildraum} (oder \Index{Definitionsbereich}) von $f$.
 	Die Menge $Y$ heißt der \Index{Bildraum} (oder \Index{Zielraum}) von $f$.
 \end{definition}
-
-\minisec{Beispiele}
+\newpage
+\textbf{Beispiele:}
 \begin{enumerate}[a)]
 	\item $f\colon \NN \rightarrow \NN, f(n) = n+1$
 	\item $f \colon \RR \rightarrow \RR, f(x) = x^2$
@@ -179,7 +178,7 @@ Ist $X \neq \emptyset$, $Y = \emptyset$, so kann es keine Abbildung $f \colon X 
 		\item Ist $B \subseteq Y$, so heißt $f^{-1}(B) := \{x \in X : f(x) \in B\} \subseteq X$ das \Index{Urbild} von $V$ unter $f$.
 	\end{enumerate}
 \end{definition}
-
+\newpage
 Beispiel: Sei $f \colon \RR \rightarrow \RR, f(x) = x^2$. Dann ist
 \begin{itemize}
 	\item $f(\RR) = [0,\infty)$
@@ -218,7 +217,6 @@ Bijektive Abbildung sind genau die Abbildungen, die eine Umkehrabbildung besitze
 \end{satz}
 
 \begin{beweis}
-	\mbox{} \\[-.9cm]
 	\begin{description}
 		\item[(i) $\Rightarrow$ (ii):] Nach Definition gilt: $f$ ist bijektiv genau dann, wenn zu jedem $y \in Y$ genau ein $x_y \in X$ existiert mit $f(x_y) = y$.
 		Setze $g(y) = x_y$.
@@ -232,9 +230,8 @@ Bijektive Abbildung sind genau die Abbildungen, die eine Umkehrabbildung besitze
 		\[
 			\wt{g}(y) = \wt{g}(f(x)) \stackrel{\text{(ii)}}{=} x \stackrel{\text{(ii)}}{=} g(f(x)) = g(y),
 		\]
-		also $\wt{g} = g$. \qedhere
-	\end{description}
-	\qedhere
+		also $\wt{g} = g$.
+	\end{description}	
 \end{beweis}
 
 Achtung: Der Begriff $f^{-1} \colon Y \rightarrow X$ für die Umkehrfunktion einer bijektiven Abbildung $f \colon X \rightarrow Y$ führt oft zu Missverständnissen in Bezug auf das Urbild $f^{-1}(B)$ einer Teilmenge $B \subseteq Y$.
@@ -254,7 +251,6 @@ Wir unterscheiden auch immer streng zwischen
 
 \begin{beweis}
 	Übungsaufgabe.
-	\qedhere
 \end{beweis}
 
 \begin{beispiel}[Transpositionsabbildung]
@@ -284,14 +280,14 @@ Wir unterscheiden auch immer streng zwischen
 	Der Fall $n=1$ ist klar.
 	Sei also die Aussage wahr für ein $n \in \NN$, und sei $f\colon \{1, \dots, n+1\} \rightarrow \{1,\dots,m\}$ eine injektive Abbildung.
 	Sei $k = f(n+1) \in \{1,\dots,m\}$.
-	Dann ist auch $\wt{f}\colon \tau_{km} \circ f \colon \{1,\dots,n\} \rightarrow \{1,\dots,m\}$ injektiv nach \autoref{lemma:I.2.14} mit $\wt{f}(n+1)=m$.
+	Dann ist auch $\wt{f}\colon \tau_{km} \circ f \colon \{1,\dots,n\} \rightarrow \{1,\dots,m\}$ injektiv nach Lemma~\ref{lemma:I.2.14} mit $\wt{f}(n+1)=m$.
 	Sei $g \colon \{1,\dots,n\} \rightarrow \{1,\dots,m-1\}$ definiert durch $g(l) = \wt{f}(l)$.
 	Dann ist auch $g$ injektiv, da $\wt{f}$ injektiv.
 	Nach Induktionsannahme gilt $n \leq m-1$, also dann auch $n+1 \leq m$.
 	
 	Damit ist (i) bewiesen.
 	Wir lassen den Beweis von (ii) als Übungsaufgabe.
-	(iii) folgt aus (i) und (ii). \qedhere
+	(iii) folgt aus (i) und (ii).
 \end{beweis}
 
 \begin{definition}[endliche Menge]
@@ -308,6 +304,6 @@ Wir unterscheiden auch immer streng zwischen
 		f_2^{-1} \circ f_1 \colon \{1,\dots,n\} \rightarrow \{1,\dots,m\}
 	\]
 	bijektiv.
-	Nach \autoref{lemma:I.2.16} (iii) folgt $n = m$. \qedhere
+	Nach Lemma~\ref{lemma:I.2.16} (iii) folgt $n = m$.
 \end{beweis} 
-\newpage
+\cleardoubleoddemptypage

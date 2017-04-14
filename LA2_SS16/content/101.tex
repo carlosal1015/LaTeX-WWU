@@ -1,7 +1,7 @@
-%!TEX root = ../LA2.tex
-\chapter{Lineare Algebra I (Zusammenfassung)} % (fold)
+%!TEX root = ../LA2_SS16.tex
+\section{Lineare Algebra I (Zusammenfassung)} % (fold)
 \label{cha:1}
-\section{Aussagenlogik und vollständige Induktion}
+\subsection{Aussagenlogik und vollständige Induktion}
 \label{sec:1.1}
 	Das Herz der Mathematik bilden Beweise:
 	Jede Aussage, jeder Lehrsatz muss \enquote{bewiesen} werden, das heißt durch logische Verknüpfungen aus einigen Grundaxiomen hergeleitet werden.
@@ -119,7 +119,6 @@ Im Allgemeinen sind aber die zu beweisenden Aussagen wesentlich komplexer und ni
 \end{beispiel}
 
 \begin{beweis}
-	\mbox{}[-.9cm]
 	\begin{enumerate}[(i)]
 		\item Da $n > l$ und $m > r$, folgt nach Definition von \enquote{$>$}, dass $k_1, k_2 \in \NN$ existieren mit $n = l+k_1, m = r+k_2$.
 		Aus den Rechenregeln in $\NN$ folgt hieraus mit $k = k_1 + k_2$:
@@ -127,7 +126,7 @@ Im Allgemeinen sind aber die zu beweisenden Aussagen wesentlich komplexer und ni
 			n+m = (l+k_1) + (r+k_2) = (l+r)+(k_1+k_2) = (l+r) + k.
 		\]
 		Nach Definition von \enquote{$>$} folgt also $n+m > l+r$.
-		\item Übungsaufgabe. \qedhere
+		\item Übungsaufgabe. 
 	\end{enumerate}
 \end{beweis}
 
@@ -138,9 +137,11 @@ Frage: Auf welche \enquote{wahren Aussagen} haben wir uns im obigen Beweis gest�
 	Sei wieder $B$ eine Aussage, die wir beweisen wollen.
 	Beim indirekten Beweis suchen wir eine unwahre Aussage $A$ und zeigen, dass $\neg B \Rightarrow A$ wahr ist.
 	Wenn dies gelingt, so ist $B$ eine wahre Aussage, denn wir haben die Äquivalenz
+	
 	\begin{equation}
 		(\neg B \Rightarrow A) \Leftrightarrow (\neg A \Rightarrow B) \label{eq:I.1.4}
 	\end{equation}
+	
 	und nach Voraussetzung ist $\neg A$ wahr.
 \end{satz}
 
@@ -158,7 +159,7 @@ Frage: Auf welche \enquote{wahren Aussagen} haben wir uns im obigen Beweis gest�
 			\hline 
 			f & f & w & w & f & f \\ 
 		\end{tabular} \\
-		\qedhere
+		
 	\end{center}
 \end{beweis}
 
@@ -182,7 +183,7 @@ Frage: Auf welche \enquote{wahren Aussagen} haben wir uns im obigen Beweis gest�
 	Wie oben folgt, dass auch $m$ gerade ist.
 	Wir haben nun gezeigt:
 	\[
-		\sqrt{2} \in \QQ \Rightarrow \Underbrace{[\exists m \in \NN \text{ mit } m \text{ gerade } \wedge m \text{ ungerade}]}{\text{unwahre Aussage!}} \qedhere
+		\sqrt{2} \in \QQ \Rightarrow \Underbrace{[\exists m \in \NN \text{ mit } m \text{ gerade } \wedge m \text{ ungerade}]}{\text{unwahre Aussage!}} 
 	\]
 \end{beweis}
 
@@ -202,7 +203,6 @@ Hier einige Grundregeln:
 
 \begin{beispiel}
 	\label{bsp:I.1.7}
-	\mbox{} \\[-1.4cm]
 	\begin{enumerate}[(i)]
 		\item Die Verneinung der Aussage \enquote{Franz ist mutig und reich} ist \enquote{Frank ist nicht mutig oder nicht reich}.
 		\item Die Verneinung von \enquote{Alle Menschen sind dumm} wäre \enquote{Es gibt einen Menschen, der nicht dumm ist}.
@@ -211,8 +211,6 @@ Hier einige Grundregeln:
 
 Wir kommen nun zu einem wichtigen Beweisprinzip, das es un in guten Fällen erlaubt, unendlich viele Aussagen gleichzeitig zu beweisen. Wir setzen voraus, dass die natürlichen Zahlen $\NN = \{1,2,3,\dots\}$ und $\NN_0 = \{0,1,2,\dots\}$ und die Rechenregeln für die Addition auf $\NN$ bekannt sind.
 Wichtigste Eigenschaft von $\NN$ ist, dass für jede Zahl $n \in \NN$ genau ein Nachfolger $n+1 \in \NN$ existiert, und wenn wir mit $1$ starten, so durchlaufen wir mit $1,2,3,\dots, n, n+1, \dots$ jede natürliche Zahl genau ein mal! (\Index{Peano-Axiom})
-
-\newpage
 
 \begin{satz}[Prinzip der vollständigen Induktion]
 	\label{satz:I.1.8}
@@ -253,7 +251,6 @@ Dann gilt $\neg A_j \wedge A_j$, was nicht geht.
 \end{beispiel}
 
 \begin{beweis}
-	\mbox{} \\[-.9cm]
 	\begin{description}
 		\item[I.A.:] Sei $n=1$.
 		Dann gilt $\sum_{i=1}^{1} = 1 = \frac{1(1+1)}{2}$, also ist $A_1$ wahr.
@@ -263,7 +260,7 @@ Dann gilt $\neg A_j \wedge A_j$, was nicht geht.
 			\sum_{i=1}^{n+1} i &= \sum_{i=1}^{n} + (n+1) \stackrel{A_n}{=} \frac{n(n+1)}{2} + n+1 = \frac{n(n+1)+2(n+1)}{2} \\
 			&= \frac{n^2 +n +2n +2}{2} = \frac{(n+1)(n+2)}{2} = \frac{(n+1)((n+1)+1)}{2},
 		\end{align*}
-		und damit ist dann auch die Aussage $A_{n+1}$ wahr, das heißt $A_n \Rightarrow A_{n+1}$ ist bewiesen. \qedhere
+		und damit ist dann auch die Aussage $A_{n+1}$ wahr, das heißt $A_n \Rightarrow A_{n+1}$ ist bewiesen. 
 	\end{description}
 \end{beweis}
 
@@ -278,14 +275,13 @@ Es ist nützlich, im Beweis stets zu kennzeichnen, wo die Annahme eingeht!
 		\item[I.A.:] $A_{n_0}$ ist wahr.
 		\item[I.S.:] Für alle $n \geq n_0$ gilt $A_n \Rightarrow A_{n+1}$.
 	\end{description}
-	Wir erhalten dann die Schlusskette
-	\[
-		A_{n_0} \Rightarrow A_{n_0+1} \Rightarrow A_{n_0+2} \Rightarrow \dots \Rightarrow A_{n-1} \Rightarrow A_n.
-	\]
+	Wir erhalten dann die Schlusskette $A_{n_0} \Rightarrow A_{n_0+1} \Rightarrow A_{n_0+2} \Rightarrow \dots \Rightarrow A_{n-1} \Rightarrow A_n$.	
 	Ferner kann auch der Induktionsschluss
+	
 	\[
 		\text{Für alle } n \geq n_0 \text{ gilt } A_{n_0} \wedge \dots \wedge A_n \Rightarrow A_{n+1}
 	\]
+	
 	gesetzt werden.
 	Wie sieht dann die Schlusskette für $A_n$ aus?
 \end{bemerkung}
@@ -350,11 +346,11 @@ Es ist nützlich, im Beweis stets zu kennzeichnen, wo die Annahme eingeht!
 	Dann gilt
 	\begin{align*}
 		\binom{n-1}{k-1} + \binom{n-1}{k} &= \frac{(n-1)!}{(k-1)!(n-k)!} + \frac{(n-1)!}{k!(n-1-k)!} \\
-		&= \frac{k(n-1)! + (n-k)(n-1)!}{k!(n-k)!} = \frac{n(n-1)!}{k!(n-k)!} = \frac{n!}{k!(n-k)!} = \binom{n}{k}. \qedhere
+		&= \frac{k(n-1)! + (n-k)(n-1)!}{k!(n-k)!} = \frac{n(n-1)!}{k!(n-k)!} = \frac{n!}{k!(n-k)!} = \binom{n}{k}. 
 	\end{align*}
 \end{beweis}
 
-Frage: War dies in Induktionsbeweis?
+Frage: War dies ein Induktionsbeweis?
 
 \begin{satz}[Binomische Formel]
 	\label{satz:1.14}
@@ -365,7 +361,6 @@ Frage: War dies in Induktionsbeweis?
 \end{satz}
 
 \begin{beweis}[(vollständige Induktion)]
-	\mbox{} \\[-.9cm]
 	\begin{description}
 		\item[I.A.:] Sei $n=0$.
 		Dann gilt $(x+y)^0 = 1$ und $\sum_{k=0}^{0} \binom{0}{k} x^k y^{0-k} = \binom{0}{0} x^0 y^0 = 1$.
@@ -379,9 +374,9 @@ Frage: War dies in Induktionsbeweis?
 			&\stack{\text{\ref{lemma:I.1.13}}}{=} \binom{n+1}{n+1} x^{n+1} y^0 + \sum_{k=1}^{n} \binom{n+1}{k} x^k y^{n+1-k} + \binom{n+1}{0} x^0 y^{n+1} \\
 			&\stack{}{=} \sum_{k=0}^{n+1} \binom{n+1}{k} x^k y^{n+1-k},
 		\end{align*}
-		also gilt die Formel für $n+1$. \qedhere
+		also gilt die Formel für $n+1$. 
 	\end{description}
-	\qedhere
+	
 \end{beweis}
 
-\newpage
+\cleardoubleoddemptypage

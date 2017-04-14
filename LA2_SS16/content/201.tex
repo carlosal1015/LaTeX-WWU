@@ -1,8 +1,8 @@
-%!TEX root = ../LA2.tex
-\chapter{Lineare Algebra II} % (fold)
+%!TEX root = ../LA2_SS16.tex
+\section{Lineare Algebra II} % (fold)
 \label{cha:2}
-\setcounter{section}{0}
-\section{Polynome und der Fundamentalsatz der Algebra}
+\setcounter{subsection}{0}
+\subsection{Polynome und der Fundamentalsatz der Algebra}
 \label{sec:2.1}
 
 \begin{erinnerung}[Polynomring]
@@ -38,7 +38,7 @@
 	gilt, so heißt $\mathcal{A}$ eine $\mathbf{K}$\textbf{-Algebra}. \index{K-Algebra}
 \end{bemerkung}
 
-Beispiele für $K$-Algebren sind $K[T]$ mit Addition und Multiplikation wie in \autoref{erinnerung:1.1} und $M(n\times n,K)$ mit kanonischer $K$-Vektorraum-Struktur und Matrixmultiplikation.
+Beispiele für $K$-Algebren sind $K[T]$ mit Addition und Multiplikation wie in Erinnerung~\ref{erinnerung:1.1} und $M(n\times n,K)$ mit kanonischer $K$-Vektorraum-Struktur und Matrixmultiplikation.
 
 \begin{definition}[Grad]
 	\label{def:1.3}
@@ -57,7 +57,7 @@ Beispiele für $K$-Algebren sind $K[T]$ mit Addition und Multiplikation wie in \
 
 \begin{beweis}
 	Für $p,q \neq 0$ wurde dies in \textit{Lineare Algebra I} auf Blatt 5 gezeigt.
-	Für $p = 0$ oder $q=0$ ist die Aussage klar. \qedhere
+	Für $p = 0$ oder $q=0$ ist die Aussage klar. 
 \end{beweis}
 
 Wir kommen nun zur \Index{Polynomdivision}:
@@ -105,7 +105,7 @@ Wir kommen nun zur \Index{Polynomdivision}:
 		&= \grad(h-h') + \grad(q) \geq m,
 	\end{align*}
 	was unmöglich ist.
-	Es folgt $h = h'$ und dann auch $r = p-hq = p-h'q = r'$. \qedhere
+	Es folgt $h = h'$ und dann auch $r = p-hq = p-h'q = r'$. 
 \end{beweis}
 
 \begin{satz}
@@ -128,7 +128,7 @@ Wir kommen nun zur \Index{Polynomdivision}:
 		\item[$n \rightsquigarrow n+1$:] Sei $\grad(p) = n+1$.
 		Besitzt $p$ keine Nullstelle in $K$, so setze wieder $q = p$.
 		Sonst sei $\lambda_0$ eine beliebige Nullstelle von $p$.
-		Nach \autoref{satz:1.5} existieren eindeutig bestimmte Polynome $h,r \in K[T]$ mit 
+		Nach Satz~\ref{satz:1.5} existieren eindeutig bestimmte Polynome $h,r \in K[T]$ mit 
 		\[
 			p(T) = h(T)(T-\lambda_0) + r(T) \text{ und } \grad(r) < 1.
 		\]
@@ -161,12 +161,12 @@ Wir kommen nun zur \Index{Polynomdivision}:
 			p(T) &= (q(T) (T-\lambda_1)^{n_1} \cdots (T-\lambda_i)^{n_i-1} \cdots (T-\lambda_l)^{n_l})\cdot (T-\lambda_i) \\
 			&= h(T) \cdot (T-\lambda_i).
 		\end{align*}
-		Nach \autoref{satz:1.5} ist diese Zerlegung eindeutig und nach Induktionsvoraussetzung ist die Zerlegung
+		Nach Satz~\ref{satz:1.5} ist diese Zerlegung eindeutig und nach Induktionsvoraussetzung ist die Zerlegung
 		\[
 			h(T) = q(T) (T-\lambda_1)^{n_1} \cdots (T-\lambda_i)^{n_i-1} \cdots (T-\lambda_i)^{n_l}
 		\]
 		von $h$ ebenfalls eindeutig.
-		Dann ist auch die Zerlegung von $p$ eindeutig. \qedhere
+		Dann ist auch die Zerlegung von $p$ eindeutig. 
 	\end{description}
 \end{beweis}
 
@@ -177,7 +177,7 @@ Wir kommen nun zur \Index{Polynomdivision}:
 
 \begin{bemerkung}
 	\label{bem:1.8}
-	Ein Polynom $p \in K[T]$ zerfällt genau dann in Linearfaktoren, wenn das Polynom $q$ in \autoref{satz:1.6} konstant ist.
+	Ein Polynom $p \in K[T]$ zerfällt genau dann in Linearfaktoren, wenn das Polynom $q$ in Satz~\ref{satz:1.6} konstant ist.
 	In diesem Fall gilt $q(\lambda) = a \neq 0$ für alle $\lambda \in K$ und
 	\[
 		p(T) = a(T-\lambda_1)^{n_1} \cdots (T-\lambda_l)^{n_l}
@@ -192,18 +192,18 @@ Wir kommen nun zur \Index{Polynomdivision}:
 \end{korollar}
 
 \begin{beweis}
-	Sei $p(T) = q(T)(T-\lambda_1)^{n_1} \cdots (T-\lambda_l)^{n_l}$ die Zerlegung wie in \autoref{satz:1.6}.
+	Sei $p(T) = q(T)(T-\lambda_1)^{n_1} \cdots (T-\lambda_l)^{n_l}$ die Zerlegung wie in Satz~\ref{satz:1.6}.
 	Dann gilt $q(\lambda) \neq 0$ für alle $\lambda \in K$.
-	Nach Voraussetzung folgt, dass $q$ konstant ist, das heißt es existiert ein $a \in K$ mit $q(\lambda) = a$ für alle $\lambda \in K$. \qedhere
+	Nach Voraussetzung folgt, dass $q$ konstant ist, das heißt es existiert ein $a \in K$ mit $q(\lambda) = a$ für alle $\lambda \in K$. 
 \end{beweis}
 
 \begin{bemerkung}
 	\label{bem:1.10}
-	Ein Körper $K$, der die Voraussetzung von \autoref{kor:1.9} erfüllt, heißt \Index{algebraisch abgeschlossen}.
+	Ein Körper $K$, der die Voraussetzung von Korollar~\ref{kor:1.9} erfüllt, heißt \Index{algebraisch abgeschlossen}.
 	Die Körper $\RR$ und $\QQ$ sind nicht algebraisch abgeschlossen, denn $T^2+1$ besitzt keine Nullstelle in $\RR$ bzw. $\QQ$.
 	Der Fundamentalsatz der Algebra besagt aber, dass $\CC$ algebraisch abgeschlossen ist:
 \end{bemerkung}
-\newpage
+
 \begin{satz}[Fundamentalsatz der Algebra]
 	\label{satz:1.11}
 	Jedes nichtkonstante Polynom $p \in \CC[T]$ besitzt eine Nullstelle in $\CC$.
@@ -251,7 +251,7 @@ Wir kommen nun zur \Index{Polynomdivision}:
 	Wir wollen zeigen, dass $p(0) = 0$ gilt.
 	
 	Setze $h(z) = p(z) - p(0)$.
-	Dann ist $h(0) = 0$ und es existiert ein Polynom $q$ mit $q(0) \neq 0$ und ein $l \in \NN$ mit $h(z) = z^{l} q(z)$ für alle $z \in \CC$ (nutze \autoref{satz:1.6}).
+	Dann ist $h(0) = 0$ und es existiert ein Polynom $q$ mit $q(0) \neq 0$ und ein $l \in \NN$ mit $h(z) = z^{l} q(z)$ für alle $z \in \CC$ (nutze Satz~\ref{satz:1.6}).
 	Damit folgt dann
 	\[
 		p(z) = p(0) + z^{l}q(z) \text{ für alle } z \in \CC \text{ mit } q(0) \neq 0.
@@ -280,6 +280,6 @@ Wir kommen nun zur \Index{Polynomdivision}:
 	
 	Ist $\omega$ Lösung von $\omega^l = -i$, so folgt $0 \leq \Re(-i \ol{p(0)} q(0)) = \Im(\ol{p(0)}q(0))$.
 	Zusammen folgt damit auch $\Im(\ol{p(0)}q(0)) = 0$.
-	Also folgt $\ol{p(0)}q(0)=0$, und da $q(0) \neq 0$, folgt $\ol{p(0)} = 0$ und dann $p(0) = 0$. \qedhere
+	Also folgt $\ol{p(0)}q(0)=0$, und da $q(0) \neq 0$, folgt $\ol{p(0)} = 0$ und dann $p(0) = 0$. 
 \end{beweis}
-\newpage
+\cleardoubleoddemptypage

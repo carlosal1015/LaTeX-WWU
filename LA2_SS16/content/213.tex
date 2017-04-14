@@ -1,5 +1,5 @@
-%!TEX root = ../LA2.tex
-\section{Eine Anwendung der Linearen Algebra: Googles PageRank}
+%!TEX root = ../LA2_SS16.tex
+\subsection{Eine Anwendung der Linearen Algebra: Googles PageRank}
 \label{sec:2.13}
 Zum Schluss möchten wir eine Anwendung der linearen Algebra im Google-Algorithmus \Index{PageRank} erklären.
 
@@ -82,7 +82,7 @@ Insbesondere ist $x$ ein Eigenvektor zum Eigenwert $1$ von $A$!
 
 \begin{beispiel}
 	\label{bsp:13.3}
-	In unserem Beispiel in \autoref{fig:13.1} gilt
+	In unserem Beispiel in Abbildung~\ref{fig:13.1} gilt
 	\[
 		A = \begin{pmatrix}
 			0 & \frac{1}{2} & 0 & \frac{1}{2} & 0           & \frac{1}{6} \\
@@ -118,7 +118,7 @@ Dazu stellen wir zunächst fest:
 \begin{beweis}
 	Ist $j \in \{1,\dots,n\}$ mit $m_j \neq 0$, so gilt $\sum_{i=1}^{n} a_{ij} = \sum_{W_j \leadsto W_i} \frac{1}{m_j} = \frac{m_j}{m_j} = 1$.
 	
-	Ist $m_j = 0$, so gilt $a_{ij} = \frac{1}{n}$ für alle $i$, also $\sum_{i=1}^{n} a_{ij} = n \cdot \frac{1}{n} = 1$. \qedhere
+	Ist $m_j = 0$, so gilt $a_{ij} = \frac{1}{n}$ für alle $i$, also $\sum_{i=1}^{n} a_{ij} = n \cdot \frac{1}{n} = 1$. 
 \end{beweis}
 
 \begin{lemma}
@@ -133,7 +133,7 @@ Dazu stellen wir zunächst fest:
 	\[
 		(A^Ty)_i = \sum_{j=1}^{n} a_{ij}^T y_j = \sum_{j=1}^{n} a_{ji} = 1.
 	\]
-	Damit ist $y \neq 0$ ein Eigenvektor zum Eigenwert $1$ für $A^T$. \qedhere
+	Damit ist $y \neq 0$ ein Eigenvektor zum Eigenwert $1$ für $A^T$. 
 \end{beweis}
 
 Wir haben noch nicht gezeigt, dass alle $x_i \geq 0$ gewählt werden können.
@@ -207,21 +207,20 @@ In der Literatur wird häufig der Wert $c = 0.85$ als gute Wahl angegeben!
 \end{lemma}
 
 \begin{beweis}
-	\mbox{} \\[-.9cm]
 	\begin{enumerate}[(i)]
 		\item Nach Konstruktion von $A$ gilt $a_{ij} \geq 0$ für alle $i,j$.
 		Dann folgt $b_{ij} = ca_{ij} + \frac{1-c}{n} > 0$ für alle $i,j$.
 		\item Es gilt: 
 		\[
-			\sum_{i=1}^{n} b_{ij} = \sum_{i=1}^{n} \enb{ca_{ij} + \frac{1-c}{n}} = c \cdot \Underbrace{\sum_{i=1}^{n} a_{ij}}{=1} + (1-c) \sum_{i=1}^{n} \frac{1}{n} = c+(1-c) \frac{n}{n} = 1. \qedhere
+			\sum_{i=1}^{n} b_{ij} = \sum_{i=1}^{n} \enb{ca_{ij} + \frac{1-c}{n}} = c \cdot \Underbrace{\sum_{i=1}^{n} a_{ij}}{=1} + (1-c) \sum_{i=1}^{n} \frac{1}{n} = c+(1-c) \frac{n}{n} = 1. 
 		\]
 	\end{enumerate}
-	\qedhere
+	
 \end{beweis}
 
 \begin{beispiel}
 	\label{bsp:13.9}
-	Wir wollen in \autoref{bsp:13.6} den Dämpfungsfaktor $c = 0.85 = \frac{17}{20}$ betrachten.
+	Wir wollen in Beispiel~\ref{bsp:13.6} den Dämpfungsfaktor $c = 0.85 = \frac{17}{20}$ betrachten.
 	Wir erhalten dann die Matrix
 	\[
 		A_c = \frac{1}{80} \begin{pmatrix}
@@ -255,7 +254,7 @@ Die Lösung des Problems der Existenz und Eindeutigkeit einer Lösung für \eqre
 	Die Konvergenzgeschwindigkeit ist hierbei recht gut (sie hängt maßgeblich von $c$ ab), sodass für eine gute Approximation schon relativ kleine Werte von $k$ genügen (z.B. $k \approx 20$).
 \end{bemerkung}
 
-Wir wollen nun noch einen Beweis für \autoref{satz:13.10} angeben.
+Wir wollen nun noch einen Beweis für Satz~\ref{satz:13.10} angeben.
 Unser Beweis benutzt Methoden aus der Analysis.
 Zunächst benötigen wir eine schwache Version des Banachschen Fixpunktsatzes.
 
@@ -311,7 +310,7 @@ Zunächst benötigen wir eine schwache Version des Banachschen Fixpunktsatzes.
 		a &= \lim\limits_{n \rightarrow \infty} a_{k_n+1} = \lim\limits_{n \rightarrow \infty} d(f(\overbrace{f^{k_n}(x_0)}^{\rightarrow y_0}),\ol{x_0}) = d(f(y_0),\ol{x}) \\
 		&= d(f(y_0),f(\ol{x})) \stackrel{\eqref{eq:13.12}}{<} d(y_0,\ol{x}) = a,
 	\end{align*}
-	also $a < a$, und wir erhalten wieder einen Widerspruch. \qedhere
+	also $a < a$, und wir erhalten wieder einen Widerspruch. 
 \end{beweis}
 
 Es geht nun darum, den passenden metrischen Raum für den Beweis des Perron-Frobenius-Satzes zu basteln.
@@ -349,14 +348,14 @@ Auf $Y^+$ definieren wir eine Metrik $d$ durch
 	Damit erhalten wir mit der Monotonie von $\ln$:
 	\begin{align*}
 		d(x,z) &= \ln(M(x,z) \cdot M(z,x)) \leq \ln(M(x,y)\cdot M(y,z) \cdot M(z,y) \cdot M(y,x) \\
-		&= \ln(M(x,y) \cdot M(y,x)) + ln(M(y,z) \cdot M(z,y)) = d(x,y) + d(y,z). \qedhere
+		&= \ln(M(x,y) \cdot M(y,x)) + ln(M(y,z) \cdot M(z,y)) = d(x,y) + d(y,z). 
 	\end{align*}
 \end{beweis}
 
 Wir haben auf $Y^+$ nun zwei Metriken:
 Zum einen die Standard-Metrik $d_{\no{\cdot}}$ auf $\RR^n$ gegeben durch eine beliebige Norm (eingeschränkt auf $Y^+$) und die oben eingeführte Metrix $d$.
 Es gilt dann:
-\newpage
+   
 \begin{lemma}
 	\label{lemma:13.14}
 	Die Abbildung $\id\colon (Y^+,d_{\no{\cdot}}) \rightarrow (Y^+,d)$ ist stetig.
@@ -367,11 +366,11 @@ Es gilt dann:
 	Dann gilt $y_{n,i} \rightarrow y_{0,i}$ für alle $1 \leq i \leq n$, und damit $\frac{y_{n,i}}{y_{0,i}} \rightarrow 1$.
 	Es folgt $M(y_n,y_0) \rightarrow 1$ und analog $M(y_0,y_n) \rightarrow 1$, und dann auch
 	\[
-		d(y_n,y_0) = \ln(M(y_n,y_0) \cdot M(y_0,y_n)) \rightarrow \ln(1) = 0. \qedhere
+		d(y_n,y_0) = \ln(M(y_n,y_0) \cdot M(y_0,y_n)) \rightarrow \ln(1) = 0. 
 	\]
 \end{beweis}
 
-\begin{beweis}[\autoref{satz:13.10}]
+\begin{beweis}[Satz~\ref{satz:13.10}]
 	Sei $A = (a_{ij}) \in M(n \times n,\RR)$ mit $a_{ij} > 0$ für alle $i,j$ und $\sum_{i=1}^{n} a_{ij} = 1$ für alle $1 \leq j \leq n$.
 	Wir wollen zeigen:
 	Es existiert genau ein $\ol{x} \in Y := \{x \in \RR^n : x_i \geq 0, \sum_{i=1}^{n} x_i = 1\}$ mit $A\ol{x} = \ol{x}$.
@@ -403,7 +402,7 @@ Es gilt dann:
 		\]
 		also $sy_i - x_i \geq 0$ für alle $i$.
 		Analog folgt $M(Ax,Ay) = \inf\{s \geq 0 : sAy - Ax \geq 0\}$.
-		Für $s = M(x,y)$ folgt $sY-x \geq 0$, und dann $sAy - Ax = A(sy-x) > 0$, denn für alle $1 \leq i \leq n$ gilt $(A(sy-x))_i = \sum_{j=1}^{n} a_{ij} (sy-x)_i > 0$, da $a_{ij} > 0$ für alle $i,j$ und $(sy-x)_i \geq 0$, aber $(sy-x)_i \neq 0$ für mindestens ein $i \in \{1,\dots,n\}$, denn sonst wäre $sy = x$ und dann $s = s\enb{\sum_{i=1}^{n} y_i} = \sum_{i=1}^{n} sy_i = \sum_{i=1}^{n} x_i = 1$, also $s = M(x,y) = 1$ und dann wäre $x=y$ (vgl. Beweis zu \autoref{lemma:13.14}).
+		Für $s = M(x,y)$ folgt $sY-x \geq 0$, und dann $sAy - Ax = A(sy-x) > 0$, denn für alle $1 \leq i \leq n$ gilt $(A(sy-x))_i = \sum_{j=1}^{n} a_{ij} (sy-x)_i > 0$, da $a_{ij} > 0$ für alle $i,j$ und $(sy-x)_i \geq 0$, aber $(sy-x)_i \neq 0$ für mindestens ein $i \in \{1,\dots,n\}$, denn sonst wäre $sy = x$ und dann $s = s\enb{\sum_{i=1}^{n} y_i} = \sum_{i=1}^{n} sy_i = \sum_{i=1}^{n} x_i = 1$, also $s = M(x,y) = 1$ und dann wäre $x=y$ (vgl. Beweis zu Lemma~\ref{lemma:13.14}).
 		
 		Da $sAy-Ax > 0$, folgt dann aber
 		\[
@@ -414,7 +413,8 @@ Es gilt dann:
 			d(Ax,Ay) = \ln(M(Ax,Ay) \cdot M(Ay,Ax)) < \ln(M(x,y) \cdot M(y,x)) = d(x,y).
 		\]
 	
-		Damit sind wir nun in der Situation von \autoref{satz:13.12} und es existiert genau ein $\ol{x} \in X = AY$ mit $A\ol{x} = f(\ol{x}) = \ol{x}$, und es gilt $\ol{x} = \lim\limits_{k\rightarrow \infty} A^k x_0$ für jedes $x_0 \in Y$ (denn $Ax_0 \in X$).
-		Diese Konvergenz ist wegen (ii) sowohl bezüglich $d$, als auch bezüglich $\no{\cdot}$ für jede beliebige Norm auf $\RR^n$. \qedhere
+		Damit sind wir nun in der Situation von Satz~\ref{satz:13.12} und es existiert genau ein $\ol{x} \in X = AY$ mit $A\ol{x} = f(\ol{x}) = \ol{x}$, und es gilt $\ol{x} = \lim\limits_{k\rightarrow \infty} A^k x_0$ für jedes $x_0 \in Y$ (denn $Ax_0 \in X$).
+		Diese Konvergenz ist wegen (ii) sowohl bezüglich $d$, als auch bezüglich $\no{\cdot}$ für jede beliebige Norm auf $\RR^n$. 
 	\end{enumerate}
 \end{beweis}
+\cleardoubleoddemptypage
