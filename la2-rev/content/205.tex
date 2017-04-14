@@ -1,5 +1,5 @@
-%!TEX root = ../LA2.tex
-\section{Sesquilinearformen und selbstadjungierte Endomorphismen}
+%!TEX root = ../LA2_SS16.tex
+\subsection{Sesquilinearformen und selbstadjungierte Endomorphismen}
 \label{sec:2.5}
 
 In diesem Abschnitt sei wieder $\KK = \RR$ oder $\KK= \CC$.
@@ -44,7 +44,7 @@ Sind $V$ und $W$ endlich dimensionale unitäre (bzw. orthogonale) $\KK$-Vektorr�
 	\[
 		\sk{F(v_j),w_i} = \sk{\sum_{l=1}^{m} a_{lj} w_l,w_i} = \sum_{l=1}^{m} a_{lj} \Underbrace{\sk{w_l,w_i}}{=\delta_{ij}} = a_{ij} = f(v_j,w_i).
 	\]
-	\newpage
+	 
 	Für $v = \sum_{j=1}^{n} \lambda_j v_j$ und $w = \sum_{i=1}^{m} \mu_i w_i$ folgt dann
 	\begin{align*}
 		\sk{F(v),w} &= \sk{F \enb{\sum_{j=1}^{n} \lambda_j v_j}, \sum_{i=1}^{m} \mu_i w_i} = \sum_{j=1}^{n} \sum_{i=1}^{m} \lambda_j \ol{\mu_i} \sk{F(v_j),w_i} \\
@@ -67,7 +67,7 @@ Sind $V$ und $W$ endlich dimensionale unitäre (bzw. orthogonale) $\KK$-Vektorr�
 \begin{bemerkung}
 	\label{bem:5.3}
 	Natürlich gilt für jede lineare Abbildung $F \colon V \rightarrow W$, dass $(v,w) \mapsto \sk{F(v),w}$ eine Sesquilinearform auf $V \times W$.
-	\autoref{satz:5.2} liefert daher eine Bijektion zwischen dem Raum $\Sesqui(V \times W)$ aller Sesquilinearformen auf $V \times W$ und $\Hom(V,W)$. 
+	Satz~\ref{satz:5.2} liefert daher eine Bijektion zwischen dem Raum $\Sesqui(V \times W)$ aller Sesquilinearformen auf $V \times W$ und $\Hom(V,W)$. 
 	Dies ist sogar ein Vektorraum-Isomorphismus.
 \end{bemerkung}
 
@@ -85,9 +85,9 @@ Sind $V$ und $W$ endlich dimensionale unitäre (bzw. orthogonale) $\KK$-Vektorr�
 	\]
 	mit $A = \mat{A}{\wt{B}}{B}{F}$ und $\sk{\cdot,\cdot}_S$ das Standard-Skalarprodukt auf $\KK^m$.
 \end{korollar}
-\newpage
+ 
 \begin{beweis}
-	Die Formel für $\mat{A}{\wt{B}}{B}{F}$ folgt aus \autoref{satz:5.2} angewandt auf $f(v,w) := \sk{F(v),w}.$
+	Die Formel für $\mat{A}{\wt{B}}{B}{F}$ folgt aus Satz~\ref{satz:5.2} angewandt auf $f(v,w) := \sk{F(v),w}.$
 	Für die Gleichheit setzen wir ein:
 	\begin{align*}
 		\sk{\sum_{j=1}^{n} x_j v_j, \sum_{i=1}^{m} y_i w_i} &= \sum_{j=1}^{n} \sum_{i=1}^{m} x_j \ol{y_i} \Underbrace{\sk{F(v_j),w_i}}{a_{ij}} = \sum_{j=1}^{n} \sum_{i=1}^{m} a_{ij} x_j \ol{y_i} \\
@@ -109,7 +109,7 @@ Sind $V$ und $W$ endlich dimensionale unitäre (bzw. orthogonale) $\KK$-Vektorr�
 
 \begin{beweis}
 	Betrachte $f^*\colon W \times V \rightarrow \KK$ mit $f^*(w,v) := \sk{w,F(v)}$.
-	Dann ist $f^*$ eine Sesquilinearform und nach \autoref{satz:5.2} existiert genau eine lineare Abbildung $F^*\colon W \rightarrow V$ mit
+	Dann ist $f^*$ eine Sesquilinearform und nach Satz~\ref{satz:5.2} existiert genau eine lineare Abbildung $F^*\colon W \rightarrow V$ mit
 	\[
 		\sk{F^*(w),v}_V = f^*(w,v) = \sk{w,F(v)}_W
 	\]
@@ -126,20 +126,19 @@ Sind $V$ und $W$ endlich dimensionale unitäre (bzw. orthogonale) $\KK$-Vektorr�
 
 \begin{definition}[Adjungierte]
 	\label{def:5.6}
-	Die Abbildung $F^*\colon W \rightarrow V$ aus \autoref{satz:5.5} heißt die zu $F \colon V \rightarrow W$ \textbf{adjungierte lineare Abbildung}.
+	Die Abbildung $F^*\colon W \rightarrow V$ aus Satz~\ref{satz:5.5} heißt die zu $F \colon V \rightarrow W$ \textbf{adjungierte lineare Abbildung}.
 	
 	Analog: Ist $A \in M(m \times n, \KK)$ mit $A = (a_{ij})$ und ist $A^* \in (n \times m, \KK)$ mit $A^* = (a^*_{ij})$, sodass $a^*_{ij} := \ol{a_{ji}}$, so heißt $A^*$ die zu $A$ \textbf{adjungierte Matrix}. \index{Adjungierte}
 \end{definition}
 
 \begin{bemerkung}
 	\label{bem:5.7}
-	\mbox{} \\[-1.4cm]
 	\begin{enumerate}[(a)]
 		\item Ist $V = \KK^n$ und $W = \KK^m$ jeweils versehen mit dem Standard-Skalarprodukt, so gilt für alle $A \in M(m \times n,\KK)$ und für alle $x \in \KK^n, y \in \KK^m$:
 		\begin{equation}
 			\sk{Ax,y} = \sk{x,A^*y}. \label{eq:5.7.1}
 		\end{equation}
-		Dazu wende \autoref{satz:5.5} an auf $F_A \colon \KK^n \rightarrow \KK^m, x \mapsto Ax$.
+		Dazu wende Satz~\ref{satz:5.5} an auf $F_A \colon \KK^n \rightarrow \KK^m, x \mapsto Ax$.
 		Dann gilt $\mat{A}{\mathcal{S}_m}{\mathcal{S}_n}{F_A} =A$ und $\mat{A}{\mathcal{S}_n}{\mathcal{S}_m}{F_A^*} = A^*$, also gilt $F_A^*(y) = A^*y$ für alle $y \in \KK^m$ und damit
 		\[
 			\sk{Ax,y} = \sk{F_A(x),y} = \sk{x,F_A^*(y)} = \sk{x,A^*y}.
@@ -196,11 +195,10 @@ Dafür benötigen wir:
 \end{lemma}
 
 \begin{beweis}
-	\mbox{} \\[-0.9cm]
 	\begin{enumerate}[(i)]
 		\item Das folgt aus $A^B_{F^*} = \mat{A}{B}{B}{F^*} \stack{\ref{satz:5.5}}{=} \enb{\mat{A}{B}{B}{F}}^* = \enb{A^B_F}^*$.
 		\item Sei $\Phi_B\colon \KK^n \rightarrow V, x \mapsto \sum_{i=1}^{n} x_i v_i$ der zu $B$ gehörende Isomorphismus.
-		Dann folgt mit \autoref{kor:5.4}:
+		Dann folgt mit Korollar~\ref{kor:5.4}:
 		
 		Ist $v = \Phi_B(x), x \in \KK^n$, so folgt $\sk{F(v),v} = \sk{Ax,x}$, also $\sk{F(v),v} > 0 \Leftrightarrow \sk{Ax,x} > 0$. 
 	\end{enumerate}
@@ -208,7 +206,6 @@ Dafür benötigen wir:
 
 \begin{korollar}
 	\label{kor:5.10}
-	\mbox{} \\[-1.4cm]
 	\begin{enumerate}[(i)]
 		\item Sei $\sk{\cdot,\cdot}$ ein Skalarprodukt auf dem endlich dimensionalen $\KK$-Vektorraum $V$.
 		Ist dann $\sk{\sk{\cdot,\cdot}}$ ein weiteres Skalarprodukt auf $V$, so existiert eine eindeutig bestimmte positiv definite lineare Abbildung $F\colon V \rightarrow V$ mit $\sk{\sk{v,w}} = \sk{F(v),w}$ für alle $v,w \in V$.
@@ -217,9 +214,8 @@ Dafür benötigen wir:
 \end{korollar}
 
 \begin{beweis}
-	\mbox{} \\[-.9cm]
 	\begin{enumerate}[(i)]
-		\item Nach \autoref{satz:5.2} existiert genau eine lineare Abbildung $F \colon V \rightarrow W$ mit $\sk{\sk{v,w}} = \sk{F(v),w}$.
+		\item Nach Satz~\ref{satz:5.2} existiert genau eine lineare Abbildung $F \colon V \rightarrow W$ mit $\sk{\sk{v,w}} = \sk{F(v),w}$.
 		Da $\sk{\sk{\cdot,\cdot}}$ hermitesch ist, folgt $\sk{F(v),w} = \ol{\sk{F(w),v}}$, also gilt $F = F^*$.
 		Da $\sk{\sk{\cdot,\cdot}}$ positiv definit ist, folgt $\sk{F(v),v} \geq 0$ für alle $v \in V$ und $\sk{F(v),v} = 0 \Leftrightarrow v = 0$, also ist $F$ positiv definit.
 		\item Dies folgt direkt aus (i) und der Darstellung von linearen Abbildungen mit Hilfe von Matrixmultiplikation. 
@@ -344,10 +340,10 @@ Dafür benötigen wir:
 				& v^* & & b + v^* A_n^{-1}v
 				\end{BMAT}} = A,\text{ falls } b = a-v^* A_n^{-1} v.
 	\end{align*}
-	Nach \autoref{prob:5.11}(i) ist $A$ positiv definit genau dann, wenn $\wt{A}$ positiv definit ist, und wegen $\sk{\wt{A}x,x} = \sk{A_n \wt{x},\wt{x}} + b \abs{x_{n+1}}^2$ mit $\wt{x} = (x_1,\dots,x_n)^T$ ist dies der Fall genau dann, wenn $A_n$ positiv definit und $b>0$.
+	Nach Problem~\ref{prob:5.11}(i) ist $A$ positiv definit genau dann, wenn $\wt{A}$ positiv definit ist, und wegen $\sk{\wt{A}x,x} = \sk{A_n \wt{x},\wt{x}} + b \abs{x_{n+1}}^2$ mit $\wt{x} = (x_1,\dots,x_n)^T$ ist dies der Fall genau dann, wenn $A_n$ positiv definit und $b>0$.
 	
 	Sei nun $A$ positiv definit.
-	Nach \autoref{prob:5.11}(ii) ist dann auch $A_n$ positiv definit und dann folgt nach Induktionsvoraussetzung $\det(A_1),\cdots,\det(A_n) > 0$.
+	Nach Problem~\ref{prob:5.11}(ii) ist dann auch $A_n$ positiv definit und dann folgt nach Induktionsvoraussetzung $\det(A_1),\cdots,\det(A_n) > 0$.
 	Nach obiger Rechnung ist dann auch $b > 0$ und dann folgt auch
 	\begin{align*}
 		\det(A_{n+1}) &= \det(A) = \det(S^* \wt{A} S) \\
@@ -359,7 +355,7 @@ Dafür benötigen wir:
 	Gilt umgekehrt $\det(A_k) > 0$ für alle $1 \leq k \leq n+1$, so folgt aus dieser Rechnung, dass $0 < \det(A_{n+1}) = \det(A) = \det(A_n) \cdot b$, und da $\det(A_n) > 0$, folgt auch $b > 0$.
 	Nach Induktionsvoraussetzung ist also $A_n$ positiv definit und $b > 0$, also folgt, dass $A$ positiv definit ist. 
 \end{beweis}
-\newpage
+ 
 \begin{beispiel}
 	\label{bsp:5.13}
 	Sei
@@ -377,4 +373,4 @@ Dafür benötigen wir:
 	\label{bem:5.14}
 	Positiv definite Matrizen spielen auch in der Analysis II eine wichtige Rolle.
 \end{bemerkung}
-\newpage
+\cleardoubleoddemptypage
