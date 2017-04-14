@@ -1,5 +1,5 @@
-%!TEX root = ../LA2.tex
-\section{Quadratische Polynome und Quadriken}
+%!TEX root = ../LA2_SS16.tex
+\subsection{Quadratische Polynome und Quadriken}
 \label{sec:2.8}
 
 Wir wollen die Diagonalisierbarkeit von selbstadjungierten Matrizen ausnutzen, um in diesem Abschnitt quadratische Polynome auf $\RR^n$ zu untersuchen.
@@ -59,7 +59,7 @@ Beachte: Der Faktor $2$ vor dem Term $\sk{a,x}$ bzw. $a^Tx$ vereinfacht einige U
 \begin{lemma}[Reduktion durch Translation]
 	\label{lemma:8.4}
 	Sei $p(x) = x^T A x + 2a^Tx + \alpha$ mit $A = A^T \in M(n \times n, \RR), a \in \RR^n$ und $\alpha \in \RR$.
-	Ferner sei $c \in \RR^n$ mit $A^2c = -Aa$ (existiert nach \autoref{lemma:8.3}) und sei $b := Ac + a$.
+	Ferner sei $c \in \RR^n$ mit $A^2c = -Aa$ (existiert nach Lemma~\ref{lemma:8.3}) und sei $b := Ac + a$.
 	Dann gelten:
 	\begin{enumerate}[(i)]
 		\item $p(x+c) = x^T Ax + 2b^Tx + p(c)$ und $Ab = 0$.
@@ -114,7 +114,6 @@ Beachte: Der Faktor $2$ vor dem Term $\sk{a,x}$ bzw. $a^Tx$ vereinfacht einige U
 \end{satz}
 
 \begin{beweis}
-	\mbox{} \\[-.9cm]
 	\begin{enumerate}[(i)]
 		\item Da $a \in \Bild(A)$, existiert ein $d \in \RR^n$ mit $Ad = -a$.
 		Dann folgt $p(x+d) = x^TAx + 2(Ad+a)^Tx + p(d) = x^T Ax + p(d)$.
@@ -127,7 +126,7 @@ Beachte: Der Faktor $2$ vor dem Term $\sk{a,x}$ bzw. $a^Tx$ vereinfacht einige U
 		\end{align*}
 		\item Sei $c \in \RR^n$ mit $A^2c = -Aa$.
 		Da $a \notin \Bild(A)$, ist dann $b := Ac + a \neq 0$.
-		Nach \autoref{lemma:8.4}(iii) gilt dann für $d := c + \delta b$ mit $\delta = - \frac{p(c)}{2 \no{b}^2}$, dass $p(x+d) = x^TAx + 2b^Tx$.
+		Nach Lemma~\ref{lemma:8.4}(iii) gilt dann für $d := c + \delta b$ mit $\delta = - \frac{p(c)}{2 \no{b}^2}$, dass $p(x+d) = x^TAx + 2b^Tx$.
 
 		Wähle (mit Hilfe des Schmidtschen Orthonormalisierungsverfahrens) eine Orthonormalbasis $\{v_1,\dots,v_n\}$ von $\RR^n$ mit $v_n = \no{b}^{-1} \cdot b$.
 		Ist dann $B := (v_1,\dots,v_n) \in \oh(n)$, so folgt
@@ -148,8 +147,8 @@ Beachte: Der Faktor $2$ vor dem Term $\sk{a,x}$ bzw. $a^Tx$ vereinfacht einige U
 				0 & 0
 				\end{BMAT}} \quad \text{mit } \wt{A}^T = \wt{A} \in M((n-1) \times (n-1),\RR).
 		\]
-		\newpage
-		Nach \autoref{kor:7.16} existiert dann ein $S \in \oh(n-1)$ mit $S^T\wt{A}S = \diag(\lambda_1,\dots,\lambda_{n-1})$ für geeignete $\lambda_1,\dots,\lambda_{n-1} \in \RR$.
+		  
+		Nach Korollar~\ref{kor:7.16} existiert dann ein $S \in \oh(n-1)$ mit $S^T\wt{A}S = \diag(\lambda_1,\dots,\lambda_{n-1})$ für geeignete $\lambda_1,\dots,\lambda_{n-1} \in \RR$.
 		Ist dann
 		\[
 		= B \cdot \enb{\begin{BMAT}[.25cm]{c|c}{c|c}
@@ -178,7 +177,7 @@ Beachte: Der Faktor $2$ vor dem Term $\sk{a,x}$ bzw. $a^Tx$ vereinfacht einige U
 	\end{enumerate}
 \end{beweis}
 
-Wenn wir die Koeffizienten $\lambda_i$ vor den quadratischen Termen in \autoref{satz:8.5} nach ihren Vorzeichen ordnen und $\lambda_i = \frac{1}{\rho_i^2}$, falls $\lambda_i > 0$, und $-\lambda_j = \frac{1}{\sigma_j^2}$, falls $\lambda_j < 0$, schreiben, so erhalten wir die folgenden Normalformen für quadratische Polynome auf $\RR^n$:
+Wenn wir die Koeffizienten $\lambda_i$ vor den quadratischen Termen in Satz~\ref{satz:8.5} nach ihren Vorzeichen ordnen und $\lambda_i = \frac{1}{\rho_i^2}$, falls $\lambda_i > 0$, und $-\lambda_j = \frac{1}{\sigma_j^2}$, falls $\lambda_j < 0$, schreiben, so erhalten wir die folgenden Normalformen für quadratische Polynome auf $\RR^n$:
 
 \begin{satz}[Normalformen quadratischer Polynome II]
 	\label{satz:8.6}
@@ -200,9 +199,9 @@ Wenn wir die Koeffizienten $\lambda_i$ vor den quadratischen Termen in \autoref{
 	Wir ordnen die $\lambda_i$ (also die Variablen $x_i$) so um, dass, dass die ersten $k$ Koeffizienten größer $0$ und die folgenden $m-k$ Koeffizienten kleiner $0$ sind.
 	Alle anderen sind $0$.
 	Umordnung der Variablen geschieht durch Konjugation mit einer Permutationsmatrix $P \in \oh(n)$.
-	Ist also $\wt{O} \in \oh(n)$ wie in \autoref{satz:8.5}, so ist $O = P\wt{O} \in \oh(n)$. 
+	Ist also $\wt{O} \in \oh(n)$ wie in Satz~\ref{satz:8.5}, so ist $O = P\wt{O} \in \oh(n)$. 
 \end{beweis}
-\newpage
+  
 \begin{definition}[Quadrik]
 	\label{def:8.7}
 	Eine \Index{Quadrik} $Q \subseteq \RR^n$ ist definiert als Nullstellenmenge eines quadratischen Polynoms, das heißt $Q \subseteq \RR^n$ heißt Quadrik, falls ein quadratisches Polynom $p \colon \RR^n \rightarrow \RR$ existiert mit $Q = \{x \in \RR^n : p(x) = 0\}$.
@@ -210,7 +209,7 @@ Wenn wir die Koeffizienten $\lambda_i$ vor den quadratischen Termen in \autoref{
 
 \begin{bemerkung}
 	\label{bem:8.8}
-	Mit \autoref{satz:8.6} sehen wir:
+	Mit Satz~\ref{satz:8.6} sehen wir:
 	Bis auf eine Verschiebung des Ursprungs und der Wahl eines geeigneten Koordinatensystems ($x \mapsto Ox$ mit $O \in \oh(n)$) ist eine Quadrik die Lösungsmenge einer Gleichung
 	\begin{align*}
 		0 &= \frac{x_1^2}{\rho_1^2} + \dots \frac{x_k^2}{\rho_k^2} - \frac{x_{k+1}^2}{\sigma_{k+1}^2} - \dots - \frac{x_m^2}{\sigma_m^2} + \beta, \qquad \text{bzw.} \\
@@ -272,7 +271,7 @@ Wenn wir die Koeffizienten $\lambda_i$ vor den quadratischen Termen in \autoref{
 			
 		\end{figure}
 
-		\newpage
+		  
 		\item $\frac{x^2}{a^2} - \frac{y^2}{b^2} = 0 \Leftrightarrow \frac{x^2}{y^2} = \frac{a^2}{b^2} \Leftrightarrow y = \pm \frac{b}{a}x$. (Geradenpaar wie in obiger Skizze)
 		\item $\frac{x^2}{a^2} - \frac{y^2}{b^2} - 1 = 0 \Leftrightarrow \frac{y^2}{b^2} - \frac{x^2}{a^2} + 1 = 0$ (analog zu (iv) mit Rolle von $x,y$ vertauscht)
 		\item $\frac{x^2}{a^2} + y = 0 \Leftrightarrow y = - \frac{x^2}{a^2}$ (nach unten geöffnete Parabel)
@@ -289,7 +288,7 @@ Wenn wir die Koeffizienten $\lambda_i$ vor den quadratischen Termen in \autoref{
 	Sei $K = \{(x,y,z) \in \RR^3 : x^2 + y^2 = z^2 \}$ der Kegelrand des \enquote{normierten} Kegels im $\RR^3$.
 	Wir wollen die Schnitte von $K$ mit den zweidimensionalen Ebenen im $\RR^3$ untersuchen.
 	Welche Gebilde können hier entstehen?
-	\newpage
+	  
 
 	\begin{figure}[h]
 		\centering
@@ -310,5 +309,4 @@ Wenn wir die Koeffizienten $\lambda_i$ vor den quadratischen Termen in \autoref{
 	\end{align*}
 	Durch Wahl geeigneter Parameter bekommt man so alle Typen von Quadriken außer $\emptyset$ oder parallele Geradenpaare bzw. die $y$-Achse als Projektion von $K \cap E$ auf die $x$-$y$-Ebene.
 \end{beispiel}
-
-\newpage
+\cleardoubleoddemptypage
