@@ -1,5 +1,5 @@
-%!TEX root = ../LA2.tex
-\section{Basen und lineare Abbildungen}
+%!TEX root = ../LA2_SS16.tex
+\subsection{Basen und lineare Abbildungen}
 
 \begin{satz}[Darstellungsmatrix]
 	\label{satz:I.10.1}
@@ -21,11 +21,11 @@
 	ist ein Isomorphismus von $K$-Vektorräumen.
 \end{satz}
 
-\setcounter{definition}{2}
+\setcounter{satz}{2}
 \begin{lemma}
 	\label{lemma:I.10.3}
 	Seien $V,W$ zwei $K$-Vektorräume, $B = \{v_1,\dots,v_n\}$ Basis von $V$, $C = \{w_1,\dots,w_m\}$ Basis von $W$ sowie $F \colon V \rightarrow W$ linear.
-	Seien $\Phi_B, \Phi_C$ die Isomorphismen aus \autoref{kor:I.8.16}.
+	Seien $\Phi_B, \Phi_C$ die Isomorphismen aus Korollar~\ref{kor:I.8.16}.
 	Ist $A := \mat{A}{C}{B}{F}$ und $F_A(x) := Ax$, so ist das Diagramm
 	\[
 		\begin{tikzcd}
@@ -51,7 +51,7 @@
 	Sei $V$ ein $K$-Vektorraum und $B = \{v_1,\dots,v_n\}, C = \{w_1,\dots,w_n\}$ zwei Basen von $V$ und $\id \colon V \rightarrow V$ die Identität auf $V$.
 	Dann heißt $\mat{A}{C}{B}{\id}$ die \Index{Basiswechselmatrix} bezüglich $B$ und $C$.
 \end{definition}
-\newpage
+
 \begin{satz}
 	\label{satz:I.10.6}
 	Sei $V$ ein $K$-Vektorraum und $B,C,D$ Basen von $V$.
@@ -114,7 +114,7 @@
 		\dim_K(V) = \dim_K(\Kern(F)) + \dim_K(\Bild(F)).
 	\]
 \end{satz}
-\newpage
+
 \begin{korollar}
 	\label{kor:I.10.16}
 	Seien $V,W$ $K$-Vektorräume mit $\dim_K(V) = n, \dim_K(W) = m$ und sei $F\colon V \rightarrow W$ linear.
@@ -134,4 +134,4 @@
 		F \text{ injektiv} \quad \Leftrightarrow \quad F \text{ surjektiv} \quad \Leftrightarrow \quad F \text{ bijektiv}.
 	\]
 \end{korollar}
-\newpage
+\cleardoubleoddemptypage
