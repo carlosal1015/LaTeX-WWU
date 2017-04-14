@@ -1,5 +1,5 @@
-%!TEX root = ../LA2.tex
-\section{Quotientenräume und affine Unterräume}
+%!TEX root = ../LA2_SS16.tex
+\subsection{Quotientenräume und affine Unterräume}
 \label{sec:2.11}
 
 Sei $V$ ein $K$-Vektorraum und sei $U \subseteq V$ ein Untervektorraum von $V$.
@@ -18,7 +18,6 @@ Wir wollen im Folgenden zeigen, dass die Menge der affinen Unterräume mit Unter
 \end{lemma}
 
 \begin{beweis}
-	\mbox{} \\[-.9cm]
 	\begin{description}
 		\item[(i) $\Rightarrow$ (iii):] Sei $w \in v_0 + U \cap v_1 + U$.
 		Dann existiert $u_1, u_2 \in U$ mit $v_0 + u_1 = v_1 + u_2$ und dann $v_1 = v_0 + (u_1 - u_2) \in v_0 + U$.
@@ -40,7 +39,7 @@ Wir sehen also, dass zwei affine Untervektorräume zum selben Untervektorraum $U
 	der \Index{Quotientenraum} von $V$ nach dem Untervektorraum $U$.
 \end{definition}
 
-Beachte: Nach \autoref{lemma:11.1} sind zwei Elemente $v_1+U, v_2 +U \in V \diagup U$ gleich genau dann, wenn $v_1 - v_2 \in U$.
+Beachte: Nach Lemma~\ref{lemma:11.1} sind zwei Elemente $v_1+U, v_2 +U \in V \diagup U$ gleich genau dann, wenn $v_1 - v_2 \in U$.
 
 \begin{satz}[Quotientenabbildung]
 	\label{satz:11.3}
@@ -86,13 +85,14 @@ Beachte: Nach \autoref{lemma:11.1} sind zwei Elemente $v_1+U, v_2 +U \in V \diag
 
 \begin{bemerkung}
 	\label{bem:11.4}
-	\mbox{} \\[-1.4cm]
 	\begin{enumerate}[(i)]
-		\item Wenn wir die Addition und skalare Multiplikation in \autoref{satz:11.3} als Addition bzw. skalare Multiplikation von Teilmengen von $V$ verstehen (was sie tatsächlich sind), so ist die Wohldefiniertheit sofort klar, denn wegen $U+U = U$ und $\lambda U = U$ für alle $\lambda \in K \setminus \setzero$ folgt
+		\item Wenn wir die Addition und skalare Multiplikation in Satz~\ref{satz:11.3} als Addition bzw. skalare Multiplikation von Teilmengen von $V$ verstehen (was sie tatsächlich sind), so ist die Wohldefiniertheit sofort klar, denn wegen $U+U = U$ und $\lambda U = U$ für alle $\lambda \in K \setminus \setzero$ folgt
+		
 		\begin{align*}
 			(v_1+U)+(v_2+U) &= v_1+v_2+U+U = v_1 + v_2 + U \\
 			\lambda(v+U) &= \lambda v + \lambda U = \lambda v + U
 		\end{align*}
+		
 		\item Definieren wir auf $V$ eine Relation durch
 		\[
 			v \sim_U w \quad :\Leftrightarrow \quad v-w \in U (\Leftrightarrow w \in v+U),
@@ -143,9 +143,8 @@ Beachte: Nach \autoref{lemma:11.1} sind zwei Elemente $v_1+U, v_2 +U \in V \diag
 \end{satz}
 
 \begin{beweis}
-	\mbox{} \\[-.9cm]
 	\begin{description}
-		\item[(i) $\Rightarrow$ (ii):] Das ist \autoref{bem:11.5}.
+		\item[(i) $\Rightarrow$ (ii):] Das ist Bemerkung~\ref{bem:11.5}.
 		\item[(ii) $\Rightarrow$ (i):] Wir definieren $\wt{F}\colon V \diagup U \rightarrow W$ durch $\wt{F}(q(v)) = \wt{F}(v+U) := F(v)$.
 		Wir müssen zeigen, dass $\wt{F}$ wohldefiniert und linear ist.
 		Es gilt dann automatisch $\wt{F} \circ q = F$ und die Eindeutigkeit ist auch klar.
@@ -157,7 +156,7 @@ Beachte: Nach \autoref{lemma:11.1} sind zwei Elemente $v_1+U, v_2 +U \in V \diag
 		\]
 		Also ist $\wt{F}$ wohldefiniert.
 		$\wt{F}$ ist auch linear, denn mit der Linearität von $F$ gilt
-		\newpage
+		 
 		
 		\begin{align*}
 			\wt{F}((v+U)+(w+U)) &= \wt{F}(v+w+U) = F(v+w) = F(v) + F(w) = \wt{F}(v+U) + \wt{F}(w+U), \\
@@ -186,7 +185,7 @@ Beachte: Nach \autoref{lemma:11.1} sind zwei Elemente $v_1+U, v_2 +U \in V \diag
 \end{korollar}
 
 \begin{beweis}
-	Nach \autoref{satz:11.6} ist $\wt{F}$ injektiv, und wegen $\wt{F}(V \diagup U) = F(V) = W$ ist $\wt{F}$ auch surjektiv. 
+	Nach Satz~\ref{satz:11.6} ist $\wt{F}$ injektiv, und wegen $\wt{F}(V \diagup U) = F(V) = W$ ist $\wt{F}$ auch surjektiv. 
 \end{beweis}
 
 \begin{satz}
@@ -206,7 +205,7 @@ Beachte: Nach \autoref{lemma:11.1} sind zwei Elemente $v_1+U, v_2 +U \in V \diag
 		\dim(V) &= \dim(\Kern(q)) + \dim(\Bild(q)) \\
 		&= \dim(U) + \dim(V\diagup U).
 	\end{align*}
-	\newpage
+	 
 	Zum Zusatz: Wegen der Dimensionsformel genügt es zu zeigen, dass $v_1,\dots,v_l,u_1,\dots,u_m$ linear unabhängig sind.
 	Seien dazu $\mu_1,\dots,\mu_l,\lambda_1,\dots,\lambda_m \in K$ mit
 	\[
@@ -270,4 +269,4 @@ Wir erhalten dann mit dem Isomorphiesatz via $\varphi \colon U \rightarrow \varp
 \[
 	U \simeq \varphi(U) \quad \text{und} \quad V \diagup \varphi(U) \xrightarrow[\simeq]{\wt{\varphi}} W.
 \]
-\newpage
+\cleardoubleoddemptypage
