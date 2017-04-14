@@ -15,7 +15,7 @@ Die folgenden Skripte sind verfügbar (die Links führen direkt zu den einzelnen
 	* [Seminar: Madsen-Weiss](https://gitlab.com/JaMeZ-B/LaTeX-WWU/builds/artifacts/master/file/MadsenW_WS16/madsen_weiss.pdf?job=build_all "Seminar: Madsen-Weiss") (Jannes; unvollständig)
 * SoSe 2016
 	* [Operatoralgebren II.](https://gitlab.com/JaMeZ-B/LaTeX-WWU/builds/artifacts/master/file/OpAlg2_SS16/operatoralgebren2.pdf?job=build_all "Operatoralgebren II.") (Jannes)
-	* [Lineare Algebra II.](https://gitlab.com/JaMeZ-B/LaTeX-WWU/builds/artifacts/master/file/LA2_SS16/LA2.pdf?job=build_all "Lineare Algebra II.") (Phil)
+	* [Lineare Algebra II.](https://gitlab.com/JaMeZ-B/LaTeX-WWU/builds/artifacts/master/file/LA2_SS16/LA2_SS16.pdf?job=build_all "Lineare Algebra II.") (Phil)
 	* [Liegruppen](https://gitlab.com/JaMeZ-B/LaTeX-WWU/builds/artifacts/master/file/LieGrp_SS16/liegruppen.pdf?job=build_all "Liegruppen") (Jannes)
 	* [Algebraische K-Theorie](https://gitlab.com/JaMeZ-B/LaTeX-WWU/builds/artifacts/master/file/AlgKT_SS16/algebraische_KTheorie.pdf?job=build_all "Algebraische K-Theorie") (Jannes)
 	* [PDGL I.](https://gitlab.com/JaMeZ-B/LaTeX-WWU/builds/artifacts/master/file/PDGL1_SS16/pdeskript.pdf?job=build_all "PDGL I.") (Tim)
