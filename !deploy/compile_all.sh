@@ -34,6 +34,7 @@ declare -a arr2=("ZZT_SS17/ZZT_SS17"
 								"CAT0_WS15/CAT0_WS1516" 
 								"EZT_WS14/EZT_WS1415" 
 								"EKK_SS15/EKK_SS15" 
+								"MC_SS17/MC_SS17" 
 								"LA2_SS16/LA2_SS16") 
 for i in "${arr2[@]}"
 do
