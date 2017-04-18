@@ -34,20 +34,8 @@
 
 % Fonts und Typographie
 % ===========================================================
-	% \usepackage[lining,semibold]{libertine}
-	%\usepackage[proportional,scaled=1.0]{erewhon}
-	% \usepackage{concmath}
-	% \usepackage[default]{droidserif}
-	%\usepackage[oldstyle]{XCharter}
-	%\usepackage[rm]{merriweather}
-	%\usepackage[default,regular,bold,osf]{sourceserifpro}
-	
-	% Sans- und Mono-Fonts
-	% \usepackage[rm,light]{roboto}
 	\usepackage{sourcecodepro}
 	\usepackage[default]{sourcesanspro}
-	% \usepackage[sb,lining,scale=.92]{FiraSans}
-	% \usepackage[lining,scale=.87]{FiraMono}
 	
 	\usepackage[babel=true,final,tracking=smallcaps]{microtype}
 	\DisableLigatures{encoding = T1, family = tt* } % keine Ligaturen für Monospace-Fonts
@@ -66,10 +54,10 @@
 % ===========================================================
 	\usepackage{mathtools}
 	\usepackage{amssymb}
-	%\usepackage{amsthm}
 	\usepackage[bigdelims]{newtxmath}		% moderne Mathe-Font
 	\allowdisplaybreaks						% seitenübergreifende Rechnungen
 	\input{MathCmds.tex}
+	\usepackage{bm}
 % ===========================================================
 
 % TikZ
@@ -95,15 +83,14 @@
 	\raggedbottom
 	\usepackage{setspace}					
 	\onehalfspacing							% Zeilenabstand 1.5-fach
-	%\setlength{\parindent}{0pt}
-	%\setlength{\parskip}{0.5\baselineskip}
+	\setlength{\parindent}{0pt}
+	\setlength{\parskip}{0.5\baselineskip}
+	\usepackage[all]{nowidow}
 % ===========================================================
 
 % Nummerierungen
 % ===========================================================
 	\usepackage{chngcntr}
-	%\counterwithout{equation}{chapter} 	% keine Kapitel in Gleichungsnummern
-	%\counterwithout{section}{chapter}	% keine Kapitel in Abschnittsnummern
 % ===========================================================
 
 % Biblatex
@@ -184,6 +171,8 @@
 
 \theoremstyle{changebreak}
 \theorembodyfont{\normalfont}
+\theorempreskip{2em}
+\theorempostskip{2em}
 \newtheorem{satz}{Satz}[section]
 \newtheorem{definition}[satz]{Definition}
 \newtheorem{korollar}[satz]{Korollar}
@@ -231,7 +220,7 @@
 \makeatother
 \newlength\widesttheorem
 \AtBeginDocument{
-	\settowidth{\widesttheorem}{Definition 5.5\quad}	% Referenzstring für die Breite der ersten Spalte
+	\settowidth{\widesttheorem}{Proposition 10.10\quad}	% Referenzstring für die Breite der ersten Spalte
 }
 
 % ===========================================================
@@ -239,33 +228,16 @@
 % Rahmen
 % ===========================================================
 	\usepackage[tikz]{mdframed}
-%	\newmdenv[linecolor=fbblau,frametitle=Titel]{testframe}
 	\surroundwithmdframed[%
-		hidealllines=true,
-		backgroundcolor=DarkSeaGreen1!30,
-		shadow=true,
-		shadowsize=8pt,
-		shadowcolor=black!20,
+		linewidth=2pt,
+		linecolor=black!75,
 		ntheorem=true
 		]{definition}
 	\surroundwithmdframed[%
 		hidealllines=true,
-		backgroundcolor=SkyBlue1!20,
-		shadow=true,
-		shadowsize=8pt,
-		shadowcolor=black!20,
+		backgroundcolor=black!10,
 		ntheorem=true
 		]{satz}
-	\surroundwithmdframed[%
-		linewidth=1.5pt,
-		linecolor=SeaGreen3,
-		ntheorem=true
-		]{beispiel}
-	\surroundwithmdframed[%
-		linewidth=1.5pt,
-		linecolor=fbblau,
-		ntheorem=true
-		]{korollar}
 % ===========================================================
 
 % Sonstiges / für Testzwecke
