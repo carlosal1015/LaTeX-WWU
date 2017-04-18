@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+
+# files to be typesetted by xelatex compiler
 declare -a arr=("WTGraph_SS16/WTG" 
 								"PDGL1_SS16/pdeskript" 
 								"AlgKT_SS16/algebraische_KTheorie" 
@@ -21,12 +23,14 @@ declare -a arr=("WTGraph_SS16/WTG"
 								"Ana2_SS15/Ana2" 
 								"Ana2_SS13/analysis2" 
 								"Ana1_WS12/analysis1" 
-								"MadsenW_WS16/madsen_weiss")
+								"MadsenW_WS16/madsen_weiss"
+								"Topo3_SS17/topologie_3")
 for i in "${arr[@]}"
 do
 	latexmk -pdflatex="xelatex --shell-escape %O %S" -pdf -dvi- -ps- -cd -silent -f -interaction=nonstopmode "$i.tex";
 done
 
+# files to be typesetted by pdflatex compiler
 declare -a arr2=("ZZT_SS17/ZZT_SS17" 
 								"Fima_WS14/Fima_WS14" 
 								"EinfAlg_WS14/Einf_Algebra" 
