@@ -468,8 +468,7 @@ Insbesondere wird $\sfrac{X}{\sim}$ durch die Quotiententopologie zu einem topol
 		\[
 			q \colon \mathbb{R}^{n+1}\setminus \set{0} \to \mathbb{R}P^n \enspace,  \quad  q(v) \coloneqq \langle v\rangle
 		\]
-		$\mathbb{R}P^n$ mit der Quotiententopologie bezüglich $q$ heißt der \Index{reell projektive Raum} der Dimension $n$. Er ist eine $n$-Mannigfaltigkeit.\todo{Kap 15 referenzieren}
-		% \hfill (siehe auch \hyperref[154:enum:3]{\ref*{sub:154} (\ref*{154:enum:3})})
+		$\mathbb{R}P^n$ mit der Quotiententopologie bezüglich $q$ heißt der \Index{reell projektive Raum} der Dimension $n$. Er ist eine $n$-Mannigfaltigkeit (siehe \cref{bsp:diff_mfkt} \cref{enum:RPn_mfkt}).
 		\item Betrachte auf $\mathbb{R}$ die Relation $x \sim y :\Leftrightarrow x-y \in \mathbb{Q}$.
 		Den Raum der Äquivalenzklassen bezeichnen wir mit $\sfrac{\mathbb{R}}{\mathbb{Q}}$.
 		Dann ist $\sfrac{\mathbb{R}}{\mathbb{Q}}$ mit der Quotiententopologie nicht hausdorffsch, obwohl $\mathbb{R}$ selbstverständlich hausdorffsch ist.
@@ -2725,7 +2724,7 @@ Dieser Ansatz hat aber noch die folgenden Probleme:
 	Eine \bet{$C^\infty$"=Mannigfaltigkeit}\index{C-Mannigfaltigkeit@$C^\infty$-Mannigfaltigkeit} ist eine topologische Mannigfaltigkeit zusammen mit einem $C^\infty$"=Atlas $\mathcal{A}$.
 \end{definition}
 
-\begin{beispiel}[{name=[differenzierbare Mannigfaltigkeiten]}]
+\begin{beispiel}[{name=[differenzierbare Mannigfaltigkeiten]},label=bsp:diff_mfkt]
 	Viele interessante topologische Räume sind differenzierbare Mannigfaltigkeiten:
 	\begin{enumerate}[(1)]
 		\item $U \subseteq \mathbb{R}^n$ offen ist eine $C^\infty$"=Mannigfaltigkeit mit Atlas $\set{\id_U}$.
@@ -2763,7 +2762,7 @@ Dieser Ansatz hat aber noch die folgenden Probleme:
 			\end{tikzpicture}
 			\caption{Die $C^\infty$"=Mannigfaltigkeit $S^2$ mit dem Kartengebiet $U_{3,0}$}}
 		\end{figure}
-		\item \label{154:enum:3} $\mathbb{R}P^n = \nicefrac{S^n}{x \sim -x}$ ist eine $C^\infty$"=Mannigfaltigkeit: Setze 
+		\item \label{enum:RPn_mfkt} $\mathbb{R}P^n = \nicefrac{S^n}{x \sim -x}$ ist eine $C^\infty$"=Mannigfaltigkeit: Setze 
 		\[
 			U_k \coloneqq \set[\big]{{\benbrace[\big]{(x_0, \ldots, x_n)} \in \mathbb{R}P^n} \given x_k \neq 0} 
 		\]
