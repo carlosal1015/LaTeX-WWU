@@ -10,6 +10,7 @@ herunterladen.
 Die folgenden Skripte sind verfügbar (die Links führen direkt zu den einzelnen PDF-Dateien)
 
 * SoSe 2017
+	* [Model-Checking](https://gitlab.com/JaMeZ-B/LaTeX-WWU/builds/artifacts/master/file/MC_SS17/MC_SS17.pdf?job=build_all "Model-Checking") (Florian)
 	* [Zahlen und elementare Zahlentheorie](https://gitlab.com/JaMeZ-B/LaTeX-WWU/builds/artifacts/master/file/ZZT_SS17/ZZT_SS17.pdf?job=build_all "Zahlen und elementare Zahlentheorie") (Phil)
 * WiSe 2016
 	* [Seminar: Madsen-Weiss](https://gitlab.com/JaMeZ-B/LaTeX-WWU/builds/artifacts/master/file/MadsenW_WS16/madsen_weiss.pdf?job=build_all "Seminar: Madsen-Weiss") (Jannes; unvollständig)
@@ -65,6 +66,7 @@ Schon einmal vielen Dank an
 * Tim (Tii1) _Analysis II._
 * Lukas (B0Bftl) _Wahrscheinlichkeitstheorie auf Graphen_
 * Gautam (gdbgauda) _Höhere Algebra I._
+* Florian (flokuep) _Model-Checking_
 
 für die Beteiligung an diesem Projekt!
 
