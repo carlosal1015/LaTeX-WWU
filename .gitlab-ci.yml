@@ -41,6 +41,7 @@ build_all:
       - Topo3_SS17/topologie_3.pdf
       - WTGraph_SS16/WTG.pdf
       - ZZT_SS17/ZZT_SS17.pdf
+      - DiffTopo_SS17/differentialtopologie.pdf
 
 # cache all auxilliary files to speed up compilation
 cache:

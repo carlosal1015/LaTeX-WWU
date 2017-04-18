@@ -1,0 +1,47 @@
+%!TEX TS-program = xelatex
+%!TEX TS-options = -shell-escape
+\input{../!config/mitschrift3.tex}
+\newcommand{\fach}{Differentialtopologie}
+\newcommand{\semester}{SoSe 2017}
+\newcommand{\homepage}{https://ivv5hpp.uni-muenster.de/u/jeber_02/sommer17/differentialtopologie.html}
+
+\newcommand{\prof}{Prof.\ Dr.\ Johannes Ebert}
+\publishers{\scalebox{10}{\Huge$C^\infty$}}
+\input{../!config/mitschrift_headings.tex}
+
+\begin{document}
+\pagenumbering{Roman}
+\maketitle
+\begin{abstract}
+\input{../!config/vorwort.tex}
+\section*{Literatur}
+\begin{itemize}
+	\item \citetitle{Miln} \textcite{Miln}
+\end{itemize}
+\end{abstract}
+
+\tableofcontents
+\cleardoubleoddemptypage
+
+\pagenumbering{arabic}
+\setcounter{page}{1}
+\setcounter{footnote}{0}
+
+
+
+
+\cleardoubleoddemptypage
+\pagenumbering{Alph}
+\setcounter{page}{1}
+\cleardoubleoddemptypage
+\appendix
+
+\section{Anhang} % (fold)
+\label{sec:anhang}
+\input{anhang.tex}
+\printindex
+\printbibliography
+\listoffigures
+\todototoc
+\listoftodos[To-do's und andere Baustellen]
+\end{document}

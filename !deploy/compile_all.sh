@@ -24,7 +24,8 @@ declare -a arr=("WTGraph_SS16/WTG"
 								"Ana2_SS13/analysis2" 
 								"Ana1_WS12/analysis1" 
 								"MadsenW_WS16/madsen_weiss"
-								"Topo3_SS17/topologie_3")
+								"Topo3_SS17/topologie_3"
+								"DiffTopo_SS17/differentialtopologie")
 for i in "${arr[@]}"
 do
 	latexmk -pdflatex="xelatex --shell-escape %O %S" -pdf -dvi- -ps- -cd -silent -f -interaction=nonstopmode "$i.tex";
