@@ -1,12 +1,12 @@
 %!TEX TS-program = xelatex
 %!TEX TS-options = -shell-escape
 \input{../!config/mitschrift3.tex}
-\newcommand{\fach}{Topologie \RM{3}.}
+\newcommand{\fach}{Topologie \RM{3}. -- Homotopietheorie}
 \newcommand{\semester}{SoSe 2017}
 \newcommand{\homepage}{https://wwwmath.uni-muenster.de/reine/u/topos/lehre/WS2015-2016/Topologie2/}
 
 \newcommand{\prof}{Prof.\ Dr.\ Michael Joachim}
-\publishers{\scalebox{11}{\Huge$H^*$}}
+\publishers{\scalebox{11}{\Huge$\pi_n$}}
 \input{../!config/mitschrift_headings.tex}
 
 \begin{document}
@@ -14,6 +14,15 @@
 \maketitle
 \begin{abstract}
 \input{../!config/vorwort.tex}
+
+\section*{Literatur}
+\begin{itemize}
+	\item \citetitle{Hatcher} \textcite{Hatcher}
+	\item \citetitle{Bred} \textcite{Bred}
+	\item tom diek algebraic topology\todo{richtige referenzen}
+	\item to diek kamps puppe (springer lecture notes)
+	\item Whitehead
+\end{itemize}
 \end{abstract}
 
 \tableofcontents
@@ -23,8 +32,149 @@
 \setcounter{page}{1}
 \setcounter{footnote}{0}
 
+\setcounter{section}{0}
 
+\section{Homotopiemengen und Homotopiegruppen} % (fold)
+\label{sec:homotopiemengen_und_homotopiegruppen}
 
+\begin{definition}
+	Für topologische Räume $X,Y$ bezeichnen wir die Menge der Homotopieklassen von stetigen Abbildungen $X \to Y$ mit $\benbrace*{X,Y}$.
+	Für punktierte topologische Räume $(X,x_0)$ und $(Y,y_0)$ bezeichnen wir mit $\benbrace*{(X,x_0),(Y,y_0)}$ die Menge der Homotopieklassen von punktierten Abbildungen.
+	Alternativ schreiben wir hier auch $\benbrace*{X,Y}_*$.
+	
+	Für (punktierte) Raumpaare $(X,A)$, $(Y,B)$ bezeichnen wir die Homotopiemengen\index{Homotopiemenge} analog mit $\benbrace*{(X,A),(Y,B)}$ bzw. $\benbrace*{(X,A),(Y,B)}_*$.
+\end{definition}
+
+\begin{definition}
+	Für $n \in \mathbb{N}_0$ führen wir für punktierte topologische Räume $(X,x_0)$ die folgende Notation ein:
+	\[
+		\pi_n(X,x_0) = \benbrace[\big]{(I^n,\partial I^n),(X,x_0)}
+	\]
+\end{definition}
+
+\begin{bemerkung}
+	Es gilt $\pi_0(X,x_0) = \benbrace*{*,X}$.
+	Da $\pi_0(X,x_0)$ die Menge der Wegzusammenhangskomponenten ist, hängt $\pi_0(X,x_0)$ nicht von der Wahl des Grundpunktes ab.
+\end{bemerkung}
+
+Für $n\ge 1$ ist wie folgt eine Verknüpfung auf $\pi_n(X,x_0)$ erklärt.
+Für zwei stetige Abbildungen $f,g \colon (I^n,\partial I^n) \to (X,x_0)$ setzen wir 
+\mapdef{f * g \colon(I^n,\partial I^n) }{(X,x_0)}{(t_1, \ldots ,t_n)}{\begin{cases}
+	f(2t_1, \ldots ,2t_n) &\text{ falls }0 \le t_i \le \sfrac{1}{2} \text{ für alle $i$}  \\
+	g(2t_1 -1, \ldots , 2t_n -1) &\text{ falls } \sfrac{1}{2} \le t_i \le 1 \text{ für alle $i$} \\
+	x_0 &\text{ sonst} 
+\end{cases}}{}
+und definieren $\benbrace*{f} * \benbrace*{g} \coloneqq \benbrace*{f * g}$.
+Man prüft leicht, dass dies wohldefiniert ist.
+
+Zur Veranschaulichung: Eine stetige Abbildung $f \colon (I^n,\partial I^n) \to (X,x_0)$ faktorisiert durch $\sfrac{I^n}{\partial I^n} \cong S^n$.
+Das Bild von $f$ ist also das Bild einer $n$-Sphäre.
+
+\begin{figure}
+	\Centering
+	\missingfigure{Anschauung für $n=1$ und $n=2$}
+	\caption{Anschauung für $\pi_n(X,x_0)$}
+\end{figure}
+
+\begin{satz}
+	Die Verknüpfung $*$ auf $\pi_n(X,x_0)$ induziert eine Gruppenstruktur  mit dem neutralen Element $\benbrace*{c}$ gegeben durch $c \colon (I^n,\partial I^n) \to (X,x_0)$, $\underline{t} \mapsto x_0$.
+	Das inverse Element zu einer Äquivalenzklasse $\benbrace*{f}$ für eine stetige Abbildung $f \colon (I^n,\partial I^n) \to (X,x_0)$ ist gegeben durch $\benbrace*{f}^{-1} \coloneqq \benbrace{\overline{f}}$, wobei $\overline{f} = f \circ \Sp$ mit $\Sp$ der Spiegelung an der Ebene $E$ durch $(\sfrac{1}{2}, \ldots , \sfrac{1}{2})$, die senkrecht zur Diagonalen steht.
+	
+	Für $n\ge 2$ st die Gruppe $\pi_n(X,x_0)$ abelsch.
+\end{satz}
+
+Zur Veranschaulichung des Inversen:
+
+\begin{figure}
+	\Centering
+	\missingfigure{Anschauung der Inversen für $n=1$ und $n=2$}
+	\caption{Anschauung der Inversen für $\pi_n(X,x_0)$}
+\end{figure}
+
+\begin{beweis}
+	\begin{description}
+		\item[Assoziativität:] Für $f,g,h \colon (I^n,\partial I^n) \to (X,x_0)$ müssen wir eine Homotopie zwischen $(f * g) * h$ und $f * (g * h)$ finden.
+		
+		\todo[inline]{Hier eine Zeichnung}
+		
+		Eine Homotopie wie oben erhalten wir mittels folgender Homotopie $H \colon (I^n,\partial I^n) \times I \to (I^n,\partial I^n)$.
+		Sei $\varphi \colon I \to I$ gegeben durch
+		\[
+			\varphi(t) = \begin{cases}
+				\sfrac{1}{2}t &\text{ falls } 0 \le t \le \sfrac{1}{2} \\
+				t-  \sfrac{1}{4}  &\text{ falls } \sfrac{1}{2} \le t \le \sfrac{3}{4} \\
+				2t - 1  &\text{ falls } \sfrac{3}{4} \le t \le 1
+			\end{cases}
+		\]
+		Setze dann $H_1(t_1, \ldots ,t_n) = \enbrace*{\varphi(t_1), \ldots , \varphi(t_n)}$ und $H_s = s \cdot {\id} + (1-s) \cdot H_1$ für $s \in [0,1]$.
+		Die Homotopie zwischen $(f * g ) * h$ und $f * (g * h)$, die wir suchen, ist dann gegeben durch
+		\[
+			F = \enbrace*{f * (g * h)} \circ H \colon (I^n,\partial I^n) \times I \longrightarrow (X,x_0)
+		\]
+		Es gilt $F_0 = \benbrace*{f * (g * h)} \circ H_1 = (f * g) * h$ und $F_1 = \enbrace*{f * (g * h)} \circ {\id} = f * (g * h)$.
+		\item[Neutrales Element:] Um nachzuweisen, dass $\benbrace*{c}$ ein neutrales Element in $\pi_n(X,x_0)$ ist, müssen wir eine Homotopie zwischen $f$ und $f * c$ bzw. zwischen $f$ und $c * f$ angeben für eine beliebige punktierte Abbildung $f \colon (I^n,\partial I^n) \to (X,x_0)$.
+		
+		\todo[inline]{Hier eine Zeichnung}
+		
+		Definiere hierzu $H \colon I^n \times I \to I^n$ durch
+		\[
+			H(t_1, \ldots ,t_n,s) = (1- \sfrac{s}{2}) (t_1, \ldots ,t_n)
+		\]
+		Dann ist $(f * c) \circ H$ eine Homotopie, wie wir sie suchen.
+		Dass $\benbrace*{c}$ auch ein Linksinverses ist, folgt analog.
+		\item[Inverse:] Es gilt eine Homotopie anzugeben zwischen $f * \overline{f}$ und $c$ bzw. $\overline{f} * f$ und $c$ anzugeben.
+		Wir betrachten wieder nur einen der beiden Fälle.
+		Dazu betrachten wir Wege $h_e \colon I \to I^n$ für $e \in E$, die mit konstanter Geschwindigkeit zunächst von $(0,\ldots ,0)$ geradlinig nach $e \in E$ und dann geradlinig von $e$ nach $(1,\ldots ,1)$ laufen.
+		
+		\todo[inline]{Hier eine Zeichnung}
+		
+		Zu $e$ betrachten wir die Homotopie 
+		\mapdef{H_e \colon I \times I}{X}{(t,s)}{\begin{cases}
+			(f * \overline{f}) \circ h_e(s t) &\text{ falls }0 \le t \le \sfrac{1}{2}\\
+			(f * \overline{f}) \circ h_e(1- st) &\text{ falls } \sfrac{1}{2} \le t \le 1
+		\end{cases}}{}
+		Die Abbildung
+		\mapdef{H \colon E \times I \times I}{X}{(e,t,s)}{H_e(t,s)}{}
+		induziert die gesuchte Abbildung $H \colon I^n \times I \to X$.
+		Es gilt dann $H_0=c$ und $H_1 = f * \overline{f}$.
+		\item[Kommutativität:] Um die Kommutativität für $n \ge 2$ zu erhalten müssen wir eine Homotopie zwischen $f * g $ und $g * f$ für stetige Abbildungen $f,g \colon (I^n,\partial I^n) \to (X,x_0)$ angeben.
+		Wie beim Nachweis der ersten beiden Punkte findet man eine geeignete Homotopie $H \colon I^n \times I \to I^n$, die den Nachweis liefert.
+		Sie ist im Wesentlichen durch eine Drehung gegeben.\qedhere
+	\end{description}
+\end{beweis}
+
+\begin{proposition}
+	Ist $u \colon (X,x_0) \to (Y,y_0)$ eine stetige Abbildung, so induziert $u$ eine Abbildung $\pi_n(u) \colon \pi_n(X,x_0) \to \pi_n(Y,y_0)$.
+	Für $n \ge 1$ ist diese Abbildung ein Gruppehomomorphismus.
+	
+	Tatsächlich ist $\pi_n \colon \TOP_* \to \SET$ bzw. $\GRUPPEN$, bzw. $\ABEL$ ein Funktor.
+\end{proposition}
+
+\begin{definition}
+	Eine stetige Abbildung $u \colon X \to Y$ heißt eine \Index{schwache Homotopieäquivalenz}, falls für jedes $x \in X$ und jedes $n \in \mathbb{N}_0$ die induzierte Abbildung $\pi_n(u) \colon \pi_n(X,x) \to \pi_n(Y,u(x))$ eine Bijektion ist.
+\end{definition}
+
+\begin{satz}
+	Sind $X,Y$ CW-Komplexe so ist eine schwache Homotopieäquivalenz von $X$ nach $Y$ eine Homotopieäquivalenz.
+\end{satz}
+\begin{beweis}
+	\emph{Später mehr dazu.}
+\end{beweis}
+
+\begin{bemerkung}
+	Die Homotopiemengen $\pi_n(X,x_0)$ sind also sehr starke Invariante, wesentlich stärker als die Homologiegruppen!
+\end{bemerkung}
+
+\begin{bemerkung}
+	Ist $X$ ein beliebiger topologischer Raum, so existiert ein CW-Komplex $\CW(X)$ mit einer kanonischen schwachen Homotopieäquivalenz $u_x \colon \CW(X) \to X$.
+	Als Modell für $\CW(X)$ können wir die Realisierung des Simplizialkomplexes $S(X)$ nehmen, das heißt $\abs*{S(X)}$ ist schwach äquivalent zu $X$.
+\end{bemerkung}
+
+\begin{bemerkung}
+	Für viele Anwendungen reicht es daher sich auf CW-Komplexe zu beschränken.
+\end{bemerkung}
+
+% section homotopiemengen_und_homotopiegruppen (end)
 
 \cleardoubleoddemptypage
 \pagenumbering{Alph}
