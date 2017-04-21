@@ -37,22 +37,22 @@
 \section{Homotopiemengen und Homotopiegruppen} % (fold)
 \label{sec:homotopiemengen_und_homotopiegruppen}
 
-\begin{definition}
+\begin{definition}[{name=[Homotopiemengen]}]
 	Für topologische Räume $X,Y$ bezeichnen wir die Menge der Homotopieklassen von stetigen Abbildungen $X \to Y$ mit $\benbrace*{X,Y}$.
-	Für punktierte topologische Räume $(X,x_0)$ und $(Y,y_0)$ bezeichnen wir mit $\benbrace*{(X,x_0),(Y,y_0)}$ die Menge der Homotopieklassen von punktierten Abbildungen.
+	Für punktierte topologische Räume $(X,x_0)$ und $(Y,y_0)$ bezeichnen wir mit $\benbrace[\big]{(X,x_0),(Y,y_0)}$ die Menge der Homotopieklassen von punktierten Abbildungen.
 	Alternativ schreiben wir hier auch $\benbrace*{X,Y}_*$.
 	
-	Für (punktierte) Raumpaare $(X,A)$, $(Y,B)$ bezeichnen wir die Homotopiemengen\index{Homotopiemenge} analog mit $\benbrace*{(X,A),(Y,B)}$ bzw. $\benbrace*{(X,A),(Y,B)}_*$.
+	Für (punktierte) Raumpaare $(X,A)$, $(Y,B)$ bezeichnen wir die Homotopiemengen\index{Homotopiemenge} analog mit $\benbrace[\big]{(X,A),(Y,B)}$ bzw. $\benbrace[\big]{(X,A),(Y,B)}_*$.
 \end{definition}
 
-\begin{definition}
+\begin{definition}[{name=[Homotopiegruppe]}]
 	Für $n \in \mathbb{N}_0$ führen wir für punktierte topologische Räume $(X,x_0)$ die folgende Notation ein:
 	\[
 		\pi_n(X,x_0) = \benbrace[\big]{(I^n,\partial I^n),(X,x_0)}
 	\]
 \end{definition}
 
-\begin{bemerkung}
+\begin{bemerkung}[{name=[Menge der Wegzusammenhangskomponenten]}]
 	Es gilt $\pi_0(X,x_0) = \benbrace*{*,X}$.
 	Da $\pi_0(X,x_0)$ die Menge der Wegzusammenhangskomponenten ist, hängt $\pi_0(X,x_0)$ nicht von der Wahl des Grundpunktes ab.
 \end{bemerkung}
@@ -76,7 +76,7 @@ Das Bild von $f$ ist also das Bild einer $n$-Sphäre.
 	\caption{Anschauung für $\pi_n(X,x_0)$}
 \end{figure}
 
-\begin{satz}
+\begin{satz}[{name=[Gruppenstruktur der Homotopiegruppe]}]
 	Die Verknüpfung $*$ auf $\pi_n(X,x_0)$ induziert eine Gruppenstruktur  mit dem neutralen Element $\benbrace*{c}$ gegeben durch $c \colon (I^n,\partial I^n) \to (X,x_0)$, $\underline{t} \mapsto x_0$.
 	Das inverse Element zu einer Äquivalenzklasse $\benbrace*{f}$ für eine stetige Abbildung $f \colon (I^n,\partial I^n) \to (X,x_0)$ ist gegeben durch $\benbrace*{f}^{-1} \coloneqq \benbrace{\overline{f}}$, wobei $\overline{f} = f \circ \Sp$ mit $\Sp$ der Spiegelung an der Ebene $E$ durch $(\sfrac{1}{2}, \ldots , \sfrac{1}{2})$, die senkrecht zur Diagonalen steht.
 	
@@ -143,34 +143,34 @@ Zur Veranschaulichung des Inversen:
 	\end{description}
 \end{beweis}
 
-\begin{proposition}
+\begin{proposition}[{name=[induzierte Abbildungen]}]
 	Ist $u \colon (X,x_0) \to (Y,y_0)$ eine stetige Abbildung, so induziert $u$ eine Abbildung $\pi_n(u) \colon \pi_n(X,x_0) \to \pi_n(Y,y_0)$.
 	Für $n \ge 1$ ist diese Abbildung ein Gruppehomomorphismus.
 	
 	Tatsächlich ist $\pi_n \colon \TOP_* \to \SET$ bzw. $\GRUPPEN$, bzw. $\ABEL$ ein Funktor.
 \end{proposition}
 
-\begin{definition}
+\begin{definition}[{name=[schwache Homotopieäquivalenz]}]
 	Eine stetige Abbildung $u \colon X \to Y$ heißt eine \Index{schwache Homotopieäquivalenz}, falls für jedes $x \in X$ und jedes $n \in \mathbb{N}_0$ die induzierte Abbildung $\pi_n(u) \colon \pi_n(X,x) \to \pi_n(Y,u(x))$ eine Bijektion ist.
 \end{definition}
 
-\begin{satz}
-	Sind $X,Y$ CW-Komplexe so ist eine schwache Homotopieäquivalenz von $X$ nach $Y$ eine Homotopieäquivalenz.
+\begin{satz}[name={Whitehead}]
+	Sind $X,Y$ CW-Komplexe, so ist eine schwache Homotopieäquivalenz von $X$ nach $Y$ eine Homotopieäquivalenz.
 \end{satz}
 \begin{beweis}
 	\emph{Später mehr dazu.}
 \end{beweis}
 
-\begin{bemerkung}
+\begin{bemerkung}[{name=[Homotopiemengen als Invariante]}]
 	Die Homotopiemengen $\pi_n(X,x_0)$ sind also sehr starke Invariante, wesentlich stärker als die Homologiegruppen!
 \end{bemerkung}
 
-\begin{bemerkung}
+\begin{bemerkung}[{name=[CW-Approximation]}]
 	Ist $X$ ein beliebiger topologischer Raum, so existiert ein CW-Komplex $\CW(X)$ mit einer kanonischen schwachen Homotopieäquivalenz $u_x \colon \CW(X) \to X$.
 	Als Modell für $\CW(X)$ können wir die Realisierung des Simplizialkomplexes $S(X)$ nehmen, das heißt $\abs*{S(X)}$ ist schwach äquivalent zu $X$.
 \end{bemerkung}
 
-\begin{bemerkung}
+\begin{bemerkung}[{name=[Beschränkung auf CW-Komplexe]}]
 	Für viele Anwendungen reicht es daher sich auf CW-Komplexe zu beschränken.
 \end{bemerkung}
 
