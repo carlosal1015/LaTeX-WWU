@@ -1,4 +1,147 @@
 %!TEX root = ../ZZT_SS17.tex
-\section{Erster Abschnitt}
+\section{Teiler, Primzahlen und der Hauptsatz der Arithmetik}
 \label{sec:1}
-	Hallo!
+	\subsection{Erinnerung}
+	
+	Wir betrachten die Menge der \textbf{natürlichen Zahlen} \index{natürliche Zahl} \marginnote{20.4.}
+	\[
+		\NN= \{0,1,2,3,\dots\},
+	\]
+	die Menge der \textbf{ganzen Zahlen} \index{ganze Zahl}
+	\[
+		\ZZ= \{0, \pm 1, \pm 2, \pm 3, \dots\}
+	\]
+	mit Addition $+$ und Multiplikation $\cdot$, mit Anordnung $\leq$ und dem \Index{Absolutbetrag}
+	\[
+		\abs{z} = \max\{z,-z\}.
+	\]
+	In $\NN$ ist die Subtraktion nur eingeschränkt möglich und in $\ZZ$ ist die Division nur eingeschränkt möglich.
+	Aber wir können kürzen:
+	\begin{gather}
+		a+x = a+y \quad \Rightarrow \quad x = y \qquad \text{in } \NN \text{ und } \ZZ \\
+		ax = ay \quad \Rightarrow \quad x=y \qquad \text{in } \NN \text{ und } \ZZ, a \neq 0.
+	\end{gather}
+	
+	\subsection{Induktion und Wohlordnung}
+	\begin{satz}[Erstes Induktionsprinzip]
+	\label{satz:IP1}
+	Ist $S \subseteq \NN$ mit \index{erstes Induktionsprinzip}
+	\begin{enumerate}[(i)]
+		\item $0 \in S$,
+		\item $s \in S \Rightarrow s+1 \in S$,
+	\end{enumerate}
+	dann gilt $S = \NN$.	
+	\end{satz}
+	
+	Anschauung: Alle natürlichen Zahlen erreicht man durch Zählen, ausgehend von $0$.
+	
+	Aus dem ersten Induktionsprinzip folgt das \Index{Wohlordnungsprinzip}
+	
+	\begin{satz}[Wohlordnungsprinzip]
+		\label{satz:WOP}
+		Ist $S \subseteq \NN$ mit $S \neq \emptyset$, so gibt es in $S$ ein kleinstes Element $m = \min(S)$.
+	\end{satz}
+	
+	\begin{beweis}
+		Sei $S \subseteq \NN$ mit $S \neq \emptyset$.
+		Sei $T = \{t \in \NN : t \leq s \text{ für alle } s \in S\}$.
+		Es folgt $0 \in T$.
+		Ist $s \in S$ so ist $s+1 \notin T$, denn $s+1 \nleq s$.
+		Es folgt $T \neq \NN$.
+		Nach dem ersten Induktionsprinzip folgt: Es gibt $t \in T$ mit $t+1 \notin T$.
+		
+		Nun gilt $t \in S$. Denn wäre $t \notin S$, so wäre $t < s$ für alle $s \in S$, also $t+1 \leq s$ für alle $s \in S$. Damit wäre $t+1 \in T$. \lightning
+		
+		Also ist $t$ ein kleinstes Element in $S$.
+	\end{beweis}
+	
+	Aus dem Wohlordnungsprinzip folgt wiederum das \textbf{zweite Induktionsprinzip}:
+	
+	\begin{satz}[Zweites Induktionsprinzip]
+		\label{satz:IP2}
+		Ist $S \subseteq \NN$ mit
+		\begin{enumerate}[(i)]
+			\item $0 \in S$,
+			\item $s \in S \Leftrightarrow$ für alle $t \in \NN$ mit $t < s$ ist $t \in S$,
+		\end{enumerate}
+		so gilt $S = \NN$.
+	\end{satz}
+	
+	\begin{beweis}
+		Angenommen, $S \subseteq \NN$ erfüllt (i) und (ii), und angenommen $S \neq \NN$.
+		Betrachte $R = \NN \setminus S \neq \emptyset$.
+		Sei $r := \min(R)$ (existiert nach dem Wohlordnungsprinzip). Für alle $t < r$ gilt also $t \in S$. Nach (ii) folgt somit $r \in S$. Widerspruch, da $r \in R = \NN \setminus S$.
+	\end{beweis}
+
+	Vorsicht: Die Sätze \ref{satz:IP1}, \ref{satz:WOP} und \ref{satz:IP2} gelten für $\NN$, aber nicht für $\ZZ$!
+	Zum Beispiel hat $\ZZ \subseteq \ZZ$ kein kleinstes Element.
+	Es gilt aber Folgendes:
+	
+	\begin{lemma}
+		\label{lemma:1.3}
+		Sei $S \subseteq \ZZ$ und sei $S \neq \emptyset$.
+		Wenn $S$ eine untere (bzw. obere) Schranke hat, so hat $S$ auch ein kleinstes (bzw. größtes) Element.
+	\end{lemma}
+	
+	\begin{beweis}
+		Sei $k$ untere Schranke für $S$, das heißt $k \leq s$ für alle $s \in S$.
+		Betrachte die Menge $S' := \{s - k : s \in S\} \subseteq \NN$, $S' \neq \emptyset$.
+		Sei $l = \min(S')$.
+		Dann ist $l+k$ ein Minimum für $S$.
+		
+		Sei nun $m$ eine obere Schranke für $S \subseteq \ZZ$, sei $S'' = \{-s : s \in S\}$.
+		Dann ist $-m$ eine untere Schranke für $S''$.
+		Sei $n = \min(S'')$.
+		Damit ist $-n$ ein größtes Element in $S$. 
+	\end{beweis}
+
+	Wir betrachten jetzt Teilbarkeit.
+	
+	\begin{definition}[Teiler]
+		\label{def:teiler}
+		Sei $a,b \in \ZZ$.
+		Wenn es ein $m \in \ZZ$ gibt mit $ma = b$, so heißt $a$ ein \Index{Teiler} von $b$.
+		Man schreibt $a \mid b$, andernfalls $a \nmid b$. \marginnote{lies: \enquote{$a$ teilt $b$ (nicht)}}
+	\end{definition}
+
+	\begin{beispiel}
+		Es gilt $3 \mid 6$ und $3 \nmid 7$.
+	\end{beispiel}
+
+	\begin{satz}[Rechenregeln für Teilbarkeit]
+		\label{satz:rechenregeln}
+		\begin{enumerate}[(i)]
+			\item $1 \mid a$, $a \mid a$, $a \mid 0$.
+			\item $a \mid b$ und $b \mid c \Rightarrow a \mid c$
+			\item $a \mid b$ und $b \mid a \Rightarrow a = \pm b$
+			\item $a \mid b$ und $a \mid c \Rightarrow a \mid b \pm c$
+			\item $a \neq 0$ und $ab \mid ac \Rightarrow b \mid c$
+		\end{enumerate}
+	\end{satz}
+
+	\begin{beweis}
+		\begin{enumerate}[(i)]
+			\item klar.
+			\item Gilt $am = b$ und $bn = c$, so gilt $amn = $.
+			\item Gilt $am = b$ und $bn = a$, so gilt $bmn = b$, und damit folgt $a = b = 0$ oder $mn = 1$, also $m,n = \pm 1$.
+			\item Gilt $am = b$ und $an = c$, so folgt $am \pm an = a(m \pm n) = b \pm c$.
+			\item Ist $a \neq 0$ und $abm = ac$, so folgt $bm = c$.
+		\end{enumerate}
+	\end{beweis}
+
+	\begin{satz}[Teilen mit Rest]
+		\label{satz:teilen mit rest}
+		Sei $a,b \in \ZZ$, sei $b \neq 0$. \index{Teilen mit Rest}
+		Dann existieren eindeutige Zahlen $r,s \in \ZZ$ mit $a = bs + r$ und $0 \leq r < \abs{b}$.
+	\end{satz}
+
+	\begin{beweis}
+		\textit{Zur Eindeutigkeit:} Angenommen, $a = bs + r = bs' + r'$ mit $s,s',r,r' \in \ZZ$ und $0 \leq r,r' < \abs{b}$.
+		Ohne Einschränkung sei $r' \geq r$.
+		Umstellen der Gleichungen liefert
+		\[
+			\abs{b} > \underbrace{r' - r}_{\geq 0} = b(s - s').
+		\]
+		Also folgt $b \mid r'-r$ und $\abs{r' - r} < b$, das heißt $r' - r = 0$ und damit $s = s'$.
+	\end{beweis}
+\cleardoubleoddemptypage
