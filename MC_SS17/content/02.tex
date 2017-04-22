@@ -3,5 +3,199 @@
 \label{sec:para2}
 \nextlecture
 
+Der erste Schritt für das Model-Checking ist die Modellierung des Systems. Dies ist in der Praxis oft schwierig, da das Modell detailliert genug sein muss um interessante Eigenschaften zu erfassen, gleichzeitig aber auch abstrakt genug sein muss, um automatische Verifikation zu ermöglichen.
+
+\subsection{Kripke-Strukturen und Transitionssyteme}
+\begin{bsp}
+	\mbox{}
+	\begin{center}
+		\begin{tikzpicture}
+			\node[state, initial, label = right:{\small \itshape Start}](1) at (0,0) {$1$};
+			\node[state, label = right:{\small \itshape Münze}](2) at (0,-2) {$2$};
+			\node[state, label = right:{\small \itshape Kaffee, Milch}](3) at (-2,-3) {$3$};
+			\node[state, label = right:{\small \itshape Tee, Zucker}](4) at (2,-3) {$4$};
+			\node[state, label = right:{\small \itshape Tee, Milch}](5) at (0,-4) {$5$};
+			
+			\path[->] 	
+			(1) edge [bend left=10] (2)
+			(2) edge [bend right=10] (3)
+			(2) edge [bend left=10] (4)
+			(2) edge [bend left=10] (5)
+			(3) edge [bend left=10] (1)
+			(4) edge [bend right=10] (1)
+			(5) edge [bend left=25] (1);
+		\end{tikzpicture}
+	\end{center}
+
+	\begin{itemize}
+		\item $AP = \{\textit{Start}, \textit{Münze}, \textit{Kaffee}, \textit{Tee}, \textit{Milch}, \textit{Zucker}\}$
+		\item $S = \{1,2,3,4,5\}$
+		\item $S_0 = \{1\}$
+		\item $R = \{(1,2),(2,3),(2,4),(2,5),(3,1),(4,1),(5,1)\}$
+		\item $L:S\rightarrow2^{AP}$
+		\item $L(1) = \{\textit{Start}\}, L(2)=\{\textit{Münze}\}, \dots$
+	\end{itemize}
+\end{bsp}
+
+\begin{defn}[Kripke-Struktur]
+	Sei $AP$ eine (in der Regel) endliche Menge atomarer Propositionen. Eine Kripe-Struktur $\mathcal{K} = (S, S_0, R, L)$ über $AP$ besteht aus
+	\begin{itemize}
+		\item eine endliche Zustandsmenge $S$
+		\item eine Menge von Anfangszuständen $S_0 \subseteq S$
+		\item eine Transitionsrelation $R \subseteq S \times S$
+		\item eine Annotation $L:S \rightarrow 2^{AP}$ von Zuständen mit atomaren Präpositionen
+	\end{itemize}
+\end{defn}
+
+\begin{bsp}[Digitaluhr]
+	\mbox{}
+	\begin{center}
+		\begin{tikzpicture}
+			\node[](-1) at (0,0){$\dots$};
+			\node[state, label = below:{\small \itshape 10 Uhr, 30 Min}](0) at (2,0) {$10:30$};
+			\node[state, label = below:{\small \itshape 10 Uhr, 31 Min}](1) at (6,0) {$10:31$};
+			\node[state, label = below:{\small \itshape 10 Uhr, 32 Min}](2) at (10,0) {$10:32$};
+			\node[](+1) at (12,0){$\dots$};
+			
+			\path[->] 	
+			(-1) edge [bend left=10] (0)
+			(0) edge [bend left=10] (1)
+			(1) edge [bend left=10] (2)
+			(2) edge [bend left=10] (+1);
+		\end{tikzpicture}
+	\end{center}
+
+	\begin{itemize}
+		\item $S = \left \{(h,m) \mid h \in \{0, \dots, 23\}, m \in \{0, \dots, 59\} \right \}$
+		\item $S_0 = S $ oder vielleicht $S_0 = \{(0,0)\}$
+		\item $R = \{\left((h,m),(h',m')\right) \mid m' = (m+1) \mod 60, m' \neq 0 \Rightarrow h'=h, m' = 0 \Rightarrow h' = (h+1) \mod 24\}$
+		\item $L:S\rightarrow 2^{AP}, L\left((h,m)\right) = \{\textit{h Uhr, m Min}\}$
+	\end{itemize}
+\end{bsp}
+
+Oft verwendet man auch benannte Transitionen:
+
+\begin{bsp}[Modulo3-Zähler]
+	\mbox{}
+	\begin{center}
+		\begin{tikzpicture}
+			\node[initial, state](0) at (0,0) {$0$};
+			\node[state](1) at (4,0) {$1$};
+			\node[state](2) at (2,-2) {$2$};
+			
+			\path[->] 	
+			(0) edge [bend left=10] node [align=center,fill=white] 
+			{$\textit{inc}$} (1)
+			(1) edge [bend left=15] node [align=center,fill=white] 
+			{$\textit{inc}$} (2)
+			(2) edge [bend left=15] node [align=center,fill=white] 
+			{$\textit{inc}$} (0)
+			(0) edge [bend left=15] node [align=center,fill=white] 
+			{$\textit{dec}$} (2)
+			(2) edge [bend left=15] node [align=center,fill=white] 
+			{$\textit{dec}$} (1)
+			(1) edge [bend left=10] node [align=center,fill=white] 
+			{$\textit{dec}$} (0);
+		\end{tikzpicture}
+	\end{center}
+
+	\begin{itemize}
+		\item $S = \{0,1,2\}$
+		\item $S_0 = \{0\}$
+		\item $\textit{Act} = \{\textit{inc}, \textit{dec}\}$
+		\item $\{(0,\textit{inc},1),(1,\textit{inc},2),(2,\textit{inc},0),(0,\textit{dec},2),(2,\textit{dec},1),(1,\textit{dec},0)\}$
+	\end{itemize}
+\end{bsp}
+
+\begin{defn}[Gelabeltes Transitionssystem]
+	Ein gelabeltes Transitionssystem (labeled Transitionssystem, LTS) ist eine Struktur $\mathcal{T} = (S, S_0, \textit{Act}, R)$, wobei
+	\begin{itemize}
+		\item $S$ eine endliche Zustandsmenge
+		\item $S_0 \subseteq S$ eine endliche Menge von Startzuständen
+		\item $\textit{Act}$ eine endliche Menge von Aktionen (Transitionslabeln)
+		\item $R \subseteq S \times \textit{Act} \times S$ eine Transitionsrelation
+	\end{itemize}
+\end{defn}
+
+\begin{bsp}[Digi-Code]
+	Wir betrachten einen Türöffner mit drei Tasten $A,B$ und $C$. Die Tür öffnet mit dem Code $\mathit{ABA}$
+	\begin{center}
+		\begin{tikzpicture}
+			\node[initial, state](1) at (0,0) {$1$};
+			\node[state, label = below:{\small \itshape SeenA}](2) at (2,0) {$2$};
+			\node[state, label = below:{\small \itshape SeenAB}](3) at (4,0) {$3$};
+			\node[state, label = below:{\small \itshape Open}](4) at (6,0) {$4$};
+			
+			\path[->] 	
+			(1) edge [bend left] node [align=center,fill=white] 
+			{$A$} (2)
+			(2) edge [bend left] node [align=center,fill=white] 
+			{$B$} (3)
+			(3) edge [bend left] node [align=center,fill=white] 
+			{$A$} (4)
+			(2) edge [bend left = 25] node [align=center,fill=white] 
+			{$C$} (1)
+			(3) edge [bend left = 75] node [align=center,fill=white] 
+			{$B,C$} (1)
+			(1) edge [loop above] node [align=center] 
+			{$B,C$} (1)
+			(2) edge [loop above] node [align=center] 
+			{$A$} (2);
+		\end{tikzpicture}
+	\end{center}
+
+	\begin{itemize}
+		\item $S=\{1,2,3,4\}$
+		\item $S_0 = {1}$
+		\item $\textit{Act} =  \{A,B,C\}$
+		\item $R = \{(1,A,2), (2, A, 2), \dots\}$
+		\item[] Ergänzt mit atomaren Präpositionen:
+		\item $AP = \{\textit{SeenA}, \textit{SeenB}, \textit{Open}\}$
+		\item $L:S\rightarrow2^{AP} \text{ mit } L(1) = \emptyset, L(2) = \{\textit{SeenA}\}, L(3) = \{\textit{SeenB}\}, L(4) = \{\textit{Open}\}$
+	\end{itemize}
+\end{bsp}
+
+\begin{defn}[Kripke-Transitionssystem]
+	Sei $AP$ eine Menge atomarer Propositionen. Ein Kripke-Transitionssystem ($KTS$) über $AP$ ist eine Struktur $\mathcal{K} = (S, S_0, \textit{Act}, R, L)$, wobei
+	\begin{itemize}
+		\item $S$ eine endliche Zustandsmenge
+		\item $S_0 \subseteq S$ Menge der Anfangszustände
+		\item $\textit{Act}$ endliche Menge von Transitionslabeln (Aktionen)
+		\item $R \subseteq S \times \textit{Act} \times S$ Transitionsrelation
+		\item $L:S\rightarrow2^{AP}$ Annotation der Zustände mit atomaren Präpositionen
+	\end{itemize}
+\end{defn}
+
+\subsection{Modellierung von Schaltwerken}
+
+\begin{bsp}[Modulo-8-Zähler]
+	\todo{Grafik einfügen}
+	\begin{center}
+		\begin{tikzpicture}[small circuit symbols,
+		%every circuit symbol/.style={logic gate IEC symbol color=black},
+		circuit ee IEC,
+		circuit logic US,]
+		\node [xor gate={info'={XOR}}]() at (0,0) {};
+		\end{tikzpicture}
+	\end{center}
+
+\end{bsp}
+
+\subsubsection*{Allgemeines Schaltwerk}
+\todo{Grafik einfügen}
+
+\subsubsection*{Modellierung durch ein KTS}
+$\mathcal{K} = (S, S_0, \textit{Act}, R, L)$ mit
+\begin{itemize}
+	\item $S = \mathbb{B}^n$
+	\item $S_0 = \{(0, \dots, 0)\}$ (je nach Anwendung)
+	\item $\textit{Act} = \mathbb{B}^k \times \mathbb{B}^l$ (in jeder Transition wird eine Eingabe aus $\mathbb{B}^k$ gelesen und eine Ausgabe aus $\mathbb{B}^l$ ausgegeben)
+	\item $R = \{(x, (i,o), x) \mid f(i,x) = (o, x')\}$
+	\item $AP = \{R_1, \dots R_n\}$
+	\item $L\left((x_1,\dots,x_2)\right) = \{R_i \mid x_i = 1, i=1,\dots,n\}$
+\end{itemize}
+
+\nextlecture
+\subsection{Automaten mit Variablen über endlichen Wertebereichen}
 
 \cleardoubleoddemptypage
