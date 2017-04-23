@@ -74,16 +74,16 @@ In \Cref{fig:anschauung_pi_n} ist dies zusammen mit der Verknüpfung für $n \in
 	\Centering
 	\begin{tikzpicture}[scale=.7]
 		% für n = 1
-		\node at (-1,4) {$n=1$};
+		\node at (-1.5,4) {$n=1$};
 		\path (0,4) -- ++ (1,0) node[above,midway]{$f\vphantom{g}$} -- ++ (1,0) node[above,midway]{$g$};
 		\foreach \x in {0,1,2}{
-			\draw[thick] ($(0,4) + (\x,.15)$) -- ++ (0,-0.3);
+			\draw[very thick] ($(0,4) + (\x,.15)$) -- ++ (0,-0.3);
 		}
-		\draw[thick,Firebrick3] (0,4) -- ++ (1,0);
-		\draw[thick,SpringGreen3] (1,4) -- ++ (1,0);
-		\draw[-to, bend left] (3,4) -- ++ (2,0) node[midway,above]{$f * g$};
+		\draw[very thick,Firebrick3] (0,4) -- ++ (1,0);
+		\draw[very thick,SpringGreen3] (1,4) -- ++ (1,0);
+		\draw[-To, bend left] (3,4) -- ++ (2,0) node[midway,above]{$f * g$};
 		
-		\draw[thick] (6,4) .. controls +(80:1) and +(160:2) .. (9,5) 
+		\draw[very thick] (6,4) .. controls +(80:1) and +(160:2) .. (9,5) 
 						   .. controls +(-20:2) and +(75:2) .. (12,3.6) node[right]{$X$}
 						   .. controls +(255:2) and +(5:2) .. (8,2.9)
 						   .. controls +(185:2) and +(260:1) .. (6,4);
@@ -92,16 +92,16 @@ In \Cref{fig:anschauung_pi_n} ist dies zusammen mit der Verknüpfung für $n \in
 		\draw[thick,fill=DodgerBlue3] (8.5,3.9) circle[radius=0.06] node[above]{$x_0$};
 
 		% für n = 2
-		\node at (-1,0) {$n=2$};
+		\node at (-1.5,0) {$n=2$};
 		\filldraw[Firebrick3,fill opacity=.5] (0,0) rectangle (1,1);
 		\node at (.5,.5) {$f$};
 		\node at (1.5,.5) {$c$};
 		\node at (.5,-.5) {$c$};
 		\filldraw[SpringGreen3,fill opacity=.5] (1,-1) rectangle (2,0);
 		\node at (1.5,-.5) {$g$};
-		\draw[thick] (0,-1) grid (2,1);
-		\draw[-to, bend left] (3,0) -- ++ (2,0) node[midway,above]{$f * g$};
-		\draw[thick] (6,0) .. controls +(80:1) and +(160:2) .. (9,1) 
+		\draw[very thick] (0,-1) grid (2,1);
+		\draw[-To, bend left] (3,0) -- ++ (2,0) node[midway,above]{$f * g$};
+		\draw[very thick] (6,0) .. controls +(80:1) and +(160:2) .. (9,1) 
 						   .. controls +(-20:2) and +(75:2) .. (12,-0.4) node[right]{$X$}
 						   .. controls +(255:2) and +(5:2) .. (8,-1.1)
 						   .. controls +(185:2) and +(260:1) .. (6,0);
@@ -113,18 +113,51 @@ In \Cref{fig:anschauung_pi_n} ist dies zusammen mit der Verknüpfung für $n \in
 \end{figure}
 
 \begin{satz}[{name=[Gruppenstruktur der Homotopiegruppe]}]
-	Die Verknüpfung $*$ auf $\pi_n(X,x_0)$ induziert eine Gruppenstruktur  mit dem neutralen Element $\benbrace*{c}$ gegeben durch $c \colon (I^n,\partial I^n) \to (X,x_0)$, $\underline{t} \mapsto x_0$.
+	Die Verknüpfung $*$ auf $\pi_n(X,x_0)$ induziert eine Gruppenstruktur  mit dem neutralen Element $\benbrace*{c}$ gegeben durch $c \colon (I^n,\partial I^n) \to (X,x_0)$, $\underline{t} \mapsto x_0$.\marginnote{Veranschaulichung für inverse Elemente in \cref{fig:inverse_pi_n}}
 	Das inverse Element zu einer Äquivalenzklasse $\benbrace*{f}$ für eine stetige Abbildung $f \colon (I^n,\partial I^n) \to (X,x_0)$ ist gegeben durch $\benbrace*{f}^{-1} \coloneqq \benbrace{\overline{f}}$, wobei $\overline{f} = f \circ \Sp$ mit $\Sp$ der Spiegelung an der Ebene $E$ durch $(\sfrac{1}{2}, \ldots , \sfrac{1}{2})$, die senkrecht zur Diagonalen steht.
 	
-	Für $n\ge 2$ st die Gruppe $\pi_n(X,x_0)$ abelsch.
+	Für $n\ge 2$ ist die Gruppe $\pi_n(X,x_0)$ abelsch.
 \end{satz}
-
-Zur Veranschaulichung des Inversen:
 
 \begin{figure}
 	\Centering
-	\missingfigure{Anschauung der Inversen für $n=1$ und $n=2$}
-	\caption{Anschauung der Inversen für $\pi_n(X,x_0)$}
+	\subfloat[$n=1$]{
+	\begin{tikzpicture}[baseline=(a)]
+		\draw[very thick] (0,3) coordinate (a) node[left=3pt]{$I$} -- ++ (2,0) coordinate (b);
+		\foreach \x in {0,2}{
+			\draw[very thick] ($(0,3) + (\x,.12)$) -- ++ (0,-0.24);
+		}
+		\draw[very thick] (0,1) coordinate (c) node[left=3pt]{$I$} -- ++ (2,0) coordinate (d);
+		\foreach \x in {0,2}{
+			\draw[very thick] ($(0,1) + (\x,.12)$) -- ++ (0,-0.24);
+		}
+		\draw[-To] (2.5,3) -- ++ (1.5,0) node[above,midway]{$f$} node[right=5pt]{$(X,x_0)$};
+		\draw[-To] (2.5,1) -- ++ (2,1.7) node[below right,midway]{$\overline{f}$};
+		\draw[To-] (-0.31,2.7) -- ++ (0,-1.4) node[left,midway]{$\Sp$};
+		
+		\draw[dashed,gray,thick] ($($(a)!.5!(d)$)!1cm!(a)$) -- ($($(a)!.5!(d)$)!1cm!(d)$);
+		\draw[dashed,gray,thick] ($($(b)!.5!(c)$)!1cm!(b)$) -- ($($(b)!.5!(c)$)!1cm!(c)$);
+	\end{tikzpicture}}
+	\hspace{3em}
+	\subfloat[$n=2$]{
+	\begin{tikzpicture}[baseline=(a)]
+		\draw[-To] (2,0) -- ++ (1.5,0) node[above,midway]{$f$} node (a)[right=5pt]{$(X,x_0)$};
+		
+		\filldraw[fill opacity=.5,DodgerBlue3] (0.5,-.5) -- ++ (1,1) -- ++ (-1,0);
+		\filldraw[fill opacity=.5,Firebrick3] (0.5,-.5) -- ++ (1,1) -- ++ (0,-1);
+		\draw[thick] (0.5,-.5) -- ++ (1,1);
+		\draw[thick] (0.5,-.5) rectangle ++ (1,1);
+		
+		\draw[-To] (1,-1.3) -- ++ (0,.6) node[left,midway]{$\Sp$};
+		
+		\filldraw[fill opacity=.5,DodgerBlue3] (0.5,-2.5) -- ++ (1,1) -- ++ (0,-1);
+		\filldraw[fill opacity=.5,Firebrick3] (0.5,-2.5) -- ++ (1,1) -- ++ (-1,0);
+		\draw[thick] (0.5,-2.5) -- ++ (1,1);
+		\draw[thick] (0.5,-2.5) rectangle ++ (1,1);
+		\draw[-To] (2,-2) -- ++ (1.9,1.7) node[above left,midway]{$\overline{f}$};
+	\end{tikzpicture}
+	}
+	\caption{Anschauung der Inversen für $\pi_n(X,x_0)$}\label{fig:inverse_pi_n}
 \end{figure}
 
 \begin{beweis}
