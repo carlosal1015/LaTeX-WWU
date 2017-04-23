@@ -58,11 +58,67 @@
 
 \begin{figure}
 	\Centering
-	\missingfigure{Bild zu Kartenwechseln}
-	\caption{Kartenwechsel}
+	\begin{tikzpicture}[scale=2.2, every pin edge/.style={black!80, very thin}]
+		% \draw[help lines] (-3,-2) grid (7,2);
+		\path (-2,-1) coordinate (h0x) ++ (0.2,0.3) coordinate (endh0);
+		\path (-0.2,0.1) coordinate (x) ++ (-0.3,0) coordinate (starth0);
+		\path (2,-1) coordinate (h1y) ++ (-0.2,0.3) coordinate (endh1);
+		\path (0.1,0.15) coordinate (y) ++ (0.3,0) coordinate (starth1);
+	
+		% sphere
+		\shade[ball color=white,opacity=.7] (0,0) circle (1cm);
+		\draw (-1,0) arc (180:360:1cm and 0.5cm);
+		\draw[dashed, black!60] (-1,0) arc (180:0:1cm and 0.5cm);
+		\draw (0,1) arc (90:270:0.5cm and 1cm);
+		\draw[dashed, black!60] (0,1) arc (90:-90:0.5cm and 1cm);
+		\draw (0,0) circle (1cm);
+
+		% U_0
+		\begin{scope}
+			\clip (x) circle[radius=0.25];
+		  		  	\foreach \y in {0.5,0.45,...,-0.3}%
+		  		    	\draw[IndianRed3!80,line width=0.25mm, opacity=0.5] (-0.5,\y) .. controls +(-35:0.4) and +(205:0.4) .. (0.5,\y);
+		\end{scope}
+		\draw[IndianRed3!80] (x) circle[radius=0.25] ++ (-95:0.43) node {$U$};
+	
+		% h_0
+		\draw[IndianRed3, -to, thick] (starth0) to[bend right] (endh0) ;
+		\node[above=6pt,IndianRed3] at (endh0) {$h$};
+	
+		% V_0
+		\begin{scope}
+			\clip (h0x) circle[radius=0.3];
+		  		  	\foreach \x in {0,-0.1,...,-1}%
+		  		    	\draw[IndianRed3!70,line width=0.25mm] (-2.5,\x)--(-1.5,\x-1);
+		\end{scope}
+		\draw[IndianRed3, thick] (h0x) circle[radius=0.3] ++ (0.4,-0.4) node[below] {$h(U) \supseteq h(U \cap V)$};
+		
+	
+		% U_1
+		\begin{scope}
+			\clip (y) circle[radius=0.27];
+		  		  	\foreach \y in {0.5,0.45,...,-0.3}%
+		  		    	\draw[SeaGreen4!80,line width=0.25mm, opacity=0.5] (-0.6,\y) .. controls +(-42:0.5) and +(215:0.5) .. ($(0.6,\y)+(0,.2)$);
+		\end{scope}
+		\draw[SeaGreen4!80] (y) circle[radius=0.27] ++ (-80:0.43) node {$V$};
+	
+		% h_1
+		\draw[SeaGreen4, -to, thick] (starth1) to[bend left] (endh1) ;
+		\node[above=6pt,SeaGreen4] at (endh1) {$k$};
+	
+		% V_1
+		\begin{scope}
+			\clip (h1y) circle[radius=0.3];
+		  		  	\foreach \x in {0,-0.1,...,-1}%
+		  		    	\draw[SeaGreen4!70,line width=0.25mm] (2.5,\x)--(1.5,\x-1);
+		\end{scope}
+		\draw[SeaGreen4, thick] (h1y) circle[radius=0.3] ++ (-0.4,-0.4) node[below] {$k(U \cap V) \subseteq k(V)$};
+		\draw[thick,-To] ($(h0x) + (1.2,-.57)$) -- ++ (1.6,0) node[above,midway]{$k \circ h^{-1}$};
+	\end{tikzpicture}
+	\caption{Kartenwechsel am Beispiel der 2-Sphäre.}
 \end{figure}
 
-Wie treffen die folgende Vereinbarung für diese Vorlesung: Eine Abbildung heißt $f \colon F \to \mathbb{R}^m$ \Index{differenzierbar}, falls $f$ ein $C^\infty$-Abbildung ist.
+Wie treffen die folgende Vereinbarung für diese Vorlesung: Eine Abbildung heißt $f \colon F \to \mathbb{R}^m$ \Index{differenzierbar}, falls $f$ ein $C^\infty$-Abbildung also unendlich oft differenzierbar ist.
 
 \begin{definition}[{name=[differenzierbare Struktur]}]
 	Sei $M$ eine topologische Mannigfaltigkeit und $\mathcal{A} = (U_i,h_i)_{i \in I}$ ein Atlas von $M$.
@@ -123,7 +179,7 @@ Wie treffen die folgende Vereinbarung für diese Vorlesung: Eine Abbildung heiß
 
 \section*{Konstruktion differenzierbarer funktionen} % (fold)
 \label{sec:konstruktion_differenzierbarer_funktionen}
-\todo{counter auf 1.15 anheben}
+\setcounter{definition}{14}
 \begin{bemerkung}
 	Sei $f \colon \mathbb{R}\to \mathbb{R}$ definiert durch 
 	\[
