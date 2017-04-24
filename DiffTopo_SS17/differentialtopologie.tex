@@ -58,11 +58,67 @@
 
 \begin{figure}
 	\Centering
-	\missingfigure{Bild zu Kartenwechseln}
-	\caption{Kartenwechsel}
+	\begin{tikzpicture}[scale=2.2, every pin edge/.style={black!80, very thin}]
+		% \draw[help lines] (-3,-2) grid (7,2);
+		\path (-2,-1) coordinate (h0x) ++ (0.2,0.3) coordinate (endh0);
+		\path (-0.2,0.1) coordinate (x) ++ (-0.3,0) coordinate (starth0);
+		\path (2,-1) coordinate (h1y) ++ (-0.2,0.3) coordinate (endh1);
+		\path (0.1,0.15) coordinate (y) ++ (0.3,0) coordinate (starth1);
+	
+		% sphere
+		\shade[ball color=white,opacity=.7] (0,0) circle (1cm);
+		\draw (-1,0) arc (180:360:1cm and 0.5cm);
+		\draw[dashed, black!60] (-1,0) arc (180:0:1cm and 0.5cm);
+		\draw (0,1) arc (90:270:0.5cm and 1cm);
+		\draw[dashed, black!60] (0,1) arc (90:-90:0.5cm and 1cm);
+		\draw (0,0) circle (1cm);
+
+		% U_0
+		\begin{scope}
+			\clip (x) circle[radius=0.25];
+		  		  	\foreach \y in {0.5,0.45,...,-0.3}%
+		  		    	\draw[IndianRed3!80,line width=0.25mm, opacity=0.5] (-0.5,\y) .. controls +(-35:0.4) and +(205:0.4) .. (0.5,\y);
+		\end{scope}
+		\draw[IndianRed3!80] (x) circle[radius=0.25] ++ (-95:0.43) node {$U$};
+	
+		% h_0
+		\draw[IndianRed3, -to, thick] (starth0) to[bend right] (endh0) ;
+		\node[above=6pt,IndianRed3] at (endh0) {$h$};
+	
+		% V_0
+		\begin{scope}
+			\clip (h0x) circle[radius=0.3];
+		  		  	\foreach \x in {0,-0.1,...,-1}%
+		  		    	\draw[IndianRed3!70,line width=0.25mm] (-2.5,\x)--(-1.5,\x-1);
+		\end{scope}
+		\draw[IndianRed3, thick] (h0x) circle[radius=0.3] ++ (0.4,-0.4) node[below] {$h(U) \supseteq h(U \cap V)$};
+		
+	
+		% U_1
+		\begin{scope}
+			\clip (y) circle[radius=0.27];
+		  		  	\foreach \y in {0.5,0.45,...,-0.3}%
+		  		    	\draw[SeaGreen4!80,line width=0.25mm, opacity=0.5] (-0.6,\y) .. controls +(-42:0.5) and +(215:0.5) .. ($(0.6,\y)+(0,.2)$);
+		\end{scope}
+		\draw[SeaGreen4!80] (y) circle[radius=0.27] ++ (-80:0.43) node {$V$};
+	
+		% h_1
+		\draw[SeaGreen4, -to, thick] (starth1) to[bend left] (endh1) ;
+		\node[above=6pt,SeaGreen4] at (endh1) {$k$};
+	
+		% V_1
+		\begin{scope}
+			\clip (h1y) circle[radius=0.3];
+		  		  	\foreach \x in {0,-0.1,...,-1}%
+		  		    	\draw[SeaGreen4!70,line width=0.25mm] (2.5,\x)--(1.5,\x-1);
+		\end{scope}
+		\draw[SeaGreen4, thick] (h1y) circle[radius=0.3] ++ (-0.4,-0.4) node[below] {$k(U \cap V) \subseteq k(V)$};
+		\draw[thick,-To] ($(h0x) + (1.2,-.57)$) -- ++ (1.6,0) node[above,midway]{$k \circ h^{-1}$};
+	\end{tikzpicture}
+	\caption{Kartenwechsel am Beispiel der 2-Sphäre.}
 \end{figure}
 
-Wie treffen die folgende Vereinbarung für diese Vorlesung: Eine Abbildung heißt $f \colon F \to \mathbb{R}^m$ \Index{differenzierbar}, falls $f$ ein $C^\infty$-Abbildung ist.
+Wie treffen die folgende Vereinbarung für diese Vorlesung: Eine Abbildung heißt $f \colon F \to \mathbb{R}^m$ \Index{differenzierbar}, falls $f$ ein $C^\infty$-Abbildung also unendlich oft differenzierbar ist.
 
 \begin{definition}[{name=[differenzierbare Struktur]}]
 	Sei $M$ eine topologische Mannigfaltigkeit und $\mathcal{A} = (U_i,h_i)_{i \in I}$ ein Atlas von $M$.
@@ -123,7 +179,7 @@ Wie treffen die folgende Vereinbarung für diese Vorlesung: Eine Abbildung heiß
 
 \section*{Konstruktion differenzierbarer funktionen} % (fold)
 \label{sec:konstruktion_differenzierbarer_funktionen}
-\todo{counter auf 1.15 anheben}
+\setcounter{definition}{14}
 \begin{bemerkung}
 	Sei $f \colon \mathbb{R}\to \mathbb{R}$ definiert durch 
 	\[
@@ -176,7 +232,7 @@ Wie treffen die folgende Vereinbarung für diese Vorlesung: Eine Abbildung heiß
 	Dann gibt es kompakte Teilmengen $K_1 \subseteq K_2 \subseteq \ldots \subseteq M$, sodass $\bigcup_{n=1}^\infty K_n = M$ und sodass $K_n \subseteq \interior{K}_{n+1}$.
 \end{lemma}
 \begin{beweis}
-	Siehe ATG oder Topologie I.
+	\emph{Siehe ATG oder Topologie I.}
 \end{beweis}
 \begin{beweis}[{name={von \ref{satz:ex_teilung_eins}}}]
 	Wähle eine kompakte Ausschöpfung $K_1 \subseteq K_2 \subseteq \ldots $ von $M$ (möglich nach \cref{lem:ex_kpt_ausschoepfung}).
@@ -199,6 +255,188 @@ Wie treffen die folgende Vereinbarung für diese Vorlesung: Eine Abbildung heiß
 \end{beweis}
 
 % section konstruktion_differenzierbarer_funktionen (end)
+
+\section{Lokale Geometrie differenzierbarer Abbildungen} % (fold)
+\label{sec:lokale_geometrie_differenzierbarer_abbildungen}
+
+\begin{definition}[{name=[Rang einer differenzierbaren Abbildung]}]
+	Seien $M^m,N^n$ differenzierbare Mannigfaltigkeiten und $f \colon M \to N$ differenzierbar, $p \in M$.
+	Wähle Karten $(U,h)$ und $(V,k)$ von $M$ bzw. $N$ mit $p \in U$ und $f(U) \subseteq V$.
+	Betrachte 
+	\[
+		\begin{tikzcd}[column sep=large]
+			U \dar["h","\cong"'] \rar["f"] & V \dar["k","\cong"']\\
+			h(U) \rar["k \circ f \circ h^{-1}"] & k(V)
+		\end{tikzcd}
+	\]
+	Der Rang von $\D(k \circ f \circ h^{-1})(h(p)) \in \Mat_{n,m}(\mathbb{R})$ hängt nicht von der Wahl von $h,k$ ab und heißt
+	\[
+		\rank_p(f) \in \mathbb{N}_0
+	\]
+\end{definition}
+
+\begin{bemerkung}
+	Sei $r \in \mathbb{N}_0$.
+	Dann ist die Menge $\set*{p \in M \given \rank_p(f) \ge r} \subseteq M$ offen und die Menge $\set*{p \in M \given \rank_p (f) \le r} \subseteq M$ abgeschlossen.
+	Der Grund dafür ist: 
+	\[
+		\set*{A \in \Mat_{n,m}(\mathbb{R}) \given \rank (A) \ge r} \subseteq \Mat_{n,m}(\mathbb{R}) \text{ offen} 
+	\]
+\end{bemerkung}
+
+\begin{definition}[{name=[{reguläre Punkte/Werte, singuläre Punkte, kritische Werte}]}]
+	Sei $f \colon M^m \to N^n$ differenzierbar und $p \in M$.
+	\begin{enumerate}[(i)]
+		\item $p$ heißt \Index{regulärer Punkt} von $f$, wenn gilt $\rank_p(f) = n$.
+		\item $p$ heißt \Index{singulärer Punkt} von $f$, wenn gilt $\rank_p(f) < n$.
+		\item $q \in N$ heißt \Index{kritischer Wert} von $f$, wenn gilt $\exists p \in M  : f(p)=q$ mit $p$ singulär.
+		\item $q \in N$ heißt \Index{regulärer Wert} von $f$, wenn $q$ kein kritischer Wert ist.
+		\item $f$ heißt \Index{Immersion}, wenn für alle $p \in M$ gilt: $\rank_p (f) = m$.
+		\item $f$ heißt \Index{Submersion}, wenn für alle $p \in M$ gilt: $\rank_p(f)=n$.  
+	\end{enumerate}
+\end{definition}
+
+\begin{satz}[{name={Rangsatz}},label=satz:rangsatz]
+	Seien $M^m,N^n$ Mannigfaltigkeiten und $f \colon M \to N$ differenzierbar.
+	$f$ habe konstanten Rang (d.h. $\rank_p(f) = r$ für alle $p \in M$).
+	Dann gibt es zu jedem $p \in M$ Karten $(U,h)$ von $M$, $(V,k)$ von $N$ mit $p \in U$, $h(p)=0$, $f(U) \subseteq V$, $k(f(p))=0$, sodass die Abbildung $k \circ f \circ h^{-1} \colon h(U) \to k(V)$ von der Form 
+	\[
+		(x_1, \ldots ,x_m) \longmapsto (x_1,\ldots ,x_r,0, \ldots ,0) 
+	\]
+	ist.
+\end{satz}
+\begin{beweis}
+	Ohne Beschränkung der Allgemeinheit, können wir $M=U \subseteq \mathbb{R}^m$ offen, $p=0$, $f \colon U \to \mathbb{R}^n$ und $f(p)=0$ annehmen.
+	Da $\D f(0)$ den Rang $r$ hat, existieren nach Linearer Algebra Matrizen $S \in \GL_m(\mathbb{R})$, $T \in \GL_n(\mathbb{R})$ mit\todo{hübsch machen}
+	\[
+		S \cdot \D f(0) \cdot T = \begin{pmatrix}
+			1 & & &  \\
+			& \ddots & & 0 \\
+			& & 1 &  \\
+			 & 0 & & 0
+		\end{pmatrix}
+	\]
+	Ersetze $f$ durch $S \circ f \circ T$.
+	Dann können wir annehmen, dass $\D f(0)$ bereits die obere Matrixgestalt hat.
+	Sei $h \colon U \to \mathbb{R}^m$ gegeben durch 
+	\[
+		h(x_1, \ldots ,x_m) = \enbrace[\big]{f_1(x), \ldots , f_r(x), x_{r+1}, \ldots , x_m}
+	\]
+	Dann gilt $h(0)=0$ und $\D h(0) = \ind_m$.
+	Nach dem Umkehrsatz aus Analysis II. gibt es $0 \in U_0 \subseteq U$, sodass $h|_{U_0} \colon U_0 \to h(U_0)$ ein Diffeomorphismus ist.
+	\[
+		\begin{tikzcd}
+			U_0 \rar["f"] \dar["h"',"\cong"] & \mathbb{R}^n & & (x_1, \ldots ,x_m) \rar[mapsto] \dar[mapsto,"h"'] & \enbrace*{f_1(x), \ldots , f_n(x)} \\
+			h(U_0) \urar["g=f \circ h^{-1}"'] & & &  \enbrace[\big]{f_1(x), \ldots , f_r(x), x_{r+1}, \ldots ,x_m} \urar[mapsto]
+		\end{tikzcd}
+	\]
+	Damit ist $g$ von der Form $g(z_1, \ldots ,z_m) = \enbrace*{z_1, \ldots ,z_r, g_{r+1}(z), \ldots , g_n(z)}$.
+	Also folgt
+	\[
+		\D g(z) = \begin{pmatrix}
+			1 & & &  \\
+			& \ddots & & 0 \\
+			& & 1 &  \\
+			 & * & & A(z)
+		\end{pmatrix}
+	\]
+	mit $A(z) \in \Mat_{n-r,m-r}$.
+	Für alle $z$ ist $\rank \D g(z) = r$ und somit ist $A(z) = 0$ für alle $z$.
+	Damit ist $\diff{g_i(z)}{z_j} = 0$ für alle $r +1 \le i \le n$ und $r+1 \le j \le m$.
+	Für genügend kleine $z_{r+1}, \ldots z_m$ gilt also $g_i(z_1, \ldots ,z_m) = g_i \enbrace*{z_1, \ldots , z_r,0, \ldots ,0}$ für alle $r +1 \le i \le n$.
+	
+	Betrachte nun für eine geeignete Umgebung $V_0$ von 0 die Abbildung
+	\mapdef{k \colon V_0}{\mathbb{R}^n}{(y_1, \ldots ,y_n)}{\scriptstyle\enbrace[\big]{y_1, \ldots ,y_r, y_{r+1} - g_{r+1}(y_1, \ldots ,y_r, 0, \ldots ,0), \ldots , y_n - g_n(y_1, \ldots ,y_r, 0, \ldots ,0)}}{}
+	Es gilt dann\todo{hübsch machen}
+	\[
+		\D k (0) = \begin{pmatrix}
+			1 & & & & & \\
+			& \ddots & & & 0 & \\
+			& & 1 & & &  \\
+			& & & 1 & & \\
+			& * & & & \ddots & \\
+			& & & & & 1
+		\end{pmatrix}
+	\]
+	Diese Matrix ist invertierbar und somit folgt wieder aus dem Umkehrsatz, dass $0 \in V_1 \subseteq V_0$ existiert, sodass $k \colon V_1 \to k(V_1)$ ein Diffeomorphismus ist.
+	Setze nun $U_1 \coloneqq f^{-1}(V_1)$.
+	Dann gilt für $k \circ f \circ h^{-1} \colon h(U_1) \to k(V_1)$ die Identität $k \circ f \circ h^{-1} = k \circ g$
+	\begin{align}
+		(z_1, \ldots ,z_m) &\xmapsto{g} \enbrace[\big]{z_1, \ldots ,z_r, g_{r+1}(z), \ldots , g_m(z)}  \\
+		&\xmapsto{k} \enbrace[\Big]{z_1, \ldots ,z_r, \Underbrace{g_{r+1}(z) - g_{r+1}(z_1, \ldots ,z_r, 0, \ldots ,0)}{=0 \text{ in kleiner Umgb.}}, \ldots , \Underbrace{g_n(z) - g_n(z_1, \ldots ,z_r,0,\ldots ,0)}{=0 \text{ in kleiner Umgb.}}}
+	\end{align}
+	Dies war zu zeigen.
+\end{beweis}
+
+\begin{satz}[name={vom regulären Wert}]
+	Sei $f \colon M^m \to N^n$ differenzierbar.
+	Sei $q \in N$ ein regulärer Wert von $f$.
+	Dann ist $f^{-1}(q) \subseteq M$ eine Untermannigfaltigkeit der Dimension $m-n$.
+\end{satz}
+\begin{beweis}
+	Sei $p \in f^{-1}(q)$.
+	Dann ist $\rank_p(f) = n$ maximal, also gibt es eine Umgebung $U$ von $p$, sodass $\rank_{p'}(f) = n$ für alle $p' \in U$.
+	Damit hat $f|_U \colon U \to N$ konstanten Rang.
+	Nach dem Rangsatz \ref{satz:rangsatz} existieren Karten $(U_0,h_0)$ von $M$, $U_0 \subseteq U$ mit $h_0(p)=0$ und $(V,k)$ von $N$ mit $f(U_0) \subseteq V$ und $k(q)=0$, sodass \todo{hübsch machen}
+	\[
+		\begin{tikzcd}
+			U_0 \rar["f"] \dar["h_0"] & V \dar["k"] & q \dar[mapsto] \\
+			h(U_0) \rar["k \circ f \circ h_0^{-1}"] & k(V) &  0 \\
+			(x_1, \ldots ,x_m) \rar[mapsto] & (x_1, \ldots ,x_n, 0, \ldots ,0)
+		\end{tikzcd}
+	\]
+	Damit ist $h_0(f^{-1}(q) \cap U_0) = \set*{x \given x_1, \ldots ,x_n=0} = h(U_0) \cap \enbrace*{\set*{0} \times \mathbb{R}^{m-n}}$.
+\end{beweis}
+
+\begin{beispiel}
+	\begin{enumerate}[1)]
+		\item Sei $f \colon \mathbb{R}^{n+1} \to \mathbb{R}$ gegeben durch $f(x) = \skal*{x}{x}$.
+		Dann gilt $\D f(x) v = 2 \skal*{x}{v}$ und somit ist für alle $x\neq 0$, dass $\rank_x f = 1$ ist.
+		Folglich ist $S^n \coloneqq f^{-1}(1)$ eine $n$-dimensionale Untermannigfaltigkeit des $\mathbb{R}^{n+1}$.
+		\item $\mathrm{St}_{k,n} = \set*{(v_1, \ldots,v_k) \given v_1i \in \mathbb{R}^n, \skal*{v_i}{v_j} = \delta_{ij}}$ heißt \Index{Stiefel-Mannigfaltigkeit}.
+		Es gilt $\mathrm{St}_{1,n}=S^{n-1}$ und $\mathrm{St}_{n,n}$ ist die Menge aller Orthonormalbasen des $\mathbb{R}^n$, also $\On(n)$, die orthogonale Gruppe.
+		Wir haben
+		\[
+			\mathrm{St}_{k,n} = \set*{A \in \Mat_{n,k}(\mathbb{R}) \given A^T A = \ind_k}
+		\]
+		Für die Abbildung $f \colon \Mat_{n,k}(\mathbb{R}) \to \Sym_{k}(\mathbb{R})$ gegeben durch $A \mapsto A^T A$ gilt $\mathrm{St}_{k,n} = f^{-1}(\ind_k)$.
+		Um zu zeigen, dass $\mathrm{St}_{k,n}$ eine Mannigfaltigkeit der Dimension $nk - \sfrac{1}{2}k(k+1)$ ist, müssen wir zeigen, dass $\ind_k$ ein regulärer Wert von $f$ ist:
+		Für $A,X \in \Mat_{n,k}(\mathbb{R})$ gilt
+		\begin{align}
+			\D f(A) \cdot X = \diffd{}{t}\Big|_{t=0} \enbrace*{A + tX}^T \enbrace*{A + tX} = A^T X+ X^T A
+		\end{align}
+		Wir müssen zeigen, dass falls $A^T A = \ind_k$ gilt, $X \mapsto A^T X + X^T A$ eine surjektive Abbildung $\Mat_{_n,k}(\mathbb{R}) \to \Sym_k(\mathbb{R})$ ist.
+		Für $C \in \Sym_k(\mathbb{R})$ ist $\frac{1}{2} AC$ ein Urbild.
+		
+		\emph{Bemerkung:} $\On(n)$ ist eine Untermannigfaltigkeit von $\Mat_{n,n}(\mathbb{R})$.
+		Sei $\mu \colon \On(n) \times \On(n) \to \On(n)$ gegeben durch Matrixmultiplikation und $\iota \colon \On(n) \to \On(n)$ die Inversion.
+		Beide Abbildungen sind differenzierbar, wodurch $\On(n)$ zu einer \Index{Lie-Gruppe} wird.
+		\item $\GL_n(\mathbb{R}) \subseteq \Mat_{n,n}(\mathbb{R})$ ist offen.
+		Die Determinante $\det \colon \GL_n(\mathbb{R}) \to \mathbb{R}$ ist differenzierbar.
+		Es gilt
+		\[
+			\D \det (A) \cdot X = \det (A) \cdot \tr(A^{-1} \cdot X)
+		\]
+		Dazu rechnet man nach, dass 
+		\[
+			\diffd{}{t}\Big|_{t=0} \det \enbrace*{\ind + t E_{ij}} = \begin{cases}
+				0 &\text{ falls }i \neq j\\
+				1 &\text{ falls } i =j
+			\end{cases}
+		\]
+		Also stimmt die Formel für $A=\ind$.
+		Nun gilt
+		\[
+			\D \det(A) \cdot X = \diff{}{t}\Big|_{t=0} \det (A + tX) = \det A \cdot \diffd{}{t}\Big|_{t=0 \det \enbrace*{1 + tA^{-1} X}}
+		\]
+		Also ist $1 \in \mathbb{R}$ ein regulärer Wert von $\det$.
+		Damit ist $\SL_n(\mathbb{R}) = \det^{-1}(1)$ eine Mannigfaltigkeit.
+	\end{enumerate}
+\end{beispiel}
+
+
+
+% section lokale_geometrie_differenzierbarer_abbildungen (end)
 % chapter mannigfaltigkeiten (end)
 
 

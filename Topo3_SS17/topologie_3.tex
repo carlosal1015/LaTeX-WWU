@@ -70,7 +70,7 @@ Man prüft leicht, dass dies wohldefiniert ist.
 Zur Veranschaulichung: Eine stetige Abbildung $f \colon (I^n,\partial I^n) \to (X,x_0)$ faktorisiert durch $\sfrac{I^n}{\partial I^n} \cong S^n$.
 Das Bild von $f$ ist also das Bild einer $n$-Sphäre.
 In \Cref{fig:anschauung_pi_n} ist dies zusammen mit der Verknüpfung für $n \in \set*{1,2}$ skizziert.
-\begin{figure}
+\begin{figure}[bht]
 	\Centering
 	\begin{tikzpicture}[scale=.7]
 		% für n = 1
@@ -118,11 +118,10 @@ In \Cref{fig:anschauung_pi_n} ist dies zusammen mit der Verknüpfung für $n \in
 	
 	Für $n\ge 2$ ist die Gruppe $\pi_n(X,x_0)$ abelsch.
 \end{satz}
-
-\begin{figure}
+\begin{figure}[p]
 	\Centering
 	\subfloat[$n=1$]{
-	\begin{tikzpicture}[baseline=(a)]
+	\begin{tikzpicture}[baseline=(a),scale=1.2]
 		\draw[very thick] (0,3) coordinate (a) node[left=3pt]{$I$} -- ++ (2,0) coordinate (b);
 		\foreach \x in {0,2}{
 			\draw[very thick] ($(0,3) + (\x,.12)$) -- ++ (0,-0.24);
@@ -140,7 +139,7 @@ In \Cref{fig:anschauung_pi_n} ist dies zusammen mit der Verknüpfung für $n \in
 	\end{tikzpicture}}
 	\hspace{3em}
 	\subfloat[$n=2$]{
-	\begin{tikzpicture}[baseline=(a)]
+	\begin{tikzpicture}[baseline=(a),scale=1.2]
 		\draw[-To] (2,0) -- ++ (1.5,0) node[above,midway]{$f$} node (a)[right=5pt]{$(X,x_0)$};
 		
 		\filldraw[fill opacity=.5,DodgerBlue3] (0.5,-.5) -- ++ (1,1) -- ++ (-1,0);
@@ -154,7 +153,7 @@ In \Cref{fig:anschauung_pi_n} ist dies zusammen mit der Verknüpfung für $n \in
 		\filldraw[fill opacity=.5,Firebrick3] (0.5,-2.5) -- ++ (1,1) -- ++ (-1,0);
 		\draw[thick] (0.5,-2.5) -- ++ (1,1);
 		\draw[thick] (0.5,-2.5) rectangle ++ (1,1);
-		\draw[-To] (2,-2) -- ++ (1.9,1.7) node[above left,midway]{$\overline{f}$};
+		\draw[-To] (2,-2) -- ++ (1.9,1.7) node[below right,midway]{$\overline{f}$};
 	\end{tikzpicture}
 	}
 	\caption{Anschauung der Inversen für $\pi_n(X,x_0)$}\label{fig:inverse_pi_n}
@@ -162,11 +161,25 @@ In \Cref{fig:anschauung_pi_n} ist dies zusammen mit der Verknüpfung für $n \in
 
 \begin{beweis}
 	\begin{description}
-		\item[Assoziativität:] Für $f,g,h \colon (I^n,\partial I^n) \to (X,x_0)$ müssen wir eine Homotopie zwischen $(f * g) * h$ und $f * (g * h)$ finden.
-		
-		\todo[inline]{Hier eine Zeichnung}
-		
-		Eine Homotopie wie oben erhalten wir mittels folgender Homotopie $H \colon (I^n,\partial I^n) \times I \to (I^n,\partial I^n)$.
+		\item[Assoziativität:] Für $f,g,h \colon (I^n,\partial I^n) \to (X,x_0)$ müssen wir eine Homotopie zwischen den Abbildungen $(f * g) * h$ und $f * (g * h)$ finden.
+		\begin{figure}[p]
+			\Centering
+			\begin{tikzpicture}[scale=.85,every node/.style={scale=0.85},thick]
+				\draw[fill=lightgray] (0,0) rectangle (4,4);
+				\node[draw,fill=white,minimum size=1cm] at (.5,3.5) {$f$};
+				\node[minimum size=1cm,fill=white,draw] at (1.5,2.5) {$g$};
+				\node[minimum size=2cm,fill=white,draw] at (3,1) {$h$};
+				
+				\draw[->] (4.5,2) -- ++ (1,0);
+				
+				\draw[fill=lightgray] (6,0) rectangle ++ (4,4);
+				\node[draw,fill=white,minimum size=2cm] at (7,3) {$f$};
+				\node[minimum size=1cm,fill=white,draw] at (8.5,1.5) {$g$};
+				\node[minimum size=1cm,fill=white,draw] at (9.5,.5) {$h$};
+			\end{tikzpicture}
+			\caption[Homotopie für den Nachweis der Assoziativität von $\pi_n(X,x_0)$]{Homotopie für den Nachweis der Assoziativität von $\pi_n(X,x_0)$. Hier gezeichnet für $n=2$, in den grauen Bereichen ist die Funktion konstant.}\label{fig:assoz_pi_n}
+		\end{figure}
+		Eine solche Homotopie -- siehe \cref{fig:assoz_pi_n} für $n=2$ -- erhalten wir mittels folgender Homotopie $H \colon (I^n,\partial I^n) \times I \to (I^n,\partial I^n)$.
 		Sei $\varphi \colon I \to I$ gegeben durch
 		\[
 			\varphi(t) = \begin{cases}
@@ -182,9 +195,6 @@ In \Cref{fig:anschauung_pi_n} ist dies zusammen mit der Verknüpfung für $n \in
 		\]
 		Es gilt $F_0 = \benbrace*{f * (g * h)} \circ H_1 = (f * g) * h$ und $F_1 = \enbrace*{f * (g * h)} \circ {\id} = f * (g * h)$.
 		\item[Neutrales Element:] Um nachzuweisen, dass $\benbrace*{c}$ ein neutrales Element in $\pi_n(X,x_0)$ ist, müssen wir eine Homotopie zwischen $f$ und $f * c$ bzw. zwischen $f$ und $c * f$ angeben für eine beliebige punktierte Abbildung $f \colon (I^n,\partial I^n) \to (X,x_0)$.
-		
-		\todo[inline]{Hier eine Zeichnung}
-		
 		Definiere hierzu $H \colon I^n \times I \to I^n$ durch
 		\[
 			H(t_1, \ldots ,t_n,s) = (1- \sfrac{s}{2}) (t_1, \ldots ,t_n)
@@ -195,9 +205,19 @@ In \Cref{fig:anschauung_pi_n} ist dies zusammen mit der Verknüpfung für $n \in
 		Wir betrachten wieder nur einen der beiden Fälle.
 		Dazu betrachten wir Wege $h_e \colon I \to I^n$ für $e \in E$, die mit konstanter Geschwindigkeit zunächst von $(0,\ldots ,0)$ geradlinig nach $e \in E$ und dann geradlinig von $e$ nach $(1,\ldots ,1)$ laufen.
 		
-		\todo[inline]{Hier eine Zeichnung}
+		\begin{figure}[p]
+			\Centering
+			\begin{tikzpicture}[very thick,scale=2.5]
+				\draw (0,-1) -- ++ (1,1);
+				\draw (0,0) node[left]{$(0, \ldots ,0)$} rectangle (1,-1) node[right]{$(1,\ldots ,1)$};
+				\coordinate (e) at ($(.31,.31) - (0,1)$);
+				\draw[thick] (0,0) -- node[right]{$h_e$}  (e)  -- (1,-1);
+				\draw[fill=DodgerBlue3,thick] (e) node[below]{$e$} circle[radius=0.02];
+			\end{tikzpicture}
+			\caption{Benutzung der Wege $h_e$ beim Nachweis der Inversen}
+		\end{figure}
 		
-		Zu $e$ betrachten wir die Homotopie 
+		Zu $e \in E$ betrachten wir die Homotopie 
 		\mapdef{H_e \colon I \times I}{X}{(t,s)}{\begin{cases}
 			(f * \overline{f}) \circ h_e(s t) &\text{ falls }0 \le t \le \sfrac{1}{2}\\
 			(f * \overline{f}) \circ h_e(1- st) &\text{ falls } \sfrac{1}{2} \le t \le 1
@@ -242,8 +262,168 @@ In \Cref{fig:anschauung_pi_n} ist dies zusammen mit der Verknüpfung für $n \in
 \begin{bemerkung}[{name=[Beschränkung auf CW-Komplexe]}]
 	Für viele Anwendungen reicht es daher sich auf CW-Komplexe zu beschränken.
 \end{bemerkung}
-
 % section homotopiemengen_und_homotopiegruppen (end)
+
+\section{Kofaserungen} % (fold)
+\label{sec:kofaserungen}
+
+\begin{definition}
+	Ein Raumpaar $(X,A)$ hat die \Index{Homotopieerweiterungseigenschaft}, wenn jedes kommutative Diagramm  
+	\[
+		\begin{tikzcd}[row sep=small]
+			& X \times \set*{0}  \drar[hook] \ar[rrd,bend left] \\
+			A \times \set*{0} \urar[hook] \drar[hook] & & X \times I \rar[dashed] & Y \\
+			& A \times I \urar \ar[urr,bend right]
+		\end{tikzcd}
+	\]
+	durch eine stetige Abbildung $X \times I \to Y$ ergänzt werden kann.
+\end{definition}
+
+\begin{definition}
+	Eine stetige Abbildung $f \colon A \to X$ heißt \Index{Kofaserung}, falls jedes kommutative Diagramm
+	\[
+		\begin{tikzcd}[row sep=small]
+			& X \times \set*{0}  \drar \ar[rrd,bend left] \\
+			A \times \set*{0} \urar["f"] \drar & & X \times I \rar[dashed] & Y \\
+			& A \times I \urar\ar[urr,bend right]
+		\end{tikzcd}
+	\] 
+	durch eine stetige Abbildung $X \times I \to Y$ ergänzt werden kann.
+\end{definition}
+
+\begin{beispiel}
+	Es sei $X = \set*{0} \cup \set*{\frac{1}{n} \given n \in \mathbb{N}} \subseteq \mathbb{R}$ und $A = \set*{0}$.
+	Dann ist $A \hookrightarrow X$ keine Kofaserung.
+	Dazu betrachten wir den Abbildungszylinder 
+	\[
+		\Zyl_i \coloneqq A \times I \cup X / (a,1) \sim i(a)
+	\]
+	und die kanonische Abbildung
+	\[
+		\begin{tikzcd}[row sep=small]
+			& X \times \set*{0}   \drar \\
+			A \times \set*{0} \urar \drar& & \Zyl_i  \\
+			& A \times I \urar
+		\end{tikzcd}
+	\]
+	Für dieses Diagramm gibt es keine Ergänzung $\varphi \colon X \times I \to \Zyl_i$, sodass das entsprechende Diagramm mit der Ergänzung kommutiert.
+	Beachte dazu, dass die Wegekomponenten von $\Zyl_i$ und $X \times I$ genau der Menge $X$ entsprechen.
+	Für eine Ergänzung $\varphi$ müsste gelten $\varphi(\sfrac{1}{n},1) = (\sfrac{1}{n},1)$ und damit wegen der Stetigkeit $\varphi(0,1)=(0,0)$.
+	Andererseits müsste gelten $\varphi(0,1) = (0,1)$, da $(0,1) \in A \times I$.
+\end{beispiel}
+
+\begin{satz}
+	Für eine Inklusion $i \colon A \to X$ ist äquivalent:
+	\begin{enumerate}[(1)]
+		\item $i$ ist eine Kofaserung
+		\item $\Zyl_i$ ist ein \enquote{Retrakt} von $X \times I$, d.h. es existiert eine stetige Abbildung $r \colon X \times I \to \Zyl_i$, sodass die Komposition $\Zyl_i \to X \times I \xrightarrow{r} \Zyl_i$ die Identität ist.
+	\end{enumerate}
+\end{satz}
+\begin{beweis}
+	Sei $i$ eine Kofaserung.
+	Betrachte das Diagramm
+	\[
+		\begin{tikzcd}[row sep=small]
+			& X \times \set*{0}  \drar[hook] \ar[rrd] \ar[rrrd,bend left] \\
+			A \times \set*{0} \urar[hook] \drar[hook] & & \Zyl_i \rar & X \times I \rar[dashed] & \Zyl_i  \\
+			& A \times I \urar \ar[urr] \ar[urrr,bend right]
+		\end{tikzcd}
+	\]
+	Die Erweiterung $X \times I \to \Zyl_i$ ist eine Retraktion, wie wir sie suchen.
+	
+	Es gelte nun (2).
+	Ist ein Homotopieerweiterungsproblem
+	\[
+		\begin{tikzcd}[row sep=small]
+			& X \times \set*{0}  \drar[hook] \ar[rrd,bend left] \\
+			A \times \set*{0} \urar[hook] \drar[hook] & & X \times I \rar[dashed,"\varphi"] & Y \\
+			& A \times I \urar \ar[urr,bend right]
+		\end{tikzcd}
+	\]
+	gegeben, dann setze $\varphi = \tilde{\varphi} \circ r$, wobei $r$ die in (2) gegebene Retraktion ist und $\tilde{\varphi}$ die kanonische Abbildung $\tilde{\varphi} \colon \Zyl_i \to Y$, die durch das Pushout gegeben ist.
+\end{beweis}
+
+\begin{satz}[{name={Charakterisierung von Kofaserungen}}]
+	Es sei $A \subseteq X$  eine abgeschlossene Teilmenge.
+	Dann ist die Einbettung $i \colon A \hookrightarrow X$ genau dann eine Kofaserung, wenn es eine Umgebung $U$ von $A$ und eine stetige Abbildung $\phi \colon X \to I$ gibt, sodass 
+	\begin{enumerate}[(1)]
+		\item $\phi^{-1}(\set*{0}) = A$, $\phi^{-1}(1) \supseteq X \setminus U$
+		\item Es gibt eine Homotopie $H \colon U \times I \to X$, sodass $H(a,t)=a$ für alle $a \in A$ und $H(u,0)=u$ und $H(u,1) \in A$ für alle $u \in U$.
+	\end{enumerate}
+\end{satz}
+\begin{beweis}
+	Wir nehmen zunächst an, dass (1) und (2) gelten.
+	Ohne Beschränkung der Allgemeinheit gelte $\phi(x)=1$ für Punkte in einer Umgebung von $X \setminus U$.
+	Gilt dies zunächst nicht, können wir nämlich $\phi$ durch $\min(2 \phi,1)$ ersetzen.
+	Wir suchen nun eine Funktion $\psi \colon U \times I \to \Zyl_i = X \times \set*{0} \cup A \times I$ mit $\psi(u,0)=(u,0)$ für $u \in U$ und $\psi(a,t)=(a,t)$ für alle $(a,t) \in A \times I$, denn dann ist
+	\mapdef{r \colon X \times I}{\Zyl_i}{(x,t)}{\begin{cases}
+		\psi\enbrace[\big]{x,t(1- \phi(x))} &\text{ falls }x \in U\\
+		x,0 &\text{ sonst}
+	\end{cases}}{}
+	Dann ist $r$ eine Retraktion.
+	Die gesuchte Funktion $\psi$ können wir wie folgt definieren
+	\[
+		\psi(u,t) = \begin{cases}
+			H(u,t/\phi(u)) \times \set*{0} &\text{ falls }\phi(u)>t\\
+			H(u,1) \times \set*{t- \phi(u)} &\text{ falls } \phi(u)\le t
+		\end{cases}
+	\]
+	Die Abbildung erfüllt die eben geforderten Bedingungen und ist stetig für $(u,t)$ mit $\phi(u)>0$.
+	Beachte, dass $\varphi(u)=0 \iff u \in A$.
+	Für $a \in A$ gilt $H(a,0)=a$.
+	Ist $W$ eine Umgebung von $a$, so existiert -- da $I$ kompakt ist -- eine offene Teilmenge $V \subset U$, sodass $H(V,I) \subset W$ gilt.
+	Für eie Umgebung $W \times [0,\varepsilon)$ von $\psi(a,0)=(a,0)$ gilt daher
+	\[
+		\psi \enbrace[\big]{V\times [0,\varepsilon)} \subseteq W \times [0,\varepsilon)
+	\]
+	Das heißt $\psi$ ist stetig in $(a,0)$.
+	
+	Wir nun an, dass $i \colon A \subset X$ eine Kofaserung ist, das heißt es existiert eine Retraktion $r \colon  X\times I \to \Zyl_i$.
+	Wir betrachten dann
+	\mapdef{s \colon X}{\Zyl_i}{x}{r(x,1)}{}
+	und $U = s^{-1}(A \times (0,1])$.
+	Definiere dann $H \colon U \times I \to X$ durch $(u,t) \mapsto \pr_x(r(x,t))$ und
+	\mapdef{\phi \colon X}{I}{x}{\max \set*{\abs*{t-\pr_I r(x,t)} \given t \in I}}{}
+	Offenbar erfüllt $H$ die Bedingung (2).
+	Außerdem gilt für $a \in A$
+	\[
+		\phi(a) = \max \set*{\abs*{t - \pr_I(r(a,t))} \given t \in I} =0
+	\]
+	und für $x \in X\setminus U = s^{-1}(X \times \set*{0})$
+	\[
+		\phi(x) = \max \set*{\abs*{t- \pr_I \enbrace*{r(x,t)}} \given t \in I} = 1
+	\]
+	Außerdem gilt $\phi^{-1}(0)=A$ (Übung).
+\end{beweis}
+
+\begin{beispiel}
+	Ist $A \subset X$ die Inklusion eines abgeschlossenen Unterkomplexes $A$ in einem CW-Komplex $X$, so ist die Inklusion eine Kofaserung.
+	Die Eigenschaften (1) und (2) können aus dem Beweis, dass $A \subset X$ ein Umgebungsdeformationsretrakt ist, abgeleitet werden.
+	
+	Insbesondere ist zum Beispiel die Inklusion $S^{n-1} \subset D^n$ eine Kofaserung.
+\end{beispiel}
+
+\begin{bemerkung}
+	Ist $A \subset X$ ein Umgebungsdeformationsretrakt und ist $X$ normal, so ist die Inklusion $A \subset X$ \enquote{oft} eine Kofaserung.
+	Ein normaler Raum heißt \Index{perfekt normal}, wenn es zu je zwei disjunkten abgeschlossenen Mengen $A$ und $B$ eine stetige Funktion $\phi \colon X \to I$ gibt mit $\phi(0) =A$ und $\phi^{-1}(1)=B$.
+	Das heißt Umgebungsdeformationsretrakte in perfekt normalen Räumen liefern Kofaserungen.
+\end{bemerkung}
+
+\begin{satz}
+	Ist $f \colon A \to X$ eine Kofaserung, so ist die Abbildung $f$ eine Einbettung.
+\end{satz}
+\begin{beweis}
+	\emph{Ohne Beweis.}
+\end{beweis}
+
+\begin{satz}
+	Jede stetige Abbildung ist die Komposition aus einer Kofaserung und einer Homotopieäquivalenz.
+\end{satz}
+\begin{beweis}
+	Ist $f \colon X \to Y$ eine stetige Abbildung, dann ist $i \colon X \cong X \times \set*{0} \hookrightarrow \Zyl_i$ und die Projektion $p \colon \Zyl_i \to Y$ ist eine Homotopieäquivalenz mit Homotopieinversem $Y \hookrightarrow \Zyl_i$.
+	Die Komposition $p \circ i$ ist genau $f$.
+\end{beweis}
+% section kofaserungen (end)
 
 \cleardoubleoddemptypage
 \pagenumbering{Alph}
