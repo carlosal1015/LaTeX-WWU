@@ -206,7 +206,39 @@ Oft verwendet man auch benannte Transitionen:
 		\draw[-] ($(v0.east) + (0.5,0)$) node[circle, fill = black, minimum size=0.15cm, inner sep = 0pt]{} -- + (0,0.7) -- +(3.5, 0.7) -- +(3.5,0.9) -- ($(v1xor.west) - (0,0.1)$); 
 		\end{tikzpicture}
 	\end{center}
-	\todo{Beispiel vervollständigen}
+	\textbf{Modellierung durch Kripke-Struktur}
+	\begin{itemize}
+		\item $S = \{(v_0, v_1, v_2) \mid v_i \in \mathbb{B}\} = \mathbb{B}^3, \mathbb{B} = \{0,1\}$
+		\item $S_0 = \{(0,0,0)\}$
+		\item $R = \{ \left((v_0,v_1,v_2), (v_0', v_1', v_2')\right) \mid v_0' = \bar{v_0}, v_1' = v_0 \oplus v_1, v_2' = (v_0 \wedge v_1) \oplus v_2\}$ (aus Schaltwerk ablesen)
+		\item $AP = \{\textit{Reg}_0, \textit{Reg}_1, \textit{Reg}_2\}$
+		\item $L\left((v_0, v_1, v_2)\right) = \{\textit{Reg}_0 \mid v_0 = 1\} \cup \{\textit{Reg}_1 \mid v_1 = 1\} \cup \{\textit{Reg}_2 \mid v_2 = 1\}$
+	\end{itemize}
+
+	\textbf{Visualisierung der Kripke-Struktur}
+	
+	\begin{center}
+		\begin{tikzpicture}[scale=0.72]
+			\node[initial, state](000) at (0,0) {\footnotesize $(0,0,0)$};
+			\node[state](100) at (2,-1) {\footnotesize $(1,0,0)$};
+			\node[state](010) at (3,-3)  {\footnotesize $(0,1,0)$};
+			\node[state](110) at (2,-5) {\footnotesize $(1,1,0)$};
+			\node[state](001) at (0,-6) {\footnotesize $(0,0,1)$};
+			\node[state](111) at (-2,-1) {\footnotesize $(1,1,1)$};
+			\node[state](011) at (-3,-3) {\footnotesize $(0,1,1)$};
+			\node[state](101) at (-2,-5) {\footnotesize $(1,0,1)$};
+			
+			\path[->] 	
+			(000) edge [bend left = 5] (100)
+			(100) edge [bend left = 5] (010)
+			(010) edge [bend left = 5] (110)
+			(110) edge [bend left = 5] (001)
+			(001) edge [bend left = 5] (101)
+			(101) edge [bend left = 5] (011)
+			(011) edge [bend left = 5] (111)
+			(111) edge [bend left = 5] (000);
+		\end{tikzpicture}
+	\end{center}
 \end{bsp}
 
 \subsubsection*{Allgemeines Schaltwerk}
