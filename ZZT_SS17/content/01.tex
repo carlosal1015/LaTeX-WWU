@@ -223,4 +223,108 @@
 			Mit $d \in H$ folgt $b \mid d$.
 		\end{enumerate}
 	\end{beweis}
+
+	\begin{definition}[teilerfremd, koprim]
+		Die Zahlen $a_1,\dots,a_n \in \ZZ$ heißen \Index{teilerfremd} oder \Index{koprim}, falls $\ggT(a_1,\dots,a_n) = 1$. \marginnote{[8]}
+	\end{definition}
+
+	\begin{satz}
+		\label{satz:1.8}
+		Seien $a_1,\dots,a_n \in \ZZ$.
+		Dann sind äquivalent:
+		\begin{enumerate}[(i)]
+			\item $\ggT(a_1,\dots,a_n) = 1$.
+			\item Es gibt $z_1,\dots,z_n \in \ZZ$ mit $1 = a_1\cdot z_1 + \dots + a_n \cdot z_n$.
+		\end{enumerate}
+	\end{satz}
+
+	\begin{beweis}
+		\begin{description}
+			\item[(i) $\Rightarrow$ (ii):] Ist $d = 1 = \ggT(a_1,\dots,a_n)$, so folgt $1 \in H = \{a_1z_1 + \dots + a_nz_n : z_1,\dots,z_n \in \ZZ\}$ nach Definition.
+			\item[(ii) $\Rightarrow$ (i):] Es folgt für $d = \ggT(a_1,\dots,a_n)$, dass $d \mid 1$, also $d = 1$. 
+		\end{description}
+	\end{beweis}
+
+	\begin{korollar}
+		\label{kor:1.8.1}
+		Sind $a,b,c \in \ZZ$ mit $\ggT(a,b) = 1 = \ggT(a,c)$, so gilt $\ggT(a,bc) = 1$.
+	\end{korollar}
+
+	\begin{beweis}
+		Schreibe $ax + by = 1 = au + cv$ für geeignete $x,y,u,v \in \ZZ$ (mit vorigem Satz).
+		Dann ist
+		\begin{align*}
+			1 &= (ax + by)(au+cv) \\
+			&= a (uax + cvx + byu) + bc(yv).
+		\end{align*}
+		Wieder mit Satz~\ref{satz:1.8} folgt $\ggT(a,bc) = 1$.
+	\end{beweis}
+
+	\begin{korollar}
+		Sei $a_1,\dots,a_n,b \in \ZZ$ mit $\ggT(a_i,b) = 1$ für alle $i = 1,\dots,n$.
+		Dann gilt $\ggT(a_1\cdot a_2 \cdot \dots \cdot a_n,b) = 1$.
+	\end{korollar}
+
+	\begin{beweis}
+		Mit Induktion nach $n$:
+		\begin{description}
+			\item[I.A.:] Für $n = 0$ und $n=1$ ist nichts zu zeigen.
+			\item[I.S.:] Gelte die Behauptung für ein $n \in \NN$.
+			Es folgt für $a_1,\dots,a_{n+1},b \in \ZZ$ mit $\ggT(a_i,b) = 1$, dass $\ggT(a_1 \cdot \dots \cdot a_n,b)=1$ nach Induktionsvoraussetzung.
+			Zusammen mit $\ggT(a_{n+1},b) = 1$ folgt mit Korollar~\ref{kor:1.8.1} die Behauptung.
+		\end{description}
+	\end{beweis}
+
+	\begin{definition}[Primzahl]
+		Eine natürliche Zahl $p \geq 2$ heißt \Index{Primzahl}, wenn $\pm 1$ und $\pm p$ die einzigen Teiler von $p$ sind. \marginnote{[9]}
+		Die Menge aller Primzahlen bezeichnen wir mit $\PP = \{2,3,5,7,11,13,17,\dots\}$.
+	\end{definition}
+
+	\begin{lemma}
+		Für $n \in \NN$ mit $n \geq 2$ setze $p(n) := \min\{d \in \NN : d \geq 2 \text{ und } d \mid n\}$.
+		Dann ist $p(n)$ stets eine Primzahl.
+	\end{lemma}
+
+	\begin{beweis}
+		Angenommen, $d \mid p(n)$ mit $d \geq 2$.
+		Dann folgt $d \mid n$.
+		Es folgt $p(n) \leq d$, also $p(n) = d$.
+	\end{beweis}
+
+	\begin{satz}[Euklid]
+		Es gibt unendlich viele Primzahlen. \marginnote{[10]}
+	\end{satz}
+
+	\begin{beweis}
+		Angenommen, $\PP$ ist endlich, also $\PP= \{p_1 < p_2 < \dots < p_m\}$.
+		Betrachte $n = p_1p_2p_3 \cdots p_m + 1$.
+		Für alle $i = 1, \dots, m$ gilt dann $p_i \nmid n$, denn sonst wäre auch $p_i \mid p_1p_2\cdots p_n - n = 1$.
+		Widerspruch zu $p_i \geq 2$.
+		
+		Betrachte nun $q := p(n)$.
+		Es folgt $p_i \neq q$ für alle $i=1,\dots,n$, aber $q \in \PP$.
+		Widerspruch.
+	\end{beweis}
+
+	\begin{thm}[Hauptsatz der Arithmetik]
+		Sei $n \in \NN$ mit $n \geq 2$. \marginnote{[11]}
+		Dann existieren eindeutig bestimmte Primzahlen $p_1 \leq p_2 \leq \dots \leq p_m$ mit $p_1 \cdot p_2 \cdot p_3 \cdots p_m = n$.
+		Man nennt die $p_i$ die \textbf{Primfaktoren} von $n$ und das Produkt $p_1 \cdot p_2 \cdots p_n$ die \Index{Primfaktorzerlegung} von $n$.
+	\end{thm}
+
+	\begin{beweis}
+		\textit{Zur Existenz:} Mit Induktion nach $n$ (Zweites Induktionsprinzip).
+		\begin{description}
+			\item[I.A.:] Für $n=0$ und $n=1$ ist nichts zu zeigen und $n=2$ ist Primzahl.
+			\item[I.S.:] Schreibe $n = p(n) \cdot s$ mit $s \geq 1, p(n) \in \PP$.
+			Ist $s = 1$, so ist $n = p(n) \in \PP$.
+			Ist $s > 1$, so ist $2 \leq s < n$, weil $p(n) \geq 2$.
+			Nach Induktionsvorraussetzung existieren also Primzahlen $q_1 \leq q_2 \leq \dots \leq q_t$ mit $s = q_1 \cdot q_2 \cdots q_t$.
+			Damit folgt	$n = p(n) \cdot q_1 \cdot q_2 \cdots q_t$, was (nach eventuellem Umsortieren) eine Primfaktorzerlegung von $n$ ist.
+		\end{description}
+	
+		\textit{Zur Eindeutigkeit:} Schreibe $n = p_1 \cdots p_m$ mit $p_i \in \PP$, $p_1 \leq p_2 \leq \dots \leq p_m$.
+		Sei $q \in \PP$.
+		Sei $l$ die Anzahl der Primfaktoren $p_i = q$.
+	\end{beweis}
 \cleardoubleoddemptypage
