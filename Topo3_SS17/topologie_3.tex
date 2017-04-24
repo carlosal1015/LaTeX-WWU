@@ -267,7 +267,7 @@ In \Cref{fig:anschauung_pi_n} ist dies zusammen mit der Verknüpfung für $n \in
 \section{Kofaserungen} % (fold)
 \label{sec:kofaserungen}
 
-\begin{definition}
+\begin{definition}[{name=[Homotopieerweiterungseigenschaft]}]
 	Ein Raumpaar $(X,A)$ hat die \Index{Homotopieerweiterungseigenschaft}, wenn jedes kommutative Diagramm  
 	\[
 		\begin{tikzcd}[row sep=small]
@@ -279,7 +279,7 @@ In \Cref{fig:anschauung_pi_n} ist dies zusammen mit der Verknüpfung für $n \in
 	durch eine stetige Abbildung $X \times I \to Y$ ergänzt werden kann.
 \end{definition}
 
-\begin{definition}
+\begin{definition}[{name=[Kofaserung]}]
 	Eine stetige Abbildung $f \colon A \to X$ heißt \Index{Kofaserung}, falls jedes kommutative Diagramm
 	\[
 		\begin{tikzcd}[row sep=small]
@@ -291,7 +291,7 @@ In \Cref{fig:anschauung_pi_n} ist dies zusammen mit der Verknüpfung für $n \in
 	durch eine stetige Abbildung $X \times I \to Y$ ergänzt werden kann.
 \end{definition}
 
-\begin{beispiel}
+\begin{beispiel}[{name=[{Inklusion, die keine Kofaserung ist}]}]
 	Es sei $X = \set*{0} \cup \set*{\frac{1}{n} \given n \in \mathbb{N}} \subseteq \mathbb{R}$ und $A = \set*{0}$.
 	Dann ist $A \hookrightarrow X$ keine Kofaserung.
 	Dazu betrachten wir den Abbildungszylinder 
@@ -312,7 +312,7 @@ In \Cref{fig:anschauung_pi_n} ist dies zusammen mit der Verknüpfung für $n \in
 	Andererseits müsste gelten $\varphi(0,1) = (0,1)$, da $(0,1) \in A \times I$.
 \end{beispiel}
 
-\begin{satz}
+\begin{satz}[{name=[Wann sind Inklusionen Kofaserungen]}]
 	Für eine Inklusion $i \colon A \to X$ ist äquivalent:
 	\begin{enumerate}[(1)]
 		\item $i$ ist eine Kofaserung
@@ -396,27 +396,27 @@ In \Cref{fig:anschauung_pi_n} ist dies zusammen mit der Verknüpfung für $n \in
 	Außerdem gilt $\phi^{-1}(0)=A$ (Übung).
 \end{beweis}
 
-\begin{beispiel}
+\begin{beispiel}[{name=[Kofaserung bei CW-Komplexen]}]
 	Ist $A \subset X$ die Inklusion eines abgeschlossenen Unterkomplexes $A$ in einem CW-Komplex $X$, so ist die Inklusion eine Kofaserung.
 	Die Eigenschaften (1) und (2) können aus dem Beweis, dass $A \subset X$ ein Umgebungsdeformationsretrakt ist, abgeleitet werden.
 	
 	Insbesondere ist zum Beispiel die Inklusion $S^{n-1} \subset D^n$ eine Kofaserung.
 \end{beispiel}
 
-\begin{bemerkung}
+\begin{bemerkung}[{name=[Umgebungsdeformationsretrakte in perfekt normalen Räumen]}]
 	Ist $A \subset X$ ein Umgebungsdeformationsretrakt und ist $X$ normal, so ist die Inklusion $A \subset X$ \enquote{oft} eine Kofaserung.
 	Ein normaler Raum heißt \Index{perfekt normal}, wenn es zu je zwei disjunkten abgeschlossenen Mengen $A$ und $B$ eine stetige Funktion $\phi \colon X \to I$ gibt mit $\phi(0) =A$ und $\phi^{-1}(1)=B$.
 	Das heißt Umgebungsdeformationsretrakte in perfekt normalen Räumen liefern Kofaserungen.
 \end{bemerkung}
 
-\begin{satz}
+\begin{satz}[{name=[Kofaserungen sind Einbettungen]}]
 	Ist $f \colon A \to X$ eine Kofaserung, so ist die Abbildung $f$ eine Einbettung.
 \end{satz}
 \begin{beweis}
 	\emph{Ohne Beweis.}
 \end{beweis}
 
-\begin{satz}
+\begin{satz}[{name=[stetige Abbildungen als Kofaserung]}]
 	Jede stetige Abbildung ist die Komposition aus einer Kofaserung und einer Homotopieäquivalenz.
 \end{satz}
 \begin{beweis}
