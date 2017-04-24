@@ -242,7 +242,34 @@ Oft verwendet man auch benannte Transitionen:
 \end{bsp}
 
 \subsubsection*{Allgemeines Schaltwerk}
-\todo{Grafik einfügen}
+%	\mbox{}
+\begin{center}
+	\begin{tikzpicture}[small circuit symbols,
+	%every circuit symbol/.style={logic gate IEC symbol color=black},
+	circuit ee IEC,
+	circuit logic US,]
+	\node [draw, fill = white, text height = 2.5 cm, text width = 2 cm, align=center](schaltnetz) at (0,0){};
+	\node [align=center]() at (0,0){Schalt- \\ netz};
+	\node [draw, fill = white, text height = 2.5 cm, text width = 2 cm, align=center](register) at (0,-4){};
+	\node [align=center]() at (0,-4){$r_1$ \\ Register \\ $r_n$};
+	
+	\node [align=center]() at ($(schaltnetz.west) + (-1, 0)$) {$\dots$};
+	\node [align=center]() at ($(schaltnetz.east) + (1, 0)$) {$\dots$};
+	
+	\draw[latex-] ($(schaltnetz.west) + (0, 0.6)$) -- +(-2,0) node[fill=white]{$i_1$};
+	\draw[latex-] ($(schaltnetz.west) + (0, -0.2)$) -- +(-2,0)node[fill=white]{$i_k$};
+	\draw[-latex] ($(schaltnetz.east) + (0, 0.6)$) -- +(2,0) node[]{\hspace{5mm}$o_1$}; %TODO Fix this eval hack
+	\draw[-latex] ($(schaltnetz.east) + (0, -0.2)$) -- +(2,0)node[]{\hspace{5mm}$o_l$};
+	
+	\draw[-latex] ($(schaltnetz.east) + (0, -0.6)$) node[]{\hspace{-5mm}$x_n$} -- +(2,0) --+ (2,-4) --+ (0,-4);
+	\draw[latex-] ($(schaltnetz.west) + (0, -0.6)$) node[]{\hspace{5mm}$x_n$}  -- +(-2,0) --+ (-2,-4) --+ (0,-4);
+	\draw[latex-] ($(schaltnetz.west) + (0, -1)$) node[]{\hspace{5mm}$x_1$} -- +(-1,0) --+ (-1,-2) --+ (0,-2);
+	\draw[-latex] ($(schaltnetz.east) + (0, -1)$) node[]{\hspace{-5mm}$x_1$} -- +(1,0) --+ (1,-2) --+ (0,-2);
+	
+	\node[]() at (2.7,-2) {$\dots$};
+	\node[]() at (-2.7,-2) {$\dots$};
+	\end{tikzpicture}
+\end{center}
 
 \subsubsection*{Modellierung durch ein KTS}
 $\mathcal{K} = (S, S_0, \textit{Act}, R, L)$ mit
