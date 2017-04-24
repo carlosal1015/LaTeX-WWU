@@ -2,8 +2,7 @@
 \section{Teiler, Primzahlen und der Hauptsatz der Arithmetik}
 \label{sec:1}
 	\subsection{Erinnerung}
-	
-	Wir betrachten die Menge der \textbf{natürlichen Zahlen} \index{natürliche Zahl} \marginnote{20.4.}
+	Wir betrachten die Menge der \textbf{natürlichen Zahlen} \index{natürliche Zahl} \marginnote{[1] \\ 20.4.}
 	\[
 		\NN= \{0,1,2,3,\dots\},
 	\]
@@ -25,7 +24,7 @@
 	\subsection{Induktion und Wohlordnung}
 	\begin{satz}[Erstes Induktionsprinzip]
 	\label{satz:IP1}
-	Ist $S \subseteq \NN$ mit \index{erstes Induktionsprinzip}
+	Ist $S \subseteq \NN$ mit \index{erstes Induktionsprinzip} \marginnote{[2]}
 	\begin{enumerate}[(i)]
 		\item $0 \in S$,
 		\item $s \in S \Rightarrow s+1 \in S$,
@@ -79,7 +78,7 @@
 	
 	\begin{lemma}
 		\label{lemma:1.3}
-		Sei $S \subseteq \ZZ$ und sei $S \neq \emptyset$.
+		Sei $S \subseteq \ZZ$ und sei $S \neq \emptyset$. \marginnote{[3]}
 		Wenn $S$ eine untere (bzw. obere) Schranke hat, so hat $S$ auch ein kleinstes (bzw. größtes) Element.
 	\end{lemma}
 	
@@ -100,7 +99,7 @@
 	\begin{definition}[Teiler]
 		\label{def:teiler}
 		Sei $a,b \in \ZZ$.
-		Wenn es ein $m \in \ZZ$ gibt mit $ma = b$, so heißt $a$ ein \Index{Teiler} von $b$.
+		Wenn es ein $m \in \ZZ$ gibt mit $ma = b$, so heißt $a$ ein \Index{Teiler} von $b$. \marginnote{[4]}
 		Man schreibt $a \mid b$, andernfalls $a \nmid b$. \marginnote{lies: \enquote{$a$ teilt $b$ (nicht)}}
 	\end{definition}
 
@@ -131,7 +130,7 @@
 
 	\begin{satz}[Teilen mit Rest]
 		\label{satz:teilen mit rest}
-		Sei $a,b \in \ZZ$, sei $b \neq 0$. \index{Teilen mit Rest}
+		Sei $a,b \in \ZZ$, sei $b \neq 0$. \index{Teilen mit Rest} \marginnote{[5]}
 		Dann existieren eindeutige Zahlen $r,s \in \ZZ$ mit $a = bs + r$ und $0 \leq r < \abs{b}$.
 	\end{satz}
 
@@ -142,6 +141,8 @@
 		\[
 			\abs{b} > \underbrace{r' - r}_{\geq 0} = b(s - s').
 		\]
-		Also folgt $b \mid r'-r$ und $\abs{r' - r} < b$, das heißt $r' - r = 0$ und damit $s = s'$.
+		Also folgt $b \mid (r'-r)$ und $\abs{r' - r} < b$, das heißt $r' - r = 0$ und damit $s = s'$.
+		
+		\textit{Zur Existenz:} 
 	\end{beweis}
 \cleardoubleoddemptypage
