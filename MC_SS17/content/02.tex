@@ -169,16 +169,44 @@ Oft verwendet man auch benannte Transitionen:
 \subsection{Modellierung von Schaltwerken}
 
 \begin{bsp}[Modulo-8-Zähler]
-	\todo{Grafik einfügen}
+	\mbox{}
 	\begin{center}
 		\begin{tikzpicture}[small circuit symbols,
 		%every circuit symbol/.style={logic gate IEC symbol color=black},
 		circuit ee IEC,
 		circuit logic US,]
-		\node [xor gate={info'={XOR}}]() at (0,0) {};
+		 %TODO schoener umsetzen, aber derzeit keine Zeit
+		\node [draw, fill = white, text height = 3 cm, text width = 1 cm](takt) at (0,0){};
+		\node[] (v2) at (0,1) {$v_2$};
+		\node[] (v1) at (0,0) {$v_1$};
+		\node[] (v0) at (0,-1) {$v_0$};
+		\node [xor gate={info'={\tiny XOR}}](v1xor) at (5,0) {};
+		\node [xor gate={info'={\tiny XOR}}](v2xor) at (4,2) {};
+		\node [not gate={info'={\tiny NOT}}](not) at (3,-1) {};
+		\node [and gate={info'={\tiny AND}}, rotate = 90](and) at (1.5,1) {};
+		
+		\draw[-] (takt.east |- v0.east) -- (not.west);
+		
+		\draw[-] (not.east) -- +(1,0) -- +(1, -1.5) -- +(-4.5, -1.5) -- +(-4.5, 0) -- (takt.west |- v0.west);
+		
+		\draw[-] (v1xor.east) -- +(1,0) -- +(1, -3.0) -- +(-7, -3.0) -- +(-7, 0) -- (takt.west |- v1.west);
+		
+		\draw[-] (v2xor.east) -- +(1,0) -- +(1, 1) -- +(-6, 1) -- +(-6, -1) -- (takt.west |- v2.west);
+		
+		\draw[-] (takt.east |- v1.east) -- ($(v1xor.west) - (1,0)$) -- ($(v1xor.west) - (1,-0.1)$) -- ($(v1xor.west) - (0,-0.1)$); 
+		
+		\draw[-] (takt.east |- v2.east) -- ($(v2.east) + (0.5,0)$) -- ($(v2.east) + (0.5,1.1)$) -- ($(v2xor.west) + (0,0.1)$);
+		
+		\draw[-] (and.east) -- ($(and.east) + (0,0.541)$) -- ($(v2xor.west) - (0,0.1)$);
+		
+		\draw[-] ($(and.west) - (0.1,0)$) -- +(0,-0.68) node[circle, fill = black, minimum size=0.15cm, inner sep = 0pt]{};
+		
+		\draw[-] ($(and.west) + (0.1,0)$) -- +(0,-1.68) node[circle, fill = black, minimum size=0.15cm, inner sep = 0pt]{};
+		
+		\draw[-] ($(v0.east) + (0.5,0)$) node[circle, fill = black, minimum size=0.15cm, inner sep = 0pt]{} -- + (0,0.7) -- +(3.5, 0.7) -- +(3.5,0.9) -- ($(v1xor.west) - (0,0.1)$); 
 		\end{tikzpicture}
 	\end{center}
-
+	\todo{Beispiel vervollständigen}
 \end{bsp}
 
 \subsubsection*{Allgemeines Schaltwerk}
