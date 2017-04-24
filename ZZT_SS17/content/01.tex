@@ -143,6 +143,84 @@
 		\]
 		Also folgt $b \mid (r'-r)$ und $\abs{r' - r} < b$, das heißt $r' - r = 0$ und damit $s = s'$.
 		
-		\textit{Zur Existenz:} 
+		\textit{Zur Existenz:} Sei $S = \{k \in \ZZ : k \cdot \abs{b} \leq a\}$. \marginnote{24.4.}
+		Dann gilt $-\abs{a} \in S$, also $S \neq \emptyset$.
+		Weiter ist $\abs{a}$ eine obere Schranke für $S$.
+		Folglich existiert in $S$ ein größtes Element $s = \max(S)$.
+		Es folgt $s \cdot \abs{b} \leq a$ und $(s+1) \cdot \abs{b} > a$.
+		Wähle $r \in \NN$ mit $s \cdot \abs{s} + r = a$, also $s \cdot \abs{b} + r < (s-1) \cdot \abs{b}$ und damit $0 \leq r < \abs{b}$.
+		Für $b>0$ ist $\abs{b} = b$ und $s \cdot b + r = a$.
+		Für $b<0$ ist $\abs{b} = -b$ und $-s \cdot b + r = a$.
+	\end{beweis}
+
+	\begin{satz}
+		Sei $H \subseteq \ZZ$ eine Teilmenge  mit \marginnote{[6]}
+		\begin{enumerate}[(i)]
+			\item $H \neq \emptyset$
+			\item $x,y \in H \quad \Rightarrow \quad x-y \in H$.
+		\end{enumerate}
+		Dann gibt es ein eindeutig bestimmtes $d \in \NN$ mit $H = d \cdot \ZZ = \{d \cdot k : k \in \ZZ\}$.
+	\end{satz}
+
+	\begin{beweis}
+		Sei $x \in H$.
+		Dann ist $x-x = 0 \in H$ und $0-x = -x \in H$.
+		Folglich ist für $x,y \in H$ auch $x -(-y) = x+y \in H$.
+		
+		Falls $H = \{0\}$, so gilt $0 \cdot \ZZ = \setzero$ und es ist eindeutig $d = 0$.
+		
+		Falls $H \neq \setzero$, so gibt es ein Element $h \in H$ mit $h > 0$.
+		Sei $S = \{h \in H : h > 0\} \neq \emptyset$.
+		Setze $d = \min(S)$.
+		Ist nun $h \in H$ beliebig, schreibe $a = s\cdot d + r$ mit $0 \leq r < \abs{d}$ (Teilen mit Rest).
+		Dann gilt $s \cdot d \in H$ und damit $r = h-sd \in H$.
+		Nach Wahl von $d = \min(S)$ folgt $r = 0$, das heißt $h = d \cdot s \in d \cdot \ZZ$.
+		
+		Ist $H = d' \cdot \ZZ$ mit $d' \in \NN$, so folgt $d' = \min\{h \in H : h > 0\} = \min(S) = d$.
+	\end{beweis}
+
+	\begin{korollar}
+		\label{kor:satz_1.6}
+		Seien $a_1,\dots,a_n \in \ZZ, n \geq 1$ und sei
+		\[
+			H = \{z_1a_1 + z_2a_2 + \dots + z_na_n : z_1,\dots,z_n \in \ZZ\}
+		\]
+		die Menge aller ganzzahligen Linearkombinationen der Zahlen $a_1,\dots,a_n$.
+		Dann gibt es genau ein $d \in \NN$ mit $H = d \cdot \ZZ$.
+	\end{korollar}
+
+	\begin{beweis}
+		Es gilt $a_1 \cdot 1 + a_2 \cdot 0 + \dots + a_n \cdot 0 \in H \neq \setzero$ und $(a_1z_1 + \dots + a_nz_n) - (a_1z_1' + \dots + a_nz_n') = a_1(z_1-z_1') + \dots + a_n(z_n-z_n') \in H$.
+		Nach dem vorigen Satz folgt $H = d \cdot \ZZ$ mit $d$ eindeutig.		
+	\end{beweis}
+	\newpage
+	\begin{definition}[größter gemeinsamer Teiler]
+		Die Zahl $d \in \NN$ aus Korollar~\ref{kor:satz_1.6} heißt der \textbf{größte gemeinsame Teiler} von $a_1,\dots,a_n$. \index{größter gemeinsamer Teiler}
+		Wir schreiben:
+		\[
+			\ggT(a_1,\dots,a_n) = d.
+		\]
+	\end{definition}
+
+	Der Name \enquote{größter gemeinsamer Teiler} ist berechtigt und passt zur Definition aus der Schule:
+	
+	\begin{lemma}
+		\label{lem:1.7}
+		Sei $a_1,\dots,a_n \in \ZZ$ und $d = \ggT(a_1,\dots,a_n)$. \marginnote{[7]}
+		Dann gilt:
+		\begin{enumerate}[(i)]
+			\item $d \mid a_i$ für alle $i = 1,\dots,n$.
+			\item Ist $b \in \ZZ$ mit $b \mid a_i$ für alle $i=1,\dots,n$, dann gilt $b \mid d$ (das heißt, jeder gemeinsame Teiler der $a_i$ teilt auch $d$).
+		\end{enumerate}
+	\end{lemma}
+
+	\begin{beweis}
+		Sei $H = \{a_1z_1 + \dots + a_nz_n : z_1,\dots,z_n \in \ZZ\} = d \cdot \ZZ$.
+		\begin{enumerate}[(i)]
+			\item Für jedes $h \in H$ gilt also $d \mid h$.
+			Nun gilt $a_i = 0 \cdot a_1 + \dots + 0 \cdot a_{i-1} + 1 \cdot a_i + 0 \cdot a_{i+1} + \dots + 0 \cdot a_n \in H$, also $d \mid a_i$.
+			\item Wenn $b \in \ZZ$ mit $b \mid a_i$ für alle $i$, so folgt $b \mid h$ für alle $h \in H$.
+			Mit $d \in H$ folgt $b \mid d$.
+		\end{enumerate}
 	\end{beweis}
 \cleardoubleoddemptypage
