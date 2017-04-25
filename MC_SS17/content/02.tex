@@ -1,7 +1,6 @@
 %!TEX root = ../MC_SS17.tex
 \section{Systemmodellierung durch Automaten}
 \label{sec:para2}
-\nextlecture
 
 Der erste Schritt für das Model-Checking ist die Modellierung des Systems. Dies ist in der Praxis oft schwierig, da das Modell detailliert genug sein muss um interessante Eigenschaften zu erfassen, gleichzeitig aber auch abstrakt genug sein muss, um automatische Verifikation zu ermöglichen.
 
@@ -122,9 +121,9 @@ Oft verwendet man auch benannte Transitionen:
 	\begin{center}
 		\begin{tikzpicture}
 			\node[initial, state](1) at (0,0) {$1$};
-			\node[state, label = below:{\small \itshape SeenA}](2) at (2,0) {$2$};
-			\node[state, label = below:{\small \itshape SeenAB}](3) at (4,0) {$3$};
-			\node[state, label = below:{\small \itshape Open}](4) at (6,0) {$4$};
+			\node[state](2) at (2,0) {$2$};
+			\node[state](3) at (4,0) {$3$};
+			\node[state](4) at (6,0) {$4$};
 			
 			\path[->] 	
 			(1) edge [bend left] node [align=center,fill=white] 
@@ -282,7 +281,233 @@ $\mathcal{K} = (S, S_0, \textit{Act}, R, L)$ mit
 	\item $L\left((x_1,\dots,x_2)\right) = \{R_i \mid x_i = 1, i=1,\dots,n\}$
 \end{itemize}
 
-\nextlecture
 \subsection{Automaten mit Variablen über endlichen Wertebereichen}
+\begin{center}
+	\begin{tikzpicture}
+	\node[](kont) at (0,0) {Kontrolle};
+	\node[](kont) at (1.2,0) {+};
+	\node[](daten) at (2,0) {Daten};
+	
+	\node[anchor = west](daten_hint) at (2.5,-0.75) {Variablen};
+	\node[anchor = west](kont_hint) at (2.5, -1.5) {unterliegende Automaten};
+	
+	\draw[-latex] (kont_hint.west) -| (kont.south);
+	\draw[-latex] (daten_hint.west) -| (daten.south);
+	\end{tikzpicture}
+\end{center}
+
+Wir betrachten Variablen mit \underline{endlichen Wertebereichen} und die Interaktion des Automaten mit Variablen:
+\begin{itemize}
+	\item Assignments (Wertezuweisungen) \hspace{5mm} $x := e$
+	\item Guards (Bedingungen)
+	\item[] Transitionen können von Bedingungen an den Wert der Variablen abhängen
+	\item Initialisierungen
+	\item[] Startwert der Variablen kann festgelegt werden
+\end{itemize}
+
+\begin{bsp}[Digi-Code mit höchstens drei Fehlversuchen]
+	\mbox{}
+	\begin{center}
+		\begin{tikzpicture}
+		\node[initial, state](1) at (0,0) {$1$};
+		\node[state, label = below:{\small \itshape SeenA}](2) at (2,0) {$2$};
+		\node[state, label = below:{\small \itshape SeenAB}](3) at (4,0) {$3$};
+		\node[state, label = below:{\small \itshape Open}](4) at (6,0) {$4$};
+		
+		\node[state](error) at (3,-3) {err};
+					
+		\path[->] 	
+		(1) edge [bend left] node [align=center,fill=white] 
+		{$A$} (2)
+		(2) edge [bend left] node [align=center,fill=white] 
+		{$B$} (3)
+		(3) edge [bend left] node [align=center,fill=white] 
+		{$A$} (4)
+		(2) edge [bend left = 25] node [align=center,fill=white] 
+		{$C$} (1)
+		(3) edge [bend right = 75] node [align=center,fill=white] 
+		{$B,C$} (1)
+		(1) edge [loop above] node [align=center] 
+		{$B,C$} (1)
+		(2) edge [loop above] node [align=center] 
+		{$A$} (2);
+		\end{tikzpicture}
+	\end{center}
+	\todo{Übergänge ergänzen}
+	Die Variable $ctr: \{0,1,2,3\}$ zählt die Anzahl der Fehlversuche; $1,2,3,4$ sind die Kontrollzustände.
+\end{bsp}
+
+Ein Automat mit Variablen kann in ein KTS auseinandergefaltet werden.
+
+\begin{bsp}[Digicode mit höchstens drei Fehlversuchen]
+	\mbox{}
+	\begin{center}
+		\begin{tikzpicture}
+			\node[state, initial, text width = 1.1cm, align = center](10) at (0,0) {$1$ \\ $ctr=0$};
+			\node[state, text width = 1.1cm, align = center](20) at (4,0) {$2$ \\ $ctr=0$};
+			\node[state, text width = 1.1cm, align = center](30) at (8,0) {$3$ \\ $ctr=0$};
+			\node[state, text width = 1.1cm, align = center](40) at (12,0) {$4$ \\ $ctr=0$};
+			
+			\node[state, text width = 1.1cm, align = center](11) at (0,-4) {$1$ \\ $ctr=1$};
+			\node[state, text width = 1.1cm, align = center](21) at (4,-4) {$2$ \\ $ctr=1$};
+			\node[state, text width = 1.1cm, align = center](31) at (8,-4) {$3$ \\ $ctr=1$};
+			\node[state, text width = 1.1cm, align = center](41) at (12,-4) {$4$ \\ $ctr=1$};
+			
+			\node[state, text width = 1.1cm, align = center](12) at (0,-8) {$1$ \\ $ctr=2$};
+			\node[state, text width = 1.1cm, align = center](22) at (4,-8) {$2$ \\ $ctr=2$};
+			\node[state, text width = 1.1cm, align = center](32) at (8,-8) {$3$ \\ $ctr=2$};
+			\node[state, text width = 1.1cm, align = center](42) at (12,-8) {$4$ \\ $ctr=2$};
+			
+			\node[state, text width = 1.1cm, align = center](13) at (0,-12) {$1$ \\ $ctr=3$};
+			\node[state, text width = 1.1cm, align = center](23) at (4,-12) {$2$ \\ $ctr=3$};
+			\node[state, text width = 1.1cm, align = center](33) at (8,-12) {$3$ \\ $ctr=3$};
+			\node[state, text width = 1.1cm, align = center](43) at (12,-12) {$4$ \\ $ctr=3$};
+			
+			\node[state, text width = 1.1cm, align = center](err3) at (0,-16) {$err$ \\ $ctr=3$};
+			\node[state, text width = 1.1cm, align = center](err0) at (4,-16) {$err$ \\ $ctr=0$};
+			\node[state, text width = 1.1cm, align = center](err1) at (8,-16) {$err$ \\ $ctr=1$};
+			\node[state, text width = 1.1cm, align = center](err2) at (12,-16) {$err$ \\ $ctr=2$};
+			
+			\path[->]
+			(10) edge [] node [align=center,fill=white] {$A$} (20)
+			(20) edge [] node [align=center,fill=white] {$B$} (30)
+			(30) edge [] node [align=center,fill=white] {$A$} (40)
+			
+			(11) edge [] node [align=center,fill=white] {$A$} (21)
+			(21) edge [] node [align=center,fill=white] {$B$} (31)
+			(31) edge [] node [align=center,fill=white] {$A$} (41)
+			
+			(12) edge [] node [align=center,fill=white] {$A$} (22)
+			(22) edge [] node [align=center,fill=white] {$B$} (32)
+			(32) edge [] node [align=center,fill=white] {$A$} (42)
+			
+			(13) edge [] node [align=center,fill=white] {$A$} (23)
+			(23) edge [] node [align=center,fill=white] {$B$} (33)
+			(33) edge [] node [align=center,fill=white] {$A$} (43)
+			
+			(10) edge [] node [align=center,fill=white] {$B,C$} (11)
+			(11) edge [] node [align=center,fill=white] {$B,C$} (12)
+			(12) edge [] node [align=center,fill=white] {$B,C$} (13)
+			(13) edge [] node [align=center,fill=white] {$B,C$} (err3)
+			
+			(20) edge [] node [align=center,fill=white] {$A$} (11)
+			(21) edge [] node [align=center,fill=white] {$A$} (12)
+			(22) edge [] node [align=center,fill=white] {$A$} (13)
+			(23) edge [] node 
+				   [align=center,fill=white] {$A$} (err3)
+			
+			(30) edge [] node 
+			       [align=center,fill=white] {$B,C$} (11) 			
+			(31) edge [] node 
+			       [align=center,fill=white] {$B,C$} (12)
+			(32) edge [] node 
+			       [align=center,fill=white] {$B,C$} (13)
+			(33) edge [] node 
+			       [align=center,fill=white] {$B,C$} (err3);
+			
+		\end{tikzpicture}
+	\end{center}
+\end{bsp}
+
+\subsubsection*{Allgemeines Vorgehen bei Auseinanderfaltung eines KTS mit Variablen}
+Zustände: 
+\begin{center}
+	\begin{tikzpicture}
+	\node[](zstde) at (0,0) {Paare ($c, \sigma)$, $\sigma: \textit{Var} \rightarrow \textit{Val}$};
+	
+	\node[anchor = west](var_hint) at (2.5,-0.75) {Variablenzustand, erfasst Werte der Variablen};
+	\node[anchor = west](kont_hint) at (2.5, -1.5) {Kontrollzustand \^{=} Zustand des KTS mit Variablen};
+	
+	\draw[-latex] (kont_hint.west) -| (-0.7,-0.2);
+	\draw[-latex] (var_hint.west) -| (-0.5,-0.2);
+	\end{tikzpicture}
+\end{center}
+
+Transitionen werden nur mit Aktionen benannt. Guards und Assignments werden Start und Zielzustand berücksichtigt. Das auseinandergefaltete KTS enthält Transitionen $((c, \sigma), a, (c', \sigma')$ gdw.
+
+es gibt im ursprünglichen KTS eine mit Aktion $a$, einen Guard $g$ und Assignments $S$ benannte Transition, sodass gilt:
+\begin{itemize}
+	\item $g$ gilt in $\sigma$
+	\item $\sigma'$ ergibt sich durch Anwendung der Effekte der Assignments in $S$ an $\sigma$. ($\sigma' = [[S]](\sigma)$)
+\end{itemize}
+
+
+\begin{bem}[zur Auseinanderfaltung]
+
+	\begin{itemize}
+		\item Reduktion des Model-Checking-Problems für Automaten/KTS mit Variablen auf das Problem für reine KTS
+		\item Beachte: Auseinanderfaltung hat 
+		\[\left(|\textit{Kontrollzustände}| \cdot \prod_{x \text{Variable im \\ gegebenen Automaten/KTC}}\text{Wertebereich von x}\right) \in \Omega\left(2^{\text{Anzahl der Variablen}}\right)\] 
+		 viele Zustände. Dies bedeutet regelrecht eine Zustandsexplosion. Mögliche Lösungsansätze sind
+		 \begin{itemize}
+		 	\item On-the-fly-Model-Checking: Zustandsraum wird inkrementell erzeugt
+		 	\item Symbolisches Model-Checking: Mengen von Zuständen mit geeigneten Datenstrukturen kompakt repräsentieren
+		 	\item Abstraktion
+		 \end{itemize}
+	\end{itemize}
+
+	Durch Auseinanderfaltung lassen sich imperative Programme 
+	\begin{itemize}
+		\item ohne Rekursion (aber mit Schleifen!)
+		\item über Variablen mit endlichen Wertebereichen
+	\end{itemize}
+	im Prinzip behandeln (while-Programme mit endlich-wertigen Variablen). Sie kann in Automaten mit Variablen übersetzt werden.
+	\todo{Bild einfügen}
+	
+	Bei Variablen mit unendlichen Wertebereichen kann eine Abstraktion auf ein Programm mit Variablen über einen endlichen Wertebereich verwendet werden.
+\end{bem}
+
+\subsection{Trace- und Bisimulationsäquivalenz von Kripke-Transitionssystemen}
+Sei $AP$ eine (endl.) Menge atomarer Präpositionen.
+
+\begin{defn}[Läufe]
+	Sei $\mathcal{K} = (S, S_0, \textit{Act}, R, L)$ ein KTS.
+	\begin{enumerate}[a)]
+		\item Ein endlicher \emph{Lauf} von $\mathcal{K}$ ist eine endliche alternierende Folge $s_0 a_1 s_1 a_2 \dots a_n s_n$ aus Zuständen $s_i \in S$ und Aktionen $a_i \in \textit{Act}$ mit $(s_i,a_{i+1}, s_{i+1}) \in R$ für $i=1 \dots n-1$ und $s_0 \in S_0$.
+		
+		\item Einun endlicher Lauf von $\mathcal{K}$ ist eine unendliche alternierende Folge $s_0 a_1 s_1 a_2 \dots$ aus Zuständen $s_i \in S$ und Aktionen $a_i \in \textit{Act}$ mit $(s_i,a_{i+1}, s_{i+1}) \in R$ für $i \in \mathbb{N}_0$ und $s_0 \in S_0$.
+		
+		\item Ein Lauf heißt \emph{maximal}, wenn er nicht verlängerbar ist, d.h. ein unendlicher Lauf ist immer maximal und ein endlicher Lauf $s_0 a_1 s_1 a_2 \dots a_n s_n$ ist maximal, wenn es kein $a \in \textit{Act}$ und $s \in S$ mit $(s_n, a, s) \in R$ gibt.
+	\end{enumerate}
+\end{defn}
+
+\begin{bsp}
+	\label{kts-aeq}
+	Betrachte
+	
+	\todo{Bild einfügen}
+	
+	$\pi_1 = 0, M, 1, K, 2, \tau, 0, M, 1$ ist ein endlicher Lauf in $\mathcal{K}_1$.
+	
+	$\pi_2 = 0, M, 1, T, 3, \tau, 0, M, 1, T, 3, \tau, 0, \dots$ ist ein unendlicher Lauf und maximal.
+	
+	$\mathcal{K}_1$ hat keine maximalen endlichen Läufe.
+	
+	\todo{K2 und K3 als Bilder einfügen}
+	
+	$\pi_3 = 0, M, 1, K, 3, \tau, 0, M, 1$ ist ein endlicher Lauf von $\mathcal{K}_2$, nicht maximal.
+	
+	$\pi_4 = 0, M, 2, T, 4, \tau, 0, M, 2, T, 4, \tau, 0, \dots$ ist ein unendlicher maximal Lauf von $\mathcal{K}_2$.
+	
+	$\mathcal{K}_2$ hat keine maximalen endlichen Läufe.
+\end{bsp}
+
+\begin{defn}[Traces]
+	Sei $\mathcal{K} = (S, S_0, \textit{Act}, R, L)$ ein KTS über $AP$.
+	
+	\begin{enumerate}[a)]
+		\item Ein endlicher (bzw. unendlicher) \emph{Trace} ist eine endliche (bzw. unendliche) alternierende Folge $t=X_0 a_1 X_1 \dots a_k X_k$ (bzw. $t=X_0 a_1 X_1 a_2 \dots$) mit $X_i \subseteq \textit{AP}$ und $a_i \in \textit{Act}$.
+		
+		\item Sei  $\pi = s_0 a_1 s_1 a_2 \dots a_n s_n$ (bzw. $\pi = s_0 a_1 s_1 a_2 \dots $) eine endliche (bzw. unendliche) alternierende Folge von Zuständen $s_i \in S$ und Aktionen $a_i \in \textit{Act}$. Dann heißt $Tr(\pi) = L(s_0) a_1 L(s_1) \dots a_k L(s_k)$ bzw. $Tr(\pi) = L(s_0) a_1 L(s_1) a_2 L(s_2) \dots$ Trace zu $\pi$.
+		
+		\item Ein Trace $t$ heißt (maximaler) Trace von $\mathcal{K}$, wenn es einen (maximalen) Lauf $\pi$ von $\mathcal{K}$ mit $t=Tr(\pi)$ gibt.
+		
+		\item[] Es sei $Tr(\mathcal{K})$ die Menge der maximalen Traces von $\mathcal{K}$, d.h. $Tr(\mathcal{K}) = \{Tr(\pi) \mid \pi \text{ ist maximaler Lauf von } \mathcal{K}\}$
+		
+		\item Zwei Kripke-Transitionssystem $\mathcal{K}, \mathcal{K}'$ über $AP$ mit gleicher Atkionsmenge heißen \emph{trace-äquivalent} (in Zeichen $\mathcal{K} \equiv_{tr} \mathcal{K}'$) gdw. $Tr(\mathcal{K}) = Tr(\mathcal{K'})$.
+	\end{enumerate}
+\end{defn}
+
+Nachtrag zu Beispiel \ref{kts-aeq}: Es gilt $\mathcal{K}_1 \equiv_{tr} \mathcal{K}_2 \equiv_{tr} \mathcal{K}_3$. 
 
 \cleardoubleoddemptypage
