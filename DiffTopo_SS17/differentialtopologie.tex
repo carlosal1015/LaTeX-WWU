@@ -307,14 +307,17 @@ Wie treffen die folgende Vereinbarung für diese Vorlesung: Eine Abbildung heiß
 \end{satz}
 \begin{beweis}
 	Ohne Beschränkung der Allgemeinheit, können wir $M=U \subseteq \mathbb{R}^m$ offen, $p=0$, $f \colon U \to \mathbb{R}^n$ und $f(p)=0$ annehmen.
-	Da $\D f(0)$ den Rang $r$ hat, existieren nach Linearer Algebra Matrizen $S \in \GL_m(\mathbb{R})$, $T \in \GL_n(\mathbb{R})$ mit\todo{hübsch machen}
+	Da $\D f(0)$ den Rang $r$ hat, existieren nach Linearer Algebra Matrizen $S \in \GL_m(\mathbb{R})$, $T \in \GL_n(\mathbb{R})$ mit
 	\[
-		S \cdot \D f(0) \cdot T = \begin{pmatrix}
-			1 & & &  \\
-			& \ddots & & 0 \\
-			& & 1 &  \\
-			 & 0 & & 0
-		\end{pmatrix}
+		S \cdot \D f(0) \cdot T = 
+		\enbrace*{\begin{array}{c|c}
+			\scalebox{.8}{$\begin{array}{ccc}
+				1 & & \\
+				& \ddots & \\
+				& & 1
+			\end{array}$} & 0 \\ \hline
+			0 & 0
+		\end{array}}
 	\]
 	Ersetze $f$ durch $S \circ f \circ T$.
 	Dann können wir annehmen, dass $\D f(0)$ bereits die obere Matrixgestalt hat.
@@ -333,12 +336,21 @@ Wie treffen die folgende Vereinbarung für diese Vorlesung: Eine Abbildung heiß
 	Damit ist $g$ von der Form $g(z_1, \ldots ,z_m) = \enbrace*{z_1, \ldots ,z_r, g_{r+1}(z), \ldots , g_n(z)}$.
 	Also folgt
 	\[
-		\D g(z) = \begin{pmatrix}
-			1 & & &  \\
-			& \ddots & & 0 \\
-			& & 1 &  \\
-			 & * & & A(z)
-		\end{pmatrix}
+		\D g(z) = 
+		% \begin{pmatrix}
+		% 	1 & & &  \\
+		% 	& \ddots & & 0 \\
+		% 	& & 1 &  \\
+		% 	 & * & & A(z)
+		% \end{pmatrix}
+		\enbrace*{\begin{array}{c|c}
+			\scalebox{.8}{$\begin{array}{ccc}
+				1 & & \\
+				& \ddots & \\
+				& & 1
+			\end{array}$} & 0 \\ \hline
+			* & A(z)
+		\end{array}}
 	\]
 	mit $A(z) \in \Mat_{n-r,m-r}$.
 	Für alle $z$ ist $\rank \D g(z) = r$ und somit ist $A(z) = 0$ für alle $z$.
@@ -347,16 +359,29 @@ Wie treffen die folgende Vereinbarung für diese Vorlesung: Eine Abbildung heiß
 	
 	Betrachte nun für eine geeignete Umgebung $V_0$ von 0 die Abbildung
 	\mapdef{k \colon V_0}{\mathbb{R}^n}{(y_1, \ldots ,y_n)}{\scriptstyle\enbrace[\big]{y_1, \ldots ,y_r, y_{r+1} - g_{r+1}(y_1, \ldots ,y_r, 0, \ldots ,0), \ldots , y_n - g_n(y_1, \ldots ,y_r, 0, \ldots ,0)}}{}
-	Es gilt dann\todo{hübsch machen}
+	Es gilt dann
 	\[
-		\D k (0) = \begin{pmatrix}
-			1 & & & & & \\
-			& \ddots & & & 0 & \\
-			& & 1 & & &  \\
-			& & & 1 & & \\
-			& * & & & \ddots & \\
-			& & & & & 1
-		\end{pmatrix}
+		\D k (0) = 
+		% \begin{pmatrix}
+		% 	1 & & & & & \\
+		% 	& \ddots & & & 0 & \\
+		% 	& & 1 & & &  \\
+		% 	& & & 1 & & \\
+		% 	& * & & & \ddots & \\
+		% 	& & & & & 1
+		% \end{pmatrix}
+		\enbrace*{\begin{array}{c|c}
+			\scalebox{.8}{$\begin{array}{ccc}
+				1 & & \\
+				& \ddots & \\
+				& & 1
+			\end{array}$} & 0 \\ \hline
+			* & \scalebox{.8}{$\begin{array}{ccc}
+				1 & & \\
+				& \ddots & \\
+				& & 1
+			\end{array}$}
+		\end{array}}
 	\]
 	Diese Matrix ist invertierbar und somit folgt wieder aus dem Umkehrsatz, dass $0 \in V_1 \subseteq V_0$ existiert, sodass $k \colon V_1 \to k(V_1)$ ein Diffeomorphismus ist.
 	Setze nun $U_1 \coloneqq f^{-1}(V_1)$.
@@ -377,7 +402,7 @@ Wie treffen die folgende Vereinbarung für diese Vorlesung: Eine Abbildung heiß
 	Sei $p \in f^{-1}(q)$.
 	Dann ist $\rank_p(f) = n$ maximal, also gibt es eine Umgebung $U$ von $p$, sodass $\rank_{p'}(f) = n$ für alle $p' \in U$.
 	Damit hat $f|_U \colon U \to N$ konstanten Rang.
-	Nach dem Rangsatz \ref{satz:rangsatz} existieren Karten $(U_0,h_0)$ von $M$, $U_0 \subseteq U$ mit $h_0(p)=0$ und $(V,k)$ von $N$ mit $f(U_0) \subseteq V$ und $k(q)=0$, sodass \todo{hübsch machen}
+	Nach dem Rangsatz \ref{satz:rangsatz} existieren Karten $(U_0,h_0)$ von $M$, $U_0 \subseteq U$ mit $h_0(p)=0$ und $(V,k)$ von $N$ mit $f(U_0) \subseteq V$ und $k(q)=0$, sodass
 	\[
 		\begin{tikzcd}
 			U_0 \rar["f"] \dar["h_0"] & V \dar["k"] & q \dar[mapsto] \\
@@ -523,6 +548,7 @@ Dann folgt aus \cref{satz:sard}, dass $f(U)$ eine Nullmenge ist.
 			(x_1, \ldots ,x_m) \rar[mapsto] & (x_1, \ldots ,x_m, 0, \ldots ,0)
 		\end{tikzcd}
 	\]
+	Damit folgt direkt die Behauptung.
 \end{beweis}
 
 Ist eine entsprechende globale Aussage möglich? Betrachte die folgende Abbildung $f \colon \mathbb{R} \to \mathbb{R}^2$.
