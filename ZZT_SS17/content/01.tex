@@ -323,8 +323,78 @@
 			Damit folgt	$n = p(n) \cdot q_1 \cdot q_2 \cdots q_t$, was (nach eventuellem Umsortieren) eine Primfaktorzerlegung von $n$ ist.
 		\end{description}
 	
-		\textit{Zur Eindeutigkeit:} Schreibe $n = p_1 \cdots p_m$ mit $p_i \in \PP$, $p_1 \leq p_2 \leq \dots \leq p_m$.
+		\textit{Zur Eindeutigkeit:} Schreibe $n = p_1 \cdots p_m$ mit $p_i \in \PP$, $p_1 \leq p_2 \leq \dots \leq p_m$. \marginnote{27.4.}
 		Sei $q \in \PP$.
-		Sei $l$ die Anzahl der Primfaktoren $p_i = q$.
+		Sei $\ell$ die Anzahl der Primfaktoren $p_i = q$ (also $\ell = 0$, falls alle $p_i \neq q$).
+		Dann folgt $n = q^\ell \cdot s$ und $s$ ist Produkt von Primzahlen $p_j$ mit $p_j \neq q$, also insbesondere mit $\ggT(q,p_j) = 1$.
+		Nach Korollar~\ref{kor:1.8.1} gilt dann $\ggT(q,s) = 1$, insbesondere $q \nmid s$.
+		Es folgt $q^{\ell+1} \nmid n$, denn aus $n = q^{\ell+1} \cdot t = q^{\ell} \cdot s$ folgt durch Kürzen $q \cdot t = s$.
+		Damit haben wir
+		\[
+			\ell = \max\{k \in \NN : q^k \mid n\}.
+		\]
+		Diese Zahlen hängen nicht von der gegebenen Primfaktorzerlegung ab.
+		Wir wir also definieren
+		\[
+			\nu_q(n) := \max\{k \in \NN : q^k \mid n\},
+		\]
+		so folgt $\{p_1,\dots,p_k\} = \{q \in \PP : \nu_q(n) \neq 0\}$ und jedes $p_i$ kommt genau mit der Vielfachheit $\nu_q(n)$ in der Primfaktorzerlegung vor.
+	\end{beweis}
+
+	\begin{definition}[$p$-adische Bewertung]
+		\label{def:p-adisch}
+		Für $n \in \ZZ$ und $q \in \PP$ definieren wir die $\bm{p}$\textbf{-adische Bewertung} von $n$ durch \index{p-adische Bewertung@$pq$-adische Bewertung}
+		\[
+			\nu_p(n) = \begin{cases}
+				\infty, & \text{falls } n = 0 \\
+				\max\{k \in \NN : p^k \mid n\}, & \text{falls } n \neq 0.
+			\end{cases}
+		\]
+	\end{definition}
+
+	Damit erhalten wir folgende Umformulierung des Hauptsatzes:
+	\begin{satz}[Fundamentalsatz der Arithmetik, 2. Version]
+		\label{satz:fundamentalsatz_2}
+		Sei $n \in \ZZ$ mit $n \neq 0$.
+		Sei
+		\[
+			\varepsilon(n) = \begin{cases}
+				1, & \text{falls } n > 0 \\
+				-1, & \text{falls } n < 0.
+			\end{cases}
+		\]
+		Es gilt
+		\[
+			n = \varepsilon(n) \cdot \prod_{p \in \PP} p^{\nu_p(n)}.
+		\]
+		Das ist ein unendliches Produkt, in dem aber fast alle Faktoren $1$ sind.
+		Also steht rechts ein Produkt aus endlich vielen Primzahlpotenzen.
+	\end{satz}
+	
+	\begin{korollar}
+		Sei $a,b \in \ZZ$. \marginnote{[12]}
+		Dann sind äquivalent:
+		\begin{enumerate}[(i)]
+			\item $a \mid b$
+			\item Für alle $q \in PP$ gilt $\nu_q(a) \leq \nu_q(b)$.
+		\end{enumerate}
+	\end{korollar}
+	\begin{beweis}
+		\begin{description}
+			\item[(i) $\Rightarrow$ (ii):] Klar nach Definition von $\nu_q$, denn aus $q^k \mid a$ und $a \mid b$ folgt $q^k \mid b$.
+			\item[(ii) $\Rightarrow$ (i):] Ist richtig für $b = 0$.
+			Wenn aber $b \neq 0$, so folgt die Behauptung aus Satz~\ref{satz:fundamentalsatz_2}.
+		\end{description}
+	\end{beweis}
+
+	\begin{lemma}
+		\label{lemma:1.13}
+		Sei $a,b \in \ZZ$ und $p \in \PP$. \marginnote{[13]}
+		Gilt $p \mid ab$, so folgt $p \mid a$ oder $p \mid b$.
+	\end{lemma}
+
+	\begin{beweis}
+		Angenommen, $p \nmid a$ und $p \nmid b$.
+		Dann ist $\ggT(p,a) = 1 = \ggT(p,b)$ mit $p \in \PP$, also $\ggT(p,ab) = 1$ nach \ref{kor:1.8.1} und damit $p \nmid ab$.
 	\end{beweis}
 \cleardoubleoddemptypage
