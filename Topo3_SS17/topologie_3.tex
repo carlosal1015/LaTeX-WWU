@@ -413,7 +413,7 @@ In \Cref{fig:anschauung_pi_n} ist dies zusammen mit der Verknüpfung für $n \in
 	Ist $f \colon A \to X$ eine Kofaserung, so ist die Abbildung $f$ eine Einbettung.
 \end{satz}
 \begin{beweis}
-	\emph{Ohne Beweis.}
+	\emph{Ohne Beweis.}\todo{aus Übungen übernehmen}
 \end{beweis}
 
 \begin{satz}[{name=[stetige Abbildungen als Kofaserung]}]
@@ -422,6 +422,163 @@ In \Cref{fig:anschauung_pi_n} ist dies zusammen mit der Verknüpfung für $n \in
 \begin{beweis}
 	Ist $f \colon X \to Y$ eine stetige Abbildung, dann ist $i \colon X \cong X \times \set*{0} \hookrightarrow \Zyl_i$ und die Projektion $p \colon \Zyl_i \to Y$ ist eine Homotopieäquivalenz mit Homotopieinversem $Y \hookrightarrow \Zyl_i$.
 	Die Komposition $p \circ i$ ist genau $f$.
+\end{beweis}
+
+\begin{satz}
+	Ist $A \subset X$ abgeschlossen und die Inklusion $i$ eine Kofaserung, so ist die kanonische Abbildung $\pi\colon C_i \to \sfrac{X}{A}$ eine Homotopieäquivalenz.\marginnote{mapping cone}
+\end{satz}
+\begin{beweis}
+	Wir konstruieren ein Homotopieinverses. 
+	Da $i$ eine Kofaserung ist, existiert eine Ergänzung in dem kommutativen Diagramm
+	\[
+		\begin{tikzcd}[row sep=small]
+			& X \times \set*{0}  \drar[hook] \ar[rrd,bend left] \\
+			A \times \set*{0} \urar[hook] \drar[hook] & & X \times I \rar[dashed,"r"] & C_i \\
+			& A \times I \urar \ar[urr,bend right]
+		\end{tikzcd}
+	\]
+	Definiere nun $\iota \colon \sfrac{X}{A} \to C_i$ durch das Diagramm
+	\[
+		\begin{tikzcd}
+			X \cong X \times \set*{1} \rar["r_1"] \dar & C_i \\
+			\sfrac{X}{A} \urar["\iota"']
+		\end{tikzcd}
+	\]
+	Dann gilt $\pi \circ \iota \simeq {\id}$.
+	Die dafür nötige Homotopie erhalten wir analog durch ein Diagramm
+	\[
+		\begin{tikzcd}
+			X \times I \rar["r"] \drar[two heads] & C_i \rar["\pi"] & \sfrac{X}{A} \\
+			& \sfrac{X}{A} \times I \urar
+		\end{tikzcd}
+	\]
+	Um $\iota \circ \pi \simeq {\id_{C_i}}$ zu zeigen, betrachten wir die Familie von stetigen Abbildungen $g_s = \overline{r} \circ \pi_s$
+	\[
+		\begin{tikzcd}
+			&X \times I \rar["r"] \dar & C_i \\
+			C_i \rar["\pi_s"] &\sfrac{X \times I}{A \times \set*{1}} \urar["\overline{r}"']
+		\end{tikzcd}
+	\]
+	wobei $\pi_s$ durch die folgende Zuordnungen gegeben ist $\benbrace*{(a,t)} \mapsto \benbrace[\big]{(a, 1- s(1-t))}$ und $\benbrace*{(x,0)} \mapsto \benbrace*{(x,1-s)}$.
+	Dann ist $g \colon C_i \times I \to C_i$ mit $g_0 = \iota \circ \pi$ und $g_1 = {\id}_{C_i}$.
+\end{beweis}
+
+\begin{satz}
+	Ist $f \colon A \to X$ eine Kofaserung und $Y$ ein kompakter Raum, so ist $f \times {\id} \colon A \times Y \to X \times Y$ eine Kofaserung.
+\end{satz}
+\begin{beweis}
+	Da $f$ eine Kofaserung ist, existiert eine stetige Abbildung $X \times I \to \Zyl_f$, sodass die Komposition
+	\(
+		\begin{tikzcd}[sep=small,cramped]
+			\Zyl_f \rar & X \times I \rar["r"] & \Zyl_f
+		\end{tikzcd}
+	\)
+	die Identität ist.
+	Dann erhalten wir über folgendes Diagramm eine stetige Abbildung $X \times Y \times I \to\Zyl_{f \times {\id_Y}}$, sodass die Komposition
+	\(
+		\begin{tikzcd}[sep=small,cramped]
+			\Zyl_{f \times {\id_Y}} \rar & X \times Y \times I \rar & \Zyl_{f \times {\id_Y}}
+		\end{tikzcd}
+	\)
+	die Identität ist.\marginnote{Für die Homöomorphismen braucht man mengentheoretische Topologie \ldots}
+	\[
+		\begin{tikzcd}
+			\Zyl_{f \times {\id_Y}} \rar \dar[phantom,"\cong",sloped] & X \times Y \times I \rar["r_Y"] \dar  & \Zyl_{f \times {\id_Y}} \dar[phantom,"\cong",sloped] \\
+			\Zyl_f \times Y \rar & X \times I \times Y \rar["r \times {\id}_Y"] & \Zyl_f \times Y
+		\end{tikzcd}
+	\]
+\end{beweis}
+
+\begin{satz}
+	Ist $f \colon A \to X$ eine Kofaserung und ist 
+	\[
+		\begin{tikzcd}
+			A \rar \dar & Y\dar \\
+			X \rar & P
+		\end{tikzcd}
+	\]
+	Ein Pushout, so ist die Abbildung $X \to P$ auch eine Kofaserung.
+\end{satz}
+\begin{beweis}
+	Mit obigem Diagramm ist auch
+	\[
+		\begin{tikzcd}
+			A \times I \dar \rar & Y \times I \dar \\
+			X \times I \rar & P \times I
+		\end{tikzcd} 
+	(*)
+	\]
+	auch ein Pushout-Diagramm.
+	Es sei nun ein Homotopieerweiterungsproblem wie unten in braun gegeben.\todo{fertig machen}
+	\[
+		\begin{tikzcd}
+			Y \times \set*{0} \dar \rar & P \times \set{0} \dar \ar[ddr,bend left] \\
+			Y \times I \rar  \ar[drr,bend right] & P \times I \drar[dashed] \\
+			& & Z
+		\end{tikzcd}
+	\]
+	Sie induzieren das durch die lila Pfeile gegebene Homotopieerweiterungsproblem.
+	Da $A \to X$ eine Kofaserung ist, erhält man eine Abbildung $X \times I \to Z$, die das Homotopieerweiterungsproblem löst.
+	Dies liefert ein Erweiterungsproblem
+	\[
+		\begin{tikzcd}
+			A \times I \rar\dar & X \times I \dar \ar[ddr,bend left] \\
+			Y \times I \rar \ar[drr,bend right]& P \times I \drar[dashed] \\
+			& & Z
+		\end{tikzcd}
+	\]
+	Da (*) ein Pushout-Diagramm ist, existiert dazu eine Lösung $P \times I \to Z$.
+	Diese löst das ursprüngliche Homotopieerweiterungsproblem.
+\end{beweis}
+
+\begin{definition}[{name=[wohlpunktierter Raum]}]
+	Ein punktierter Raum $(X,x_0)$ heißt \Index{wohlpunktiert}, falls die Inklusion des Grundpunktes eine Kofaserung mit abgeschlossenem Bild ist.
+\end{definition}
+
+Zur Erinnerung: Ist $(X,x_0)$ ein punkter Raum, so heißt der punktierte Raum 
+\[
+	C(X,x_0) = \sfrac{X \times I}{X \times \set*{0} \cup \set*{x_0} \times I}
+\]
+der \Index{reduzierte Kegel} von $(X,x_0)$.
+Analog definiert man die \Index{reduzierte Einhängung} von $(X,x_0)$ durch
+\[
+	S X =\Sigma(X,x_0) \coloneqq \sfrac{X \times I}{X \times \partial I \cup \set*{x_0} \times I}
+\]
+
+\begin{satz}
+	Ist $(X,x_0)$ wohlpunktiert, so sind es auch $C(X,x_0)$ und $\Sigma(X,x_0)$.
+	Weiterhin ist die kanonische Abbildung $\Sigma(X) \to \Sigma(X,x_0)$ eine Homotopieäquivalenz.
+\end{satz}
+\begin{beweis}
+	Es sei $h \colon (I \times I,I \times \set*{0} \cup \partial I \times I) \to (I \times I, I \times \set*{0})$ ein Homöomorphismus.
+	Wir betrachten nun $\id_X \times h \colon X \times I \times I \to X \times I \times I$.
+	Der Homöomorphismus liefert über die Einschränkung einen Homöomorphimus $X \times I \times \set*{0} \cup X \times \partial I \times I \to X \times I \times \set*{0}$.
+	Setzen wir $A=X \times I \times \set*{0} \cup \enbrace*{X \times \partial I\cup \set*{x_0} \times I} \times I$.
+	Nun bilet $\id_X \times h$ die Menge $A$ auf die Menge
+	\[
+		X \times I \times \set*{0} \cup \set*{x_0} \times I \times I
+	\]
+	ab.
+	Wir erhalten also einen Homöomorphismus $(X \times I \times I,A) \to I \times \enbrace*{X \times I,X \times \set*{0} \cup \set*{x_0} \times I}$.
+	Da $(X,x_0)$ wohlpunktiert ist, existiert eine Retraktion $r \colon X \times I \to X \times \set*{0} \cup \set*{x_0} \times I$.
+	Somit ist auch $\id_I \times r$ eine Retraktion.
+	Also ist $A$ ein Retrakt von von $X \times I \times I$.
+	Also ist 
+	\[
+		X \times \partial I \cup \set*{x_0} \times I \hookrightarrow X \times I
+	\]
+	eine Kofaserung.\todo{Satz verlinken}
+	Die reduzierte Einhängung entsteht dann als Pushout
+	\[
+		\begin{tikzcd}
+			X \times \partial I \cup \set*{x_0} \times I \rar \dar[hook] & * \dar\\
+			X \times I \rar & SX
+		\end{tikzcd}
+	\]
+	Nach obigem Satz ist $SX$ also wohlpunktiert.
+	
+	Für den Nachweis, dass $C(X,x_0)$ wohlpunktiert ist, verfährt man analog, indem man den Homöomorphismus 
+	\missingfigure{Hier kommt noch ein Bild mit zwei Quadraten hin}
 \end{beweis}
 % section kofaserungen (end)
 
