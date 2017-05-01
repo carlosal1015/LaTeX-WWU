@@ -294,10 +294,10 @@ In \Cref{fig:anschauung_pi_n} ist dies zusammen mit der Verknüpfung für $n \in
 \begin{beispiel}[{name=[{Inklusion, die keine Kofaserung ist}]}]
 	Es sei $X = \set*{0} \cup \set*{\frac{1}{n} \given n \in \mathbb{N}} \subseteq \mathbb{R}$ und $A = \set*{0}$.
 	Dann ist $A \hookrightarrow X$ keine Kofaserung.
-	Dazu betrachten wir den Abbildungszylinder 
-	\[
+	Dazu betrachten wir den \Index{Abbildungszylinder} 
+	\(
 		\Zyl_i \coloneqq A \times I \cup X / (a,1) \sim i(a)
-	\]
+	\)
 	und die kanonische Abbildung
 	\[
 		\begin{tikzcd}[row sep=small]
@@ -347,7 +347,7 @@ In \Cref{fig:anschauung_pi_n} ist dies zusammen mit der Verknüpfung für $n \in
 	Es sei $A \subseteq X$  eine abgeschlossene Teilmenge.
 	Dann ist die Einbettung $i \colon A \hookrightarrow X$ genau dann eine Kofaserung, wenn es eine Umgebung $U$ von $A$ und eine stetige Abbildung $\phi \colon X \to I$ gibt, sodass 
 	\begin{enumerate}[(1)]
-		\item $\phi^{-1}(\set*{0}) = A$, $\phi^{-1}(1) \supseteq X \setminus U$
+		\item $\phi^{-1}(\set*{0}) = A$ und $\phi^{-1}(1) \supseteq X \setminus U$
 		\item Es gibt eine Homotopie $H \colon U \times I \to X$, sodass $H(a,t)=a$ für alle $a \in A$ und $H(u,0)=u$ und $H(u,1) \in A$ für alle $u \in U$.
 	\end{enumerate}
 \end{satz}
@@ -355,12 +355,12 @@ In \Cref{fig:anschauung_pi_n} ist dies zusammen mit der Verknüpfung für $n \in
 	Wir nehmen zunächst an, dass (1) und (2) gelten.
 	Ohne Beschränkung der Allgemeinheit gelte $\phi(x)=1$ für Punkte in einer Umgebung von $X \setminus U$.
 	Gilt dies zunächst nicht, können wir nämlich $\phi$ durch $\min(2 \phi,1)$ ersetzen.
-	Wir suchen nun eine Funktion $\psi \colon U \times I \to \Zyl_i = X \times \set*{0} \cup A \times I$ mit $\psi(u,0)=(u,0)$ für $u \in U$ und $\psi(a,t)=(a,t)$ für alle $(a,t) \in A \times I$, denn dann ist
+	Wir suchen nun eine Funktion $\psi \colon U \times I \to \Zyl_i = X \times \set*{0} \cup A \times I/\sim$ mit $\psi(u,0)=(u,0)$ für $u \in U$ und $\psi(a,t)=(a,t)$ für alle $(a,t) \in A \times I$, denn dann ist
 	\mapdef{r \colon X \times I}{\Zyl_i}{(x,t)}{\begin{cases}
 		\psi\enbrace[\big]{x,t(1- \phi(x))} &\text{ falls }x \in U\\
-		x,0 &\text{ sonst}
+		(x,0) &\text{ sonst}
 	\end{cases}}{}
-	Dann ist $r$ eine Retraktion.
+	eine Retraktion.
 	Die gesuchte Funktion $\psi$ können wir wie folgt definieren
 	\[
 		\psi(u,t) = \begin{cases}
@@ -372,13 +372,13 @@ In \Cref{fig:anschauung_pi_n} ist dies zusammen mit der Verknüpfung für $n \in
 	Beachte, dass $\varphi(u)=0 \iff u \in A$.
 	Für $a \in A$ gilt $H(a,0)=a$.
 	Ist $W$ eine Umgebung von $a$, so existiert -- da $I$ kompakt ist -- eine offene Teilmenge $V \subset U$, sodass $H(V,I) \subset W$ gilt.
-	Für eie Umgebung $W \times [0,\varepsilon)$ von $\psi(a,0)=(a,0)$ gilt daher
+	Für eine Umgebung $W \times [0,\varepsilon)$ von $\psi(a,0)=(a,0)$ gilt daher
 	\[
 		\psi \enbrace[\big]{V\times [0,\varepsilon)} \subseteq W \times [0,\varepsilon)
 	\]
 	Das heißt $\psi$ ist stetig in $(a,0)$.
 	
-	Wir nun an, dass $i \colon A \subset X$ eine Kofaserung ist, das heißt es existiert eine Retraktion $r \colon  X\times I \to \Zyl_i$.
+	Nehmen wir nun an, dass $i \colon A \hookrightarrow X$ eine Kofaserung ist, das heißt es existiert eine Retraktion $r \colon  X\times I \to \Zyl_i$.
 	Wir betrachten dann
 	\mapdef{s \colon X}{\Zyl_i}{x}{r(x,1)}{}
 	und $U = s^{-1}(A \times (0,1])$.
@@ -397,10 +397,9 @@ In \Cref{fig:anschauung_pi_n} ist dies zusammen mit der Verknüpfung für $n \in
 \end{beweis}
 
 \begin{beispiel}[{name=[Kofaserung bei CW-Komplexen]}]
-	Ist $A \subset X$ die Inklusion eines abgeschlossenen Unterkomplexes $A$ in einem CW-Komplex $X$, so ist die Inklusion eine Kofaserung.
+	Ist $A \hookrightarrow X$ die Inklusion eines abgeschlossenen Unterkomplexes $A$ in einem CW-Komplex $X$, so ist die Inklusion eine Kofaserung.
 	Die Eigenschaften (1) und (2) können aus dem Beweis, dass $A \subset X$ ein Umgebungsdeformationsretrakt ist, abgeleitet werden.
-	
-	Insbesondere ist zum Beispiel die Inklusion $S^{n-1} \subset D^n$ eine Kofaserung.
+		Insbesondere ist zum Beispiel die Inklusion $S^{n-1} \hookrightarrow D^n$ eine Kofaserung.
 \end{beispiel}
 
 \begin{bemerkung}[{name=[Umgebungsdeformationsretrakte in perfekt normalen Räumen]}]
@@ -506,15 +505,16 @@ In \Cref{fig:anschauung_pi_n} ist dies zusammen mit der Verknüpfung für $n \in
 			A \times I \dar \rar & Y \times I \dar \\
 			X \times I \rar & P \times I
 		\end{tikzcd} 
-	(*)
 	\]
 	auch ein Pushout-Diagramm.
-	Es sei nun ein Homotopieerweiterungsproblem wie unten in braun gegeben.\todo{fertig machen}
+	Es sei nun ein Homotopieerweiterungsproblem wie unten in rot gegeben.
 	\[
-		\begin{tikzcd}
-			Y \times \set*{0} \dar \rar & P \times \set{0} \dar \ar[ddr,bend left] \\
-			Y \times I \rar  \ar[drr,bend right] & P \times I \drar[dashed] \\
-			& & Z
+		\begin{tikzcd}[sep=small]
+			A \times \set*{0} \ar[rr] \ar[dd] \drar & & X \times \set*{0} \ar[dd] \drar	\ar[ddddrr, bend left=50,MediumPurple2] \\
+			& A \times I \ar[ddl] \ar[rr,crossing over] \ar[dddrrr,MediumPurple2,bend right=12] & & X \times I \ar[ddl] \ar[dddr,dashed,MediumPurple2] \\
+			\color{Firebrick3} Y \times \set*{0} \dar[Firebrick3] \ar[rr,Firebrick3,crossing over] && \color{Firebrick3} P \times \set{0} \dar[Firebrick3] \ar[ddrr,bend left,Firebrick3] \\
+			\color{Firebrick3}Y \times I \ar[rr,Firebrick3]  \ar[drrrr,bend right,Firebrick3] && \color{Firebrick3}P \times I \ar[drr,dashed,Firebrick3] \\
+			& & & & \color{Firebrick3}Z
 		\end{tikzcd}
 	\]
 	Sie induzieren das durch die lila Pfeile gegebene Homotopieerweiterungsproblem.
@@ -527,7 +527,7 @@ In \Cref{fig:anschauung_pi_n} ist dies zusammen mit der Verknüpfung für $n \in
 			& & Z
 		\end{tikzcd}
 	\]
-	Da (*) ein Pushout-Diagramm ist, existiert dazu eine Lösung $P \times I \to Z$.
+	Da das erste Diagram ein Pushout-Diagram ist, existiert dazu eine Lösung $P \times I \to Z$.
 	Diese löst das ursprüngliche Homotopieerweiterungsproblem.
 \end{beweis}
 
