@@ -472,10 +472,28 @@ Sei $AP$ eine (endl.) Menge atomarer Präpositionen.
 \end{defn}
 
 \begin{bsp}
-	\label{kts-aeq}
+	\label{bsp:kts-aeq}
 	Betrachte
 	
-	\todo{Bild einfügen}
+	\begin{center}
+		\begin{tikzpicture}
+			\node[]() at (-2.5, 0.5) {$\mathcal{K}_1$};
+			\node[state, initial, label = {[align=left, right, xshift=3mm]B}](0) at (0,0) {0};
+			\node[state, label = {[align=left, right, xshift=3mm]A}](1) at (0,-2){1};
+			\node[state, label = {[align=left, xshift=-2mm,left]R,W}](2) at (-2,-4){2};
+			\node[state, label = {[align=left, xshift=2mm, right]R,W}](3) at (2,-4){3};
+			
+			\path[->]
+				(0) edge [] node [align=center,fill=white] {$M$} (1) 		
+				(1) edge [] node [align=center,fill=white] {$K$} (2) 		
+				(1) edge [] node [align=center,fill=white] {$T$} (3) 		
+				(2) edge [bend left=20] node [align=center,fill=white] {$\tau$} (0) 		
+				(3) edge [bend right=20] node [align=center,fill=white] {$\tau$} (0);		
+				
+			\node[text width = 3cm]() at (5,-2) {$M \hat{=}$ Münze\\$K \hat{=}$ Kaffee\\$T \hat{=}$ Tee\\$\tau \hat{=}$ interner Schritt};
+			\node[text width = 3cm]() at (9,-2) {$B \hat{=}$ Bereit\\$A \hat{=}$ Auswahl\\$R \hat{=}$ Reinigen\\$W \hat{=}$ Warten};
+		\end{tikzpicture}
+	\end{center}
 	
 	$\pi_1 = 0, M, 1, K, 2, \tau, 0, M, 1$ ist ein endlicher Lauf in $\mathcal{K}_1$.
 	
@@ -508,6 +526,106 @@ Sei $AP$ eine (endl.) Menge atomarer Präpositionen.
 	\end{enumerate}
 \end{defn}
 
-Nachtrag zu Beispiel \ref{kts-aeq}: Es gilt $\mathcal{K}_1 \equiv_{tr} \mathcal{K}_2 \equiv_{tr} \mathcal{K}_3$. 
+\begin{lemma}
+	Die Relation $\equiv_{Tr}$ ist eine Äquivalenzrelation.
+\end{lemma}
 
+\begin{beweis}
+	Reflexivität, Symmetrie und Transitivität folgen aus den entsprechenden Eigenschaften von \enquote{$=$}:
+	
+	\begin{description}
+		\item[Reflexivität] $Tr(\mathcal{K}) = Tr(\mathcal{K}) \Rightarrow \mathcal{K} \equiv_{Tr} \mathcal{K}$
+		\item[Symmetrie] $\mathcal{K} \equiv_{Tr} \mathcal{K'} \Leftrightarrow^{def} Tr(\mathcal{K}) = Tr(\mathcal{K'}) \Leftrightarrow^{def} Tr(\mathcal{K'}) = Tr(\mathcal{K}) \Leftrightarrow^{def} \mathcal{K'} \equiv_{Tr} \mathcal{K}$
+		\item[Transitivität] $\mathcal{K} \equiv_{Tr} \mathcal{K'} \equiv_{Tr} \mathcal{K''} \implies Tr(\mathcal{K}) = Tr(\mathcal{K'}) = Tr(\mathcal{K''}) \implies \mathcal{K} \equiv_{Tr} \mathcal{K''}$
+	\end{description}
+\end{beweis}
+
+\begin{bsp}
+	$\mathcal{K}_1$ und $\mathcal{K}_2$ aus Beispiel \ref{bsp:kts-aeq} sind traceäquivalent: $\mathcal{K}_1 \equiv_{Tr} \mathcal{K}_2$.
+\end{bsp}
+
+\begin{defn}[Bisimulation, bisimilar]
+	\label{def:bisimulation}
+	Seien $\mathcal{K} = (S, S_0, Act, R, L)$ und $\mathcal{K'} = (S', S_0', Act, R', L')$ zwei KTSe über $AP$ mit gleicher Aktionsmenge.
+	\begin{enumerate}
+		\item Eine Relation $B \subseteq S \times S'$ heißt \emph{Bisimulation} falls $\forall (s, s') \in B$ gilt:
+		\begin{enumerate}[a)]
+			\item $L(s)=L(s')$
+			\item $\forall t \in S, a \in Act:$
+			
+			$(s,a,t) \in R \Rightarrow \exists t' \in S': (s', a, t') \in R' \wedge (t, t') \in B$
+			
+			\item $\forall t' \in S', a \in Act:$
+			
+			$(s',a,t') \in R' \Rightarrow \exists t \in S: (s, a, t) \in R \wedge (t, t') \in B$
+		\end{enumerate}
+	
+	\item Zwei Zustände $s \in S, s' \in S'$ heißen \emph{bisimilar} gdw. es eine Bisimulation $B$ mit $(s, s') \in B$ gibt. Wir schreiben dann $s \sim s'$.
+	
+	\item $\mathcal{K}$ und $\mathcal{K'}$ heißen bisimilar, in Zeichen $\mathcal{K} \sim \mathcal{K'}$ gdw.
+	\begin{itemize}
+		\item $\forall s \in S_0 \exists s' \in S_0' : s ~ s'$
+		\item $\forall s' \in S_0' \exists s \in S_0 : s ~ s'$
+	\end{itemize}
+	\end{enumerate}
+\end{defn}
+
+\begin{bsp}
+	\todo{Grafiken malen (4 Kaffeeautomaten)}
+	\begin{itemize}
+		\item $\mathcal{K}_1$ und $\mathcal{K}_2$ sind bisimilar
+		
+		$B= \{(0,0), (1,1), (0,2), (1,3)\}$ ist eine Bisimulation
+		
+		\item $\mathcal{K}_1$ und $\mathcal{K}_3$ sind bisimilar
+		
+		$B= \{(0,0), (1,1), (1,2)\}$ ist eine Bisimulation
+		
+		\item $\mathcal{K}_1$ und $\mathcal{K}_4$ sind nicht bisimilar
+		
+		Annahme: $\exists$ Bisimulation $B$. Dann muss $(0,0) \in B$ und der Schritt $(0, M, 1) \in R_1$ in $\mathcal{K}_1$ durch $(0, M, 1) \in R_2$ oder $(0, M, 2) \in R_2$ in $\mathcal{K}$ gematcht werden. Von $1$ in $\mathcal{K}_4$ kann aber der Schritt $(1,T,0)$ in $\mathcal{K}_1$ nicht gematcht werden und von $2$ in $\mathcal{K}_4$ kann der Schritt $(1, K, 0)$ nicht gematcht werden.
+	\end{itemize}
+\end{bsp}
+
+\begin{lemma}
+	Die in 2) von Definition \ref{def:bisimulation} eingeführte Relation $\sim \subseteq S \times S'$ ist selbst eine Bisimulation, nämlich die größte Bisimulation (d.h. es gilt $B \subseteq \sim \forall$ Bisimulationen). Es gilt $\sim \bigcup \{B \subseteq S \times S' \mid B \textit{ ist Bisimulation}\}$
+\end{lemma}
+
+\begin{beweis}
+	\mbox{}
+	\begin{itemize}
+		\item $\sim \bigcup \{B \subseteq S \times S' \mid B \textit{ ist Bisimulation}\}$ ist eine Umformulierung der Definition.
+		\begin{align*}
+			&\ s \sim s'\\
+			&\iff \exists \textit{ Bisimulation } B \subseteq S \times S' \textit{ mit } (s, s') \in B \\
+			&\iff (s, s') \in \bigcup \{B \subseteq S \times S' \mid B \textit{ ist Bisimulation}\}
+		\end{align*}
+		
+		\item $\sim$ ist selbst Bisimulation:
+		
+		Wir überprüfen die Def. Sei $s \sim s'$. Dann existiert eine Bisimulation $B \subseteq S \times S'$ mit $(s, s') \in B$. Dann folgt
+		\begin{enumerate}[a)]
+			\item $L(S) = L(S')$ (weil $B$ Bisimulation ist)
+			\item Sei $t \in S, a \in Act$ mit $(s, a, t) \in R$. Wegen $(s, s') \in B$ und $B$ Bisimulation ist, existiert $t' \in S'$ mit $(s', a, t') \in R'$ und $(t, t') \in B$. Nach Definition von $\sim$ gilt auch $t \sim t'$.
+			\item analog.
+		\end{enumerate}
+	
+	\item Wegen $\sim = bigcup \{B \subseteq S \times S' \mid B \textit{ ist Bisimulation}\}$ gilt $B \subseteq \sim \forall \textit{ Bisimulationen } B$, d.h. $\sim$ ist die größte Bisimulation.
+	\end{itemize}
+\end{beweis}
+
+\begin{lemma}
+	$\sim$ (als Relation auf KTS) ist eine Äquivalenzrelation.
+\end{lemma}
+
+\begin{beweis}
+	\mbox{}
+	\begin{description}
+		\item[Reflexivität] Auf gegebenem KTS $\mathcal{K} = (S, S_0, Act, R, L)$ ist $id_s = \{(s,s) \mid s \in S\}$ eine Bisimulation wie man leicht überprüft. Folglich gilt $s \sim s \forall s \in S$. Zu jedem $s \in S_0$ können wir ale $s$ selber wählen mit $s \sim s$. Es folgt $\mathcal{K} \sim \mathcal{K}$.
+		
+		\item[Symmetrie] Man sieht leicht: Ist $B$ eine Bisimulation zwischen $\mathcal{K}$ und $\mathcal{K'}$, so ist $B^{-1} = \{(s,s')\in S' \times S \mid (s, s') \in B \}$ eine Bisimulation zwischen $\mathcal{K}$ und $\mathcal{K'}$. Man kann sich überlegen, dass dies $\mathcal{K'} \sim \mathcal{K}$ impliziert, falls $\mathcal{K'} \sim \mathcal{K'}$ gilt.
+		
+		\item[Transitivität] Der Schlüssel zum Beweis ist die Beobachtung: Ist $B$ eine Bisimulation zwischen $\mathcal{K}$ und $\mathcal{K'}$ und $B'$ eine Bisimulation zwischen $\mathcal{K'}$ und $\mathcal{K''}$, so ist $B;B' = \{(s, s'') \in S \times S'' \mid \exists s': (s, s') \in B \wedge (s', s'') \in B'\}$ eine Bisimulation zwischen $K\mathcal{K}$ und $\mathcal{K''}$.
+	\end{description}
+\end{beweis}
 \cleardoubleoddemptypage
