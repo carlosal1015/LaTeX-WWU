@@ -323,8 +323,180 @@
 			Damit folgt	$n = p(n) \cdot q_1 \cdot q_2 \cdots q_t$, was (nach eventuellem Umsortieren) eine Primfaktorzerlegung von $n$ ist.
 		\end{description}
 	
-		\textit{Zur Eindeutigkeit:} Schreibe $n = p_1 \cdots p_m$ mit $p_i \in \PP$, $p_1 \leq p_2 \leq \dots \leq p_m$.
+		\textit{Zur Eindeutigkeit:} Schreibe $n = p_1 \cdots p_m$ mit $p_i \in \PP$, $p_1 \leq p_2 \leq \dots \leq p_m$. \marginnote{27.4.}
 		Sei $q \in \PP$.
-		Sei $l$ die Anzahl der Primfaktoren $p_i = q$.
+		Sei $\ell$ die Anzahl der Primfaktoren $p_i = q$ (also $\ell = 0$, falls alle $p_i \neq q$).
+		Dann folgt $n = q^\ell \cdot s$ und $s$ ist Produkt von Primzahlen $p_j$ mit $p_j \neq q$, also insbesondere mit $\ggT(q,p_j) = 1$.
+		Nach Korollar~\ref{kor:1.8.1} gilt dann $\ggT(q,s) = 1$, insbesondere $q \nmid s$.
+		Es folgt $q^{\ell+1} \nmid n$, denn aus $n = q^{\ell+1} \cdot t = q^{\ell} \cdot s$ folgt durch Kürzen $q \cdot t = s$.
+		Damit haben wir
+		\[
+			\ell = \max\{k \in \NN : q^k \mid n\}.
+		\]
+		Diese Zahlen hängen nicht von der gegebenen Primfaktorzerlegung ab.
+		Wir wir also definieren
+		\[
+			\nu_q(n) := \max\{k \in \NN : q^k \mid n\},
+		\]
+		so folgt $\{p_1,\dots,p_k\} = \{q \in \PP : \nu_q(n) \neq 0\}$ und jedes $p_i$ kommt genau mit der Vielfachheit $\nu_q(n)$ in der Primfaktorzerlegung vor.
+	\end{beweis}
+
+	\begin{definition}[$p$-adische Bewertung]
+		\label{def:p-adisch}
+		Für $n \in \ZZ$ und $q \in \PP$ definieren wir die $\bm{p}$\textbf{-adische Bewertung} von $n$ durch \index{p-adische Bewertung@$pq$-adische Bewertung}
+		\[
+			\nu_p(n) = \begin{cases}
+				\infty, & \text{falls } n = 0 \\
+				\max\{k \in \NN : p^k \mid n\}, & \text{falls } n \neq 0.
+			\end{cases}
+		\]
+	\end{definition}
+
+	Damit erhalten wir folgende Umformulierung des Hauptsatzes:
+	\begin{satz}[Fundamentalsatz der Arithmetik, 2. Version]
+		\label{satz:fundamentalsatz_2}
+		Sei $n \in \ZZ$ mit $n \neq 0$.
+		Sei
+		\[
+			\varepsilon(n) = \begin{cases}
+				1, & \text{falls } n > 0 \\
+				-1, & \text{falls } n < 0.
+			\end{cases}
+		\]
+		Es gilt
+		\[
+			n = \varepsilon(n) \cdot \prod_{p \in \PP} p^{\nu_p(n)}.
+		\]
+		Das ist ein unendliches Produkt, in dem aber fast alle Faktoren $1$ sind.
+		Also steht rechts ein Produkt aus endlich vielen Primzahlpotenzen.
+	\end{satz}
+	
+	\begin{korollar}
+		\label{kor:1.12}
+		Sei $a,b \in \ZZ$. \marginnote{[12]}
+		Dann sind äquivalent:
+		\begin{enumerate}[(i)]
+			\item $a \mid b$
+			\item Für alle $q \in PP$ gilt $\nu_q(a) \leq \nu_q(b)$.
+		\end{enumerate}
+	\end{korollar}
+	\begin{beweis}
+		\begin{description}
+			\item[(i) $\Rightarrow$ (ii):] Klar nach Definition von $\nu_q$, denn aus $q^k \mid a$ und $a \mid b$ folgt $q^k \mid b$.
+			\item[(ii) $\Rightarrow$ (i):] Ist richtig für $b = 0$.
+			Wenn aber $b \neq 0$, so folgt die Behauptung aus Satz~\ref{satz:fundamentalsatz_2}.
+		\end{description}
+	\end{beweis}
+
+	\begin{lemma}
+		\label{lemma:1.13}
+		Sei $a,b \in \ZZ$ und $p \in \PP$. \marginnote{[13]}
+		Gilt $p \mid ab$, so folgt $p \mid a$ oder $p \mid b$.
+	\end{lemma}
+
+	\begin{beweis}
+		Angenommen, $p \nmid a$ und $p \nmid b$.
+		Dann ist $\ggT(p,a) = 1 = \ggT(p,b)$ mit $p \in \PP$, also $\ggT(p,ab) = 1$ nach \ref{kor:1.8.1} und damit $p \nmid ab$.
+	\end{beweis}
+
+	Wir machen als Anwendung einen kleinen Exkurs über \textbf{vollkommene Zahlen}. \index{vollkommene Zahl}
+	Eine Zahl $n \in \NN$ heißt \textbf{vollkommen}, falls $n$ die Summe aller echten positiven Teiler von $n$ ist.
+	In der Antike interessiert man sich aus Gründen der Mystik für solche Zahlen.
+	Zum Beispiel ist $6 = 1 + 2 + 3$ vollkommen und $8 \neq 1 + 2 + 4$ nicht vollkommen.
+	\newpage
+	\begin{definition}
+		Für $n \in \NN, n \geq 1$ sei \marginnote{[14]}
+		\[
+			\sigma(n) = \sum_{\substack{k \geq 0 \\ k \mid n}} k
+		\]
+		die Summe aller positiven Teiler von $n$.
+		Weiter sei
+		\[
+			\tau(n) = \sum_{\substack{k \geq 0} \\ k \mid n} 1
+		\]
+		die Anzahl aller positiven Teiler von $n$.
+	\end{definition}
+	Also gilt $n \in \PP \Leftrightarrow \tau(n)$ und $n$ vollkommen $\Leftrightarrow \sigma(n) = 2n$.
+	
+	\begin{center}
+			\begin{tabular}{|ccc|}
+			\hline 
+			$\bm{n}$ & $\bm{\tau(n)}$ & $\bm{\sigma(n)}$ \\ 
+			\hline 
+			1 & 1 & 1 \\ 
+			\hline 
+			2 & 2 & 3 \\ 
+			\hline 
+			3 & 2 & 4 \\ 
+			\hline 
+			4 & 3 & 7 \\ 
+			\hline 
+			5 & 2 & 6 \\ 
+			\hline 
+			6 & 4 & 12 \\ 
+			\hline 
+		\end{tabular}
+	\end{center}
+
+	\begin{lemma}
+		Es gilt:
+		\[
+			\tau(n) = \prod_{q \in \PP} (1+ \nu_q(n))
+		\]
+	\end{lemma}
+
+	\begin{beweis}
+		Folgt direkt aus Korollar~\ref{kor:1.12}.
+	\end{beweis}
+	
+	Hieraus folgt unmittelbar: Ist $\ggT(a,b) = 1$ für $a,b \in \NN, a,b \geq 1$, so gilt $\tau(ab) = \tau(a) \cdot \tau(b)$.
+	
+	\begin{lemma}
+		Es gilt
+		\[
+			\sigma(n) = \prod_{q \in \PP} \sigma \enb{q^{\nu_q(n)}} = \prod_{q \in \PP} \frac{q^{1+ \nu_q(n)}-1}{q-1}.
+		\]
+	\end{lemma}
+
+	\begin{beweis}
+		Mit Korollar~\ref{kor:1.12} und der geometrischen Summefolgt
+		\begin{align*}
+			\sigma(n) &= \sum_{\ell_q = 0}^{\nu_q(n)} \prod_{q \in \PP} q^{\ell_q} = \prod_{q \in \PP} \sum_{\ell_q = 0}^{\nu_q(n)} q^{\ell_q} \\
+			&= \prod_{q \in \PP} \sigma \enb{q^{\nu_q(n)}} = \prod_{q \in \PP} \frac{q^{\nu_q(n)+1}-1}{q-1}.
+		\end{align*}
+	\end{beweis}
+
+	Daraus folgt: Wenn $\ggT(a,b) = 1$ und $a,b \geq 1$, so gilt $\sigma(ab) = \sigma(a) \cdot \sigma(b)$.
+	
+	\begin{thm}[Euklid, Euler]
+		\label{thm:1.15}
+		Sei $n \geq 2$ gerade. \marginnote{[15]}
+		Dann sind äquivalent:
+		\begin{enumerate}[(i)]
+			\item $n$ ist vollkommen.
+			\item $n = 2^{k-1} \cdot (2^k - 1)$ für ein $k \geq 2$ und $2^k - 1 \in \PP$.
+		\end{enumerate}
+	\end{thm}
+
+	\begin{beweis}
+		\begin{description}
+			\item[(ii) $\Rightarrow$ (i):] Angenommen, $n = 2^{k-1} \cdot q$ mit $k \geq 2$, $q = 2^k-1 \geq 3$.
+			Dann:
+			\begin{align*}
+				\sigma(n) &= \sigma \enb{2^{k-1}} \cdot \sigma(q) = \frac{2^k-1}{2-1} \cdot (1+q) \\
+				&= (2^k-1) \cdot 2^k = 2 \cdot n.
+			\end{align*}  
+			\item[(i) $\Rightarrow$ (ii):] Schreibe $n = 2^{k-1} \cdot m$ mit $m$ ungerade.
+			Dann ist $k \geq 2$, da $n$ gerade ist.
+			Also folgt, da $n$ vollkommen ist:
+			\[
+				\sigma(n) = 2n = \frac{2^k-1}{2-1} \cdot \sigma(m) = 2^k \cdot m.
+			\] 
+			Es folgt $2^k \mid \sigma(m)$, das heißt $\sigma(n) = 2^k \cdot l$ für ein $l \in \NN$, und damit:
+			\begin{align*}
+				2n = 2^k \cdot m &= (2^k - 1) \cdot 2^k \cdot l \\
+				m &= (2^k - 1) \cdot l.
+			\end{align*}
+		\end{description}
 	\end{beweis}
 \cleardoubleoddemptypage

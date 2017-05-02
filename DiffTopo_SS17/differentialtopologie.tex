@@ -307,14 +307,17 @@ Wie treffen die folgende Vereinbarung für diese Vorlesung: Eine Abbildung heiß
 \end{satz}
 \begin{beweis}
 	Ohne Beschränkung der Allgemeinheit, können wir $M=U \subseteq \mathbb{R}^m$ offen, $p=0$, $f \colon U \to \mathbb{R}^n$ und $f(p)=0$ annehmen.
-	Da $\D f(0)$ den Rang $r$ hat, existieren nach Linearer Algebra Matrizen $S \in \GL_m(\mathbb{R})$, $T \in \GL_n(\mathbb{R})$ mit\todo{hübsch machen}
+	Da $\D f(0)$ den Rang $r$ hat, existieren nach Linearer Algebra Matrizen $S \in \GL_m(\mathbb{R})$, $T \in \GL_n(\mathbb{R})$ mit
 	\[
-		S \cdot \D f(0) \cdot T = \begin{pmatrix}
-			1 & & &  \\
-			& \ddots & & 0 \\
-			& & 1 &  \\
-			 & 0 & & 0
-		\end{pmatrix}
+		S \cdot \D f(0) \cdot T = 
+		\enbrace*{\begin{array}{c|c}
+			\scalebox{.8}{$\begin{array}{ccc}
+				1 & & \\
+				& \ddots & \\
+				& & 1
+			\end{array}$} & 0 \\ \hline
+			0 & 0
+		\end{array}}
 	\]
 	Ersetze $f$ durch $S \circ f \circ T$.
 	Dann können wir annehmen, dass $\D f(0)$ bereits die obere Matrixgestalt hat.
@@ -333,12 +336,21 @@ Wie treffen die folgende Vereinbarung für diese Vorlesung: Eine Abbildung heiß
 	Damit ist $g$ von der Form $g(z_1, \ldots ,z_m) = \enbrace*{z_1, \ldots ,z_r, g_{r+1}(z), \ldots , g_n(z)}$.
 	Also folgt
 	\[
-		\D g(z) = \begin{pmatrix}
-			1 & & &  \\
-			& \ddots & & 0 \\
-			& & 1 &  \\
-			 & * & & A(z)
-		\end{pmatrix}
+		\D g(z) = 
+		% \begin{pmatrix}
+		% 	1 & & &  \\
+		% 	& \ddots & & 0 \\
+		% 	& & 1 &  \\
+		% 	 & * & & A(z)
+		% \end{pmatrix}
+		\enbrace*{\begin{array}{c|c}
+			\scalebox{.8}{$\begin{array}{ccc}
+				1 & & \\
+				& \ddots & \\
+				& & 1
+			\end{array}$} & 0 \\ \hline
+			* & A(z)
+		\end{array}}
 	\]
 	mit $A(z) \in \Mat_{n-r,m-r}$.
 	Für alle $z$ ist $\rank \D g(z) = r$ und somit ist $A(z) = 0$ für alle $z$.
@@ -347,16 +359,29 @@ Wie treffen die folgende Vereinbarung für diese Vorlesung: Eine Abbildung heiß
 	
 	Betrachte nun für eine geeignete Umgebung $V_0$ von 0 die Abbildung
 	\mapdef{k \colon V_0}{\mathbb{R}^n}{(y_1, \ldots ,y_n)}{\scriptstyle\enbrace[\big]{y_1, \ldots ,y_r, y_{r+1} - g_{r+1}(y_1, \ldots ,y_r, 0, \ldots ,0), \ldots , y_n - g_n(y_1, \ldots ,y_r, 0, \ldots ,0)}}{}
-	Es gilt dann\todo{hübsch machen}
+	Es gilt dann
 	\[
-		\D k (0) = \begin{pmatrix}
-			1 & & & & & \\
-			& \ddots & & & 0 & \\
-			& & 1 & & &  \\
-			& & & 1 & & \\
-			& * & & & \ddots & \\
-			& & & & & 1
-		\end{pmatrix}
+		\D k (0) = 
+		% \begin{pmatrix}
+		% 	1 & & & & & \\
+		% 	& \ddots & & & 0 & \\
+		% 	& & 1 & & &  \\
+		% 	& & & 1 & & \\
+		% 	& * & & & \ddots & \\
+		% 	& & & & & 1
+		% \end{pmatrix}
+		\enbrace*{\begin{array}{c|c}
+			\scalebox{.8}{$\begin{array}{ccc}
+				1 & & \\
+				& \ddots & \\
+				& & 1
+			\end{array}$} & 0 \\ \hline
+			* & \scalebox{.8}{$\begin{array}{ccc}
+				1 & & \\
+				& \ddots & \\
+				& & 1
+			\end{array}$}
+		\end{array}}
 	\]
 	Diese Matrix ist invertierbar und somit folgt wieder aus dem Umkehrsatz, dass $0 \in V_1 \subseteq V_0$ existiert, sodass $k \colon V_1 \to k(V_1)$ ein Diffeomorphismus ist.
 	Setze nun $U_1 \coloneqq f^{-1}(V_1)$.
@@ -377,7 +402,7 @@ Wie treffen die folgende Vereinbarung für diese Vorlesung: Eine Abbildung heiß
 	Sei $p \in f^{-1}(q)$.
 	Dann ist $\rank_p(f) = n$ maximal, also gibt es eine Umgebung $U$ von $p$, sodass $\rank_{p'}(f) = n$ für alle $p' \in U$.
 	Damit hat $f|_U \colon U \to N$ konstanten Rang.
-	Nach dem Rangsatz \ref{satz:rangsatz} existieren Karten $(U_0,h_0)$ von $M$, $U_0 \subseteq U$ mit $h_0(p)=0$ und $(V,k)$ von $N$ mit $f(U_0) \subseteq V$ und $k(q)=0$, sodass \todo{hübsch machen}
+	Nach dem Rangsatz \ref{satz:rangsatz} existieren Karten $(U_0,h_0)$ von $M$, $U_0 \subseteq U$ mit $h_0(p)=0$ und $(V,k)$ von $N$ mit $f(U_0) \subseteq V$ und $k(q)=0$, sodass
 	\[
 		\begin{tikzcd}
 			U_0 \rar["f"] \dar["h_0"] & V \dar["k"] & q \dar[mapsto] \\
@@ -388,7 +413,7 @@ Wie treffen die folgende Vereinbarung für diese Vorlesung: Eine Abbildung heiß
 	Damit ist $h_0(f^{-1}(q) \cap U_0) = \set*{x \given x_1, \ldots ,x_n=0} = h(U_0) \cap \enbrace*{\set*{0} \times \mathbb{R}^{m-n}}$.
 \end{beweis}
 
-\begin{beispiel}
+\begin{beispiel}[{name=[Mannigfaltigkeiten als Urbilder regulärer Werte]}]
 	\begin{enumerate}[1)]
 		\item Sei $f \colon \mathbb{R}^{n+1} \to \mathbb{R}$ gegeben durch $f(x) = \skal*{x}{x}$.
 		Dann gilt $\D f(x) v = 2 \skal*{x}{v}$ und somit ist für alle $x\neq 0$, dass $\rank_x f = 1$ ist.
@@ -427,14 +452,179 @@ Wie treffen die folgende Vereinbarung für diese Vorlesung: Eine Abbildung heiß
 		Also stimmt die Formel für $A=\ind$.
 		Nun gilt
 		\[
-			\D \det(A) \cdot X = \diff{}{t}\Big|_{t=0} \det (A + tX) = \det A \cdot \diffd{}{t}\Big|_{t=0 \det \enbrace*{1 + tA^{-1} X}}
+			\D \det(A) \cdot X = \diff{}{t}\Big|_{t=0} \det (A + tX) = \det A \cdot \diffd{}{t}\Big|_{t=0} \det \enbrace*{1 + tA^{-1} X}
 		\]
 		Also ist $1 \in \mathbb{R}$ ein regulärer Wert von $\det$.
 		Damit ist $\SL_n(\mathbb{R}) = \det^{-1}(1)$ eine Mannigfaltigkeit.
 	\end{enumerate}
 \end{beispiel}
 
+Noch eine Anmerkung zum Satz vom regulären Wert: Wenn $n >m$, so ist $q$ ein regulärer Wert von $f$ genau dann, wenn $f^{-1}(q)=\emptyset$.
+Es gilt folgende Konvention: $\emptyset$ ist eine Mannigfaltigkeit beliebiger, auch negativer Dimension.
 
+\todo[inline]{soll 2.8 sein \ldots }
+\begin{satz}[{name={Sard}},label=satz:sard]
+	Sei $U \subset \mathbb{R}^m$ offen, $f \colon U \to \mathbb{R}^n$ sei $C^\infty$.
+	Setze
+	\begin{align}
+		S(f) &= \set*{x \in U \given \D f(x) \text{ nicht surjektiv}} \subseteq U \\
+		C(f) &= f\enbrace*{S(f)}
+	\end{align}
+	Dann hat $C(f)$ das Lebesgue-Maß $0$.
+\end{satz}
+\begin{beweis}
+	Siehe \textcite[S.~113~ff]{brocker1992analysis}.
+\end{beweis}
+
+Diese Nullmenge muss nicht notwendigerweise abgeschlossen sein und kann sogar dicht sein!
+Im Fall $n>m$ gilt $S(f)=U$ und somit $C(f)=f(U)\subseteq \mathbb{R}^n$.
+Dann folgt aus \cref{satz:sard}, dass $f(U)$ eine Nullmenge ist.
+
+\begin{definition}[{name=[Nullmenge auf einer Mannigfaltigkeit]}]
+	$M$ sei eine Mannigfaltigkeit.
+	$S \subseteq M$ heißt \Index{Nullmenge}, falls es einen Atlas $(U_i,h_i)_{i \in I}$ von $M$ gibt, sodass $h_i(S \cap U_i) \subseteq \mathbb{R}^m$ Lebesgue-Maß $0$ hat.
+\end{definition}
+
+\begin{satz}[{name={aus Analysis III}}]
+	Sei $U \subseteq \mathbb{R}^n$ offen und $f \colon U \to \mathbb{R}^n$ differenzierbar.
+	Wenn $S \subseteq U$ eine Nullmenge ist, so ist $f(S)$ auch eine Nullmenge.
+\end{satz}
+
+\begin{lemma}[label=lem:mfkt_nullmengen]
+	Sei $M^m$ eine Mannigfaltigkeit und $S \subseteq M$ eine Nullmenge.
+	\begin{enumerate}[1)]
+		\item Für jede Karte $(U,h)$ von $M$ ist $h(U \cap S) \subseteq \mathbb{R}^m$ eine Nullmenge.
+		\item $M\setminus S$ liegt dicht in $M$.
+		\item Wenn $S_1, S_2, \ldots $ Nullmengen sind, so ist $\bigcup_{i=1}^\infty S_i$ eine Nullmenge
+	\end{enumerate}
+\end{lemma}
+\begin{beweis}
+	Für die erste Aussage überdecke $U$ durch abzählbar viele $U_i$.
+	Sei nun $h_i \colon U_i \to \mathbb{R}^n$ eine Karte.
+	Dann ist $h_i(U_i \cap S)$ eine Nullmenge und es folgt
+	\[
+		h(S \cap U) = \bigcup_{i=1}^\infty h \enbrace*{S \cap U \cap U_i} = \bigcup_{i=1}^\infty \Underbrace{h \circ h_i^{-1} \enbrace[\Big]{\Underbrace{h_i \enbrace*{S \cap U_i \cap U}}{\text{Nullmenge}}}}{\text{Nullmenge, da $h \circ h_i^{-1}$ Diffeo}}
+	\]
+	Damit ist $h(S \cap U)$ also eine Nullmenge.
+	
+	Zur zweiten Aussage: Angenommen $M \setminus S$ wäre nicht dicht.
+	Dann existiert ein Punkt $p \in M$ mit $p \in V \subseteq S$ mit $V \subseteq M$ offen.
+	Sei $h \colon V \to \mathbb{R}^n$ eine Karte.
+	Da $h(V)$ offen in $\mathbb{R}^n$ ist und $h(V) \neq \emptyset$ gilt, folgt $\mu \enbrace*{h(V)}>0$.
+	Also ist $S$ keine Nullmenge nach 1). Widerspruch!
+	
+	Die dritte Aussage folgt aus der ersten mit der $\sigma$-Additivität des Lebesgue-Maßes.
+\end{beweis}
+
+\begin{satz}[{name={Sard, globale Version}}]
+	Sei $f \colon M \to N$ differenzierbar.
+	Dann ist die Menge der singulären Werte von $f$ eine Nullmenge.
+	
+	Insbesondere ist die Menge der regulären Werte von $f$ dicht in $N$.
+\end{satz}
+\begin{beweis}
+	Es gibt abzählbare Atlanten $(U_i,h_i)_{i \in \mathbb{N}}$, $(V_i,k_i)_{i \in \mathbb{N}}$ mit $f(U_i) \subseteq V_i$.
+	Setze $f_i \coloneqq k_i \circ f \circ h_i^{-1}$ und 
+	\[
+		C(f) = f \enbrace[\big]{S(f)} = \bigcup_{i=1}^\infty k_i^{-1} \enbrace[\big]{C(f_i)}
+	\]
+	Nach \cref{satz:sard} sind die $C(f_i)$ Nullmengen in $\mathbb{R}^n$.
+	Damit sind auch die $k_i^{-1}\enbrace[\big]{C(f_i)}$ Nullmengen in $N$ nach \cref{lem:mfkt_nullmengen} 1) und mit \cref{lem:mfkt_nullmengen} 3) ist $C(f)$ also eine Nullmenge.
+\end{beweis}
+
+\section*{Immersionen und Einbettungen}
+
+\begin{satz}[label=satz:immersion_bild]
+	Sei $f \colon M^m \to N^n$ eine Immersion (also $\rank_p f =m$ für alle $p \in M$).
+	Dann gibt es zu jedem $p \in M$ eine Umgebung $p \in U \subseteq M$, sodass $f(U) \subseteq N$ eine $m$-dimensionale Untermannigfaltigkeit ist.
+\end{satz}
+\begin{beweis}
+	Sei $p \in M$.
+	Der Rangsatz liefert uns Karten $(U,h)$ von $M$ und $(V,k)$ von $N$ mit $p \in U$, $h(p)=0$, $f(p) \in V$, $k(f(p))=0$ und $f(U) \subseteq V$, sodass
+	\[
+		\begin{tikzcd}
+			U \rar["f"] \dar["h","\cong"'] & V \dar["\cong","k"'] \\
+			h(U) \rar & k(V) \\[-2em]
+			(x_1, \ldots ,x_m) \rar[mapsto] & (x_1, \ldots ,x_m, 0, \ldots ,0)
+		\end{tikzcd}
+	\]
+	Damit folgt direkt die Behauptung.
+\end{beweis}
+
+Ist eine entsprechende globale Aussage möglich? Betrachte die folgende Abbildung $f \colon \mathbb{R} \to \mathbb{R}^2$.
+Problem: $f$ ist nicht injektiv.
+\missingfigure{Schleifenbild}
+
+Problem 2: Auch eine injektive Immersion muss kein Homöomorphismus auf dem Bild sein.
+\missingfigure{zweite Schleife}
+
+Auch beim Torus $T^2= S^1 \times S^1$ kann man eine Schleife mit Steigung $\theta \notin \pi \cdot \mathbb{Q}$ betrachten.
+Dann ist das Bild keine Untermannigfaltigkeit!
+
+\begin{definition}[{name=[Einbettung]}]
+	Eine differenzierbare Abbildung $f \colon M^m \to N^n$ heißt \Index{Einbettung},\marginnote{$f$ ist eine injektive Immersion} wenn $f(M) \subseteq N$ eine Untermannigfaltigkeit ist und $f \colon M \to f(M)$ ein Diffeomorphismus ist.
+\end{definition}
+
+\begin{definition}[{name=[eigentliche Abbildung]}]
+	Eine stetige Abbildung $f\colon X \to Y$ von topologischen Räumen heißt \Index{eigentlich}, falls für jedes kompakte $K \subseteq Y$ das Urbild $f^{-1}(K) \subseteq X$ kompakt ist.
+\end{definition}
+
+Unser Ziel ist  es nun zu zeigen, dass eine eigentliche Immersion eine Einbettung ist.
+
+Falls $X,Y$ metrische Räume sind, dann ist $f \colon X \to Y$ eigentlich genau dann, wenn aus $f(x_n) \to y$ stets folgt, dass $(x_n)_n$ ein konvergente Teilfolge hat.
+
+\begin{lemma}[label=lem:bild_abgeschl]
+	Wenn $X,Y$ hausdorffsch und lokalkompakt sind und $f \colon X \to Y$ eigentlich.
+	Dann ist $f$ abgeschlossen, das heißt falls $A \subseteq X$ abgeschlossen ist, ist auch $f(A) \subseteq Y$ abgeschlossen.
+\end{lemma}
+\begin{beweis}
+	Betrachte die Einpunktkompaktifizierung $X^+ \coloneqq X \cup \set*{\infty}$.
+	$X^+$ ist kompakt und hausdorffsch.
+	Definiere $f^+ \colon X^+ \to Y^+$ durch Fortsetzen von $f$ mittels $f(\infty)=\infty$.
+	Da $f$ eigentlich ist, ist $f$ stetig (warum?).
+	
+	Sei nun $A \subseteq X$ abgeschlossen.
+	Dann ist $A \cup \set*{\infty} \subseteq X^+$ abgeschlossen und kompakt.
+	Mit der Stetigkeit von $f^+$ folgt die Kompaktheit von $f^+(A \cup \set*{\infty}) = f(A) \cup \set*{\infty}$.
+	Da $Y^+$ hausdorffsch ist, ist $f(A) \cup \set*{\infty} \subseteq Y^+$ abgeschlossen.
+	Damit ist $f(A) = (f(A) \cup \set*{\infty}) \cap Y \subseteq Y$ abgeschlossen.
+\end{beweis}
+
+\begin{korollar}[label=kor:homeo_bild]
+	Seien $X,Y$ lokalkompakt, hausdorffsch und $f \colon X \to Y$ eigentlich und injektiv.
+	Dann ist $f(X) \subseteq Y$ abgeschlossen und $f \colon X \to f(X)$ ein Homöomorphismus.
+\end{korollar}
+\begin{beweis}
+	Die erste Aussage folgt aus \cref{lem:bild_abgeschl}.
+	Die zweite sie $A \subseteq X$ abgeschlossen.
+	Aus dem \cref{lem:bild_abgeschl} folgt, dass $f(A) \subseteq Y$ abgeschlossen ist und somit ist auch $f(A) \subseteq f(X)$ abgeschlossen.
+	Also ist $A \subseteq X$ genau dann abgeschlossen, wenn $f(A) \subseteq f(X)$ abgeschlossen ist.
+	Da $f \colon X \to f(X)$ bijektiv ist, ist $f \colon X \to f(X)$ ein Homöomorphismus. 
+\end{beweis}
+
+\begin{satz}
+	Eine bijektive, eigentliche Immersion $f \colon M^m \to N^n$ ist eine Einbettung.
+\end{satz}
+\begin{beweis}
+	$p \in M$ und $q =f(p) \in N$.
+	Wie im Beweis von \cref{satz:immersion_bild} erhalten wir Karten $(U,h), (V,k)$ mit
+	\[
+		\begin{tikzcd}
+			U \rar["f"] \dar["h","\cong"'] & V \dar["\cong","k"'] \\
+			h(U) \rar & k(V) \\[-2em]
+			(x_1, \ldots ,x_m) \rar[mapsto] & (x_1, \ldots ,x_m, 0, \ldots ,0)
+		\end{tikzcd}
+	\]
+	Nach \cref{kor:homeo_bild} ist $f \colon M \to f(M)$ ein Homöomorphismus.
+	Damit gibt es eine offene Umgebung $W$ von $q$ in $N$ mit $U =f^{-1}(W)$ (warum?).
+	Betrachte $k' \coloneqq k|_{V \cap W}$.
+	Es gilt 
+	\[
+		k'(f(M) \cap V \cap W) = (\mathbb{R}^m \times \set*{0}) \cap k'(V \cap W)
+	\]
+	Damit ist $f(M)$ eine Untermannigfaltigkeit mit $\dim f(M) =m$, aber $\rank_p(f)=m$.
+	Also ist $f \colon M \to f(M)$ ein Homöomorphismus und insbesondere $f^{-1} \colon f(M) \to M$ stetig und sogar differenzierbar nach dem Umkehrsatz. 
+\end{beweis}
 
 % section lokale_geometrie_differenzierbarer_abbildungen (end)
 % chapter mannigfaltigkeiten (end)
