@@ -627,6 +627,205 @@ Falls $X,Y$ metrische Räume sind, dann ist $f \colon X \to Y$ eigentlich genau 
 \end{beweis}
 
 % section lokale_geometrie_differenzierbarer_abbildungen (end)
+
+\section{Der Tangentialraum} % (fold)
+\label{sec:der_tangentialraum}
+
+\begin{definition}[{name=[Funktionskeime]}]
+	Sei $M$ eine Mannigfaltigkeit und $p \in M$.
+	Ein \Index{Funktionskeim} auf $M$ um $p$ ist ein Paar $(U,f)$, wobei $U \subseteq M$ eine offene Umgebung von $p$ und $f \colon U \to \mathbb{R}$ eine $C^\infty$-Abbildung ist.
+	
+	Zwei Funktionskeime $(U,f)$ und $(U',f')$ sind \bet{äquivalent}\index{Funktionskeim!äquivalent}, falls es eine Umgebung $p \in U'' \subseteq U \cap U'$, sodass $f|_{U''} = f'|_{U''}$ gilt.
+	$C^\infty_p(M)$ sei die Menge der Äquivalenzklassen solcher Funktionskeime.
+	$C^\infty_p(M)$ ist eine $\mathbb{R}$-Algebra, assoziativ, kommutativ und mit Eins via
+	\[
+		\benbrace*{U,f} + \benbrace*{U',f'} \coloneqq \benbrace[\big]{U \cap U', f|_{U \cap U'} + f'|_{U \cap U'}} \text{ und } 
+		\benbrace*{U,f} \cdot  \benbrace*{U',f'} \coloneqq \benbrace[\big]{U \cap U', f|_{U \cap U'} \cdot  f'|_{U \cap U'}}
+	\]
+\end{definition}
+
+\begin{definition}[{name=[Tangentialvektor und Tangentialraum]}]
+	Sei $M$ eine Mannigfaltigkeit, $p \in M$.
+	Ein \Index{Tangentialvektor} an $M$ in $p$ ist eine lineare Abbildung $X \colon C^\infty_p(M) \to \mathbb{R}$, sodass 
+	\[
+		X(fg) = X(f) \cdot g(p) + f(p) \cdot X(g)
+	\] 
+	gilt.
+	Der \Index{Tangentialraum} $\Tang_p M$ ist die Menge aller Tangentialvektoren an $M$ in $p$.
+	$\Tang_p M$ ist ein $\mathbb{R}$-Vektorraum via
+	\[
+		(a X)(f) \coloneqq a \cdot \enbrace*{X(f)} \qquad (X+Y)(f) \coloneqq X(f) + Y(f)
+	\]
+	für $X,Y \in \Tang_p M$ und $a \in \mathbb{R}$.
+\end{definition}
+
+\begin{beispiel}[{name=[offene Teilmenge des euklidischen Raumes]}]
+	Betrachte $M = U \subseteq \mathbb{R}^n$ offen und $p \in U$, sowie $v \in \mathbb{R}^n$.
+	Dann ist durch
+	\[
+		\benbrace*{U_0,f} \longmapsto \diffd{}{t}\Big|_{t=0} f(p + tv) \in \mathbb{R}
+	\]
+	ein Element $\eta_p(v) \in \Tang_p U$ definiert.
+	Wir erhalten eine lineare Abbildung (warum?)
+	\mapdef{\eta_p \colon \mathbb{R}^n}{\Tang_p U}{v}{\eta_p(v)}{}
+\end{beispiel}
+
+\begin{lemma}[label=lem:eta-iso]
+	$\eta_p$ ist ein Isomorphismus.
+\end{lemma}
+
+\begin{lemma}[label=lem:summe-fkt]
+	Sei $U_0 \subseteq \mathbb{R}^n$ offen, sternförmig um $p \in U_0$ und $f \colon U_0 \to \mathbb{R}$ eine $C^\infty$-Funktion.
+	Dann existieren $C^\infty$-Funktionen $f_1, \ldots ,f_n \colon U_0 \to \mathbb{R}$, sodass\marginnote{$f_j(p)= \diff{f}{x_j}(p)$}
+	\[
+		f(x) = f(p) + \sum_{j=1}^{n} f_j(x) (x_j -p_j)
+	\]
+\end{lemma}
+\begin{beweis}
+	Schreibe 
+	\begin{align}
+		f(x) + f(p) + \int_0^1 \diffd{}{t} f \enbrace*{p + t(x-p)} \mathd t &= f(p) + \int_0^1 \D f \enbrace*{p + t(x-p)}(x-p) \mathd t \\
+		&= f(p) + \sum_{j=1}^{n} \int_0^1 \diff{f}{x_j} \enbrace*{p + t(x-p)}(x_j -p_j) \mathd t\\
+		&= f(p) + \sum_{j=1}^{n} \enbrace*{ \int_0^1 \diff{f}{x_j} \enbrace*{p+t(x-p)} \mathd t }(x_j -p_j) \qedhere
+	\end{align}
+\end{beweis}
+
+\begin{beweis}[name={von \cref{lem:eta-iso}}]
+	Wir zeigen zunächst, dass $\eta_p$ injektiv ist.
+	Sei also $\eta_p(v)=0$.
+	Dann gilt für jede Funktion $f \colon U \to \mathbb{R}$
+	\[
+		\D f(p) \cdot v=\diffd{}{t}\Big|_{t=0} f(p+tv) =0
+	\]
+	Also ist $v=0$.
+	
+	Zur Surjektivität: Sei $(e_1, \ldots ,e_n)$ die Standardbasis von $\mathbb{R}^n$ und $x_i \colon \mathbb{R}^n \to \mathbb{R}$ die Koordinatenfunktion.
+	Sei $X \in \Tang_p U$.
+	Dann setze $v \coloneqq \sum_{j=1}^{n} X(x_j) \cdot e_j$.
+	Wir müssen also zeigen: $\eta_p(v)=X$.
+	Sei $\benbrace*{U_0,f} \in C^\infty_p(U)$ mit $U_0$ sternförmig.
+	Nach \cref{lem:summe-fkt} gilt
+	\(
+		f = f(p) + \sum_{j=1}^{n} f_j \cdot (x_j -p_j)
+	\).
+	Damit ist 
+	\[
+		X(f) = X \enbrace*{f(p)} + \sum_{j=1}^{n} (X f_j) \enbrace*{x_j(p)- p_j(p)} + \sum_{j=1}^{n} f_j(p) \enbrace*{X(x_j) - X(p_j)} =X\enbrace*{f(p)} + \sum_{j=1}^{n} f_j(p) \enbrace*{X(x_j)- X(p_j)}
+	\]
+	Wir zeigen nun, dass $X(g)=0$ ist für eine konstante Funktion $g$.
+	Schreibe dazu $g= a \cdot \ind$.
+	Dann ist
+	\[
+		X(g) = a X(\ind) = a X(\ind \cdot \ind) = a \enbrace*{X(1) \cdot \ind + 1 X(\ind)} = 2 a X(\ind) = 2 X(g)
+	\]
+	Die obige Formel verkürzt sich also zu $X(f)=\sum_{j=1}^{n} \diff{f}{x_j}(p) X(x_j)$.
+	Weiter haben wir
+	\[
+		\eta_p(v)(f) = \diffd{}{t}\Big|_{t=0} f \enbrace*{p ütv} = \sum_{j=1}^{n} \diff{f}{x_j}(p) \cdot v_j = \sum_{j=1}^{n} \diff{f}{x_j}(p) \cdot X(x_j) \qedhere
+	\]
+\end{beweis}
+
+Sei $f \colon M \to N$ differenzierbar und $p \in M$.
+Wir wollen nun eine lineare Abbildung
+\[
+	\Tang_pf \colon \Tang_p M \to \Tang_{f(p)} N
+\]
+definieren.
+Betrachte dazu $\benbrace*{U,g}\in C^\infty_{f(p)}(N)$.
+Dann ist $g \circ f \coloneqq \benbrace*{f^{-1}(U), g \circ f} \in C^\infty_p(M)$.
+Dies liefert einen Algebrenhomomorphismus
+\mapdef{f^* \colon C^\infty_{f(p)}(N)}{C^\infty_p(M)}{g}{g \circ f}{}
+
+\begin{definition}
+	Die Abbildung $\Tang_p f \colon \Tang_p(M) \to \Tang_{f(p)}N$ ist für $X \in \Tang_p M$ und $g \in C^\infty_{f(p)}(N)$ definiert als 
+	\[
+		\enbrace*{\Tang_pf}(X)(g) \coloneqq X \enbrace*{f^* g}
+	\]
+	
+	
+\end{definition}
+Weil $f^*$ Algebrahomomorphismus ist, ist $\Tang_pf(x) \in \Tang_{f(p)}N$, da
+\begin{align}
+	(\Tang_p f)(X) \enbrace*{g_0 g_1} = X \enbrace*{f^*(g_0 g_1)} = X \enbrace*{f^* g_0 \cdot f^* g_1} = X \enbrace*{f^*g_0} \cdot (f^*g_1)(p) + f^*g_0(p) X \enbrace*{f^*g_1} = \enbrace*{\Tang_pf(X)}(g_0) \cdot g_1(f(p)) + g_0 \enbrace*{f(p)} \enbrace*{\Tang_p f(X)}(g_1)
+\end{align}
+
+\begin{lemma}
+	Sei \(
+		\begin{tikzcd}[sep=small,cramped]
+			M \rar["f"] & N \rar["h"] & L
+		\end{tikzcd}
+	\)
+	differenzierbar.
+	Dann gilt
+	\begin{enumerate}[1)]
+		\item $\Tang_pf \colon \Tang_p M \to \Tang_{f(p)}N$ ist linear
+		\item $\Tang_p {\id_M} = {\id_{\Tang_p(M)}}$
+		\item $\Tang_p(h \circ f) = \enbrace*{\Tang_{f(p)}h} \circ \enbrace*{\Tang_pf}$
+		\item Wenn $U \subseteq M$ offen und $j \colon U \hookrightarrow M$ die Inklusion ist, dann ist $\Tang_p j \colon \Tang_p U \to \Tang_p M$ ein Isomorphismus.
+		\item Sei $p \in U \subseteq \mathbb{R}^m$ offen und $f \colon U \to \mathbb{R}^n$ differenzierbar.
+		Dann kommutiert folgendes Diagramm mit der Jacobimatrix $\D f(p)$
+		\[
+			\begin{tikzcd}
+				\mathbb{R}^m \rar["\eta_p"] \dar["\D f(p)"'] & \Tang_p U \dar["\Tang_p f"] \\
+				\mathbb{R}^n \rar["\eta_{f(p)}"] & \Tang_{f(p)} \mathbb{R}^n
+			\end{tikzcd}
+		\]
+	\end{enumerate}
+\end{lemma}
+\begin{beweis}
+	Die ersten beiden Aussagen und die vierte sind klar, denn es gilt $C^\infty_p(U) \equiv C^\infty_p(M)$.
+	Für die dritte Aussage betrachte $X \in \Tang_p M$ und $g \in C^\infty_{h(f(p))}(L)$.
+	Es gilt
+	\[
+		\enbrace[\big]{\Tang_o(h \circ f)(X)}(g) = X \enbrace[\big]{(h \circ f)^* g} = X \enbrace*{f^*(h^* g)} = \enbrace[\big]{\Tang_p f(X)}(h^* g)
+		= \enbrace*{\Tang_{f(p)}h} \enbrace[\big]{\Tang_p f(X)}(g)
+	\]
+	Für die fünfte Aussage betrachte $v \in \mathbb{R}^m$ und $g \in C^\infty_{f(p)}(\mathbb{R}^n)$.
+	Es gilt
+	\[
+		\enbrace[\Big]{\Tang_p f \enbrace[\big]{\eta_p(v)}}(g) = \enbrace[\big]{\eta_p(v)} \enbrace*{g \circ f} = \diffd{}{t}\Big|_{t=0} g \enbrace[\big]{f(p+tv)} = \D g \enbrace*{f(p)} \cdot \D f(p) \cdot v
+	\]
+	Andersrum gilt
+	\[
+		\enbrace[\Big]{\eta_{f(p)} \enbrace[\big]{\D f(p) \cdot v}}(g) = \diffd{}{t}\Big|_{t=0} g \enbrace[\big]{f(p) + t \D f(p) \cdot v} = \D g \enbrace*{f(p)} \cdot \D f(p) \cdot v \qedhere
+	\]
+\end{beweis}
+
+\todo{Nummer?}
+Wir folgern: Falls $\dim M = n$ ist und $p \in M$, dann ist auch$\dim_\mathbb{R} \Tang_p M =n$.
+\begin{beweis}
+	Sei $(U,h)$ eine Karte um $p$ und $j \colon U \to M$ die Inklusion.
+	Es gilt
+	\[
+		\begin{tikzcd}
+			\Tang_p M & \Tang_p U \lar["\cong","\Tang_p j"'] \rar["\Tang_p h","\cong"'] & \Tang_p h(U) & \mathbb{R}^n \lar["\eta_{h(p)}"',"\cong"]
+		\end{tikzcd}
+	\]
+	da $h$ ein Diffeomorphismus ist.
+\end{beweis}
+
+Eine weitere Folgerung:\todo{Nummer?}
+Sei $f \colon M\to N$ differenzierbar und $p \in M$.
+Dann gilt $\rank _p(f) = \rank(\Tang_p f)$.
+Damit folgt dann, dass $f$ genau dann eine Immersion ist, wenn $\Tang_p f$ injektiv ist; eine Submersion genau dann, wenn $\Tang_p f$ surjektiv ist.
+
+\begin{lemma}
+	Sei $f \colon M^m \to N^n$ differenzierbar und $q \in N$ ein regulärer Wert.
+	Sei $L = f^{-1}(q)$ und $j \colon L \to M$ die Inklusion.
+	Dann ist die Sequenz
+	\[
+		\begin{tikzcd}
+			0 \rar & \Tang_p L \rar["\Tang_p j"] & \Tang_p M \rar["\Tang_p f"] & \Tang_q N \rar & 0
+		\end{tikzcd}
+	\]
+	exakt 
+\end{lemma}
+\begin{beweis}
+	Da $f$ eine Immersion ist, ist $\Tang_p j$ injektiv und da $q$ ein regulärer Wert ist, ist $\Tang_p f$ surjektiv.
+	Weiter gilt $\Tang_p f \circ \Tang_p j = \Tang_p(f \circ j) =0$, da $f \circ j$ konstant ist, und somit $\im \Tang_p j \subseteq \ker \Tang_p f$.
+	Die Gleichheit folgt aus Dimensionsgründen.
+\end{beweis}
+% section der_tangentialraum (end)
 % chapter mannigfaltigkeiten (end)
 
 
