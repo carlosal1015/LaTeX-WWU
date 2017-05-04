@@ -537,7 +537,7 @@ In \Cref{fig:anschauung_pi_n} ist dies zusammen mit der Verknüpfung für $n \in
 
 Zur Erinnerung: Ist $(X,x_0)$ ein punkter Raum, so heißt der punktierte Raum 
 \[
-	C(X,x_0) = \sfrac{X \times I}{X \times \set*{0} \cup \set*{x_0} \times I}
+	\tilde{C}X = C(X,x_0) = \sfrac{X \times I}{X \times \set*{0} \cup \set*{x_0} \times I}
 \]
 der \Index{reduzierte Kegel} von $(X,x_0)$.
 Analog definiert man die \Index{reduzierte Einhängung} von $(X,x_0)$ durch
@@ -579,7 +579,165 @@ Analog definiert man die \Index{reduzierte Einhängung} von $(X,x_0)$ durch
 	
 	Für den Nachweis, dass $C(X,x_0)$ wohlpunktiert ist, verfährt man analog, indem man den Homöomorphismus 
 	\missingfigure{Hier kommt noch ein Bild mit zwei Quadraten hin}
+	Um zu sehen, dass die kanonische Abbildung $\Sigma X \to \Sigma(X,_0)$ eine hOmotopieäquivalenz ist, überlegen wir zunächst, dass $i \colon \set*{x_0} \times I \hookrightarrow \Sigma X$ eine Kofaserung ist.
+	Da $(X,x_0)$ wohlpunktiert ist, ist die Inklusion $\set*{x_0} \times I \to X \times I$ eine Kofaserung.
+	Also gibt es existiert eine Retraktion $(X \times I) \times I \to \Zyl_I \set*{x_0} \times I \times I \cup X \times I \times \set*{0}$.
+	Wir erhalten dann ein kommuatives Diagram
+	\[
+		\begin{tikzcd}
+			X \times I \times I \rar["r"] \dar &  \set*{x_0} \times I \times I \cup X \times I \times \set*{x_0} \dar \\
+			\Sigma X \times I \rar["\overline{r}"] & \set*{x_0} \times I \times I \cup \Sigma X \times \set*{x_0}
+		\end{tikzcd}
+	\]
+	Die Abbildung $\overline{r}$ ist dann eine Retraktion und liefert, dass $\set*{x_0} \times I \to \Sigma X$ eine Kofaserung ist.
+	Nun gilt
+	\[
+		\Sigma X \simeq \Zyl_i \simeq C_i \simeq \sfrac{\Sigma X}{\im i} = S X \qedhere
+	\]
 \end{beweis}
+
+\begin{definition}
+	Für eine punktierte Abbildung $f \colon (X,x_0) \to (Y,y_0)$ definieren wir den \bet{reduzierten Abbildungszylinder}\index{Abbildungszylinder!reduzierter} und den \bet{reduzierten Abbildungskegel}\index{Abbildungskegel!reduzierter} durch
+	\[
+		\rZyl_f \coloneqq \sfrac{\Zyl_f}{\set*{x_0} \times I} \qquad \tilde{C}_f \coloneqq \sfrac{C_f}{\set*{x_0} \times I}
+	\]
+\end{definition}
+
+\begin{satz}[label=satz:abg-kofaserung]
+	Sei $A \hookrightarrow X$ eine abgeschlossene Kofaserung, so gilt
+	\begin{enumerate}[(a)]
+		\item Die kanonische Abbildung $A \times I \to \Zyl_i$ ist eine Kofaserung.
+		\item Ist $a \in A$ ein Grundpunkt, sodass $(A,a)$ wohlpunktiert ist, so sind die beiden kanonischen Abbildungen 
+		\[
+			\Zyl_i \longrightarrow \rZyl_i \qquad C_i \longrightarrow \tilde{C}_i
+		\]
+		Homotopieäquivalenzen.
+	\end{enumerate}
+\end{satz}
+
+\begin{lemma}[{name=[Komposition von Kofaserungen]}]
+	Sind $A \to B$ und $B \to C$ Kofaserungen, so ist auch die Komposition $A \to B \to C$ eine Kofaserung.
+\end{lemma}
+\begin{beweis}
+	\emph{Siehe Übung.}
+\end{beweis}
+
+\begin{beweis}[name={von \cref{satz:abg-kofaserung}}]
+	\begin{enumerate}[(a)]
+		\item Es ist $A \subset X$ eine abgeschlossene Kofaserung.
+		Mit dem Pushout ist dann auch $A \times I \to C_f$ eine Kofaserung.
+		\[
+			\begin{tikzcd}
+				A \rar \dar & A \times I \dar\\
+				X \rar & \Zyl_i
+			\end{tikzcd}
+		\]
+		\item Da $(A,a)$ wohlpunktiert ist, ist $\set*{a} \times I \hookrightarrow A \times I$ eine Kofaserung und damit ist es auch (mit dem Lemma und (a))
+		\[
+			j \colon \set*{a} \times I \hookrightarrow A \times I \rightarrow \Zyl_i
+		\]
+		und $\Zyl_i \simeq \Zyl_i \simeq C_j \simeq \sfrac{C_j}{\im j} = \rZyl_i$.
+		Analog erhält man, dass $C_i \to \tilde{C}_i$ eine Homotopieäquivalenz ist.\qedhere
+	\end{enumerate}
+\end{beweis}
+
+\begin{definition}[{name=[koexakte Folge punktierter Abbildunge]}]
+	Eine Sequenz von punktierten Abbildungen $A \to B \to C$ heißt \Index{koexakt}, wenn für jeden punktierten Raum $Y$ die Folge 
+	\[
+		\begin{tikzcd}
+			\benbrace*{C,Y}_* \rar["g^*"] & \benbrace*{B,Y}_* \rar["f^*"] & \benbrace*{A,Y}_*
+		\end{tikzcd}
+	\] 
+	von punktierten Mengen exakt ist, das heißt es gilt $(f^*)^{-1}(+) = \im g^*$, wobei $+$ die Homotopieklasse der punktierten Abbildung $C\to Y$ ist, die ganz $A$ auf den Grundpunkt in $Y$ abbildet.
+\end{definition}
+
+\begin{satz}
+	Ist $f \colon A \to X$ eine punktierte stetige Abbildung, so ist die Sequenz \(
+		\begin{tikzcd}[sep=small,cramped]
+			A \rar["f"] & X \rar & \tilde{C}_f
+		\end{tikzcd}
+	\) koexakt.
+\end{satz}
+\begin{beweis}
+	Offensichtlich gilt $i \circ f \simeq * =$ konstante Abbildung, da $a \mapsto f(a) \mapsto \benbrace*{f(a),0}$.
+	Also gilt $\im I^* \subseteq (f^*)^{-1}(*)$.
+	Ist $g \colon X \to Y$ im Urbild bezüglich $f^*$ von $* \in \benbrace*{A,Y}_*$, das heißt es gilt $g \circ f \simeq *$; es existiert also eine Homotopie $H \colon A \times I \to Y$ mit $H_1 = *$ und $H_0= g \circ f$.
+	Dann liefert $H$ eine Erweiterung von $g$ auf $\tilde{C}_f$.
+	\[
+		\begin{tikzcd}
+			A \times I \amalg X \ar[rr,"H \amalg g"] \drar & & Y \\
+			& \tilde{C}_f \urar["h"]
+		\end{tikzcd}
+	\]
+	das heißt es gilt $g = h \circ i$, also $(f^*)^{-1}(*) \subseteq \im i^*$.
+\end{beweis}
+
+\begin{korollar}
+	Für jede punktierte Abbildung $f \colon A \to X$ besteht die Sequenz
+	\[
+		\begin{tikzcd}
+			A \rar["f"] & X \rar["i"] & \tilde{C}_f \rar["j"] & \tilde{C}_i \rar["k"] & \tilde{C}_j \rar & \tilde{C}_k
+		\end{tikzcd}
+	\]
+	aus kurzen koexakten Sequenzen.
+\end{korollar}
+
+\begin{definition}
+	Eine Sequenz von punkten stetigen Abbbildungen heißt \Index{koexakt}, falls je zwei aufeinander folgende Abbildungen koexakt sind. 
+\end{definition}
+
+Wir betrachten nun die Abbildungen \[
+	\begin{tikzcd}
+		A \rar["f"] & X \rar["i"] & \tilde{C}_f \rar["j"] & \tilde{C}_i \rar["k"] \dar & \tilde{C}_j  \dar\\
+		&&& \sfrac{\tilde{C}_i}{\tilde{C}X} \rar & \sfrac{\tilde{C}_i}{\tilde{C}_f} \\
+		&&& S A \uar[phantom,"\cong",sloped] \rar["-S_f"] & SX \uar[phantom,"\cong",sloped]
+	\end{tikzcd}
+\]
+Zur Veranschaulichung:
+\missingfigure{Kegeln macht Spaß}
+Obiges Diagram kommutiert mit der durch das Diagram 
+\[
+	\begin{tikzcd}
+		(a,t) \rar[mapsto] & (f(a),1-t)\\[-1em]
+		A \times I \dar \rar & X \times I \dar \\
+		SA \rar["-S_f"] & SX
+	\end{tikzcd}
+\]
+definierte Abbildung $-S_f$ ist kommutativ bis auf Homotopie.
+Eine zugehörige Homotopie ist $h \colon \tilde{C}_i \times I \to SX$
+\begin{align}
+	h \enbrace*{\benbrace*{(a,s)},u} &= \benbrace[\big]{f(a), u(1-s)} \\
+	h \enbrace*{\benbrace*{(x,t)},u} &= \benbrace[\big]{x, t(1-u) +u}
+\end{align}
+Dann ist $h_0 \enbrace*{\benbrace*{(a,s)}} = \benbrace*{(f(a),0)}$ und $h_0( \benbrace*{(x,t)}) = \benbrace*{(x,t)}$, sowie $h_1 \enbrace*{\benbrace*{(a,s)}} = \benbrace*{\enbrace*{f(a),1-s}}$ und $h_1 \enbrace*{\benbrace*{(x,t)}} = \benbrace*{(x,1)}$.
+Weiterhin sind $\tilde{C}_i \to \sfrac{\tilde{C}_i}{\tilde{C}X} \cong SA$ und $\tilde{C}_j \to \sfrac{\tilde{C}_j}{\tilde{C}_f} \cong SX$ Homotopieäquivalenzen.
+Das heißt wir erhalten ein kommutatives Diagram von punktierten Mengen
+\[
+	\begin{tikzcd}
+		\benbrace*{\tilde{C}_j,Y} \rar & \benbrace*{\tilde{C}_i,Y}_* \rar & \benbrace*{\tilde{C}_f,Y} \rar["i^*"] & \benbrace*{X,Y}_* \rar["f^*"] & \benbrace*{A,Y}_* \\
+		\benbrace*{SX,Y}_* \uar["\cong"] \rar["(-S_f)^*"] & \benbrace*{SA,Y}_* \uar["\cong"] 
+	\end{tikzcd}
+\]
+\begin{satz}[name={Puppe}]
+	Für jede punktierte stetige Abbildung $f \colon A \to X$ ist die Sequenz 
+	\[
+		\begin{tikzcd}
+			A \rar["f"] & X \rar["i"] & \tilde{C}_f \rar & SA \rar["-S_f"] & SX \rar & S \tilde{C}_f \rar & S^2 A \rar["S^2 f"] & S^2 X \rar & S^2 \tilde{C}_f
+		\end{tikzcd}
+	\]
+	ist koexakt.
+	Diese Sequenz heißt \Index{Puppe-Sequenz} (oder Barrett-Puppe-Sequenz).
+\end{satz}
+
+
+\newpage
+\todo{an sinniger Stelle einfügen}
+\begin{satz}
+	Sind $A,B \subset X$ Teilmengen, sodass die Inklusionen $A \hookrightarrow X$, $B \hookrightarrow X$ und $A \cap B \hookrightarrow X$ abgeschlossene Kofaserungen sind, so ist es auch $A \cup B \hookrightarrow X$.
+\end{satz}
+\begin{satz}
+	Ist $A \subset X$ eine abgeschlossene Kofaserung, so ist auch $A \times Y \hookrightarrow X \times Y$ für jeden Raum $Y$ eine abgeschlossene Kofaserung.
+\end{satz}
 % section kofaserungen (end)
 
 \cleardoubleoddemptypage
