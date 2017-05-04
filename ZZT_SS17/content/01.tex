@@ -1,7 +1,7 @@
 %!TEX root = ../ZZT_SS17.tex
 \section{Teiler, Primzahlen und der Hauptsatz der Arithmetik}
 \label{sec:1}
-	\subsection{Erinnerung}
+	\subsection*{Erinnerung}
 	Wir betrachten die Menge der \textbf{natürlichen Zahlen} \index{natürliche Zahl} \marginnote{[1] \\ 20.4.}
 	\[
 		\NN= \{0,1,2,3,\dots\},
@@ -21,7 +21,7 @@
 		ax = ay \quad \Rightarrow \quad x=y \qquad \text{in } \NN \text{ und } \ZZ, a \neq 0.
 	\end{gather}
 	
-	\subsection{Induktion und Wohlordnung}
+	\subsection*{Induktion und Wohlordnung}
 	\begin{satz}[Erstes Induktionsprinzip]
 	\label{satz:IP1}
 	Ist $S \subseteq \NN$ mit \index{erstes Induktionsprinzip} \marginnote{[2]}
@@ -480,7 +480,7 @@
 
 	\begin{beweis}
 		\begin{description}
-			\item[(ii) $\Rightarrow$ (i):] Angenommen, $n = 2^{k-1} \cdot q$ mit $k \geq 2$, $q = 2^k-1 \geq 3$.
+			\item[(ii) $\Rightarrow$ (i):] Angenommen, $n = 2^{k-1} \cdot q$ mit $k \geq 2$, $q = 2^k-1 \geq 3$. \marginnote{4.5.}
 			Dann:
 			\begin{align*}
 				\sigma(n) &= \sigma \enb{2^{k-1}} \cdot \sigma(q) = \frac{2^k-1}{2-1} \cdot (1+q) \\
@@ -497,6 +497,118 @@
 				2n = 2^k \cdot m &= (2^k - 1) \cdot 2^k \cdot l \\
 				m &= (2^k - 1) \cdot l.
 			\end{align*}
+			Nun ist $l=1$, denn sonst sind $1, 2^k-1$ und $l$ verschiedene Teiler von $m$ und damit $\sigma(m) \geq 1+(2^k-1)+l+(2^k-1)\cdot l > 2^k \cdot l = \sigma(m)$.
+			Also ist $m = 2^k-1$ und damit $\sigma(m) = m+1$, also $m \in \PP$.
 		\end{description}
 	\end{beweis}
+
+	\begin{bemerkung}
+		\begin{enumerate}[(1)]
+			\item Es ist unbekannt, ob es ungerade vollkommene Zahlen gibt (Wenn, dann müssen sie größer sein als $10^{1500}$). \marginnote{[16]}
+			\item Primzahlen der Form $2^k-1$ heißen \textbf{Mersennesche Primzahlen}. \index{Mersenne-Primzahl}
+			Zur Zeit sind $49$ Mersennesche Primzahlen bekannt.
+			Ob es unendlich viele Mersennesche Primzahlen gibt, ist unbekannt.
+			\item Wenn $2^k-1$ eine Primzahl ist, dann ist auch $k$ eine Primzahl, denn:
+			Wenn $k = uv$ mit $u,v > 1, u,v \in \NN$, so ist
+			\[
+				2^{uv} - 1 = (2^u)^v - 1 = \underbrace{\enb{\sum\limits_{j=0}^{v-1} 2^j}}_{>1} \cdot \underbrace{(2^u-1)}_{>1} \notin \PP.
+			\]
+			Aber: $2^{11} - 1 = 23 \cdot 89$.
+			Das Kriterium ist nur notwendig, aber nicht hinreichend.
+		\end{enumerate}
+	\end{bemerkung}
+
+	\subsection*{Euklids Algorithmus}
+	\begin{lemma}
+		Sei $a,b,m \in \ZZ$. \marginnote{[17]}
+		Dann gilt $\ggT(a,b) = \ggT(a,b+ma)$.
+	\end{lemma}
+
+	\begin{beweis}
+		Sei $K = \{ax+by : x,y \in \ZZ\}$ und $L = \{au+(b+ma)v : u,v \in \ZZ\}$.
+		Dann gilt $K = L$, denn:
+		\begin{align*}
+			ax + by &= au + (b+ma) \cdot v \\
+			\Leftrightarrow \quad ax + by &= a \cdot (u+mv) + bv
+		\end{align*}
+		ist immer lösbar mit $v = y$.
+		Also gilt $\ggT(a,b) = \ggT(a,b+ma)$.
+	\end{beweis}
+
+	\begin{quote}
+		Wenn $b$ aber $a$ nicht misst und man nimmt von $a,b$ abwechselnd immer das Kleinere vom Größeren weg, dann muss schließlich eine Zahl übrigbleiben, die alle vorangegangenen misst.
+		
+		{\footnotesize --- Euklid}
+	\end{quote}
+	\newpage
+	\begin{algo}
+		Input: ganze Zahlen $a,b$ -- Output: $\ggT(a,b)$ \index{Euklidischer Algorithmus}
+		
+\begin{lstlisting}
+	ggT(a,b){
+		if a=0 return |b|					$\textcolor{black!50}{\ggT(0,b) = |b|}$
+		if b=0 return |a|					$\textcolor{black!50}{\ggT(a,0) = |a|}$
+		a $\leftarrow$ |a|
+		b $\leftarrow$ |b|								$\textcolor{black!50}{\ggT(a,b) = \ggT(|a|,|b|)}$
+		while a $\neq$ b {
+			if a > b:	a $\leftarrow$ a-b				$\textcolor{black!50}{\ggT(a,b) = \ggT(a-b,b)}$
+			if b > a:	b $\leftarrow$ b-a				$\textcolor{black!50}{\ggT(a,b) = \ggT(a,b-a)}$
+		}
+		return a
+	}
+\end{lstlisting}
+		In jedem Durchlauf der \texttt{while}-Bedingung wird $|a-b|$ echt verringert.
+		Also sind $a$ und $b$ nach endlich vielen Durchläufen gleich.
+		Dann gilt $a=b=\ggT(a,b)$.
+		
+		Beachte: An arithmetischen Operationen wird nur Subtraktion benutzt.
+	\end{algo}
+
+	\begin{bemerkung}
+		Der euklidische Algorithmus wird oft anders formuliert: \marginnote{[18]}
+		Gegeben sind ganze Zahlen $r_0, r_1$ mit $r_1 \neq 0$.
+		Gesucht ist der $\ggT(r_1,r_0)$.
+		Verwende Teilen mit Rest, vgl. Satz~\ref{satz:teilen mit rest}.
+		Schreibe $r_i = s_i \cdot r_{i+1} + r_{i+2}$ mit $0 \leq r_{i+2} < |r_{i+1}|$:
+		
+		\[
+			\begin{array}{rclcl}
+				r_0 = s_0 \cdot r_1 + r_2 & \text{mit} & 0 \leq r_2 < |r_1| && \textcolor{black!50}{\ggT(r_0,r_1)} \\
+				r_1 = s_1 \cdot r_2 + r_3 & \text{mit} & 0 \leq r_3 < |r_2| && \textcolor{black!50}{= \ggT(r_1,r_2)} \\
+				r_2 = s_2 \cdot r_3 + r_4 & \text{mit} & 0 \leq r_4 < |r_3| && \textcolor{black!50}{= \ggT(r_2,r_3)} \\
+				 & \vdots & && \textcolor{black!50}{\vdots} \\
+				r_k = s_k \cdot r_{k+1} + r_{k+2} & \text{mit} & 0 \leq r_{k+2} < |r_{k+1}| && = \textcolor{black!50}{\ggT(r_k,r_{k+1})}\\
+				r_{k+1} = s_{k+1} \cdot \textcolor{red}{r_{k+2}} + 0 &&&& \textcolor{black!50}{=\ggT(r_{k+1},r_{k+2}) =} \ \textcolor{red}{r_{k+2}}
+			\end{array}
+		\]
+		
+		Rückwärtseinsetzen liefert $d = \ggT(r_0,r_1)$ als ganzzahlige Linearkombination aus $r_0$ und $r_1$:
+		\begin{align*}
+			r_k - s_k \cdot r_{k+1} &= r_{k+2} = d \\
+			r_{k-1} - s_{k-1} \cdot r_k &= r_{k+1} \\
+			&\vdots \\
+			r_0 - s_0 \cdot r_1 &= r_2
+		\end{align*}
+	\end{bemerkung}
+
+	\begin{beispiel}
+		Berechne $d = \ggT(343,280)$ und löse $343x + 280y = d$ mit $x,y \in \ZZ$.
+		
+		\begin{align*}
+			343 &= 1 \cdot 280 + 63 \\
+			280 &= 4 \cdot 63  + 28 \\
+			63 &= 2 \cdot 28 + 7 \\
+			28 &= 4 \cdot 7 + 0
+		\end{align*}
+		
+		Also ist $d = 7$.
+		Jetzt rückwärts:
+		\begin{align*}
+			7 &= 63 - 2 \cdot 28 \\
+			&= 63 - 2 \cdot (280 - 4 \cdot 63) \\
+			&= 9 \cdot 63 + (-2) \cdot 280 \\
+			&= 9 \cdot (343 - 280) + (-2) \cdot 280 \\
+			&= 9 \cdot 343 + (-11) \cdot 280
+		\end{align*}
+	\end{beispiel}
 \cleardoubleoddemptypage

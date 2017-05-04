@@ -36,10 +36,12 @@
 % ===========================================================
 	\usepackage{sourcecodepro}
 	\usepackage[default]{sourcesanspro}
+	\usepackage{nimbusmononarrow}
 	
 	\usepackage[babel=true,final,tracking=smallcaps]{microtype}
 	\DisableLigatures{encoding = T1, family = tt* } % keine Ligaturen für Monospace-Fonts
 	\usepackage{ellipsis}
+	\usepackage{ulem}
 % ===========================================================
 
 % Farben
@@ -179,6 +181,8 @@
 \newtheorem{korollar}[satz]{Korollar}
 \newtheorem{lemma}[satz]{Lemma}
 \newtheorem{thm}[satz]{Theorem}
+\newtheorem{bemerkung}[satz]{Bemerkung}
+\newtheorem{algo}[satz]{Algorithmus}
 
 \theoremstyle{change}
 \theorembodyfont{\normalfont}
@@ -249,5 +253,19 @@
 
 % Sonstiges / für Testzwecke
 % ===========================================================
-	\usepackage{lipsum}
+	\usepackage{listingsutf8}
+	\lstset{ %
+		mathescape=true,
+		basicstyle=\ttfamily,
+		frame=tb,
+		%backgroundcolor=\color{white},   % choose the background color
+		%basicstyle=\small,        % size of fonts used for the code
+		captionpos=b,                    % sets the caption-position to bottom
+		keywordstyle=\color{blue},       % keyword style
+		%stringstyle=\color{Red3},     % string literal style
+		%aboveskip=1.5em,
+		%belowskip=-.5em,
+		tabsize=4,
+		morekeywords={if, return, while}
+	}
 % ===========================================================
